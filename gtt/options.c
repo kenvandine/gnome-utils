@@ -21,6 +21,11 @@
 
 #include "gtt.h"
 
+#undef gettext
+#undef _
+#include <libintl.h>
+#define _(String) gettext(String)
+
 
 typedef struct _OptionsDlg {
 	GtkDialog *dlg;
@@ -85,7 +90,7 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 {
 	GtkWidget *w;
 
-	w = gtk_button_new_with_label("OK");
+	w = gtk_button_new_with_label(_("OK"));
 	gtk_widget_show(w);
 	gtk_signal_connect(GTK_OBJECT(w), "clicked",
 			   GTK_SIGNAL_FUNC(options_ok),
@@ -93,14 +98,14 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 	odlg->ok = w;
 
-	w = gtk_button_new_with_label("Apply");
+	w = gtk_button_new_with_label(_("Apply"));
 	gtk_widget_show(w);
 	gtk_signal_connect(GTK_OBJECT(w), "clicked",
 			   GTK_SIGNAL_FUNC(options_ok),
 			   (gpointer *)odlg);
 	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 
-	w = gtk_button_new_with_label("Cancel");
+	w = gtk_button_new_with_label(_("Cancel"));
 	gtk_widget_show(w);
 	gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
 				  GTK_SIGNAL_FUNC(gtk_widget_hide),
@@ -115,7 +120,7 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	GtkWidget *w, *frame;
 	GtkWidget *vb;
 
-	frame = gtk_frame_new("Display");
+	frame = gtk_frame_new(_("Display"));
 	gtk_widget_show(frame);
 	gtk_box_pack_start(vbox, frame, FALSE, FALSE, 2);
 
@@ -123,23 +128,23 @@ static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(vb);
 	gtk_container_add(GTK_CONTAINER(frame), vb);
 
-	w = gtk_check_button_new_with_label("Show Seconds");
+	w = gtk_check_button_new_with_label(_("Show Seconds"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_secs = GTK_CHECK_BUTTON(w);
 	
 #ifdef GNOME_USE_APP
-	w = gtk_check_button_new_with_label("Show Toolbar Icons");
+	w = gtk_check_button_new_with_label(_("Show Toolbar Icons"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_icons = GTK_CHECK_BUTTON(w);
 
-	w = gtk_check_button_new_with_label("Show Toolbar Texts");
+	w = gtk_check_button_new_with_label(_("Show Toolbar Texts"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_tb_texts = GTK_CHECK_BUTTON(w);
 #endif
-	w = gtk_check_button_new_with_label("Show Status Bar");
+	w = gtk_check_button_new_with_label(_("Show Status Bar"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_status_bar = GTK_CHECK_BUTTON(w);
@@ -152,7 +157,7 @@ static void command_options(OptionsDlg *odlg, GtkBox *vbox)
 	GtkWidget *w, *frame;
 	GtkTable *table;
 
-	frame = gtk_frame_new("Shell Commands");
+	frame = gtk_frame_new(_("Shell Commands"));
 	gtk_widget_show(frame);
 	gtk_box_pack_start(vbox, frame, FALSE, FALSE, 2);
 
@@ -160,7 +165,7 @@ static void command_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(GTK_WIDGET(table));
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(table));
 
-	w = gtk_label_new("Switch Project Command:");
+	w = gtk_label_new(_("Switch Project Command:"));
 	gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 0, 1, 0, 1);
@@ -169,7 +174,7 @@ static void command_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 1, 2, 0, 1);
 	odlg->command = GTK_ENTRY(w);
-	w = gtk_label_new("No Project Command:");
+	w = gtk_label_new(_("No Project Command:"));
 	gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 	gtk_widget_show(w);
 	gtk_table_attach_defaults(table, w, 0, 1, 1, 2);
@@ -198,7 +203,7 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	GtkWidget *w, *frame;
 	GtkBox *vbox2, *hbox;
 
-	frame = gtk_frame_new("Logfile");
+	frame = gtk_frame_new(_("Logfile"));
 	gtk_widget_show(frame);
 	gtk_box_pack_start(vbox, frame, FALSE, FALSE, 2);
 	
@@ -206,7 +211,7 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(GTK_WIDGET(vbox2));
 	gtk_container_add(GTK_CONTAINER(frame), GTK_WIDGET(vbox2));
 
-	w = gtk_check_button_new_with_label("Use Logfile");
+	w = gtk_check_button_new_with_label(_("Use Logfile"));
 	gtk_widget_show(w);
 	gtk_box_pack_start(vbox2, w, FALSE, FALSE, 0);
 	gtk_signal_connect(GTK_OBJECT(w), "clicked",
@@ -218,7 +223,7 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(GTK_WIDGET(hbox));
 	gtk_box_pack_start(vbox2, GTK_WIDGET(hbox), FALSE, FALSE, 0);
 
-	w = gtk_label_new("Filename:");
+	w = gtk_label_new(_("Filename:"));
 	gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 	gtk_widget_show(w);
 	gtk_box_pack_start(hbox, w, FALSE, FALSE, 0);
@@ -232,7 +237,7 @@ static void logfile_options(OptionsDlg *odlg, GtkBox *vbox)
 	gtk_widget_show(GTK_WIDGET(hbox));
 	gtk_box_pack_start(vbox2, GTK_WIDGET(hbox), FALSE, FALSE, 0);
 
-	w = gtk_label_new("Timeout in secs:");
+	w = gtk_label_new(_("Timeout in secs:"));
 	gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 	gtk_widget_show(w);
 	gtk_box_pack_start(hbox, w, FALSE, FALSE, 0);
@@ -275,10 +280,12 @@ void options_dialog(void)
 	static OptionsDlg *odlg = NULL;
 	
 	if (!odlg) {
+		char s[64];
 		odlg = g_malloc(sizeof(OptionsDlg));
 
 		odlg->dlg = GTK_DIALOG(gtk_dialog_new());
-		gtk_window_set_title(GTK_WINDOW(odlg->dlg), APP_NAME " - Preferences");
+		sprintf(s, APP_NAME " - %s", _("Preferences"));
+		gtk_window_set_title(GTK_WINDOW(odlg->dlg), s);
 
 		vbox = (GtkBox *)gtk_vbox_new(FALSE, 0);
 		gtk_widget_show(GTK_WIDGET(vbox));
@@ -296,3 +303,4 @@ void options_dialog(void)
 	options_dialog_set(odlg);
 	gtk_widget_show(GTK_WIDGET(odlg->dlg));
 }
+

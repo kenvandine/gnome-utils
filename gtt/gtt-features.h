@@ -29,7 +29,18 @@
  * gtk-0.99.0, but the check is drawn like there should allways be
  * the indicator.
  */
-#undef ALLWAYS_SHOW_TOGGLE
+#define ALLWAYS_SHOW_TOGGLE
+
+
+/*
+ * USE_GTT_HELP
+ * GttHelp depends on Gtk-XmHTML. So if you don't have Gtk-XmHTML as found
+ * in the current GNOME CVS tree, you will not be able to use USE_GTT_HELP.
+ * GttHelp also depends on GnomeApp, btw.
+ * 
+ * This is still experimental.
+ */
+#undef USE_GTT_HELP
 
 
 /*
@@ -49,25 +60,6 @@
  * This is still experimetal.
  */
 #define GNOME_USE_APP
-
-
-/*
- * GNOME_USE_MENU_INFO
- * If define, GnomeMenuInfo (used by GnomeApp) is used. This is experimental
- * and will be stripped pretty soon.
- */
-#undef GNOME_USE_MENU_INFO
-
-
-/*
- * GNOME_CHANGE_TOOLBAR
- * GtkToolbar doesn't support changing icons yet.
- * Defining GNOME_CHNAGE_TOOLBAR enables an experimental workaround.
- * I refcomment not to use it. If you want better toolbar support, disable
- * GNOME_USE_APP
- */
-#undef GNOME_CHANGE_TOOLBAR
-
 
 
 /*
@@ -96,15 +88,10 @@
  */
 
 #if !HAS_GNOME
+#undef USE_GTT_HELP
 #undef GNOME_USE_MSGBOX
 #undef GNOME_USE_APP
 #endif
-
-#ifndef GNOME_USE_APP
-#undef GNOME_USE_MENU_INFO
-#undef GNOME_CHANGE_TOOLBAR
-#endif
-
 
 
 #endif

@@ -5,6 +5,7 @@ INCLUDES = 			\
 	-I$(srcdir)/../.. 	\
 	-I$(includedir)		\
 	-DHAS_GNOME=1		\
+	-DLOCALEDIR=\"$(datadir)/locale\" \
 	$(X_CFLAGS)
 
 bin_PROGRAMS = gtt
@@ -27,11 +28,14 @@ gtt_SOURCES = 	\
 	menucmd.h	\
 	app.c		\
 	log.c		\
+	gtthelp.c	\
+	gtthelp.h	\
 	gtt-features.h
 
 gtt_LDADD = \
 	$(top_builddir)/libgnomeui/libgnomeui.la 	\
 	$(top_builddir)/libgnome/libgnome.la		\
+	$(top_builddir)/intl/libintl.a			\
 	$(GTK_LIBS)					\
         $(X_LIBS) $(x_libs)
 

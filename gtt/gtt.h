@@ -95,6 +95,8 @@ void project_list_time_reset(void);
 int project_list_load(char *fname);
 int project_list_save(char *fname);
 
+char *project_get_timestr(project *p);
+
 
 /* prop.c */
 
@@ -123,6 +125,7 @@ extern int config_show_tb_texts;
 extern char *config_command, *config_command_null, *config_logfile_name;
 extern int config_logfile_use, config_logfile_min_secs;
 
+void update_status_bar(void);
 void cur_proj_set(project *p);
 void update_title_label(project *p);
 void update_label(project *p);

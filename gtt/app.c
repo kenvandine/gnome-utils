@@ -25,14 +25,13 @@
 
 #include "gtt.h"
 
-#ifdef GNOME_USE_APP
-# define WANT_GNOME 1
-#else
-# define WANT_GNOME 0
-#endif
-
-
 #include <string.h>
+
+
+#undef gettext
+#undef _
+#include <libintl.h>
+#define _(String) gettext(String)
 
 
 project *cur_proj = NULL;
@@ -53,8 +52,28 @@ int config_logfile_min_secs = 0;
 
 
 
-#define NO_PROJECT_SELECTED "no project selected"
+
 static GtkWidget *status_project = NULL;
+
+
+
+void update_status_bar(void)
+{
+	static char old[512] = "00:00";
+	static char s[512];
+
+	if (status_project) {
+		if (cur_proj) {
+			sprintf(s, "%s %s", project_get_timestr(NULL), cur_proj->title);
+		} else {
+			sprintf(s, "%s %s", project_get_timestr(NULL), _("no project selected"));
+		}
+		if (0 != strcmp(s, old))
+			gtk_label_set(GTK_LABEL(status_project), s);
+	}
+}
+
+
 
 void cur_proj_set(project *proj)
 {
@@ -72,13 +91,7 @@ void cur_proj_set(project *proj)
 	log_proj(proj);
 	prop_dialog_set_project(proj);
 	menu_set_states();
-	if (status_project) {
-		if (cur_proj) {
-			gtk_label_set(GTK_LABEL(status_project), cur_proj->title);
-		} else {
-			gtk_label_set(GTK_LABEL(status_project), NO_PROJECT_SELECTED);
-		}
-	}
+	update_status_bar();
 	cmd = (proj) ? config_command : config_command_null;
 	if (!cmd) return;
 	i = 0;
@@ -153,6 +166,7 @@ void update_label(project *p)
 
 	if (!p) return;
 	if (!p->label) return;
+	update_status_bar();
 	if (config_show_secs) {
 		sprintf(buf, "%02d:%02d:%02d",
 			p->day_secs / 3600,
@@ -238,7 +252,8 @@ void setup_list(void)
 		gtk_container_remove(GTK_CONTAINER(glist), gl->data);
 	}
 	if (!plist) {
-		project_list_add(project_new_title("empty"));
+		/* define one empty project on the first start */
+		project_list_add(project_new_title(gettext("empty")));
 	}
 	
 	for (pl = plist; pl; pl = pl->next) {
@@ -271,8 +286,10 @@ static void init_list_2(GtkWidget *w, gint butnum)
 static void init_list(void)
 {
 	if (!project_list_load(NULL)) {
-		msgbox_ok_cancel("Confirmation request", "I could not read the init file.\n"
-				 "Shall I install a new init file?", "OK", "No, just quit!",
+		msgbox_ok_cancel(_("Confirmation request"),
+				 _("I could not read the init file.\n"
+				   "Shall I install a new init file?"),
+				 _("Yes"), _("No, just quit!"),
 				 GTK_SIGNAL_FUNC(init_list_2));
 	} else {
 		setup_list();
@@ -325,10 +342,10 @@ void app_new(int argc, char *argv[])
 	char *p, *p0, c;
 	int i;
 	int x, y, w, h, xy_set;
-#if !WANT_GNOME
+#ifndef USE_GNOME_APP
 	GtkWidget *widget;
 	GtkAcceleratorTable *accel;
-#endif 
+#endif /* USE_GNOME_APP */
 
 	w = 0; h = 0; xy_set = 0;
 	x = 0; y = 0; /* keep the compiler happy */
@@ -340,7 +357,7 @@ void app_new(int argc, char *argv[])
 				p0 = p;
 				for (; (*p >= '0') && (*p <= '9'); p++) ;
 				if (*p != 'x') {
-					g_print("error in geometry string \"%s\"\n", argv[i]);
+					g_print(_("error in geometry string \"%s\"\n"), argv[i]);
 					continue;
 				}
 				*p = 0;
@@ -355,7 +372,7 @@ void app_new(int argc, char *argv[])
 			}
 			if (*p == 0) continue;
 			if ((*p != '-') && (*p != '+')) {
-				g_print("error in geometry string \"%s\"\n", argv[i]);
+				g_print(_("error in geometry string \"%s\"\n"), argv[i]);
 				continue;
 			}
 			p0 = p;
@@ -365,34 +382,34 @@ void app_new(int argc, char *argv[])
 			x = atoi(p0);
 			*p = c;
 			if ((*p != '-') && (*p != '+')) {
-				g_print("error in geometry string \"%s\"\n", argv[i]);
+				g_print(_("error in geometry string \"%s\"\n"), argv[i]);
 				continue;
 			}
 			p0 = p;
 			for (p++; (*p >= '0') && (*p <= '9'); p++) ;
 			if (*p != 0) {
-				g_print("error in geometry string \"%s\"\n", argv[i]);
+				g_print(_("error in geometry string \"%s\"\n"), argv[i]);
 				continue;
 			}
 			y = atoi(p0);
 			xy_set++;
 		} else {
 			/* TODO: parsing more arguments? */
-			g_print("unknown arg: %s\n", argv[i]);
+			g_print(_("unknown arg: %s\n"), argv[i]);
 		}
 	}
 
-#if WANT_GNOME
+#ifdef GNOME_USE_APP
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
 	menu_create(window);
 	toolbar_create(window);
 	vbox = gtk_vbox_new(FALSE, 0);
-#else /* WANT_GNOME */ 
+#else /* GNOME_USE_APP */ 
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), APP_NAME " " VERSION);
 
 	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
-			   GTK_SIGNAL_FUNC(quit_app), NULL);
+			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 	gtk_signal_connect(GTK_OBJECT(window), "destroy",
 			   GTK_SIGNAL_FUNC(quit_app), NULL);
 	gtk_container_border_width(GTK_CONTAINER(window), 1);
@@ -407,12 +424,12 @@ void app_new(int argc, char *argv[])
 	widget = build_toolbar(window, NULL);
 	gtk_widget_show(widget);
 	gtk_box_pack_start(GTK_BOX(vbox), widget, FALSE, FALSE, 0);
-#endif /* WANT_GNOME */ 
+#endif /* GNOME_USE_APP */ 
 
 	status_bar = gtk_hbox_new(FALSE, 0);
 	gtk_widget_show(status_bar);
 	gtk_box_pack_end(GTK_BOX(vbox), status_bar, FALSE, FALSE, 2);
-	status_project = gtk_label_new(NO_PROJECT_SELECTED);
+	status_project = gtk_label_new("00:00");
 	gtk_widget_show(status_project);
 	gtk_box_pack_start(GTK_BOX(status_bar), status_project, FALSE, FALSE, 3);
 
@@ -457,7 +474,7 @@ void app_new(int argc, char *argv[])
 		while (y > t) y -= t;
 		gtk_widget_set_uposition(window, x, y);
 	}
-#if WANT_GNOME
+#ifdef GNOME_USE_APP
 	gnome_app_set_contents(GNOME_APP(window), vbox);
 #endif
 }

@@ -23,14 +23,23 @@
 #include <gtk/gtk.h>
 #endif
 
+#include <string.h>
+
+
 #include "gtt.h"
+
+#undef bindtextdomain
+#undef textdomain
+#undef gettext
+#undef dgettext
+#undef fcgettext
+#include <libintl.h>
 
 
 
 static char *build_lock_fname()
 {
 	static char fname[1024] = "";
-	void strcat(char *, const char *);
 	
 	if (fname[0]) return fname;
 	if (getenv("HOME")) {
@@ -84,6 +93,16 @@ void unlock_gtt(void)
 
 int main(int argc, char *argv[])
 {
+#if defined(DEBUG) && 0
+#define locale_debug(a,b) g_print((a),(b))
+#else
+#define locale_debug(a,b) b
+#endif
+	locale_debug("%s\n", getenv("LANG"));
+	setlocale(LC_MESSAGES, "");
+	locale_debug(LOCALEDIR " %s\n", bindtextdomain(PACKAGE, LOCALEDIR));
+	locale_debug(PACKAGE " %s\n", textdomain(PACKAGE));
+
 #if HAS_GNOME
 	gnome_init(&argc, &argv);
 #else 

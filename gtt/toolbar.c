@@ -22,8 +22,15 @@
 #else
 #include <gtk/gtk.h>
 #endif
+#include <string.h>
 
 #include "gtt.h"
+
+#undef gettext
+#include <libintl.h>
+#define gettext_noop(String) (String)
+
+
 
 #include "tb_new.xpm"
 
@@ -222,8 +229,8 @@ GtkWidget *build_toolbar(GtkWidget *window, GtkTooltips **tips)
 
 	add_button(tb_new_xpm, "New Project...", "<Main>/File/New Project...");
 	add_space(2);
-	add_button(tb_open_xpm, "Reload", "<Main>/File/Reload rc");
-	add_button(tb_save_xpm, "Save", "<Main>/File/Save rc");
+	add_button(tb_open_xpm, "Reload", "<Main>/File/Reload Configuration File");
+	add_button(tb_save_xpm, "Save", "<Main>/File/Save Configuration File");
 	add_space(2);
 	add_button(tb_cut_xpm, "Cut", "<Main>/Edit/Cut");
 	add_button(tb_copy_xpm, "Copy", "<Main>/Edit/Copy");
@@ -266,35 +273,35 @@ static void toolbar_toggle_timer(GtkWidget *w, gpointer *data)
 
 
 static GnomeToolbarInfo tbar[] = {
-	{GNOME_APP_TOOLBAR_ITEM, "New", "New Project...",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("New"), gettext_noop("New Project..."),
 		GNOME_APP_PIXMAP_DATA, tb_new_xpm, new_project},
 	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, "Reload", "Reload init file",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Reload"), gettext_noop("Reload Configuration File"),
 		GNOME_APP_PIXMAP_DATA, tb_open_xpm, init_project_list},
-	{GNOME_APP_TOOLBAR_ITEM, "Save", "Save init file",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Save"), gettext_noop("Save Configuration File"),
 		GNOME_APP_PIXMAP_DATA, tb_save_xpm, save_project_list},
 	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, "Cut", "Cut selected project",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Cut"), gettext_noop("Cut Selected Project"),
 		GNOME_APP_PIXMAP_DATA, tb_cut_xpm, cut_project},
-	{GNOME_APP_TOOLBAR_ITEM, "Copy", "Copy selected project",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Copy"), gettext_noop("Copy Selected Project"),
 		GNOME_APP_PIXMAP_DATA, tb_copy_xpm, copy_project},
-	{GNOME_APP_TOOLBAR_ITEM, "Paste", "Paste selected project",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Paste"), gettext_noop("Paste Project"),
 		GNOME_APP_PIXMAP_DATA, tb_paste_xpm, paste_project},
 	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, "Props", "Edit properties...",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Props"), gettext_noop("Edit Properties..."),
 		GNOME_APP_PIXMAP_DATA, tb_properties_xpm, menu_properties},
-	{GNOME_APP_TOOLBAR_ITEM, "Timer", "Start/Stop timer",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Timer"), gettext_noop("Start/Stop Timer"),
 		GNOME_APP_PIXMAP_DATA, tb_timer_xpm, toolbar_toggle_timer},
 	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, "Prefs", "Edit preferences...",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Prefs"), gettext_noop("Edit Preferences..."),
 		GNOME_APP_PIXMAP_DATA, tb_preferences_xpm, menu_options},
 #ifdef EXTENDED_TOOLBAR
 	{GNOME_APP_TOOLBAR_SPACE, NULL, NULL, GNOME_APP_PIXMAP_NONE, NULL, NULL},
-	{GNOME_APP_TOOLBAR_ITEM, "About", "About...",
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("About"), gettext_noop("About..."),
 		GNOME_APP_PIXMAP_DATA, tb_unknown_xpm, about_box},
-	{GNOME_APP_TOOLBAR_ITEM, "Quit", "Quit " APP_NAME,
+	{GNOME_APP_TOOLBAR_ITEM, gettext_noop("Quit"), gettext_noop("Quit GTimeTracker"),
 		GNOME_APP_PIXMAP_DATA, tb_exit_xpm, quit_app},
-#endif /* EXTENDED_TOOLBAR */ 
+#endif /* EXTENDED_TOOLBAR */
 	{GNOME_APP_TOOLBAR_ENDOFINFO, NULL, NULL, 0, NULL, NULL}
 };
 
@@ -314,7 +321,7 @@ static GnomeToolbarInfo *toolbar_find(GnomeToolbarInfo *tinfo, const char *text)
 	}
 	return NULL;
 }
-#endif /* GNOME_USE_APP */
+#endif /* GNOME_CHANGE_TOOLBAR */
 
 
 
@@ -323,14 +330,15 @@ static GnomeApp *app = NULL;
 
 void toolbar_create(GtkWidget *gnome_app)
 {
+	int i;
+
 	app = GNOME_APP(gnome_app);
+	for (i = 0; tbar[i].type != GNOME_APP_TOOLBAR_ENDOFINFO; i++) {
+		tbar[i].text = gettext(tbar[i].text);
+		tbar[i].tooltip_text = gettext(tbar[i].tooltip_text);
+	}
 	gnome_app_create_toolbar(GNOME_APP(gnome_app), tbar);
 	/* gtk_toolbar_set_style(GTK_TOOLBAR(GNOME_APP(gnome_app)->toolbar), GTK_TOOLBAR_ICONS); */
-	/* 
-	 * TODO: GnomeApp has problems with positioning right now. So I put
-	 * the toolbar at the bottom
-	 */
-	/* gnome_app_toolbar_set_position(GNOME_APP(gnome_app), GNOME_APP_POS_BOTTOM); */
 }
 
 #endif /* GNOME_USE_APP */

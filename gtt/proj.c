@@ -17,13 +17,14 @@
  */
 
 #include <config.h>
-#include <stdlib.h>
-#include <string.h>
 #include <gtk/gtk.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
 
 #include "gtt.h"
 
-#include <errno.h>
 
 
 project *project_new(void)
@@ -325,6 +326,7 @@ int project_list_load(char *fname)
 		last_timer = tmp_time;
 	else
 		last_timer = 0;
+	update_status_bar();
 	return 1;
 
 	err:
@@ -390,4 +392,24 @@ int project_list_save(char *fname)
 	}
 	return 1;
 }
+
+
+
+char *project_get_timestr(project *proj)
+{
+	static char s[10];
+	time_t t;
+	
+	if (proj == NULL) {
+		project_list *p;
+		t = 0;
+		for (p = plist; p != NULL; p = p->next)
+			t += p->proj->day_secs;
+	} else {
+		t = proj->day_secs;
+	}
+	sprintf(s, "%02d:%02d", (t / 3600), (t % 3600) / 60);
+	return s;
+}
+
 

@@ -19,7 +19,7 @@
 #ifndef __MENUCMD_H__
 #define __MENUCMD_H__
 
-void not_implemented(GtkWidget *w, gpointer data);
+/* void not_implemented(GtkWidget *w, gpointer data); */
 
 void quit_app(GtkWidget *, gpointer);
 void about_box(GtkWidget *, gpointer);
@@ -42,6 +42,10 @@ void menu_options(GtkWidget *w, gpointer data);
 void menu_properties(GtkWidget *w, gpointer data);
 
 void menu_clear_daily_counter(GtkWidget *w, gpointer data);
+
+#ifdef USE_GTT_HELP
+void menu_help_contents(GtkWidget *w, gpointer data);
+#endif
 
 #ifdef GNOME_USE_APP
 void menu_create(GtkWidget *gnome_app);

@@ -22,15 +22,22 @@
 #else
 #include <gtk/gtk.h>
 #endif
+#include <string.h>
 
 #include "gtt.h"
 
+#undef gettext
+#undef _
+#include <libintl.h>
+#define _(String) gettext(String)
 
 
 #if 0 /* not needed */
 void not_implemented(GtkWidget *w, gpointer data)
 {
-	msgbox_ok("Notice", "Not implemented yet", "Close", NULL);
+	msgbox_ok(gettext("Notice"),
+		  gettext("Not implemented yet"),
+		  gettext("Close"), NULL);
 }
 #endif
 
@@ -38,7 +45,9 @@ void not_implemented(GtkWidget *w, gpointer data)
 void quit_app(GtkWidget *w, gpointer data)
 {
 	if (!project_list_save(NULL)) {
-		msgbox_ok("Warning", "Could not write init file!", "Oops",
+		msgbox_ok(gettext("Warning"),
+			  gettext("I could not write the configuration file!"),
+			  gettext("Oops"),
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
 		return;
 	}
@@ -51,23 +60,32 @@ void about_box(GtkWidget *w, gpointer data)
 {
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
+	char s[128];
 
-	new_dialog_ok(APP_NAME " - About", &dlg, &vbox,
-		      "Close", NULL, NULL);
+	sprintf(s, "%s - %s", APP_NAME, gettext("About"));
+	new_dialog_ok(s, &dlg, &vbox, gettext("Close"), NULL, NULL);
 
 	t = gtk_label_new(APP_NAME);
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 8);
 
 #ifdef DEBUG
-	t = gtk_label_new("Version " VERSION "\n" __DATE__ " " __TIME__);
+	sprintf(s, "%s " VERSION "\n" __DATE__ " " __TIME__, gettext("version"));
+	t = gtk_label_new(s);
 #else
-	t = gtk_label_new("Version " VERSION);
+	sprintf(s, "%s " VERSION, gettext("version"));
+	t = gtk_label_new(s);
 #endif
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 
-	t = gtk_label_new("Eckehard Berns <eb@berns.prima.de>");
+#ifdef STANDALONE
+	t = gtk_label_new("Eckehard Berns <eb@berns.prima.de>\n"
+			  "http://www.i-s-o.net/~ecki/gtt/");
+#else
+	t = gtk_label_new("Eckehard Berns <eb@berns.prima.de>\n"
+			  "http://www.gnome.org/");
+#endif
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 
@@ -95,9 +113,10 @@ void new_project(GtkWidget *widget, gpointer data)
 
 	text = gtk_entry_new();
 	new_dialog_ok_cancel(APP_NAME " - MessageBox", &dlg, &vbox,
-			     "OK", GTK_SIGNAL_FUNC(project_name), (gpointer *)text,
-			     "Cancel", NULL, NULL);
-	t = gtk_label_new("Please enter the name of the new Project:");
+			     gettext("OK"),
+			     GTK_SIGNAL_FUNC(project_name), (gpointer *)text,
+			     gettext("Cancel"), NULL, NULL);
+	t = gtk_label_new(gettext("Please enter the name of the new project:"));
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 
@@ -117,15 +136,16 @@ void new_project(GtkWidget *widget, gpointer data)
 
 
 
-static void init_project_list_2(GtkWidget *widget, gpointer *data)
+static void init_project_list_2(GtkWidget *widget, int button)
 {
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
 	
+	if (button != 1) return;
 	if (!project_list_load(NULL)) {
-		new_dialog_ok("Warning", &dlg, &vbox,
-			      "Oops", NULL, NULL);
-		t = gtk_label_new("I could not read the init file");
+		new_dialog_ok(gettext("Warning"), &dlg, &vbox,
+			      gettext("Oops"), NULL, NULL);
+		t = gtk_label_new(gettext("I could not read the configuration file"));
 		gtk_widget_show(t);
 		gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
 		gtk_widget_show(dlg);
@@ -138,19 +158,29 @@ static void init_project_list_2(GtkWidget *widget, gpointer *data)
 
 void init_project_list(GtkWidget *widget, gpointer data)
 {
+	/*
 	GtkWidget *dlg, *t;
 	GtkBox *vbox;
+	 */
 	
+	msgbox_ok_cancel(gettext("Confirmation Request"),
+			 _("This will overwrite your current set of projects.\n"
+			   "Do you really want to reload the configuration file?"),
+			 gettext("Yes"), gettext("No"),
+			 GTK_SIGNAL_FUNC(init_project_list_2));
+	/*
 	new_dialog_ok_cancel("Configmation Request", &dlg, &vbox,
-			     "OK", GTK_SIGNAL_FUNC(init_project_list_2), NULL,
-			     "Cancel", NULL, NULL);
-	t = gtk_label_new("This will overwrite your current set of projects.");
+			     gettext("OK"),
+			     GTK_SIGNAL_FUNC(init_project_list_2), NULL,
+			     gettext("Cancel"), NULL, NULL);
+	t = gtk_label_new(_("This will overwrite your current set of projects."));
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
 	t = gtk_label_new("Do you really want to reload the init file?");
 	gtk_widget_show(t);
 	gtk_box_pack_start(vbox, t, TRUE, FALSE, 2);
 	gtk_widget_show(dlg);
+	 */
 }
 
 
@@ -161,9 +191,9 @@ void save_project_list(GtkWidget *widget, gpointer data)
 		GtkWidget *dlg, *t;
 		GtkBox *vbox;
 		
-		new_dialog_ok("Warning", &dlg, &vbox,
-			      "Oops", NULL, NULL);
-		t = gtk_label_new("Could not write init file!");
+		new_dialog_ok(gettext("Warning"), &dlg, &vbox,
+			      gettext("Oops"), NULL, NULL);
+		t = gtk_label_new(gettext("I could not write the configuration file!"));
 		gtk_widget_show(t);
 		gtk_box_pack_start(vbox, t, FALSE, FALSE, 2);
 		gtk_widget_show(dlg);
@@ -278,116 +308,43 @@ void menu_clear_daily_counter(GtkWidget *w, gpointer data)
 
 
 
-#ifdef GNOME_USE_MENU_INFO
+#ifdef USE_GTT_HELP
+#include "gtthelp.h"
+static GtkWidget *help = NULL;
 
-#define SET_ARRAY_SIZE(a, b) static int a = sizeof(b) / sizeof(b[0]);
-static char fileaccel[] = "NRSQ";
-/*
+static void help_destroy(GtkWidget *w, gpointer *data)
 {
-	'N',
-	'R',
-	'S',
-	'Q'
-};
-SET_ARRAY_SIZE(fileaccel_num, fileaccel);
- */
-static GnomeMenuInfo filemenu[] = {
-	{GNOME_APP_MENU_ITEM, "New Project...", new_project, NULL},
-	{GNOME_APP_MENU_ITEM, "Reload init file", init_project_list, NULL},
-	{GNOME_APP_MENU_ITEM, "Save init file", save_project_list, NULL},
-	{GNOME_APP_MENU_ITEM, "Quit", quit_app, NULL},
-	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
-};
+	help = NULL;
+}
 
-static char editaccel[] = {
-	'X',
-	'C',
-	'V',
-	'E'
-};
-SET_ARRAY_SIZE(editaccel_num, editaccel);
-#define EDIT_CUT_POS 0
-#define EDIT_COPY_POS 1
-#define EDIT_PASTE_POS 2
-#define EDIT_PROP_POS 3
-static GnomeMenuInfo editmenu[] = {
-	{GNOME_APP_MENU_ITEM, "Cut", cut_project, NULL},
-	{GNOME_APP_MENU_ITEM, "Copy", copy_project, NULL},
-	{GNOME_APP_MENU_ITEM, "Paste", paste_project, NULL},
-	{GNOME_APP_MENU_ITEM, "Properties...", menu_properties, NULL},
-	{GNOME_APP_MENU_ITEM, "Preferences...", menu_options, NULL},
-	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
-};
+void menu_help_contents(GtkWidget *w, gpointer data)
+{
+	if (!help) {
+		help = gtt_help_new(APP_NAME " - Help", HELP_PATH "/index.html");
+		gtk_signal_connect(GTK_OBJECT(help), "destroy",
+				   GTK_SIGNAL_FUNC(help_destroy), NULL);
+	}
+	if (0 == strcmp(data, "help on help")) {
+		gtt_help_on_help(GTT_HELP(help));
+	} else {
+		gtt_help_goto(GTT_HELP(help), HELP_PATH "/index.html");
+	}
+	gtk_widget_show(help);
+}
+#endif /* USE_GTT_HELP */
 
-static char timeraccel[] = {
-	'T',
-	'P'
-};
-SET_ARRAY_SIZE(timeraccel_num, timeraccel);
-#define TIMER_START_POS 0
-#define TIMER_STOP_POS 1
-static GnomeMenuInfo timermenu[] = {
-	{GNOME_APP_MENU_ITEM, "Start", menu_start_timer, NULL},
-	{GNOME_APP_MENU_ITEM, "Stop", menu_stop_timer, NULL},
-	/* {GNOME_APP_MENU_ITEM, "Toggle", menu_toggle_timer, NULL}, */
-	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
-};
 
-static GnomeMenuInfo helpmenu[] = {
-	{GNOME_APP_MENU_ITEM, "About...", about_box, NULL},
-	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
-};
-
-#define HELP_POS 3
-static GnomeMenuInfo mainmenu[] = {
-	{GNOME_APP_MENU_SUBMENU, "File", filemenu, NULL},
-	{GNOME_APP_MENU_SUBMENU, "Edit", editmenu, NULL},
-	{GNOME_APP_MENU_SUBMENU, "Timer", timermenu, NULL},
-	{GNOME_APP_MENU_SUBMENU, "Help", helpmenu, NULL},
-	{GNOME_APP_MENU_ENDOFINFO, NULL, NULL, NULL}
-};
-#endif /* GNOME_USE_MENU_INFO */
 
 #ifdef GNOME_USE_APP
 void menu_create(GtkWidget *gnome_app)
 {
 	GtkAcceleratorTable *accel;
-#ifdef GNOME_USE_MENU_INFO 
-	int i;
-
-	gnome_app_create_menus(GNOME_APP(gnome_app), mainmenu);
-	gtk_menu_item_right_justify(GTK_MENU_ITEM(mainmenu[HELP_POS].widget));
-	accel = gtk_accelerator_table_new();
-	for (i = 0; fileaccel[i]; i++) {
-		if (fileaccel[i] != ' ')
-			gtk_widget_install_accelerator(filemenu[i].widget, accel,
-						       "activate",
-						       fileaccel[i], GDK_CONTROL_MASK);
-	}
-	for (i = 0; i < editaccel_num; i++) {
-		if (editaccel[i])
-			gtk_widget_install_accelerator(editmenu[i].widget, accel,
-						       "activate",
-						       editaccel[i], GDK_CONTROL_MASK);
-	}
-	for (i = 0; i < timeraccel_num; i++) {
-		if (timeraccel[i])
-			gtk_widget_install_accelerator(timermenu[i].widget, accel,
-						       "activate",
-						       timeraccel[i], GDK_CONTROL_MASK);
-	}
-	gtk_widget_install_accelerator(helpmenu[0].widget, accel,
-				       "activate",
-				       'H', GDK_MOD1_MASK);
-	gtk_window_add_accelerator_table(GTK_WINDOW(gnome_app), accel);
-#else /* GNOME_USE_MENU_INFO */
 	GtkWidget *w;
 
 	get_menubar(&w, &accel, MENU_MAIN);
 	gtk_widget_show(w);
 	gtk_window_add_accelerator_table(GTK_WINDOW(gnome_app), accel);
 	gnome_app_set_menus(GNOME_APP(gnome_app), GTK_MENU_BAR(w));
-#endif /* GNOME_USE_MENU_INFO */
 }
 #endif /* GNOME_USE_APP */
 
@@ -395,23 +352,16 @@ void menu_create(GtkWidget *gnome_app)
 
 void menu_set_states(void)
 {
-#ifdef GNOME_USE_MENU_INFO
-	gtk_widget_set_sensitive(editmenu[EDIT_CUT_POS].widget, (cur_proj) ? 1 : 0);
-	gtk_widget_set_sensitive(editmenu[EDIT_COPY_POS].widget, (cur_proj) ? 1 : 0);
-	gtk_widget_set_sensitive(editmenu[EDIT_PASTE_POS].widget, (cutted_project) ? 1 : 0);
-	gtk_widget_set_sensitive(editmenu[EDIT_PROP_POS].widget, (cur_proj) ? 1 : 0);
-	gtk_widget_set_sensitive(timermenu[TIMER_START_POS].widget, (main_timer == 0) ? 1 : 0);
-	gtk_widget_set_sensitive(timermenu[TIMER_STOP_POS].widget, (main_timer != 0) ? 1 : 0);
-#else /* GNOME_USE_MENU_INFO */
-	menus_set_state("<Main>/Timer/Timer running", (main_timer == 0) ? 0 : 1);
-	menus_set_sensitive("<Main>/Timer/Start", (main_timer == 0) ? 1 : 0);
-	menus_set_sensitive("<Main>/Timer/Stop", (main_timer == 0) ? 0 : 1);
-	menus_set_sensitive("<Main>/Edit/Cut", (cur_proj) ? 1 : 0);
-	menus_set_sensitive("<Main>/Edit/Copy", (cur_proj) ? 1 : 0);
-	menus_set_sensitive("<Main>/Edit/Paste", (cutted_project) ? 1 : 0);
-	menus_set_sensitive("<Popup>/Paste", (cutted_project) ? 1 : 0);
-	menus_set_sensitive("<Main>/Edit/Properties...", (cur_proj) ? 1 : 0);
-#endif /* GNOME_USE_MENU_INFO */
+	menus_set_state(_("<Main>/Timer/Timer running"), (main_timer == 0) ? 0 : 1);
+	menus_set_sensitive(_("<Main>/Timer/Start"), (main_timer == 0) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Timer/Stop"), (main_timer == 0) ? 0 : 1);
+	menus_set_sensitive(_("<Main>/Edit/Cut"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Copy"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Paste"), (cutted_project) ? 1 : 0);
+	menus_set_sensitive(_("<Popup>/Paste"), (cutted_project) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Clear Daily Counter"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Popup>/Clear Daily Counter"), (cur_proj) ? 1 : 0);
+	menus_set_sensitive(_("<Main>/Edit/Properties..."), (cur_proj) ? 1 : 0);
 	toolbar_set_states();
 }
 

@@ -24,6 +24,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#undef gettext
+#undef _
+#include <libintl.h>
+#define _(String) gettext(String)
 
 
 static int log_write(time_t t, char *s)
@@ -65,7 +69,7 @@ static void log_proj_intern(project *proj, int log_if_equal)
 	}
 	if (!last_proj) {
 		if (last_time != -1)
-			if (!log_write(last_time, "stopped project"))
+			if (!log_write(last_time, _("stopped project")))
 				g_warning("couldn't write to logfile \"%s\"\n",
 					  config_logfile_name);
 	} else 	if (!log_write(last_time, last_proj->title)) {
@@ -94,7 +98,7 @@ void log_exit(void)
 	g_return_if_fail(was_run == 0);
 	was_run++;
 	log_proj_intern(NULL, 1);
-	log_write(-1, "program exited");
+	log_write(-1, _("program exited"));
 }
 
 

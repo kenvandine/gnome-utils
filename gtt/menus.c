@@ -19,9 +19,17 @@
 #include <config.h>
 #include <gtk/gtk.h>
 
+#include <string.h>
+
+
+#include "gtt-features.h"
 #include "menus.h"
 #include "menucmd.h"
-#include "gtt-features.h"
+
+#undef gettext
+#undef _
+#include <libintl.h>
+#define _(String) gettext(String)
 
 
 static void menus_init(void);
@@ -38,33 +46,67 @@ menus_remove_accel (GtkWidget *widget,
 
 
 
-static GtkMenuEntry menu_items[] =
+#define MAX_MENU_ITEMS 28
+static void set_menu_item(GtkMenuEntry me[], int i, char *path, char *accel,
+			  GtkMenuCallback func, gpointer data)
 {
-	{"<Main>/File/New Project...", "<control>N", new_project, NULL},
-	{"<Main>/File/<separator>", NULL, NULL, NULL},
-	{"<Main>/File/Reload rc", "<control>R", init_project_list, NULL},
-	{"<Main>/File/Save rc", "<control>S", save_project_list, NULL},
-	{"<Main>/File/<separator>", NULL, NULL, NULL},
-	{"<Main>/File/Quit", "<control>Q", quit_app, NULL},
-	{"<Main>/Edit/Cut", "<control>X", cut_project, NULL},
-	{"<Main>/Edit/Copy", "<control>C", copy_project, NULL},
-	{"<Main>/Edit/Paste", "<control>V", paste_project, NULL},
-	{"<Main>/Edit/<separator>", NULL, NULL, NULL},
-	{"<Main>/Edit/Properties...", "<control>E", menu_properties, NULL},
-	{"<Main>/Edit/Preferences...", NULL, menu_options, NULL},
-	{"<Main>/Timer/Start", "<control>A", menu_start_timer, NULL},
-	{"<Main>/Timer/Stop", "<control>P", menu_stop_timer, NULL},
-	{"<Main>/Timer/<check>Timer running", "<control>T", menu_toggle_timer, NULL},
-	{"<Main>/Help/About...", "<alt>H", about_box, NULL},
-	{"<Popup>/Properties...", NULL, menu_properties, NULL},
-	{"<Popup>/<separator>", NULL, NULL, NULL},
-	{"<Popup>/Cut", NULL, cut_project, NULL},
-	{"<Popup>/Copy", NULL, copy_project, NULL},
-	{"<Popup>/Paste", NULL, paste_project, NULL},
-	{"<Popup>/<separator>", NULL, NULL, NULL},
-	{"<Popup>/Clear daily counter", NULL, menu_clear_daily_counter, NULL},
+	g_return_if_fail(i < MAX_MENU_ITEMS);
+	me[i].path = path;
+	me[i].accelerator = accel;
+	me[i].callback = func;
+	me[i].callback_data = data;
+	me[i].widget = NULL;
+}
+
+static GtkMenuEntry *build_menu_items(int *ret_num)
+{
+	static GtkMenuEntry menu_items[MAX_MENU_ITEMS];
+	static int i = 0;
+	
+	if (i) {
+		*ret_num = i;
+		return menu_items;
+	}
+	set_menu_item(menu_items, i, _("<Main>/File/New Project..."), _("<control>N"), new_project, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/File/<separator>"), NULL, NULL, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/File/Reload Configuration File"), _("<control>R"), init_project_list, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/File/Save Configuration File"), _("<control>S"), save_project_list, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/File/<separator>"), NULL, NULL, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/File/Quit"), _("<control>Q"), quit_app, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/Cut"), _("<control>X"), cut_project, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/Copy"), _("<control>C"), copy_project, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/Paste"), _("<control>V"), paste_project, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/<separator>"), NULL, NULL, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/Clear Daily Counter"), NULL, menu_clear_daily_counter, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/Properties..."), _("<control>E"), menu_properties, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/<separator>"), NULL, NULL, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Edit/Preferences..."), NULL, menu_options, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Timer/Start"), _("<control>A"), menu_start_timer, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Timer/Stop"), _("<control>P"), menu_stop_timer, NULL); i++;
+	set_menu_item(menu_items, i, _("<Main>/Timer/<check>Timer running"), _("<control>T"), menu_toggle_timer, NULL); i++;
+#ifdef USE_GTT_HELP
+	set_menu_item(menu_items, i, _("<Main>/Help/Help on Help..."), NULL, menu_help_contents, "help on help"); i++;
+	set_menu_item(menu_items, i, _("<Main>/Help/Contents..."), _("<alt>H"), menu_help_contents, "contents"); i++;
+	set_menu_item(menu_items, i, _("<Main>/Help/<separator>"), NULL, NULL, NULL); i++;
+#endif
+	set_menu_item(menu_items, i, _("<Main>/Help/About..."), NULL, about_box, NULL); i++;
+	set_menu_item(menu_items, i, _("<Popup>/Properties..."), NULL, menu_properties, NULL); i++;
+	set_menu_item(menu_items, i, _("<Popup>/<separator>"), NULL, NULL, NULL); i++;
+	set_menu_item(menu_items, i, _("<Popup>/Cut"), NULL, cut_project, NULL); i++;
+	set_menu_item(menu_items, i, _("<Popup>/Copy"), NULL, copy_project, NULL); i++;
+	set_menu_item(menu_items, i, _("<Popup>/Paste"), NULL, paste_project, NULL); i++;
+	set_menu_item(menu_items, i, _("<Popup>/<separator>"), NULL, NULL, NULL); i++;
+	set_menu_item(menu_items, i, _("<Popup>/Clear Daily Counter"), NULL, menu_clear_daily_counter, NULL); i++;
+#ifdef DEBUG
+	if (i < MAX_MENU_ITEMS) {
+		g_warning("%d menu items, but MAX_MENU_ITEMS = %d\n", i, MAX_MENU_ITEMS);
+	}
+#endif
+	if (i > MAX_MENU_ITEMS) i = MAX_MENU_ITEMS;
+	*ret_num = i;
+	return menu_items;
 };
-static int nmenu_items = sizeof (menu_items) / sizeof (menu_items[0]);
+static int nmenu_items = 0;
 
 static int initialize = TRUE;
 static GtkMenuFactory *factory = NULL;
@@ -81,10 +123,10 @@ void get_menubar(GtkWidget **menubar,
 	if (initialize)
 		menus_init ();
 
-	p = gtk_menu_factory_find(factory, "<Main>/Help");
+	p = gtk_menu_factory_find(factory, _("<Main>/Help"));
 	if (p) gtk_menu_item_right_justify(GTK_MENU_ITEM(p->widget));
 #ifdef ALLWAYS_SHOW_TOGGLE
-	menus_set_show_toggle("<Main>/Timer/Timer running", 1);
+	menus_set_show_toggle(_("<Main>/Timer/Timer running"), 1);
 #endif
 
 	if (menubar)
@@ -262,6 +304,7 @@ menus_init ()
 {
   if (initialize)
     {
+      GtkMenuEntry *menu_items;
       initialize = FALSE;
 
       factory = gtk_menu_factory_new (GTK_MENU_FACTORY_MENU_BAR);
@@ -272,6 +315,7 @@ menus_init ()
       subfactories[1] = gtk_menu_factory_new (GTK_MENU_FACTORY_MENU);
       gtk_menu_factory_add_subfactory (factory, subfactories[1], "<Popup>");
 
+      menu_items = build_menu_items(&nmenu_items);
       menus_create (menu_items, nmenu_items);
     }
 }
@@ -285,7 +329,6 @@ menus_install_accel (GtkWidget *widget,
 {
   char accel[64];
   char *t1, t2[2];
-  void strcat(char *, char*);
 
   accel[0] = '\0';
   if (modifiers & GDK_CONTROL_MASK)

@@ -18,8 +18,14 @@
 
 #include <config.h>
 #include <gtk/gtk.h>
+#include <string.h>
 
 #include "gtt.h"
+
+#undef gettext
+#undef _
+#include <libintl.h>
+#define _(String) gettext(String)
 
 
 
@@ -49,7 +55,7 @@ static void prop_set(GtkButton *w, PropDlg *dlg)
 		if (s[0]) {
 			project_set_title(dlg->proj, s);
 		} else {
-			project_set_title(dlg->proj, "empty");
+			project_set_title(dlg->proj, _("empty"));
 			gtk_entry_set_text(dlg->title, dlg->proj->title);
 		}
 	}
@@ -151,9 +157,11 @@ void prop_dialog(project *proj)
 
 	if (!proj) return;
 	if (!dlg) {
+		char s[64];
 		dlg = g_malloc(sizeof(PropDlg));
 		dlg->dlg = GTK_DIALOG(gtk_dialog_new());
-		gtk_window_set_title(GTK_WINDOW(dlg->dlg), APP_NAME " - Properties");
+		sprintf(s, APP_NAME " - %s", _("Properties"));
+		gtk_window_set_title(GTK_WINDOW(dlg->dlg), s);
 		aa = GTK_BOX(dlg->dlg->action_area);
 		vbox = GTK_BOX(gtk_vbox_new(FALSE, 2));
 		gtk_widget_show(GTK_WIDGET(vbox));
@@ -161,18 +169,18 @@ void prop_dialog(project *proj)
 				   GTK_WIDGET(vbox), FALSE, FALSE, 2);
 		gtk_container_border_width(GTK_CONTAINER(vbox), 10);
 
-		w = gtk_button_new_with_label("OK");
+		w = gtk_button_new_with_label(_("OK"));
 		gtk_widget_show(w);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 				   GTK_SIGNAL_FUNC(prop_set), (gpointer *)dlg);
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 		dlg->ok = GTK_BUTTON(w);
-		w = gtk_button_new_with_label("Apply");
+		w = gtk_button_new_with_label(_("Apply"));
 		gtk_widget_show(w);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 				   GTK_SIGNAL_FUNC(prop_set), (gpointer *)dlg);
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-		w = gtk_button_new_with_label("Cancel");
+		w = gtk_button_new_with_label(_("Cancel"));
 		gtk_widget_show(w);
 		gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
 					  GTK_SIGNAL_FUNC(gtk_widget_hide),
@@ -186,7 +194,7 @@ void prop_dialog(project *proj)
 		gtk_table_set_col_spacing(table, 2, 5);
 		gtk_table_set_col_spacing(table, 4, 5);
 
-		w = gtk_label_new("Project Title:");
+		w = gtk_label_new(_("Project Title:"));
 		gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 0, 1);
@@ -195,7 +203,7 @@ void prop_dialog(project *proj)
 		gtk_table_attach_defaults(table, w, 1, 7, 0, 1);
 		dlg->title = GTK_ENTRY(w);
 
-		w = gtk_label_new("Project Description:");
+		w = gtk_label_new(_("Project Description:"));
 		gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 1, 2);
@@ -204,7 +212,7 @@ void prop_dialog(project *proj)
 		gtk_table_attach_defaults(table, w, 1, 7, 1, 2);
 		dlg->desc = GTK_ENTRY(w);
 
-		w = gtk_label_new("Project Time today:");
+		w = gtk_label_new(_("Project Time today:"));
 		gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 2, 3);
@@ -217,7 +225,7 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 1, 2, 2, 3);
 		dlg->day.h = GTK_ENTRY(w);
-		w = gtk_label_new("hours");
+		w = gtk_label_new(_("hours"));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 2, 3, 2, 3);
 		w = gtk_entry_new();
@@ -225,7 +233,7 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 3, 4, 2, 3);
 		dlg->day.m = GTK_ENTRY(w);
-		w = gtk_label_new("mins");
+		w = gtk_label_new(_("mins"));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 4, 5, 2, 3);
 		w = gtk_entry_new();
@@ -233,11 +241,11 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 5, 6, 2, 3);
 		dlg->day.s = GTK_ENTRY(w);
-		w = gtk_label_new("secs");
+		w = gtk_label_new(_("secs"));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 6, 7, 2, 3);
 
-		w = gtk_label_new("Project Time ever:");
+		w = gtk_label_new(_("Project Time ever:"));
 		gtk_misc_set_alignment(GTK_MISC(w), 1.0, 0.5);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 3, 4);
@@ -246,7 +254,7 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 1, 2, 3, 4);
 		dlg->ever.h = GTK_ENTRY(w);
-		w = gtk_label_new("hours");
+		w = gtk_label_new(_("hours"));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 2, 3, 3, 4);
 		w = gtk_entry_new();
@@ -254,7 +262,7 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 3, 4, 3, 4);
 		dlg->ever.m = GTK_ENTRY(w);
-		w = gtk_label_new("mins");
+		w = gtk_label_new(_("mins"));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 4, 5, 3, 4);
 		w = gtk_entry_new();
@@ -262,7 +270,7 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 5, 6, 3, 4);
 		dlg->ever.s = GTK_ENTRY(w);
-		w = gtk_label_new("secs");
+		w = gtk_label_new(_("secs"));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 6, 7, 3, 4);
 	}
