@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils-1.2.1cvs\n"
-"POT-Creation-Date: 2001-01-07 13:21+0100\n"
-"PO-Revision-Date: 2001-01-07 13:23+01:00\n"
+"POT-Creation-Date: 2001-01-28 15:31+0100\n"
+"PO-Revision-Date: 2001-01-28 17:39+01:00\n"
 "Last-Translator: Benedikt Roth <Benedikt.Roth@gmx.net>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "GNOME Taschenrechner"
 msgid "Select ASCII Character"
 msgstr "ASCII-Zeichen auswählen"
 
-#: gcharmap/src/asciiselect.c:118
+#: gcharmap/src/asciiselect.c:118 gcharmap/src/menus.c:95
 msgid "Insert"
 msgstr "Einfügen"
 
@@ -43,37 +43,154 @@ msgstr "ASCII-Code:"
 msgid "Character:"
 msgstr "Zeichen:"
 
-#: gcharmap/src/interface.c:130
+#: gcharmap/src/callbacks.c:42 gcharmap/src/interface.c:130
 msgid "Gnome Character Map"
 msgstr "GNOME-Zeichentabelle"
+
+#: gcharmap/src/callbacks.c:46
+msgid ""
+"The Gnome equalivant of Microsoft Windows' Character Map. Warning: might "
+"contain bad English."
+msgstr "Der GNOME-Ersatz für die Zeichentabelle von Microsoft Windows."
+
+#: gcharmap/src/callbacks.c:76
+#, c-format
+msgid "%s: ASCII code %d"
+msgstr "%s: ASCII-Code %d"
+
+#: gcharmap/src/callbacks.c:103
+msgid "Text copied to clipboard..."
+msgstr "Text in die Zwischenablage kopiert..."
+
+#: gcharmap/src/callbacks.c:115
+msgid "Text cut to clipboard..."
+msgstr "Text in die Zwischenablage ausgeschnitten..."
+
+#: gcharmap/src/callbacks.c:168
+msgid "Text pasted from clipboard..."
+msgstr "Text aus der Zwischenablage eingefügt..."
 
 #: gcharmap/src/interface.c:159
 msgid "Action Toolbar"
 msgstr "Aktions-Werkzeugleiste"
 
-#: gcharmap/src/interface.c:176
+#: gcharmap/src/interface.c:178
 msgid "Text to copy:"
 msgstr "Zu kopierender Text:"
 
-#: gcharmap/src/interface.c:220 gstripchart/gstripchart.c:1798
-#: mini-utils/gcolorsel/menus.c:921
+#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: gstripchart/gstripchart.c:1798 mini-utils/gcolorsel/menus.c:921
 msgid "Exit"
 msgstr "Beenden"
 
-#: gcharmap/src/interface.c:221 gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopieren"
 
-#: gcharmap/src/interface.c:225 gstripchart/gstripchart.c:1786
-#: gstripchart/gstripchart.c:2070 mini-utils/gcolorsel/menus.c:919
-#: mini-utils/gshutdown/gshutdown.c:319
+#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: gstripchart/gstripchart.c:1786 gstripchart/gstripchart.c:2070
+#: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:319
 msgid "About"
 msgstr "Info"
 
-#: gcharmap/src/interface.c:227 gdictsrc/gdict-applet.c:286
-#: gstripchart/gstripchart.c:1780 gstripchart/gstripchart.c:2067
+#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gdictsrc/gdict-applet.c:286 gstripchart/gstripchart.c:1780
+#: gstripchart/gstripchart.c:2067
 msgid "Help"
 msgstr "Hilfe"
+
+#: gcharmap/src/menus.c:47
+msgid "Insert Character..."
+msgstr "Zeichen einfügen..."
+
+#: gcharmap/src/menus.c:48
+msgid "Insert character(s) by choosing ASCII codes."
+msgstr "Zeichen durch Wahl des ASCII-Codes einfügen"
+
+#: gcharmap/src/menus.c:55
+msgid "_Action Toolbar"
+msgstr "_Aktions-Werkzeugleiste"
+
+#: gcharmap/src/menus.c:55
+msgid "View or hide the action toolbar"
+msgstr "Aktions-Werkzeugleiste anzeigen oder verbergen."
+
+#: gcharmap/src/menus.c:57
+msgid "_Text Toolbar"
+msgstr "_Text-Werkzeugleiste"
+
+#: gcharmap/src/menus.c:57
+msgid "View or hide the text toolbar"
+msgstr "Text-Werkzeugleiste anzeigen oder verbergen."
+
+#: gcharmap/src/menus.c:59
+msgid "_Statusbar"
+msgstr "_Statusleiste"
+
+#: gcharmap/src/menus.c:59
+msgid "View or hide the statusbar"
+msgstr "Statusleiste anzeigen oder unterdrücken."
+
+#: gcharmap/src/menus.c:66
+msgid "Character Table's Font..."
+msgstr "Schriftart der Zeichentabelle..."
+
+#: gcharmap/src/menus.c:66
+msgid "Set the character table's font."
+msgstr "Die Schriftart der Zeichentabelle auswählen"
+
+#: gcharmap/src/menus.c:69
+msgid "_Insert at end"
+msgstr "Am Ende e_infügen"
+
+#: gcharmap/src/menus.c:69
+msgid "Insert every selected character at the end of the text etry"
+msgstr "Jedes gewählte Zeichen am Ende des Textfeldes einfügen"
+
+#: gcharmap/src/menus.c:71
+msgid "_Focusable Buttons"
+msgstr "_Fokusierbare Knöpfe"
+
+#: gcharmap/src/menus.c:71
+msgid "Set whenether the buttons are focusable or not"
+msgstr "Festlegen ob die Knöpfe fokusierbar sind oder nicht"
+
+#: gcharmap/src/menus.c:95
+msgid "Insert character(s) by choosing ASCII codes"
+msgstr "Zeichen durch Wahl des ASCII-Codes einfügen"
+
+#: gcharmap/src/menus.c:98 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+msgid "Cut"
+msgstr "Ausschneiden"
+
+#: gcharmap/src/menus.c:98
+msgid "Cut the selection"
+msgstr "Auswahl ausschneiden"
+
+#: gcharmap/src/menus.c:100
+msgid "Copy the selection"
+msgstr "Auswahl kopieren"
+
+#: gcharmap/src/menus.c:102 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+msgid "Paste"
+msgstr "Einfügen"
+
+#: gcharmap/src/menus.c:102
+msgid "Paste the clipboard"
+msgstr "Zwischenablage einfügen."
+
+#: gcharmap/src/menus.c:105
+msgid "Show Gnome Character Map's manual"
+msgstr "Das Handbuch zu der GNOME-Zeichentabelle anzeigen"
+
+#: gcharmap/src/menus.c:107 mini-utils/gcolorsel/menus.c:919
+msgid "About this application"
+msgstr "Info zu dieser Anwendung"
+
+#: gcharmap/src/menus.c:110 mini-utils/gcolorsel/menus.c:921
+msgid "Exit the program"
+msgstr "Das Programm beenden"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
@@ -149,10 +266,6 @@ msgstr "Rechtschreibung"
 msgid "Check word spelling"
 msgstr "Rechtschreibung prüfen"
 
-#: gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-msgid "Cut"
-msgstr "Ausschneiden"
-
 #: gdictsrc/gdict-app.c:518
 msgid "Cut to Clipboard"
 msgstr "In Zwischenablage ausschneiden"
@@ -160,10 +273,6 @@ msgstr "In Zwischenablage ausschneiden"
 #: gdictsrc/gdict-app.c:521
 msgid "Copy to Clipboard"
 msgstr "In Zwischenablage kopieren"
-
-#: gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-msgid "Paste"
-msgstr "Einfügen"
 
 #: gdictsrc/gdict-app.c:524
 msgid "Paste Clipboard Contents"
@@ -1802,8 +1911,7 @@ msgid ""
 "\n"
 "Go to preferences, in the edit menu."
 msgstr ""
-"Ich kann diese Aktion nicht durchführen.  Bitte\n"
-"überprüfen Sie:\n"
+"Diese Aktion nicht durchführt werden.  Bitte überprüfen Sie:\n"
 "\n"
 "1. Eine Aktion ist mit diesem Vorgang verbunden.\n"
 "2. Das verbundene Dokument existiert noch.\n"
@@ -1845,7 +1953,7 @@ msgstr "Beschreibung:"
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:12
 msgid "Short name : "
-msgstr "Kurzer Name:"
+msgstr "Kurzer Name: "
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:13
 msgid "Select source document"
@@ -2333,14 +2441,6 @@ msgstr "Auswählen"
 #: mini-utils/gcolorsel/menus.c:916
 msgid "Grab a color on the screen"
 msgstr "Eine Farbe vom Bildschirm auswählen"
-
-#: mini-utils/gcolorsel/menus.c:919
-msgid "About this application"
-msgstr "Info zu dieser Anwendung"
-
-#: mini-utils/gcolorsel/menus.c:921
-msgid "Exit the program"
-msgstr "Das Programm beenden"
 
 #: mini-utils/gcolorsel/session.c:304
 msgid ""
@@ -3217,57 +3317,16 @@ msgstr "Nur der Superuser (root) kann dieses Werkzeug benutzen"
 msgid "You appear to have no IDE drives"
 msgstr "Sie scheinen keine IDE-Laufwerke zu besitzen"
 
-#~ msgid "Insert character"
-#~ msgstr "Zeichen einfügen"
-
 # FIXME: why this?
 # Reason: Other languages might prefere other fonts... -ke-
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
-
-#~ msgid "Insert character..."
-#~ msgstr "Folgendes Zeichen einfügen..."
-
-#~ msgid "_Toolbar"
-#~ msgstr "_Werkzeugleiste"
-
-#~ msgid "View or hide the toolbar"
-#~ msgstr "Werkzeugleiste anzeigen oder unterdrücken."
-
-#~ msgid "_Statusbar"
-#~ msgstr "_Status"
-
-#~ msgid "View or hide the statusbar"
-#~ msgstr "Status anzeigen oder unterdrücken."
 
 #~ msgid "Cut the text to clipboard"
 #~ msgstr "Text in die Zwischenablage ausschneiden."
 
 #~ msgid "Copy the text to clipboard."
 #~ msgstr "Text in Zwischenablage kopieren."
-
-#~ msgid "Paste the text from clipboard."
-#~ msgstr "Text aus der Zwischenablage einfügen."
-
-#~ msgid "Exit the application"
-#~ msgstr "Diese Anwendung beenden."
-
-#~ msgid "Text cut to clipboard..."
-#~ msgstr "Text in die Zwischenablage ausschneiden..."
-
-#~ msgid "Text copied to clipboard..."
-#~ msgstr "Text in die Zwischenablage kopieren..."
-
-#~ msgid "Text pasted from clipboard..."
-#~ msgstr "Text aus der Zwischenablage eingügen..."
-
-#~ msgid ""
-#~ "The Gnome equalivant of the Microsoft Windows' Character Map. Warning: might "
-#~ "contain bad English.\n"
-#~ "http://users.telekabel.nl/hongli/"
-#~ msgstr ""
-#~ "Der GNOME-Ersatz für die Zeichentabelle von Microsoft Windows.\n"
-#~ "http://users.telekabel.nl/hongli/"
 
 #~ msgid "This sets the overall application settings."
 #~ msgstr "Hiermit werden die Einstellungen der Anwendung überhaupt getätigt."
