@@ -1,5 +1,11 @@
 2004-11-03  Vincent Noel  <vnoel@cox.net>
 
+	* monitor.c (monitor_stop): Close the handle.
+
+	* logrtns.c (ReadLastPage): Only keep a handle opened on the log
+	if we are monitoring. Otherwise, close all handles.
+	(UpdateLogStats): Unused. Move into the FIXME-functions cemetery.
+
 	* misc.c (MakeErrorDialog): Use new gtk+ HIG message dialogue API.
 	* logrtns.c (OpenLogFile): Ditto.
 

@@ -487,10 +487,7 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 					   FALSE);
    gtk_widget_hide (window->find_bar);
 
-   g_print("Calling CloseLog\n");
    CloseLog (window->curlog);
-   g_print("After CloseLog\n");
-
    window->curlog = NULL;
    logview_menus_set_state (window);
    log_repaint (window);

@@ -23,6 +23,7 @@
 #include "logview.h"
 #include "logrtns.h"
 #include "monitor.h"
+#include <libgnomevfs/gnome-vfs.h>
 
 void
 monitor_stop (LogviewWindow *window)
@@ -37,6 +38,8 @@ monitor_stop (LogviewWindow *window)
 		window->timer_tag = 0;
 		window->monitored = FALSE;
 		window->curlog->mon_offset = 0;
+		gnome_vfs_close (window->curlog->mon_file_handle);
+		window->curlog->mon_file_handle = NULL;
 	}
 }
 	

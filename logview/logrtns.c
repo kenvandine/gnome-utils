@@ -205,7 +205,7 @@ OpenLogFile (char *filename)
    int i;
    GError *error;
    GnomeVFSResult result;
-   GnomeVFSFileSize size, read_bytes;
+   int size;
    
    if (file_is_zipped (filename)) {
 	   char *command;
@@ -227,28 +227,22 @@ OpenLogFile (char *filename)
    if (!isLogFile (filename, TRUE))
 	   return NULL;
 
+   result = gnome_vfs_read_entire_file (filename, &size, &buffer);
+   if (result != GNOME_VFS_OK) {
+	   ShowErrMessage (NULL, error_main, _("Unable to open logfile!\n"));
+	   return NULL;
+   }
+
    /* Alloc memory for log structure */
    tlog = g_new0 (Log, 1);
    if (tlog == NULL) {
 	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 	   return NULL;
    }
-
-   /* Open log files */
    strncpy (tlog->name, filename, sizeof (tlog->name)-1);
    tlog->name[sizeof (tlog->name) - 1] = '\0';
    tlog->display_name = display_name;
 
-   result = gnome_vfs_open (&(tlog->handle), filename, GNOME_VFS_OPEN_READ);
-   if (result != GNOME_VFS_OK) {
-	   ShowErrMessage (NULL, error_main, _("Unable to open logfile!\n"));
-	   return NULL;
-   }
-
-   size = GetLogSize (tlog);
-   buffer = g_malloc (size);
-   if (gnome_vfs_read (tlog->handle, buffer, size, &read_bytes) != GNOME_VFS_OK)
-	   return NULL;
    buffer_lines = g_strsplit (buffer, "\n", -1);
 
    /* count the lines */
@@ -270,12 +264,6 @@ OpenLogFile (char *filename)
    /* Read log stats */
    ReadLogStats (tlog, buffer_lines);
    g_strfreev (buffer_lines);
-
-   gnome_vfs_seek (tlog->handle, 0L, GNOME_VFS_SEEK_END);
-   result = gnome_vfs_tell (tlog->handle, &(tlog->filesize));
-
-   if (!tlog->filesize)
-	   printf ("Empty file! \n");
 
    /* initialize date headers hash table */
    tlog->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
@@ -344,17 +332,10 @@ isLogFile (char *filename, gboolean show_error)
       return FALSE;
    }
 
-   switch (gnome_vfs_read (handle, buff, sizeof(buff), &size)) {
-   case GNOME_VFS_ERROR_EOF :
-   case GNOME_VFS_OK :
-	   gnome_vfs_close (handle);
-	   return TRUE;
-	   break;
-   default:
-	   gnome_vfs_close (handle);
+   result = gnome_vfs_read (handle, buff, sizeof(buff), &size);
+   gnome_vfs_close (handle);
+   if (result != GNOME_VFS_OK)
 	   return FALSE;
-	   break;
-   }
 
    found_space = g_strstr_len (buff, 1024, " ");
    if (found_space == NULL) {
@@ -383,25 +364,18 @@ isLogFile (char *filename, gboolean show_error)
 
 gchar **ReadLastPage (Log *log)
 {
-	GnomeVFSFileSize size, bytes_read;
 	GnomeVFSResult result;
 	gchar *buffer;
+	int size;
 
 	g_return_val_if_fail (log, NULL);
 
-	size = GetLogSize (log);
-	g_return_val_if_fail (size > 0, NULL);
-
-	buffer = g_malloc (size);
-
-	result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_START, 0L);
-	result = gnome_vfs_read (log->handle, buffer, size, &bytes_read);
-
-	log->filesize = size;
-	result = gnome_vfs_tell (log->handle, &(log->mon_offset));
-
-	if (bytes_read > 0) {
+	result = gnome_vfs_read_entire_file (log->name, &size, &buffer);
+	
+	if (size > 0 && buffer != NULL) {
 		gchar **buffer_lines;
+		result = gnome_vfs_open (&(log->mon_file_handle), log->name, GNOME_VFS_OPEN_READ);
+		log->mon_offset = size;
 		buffer_lines = g_strsplit (buffer, "\n", -1);
 		g_free (buffer);
 		return buffer_lines;
@@ -411,27 +385,23 @@ gchar **ReadLastPage (Log *log)
 
 gchar **ReadNewLines (Log *log)
 {
-	GnomeVFSFileSize newsize, size, bytes_read;
+	GnomeVFSFileSize newsize, bytes_read;
 	GnomeVFSResult result;
 	gchar *buffer, **buffer_lines;
 	
 	g_return_val_if_fail (log, NULL);
-	g_return_val_if_fail (log->mon_offset > 0, NULL);
+	g_return_val_if_fail (log->mon_file_handle, NULL);
 	
 	newsize = GetLogSize (log);
+	buffer = g_malloc (newsize - log->mon_offset);
 
-	buffer = g_malloc (newsize - log->filesize);
-
-	g_return_val_if_fail (log, NULL);
-	
-	result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_START, log->mon_offset);
-	result = gnome_vfs_read (log->handle, buffer, newsize - log->filesize, &bytes_read);
-
-	log->filesize = newsize;
-	result = gnome_vfs_tell (log->handle, &(log->mon_offset));
+	result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, log->mon_offset);
+	result = gnome_vfs_read (log->mon_file_handle, buffer, newsize - log->mon_offset, &bytes_read);
 	
 	if (bytes_read > 0) {
 		gchar **buffer_lines;
+		log->mon_offset = newsize;
+		result = gnome_vfs_tell (log->mon_file_handle, &(log->mon_offset));
 		buffer_lines = g_strsplit (buffer, "\n", -1);
 		g_free (buffer);
 		return buffer_lines;
@@ -625,10 +595,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    log->lstats.mtime = 0;
    log->lstats.size = 0;
 
-   if (log->handle == NULL)
-      return;
-
-   result = gnome_vfs_get_file_info_from_handle (log->handle, &info, GNOME_VFS_FILE_INFO_DEFAULT);
+   result = gnome_vfs_get_file_info (log->name, &info, GNOME_VFS_FILE_INFO_DEFAULT);
    log->lstats.mtime = info.mtime;
    log->lstats.size = info.size;
 
@@ -752,79 +719,6 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    return;
 }
 
-/* ----------------------------------------------------------------------
-   NAME:	UpdateLogStats
-   DESCRIPTION:	
-   ---------------------------------------------------------------------- */
-
-void
-UpdateLogStats( Log *log )
-{
-   gchar *buffer;
-   gchar **buffer_lines;
-   int i, thisyear, nl, newbytes;
-   time_t curdate, newdate;
-   DateMark *curmark;
-   struct tm *tmptm;
-   GnomeVFSFileSize filesize;
-   GnomeVFSFileSize read_bytes;
-   GnomeVFSResult result;
-
-   if (log == NULL)
-     return;
-
-   curmark = log->lstats.lastmark;
-   curdate = log->lstats.enddate;
-   tmptm = localtime (&curdate);
-   thisyear = tmptm->tm_year;
-
-   /* Count the new bytes that were added to the file since last time */
-   result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_END, 0L);
-   filesize = gnome_vfs_tell (log->handle, &(filesize));
-   newbytes = filesize - curmark->offset;
-
-   /* Read these new bytes */
-   gnome_vfs_seek (log->handle, curmark->offset, GNOME_VFS_SEEK_START);   
-   buffer = g_malloc (newbytes);
-   result = gnome_vfs_read (log->handle, buffer, newbytes, &read_bytes);
-   buffer_lines = g_strsplit (buffer, "\n", -1);
-   
-   /* Go back to where we were */
-   gnome_vfs_seek (log->handle, log->filesize, 0L);
-
-   nl=0;
-   for (i=1; buffer_lines[i]!=NULL; i++) {
-	   nl++;
-	   newdate = GetDate (buffer_lines[i]);
-	   
-	   if (newdate < 0 || isSameDay (newdate, curdate) )
-		   continue;
-	   curmark->next = malloc (sizeof (DateMark));
-	   if (curmark->next == NULL) {
-		   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
-		   exit (0);
-	   }
-	   curmark->next->prev = curmark;
-	   curmark = curmark->next;
-	   curmark->time = newdate;
-	   if (newdate < curdate)	/* The newdate is next year */
-		   thisyear++;
-	   curmark->year = thisyear;
-	   curmark->next = NULL;
-	   curmark->offset = filesize;
-	   curdate = newdate;
-   }
-   
-   log->lstats.enddate = curdate;
-   log->lstats.lastmark = curmark;
-   log->lstats.numlines += nl;
-
-   g_strfreev (buffer_lines);
-   g_free (buffer);
-
-   return;
-}
-
 
 
 /* ----------------------------------------------------------------------
@@ -920,10 +814,10 @@ CloseLog (Log * log)
 
    g_return_if_fail (log);
 
-   /* Close file */
-   if (log->handle != NULL) {
-	   gnome_vfs_close (log->handle);
-	   log->handle = NULL;
+   /* Close file - this should not be needed */
+   if (log->mon_file_handle != NULL) {
+	   gnome_vfs_close (log->mon_file_handle);
+	   log->mon_file_handle = NULL;
    }
 
    /* Free all used memory */
@@ -953,9 +847,9 @@ WasModified (Log *log)
 	GnomeVFSResult result;
 	GnomeVFSFileInfo info;
 
-	result = gnome_vfs_get_file_info_from_handle (log->handle, 
-						      &(info),
-						      GNOME_VFS_FILE_INFO_DEFAULT);
+	result = gnome_vfs_get_file_info (log->name, 
+					  &(info),
+					  GNOME_VFS_FILE_INFO_DEFAULT);
 	if (info.mtime != log->lstats.mtime) {
 		log->lstats.mtime = info.mtime;
 		return TRUE;
@@ -972,6 +866,79 @@ WasModified (Log *log)
 #define LINES_P_PAGE             10
 #define NUM_PAGES                5 
 #define R_BUF_SIZE               1024	/* Size of read buffer */
+
+/* ----------------------------------------------------------------------
+   NAME:	UpdateLogStats
+   DESCRIPTION:	
+   ---------------------------------------------------------------------- */
+
+void
+UpdateLogStats( Log *log )
+{
+   gchar *buffer;
+   gchar **buffer_lines;
+   int i, thisyear, nl, newbytes;
+   time_t curdate, newdate;
+   DateMark *curmark;
+   struct tm *tmptm;
+   GnomeVFSFileSize filesize;
+   GnomeVFSFileSize read_bytes;
+   GnomeVFSResult result;
+
+   if (log == NULL)
+     return;
+
+   curmark = log->lstats.lastmark;
+   curdate = log->lstats.enddate;
+   tmptm = localtime (&curdate);
+   thisyear = tmptm->tm_year;
+
+   /* Count the new bytes that were added to the file since last time */
+   result = gnome_vfs_seek (log->handle, GNOME_VFS_SEEK_END, 0L);
+   filesize = gnome_vfs_tell (log->handle, &(filesize));
+   newbytes = filesize - curmark->offset;
+
+   /* Read these new bytes */
+   gnome_vfs_seek (log->handle, curmark->offset, GNOME_VFS_SEEK_START);   
+   buffer = g_malloc (newbytes);
+   result = gnome_vfs_read (log->handle, buffer, newbytes, &read_bytes);
+   buffer_lines = g_strsplit (buffer, "\n", -1);
+   
+   /* Go back to where we were */
+   gnome_vfs_seek (log->handle, log->filesize, 0L);
+
+   nl=0;
+   for (i=1; buffer_lines[i]!=NULL; i++) {
+	   nl++;
+	   newdate = GetDate (buffer_lines[i]);
+	   
+	   if (newdate < 0 || isSameDay (newdate, curdate) )
+		   continue;
+	   curmark->next = malloc (sizeof (DateMark));
+	   if (curmark->next == NULL) {
+		   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
+		   exit (0);
+	   }
+	   curmark->next->prev = curmark;
+	   curmark = curmark->next;
+	   curmark->time = newdate;
+	   if (newdate < curdate)	/* The newdate is next year */
+		   thisyear++;
+	   curmark->year = thisyear;
+	   curmark->next = NULL;
+	   curmark->offset = filesize;
+	   curdate = newdate;
+   }
+   
+   log->lstats.enddate = curdate;
+   log->lstats.lastmark = curmark;
+   log->lstats.numlines += nl;
+
+   g_strfreev (buffer_lines);
+   g_free (buffer);
+
+   return;
+}
 
 /* ----------------------------------------------------------------------
    NAME:        ReadNPagesUp
