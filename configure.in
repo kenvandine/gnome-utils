@@ -1,4 +1,4 @@
-gdnl 
+dnl 
 dnl configure.in for gnome-utils, process with autoconf >= 2.13
 dnl
 
@@ -15,7 +15,6 @@ dnl
 AM_MAINTAINER_MODE
 
 AM_ACLOCAL_INCLUDE(macros)
-AC_CONFIG_SUBDIRS(gfloppy)
 
 GNOME_INIT(applets)
 
@@ -63,6 +62,12 @@ AC_FUNC_STRFTIME
 AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname)
 
 dnl *******************************
+dnl Internationalization
+dnl ******************************* 
+ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl no pl pt pt_BR ro ru sv uk wa zh_TW.Big5 zh_CN.GB2312"
+AM_GNOME_GETTEXT
+
+dnl *******************************
 dnl Guile checks
 dnl *******************************
 GNOME_CHECK_GUILE
@@ -90,10 +95,19 @@ else
     AC_MSG_ERROR(Did not find libGlade installed)
 fi
 
-ALL_LINGUAS="ca cs da de el en_GB es et fi fr ga gl hu it ja ko lt nl no pl pt pt_BR ro ru sv uk wa zh_TW.Big5 zh_CN.GB2312"
-AM_GNOME_GETTEXT
+dnl ******************** 
+dnl gfloppy
+dnl ********************
+AC_CHECK_HEADER(linux/fd.h, build_gfloppy=true,
+                AC_MSG_WARN([*** gfloppy will not be built.]))
+if $build_gfloppy; then
+  AC_CONFIG_SUBDIRS(gfloppy)
+fi
+AM_CONDITIONAL(BUILD_GFLOPPY, test "$build_gfloppy" = true)
 
+dnl ******************** 
 dnl gsu
+dnl ********************
 AC_CHECK_LIB(pam, pam_authenticate, [
 	AC_DEFINE(USE_PAM)
 	AC_CHECK_LIB(pam_misc, pam_misc_setenv,
@@ -103,8 +117,9 @@ AC_CHECK_LIB(pam, pam_authenticate, [
 AC_SUBST(PAM_LIBS)
 
 AC_CHECK_FUNCS(endgrent endpwent)
-
+dnl ********************
 dnl idetool
+dnl ********************
 mu_idetool=
 AC_CHECK_HEADERS(linux/hdreg.h,[mu_idetool=idetool])
 AM_CONDITIONAL(MU_IDETOOL,test "$mu_idetool" = idetool)
