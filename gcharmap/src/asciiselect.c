@@ -33,6 +33,7 @@
 
 
 static gboolean updating = FALSE;
+static gint prev_value;
 
 
 static void
@@ -98,8 +99,13 @@ cb_ascii_select_spin_changed (GtkEditable *edit, gpointer user_data)
     	return;
     i = atoi (text);
     g_free (text);
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON (edit), i);
+    if(i > 255)
+    {	     
+        gtk_spin_button_set_value (GTK_SPIN_BUTTON (edit), prev_value);
+        i = prev_value;
+    }	
 
+    prev_value = i;
     n=g_unichar_to_utf8(i, buf);
     buf[n]=0;
 
@@ -122,7 +128,7 @@ ascii_select_init (AsciiSelect *obj)
 					       GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
 					       _("_Insert"), 100,
 					       NULL);
-    
+    gtk_dialog_set_default_response (GTK_DIALOG (obj->window), GTK_RESPONSE_CLOSE);
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
       gtk_label_new (_("Character code:")), FALSE, FALSE, 0);
 
@@ -130,6 +136,8 @@ ascii_select_init (AsciiSelect *obj)
     spin = gtk_spin_button_new (GTK_ADJUSTMENT (adj), 1, 0);
     gtk_spin_button_set_update_policy (GTK_SPIN_BUTTON (spin),
       GTK_UPDATE_IF_VALID);
+    prev_value = 65;
+    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON (spin), TRUE);
     gtk_box_pack_start (GTK_BOX (GTK_DIALOG (obj->window)->vbox),
       spin, FALSE, TRUE, 0);
 
