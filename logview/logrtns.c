@@ -235,6 +235,7 @@ OpenLogFile (char *filename)
    /* initialize date headers hash table */
    tlog->date_headers = g_hash_table_new_full (
                 NULL, NULL, NULL, (GDestroyNotify) gtk_tree_path_free);
+   tlog->first_time = TRUE;
    return tlog;
 
 }

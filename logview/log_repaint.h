@@ -20,7 +20,6 @@
 #ifndef __LOG_REPAINT_H__
 #define __LOG_REPAINT_H__
 
-int InitPages (LogviewWindow *window);
 gboolean log_repaint (LogviewWindow *window);
 void log_redrawdetail (LogviewWindow *window);
 void DrawLogLines (LogviewWindow *window, Log *current_log);

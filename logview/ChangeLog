@@ -1,5 +1,20 @@
 2004-10-29  Vincent Noel  <vnoel@cox.net>
 
+	* logview.c (logview_create_window_open_file): New function to
+	create a window and open a file at the same time.
+	(logview_count_logs): Fix a stupid bug that went unnoticed but
+	made the function useless.
+	(restore_session): Kill. Useless now that command line parameters
+	are correctly handled.
+	(save_session): Fix to save command line parameters.
+
+	* log_repaint.c: kill InitPages.
+
+	* logview.c (main): Really try to open each log passed as a
+	parameter. Only open the default logs if no log was opened.
+
+	* logrtns.c (OpenLogFile): Mark the first_time flag here.
+
 	* logview.c (CreateMainWin): Use a fixed size for cells in the
 	gtktreeview.
 

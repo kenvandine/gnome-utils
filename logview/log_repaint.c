@@ -34,6 +34,7 @@
  */
 
 extern UserPrefsStruct *user_prefs;
+extern gchar *file_to_open;
 
 /*
  * -------------------
@@ -245,6 +246,8 @@ log_repaint (LogviewWindow *window)
 {
    GtkTreeModel *tree_model;
 
+   g_return_val_if_fail (LOGVIEW_IS_WINDOW (window), FALSE);
+
    /* Clear the tree view first */
    tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
    gtk_tree_store_clear (GTK_TREE_STORE (tree_model));
@@ -277,7 +280,6 @@ UpdateStatusArea (LogviewWindow *window)
  
    if (window->curlog == NULL) { 
        gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar), 0);
-       gtk_window_set_title (GTK_WINDOW (window), APP_NAME);
        return;
    }
 
@@ -453,23 +455,4 @@ log_redrawdetail (LogviewWindow *window)
 {
   if (window->zoom_visible)
     repaint_zoom (window);
-
-}
-
-/* ----------------------------------------------------------------------
-   NAME:        InitPages
-   DESCRIPTION: Returns -1 if there was a error otherwise TRUE;
-   ---------------------------------------------------------------------- */
-
-int
-InitPages (LogviewWindow *window)
-{
-   if (user_prefs == NULL || user_prefs->logfile == NULL)
-	return -1;
-
-   window->curlog = OpenLogFile (user_prefs->logfile);
-   if (window->curlog == NULL)
-      return -1;
-   window->curlog->first_time = TRUE;
-   return TRUE;
 }
