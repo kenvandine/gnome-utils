@@ -162,6 +162,7 @@ click_help_cb (GtkWidget * widget,
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 		                                          error->message);
 
+		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 		gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -310,6 +311,7 @@ display_dialog_file_open_limit (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          secondary);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -346,6 +348,7 @@ display_dialog_could_not_open_file (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          message);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -465,6 +468,7 @@ display_dialog_folder_open_limit (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          secondary);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -500,6 +504,7 @@ display_dialog_could_not_open_folder (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          _("The nautilus file manager is not running."));
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -587,6 +592,7 @@ display_dialog_could_not_move_to_trash (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          message);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -621,6 +627,7 @@ display_dialog_delete_permanently (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          secondary);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -658,6 +665,7 @@ display_dialog_could_not_delete (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          message);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -1182,6 +1190,7 @@ display_dialog_could_not_save_no_name (GtkWidget * window)
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          secondary);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -1213,6 +1222,7 @@ display_dialog_could_not_save_to (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          message);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -1248,6 +1258,7 @@ display_dialog_could_not_save_exists (GtkWidget * window,
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          secondary);
 
+	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 	gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 

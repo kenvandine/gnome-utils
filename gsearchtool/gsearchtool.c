@@ -1483,6 +1483,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 									   "  There were errors while performing this search."));
 					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "");
 
+					gtk_window_set_title (GTK_WINDOW (dialog), "");
 					gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 
 					hbox = gtk_hbox_new (0, FALSE);
@@ -1522,6 +1523,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 									   "  Do you want to disable the quick search feature?"));
 					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), "");
 
+					gtk_window_set_title (GTK_WINDOW (dialog), "");
 					gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 
 					hbox = gtk_hbox_new (0, FALSE);
@@ -1598,6 +1600,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 		                                          (error == NULL) ? "" : error->message);
 
+		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 		gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
@@ -1630,6 +1633,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 		                                          (error == NULL) ? "" : error->message);  
 
+		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
 		gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 14);
 
