@@ -1,33 +1,28 @@
 /* By Elliot Lee <sopwith@cuc.edu>
-   A ten-minute hack. The escape key handling is ugly - what's
-   wrong with GtkAccelerator?!?!
+   FIXME copyright notice
  */
 #include <unistd.h>
 #include <config.h>
 #include <gnome.h>
-#include <gdk/gdkkeysyms.h>
 
-GtkWidget *thewin;
-
-void dokey(GtkWidget *widget, GdkEventKey *keyevent)
-{
-	if(keyevent->keyval == GDK_Escape)
-	{
-		gtk_widget_hide(thewin);
-		gtk_main_quit();
-	}
-}
-
-void dorun(GtkWidget *widget, GtkWidget *theent)
+void clicked_cb(GtkWidget *dialog, gint button, GtkWidget *theent)
 {
 	GString *runme;
-	char *t=gtk_entry_get_text(GTK_ENTRY(theent));
-	gtk_widget_hide(thewin);
-	if(t != NULL && *t != '\0') {
-	        runme = g_string_new(t);
-		g_string_append(runme," &");
-		system(runme->str);
+	char *t;
+
+	gtk_widget_hide(dialog); /* Will happen anyway, but do it
+				    early for aesthetic reasons. */
+
+	/* OK button */
+	if (button == 0) { 
+	  t = gtk_entry_get_text(GTK_ENTRY(theent));
+	  if(t != NULL && *t != '\0') {
+	    runme = g_string_new(t);
+	    g_string_append(runme," &");
+	    system(runme->str);
+	  }
 	}
+
 	gtk_main_quit();
 }
 
@@ -40,6 +35,7 @@ int
 main(int argc, char *argv[])
 {
 	GtkWidget *theent;
+	GtkWidget *thewin;
 
 	argp_program_version = VERSION;
 	
@@ -51,22 +47,24 @@ main(int argc, char *argv[])
 	thewin = gnome_dialog_new(_("Run a Program"),
 				  GNOME_STOCK_BUTTON_OK,
 				  GNOME_STOCK_BUTTON_CANCEL, NULL);
+	gnome_dialog_set_default(GNOME_DIALOG(thewin), 0);
+	gnome_dialog_set_destroy(GNOME_DIALOG(thewin), TRUE);
+
 	gtk_window_position(GTK_WINDOW(thewin), GTK_WIN_POS_CENTER);
-	gtk_window_set_policy(GTK_WINDOW(thewin), FALSE, FALSE, TRUE);
-	gtk_signal_connect(GTK_OBJECT(thewin), "delete_event",
+
+	gtk_signal_connect(GTK_OBJECT(thewin), "destroy",
 			   GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
 
 	theent = gtk_entry_new();
 	gtk_container_add(GTK_CONTAINER(GNOME_DIALOG(thewin)->vbox), theent);
-	gtk_signal_connect(GTK_OBJECT(theent), "key_press_event",
-			   GTK_SIGNAL_FUNC(dokey), NULL);
-	gtk_signal_connect(GTK_OBJECT(theent), "activate",
-			   GTK_SIGNAL_FUNC(dorun), theent);
 
-	gnome_dialog_button_connect(GNOME_DIALOG(thewin), 0, 
-				    GTK_SIGNAL_FUNC(dorun), theent);
-	gnome_dialog_button_connect(GNOME_DIALOG(thewin), 1, 
-				    GTK_SIGNAL_FUNC(gtk_main_quit), NULL);
+	/* If Return is pressed in the text entry, propagate to the buttons */
+	gtk_signal_connect_object(GTK_OBJECT(theent), "activate",
+				  GTK_SIGNAL_FUNC(gtk_window_activate_default), 
+				  GTK_OBJECT(thewin));
+
+	gtk_signal_connect(GTK_OBJECT(thewin), "clicked",
+			   GTK_SIGNAL_FUNC(clicked_cb), theent);
 
 	gtk_window_set_focus(GTK_WINDOW(thewin), theent);
 
@@ -75,3 +73,4 @@ main(int argc, char *argv[])
 	gtk_main();
 	return 0;
 }
+
