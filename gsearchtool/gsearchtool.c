@@ -1634,7 +1634,7 @@ create_search_results_section (void)
 	gtk_box_pack_start (GTK_BOX (hbox), interface.results_label, FALSE, FALSE, 0);
 	
 	window = gtk_scrolled_window_new (NULL, NULL);
-	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_NONE);	
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_IN);
 	gtk_container_set_border_width (GTK_CONTAINER(window), 0);
 	gtk_widget_set_size_request (window, 530, 160); 
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(window),
