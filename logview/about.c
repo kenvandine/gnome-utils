@@ -27,7 +27,18 @@ void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)
 {
   /* Author needs some sort of dash over the 'e' in Cesar  - U-00E9 */
-  static const gchar *author[] = { "Cesar Miquel (miquel@df.uba.ar)", NULL};
+  static const gchar *author[] = { "Cesar Miquel <miquel@df.uba.ar>",
+				   "Glynn Foster <fherrera@onirica.com>)",
+				   "Fernando Herrera  <fherrera@onirica.com>",
+				   "Shakti Sen  <shprasad@novell.com>",
+				   "Julio M Merino Vidal <jmmv@menta.net>",
+				   "Jason Leach  <leach@wam.umd.edu>",
+				   "Christian Neumair  <chris@gnome-de.org>",
+				   "Jan Arne Petersen  <jpetersen@uni-bonn.de>",
+				   "Jason Long  <jlong@messiah.edu>",
+				   "Kjartan Maraas  <kmaraas@gnome.org>",
+				   "Vincent Noel  <vnoel@cox.net>",
+				   NULL};
   gchar *documenters[] = {NULL};
   /* Translator credits */
   const gchar *translator_credits = _("translator-credits");
