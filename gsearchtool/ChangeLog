@@ -1,5 +1,18 @@
 2002-09-13  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool.c:  Add popt command line argument handling.
+	This is the first part of my changes for bug report #81198.  
+	The new application options are:
+  	  --name=STRING       Set the text of 'file is named'
+  	  --path=STRING       Set the text of 'look in folder'
+  	  --sortby=STRING     Sort files by one of the following:
+                              name, folder, size, type, or date
+  	  --descending        Set sort order to descending, the
+                              default is ascending
+  	  --autostart         Automatically start a search
+
+2002-09-13  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
 	* gsearchtool.c:  Adjust minimum width.
 	
 2002-09-13  Dennis M. Cranston <dennis_cranston@yahoo.com>

@@ -55,6 +55,71 @@ struct _FindOptionTemplate {
 	gboolean is_selected;     
 };
 
+struct _PoptArgument {	
+	gchar *name;
+	gchar *path;
+	gchar *sortby;
+	gboolean descending;
+	gboolean autostart;
+} PoptArgument;
+
+struct poptOption options[] = { 
+  {
+	"name", 
+	'\0', 
+	POPT_ARG_STRING, 
+	&PoptArgument.name, 
+	0, 
+	N_("Set the text of 'file is named'"), 
+	NULL
+  },
+  {
+	"path", 
+	'\0', 
+	POPT_ARG_STRING, 
+	&PoptArgument.path, 
+	0, 
+	N_("Set the text of 'look in folder'"), 
+	NULL
+  },
+  {
+	"sortby", 
+	'\0', 
+	POPT_ARG_STRING, 
+	&PoptArgument.sortby, 
+	0, 
+	N_("Sort files by one of the following: name, folder, size, type, or date"), 
+	NULL
+  },
+  {
+	"descending", 
+	'\0', 
+	POPT_ARG_NONE, 
+	&PoptArgument.descending, 
+	0, 
+	N_("Set sort order to descending, the default is ascending"), 
+	NULL
+  },
+  {
+	"autostart", 
+	'\0', 
+	POPT_ARG_NONE, 
+	&PoptArgument.autostart, 
+	0, 
+	N_("Automatically start a search"), 
+	NULL
+  },
+  { 
+	NULL,
+	'\0',
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL
+  }
+};
+	
 static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -q '%s' {} \\;", N_("Contains the text"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "-user '%s'", N_("Owned by user"), FALSE },
@@ -474,6 +539,53 @@ add_atk_relation (GtkWidget 		*obj1,
 	
 }
 
+void 
+handle_popt_args (void)
+{
+	gint sort_by;
+
+	if (PoptArgument.name != NULL) {
+		gtk_entry_set_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))),
+				    g_locale_to_utf8 (PoptArgument.name, -1, NULL, NULL, NULL));
+		gtk_widget_set_sensitive (interface.find_button, TRUE);
+	}
+	if (PoptArgument.path != NULL) {
+		gtk_entry_set_text (GTK_ENTRY(gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))),
+				    g_locale_to_utf8 (PoptArgument.path, -1, NULL, NULL, NULL));
+	}	
+	if (PoptArgument.sortby != NULL) {
+	
+		if (strcmp (PoptArgument.sortby, "name") == 0) {
+			sort_by = COLUMN_NAME;
+		}
+		else if (strcmp (PoptArgument.sortby, "folder") == 0) {
+			sort_by = COLUMN_PATH;
+		}
+		else if (strcmp (PoptArgument.sortby, "size") == 0) {
+			sort_by = COLUMN_SIZE;
+		}
+		else if (strcmp (PoptArgument.sortby, "type") == 0) {
+			sort_by = COLUMN_TYPE;
+		}
+		else if (strcmp (PoptArgument.sortby, "date") == 0) {
+			sort_by = COLUMN_DATE;
+		}
+		else {
+			g_warning (_("Invalid option passed to sortby command line argument.")); 
+			sort_by = COLUMN_NAME;
+		}
+			
+		if (PoptArgument.descending == TRUE) {
+			gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (interface.model), sort_by,
+							      GTK_SORT_DESCENDING);
+		} 
+		else {
+			gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (interface.model), sort_by, 
+							      GTK_SORT_ASCENDING);
+		}
+	}
+}
+
 static gboolean
 handle_search_command_stdout_io (GIOChannel 	*ioc, 
 				 GIOCondition	condition, 
@@ -521,13 +633,14 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				continue;
 			}		
 			
-			string = g_string_truncate (string, string->len - 1);			
+			string = g_string_truncate (string, string->len - 1);
+			if (string->len <= 1) {
+				continue;
+			}
+			
 			locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
 			filename = g_path_get_basename (locale);
 			
-			if (string->len == 0) {
-				continue;
-			}
 			
 			if (g_pattern_match_string (pattern, filename)) {
 				if (search_data->show_hidden_files == TRUE) {
@@ -731,7 +844,7 @@ spawn_search_command (gchar *command)
 	g_io_channel_unref (ioc_stdout);
 	g_io_channel_unref (ioc_stderr);
 }
- 
+  
 static GtkWidget *
 create_constraint_box (SearchConstraint *opt)
 {
@@ -1169,8 +1282,15 @@ main (int 	argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	gsearchtool = gnome_program_init ("gnome-search-tool", VERSION, LIBGNOMEUI_MODULE, 
-					  argc, argv, GNOME_PARAM_APP_DATADIR,DATADIR, NULL);
+	gsearchtool = gnome_program_init ("gnome-search-tool", VERSION, 
+					  LIBGNOMEUI_MODULE, 
+					  argc, 
+					  argv, 
+					  GNOME_PARAM_POPT_TABLE, options,
+					  GNOME_PARAM_POPT_FLAGS, 0,
+					  GNOME_PARAM_APP_DATADIR, DATADIR,  
+					  NULL);
+					  
 	gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-searchtool.png");
 
 	if (!bonobo_init (bonobo_activation_orb_get (), NULL, NULL))
@@ -1196,6 +1316,8 @@ main (int 	argc,
 	gnome_app_set_contents (GNOME_APP(interface.main_window), window);
 
 	setup_app_progress_bar ();
+	
+	handle_popt_args ();
 
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), GTK_WIDGET(interface.main_window),
 				       &interface.geometry, GDK_HINT_MIN_SIZE);
@@ -1214,6 +1336,11 @@ main (int 	argc,
 	gtk_widget_hide (interface.stop_button);
 	
 	gtk_widget_show (interface.main_window);
+	
+	if (PoptArgument.autostart == TRUE) {
+		click_find_cb (interface.find_button, NULL);
+	}
+	
 	gtk_main ();
 
 	return 0;
