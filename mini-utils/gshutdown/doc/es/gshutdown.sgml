@@ -1,68 +1,3 @@
-<!DOCTYPE article PUBLIC "-//GNOME//DTD DocBook PNG Variant V1.1//EN"[      
-<!ENTITY version "1.2">
-]>
-
-<article id="index" lang=es>
-
-  <artheader> 
-    <title>Manual de Gshutdown</title>
-
-    <copyright>
-      <year>2000</year>
-      <holder>Havoc Pennington, John Fleck</holder>
-    </copyright>
-    <copyright>
-      <year>2001</year>
-      <holder>José Antonio Salgueiro</holder>
-    </copyright>
-
-  <legalnotice id="legalnotice">
-  
-      <para>
-       Permission is granted to copy, distribute and/or modify this
-       document under the terms of the GNU Free Documentation License,
-       Version 1.1 or any later version published by the Free Software
-       Foundation; with no Invariant Sections, with no  Front-Cover
-       Texts, and with no Back-Cover Texts.  A copy of the license is
-       available from the Free Software Foundation and can be viewed <ulink
-       url="http://www.gnu.org/copyleft/fdl.html"
-       type="http">online</ulink>.
-      </para>
-
-      <para>
-      Se permite la copia, distribución y/o modificación de este 
-       documento bajo los términos de la licencia de documentación libre
-       de GNU, versión 1.1 o cualquier versión posterior publicada por la
-       fundación para el software libre; sin secciones invariantes, sin 
-       portada, y sin contraportada.
-       Una copia de esta licencia esta disponible en la fundación para el
-       software libre y puede leerse en 
-       <ulink type="help" url="gnome-help:fdl">linea</ulink>.
-       </para>
-
-      <para>Many of the names used by companies to distinguish their products and
-        services are claimed as trademarks. Where those names appear in any
-        GNOME documentation, and those trademarks are made aware to the members
-        of the GNOME Documentation Project, the names have been printed in caps
-        or initial caps.
-      </para>
-
-      <para> Muchos de los nombres usados por las compañías para diferencias sus 
-        productos y servicios son reclamados como marcas registradas. Allí 
-        donde estos nombres aparezcan en la documentación de Gnome, y cuando
-        los miembros del proyecto de documentación Gnome hayan sido informados
-        de esas marcas registradas, los nombres estarán impresos en mayúsculas
-        o como nombres propios.
-       </para>
-    </legalnotice>
-
-    <releaseinfo> 
-		  Esta es la versión 1.0 del manual de Gshutdown.
-    </releaseinfo>
-  </artheader>
-
-<!-- =============Document Body ============================= -->
-
 <!-- =============Introduction ============================= -->
   <sect1 id="intro">
       <title>Introducción</title> 
@@ -72,10 +7,10 @@
       su ordenador. Se incluye en el paquete
       <filename>GNOME-utils</filename>, que es parte del 
       entorno de escritorio GNOME. Este manual describe la versión
-       &version; de <application>Gshutdown</application>.
+       1.0 de <application>Gshutdown</application>.
     </para>
 
-    <para><application>Gshutdown</application> puedes ser arrancado
+    <para><application>Gshutdown</application> puede ser arrancado
       seleccionando <guimenuitem>Apagar o Reiniciar</guimenuitem> desde 
       el submenú <guisubmenu>Sistema</guisubmenu> del <guimenu>Menú
 	Principal</guimenu>, o ejecutando la orden
@@ -107,7 +42,7 @@
 	  <title>Ventana Principal de Gshutdown </title>
 	  <screenshot>
 	    <screeninfo>Ventana Principal de Gshutdown </screeninfo>
-	    <graphic fileref="figures/gshutdown" format="png"
+	    <graphic fileref="gshutdown" format="png"
 	    srccredit="John Fleck">
 	    </graphic>
 	  </screenshot>
@@ -120,11 +55,11 @@
       presione "OK." Espere unos pequeños instantes para que su ordenador se 
       prepare, entonces apágelo.  Si Vd. observa la línea
       "System Halted," podrá apagar el sistema de forma segura. Si su 
-      ordenador admite la Gestión Avanzada de Energia (APM), como muchos 
-      ordenadores portátiles y algunos de escritorio, no necesita el botón de 
+      ordenador admite la Gestión Avanzada de Energía (APM), como muchos 
+      ordenadores portátiles y algunos de escritorio, no necesitará el botón de 
       apagado.</para>
 
-      <para> Para reiniciar, simplemente elija "Reiniciar," presione "Aceptar" y espere.</para>
+      <para> Para reiniciar, simplemente elija "Reiniciar," presione "OK," y espere.</para>
    
     </sect2>
 
@@ -138,7 +73,7 @@
 	  <title>Ventana Avanzada de Gshutdown</title>
 	  <screenshot>
 	    <screeninfo>Ventana Avanzada de Gshutdown </screeninfo>
-	    <graphic fileref="figures/gshutdown-advanced" format="png"
+	    <graphic fileref="gshutdown-advanced" format="png"
 	    srccredit="John Fleck">
 	    </graphic>
 	  </screenshot>
@@ -148,9 +83,9 @@
   <para>Vd puede cambiar a cualquier nivel de ejecución del sistema en la pestaña
   Avanzada.</para>
 
-      <para>Un  <emphasis>nivel de ejecución</emphasis> (Runlevels) es una configuración 
+      <para>Un <emphasis>nivel de ejecución</emphasis> (Runlevels) es una configuración 
       de software del sistema que le permite seleccionar el grupo de procesos
-      que existirán. En el <filename>fichero /etc/inittab</filename> se define el 
+      que van a existir. En el <filename>fichero /etc/inittab</filename> se define el 
       crecimiento de los procesos para cada nivel de ejecución causado por 
       <application>init</application>. Init puede tener 8 niveles distintos de ejecución:
       0-6 y S ó s.</para>
@@ -159,7 +94,7 @@
       <para>Se reservan los niveles de ejecución 0, 1, y 6. El nivel 0 se utiliza para
         parar el sistema, el nivel 6 para reiniciar el sistema, y el nivel 1 para llevar
 	al sistema al estado mono usuario. El nivel S no significa que se utilice directamente,
-	la mayor parte de los "scripts" lo invocan cuando entran al nivel 1.</para>
+	la mayor parte de los guiones ("scripts") lo invocan cuando entran al nivel 1.</para>
 	<!--
 	Traducción difusa: "Runlevel S is  not  really  meant  to  be  used
        directly,  but more for the scripts that are executed when
@@ -178,7 +113,7 @@
 	  <title>Ventana de Preferencias de Gshutdown</title>
 	  <screenshot>
 	    <screeninfo>Ventana de Preferencias de Gshutdown</screeninfo>
-	    <graphic fileref="figures/gshutdown-preferences" format="png"
+	    <graphic fileref="gshutdown-preferences" format="png"
 	    srccredit="John Fleck">
 	    </graphic>
 	  </screenshot>
@@ -188,58 +123,23 @@
 
       <para> Existe también un diálogo de preferencias que le permite configurar
       el apagado de la línea de comandos. Para los detalles de los niveles
-      de ejecución y el efecto que las intrucciones del apagado de la línea
+      de ejecución y el efecto que las instrucciones de apagado de la línea
       de comandos observe la documentación de su ordenador. Si no está familiarizado
       con estos detalles, puede presionar la pestaña Fácil. Si tiene conocimientos
       sobre estas cuestiones, la pestaña Avanzada le será auto-explicativa.</para>
 
     </sect2>
+
+
   </sect1>    
 
-<!-- =============New section============================= -->
-<sect1 id="authors">
-	<title>Autores</title>
-	<para>Havoc Pennington (<email>hp@redhat.com</email>) es el autor de  
-	<application>Gshutdown</application>. Por favor envíe todos los comentarios,
-	sugerencias, e informes de errores a la 
-	<ulink url="http://bugzilla.gnome.org" type="http">
-	base de datos de seguimiento de errores de Gnome
-	</ulink>. Encontrara información sobre la forma de enviar informes de errores en 
-	linea en <ulink url="http://bugs.gnome.org/Reporting.html" type="http">
-	http://bugs.gnome.org/Reporting.html</ulink>.  
-	Si esta usando Gnome 1.1 o posterior, puede usar también el comando<command>bug-buddy</command>
-	para enviar informes de errores.</para>
+<sect1>
+<title></title>
+
+&authors;
+&license;
+&license-es;
 
 
-	<para>John Fleck (<email>jfleck@inkstain.net</email>) and Havoc Pennington (<email>hp@redhat.com</email>
-	son los autores de este manual. Por favor envíe todos los comentarios y sugerencias acerca de este manual 
-	al proyecto de documentación de Gnome en  <email>docs@gnome.org</email>.
-	También puede incluir sus comentarios en directo usando
-	<ulink type="http" url="http://developer.gnome.org/projects/gdp/doctable/">la tabla de 
-	estado de la documentación GNOME</ulink>.  
-	</para>
+</sect1>
 
-	<para>José Antonio Salgueiro (<email>joseantsa@retemail.es</email>)
-	es el traductor de este manual al Castellano. 
-	Por favor envíe todos los comentarios y sugerencias acerca de este traducción 
-	al proyecto de traducción de gnome-es en  <email>traductores@es.gnome.org</email>.
-	</para>
-	<para>Puede encontrar mas documentación de Gnome en Castellano en las paginas del
-	grupo de traducción al Castellano 
-<ulink url="http://www.croftj.net/~barreiro/spanisk/gnome-es" type="http"> 
-Gnome-es</ulink>
-o en las de  
-<ulink url="http://www.es.gnome.org" type="http">
-Gnome Hispano</ulink>
-</para>
-
-	<para>
-	Havoc Pennington es el autor de este programa, que puede distribuirse libremente bajo 
-	los términos de <ulink url="gnome-help:gpl">la licencia publica GNU</ulink>, tal y como fue publicada
-	por la Fundación del Software Libre, ya sea la versión 2, o (a su elección) cualquier
-	versión posterior.
-	</para>
-
-    </sect1>
-
-</article>

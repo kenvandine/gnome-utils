@@ -2,10 +2,13 @@ figs = \
 	figures/gshutdown-advanced.png  \
 	figures/gshutdown-preferences.png  \
 	figures/gshutdown.png
-
-docname = gshutdown
+docname = gshutdown_util
 lang = es
-omffile = gshutdown-C.omf
-sgml_ents =
+omffile = gshutdown-es.omf
+sgml_ents = gshutdown \
+	authors.sgml \
+	licencia-es.sgml \
+	licencia-nota-es.sgml \
+	license.sgml
 include $(top_srcdir)/sgmldocs.make
 dist-hook: app-dist-hook
