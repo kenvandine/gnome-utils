@@ -1206,7 +1206,7 @@ create_search_results_section (void)
 	interface.results = gtk_scrolled_window_new (NULL, NULL);
 	gtk_widget_set_sensitive (GTK_WIDGET(interface.results), FALSE); 
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(interface.results), GTK_SHADOW_IN);	
-	gtk_container_set_border_width (GTK_CONTAINER(interface.results), GNOME_PAD_SMALL);
+	gtk_container_set_border_width (GTK_CONTAINER(interface.results), 0);
 	gtk_widget_set_usize (interface.results, 530, 200); 
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(interface.results),
                                         GTK_POLICY_AUTOMATIC,
