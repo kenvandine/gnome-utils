@@ -137,6 +137,7 @@ GnomeUIInfo filter_menu[] = {
 #endif
 
 GnomeUIInfo help_menu[] = {
+	GNOMEUIINFO_HELP("gnome-system-log"),
         {GNOME_APP_UI_ITEM, N_("About..."), 
 	 N_("Info about logview"), AboutShowWindow,
          NULL, NULL,
@@ -285,7 +286,8 @@ main (int argc, char *argv[])
   QueueErrMessages (TRUE);
 
   /*  Initialize gnome & gtk */
-  gnome_init ("gnome-system-log", VERSION, argc, argv);
+  gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
+  		      GNOME_PARAM_APP_DATADIR, DATADIR, NULL);
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
   
