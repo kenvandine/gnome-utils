@@ -2,10 +2,6 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
-if BUILD_GDIALOG
-gdialog = gdialog
-endif
-
 always_built_SUBDIRS = \
 	po 		\
 	logview 	\
@@ -14,13 +10,11 @@ always_built_SUBDIRS = \
 
 SUBDIRS = \
 	$(always_built_SUBDIRS)	\
-	$(gfloppy)	\
-	$(gdialog)
+	$(gfloppy)
 
 DIST_SUBDIRS = \
 	$(always_built_SUBDIRS)	\
-	gfloppy			\
-	gdialog
+	gfloppy
 
 EXTRA_DIST = \
 	gnome-utils.spec.in \

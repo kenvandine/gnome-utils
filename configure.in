@@ -87,15 +87,6 @@ dnl ***************************************************************
 dnl Other miscellaneous checks 
 dnl ***************************************************************
 
-dnl Check to see if the user wants gdialog. Turn it off by default
-dnl due to lack of maintainance and somewhat bad documentation
-
-AC_ARG_ENABLE(gdialog, 
-  [  --enable-gdialog=[no/yes]		Build gdialog [ default=yes ]],
-   enable_gdialog="$enableval", enable_gdialog=yes)
-
-AM_CONDITIONAL(BUILD_GDIALOG, test "$enable_gdialog" = yes)
-
 AC_ARG_ENABLE(console-helper,
   [  --enable-console-helper=[no/yes]  	Enable PAM console helper [ default=no ]],,
   enable_console_helper=no)
@@ -261,17 +252,6 @@ EXPANDED_LOGVIEWDIR=`eval echo $LOGVIEWDIR_TMP`
 AC_SUBST(EXPANDED_LOGVIEWDIR)
 
 
-dnl ******************
-dnl gdialog checks
-dnl ******************
-
-if test "x$enable_gdialog" = "xyes"; then
-  AC_CHECK_CURSES
-  AC_SUBST(CURSES_INCLUDEDIR)
-  AC_SUBST(CURSES_LIBS)
-fi
-
-
 dnl ********************
 dnl scrollkeeper checks 
 dnl ********************
@@ -333,10 +313,6 @@ gsearchtool/help/ja/Makefile
 gsearchtool/help/ko/Makefile
 gsearchtool/help/zh_CN/Makefile
 gsearchtool/help/zh_TW/Makefile
-gdialog/Makefile
-gdialog/help/Makefile
-gdialog/help/C/Makefile
-gdialog/help/ja/Makefile
 gdictsrc/Makefile
 gdictsrc/help/Makefile
 gdictsrc/help/C/Makefile
@@ -389,13 +365,6 @@ if test "x$build_gfloppy" = "xtrue"; then
 	echo "Build gfloppy                     : YES"
 else
 	echo "Build gfloppy                     : NO"
-fi
-
-dnl <= gdialog =>
-if test "x$enable_gdialog" = "xyes"; then
-	echo "Build gdialog                     : YES"
-else
-	echo "Build gdialog                     : NO"
 fi
 
 echo ""
