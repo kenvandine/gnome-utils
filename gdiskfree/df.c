@@ -123,6 +123,8 @@ static int       selected_fstype       (const char *fstype);
 static int       excluded_fstype       (const char *fstype);
 static void      exit_menu_cb          (GtkWidget  *widget,
 					gpointer   data);
+static void      about_cb              (GtkWidget  *widget,
+					gpointer   data);
 GtkWidget   **t_dial;
 
 static GnomeUIInfo file_menu[] = {
@@ -132,8 +134,19 @@ static GnomeUIInfo file_menu[] = {
   { GNOME_APP_UI_ENDOFINFO },
 };
 
+static GnomeUIInfo help_menu[] = {
+  { GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
+    GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 'A', GDK_CONTROL_MASK,
+    NULL },
+  { GNOME_APP_UI_ENDOFINFO }
+};
+
 static GnomeUIInfo app_menu[] = {
   { GNOME_APP_UI_SUBTREE, N_("File"), NULL, file_menu, NULL, NULL, 
+    GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+  { GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
   { GNOME_APP_UI_ENDOFINFO },
 };
@@ -176,7 +189,26 @@ build_app_window ()
   }
   gnome_app_set_contents (GNOME_APP (window), w_box);
   gnome_app_create_menus (GNOME_APP (window), app_menu);
+  gtk_menu_item_right_justify (GTK_MENU_ITEM (app_menu[1].widget));
   gtk_widget_show_all (window);
+}
+
+static void
+about_cb (GtkWidget *widget, gpointer data)
+{
+  GtkWidget     *about;
+  gchar         *authors[] = {
+    "Gregory McLean <gregm@comstar.net>",
+    NULL
+  };
+
+  about = gnome_about_new ("GDiskFree", "0.1",
+			   "(C) 91, 95, 1996 Free Software Foundation, Inc.",
+			   authors,
+			   _("A quick hack to show the amount of space free "
+			     "on mounted file systems uitilizing a dial."),
+			   NULL );
+  gtk_widget_show (about);
 }
 
 static void
