@@ -129,9 +129,6 @@ gboolean
 cb_charbtn_leave (GtkButton *button, GdkEventFocus *event, gpointer user_data)
 {
     gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar));
-#if 0    
-    gtk_label_set_text (GTK_LABEL (mainapp->preview_label), NULL);
-#endif
     return FALSE;
 }
 
@@ -214,10 +211,14 @@ cb_help_click (GtkWidget *widget, gpointer user_data)
 void
 cb_insert_char_click (GtkWidget *widget, gpointer user_data)
 {
-    AsciiSelect *ascii_selector;
+    AsciiSelect *ascii_selector = NULL;
 
     ascii_selector = ascii_select_new ();
-    gtk_widget_show (ascii_selector->window);
+    if (ascii_selector) {
+        gtk_window_set_transient_for (GTK_WINDOW (ascii_selector->window), 
+				      GTK_WINDOW (mainapp->window));
+        gtk_widget_show (ascii_selector->window);
+    }
 }
 
 
