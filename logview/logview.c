@@ -602,6 +602,10 @@ CloseLogMenu (GtkWidget * widget, gpointer user_data)
       if (loginfovisible)
 	 RepaintLogInfo (NULL, NULL);
       set_scrollbar_size (1);
+      gtk_widget_set_sensitive (file_menu[2].widget, FALSE); 
+      gtk_widget_set_sensitive (file_menu[4].widget, FALSE); 
+      for ( i = 0; i < 4; i++) 
+         gtk_widget_set_sensitive (view_menu[i].widget, FALSE); 
       return;
    }
    for (i = curlognum; i < numlogs; i++)
@@ -674,8 +678,16 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
 	 /* Set main scrollbar */
 	 set_scrollbar_size (curlog->lstats.numlines);
 
-	 if (numlogs >= 2)
-	   gtk_widget_set_sensitive (file_menu[3].widget, TRUE);
+	 if (numlogs)
+	 {
+	   int i;
+	   if (numlogs >= 2)
+	     gtk_widget_set_sensitive (file_menu[3].widget, TRUE);
+	   gtk_widget_set_sensitive (file_menu[2].widget, TRUE);
+	   gtk_widget_set_sensitive (file_menu[4].widget, TRUE);
+	   for ( i = 0; i < 4; i++) 
+	     gtk_widget_set_sensitive (view_menu[i].widget, TRUE);
+	 } 
       }
    }
    g_free (f);
@@ -694,7 +706,10 @@ LoadLogMenu (GtkWidget * widget, gpointer user_data)
 
    /*  Cannot open more than MAX_NUM_LOGS */
    if (numlogs == MAX_NUM_LOGS)
-      return;
+     { 
+       ShowErrMessage (_("Too many open logs. Close one and try again")); 
+       return;
+     }
    
    /*  Cannot have more than one fileselect window */
    /*  at one time. */

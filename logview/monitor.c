@@ -268,13 +268,14 @@ mon_add_log (GtkWidget *widget,
   GList *tmp_list;
   GList *clear_list;
   GtkWidget *newitem;
-  char *name;
+  const char *name;
   int sellognum;
 
   if (monitorcount >= MON_MAX_NUM_LOGS)
-    return;
-  else 
-    monitorcount++;
+    {
+      ShowErrMessage (_("Too many logs to monitor. Remove one and try again"));
+      return;
+    } 
 
   tmp_list = GTK_LIST (srclist)->selection;
   if (tmp_list == NULL)
@@ -302,6 +303,8 @@ mon_add_log (GtkWidget *widget,
 
   gtk_list_remove_items (GTK_LIST (srclist), clear_list);
   g_list_free (clear_list);
+
+  monitorcount++;
 }
 
 /* ----------------------------------------------------------------------
@@ -316,13 +319,12 @@ mon_remove_log (GtkWidget *widget,
   GList *tmp_list;
   GList *clear_list;
   GtkWidget *newitem;
-  char *name;
+  const char *name;
   int sellognum;
 
   if (monitorcount == 0)
     return;
-  else 
-    monitorcount--;
+
   tmp_list = GTK_LIST (destlist)->selection;
   if (tmp_list == NULL)
     {
@@ -350,6 +352,7 @@ mon_remove_log (GtkWidget *widget,
   gtk_list_remove_items (GTK_LIST (destlist), clear_list);
   g_list_free (clear_list);
 
+  monitorcount--;
 }  
 
 

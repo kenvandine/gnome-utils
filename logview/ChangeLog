@@ -1,3 +1,15 @@
+2002-03-26 Aruna P R <aruna.pou@wipro.com>
+
+        * monitor.c: Monitor options gives the messages when tried to add more
+        than the MON_MAX_NUM_LOGS(4) log files.
+        Fixes the problem with Add and Remove button
+
+        * logview.c: made menu items and view items sensitive.
+        Added the condition to give the message when tried to open more than
+        MAX_NUM_LOGS(10) log files.
+
+        Fix for bugs #75124 & 75074
+
 2002-03-20  Kevin Vandersloot <kfv101@psu.edu>
 
 	* actions.c: Use gtk_text_buffer_set_text. May fix 
