@@ -5,6 +5,9 @@
 	(GetLogSize): remove. Not used anywhere anymore.
 	(ParseLine): Fix a bug.
 	(ReadLogStats): Fix the parsing of dates in the log.
+	(OpenLogFile): When opening a zipped log, don't use an external
+	program to unzip it in a tmp directory. Use the gnome-vfs gzip
+	method.
 
 2004-11-03  Vincent Noel  <vnoel@cox.net>
 

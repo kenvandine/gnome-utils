@@ -168,9 +168,6 @@ file_is_zipped (char *filename)
 
 	mime_type = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);
 
-	if (strcmp (mime_type, GNOME_VFS_MIME_TYPE_UNKNOWN) == 0)
-		return FALSE;
-
 	if (strcmp (mime_type, "application/x-gzip")==0 ||
 	    strcmp (mime_type, "application/x-zip")==0 ||
 	    strcmp (mime_type, "application/zip")==0)
@@ -192,26 +189,14 @@ OpenLogFile (char *filename)
    char *buffer;
    char **buffer_lines;
    char *display_name=NULL;
-   char *tmp;
    int i;
    GError *error;
    GnomeVFSResult result;
    int size;
    
    if (file_is_zipped (filename)) {
-	   char *command;
-	   gint result;
-	   result = g_file_open_tmp ("log_XXXXXX", &tmp, &error);
-	   if (result >- 1 && tmp != NULL) {
-		   command = g_strdup_printf ("gunzip -c %s > %s", filename, tmp);
-		   result = system (command);
-		   if (result == 0) {
-			   display_name = filename;
-			   filename = tmp;
-		   } else
-			   return NULL;
-	   } else
-		   return NULL;
+	   display_name = filename;
+	   filename = g_strdup_printf ("%s#gzip:", display_name);
    }
    
    /* Check that the file exists and is readable and is a logfile */
@@ -275,7 +260,6 @@ isLogFile (char *filename, gboolean show_error)
    char **token;
    char *found_space;
    int i;
-   GnomeVFSFileInfo info;
    GnomeVFSHandle *handle;
    GnomeVFSResult result;
    GnomeVFSFileSize size;
