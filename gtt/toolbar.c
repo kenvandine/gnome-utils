@@ -26,8 +26,8 @@
 #include "journal.h"
 #include "menucmd.h"
 #include "prefs.h"
+#include "timer.h"
 #include "toolbar.h"
-
 
 
 typedef struct _MyToggle MyToggle;

@@ -26,6 +26,7 @@
 #include "menucmd.h"
 #include "menus.h"
 #include "plug-in.h"
+#include "timer.h"
 #include "toolbar.h"
 
 

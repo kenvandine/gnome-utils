@@ -22,17 +22,6 @@
 
 #include <gnome.h>
 
-#ifdef TIME_WITH_SYS_TIME
-#include <sys/time.h>
-#include <time.h>
-#else
-#ifdef TM_IN_SYS_TIME
-#include <sys/time.h>
-#endif /* TM_IN_SYS_TIME */
-#include <time.h>
-#endif /* TIME_WITH_SYS_TIME */
-
-
 #ifdef DEBUG
 #define APP_NAME "GTimeTracker DEBUG"
 #else
@@ -44,14 +33,6 @@
 /* err.c */
 
 void err_init(void);
-
-
-/* timer.c */
-
-void start_timer(void);
-void stop_timer(void);
-gboolean timer_is_running (void);
-extern int config_idle_timeout;
 
 
 /* app.c */

@@ -22,11 +22,13 @@
 
 #include "ctree.h"
 #include "cur-proj.h"
+#include "gtt.h"
 #include "menucmd.h"
 #include "menus.h"
 #include "prefs.h"
 #include "proj_p.h"
 #include "props-proj.h"
+#include "timer.h"
 #include "util.h"
 
 /* There is a bug in clist which makes all but the last column headers
@@ -433,10 +435,9 @@ static void
 setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 {
 	GList *node, *prjlist;
-	int timer_running;
+	GttProject *running_project = cur_proj;
 
-	timer_running = timer_is_running();
-	stop_timer();
+	cur_proj_set (NULL);
 
 	/* first, add all projects to the ctree */
 	prjlist = gtt_get_project_list();
@@ -455,6 +456,7 @@ setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 
 	/* next, highlight the current project, and expand 
 	 * the tree branches to it, if needed */
+	if (running_project) cur_proj_set (running_project);
 	if (cur_proj) 
 	{
 		GttProject *parent;
@@ -467,14 +469,13 @@ setup_ctree_w (GtkWidget *top_win, GtkCTree *tree_w)
 		}
 	}
 
-	err_init();
 	if (!GTK_WIDGET_MAPPED(top_win)) {
 		gtk_widget_show(top_win);
 #ifdef CLIST_HEADER_HACK
 		clist_header_hack(top_win, GTK_WIDGET(tree_w));
 #endif /* CLIST_HEADER_HACK */
 	}
-	if (timer_running) start_timer();
+
 	menu_set_states();
 
 	if (config_show_clist_titles)
@@ -677,12 +678,14 @@ ctree_update_label(GttProject *p)
 void 
 ctree_unselect (GttProject *p)
 {
+	if (!p || !p->trow) return;
 	gtk_ctree_unselect(GTK_CTREE(glist), p->trow);
 }
 
 void 
 ctree_select (GttProject *p)
 {
+	if (!p || !p->trow) return;
 	gtk_ctree_select(GTK_CTREE(glist), p->trow);
 }
 

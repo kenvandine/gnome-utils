@@ -370,5 +370,7 @@ GttInterval *	gtt_interval_merge_up (GttInterval *);
 GttInterval *	gtt_interval_merge_down (GttInterval *);
 void		gtt_interval_split (GttInterval *, GttTask *);
 GttTask *	gtt_interval_get_parent (GttInterval *);
+gboolean	gtt_interval_is_first_interval (GttInterval *);
+gboolean	gtt_interval_is_last_interval (GttInterval *);
 
 #endif /* __GTT_PROJ_H__ */

@@ -30,6 +30,7 @@
 #include "prefs.h"
 #include "proj.h"
 #include "props-proj.h"
+#include "timer.h"
 #include "xml-gtt.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and

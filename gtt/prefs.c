@@ -27,6 +27,7 @@
 #include "ctree.h"
 #include "gtt.h"
 #include "prefs.h"
+#include "timer.h"
 #include "toolbar.h"
 #include "util.h"
 

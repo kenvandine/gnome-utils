@@ -44,6 +44,8 @@ typedef struct wiggy_s {
 	GtkWidget *top;
 	GtkWidget *interval_popup;
 	GtkWidget *interval_paste;
+	GtkWidget *interval_merge_up;
+	GtkWidget *interval_merge_down;
 	GtkWidget *task_popup;
 	GtkWidget *task_delete_memo;
 	GtkWidget *task_paste;
@@ -272,6 +274,24 @@ interval_popup_cb (Wiggy *wig)
 	else 
 	{
 		gtk_widget_set_sensitive (wig->interval_paste, FALSE);
+	}
+
+	if (gtt_interval_is_first_interval (wig->interval))
+	{
+		gtk_widget_set_sensitive (wig->interval_merge_up, FALSE);
+	}
+	else
+	{
+		gtk_widget_set_sensitive (wig->interval_merge_up, TRUE);
+	}
+
+	if (gtt_interval_is_last_interval (wig->interval))
+	{
+		gtk_widget_set_sensitive (wig->interval_merge_down, FALSE);
+	}
+	else
+	{
+		gtk_widget_set_sensitive (wig->interval_merge_down, TRUE);
 	}
 }
 
@@ -515,6 +535,8 @@ do_show_report (const char * report, GttProject *prj)
 	glxml = glade_xml_new ("glade/interval_popup.glade", "Interval Popup");
 	wig->interval_popup = glade_xml_get_widget (glxml, "Interval Popup");
 	wig->interval_paste = glade_xml_get_widget (glxml, "paste_memo");
+	wig->interval_merge_up = glade_xml_get_widget (glxml, "merge_up");
+	wig->interval_merge_down = glade_xml_get_widget (glxml, "merge_down");
 	wig->interval=NULL;
 
 	glade_xml_signal_connect_data (glxml, "on_edit_activate",

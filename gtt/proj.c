@@ -20,6 +20,8 @@
 #include "config.h"
 
 #include <errno.h>
+#include <gnome.h>    /* only needed for definition of _() */
+#include <libintl.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -1122,40 +1124,6 @@ gtt_clear_daily_counter (GttProject *proj)
 }
 
 /* =========================================================== */
-/* zero out day counts if rolled past midnight */
-
-static int day_last_reset = -1;
-static int year_last_reset = -1;
-
-void
-set_last_reset (time_t last)
-{
-	struct tm *t0;
-	t0 = localtime (&last);
-	day_last_reset = t0->tm_yday;
-	year_last_reset = t0->tm_year;
-}
-
-
-void
-zero_on_rollover (time_t now)
-{
-	struct tm *t1;
-
-	/* zero out day counts */
-	t1 = localtime(&now);
-	if ((year_last_reset != t1->tm_year) ||
-	    (day_last_reset != t1->tm_yday)) 
-	{
-		gtt_project_list_compute_secs ();
-		log_endofday();
-		year_last_reset = t1->tm_year;
-	    	day_last_reset = t1->tm_yday;
-	}
-}
-
-
-/* =========================================================== */
 
 void 
 gtt_project_timer_start (GttProject *proj)
@@ -1234,17 +1202,15 @@ gtt_project_timer_update (GttProject *proj)
 	ival = task->interval_list->data;
 	g_return_if_fail (ival);
 
-
-	/* compute the delta change, update cached data */
-	now = time(0);
-	zero_on_rollover (now);
-
 	/* If timer isn't running, do nothing.  Normally,
 	 * this function should never be called when timer is stopped,
 	 * but there are a few rare cases (e.g. clear daily counter).
 	 * where it is.
 	 */
 	if (FALSE == ival->running) return;
+
+	/* compute the delta change, update cached data */
+	now = time(0);
 
 	prev_update = ival->stop;
 	ival->stop = now;
@@ -1715,6 +1681,24 @@ gtt_interval_get_parent (GttInterval * ivl)
 {
 	if (!ivl) return NULL;
 	return ivl->parent;
+}
+
+gboolean
+gtt_interval_is_first_interval (GttInterval *ivl)
+{
+	if (!ivl || !ivl->parent || !ivl->parent->interval_list) return TRUE;
+	
+	if ((GttInterval *) ivl->parent->interval_list->data == ivl) return TRUE;
+	return FALSE;
+}
+
+gboolean
+gtt_interval_is_last_interval (GttInterval *ivl)
+{
+        if (!ivl || !ivl->parent || !ivl->parent->interval_list) return TRUE;
+
+	if ((GttInterval *) ((g_list_last(ivl->parent->interval_list))->data) == ivl) return TRUE;
+	return FALSE;
 }
 
 /* ============================================================= */

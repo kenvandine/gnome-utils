@@ -21,19 +21,11 @@
 
 #include "config.h"
 
-#ifdef TIME_WITH_SYS_TIME
-#include <sys/time.h>
-#include <time.h>
-#else
-#ifdef TM_IN_SYS_TIME
-#include <sys/time.h>
-#endif /* TM_IN_SYS_TIME */
-#include <time.h>
-#endif /* TIME_WITH_SYS_TIME */
+#include <glib.h>
+#include <gtk/gtkctree.h>
 
-#include "gtt.h"
 #include "proj.h"
-
+#include "timer.h"
 
 struct gtt_project_s 
 {
@@ -98,11 +90,5 @@ struct gtt_interval_s
 	                         * seconds, typically 300, 3600 or 1/2 day */
 	int	running : 1;	/* boolean: is the timer running? */
 };
-
-
-/* some misc 'private' routines */
-void zero_on_rollover (time_t now);
-void set_last_reset (time_t last);
-
 
 #endif /* __GTT_PROJ_P_H__ */

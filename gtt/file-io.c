@@ -30,10 +30,11 @@
 #include "cur-proj.h"
 #include "err-throw.h"
 #include "file-io.h"
+#include "gtt.h"
 #include "plug-in.h"
 #include "prefs.h"
 #include "proj.h"
-#include "proj_p.h"
+#include "timer.h"
 #include "toolbar.h"
 
 #ifdef DEBUG
@@ -448,9 +449,9 @@ gtt_load_config (const char *fname)
 	/* if a project is running, then set it running again,
 	 * otherwise be sure to stop the clock. */
 	if (gnome_config_get_int(GTT"Misc/TimerRunning=1")) {
-		start_timer();
+		/* no-op setting the current project also runs it */
 	} else {
-		stop_timer();
+		cur_proj_set (NULL);
 	}
 
 	/* redraw the GUI */

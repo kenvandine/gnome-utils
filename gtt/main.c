@@ -38,6 +38,7 @@
 #include "menus.h"
 #include "menucmd.h"
 #include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
+#include "timer.h"
 #include "xml-gtt.h"
 
 
@@ -143,7 +144,9 @@ init_list_2(GtkWidget *w, gint butnum)
 	if (butnum == 1)
 		gtk_main_quit();
 	else
+		err_init();
                 setup_ctree();
+		init_timer();
 }
 
 static void 
@@ -183,7 +186,9 @@ init_list(void)
 	{
                 if (errno == ENOENT) {
                         errno = 0;
+			err_init();
                         setup_ctree();
+			init_timer();
                         return;
                 }
 		msgbox_ok_cancel(_("Error"),
@@ -194,7 +199,9 @@ init_list(void)
 				 GNOME_STOCK_BUTTON_NO,
 				 GTK_SIGNAL_FUNC(init_list_2));
 	} else {
+		err_init();
                 setup_ctree();
+		init_timer();
 	}
 
 }
