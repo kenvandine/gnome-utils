@@ -8,10 +8,10 @@ gtt = gtt
 
 SUBDIRS = po idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool  gdictsrc \
-	gdialog  \
+	gdialog  $(gtt) \
 	meat-grinder exe-handler omf-install 
 	  
-#splash stripchart mini-utils $(gtt)
+#splash stripchart mini-utils 
 
 EXTRA_DIST = \
 	gnome-utils.spec.in \
