@@ -963,6 +963,7 @@ gtt_task_add_interval (GttTask *tsk, GttInterval *ival)
 {
 	if (!tsk || !ival) return;
 	tsk->interval_list = g_list_prepend (tsk->interval_list, ival);
+	ival->parent = tsk;
 }
 
 void
@@ -970,6 +971,7 @@ gtt_task_append_interval (GttTask *tsk, GttInterval *ival)
 {
 	if (!tsk || !ival) return;
 	tsk->interval_list = g_list_append (tsk->interval_list, ival);
+	ival->parent = tsk;
 }
 
 void 
@@ -1084,6 +1086,7 @@ gtt_interval_new (void)
 {
 	GttInterval * ivl;
 	ivl = g_new0 (GttInterval, 1);
+	ivl->parent = NULL;
 	ivl->start = 0;
 	ivl->stop = 0;
 	ivl->running = FALSE;
@@ -1095,6 +1098,13 @@ void
 gtt_interval_destroy (GttInterval * ivl)
 {
 	if (!ivl) return;
+	if (ivl->parent)
+	{
+		/* unhook myself from the chain */
+		ivl->parent->interval_list = 
+			g_list_remove (ivl->parent->interval_list, ivl);
+	}
+	ivl->parent = NULL;
 	g_free (ivl);
 }
 
@@ -1152,6 +1162,65 @@ gtt_interval_get_running (GttInterval * ivl)
 {
 	if (!ivl) return FALSE;
 	return (gboolean) ivl->running;
+}
+
+/* ============================================================= */
+
+GttInterval *
+gtt_interval_merge_up (GttInterval *ivl)
+{
+	GList *node;
+	GttInterval *merge;
+	GttTask *prnt;
+
+	if (!ivl) return NULL;
+	prnt = ivl->parent;
+	if (!prnt) return NULL;
+
+	for (node=prnt->interval_list; node; node=node->next)
+	{
+		if (ivl == node->data) break;
+	}
+	if (!node) return NULL;
+	node = node->prev;
+	if (!node) return NULL;
+
+	merge = node->data;
+	if (!merge) return NULL;
+
+	merge->start -= (ivl->stop - ivl->start);
+	if (ivl->fuzz > merge->fuzz) merge->fuzz = ivl->fuzz;
+	gtt_interval_destroy (ivl);
+	return merge;
+}
+
+
+GttInterval *
+gtt_interval_merge_down (GttInterval *ivl)
+{
+	GList *node;
+	GttInterval *merge;
+	GttTask *prnt;
+
+	if (!ivl) return NULL;
+	prnt = ivl->parent;
+	if (!prnt) return NULL;
+
+	for (node=prnt->interval_list; node; node=node->next)
+	{
+		if (ivl == node->data) break;
+	}
+	if (!node) return NULL;
+	node = node->next;
+	if (!node) return NULL;
+
+	merge = node->data;
+	if (!merge) return NULL;
+
+	merge->stop -= (ivl->stop - ivl->start);
+	if (ivl->fuzz > merge->fuzz) merge->fuzz = ivl->fuzz;
+	gtt_interval_destroy (ivl);
+	return merge;
 }
 
 /* ============================================================= */

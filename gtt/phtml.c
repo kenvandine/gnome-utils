@@ -43,24 +43,29 @@ show_journal (GttPhtml *phtml, GttProject*prj)
 
 	for (node = gtt_project_get_tasks(prj); node; node=node->next)
 	{
+		char prn[1232], *p;
 		int prt_date = 1;
 		time_t prev_stop = 0;
 		GList *in;
 		GttTask *tsk = node->data;
 		
-		buf = "<tr><td colspan=4>";
-		(phtml->write_stream) (phtml, buf, strlen(buf));
+		p = prn;
+		p = stpcpy (p, "<tr><td colspan=4>"
+			"<a href=\"gtt:memo:");
+		p += sprintf (p, "%p\">", tsk);
 
 		buf = gtt_task_get_memo(tsk);
 		buf = buf? buf : _("(null)");
-		(phtml->write_stream) (phtml, buf, strlen(buf));
+		p = stpcpy (p, buf);
+		p = stpcpy (p, "</a>");
+
+		(phtml->write_stream) (phtml, prn, p-prn);
 
 		
 		for (in=gtt_task_get_intervals(tsk); in; in=in->next)
 		{
 			size_t len;
 			GttInterval *ivl = in->data;
-			char prn[232], *p;
 			time_t start, stop, elapsed;
 			start = gtt_interval_get_start (ivl);
 			stop = gtt_interval_get_stop (ivl);
@@ -68,7 +73,10 @@ show_journal (GttPhtml *phtml, GttProject*prj)
 			
 			p = prn;
 			p = stpcpy (p, 
-		"<tr><td>&nbsp;&nbsp;&nbsp;<td align=right>&nbsp;&nbsp;");
+				"<tr><td>&nbsp;&nbsp;&nbsp;"
+				"<td align=right>&nbsp;&nbsp;"
+				"<a href=\"gtt:interval:");
+			p += sprintf (p, "%p\">", ivl);
 
 			/* print hour only or date too? */
 			if (0 != prev_stop) {
@@ -82,7 +90,11 @@ show_journal (GttPhtml *phtml, GttProject*prj)
 
 			/* print hour only or date too? */
 			prt_date = is_same_day(start, stop);
-			p = stpcpy (p, "&nbsp;&nbsp;<td>&nbsp;&nbsp;");
+			p = stpcpy (p, 
+				"</a>&nbsp;&nbsp;"
+				"<td>&nbsp;&nbsp;"
+				"<a href=\"gtt:interval:");
+			p += sprintf (p, "%p\">", ivl);
 			if (prt_date) {
 				p = print_date_time (p, 70, stop);
 			} else {
@@ -91,7 +103,7 @@ show_journal (GttPhtml *phtml, GttProject*prj)
 
 			prev_stop = stop;
 
-			p = stpcpy (p, "&nbsp;&nbsp;<td>&nbsp;&nbsp;");
+			p = stpcpy (p, "</a>&nbsp;&nbsp;<td>&nbsp;&nbsp;");
 			p = print_hours_elapsed (p, 40, elapsed, TRUE);
 			p = stpcpy (p, "&nbsp;&nbsp;");
 			len = p - prn;

@@ -35,7 +35,8 @@
 #include "proj.h"
 
 
-struct gtt_project_s {
+struct gtt_project_s 
+{
 	char *title;     /* short title */
 	char *desc;      /* breif description for invoice */
 	char *notes;     /* long description */
@@ -69,7 +70,8 @@ struct gtt_project_s {
  * associated with them.   Note that by definition, the 'current',
  * active interval is the one at the head of the list.
  */
-struct gtt_task_s {
+struct gtt_task_s 
+{
 	char * memo;            /* invoiceable memo (customer sees this) */
 	char * notes;           /* internal notes (office private) */
 	GttBillable  billable;  /* if fees can be collected for this task */
@@ -79,7 +81,9 @@ struct gtt_task_s {
 };
 
 /* one start-stop interval */
-struct gtt_interval_s {
+struct gtt_interval_s 
+{
+	GttTask *parent;	/* who I belong to */
 	time_t	start;		/* when the timer started */
 	time_t	stop;		/* if stopped, shows when timer stopped, 
 				 * if running, then the most recent log point */

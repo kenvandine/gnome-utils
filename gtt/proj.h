@@ -289,5 +289,16 @@ time_t		gtt_interval_get_stop (GttInterval *);
 gboolean	gtt_interval_get_running (GttInterval *);
 int		gtt_interval_get_fuzz (GttInterval *);
 
+/* The gtt_interval_merge_up() routine merges the given interval with 
+ *    the immediately more recent one above it.  It does this by 
+ *    decrementing the start time.  The resulting interval has the
+ *    max of the two fuzz factors, and is running if the first was.
+ *    The merged interval is returned.
+ *
+ * The gtt_interval_merge_down() routine does the same, except that
+ *    it merges with the next interval by incrementing its stop time.
+ */
+GttInterval *	gtt_interval_merge_up (GttInterval *);
+GttInterval *	gtt_interval_merge_down (GttInterval *);
 
 #endif /* __GTT_PROJ_H__ */

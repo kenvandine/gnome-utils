@@ -174,13 +174,10 @@ build_toolbar(void)
                 gtk_toolbar_append_space(mytbar->tbar);
         }
         if (config_show_tb_journal) {
-		/* hack alert -- FIXME - xxx -- the redo icon is
-		 * inapropriate, but the open icon would be worse, 
-		 * and nothing else fits. */
                 mytbar->journal_w = add_stock_button(mytbar->tbar, 
                                  _("Journal"),
                                  _("View and Edit Timestamp Logs"),
-                                 GNOME_STOCK_PIXMAP_REDO,
+                                 GNOME_STOCK_PIXMAP_BOOK_OPEN,
                                  (GtkSignalFunc)edit_journal);
         }
         if (config_show_tb_prop)
