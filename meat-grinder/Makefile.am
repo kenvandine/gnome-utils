@@ -1,4 +1,4 @@
-bin_PROGRAMS = meat-grinder
+bin_PROGRAMS = archive-generator
 
 SUBDIRS = help
 
@@ -13,16 +13,16 @@ INCLUDES = \
 	-DGNOME_DISABLE_DEPRECATED			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"
 
-meat_grinder_SOURCES = 	\
+archive_generator_SOURCES = 	\
 	meat-grinder.c
 
-meat_grinder_LDADD = \
+archive_generator_LDADD = \
 	$(GNOME_UTILS_LIBS)
 
-man_MANS = meat-grinder.1
+man_MANS = archive-generator.1
 
-Utilitiesdir = $(datadir)/gnome/apps/Utilities
-Utilities_in_files = meat-grinder.desktop.in
+Utilitiesdir = $(datadir)/applications
+Utilities_in_files = archive-generator.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
