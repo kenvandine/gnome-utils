@@ -539,7 +539,7 @@ file_event_after_cb  (GtkWidget 	*widget,
 	}
 	
 	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
-		return;
+		return FALSE;
 	}
 		
 	if (event->type == GDK_2BUTTON_PRESS) {
