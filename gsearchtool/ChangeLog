@@ -1,3 +1,16 @@
+2002-10-12  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c:  Changed the gtk selection mode to 
+	multiple.  Added event-after and button-release-event
+	signal handlers.
+	
+	* gsearchtool-callbacks.h:  Added file_event_after_cb()
+	and file_button_release_event_cb().
+	
+	* gsearchtool-callbacks.c:  Implemented support for
+	selecting multiple files in the search results list.  
+	Fixes bug report #95457.
+	
 2002-10-11  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c:  Added gnome_entry_prepend_history()

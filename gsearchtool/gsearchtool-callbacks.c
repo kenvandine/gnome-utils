@@ -29,11 +29,13 @@
 #  include <config.h>
 #endif
 
+#define SILENT_WINDOW_OPEN_LIMIT 5
+
+#include <signal.h>
+
 #include "gsearchtool.h"
 #include "gsearchtool-support.h"
 #include "gsearchtool-callbacks.h"
-
-#include <signal.h>
 
 static GnomeUIInfo popup_menu[] = {
 	GNOMEUIINFO_ITEM_STOCK (N_("_Open"), 
@@ -260,79 +262,167 @@ void
 open_file_cb (GtkWidget 	*widget, 
 	      gpointer 		data)
 {
-	gchar *file = NULL;
-	gchar *locale_file = NULL;
-	gchar *utf8_name = NULL;
-	gchar *utf8_path = NULL;
-	gboolean no_files_found = FALSE;
-	GtkListStore *store;
-	GtkTreeIter iter;
-	GtkTreeSelection *selection;
-	
-	store = interface.model;
-	selection = interface.selection;
-		
-	if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
+	GList *list;
+	guint index;
+
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
 		return;
-		
-	gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
-							       COLUMN_PATH, &utf8_path,
-							       COLUMN_NO_FILES_FOUND, &no_files_found,
-								-1);
-
-	if (!no_files_found) {		
-		file = g_build_filename (utf8_path, utf8_name, NULL);
-		locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
-			
-		if (is_component_action_type (locale_file) 
-		    && is_nautilus_running ()) {
-			open_file_with_nautilus (locale_file);
-		}
-		else {
-			if (open_file_with_application (locale_file) == FALSE) {
-				
-				if (launch_file (locale_file) == FALSE) {
-					GtkWidget *dialog;
-
-                			dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
-                        			GTK_DIALOG_DESTROY_WITH_PARENT,
-                        			GTK_MESSAGE_ERROR,
-                        			GTK_BUTTONS_OK,
-                        			_("There is no installed viewer capable of displaying \"%s\"."),
-						file);
-
-                			g_signal_connect (G_OBJECT (dialog),
-                        			"response",
-                        			G_CALLBACK (gtk_widget_destroy), NULL);
-				
-       	         			gtk_window_set_title (GTK_WINDOW (dialog), _("Can't Display Location"));
-       	         			gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-	                		gtk_widget_show (dialog);
-				}
-			}
-		} 
-		g_free (file);
-		g_free (locale_file);
 	}
-	g_free (utf8_name);
-	g_free (utf8_path);
+	
+	list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
+						     (GtkTreeModel **)&interface.model);
+	
+	if (g_list_length (list) > SILENT_WINDOW_OPEN_LIMIT) {
+	
+		GtkWidget *dialog;
+		gchar     *title;
+		gint      response;
+
+        	dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+                       		GTK_DIALOG_MODAL,
+                       		GTK_MESSAGE_QUESTION,
+                       		GTK_BUTTONS_NONE,
+                      		_("This will open %d separate files. Are you sure you want to do this?"),
+				g_list_length (list));
+
+		title = g_strdup_printf (_("Open %d Files?"), g_list_length (list));
+		gtk_window_set_title (GTK_WINDOW (dialog), title);
+		
+		gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+            		GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
+            		GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+            		NULL);
+		
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_REJECT);
+		
+		response = gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+		
+		if (response == GTK_RESPONSE_REJECT) {
+			g_list_free (list);
+			return;
+		}
+		g_free (title);        
+	}
+		
+	for (index = 0; index < g_list_length(list); index++) {
+	
+		gboolean no_files_found = FALSE;
+		gchar *utf8_name;
+		gchar *utf8_path;
+		GtkTreeIter iter;
+			
+		gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
+					 g_list_nth(list, index)->data);
+
+		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+    			    COLUMN_NAME, &utf8_name,
+		    	    COLUMN_PATH, &utf8_path,
+		    	    COLUMN_NO_FILES_FOUND, &no_files_found,
+		   	    -1);		    
+
+		if (!no_files_found) {
+			gchar *file;
+			gchar *locale_file;
+				
+			file = g_build_filename (utf8_path, utf8_name, NULL);
+			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
+			
+			if (is_component_action_type (locale_file) 
+		    	    && is_nautilus_running ()) {
+				open_file_with_nautilus (locale_file);
+			}
+			else {
+				if (open_file_with_application (locale_file) == FALSE) {
+				
+					if (launch_file (locale_file) == FALSE) {
+						GtkWidget *dialog;
+
+                				dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+                        				GTK_DIALOG_DESTROY_WITH_PARENT,
+                        				GTK_MESSAGE_ERROR,
+                        				GTK_BUTTONS_OK,
+                        				_("There is no installed viewer capable of displaying \"%s\"."),
+							file);
+
+                				g_signal_connect (G_OBJECT (dialog),
+                        				"response",
+                        				G_CALLBACK (gtk_widget_destroy), NULL);
+				
+       	         				gtk_window_set_title (GTK_WINDOW (dialog), _("Can't Display Location"));
+       	         				gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+	                			gtk_widget_show (dialog);
+					}
+				}
+			} 
+			g_free (file);
+			g_free (locale_file);
+		}
+		g_free (utf8_name);
+		g_free (utf8_path);
+	} 
+	g_list_free (list);
 }
 
 void
 open_folder_cb (GtkWidget 	*widget, 
 		gpointer 	data)
 {
-	GtkTreeSelection *selection;
-	GtkListStore *store;
-	GtkTreeIter iter;
-	gchar *folder_locale;
-	gchar *folder_utf8;
+	GList *list;
+	guint index;
 	
-	store = interface.model;
-	selection = interface.selection;
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
+		return;
+	}
+	
+	list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
+						     (GtkTreeModel **)&interface.model);
+	
+	if (g_list_length (list) > SILENT_WINDOW_OPEN_LIMIT) {
+		GtkWidget *dialog;
+		gchar     *title;
+		gint      response;
+
+        	dialog = gtk_message_dialog_new (GTK_WINDOW (interface.main_window),
+                       		GTK_DIALOG_MODAL,
+                       		GTK_MESSAGE_QUESTION,
+                       		GTK_BUTTONS_NONE,
+                      		_("This will open %d separate folders. Are you sure you want to do this?"),
+				g_list_length (list));
+
+		title = g_strdup_printf (_("Open %d Folders?"), g_list_length (list));
+		gtk_window_set_title (GTK_WINDOW (dialog), title);
 		
-	if (gtk_tree_selection_get_selected (selection, NULL, &iter)) {		
-		gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, COLUMN_PATH, &folder_utf8, -1);						
+		gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+            		GTK_STOCK_CANCEL, GTK_RESPONSE_REJECT,
+            		GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
+            		NULL);
+		
+		gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_REJECT);
+		
+		response = gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+		
+		if (response == GTK_RESPONSE_REJECT) {
+			g_list_free (list);
+			return;
+		}
+		g_free (title);      
+	}
+		
+	for (index = 0; index < g_list_length(list); index++) {
+		
+		gchar *folder_locale;
+		gchar *folder_utf8;
+		GtkTreeIter iter;
+		
+		gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
+					 g_list_nth(list, index)->data);
+					 
+		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+				    COLUMN_PATH, &folder_utf8,
+				    -1);
+			    							
 		folder_locale = g_filename_from_utf8 (folder_utf8, -1, NULL, NULL, NULL);
 		
 		if (is_nautilus_running ()) {
@@ -341,62 +431,137 @@ open_folder_cb (GtkWidget 	*widget,
 		else {
 			gnome_error_dialog_parented (_("The nautilus file manager is not running."),
 						       GTK_WINDOW(interface.main_window));
+			g_free (folder_locale);
+			g_free (folder_utf8);
+			g_list_free (list);
+			return;
 		}
 		g_free (folder_locale);
 		g_free (folder_utf8);
 	}
+	g_list_free (list);
 }
 
 gboolean
-click_file_cb 	     (GtkWidget 	*widget, 
-		      GdkEventButton 	*event, 
-		      gpointer 		data)
+file_button_press_event_cb (GtkWidget 		*widget, 
+			    GdkEventButton 	*event, 
+			    gpointer 		data)
+{
+	GtkTreePath *path;
+	gboolean result = FALSE;
+
+	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
+		return FALSE;
+	}
+	
+	if (gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW(interface.tree), event->x, event->y,
+		&path, NULL, NULL, NULL)) {
+		
+		if (event->button == 3 
+			&& gtk_tree_selection_path_is_selected (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)), path)) {
+			
+			result = TRUE;
+		}
+		
+		gtk_tree_path_free (path);
+	}
+	else {
+		gtk_tree_selection_unselect_all (gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree)));
+	}
+	
+	return result;
+}
+
+gboolean
+file_button_release_event_cb (GtkWidget 	*widget, 
+		      	      GdkEventButton 	*event, 
+		      	      gpointer 		data)
 {
 	gboolean no_files_found = FALSE;	
 	GtkTreeSelection *selection;
-	GtkTreePath *path;
 	GtkTreeIter iter;
 
-	if (! gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (interface.tree),
-					     0, event->y, &path, 
-					     NULL, NULL, NULL)) {
-		return FALSE;
-	}
-		
-	if (! gtk_tree_model_get_iter (GTK_TREE_MODEL (interface.model), &iter, path)) {
-		gtk_tree_path_free (path);
-		return FALSE;
-	}
-	gtk_tree_path_free (path);
-
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (interface.tree));
-	if (selection == NULL) {
+	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
 		return FALSE;
 	}
 	
-	if (! gtk_tree_selection_iter_is_selected (selection, &iter)) {
-		gtk_tree_selection_unselect_all (selection);
-		gtk_tree_selection_select_iter (selection, &iter);
-	}
-
-	if (!gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
 		return FALSE;
 	}
-			
-	if (event->type == GDK_2BUTTON_PRESS) {
-	
-		gchar *file = NULL;
-		gchar *locale_file = NULL;
-		gchar *utf8_name = NULL;
-		gchar *utf8_path = NULL;
 		
+	if (event->button == 3) {	
+		
+		GtkWidget *popup;
+		GList *list;
+		
+		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
+							     (GtkTreeModel **)&interface.model);
+		
+		gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
+					 g_list_first (list)->data);
+					 
 		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
-			    	    COLUMN_NAME, &utf8_name,
+			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
+			   	    -1);		    
+				     
+		if (!no_files_found) {
+			GtkWidget *save_widget;
+				
+			popup = gnome_popup_menu_new (popup_menu);
+			save_widget = popup_menu[3].widget;
+			
+			if (search_command.running != NOT_RUNNING) {		    	
+		        	gtk_widget_set_sensitive (save_widget, FALSE);
+			}
+			else {
+				gtk_widget_set_sensitive (save_widget, TRUE);
+			}
+			
+			gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL, 
+						   (GdkEventButton *)event, data, NULL);
+						   
+		} 
+		g_list_free (list);
+	}	
+	return FALSE;
+}
+
+gboolean
+file_event_after_cb  (GtkWidget 	*widget, 
+		      GdkEventButton 	*event, 
+		      gpointer 		data)
+{	
+	GtkTreeSelection *selection;
+	GtkTreeIter 	 iter;
+
+	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW(interface.tree))) {
+		return FALSE;
+	}
+		
+	if (event->type == GDK_2BUTTON_PRESS) {
+
+		gboolean no_files_found = FALSE;
+		gchar *utf8_name;
+		gchar *utf8_path;	 
+		GList *list;
+		
+		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
+							     (GtkTreeModel **)&interface.model);
+		
+		gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
+					 g_list_first (list)->data);
+					 
+		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+    				    COLUMN_NAME, &utf8_name,
 			    	    COLUMN_PATH, &utf8_path,
 			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
-			   	    -1);
+			   	    -1);	
 		
 		if (!no_files_found) {
+			
+			gchar *file;
+			gchar *locale_file;
+			
 			file = g_build_filename (utf8_path, utf8_name, NULL);
 			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
 			
@@ -432,30 +597,7 @@ click_file_cb 	     (GtkWidget 	*widget,
 		}
 		g_free (utf8_name);
 		g_free (utf8_path);
-	}
-	else if ((event->type == GDK_BUTTON_PRESS) && (event->button == 3)) {	
-		GtkWidget *popup;
-		
-		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
-			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
-			   	    -1);
-				     
-		if (!no_files_found) {
-			GtkWidget *save_widget;
-				
-			popup = gnome_popup_menu_new (popup_menu);
-			save_widget = popup_menu[3].widget;
-			
-			if (search_command.running != NOT_RUNNING) {		    	
-		        	gtk_widget_set_sensitive (save_widget, FALSE);
-			}
-			else {
-				gtk_widget_set_sensitive (save_widget, TRUE);
-			}
-			
-			gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL, 
-						   (GdkEventButton *)event, data, NULL);
-		} 
+		g_list_free (list);
 	}
 	return FALSE;
 }
@@ -467,49 +609,63 @@ drag_file_cb  (GtkWidget          *widget,
 	       guint               info,
 	       guint               time,
 	       gpointer            data)
-{
-	gchar 	 		*file = NULL;
-	gchar 	 		*locale_file = NULL;
-	gchar    		*url_file = NULL;
-	gchar 	 		*utf8_name = NULL;
-	gchar 	 		*utf8_path = NULL;
-	gboolean 		no_files_found = FALSE;
-	GtkTreeSelection 	*selection;
-	GtkListStore 		*store;
-	GtkTreeIter 		iter;
-	
-	store = interface.model;
-	selection = interface.selection;
-	
-	if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
+{	
+	gchar    	*uri_list = NULL;
+	GList 		*list;
+	GtkTreeIter 	iter;
+	guint 		index;	
+
+	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION(interface.selection)) == 0) {
 		return;
+	}
 	
-	gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
-     		           COLUMN_PATH, &utf8_path,
-			   COLUMN_NO_FILES_FOUND, &no_files_found,
-		           -1);
+	list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
+						     (GtkTreeModel **)&interface.model);
+	
+	for (index = 0; index < g_list_length (list); index++) {
 			   	   
-	file = g_build_filename (utf8_path, utf8_name, NULL);
-	locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
+		gboolean   no_files_found = FALSE;
+		gchar	   *utf8_name;
+		gchar	   *utf8_path;
+		gchar	   *file;
+		
+		gtk_tree_model_get_iter (GTK_TREE_MODEL(interface.model), &iter, 
+					 g_list_nth(list, index)->data);
+					 
+		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+    			    COLUMN_NAME, &utf8_name,
+		    	    COLUMN_PATH, &utf8_path,
+		    	    COLUMN_NO_FILES_FOUND, &no_files_found,
+		   	    -1);	
+			    
+		file = g_build_filename (utf8_path, utf8_name, NULL);
 
-	if (!no_files_found) {
-		url_file = g_strconcat ("file://", locale_file, NULL);	
-	} 
-	else {
-		url_file = g_strconcat (locale_file, NULL);
-	}	
-
-	g_free (locale_file);
-	g_free (file);
-
-	gtk_selection_data_set (selection_data, 
-				selection_data->target,
-				8, 
-				url_file, 
-				strlen (url_file));
-	g_free (utf8_name);
-	g_free (utf8_path);
-	g_free (url_file);
+		if (!no_files_found) {
+			gchar *tmp_uri = g_filename_to_uri (file, NULL, NULL);
+			
+			if (uri_list == NULL) {
+				uri_list = g_strdup (tmp_uri);
+			}
+			else{
+				uri_list = g_strconcat (uri_list, "\n", tmp_uri, NULL);
+			}
+			
+			gtk_selection_data_set (selection_data, 
+						selection_data->target,
+						8, 
+						uri_list, 
+						strlen (uri_list));
+			g_free (tmp_uri);
+		} 
+		else {
+			gtk_selection_data_set_text (selection_data, utf8_name, -1);
+		}	
+		g_free (utf8_name);
+		g_free (utf8_path);
+		g_free (file);
+	}
+	g_list_free (list);
+	g_free (uri_list);
 }
 
 void

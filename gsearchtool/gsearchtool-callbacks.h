@@ -78,10 +78,6 @@ open_file_cb 			(GtkWidget 	*widget,
 void	
 open_folder_cb 			(GtkWidget 	*widget, 
 				 gpointer 	data);
-gboolean	
-click_file_cb 			(GtkWidget 	*widget, 
-				 GdkEventButton *event, 
-				 gpointer 	data);
 void  
 drag_file_cb  			(GtkWidget          *widget,
 	      			 GdkDragContext     *context,
@@ -113,6 +109,19 @@ look_in_folder_key_press_cb 	(GtkWidget 	*widget,
 				 GdkEventKey    *event,
 				 gpointer 	data);
 				 
+gboolean
+file_button_release_event_cb	(GtkWidget 	*widget,
+				 GdkEventButton *event,
+				 gpointer 	data);
+
+gboolean
+file_event_after_cb	        (GtkWidget 	*widget,
+				 GdkEventButton *event,
+				 gpointer 	data);  
+gboolean	
+file_button_press_event_cb	(GtkWidget 	*widget, 
+				 GdkEventButton *event, 
+				 gpointer 	data);
 #ifdef __cplusplus
 }
 #endif

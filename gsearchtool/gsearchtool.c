@@ -1231,6 +1231,9 @@ create_search_results_section (void)
 	
 	interface.selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree));
 	
+	gtk_tree_selection_set_mode (GTK_TREE_SELECTION(interface.selection),
+				     GTK_SELECTION_MULTIPLE);
+				     
 	gtk_drag_source_set (interface.tree, 
 			     GDK_BUTTON1_MASK,
 			     dnd_table, n_dnds, 
@@ -1242,8 +1245,18 @@ create_search_results_section (void)
 			  NULL);
 			  
 	g_signal_connect (G_OBJECT(interface.tree), 
+			  "event_after",
+		          G_CALLBACK(file_event_after_cb), 
+			  NULL);
+			  
+	g_signal_connect (G_OBJECT(interface.tree), 
+			  "button_release_event",
+		          G_CALLBACK(file_button_release_event_cb), 
+			  NULL);
+			  		  
+	g_signal_connect (G_OBJECT(interface.tree), 
 			  "button_press_event",
-		          G_CALLBACK(click_file_cb), 
+		          G_CALLBACK(file_button_press_event_cb), 
 			  NULL);		   
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), interface.tree);
