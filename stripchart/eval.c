@@ -279,7 +279,7 @@ num_op(Expr *expr)
 	    {
 	      struct timeval t;
 	      static struct timeval t0;
-	      if (t.tv_sec == 0)
+	      if (t0.tv_sec == 0)
 		gettimeofday(&t0, NULL);
 	      gettimeofday(&t, NULL);
 	      val = (t.tv_sec - t0.tv_sec) + (t.tv_usec - t0.tv_usec) / 1e6;
