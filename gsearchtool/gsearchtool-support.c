@@ -784,22 +784,35 @@ get_file_type_for_mime_type (const gchar *filename,
 	if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK)) {
 	
 		GnomeVFSFileInfo *file_info;
+		gchar *absolute_symlink = NULL;
 		
 		file_info = gnome_vfs_file_info_new ();
 		gnome_vfs_get_file_info (filename, file_info, GNOME_VFS_FILE_INFO_DEFAULT);
 		
-		if (g_file_test (file_info->symlink_name, G_FILE_TEST_EXISTS) != TRUE) {
+		if (file_info->symlink_name != NULL) {
+			if (g_path_is_absolute (file_info->symlink_name) != TRUE) {
+				gchar *dirname;
+			
+				dirname = g_path_get_dirname (filename);
+				absolute_symlink = g_strconcat (dirname, G_DIR_SEPARATOR_S, file_info->symlink_name, NULL);
+				g_free (dirname);
+			}
+			else {
+				absolute_symlink = g_strdup (file_info->symlink_name);
+			}
+		}
 		
-			if ((g_ascii_strcasecmp (mimetype, "x-special/socket") != 0) && 
-		            (g_ascii_strcasecmp (mimetype, "x-special/fifo") != 0) &&
-			    (g_ascii_strcasecmp (mimetype, BINARY_EXEC_MIME_TYPE) != 0)) {
-			    
+		if (g_file_test (absolute_symlink, G_FILE_TEST_EXISTS) != TRUE) {
+                       if ((g_ascii_strcasecmp (mimetype, "x-special/socket") != 0) &&
+                           (g_ascii_strcasecmp (mimetype, "x-special/fifo") != 0)) {
 				gnome_vfs_file_info_unref (file_info);
+				g_free (absolute_symlink);
 				return _("link (broken)");
 			}
 		}
 			
 		gnome_vfs_file_info_unref (file_info);
+		g_free (absolute_symlink);
 		return g_strdup_printf (_("link to %s"), (desc != NULL) ? desc : mimetype);
 	}
 	return desc;
