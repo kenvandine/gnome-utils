@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-06-10 18:57+0200\n"
-"PO-Revision-Date: 2001-06-09 23:54+02:00\n"
+"POT-Creation-Date: 2001-06-15 18:23+0200\n"
+"PO-Revision-Date: 2001-06-15 18:33+02:00\n"
 "Last-Translator: Ole Laursen <olau@hardworking.dk>\n"
 "Language-Team: Dansk/Danish <dansk@klid.dk>\n"
 "MIME-Version: 1.0\n"
@@ -449,7 +449,7 @@ msgstr "Kunne ikke tolke geometristrengen '%s'"
 msgid "Specify the geometry of the window."
 msgstr "Angiv geometrien til vinduet."
 
-#: gdiskfree/gdiskfree.c:60 gtt/main.c:207 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:60 gtt/main.c:231 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
@@ -601,6 +601,7 @@ msgid "Enable"
 msgstr "Anvend"
 
 #: gsearchtool/gsearchtool.c:576 logview/actions.c:162
+#: meat-grinder/meat-grinder.c:583
 msgid "Remove"
 msgstr "Fjern"
 
@@ -675,7 +676,7 @@ msgstr "Gnome filsøgningsværktøj"
 msgid "Cannot save file"
 msgstr "Kan ikke gemme fil"
 
-#: gsearchtool/outdlg.c:69
+#: gsearchtool/outdlg.c:69 meat-grinder/meat-grinder.c:430
 msgid "Save Results"
 msgstr "Gem resultater"
 
@@ -687,15 +688,15 @@ msgstr "Kommando i uorden"
 msgid "No command for this mime type"
 msgstr "Ingen kommando for denne mime-type."
 
-#: gtt/app.c:117 gtt/app.c:223
+#: gtt/app.c:117 gtt/app.c:221
 msgid "no project selected"
 msgstr "intet projekt er valgt"
 
-#: gtt/app.c:212
+#: gtt/app.c:210
 msgid "00:00"
 msgstr "00:00"
 
-#: gtt/app.c:251 mini-utils/gless/gless.c:423
+#: gtt/app.c:249 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -719,19 +720,24 @@ msgstr "Projekttitel"
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: gtt/log.c:64 gtt/log.c:216
+#: gtt/log.c:46
+#, c-format
+msgid "Cannot open logfile %s for append"
+msgstr "Kan ikke åbne logfilen %s til tilføjelse"
+
+#: gtt/log.c:69 gtt/log.c:227
 msgid "program started"
 msgstr "program startet"
 
-#: gtt/log.c:82
+#: gtt/log.c:87
 msgid "no description"
 msgstr "ingen beskrivelse"
 
-#: gtt/log.c:208
+#: gtt/log.c:219
 msgid "program exited"
 msgstr "program afsluttet"
 
-#: gtt/main.c:80
+#: gtt/main.c:98
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -740,11 +746,15 @@ msgstr ""
 "Tryk O.k. for at starte GTimeTracker alligevel eller Annullér for at "
 "afslutte."
 
-#: gtt/main.c:124
+#: gtt/main.c:109
+msgid "Cannot create pid-file!"
+msgstr "Kan ikke oprette pid-fil!"
+
+#: gtt/main.c:141
 msgid "Error"
 msgstr "Fejl"
 
-#: gtt/main.c:125
+#: gtt/main.c:142
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -752,23 +762,23 @@ msgstr ""
 "En fejl opstod under læsning af konfigurationsfilen.\n"
 "Skal der oprettes en ny?"
 
-#: gtt/main.c:207
+#: gtt/main.c:231
 msgid "Specify geometry"
 msgstr "Angiv geometri"
 
-#: gtt/main.c:209
+#: gtt/main.c:233
 msgid "Select a project on startup"
 msgstr "Vælg projekt ved opstart"
 
-#: gtt/main.c:209
+#: gtt/main.c:233
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
+#: gtt/menucmd.c:33 gtt/menucmd.c:163 gtt/menucmd.c:195
 msgid "Warning"
 msgstr "Advarsel"
 
-#: gtt/menucmd.c:34 gtt/menucmd.c:195
+#: gtt/menucmd.c:34 gtt/menucmd.c:197
 msgid "I could not write the configuration file!"
 msgstr "Konfigurationsfilen kunne ikke skrives!"
 
@@ -780,15 +790,15 @@ msgstr "Tidsforbrugsværktøj til Gnome"
 msgid "New Project..."
 msgstr "Nyt projekt..."
 
-#: gtt/menucmd.c:163
+#: gtt/menucmd.c:165
 msgid "I could not read the configuration file"
 msgstr "Konfigurationsfilen kunne ikke læses"
 
-#: gtt/menucmd.c:177 gtt/toolbar.c:149
+#: gtt/menucmd.c:179 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Genindlæs konfigurationsfil"
 
-#: gtt/menucmd.c:178
+#: gtt/menucmd.c:180
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -844,7 +854,7 @@ msgstr "Vis statuslinje"
 msgid "Show Table Header"
 msgstr "Vis tabelhoved"
 
-#: gtt/options.c:223 gtt/options.c:537
+#: gtt/options.c:223 gtt/options.c:538
 msgid "Toolbar"
 msgstr "Værktøjslinje"
 
@@ -932,15 +942,15 @@ msgstr "Elementslutning:"
 msgid "Timeout in secs:"
 msgstr "Timeout i sek:"
 
-#: gtt/options.c:524
+#: gtt/options.c:525
 msgid "Misc"
 msgstr "Divs."
 
-#: gtt/proj.c:463
+#: gtt/proj.c:462
 msgid "project %t started"
 msgstr "projektet %t er startet"
 
-#: gtt/proj.c:466
+#: gtt/proj.c:465
 msgid "stopped project %t"
 msgstr "stoppede projektet %t"
 
@@ -952,35 +962,35 @@ msgstr "tom"
 msgid "Properties"
 msgstr "Indstillinger"
 
-#: gtt/prop.c:174
+#: gtt/prop.c:175
 msgid "Project"
 msgstr "Projekt"
 
-#: gtt/prop.c:193
+#: gtt/prop.c:194
 msgid "Project Title:"
 msgstr "Projekttitel:"
 
-#: gtt/prop.c:206
+#: gtt/prop.c:207
 msgid "Project Description:"
 msgstr "Projektbeskrivelse:"
 
-#: gtt/prop.c:219
+#: gtt/prop.c:220
 msgid "Project Time today:"
 msgstr "Projekttid idag:"
 
-#: gtt/prop.c:235 gtt/prop.c:273
+#: gtt/prop.c:236 gtt/prop.c:274
 msgid "hours"
 msgstr "timer"
 
-#: gtt/prop.c:246 gtt/prop.c:284
+#: gtt/prop.c:247 gtt/prop.c:285
 msgid "mins"
 msgstr "min."
 
-#: gtt/prop.c:257 gtt/prop.c:295
+#: gtt/prop.c:258 gtt/prop.c:296
 msgid "secs"
 msgstr "sek."
 
-#: gtt/prop.c:261
+#: gtt/prop.c:262
 msgid "Project Time ever:"
 msgstr "Projekttid ialt:"
 
@@ -3338,7 +3348,7 @@ msgstr "Opsætning..."
 msgid "Params..."
 msgstr "Parametre..."
 
-#: exe-handler/gnome-exe-handler.c:43
+#: exe-handler/gnome-exe-handler.c:56
 #, c-format
 msgid ""
 "Executing arbitrary programs that you downloaded from the network might be "
@@ -3351,54 +3361,137 @@ msgstr ""
 "\n"
 "Er du sikker på at du vil køre '%s'?"
 
-#: exe-handler/gnome-exe-handler.c:50
+#: exe-handler/gnome-exe-handler.c:63
 msgid "Could not access file permissions"
 msgstr "Kunne ikke få adgang til filrettigheder"
 
-#: exe-handler/gnome-exe-handler.c:55
+#: exe-handler/gnome-exe-handler.c:68
 #, c-format
 msgid "Could not execute the file `%s' due to a permission problem"
 msgstr "Kunne ikke køre filen '%s' pga. et rettighedsproblem"
 
-#: exe-handler/gnome-exe-handler.c:71
+#: exe-handler/gnome-exe-handler.c:84
 #, c-format
 msgid "Failure at executing `%s'"
 msgstr "Fejl ved kørsel af '%s'"
 
-#: exe-handler/gnome-exe-handler.c:89
+#: exe-handler/gnome-exe-handler.c:103
 #, c-format
 msgid "It was not possible to open the file `%s'"
 msgstr "Det var ikke muligt at åbne filen '%s'"
 
-#: exe-handler/gnome-exe-handler.c:98
+#: exe-handler/gnome-exe-handler.c:112
 #, c-format
 msgid "The file `%s' is empty"
 msgstr "Filen '%s' er tom"
 
-#: exe-handler/gnome-exe-handler.c:103
+#: exe-handler/gnome-exe-handler.c:117
 #, c-format
 msgid "There was an error. `%s' is empty"
 msgstr "Der opstod en fejl, '%s' er tom"
 
-#: exe-handler/gnome-exe-handler.c:118
+#: exe-handler/gnome-exe-handler.c:132
 msgid "This is a library and can not be executed"
 msgstr "Dette er et rutinebibliotek og kan ikke køres"
 
-#: exe-handler/gnome-exe-handler.c:124
+#: exe-handler/gnome-exe-handler.c:138
 msgid "The file is a core file and can not be executed"
 msgstr "Filen er et hukommelsesdump og kan ikke køres"
 
-#: exe-handler/gnome-exe-handler.c:128 exe-handler/gnome-exe-handler.c:157
+#: exe-handler/gnome-exe-handler.c:142 exe-handler/gnome-exe-handler.c:176
 msgid "This is an unknown kind of executable"
 msgstr "Dette er en ukendt form for kørbar fil"
 
-#: exe-handler/gnome-exe-handler.c:154
+#: exe-handler/gnome-exe-handler.c:172
 msgid ""
 "The executable is for a different platform and can not be executed on this "
 "system"
 msgstr ""
 "Den kørbare fil er beregnet til en anden platform og kan ikke køres på dette "
 "system"
+
+#: meat-grinder/meat-grinder.c:182 meat-grinder/meat-grinder.c:185
+msgid "Cannot start the archive (tar) program"
+msgstr "Kan ikke starte arkivprogrammet (tar)"
+
+#: meat-grinder/meat-grinder.c:193
+msgid "Cannot run tar/gtar"
+msgstr "Kan ikke køre tar/gtar"
+
+#: meat-grinder/meat-grinder.c:244
+msgid "Archive.tar.gz"
+msgstr "Arkiv.tar.gz"
+
+#: meat-grinder/meat-grinder.c:341
+msgid "The GNOME Archive Generator"
+msgstr "Gnome arkivgeneratoren"
+
+#: meat-grinder/meat-grinder.c:344
+msgid "Drag files in to make archives"
+msgstr "Træk filer for at oprette arkiver"
+
+# dækker vist bedre
+#: meat-grinder/meat-grinder.c:403
+msgid "No filename selected"
+msgstr "Ingen filnavne markeret"
+
+#: meat-grinder/meat-grinder.c:406
+msgid "File exists, overwrite?"
+msgstr "Filer eksisterer allerede, overskriv dem?"
+
+#: meat-grinder/meat-grinder.c:426
+msgid "No items to archive"
+msgstr "Ingen elementer til arkiv"
+
+#: meat-grinder/meat-grinder.c:518
+#, c-format
+msgid ""
+"Number of files: %d\n"
+"Nuber of folders: %d"
+msgstr ""
+"Antal filer: %d\n"
+"Antal mapper: %d"
+
+#: meat-grinder/meat-grinder.c:574
+msgid "Create archive..."
+msgstr "Opret arkiv..."
+
+#: meat-grinder/meat-grinder.c:575
+msgid "Create a new archive from the selected items"
+msgstr "Opret et nyt arkiv med de markerede elementer"
+
+# det er åndssvagt at have parantesen med
+#: meat-grinder/meat-grinder.c:584
+msgid "Remove the selected item(s)"
+msgstr "Fjern de markerede elementer"
+
+#: meat-grinder/meat-grinder.c:613
+msgid "GNOME Archive Generator"
+msgstr "Gnome arkivgenerator"
+
+#: meat-grinder/meat-grinder.c:657
+msgid "Archive"
+msgstr "Arkiv"
+
+#: meat-grinder/meat-grinder.c:678
+msgid ""
+"Number of files: 0\n"
+"Number of folders: 0"
+msgstr ""
+"Antal filer: 0\n"
+"Antal mapper: 0"
+
+#: meat-grinder/meat-grinder.c:752
+msgid "Cannot find proper icons anywhere!"
+msgstr "Kan ikke finde de rigtige ikoner!"
+
+#: meat-grinder/meat-grinder.c:760
+msgid ""
+"Cannot find the archive (tar) program!\n"
+"This is the program used for creating archives."
+msgstr ""
+"Kan ikke finde arkivprogrammet (tar)!\n"
+"Det program benyttes til at oprette arkiverne."
 
 #~ msgid ""
 #~ "Notebook\n"
@@ -3430,12 +3523,6 @@ msgstr ""
 
 #~ msgid "Save not implemented yet\n"
 #~ msgstr "Gemning er ikke implementeret endnu\n"
-
-#~ msgid "rparen expected"
-#~ msgstr "højreparantes forventet"
-
-#~ msgid "extra gunk at end: \"%s\""
-#~ msgstr "overflødigt snavs i slutning: \"%s\""
 
 #~ msgid "%s, line %d: "
 #~ msgstr "%s, linje %d: "
@@ -3470,9 +3557,6 @@ msgstr ""
 #~ msgid "E_xit"
 #~ msgstr "_Afslut"
 
-#~ msgid "Terminate the stripchart program"
-#~ msgstr "Afslut stripgrafprogrammet"
-
 #~ msgid "Copyright 1998,99 John Kodis"
 #~ msgstr "Ophavsret 1998, 99 John Kodis"
 
@@ -3487,9 +3571,6 @@ msgstr ""
 
 #~ msgid "Current value"
 #~ msgstr "Nuværende værdi"
-
-#~ msgid "Active"
-#~ msgstr "Aktiv"
 
 #~ msgid "Stripchart Parameters"
 #~ msgstr "Stripgrafparametre"
