@@ -565,6 +565,10 @@ add_file_to_search_results (const gchar * file,
 		return;
 	}
 	
+	if (g_file_test (file, G_FILE_TEST_EXISTS) != TRUE) {
+		return;
+	}
+	
 	g_hash_table_insert (gsearch->search_results_filename_hash_table, g_strdup (file), NULL);
 	
 	mime_type = gnome_vfs_get_file_mime_type (file, NULL, FALSE);
