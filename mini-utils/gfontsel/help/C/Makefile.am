@@ -10,6 +10,7 @@ EXTRA_DIST = fontsel.sgml \
              xlfd.html \
              ln7.html \
              authors.html \
+	     license.html \
 	     mainshot.png \
 	     filterwin.png \
 	     topic.dat
@@ -22,6 +23,7 @@ gfontsel_help_DATA = index.html \
                      xlfd.html \
 		     ln7.html \
 		     authors.html \
+		     license.html \
 		     mainshot.png \
 		     filterwin.png \
 	             topic.dat
