@@ -118,7 +118,7 @@ static void fill_disk_page(GtkWidget * box)
   
   scrolled_win = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
-                                  GTK_POLICY_NEVER, 
+                                  GTK_POLICY_AUTOMATIC, 
                                   GTK_POLICY_AUTOMATIC);
   gtk_container_border_width(GTK_CONTAINER(scrolled_win), 0);
   gtk_box_pack_start(GTK_BOX(box), scrolled_win, TRUE, TRUE, 0);
@@ -152,6 +152,7 @@ static void fill_disk_page(GtkWidget * box)
 
 static void fill_mem_page(GtkWidget * box)
 {
+  GtkWidget * sw;
   GtkWidget * clist;
   GtkWidget * vbox;
   GtkWidget * hbox;
@@ -168,8 +169,12 @@ static void fill_mem_page(GtkWidget * box)
   vbox = gtk_vbox_new(FALSE, GNOME_PAD);
   gtk_container_add(GTK_CONTAINER(box), vbox);
 
+  sw = gtk_scrolled_window_new(NULL,NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+				  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_box_pack_start(GTK_BOX(vbox), sw, TRUE, TRUE, GNOME_PAD);
   clist = create_clist(titles);
-  gtk_box_pack_start(GTK_BOX(vbox), clist, TRUE, TRUE, GNOME_PAD);
+  gtk_container_add(GTK_CONTAINER(sw),clist);
   gtk_clist_freeze(GTK_CLIST(clist));
   fill_clist(GTK_CLIST(clist), (const char **)memory_descriptions, 
              (const char **)memory, end_memory_info);
@@ -229,7 +234,7 @@ static void fill_cpuinfo_page(GtkWidget * box)
 
     scrolled_win = gtk_scrolled_window_new (NULL, NULL);
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
-                                    GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+                                    GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_container_add (GTK_CONTAINER (scrolled_win), clist);
     gtk_box_pack_start(GTK_BOX(box), scrolled_win, TRUE, TRUE, 0);
   }
