@@ -19,13 +19,10 @@
 
 typedef struct IdleTimeout_s IdleTimeout;
 
-/* return number of seconds that system has been idle */
 IdleTimeout * idle_timeout_new (void);
-int poll_idle_time (IdleTimeout *si);
 
-#ifdef HAVE_PROC_INTERRUPTS
-extern Bool query_proc_interrupts_available (IdleTimeout *, const char **why);
-#endif
+/* return number of seconds that system has been idle */
+int poll_idle_time (IdleTimeout *si);
 
 
 #endif /* __IDLE_TIMER_H__ */
