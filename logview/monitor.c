@@ -109,7 +109,7 @@ MonitorMenu (GtkWidget * widget, gpointer user_data)
       gtk_window_set_title (GTK_WINDOW (monoptions), _("Monitor Options"));
 
       button = gtk_dialog_add_button (GTK_DIALOG (monoptions),
-                                     "Ac_tions", GTK_RESPONSE_NONE);
+                                     _("Ac_tions"), GTK_RESPONSE_NONE);
       gtk_signal_connect (GTK_OBJECT (button), "clicked",
                                      GTK_SIGNAL_FUNC (mon_edit_actions), srclist_view);
 
