@@ -33,6 +33,9 @@ struct _MDIColorGeneric {
                 move or append a color in a MDIColorVirtual.
 		But he can Remove a color in a MDIColorVirtual */
 
+  gboolean temp; /* TRUE means that it's a temporary doc, that no
+		    confirmation is needed when closing the document, ... */
+
   int freeze_count;
   int last;
  
@@ -119,6 +122,9 @@ MDIColor *
 mdi_color_generic_get_owner             (MDIColor *col);
 
 GtkType mdi_color_generic_get_control_type (MDIColorGeneric *mcg);
+GList  *mdi_color_generic_get_append_pos (MDIColorGeneric *mcg,
+					  MDIColor *col);
+
 
 void mdi_color_generic_sync_control     (MDIColorGeneric *mcg);
 
@@ -126,6 +132,8 @@ void mdi_color_generic_append_view_type   (MDIColorGeneric *mcg, GtkType type);
 
 void mdi_color_generic_set_modified (MDIColorGeneric *mcg, gboolean modified);
 void mdi_color_generic_set_name     (MDIColorGeneric *mcg, char *name);
+
+void mdi_color_generic_set_temp     (MDIColorGeneric *mcg, gboolean val);
 					
 END_GNOME_DECLS
 

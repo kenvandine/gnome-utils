@@ -1,11 +1,11 @@
-#include "widget-control-virtual.h"
-#include "mdi-color-virtual.h"
+#include "widget-control-virtual-rgb.h"
+#include "mdi-color-virtual-rgb.h"
 #include "utils.h"
 
 #include <gnome.h>
 
-static void control_virtual_class_init (ControlVirtualClass *class);
-static void control_virtual_init       (ControlVirtual *cl);
+static void control_virtual_rgb_class_init (ControlVirtualRGBClass *class);
+static void control_virtual_rgb_init       (ControlVirtualRGB *cl);
 
 static void preview_size_allocate_cb   (GtkWidget *widget, 
 					GtkAllocation *allocation,
@@ -26,15 +26,15 @@ static GtkWidget *range_create             (gchar *title,
 
 static void range_value_changed_cb     (gpointer data);
 
-static void control_virtual_update_preview (ControlVirtual *cs);
+static void control_virtual_rgb_update_preview (ControlVirtualRGB *cs);
 
-void control_virtual_sync                  (ControlGeneric *cg);
+void control_virtual_rgb_sync                  (ControlGeneric *cg);
 
-void control_virtual_set_rgbt              (ControlVirtual *cv, 
+void control_virtual_rgb_set_rgbt              (ControlVirtualRGB *cv, 
 					    float r, float g, 
 					    float b, float t);
 
-void control_virtual_update_range          (GtkRange *range, gfloat val);
+void control_virtual_rgb_update_range          (GtkRange *range, gfloat val);
 
 static ControlGenericClass *parent_class = NULL;
 
@@ -43,17 +43,17 @@ static const GtkTargetEntry preview_drag_targets[] = {
 };
 
 GtkType 
-control_virtual_get_type (void)
+control_virtual_rgb_get_type (void)
 {
   static guint cv_type = 0;
 
   if (!cv_type) {
     GtkTypeInfo cv_info = {
-      "ControlVirtual",
-      sizeof (ControlVirtual),
-      sizeof (ControlVirtualClass),
-      (GtkClassInitFunc) control_virtual_class_init,
-      (GtkObjectInitFunc) control_virtual_init,
+      "ControlVirtualRGB",
+      sizeof (ControlVirtualRGB),
+      sizeof (ControlVirtualRGBClass),
+      (GtkClassInitFunc) control_virtual_rgb_class_init,
+      (GtkObjectInitFunc) control_virtual_rgb_init,
       NULL,
       NULL,
       (GtkClassInitFunc) NULL
@@ -66,7 +66,7 @@ control_virtual_get_type (void)
 }
 
 static void
-control_virtual_class_init (ControlVirtualClass *class)
+control_virtual_rgb_class_init (ControlVirtualRGBClass *class)
 {
   GtkObjectClass *object_class;
 
@@ -75,7 +75,7 @@ control_virtual_class_init (ControlVirtualClass *class)
 }
 
 static void
-control_virtual_init (ControlVirtual *cs)
+control_virtual_rgb_init (ControlVirtualRGB *cs)
 {
   GtkWidget *vbox;
   GtkWidget *frame;
@@ -130,7 +130,7 @@ control_virtual_init (ControlVirtual *cs)
   gtk_signal_connect (GTK_OBJECT (cs->preview), "drag_begin",
 		      GTK_SIGNAL_FUNC (preview_drag_begin_cb), cs);
 
-  CONTROL_GENERIC (cs)->sync = control_virtual_sync;
+  CONTROL_GENERIC (cs)->sync = control_virtual_rgb_sync;
 }
 
 static GtkWidget *
@@ -164,11 +164,11 @@ range_create (gchar *title, gfloat max, gfloat val,
 }
 
 GtkWidget *
-control_virtual_new (void)
+control_virtual_rgb_new (void)
 {
   GtkWidget *widget;
 
-  widget = gtk_type_new (TYPE_CONTROL_VIRTUAL);
+  widget = gtk_type_new (TYPE_CONTROL_VIRTUAL_RGB);
 
   return widget;
 }
@@ -176,29 +176,29 @@ control_virtual_new (void)
 static void 
 range_value_changed_cb (gpointer data)
 {
-  ControlVirtual *cv = CONTROL_VIRTUAL (data);
+  ControlVirtualRGB *cv = CONTROL_VIRTUAL_RGB (data);
   GtkAdjustment *adj_red = gtk_range_get_adjustment (GTK_RANGE (cv->range_red));
   GtkAdjustment *adj_green = gtk_range_get_adjustment (GTK_RANGE (cv->range_green));
   GtkAdjustment *adj_blue = gtk_range_get_adjustment (GTK_RANGE (cv->range_blue));
   GtkAdjustment *adj_tolerance = gtk_range_get_adjustment (GTK_RANGE (cv->range_tolerance));
 
-  mdi_color_virtual_set (MDI_COLOR_VIRTUAL (CONTROL_GENERIC (data)->mcg), 
-			 adj_red->value, adj_green->value, adj_blue->value,
-			 adj_tolerance->value);
+  mdi_color_virtual_rgb_set (MDI_COLOR_VIRTUAL_RGB (CONTROL_GENERIC (data)->mcg), 
+			     adj_red->value, adj_green->value, adj_blue->value,
+			     adj_tolerance->value);
 }
 
 static void
 preview_size_allocate_cb (GtkWidget *widget, 
 			  GtkAllocation *allocation, GtkWidget *cs)
 {
-  control_virtual_update_preview (CONTROL_VIRTUAL (cs));
+  control_virtual_rgb_update_preview (CONTROL_VIRTUAL_RGB (cs));
 }
 
 static void 
 preview_drag_begin_cb (GtkWidget *widget, 
 		       GdkDragContext *context, GtkWidget *cs)
 {
-  ControlVirtual *cv = CONTROL_VIRTUAL (cs);
+  ControlVirtualRGB *cv = CONTROL_VIRTUAL_RGB (cs);
     
   gtk_drag_set_icon_widget (context, 
 			    drag_window_create (cv->r, cv->g, cv->b), -2, -2);
@@ -209,7 +209,7 @@ preview_drag_data_get_cb (GtkWidget *widget, GdkDragContext *context,
 			  GtkSelectionData *selection_data, guint info,
 			  guint time, GtkWidget *cs)
 {
-  ControlVirtual *cv = CONTROL_VIRTUAL (cs);
+  ControlVirtualRGB *cv = CONTROL_VIRTUAL_RGB (cs);
   guint16 vals[4];
 
   vals[0] = (cv->r / 255.0) * 0xffff;
@@ -223,13 +223,13 @@ preview_drag_data_get_cb (GtkWidget *widget, GdkDragContext *context,
 }	         
 
 void
-control_virtual_update_preview (ControlVirtual *cv)
+control_virtual_rgb_update_preview (ControlVirtualRGB *cv)
 {
   preview_fill (cv->preview, cv->r, cv->g, cv->b);
 }
 
 void
-control_virtual_update_range (GtkRange *range, gfloat val)
+control_virtual_rgb_update_range (GtkRange *range, gfloat val)
 {
   GtkAdjustment *adj;
 
@@ -241,38 +241,38 @@ control_virtual_update_range (GtkRange *range, gfloat val)
 }
 
 void
-control_virtual_set_rgbt (ControlVirtual *cv, 
+control_virtual_rgb_set_rgbt (ControlVirtualRGB *cv, 
 			  float r, float g, float b, float t)
 {
   if ((int)r != (int)cv->r) {
-    control_virtual_update_range (GTK_RANGE (cv->range_red), r);
+    control_virtual_rgb_update_range (GTK_RANGE (cv->range_red), r);
     cv->r = r;
   }
   
   if ((int)g != (int)cv->g) {
-    control_virtual_update_range (GTK_RANGE (cv->range_green), g);
+    control_virtual_rgb_update_range (GTK_RANGE (cv->range_green), g);
     cv->g = g;
   }
 
   if ((int)b != (int)cv->b) {
-    control_virtual_update_range (GTK_RANGE (cv->range_blue), b);
+    control_virtual_rgb_update_range (GTK_RANGE (cv->range_blue), b);
     cv->b = b;
   }
   
   if ((int)t != (int)cv->t) {
-    control_virtual_update_range (GTK_RANGE (cv->range_tolerance), t);
+    control_virtual_rgb_update_range (GTK_RANGE (cv->range_tolerance), t);
     cv->t = t;
   }
 
-  control_virtual_update_preview (cv);
+  control_virtual_rgb_update_preview (cv);
 }
 
 void 
-control_virtual_sync (ControlGeneric *cg)
+control_virtual_rgb_sync (ControlGeneric *cg)
 {
   float r, g, b, t;
 
-  mdi_color_virtual_get (MDI_COLOR_VIRTUAL (cg->mcg), &r, &g, &b, &t);  
-  control_virtual_set_rgbt (CONTROL_VIRTUAL (cg), r, g, b, t);  
+  mdi_color_virtual_rgb_get (MDI_COLOR_VIRTUAL_RGB (cg->mcg), &r, &g, &b, &t);  
+  control_virtual_rgb_set_rgbt (CONTROL_VIRTUAL_RGB (cg), r, g, b, t);  
 }
 

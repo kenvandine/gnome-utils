@@ -4,11 +4,11 @@
 #include "menus.h"
 #include "mdi-color-generic.h"
 #include "mdi-color-file.h"
-#include "mdi-color-virtual.h"
+#include "mdi-color-virtual-rgb.h"
+#include "mdi-color-virtual-monitor.h"
 #include "view-color-grid.h"
 #include "view-color-list.h"
 #include "view-color-edit.h"
-#include "widget-control-virtual.h"
 #include "session.h"
 #include "utils.h"
 
@@ -30,6 +30,14 @@ views_t views_tab[] = { {N_("List"), GTK_POLICY_NEVER, GTK_POLICY_ALWAYS,
 			
 			{ NULL, 0, 0, NULL, 0 } };
 
+docs_t docs_tab[] = { 
+  { N_("File"),       mdi_color_file_get_type,            TRUE,  FALSE },
+  { N_("Search RGB"), mdi_color_virtual_rgb_get_type,     TRUE,  TRUE  },
+  { N_("Monitor"),    mdi_color_virtual_monitor_get_type, FALSE, TRUE  },
+  { N_("Concact"),    mdi_color_virtual_get_type,         TRUE,  TRUE  },
+  { NULL, NULL, FALSE },
+};
+
 views_t *
 get_views_from_type (GtkType type)
 {
@@ -50,6 +58,12 @@ call_get_type (void)
 
   while (views_tab[i].name) {
     views_tab[i].type ();
+    i++;
+  }
+
+  i = 0;
+  while (docs_tab[i].name) {
+    docs_tab[i].type ();
     i++;
   }
 }
@@ -109,8 +123,6 @@ int main (int argc, char *argv[])
   glade_gnome_init ();
 
   /* For gtk_type_from_name in session.c */
-  mdi_color_virtual_get_type ();
-  mdi_color_file_get_type    ();
   call_get_type ();
 	
   /* Init GnomeMDI */

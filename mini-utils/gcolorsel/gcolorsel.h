@@ -17,6 +17,13 @@ typedef struct views_t {
   GtkType (*type) (void);
 } views_t;
 
+typedef struct docs_t {
+  char *name;
+  GtkType (*type) (void);
+  gboolean can_create;
+  gboolean connect;
+} docs_t;
+
 extern views_t views_tab[];
 
 views_t *get_views_from_type (GtkType type);

@@ -139,6 +139,13 @@ mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
 	  ok = FALSE;
 	  break;
 	} else { /* For GIMP Palette ... */
+	  {
+	    int i = strlen (tmp);
+	    while ((i) && (tmp[i - 1] == '\n')) {
+	      tmp [i - 1] = 0; i--;
+	    }
+	  }
+
 	  mcf->header = g_strdup (tmp);
 	  continue;
 	}
@@ -162,7 +169,7 @@ mdi_color_file_load (MDIColorFile *mcf, GnomeMDI *mdi)
 
   fclose (fp);
 
-  if (!nb) ok = FALSE;
+//  if (!nb) ok = FALSE;
 
   mdi_color_generic_thaw (MDI_COLOR_GENERIC (mcf));
   mdi_color_generic_set_modified (MDI_COLOR_GENERIC (mcf), FALSE);
@@ -185,9 +192,10 @@ mdi_color_file_save (MDIColorFile *mcf)
   if (mcf->header) {
     if (fputs (mcf->header, fp) < 0) 
       ok = FALSE;
-    else       
-      if (fputc ('\n', fp) < 0) 
-	ok = FALSE;
+    else 
+      if (mcf->header[strlen (mcf->header) - 1] != '\n')
+	if (fputc ('\n', fp) < 0) 
+	  ok = FALSE;    
   }
 
   if (ok) {
@@ -293,8 +301,6 @@ mdi_color_generic_sync (MDIColorGeneric *mcg, gpointer data)
   prop_t *prop = data;
   MDIColorFile *mcf = MDI_COLOR_FILE (mcg);
 
-  printf ("MDI File :: sync\n");
-
   gtk_entry_set_text (GTK_ENTRY (prop->entry_file), mcf->filename);
   
   entry_set_text (GTK_ENTRY (GTK_COMBO (prop->combo_header)->entry),
@@ -308,27 +314,23 @@ mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data)
 {
   prop_t *prop = data;  
   MDIColorFile *mcf = MDI_COLOR_FILE (mcg);
-  char *text, *tmp;
-
-  printf ("MDI File :: apply\n");
+  char *text;
 
   text = gtk_entry_get_text (GTK_ENTRY (GTK_COMBO (prop->combo_header)->entry));
+  text = g_strchomp (g_strdup (text));
+
+  if (!text[0]) {
+    g_free (text);
+    text = NULL;
+  }
 
   if (my_strcmp (text, mcf->header)) {
-    tmp = g_strdup (text);
-    text = g_strstrip (tmp);
-    if (! strcmp (text, "")) {
-      if (mcf->header) {
-	mdi_color_generic_set_modified (mcg, TRUE);
-	g_free (mcf->header);
-	mcf->header = NULL;
-      }
-    } else {
-      mdi_color_generic_set_modified (mcg, TRUE);
-      mcf->header = g_strdup (text);
-    }
-      
-    g_free (tmp);
+    if (mcf->header) 
+      g_free (mcf->header);
+
+    mcf->header = text;
+
+    mdi_color_generic_set_modified (mcg, TRUE);
   }
 
   parent_class->apply (mcg, prop->parent_data);
@@ -338,8 +340,6 @@ static void
 mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data)
 {
   prop_t *prop = data;
-
-  printf ("MDI File :: close\n");
 
   parent_class->close (mcg, prop->parent_data);
 
@@ -360,7 +360,15 @@ mdi_color_generic_save  (MDIColorGeneric *mcg)
 static void 
 mdi_color_generic_load  (MDIColorGeneric *mcg)
 {
-  MDI_COLOR_FILE (mcg)->filename = gnome_config_get_string ("FileName");
+  char *str;
+
+  str = gnome_config_get_string ("FileName");
+  if (! strcmp (str, "")) {
+    g_free (str);
+    str = NULL;
+  }
+    
+  MDI_COLOR_FILE (mcg)->filename = str;
 
   parent_class->load (mcg);
 }

@@ -8,6 +8,7 @@ extern GnomeUIInfo main_menu [];
 extern GnomeUIInfo toolbar [];
 
 void menu_view_do_popup (GdkEventButton *event);
+void menu_edit (MDIColor *col);
 
 gint save_file (MDIColorFile *mcf);
 

@@ -69,8 +69,8 @@ view_color_list_compare_rows    (GtkCList *clist,
 static void
 view_color_list_data_changed    (ViewColorGeneric *vcg, gpointer data);
 
-static void
-view_color_list_remove_selected (ViewColorGeneric *vcg);
+static GList *view_color_list_get_selected (ViewColorGeneric *vcg);
+static int    view_color_list_get_insert_pos  (ViewColorGeneric *vcg);
 static gpointer 
 view_color_list_get_control     (ViewColorGeneric *vcg, GtkVBox *box,
 				 void (*changed_cb)(gpointer data), 
@@ -133,7 +133,8 @@ view_color_list_class_init (ViewColorListClass *class)
   vcg_class    = (ViewColorGenericClass *)class;
 
   vcg_class->data_changed    = view_color_list_data_changed;
-  vcg_class->remove_selected = view_color_list_remove_selected;
+  vcg_class->get_selected    = view_color_list_get_selected;
+  vcg_class->get_insert_pos  = view_color_list_get_insert_pos;
   vcg_class->get_control     = view_color_list_get_control;
   vcg_class->close           = view_color_list_close;
   vcg_class->apply           = view_color_list_apply;
@@ -377,25 +378,35 @@ view_color_list_button_press (GtkCList *clist, GdkEventButton *event,
   int col, row;
   GtkCListRow *r;
 
-  if (event->button == 3) {
-    if (gtk_clist_get_selection_info (clist, event->x, event->y, &row, &col));
-    
-    /* 1. Si la ligne est deja selectionnee, on continue 
-       2. Sinon, on deselectionne tout et on selectionne la ligne */
-    
-    r = g_list_nth (clist->row_list, row)->data;
-    if (r->state != GTK_STATE_SELECTED) {
-      gtk_clist_freeze (clist);
-      gtk_clist_unselect_all (clist);
-      clist->focus_row = row;
-      gtk_clist_select_row (clist, row, col);
-      gtk_clist_thaw (clist);
-    }      
+  if (event->type == GDK_BUTTON_PRESS) {
 
-    menu_view_do_popup (event);
-    return FALSE;
-  }
-  
+    if (event->button == 3) {
+      if (gtk_clist_get_selection_info (clist, event->x, event->y, &row, &col)){
+	
+	/* 1. Si la ligne est deja selectionnee, on continue 
+	   2. Sinon, on deselectionne tout et on selectionne la ligne */
+	
+	r = g_list_nth (clist->row_list, row)->data;
+	if (r->state != GTK_STATE_SELECTED) {
+	  gtk_clist_freeze (clist);
+	  gtk_clist_unselect_all (clist);
+	  clist->focus_row = row;
+	  gtk_clist_select_row (clist, row, col);
+	  gtk_clist_thaw (clist);
+	}      
+	
+	menu_view_do_popup (event);
+	return FALSE;
+      }
+    }
+    
+  } else
+      
+      if (event->type == GDK_2BUTTON_PRESS) {
+	if(gtk_clist_get_selection_info(clist, event->x, event->y, &row, &col))
+	  menu_edit (gtk_clist_get_row_data (clist, row));
+      }
+
   return TRUE;
 }
 
@@ -675,33 +686,31 @@ view_color_list_data_changed (ViewColorGeneric *vcg, gpointer data)
 
 }
 
-static void
-view_color_list_remove_selected (ViewColorGeneric *vcg)
+static gint
+view_color_list_get_insert_pos (ViewColorGeneric *vcg)
+{
+  GtkCList *clist = GTK_CLIST (vcg->widget);
+
+  return clist->focus_row;
+}
+
+static GList *
+view_color_list_get_selected (ViewColorGeneric *vcg)
 {
   GtkCList *clist = GTK_CLIST (vcg->widget);
   GList *list = clist->selection;
   MDIColor *col;
-  GList *freezed = NULL;
+  GList *get_list = NULL;
 
   while (list) {
     col = gtk_clist_get_row_data (clist, GPOINTER_TO_INT (list->data));   
+    
+    get_list = g_list_prepend (get_list, col);
+
     list = g_list_next (list);
-    
-    col = mdi_color_generic_get_owner (col);
-    
-    mdi_color_generic_freeze (col->owner);
-    mdi_color_generic_remove (col->owner, col);
-    
-    freezed = g_list_prepend (freezed, col->owner);
   }   
 
-  list = freezed;
-  while (list) {
-    mdi_color_generic_thaw (freezed->data);
-    list = g_list_next (list);
-  }    
-
-  g_list_free (freezed);
+  return get_list;
 }
 
 /*************************** PROPERTIES **********************************/
@@ -776,8 +785,6 @@ view_color_list_apply (ViewColorGeneric *vcg, gpointer data)
   prop_t *prop = data;
   GtkCList *clist = GTK_CLIST (vcg->widget);
 
-  printf ("List    :: apply\n");
-
   VIEW_COLOR_LIST (vcg)->col_width = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (prop->spin_width));
   
   VIEW_COLOR_LIST (vcg)->col_height = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (prop->spin_height));
@@ -796,8 +803,6 @@ view_color_list_close (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
 
-  printf ("List    :: close\n");
-
   parent_class->close (vcg, prop->parent_data);
 
   gtk_object_unref (GTK_OBJECT (prop->gui));
@@ -809,8 +814,6 @@ view_color_list_sync (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
   ViewColorList *vcl = VIEW_COLOR_LIST (vcg);
-
-  printf ("List    :: sync \n");
 
   spin_set_value (GTK_SPIN_BUTTON (prop->spin_width), vcl->col_width, prop);
   spin_set_value (GTK_SPIN_BUTTON (prop->spin_height), vcl->col_height, prop);
@@ -852,8 +855,8 @@ view_color_list_load (ViewColorGeneric *vcg)
   ViewColorList *vcl = VIEW_COLOR_LIST (vcg);
   GtkCList *clist = GTK_CLIST (VIEW_COLOR_GENERIC (vcl)->widget);
 
-  vcl->col_width    = gnome_config_get_int ("ColWidth");
-  vcl->col_height   = gnome_config_get_int ("ColHeight");
+  vcl->col_width    = gnome_config_get_int ("ColWidth=48");
+  vcl->col_height   = gnome_config_get_int ("ColHeight=15");
   vcl->draw_numbers = gnome_config_get_bool ("DrawNumbers");
 
   view_color_list_set_sort_column (vcl, 
@@ -866,7 +869,7 @@ view_color_list_load (ViewColorGeneric *vcg)
   gtk_clist_set_column_width (clist, COLUMN_PIXMAP, vcl->col_width);
 
   gtk_clist_set_column_width (clist, COLUMN_VALUE, 
-			      gnome_config_get_int ("ColumnValueWidth"));
+			      gnome_config_get_int ("ColumnValueWidth=50"));
 
   parent_class->load (vcg);
 }

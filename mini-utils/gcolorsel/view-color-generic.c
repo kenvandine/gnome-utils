@@ -7,7 +7,6 @@
 
 enum {
   DATA_CHANGED,
-  REMOVE_SELECTED,
   LAST_SIGNAL
 };
 
@@ -22,6 +21,10 @@ char *ColFormatStr[] = { N_("Decimal 8 bits"),
 				 
 static void view_color_generic_class_init      (ViewColorGenericClass *class);
 static void view_color_generic_init            (ViewColorGeneric *vcl);
+
+static GList *view_color_generic_get_selected    (ViewColorGeneric *vcg);
+static void   view_color_generic_remove_selected (ViewColorGeneric *vcg);
+static int    view_color_generic_get_insert_pos  (ViewColorGeneric *vcg);
 
 static gpointer view_color_generic_get_control (ViewColorGeneric *vcg,
 						GtkVBox *box,
@@ -81,21 +84,17 @@ view_color_generic_class_init (ViewColorGenericClass *class)
 		    gtk_marshal_NONE__POINTER,
 		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
 
-  cg_signals [REMOVE_SELECTED] = 
-    gtk_signal_new ("remove_selected",
-		    GTK_RUN_LAST,
-		    object_class->type,
-		    GTK_SIGNAL_OFFSET (ViewColorGenericClass, remove_selected),
-		    gtk_signal_default_marshaller, GTK_TYPE_NONE, 0);
-
   gtk_object_class_add_signals (object_class, cg_signals, LAST_SIGNAL);
 
-  class->get_control = view_color_generic_get_control;
-  class->apply       = view_color_generic_apply;
-  class->close       = view_color_generic_close;
-  class->sync        = view_color_generic_sync;
-  class->save        = view_color_generic_save;
-  class->load        = view_color_generic_load;
+  class->remove_selected = view_color_generic_remove_selected;
+  class->get_selected    = view_color_generic_get_selected;
+  class->get_insert_pos  = view_color_generic_get_insert_pos;
+  class->get_control     = view_color_generic_get_control;
+  class->apply           = view_color_generic_apply;
+  class->close           = view_color_generic_close;
+  class->sync            = view_color_generic_sync;
+  class->save            = view_color_generic_save;
+  class->load            = view_color_generic_load;
 }
 
 static void
@@ -111,10 +110,51 @@ view_color_generic_data_changed (ViewColorGeneric *vcg, GList *changes)
   gtk_signal_emit (GTK_OBJECT (vcg), cg_signals[DATA_CHANGED], changes);
 }
 
-void 
+
+static GList *
+view_color_generic_get_selected (ViewColorGeneric *vcg)
+{
+  return NULL;
+}
+
+static int    
+view_color_generic_get_insert_pos (ViewColorGeneric *vcg)
+{
+  return -1;
+}
+
+static void 
 view_color_generic_remove_selected (ViewColorGeneric *vcg)
 {
-  gtk_signal_emit (GTK_OBJECT (vcg), cg_signals[REMOVE_SELECTED]);
+  GList *list = VIEW_COLOR_GENERIC_GET_CLASS (vcg)->get_selected (vcg);
+  GList *l;
+  MDIColor *col;
+  GList *freezed = NULL;
+  
+  if (!list) return;
+  l = list;
+
+  while (l) {
+    col = mdi_color_generic_get_owner (l->data);
+
+    mdi_color_generic_freeze (col->owner);
+    mdi_color_generic_remove (col->owner, col);
+
+    freezed = g_list_append (freezed, col->owner);
+
+    l = g_list_next (l);
+  }
+
+  g_list_free (list); 
+  
+  l = freezed;
+  while (l) {
+    mdi_color_generic_thaw (MDI_COLOR_GENERIC (l->data));
+    
+    l = g_list_next (l);
+  }
+
+  g_list_free (freezed);
 }
 
 /************************* PROPERTIES ********************************/
@@ -200,8 +240,6 @@ view_color_generic_apply (ViewColorGeneric *vcg, gpointer data)
   int i = 0;
   GtkWidget *entry;
 
-  printf ("Generic :: apply\n");
-
   /* Format */
 
   entry = GTK_COMBO (prop->combo_format)->entry;
@@ -222,8 +260,6 @@ view_color_generic_close (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
 
-  printf ("Generic :: close\n");
-
   gtk_object_unref (GTK_OBJECT (prop->gui));
   g_free (prop);
 }
@@ -233,8 +269,6 @@ view_color_generic_sync (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
   GtkWidget *entry;
-
-  printf ("Generic :: sync\n");
 
   /* Format */
 

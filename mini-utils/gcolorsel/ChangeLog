@@ -1,3 +1,72 @@
+2000-05-01 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-generic.c (mdi_color_generic_apply) : call
+	  mdi_color_generic_set_name instead of gnome_mdi_child_set_name,
+	  so, no more problem with '*' if modified.
+	  (mdi_color_generic_sync) : take MDIColorGeneric name, not
+	  the one in GnomeMDIChild.
+
+	* mdi-color-file.c (mdi_color_generic_apply) : set document modified
+	  flag if header changed.
+
+	* mdi-color-*.c, view-color-*.c : remove printf.
+
+	* menu.c : destroy mcg or view properties widget if view / doc
+	  destroyed.
+	
+2000-04-30 Eric Brayeur <eb2@ibelgique.com>
+
+	* menu.[ch] (menu_edit) : new function, open an edit view.
+
+	* view-color-list.c : edit color on dbclick.
+
+	* view-color-grid.c : edit color on dbclick.
+
+	* session.c : some check to avoid crash if bad config file.
+	  Ask user 'do you want to create a new session'.
+
+	* mdi-color-file.c : assume "" == NULL when loading filename.
+          (load) do not fail if file empty.
+	  (save) do not add '\n' after header if we have already one '\n'.
+		
+2000-04-29 Eric Brayeur <eb2@ibelgique.com>
+
+	* mdi-color-virtual.[ch]: split, it is now a small base class.
+
+	* mdi-color-virtual-rgb.[ch]: new files, specific code for searching 
+	  colors by RGB.
+
+	* mdi-color-virtual-monitor.[ch] : new files.
+
+	* menus.c : use the virtual-monitor in edit_cb. Show only the
+	  colors selected ...
+
+	* view-color-edit.[ch] : implement remove_selected
+
+	* view-color-generic.[ch] : new function to get the insert pos.
+	  (row selected, ...).
+
+	* view-color-list.[ch], view-color-grid.[ch] : insert pos.
+
+	* menus.c : implement insert color.
+
+	* widget-color-grid.c : fix a bug; now redraw color when RGB changed;
+
+	* mdi-color-generic.c (temp) : new member. TRUE means that the 
+	  view can be destroyed without warning.
+
+	* dialog-new-view (dialog_fill_clist_doc) : don't show temp doc.
+
+	* menus.c (close_view_cb) : Remove document when closing the last
+	  view.
+
+	* session.c (session_load) : remove temp view when loading a session.
+	  Because MDIColorVirtualMonitor can save list of monitored colors.
+	  (slow and won't be very useful ...).
+	  So Edit views aren't restored.
+
+	* menus.c (remove_cb) : remove temp view if no more colors to display.
+		
 2000-04-30 John Fleck <jfleck@inkstain.net>
 
 	* rebuilt images to fix GNOME help browser display glitch

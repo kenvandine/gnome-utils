@@ -25,14 +25,17 @@ dialog_fill_clist_doc (GtkCList *clist)
   while (list) {
     mcg = list->data;
 
-    str[0] = g_strdup_printf ("%s (%s)", mcg->name,
+    if (! mcg->temp) {
+      
+      str[0] = g_strdup_printf ("%s (%s)", mcg->name,
 			      gtk_type_name (GTK_OBJECT_TYPE (mcg)));
-
-    pos = gtk_clist_append (clist, str);
-    gtk_clist_set_row_data (clist, pos, mcg);
-
-    g_free (str[0]);
-
+      
+      pos = gtk_clist_append (clist, str);
+      gtk_clist_set_row_data (clist, pos, mcg);
+      
+      g_free (str[0]);
+    }
+     
     list = g_list_next (list);
   }
 

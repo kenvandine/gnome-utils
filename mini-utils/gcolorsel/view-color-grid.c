@@ -20,6 +20,8 @@ static void view_color_grid_move_item  (ColorGrid *cg, int old_pos,
 static void view_color_grid_data_changed    (ViewColorGeneric *vcg, 
 					     gpointer data);
 static void view_color_grid_remove_selected (ViewColorGeneric *vcg);
+static gint view_color_grid_get_insert_pos (ViewColorGeneric *vcg);
+static GList *view_color_grid_get_selected (ViewColorGeneric *vcg);
 static gpointer view_color_grid_get_control (ViewColorGeneric *vcg,
 					     GtkVBox *box,
 					     void (*changed_cb)(gpointer data),
@@ -71,6 +73,8 @@ view_color_grid_class_init (ViewColorGridClass *class)
   
   vcg_class->data_changed = view_color_grid_data_changed;
   vcg_class->remove_selected = view_color_grid_remove_selected;
+  vcg_class->get_insert_pos  = view_color_grid_get_insert_pos;
+  vcg_class->get_selected = view_color_grid_get_selected;
   vcg_class->get_control = view_color_grid_get_control;
   vcg_class->apply       = view_color_grid_apply;
   vcg_class->close       = view_color_grid_close;
@@ -126,11 +130,20 @@ static gint
 view_color_grid_button_press (GtkWidget *widget, 
 			      GdkEventButton *event, gpointer data)
 {
-  if (event->button == 3) {
-    menu_view_do_popup (event);
-    return FALSE;
-  }
+  ColorGrid *cg = COLOR_GRID (widget);
 
+  if (event->type == GDK_BUTTON_PRESS) {
+    if (event->button == 3) {
+      menu_view_do_popup (event);
+      return FALSE;
+    }
+  } else
+
+    if (event->type == GDK_2BUTTON_PRESS) {
+      if (cg->last_clicked)
+	menu_edit (MDI_COLOR (cg->last_clicked->data));
+    }
+  
   return TRUE;
 }
 
@@ -182,6 +195,19 @@ view_color_grid_data_changed (ViewColorGeneric *vcg, gpointer data)
   color_grid_thaw (cg);
 }
 
+static gint
+view_color_grid_get_insert_pos (ViewColorGeneric *vcg)
+{
+  ColorGrid *cg = COLOR_GRID (vcg->widget);
+  MDIColor *col;
+
+  if (!cg->last_clicked) return -1;
+
+  col = (MDIColor *)cg->last_clicked->data;    
+
+  return col->pos;
+}
+
 /*************** Remove Selected **************************************/
 
 typedef struct remove_t {
@@ -210,6 +236,22 @@ compare_func (gconstpointer ptr1, gconstpointer ptr2)
   if (col1->pos > col2->pos) return 1;
 
   return 0;
+}
+
+static GList *
+view_color_grid_get_selected (ViewColorGeneric *vcg)
+{
+  ColorGrid *cg = COLOR_GRID (vcg->widget);
+  GList *list = cg->selected;
+  GList *rem_list = NULL;
+
+  while (list) {
+    rem_list = g_list_append (rem_list, ((ColorGridCol *)list->data)->data);    
+
+    list = g_list_next (list);
+  }
+
+  return rem_list;
 }
 
 static void
@@ -335,8 +377,6 @@ view_color_grid_apply (ViewColorGeneric *vcg, gpointer data)
   prop_t *prop = data;
   ColorGrid *cg = COLOR_GRID (vcg->widget);
 
-  printf ("Grid    :: apply\n");
-
   color_grid_set_col_width_height (cg,
         gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (prop->spin_width)),
 	gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (prop->spin_height)));
@@ -349,8 +389,6 @@ view_color_grid_close (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
 
-  printf ("Grid    :: close\n");
-
   parent_class->close (vcg, prop->parent_data);
 
   gtk_object_unref (GTK_OBJECT (prop->gui));
@@ -362,8 +400,6 @@ view_color_grid_sync (ViewColorGeneric *vcg, gpointer data)
 {
   prop_t *prop = data;
   ColorGrid *cg = COLOR_GRID (vcg->widget);
-
-  printf ("Grid    :: sync \n");
 
   spin_set_value (GTK_SPIN_BUTTON (prop->spin_width), cg->col_width, prop);
   spin_set_value (GTK_SPIN_BUTTON (prop->spin_height), cg->col_height, prop);

@@ -4,6 +4,7 @@
 #include "gcolorsel.h"
 #include "mdi-color-generic.h"
 #include "mdi-color-file.h"
+#include "mdi-color-virtual-monitor.h"
 #include "view-color-generic.h"
 #include "view-color-edit.h"
 #include "gcolorsel.h"
@@ -32,7 +33,7 @@ static void revert_cb  (GtkWidget *widget);
 static void exit_cb    (GtkWidget *widget);
 
 /* edit */
-static void new_color_cb  (GtkWidget *widget);
+static void insert_color_cb  (GtkWidget *widget);
 static void remove_cb     (GtkWidget *widget);
 static void edit_cb       (GtkWidget *widget);
 static void properties_cb (GtkWidget *widget);
@@ -86,11 +87,11 @@ GnomeUIInfo file_menu[] = {
 };
 
 GnomeUIInfo edit_menu[] = {
-  GNOMEUIINFO_ITEM_STOCK (N_("New color"), NULL,
-			  new_color_cb, GNOME_STOCK_PIXMAP_ADD),
+  GNOMEUIINFO_ITEM_STOCK (N_("Insert color"), NULL,
+			  insert_color_cb, GNOME_STOCK_PIXMAP_ADD),
   GNOMEUIINFO_ITEM_STOCK (N_("Remove selected colors"), NULL, 
 			  remove_cb, GNOME_STOCK_PIXMAP_REMOVE),
-  GNOMEUIINFO_ITEM_NONE (N_("Edit selected color..."), NULL, edit_cb),
+  GNOMEUIINFO_ITEM_NONE (N_("Edit selected colors ..."), NULL, edit_cb),
   
   GNOMEUIINFO_SEPARATOR,
 
@@ -360,35 +361,39 @@ static void
 close_view_cb (GtkWidget *widget)
 {
   GnomeMDIChild *child = gnome_mdi_get_active_child (mdi);
+  MDIColorGeneric *mcg;
   GtkWidget *view;
 
   if (!child) return;
 
-  if ((child->views) && (! child->views->next)) { /* Only one view */
-    GtkWidget *dia;
-    char *str, *str2;
-    int ret;
+  mcg = MDI_COLOR_GENERIC (child);
 
-    str = g_strdup_printf (_("I'm going to close the last view of '%s' document.\n\nDo you want to close the document too ?"), MDI_COLOR_GENERIC (child)->name);
+  if (g_list_length (child->views) == 1) {
 
-    if (MDI_COLOR_GENERIC (child)->other_views) {     
-      str2 = g_strdup_printf (_("%s\n\nPlease note that %d virtual document use data from this document."), str, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
-      g_free (str); str = str2;
+    if (! mcg->temp) {
+      GtkWidget *dia;
+      char *str, *str2;
+      int ret;
+      
+      str = g_strdup_printf (_("I'm going to close the last view of '%s' document.\n\nDocument will be closed too, continue ?"), MDI_COLOR_GENERIC (child)->name);
+      
+      if (MDI_COLOR_GENERIC (child)->other_views) {     
+	str2 = g_strdup_printf (_("%s\n\nPlease note that %d virtual document use data from this document."), str, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
+	g_free (str); str = str2;
+      }
+      
+      dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION,
+				   GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
+				   NULL);
+      g_free (str);
+      
+      ret = gnome_dialog_run_and_close (GNOME_DIALOG (dia));
+      
+      if (ret == 1) return;
     }
 
-    dia = gnome_message_box_new (str, GNOME_MESSAGE_BOX_QUESTION,
-				 GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO,
-				 GNOME_STOCK_BUTTON_CANCEL, NULL);
-    g_free (str);
-
-    ret = gnome_dialog_run_and_close (GNOME_DIALOG (dia));
-
-    if (ret == 2) return;
-
-    if (ret == 0) {
-      gnome_mdi_remove_child (mdi, child, FALSE);
-      return;
-    }
+    gnome_mdi_remove_child (mdi, child, FALSE);
+    return;
   }
 
   if ((view = gnome_mdi_get_active_view  (mdi))) 
@@ -414,7 +419,7 @@ close_doc_cb (GtkWidget *widget)
     g_free (str); str = str2;
 
     if (MDI_COLOR_GENERIC (child)->other_views) {
-      str2 = g_strdup_printf (_("%s and that %d virtual document use data from this document"), str, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
+      str2 = g_strdup_printf (_("%s,\nand that %d virtual document use data from this document."), str, g_list_length (MDI_COLOR_GENERIC (child)->other_views));
 
       g_free (str); str = str2;
     } else {
@@ -483,28 +488,132 @@ about_cb (GtkWidget *widget)
 
 /****************** Edit Menu ***************************************/
 
-static void
-new_color_cb (GtkWidget *widget)
+void
+menu_edit (MDIColor *col)
 {
-  display_todo ();
+  MDIColorVirtualMonitor *monitor;
+
+  col = mdi_color_generic_get_owner (col);
+
+  monitor = mdi_color_virtual_monitor_new ();
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (monitor), _("Edit"));
+  mdi_color_generic_set_temp (MDI_COLOR_GENERIC (monitor), TRUE);
+  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (monitor));
+
+  mdi_color_virtual_monitor_add (monitor, col);
+  
+  mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (monitor),
+				      TYPE_VIEW_COLOR_EDIT);
+
+  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (monitor));
+
+  mdi_color_generic_connect (MDI_COLOR_GENERIC (col->owner),
+			     MDI_COLOR_GENERIC (monitor)); 
+}
+
+static void
+insert_color_cb (GtkWidget *widget)
+{
+  MDIColor *col;
+  ViewColorGeneric *view;
+  GtkWidget *w;
+  int pos;
+  
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
+  
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+
+  if (! mdi_color_generic_can_do (view->mcg, CHANGE_APPEND)) return;
+
+  pos = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_insert_pos (view);
+
+  mdi_color_generic_freeze (view->mcg);
+  col = mdi_color_generic_append_new (view->mcg, 255, 255, 255, _("New Color"));
+  mdi_color_generic_change_pos (view->mcg, col, pos);
+  mdi_color_generic_thaw (view->mcg);
+
+  menu_edit (col);
 }
 
 static void 
 remove_cb (GtkWidget *widget)
 {
   ViewColorGeneric *view;
+  GtkWidget *w;
+  GList *l;
+  MDIColorGeneric *mcg;
 
-  view = gtk_object_get_data (GTK_OBJECT (gnome_mdi_get_active_view (mdi)), 
-					  "view_object");
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
 
-  view_color_generic_remove_selected (view);
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+
+  VIEW_COLOR_GENERIC_GET_CLASS (view)->remove_selected (view);
+
+  /* Remove doc if 1) is temporary doc AND 2) no more colors */
+
+  l = mdi->children;
+  while (l) {
+    mcg = MDI_COLOR_GENERIC (l->data);
+    l = g_list_next (l);
+
+    if ((mcg->temp) && (mcg->last == -1)) 
+      gnome_mdi_remove_child (mdi, GNOME_MDI_CHILD (mcg), FALSE);
+  }
 }
 
 static void
 edit_cb (GtkWidget *widget)
 {
-  mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (gnome_mdi_get_active_child (mdi)), TYPE_VIEW_COLOR_EDIT);
-  gnome_mdi_add_view (mdi, gnome_mdi_get_active_child (mdi));
+  GtkWidget *w;
+  ViewColorGeneric *view;
+  MDIColorVirtualMonitor *monitor;
+  GList *list, *l;
+  MDIColor *col;
+  GList *connect = NULL;
+
+  w = gnome_mdi_get_active_view (mdi);
+  if (! w) return;
+
+  view = gtk_object_get_data (GTK_OBJECT (w), "view_object");
+
+  l = list = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_selected (view);
+  if (!list) return;
+
+  monitor = mdi_color_virtual_monitor_new ();
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (monitor), "Edit");
+  mdi_color_generic_set_temp (MDI_COLOR_GENERIC (monitor), TRUE);
+  gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (monitor));
+
+  while (l) {
+    col = l->data;
+
+    col = mdi_color_generic_get_owner (col);
+
+    mdi_color_virtual_monitor_add (monitor, col);
+
+    if (! g_list_find (connect, col->owner))
+      connect = g_list_prepend (connect, col->owner);
+
+    l = g_list_next (l);
+  }
+
+  mdi_color_generic_append_view_type (MDI_COLOR_GENERIC (monitor),
+				      TYPE_VIEW_COLOR_EDIT);
+
+  gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (monitor));
+
+  l = connect;
+  while (l) {
+    mdi_color_generic_connect (MDI_COLOR_GENERIC (l->data),
+			       MDI_COLOR_GENERIC (monitor)); 
+
+    l = g_list_next (l);
+  }
+  
+  g_list_free (connect);
+  g_list_free (list);
 }
 
 /******* Properties ********/
@@ -570,15 +679,20 @@ properties_destroy_cb (GtkWidget *widget, gpointer data)
   MDIColorGeneric *mcg;
   gpointer view_data, mcg_data;
 
-  printf ("Destroy\n");
-
   view      = gtk_object_get_data (GTK_OBJECT (widget), "prop-view");
   view_data = gtk_object_get_data (GTK_OBJECT (widget), "prop-view-data");
   mcg       = gtk_object_get_data (GTK_OBJECT (widget), "prop-document");
   mcg_data  = gtk_object_get_data (GTK_OBJECT (widget), "prop-document-data");
 
-  VIEW_COLOR_GENERIC_GET_CLASS (view)->close (view, view_data);  
-  MDI_COLOR_GENERIC_GET_CLASS  (mcg)->close  (mcg, mcg_data);
+  if (view) {
+    VIEW_COLOR_GENERIC_GET_CLASS (view)->close (view, view_data);  
+    gtk_signal_disconnect_by_data (GTK_OBJECT (view), widget);
+  }
+
+  if (mcg) {
+    MDI_COLOR_GENERIC_GET_CLASS  (mcg)->close  (mcg, mcg_data);
+    gtk_signal_disconnect_by_data (GTK_OBJECT (mcg), widget);
+  }
 
   prop_list = g_list_remove (prop_list, widget);
 }
@@ -590,11 +704,53 @@ properties_changed_cb (gpointer data)
 }
 
 static void
+properties_mcg_destroy_cb (GtkWidget *widget, gpointer data)
+{
+  MDIColorGeneric *mcg;
+  gpointer mcg_data;
+  GtkWidget *vbox;
+
+  mcg       = gtk_object_get_data (GTK_OBJECT (data), "prop-document");
+  mcg_data  = gtk_object_get_data (GTK_OBJECT (data), "prop-document-data");
+  vbox      = gtk_object_get_data (GTK_OBJECT (data), "prop-document-vbox");
+
+  MDI_COLOR_GENERIC_GET_CLASS (mcg)->close (mcg, mcg_data);
+
+  gtk_object_set_data (GTK_OBJECT (data), "prop-document", NULL);
+
+  if (! gtk_object_get_data (GTK_OBJECT (data), "prop-view")) 
+    gtk_object_destroy (GTK_OBJECT (data));
+  else
+    gtk_object_destroy (GTK_OBJECT (vbox));  
+}
+
+static void
+properties_view_destroy_cb (GtkWidget *widget, gpointer data)
+{
+  ViewColorGeneric *view;
+  gpointer view_data;
+  GtkWidget *vbox;
+
+  view      = gtk_object_get_data (GTK_OBJECT (data), "prop-view");
+  view_data = gtk_object_get_data (GTK_OBJECT (data), "prop-view-data");
+  vbox      = gtk_object_get_data (GTK_OBJECT (data), "prop-view-vbox");
+
+  VIEW_COLOR_GENERIC_GET_CLASS (view)->close (view, view_data);
+
+  gtk_object_set_data (GTK_OBJECT (data), "prop-view", NULL);
+
+  if (! gtk_object_get_data (GTK_OBJECT (data), "prop-document")) 
+    gtk_object_destroy (GTK_OBJECT (data));
+  else
+    gtk_object_destroy (GTK_OBJECT (vbox));  
+}
+
+static void
 properties_cb (GtkWidget *widget)
 {
   GtkWidget *property;
   ViewColorGeneric *view;
-  GtkWidget *vbox;
+  GtkWidget *vbox_mcg, *vbox_view;
   MDIColorGeneric *mcg;
   gpointer view_data, mcg_data;
   
@@ -610,30 +766,39 @@ properties_cb (GtkWidget *widget)
 
   /* view properties */
 
-  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
+  vbox_view = gtk_vbox_new (FALSE, GNOME_PAD);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox_view), GNOME_PAD);
 
   view_data = VIEW_COLOR_GENERIC_GET_CLASS (view)->get_control (view, 
-		    GTK_VBOX (vbox), properties_changed_cb, property);
+		    GTK_VBOX (vbox_view), properties_changed_cb, property);
+
+  gtk_signal_connect (GTK_OBJECT (view), "destroy", 
+		      properties_view_destroy_cb, property);
 
   gnome_property_box_append_page (GNOME_PROPERTY_BOX (property), 
-				  vbox, gtk_label_new ("View properties"));
+				  vbox_view, gtk_label_new ("View properties"));
 
   /* document properties */
 
-  vbox = gtk_vbox_new (FALSE, GNOME_PAD);
-  gtk_container_set_border_width (GTK_CONTAINER (vbox), GNOME_PAD);
+  vbox_mcg = gtk_vbox_new (FALSE, GNOME_PAD);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox_mcg), GNOME_PAD);
 
   mcg_data = MDI_COLOR_GENERIC_GET_CLASS (mcg)->get_control (mcg,
-		    GTK_VBOX (vbox), properties_changed_cb, property);
+		    GTK_VBOX (vbox_mcg), properties_changed_cb, property);
+
+  gtk_signal_connect (GTK_OBJECT (mcg), "destroy", 
+		      properties_mcg_destroy_cb, property);
 
   gnome_property_box_append_page (GNOME_PROPERTY_BOX (property), 
-				  vbox, gtk_label_new ("Document properties"));
+				  vbox_mcg, 
+				  gtk_label_new ("Document properties"));
 
   gtk_object_set_data (GTK_OBJECT (property), "prop-view", view);
   gtk_object_set_data (GTK_OBJECT (property), "prop-view-data", view_data);
+  gtk_object_set_data (GTK_OBJECT (property), "prop-view-vbox", vbox_view);
   gtk_object_set_data (GTK_OBJECT (property), "prop-document", mcg);
   gtk_object_set_data (GTK_OBJECT (property), "prop-document-data", mcg_data);
+  gtk_object_set_data (GTK_OBJECT (property), "prop-document-vbox", vbox_mcg);
 
   VIEW_COLOR_GENERIC_GET_CLASS (view)->sync (view, view_data);
   MDI_COLOR_GENERIC_GET_CLASS  (mcg)->sync  (mcg, mcg_data);

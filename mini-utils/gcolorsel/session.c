@@ -1,14 +1,18 @@
 #include "session.h"
 #include "mdi-color-generic.h"
 #include "mdi-color-file.h"
-#include "mdi-color-virtual.h"
+#include "mdi-color-virtual-rgb.h"
 #include "view-color-generic.h"
 #include "view-color-list.h"
 #include "view-color-grid.h"
 #include "utils.h"
+#include "gcolorsel.h"
 
 #include "gnome.h"
 
+static void session_delete_temp (GnomeMDI *mdi);
+
+static gboolean corrupted;
 
 /******************************* Save **********************************/
 
@@ -140,6 +144,11 @@ next_views (MDIColorGeneric *mcg, char *str)
     type = gtk_type_from_name (buf);
     g_free (buf);
 
+    if (!type) {
+      type = views_tab[0].type ();
+      corrupted = TRUE;
+    }
+
     mdi_color_generic_append_view_type (mcg, type);
 
     gnome_config_pop_prefix ();
@@ -165,7 +174,11 @@ GnomeMDIChild *child_create (const gchar *config)
   buf = gnome_config_get_string ("Type");
   type = gtk_type_from_name (buf);
   g_free (buf);
-  /* FIXME : check for error, type == 0 */
+
+  if (!type) {
+    type = mdi_color_generic_get_type ();
+    corrupted = TRUE;
+  }
 
   buf = gnome_config_get_string ("Views");
   gnome_config_pop_prefix ();
@@ -237,8 +250,9 @@ connect_to_parents (GnomeMDI *mdi, MDIColorGeneric *mcg, char *str)
 
   while (tab[i]) {
     parent = search_from_key (mdi, atoi (tab[i]));
-    
-    mdi_color_generic_connect (parent, mcg);
+
+    if (parent)
+      mdi_color_generic_connect (parent, mcg);
 
     i++;
   }
@@ -282,9 +296,21 @@ load_config (GnomeMDI *mdi)
   }
 }
 
+static int
+session_fail ()
+{
+  GtkWidget *dia;
+
+  dia = gnome_message_box_new (_("Your config file is corrupted.\nDo you want to create a new session ?"), GNOME_MESSAGE_BOX_ERROR, GNOME_STOCK_BUTTON_YES, GNOME_STOCK_BUTTON_NO, NULL);
+
+  return gnome_dialog_run_and_close (GNOME_DIALOG (dia));
+}
+
 gboolean 
 session_load (GnomeMDI *mdi)
 {
+  corrupted = FALSE;
+
   if (! gnome_config_get_bool ("/gcolorsel/gcolorsel/FirstTime=TRUE")) {
     mdi->tab_pos = gnome_config_get_int ("/gcolorsel/gcolorsel/TabPos");
 
@@ -292,12 +318,35 @@ session_load (GnomeMDI *mdi)
 
     load_config (mdi);
 
+    if (corrupted) 
+      if (! session_fail ()) {
+	gnome_mdi_remove_all (mdi, TRUE);
+	return FALSE;
+      }
+
+    session_delete_temp (mdi);
+
     set_config_key_pos (gnome_config_get_int ("/gcolorsel/gcolorsel/Key"));
 
     return TRUE;
   } 
 
   return FALSE;
+}
+
+static
+void session_delete_temp (GnomeMDI *mdi)
+{
+  GList *list = mdi->children;
+  GnomeMDIChild *child;
+  
+  while (list) {
+    child = list->data;
+    list = g_list_next (list);
+
+    if (MDI_COLOR_GENERIC (child)->temp) 
+      gnome_mdi_remove_child (mdi, child, FALSE);    
+  }
 }
 
 void
@@ -311,7 +360,7 @@ session_load_data (GnomeMDI *mdi)
   gtk_flush ();
 
   while (list) {
-    if (IS_MDI_COLOR_FILE (list->data)) {
+    if (IS_MDI_COLOR_FILE (list->data) && (MDI_COLOR_FILE (list->data)->filename)) {
       if (! mdi_color_file_load (MDI_COLOR_FILE (list->data), mdi)) {
 	if (! str) 
 	  str = g_string_new (MDI_COLOR_FILE (list->data)->filename);
@@ -349,7 +398,7 @@ session_create (GnomeMDI *mdi)
 {
   GtkWidget *first;
   MDIColorFile *file;
-  MDIColorVirtual *virtual;
+  MDIColorVirtualRGB *virtual;
 
   /* Configure MDI */
   mdi->tab_pos = GTK_POS_TOP;
@@ -372,11 +421,11 @@ session_create (GnomeMDI *mdi)
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
   
   /* Create a search document */
-  virtual = mdi_color_virtual_new ();
+  virtual = mdi_color_virtual_rgb_new ();
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (virtual));
 
   /* Configure search */
-  mdi_color_virtual_set (virtual, 255, 255, 255, 100);
+  mdi_color_virtual_rgb_set (virtual, 255, 255, 255, 100);
   mdi_color_generic_set_name (MDI_COLOR_GENERIC (virtual), "Search");
   
   /* Add a ColorList view for the search document  */  

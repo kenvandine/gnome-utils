@@ -13,9 +13,9 @@ static ViewColorGenericClass *parent_class = NULL;
 static void view_color_edit_class_init (ViewColorEditClass *class);
 static void view_color_edit_init       (ViewColorEdit *vcl);
 
-static void view_color_edit_data_changed    (ViewColorGeneric *vcg, 
-					     gpointer data);
-static void view_color_edit_remove_selected (ViewColorGeneric *vcg);
+static void view_color_edit_data_changed (ViewColorGeneric *vcg, 
+					  gpointer data);
+static GList* view_color_edit_get_selected (ViewColorGeneric *vcg);
 
 static gpointer 
 view_color_edit_get_control       (ViewColorGeneric *vcg, GtkVBox *box,
@@ -64,7 +64,7 @@ view_color_edit_class_init (ViewColorEditClass *class)
   vcg_class    = (ViewColorGenericClass *)class;
   
   vcg_class->data_changed = view_color_edit_data_changed;
-  vcg_class->remove_selected = view_color_edit_remove_selected;
+  vcg_class->get_selected = view_color_edit_get_selected;
 /*  vcg_class->get_control = view_color_edit_get_control;
     vcg_class->apply       = view_color_edit_apply;
     vcg_class->close       = view_color_edit_close;
@@ -305,7 +305,8 @@ view_color_edit_data_changed (ViewColorGeneric *vcg, gpointer data)
       gtk_widget_show (item);
       gtk_container_add (GTK_CONTAINER (gtk_list), item);
 
-      gtk_widget_set_sensitive (vce->button_next, TRUE);
+      if (g_list_length (gtk_list->children) > 1)
+	gtk_widget_set_sensitive (vce->button_next, TRUE);
 
       gtk_signal_connect (GTK_OBJECT (item), "destroy", 
 			  GTK_SIGNAL_FUNC (item_destroy_notify), col);
@@ -362,9 +363,13 @@ view_color_edit_data_changed (ViewColorGeneric *vcg, gpointer data)
     gtk_list_select_item (gtk_list, next_select);
 }
 
-static void
-view_color_edit_remove_selected (ViewColorGeneric *vcg)
+static GList *
+view_color_edit_get_selected (ViewColorGeneric *vcg)
 {
+  if (VIEW_COLOR_EDIT (vcg)->editing)
+    return g_list_append (NULL, VIEW_COLOR_EDIT (vcg)->editing);
+  else
+    return NULL;
 }
 
 /*********************** PROPERTIES ***************************/

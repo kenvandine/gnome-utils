@@ -31,6 +31,10 @@ gcolorsel_SOURCES = 	dialog-new-view.c		\
 			mdi-color-file.h		\
 			mdi-color-virtual.c		\
 			mdi-color-virtual.h		\
+			mdi-color-virtual-monitor.c	\
+			mdi-color-virtual-monitor.h	\
+			mdi-color-virtual-rgb.c		\
+			mdi-color-virtual-rgb.h		\
 			session.c			\
 			session.h			\
 			utils.c				\
@@ -47,8 +51,8 @@ gcolorsel_SOURCES = 	dialog-new-view.c		\
 			widget-color-grid.h		\
 			widget-control-generic.c	\
 			widget-control-generic.h	\
-			widget-control-virtual.c	\
-			widget-control-virtual.h
+			widget-control-virtual-rgb.c	\
+			widget-control-virtual-rgb.h
 
 gcolorsel_LDADD = \
 	$(GNOME_LIBDIR)  				\

@@ -48,6 +48,8 @@ struct _ViewColorGenericClass {
 
   void     (*data_changed)    (ViewColorGeneric *cg, gpointer data);
   void     (*remove_selected) (ViewColorGeneric *cg);
+  GList *  (*get_selected)    (ViewColorGeneric *cg);
+  int      (*get_insert_pos)  (ViewColorGeneric *cg);
   gpointer (*get_control)     (ViewColorGeneric *cg, GtkVBox *box,
 			       void (*changed_cb)(gpointer data), 
 			       gpointer change_data);
@@ -63,7 +65,6 @@ GtkType view_color_generic_get_type (void);
 
 void view_color_generic_data_changed    (ViewColorGeneric *vcg, 
 					 GList *changes);
-void view_color_generic_remove_selected (ViewColorGeneric *vcg);
 
 END_GNOME_DECLS
 

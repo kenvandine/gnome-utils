@@ -9,5 +9,4 @@ gchar *s = N_("window1");
 gchar *s = N_("Red :");
 gchar *s = N_("Green :");
 gchar *s = N_("Blue :");
-gchar *s = N_("Position :");
 gchar *s = N_("Name :");

@@ -1,20 +1,23 @@
-(UPDATE ON 2000-04-24)
+(UPDATE ON 2000-05-01)
 
 Liable to change :
 
-[ ] When closing a view, close the document ?
+[X] When closing a view, close the document ?
 
 Next works :
 
 [X] Save / Save as / Save fail dialogs
 [X] Show a warning if session can load a file
-[ ] Split virtual.
-[ ] Create new document dialog.
+[X] Split virtual.
+[X] New color
+[X] Don't ask confirmation when closing an edit document.
+[X] Double click to edit color
+[X] Create a tab with all document type / name / ... 
+[ ] Create 'new document' dialog.
+[ ] Finish Load / Save comment / header.
+[ ] Mask document modified if header / comment changed.
 
-[ ] After that, I will have a lot of annoying works for school :-(
-[ ] Examination
-
-[ ] New color
+[X] New color
 
 + Properties :
 
@@ -37,13 +40,11 @@ Next works :
 [X] + Save / Save as
 [ ] + Last version
 [X] + Close document
-[ ] + A dialog with a list of documents to close. Since all document 
-      didn't have at least 1 view, user need that to close a document !
 
 + Edit :
 
 [X] + Edit color
-[ ] + New color (Create a new color + switch to a new mdi-edit-view)
+[X] + New color (Create a new color + switch to a new mdi-edit-view)
 [ ] + Grab a color (? and after ...)
 [ ] + Put selected colors in ...
 [ ] + Search selected colors in ...
@@ -60,12 +61,15 @@ Next works :
 
 [ ] + DnD for preview
 [ ] * Maybe sort color in GtkList. (order by pos / name)
+[ ] + Color format.
 
 + For gimp palette : 
 
-[ ] * Load signature
-[ ] * Save signature
+[X] * Load signature
+[X] * Save signature
 [X] * Create a control that modify signature (properties in mdi-color-file).
+[ ] * Load comments
+[ ] * Save comments
 
 + Progress bar :
 
@@ -85,12 +89,12 @@ Next works :
 
 + Virtual document :
 
-[ ] + Split; make mdi-color-virtual base class for :
+[X] + Split; make mdi-color-virtual base class for :
 
       + mdi-color-virtual-search-rgb
       + mdi-color-virtual-search-name
 
-[ ] + And, maybe a virtual view constructed from selected colors, viewed
+[X] + And, maybe a virtual view constructed from selected colors, viewed
       by a view-color-edit ... so, the only colors you get in the combo's view
       will be the selected colors ...
       (? how to save it for session ?).
@@ -108,11 +112,12 @@ Next works :
   TODO : view-color-edit.c
 
 [ ] Bugs fix / tests
-[ ] Help (someone is writting it)
+[ ] Help. Synchronize it with the current version.
 
 ************************ BUGS ***********************
 
 [X] - Bad icon when dragging a color from ColorList
-[ ] - Need to delete GnomePropertyBox when closing a view/document ...
+[X] - Need to delete GnomePropertyBox when closing a view/document ...
 [X] - view_color_list_button_press never called.
 [X] - click_column and drag_begin never, too ... ?!?
+[X] - Bug when editing document name.

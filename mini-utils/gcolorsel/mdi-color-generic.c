@@ -15,10 +15,12 @@ static void mdi_color_generic_document_changed (MDIColorGeneric *mcg,
 static GtkWidget *
 mdi_color_generic_create_view                  (MDIColorGeneric *child);
 
-static GList *mdi_color_generic_get_append_pos   (MDIColorGeneric *mcg, 
-						MDIColor *col);
 static void mdi_color_generic_free_col         (MDIColor *col);
 static GList *mdi_color_generic_find_col       (MDIColorGeneric *mcg, int pos);
+
+static void mdi_color_generic_clear_all_other_views (MDIColorGeneric *mcg);
+static void mdi_color_generic_set_all_color_change (MDIColorGeneric *mcg, 
+						    int val);
 
 static gpointer
 mdi_color_generic_get_control       (MDIColorGeneric *vcg, GtkVBox *box,
@@ -121,6 +123,8 @@ mdi_color_generic_init (MDIColorGeneric *mcg)
   mcg->get_control_type = NULL;
   mcg->changes_phase    = 1;
 
+  mcg->temp = FALSE;
+
   mcg->flags = CHANGE_APPEND | CHANGE_REMOVE | CHANGE_NAME | CHANGE_POS
                      | CHANGE_RGB | CHANGE_CLEAR;
   
@@ -131,10 +135,14 @@ static void
 mdi_color_generic_destroy (GtkObject *obj)
 {
   MDIColorGeneric *mcg = MDI_COLOR_GENERIC (obj);
+    
+  mdi_color_generic_set_all_color_change (mcg, CHANGE_REMOVE);
 
   while (mcg->parents) 
     mdi_color_generic_disconnect (mcg->parents->data, mcg);
-    
+
+  mdi_color_generic_clear_all_other_views (mcg);    
+
   while (mcg->other_views) 
     mdi_color_generic_disconnect (mcg, mcg->other_views->data); 
 
@@ -624,7 +632,7 @@ mdi_color_generic_change_pos (MDIColorGeneric *mcg,
 
   if (new_pos < col->pos) {
     list = mdi_color_generic_find_col (mcg, new_pos);
-    for (i = new_pos; i < col->pos; i++, list = g_list_next (list)) {
+    for (i = new_pos; i < col->pos && list; i++, list = g_list_next (list)) {
       col_tmp = list->data;
       col_tmp->pos++;
       mdi_color_generic_post_change (mcg, col_tmp, CHANGE_POS);
@@ -634,7 +642,7 @@ mdi_color_generic_change_pos (MDIColorGeneric *mcg,
 
     if (new_pos > col->pos) {     
       list = mdi_color_generic_find_col (mcg, new_pos);
-      for (i = new_pos; i > col->pos; i--, list = g_list_previous (list)) {
+      for (i = new_pos; i > col->pos && list; i--, list = g_list_previous (list)){
 	col_tmp = list->data;
 	col_tmp->pos--;
 	mdi_color_generic_post_change (mcg, col_tmp, CHANGE_POS);
@@ -692,13 +700,42 @@ void mdi_color_generic_disconnect (MDIColorGeneric *mcg,
 {
   mcg->other_views = g_list_remove (mcg->other_views, to);
   to->parents = g_list_remove (to->parents, mcg);
+}
 
-  /* send remove request for 'mcg color' to disconnected document 'to' */
+static void 
+mdi_color_generic_clear_all_other_views (MDIColorGeneric *mcg)
+{
+  GList *list = mcg->other_views;
+  gboolean done = FALSE;
+  MDIColorGeneric *to;
 
-  mdi_color_generic_set_all_color_change (mcg, CHANGE_REMOVE);
-  gtk_signal_emit_by_name (GTK_OBJECT (to), "document_changed", mcg->col);
-//  mdi_color_generic_set_all_color_change (mcg, 0);
-  mcg->changes_phase++;
+  while (list) {
+    to = list->data;
+
+    if (g_list_length (to->parents) == 1) {
+      MDIColor tmp;
+      GList list;
+      
+      tmp.change = CHANGE_CLEAR;
+      tmp.owner = mcg;
+      
+      list.data = &tmp;
+      list.next = list.prev = NULL;
+      
+      gtk_signal_emit_by_name (GTK_OBJECT (to), "document_changed", &list);
+    } else {
+      if (!done) {
+	mdi_color_generic_set_all_color_change (mcg, CHANGE_REMOVE);
+	done = TRUE;
+      }
+      gtk_signal_emit_by_name (GTK_OBJECT (to), "document_changed", mcg->col);
+    }
+
+    list = g_list_next (list);
+  }
+  
+  if (done)
+    mcg->changes_phase++;
 }
 
 MDIColor *
@@ -782,6 +819,12 @@ mdi_color_generic_set_name (MDIColorGeneric *mcg, char *name)
     gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), mcg->name);
 }
 
+void 
+mdi_color_generic_set_temp (MDIColorGeneric *mcg, gboolean val)
+{
+  mcg->temp = val;
+}
+
 /******************************* PROPERTIES ********************************/
 
 typedef struct prop_t {
@@ -836,11 +879,8 @@ mdi_color_generic_sync (MDIColorGeneric *mcg, gpointer data)
 {
   prop_t *prop = data;
 
-  printf ("MDI :: sync\n");
-
   gtk_signal_handler_block_by_data (GTK_OBJECT (prop->entry_name), prop);
-  gtk_entry_set_text (GTK_ENTRY (prop->entry_name), 
-		      GNOME_MDI_CHILD (mcg)->name);
+  gtk_entry_set_text (GTK_ENTRY (prop->entry_name), mcg->name);
   gtk_signal_handler_unblock_by_data (GTK_OBJECT (prop->entry_name), prop);
 }
 
@@ -849,9 +889,7 @@ mdi_color_generic_apply (MDIColorGeneric *mcg, gpointer data)
 {
   prop_t *prop = data;  
 
-  printf ("MDI :: apply\n");
-
-  gnome_mdi_child_set_name (GNOME_MDI_CHILD (mcg), 
+  mdi_color_generic_set_name (mcg, 
 			    gtk_entry_get_text (GTK_ENTRY (prop->entry_name)));
 }
 
@@ -859,8 +897,6 @@ static void
 mdi_color_generic_close (MDIColorGeneric *mcg, gpointer data)
 {
   prop_t *prop = data;
-
-  printf ("MDI :: close\n");
 
   gtk_object_unref (GTK_OBJECT (prop->gui));
   g_free (prop);
@@ -872,6 +908,7 @@ static void
 mdi_color_generic_save (MDIColorGeneric *mcg)
 {
   gnome_config_set_string ("Name", mcg->name);
+  gnome_config_set_bool ("Temp", mcg->temp);
 }
 
 static void
@@ -880,6 +917,7 @@ mdi_color_generic_load (MDIColorGeneric *mcg)
   char *str = gnome_config_get_string ("Name");
 
   mdi_color_generic_set_name (mcg, str);
+  mcg->temp = gnome_config_get_bool ("Temp");
 
   g_free (str);
 }

@@ -597,7 +597,11 @@ void
 color_grid_change_rgb (ColorGrid *cg, gpointer data, int r, int g, int b)
 {
   ColorGridCol *col = color_grid_find_item_from_data (cg, data)->data;
-  
+
+  col->r = r;
+  col->g = g;
+  col->b = b;
+
   color_grig_for_idle (cg, col);
 }
 
