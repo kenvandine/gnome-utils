@@ -42,6 +42,33 @@ static void okayed(GtkWidget *w, int button, gpointer *d)
 	exit(0);
 }
 
+static GtkTextBuffer *dialog_textbox_load_file (const char *filename)
+{
+	GtkTextBuffer *textBuff;
+	GtkTextIter iter;
+	char buf[512];
+	FILE *fp;
+
+	fp = fopen (filename, "r");
+		
+	if (fp == NULL)
+		return NULL;
+
+	textBuff = gtk_text_buffer_new (NULL);
+	gtk_text_buffer_get_start_iter (textBuff, &iter);
+
+	while (fgets(buf, 511, fp) != NULL)
+		gtk_text_buffer_insert (textBuff, &iter, buf, -1);
+	fclose(fp);
+
+	/*
+	 * We do this, so that GtkTextView shows the top of the file.
+	 */
+	gtk_text_buffer_get_start_iter (textBuff, &iter);
+	gtk_text_buffer_place_cursor (textBuff, &iter);
+
+	return textBuff;
+}
 /*
  * Display text from a file in a dialog box.
  */
@@ -55,80 +82,58 @@ int dialog_textbox(const char *title, const char *file, int height, int width)
 	WINDOW *dialog, *text;
 
 	if (gnome_mode) {
-		GtkWidget *w;
-		GtkWidget *hbox;
-		GtkWidget *vbox;
-		
-		GtkWidget *scroller;
-		GtkWidget *text;
-		GtkWidget *tbox;
-		char buf[512];
+		GtkWidget *dialog;
+		GtkWidget *sw;
+		GtkWidget *textView;
+		GtkTextBuffer *textBuff;
 
-		FILE *fp=fopen(file, "r");
-		
-		if(fp==NULL)
-		{
-			GtkWidget *w = gtk_message_dialog_new (NULL,
-				GTK_DIALOG_DESTROY_WITH_PARENT,
-				GTK_MESSAGE_ERROR,
-				GTK_BUTTONS_OK,
-				"Unable to open file",
-				NULL);
-			gtk_widget_show(w);
-			return 0;
+		/*
+		 * Load the file.
+		 */
+		textBuff = dialog_textbox_load_file (file);
+		if (!textBuff) {
+			dialog = gtk_message_dialog_new (NULL,
+					 GTK_DIALOG_DESTROY_WITH_PARENT,
+					 GTK_MESSAGE_ERROR,
+					 GTK_BUTTONS_OK,
+					 "Unable to open file",
+					 NULL);
+			gtk_dialog_run (GTK_DIALOG (dialog));
+			return -1;
 		}
 
-		w  = gtk_dialog_new_with_buttons (title,
-                                          NULL,
-                                          GTK_DIALOG_DESTROY_WITH_PARENT,
+		/*
+		 * Create the dialog with everything packed in it nicely.
+		 */
+		dialog = gtk_dialog_new_with_buttons (title, NULL,
+					  GTK_DIALOG_DESTROY_WITH_PARENT,
                                           GTK_STOCK_OK,
                                           GTK_RESPONSE_OK,
                                           NULL);
-		
-		gtk_window_set_title(GTK_WINDOW(w), title);
 
-		hbox = gtk_hbox_new(FALSE, 0);
-		vbox = gtk_vbox_new(FALSE, 0);
+		sw = gtk_scrolled_window_new (NULL, NULL);
+		gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+						GTK_POLICY_AUTOMATIC,
+						GTK_POLICY_AUTOMATIC);
+		gtk_box_pack_start_defaults (
+			GTK_BOX (GTK_DIALOG (dialog)->vbox), sw);
+		gtk_widget_show (sw);
 
-		tbox=gtk_hbox_new(FALSE, 0);
-		
-		text=gtk_text_view_new();
-		
-		gtk_box_pack_start(GTK_BOX(tbox), text, FALSE, FALSE, 0);
-		
-		scroller=gtk_vscrollbar_new(GTK_TEXT_VIEW(text)->vadjustment);
-		gtk_box_pack_start(GTK_BOX(tbox), scroller, FALSE, FALSE, 0);
-		
-		gtk_widget_show_all(tbox);
+		textView = gtk_text_view_new_with_buffer (textBuff);
+		gtk_text_view_set_editable (GTK_TEXT_VIEW (textView), FALSE);
+		gtk_container_add (GTK_CONTAINER (sw), textView);
+		gtk_widget_show (textView);
 
-		
-		
-		gtk_box_pack_start(GTK_BOX(vbox), tbox, TRUE, TRUE, 0);
-		gtk_widget_show(vbox);
-		
-		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
-		gtk_widget_show(hbox);
+		gtk_widget_set_size_request (textView, 8*width, 7*height);
 
-		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(w)->vbox),
-				   hbox,
-				   TRUE, TRUE, GNOME_PAD);
-		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
-		
-		gtk_widget_realize(text);
-		gtk_widget_set_size_request(text, 8*width, 7*height);
+		gtk_window_set_position (GTK_WINDOW (dialog),
+					 GTK_WIN_POS_CENTER);
+		gtk_widget_show (dialog);
 
-		while(fgets(buf, 511, fp)!=NULL)
-		{
-			(GTK_TEXT_VIEW_GET_CLASS(text)->insert_at_cursor)
-				(GTK_TEXT_VIEW(text), buf);
-		}
-		fclose(fp);
-		gtk_signal_connect(GTK_OBJECT(w), "close",
+		gtk_signal_connect(GTK_OBJECT(dialog), "close",
 			GTK_SIGNAL_FUNC(cancelled), NULL);
-		gtk_signal_connect(GTK_OBJECT(w), "response",
+		gtk_signal_connect(GTK_OBJECT(dialog), "response",
 			GTK_SIGNAL_FUNC(okayed), NULL);
-		gtk_widget_show(w);
-		gtk_widget_grab_focus (text);
 		gtk_main();
 		return 0;
 	}

@@ -20,7 +20,7 @@
 
 #include "dialog.h"
 
-static void Usage(const char *name);
+void Usage();
 extern int dialog_yesno_with_default(const char *title, const char *prompt, int height, 
 				     int width, int yesno_default);
 int callback_writeerr(GtkWidget *w, gpointer *pt);
@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 	textdomain(GETTEXT_PACKAGE);
 
 	if (argc < 2) {
-		Usage(argv[0]);
+		Usage();
 		exit(-1);
 	}
 	
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 	else if (!strcmp(argv[1], "--create-rc")) {
 #ifndef NO_COLOR_CURSES
 		if (argc != 3) {
-			Usage(argv[0]);
+			Usage();
 			exit(-1);
 		}
 		create_rc(argv[2]);
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 	while (offset < argc - 1 && !end_common_opts) {		/* Common options */
 		if (!strcmp(argv[offset + 1], "--title")) {
 			if (argc - offset < 3 || title != NULL) {
-				Usage(argv[0]);
+				Usage();
 				exit(-1);
 			} else {
 				title = argv[offset + 2];
@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
 			}
 		} else if (!strcmp(argv[offset + 1], "--backtitle")) {
 			if (backtitle != NULL) {
-				Usage(argv[0]);
+				Usage();
 				exit(-1);
 			} else {
 				backtitle = argv[offset + 2];
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 			offset++;
 		} else if (!strcmp(argv[offset + 1], "--clear")) {
 			if (clear_screen) {	/* Hey, "--clear" can't appear twice! */
-				Usage(argv[0]);
+				Usage();
 				exit(-1);
 			} else if (argc == 2) {		/* we only want to clear the screen */
 				init_dialog();
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
 	}
 
 	if (argc - 1 == offset) {	/* no more options */
-		Usage(argv[0]);
+		Usage();
 		exit(-1);
 	}
 	/* use a table to look for the requested mode, to avoid code duplication */
@@ -185,13 +185,13 @@ int main(int argc, char *argv[])
 			break;
 
 	if (!modePtr->name)
-		Usage(argv[0]);
+		Usage();
 	if (argc - offset < modePtr->argmin)
-		Usage(argv[0]);
+		Usage();
 	if (modePtr->argmax && argc - offset > modePtr->argmax)
-		Usage(argv[0]);
+		Usage();
 	if ((argc - offset) % modePtr->argmod)
-		Usage(argv[0]);
+		Usage();
 
 /*
  * Check the range of values for height & width of dialog box for text mode.
@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
 
         if(retval == -10)
         {
-            Usage(argv[0]);
+            Usage();
             retval = !retval;
         }
         
@@ -222,7 +222,7 @@ int main(int argc, char *argv[])
 /*
  * Print program usage
  */
-static void Usage(const char *name)
+static void Usage()
 {
 	fprintf(stderr, "\
 \ndialog version 0.3, by Savio Lam (lam836@cs.cuhk.hk).\
@@ -230,9 +230,9 @@ static void Usage(const char *name)
 \n\
 \n* Display dialog boxes from shell scripts *\
 \n\
-\nUsage: %s --clear\
-\n       %s --create-rc <file>\
-\n       %s [--title <title>] [--separate-output] [--backtitle <backtitle>] [--clear] <Box options>\
+\nUsage: gdialog --clear\
+\n       gdialog --create-rc <file>\
+\n       gdialog [--title <title>] [--separate-output] [--backtitle <backtitle>] [--clear] <Box options>\
 \n\
 \nBox options:\
 \n\
@@ -246,7 +246,7 @@ static void Usage(const char *name)
 \n  --radiolist <text> <height> <width> <list height> <tag1> <item1> <status1>...\
 \n  --gauge     <text> <height> <width> <percent>\
 \n  --guage     <text> <height> <width> <percent>\n",
-                VERSION, name, name, name);
+                VERSION);
 	exit(-1);
 }
 

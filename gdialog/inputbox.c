@@ -29,14 +29,14 @@ static void cancelled(GtkWidget *w, gpointer *d)
 
 static void okayed(GtkWidget *w, int button, gpointer *d)
 {
-	if(button==GTK_RESPONSE_OK)
-	{
+	if(button == GTK_RESPONSE_OK) {
 		gchar *p = (gchar *) gtk_entry_get_text(GTK_ENTRY(input));
 
 		write(2,p, strlen(p));
 		write(2, "\n", 1);
-	}
-	exit(button);
+		exit (0);
+	} else if (button == GTK_RESPONSE_CANCEL)
+		exit(1);
 }
 
 
@@ -57,10 +57,10 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 			GtkWidget *w  = gtk_dialog_new_with_buttons (title,
 						NULL,
 						GTK_DIALOG_DESTROY_WITH_PARENT,
-						GTK_STOCK_OK,
-						GTK_RESPONSE_OK,
 						GTK_STOCK_CANCEL,
 						GTK_RESPONSE_CANCEL,
+						GTK_STOCK_OK,
+						GTK_RESPONSE_OK,
 						NULL);
 
 		GtkWidget *hbox;
@@ -321,10 +321,10 @@ int dialog_inputbox(const char *title, const char *prompt, int height, int width
 		case ' ':
 		case '\n':
 			delwin(dialog);
-			if(button == GTK_RESPONSE_NONE)
-				return(GTK_RESPONSE_OK);
-			else
-				return(button);
+			if(button == GTK_RESPONSE_NONE || button == GTK_RESPONSE_OK)
+				return 0;
+			else if (button == GTK_RESPONSE_CANCEL)
+				return 1;
 		case ESC:
 			break;
 		}

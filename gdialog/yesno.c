@@ -27,8 +27,14 @@ int dialog_yesno_with_default(const char *title, const char *prompt,
 
 static void callback_yn(GtkWidget *w, gint button, gpointer *unused)
 {
-	/* yes = GTK_RESPONSE_YES no = GTK_RESPONSE_NO */
-	exit(button);
+	/*
+	 * We have to do this, because GTK_RESPONSE_[YES/NO] enums are -8 and
+	 * -9, respectively.
+	 */
+	if (button == GTK_RESPONSE_YES)
+		exit (0);
+	else if (button == GTK_RESPONSE_NO)
+		exit (1);
 }
 
 static void callback_err(GtkWidget *w, gpointer *unused)
@@ -49,16 +55,15 @@ int dialog_yesno_with_default(const char *title, const char *prompt, int height,
 	int i, x, y, key = GTK_RESPONSE_YES, button = 0;
 	WINDOW *dialog;
 
-
 	if (gnome_mode) {
 
 		GtkWidget *w  = gtk_dialog_new_with_buttons (title,
 				NULL,
 				GTK_DIALOG_DESTROY_WITH_PARENT,
-				GTK_STOCK_YES,
-				GTK_RESPONSE_YES,
 				GTK_STOCK_NO,
 				GTK_RESPONSE_NO,
+				GTK_STOCK_YES,
+				GTK_RESPONSE_YES,
 				NULL);
 		GtkWidget *hbox;
 		GtkWidget *vbox;
@@ -157,13 +162,12 @@ int dialog_yesno_with_default(const char *title, const char *prompt, int height,
 		case 'n':
 			delwin(dialog);
 			return 1;
-
 		case M_EVENT + 'y':	/* mouse enter... */
 		case M_EVENT + 'n':	/* use the code for toggling */
 			if(key == M_EVENT + 'y')
-				button = GTK_RESPONSE_NO;
-			else
 				button = GTK_RESPONSE_YES;
+			else
+				button = GTK_RESPONSE_NO;
 
 		case TAB:
 		case KEY_UP:
@@ -184,12 +188,17 @@ int dialog_yesno_with_default(const char *title, const char *prompt, int height,
 		case ' ':
 		case '\n':
 			delwin(dialog);
-			return button;
+			if (button == GTK_RESPONSE_YES)
+				return 0;
+			else if (button == GTK_RESPONSE_NO)
+				return 1;
+
 		case ESC:
 			break;
 		}
 	}
 
+	
 	delwin(dialog);
 	return -1;		/* ESC pressed */
 }

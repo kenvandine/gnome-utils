@@ -22,54 +22,43 @@
 
 #include "dialog.h"
 
-static GtkTreeView *cl;
-static int format;
+
+static int flag_separate_output = 0;
 
 static void cancelled(GtkWidget *w, gpointer *d)
 {
 	exit(-1);
 }
 
-static void err_outputter(GtkTreeModel *model, GtkTreePath *path_buf, 
-			GtkTreeIter *iter, GtkTreeView *cl)
+static void err_outputter(gpointer data, gpointer user_data)
 {
-	char *p;
-	GValue value = {0, };
+	gchar *p;
 
-	gtk_tree_model_get_value (model, iter, 0, &value);
-	p = g_strdup (g_value_get_string (&value));
-	g_value_unset (&value);
+	g_return_if_fail (data != NULL);
+	g_return_if_fail (GTK_IS_TOGGLE_BUTTON (data));
 
-	if(format==0)
-	{
-		write(2, p, strlen(p));
-		write(2, "\n", 1);
-	}
-	else
-	{
-		if(format++>1)
-			write(2," \"", 2);
-		else
-			write(2, "\"", 1);
-		write(2, p, strlen(p));
-		write(2, "\"", 1);
-	}
+	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (data))) {
+		p = g_object_get_data (G_OBJECT (data), "item_tag");
+
+		if (flag_separate_output) {
+			write (2, p, strlen (p));
+			write (2, "\n", 1);
+		} else {
+			write (2, "\"", 1);
+			write (2, p, strlen (p));
+			write (2, "\" ", 2);
+		}
+	}		
 }
 
 static void okayed(GtkWidget *w, int button, gpointer *d)
 {
-	GtkTreeSelection *selection = NULL;
-
-	if(button==GTK_RESPONSE_OK)
-	{
-		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (cl));
-		gtk_tree_selection_selected_foreach(selection,
-		(GtkTreeSelectionForeachFunc)err_outputter,GTK_TREE_VIEW(cl));
-
-		if(format!=0)
-			write(2,"\n",1);
+	if (button == GTK_RESPONSE_OK) {
+		g_list_foreach (*d, err_outputter, NULL);
+		exit (0);
+	} else if (button == GTK_RESPONSE_CANCEL) {
+		exit (1);	
 	}
-	exit(button);
 }
 
 
@@ -106,33 +95,52 @@ static void print_item(WINDOW * win, const char *tag, const char *item, int stat
 }
 
 
-static gint lwidth=0 , rwidth=0;
-
-static void clist_add(GtkTreeView *cl, char *l, char *r)
+static void clist_add (GList **list, GtkWidget *box,
+		       char *l, char *r, gboolean select)
 {
-	GtkTreeModel *model = gtk_tree_view_get_model (cl);
-	gchar *data[2];
-	GtkTreeIter  iter;
-	PangoLayout *layout;
-	PangoRectangle logical_rect;
-	layout = gtk_widget_create_pango_layout (GTK_WIDGET(cl), "");
-	
-	
-	data[0]=l;
-	data[1]=r;
+	GtkWidget *button;
+	gchar *label;
 
-	
-	gtk_list_store_append ( GTK_LIST_STORE(model), &iter);
-	gtk_list_store_set (GTK_LIST_STORE(model), &iter,0, data[0], 1, data[1],-1);
+	label = g_strdup_printf ("%s %s", l, r);
+	button = gtk_check_button_new_with_label (label);
+	gtk_box_pack_start_defaults (GTK_BOX (box), button);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), select);
+	g_object_set_data (G_OBJECT (button), "item_tag" , l);
+	gtk_widget_show (button);
 
-	pango_layout_set_text (layout,l, -1);
-	pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
-	lwidth = MAX(lwidth,logical_rect.width);
+	*list = g_list_append (*list, button);
+	g_free (label);
+	return;
+}
 
-	pango_layout_set_text (layout,r, -1);
-	pango_layout_get_pixel_extents (layout, NULL, &logical_rect);
-	rwidth = MAX(rwidth,logical_rect.width);
-		
+
+static void rlist_add (GList **list, GtkWidget *box,
+		       char *l, char *r, gboolean select)
+{
+	static GtkWidget *first = NULL;
+	GtkWidget *button;
+	gchar *label;
+
+	label = g_strdup_printf ("%s %s", l, r);
+
+	if (!first) {
+		first = gtk_radio_button_new_with_label (NULL, label);
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (first), select);
+		gtk_box_pack_start_defaults (GTK_BOX (box), first);
+		g_object_set_data (G_OBJECT (first), "item_tag" , l);
+		gtk_widget_show (first);
+		*list = g_list_append (*list, first);
+	} else {
+		button = gtk_radio_button_new_with_label_from_widget (GTK_RADIO_BUTTON (first), label);
+		gtk_box_pack_start_defaults (GTK_BOX (box), button);
+		gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (button), select);
+		g_object_set_data (G_OBJECT (button), "item_tag" , l);
+		gtk_widget_show (button);
+		*list = g_list_append (*list, button);
+	}
+
+	g_free (label);
+	return;
 }
 
 /*
@@ -147,127 +155,79 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 	int key = 0, button = GTK_RESPONSE_OK, choice = 0, scroll = 0, max_choice,
 	*status;
 	WINDOW *dialog, *list;
-	GtkListStore *store;
-	GtkTreeIter iter;
-	GtkTreeViewColumn *column;
-	GtkCellRenderer *renderer;
-	GtkTreeSelection *selection;
 
-	GList *labellist;
+	flag_separate_output = separate_output;
 
-	if (gnome_mode) {
-		GtkWidget *w  = gtk_dialog_new_with_buttons (title,
-			NULL,
-			GTK_DIALOG_DESTROY_WITH_PARENT,
+  	if (gnome_mode) {
+ 		GtkWidget *vbox, *viewport, *dialog;
+ 		GtkWidget *text;
+ 		GList *list = NULL;
+ 
+ 		dialog  = gtk_dialog_new_with_buttons (title,
+  			NULL,
+  			GTK_DIALOG_DESTROY_WITH_PARENT,
+  			GTK_STOCK_CANCEL,
+  			GTK_RESPONSE_CANCEL,
 			GTK_STOCK_OK,
-			GTK_RESPONSE_OK,
-			GTK_STOCK_CANCEL,
-			GTK_RESPONSE_CANCEL,
-			NULL);
+ 			GTK_RESPONSE_OK,
+  			NULL);
+ 		gtk_dialog_set_default_response (GTK_DIALOG(dialog),
+ 						 GTK_RESPONSE_OK);
+  
+ 		text = gtk_label_new (prompt);
+ 		gtk_box_pack_start_defaults (
+ 			GTK_BOX (GTK_DIALOG (dialog)->vbox), text);
+ 		gtk_widget_show (text);
+ 
+ 		viewport = gtk_viewport_new (NULL, NULL);
+ 		gtk_box_pack_start_defaults (
+ 			GTK_BOX (GTK_DIALOG (dialog)->vbox), viewport);
+ 		gtk_widget_show (viewport);
+ 
+ 		vbox = gtk_vbox_new (FALSE, 0);
+ 		gtk_container_add (GTK_CONTAINER (viewport), vbox);
+ 		gtk_widget_show (vbox);
+ 
+ 		/*
+ 		 * Add the options.
+ 		 */
+  		for (i = 0; i < item_no; i++) {
+  			char *x = (char *)items[3 * i];
+  			char *y = (char *)items[3 * i + 1];
+ 			char *z = (char *)items[3 * i + 2];
+ 			gboolean select;
+  
+ 			/*
+ 			 * Check wether op is "on" or "off".
+ 			 */
+			if (!strcmp (z, "on") || !strcmp (z, "ON"))
+ 				select = TRUE;
+ 			else if (!strcmp (z, "off") || !strcmp (z, "OFF"))
+ 				select = FALSE;
+ 			else
+ 				/*
+ 				 * Why -10? See the second last if statment
+				 * in dialog.c (main). Prints Usage.
+ 				 */
+ 				return -10;
+ 		       
+ 
+ 			if (flag == FLAG_CHECK)
+ 				clist_add (&list, vbox, x, y, select);
+ 		        else
+ 				rlist_add (&list, vbox, x, y, select);
+ 		}
 
-		GtkWidget *hbox, *vbox, *sw;
-		
-		gtk_dialog_set_default_response (GTK_DIALOG(w),GTK_RESPONSE_OK);
-		gtk_window_set_title(GTK_WINDOW(w), title);
-
-		hbox = gtk_hbox_new(FALSE, 0);
-		vbox = gtk_vbox_new(FALSE, 0);
-
-		label_autowrap(vbox, prompt, width);
-
-		sw=gtk_scrolled_window_new (NULL, NULL);
-
-		/* create list store */
-		store = gtk_list_store_new (2,
-				G_TYPE_STRING,
-				G_TYPE_STRING);
-
-		/* create tree view */
-		cl = gtk_tree_view_new_with_model (GTK_TREE_MODEL(store));
-		g_object_unref (G_OBJECT (store));
-
-		gtk_container_add (GTK_CONTAINER (sw), GTK_WIDGET (cl));
-
-		if(GTK_IS_ACCESSIBLE(gtk_widget_get_accessible(GTK_WIDGET(cl)))) {
-			labellist = gtk_container_get_children(GTK_CONTAINER(vbox));
-			add_atk_relation(GTK_WIDGET(labellist->data), GTK_WIDGET(cl), ATK_RELATION_LABEL_FOR);
-			add_atk_relation(GTK_WIDGET(cl), GTK_WIDGET(labellist->data), ATK_RELATION_LABELLED_BY);
-		}
-
-		if(flag!=FLAG_CHECK || separate_output)
-		{
-			format=0;
-			selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (cl));
-            if (!separate_output)
-			   gtk_tree_selection_set_mode (selection,GTK_SELECTION_BROWSE);
-            else 
-               gtk_tree_selection_set_mode (selection,GTK_SELECTION_MULTIPLE);
-		}
-		else
-		{
-			format=1;
-			selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (cl));
-			gtk_tree_selection_set_mode (selection,GTK_SELECTION_MULTIPLE);
-		}
-		gtk_scrolled_window_set_policy (
-			GTK_SCROLLED_WINDOW (sw),
-			GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-
-		for (i = 0; i < item_no; i++) {
-			char *x = (char *)items[3 * i];
-			char *y = (char *)items[3 * i + 1];
-			clist_add(cl, x, y);
-			}
-
-		/* add columns to the tree view */
-		renderer = gtk_cell_renderer_text_new ();
-
-		/* 1st column for tag */
-		column = gtk_tree_view_column_new_with_attributes ("text",
-							renderer,
-							"text",0,
-							NULL);
-
-		/* set this column to a fixed sizing */
-		gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN (column),
-					GTK_TREE_VIEW_COLUMN_FIXED);
-		gtk_tree_view_column_set_fixed_width (GTK_TREE_VIEW_COLUMN 
-							(column),lwidth + 10);
-		gtk_tree_view_append_column (cl, column);
-
-		/* 2nd column for item */
-		renderer = gtk_cell_renderer_text_new ();
-		column = gtk_tree_view_column_new_with_attributes ("text",
-								renderer,
-								"text",
-								1,
-								NULL);
-
-		gtk_tree_view_column_set_sizing (GTK_TREE_VIEW_COLUMN (column),
-						GTK_TREE_VIEW_COLUMN_FIXED);
-		gtk_tree_view_column_set_fixed_width (GTK_TREE_VIEW_COLUMN 
-						(column),rwidth);
-
-		gtk_tree_view_append_column (cl, column);
-		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (cl), FALSE);
-		gtk_widget_set_size_request(GTK_WIDGET(cl), lwidth+rwidth+30, 
-					8*list_height+40);
-
-		gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(sw), TRUE, TRUE, 0);
-		gtk_box_pack_start(GTK_BOX(hbox), vbox, TRUE, TRUE, 0);
-
-		gtk_box_pack_start(GTK_BOX(GTK_DIALOG(w)->vbox),
-				   hbox,
-				   TRUE, TRUE, GNOME_PAD);
-		gtk_window_set_position(GTK_WINDOW(w), GTK_WIN_POS_CENTER);
-		gtk_signal_connect(GTK_OBJECT(w), "close",
-			GTK_SIGNAL_FUNC(cancelled), NULL);
-		gtk_signal_connect(GTK_OBJECT(w), "response",
-			GTK_SIGNAL_FUNC(okayed), NULL);
-		gtk_widget_show_all(w);
-		gtk_main();
-		return 0;
-	}
+ 		gtk_window_set_position (GTK_WINDOW (dialog),
+ 					 GTK_WIN_POS_CENTER);
+ 		gtk_signal_connect(GTK_OBJECT(dialog), "close",
+  			GTK_SIGNAL_FUNC(cancelled), NULL);
+ 		gtk_signal_connect(GTK_OBJECT(dialog), "response",
+ 			GTK_SIGNAL_FUNC(okayed), &list);
+ 		gtk_widget_show_all (dialog);
+  		gtk_main();
+  		return 0;
+  	}
 	checkflag = flag;
 
 	/* Allocate space for storing item on/off status */
