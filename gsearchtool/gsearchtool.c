@@ -119,6 +119,7 @@ struct search_struct {
 	gint 	          timeout;
 	gchar            *string;
 	gboolean          lock;	
+	gboolean	  show_hidden_files;
 	RunLevel          running;
 	GtkWidget        *tree;
 	GtkWidget        *results;
@@ -242,6 +243,17 @@ static gboolean
 is_path_of_home_dir (gchar *path)
 {
 	return (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL);
+}
+
+static gboolean 
+is_hidden_path (gchar *path)
+{
+	gchar *hidden_path_substr = g_strconcat (G_DIR_SEPARATOR_S, ".", NULL);
+	gint results;
+	
+	results = (g_strstr_len (path, strlen (path), hidden_path_substr) != NULL);
+	g_free (hidden_path_substr);
+	return results;
 }
 
 static char *
@@ -699,7 +711,12 @@ handle_search_command_stdout_io (GIOChannel *ioc, GIOCondition condition, gpoint
 			filename = g_path_get_basename (locale);
 
 			if (g_pattern_match_string (pattern, filename)) {
-				add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+				if (search_data->show_hidden_files == TRUE) {
+					add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+				}
+				else if (is_hidden_path (string->str) == FALSE) {
+					add_file_to_list_store (string->str, search_data->model, &search_data->iter);
+				}	
 			}
 				
 			while (gtk_events_pending ()) {
@@ -932,6 +949,7 @@ run_command(GtkWidget *w, gpointer data)
 		gnome_appbar_push (GNOME_APPBAR (status_bar), _("Searching..."));
 		find.timeout = gtk_timeout_add (100, update_progress_bar, NULL); 
 		find.string = (gchar *)"*";
+		find.show_hidden_files = TRUE;
 		spawn_search_command (cmd, &find);
 		
 	} else {
@@ -1649,6 +1667,7 @@ run_locate_command(GtkWidget *w, gpointer data)
 		gnome_appbar_pop (GNOME_APPBAR (status_bar));
 		gnome_appbar_push (GNOME_APPBAR (status_bar), _("Searching..."));
 		locate.timeout = gtk_timeout_add (100, update_progress_bar, NULL); 
+		locate.show_hidden_files = FALSE;
 		spawn_search_command (cmd, &locate);
 
 	} else {
