@@ -922,8 +922,7 @@ open_file_with_application (const gchar *filename)
 			uri = gnome_vfs_get_uri_from_local_path (filename);
 			uris = g_list_append (uris, uri);
 			
-			if (!g_file_test (desktop_file, G_FILE_TEST_EXISTS) || 
-			    !gnome_vfs_mime_application_supports_uris (mimeApp)) {
+			if (!g_file_test (desktop_file, G_FILE_TEST_EXISTS)) {
 				result = (gnome_vfs_mime_application_launch (mimeApp, uris) == GNOME_VFS_OK);
 			}
 			else {
@@ -935,7 +934,8 @@ open_file_with_application (const gchar *filename)
 				}
 				else {
 				 	screen = gtk_widget_get_screen (interface.main_window);
-					gnome_desktop_item_launch_on_screen (ditem, uris, 0, screen, -1, &error);
+					gnome_desktop_item_launch_on_screen (ditem, uris, 
+						GNOME_DESKTOP_ITEM_LAUNCH_APPEND_URIS, screen, -1, &error);
 					if (error) {
 						result = FALSE;			
 						g_error_free (error);
