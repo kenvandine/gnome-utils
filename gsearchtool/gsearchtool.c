@@ -1471,8 +1471,6 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 		{
 			add_atk_namedesc (GTK_WIDGET(entry), _("Search Rule Value Entry"), 
 					  _("Enter a value for search rule"));
-			add_atk_relation (entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
-			add_atk_relation (GTK_WIDGET(label), entry, ATK_RELATION_LABEL_FOR);
 		}
 		
 		gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (entry));
@@ -1805,7 +1803,7 @@ create_main_window (void)
 	gtk_table_attach (GTK_TABLE(interface.table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
 
 	interface.file_is_named_entry = gnome_entry_new ("gsearchtool-file-entry");
-	gtk_label_set_mnemonic_widget (GTK_LABEL(label), gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry)));
+	gtk_label_set_mnemonic_widget (GTK_LABEL(label), interface.file_is_named_entry);
 	gnome_entry_set_max_saved (GNOME_ENTRY(interface.file_is_named_entry), 10);
 	gtk_table_attach (GTK_TABLE(interface.table), interface.file_is_named_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 	entry =  gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry));
@@ -1813,9 +1811,8 @@ create_main_window (void)
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(interface.file_is_named_entry)))
 	{
 		interface.is_gail_loaded = TRUE;
-		add_atk_namedesc (interface.file_is_named_entry, _("Name Contains Entry"), _("Enter the file name you want to search"));
+		add_atk_namedesc (interface.file_is_named_entry, NULL, _("Enter the file name you want to search"));
 		add_atk_namedesc (entry, _("Name Contains Entry"), _("Enter the file name you want to search"));
-		add_atk_relation (interface.file_is_named_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
 	}	
      
 	g_signal_connect (G_OBJECT (interface.file_is_named_entry), "activate",
@@ -1840,15 +1837,14 @@ create_main_window (void)
 	*/
 	
 	entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
-	gtk_label_set_mnemonic_widget (GTK_LABEL(label), entry);
+	gtk_label_set_mnemonic_widget (GTK_LABEL(label), interface.look_in_folder_entry);
 	folder_entry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
 	gtk_table_attach (GTK_TABLE(interface.table), interface.look_in_folder_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 	
 	if (interface.is_gail_loaded)
 	{ 
-		add_atk_namedesc (GTK_WIDGET(folder_entry), _("Look in Folder Entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_namedesc (GTK_WIDGET(folder_entry), NULL, _("Enter the folder name where you want to start the search"));
 		add_atk_namedesc (GTK_WIDGET(entry), _("Look in Folder Entry"), _("Enter the folder name where you want to start the search"));
-		add_atk_relation (folder_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY); 
 	}
 	
 	g_signal_connect (G_OBJECT (entry), "key_press_event",
