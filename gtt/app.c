@@ -16,11 +16,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 #include <config.h>
-#if HAS_GNOME
 #include <gnome.h>
-#else
-#include <gtk/gtk.h>
-#endif
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -221,64 +217,7 @@ static void init_list(void)
 void app_new(int argc, char *argv[])
 {
 	GtkWidget *vbox;
-	char *p, *p0, c;
-	int i;
-	int x, y, sx, sy, w, h, xy_set;
 	GtkWidget *widget;
-
-	w = 0; h = 0; xy_set = 0;
-	x = 0; y = 0; /* keep the compiler happy */
-	for (i = 1; i < argc; i++) {
-		if (0 == strcmp(argv[i], "-geometry")) {
-			i++;
-			p = argv[i];
-			if ((*p >= '0') && (*p <= '9')) {
-				p0 = p;
-				for (; (*p >= '0') && (*p <= '9'); p++) ;
-				if (*p != 'x') {
-					g_print(_("error in geometry string \"%s\"\n"), argv[i]);
-					continue;
-				}
-				*p = 0;
-				w = atoi(p0);
-				*p = 'x';
-				p0 = ++p;
-				for (; (*p >= '0') && (*p <= '9'); p++) ;
-				c = *p;
-				*p = 0;
-				h = atoi(p0);
-				*p = c;
-			}
-			if (*p == 0) continue;
-			if ((*p != '-') && (*p != '+')) {
-				g_print(_("error in geometry string \"%s\"\n"), argv[i]);
-				continue;
-			}
-			p0 = p;
-			for (p++; (*p >= '0') && (*p <= '9'); p++) ;
-			c = *p;
-			*p = 0;
-			sx = (*p0 != '-');
-			x = atoi(p0);
-			*p = c;
-			if ((*p != '-') && (*p != '+')) {
-				g_print(_("error in geometry string \"%s\"\n"), argv[i]);
-				continue;
-			}
-			p0 = p;
-			for (p++; (*p >= '0') && (*p <= '9'); p++) ;
-			if (*p != 0) {
-				g_print(_("error in geometry string \"%s\"\n"), argv[i]);
-				continue;
-			}
-			sy = (*p0 != '-');
-			y = atoi(p0);
-			xy_set++;
-		} else {
-			/* TODO: parsing more arguments? */
-			g_print(_("unknown arg: %s\n"), argv[i]);
-		}
-	}
 
 	window = gnome_app_new("gtt", APP_NAME " " VERSION);
         gtk_window_set_wmclass(GTK_WINDOW(window),
@@ -327,32 +266,5 @@ void app_new(int argc, char *argv[])
 	gtk_container_add(GTK_CONTAINER(window), vbox);
 	gtk_widget_show(vbox);
 	gnome_app_set_contents(GNOME_APP(window), vbox);
-
-	if (!w) {
-		gtk_widget_set_usize(glist, -1, 120);
-	}
-	gtk_widget_size_request(window, &window->requisition);
-	if (w != 0) {
-		if (window->requisition.width > w) w = window->requisition.width;
-		if (window->requisition.height > h) h = window->requisition.height;
-		gtk_widget_set_usize(window, w, h);
-	} else {
-		w = window->requisition.width;
-		h = window->requisition.height;
-	}
-	if (xy_set) {
-		int t;
-		t = gdk_screen_width();
-		if (!sx) x += t - w;
-		while (x < 0) x += t;
-		while (x > t) x -= t;
-		t = gdk_screen_height();
-		if (!sy) y += t - h;
-		while (y < 0) y += t;
-		while (y > t) y -= t;
-		gtk_widget_set_uposition(window, x, y);
-	}
-	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
-			   GTK_SIGNAL_FUNC(quit_app), NULL);
 }
 

@@ -17,11 +17,7 @@
  */
 
 #include <config.h>
-#if HAS_GNOME
 #include <gnome.h>
-#else /* not HAS_GNOME */
-#include <gtk/gtk.h>
-#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -30,13 +26,11 @@
 
 #include "gtt.h"
 
-#if HAS_GNOME
 #ifdef DEBUG
 #define GTT "/gtt-DEBUG/"
 #else /* not DEBUG */
 #define GTT "/gtt/"
 #endif /* not DEBUG */
-#endif /* HAS_GNOME */
 
 
 

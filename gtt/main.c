@@ -17,27 +17,10 @@
  */
 
 #include <config.h>
-#if HAS_GNOME
 #include <gnome.h>
-#else
-#include <gtk/gtk.h>
-#endif
-
-
 #include <string.h>
 
-
 #include "gtt.h"
-
-#undef bindtextdomain
-#undef textdomain
-#undef gettext
-#undef dgettext
-#undef fcgettext
-#undef _
-#include <locale.h>
-#include <libintl.h>
-#define _(String) gettext(String)
 
 
 
@@ -111,30 +94,107 @@ void unlock_gtt(void)
 
 
 
+static int w_x = 0, w_y = 0, w_w = 0, w_h = 0, w_xyset = 0, w_sx = 0, w_sy = 0;
+
+static error_t
+argp_parser(int key, char *arg, struct argp_state *state)
+{
+	char *p, *p0;
+	char c;
+
+	if (key != 'g') return ARGP_ERR_UNKNOWN;
+	p = arg;
+	if ((*p >= '0') && (*p <= '9')) {
+		p0 = p;
+		for (; (*p >= '0') && (*p <= '9'); p++) ;
+		if (*p != 'x') {
+			g_print(_("error in geometry string \"%s\"\n"), arg);
+			return 0;
+		}
+		*p = 0;
+		w_w = atoi(p0);
+		*p = 'x';
+		p0 = ++p;
+		for (; (*p >= '0') && (*p <= '9'); p++) ;
+		c = *p;
+		*p = 0;
+		w_h = atoi(p0);
+		*p = c;
+	}
+	if (*p == 0) return 0;
+	if ((*p != '-') && (*p != '+')) {
+		g_print(_("error in geometry string \"%s\"\n"), arg);
+		return 0;
+	}
+	p0 = p;
+	for (p++; (*p >= '0') && (*p <= '9'); p++) ;
+	c = *p;
+	*p = 0;
+	w_sx = (*p0 != '-');
+	w_x = atoi(p0);
+	*p = c;
+	if ((*p != '-') && (*p != '+')) {
+		g_print(_("error in geometry string \"%s\"\n"), arg);
+		return 0;
+	}
+	p0 = p;
+	for (p++; (*p >= '0') && (*p <= '9'); p++) ;
+	if (*p != 0) {
+		g_print(_("error in geometry string \"%s\"\n"), arg);
+		return 0;
+	}
+	w_sy = (*p0 != '-');
+	w_y = atoi(p0);
+	w_xyset++;
+	return 0;
+}
+
+
+
 int main(int argc, char *argv[])
 {
-#if HAS_GNOME
-	/* FIXME: Integrate app command-line handling.  */
-	gnome_init("gtt", NULL, argc, argv, 0, NULL);
-#else 
-	gtk_init(&argc, &argv);
-#endif 
+	struct argp_option geo_options[] = {
+		{"geometry", 'g', "GEOM", 0, N_("specify geometry"), 0},
+		{NULL, 0, NULL, 0, NULL, 0}
+	};
+	struct argp args = {
+		geo_options,
+		argp_parser, NULL, NULL, NULL, NULL, NULL
+	};
+	gnome_init("gtt", &args, argc, argv, 0, NULL);
 
-#if defined(DEBUG) && 0
-#define locale_debug(a,b) g_print((a),(b))
-#else
-#define locale_debug(a,b) b
-#endif
-	locale_debug("%s\n", getenv("LANG"));
-	setlocale(LC_MESSAGES, "");
-#if defined(LOCALEDIR) && defined(STANDALONE)
-	locale_debug(LOCALEDIR " %s\n", bindtextdomain(PACKAGE, LOCALEDIR));
-#endif
-	locale_debug(GNOMELOCALEDIR " %s\n", bindtextdomain(PACKAGE, GNOMELOCALEDIR));
-	locale_debug(PACKAGE " %s\n", textdomain(PACKAGE));
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
 
 	lock_gtt();
 	app_new(argc, argv);
+	if (!w_w) {
+		gtk_widget_set_usize(glist, -1, 120);
+	}
+	gtk_widget_size_request(window, &window->requisition);
+	if (w_w != 0) {
+		if (window->requisition.width > w_w) w_w = window->requisition.width;
+		if (window->requisition.height > w_h) w_h = window->requisition.height;
+		gtk_widget_set_usize(window, w_w, w_h);
+	} else {
+		w_w = window->requisition.width;
+		w_h = window->requisition.height;
+	}
+	if (w_xyset) {
+		int t;
+		t = gdk_screen_width();
+		if (!w_sx) w_x += t - w_w;
+		while (w_x < 0) w_x += t;
+		while (w_x > t) w_x -= t;
+		t = gdk_screen_height();
+		if (!w_sy) w_y += t - w_h;
+		while (w_y < 0) w_y += t;
+		while (w_y > t) w_y -= t;
+		gtk_widget_set_uposition(window, w_x, w_y);
+	}
+	gtk_signal_connect(GTK_OBJECT(window), "delete_event",
+			   GTK_SIGNAL_FUNC(quit_app), NULL);
+
 	log_start();
 	gtk_main();
 	unlock_gtt();
