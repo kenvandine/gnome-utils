@@ -179,7 +179,7 @@ setup_case_insensitive_arguments (void)
 	first_pass = FALSE;
 
 	/* check find command for -iname argument compatibility */
-	g_spawn_command_line_sync ("find /dev/null -name 'string'", NULL, &cmd_stderr, NULL, NULL);
+	g_spawn_command_line_sync ("find /dev/null -iname 'string'", NULL, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
 		find_command_default_name_option = g_strdup ("-iname");
