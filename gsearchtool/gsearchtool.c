@@ -537,3 +537,25 @@ main(int argc, char *argv[])
 
 	return 0;
 }
+
+GtkWidget *
+make_list_of_templates(void)
+{
+	
+}
+
+/*
+int
+main(int argc, char *argv[])
+{
+	GtkWidget *toplevel;
+	GtkWidget *w;
+
+	gtk_init(&argc, &argv);
+
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_title(GTK_WINDOW(window),"GNOME Search Tool");
+	gtk_signal_connect(GTK_OBJECT(window), "destroy",
+int
+
+*/

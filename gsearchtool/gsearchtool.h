@@ -63,10 +63,20 @@ struct _FindOption {
 	FindOptionType type;
 	gint templ;
 
-	union {
-		gchar text[256];
-		glong number;
-	} data;
+	/*these guys aren't in a union so that they aren't lost when we
+	  change templates*/
+
+	/* true false data */
+	gint bool;
+
+	/* this is a char string of the data */
+	gchar text[256];
+
+	/* number data */
+	gint number;
+
+	/* the time data */
+	gchar time[50];
 };
 	
 
