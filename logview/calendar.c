@@ -99,7 +99,6 @@ void
 CalendarMenu (GtkWidget * widget, gpointer user_data)
 {
    GtkCalendar *calendar;
-   GtkWidget *frame;
    GtkWidget *vbox;
 
    if (curlog == NULL || calendarvisible)
@@ -111,6 +110,9 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
 
       gtk_window_set_title (GTK_WINDOW (CalendarDialog), _("Calendar"));
       gtk_window_set_resizable (GTK_WINDOW (CalendarDialog), FALSE);
+      gtk_dialog_set_has_separator (GTK_DIALOG(CalendarDialog), FALSE);
+      gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (CalendarDialog)), 5);
+
       gtk_dialog_add_button (GTK_DIALOG (CalendarDialog), 
 			     GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
       g_signal_connect (G_OBJECT (CalendarDialog), "response",
@@ -123,16 +125,11 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
 			G_CALLBACK (gtk_true),
 			NULL);
 
-      vbox = gtk_vbox_new (FALSE, 2);
+      vbox = gtk_vbox_new (FALSE, 6);
 
       gtk_box_pack_start (GTK_BOX (GTK_DIALOG (CalendarDialog)->vbox), vbox, 
 			  TRUE, TRUE, 0);
-      gtk_container_set_border_width (GTK_CONTAINER (vbox), 4);
-
-      frame = gtk_frame_new (NULL);
-
-      gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
-      gtk_container_set_border_width (GTK_CONTAINER (frame), 3);
+      gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
 
       calendar = (GtkCalendar *)gtk_calendar_new();
 
@@ -145,10 +142,8 @@ CalendarMenu (GtkWidget * widget, gpointer user_data)
       gtk_signal_connect (GTK_OBJECT (calendar), "day_selected_double_click",
 			  GTK_SIGNAL_FUNC (calendar_day_selected_double_click),
 			  NULL);
-      gtk_container_add (GTK_CONTAINER (frame), GTK_WIDGET (calendar));
-      gtk_box_pack_start (GTK_BOX (vbox), frame, TRUE, TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (calendar), TRUE, TRUE, 0);
       gtk_widget_show (GTK_WIDGET (calendar));
-      gtk_widget_show (frame);
 
       gtk_dialog_set_default_response (GTK_DIALOG (CalendarDialog), GTK_RESPONSE_CLOSE); 
    

@@ -60,7 +60,7 @@ create_zoom_view (void)
       return;
 
    if (zoom_dialog == NULL) {
-   	zoom_dialog  = gtk_dialog_new_with_buttons (_("Zoom view"), 
+   	zoom_dialog  = gtk_dialog_new_with_buttons (_("Entry Detail"), 
 					       	    GTK_WINDOW_TOPLEVEL, 
 					            GTK_DIALOG_DESTROY_WITH_PARENT,
 					            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, 
@@ -75,10 +75,10 @@ create_zoom_view (void)
         g_signal_connect (G_OBJECT (zoom_dialog), "delete_event",
 		          G_CALLBACK (gtk_true),
 			  NULL);
-   	
-    gtk_window_set_default_size (GTK_WINDOW (zoom_dialog), 500, 175);
-    gtk_dialog_set_default_response (GTK_DIALOG (zoom_dialog), GTK_RESPONSE_CLOSE);
-   	gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 0);
+	gtk_dialog_set_has_separator (GTK_DIALOG (zoom_dialog), FALSE);
+	gtk_window_set_default_size (GTK_WINDOW (zoom_dialog), 500, 175);
+	gtk_dialog_set_default_response (GTK_DIALOG (zoom_dialog), GTK_RESPONSE_CLOSE);
+   	gtk_container_set_border_width (GTK_CONTAINER (zoom_dialog), 5);
 
     repaint_zoom ();
    }
@@ -112,8 +112,7 @@ repaint_zoom (void)
 
        scrolled_window = gtk_scrolled_window_new (NULL, NULL);
        gtk_widget_set_sensitive (scrolled_window, TRUE);
-       gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 
-                                       GNOME_PAD_SMALL);
+       gtk_container_set_border_width (GTK_CONTAINER (scrolled_window), 5);
        gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                        GTK_POLICY_AUTOMATIC,
                                        GTK_POLICY_AUTOMATIC);
@@ -128,12 +127,12 @@ repaint_zoom (void)
 
        /* Create Columns */
        renderer = gtk_cell_renderer_text_new ();
-       column1 = gtk_tree_view_column_new_with_attributes (_("Log line detail for"),
+       column1 = gtk_tree_view_column_new_with_attributes (_("Log Line Details"),
                     renderer, "text", 0, NULL);
        gtk_tree_view_column_set_sizing (column1, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
        gtk_tree_view_column_set_resizable (column1, TRUE); 
        gtk_tree_view_append_column (GTK_TREE_VIEW (zoom_tree), column1);
-       gtk_tree_view_column_set_spacing (column1, GNOME_PAD_BIG);
+       gtk_tree_view_column_set_spacing (column1, 12);
   
        renderer = gtk_cell_renderer_text_new ();
        column2 = gtk_tree_view_column_new_with_attributes ("", renderer,
@@ -141,7 +140,7 @@ repaint_zoom (void)
        gtk_tree_view_column_set_sizing (column2, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
        gtk_tree_view_column_set_resizable (column2, TRUE); 
        gtk_tree_view_append_column (GTK_TREE_VIEW (zoom_tree), column2);
-       gtk_tree_view_column_set_spacing (column2, GNOME_PAD_BIG);
+       gtk_tree_view_column_set_spacing (column2, 12);
 
        /* Add entries to the list */
        for (i = 0; titles[i]; ++i) {

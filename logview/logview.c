@@ -395,7 +395,6 @@ CreateMainWin ()
    app = gnome_app_new ("gnome-system-log", window_title);
    g_free (window_title);
 
-   gtk_container_set_border_width ( GTK_CONTAINER (app), 0);
    gtk_window_set_default_size ( GTK_WINDOW (app), LOG_CANVAS_W, LOG_CANVAS_H);
    req_size.x = req_size.y = 0;
    req_size.width = 400;
@@ -407,7 +406,8 @@ CreateMainWin ()
    /* Create menus */
    gnome_app_create_menus (GNOME_APP (app), main_menu);
 
-   vbox = gtk_vbox_new (FALSE, 0);
+   vbox = gtk_vbox_new (FALSE, 6);
+   gtk_container_set_border_width ( GTK_CONTAINER (vbox), 6);
    gnome_app_set_contents (GNOME_APP (app), vbox);
 
    if (numlogs < 2)
@@ -437,7 +437,7 @@ CreateMainWin ()
                     renderer, "text", i, NULL);
         gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE); 
         gtk_tree_view_column_set_resizable (column, TRUE);
-        gtk_tree_view_column_set_spacing (column, GNOME_PAD_SMALL);
+        gtk_tree_view_column_set_spacing (column, 6);
         gtk_tree_view_append_column (GTK_TREE_VIEW (view), column);
    }
 
@@ -455,15 +455,12 @@ CreateMainWin ()
                      G_CALLBACK (handle_row_activation_cb), NULL);
 
    /* Create status area at bottom */
-   hbox = gtk_hbox_new (FALSE, 2);
-   gtk_container_set_border_width ( GTK_CONTAINER (hbox), 3);
+   hbox = gtk_hbox_new (FALSE, 12);
 
-   hbox_date = gtk_hbox_new (FALSE, 2);
-   gtk_container_set_border_width ( GTK_CONTAINER (hbox_date), 3);
+   hbox_date = gtk_hbox_new (FALSE, 12);
 
    date_label = (GtkLabel *)gtk_label_new ("");
    gtk_widget_show (GTK_WIDGET (date_label));
-   /* gtk_widget_set_size_request (GTK_WIDGET (label), 60, -1); */
    gtk_box_pack_end (GTK_BOX (hbox_date), GTK_WIDGET (date_label), 
 		     TRUE, TRUE, 0);
 
