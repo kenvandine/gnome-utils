@@ -1380,7 +1380,7 @@ create_find_page(void)
 
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,GNOME_PAD_SMALL);
-	label = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
+	label = gtk_label_new_with_mnemonic(_("S_tart in folder:"));
 	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
 	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
@@ -1746,7 +1746,7 @@ create_locate_page(void)
 			  G_CALLBACK (locate_activate),
 			  locate.buttons);
 			  
-	label = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
+	label = gtk_label_new_with_mnemonic(_("S_tart in folder:"));
 	gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
 	
