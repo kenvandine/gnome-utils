@@ -218,18 +218,30 @@ stack_pop(GList **stack)
 static void
 set_display (GnomeCalc *gc)
 {
-	GtkWidget *string_label = gc->_priv->text_display;
-	GtkWidget *store_label = gc->_priv->store_display;
-	gchar *string;
-	gchar *store_string;
+        GtkWidget *string_text = gc->_priv->text_display;
+        GtkWidget *store_text = gc->_priv->store_display;
+        GtkTextBuffer *buffer;
+        GtkTextIter start, end;
 
-	string = g_strconcat ("<span foreground=\"white\"  font_desc=\"Helvetica 24\">", gc->_priv->result_string, "</span>", NULL);
-	gtk_label_set_markup (GTK_LABEL (string_label), string);
-	g_free (string);
-
-	store_string = g_strconcat ("<span foreground=\"white\" font_desc=\"Helvetica 8\">", store ? "m" : " ", "</span>", NULL);
-	gtk_label_set_markup (GTK_LABEL (store_label), store_string);
-	g_free (store_string);
+        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (string_text));
+        gtk_text_buffer_get_bounds (buffer, &start, &end);
+        gtk_text_buffer_delete (buffer, &start, &end);
+        gtk_text_buffer_insert_with_tags_by_name (buffer,
+                                                  &end,
+                                                  gc->_priv->result_string,
+                                                  -1,
+                                                  "x-large",
+                                                  NULL);
+        
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (store_text));
+        gtk_text_buffer_get_bounds (buffer, &start, &end);
+        gtk_text_buffer_delete (buffer, &start, &end);
+        gtk_text_buffer_insert_with_tags_by_name (buffer,
+                                                  &end,
+                                                  store ? "m" : " ",
+                                                  -1,
+                                                  "x-large",
+                                                  NULL);
 
 }
 
@@ -1351,35 +1363,43 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 static void
 gnome_calc_instance_init (GnomeCalc *gc)
 {
-	GtkWidget *hbox, *event;
-	gint x,y;
+	GtkWidget *hbox;
 	GtkWidget *table;
-	GdkColor color;
+	GtkTextBuffer *buffer;
+	gint x,y;
 	
 	gc->_priv = g_new0(GnomeCalcPrivate, 1);
 	
-	event = gtk_event_box_new ();
-	gtk_widget_show (event);
-	gdk_color_parse ("#000000", &color);
-	gtk_widget_modify_bg (event, GTK_STATE_NORMAL, &color); 
-	gtk_box_pack_start (GTK_BOX (gc), event, FALSE, FALSE, 0);
-	gtk_container_set_border_width (GTK_CONTAINER (event), 1);
-	
 	hbox = gtk_hbox_new (FALSE, 0);
+	gtk_container_set_border_width (GTK_CONTAINER (hbox), 2);
 	gtk_widget_show (hbox);
-	gtk_container_add (GTK_CONTAINER (event), hbox);
+	gtk_box_pack_start (GTK_BOX (gc), hbox, FALSE, FALSE, 0);
 	
-	gc->_priv->text_display = gtk_label_new (NULL);
-	gc->_priv->store_display = gtk_label_new (NULL);
-	gtk_widget_set_size_request (GTK_WIDGET (gc->_priv->store_display), 5, -1);
-	gtk_label_set_selectable (GTK_LABEL (gc->_priv->text_display), TRUE);
-	gtk_label_set_selectable (GTK_LABEL (gc->_priv->store_display), FALSE);
-	gtk_box_pack_end (GTK_BOX (hbox), gc->_priv->text_display, FALSE, TRUE, 0);	
-	gtk_box_pack_start (GTK_BOX (hbox), gc->_priv->store_display, FALSE, TRUE, 0);	
+	gc->_priv->text_display = gtk_text_view_new ();
+	gc->_priv->store_display = gtk_text_view_new ();
+
+        gtk_text_view_set_editable (GTK_TEXT_VIEW (gc->_priv->store_display), FALSE);
+        gtk_text_view_set_justification (GTK_TEXT_VIEW (gc->_priv->store_display),
+                                         GTK_JUSTIFY_LEFT);
+        gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (gc->_priv->store_display),
+                                     GTK_WRAP_WORD);
+        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (gc->_priv->store_display));
+        gtk_text_buffer_create_tag (buffer, "x-large",
+                                    "scale", PANGO_SCALE_XX_LARGE, NULL);
+        gtk_box_pack_start (GTK_BOX (hbox), gc->_priv->store_display, TRUE, TRUE, 0);
+
+        gtk_text_view_set_editable (GTK_TEXT_VIEW (gc->_priv->text_display), FALSE);
+        gtk_text_view_set_justification (GTK_TEXT_VIEW (gc->_priv->text_display),
+                                         GTK_JUSTIFY_RIGHT);
+        gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (gc->_priv->text_display),
+                                     GTK_WRAP_WORD);
+        buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (gc->_priv->text_display));
+        gtk_text_buffer_create_tag (buffer, "x-large",
+                                    "scale", PANGO_SCALE_XX_LARGE, NULL);
+        gtk_box_pack_end (GTK_BOX (hbox), gc->_priv->text_display, TRUE, TRUE, 0);
+
 	gtk_widget_show (gc->_priv->text_display);
 	gtk_widget_show (gc->_priv->store_display);
-	
-	/*gtk_label_set_justify (GTK_LABEL (gc->_priv->text_display), GTK_JUSTIFY_RIGHT);*/
 	
 	gc->_priv->stack = NULL;
 	gc->_priv->result = 0;
