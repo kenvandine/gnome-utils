@@ -1,6 +1,6 @@
-if OBJECTIVE_C
-objc_DIRS = 
-endif
+#if OBJECTIVE_C
+#objc_DIRS = 
+#endif
 
 if GUILE
 if FALSE
@@ -22,7 +22,7 @@ endif
 
 SUBDIRS = po intl macros idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool $(gdiskfree) $(stripchart) gtt gdictsrc \
-	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog \
+	$(guile_DIRS) mini-utils splash gdialog \
 	meat-grinder exe-handler omf-install
 
 EXTRA_DIST = gnome-utils.spec.in

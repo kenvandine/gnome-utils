@@ -49,6 +49,7 @@
 #include <libgnome/gnome-defs.h>
 #include <libgnome/gnome-i18n.h>
 #include <libgnome/gnome-util.h>
+#include <libgnome/gnome-macros.h>
 
 #include "gnome-calc.h"
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -103,13 +104,9 @@ struct _CalculatorStack {
 
 
 static void gnome_calc_class_init	(GnomeCalcClass	*class);
-static void gnome_calc_init	     (GnomeCalc	*gc);
+static void gnome_calc_instance_init	     (GnomeCalc	*gc);
 static void gnome_calc_destroy	(GtkObject    	*object);
-#if GCALC_GTK_2
 static void gnome_calc_finalize	(GObject		*object);
-#else
-static GtkVBoxClass *parent_class;
-#endif
 
 /* The calculator font and our own reference count for it */
 static GdkPixmap *calc_font;
@@ -136,95 +133,34 @@ enum {
 	LAST_SIGNAL
 };
 
-static gint gnome_calc_signals[LAST_SIGNAL] = {0};
+static gint gnome_calc_signals[LAST_SIGNAL];
 
-
-#ifdef GCALC_GTK_2
-GNOME_CLASS_BOILERPLATE (GnomeCalc, gnome_calculator,
-			 GtkVBox, gtk_vbox)
-#else
-static void
-gnome_calc_marshal_signal_result_changed (GtkObject * object,
-					   GtkSignalFunc func,
-					   gpointer func_data,
-					   GtkArg * args)
-{
-	GnomeCalcualtorResultChangedSignal rfunc;
-
-	rfunc = (GnomeCalcualtorResultChangedSignal) func;
-
-	(*rfunc) (object, GTK_VALUE_DOUBLE (args[0]),
-		  func_data);
-}
-
-guint
-gnome_calc_get_type (void)
-{
-	static guint calculator_type = 0;
-
-	if (!calculator_type) {
-		GtkTypeInfo calculator_info = {
-			"GnomeCalculator",
-			sizeof (GnomeCalc),
-			sizeof (GnomeCalcClass),
-			(GtkClassInitFunc)  gnome_calc_class_init,
-			(GtkObjectInitFunc) gnome_calc_init,
-			(GtkArgSetFunc) NULL,
-			(GtkArgGetFunc) NULL
-		};
-
-		calculator_type = gtk_type_unique (gtk_vbox_get_type (),
-						   &calculator_info);
-	}
-
-	return calculator_type;
-}
-
-#endif
+GNOME_CLASS_BOILERPLATE (GnomeCalc, gnome_calc,
+			 GtkVBox, gtk_vbox, GTK_TYPE_VBOX)
 
 static void
 gnome_calc_class_init (GnomeCalcClass *class)
 {
 	GtkObjectClass *object_class;
-#ifdef GCALC_GTK_2
 	GObjectClass *gobject_class;
-#endif	
-	
+
 	object_class = (GtkObjectClass *) class;
-#ifdef GCALC_GTK_2
 	gobject_class = (GObjectClass *) class;
-#else
-	parent_class = gtk_type_class (gtk_vbox_get_type ());
-#endif	
 	object_class->destroy = gnome_calc_destroy;
-#ifdef GCALC_GTK_2
 	gobject_class->finalize = gnome_calc_finalize;
-#endif	
 
 	gnome_calc_signals[RESULT_CHANGED_SIGNAL] =
 		gtk_signal_new("result_changed",
 			       GTK_RUN_LAST,
-#ifdef GCALC_GTK_2	
 			       GTK_CLASS_TYPE(object_class),
-#else
-			       object_class->type,
-#endif	
 			       GTK_SIGNAL_OFFSET(GnomeCalcClass,
 			       			 result_changed),
-#ifdef GCALC_GTK_2	
-			       gnome_marshal_VOID__DOUBLE,
-#else
-			       gnome_calc_marshal_signal_result_changed,
-#endif	
+			       g_cclosure_marshal_VOID__DOUBLE,
 			       GTK_TYPE_NONE,
 			       1,
 			       GTK_TYPE_DOUBLE);
 
 	class->result_changed = NULL;
-#ifdef GCALC_GTK_2
-#else
-	gtk_object_class_add_signals (object_class, gnome_calc_signals, LAST_SIGNAL);
-#endif	
 }
 
 #if 0 /*only used for debugging*/
@@ -442,10 +378,6 @@ set_result(GnomeCalc *gc)
 	gchar buf[80];
 	gchar format[20];
 	gint i;
-#ifdef GCALC_GTK_2
-#else
-	char *old_locale;
-#endif	
 
 	g_return_if_fail(gc!=NULL);
 
@@ -461,24 +393,14 @@ set_result(GnomeCalc *gc)
         /* make sure put values in a consistent manner */
 	/* XXX: perhaps we can make sure the calculator works on all locales,
 	 * but currently it will lose precision if we don't do this */
-#ifdef GCALC_GTK_2	
 	gnome_i18n_push_c_numeric_locale ();
-#else
-	old_locale = g_strdup (setlocale (LC_NUMERIC, NULL));
-	setlocale (LC_NUMERIC, "C");
-#endif	
 	for (i = 12; i > 0; i--) {
 		g_snprintf (format, sizeof (format), "%c .%dg", '%', i);
 		g_snprintf (buf, sizeof (buf), format, gc->_priv->result);
 		if (strlen (buf) <= 12)
 			break;
 	}
-#ifdef GCALC_GTK_2	
 	gnome_i18n_pop_c_numeric_locale ();
-#else
-	setlocale (LC_NUMERIC, old_locale);
-	g_free (old_locale);
-#endif
 	strncpy(gc->_priv->result_string,buf,12);
 	gc->_priv->result_string[12]='\0';
 
@@ -505,20 +427,20 @@ unselect_invert(GnomeCalc *gc)
 static void
 setup_drg_label(GnomeCalc *gc)
 {
-	GtkWidget *label;
+	GtkButton *button;
 
 	g_return_if_fail(gc != NULL);
 	g_return_if_fail(GNOME_IS_CALC(gc));
 	g_return_if_fail(gc->_priv->drg_button);
 
-	label = GTK_BUTTON(gc->_priv->drg_button)->child;
+	button = GTK_BUTTON(gc->_priv->drg_button);
 
 	if(gc->_priv->mode == GNOME_CALC_DEG)
-		gtk_label_set_text(GTK_LABEL(label), _("DEG"));
+		gtk_button_set_label(button, _("DEG"));
 	else if(gc->_priv->mode == GNOME_CALC_RAD)
-		gtk_label_set_text(GTK_LABEL(label), _("RAD"));
+		gtk_button_set_label(button, _("RAD"));
 	else
-		gtk_label_set_text(GTK_LABEL(label), _("GRAD"));
+		gtk_button_set_label(button, _("GRAD"));
 }
 
 static gdouble
@@ -804,23 +726,10 @@ add_digit (GtkWidget *w, gpointer data)
 
 	gtk_widget_queue_draw (gc->_priv->display);
 
-#ifdef GCALC_GTK_2	
         /* make sure get values in a consistent manner */
 	gnome_i18n_push_c_numeric_locale ();
 	sscanf(gc->_priv->result_string, "%lf", &gc->_priv->result);
 	gnome_i18n_pop_c_numeric_locale ();
-#else
-	{
-		gchar *old_locale;
-		/* make sure get values in a consistent manner */
-		old_locale = g_strdup (setlocale (LC_NUMERIC, NULL));
-		setlocale (LC_NUMERIC, "C");
-		sscanf(gc->_priv->result_string, "%lf", &gc->_priv->result);
-		setlocale (LC_NUMERIC, old_locale);
-		g_free (old_locale);
-	}
-#endif	
-	
 }
 
 static gdouble
@@ -862,21 +771,9 @@ negate_val(GtkWidget *w, gpointer data)
 	}
 
         /* make sure get values in a consistent manner */
-#ifdef GCALC_GTK_2	
 	gnome_i18n_pop_c_numeric_locale ();
 	sscanf(gc->_priv->result_string, "%lf", &gc->_priv->result);
 	gnome_i18n_push_c_numeric_locale ();
-#else	
-	{
-		gchar *old_locale;
-		/* make sure get values in a consistent manner */
-		old_locale = g_strdup (setlocale (LC_NUMERIC, NULL));
-		setlocale (LC_NUMERIC, "C");
-		sscanf(gc->_priv->result_string, "%lf", &gc->_priv->result);
-		setlocale (LC_NUMERIC, old_locale);
-		g_free (old_locale);
-	}
-#endif	
 	
 	gtk_widget_queue_draw (gc->_priv->display);
 }
@@ -1228,9 +1125,7 @@ ref_font (void)
 {
 	char *filename;
 	GdkPixbuf *pb;
-#ifdef GCALC_GTK_2	
 	GError *error;
-#endif	
 
 	if (calc_font) {
 		g_assert (calc_font_ref_count > 0);
@@ -1246,26 +1141,22 @@ ref_font (void)
 	filename = gnome_pixmap_file (_("calculator-font.png"));
 	if (filename == NULL)
 		filename = gnome_pixmap_file ("calculator-font.png");
+#if 1
+	if (filename == NULL)
+		filename = g_strdup_printf("./calculator-font.png");
+#endif
 	if (filename == NULL) {
 		g_message ("ref_font(): could not find calculator-font.png");
 		return;
 	}
 
-#ifdef GCALC_GTK_2	
 	error = NULL;
-#endif	
-	pb = gdk_pixbuf_new_from_file(filename /*, &error */);
+	pb = gdk_pixbuf_new_from_file(filename , &error );
 	if (!pb) {
-#ifdef GCALC_GTK_2
 		g_message (G_STRLOC ": could not load %s: %s", filename,
 			   error->message);
-#else
-		g_warning ("Could not load %s\n", filename);
-#endif	
 		g_free (filename);
-#ifdef GCALC_GTK_2	
 		g_error_free (error);
-#endif
 		return;
 	}
 	g_free (filename);
@@ -1417,7 +1308,7 @@ create_button(GnomeCalc *gc, GtkWidget *table, int x, int y)
 }
 
 static void
-gnome_calc_init (GnomeCalc *gc)
+gnome_calc_instance_init (GnomeCalc *gc)
 {
 	gint x,y;
 	GtkWidget *table;
@@ -1496,16 +1387,9 @@ gnome_calc_destroy (GtkObject *object)
 	while(gc->_priv->stack)
 		stack_pop(&gc->_priv->stack);
 
-#ifdef GCALC_GTK_2	
 	GNOME_CALL_PARENT_HANDLER (GTK_OBJECT_CLASS, destroy, (object));
-#else
-	unref_font ();
-	if (GTK_OBJECT_CLASS (parent_class)->destroy)
-		(* GTK_OBJECT_CLASS (parent_class)->destroy) (object);
-#endif	
 }
 
-#ifdef GCALC_GTK_2	
 static void
 gnome_calc_finalize (GObject *object)
 {
@@ -1525,7 +1409,6 @@ gnome_calc_finalize (GObject *object)
 
 	GNOME_CALL_PARENT_HANDLER (G_OBJECT_CLASS, finalize, (object));
 }
-#endif
 
 /**
  * gnome_calc_get_result
@@ -1652,10 +1535,11 @@ backspace_cb (GtkWidget *w, gpointer data)
  * that do not have a button in the calculator. Chema
  */
 typedef struct _GnomeCalcExtraKeys GnomeCalcExtraKeys;
+typedef void (*CalcKeypressFunc) (GtkWidget *w, gpointer data);
 
 struct _GnomeCalcExtraKeys {
 	gint key;
-	GtkSignalFunc signal_func;
+	CalcKeypressFunc signal_func;
 	gpointer data;
 };
 
@@ -1691,7 +1575,7 @@ event_cb (GtkWidget *widget, GdkEvent *event, gpointer calc)
 	for (i = 0; i < num; i++) {
 		if (kevent->keyval == extra_keys[i].key) {
 			CalculatorButton but = {NULL};
-			GtkSignalFunc func = extra_keys [i].signal_func;
+			CalcKeypressFunc func = extra_keys [i].signal_func;
 			but.data = extra_keys[i].data;
 			(* func) (widget, &but);
 			return TRUE;

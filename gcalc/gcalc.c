@@ -29,8 +29,14 @@ about_cb (GtkWidget *widget, gpointer data)
 	static GtkWidget *about = NULL;
 	gchar *authors[] = {
 		"George Lebl <jirka@5z.com>",
+		"Bastien Nocera <hadess@hadess.net>",
 		NULL
 	};
+	gchar *documenters[] = {
+		NULL
+	};
+	/* Translator credits */
+	gchar *translator_credits = _("");
 
 	if (about != NULL)
 	{
@@ -40,9 +46,11 @@ about_cb (GtkWidget *widget, gpointer data)
 	}
 	about = gnome_about_new(_("The GNOME Calculator"), VERSION,
 				"(C) 1998 the Free Software Foundation",
-				(const char **)authors,
 				_("Simple double precision calculator similiar "
 				  "to xcalc"),
+				(const char **)authors,
+				(const char **)documenters,
+				(const char *)translator_credits,
 				NULL);
 	gtk_signal_connect(GTK_OBJECT(about), "destroy",
 			   GTK_SIGNAL_FUNC(gtk_widget_destroyed), &about);

@@ -13,15 +13,13 @@ AM_PROG_XML_I18N_TOOLS
 dnl
 dnl a start of some nicer configure.in stuff
 dnl
-GDK_PIXBUF_REQUIRED=0.7.0
-GCONF_REQUIRED=0.12
-OAF_REQUIRED=0.6.5
-
+LIBGNOME_REQUIRED=1.96.0
+LIBGNOMEUI_REQUIRED=1.96.0
 
 AM_CONFIG_HEADER(config.h)
 AC_CANONICAL_SYSTEM
 
-AM_INIT_AUTOMAKE(gnome-utils, 1.4.0.99)
+AM_INIT_AUTOMAKE(gnome-utils, 1.96.0)
 
 dnl 
 dnl only useful for maintainers
@@ -91,24 +89,28 @@ if test "x$CONSOLE_HELPER" = "xno" -a "x$enable_console_helper" = "xyes" ; then
 	AC_MSG_ERROR(Console helper requested but consolehelper binary not found)
 fi
 
-GNOME_INIT(applets)
+dnl GNOME_INIT(applets)
+
+PKG_CHECK_MODULES(GNOME_UTILS, libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+AC_SUBST(GNOME_UTILS_CFLAGS)
+AC_SUBST(GNOME_UTILS_LIBS)
 
 AC_ISC_POSIX
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_CPP
 AC_STDC_HEADERS
-AC_ARG_PROGRAM
+dnl AC_ARG_PROGRAM
 dnl AM_PROG_LIBTOOL
-AM_PROG_LEX
+dnl AM_PROG_LEX
 AC_PROG_YACC
 dnl AC_DECL_YYTEXT
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
-GNOME_COMPILE_WARNINGS
+dnl GNOME_COMPILE_WARNINGS
 
-GNOME_X_CHECKS
+dnl GNOME_X_CHECKS
 
 # so that people on places like solaris can set where the rgb.txt file is
 XLIBDIR=$x_libraries
@@ -118,24 +120,24 @@ fi
 AC_SUBST(XLIBDIR)
 
 dnl Check for new enough gnome-libs
-CFLAGS_save=$CFLAGS
-LIBS_save=$LIBS
-CFLAGS=`gnome-config --cflags gnomeui`
-LIBS=`gnome-config --libs gnomeui`
+dnl CFLAGS_save=$CFLAGS
+dnl LIBS_save=$LIBS
+dnl CFLAGS=`gnome-config --cflags gnomeui`
+dnl LIBS=`gnome-config --libs gnomeui`
 
-AC_CHECK_LIB(gnomeui, gnome_window_icon_set_default_from_file, ,[
-AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
+dnl AC_CHECK_LIB(gnomeui, gnome_window_icon_set_default_from_file, ,[
+dnl AC_MSG_ERROR(gnome-libs 1.0.59 or higher is required.)])
 
-CFLAGS=$CFLAGS_save
-LIBS=$LIBS_save
+dnl CFLAGS=$CFLAGS_save
+dnl LIBS=$LIBS_save
 
 dnl PROGRAMS_GNCAL="gncal"
 dnl AC_SUBST(PROGRAMS_GNCAL)
 
-GNOME_CHECK_OBJC
-if test "$OBJECTIVE_C" = yes; then
-  GNOME_INIT_OBJC
-fi
+dnl GNOME_CHECK_OBJC
+dnl if test "$OBJECTIVE_C" = yes; then
+dnl   GNOME_INIT_OBJC
+dnl fi
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -166,26 +168,6 @@ if test "x$enable_console_helper" = "xyes"; then
 else
   AM_CONDITIONAL(CONSOLE_HELPER, false)
 fi
-
-dnl
-dnl GdkPixBuf
-dnl
-AC_MSG_CHECKING(for GdkPixbuf library >= $GDK_PIXBUF_REQUIRED)
-PIXBUF_CFLAGS=`$GNOME_CONFIG --cflags gdk_pixbuf`
-PIXBUF_LIBS=`$GNOME_CONFIG --libs gdk_pixbuf`
-if test "x$PIXBUF_CFLAGS" != x ; then
-    vers=`gdk-pixbuf-config --version | awk 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
-    if test "$vers" -ge 0007000; then
-        AC_MSG_RESULT(found)
-    else
-       AC_MSG_ERROR(You need at least GdkPixbuf version 0.7.0 for gnome-utils)
-    fi
-else
-    AC_MSG_ERROR(Did not find GdkPixbuf installed)
-fi
-AC_SUBST(PIXBUF_CFLAGS)
-AC_SUBST(PIXBUF_LIBS)
-AC_SUBST(GDK_PIXBUF_REQUIRED)
 
 dnl *******************************
 dnl Internationalization
@@ -371,7 +353,7 @@ fi
 dnl gsu end.
 
 dnl Some nice conditional
-AM_CONDITIONAL(FALSE, test x = y)
+dnl AM_CONDITIONAL(FALSE, test x = y)
 
 dnl Check for libgtop
 GNOME_INIT_LIBGTOP
@@ -380,11 +362,11 @@ dnl gdialog
 AC_CHECK_CURSES
 dnl gdialog end
 
-AM_PATH_OAF($OAF_REQUIRED)
-AC_SUBST(OAF_REQUIRED)
+dnl AM_PATH_OAF($OAF_REQUIRED)
+dnl AC_SUBST(OAF_REQUIRED)
 
-AM_PATH_GCONF($GCONF_REQUIRED,,,gconf-gtk)
-AC_SUBST(GCONF_REQUIRED)
+dnl AM_PATH_GCONF($GCONF_REQUIRED,,,gconf-gtk)
+dnl AC_SUBST(GCONF_REQUIRED)
 
 AC_SUBST(CFLAGS)
 AC_SUBST(CPPFLAGS)
