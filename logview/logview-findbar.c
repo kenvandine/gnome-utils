@@ -54,6 +54,7 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 	for (i==0; i<3; i++) {
 		if (fields[i] != NULL) {
 			utf8 = g_utf8_casefold (fields[i], -1);
+			g_free (fields[i]);
 			found[i] = g_strrstr (utf8, st->pattern);
 			g_free (utf8);
 		}
@@ -62,16 +63,19 @@ logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 
 	if (fields[0] != NULL) {
 		utf8 = g_utf8_casefold (fields[0], -1);
+		g_free (fields[0]);
 		found[0] = g_strrstr (utf8, st->pattern);
 		g_free (utf8);
 	}
 	if (fields[1] != NULL) {
 		utf8 = g_utf8_casefold (fields[1], -1);
+		g_free (fields[1]);
 		found[1] = g_strrstr (utf8, st->pattern);
 		g_free (utf8);
 	}
 	if (fields[2] != NULL) {
 		utf8 = g_utf8_casefold (fields[2], -1);
+		g_free (fields[2]);
 		found[2] = g_strrstr (utf8, st->pattern);
 		g_free (utf8);
 	}
