@@ -21,7 +21,7 @@
 
 #include <errno.h>
 #include <gnome.h>    /* only needed for definition of _() */
-#include <libintl.h>
+/* #include <libintl.h> conflicts with <libgnome/gnome-i18n.h> on some systems */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
