@@ -23,12 +23,12 @@
 
 #include "gtt.h"
 
-
+/* This file is a little ugly; it originally didn't use a GnomePropertyBox,
+   and now it does, but not in a very natural way. */
 
 
 typedef struct _PropDlg {
-	GtkDialog *dlg;
-	GtkButton *ok; /* to distinguish between ok/apply */
+	GnomePropertyBox *dlg;
 	/* GtkEntry *days; */
 	struct {
 		GtkEntry *h, *m, *s;
@@ -38,13 +38,24 @@ typedef struct _PropDlg {
 } PropDlg;
 
 
+static void help_cb(GnomePropertyBox * pb, gint page, gchar * url)
+{
+  gnome_help_goto(pb, url);
+}
 
-static void prop_set(GtkButton *w, PropDlg *dlg)
+static gint delete_event_cb(GnomePropertyBox * pb, gpointer ignored)
+{
+  gtk_widget_hide(GTK_WIDGET(pb));
+  return TRUE; /* Stop the default property box close handler */
+}
+
+static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 {
 	gchar *s;
 	int secs;
 
 	if (!dlg->proj) return;
+	if (page != -1) return; /* Only do global applies */
 
 	s = gtk_entry_get_text(dlg->title);
 	if (!s) g_warning("%s:%d\n", __FILE__, __LINE__);
@@ -94,9 +105,6 @@ static void prop_set(GtkButton *w, PropDlg *dlg)
 		dlg->proj->secs = secs;
 	}
 
-	if (w == dlg->ok) {
-		gtk_widget_hide(GTK_WIDGET(dlg->dlg));
-	}
 }
 
 
@@ -142,6 +150,18 @@ void prop_dialog_set_project(project *proj)
 	gtk_entry_set_text(dlg->ever.m, s);
 	sprintf(s, "%d", proj->secs % 60);
 	gtk_entry_set_text(dlg->ever.s, s);
+
+	/* The problem here is that all the set_text's above are 
+	   calling gnome_property_box_changed, and sensitizing the 
+	   OK/Apply buttons. This is bad. So we just desensitize them.
+	   This is lame as the PropertyBox internally thinks an apply
+	   is pending, and you call the changed function all those 
+	   times.
+
+	   The real solution probably involves changing GnomePropertyBox. */
+
+	gnome_dialog_set_sensitive(GNOME_DIALOG(dlg->dlg), 0, FALSE);
+	gnome_dialog_set_sensitive(GNOME_DIALOG(dlg->dlg), 1, FALSE);
 }
 
 
@@ -149,7 +169,7 @@ void prop_dialog_set_project(project *proj)
 void prop_dialog(project *proj)
 {
 	GtkWidget *w;
-	GtkBox *vbox, *aa;
+	GtkBox *vbox;
 	GtkTable *table;
 	char *s1, *t;
 
@@ -157,44 +177,28 @@ void prop_dialog(project *proj)
 	if (!dlg) {
 		char s[64];
 		dlg = g_malloc(sizeof(PropDlg));
-		dlg->dlg = GTK_DIALOG(gtk_dialog_new());
+		dlg->dlg = GNOME_PROPERTY_BOX(gnome_property_box_new());
 		sprintf(s, APP_NAME " - %s", _("Properties"));
 		gtk_window_set_title(GTK_WINDOW(dlg->dlg), s);
-                gtk_signal_connect(GTK_OBJECT(dlg->dlg), "delete_event",
-                                   GTK_SIGNAL_FUNC(gtt_delete_event),
-                                   NULL);
-		aa = GTK_BOX(dlg->dlg->action_area);
+
 		vbox = GTK_BOX(gtk_vbox_new(FALSE, 2));
 		gtk_widget_show(GTK_WIDGET(vbox));
-		gtk_box_pack_start(GTK_BOX(dlg->dlg->vbox),
-				   GTK_WIDGET(vbox), FALSE, FALSE, 2);
-		gtk_container_border_width(GTK_CONTAINER(vbox), 10);
+		gnome_property_box_append_page(dlg->dlg, GTK_WIDGET(vbox),
+					       gtk_label_new(_("Project")));
 
-		w = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
-		gtk_widget_show(w);
-		gtk_signal_connect(GTK_OBJECT(w), "clicked",
-				   GTK_SIGNAL_FUNC(prop_set), (gpointer *)dlg);
-		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-		dlg->ok = GTK_BUTTON(w);
-		w = gnome_stock_button(GNOME_STOCK_BUTTON_APPLY);
-		gtk_widget_show(w);
-		gtk_signal_connect(GTK_OBJECT(w), "clicked",
-				   GTK_SIGNAL_FUNC(prop_set), (gpointer *)dlg);
-		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-		w = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
-		gtk_widget_show(w);
-		gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
-					  GTK_SIGNAL_FUNC(gtk_widget_hide),
-					  GTK_OBJECT(dlg->dlg));
-		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-		w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
-		gtk_widget_show(w);
+		gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
+
+		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "apply",
+				   GTK_SIGNAL_FUNC(prop_set), dlg);
+
 		t = gnome_help_file_path("gtt", "index.html");
 		s1 = g_copy_strings("file:///", t, "#PROP", NULL);
 		g_free(t);
-		gtk_signal_connect(GTK_OBJECT(w), "clicked",
-				   GTK_SIGNAL_FUNC(gnome_help_goto), s1);
-		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
+		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "help",
+				   GTK_SIGNAL_FUNC(help_cb), s1);
+
+		gtk_signal_connect(GTK_OBJECT(dlg->dlg), "delete_event",
+				   GTK_SIGNAL_FUNC(delete_event_cb), NULL);
 
 		table = GTK_TABLE(gtk_table_new(4, 7, FALSE));
 		gtk_widget_show(GTK_WIDGET(table));
@@ -208,6 +212,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 0, 1);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 1, 7, 0, 1);
 		dlg->title = GTK_ENTRY(w);
@@ -217,6 +224,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 1, 2);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 1, 7, 1, 2);
 		dlg->desc = GTK_ENTRY(w);
@@ -226,6 +236,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 2, 3);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		/*
 		 * Does anybody know a better way to make entries smaller?
 		 * I hate hard coded pixel widths/heights
@@ -238,6 +251,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 2, 3, 2, 3);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_set_usize(w, 30, -1);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 3, 4, 2, 3);
@@ -246,6 +262,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 4, 5, 2, 3);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_set_usize(w, 30, -1);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 5, 6, 2, 3);
@@ -259,6 +278,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 0, 1, 3, 4);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_set_usize(w, 30, -1);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 1, 2, 3, 4);
@@ -267,6 +289,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 2, 3, 3, 4);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_set_usize(w, 30, -1);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 3, 4, 3, 4);
@@ -275,6 +300,9 @@ void prop_dialog(project *proj)
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 4, 5, 3, 4);
 		w = gtk_entry_new();
+		gtk_signal_connect_object(GTK_OBJECT(w), "changed",
+					  GTK_SIGNAL_FUNC(gnome_property_box_changed), 
+					  GTK_OBJECT(dlg->dlg));
 		gtk_widget_set_usize(w, 30, -1);
 		gtk_widget_show(w);
 		gtk_table_attach_defaults(table, w, 5, 6, 3, 4);
@@ -286,4 +314,8 @@ void prop_dialog(project *proj)
 	prop_dialog_set_project(proj);
 	gtk_widget_show(GTK_WIDGET(dlg->dlg));
 }
+
+
+
+
 

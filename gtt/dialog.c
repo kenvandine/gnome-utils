@@ -110,7 +110,6 @@ void msgbox_ok(char *title, char *text, char *ok_text,
 
         sprintf(s, APP_NAME " - %s", title);
         mbox = gnome_message_box_new(text, GNOME_MESSAGE_BOX_GENERIC, ok_text, NULL, NULL);
-	gnome_dialog_set_default(GNOME_DIALOG(mbox), 1);
 
 	/* Is this necessary? */
 	gtk_signal_connect(GTK_OBJECT(mbox), "delete_event",
