@@ -108,7 +108,7 @@ update_status (void)
 {
 	if (number_of_files > 0 || number_of_dirs > 0) {
 		gchar *msg;
-		msg = g_strdup_printf (_("Number of files: %d\nNuber of folders: %d"),
+		msg = g_strdup_printf (_("Number of files: %d\nNumber of folders: %d"),
 				       number_of_files, number_of_dirs);
 		gtk_label_set_text (GTK_LABEL (status_label), msg);
 		g_free (msg);
