@@ -1,6 +1,6 @@
 # Note that this is NOT a relocatable package
 %define ver      0.30
-%define rel      1
+%define rel      SNAP
 %define prefix   /usr
 
 Summary: GNOME utility programs
@@ -12,11 +12,9 @@ Group: X11/Libraries
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/gnome-utils-%{ver}.tar.gz
 BuildRoot: /var/tmp/gnome-utils-root
 Obsoletes: gnome
-Requires: gnome-libs >= 0.30
-Requires: libgtop >= 0.25.0
-
-Packager: Michael Fulbright <msf@redhat.com>
+Packager: Marc Ewing <marc@redhat.com>
 URL: http://www.gnome.org
+Requires: gnome-libs >= 0.30
 Docdir: %{prefix}/doc
 
 %description
@@ -28,9 +26,9 @@ using your computer easy, powerful, and easy to configure.
 
 %changelog
 
-* Tue Sep 22 1998 Michael Fulbright <msf@redhat.com>
+* Wed Sep 23 1998 Michael Fulbright <msf@redhat.com>
 
-- Update to gnome-libs-0.30
+- Upgraded to 0.30
 
 * Mon Apr  6 1998 Marc Ewing <marc@redhat.com>
 
@@ -73,4 +71,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %{prefix}/share/locale/*/*/*
 %{prefix}/share/apps
+#%{prefix}/share/gtoprc
 %{prefix}/share/gnome/help/*
