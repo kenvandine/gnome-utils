@@ -939,9 +939,6 @@ file_event_after_cb  (GtkWidget * widget,
 void  
 drag_begin_file_cb (GtkWidget * widget,
                     GdkDragContext * context,
-                    GtkSelectionData * selection_data,
-                    guint info,
-                    guint time,
                     gpointer data)
 {
 	GSearchWindow * gsearch = data;
