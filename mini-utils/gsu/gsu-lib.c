@@ -24,6 +24,25 @@ no_helper (void)
 }
 
 static void
+su_failed (gchar *message)
+{
+	gchar *msg_text;
+
+	if (!strcmp (message, "incorrect password"))
+		msg_text = _("You gave an incorrect password.");
+	else
+		msg_text = message;
+
+	gnome_dialog_run
+		(GNOME_DIALOG
+		 (gnome_message_box_new
+		  (msg_text,
+		   GNOME_MESSAGE_BOX_ERROR,  _("Close"), NULL)));
+
+	exit (1);
+}
+
+static void
 su_error (gchar *error)
 {
 	perror (error);
@@ -41,6 +60,48 @@ su_ok (void)
 		   _("Close"), NULL)));
 
 	exit (0);
+}
+
+static void
+dialog_callback (gchar *string, gpointer password_ptr)
+{
+	*(gchar**) password_ptr = string ? g_strdup (string) : NULL;
+}
+
+static gchar *
+gsu_getpass(const gchar *new_user)
+{
+	GtkWidget *dialog, *label, *entry;
+	gchar *prompt, *password = NULL;
+	gint button;
+
+	if (strcmp (new_user, "root") == 0)
+		prompt = g_strdup
+			(_("You are trying to do something which requires\n"
+			   "root (system administrator) privileges.\n"
+			   "To do this, you must give the root password.\n"
+			   "Please enter the root password now, or choose\n"
+			   "Cancel if you do not know it."));
+	else
+		prompt = g_strconcat
+			(_("You are trying to change your user identity.\n"
+			   "Please enter the password for user `"),
+			 new_user, "'.", NULL);
+	
+	dialog = gnome_request_dialog (TRUE, prompt, NULL, 32,
+				       dialog_callback, &password,
+				       NULL);
+
+	g_free (prompt);
+
+	button = gnome_dialog_run_and_close (GNOME_DIALOG(dialog));
+
+	if (button && password) {
+		g_free (password);
+		password = NULL;
+	}
+
+	return password;
 }
 
 int
@@ -104,7 +165,8 @@ gsu_call_helper (int argc, char **argv)
 
 	/* Enter password. */
 
-	password = getpass ("GSU-Password: ");
+	password = gsu_getpass ("martin");
+	if (!password) return -1;
 
 	/* Let's fork () a child ... */
 
@@ -140,12 +202,11 @@ gsu_call_helper (int argc, char **argv)
 
 		close (message_pipe [0]);
 
-		fprintf (stderr, "Message: |%s|\n", message);
-
-		exit (0);
-
-		/* will never return */
-		su_ok ();
+		/* both of them will never return */
+		if (!strcmp (message, "OK"))
+			su_ok ();
+		else
+			su_failed (message);
 	}
 
 	close (passwd_pipe [1]);

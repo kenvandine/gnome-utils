@@ -512,9 +512,11 @@ main (int argc, char **argv)
 
   gtk_init(&argc, &argv);
   gdk_imlib_init();
-  gnomelib_init(program_name); /* FIXME. Can't use gnome_init() because
-				  it would require redoing all the 
-				  existing arg parsing. */
+
+  gnomelib_init(program_name, VERSION);
+  /* FIXME. Can't use gnome_init() because
+     it would require redoing all the 
+     existing arg parsing. */
 
   fast_startup = 0;
   simulate_login = 0;
