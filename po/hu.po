@@ -1,22 +1,23 @@
 # Hungarian translation of gnome-utils.
-# Copyright (C) 1999-2004 Free Software Foundation, Inc.
-# Szabolcs Ban <shooby@gnome.hu>, 1999-2000.
-# Gergely Nagy <greg@gnome.hu>, 2000.
-# Andras Timar <timar@gnome.hu>, 2001-2003.
-# Gabor Sari <saga@externet.hu>, 2003-2004.
-# Laszlo Dvornik <dvornik@invitel.hu>, 2004.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-utils package.
+# Szabolcs Ban <shooby@gnome.hu>, 1999, 2000.
+# Gergely Nagy <greg@gnome.hu>, 2001.
+# Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
+# Gabor Sari <saga@externet.hu>, 2003, 2004.
+# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2004-08-03 17:30+1200\n"
-"PO-Revision-Date: 2004-07-03 21:31+0200\n"
-"Last-Translator: Laszlo Dvornik <dvornik@invitel.hu>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-03 12:11+0200\n"
+"PO-Revision-Date: 2004-08-03 16:51+0200\n"
+"Last-Translator: Laszlo Dvornik <dvornik@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@gnome.hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Report-Msgid-Bugs-To: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
@@ -75,7 +76,7 @@ msgstr ""
 msgid "translator_credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
-"Dvornik László <dvornik@invitel.hu>\n"
+"Dvornik László <dvornik@gnome.hu>\n"
 "Nagy Gergely <greg@gnome.hu>\n"
 "Sári Gábor <saga@externet.hu>\n"
 "Tímár András <timar@gnome.hu>"
@@ -798,7 +799,7 @@ msgstr "Formázás állása"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Find files, folders, and documents on your computer"
-msgstr ""
+msgstr "Fájlok, mappák és dokumentumok keresése a számítógépen"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:600
 #: gsearchtool/gsearchtool.c:858 gsearchtool/gsearchtool.c:942
@@ -831,9 +832,8 @@ msgid "The buttons shown in the alert dialog"
 msgstr "A gombok megjelennek a figyelmeztető ablakokban"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:172
-#, fuzzy
 msgid "Show more _details"
-msgstr "Több _beállítási lehetőség megjelenítése"
+msgstr "Több _részlet megjelenítése"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
@@ -997,16 +997,15 @@ msgstr ""
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
 #: gsearchtool/gsearchtool-support.c:510
 msgid "today at %-I:%M %p"
-msgstr "ma, %-H:%M"
+msgstr "ma, %-H.%M"
 
 #: gsearchtool/gsearchtool-support.c:512
 msgid "yesterday at %-I:%M %p"
-msgstr "tegnap, %-H:%M"
+msgstr "tegnap, %-H.%M"
 
 #: gsearchtool/gsearchtool-support.c:514 gsearchtool/gsearchtool-support.c:516
-#, fuzzy
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
-msgstr "%y/%m/%-d, %-H:%M"
+msgstr "%Y. %B %e., %A, %H.%M.%S"
 
 #: gsearchtool/gsearchtool-support.c:687
 msgid "link (broken)"
@@ -1159,16 +1158,19 @@ msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
+"A keresés eredménye érvénytelen. Hiba történt a keresés végrehajtása közben."
 
 #: gsearchtool/gsearchtool.c:1380
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
+"A keresés eredménye érvénytelen. Ki szeretné kapcsolni a gyorskeresés "
+"szolgáltatást?"
 
 #: gsearchtool/gsearchtool.c:1388
 msgid "Disable _Quick Search"
-msgstr ""
+msgstr "_Gyorskeresés kikapcsolása"
 
 #: gsearchtool/gsearchtool.c:1432
 msgid "Error parsing the search command."
@@ -1340,9 +1342,9 @@ msgid "Can't write to actions database!"
 msgstr "Nem lehet írni a művelet-adatbázisba!"
 
 #: logview/actions.c:487
-#, fuzzy, c-format
+#, c-format
 msgid "Error while executing specified action: %s"
-msgstr "Hiba történt a megadott művelet végrehajtása közben"
+msgstr "Hiba történt a megadott művelet végrehajtása közben: %s"
 
 #: logview/actions.c:510
 msgid "<empty>"
@@ -1765,6 +1767,7 @@ msgid "Too many logs to monitor. Remove one and try again"
 msgstr "Túl sok naplót figyel egyszerre. Zárjon be egyet, és próbálja újra"
 
 #: logview/monitor.c:301 logview/monitor.c:338
+#, c-format
 msgid "tmp_list is NULL\n"
 msgstr "a tmp_list NULL\n"
 
@@ -1773,6 +1776,7 @@ msgid "Monitoring Logs..."
 msgstr "Naplók megfigyelése..."
 
 #: logview/monitor.c:667
+#, c-format
 msgid "TOUCHED!!\n"
 msgstr "HOZZÁÉRVE!!\n"
 
@@ -1806,16 +1810,3 @@ msgstr "Naplósor részletei"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
-
-#~ msgid "Search your disk for files"
-#~ msgstr "Fájlok keresése a lemezen"
-
-#~ msgid ""
-#~ "While searching the following errors were reported.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Keresés közben a következő hibák merültek fel.\n"
-#~ "\n"
-
-#~ msgid "Error while searching for files."
-#~ msgstr "Hiba a fájlok keresése közben."
