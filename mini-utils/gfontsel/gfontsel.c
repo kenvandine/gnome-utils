@@ -1,0 +1,275 @@
+/* Gnome Font Selector Tool
+ * (C) 1998 the Free Software Foundation
+ *
+ * This is an xfontsel replacement.
+ *
+ * Uses the GTK font selection widget, so this is nice and simple.
+ *
+ * Author: Andrew Veliath */
+
+#include <config.h>
+#include <gnome.h>
+
+#include <gdk/gdkkeysyms.h>
+
+#include <string.h>
+#include <signal.h>
+
+#define CONFIG_PREFIX		"/gfontsel"
+#define CONFIG_PROPERTIES	CONFIG_PREFIX "/Properties"
+#define CONFIG_LASTFONT		CONFIG_PROPERTIES "/LastFont"
+
+typedef struct {
+	GtkWidget *dialog;
+	GtkWidget *action_area;
+	GtkWidget *fontsel;
+	GtkWidget *combo;
+	GtkWidget *entry;
+	gchar *prev_fontname;
+
+	gchar *font_pattern;
+	gboolean print_on_exit;
+	gboolean remember_font;
+	gboolean load_last;
+} gfontsel_cfg_t;
+
+static void
+copy_and_activate_cb (GtkWidget * widget, gpointer user_data)
+{
+	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) user_data;
+	GtkWidget *list = GTK_COMBO (cfg->combo)->list;
+	gchar *fontname;
+
+	fontname = gtk_font_selection_get_font_name (
+		GTK_FONT_SELECTION (cfg->fontsel));
+
+	if (fontname && *fontname) {
+		GtkWidget *new_item;
+		GList *item;
+
+		for (item = GTK_LIST (list)->children;
+		     item; item = item->next) {
+			GtkLabel *label = GTK_LABEL (
+				GTK_BIN (item->data)->child);
+			if (strcmp (GTK_LABEL (label)->label,
+				    fontname) == 0) {
+				gtk_entry_select_region (
+					GTK_ENTRY (cfg->entry),
+					0, GTK_ENTRY (cfg->entry)->text_length);
+				return;
+			}
+		}
+
+		new_item = gtk_list_item_new_with_label (fontname);
+		gtk_widget_show (new_item);
+		gtk_container_add (GTK_CONTAINER (list), new_item);
+		gtk_entry_set_text (GTK_ENTRY (cfg->entry), fontname);
+		g_free (fontname);
+	}
+	gtk_entry_select_region (GTK_ENTRY (cfg->entry), 0,
+				 GTK_ENTRY (cfg->entry)->text_length);
+}
+
+static void
+update_fontsel_cb (GtkWidget * widget, gpointer user_data)
+{
+	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) user_data;
+	gchar *fontname;
+
+	fontname = gtk_entry_get_text (GTK_ENTRY (cfg->entry));
+
+	if (fontname && cfg->prev_fontname &&
+	    strcmp (cfg->prev_fontname, fontname) == 0)
+		return;
+
+	if (fontname && *fontname) {
+		gtk_font_selection_set_font_name
+			(GTK_FONT_SELECTION (cfg->fontsel), fontname);
+		if (cfg->prev_fontname)
+			g_free (cfg->prev_fontname);
+		cfg->prev_fontname = g_strdup (fontname);
+	}
+}
+
+static void
+cancel_cb (GtkWidget * widget, gpointer user_data)
+{
+	gtk_widget_destroy (widget);
+	gtk_main_quit ();
+}
+
+static void
+close_cb (GtkWidget * widget, gpointer user_data)
+{
+	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) user_data;
+	gchar *fontname;
+
+	fontname = gtk_entry_get_text (GTK_ENTRY (cfg->entry));
+
+	if (!(fontname && *fontname))
+		fontname = gtk_font_selection_get_font_name (
+			GTK_FONT_SELECTION (cfg->fontsel));
+
+	if (fontname && *fontname) {
+		if (cfg->remember_font) {
+			gnome_config_set_string (CONFIG_LASTFONT, fontname);
+			gnome_config_sync ();
+		}
+		if (cfg->print_on_exit)
+			g_print ("%s", fontname);
+	}
+	gtk_widget_destroy (widget);
+	gtk_main_quit ();
+}
+
+void
+gfontsel_create_dialog (gfontsel_cfg_t * cfg)
+{
+	GtkWidget *box, *label;
+	gchar *on_load_font = NULL;
+
+	cfg->dialog = gnome_dialog_new (_("Font Selector"),
+					GNOME_STOCK_BUTTON_APPLY,
+					GNOME_STOCK_BUTTON_CLOSE,
+					NULL);
+
+	gtk_signal_connect (GTK_OBJECT (cfg->dialog), "close",
+			    GTK_SIGNAL_FUNC (cancel_cb), cfg);
+	gnome_dialog_button_connect (GNOME_DIALOG (cfg->dialog), 0,
+				     GTK_SIGNAL_FUNC (copy_and_activate_cb),
+				     cfg);
+	gnome_dialog_button_connect (GNOME_DIALOG (cfg->dialog), 1,
+				     GTK_SIGNAL_FUNC (close_cb), cfg);
+	gnome_dialog_set_default (GNOME_DIALOG (cfg->dialog), 0);
+	gnome_dialog_set_accelerator (GNOME_DIALOG (cfg->dialog), 0,
+				      GDK_space, 0);
+
+	box = gtk_hbox_new (FALSE, GNOME_PAD_SMALL);
+	gtk_widget_show (box);
+
+	label = gtk_label_new (_("Selection:"));
+	gtk_widget_show (label);
+	gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
+
+	cfg->combo = gtk_combo_new ();
+	gtk_widget_show (cfg->combo);
+	gtk_box_pack_start (GTK_BOX (box), cfg->combo,
+			    TRUE, TRUE, GNOME_PAD_SMALL);
+
+	gtk_container_add (GTK_CONTAINER (
+		GNOME_DIALOG (cfg->dialog)->vbox), box);
+
+	cfg->entry = GTK_COMBO (cfg->combo)->entry;
+	gtk_signal_connect (GTK_OBJECT (cfg->entry), "changed",
+			    GTK_SIGNAL_FUNC (update_fontsel_cb), cfg);
+
+	cfg->fontsel = gtk_font_selection_new ();
+	gtk_widget_show (cfg->fontsel);
+	gtk_container_add (GTK_CONTAINER (
+		GNOME_DIALOG (cfg->dialog)->vbox), cfg->fontsel);
+
+	if (cfg->font_pattern)
+		on_load_font = cfg->font_pattern;
+	else if (cfg->load_last)
+		on_load_font = gnome_config_get_string (CONFIG_LASTFONT);
+
+	if (on_load_font) {
+		GtkWidget *item;
+
+		gtk_font_selection_set_font_name (
+			GTK_FONT_SELECTION (cfg->fontsel), on_load_font);
+		item = gtk_list_item_new_with_label (on_load_font);
+		gtk_widget_show (item);
+		gtk_container_add (GTK_CONTAINER (
+			GTK_COMBO (cfg->combo)->list), item);
+		g_free (on_load_font);
+	}
+}
+
+static void
+handle_signal (int sig)
+{
+	exit (0);
+}
+
+static
+error_t parse_an_arg (int key, char *arg, struct argp_state *state)
+{
+	gfontsel_cfg_t *cfg = (gfontsel_cfg_t *) state->input;
+
+	switch (key) {
+	case ARGP_KEY_INIT:
+		cfg->font_pattern = NULL;
+		cfg->print_on_exit = FALSE;
+		cfg->remember_font = TRUE;
+		cfg->load_last = TRUE;
+		break;
+
+#define PATTERN_KEY			'f'
+	case PATTERN_KEY:
+		cfg->font_pattern = g_strdup (arg);
+		break;
+
+#define PRINT_KEY			'p'
+	case PRINT_KEY:
+		cfg->print_on_exit = TRUE;
+		break;
+
+#define NO_REMEMBER_FONT_KEY		-1
+	case NO_REMEMBER_FONT_KEY:
+		cfg->remember_font = FALSE;
+		break;
+
+#define NO_LOAD_LAST_FONT_KEY		-2
+	case NO_LOAD_LAST_FONT_KEY:
+		cfg->load_last = FALSE;
+		break;
+	}
+
+	return 0;
+}
+
+static struct argp_option options[] =
+{
+	{"pattern", PATTERN_KEY, "pattern", 0,
+	 N_("font pattern"), 1},
+
+	{"print", PRINT_KEY, NULL, 0,
+	 N_("print selected font name on exit"), 1},
+
+	{"noremember", NO_REMEMBER_FONT_KEY, NULL, 0,
+	 N_("inhibit remembering selected font for next run"), 1},
+
+	{"nolast", NO_LOAD_LAST_FONT_KEY, NULL, 0,
+	 N_("inhibit loading of last font"), 1},
+
+	{NULL, 0, NULL, 0, NULL, 0}
+};
+
+static struct argp parser =
+{ 
+	options,
+	parse_an_arg
+};
+
+int
+main (int argc, char *argv[])
+{
+	static gfontsel_cfg_t cfg;
+
+	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
+	textdomain (PACKAGE);
+
+	gnome_init ("gfontsel", &parser, argc, argv, ARGP_INPUT, NULL, &cfg);
+
+	signal (SIGHUP, handle_signal);
+	signal (SIGINT, handle_signal);
+	signal (SIGQUIT, handle_signal);
+	signal (SIGTERM, handle_signal);
+
+	gfontsel_create_dialog (&cfg);
+	gtk_widget_show (cfg.dialog);
+	gtk_main ();
+
+	return 0;
+}
