@@ -220,7 +220,7 @@ build_search_command (void)
 	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))));
 
 	if (!file_is_named_utf8 || !*file_is_named_utf8) {
-		file_is_named_locale = NULL;
+		file_is_named_utf8 = g_strdup ("*");
 	} 
 	else {
 		gchar *locale;
@@ -232,10 +232,9 @@ build_search_command (void)
 			file_is_named_utf8 = g_strconcat ("*", file_is_named_utf8, "*", NULL);
 		}
 		
-		file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
-		
 		g_free (locale);
 	}
+	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
 	
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
@@ -266,7 +265,7 @@ build_search_command (void)
 						file_is_named_escaped);
 		} 
 		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p %s '%s' -xdev -print", 
+			g_string_append_printf (command, "find \"%s\" '!' -type p %s '%s' -xdev -print", 
 						look_in_folder_locale, 
 						find_command_default_name_option, 
 						file_is_named_escaped);
@@ -281,18 +280,10 @@ build_search_command (void)
 		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
-		if (file_is_named_escaped == NULL) {
-			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p %s '%s' ", 
-					 	look_in_folder_locale,
-						find_command_default_name_option,
-						"*");
-		}
-		else {
-			g_string_append_printf (command, "find \"%s\" '!' -type d '!' -type p %s '%s' ", 
+		g_string_append_printf (command, "find \"%s\" '!' -type p %s '%s' ", 
 					 	look_in_folder_locale,
 						find_command_default_name_option,
 						file_is_named_escaped);
-		}
 	
 		for (list = interface.selected_constraints; list != NULL; list = g_list_next (list)) {
 			
@@ -831,23 +822,26 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 			
 			if (strncmp (string->str, search_data->look_in_folder, strlen (search_data->look_in_folder)) == 0) { 
 			
-				filename = g_path_get_basename (utf8);
+				if (strlen (string->str) != strlen (search_data->look_in_folder)) {
 			
-				if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE | FNM_CASEFOLD ) != FNM_NOMATCH) {
-					if (search_data->show_hidden_files == TRUE) {
-						if (search_data->regex_matching_enabled == FALSE) {
-							add_file_to_search_results (string->str, interface.model, &interface.iter);
-						} 
-						else if (compare_regex (search_data->regex_string, filename) == TRUE) {
-							add_file_to_search_results (string->str, interface.model, &interface.iter);
+					filename = g_path_get_basename (utf8);
+			
+					if (fnmatch (search_data->file_is_named_pattern, filename, FNM_NOESCAPE | FNM_CASEFOLD ) != FNM_NOMATCH) {
+						if (search_data->show_hidden_files == TRUE) {
+							if (search_data->regex_matching_enabled == FALSE) {
+								add_file_to_search_results (string->str, interface.model, &interface.iter);
+							} 
+							else if (compare_regex (search_data->regex_string, filename) == TRUE) {
+								add_file_to_search_results (string->str, interface.model, &interface.iter);
+							}
 						}
-					}
-					else if (is_path_hidden (string->str) == FALSE) {
-						if (search_data->regex_matching_enabled == FALSE) {
-							add_file_to_search_results (string->str, interface.model, &interface.iter);
-						} 
-						else if (compare_regex (search_data->regex_string, filename) == TRUE) {
-							add_file_to_search_results (string->str, interface.model, &interface.iter);
+						else if (is_path_hidden (string->str) == FALSE) {
+							if (search_data->regex_matching_enabled == FALSE) {
+								add_file_to_search_results (string->str, interface.model, &interface.iter);
+							} 
+							else if (compare_regex (search_data->regex_string, filename) == TRUE) {
+								add_file_to_search_results (string->str, interface.model, &interface.iter);
+							}
 						}
 					}
 				}
@@ -1559,7 +1553,7 @@ create_main_window (void)
 	gtk_box_pack_end (GTK_BOX(hbox), interface.stop_button, FALSE, FALSE, GNOME_PAD_SMALL);
 	gtk_box_pack_end (GTK_BOX(hbox), interface.find_button, FALSE, FALSE, GNOME_PAD_SMALL);
 	gtk_widget_set_sensitive (interface.stop_button, FALSE);
-	gtk_widget_set_sensitive (interface.find_button, FALSE);
+	gtk_widget_set_sensitive (interface.find_button, TRUE);
 	
 	if (interface.is_gail_loaded)
 	{

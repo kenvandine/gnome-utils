@@ -238,17 +238,6 @@ constraint_entry_changed_cb (GtkWidget 	*widget,
 	if (GTK_WIDGET_VISIBLE (interface.main_window) == FALSE) {
 		return;
 	}
-	
-	if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
-	
-		file_is_named_string = 
-			(gchar *) gtk_entry_get_text(GTK_ENTRY(gnome_entry_gtk_entry(GNOME_ENTRY(interface.file_is_named_entry))));
-	
-		if (strlen (file_is_named_string) == 0) {
-			gtk_widget_set_sensitive (interface.find_button, FALSE);
-			return;
-		}
-	} 
 		
 	look_in_folder_string = 
 		gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
