@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-30 17:35-0300\n"
+"POT-Creation-Date: 2004-11-29 09:39-0500\n"
 "PO-Revision-Date: 2003-01-03 21:59+0200\n"
 "Last-Translator: Artis Trops <hornet@navigator.lv>\n"
 "Language-Team: Latvian <ll10nt@os.lv>\n"
@@ -14,25 +14,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
 msgid "Dictionary Lookup"
 msgstr "Vārdnīcas Meklēšana"
 
 # gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Lūkoties pēc vārda tiešsaites vārdnīcā"
 
 # gdictsrc/gdict-applet.c:130 mini-utils/gcolorsel/menus.c:1098
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
+#: logview/logview.c:113
 #, fuzzy
 msgid "_About"
 msgstr "_Par..."
 
 # gcharmap/src/interface.c:208 gnome-find/gnome-find.c:89
 # gstripchart/gstripchart.c:1784 gstripchart/gstripchart.c:2071
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
 msgid "_Help"
 msgstr "_Palīdzība"
 
@@ -59,12 +60,20 @@ msgstr "_Vārdnīca"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:509 gdictsrc/gdict-speller.c:452
+#. Could not look up search strategies, so just display a
+#. * label; FIXME: Memory leak
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
+#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:690
 msgid "Cannot connect to server"
 msgstr "Nevar savienoties ar serveri"
 
-#: gdictsrc/dict.c:677
+# gdictsrc/gdict-pref-dialog.c:156
+#: gdictsrc/dict.c:689
+#, fuzzy
+msgid "Server Error"
+msgstr "Servera Ieraksts"
+
+#: gdictsrc/dict.c:690
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -73,71 +82,74 @@ msgstr ""
 "norādīts pareizi. Attiecīgi noklusētais serveris ir dict.org un ports 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:44
+#: gdictsrc/gdict-about.c:42 logview/about.c:43
 #, fuzzy
 msgid "translator-credits"
 msgstr "Artis Trops <hornet@navigator.lv>"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:925
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
-msgid "Dictionary"
-msgstr "Vārdnīca"
-
-#: gdictsrc/gdict-about.c:58
+#: gdictsrc/gdict-about.c:44
 #, fuzzy
 msgid "A client for the MIT dictionary server."
 msgstr "Klients MIT vārdnīcas serverim.\n"
 
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
+msgid "Dictionary"
+msgstr "Vārdnīca"
+
 # gdictsrc/gdict-app.c:117
-#: gdictsrc/gdict-app.c:127
+#: gdictsrc/gdict-app.c:101
 msgid "Spell-checking..."
 msgstr "Pareizrakstības pārbaude..."
 
 # gdictsrc/gdict-app.c:125
-#: gdictsrc/gdict-app.c:135
+#: gdictsrc/gdict-app.c:108
 msgid "Spell check done"
 msgstr "Pareizrakstības parbaude veikta"
 
 # gdictsrc/gdict-app.c:133 gdictsrc/gdict-app.c:266
-#: gdictsrc/gdict-app.c:143 gdictsrc/gdict-app.c:290
+#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
 msgid "No matches found"
 msgstr "Nav nevienas sakrišanas"
 
+#: gdictsrc/gdict-app.c:126
+msgid "Connexion error"
+msgstr ""
+
 # gdictsrc/gdict-app.c:250
-#: gdictsrc/gdict-app.c:273
+#: gdictsrc/gdict-app.c:238
 msgid "Looking up word..."
 msgstr "Skatīties pēc vārda..."
 
 # gdictsrc/gdict-app.c:258
-#: gdictsrc/gdict-app.c:281
+#: gdictsrc/gdict-app.c:253
 msgid "Lookup done"
 msgstr "Skatīšanās veikta"
 
 # gdictsrc/gdict-app.c:278
-#: gdictsrc/gdict-app.c:303
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "Virkne nav atrasta"
 
 # gdictsrc/gdict-app.c:381
-#: gdictsrc/gdict-app.c:471
+#: gdictsrc/gdict-app.c:445
 msgid "Find"
 msgstr "Meklēt"
 
 # gsearchtool/gsearchtool.c:824
-#: gdictsrc/gdict-app.c:479
+#: gdictsrc/gdict-app.c:455
 #, fuzzy
 msgid "_Search for:"
 msgstr "Meklēt Kļūdas"
 
-# gdictsrc/gdict-app.c:381
-#: gdictsrc/gdict-app.c:492 logview/logview.c:93
-msgid "_Find"
-msgstr "_Meklēt"
+#: gdictsrc/gdict-app.c:505
+msgid "Unable to perform requested operation."
+msgstr ""
 
 # gdictsrc/gdict-app.c:414
-#: gdictsrc/gdict-app.c:534
+#: gdictsrc/gdict-app.c:506
+#, fuzzy
 msgid ""
-"Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
@@ -145,201 +157,316 @@ msgstr ""
 "Vai nu serveris, kuru lietojat, nav pieejams \n"
 "vai arī neesat pieslēdzies Internetam."
 
+#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
+#: gdictsrc/gdict-pref-dialog.c:629
+#, fuzzy
+msgid "Could not display help"
+msgstr "Nevaru Parādīt Palīdzību"
+
 # gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
 # gdictsrc/gdict-applet.c:153
-#: gdictsrc/gdict-app.c:697 gdictsrc/gdict-app.c:952
-#: gdictsrc/gdict-speller.c:214
+#. Dictionary menu
+#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
+#: gdictsrc/gdict-speller.c:252
 msgid "_Look Up Word"
 msgstr "_Sameklēt Vārdu"
 
 # gdictsrc/gdict-app.c:454 gdictsrc/gdict-app.c:511
-#: gdictsrc/gdict-app.c:698
+#: gdictsrc/gdict-app.c:569
 msgid "Lookup word in dictionary"
 msgstr "Sameklēt vārdu vārdnīcā"
 
 # gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
-#: gdictsrc/gdict-app.c:700 gdictsrc/gdict-speller.c:160
+#: gdictsrc/gdict-app.c:570 gdictsrc/gdict-speller.c:191
 msgid "Check _Spelling"
 msgstr "Pārbaudīt _Pareizrakstību"
 
 # gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
-#: gdictsrc/gdict-app.c:701
+#: gdictsrc/gdict-app.c:571
 msgid "Check word spelling"
 msgstr "Pārbaudīt vārda pareizrakstību"
 
-#: gdictsrc/gdict-app.c:745
-msgid "_Dictionary"
-msgstr "_Vārdnīca"
+# gdictsrc/gdict-pref-dialog.c:161
+#: gdictsrc/gdict-app.c:573
+#, fuzzy
+msgid "_Print"
+msgstr "_Ports:"
 
-#: gdictsrc/gdict-app.c:948 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:574
+msgid "Print the current definition"
+msgstr ""
+
+# gdictsrc/gdict-app.c:381
+#. Edit menu, see below for cut, paste etc.
+#: gdictsrc/gdict-app.c:578 logview/logview.c:105
+#, fuzzy
+msgid "_Find..."
+msgstr "_Meklēt"
+
+#: gdictsrc/gdict-app.c:579
+#, fuzzy
+msgid "Find a word in the text"
+msgstr "Satur tekstu"
+
+# gdictsrc/gdict-app.c:381
+#: gdictsrc/gdict-app.c:580
+#, fuzzy
+msgid "Find Ne_xt"
+msgstr "Meklēt"
+
+#: gdictsrc/gdict-app.c:581
+msgid "Find next occurrence of the word"
+msgstr ""
+
+# gdictsrc/gdict-pref-dialog.c:129 gtt/options.c:518
+# mini-utils/gcolorsel/menus.c:1109 mini-utils/gshutdown/gshutdown.c:314
+#: gdictsrc/gdict-app.c:582
+#, fuzzy
+msgid "P_references"
+msgstr "_Preferences"
+
+#: gdictsrc/gdict-app.c:583
+#, fuzzy
+msgid "Configure the application"
+msgstr "_Paslēpt Aplikāciju"
+
+#. Help menu
+#: gdictsrc/gdict-app.c:586 logview/logview.c:111
+msgid "_Contents"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:587
+msgid "View help for this application"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:589
+#, fuzzy
+msgid "About this application"
+msgstr "_Paslēpt Aplikāciju"
+
+# logview/actions.c:120
+#: gdictsrc/gdict-app.c:596 logview/logview.c:98
+#, fuzzy
+msgid "_Quit"
+msgstr "_Rediģēt"
+
+#: gdictsrc/gdict-app.c:597
+#, fuzzy
+msgid "Quit the application"
+msgstr "_Paslēpt Aplikāciju"
+
+# gcharmap/src/interface.c:190 mini-utils/gcolorsel/menus.c:93
+# mini-utils/gcolorsel/menus.c:954 mini-utils/gshutdown/gshutdown.c:153
+# mini-utils/gshutdown/gshutdown.c:594 mini-utils/gsu/gsu-gui-api.c:39
+#: gdictsrc/gdict-app.c:601
+#, fuzzy
+msgid "_Close"
+msgstr "Kosīnuss"
+
+#: gdictsrc/gdict-app.c:602
+#, fuzzy
+msgid "Close the application"
+msgstr "_Paslēpt Aplikāciju"
+
+# gcharmap/src/interface.c:69 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
+#: gdictsrc/gdict-app.c:607
+#, fuzzy
+msgid "Cu_t"
+msgstr "Izgriezt"
+
+# gcharmap/src/interface.c:76
+#: gdictsrc/gdict-app.c:608
+msgid "Cut the selection"
+msgstr "Izgriezt izvēlēto"
+
+# gcharmap/src/interface.c:71 gcharmap/src/interface.c:196
+# gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: gdictsrc/gdict-app.c:609
+msgid "_Copy"
+msgstr "_Kopēt"
+
+# gcharmap/src/interface.c:76
+#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+#, fuzzy
+msgid "Copy the selection"
+msgstr "Izgriezt izvēlēto"
+
+# gcharmap/src/interface.c:73 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
+#: gdictsrc/gdict-app.c:611
+#, fuzzy
+msgid "_Paste"
+msgstr "Ielīmēt"
+
+# gcharmap/src/interface.c:73
+#: gdictsrc/gdict-app.c:612
+#, fuzzy
+msgid "Paste clipboard"
+msgstr "Ievietot no starpliktuves."
+
+#: gdictsrc/gdict-app.c:613
+msgid "Select _All"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:614
+msgid "Select everything"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
 msgid "_Word:"
 msgstr "_Vārds:"
 
-#: gdictsrc/gdict-app.c:976 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:198
 msgid "Word"
 msgstr "Vārds"
 
 # gtt/options.c:413
-#: gdictsrc/gdict-app.c:977 gdictsrc/gdict-app.c:978
-#: gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
+#: gdictsrc/gdict-speller.c:200
 msgid "Word Entry"
 msgstr "Vārda Ieraksts"
 
-#: gdictsrc/gdict-app.c:977
+#: gdictsrc/gdict-app.c:886
 msgid "Enter a Word or select one from the list below"
 msgstr "Ievadi Vārdu vai izvēlies vienu no zemākesošā saraksta"
 
 # gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
 # gdictsrc/gdict-applet.c:153
-#: gdictsrc/gdict-app.c:980
+#: gdictsrc/gdict-app.c:890
 msgid "Look Up for a Word"
 msgstr "Sameklēt Vardu"
 
-# gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
-# gdictsrc/gdict-applet.c:153
-#: gdictsrc/gdict-applet.c:161
-msgid "_Lookup"
-msgstr "_Sameklēt"
-
-#: gdictsrc/gdict-applet.c:173
+#: gdictsrc/gdict-applet.c:127
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "Vārdnīcas serveris"
 
 # mini-utils/gless/gless.c:548
-#: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
-#, c-format
-msgid "Error invoking query: %s"
+#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:367
+#, fuzzy
+msgid "Error invoking query"
 msgstr "Kļūda izpildot pieprasījumu: %s"
 
 # gtt/toolbar.c:190
-#: gdictsrc/gdict-pref-dialog.c:158
+#: gdictsrc/gdict-pref-dialog.c:136
 msgid "Dictionary Preferences"
 msgstr "Vārdnīcas Preferences"
 
 # gdictsrc/gdict-pref-dialog.c:147
-#: gdictsrc/gdict-pref-dialog.c:171
+#: gdictsrc/gdict-pref-dialog.c:149
 msgid "Smart _lookup"
 msgstr "Gudrā _meklēšana"
 
-# gdictsrc/gdict-pref-dialog.c:156
-#: gdictsrc/gdict-pref-dialog.c:189
-msgid "_Server:"
-msgstr "_Serveris:"
-
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-pref-dialog.c:196
+#: gdictsrc/gdict-pref-dialog.c:163
 msgid "De_fault Server"
 msgstr "No_klusētais Serveris"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+# gdictsrc/gdict-pref-dialog.c:156
+#: gdictsrc/gdict-pref-dialog.c:174
+msgid "_Server:"
+msgstr "_Serveris:"
+
+#: gdictsrc/gdict-pref-dialog.c:183
 msgid "Reset server to default"
 msgstr "Pārstatīt serveri uz noklusēto"
 
 # gdictsrc/gdict-pref-dialog.c:161
-#: gdictsrc/gdict-pref-dialog.c:213
+#: gdictsrc/gdict-pref-dialog.c:191
 msgid "_Port:"
 msgstr "_Ports:"
 
-#: gdictsrc/gdict-pref-dialog.c:229
+#: gdictsrc/gdict-pref-dialog.c:201
 msgid "Def_ault Port"
 msgstr "Nok_lusētais Ports"
 
-#: gdictsrc/gdict-pref-dialog.c:238
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset port to default"
 msgstr "Pārstatīt portu uz noklusēto"
 
 # gdictsrc/gdict-pref-dialog.c:156
-#: gdictsrc/gdict-pref-dialog.c:239
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "Server"
 msgstr "Serveris"
 
 # gdictsrc/gdict-pref-dialog.c:156
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Server Entry"
 msgstr "Servera Ieraksts"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Enter the Server Name"
 msgstr "Ievadi Servera Nosaukumu"
 
 # gdictsrc/gdict-pref-dialog.c:161
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:220
 msgid "Port"
 msgstr "Ports"
 
 # gtt/options.c:413
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Port Entry"
 msgstr "Porta Ieraksts"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Enter the Port Number"
 msgstr "Ievadi Porta Numuru"
 
 # gdictsrc/gdict-pref-dialog.c:171
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "_Database:"
 msgstr "_Datubāze:"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-pref-dialog.c:259
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "D_efault strategy:"
 msgstr "N_oklusētā stratēģija:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:421
 msgid "Search all databases"
 msgstr "Meklēt visās datubāzēs"
 
 # gdictsrc/gdict-pref-dialog.c:171
-#: gdictsrc/gdict-pref-dialog.c:613
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database"
 msgstr "Datubāze"
 
 # gdictsrc/gdict-pref-dialog.c:171
-#: gdictsrc/gdict-pref-dialog.c:613
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database Name"
 msgstr "Datubāzes Nosaukums"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:600
 msgid "Default Strategy"
 msgstr "Noklusētā Stratēģija"
 
-#: gdictsrc/gdict-pref-dialog.c:656
-#, fuzzy, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr "Šeit bija kļūda. `%s' ir tukšs"
-
-#: gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-speller.c:200
 msgid "Enter a word to know the spelling"
 msgstr "Ievadi vārdu, lai zinātu pareizrakstību"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-speller.c:153
+#: gdictsrc/gdict-speller.c:205
 #, fuzzy
 msgid "Search s_trategy:"
 msgstr "Meklēšanas S_tratēģija:"
 
-#: gdictsrc/gdict-speller.c:165
+# logview/logview.c:113
+#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2049
+#, fuzzy
+msgid "Show more _options"
+msgstr "Parādīt Žurnāla Rekvizītus"
+
+#: gdictsrc/gdict-speller.c:215
 msgid "Click to do the spell check"
 msgstr "Klikšķis, lai izpildītu pareizrakstības pārbaudi"
 
-# gsearchtool/gsearchtool.c:211
-#: gdictsrc/gdict-speller.c:169
-#, fuzzy
-msgid "Search _results:"
-msgstr "M_eklēšanas Rezultāti"
-
 # gdictsrc/gdict-app.c:457 gdictsrc/gdict-app.c:514
-#: gdictsrc/gdict-speller.c:229
+#: gdictsrc/gdict-speller.c:265
 msgid "Check Spelling"
 msgstr "Pārbaudīt Pareizrakstību"
 
 # gdictsrc/gdict-pref-dialog.c:178
-#: gdictsrc/gdict-speller.c:643
+#: gdictsrc/gdict-speller.c:652
 msgid "Search Strategy"
 msgstr "Meklēšanas Stratēģija"
 
@@ -405,6 +532,11 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Lietot gudro meklēšanu"
 
+#: gdictsrc/main.c:101
+#, fuzzy
+msgid "Gnome Dictionary"
+msgstr "Vārdnīca"
+
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
 msgstr "Disketes Formatētājs"
@@ -448,66 +580,66 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 linux iedzimtajai failsistēmai vai fat DOS failsistēmai."
 
-#: gfloppy/src/badblocks.c:94
+#: gfloppy/src/badblocks.c:84
 #, fuzzy
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "MIekšējā Kļūda: Neiespējami sameklēt līdz pareizai lokācijai."
 
-#: gfloppy/src/badblocks.c:103
+#: gfloppy/src/badblocks.c:93
 #, fuzzy, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "MIekšējā Kļūda: Savāda vērtība (%ld) iekš do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:261
+#: gfloppy/src/badblocks.c:251
 #, fuzzy
 msgid "Checking for bad blocks..."
 msgstr "MSlikto sektoru pārbaude..."
 
-#: gfloppy/src/badblocks.c:273
+#: gfloppy/src/badblocks.c:263
 #, fuzzy, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "MNevarēja atvērt iekārtu %s, lai varētu pārbaudīt sliktos sektorus\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
+#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
 #, fuzzy
 msgid "Checking for bad blocks... Done"
 msgstr "MSlikto sektoru pārbaude... Izdarīts"
 
-#: gfloppy/src/fdformat.c:49
+#: gfloppy/src/fdformat.c:42
 #, fuzzy
 msgid "Formatting the disk..."
 msgstr "MFormatēju disku..."
 
-#: gfloppy/src/fdformat.c:52
+#: gfloppy/src/fdformat.c:45
 #, fuzzy
 msgid "I don't know what this is, but it's very wrong."
 msgstr "EEs nezinu, kas tas ir, bet tas ir ļoti nepareizi."
 
-#: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
 #, fuzzy, c-format
 msgid "Error formatting track #%d"
 msgstr "EKļūda formatējot celiņu #%d"
 
-#: gfloppy/src/fdformat.c:82
+#: gfloppy/src/fdformat.c:75
 #, fuzzy
 msgid "Error during completion of formatting"
 msgstr "EKļūda formatēšanas pabeigšanas laikā"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:86
+#: gfloppy/src/fdformat.c:79
 #, fuzzy
 msgid "Formatting the disk... Done"
 msgstr "MFormatēju disku... Izdarīts"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:102
+#: gfloppy/src/fdformat.c:95
 #, fuzzy
 msgid "Verifying the format..."
 msgstr "MPārbaudu formātu"
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
 #, fuzzy
 msgid ""
 "Unable to write to the floppy.\n"
@@ -518,12 +650,12 @@ msgstr ""
 "\n"
 "Lūdzu pārliecinies, vai tā nav aizsargāta pret rakstīšanu."
 
-#: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
 #, fuzzy, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "ENepietiekamas atļaujas, lai avērtu disketes iekārtu %s."
 
-#: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
 #, fuzzy
 msgid ""
 "Unable to access the floppy disk.\n"
@@ -536,7 +668,7 @@ msgstr ""
 "Lūdzu pārliecinies, vai tā ir iekšā iekārtā\n"
 "ar aizvērtām iekārtas durtiņām."
 
-#: gfloppy/src/fdformat.c:117
+#: gfloppy/src/fdformat.c:110
 #, fuzzy, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -547,7 +679,7 @@ msgstr ""
 "\n"
 "Kļūdas kods %s:%d"
 
-#: gfloppy/src/fdformat.c:140
+#: gfloppy/src/fdformat.c:133
 #, fuzzy, c-format
 msgid ""
 "Read Error:\n"
@@ -556,34 +688,34 @@ msgstr ""
 "ELasīšanas Kļūda:\n"
 "Problēma lasot cilindru %d, gaidīja %d, nolasīji %d"
 
-#: gfloppy/src/fdformat.c:143
+#: gfloppy/src/fdformat.c:136
 #, fuzzy, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "EProblēma lasot cilindru %d, gaidīja %d, nolasīji %d"
 
-#: gfloppy/src/fdformat.c:154
+#: gfloppy/src/fdformat.c:147
 #, fuzzy, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "MSlikti dati cilindrā %d. Turpinām..."
 
 # mini-utils/gless/gless.c:548
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:156
 #, fuzzy, c-format
 msgid "Error closing device %s"
 msgstr "EKļūda aizverot iekārtu %s"
 
-#: gfloppy/src/fdformat.c:170
+#: gfloppy/src/fdformat.c:163
 #, fuzzy
 msgid "Verifying the format... Done"
 msgstr "MPārbaudu formātu... Izdarīts"
 
 # mini-utils/gless/gless.c:617
-#: gfloppy/src/fdformat.c:182
+#: gfloppy/src/fdformat.c:175
 #, fuzzy, c-format
 msgid "Unable to write to device %s"
 msgstr "ENevarēja ierakstīt iekārtā %s"
 
-#: gfloppy/src/fdformat.c:202
+#: gfloppy/src/fdformat.c:195
 #, fuzzy, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -594,33 +726,33 @@ msgstr ""
 "\n"
 "Kļūdas kods %s"
 
-#: gfloppy/src/fdformat.c:214
+#: gfloppy/src/fdformat.c:207
 #, fuzzy
 msgid "Could not determine current floppy geometry."
 msgstr "ENevarēju noteikt pašreizējās diketes ģeometriju."
 
-#: gfloppy/src/gfloppy.c:225
+#: gfloppy/src/gfloppy.c:215
 #, fuzzy
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "EKļūda izveidojot unikālu faila nosaukumu slikto sektoru saraksta failam."
 
-#: gfloppy/src/gfloppy.c:245
+#: gfloppy/src/gfloppy.c:235
 #, fuzzy
 msgid "Error while filling the bad blocks list file."
 msgstr "EKļūda aizpildot slikto sektoru saraksta failu."
 
-#: gfloppy/src/gfloppy.c:308
+#: gfloppy/src/gfloppy.c:298
 #, fuzzy, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "EKļūda pavairojot (%s) komandu: %s."
 
-#: gfloppy/src/gfloppy.c:334
+#: gfloppy/src/gfloppy.c:324
 #, fuzzy
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "ENezināms mke2fs sākuma paraksts, atsaucu."
 
-#: gfloppy/src/gfloppy.c:348
+#: gfloppy/src/gfloppy.c:338
 #, fuzzy, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -631,17 +763,17 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:365
+#: gfloppy/src/gfloppy.c:355
 #, fuzzy
 msgid "Abnormal child process termination."
 msgstr "ENenormāla bērna procesa izbeigšanās."
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:380
 #, fuzzy, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "EKļūda pavairojot mdbadblocks komandu: %s."
 
-#: gfloppy/src/gfloppy.c:402
+#: gfloppy/src/gfloppy.c:392
 #, fuzzy, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -651,34 +783,34 @@ msgstr ""
 "kļūdām:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:445
+#: gfloppy/src/gfloppy.c:435
 #, fuzzy
 msgid "Abnormal mbadblocks child process termination."
 msgstr "ENenormāla mdbadblocks bērna procesa izbeigšanās"
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
 #, fuzzy
 msgid "Making filesystem on disk..."
 msgstr "MVeidoju failsistēmu uz diska..."
 
 # mini-utils/idetool/idetool.c:41
-#: gfloppy/src/gfloppy.c:479
+#: gfloppy/src/gfloppy.c:469
 #, fuzzy
 msgid "Unable to create filesystem correctly."
 msgstr "ENevarēja pareizi izveidot failsistēmu."
 
-#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
 #, fuzzy
 msgid "Making filesystem on disk... Done"
 msgstr "MVeidoju failsistēmu uz diska... Izdarīts"
 
-#: gfloppy/src/gfloppy.c:528
+#: gfloppy/src/gfloppy.c:518
 #, fuzzy
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "MPārbadu sliktos sektorus... (tas var aizņemt kādu laiku)"
 
-#: gfloppy/src/gfloppy.c:533
+#: gfloppy/src/gfloppy.c:523
 #, fuzzy
 msgid "Error while checking the bad blocks."
 msgstr "EKļuda pārbaudot sliktos sektorus."
@@ -687,7 +819,7 @@ msgstr "EKļuda pārbaudot sliktos sektorus."
 msgid "    "
 msgstr "    "
 
-#: gfloppy/src/gfloppy2.glade.h:2
+#: gfloppy/src/gfloppy2.glade.h:2 gnome-screenshot/gnome-screenshot.glade.h:1
 msgid "*"
 msgstr "*"
 
@@ -776,7 +908,13 @@ msgstr "_Ātri (tikai izveido failsistēmu)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standarta (pievieno zemā-līmeņa formatēšanu ātrajam režīmam)"
 
-#: gfloppy/src/main.c:215
+# gdictsrc/gdict-pref-dialog.c:161
+#: gfloppy/src/main.c:224
+#, fuzzy
+msgid "Cannot Format"
+msgstr "_Formatēt"
+
+#: gfloppy/src/main.c:225
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -784,12 +922,12 @@ msgstr ""
 "Ne mke2fs, ne mkdosfs/mformat aplikācijas nav uzinstalētas. Jūs nevarat "
 "formatēt disketi bez kādas no tām."
 
-#: gfloppy/src/main.c:239
+#: gfloppy/src/main.c:245
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nevarēja atvērt iekārtu %s, formatēšana nevar turpināties."
 
-#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
+#: gfloppy/src/main.c:248 gfloppy/src/main.c:311
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -798,7 +936,7 @@ msgstr ""
 "Iekārta %s ir atslēgta.\n"
 "Lūdzu pievieno iekārtu, lai turpinātu."
 
-#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:251 gfloppy/src/main.c:314
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -809,37 +947,44 @@ msgstr ""
 "iespējama.\n"
 "Sazinies ar sistēmadministrātoru, lai dabūtu rakstīšanas atļaujas."
 
-#: gfloppy/src/main.c:310
+#: gfloppy/src/main.c:258 gfloppy/src/main.c:322
+#, fuzzy
+msgid "Cannot initialize device"
+msgstr "Nevaru inicializēt bonabo."
+
+#: gfloppy/src/main.c:308
 #, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nevarēja atvērt iekārtu %s, formatēšana nevar turpināties."
 
-#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:311 gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr ""
 
-#: gfloppy/src/main.c:489
-#, c-format
-msgid ""
-"Could not display help for the floppy formatter.\n"
-"%s"
+#: gfloppy/src/main.c:475
+#, fuzzy
+msgid "Could not display help for the floppy formatter."
 msgstr ""
 "Nevarēju parādīt palīdzību disketes formatētājam.\n"
 "%s"
 
-#: gfloppy/src/main.c:522
+#: gfloppy/src/main.c:494
+msgid "Incorrect volume name"
+msgstr ""
+
+#: gfloppy/src/main.c:495
 msgid "The volume name can't contain any blank space."
 msgstr "Partīcijas nosaukums nevar saturēt nevienu tukšumu."
 
-#: gfloppy/src/main.c:576
+#: gfloppy/src/main.c:543
 msgid "The device to format"
 msgstr "Formatējamā iekārta"
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:544
 msgid "DEVICE"
 msgstr "IEKĀRTA"
 
-#: gfloppy/src/progress.c:123
+#: gfloppy/src/progress.c:122
 #, fuzzy, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -854,15 +999,15 @@ msgstr[1] ""
 "Diskate tika formatēta, bet <b>%d sliktie sektori</b> (no %d) tika atrasti "
 "un marķēti."
 
-#: gfloppy/src/progress.c:126
+#: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
 msgstr "Diskete noformatēta sekmīgi."
 
-#: gfloppy/src/progress.c:132
+#: gfloppy/src/progress.c:131
 msgid "Floppy formatting cancelled."
 msgstr "Disketes formatēšana atsaukta."
 
-#: gfloppy/src/progress.c:175
+#: gfloppy/src/progress.c:174
 #, fuzzy
 msgid "Format Progress"
 msgstr "Formatēšanas progress"
@@ -874,9 +1019,222 @@ msgstr ""
 # gsearchtool/gsearchtool.c:824
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
 #: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
-#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
+#: gsearchtool/gsearchtool.c:2364 gsearchtool/gsearchtool.c:2385
 msgid "Search for Files"
 msgstr "Meklēt Failus"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:1
+msgid "Disable Quick Search"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:2
+msgid "Disable Quick Search Second Scan"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:3
+msgid "Quick Search Excluded Paths"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:4
+msgid "Quick Search Second Scan Excluded Paths"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:5
+#, fuzzy
+msgid "Select Contains the Text"
+msgstr "Satur tekstu"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:6
+#, fuzzy
+msgid "Select Date Modified Less Than"
+msgstr "Modifikācijas datums mazāks kā (dienas)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:7
+#, fuzzy
+msgid "Select Date Modified More Than"
+msgstr "Modifikācijas datums lielāks kā (dienas)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:8
+#, fuzzy
+msgid "Select File is Empty"
+msgstr "Fails ir tukšs"
+
+# gsearchtool/gsearchtool.c:45
+#: gsearchtool/gnome-search-tool.schemas.in.h:9
+#, fuzzy
+msgid "Select Follow Symbolic Links"
+msgstr "Sekot simbolsaitēm"
+
+# mini-utils/idetool/idetool.c:41
+#: gsearchtool/gnome-search-tool.schemas.in.h:10
+#, fuzzy
+msgid "Select Include Other Filesystems"
+msgstr "Iekļaut citas failsistēmas"
+
+# gsearchtool/gsearchtool.c:49
+#: gsearchtool/gnome-search-tool.schemas.in.h:11
+#, fuzzy
+msgid "Select Name Matches Regular Expression"
+msgstr "Atbilst regulāram izteiksmei"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:12
+#, fuzzy
+msgid "Select Name does not Contain"
+msgstr "Izvēlieties '%s' piespiešanu"
+
+# gsearchtool/gsearchtool.c:37
+#: gsearchtool/gnome-search-tool.schemas.in.h:13
+#, fuzzy
+msgid "Select Owned by Group"
+msgstr "Pieder grupai"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:14
+#, fuzzy
+msgid "Select Owned by User"
+msgstr "Īpašnieks"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:15
+#, fuzzy
+msgid "Select Owner is Unrecognized"
+msgstr "Īpašnieks ir neatpazīts"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:16
+msgid "Select Show Hidden Files and Folders"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:17
+#, fuzzy
+msgid "Select Size At Least"
+msgstr "Izmērs vismaz (kilobaiti)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:18
+#, fuzzy
+msgid "Select Size At Most"
+msgstr "Izmērs ne lielāks kā (kilobaiti)"
+
+# logview/actions.c:61 logview/monitor.c:115
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#, fuzzy
+msgid "Show Additional Options"
+msgstr "Papildus Opcijas"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:20
+msgid ""
+"This key defines the paths the search tool will exclude from a quick search. "
+"The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
+"media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:21
+msgid ""
+"This key defines the paths the search tool will exclude from a second scan "
+"when performing a quick search. The second scan uses the find command to "
+"search for files. The purpose of the second scan is to find files that have "
+"not been indexed. The wildcards '*' and '?' are supported. The default value "
+"is /."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+msgid ""
+"This key determines if the Additional Options section is expanded when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:23
+msgid ""
+"This key determines if the Contains the Text option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:24
+msgid ""
+"This key determines if the Date Modified Less Than option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+msgid ""
+"This key determines if the Date Modified More Than option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:26
+msgid ""
+"This key determines if the File is Empty option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:27
+msgid ""
+"This key determines if the Follow Symbolic Links option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+msgid ""
+"This key determines if the Include Other Filesystems option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:29
+msgid ""
+"This key determines if the Name Matches Regular Expression option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:30
+msgid ""
+"This key determines if the Name does not Contain option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+msgid ""
+"This key determines if the Owned by Group option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:32
+msgid ""
+"This key determines if the Owned by User option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:33
+msgid ""
+"This key determines if the Owner is Unrecognized option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
+msgid ""
+"This key determines if the Show Hidden Files and Folders option is selected "
+"when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:35
+msgid ""
+"This key determines if the Size At Least option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:36
+msgid ""
+"This key determines if the Size At Most option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
+msgid ""
+"This key determines if the search tool disables the use of the find command "
+"after performing a quick search."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:38
+msgid ""
+"This key determines if the search tool disables the use of the locate "
+"command when performing simple file name searches."
+msgstr ""
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
@@ -939,7 +1297,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: gsearchtool/gsearchtool-callbacks.c:324
-#: gsearchtool/gsearchtool-callbacks.c:477
+#: gsearchtool/gsearchtool-callbacks.c:476
 #, fuzzy, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -949,26 +1307,26 @@ msgstr[1] ""
 "Šis atvērs %d atsevišķas failus. Vai esat pārliecināts, ka vēlaties to darīt?"
 
 #: gsearchtool/gsearchtool-callbacks.c:384
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:967
-#: gsearchtool/gsearchtool-callbacks.c:1001
+#: gsearchtool/gsearchtool-callbacks.c:417
+#: gsearchtool/gsearchtool-callbacks.c:966
+#: gsearchtool/gsearchtool-callbacks.c:999
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr ""
 
 #: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:643
-#: gsearchtool/gsearchtool-callbacks.c:970
+#: gsearchtool/gsearchtool-callbacks.c:642
+#: gsearchtool/gsearchtool-callbacks.c:969
 msgid "The document does not exist."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:421
-#: gsearchtool/gsearchtool-callbacks.c:1004
+#: gsearchtool/gsearchtool-callbacks.c:420
+#: gsearchtool/gsearchtool-callbacks.c:1002
 #, fuzzy
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Nav uzinstalēts skatītājs, kas spētu parādīt \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:472
+#: gsearchtool/gsearchtool-callbacks.c:471
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
@@ -976,89 +1334,90 @@ msgstr[0] ""
 msgstr[1] ""
 
 # logview/logrtns.c:202
-#: gsearchtool/gsearchtool-callbacks.c:530
+#: gsearchtool/gsearchtool-callbacks.c:529
 #, fuzzy, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "%s nevar tikt atvērts."
 
-#: gsearchtool/gsearchtool-callbacks.c:537
+#: gsearchtool/gsearchtool-callbacks.c:536
 msgid "The nautilus file manager is not running."
 msgstr "Nautilus failu pārvaldnieks nav palaists."
 
-#: gsearchtool/gsearchtool-callbacks.c:640
+#: gsearchtool/gsearchtool-callbacks.c:639
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:680
+#: gsearchtool/gsearchtool-callbacks.c:679
 #, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:683
+#: gsearchtool/gsearchtool-callbacks.c:682
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:713
+#: gsearchtool/gsearchtool-callbacks.c:712
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:716
+#: gsearchtool/gsearchtool-callbacks.c:715
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:758
+#: gsearchtool/gsearchtool-callbacks.c:757
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:760
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr ""
 
 # gsearchtool/outdlg.c:69
-#: gsearchtool/gsearchtool-callbacks.c:1189
+#: gsearchtool/gsearchtool-callbacks.c:1187
 msgid "Save Search Results As..."
 msgstr "Saglabāt Meklēšanas Rezultātus Kā..."
 
 # logview/logrtns.c:202
-#: gsearchtool/gsearchtool-callbacks.c:1241
+#: gsearchtool/gsearchtool-callbacks.c:1239
 #, fuzzy
 msgid "Could not save document."
 msgstr "%s nevar tikt atvērts."
 
-#: gsearchtool/gsearchtool-callbacks.c:1243
+#: gsearchtool/gsearchtool-callbacks.c:1241
 msgid "You did not select a document name."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1269
-#: gsearchtool/gsearchtool-callbacks.c:1364
+#: gsearchtool/gsearchtool-callbacks.c:1267
+#: gsearchtool/gsearchtool-callbacks.c:1362
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1273
+#: gsearchtool/gsearchtool-callbacks.c:1271
 msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1302
+#: gsearchtool/gsearchtool-callbacks.c:1300
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1306
+#: gsearchtool/gsearchtool-callbacks.c:1304
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1317
+#: gsearchtool/gsearchtool-callbacks.c:1315
+#: gnome-screenshot/screenshot-xfer.c:190
 msgid "_Replace"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1367
+#: gsearchtool/gsearchtool-callbacks.c:1365
 msgid "You may not have write permissions to the document."
 msgstr ""
 
@@ -1367,12 +1726,6 @@ msgid "Select the folder where you want to start the search."
 msgstr "Ievadi direktorijas nosaukumu, kurā vēlies sākt meklēšanu"
 
 # logview/logview.c:113
-#: gsearchtool/gsearchtool.c:2049
-#, fuzzy
-msgid "Show more _options"
-msgstr "Parādīt Žurnāla Rekvizītus"
-
-# logview/logview.c:113
 #: gsearchtool/gsearchtool.c:2059
 #, fuzzy
 msgid "Show more options"
@@ -1390,185 +1743,185 @@ msgstr "Klikšķis, lai Sāktu meklēšanu"
 msgid "Click to Stop the search"
 msgstr "Klikšķis, lai Apstādinātu meklēšanu"
 
-#: gsearchtool/gsearchtool.c:2386
+#: gsearchtool/gsearchtool.c:2381
 msgid "Cannot initialize bonobo."
 msgstr "Nevaru inicializēt bonabo."
 
 # logview/logview.c:268
-#: logview/about.c:48
+#: logview/about.c:47 logview/logview.c:49
 #, fuzzy
 msgid "System Log Viewer"
 msgstr "GNOME Sistēmas Žurnālu Skatītājs"
 
-#: logview/about.c:51
+#: logview/about.c:50
 msgid "A system log viewer for GNOME."
 msgstr ""
 
 # logview/actions.c:56
-#: logview/actions.c:73
+#: logview/actions.c:86
 #, fuzzy
 msgid "Action Database"
 msgstr "Darbību datubāze"
 
 # mini-utils/gcolorsel/glade/dialog-prefs.glade.h:31
-#: logview/actions.c:84
+#: logview/actions.c:97
 msgid "Actions"
 msgstr "Darbības"
 
 # gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:619
 # mini-utils/gw/gw.c:505
-#: logview/actions.c:156
+#: logview/actions.c:169
 msgid "_Add"
 msgstr "_Pievienot"
 
 # mini-utils/gcolorsel/glade/dialog-prefs.glade.h:31
-#: logview/actions.c:161
+#: logview/actions.c:174
 #, fuzzy
 msgid "Add an action"
 msgstr "Darbības"
 
 # logview/actions.c:120
-#: logview/actions.c:163 logview/logview.c:80
+#: logview/actions.c:176 logview/logview.c:88
 msgid "_Edit"
 msgstr "_Rediģēt"
 
 # logview/monitor.c:219
-#: logview/actions.c:168
+#: logview/actions.c:181
 #, fuzzy
 msgid "Edit an action"
 msgstr "_Izpildīt Darbības"
 
 # gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:545
 # logview/actions.c:127
-#: logview/actions.c:170
+#: logview/actions.c:183
 msgid "_Remove"
 msgstr "_Izņemt"
 
-#: logview/actions.c:175
+#: logview/actions.c:188
 msgid "Remove an action"
 msgstr ""
 
-#: logview/actions.c:262
+#: logview/actions.c:275
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "Nevar atvērt darbību datu bāzi <%s>! Atvēršana neizdevās."
 
 # logview/actions.c:282 logview/actions.c:295 logview/actions.c:306
 # logview/actions.c:317 logview/actions.c:328 logview/actions.c:339
-#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
-#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
+#: logview/actions.c:310 logview/actions.c:323 logview/actions.c:334
+#: logview/actions.c:345 logview/actions.c:356 logview/actions.c:367
 msgid "Error parsing actions data base"
 msgstr "Kļūda analizējot darbību datubāzi"
 
 # logview/actions.c:371
-#: logview/actions.c:388
+#: logview/actions.c:401
 msgid "Can't write to actions database!"
 msgstr "Nevar ierakstīt darbības datubāzē!"
 
-#: logview/actions.c:486
+#: logview/actions.c:499
 #, fuzzy, c-format
 msgid "Error while executing specified action: %s"
 msgstr "Kļūda izpildot norādīto darbību"
 
 # logview/actions.c:477
-#: logview/actions.c:509
+#: logview/actions.c:522
 msgid "<empty>"
 msgstr "<tukšs>"
 
 # logview/actions.c:478
-#: logview/actions.c:510
+#: logview/actions.c:523
 msgid "log name regexp"
 msgstr "log vārda regexp"
 
 # logview/actions.c:479
-#: logview/actions.c:511
+#: logview/actions.c:524
 msgid "process regexp"
 msgstr "procesa regexp"
 
 # logview/actions.c:480
-#: logview/actions.c:512
+#: logview/actions.c:525
 msgid "message regexp"
 msgstr "ziņas regexp"
 
 # logview/actions.c:481
-#: logview/actions.c:513
+#: logview/actions.c:526
 msgid "action to execute when regexps are TRUE"
 msgstr "darbības, kuras izpildīt, kad regexpi ir TRUE (piepildās)"
 
 # logview/actions.c:482
-#: logview/actions.c:514
+#: logview/actions.c:527
 msgid "description"
 msgstr "apraksts"
 
 # mini-utils/gcolorsel/glade/dialog-prefs.glade.h:31
-#: logview/actions.c:650
+#: logview/actions.c:663
 #, fuzzy
 msgid "Edit Action"
 msgstr "Darbības"
 
-#: logview/actions.c:686
+#: logview/actions.c:699
 #, fuzzy
 msgid "_Tag:"
 msgstr "_Lapa:"
 
-#: logview/actions.c:695
+#: logview/actions.c:708
 msgid "Tag that identifies the log file."
 msgstr ""
 
 # logview/logview.c:370
-#: logview/actions.c:704
+#: logview/actions.c:717
 #, fuzzy
 msgid "_Log name:"
 msgstr "Tilpuma _nosaukums: "
 
-#: logview/actions.c:713
+#: logview/actions.c:726
 msgid "Regular expression that will match the log name."
 msgstr ""
 
 # logview/zoom.c:179
-#: logview/actions.c:723
+#: logview/actions.c:736
 #, fuzzy
 msgid "_Process:"
 msgstr "Process:"
 
-#: logview/actions.c:732
+#: logview/actions.c:745
 msgid "Regular expression that will match process part of message."
 msgstr ""
 
 # logview/zoom.c:181
-#: logview/actions.c:742
+#: logview/actions.c:755
 #, fuzzy
 msgid "_Message:"
 msgstr "Ziņojums:"
 
-#: logview/actions.c:751
+#: logview/actions.c:764
 msgid "Regular expression that will match the message."
 msgstr ""
 
 # mini-utils/gcolorsel/glade/dialog-prefs.glade.h:31
-#: logview/actions.c:761
+#: logview/actions.c:774
 #, fuzzy
 msgid "_Action:"
 msgstr "Darbības"
 
-#: logview/actions.c:770
+#: logview/actions.c:783
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
 
 # logview/zoom.c:183
-#: logview/actions.c:780
+#: logview/actions.c:793
 msgid "_Description:"
 msgstr "_Apraksts:"
 
 # logview/actions.c:648
-#: logview/actions.c:789
+#: logview/actions.c:802
 msgid "Description of this entry."
 msgstr "Šī ieraksta apraksts."
 
 # logview/actions.c:710
-#: logview/actions.c:813
+#: logview/actions.c:826
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1586,38 +1939,25 @@ msgstr ""
 "darbība: [%s]\n"
 
 # logview/calendar.c:118
-#: logview/calendar.c:73
+#: logview/calendar.c:55
 msgid "Calendar"
 msgstr "Kalendārs"
 
-#: logview/desc_db.c:34
+#: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "Nevar atvērt regexp datu bāzi <%s>! Atvēršana neizdevās."
 
-#: logview/desc_db.c:144
+#: logview/desc_db.c:176
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "Nevar atvērt apraksta datu bāzi <%s>! Atvēršana neizdevās."
 
-#: logview/gedit-output-window.c:350
-msgid "Close the output window"
-msgstr ""
-
-#: logview/gedit-output-window.c:388
-#, fuzzy
-msgid "Copy selected lines"
-msgstr "Kopēt izvēlēto"
-
-#: logview/gedit-output-window.c:408
-msgid "Clear the output window"
-msgstr ""
-
-#: logview/gedit-output-window.c:448
-msgid "Output Lines"
-msgstr ""
-
 # logview/logview.c:268
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "Sistēmas Žurnāls"
@@ -1626,154 +1966,141 @@ msgstr "Sistēmas Žurnāls"
 msgid "View the system log file"
 msgstr "Apskatīt sistēmas žurnāla failu"
 
-#: logview/info.c:50
+#: logview/info.c:47
 #, fuzzy
 msgid "Properties"
 msgstr "_Rekvizīti"
 
-# logview/info.c:159
-#: logview/info.c:94
-msgid "Size:"
-msgstr "Izmērs:"
+#: logview/info.c:95
+#, c-format
+msgid "<b>Size</b>: %ld bytes"
+msgstr ""
 
 # logview/info.c:161
-#: logview/info.c:94
-msgid "Modified:"
+#: logview/info.c:99
+#, fuzzy, c-format
+msgid "<b>Modified</b>: %s"
 msgstr "Izmainīts:"
 
 # logview/info.c:163
-#: logview/info.c:95
-msgid "Start Date:"
+#: logview/info.c:103
+#, fuzzy, c-format
+msgid "<b>Start Date</b>: %s"
 msgstr "Sāknēšanas Datums:"
 
 # logview/info.c:165
-#: logview/info.c:95
-msgid "Last Date:"
+#: logview/info.c:107
+#, fuzzy, c-format
+msgid "<b>Last Date</b>: %s"
 msgstr "Pēdējais Datums:"
 
 # logview/info.c:167
-#: logview/info.c:95
-msgid "Number of Lines:"
+#: logview/info.c:111
+#, fuzzy, c-format
+msgid "<b>Number of Lines</b>: %ld"
 msgstr "Rindiņu Skaits:"
 
-# logview/info.c:140
-#: logview/info.c:121
-msgid "Log Information"
-msgstr "Žurnāla Informācija"
-
-#: logview/info.c:147 logview/zoom.c:163
-msgid "<No log loaded>"
-msgstr "<Neviens žurnāls nav ielādēts>"
-
-# logview/info.c:183
-#: logview/info.c:170
-#, fuzzy, c-format
-msgid "%ld byte"
-msgid_plural "%ld bytes"
-msgstr[0] "%ld baiti"
-msgstr[1] "%ld baiti"
-
 # logview/log_repaint.c:88
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "January"
 msgstr "Janvāris"
 
 # logview/log_repaint.c:88
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "February"
 msgstr "Februāris"
 
 # logview/log_repaint.c:88
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "March"
 msgstr "Marts"
 
 # logview/log_repaint.c:88
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "April"
 msgstr "Aprīlis"
 
 # logview/log_repaint.c:88
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "May"
 msgstr "Maijs"
 
 # logview/log_repaint.c:89
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "June"
 msgstr "Jūnijs"
 
 # logview/log_repaint.c:89
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "July"
 msgstr "Jūlijs"
 
 # logview/log_repaint.c:89
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "August"
 msgstr "Augusts"
 
 # logview/log_repaint.c:89
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "September"
 msgstr "Septembris"
 
 # logview/log_repaint.c:89
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "October"
 msgstr "Oktobris"
 
 # logview/log_repaint.c:90
-#: logview/log_repaint.c:48
+#: logview/log_repaint.c:38
 msgid "November"
 msgstr "Novembris"
 
 # logview/log_repaint.c:90
-#: logview/log_repaint.c:48
+#: logview/log_repaint.c:38
 msgid "December"
 msgstr "Decembris"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:279
+#: logview/log_repaint.c:278
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 # logview/info.c:161
-#: logview/log_repaint.c:298
+#: logview/log_repaint.c:297
 msgid "Last Modified: "
 msgstr "Pēdējoriez Izmainīts: "
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:327
+#: logview/log_repaint.c:326
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:399
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-# logview/logrtns.c:96
-#: logview/logrtns.c:192
-msgid "Not enough memory!\n"
-msgstr "Par maz atmiņas!\n"
+# logview/logrtns.c:202
+#: logview/logrtns.c:43
+#, fuzzy
+msgid "This file cannot be opened"
+msgstr "%s nevar tikt atvērts."
 
 # logview/logrtns.c:129
-#: logview/logrtns.c:203
+#: logview/logrtns.c:206
 msgid "Unable to open logfile!\n"
 msgstr "Nevar atvērt žurnālfailu!\n"
 
-# logview/logrtns.c:183
-#: logview/logrtns.c:263
-#, c-format
-msgid "%s is not a regular file."
-msgstr "%s nav parasts fails."
+# logview/logrtns.c:96
+#: logview/logrtns.c:213
+msgid "Not enough memory!\n"
+msgstr "Par maz atmiņas!\n"
 
 # logview/logrtns.c:190
-#: logview/logrtns.c:271
+#: logview/logrtns.c:277
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1782,187 +2109,193 @@ msgstr ""
 "%s nav lietotājam nolasāms. Vai nu palaid programmu kā root, vai arī palūdz "
 "sistēmas administratoam nomainīt šī faila atļaujas."
 
+#: logview/logrtns.c:282
+#, c-format
+msgid "%s is too big."
+msgstr ""
+
 # logview/logrtns.c:202
-#: logview/logrtns.c:288
+#: logview/logrtns.c:286
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s nevar tikt atvērts."
 
 # logview/logrtns.c:211 logview/logrtns.c:221
-#: logview/logrtns.c:318 logview/logrtns.c:327
+#: logview/logrtns.c:301 logview/logrtns.c:312
 #, c-format
 msgid "%s not a log file."
 msgstr "%s nav žurnālfails."
 
 # logview/logrtns.c:633 logview/logrtns.c:664 logview/logrtns.c:795
-#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
+#: logview/logrtns.c:563 logview/logrtns.c:587
 msgid "ReadLogStats: out of memory"
 msgstr "Lasīt Žurnāla Statistiku: nav vairs atmiņas"
 
 # gdictsrc/gdict-app.c:381
-#: logview/logview-findbar.c:252
+#: logview/logview-findbar.c:265
 #, fuzzy
 msgid "Fin_d : "
 msgstr "Meklēt"
 
 # gdictsrc/gdict-app.c:381
-#: logview/logview-findbar.c:270
+#: logview/logview-findbar.c:283
 #, fuzzy
 msgid "Find Next"
 msgstr "Meklēt"
 
-#: logview/logview-findbar.c:280
+#: logview/logview-findbar.c:293
 msgid "Find Previous"
 msgstr ""
 
-#: logview/logview.c:79
+#: logview/logview.c:87
 msgid "_Log"
 msgstr ""
 
-#: logview/logview.c:81
+#: logview/logview.c:89
 msgid "_View"
 msgstr ""
 
-#: logview/logview.c:84
+#: logview/logview.c:92
 #, fuzzy
 msgid "_Open..."
 msgstr "_Atvērt"
 
 # logview/logview.c:674
-#: logview/logview.c:84
+#: logview/logview.c:92
 #, fuzzy
 msgid "Open a log from file"
 msgstr "Atvērt jaunu žurnālfailu"
 
-#: logview/logview.c:86
+#: logview/logview.c:94
 msgid "_Properties"
 msgstr "_Rekvizīti"
 
 # logview/logview.c:113
-#: logview/logview.c:86
+#: logview/logview.c:94
 msgid "Show Log Properties"
 msgstr "Parādīt Žurnāla Rekvizītus"
 
 # gcharmap/src/interface.c:190 mini-utils/gcolorsel/menus.c:93
 # mini-utils/gcolorsel/menus.c:954 mini-utils/gshutdown/gshutdown.c:153
 # mini-utils/gshutdown/gshutdown.c:594 mini-utils/gsu/gsu-gui-api.c:39
-#: logview/logview.c:88
+#: logview/logview.c:96
 #, fuzzy
 msgid "Close"
 msgstr "Kosīnuss"
 
-#: logview/logview.c:88
+#: logview/logview.c:96
 msgid "Close this log"
 msgstr ""
 
-# logview/actions.c:120
-#: logview/logview.c:90
-#, fuzzy
-msgid "_Quit"
-msgstr "_Rediģēt"
-
 # logview/logview.c:268
-#: logview/logview.c:90
+#: logview/logview.c:98
 #, fuzzy
 msgid "Quit the log viewer"
 msgstr "GNOME Sistēmas Žurnālu Skatītājs"
 
-#: logview/logview.c:93
+# gcharmap/src/interface.c:71 gcharmap/src/interface.c:196
+# gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
+#: logview/logview.c:101
+msgid "Copy"
+msgstr "Kopēt"
+
+#: logview/logview.c:103
+#, fuzzy
+msgid "Select All"
+msgstr "Izvē_lēties Visu"
+
+#: logview/logview.c:103
+msgid "Select the entire log"
+msgstr ""
+
+#: logview/logview.c:105
 msgid "Find pattern in logs"
 msgstr ""
 
-#: logview/logview.c:96
+#: logview/logview.c:108
 #, fuzzy
 msgid "Collapse _All"
 msgstr "_Sakļaut Visus"
 
-#: logview/logview.c:96
+#: logview/logview.c:108
 msgid "Collapse all the rows"
 msgstr "Sakļaut visas rindas"
 
-#: logview/logview.c:99
-msgid "_Contents"
-msgstr ""
-
-#: logview/logview.c:99
+#: logview/logview.c:111
 msgid "Open the help contents for the log viewer"
 msgstr ""
 
-#: logview/logview.c:101
+#: logview/logview.c:113
 msgid "Show the about dialog for the gconf editor"
 msgstr ""
 
 # mini-utils/gcolorsel/gcolorsel.c:48
-#: logview/logview.c:107
+#: logview/logview.c:119
 #, fuzzy
 msgid "_Monitor"
 msgstr "_Novērot..."
 
 # logview/logview.c:100
-#: logview/logview.c:107
+#: logview/logview.c:119
 #, fuzzy
 msgid "Monitor Current Log"
 msgstr "Novērot Žurnālus"
 
 # logview/calendar.c:118
-#: logview/logview.c:109
-msgid "_Calendar"
-msgstr "_Kalendārs"
+#: logview/logview.c:121
+#, fuzzy
+msgid "Ca_lendar"
+msgstr "Kalendārs"
 
 # logview/logview.c:110
-#: logview/logview.c:109
+#: logview/logview.c:121
 msgid "Show Calendar Log"
 msgstr "Parādīt Kalendāra Žurnālu"
 
-#: logview/logview.c:111
+#: logview/logview.c:123
 msgid "_Entry Detail"
 msgstr "_Ieraksta Detaļas"
 
-#: logview/logview.c:111
+#: logview/logview.c:123
 msgid "Show Entry Detail"
 msgstr "Parādīt ieraksta detaļas"
 
-#: logview/logview.c:166
+#: logview/logview.c:178
 msgid "Open the specified log."
 msgstr ""
 
-# logview/logview.c:241
-#: logview/logview.c:298
-msgid "No log files to open"
-msgstr "Nav žurnālfaila ko atvērt"
-
 # logview/zoom.c:177
-#: logview/logview.c:376
+#: logview/logview.c:389
 msgid "Date"
 msgstr "Datums"
 
-#: logview/logview.c:376
+#: logview/logview.c:389
 msgid "Host Name"
 msgstr "Hostdatora Vārds"
 
 # logview/zoom.c:179
-#: logview/logview.c:377
+#: logview/logview.c:390
 msgid "Process"
 msgstr "Process"
 
 # logview/zoom.c:181
-#: logview/logview.c:377
+#: logview/logview.c:390
 msgid "Message"
 msgstr "Ziņojums"
 
 # logview/logview.c:674
-#: logview/logview.c:581
+#: logview/logview.c:583
 msgid "Open new logfile"
 msgstr "Atvērt jaunu žurnālfailu"
 
-#: logview/logview.c:922
-#, fuzzy, c-format
-msgid "There was an error displaying help: %s"
+#: logview/logview.c:879
+#, fuzzy
+msgid "There was an error displaying help."
 msgstr "Šeit bija kļūda. `%s' ir tukšs"
 
-#: logview/logview.c:934
+#: logview/logview.c:897
 #, c-format
-msgid "%s - %s (monitored)"
+msgid "%s (monitored) - %s"
 msgstr ""
 
 #: logview/logview.schemas.in.h:1
@@ -1978,41 +2311,258 @@ msgstr ""
 "Nosaka pie sāknēšanas atveramo žurnālu. Noklusētais ir va nu /var/adm/"
 "messages, vai /var/log/messages, atkarībā no jūsu distribūcijas."
 
-#: logview/zoom.c:65
+#: logview/zoom.c:71
 #, fuzzy
 msgid "Entry Detail"
 msgstr "_Ieraksta Detaļas"
 
-# logview/zoom.c:177
-#: logview/zoom.c:102
-msgid "Date:"
-msgstr "Datums:"
-
-# logview/zoom.c:179
-#: logview/zoom.c:102
-msgid "Process:"
-msgstr "Process:"
-
-# logview/zoom.c:181
-#: logview/zoom.c:103
-msgid "Message:"
-msgstr "Ziņojums:"
-
-# logview/zoom.c:183
-#: logview/zoom.c:103
-msgid "Description:"
-msgstr "Apraksts:"
-
-# logview/zoom.c:152
-#: logview/zoom.c:133
-#, fuzzy
-msgid "Log Line Details"
-msgstr "Žurnāla rindiņas detaļas priekš"
-
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:195
+#: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+# mini-utils/gless/gless.c:548
+#: gnome-screenshot/gnome-panel-screenshot.c:86
+#, fuzzy
+msgid "Error loading help"
+msgstr "EKļūda aizverot iekārtu %s"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:87
+#, fuzzy
+msgid "There was an error displaying the help pages for this dialog:"
+msgstr "Šeit bija kļūda. `%s' ir tukšs"
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if a specific window is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:111
+#, c-format
+msgid "Screenshot-%s.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if the entire screen is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:117
+msgid "Screenshot.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:155
+#, c-format
+msgid "Screenshot-%s-%d.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if the entire screen is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:163
+#, c-format
+msgid "Screenshot-%d.png"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:338
+msgid "Unable to take a screenshot of the current desktop."
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:409
+msgid "Grab a window instead of the entire screen"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:410
+msgid "Include the window border with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:411
+msgid "Take screenshot after specified delay [in seconds]"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:412
+msgid "Effect to add to the window border"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
+msgid " (invalid Unicode)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
+#, c-format
+msgid "(%d:%02d:%d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
+#, c-format
+msgid "(%d:%02d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
+#, c-format
+msgid "%ld of %ld"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.glade.h:2
+msgid "Save Screenshot"
+msgstr ""
+
+# gdictsrc/gdict-app.c:278
+#: gnome-screenshot/gnome-screenshot.glade.h:3
+#, fuzzy
+msgid "Save in _folder:"
+msgstr "_Skatīties mapē:"
+
+#: gnome-screenshot/gnome-screenshot.glade.h:4
+#, fuzzy
+msgid "_Name:"
+msgstr "Nosaukums"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
+msgid "Border Effect"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
+msgid "Directory that the screenshooter last used to save in"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
+msgid ""
+"Effect to add to the outside of a border. Possible values are \"shadow\", "
+"\"none\", and \"black-line\"."
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Border"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the window manager border along with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
+msgid "Web directory"
+msgstr ""
+
+#: gnome-screenshot/screenshot-dialog.c:194
+msgid ""
+"Glade file for the screenshot program is missing.\n"
+"Please check your installation of gnome-panel"
+msgstr ""
+
+# mini-utils/idetool/idetool.c:41
+#: gnome-screenshot/screenshot-save.c:40
+#, fuzzy, c-format
+msgid ""
+"Unable to clear the temporary directory:\n"
+"%s"
+msgstr "ENevarēja pareizi izveidot failsistēmu."
+
+#: gnome-screenshot/screenshot-save.c:78
+msgid ""
+"The child save process unexpectedly exited.  We are unable to write the "
+"screenshot to disk."
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:188
+msgid "Unknown error saving screenshot to disk"
+msgstr ""
+
+#: gnome-screenshot/screenshot-utils.c:611
+msgid "Untitled Window"
+msgstr ""
+
+# gcharmap/src/interface.c:149
+#: gnome-screenshot/screenshot-xfer.c:103
+#, fuzzy
+msgid "Preparing to copy"
+msgstr "Kopējamais teksts"
+
+#: gnome-screenshot/screenshot-xfer.c:181
+#, fuzzy
+msgid "File already exists"
+msgstr "Fails jau atvērts"
+
+#: gnome-screenshot/screenshot-xfer.c:184
+#, fuzzy, c-format
+msgid "The file \"%s\" already exists.  Would you like to replace it?"
+msgstr "Fails \"%s\" jau eksistē. Pārrakstīt?"
+
+#: gnome-screenshot/screenshot-xfer.c:230
+#, c-format
+msgid "Unknown GnomeVFSXferProgressStatus %d"
+msgstr ""
+
+#~ msgid "_Dictionary"
+#~ msgstr "_Vārdnīca"
+
+# gdictsrc/gdict-app.c:453 gdictsrc/gdict-app.c:510
+# gdictsrc/gdict-applet.c:153
+#~ msgid "_Lookup"
+#~ msgstr "_Sameklēt"
+
+#, fuzzy
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr "Šeit bija kļūda. `%s' ir tukšs"
+
+# gsearchtool/gsearchtool.c:211
+#, fuzzy
+#~ msgid "Search _results:"
+#~ msgstr "M_eklēšanas Rezultāti"
+
+#, fuzzy
+#~ msgid "Copy selected lines"
+#~ msgstr "Kopēt izvēlēto"
+
+# logview/info.c:159
+#~ msgid "Size:"
+#~ msgstr "Izmērs:"
+
+# logview/info.c:140
+#~ msgid "Log Information"
+#~ msgstr "Žurnāla Informācija"
+
+#~ msgid "<No log loaded>"
+#~ msgstr "<Neviens žurnāls nav ielādēts>"
+
+# logview/info.c:183
+#, fuzzy
+#~ msgid "%ld byte"
+#~ msgid_plural "%ld bytes"
+#~ msgstr[0] "%ld baiti"
+#~ msgstr[1] "%ld baiti"
+
+# logview/logrtns.c:183
+#~ msgid "%s is not a regular file."
+#~ msgstr "%s nav parasts fails."
+
+# logview/calendar.c:118
+#~ msgid "_Calendar"
+#~ msgstr "_Kalendārs"
+
+# logview/logview.c:241
+#~ msgid "No log files to open"
+#~ msgstr "Nav žurnālfaila ko atvērt"
+
+# logview/zoom.c:177
+#~ msgid "Date:"
+#~ msgstr "Datums:"
+
+# logview/zoom.c:179
+#~ msgid "Process:"
+#~ msgstr "Process:"
+
+# logview/zoom.c:181
+#~ msgid "Message:"
+#~ msgstr "Ziņojums:"
+
+# logview/zoom.c:183
+#~ msgid "Description:"
+#~ msgstr "Apraksts:"
+
+# logview/zoom.c:152
+#, fuzzy
+#~ msgid "Log Line Details"
+#~ msgstr "Žurnāla rindiņas detaļas priekš"
 
 #~ msgid "Accessories"
 #~ msgstr "Aksesuāri"
@@ -2033,18 +2583,12 @@ msgstr "%B %e %X"
 #~ msgid "Switch between already opened logs"
 #~ msgstr "Slegties starp jau atvērtiem žurnāliem"
 
-#~ msgid "Clos_e All"
-#~ msgstr "Izvē_lēties Visu"
-
 #~ msgid "Close all Log files"
 #~ msgstr "Izvēlēties visus Žurnālfailus"
 
 # logview/logview.c:621
 #~ msgid "Too many open logs. Close one and try again"
 #~ msgstr "Par daudz atvērtu žurnālu."
-
-#~ msgid "File already opened"
-#~ msgstr "Fails jau atvērts"
 
 # logview/misc.c:78
 #~ msgid "Error: [%s]\n"
@@ -2075,10 +2619,6 @@ msgstr "%B %e %X"
 # logview/monitor.c:132
 #~ msgid "Remove logs from monitor"
 #~ msgstr "Izņemiet novērojamos žurnālus"
-
-#, fuzzy
-#~ msgid "_Hide application"
-#~ msgstr "_Paslēpt Aplikāciju"
 
 # logview/monitor.c:219
 #, fuzzy
@@ -2224,13 +2764,6 @@ msgstr "%B %e %X"
 #~ msgid "Starting folder entry"
 #~ msgstr "Sākuma direktorija ieraksts"
 
-# logview/actions.c:61 logview/monitor.c:115
-#~ msgid "Additional Options"
-#~ msgstr "Papildus Opcijas"
-
-#~ msgid "Can't Display Help"
-#~ msgstr "Nevaru Parādīt Palīdzību"
-
 #~ msgid "Open %d Files?"
 #~ msgstr "Atvērt %d Failus?"
 
@@ -2244,9 +2777,6 @@ msgstr "%B %e %X"
 #~ msgstr ""
 #~ "Nevaru saglabāt meklēšanas rezultātus.\n"
 #~ "\"%s\" ir mape."
-
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "Fails \"%s\" jau eksistē. Pārrakstīt?"
 
 # gdictsrc/gdict-applet.c:120
 #~ msgid "Cannot save search results to the file \"%s\"."
@@ -2633,23 +3163,9 @@ msgstr "%B %e %X"
 #~ msgid "_Text to copy:"
 #~ msgstr "_Kopējamais teksts:"
 
-# gcharmap/src/interface.c:71 gcharmap/src/interface.c:196
-# gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
-#~ msgid "_Copy"
-#~ msgstr "_Kopēt"
-
-# gcharmap/src/interface.c:149
-#~ msgid "Text to copy"
-#~ msgstr "Kopējamais teksts"
-
 # gtt/options.c:413
 #~ msgid "Entry"
 #~ msgstr "Ieraksts"
-
-# gcharmap/src/interface.c:71 gcharmap/src/interface.c:196
-# gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
-#~ msgid "Copy"
-#~ msgstr "Kopēt"
 
 #~ msgid "Copy the text"
 #~ msgstr "Kopēt tekstu"
@@ -2664,22 +3180,6 @@ msgstr "%B %e %X"
 # gcharmap/src/interface.c:103 gcharmap/src/interface.c:361
 #~ msgid "Ch_aracters"
 #~ msgstr "Ra_kstzīmes"
-
-# gcharmap/src/interface.c:69 gdictsrc/gdict-app.c:517 gtt/toolbar.c:159
-#~ msgid "Cut"
-#~ msgstr "Izgriezt"
-
-# gcharmap/src/interface.c:76
-#~ msgid "Cut the selection"
-#~ msgstr "Izgriezt izvēlēto"
-
-# gcharmap/src/interface.c:73 gdictsrc/gdict-app.c:523 gtt/toolbar.c:167
-#~ msgid "Paste"
-#~ msgstr "Ielīmēt"
-
-# gcharmap/src/interface.c:73
-#~ msgid "Paste the clipboard"
-#~ msgstr "Ievietot no starpliktuves."
 
 # gsearchtool/gsearchtool.c:824
 #~ msgid "GNOME Search Tool"

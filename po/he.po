@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-30 17:35-0300\n"
+"POT-Creation-Date: 2004-11-29 09:39-0500\n"
 "PO-Revision-Date: 2003-06-27 23:53+0300\n"
 "Last-Translator: Gil 'Dolfin' Osher <dolfin@rpg.org.il>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -17,21 +17,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.1\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
 msgid "Dictionary Lookup"
 msgstr "חיפוש במילון"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "חפש מילים במילון המקוון"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
+#: logview/logview.c:113
 #, fuzzy
 msgid "_About"
 msgstr "_אודות..."
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
 msgid "_Help"
 msgstr "_עזרה"
 
@@ -51,12 +52,19 @@ msgstr "ה_צג מילון"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:509 gdictsrc/gdict-speller.c:452
+#. Could not look up search strategies, so just display a
+#. * label; FIXME: Memory leak
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
+#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:690
 msgid "Cannot connect to server"
 msgstr "לא ניתן להתחבר לשרת"
 
-#: gdictsrc/dict.c:677
+#: gdictsrc/dict.c:689
+#, fuzzy
+msgid "Server Error"
+msgstr "ערך שרת"
+
+#: gdictsrc/dict.c:690
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -65,7 +73,7 @@ msgstr ""
 "הינו dict.org and the בפתחה 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:44
+#: gdictsrc/gdict-about.c:42 logview/about.c:43
 #, fuzzy
 msgid "translator-credits"
 msgstr ""
@@ -75,55 +83,59 @@ msgstr ""
 "פרויקט linBrew\n"
 "http://linbrew.sourceforge.net"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-about.c:44
+msgid "A client for the MIT dictionary server."
+msgstr "לקוח לשרת מילוני MIT."
+
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "מילון"
 
-#: gdictsrc/gdict-about.c:58
-msgid "A client for the MIT dictionary server."
-msgstr "לקוח לשרת מילוני MIT."
-
-#: gdictsrc/gdict-app.c:127
+#: gdictsrc/gdict-app.c:101
 msgid "Spell-checking..."
 msgstr "בדיקת איות..."
 
-#: gdictsrc/gdict-app.c:135
+#: gdictsrc/gdict-app.c:108
 msgid "Spell check done"
 msgstr "בדיקת האיות הסתיימה"
 
-#: gdictsrc/gdict-app.c:143 gdictsrc/gdict-app.c:290
+#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
 msgid "No matches found"
 msgstr "לא נמצאו התאמות"
 
-#: gdictsrc/gdict-app.c:273
+#: gdictsrc/gdict-app.c:126
+msgid "Connexion error"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:238
 msgid "Looking up word..."
 msgstr "מחפש מילה..."
 
-#: gdictsrc/gdict-app.c:281
+#: gdictsrc/gdict-app.c:253
 msgid "Lookup done"
 msgstr "החיפוש הושלם"
 
-#: gdictsrc/gdict-app.c:303
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "המחרוזות לא נמצאה"
 
-#: gdictsrc/gdict-app.c:471
+#: gdictsrc/gdict-app.c:445
 msgid "Find"
 msgstr "מצא"
 
-#: gdictsrc/gdict-app.c:479
+#: gdictsrc/gdict-app.c:455
 #, fuzzy
 msgid "_Search for:"
 msgstr "שגיאות חיפוש"
 
-#: gdictsrc/gdict-app.c:492 logview/logview.c:93
-msgid "_Find"
-msgstr "_מצא"
+#: gdictsrc/gdict-app.c:505
+msgid "Unable to perform requested operation."
+msgstr ""
 
-#: gdictsrc/gdict-app.c:534
+#: gdictsrc/gdict-app.c:506
+#, fuzzy
 msgid ""
-"Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
@@ -131,170 +143,271 @@ msgstr ""
 "או שהשרת שבו אתה משתמש אינו זמין \n"
 "או שאתה לא מחובר לאינטרנט."
 
-#: gdictsrc/gdict-app.c:697 gdictsrc/gdict-app.c:952
-#: gdictsrc/gdict-speller.c:214
+#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
+#: gdictsrc/gdict-pref-dialog.c:629
+#, fuzzy
+msgid "Could not display help"
+msgstr "לא ניתן להציג עזרה"
+
+#. Dictionary menu
+#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
+#: gdictsrc/gdict-speller.c:252
 msgid "_Look Up Word"
 msgstr "_חפש מילה"
 
-#: gdictsrc/gdict-app.c:698
+#: gdictsrc/gdict-app.c:569
 msgid "Lookup word in dictionary"
 msgstr "חפש מילה במילון"
 
-#: gdictsrc/gdict-app.c:700 gdictsrc/gdict-speller.c:160
+#: gdictsrc/gdict-app.c:570 gdictsrc/gdict-speller.c:191
 msgid "Check _Spelling"
 msgstr "בדוק _איות"
 
-#: gdictsrc/gdict-app.c:701
+#: gdictsrc/gdict-app.c:571
 msgid "Check word spelling"
 msgstr "בדוק איות מילה"
 
-#: gdictsrc/gdict-app.c:745
-msgid "_Dictionary"
-msgstr "_מילון"
+#: gdictsrc/gdict-app.c:573
+#, fuzzy
+msgid "_Print"
+msgstr "_פתחה:"
 
-#: gdictsrc/gdict-app.c:948 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:574
+msgid "Print the current definition"
+msgstr ""
+
+#. Edit menu, see below for cut, paste etc.
+#: gdictsrc/gdict-app.c:578 logview/logview.c:105
+#, fuzzy
+msgid "_Find..."
+msgstr "_מצא"
+
+#: gdictsrc/gdict-app.c:579
+#, fuzzy
+msgid "Find a word in the text"
+msgstr "המכילים את ה_טקסט"
+
+#: gdictsrc/gdict-app.c:580
+#, fuzzy
+msgid "Find Ne_xt"
+msgstr "מצא"
+
+#: gdictsrc/gdict-app.c:581
+msgid "Find next occurrence of the word"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:582
+#, fuzzy
+msgid "P_references"
+msgstr "_העדפות..."
+
+#: gdictsrc/gdict-app.c:583
+#, fuzzy
+msgid "Configure the application"
+msgstr "_הסתר יישום"
+
+#. Help menu
+#: gdictsrc/gdict-app.c:586 logview/logview.c:111
+msgid "_Contents"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:587
+msgid "View help for this application"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:589
+#, fuzzy
+msgid "About this application"
+msgstr "_הסתר יישום"
+
+#: gdictsrc/gdict-app.c:596 logview/logview.c:98
+#, fuzzy
+msgid "_Quit"
+msgstr "_ערוך"
+
+#: gdictsrc/gdict-app.c:597
+#, fuzzy
+msgid "Quit the application"
+msgstr "_הסתר יישום"
+
+#: gdictsrc/gdict-app.c:601
+#, fuzzy
+msgid "_Close"
+msgstr "קוסינוס"
+
+#: gdictsrc/gdict-app.c:602
+#, fuzzy
+msgid "Close the application"
+msgstr "_הסתר יישום"
+
+#: gdictsrc/gdict-app.c:607
+#, fuzzy
+msgid "Cu_t"
+msgstr "גזור"
+
+#: gdictsrc/gdict-app.c:608
+msgid "Cut the selection"
+msgstr "גזור את הבחירה"
+
+#: gdictsrc/gdict-app.c:609
+msgid "_Copy"
+msgstr "ה_עתק"
+
+#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+#, fuzzy
+msgid "Copy the selection"
+msgstr "גזור את הבחירה"
+
+#: gdictsrc/gdict-app.c:611
+#, fuzzy
+msgid "_Paste"
+msgstr "הדבק"
+
+#: gdictsrc/gdict-app.c:612
+#, fuzzy
+msgid "Paste clipboard"
+msgstr "הדבק את תוכן הלוח"
+
+#: gdictsrc/gdict-app.c:613
+msgid "Select _All"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:614
+msgid "Select everything"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
 msgid "_Word:"
 msgstr "_מילה:"
 
-#: gdictsrc/gdict-app.c:976 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:198
 msgid "Word"
 msgstr "מילה"
 
-#: gdictsrc/gdict-app.c:977 gdictsrc/gdict-app.c:978
-#: gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
+#: gdictsrc/gdict-speller.c:200
 msgid "Word Entry"
 msgstr "ערך מילה"
 
-#: gdictsrc/gdict-app.c:977
+#: gdictsrc/gdict-app.c:886
 msgid "Enter a Word or select one from the list below"
 msgstr "הכנס מילה או בחר אחת מהרשימה מטה"
 
-#: gdictsrc/gdict-app.c:980
+#: gdictsrc/gdict-app.c:890
 msgid "Look Up for a Word"
 msgstr "חפש בעבור המילה"
 
-#: gdictsrc/gdict-applet.c:161
-msgid "_Lookup"
-msgstr "_חפש"
-
-#: gdictsrc/gdict-applet.c:173
+#: gdictsrc/gdict-applet.c:127
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "שרת מילון"
 
-#: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
-#, c-format
-msgid "Error invoking query: %s"
+#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:367
+#, fuzzy
+msgid "Error invoking query"
 msgstr "שגיאה בהפעלת השאילתה: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:158
+#: gdictsrc/gdict-pref-dialog.c:136
 msgid "Dictionary Preferences"
 msgstr "העדפות המילון"
 
-#: gdictsrc/gdict-pref-dialog.c:171
+#: gdictsrc/gdict-pref-dialog.c:149
 msgid "Smart _lookup"
 msgstr "_חיפוש חכם"
 
-#: gdictsrc/gdict-pref-dialog.c:189
-msgid "_Server:"
-msgstr "_שרת:"
-
-#: gdictsrc/gdict-pref-dialog.c:196
+#: gdictsrc/gdict-pref-dialog.c:163
 msgid "De_fault Server"
 msgstr "שרת _ברירת מחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:174
+msgid "_Server:"
+msgstr "_שרת:"
+
+#: gdictsrc/gdict-pref-dialog.c:183
 msgid "Reset server to default"
 msgstr "קבע מחדש לברירת המחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:213
+#: gdictsrc/gdict-pref-dialog.c:191
 msgid "_Port:"
 msgstr "_פתחה:"
 
-#: gdictsrc/gdict-pref-dialog.c:229
+#: gdictsrc/gdict-pref-dialog.c:201
 msgid "Def_ault Port"
 msgstr "פתחה ב_רירת מחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:238
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset port to default"
 msgstr "קבע מחדש לפתה ברירת המחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:239
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "Server"
 msgstr "שרת"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Server Entry"
 msgstr "ערך שרת"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Enter the Server Name"
 msgstr "הכנס את שם השרת"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:220
 msgid "Port"
 msgstr "פתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Port Entry"
 msgstr "ערך פתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Enter the Port Number"
 msgstr "הכנס את מספר הפתחה"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "_Database:"
 msgstr "_מסד נתונים:"
 
-#: gdictsrc/gdict-pref-dialog.c:259
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "D_efault strategy:"
 msgstr "אסטרטגיית בר_ירת מחדל:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:421
 msgid "Search all databases"
 msgstr "חפש בכל מסדי הנתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:613
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database"
 msgstr "מסד נתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:613
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database Name"
 msgstr "שם מסד הנתונים"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:600
 msgid "Default Strategy"
 msgstr "אסטרטגיית ברירת מחדל"
 
-#: gdictsrc/gdict-pref-dialog.c:656
-#, fuzzy, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr "ארעה שגיאה. `%s' ריק"
-
-#: gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-speller.c:200
 msgid "Enter a word to know the spelling"
 msgstr "הכנס מילה כדי לדעת את האיות שלה"
 
-#: gdictsrc/gdict-speller.c:153
+#: gdictsrc/gdict-speller.c:205
 msgid "Search s_trategy:"
 msgstr "א_סטרטגיית חיפוש:"
 
-#: gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2049
+msgid "Show more _options"
+msgstr "הצג עוד _אפשרויות"
+
+#: gdictsrc/gdict-speller.c:215
 msgid "Click to do the spell check"
 msgstr "לחץ כדי לבצע את בדיקת האיות"
 
-#: gdictsrc/gdict-speller.c:169
-msgid "Search _results:"
-msgstr "_תוצאות החיפוש:"
-
-#: gdictsrc/gdict-speller.c:229
+#: gdictsrc/gdict-speller.c:265
 msgid "Check Spelling"
 msgstr "בדוק איות"
 
-#: gdictsrc/gdict-speller.c:643
+#: gdictsrc/gdict-speller.c:652
 msgid "Search Strategy"
 msgstr "אסטרטגיית חיפוש"
 
@@ -355,6 +468,11 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "השתמש בחיפוש חכם"
 
+#: gdictsrc/main.c:101
+#, fuzzy
+msgid "Gnome Dictionary"
+msgstr "מילון"
+
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
 msgstr "מאתחל התקליטונים"
@@ -395,58 +513,58 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 הינה מערכת הקבצים הטבעית ללינוקס או fat למערכת הקבצים של DOS."
 
-#: gfloppy/src/badblocks.c:94
+#: gfloppy/src/badblocks.c:84
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "שגיאה פנימית: לא ניתן למצוא את המיקום הנוכחי."
 
-#: gfloppy/src/badblocks.c:103
+#: gfloppy/src/badblocks.c:93
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "שגיאה פנימית: ערך מוזר (%ld) ב do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:261
+#: gfloppy/src/badblocks.c:251
 msgid "Checking for bad blocks..."
 msgstr "בודק בלוקים פגומים..."
 
-#: gfloppy/src/badblocks.c:273
+#: gfloppy/src/badblocks.c:263
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "נכשל בפתיחת ההתקן %s לבדיקת בלוקים פגומים\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
+#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
 msgid "Checking for bad blocks... Done"
 msgstr "בודק בלוקים פגומים... הסתיים"
 
-#: gfloppy/src/fdformat.c:49
+#: gfloppy/src/fdformat.c:42
 msgid "Formatting the disk..."
 msgstr "מאתחל את התקליטון..."
 
-#: gfloppy/src/fdformat.c:52
+#: gfloppy/src/fdformat.c:45
 msgid "I don't know what this is, but it's very wrong."
 msgstr "אני אל יודע מה זה, אבל זה ממש לא נכון."
 
-#: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "שגיאה באתחול מסילה #%d"
 
-#: gfloppy/src/fdformat.c:82
+#: gfloppy/src/fdformat.c:75
 msgid "Error during completion of formatting"
 msgstr "שגיאה בהשלמת האתחול"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:86
+#: gfloppy/src/fdformat.c:79
 msgid "Formatting the disk... Done"
 msgstr "מאתחל את התקליטון... הסתיים"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:102
+#: gfloppy/src/fdformat.c:95
 msgid "Verifying the format..."
 msgstr "מוודא את האתחול..."
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -456,12 +574,12 @@ msgstr ""
 "\n"
 "אנא ודא כי הוא לא מוגן מפני כתיבה."
 
-#: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "אין מספיק הרשאות לפתיחת התקן התקליטון %s."
 
-#: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -473,7 +591,7 @@ msgstr ""
 "אנא ודא כי הוא בכונן\n"
 "וכי דלת הכונן סגורה."
 
-#: gfloppy/src/fdformat.c:117
+#: gfloppy/src/fdformat.c:110
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -484,7 +602,7 @@ msgstr ""
 "\n"
 "קוד השגיאה %s:%d"
 
-#: gfloppy/src/fdformat.c:140
+#: gfloppy/src/fdformat.c:133
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -493,31 +611,31 @@ msgstr ""
 "שגיאת קריאה:\n"
 "בעיה בקריאת צילינדר %d, צפי %d, קריאה %d"
 
-#: gfloppy/src/fdformat.c:143
+#: gfloppy/src/fdformat.c:136
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "בעיה בקריאת צילינדר %d, צפי %d, קריאה %d"
 
-#: gfloppy/src/fdformat.c:154
+#: gfloppy/src/fdformat.c:147
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "מידע שגוי בצילינדר %d.  ממשיך... "
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:156
 #, c-format
 msgid "Error closing device %s"
 msgstr "שגיאה בסגירת ההתקן %s"
 
-#: gfloppy/src/fdformat.c:170
+#: gfloppy/src/fdformat.c:163
 msgid "Verifying the format... Done"
 msgstr "מוודא את האתחול... הושלם"
 
-#: gfloppy/src/fdformat.c:182
+#: gfloppy/src/fdformat.c:175
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "לא ניתן לכתוב להתקן %s"
 
-#: gfloppy/src/fdformat.c:202
+#: gfloppy/src/fdformat.c:195
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -528,28 +646,28 @@ msgstr ""
 "\n"
 "קוד השגיאה %s"
 
-#: gfloppy/src/fdformat.c:214
+#: gfloppy/src/fdformat.c:207
 msgid "Could not determine current floppy geometry."
 msgstr "לא ניתן לזהות את גאומטריית התקליטון הנוכחי."
 
-#: gfloppy/src/gfloppy.c:225
+#: gfloppy/src/gfloppy.c:215
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr "שגיאה ביצירת שם קובץ ייחודי לקובץ רשימות הבלוקים הפגומים."
 
-#: gfloppy/src/gfloppy.c:245
+#: gfloppy/src/gfloppy.c:235
 msgid "Error while filling the bad blocks list file."
 msgstr "שגיאה בזמן מילוי קובץ רשימת הבלוקים הפגומים."
 
-#: gfloppy/src/gfloppy.c:308
+#: gfloppy/src/gfloppy.c:298
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "שגיאה בזמן השרצת הפקודה (%s): %s."
 
-#: gfloppy/src/gfloppy.c:334
+#: gfloppy/src/gfloppy.c:324
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "חתימת התחלה לא ידועה ל mke2fs, מבטל."
 
-#: gfloppy/src/gfloppy.c:348
+#: gfloppy/src/gfloppy.c:338
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -560,16 +678,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:365
+#: gfloppy/src/gfloppy.c:355
 msgid "Abnormal child process termination."
 msgstr "סיום תהליך ילד לא רגיל."
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:380
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "שגיאה בזמן השרצת הפקודה mbadblocks: %s."
 
-#: gfloppy/src/gfloppy.c:402
+#: gfloppy/src/gfloppy.c:392
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -578,28 +696,28 @@ msgstr ""
 "תוכנית השירות לבדיקת בלוקים פגומים (mbadblocks) דיווחה על השגיאות הבאות:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:445
+#: gfloppy/src/gfloppy.c:435
 msgid "Abnormal mbadblocks child process termination."
 msgstr "סיום תהליך ילד של mbadblocks לא רגיל."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
 msgid "Making filesystem on disk..."
 msgstr "יוצר מערכת קבצים על התקליטון..."
 
-#: gfloppy/src/gfloppy.c:479
+#: gfloppy/src/gfloppy.c:469
 msgid "Unable to create filesystem correctly."
 msgstr "לא ניתן ליצור מערכת קבצים כראוי."
 
-#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
 msgid "Making filesystem on disk... Done"
 msgstr "יוצר מערכת קבצים על התקליטון... הושלם"
 
-#: gfloppy/src/gfloppy.c:528
+#: gfloppy/src/gfloppy.c:518
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "בודק לבלוקים פגומים... (זה עשוי לקחת קצת זמן)"
 
-#: gfloppy/src/gfloppy.c:533
+#: gfloppy/src/gfloppy.c:523
 msgid "Error while checking the bad blocks."
 msgstr "שגיאה בזמן בדיקת הבלוקים הפגומים."
 
@@ -607,7 +725,7 @@ msgstr "שגיאה בזמן בדיקת הבלוקים הפגומים."
 msgid "    "
 msgstr "    "
 
-#: gfloppy/src/gfloppy2.glade.h:2
+#: gfloppy/src/gfloppy2.glade.h:2 gnome-screenshot/gnome-screenshot.glade.h:1
 msgid "*"
 msgstr "*"
 
@@ -689,7 +807,12 @@ msgstr "_מהיר (רק יוצר את מערכת הקבצים)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_רגיל (מוסיף אתחול ברמה נמוכה למצב המהיר)"
 
-#: gfloppy/src/main.c:215
+#: gfloppy/src/main.c:224
+#, fuzzy
+msgid "Cannot Format"
+msgstr "_אתחל"
+
+#: gfloppy/src/main.c:225
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -697,12 +820,12 @@ msgstr ""
 "אף אחד מהיישומים mke2fs או mkdosfs/mformat אינו מותקן. אינך יכול לאתחל "
 "תקליטון ללא אחד מהם."
 
-#: gfloppy/src/main.c:239
+#: gfloppy/src/main.c:245
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "לא ניתן לפתוח את ההתקן %s, האתחול לא יכול להמשיך."
 
-#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
+#: gfloppy/src/main.c:248 gfloppy/src/main.c:311
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -711,7 +834,7 @@ msgstr ""
 "ההתקן %s מנותק.\n"
 "אנא חבר את ההתקן והמשך."
 
-#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:251 gfloppy/src/main.c:314
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -721,37 +844,44 @@ msgstr ""
 "אין לך את ההרשאות המתאימות לכתוב ל %s, האתחול לא יהיה אפשרי.\n"
 "צור קשר עם מנהל המערכת שלך אודות קבלת הרשאות כתיבה."
 
-#: gfloppy/src/main.c:310
+#: gfloppy/src/main.c:258 gfloppy/src/main.c:322
+#, fuzzy
+msgid "Cannot initialize device"
+msgstr "לא ניתן לאתחל את bonobo."
+
+#: gfloppy/src/main.c:308
 #, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "לא ניתן לפתוח את ההתקן %s, האתחול לא יכול להמשיך."
 
-#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:311 gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr ""
 
-#: gfloppy/src/main.c:489
-#, c-format
-msgid ""
-"Could not display help for the floppy formatter.\n"
-"%s"
+#: gfloppy/src/main.c:475
+#, fuzzy
+msgid "Could not display help for the floppy formatter."
 msgstr ""
 "לא ניתן להציג עזרה למאתחל התקליטונים.\n"
 "%s"
 
-#: gfloppy/src/main.c:522
+#: gfloppy/src/main.c:494
+msgid "Incorrect volume name"
+msgstr ""
+
+#: gfloppy/src/main.c:495
 msgid "The volume name can't contain any blank space."
 msgstr "שם הכרך לא יכול להכיל רווחים ריקים."
 
-#: gfloppy/src/main.c:576
+#: gfloppy/src/main.c:543
 msgid "The device to format"
 msgstr "ההתקן לאתחול"
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:544
 msgid "DEVICE"
 msgstr "התקן"
 
-#: gfloppy/src/progress.c:123
+#: gfloppy/src/progress.c:122
 #, fuzzy, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -762,15 +892,15 @@ msgid_plural ""
 msgstr[0] "התקליטון אותחל, אך <b>%d בלוקים פגומים</b> (מתוך %d) נמצאו וסומנו."
 msgstr[1] "התקליטון אותחל, אך <b>%d בלוקים פגומים</b> (מתוך %d) נמצאו וסומנו."
 
-#: gfloppy/src/progress.c:126
+#: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
 msgstr "התקליטון אותחל בהצלחה."
 
-#: gfloppy/src/progress.c:132
+#: gfloppy/src/progress.c:131
 msgid "Floppy formatting cancelled."
 msgstr "אתחול התקליטון בוטל."
 
-#: gfloppy/src/progress.c:175
+#: gfloppy/src/progress.c:174
 msgid "Format Progress"
 msgstr "התקדמות האתחול"
 
@@ -780,9 +910,217 @@ msgstr ""
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
 #: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
-#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
+#: gsearchtool/gsearchtool.c:2364 gsearchtool/gsearchtool.c:2385
 msgid "Search for Files"
 msgstr "חפש קבצים"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:1
+msgid "Disable Quick Search"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:2
+msgid "Disable Quick Search Second Scan"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:3
+msgid "Quick Search Excluded Paths"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:4
+msgid "Quick Search Second Scan Excluded Paths"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:5
+#, fuzzy
+msgid "Select Contains the Text"
+msgstr "המכילים את ה_טקסט"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:6
+#, fuzzy
+msgid "Select Date Modified Less Than"
+msgstr "_תאריך השינוי קטן מ (ימים)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:7
+#, fuzzy
+msgid "Select Date Modified More Than"
+msgstr "תאריך השינוי גדול מ (י_מים)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:8
+#, fuzzy
+msgid "Select File is Empty"
+msgstr "הקובץ ריק"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:9
+#, fuzzy
+msgid "Select Follow Symbolic Links"
+msgstr "עקוב אחר קישורים"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:10
+#, fuzzy
+msgid "Select Include Other Filesystems"
+msgstr "כלול מערכות קבצים אחרות"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:11
+#, fuzzy
+msgid "Select Name Matches Regular Expression"
+msgstr "השם מתאים לביטוי ה_סדיר"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:12
+#, fuzzy
+msgid "Select Name does not Contain"
+msgstr "ה_שם אינו מכיל"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:13
+#, fuzzy
+msgid "Select Owned by Group"
+msgstr "שייך ל_קבוצה"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:14
+#, fuzzy
+msgid "Select Owned by User"
+msgstr "שייך ל_משתמש"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:15
+#, fuzzy
+msgid "Select Owner is Unrecognized"
+msgstr "הבעלים לא מזוהים"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:16
+msgid "Select Show Hidden Files and Folders"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:17
+#, fuzzy
+msgid "Select Size At Least"
+msgstr "ה_גודל לפחות (קילובתים)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:18
+#, fuzzy
+msgid "Select Size At Most"
+msgstr "הגו_דל לכל היותר (קילובתים)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#, fuzzy
+msgid "Show Additional Options"
+msgstr "אפשרויות נוספות"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:20
+msgid ""
+"This key defines the paths the search tool will exclude from a quick search. "
+"The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
+"media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:21
+msgid ""
+"This key defines the paths the search tool will exclude from a second scan "
+"when performing a quick search. The second scan uses the find command to "
+"search for files. The purpose of the second scan is to find files that have "
+"not been indexed. The wildcards '*' and '?' are supported. The default value "
+"is /."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+msgid ""
+"This key determines if the Additional Options section is expanded when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:23
+msgid ""
+"This key determines if the Contains the Text option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:24
+msgid ""
+"This key determines if the Date Modified Less Than option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+msgid ""
+"This key determines if the Date Modified More Than option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:26
+msgid ""
+"This key determines if the File is Empty option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:27
+msgid ""
+"This key determines if the Follow Symbolic Links option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+msgid ""
+"This key determines if the Include Other Filesystems option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:29
+msgid ""
+"This key determines if the Name Matches Regular Expression option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:30
+msgid ""
+"This key determines if the Name does not Contain option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+msgid ""
+"This key determines if the Owned by Group option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:32
+msgid ""
+"This key determines if the Owned by User option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:33
+msgid ""
+"This key determines if the Owner is Unrecognized option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
+msgid ""
+"This key determines if the Show Hidden Files and Folders option is selected "
+"when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:35
+msgid ""
+"This key determines if the Size At Least option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:36
+msgid ""
+"This key determines if the Size At Most option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
+msgid ""
+"This key determines if the search tool disables the use of the find command "
+"after performing a quick search."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:38
+msgid ""
+"This key determines if the search tool disables the use of the locate "
+"command when performing simple file name searches."
+msgstr ""
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
@@ -842,7 +1180,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: gsearchtool/gsearchtool-callbacks.c:324
-#: gsearchtool/gsearchtool-callbacks.c:477
+#: gsearchtool/gsearchtool-callbacks.c:476
 #, fuzzy, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -850,113 +1188,114 @@ msgstr[0] "זה יפתח %d קבצים נפרדים. אתה בטוח שברצו�
 msgstr[1] "זה יפתח %d קבצים נפרדים. אתה בטוח שברצונך לעשות זאת?"
 
 #: gsearchtool/gsearchtool-callbacks.c:384
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:967
-#: gsearchtool/gsearchtool-callbacks.c:1001
+#: gsearchtool/gsearchtool-callbacks.c:417
+#: gsearchtool/gsearchtool-callbacks.c:966
+#: gsearchtool/gsearchtool-callbacks.c:999
 #, fuzzy, c-format
 msgid "Could not open document \"%s\"."
 msgstr "לא ניתן לפתוח את המסמך \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:643
-#: gsearchtool/gsearchtool-callbacks.c:970
+#: gsearchtool/gsearchtool-callbacks.c:642
+#: gsearchtool/gsearchtool-callbacks.c:969
 msgid "The document does not exist."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:421
-#: gsearchtool/gsearchtool-callbacks.c:1004
+#: gsearchtool/gsearchtool-callbacks.c:420
+#: gsearchtool/gsearchtool-callbacks.c:1002
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "אין מציג מותקן שיכול להציג את המסמך"
 
-#: gsearchtool/gsearchtool-callbacks.c:472
+#: gsearchtool/gsearchtool-callbacks.c:471
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gsearchtool/gsearchtool-callbacks.c:530
+#: gsearchtool/gsearchtool-callbacks.c:529
 #, fuzzy, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "לא ניתן לפתוח את התיקייה \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:537
+#: gsearchtool/gsearchtool-callbacks.c:536
 msgid "The nautilus file manager is not running."
 msgstr "מנהל הקבצים נאוטילוס אינו מופעל."
 
-#: gsearchtool/gsearchtool-callbacks.c:640
+#: gsearchtool/gsearchtool-callbacks.c:639
 #, fuzzy, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "לא ניתן לשמור את המסמך \"%s\" ל %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:680
+#: gsearchtool/gsearchtool-callbacks.c:679
 #, fuzzy, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "לא ניתן לשמור את המסמך \"%s\" ל %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:683
+#: gsearchtool/gsearchtool-callbacks.c:682
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:713
+#: gsearchtool/gsearchtool-callbacks.c:712
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:716
+#: gsearchtool/gsearchtool-callbacks.c:715
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:758
+#: gsearchtool/gsearchtool-callbacks.c:757
 #, fuzzy, c-format
 msgid "Could not delete \"%s\"."
 msgstr "לא ניתן לפתוח את התיקייה \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:760
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1189
+#: gsearchtool/gsearchtool-callbacks.c:1187
 msgid "Save Search Results As..."
 msgstr "שמור תוצאות חיפוש בשם..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1241
+#: gsearchtool/gsearchtool-callbacks.c:1239
 #, fuzzy
 msgid "Could not save document."
 msgstr "לא ניתן לשמור את המסמך \"\" ל %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1243
+#: gsearchtool/gsearchtool-callbacks.c:1241
 #, fuzzy
 msgid "You did not select a document name."
 msgstr "לא ניתן לפתוח את המסמך \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:1269
-#: gsearchtool/gsearchtool-callbacks.c:1364
+#: gsearchtool/gsearchtool-callbacks.c:1267
+#: gsearchtool/gsearchtool-callbacks.c:1362
 #, fuzzy, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "לא ניתן לשמור את המסמך \"\" ל %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1273
+#: gsearchtool/gsearchtool-callbacks.c:1271
 msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1302
+#: gsearchtool/gsearchtool-callbacks.c:1300
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1306
+#: gsearchtool/gsearchtool-callbacks.c:1304
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1317
+#: gsearchtool/gsearchtool-callbacks.c:1315
+#: gnome-screenshot/screenshot-xfer.c:190
 msgid "_Replace"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1367
+#: gsearchtool/gsearchtool-callbacks.c:1365
 #, fuzzy
 msgid "You may not have write permissions to the document."
 msgstr "ייתכן ואין לך הרשאות למסמך.  המסמך לא נשמר."
@@ -1239,10 +1578,6 @@ msgstr "עיין"
 msgid "Select the folder where you want to start the search."
 msgstr "הכנס את שם התיקייה בה אתה רוצה להתחיל את החיפוש"
 
-#: gsearchtool/gsearchtool.c:2049
-msgid "Show more _options"
-msgstr "הצג עוד _אפשרויות"
-
 #: gsearchtool/gsearchtool.c:2059
 #, fuzzy
 msgid "Show more options"
@@ -1260,156 +1595,156 @@ msgstr "לחץ כדי להתחיל את החיפוש"
 msgid "Click to Stop the search"
 msgstr "לחץ כדי לעצור את החיפוש"
 
-#: gsearchtool/gsearchtool.c:2386
+#: gsearchtool/gsearchtool.c:2381
 msgid "Cannot initialize bonobo."
 msgstr "לא ניתן לאתחל את bonobo."
 
-#: logview/about.c:48
+#: logview/about.c:47 logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "מציג דו\"חות המערכת"
 
-#: logview/about.c:51
+#: logview/about.c:50
 msgid "A system log viewer for GNOME."
 msgstr "מציג דו\"חות מערכת ל GNOME."
 
-#: logview/actions.c:73
+#: logview/actions.c:86
 msgid "Action Database"
 msgstr "מסד נתוני פעולה"
 
-#: logview/actions.c:84
+#: logview/actions.c:97
 msgid "Actions"
 msgstr "פעולות"
 
-#: logview/actions.c:156
+#: logview/actions.c:169
 msgid "_Add"
 msgstr "_הוסף"
 
-#: logview/actions.c:161
+#: logview/actions.c:174
 #, fuzzy
 msgid "Add an action"
 msgstr "פעולות"
 
-#: logview/actions.c:163 logview/logview.c:80
+#: logview/actions.c:176 logview/logview.c:88
 msgid "_Edit"
 msgstr "_ערוך"
 
-#: logview/actions.c:168
+#: logview/actions.c:181
 #, fuzzy
 msgid "Edit an action"
 msgstr "ה_פעל פעולות"
 
-#: logview/actions.c:170
+#: logview/actions.c:183
 msgid "_Remove"
 msgstr "_הסר"
 
-#: logview/actions.c:175
+#: logview/actions.c:188
 msgid "Remove an action"
 msgstr ""
 
-#: logview/actions.c:262
+#: logview/actions.c:275
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "לא ניתן לפתוח את מסד נתוני פעולה <%s> ! הפתיחה נכשלה."
 
-#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
-#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
+#: logview/actions.c:310 logview/actions.c:323 logview/actions.c:334
+#: logview/actions.c:345 logview/actions.c:356 logview/actions.c:367
 msgid "Error parsing actions data base"
 msgstr "שגיאה בניתוח מסד נתוני פעולות"
 
-#: logview/actions.c:388
+#: logview/actions.c:401
 msgid "Can't write to actions database!"
 msgstr "לא ניתן לכתוב למסד נתוני הפעולות!"
 
-#: logview/actions.c:486
+#: logview/actions.c:499
 #, fuzzy, c-format
 msgid "Error while executing specified action: %s"
 msgstr "שגיאה בזמן ביצוע פעולה מסוימת"
 
-#: logview/actions.c:509
+#: logview/actions.c:522
 msgid "<empty>"
 msgstr "<ריק>"
 
-#: logview/actions.c:510
+#: logview/actions.c:523
 msgid "log name regexp"
 msgstr "ביטוי סדיר לשם הדו\"ח"
 
-#: logview/actions.c:511
+#: logview/actions.c:524
 msgid "process regexp"
 msgstr "ביטוי סדיר לתהליך"
 
-#: logview/actions.c:512
+#: logview/actions.c:525
 msgid "message regexp"
 msgstr "ביטוי סדיר להודעה"
 
-#: logview/actions.c:513
+#: logview/actions.c:526
 msgid "action to execute when regexps are TRUE"
 msgstr "פעולה לביצוע כאשר הביטויים הסדירים הם אמת"
 
-#: logview/actions.c:514
+#: logview/actions.c:527
 msgid "description"
 msgstr "תיאור"
 
-#: logview/actions.c:650
+#: logview/actions.c:663
 #, fuzzy
 msgid "Edit Action"
 msgstr "פעולות"
 
-#: logview/actions.c:686
+#: logview/actions.c:699
 #, fuzzy
 msgid "_Tag:"
 msgstr "_עמוד:"
 
-#: logview/actions.c:695
+#: logview/actions.c:708
 msgid "Tag that identifies the log file."
 msgstr ""
 
-#: logview/actions.c:704
+#: logview/actions.c:717
 #, fuzzy
 msgid "_Log name:"
 msgstr "_שם הכרך:"
 
-#: logview/actions.c:713
+#: logview/actions.c:726
 msgid "Regular expression that will match the log name."
 msgstr ""
 
-#: logview/actions.c:723
+#: logview/actions.c:736
 #, fuzzy
 msgid "_Process:"
 msgstr "תהליך:"
 
-#: logview/actions.c:732
+#: logview/actions.c:745
 msgid "Regular expression that will match process part of message."
 msgstr ""
 
-#: logview/actions.c:742
+#: logview/actions.c:755
 #, fuzzy
 msgid "_Message:"
 msgstr "הודעה:"
 
-#: logview/actions.c:751
+#: logview/actions.c:764
 msgid "Regular expression that will match the message."
 msgstr ""
 
-#: logview/actions.c:761
+#: logview/actions.c:774
 #, fuzzy
 msgid "_Action:"
 msgstr "פעולות"
 
-#: logview/actions.c:770
+#: logview/actions.c:783
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
 
-#: logview/actions.c:780
+#: logview/actions.c:793
 msgid "_Description:"
 msgstr "_תיאור:"
 
-#: logview/actions.c:789
+#: logview/actions.c:802
 msgid "Description of this entry."
 msgstr "תיאור הערך הזה."
 
-#: logview/actions.c:813
+#: logview/actions.c:826
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1426,37 +1761,24 @@ msgstr ""
 "תיאור: [%s]\n"
 "פעולה [%s]\n"
 
-#: logview/calendar.c:73
+#: logview/calendar.c:55
 msgid "Calendar"
 msgstr "לוח שנה"
 
-#: logview/desc_db.c:34
+#: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "לא ניתן לפתוח מסד נתוני ביטויים סדירים <%s>! הפתיחה נכשלה."
 
-#: logview/desc_db.c:144
+#: logview/desc_db.c:176
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "לא ניתן לפתוח את מסד נתוני התיאורים <%s> ! הפתיחה נכשלה."
 
-#: logview/gedit-output-window.c:350
-msgid "Close the output window"
-msgstr ""
-
-#: logview/gedit-output-window.c:388
-#, fuzzy
-msgid "Copy selected lines"
-msgstr "העתק את הבחירה"
-
-#: logview/gedit-output-window.c:408
-msgid "Clear the output window"
-msgstr ""
-
-#: logview/gedit-output-window.c:448
-msgid "Output Lines"
-msgstr ""
-
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "דו\"ח מערכת"
@@ -1465,129 +1787,119 @@ msgstr "דו\"ח מערכת"
 msgid "View the system log file"
 msgstr "ראה את קובץ דו\"ח המערכת"
 
-#: logview/info.c:50
+#: logview/info.c:47
 msgid "Properties"
 msgstr "מאפיינים"
 
-#: logview/info.c:94
-msgid "Size:"
-msgstr "גודל:"
+#: logview/info.c:95
+#, c-format
+msgid "<b>Size</b>: %ld bytes"
+msgstr ""
 
-#: logview/info.c:94
-msgid "Modified:"
+#: logview/info.c:99
+#, fuzzy, c-format
+msgid "<b>Modified</b>: %s"
 msgstr "נערך:"
 
-#: logview/info.c:95
-msgid "Start Date:"
+#: logview/info.c:103
+#, fuzzy, c-format
+msgid "<b>Start Date</b>: %s"
 msgstr "תאריך התחלה:"
 
-#: logview/info.c:95
-msgid "Last Date:"
+#: logview/info.c:107
+#, fuzzy, c-format
+msgid "<b>Last Date</b>: %s"
 msgstr "תאריך אחרון:"
 
-#: logview/info.c:95
-msgid "Number of Lines:"
+#: logview/info.c:111
+#, fuzzy, c-format
+msgid "<b>Number of Lines</b>: %ld"
 msgstr "מספר שורות:"
 
-#: logview/info.c:121
-msgid "Log Information"
-msgstr "מידע הדו\"ח:"
-
-#: logview/info.c:147 logview/zoom.c:163
-msgid "<No log loaded>"
-msgstr "<לא נטען דו\"ח>"
-
-#: logview/info.c:170
-#, fuzzy, c-format
-msgid "%ld byte"
-msgid_plural "%ld bytes"
-msgstr[0] "%ld בתים"
-msgstr[1] "%ld בתים"
-
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "January"
 msgstr "ינואר"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "February"
 msgstr "פברואר"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "March"
 msgstr "מרץ"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "April"
 msgstr "אפריל"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "May"
 msgstr "מאי"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "June"
 msgstr "יוני"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "July"
 msgstr "יולי"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "August"
 msgstr "אוגוסט"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "September"
 msgstr "ספטמבר"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "October"
 msgstr "אוקטובר"
 
-#: logview/log_repaint.c:48
+#: logview/log_repaint.c:38
 msgid "November"
 msgstr "נובמבר"
 
-#: logview/log_repaint.c:48
+#: logview/log_repaint.c:38
 msgid "December"
 msgstr "דצמבר"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:279
+#: logview/log_repaint.c:278
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:298
+#: logview/log_repaint.c:297
 msgid "Last Modified: "
 msgstr "נערך לאחרונה: "
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:327
+#: logview/log_repaint.c:326
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:399
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:192
-msgid "Not enough memory!\n"
-msgstr "אין מספיק זיכרון!\n"
+#: logview/logrtns.c:43
+#, fuzzy
+msgid "This file cannot be opened"
+msgstr "%s לא ניתן לפתיחה."
 
-#: logview/logrtns.c:203
+#: logview/logrtns.c:206
 msgid "Unable to open logfile!\n"
 msgstr "לא ניתן לפתוח קובץ דו\"ח!\n"
 
-#: logview/logrtns.c:263
-#, c-format
-msgid "%s is not a regular file."
-msgstr "%s אינו קובץ רגיל."
+#: logview/logrtns.c:213
+msgid "Not enough memory!\n"
+msgstr "אין מספיק זיכרון!\n"
 
-#: logview/logrtns.c:271
+#: logview/logrtns.c:277
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1596,166 +1908,172 @@ msgstr ""
 "%s אינו ניתן לקריאה למשתמש. או שתפעיל את התוכנית כ root או בקש ממנהל המערכת "
 "לשנות את ההרשאות של הקובץ."
 
-#: logview/logrtns.c:288
+#: logview/logrtns.c:282
+#, c-format
+msgid "%s is too big."
+msgstr ""
+
+#: logview/logrtns.c:286
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s לא ניתן לפתיחה."
 
-#: logview/logrtns.c:318 logview/logrtns.c:327
+#: logview/logrtns.c:301 logview/logrtns.c:312
 #, c-format
 msgid "%s not a log file."
 msgstr "%s אינו קובץ דו\"ח."
 
-#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
+#: logview/logrtns.c:563 logview/logrtns.c:587
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: אין מספיק זיכרון"
 
-#: logview/logview-findbar.c:252
+#: logview/logview-findbar.c:265
 #, fuzzy
 msgid "Fin_d : "
 msgstr "מצא"
 
-#: logview/logview-findbar.c:270
+#: logview/logview-findbar.c:283
 #, fuzzy
 msgid "Find Next"
 msgstr "מצא"
 
-#: logview/logview-findbar.c:280
+#: logview/logview-findbar.c:293
 msgid "Find Previous"
 msgstr ""
 
-#: logview/logview.c:79
+#: logview/logview.c:87
 msgid "_Log"
 msgstr ""
 
-#: logview/logview.c:81
+#: logview/logview.c:89
 msgid "_View"
 msgstr ""
 
-#: logview/logview.c:84
+#: logview/logview.c:92
 #, fuzzy
 msgid "_Open..."
 msgstr "_פתח"
 
-#: logview/logview.c:84
+#: logview/logview.c:92
 #, fuzzy
 msgid "Open a log from file"
 msgstr "פתח קובץ דו\"ח חדש"
 
-#: logview/logview.c:86
+#: logview/logview.c:94
 msgid "_Properties"
 msgstr "_מאפיינים"
 
-#: logview/logview.c:86
+#: logview/logview.c:94
 msgid "Show Log Properties"
 msgstr "הצג מאפייני דו\"ח"
 
-#: logview/logview.c:88
+#: logview/logview.c:96
 #, fuzzy
 msgid "Close"
 msgstr "קוסינוס"
 
-#: logview/logview.c:88
+#: logview/logview.c:96
 msgid "Close this log"
 msgstr ""
 
-#: logview/logview.c:90
-#, fuzzy
-msgid "_Quit"
-msgstr "_ערוך"
-
-#: logview/logview.c:90
+#: logview/logview.c:98
 #, fuzzy
 msgid "Quit the log viewer"
 msgstr "מציג דו\"חות המערכת"
 
-#: logview/logview.c:93
+#: logview/logview.c:101
+msgid "Copy"
+msgstr "העתק"
+
+#: logview/logview.c:103
+#, fuzzy
+msgid "Select All"
+msgstr "_סגור הכל"
+
+#: logview/logview.c:103
+msgid "Select the entire log"
+msgstr ""
+
+#: logview/logview.c:105
 msgid "Find pattern in logs"
 msgstr ""
 
-#: logview/logview.c:96
+#: logview/logview.c:108
 #, fuzzy
 msgid "Collapse _All"
 msgstr "_קפל הכל"
 
-#: logview/logview.c:96
+#: logview/logview.c:108
 msgid "Collapse all the rows"
 msgstr "קפל את כל השורות"
 
-#: logview/logview.c:99
-msgid "_Contents"
-msgstr ""
-
-#: logview/logview.c:99
+#: logview/logview.c:111
 msgid "Open the help contents for the log viewer"
 msgstr ""
 
-#: logview/logview.c:101
+#: logview/logview.c:113
 msgid "Show the about dialog for the gconf editor"
 msgstr ""
 
-#: logview/logview.c:107
+#: logview/logview.c:119
 #, fuzzy
 msgid "_Monitor"
 msgstr "_צג..."
 
-#: logview/logview.c:107
+#: logview/logview.c:119
 #, fuzzy
 msgid "Monitor Current Log"
 msgstr "צג דו\"חות"
 
-#: logview/logview.c:109
-msgid "_Calendar"
-msgstr "_לוח שנה"
+#: logview/logview.c:121
+#, fuzzy
+msgid "Ca_lendar"
+msgstr "לוח שנה"
 
-#: logview/logview.c:109
+#: logview/logview.c:121
 msgid "Show Calendar Log"
 msgstr "הצג דו\"ח לוח שנה"
 
-#: logview/logview.c:111
+#: logview/logview.c:123
 msgid "_Entry Detail"
 msgstr "_ערך פירוט"
 
-#: logview/logview.c:111
+#: logview/logview.c:123
 msgid "Show Entry Detail"
 msgstr "הצג ערך פירוט"
 
-#: logview/logview.c:166
+#: logview/logview.c:178
 msgid "Open the specified log."
 msgstr ""
 
-#: logview/logview.c:298
-msgid "No log files to open"
-msgstr "אין דו\"חות לפתיחה"
-
-#: logview/logview.c:376
+#: logview/logview.c:389
 msgid "Date"
 msgstr "תאריך"
 
-#: logview/logview.c:376
+#: logview/logview.c:389
 msgid "Host Name"
 msgstr "שם מארח"
 
-#: logview/logview.c:377
+#: logview/logview.c:390
 msgid "Process"
 msgstr "תהליך"
 
-#: logview/logview.c:377
+#: logview/logview.c:390
 msgid "Message"
 msgstr "הודעה"
 
-#: logview/logview.c:581
+#: logview/logview.c:583
 msgid "Open new logfile"
 msgstr "פתח קובץ דו\"ח חדש"
 
-#: logview/logview.c:922
-#, fuzzy, c-format
-msgid "There was an error displaying help: %s"
+#: logview/logview.c:879
+#, fuzzy
+msgid "There was an error displaying help."
 msgstr "ארעה שגיאה. `%s' ריק"
 
-#: logview/logview.c:934
+#: logview/logview.c:897
 #, c-format
-msgid "%s - %s (monitored)"
+msgid "%s (monitored) - %s"
 msgstr ""
 
 #: logview/logview.schemas.in.h:1
@@ -1770,34 +2088,237 @@ msgstr ""
 "מציין את קובץ הדו\"ח לפתיחה בהפעלה. ברירת המחדל היא או הודעות /var/adm/"
 "messages או /var/log/messages, תלוי במערכת ההפעלה שלך."
 
-#: logview/zoom.c:65
+#: logview/zoom.c:71
 msgid "Entry Detail"
 msgstr "ערך פירוט"
 
-#: logview/zoom.c:102
-msgid "Date:"
-msgstr "תאריך:"
-
-#: logview/zoom.c:102
-msgid "Process:"
-msgstr "תהליך:"
-
-#: logview/zoom.c:103
-msgid "Message:"
-msgstr "הודעה:"
-
-#: logview/zoom.c:103
-msgid "Description:"
-msgstr "תיאור:"
-
-#: logview/zoom.c:133
-msgid "Log Line Details"
-msgstr "פרטי שורת דו\"ח"
-
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:195
+#: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:86
+#, fuzzy
+msgid "Error loading help"
+msgstr "שגיאה בסגירת ההתקן %s"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:87
+#, fuzzy
+msgid "There was an error displaying the help pages for this dialog:"
+msgstr "ארעה שגיאה. `%s' ריק"
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if a specific window is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:111
+#, c-format
+msgid "Screenshot-%s.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if the entire screen is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:117
+msgid "Screenshot.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:155
+#, c-format
+msgid "Screenshot-%s-%d.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if the entire screen is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:163
+#, c-format
+msgid "Screenshot-%d.png"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:338
+msgid "Unable to take a screenshot of the current desktop."
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:409
+msgid "Grab a window instead of the entire screen"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:410
+msgid "Include the window border with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:411
+msgid "Take screenshot after specified delay [in seconds]"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:412
+msgid "Effect to add to the window border"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
+msgid " (invalid Unicode)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
+#, c-format
+msgid "(%d:%02d:%d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
+#, c-format
+msgid "(%d:%02d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
+#, c-format
+msgid "%ld of %ld"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.glade.h:2
+msgid "Save Screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.glade.h:3
+#, fuzzy
+msgid "Save in _folder:"
+msgstr "_חפש בתיקייה:"
+
+#: gnome-screenshot/gnome-screenshot.glade.h:4
+#, fuzzy
+msgid "_Name:"
+msgstr "שם"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
+msgid "Border Effect"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
+msgid "Directory that the screenshooter last used to save in"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
+msgid ""
+"Effect to add to the outside of a border. Possible values are \"shadow\", "
+"\"none\", and \"black-line\"."
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Border"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the window manager border along with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
+msgid "Web directory"
+msgstr ""
+
+#: gnome-screenshot/screenshot-dialog.c:194
+msgid ""
+"Glade file for the screenshot program is missing.\n"
+"Please check your installation of gnome-panel"
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:40
+#, fuzzy, c-format
+msgid ""
+"Unable to clear the temporary directory:\n"
+"%s"
+msgstr "לא ניתן ליצור מערכת קבצים כראוי."
+
+#: gnome-screenshot/screenshot-save.c:78
+msgid ""
+"The child save process unexpectedly exited.  We are unable to write the "
+"screenshot to disk."
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:188
+msgid "Unknown error saving screenshot to disk"
+msgstr ""
+
+#: gnome-screenshot/screenshot-utils.c:611
+msgid "Untitled Window"
+msgstr ""
+
+#: gnome-screenshot/screenshot-xfer.c:103
+#, fuzzy
+msgid "Preparing to copy"
+msgstr "מלל להעתקה"
+
+#: gnome-screenshot/screenshot-xfer.c:181
+#, fuzzy
+msgid "File already exists"
+msgstr "הקובץ כבר פתוח"
+
+#: gnome-screenshot/screenshot-xfer.c:184
+#, fuzzy, c-format
+msgid "The file \"%s\" already exists.  Would you like to replace it?"
+msgstr "הקובץ \"%s\" כבר קיים. להחליפו?"
+
+#: gnome-screenshot/screenshot-xfer.c:230
+#, c-format
+msgid "Unknown GnomeVFSXferProgressStatus %d"
+msgstr ""
+
+#~ msgid "_Dictionary"
+#~ msgstr "_מילון"
+
+#~ msgid "_Lookup"
+#~ msgstr "_חפש"
+
+#, fuzzy
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr "ארעה שגיאה. `%s' ריק"
+
+#~ msgid "Search _results:"
+#~ msgstr "_תוצאות החיפוש:"
+
+#, fuzzy
+#~ msgid "Copy selected lines"
+#~ msgstr "העתק את הבחירה"
+
+#~ msgid "Size:"
+#~ msgstr "גודל:"
+
+#~ msgid "Log Information"
+#~ msgstr "מידע הדו\"ח:"
+
+#~ msgid "<No log loaded>"
+#~ msgstr "<לא נטען דו\"ח>"
+
+#, fuzzy
+#~ msgid "%ld byte"
+#~ msgid_plural "%ld bytes"
+#~ msgstr[0] "%ld בתים"
+#~ msgstr[1] "%ld בתים"
+
+#~ msgid "%s is not a regular file."
+#~ msgstr "%s אינו קובץ רגיל."
+
+#~ msgid "_Calendar"
+#~ msgstr "_לוח שנה"
+
+#~ msgid "No log files to open"
+#~ msgstr "אין דו\"חות לפתיחה"
+
+#~ msgid "Date:"
+#~ msgstr "תאריך:"
+
+#~ msgid "Process:"
+#~ msgstr "תהליך:"
+
+#~ msgid "Message:"
+#~ msgstr "הודעה:"
+
+#~ msgid "Description:"
+#~ msgstr "תיאור:"
+
+#~ msgid "Log Line Details"
+#~ msgstr "פרטי שורת דו\"ח"
 
 #~ msgid "Accessories"
 #~ msgstr "עזרים"
@@ -1814,17 +2335,11 @@ msgstr "%B %e %X"
 #~ msgid "Switch between already opened logs"
 #~ msgstr "החלף בין דו\"חות שכבר פתוחים"
 
-#~ msgid "Clos_e All"
-#~ msgstr "_סגור הכל"
-
 #~ msgid "Close all Log files"
 #~ msgstr "סגור את כל קבצי הדו\"חות"
 
 #~ msgid "Too many open logs. Close one and try again"
 #~ msgstr "יותר מידי דו\"חות פתוחים. סגור אחד ונסה שוב"
-
-#~ msgid "File already opened"
-#~ msgstr "הקובץ כבר פתוח"
 
 #~ msgid "Error: [%s]\n"
 #~ msgstr "שגיאה: [%s]\n"
@@ -1846,9 +2361,6 @@ msgstr "%B %e %X"
 
 #~ msgid "Remove logs from monitor"
 #~ msgstr "הסר דו\"חות מהצג"
-
-#~ msgid "_Hide application"
-#~ msgstr "_הסתר יישום"
 
 #~ msgid "_Execute actions"
 #~ msgstr "ה_פעל פעולות"
@@ -1985,12 +2497,6 @@ msgstr "%B %e %X"
 #~ msgid "Starting folder entry"
 #~ msgstr "ערך תיקיית התחלה"
 
-#~ msgid "Additional Options"
-#~ msgstr "אפשרויות נוספות"
-
-#~ msgid "Can't Display Help"
-#~ msgstr "לא ניתן להציג עזרה"
-
 #~ msgid "Open %d Files?"
 #~ msgstr "לפתוח %d קבצים?"
 
@@ -2003,9 +2509,6 @@ msgstr "%B %e %X"
 #~ msgstr ""
 #~ "לא ניתן לשמור את תוצאות החיפוש.\n"
 #~ "\"%s\" הינו תיקייה."
-
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "הקובץ \"%s\" כבר קיים. להחליפו?"
 
 #~ msgid "Cannot save search results to the file \"%s\"."
 #~ msgstr "לא ניתן לשמור את תוצאות החיפוש לקובץ \"%s\"."
@@ -2351,17 +2854,8 @@ msgstr "%B %e %X"
 #~ msgid "_Text to copy:"
 #~ msgstr "_מלל להעתקה:"
 
-#~ msgid "_Copy"
-#~ msgstr "ה_עתק"
-
-#~ msgid "Text to copy"
-#~ msgstr "מלל להעתקה"
-
 #~ msgid "Entry"
 #~ msgstr "ערך"
-
-#~ msgid "Copy"
-#~ msgstr "העתק"
 
 #~ msgid "Copy the text"
 #~ msgstr "העתק את המלל"
@@ -2374,18 +2868,6 @@ msgstr "%B %e %X"
 
 #~ msgid "Ch_aracters"
 #~ msgstr "ת_וים"
-
-#~ msgid "Cut"
-#~ msgstr "גזור"
-
-#~ msgid "Cut the selection"
-#~ msgstr "גזור את הבחירה"
-
-#~ msgid "Paste"
-#~ msgstr "הדבק"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "הדבק את תוכן הלוח"
 
 #~ msgid "GNOME Search Tool"
 #~ msgstr "כלי חיפוש ל GNOME"

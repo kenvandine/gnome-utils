@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-30 17:35-0300\n"
+"POT-Creation-Date: 2004-11-29 09:39-0500\n"
 "PO-Revision-Date: 2000-05-07 01:59+0200\n"
 "Last-Translator: andraz.tori1@guest.arnes.si\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -14,20 +14,21 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:169
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:122
 msgid "Dictionary Lookup"
 msgstr "Poizvedba v slovarju"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:185
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:28
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Poišči besedo v slovarju na mreži"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 logview/logview.c:101
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:588
+#: logview/logview.c:113
 msgid "_About"
 msgstr "_O"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:82
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:90
 msgid "_Help"
 msgstr "_Pomoč"
 
@@ -46,12 +47,19 @@ msgstr "_Kaži slovar"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
-#: gdictsrc/gdict-pref-dialog.c:509 gdictsrc/gdict-speller.c:452
+#. Could not look up search strategies, so just display a
+#. * label; FIXME: Memory leak
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:429
+#: gdictsrc/gdict-pref-dialog.c:478 gdictsrc/gdict-speller.c:690
 msgid "Cannot connect to server"
 msgstr "Ne morem se povezati s strežnikom"
 
-#: gdictsrc/dict.c:677
+#: gdictsrc/dict.c:689
+#, fuzzy
+msgid "Server Error"
+msgstr "Vpis strežnika"
+
+#: gdictsrc/dict.c:690
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
@@ -60,60 +68,64 @@ msgstr ""
 "pravilna. Za izhodišče sta osnovni strežnik dict.org in vrata 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:44
+#: gdictsrc/gdict-about.c:42 logview/about.c:43
 #, fuzzy
 msgid "translator-credits"
 msgstr "Andraž Tori <andraz.tori1@guest.arnes.si>"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-about.c:44
+msgid "A client for the MIT dictionary server."
+msgstr "Odjemalec za MITov slovarski strežnik."
+
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:237 gdictsrc/gdict-app.c:247
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Slovar"
 
-#: gdictsrc/gdict-about.c:58
-msgid "A client for the MIT dictionary server."
-msgstr "Odjemalec za MITov slovarski strežnik."
-
-#: gdictsrc/gdict-app.c:127
+#: gdictsrc/gdict-app.c:101
 msgid "Spell-checking..."
 msgstr "Preverjanje črkovanja..."
 
-#: gdictsrc/gdict-app.c:135
+#: gdictsrc/gdict-app.c:108
 msgid "Spell check done"
 msgstr "Preverjanje črkovanja končano"
 
-#: gdictsrc/gdict-app.c:143 gdictsrc/gdict-app.c:290
+#: gdictsrc/gdict-app.c:115 gdictsrc/gdict-app.c:263
 msgid "No matches found"
 msgstr "Ni zadetkov"
 
-#: gdictsrc/gdict-app.c:273
+#: gdictsrc/gdict-app.c:126
+msgid "Connexion error"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:238
 msgid "Looking up word..."
 msgstr "Iščem besedo..."
 
-#: gdictsrc/gdict-app.c:281
+#: gdictsrc/gdict-app.c:253
 msgid "Lookup done"
 msgstr "Iskanje končano"
 
-#: gdictsrc/gdict-app.c:303
+#: gdictsrc/gdict-app.c:276
 msgid "String not found"
 msgstr "Niz ni bil najden"
 
-#: gdictsrc/gdict-app.c:471
+#: gdictsrc/gdict-app.c:445
 msgid "Find"
 msgstr "Poišči"
 
-#: gdictsrc/gdict-app.c:479
+#: gdictsrc/gdict-app.c:455
 #, fuzzy
 msgid "_Search for:"
 msgstr "Iskalne napake"
 
-#: gdictsrc/gdict-app.c:492 logview/logview.c:93
-msgid "_Find"
-msgstr "_Poišči:"
+#: gdictsrc/gdict-app.c:505
+msgid "Unable to perform requested operation."
+msgstr ""
 
-#: gdictsrc/gdict-app.c:534
+#: gdictsrc/gdict-app.c:506
+#, fuzzy
 msgid ""
-"Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
@@ -121,170 +133,273 @@ msgstr ""
 "Ali stežnik, ki ga uporabljate ne deluje ali pa \n"
 "niste povezani na Internet."
 
-#: gdictsrc/gdict-app.c:697 gdictsrc/gdict-app.c:952
-#: gdictsrc/gdict-speller.c:214
+#: gdictsrc/gdict-app.c:543 gdictsrc/gdict-applet.c:350
+#: gdictsrc/gdict-pref-dialog.c:629
+#, fuzzy
+msgid "Could not display help"
+msgstr "Ne morem prikazati pomoči"
+
+#. Dictionary menu
+#: gdictsrc/gdict-app.c:568 gdictsrc/gdict-app.c:864
+#: gdictsrc/gdict-speller.c:252
 msgid "_Look Up Word"
 msgstr "_Poišči besedo"
 
-#: gdictsrc/gdict-app.c:698
+#: gdictsrc/gdict-app.c:569
 msgid "Lookup word in dictionary"
 msgstr "Poišči besedo v slovarju"
 
-#: gdictsrc/gdict-app.c:700 gdictsrc/gdict-speller.c:160
+#: gdictsrc/gdict-app.c:570 gdictsrc/gdict-speller.c:191
 msgid "Check _Spelling"
 msgstr "Preveri č_rkovanje"
 
-#: gdictsrc/gdict-app.c:701
+#: gdictsrc/gdict-app.c:571
 msgid "Check word spelling"
 msgstr "Preveri črkovanje besede"
 
-#: gdictsrc/gdict-app.c:745
-msgid "_Dictionary"
-msgstr "_Slovar"
+#: gdictsrc/gdict-app.c:573
+#, fuzzy
+msgid "_Print"
+msgstr "Točka"
 
-#: gdictsrc/gdict-app.c:948 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:574
+#, fuzzy
+msgid "Print the current definition"
+msgstr "Zapri trenutni dokument"
+
+#. Edit menu, see below for cut, paste etc.
+#: gdictsrc/gdict-app.c:578 logview/logview.c:105
+#, fuzzy
+msgid "_Find..."
+msgstr "_Poišči:"
+
+#: gdictsrc/gdict-app.c:579
+#, fuzzy
+msgid "Find a word in the text"
+msgstr "Vsebuje _besedilo"
+
+#: gdictsrc/gdict-app.c:580
+#, fuzzy
+msgid "Find Ne_xt"
+msgstr "Poišči"
+
+#: gdictsrc/gdict-app.c:581
+msgid "Find next occurrence of the word"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:582
+#, fuzzy
+msgid "P_references"
+msgstr "_Nastavitve"
+
+#: gdictsrc/gdict-app.c:583
+#, fuzzy
+msgid "Configure the application"
+msgstr "S_krij program"
+
+#. Help menu
+#: gdictsrc/gdict-app.c:586 logview/logview.c:111
+msgid "_Contents"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:587
+msgid "View help for this application"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:589
+#, fuzzy
+msgid "About this application"
+msgstr "S_krij program"
+
+#: gdictsrc/gdict-app.c:596 logview/logview.c:98
+#, fuzzy
+msgid "_Quit"
+msgstr "Izhod"
+
+#: gdictsrc/gdict-app.c:597
+#, fuzzy
+msgid "Quit the application"
+msgstr "S_krij program"
+
+#: gdictsrc/gdict-app.c:601
+#, fuzzy
+msgid "_Close"
+msgstr "Cosinus"
+
+#: gdictsrc/gdict-app.c:602
+#, fuzzy
+msgid "Close the application"
+msgstr "S_krij program"
+
+#: gdictsrc/gdict-app.c:607
+#, fuzzy
+msgid "Cu_t"
+msgstr "Izreži"
+
+#: gdictsrc/gdict-app.c:608
+msgid "Cut the selection"
+msgstr "Izreži izbrano"
+
+#: gdictsrc/gdict-app.c:609
+msgid "_Copy"
+msgstr "_Kopiraj"
+
+#: gdictsrc/gdict-app.c:610 logview/logview.c:101
+#, fuzzy
+msgid "Copy the selection"
+msgstr "Izreži izbrano"
+
+#: gdictsrc/gdict-app.c:611
+#, fuzzy
+msgid "_Paste"
+msgstr "Prilepi"
+
+#: gdictsrc/gdict-app.c:612
+#, fuzzy
+msgid "Paste clipboard"
+msgstr "Prilepi odložišče"
+
+#: gdictsrc/gdict-app.c:613
+msgid "Select _All"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:614
+#, fuzzy
+msgid "Select everything"
+msgstr "Izberi dnevniške dogodke"
+
+#: gdictsrc/gdict-app.c:861 gdictsrc/gdict-speller.c:179
 msgid "_Word:"
 msgstr "_Beseda: "
 
-#: gdictsrc/gdict-app.c:976 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:884 gdictsrc/gdict-speller.c:198
 msgid "Word"
 msgstr "Beseda"
 
-#: gdictsrc/gdict-app.c:977 gdictsrc/gdict-app.c:978
-#: gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-app.c:885 gdictsrc/gdict-app.c:887
+#: gdictsrc/gdict-speller.c:200
 msgid "Word Entry"
 msgstr "Vpis besede"
 
-#: gdictsrc/gdict-app.c:977
+#: gdictsrc/gdict-app.c:886
 msgid "Enter a Word or select one from the list below"
 msgstr "Vpišite besedo ali izberite eno iz spodnjega seznama"
 
-#: gdictsrc/gdict-app.c:980
+#: gdictsrc/gdict-app.c:890
 msgid "Look Up for a Word"
 msgstr "Poišči besedo"
 
-#: gdictsrc/gdict-applet.c:161
-msgid "_Lookup"
-msgstr "_Poišči"
-
-#: gdictsrc/gdict-applet.c:173
+#: gdictsrc/gdict-applet.c:127
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "Strežnik slovarja"
 
-#: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
-#, c-format
-msgid "Error invoking query: %s"
+#: gdictsrc/gdict-defbox.c:666 gdictsrc/gdict-speller.c:367
+#, fuzzy
+msgid "Error invoking query"
 msgstr "Napaka pri poizvedbi: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:158
+#: gdictsrc/gdict-pref-dialog.c:136
 msgid "Dictionary Preferences"
 msgstr "Nastavitve slovarja"
 
-#: gdictsrc/gdict-pref-dialog.c:171
+#: gdictsrc/gdict-pref-dialog.c:149
 msgid "Smart _lookup"
 msgstr "Pametno _iskanje"
 
-#: gdictsrc/gdict-pref-dialog.c:189
-msgid "_Server:"
-msgstr "_Strežnik:"
-
-#: gdictsrc/gdict-pref-dialog.c:196
+#: gdictsrc/gdict-pref-dialog.c:163
 msgid "De_fault Server"
 msgstr "Privzet strežnik"
 
-#: gdictsrc/gdict-pref-dialog.c:205
+#: gdictsrc/gdict-pref-dialog.c:174
+msgid "_Server:"
+msgstr "_Strežnik:"
+
+#: gdictsrc/gdict-pref-dialog.c:183
 msgid "Reset server to default"
 msgstr "Povrni strežnik na privzeto"
 
-#: gdictsrc/gdict-pref-dialog.c:213
+#: gdictsrc/gdict-pref-dialog.c:191
 msgid "_Port:"
 msgstr "_Vrata:"
 
-#: gdictsrc/gdict-pref-dialog.c:229
+#: gdictsrc/gdict-pref-dialog.c:201
 msgid "Def_ault Port"
 msgstr "Pri_vzeta vrata"
 
-#: gdictsrc/gdict-pref-dialog.c:238
+#: gdictsrc/gdict-pref-dialog.c:216
 msgid "Reset port to default"
 msgstr "Povrni vrata na privzeto"
 
-#: gdictsrc/gdict-pref-dialog.c:239
+#: gdictsrc/gdict-pref-dialog.c:217
 msgid "Server"
 msgstr "Strežnik"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Server Entry"
 msgstr "Vpis strežnika"
 
-#: gdictsrc/gdict-pref-dialog.c:240
+#: gdictsrc/gdict-pref-dialog.c:219
 msgid "Enter the Server Name"
 msgstr "Vpišite ime trežnika"
 
-#: gdictsrc/gdict-pref-dialog.c:242
+#: gdictsrc/gdict-pref-dialog.c:220
 msgid "Port"
 msgstr "Vrata"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Port Entry"
 msgstr "Vpisč vrat"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:222
 msgid "Enter the Port Number"
 msgstr "Vpišite številko vrat"
 
-#: gdictsrc/gdict-pref-dialog.c:252
+#: gdictsrc/gdict-pref-dialog.c:231
 msgid "_Database:"
 msgstr "_Zbirka podatkov:"
 
-#: gdictsrc/gdict-pref-dialog.c:259
+#: gdictsrc/gdict-pref-dialog.c:238
 msgid "D_efault strategy:"
 msgstr "Pri_vzeta strategija:"
 
-#: gdictsrc/gdict-pref-dialog.c:452
+#: gdictsrc/gdict-pref-dialog.c:421
 msgid "Search all databases"
 msgstr "Išči v vseh zbirkah podatkov"
 
-#: gdictsrc/gdict-pref-dialog.c:613
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database"
 msgstr "Zbirka podatkov"
 
-#: gdictsrc/gdict-pref-dialog.c:613
+#: gdictsrc/gdict-pref-dialog.c:582
 msgid "Database Name"
 msgstr "Ime zbirke podatkov"
 
-#: gdictsrc/gdict-pref-dialog.c:629
+#: gdictsrc/gdict-pref-dialog.c:600
 msgid "Default Strategy"
 msgstr "Privzeta strategija"
 
-#: gdictsrc/gdict-pref-dialog.c:656
-#, fuzzy, c-format
-msgid ""
-"There was an error displaying help: \n"
-"%s"
-msgstr "Zgodila se je napaka. `%s' je prazna"
-
-#: gdictsrc/gdict-speller.c:147
+#: gdictsrc/gdict-speller.c:200
 msgid "Enter a word to know the spelling"
 msgstr "Vpišite besedo za poizvedbo o črkovanju"
 
-#: gdictsrc/gdict-speller.c:153
+#: gdictsrc/gdict-speller.c:205
 msgid "Search s_trategy:"
 msgstr "S_trategija iskanja:"
 
-#: gdictsrc/gdict-speller.c:165
+#: gdictsrc/gdict-speller.c:209 gsearchtool/gsearchtool.c:2049
+msgid "Show more _options"
+msgstr "Kaži _več možnosti"
+
+#: gdictsrc/gdict-speller.c:215
 msgid "Click to do the spell check"
 msgstr "Kliknite za preverjanje črkovanja"
 
-#: gdictsrc/gdict-speller.c:169
-msgid "Search _results:"
-msgstr "Izidi _iskanja:"
-
-#: gdictsrc/gdict-speller.c:229
+#: gdictsrc/gdict-speller.c:265
 msgid "Check Spelling"
 msgstr "Preveri črkovanje"
 
-#: gdictsrc/gdict-speller.c:643
+#: gdictsrc/gdict-speller.c:652
 msgid "Search Strategy"
 msgstr "Strategija iskanja"
 
@@ -346,6 +461,11 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Uporabi pametno iskanje"
 
+#: gdictsrc/main.c:101
+#, fuzzy
+msgid "Gnome Dictionary"
+msgstr "Slovar"
+
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy Formatter"
 msgstr "Formatirnik disket"
@@ -387,58 +507,58 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 "ext2 za Linuxu domač datotečni sistem ali fat za datotečni sistem DOSa."
 
-#: gfloppy/src/badblocks.c:94
+#: gfloppy/src/badblocks.c:84
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Notranja napaka: Nisem mogel nastaviti (seek) pravilnega mesta."
 
-#: gfloppy/src/badblocks.c:103
+#: gfloppy/src/badblocks.c:93
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Notranja napaka: Čudna vrednost (%ld) v do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:261
+#: gfloppy/src/badblocks.c:251
 msgid "Checking for bad blocks..."
 msgstr "Preverjam in iščem slabe bloke..."
 
-#: gfloppy/src/badblocks.c:273
+#: gfloppy/src/badblocks.c:263
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Nisem uspel odpreti naprave %s za preverjanje slabih blokov\n"
 
-#: gfloppy/src/badblocks.c:293 gfloppy/src/gfloppy.c:537
+#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
 msgid "Checking for bad blocks... Done"
 msgstr "Preverjam in iščem slabe bloke... Opravljeno"
 
-#: gfloppy/src/fdformat.c:49
+#: gfloppy/src/fdformat.c:42
 msgid "Formatting the disk..."
 msgstr "Formatiram disketo..."
 
-#: gfloppy/src/fdformat.c:52
+#: gfloppy/src/fdformat.c:45
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Sicer ne wem kaj to je, je pa zelo narobe."
 
-#: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
+#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Napaka pri formatiranju sledi #%d"
 
-#: gfloppy/src/fdformat.c:82
+#: gfloppy/src/fdformat.c:75
 msgid "Error during completion of formatting"
 msgstr "Napaka pri zaključku formatiranja"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:86
+#: gfloppy/src/fdformat.c:79
 msgid "Formatting the disk... Done"
 msgstr "Formatiram disketo... Opravljeno"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:102
+#: gfloppy/src/fdformat.c:95
 msgid "Verifying the format..."
 msgstr "Preverjam formatiranje..."
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -448,12 +568,12 @@ msgstr ""
 "\n"
 "Prosim preverite, da ni zaščitena proti pisanju."
 
-#: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Nimate dovljenja za oprtje naprave (disketnika) %s."
 
-#: gfloppy/src/fdformat.c:114 gfloppy/src/fdformat.c:199
+#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -465,7 +585,7 @@ msgstr ""
 "Prosim preverite, da je disketa v disketniku\n"
 "in, da so vratca disketnika zaprta."
 
-#: gfloppy/src/fdformat.c:117
+#: gfloppy/src/fdformat.c:110
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -476,7 +596,7 @@ msgstr ""
 "\n"
 "Koda napke: %s:%d"
 
-#: gfloppy/src/fdformat.c:140
+#: gfloppy/src/fdformat.c:133
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -485,31 +605,31 @@ msgstr ""
 "Napaka pri Branju:\n"
 "Problem ob branju cilindra %d, pričakovano %d, prebrano %d"
 
-#: gfloppy/src/fdformat.c:143
+#: gfloppy/src/fdformat.c:136
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Problem ob branju cilindra %d, pričakovano %d, prebrano %d"
 
-#: gfloppy/src/fdformat.c:154
+#: gfloppy/src/fdformat.c:147
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Slabi podatki v cilindru %d. Nadaljujem..."
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:156
 #, c-format
 msgid "Error closing device %s"
 msgstr "Napaka pri zapiranju naprave %s"
 
-#: gfloppy/src/fdformat.c:170
+#: gfloppy/src/fdformat.c:163
 msgid "Verifying the format... Done"
 msgstr "Preverjam formatiranje... Opravljeno"
 
-#: gfloppy/src/fdformat.c:182
+#: gfloppy/src/fdformat.c:175
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "Ne morem pisati na napravo %s"
 
-#: gfloppy/src/fdformat.c:202
+#: gfloppy/src/fdformat.c:195
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -520,28 +640,28 @@ msgstr ""
 "\n"
 "Šifra napake %s"
 
-#: gfloppy/src/fdformat.c:214
+#: gfloppy/src/fdformat.c:207
 msgid "Could not determine current floppy geometry."
 msgstr "Nisem mogel ugotoviti geometrije trenutne diskete"
 
-#: gfloppy/src/gfloppy.c:225
+#: gfloppy/src/gfloppy.c:215
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr "Napaka ob ustvarjanju edinstvene datoteke za seznam slabih blokov"
 
-#: gfloppy/src/gfloppy.c:245
+#: gfloppy/src/gfloppy.c:235
 msgid "Error while filling the bad blocks list file."
 msgstr "Napaka ob polnjenju datoteke s slabimi bloki."
 
-#: gfloppy/src/gfloppy.c:308
+#: gfloppy/src/gfloppy.c:298
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Napaka ob izvajanju (%s) ukaz: %s."
 
-#: gfloppy/src/gfloppy.c:334
+#: gfloppy/src/gfloppy.c:324
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Neznan začetni podpis mk2fs, preklicujem."
 
-#: gfloppy/src/gfloppy.c:348
+#: gfloppy/src/gfloppy.c:338
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -553,16 +673,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:365
+#: gfloppy/src/gfloppy.c:355
 msgid "Abnormal child process termination."
 msgstr "Nenormalen zaključek procesa otroka."
 
-#: gfloppy/src/gfloppy.c:390
+#: gfloppy/src/gfloppy.c:380
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Napaka ob izvajanju ukaza mbadblocks: %s."
 
-#: gfloppy/src/gfloppy.c:402
+#: gfloppy/src/gfloppy.c:392
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -572,28 +692,28 @@ msgstr ""
 "napake:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:445
+#: gfloppy/src/gfloppy.c:435
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Nenormalen zaključek procesa otroka mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:471 gfloppy/src/gfloppy.c:511
+#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
 msgid "Making filesystem on disk..."
 msgstr "Na disketi ustvarjam datotečni sistem..."
 
-#: gfloppy/src/gfloppy.c:479
+#: gfloppy/src/gfloppy.c:469
 msgid "Unable to create filesystem correctly."
 msgstr "Nisem uspel pravilno ustvariti datotečnega sistema."
 
-#: gfloppy/src/gfloppy.c:484 gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
 msgid "Making filesystem on disk... Done"
 msgstr "Na disketi ustvarjam datotečni sistem... Opravljeno"
 
-#: gfloppy/src/gfloppy.c:528
+#: gfloppy/src/gfloppy.c:518
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Preverjam in iščem slabe bloke... (to lahko traja)"
 
-#: gfloppy/src/gfloppy.c:533
+#: gfloppy/src/gfloppy.c:523
 msgid "Error while checking the bad blocks."
 msgstr "Napaka ob preverjanju slabih blokov."
 
@@ -601,7 +721,7 @@ msgstr "Napaka ob preverjanju slabih blokov."
 msgid "    "
 msgstr "    "
 
-#: gfloppy/src/gfloppy2.glade.h:2
+#: gfloppy/src/gfloppy2.glade.h:2 gnome-screenshot/gnome-screenshot.glade.h:1
 msgid "*"
 msgstr "*"
 
@@ -682,7 +802,12 @@ msgstr "_Hitro (le ustvari datotečni sistem)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Običajno (hitremu načinu doda nizkostopenjsko formatiranje)"
 
-#: gfloppy/src/main.c:215
+#: gfloppy/src/main.c:224
+#, fuzzy
+msgid "Cannot Format"
+msgstr "Ne morem pognati tar/gtar"
+
+#: gfloppy/src/main.c:225
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -690,12 +815,12 @@ msgstr ""
 "Nameščen ni niti program mke2fs niti mkdosfs/mformat. Disket brez enega od "
 "njiju ne morete formatirati."
 
-#: gfloppy/src/main.c:239
+#: gfloppy/src/main.c:245
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nisem uspel odpreti naprave %s, formatiranje se ne more nadaljevati."
 
-#: gfloppy/src/main.c:242 gfloppy/src/main.c:313
+#: gfloppy/src/main.c:248 gfloppy/src/main.c:311
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -704,7 +829,7 @@ msgstr ""
 "Naprava %s je odklopljena.\n"
 "Za nadaljevanje priklopite napravo."
 
-#: gfloppy/src/main.c:245 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:251 gfloppy/src/main.c:314
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -714,37 +839,44 @@ msgstr ""
 "Nimate ustreznih dovoljenj za pisanje v %s, formatiranje ne bo možno.\n"
 "Za pridobitev dovoljenj za pisanje se obrnite na svojega administratorja."
 
-#: gfloppy/src/main.c:310
+#: gfloppy/src/main.c:258 gfloppy/src/main.c:322
+#, fuzzy
+msgid "Cannot initialize device"
+msgstr "Ne morem inicializirabi bonoba."
+
+#: gfloppy/src/main.c:308
 #, fuzzy
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nisem uspel odpreti naprave %s, formatiranje se ne more nadaljevati."
 
-#: gfloppy/src/main.c:313 gfloppy/src/main.c:316
+#: gfloppy/src/main.c:311 gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr ""
 
-#: gfloppy/src/main.c:489
-#, c-format
-msgid ""
-"Could not display help for the floppy formatter.\n"
-"%s"
+#: gfloppy/src/main.c:475
+#, fuzzy
+msgid "Could not display help for the floppy formatter."
 msgstr ""
 "Nisem mogel prikazati pomoči za formatiranje diskete.\n"
 "%s"
 
-#: gfloppy/src/main.c:522
+#: gfloppy/src/main.c:494
+msgid "Incorrect volume name"
+msgstr ""
+
+#: gfloppy/src/main.c:495
 msgid "The volume name can't contain any blank space."
 msgstr "Ime diskete ne more vsebovati presledkov."
 
-#: gfloppy/src/main.c:576
+#: gfloppy/src/main.c:543
 msgid "The device to format"
 msgstr "Naprava, ki naj jo formatiram"
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:544
 msgid "DEVICE"
 msgstr "NAPRAVA"
 
-#: gfloppy/src/progress.c:123
+#: gfloppy/src/progress.c:122
 #, fuzzy, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -759,15 +891,15 @@ msgstr[1] ""
 "Datoteka je bila formatirana, a najdeno in označeno je bilo<b>%d slabih "
 "blokov</b> (od %d)."
 
-#: gfloppy/src/progress.c:126
+#: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
 msgstr "Disketa je bila uspešno formatirana."
 
-#: gfloppy/src/progress.c:132
+#: gfloppy/src/progress.c:131
 msgid "Floppy formatting cancelled."
 msgstr "Formatiranje diskete je bilo preklicano."
 
-#: gfloppy/src/progress.c:175
+#: gfloppy/src/progress.c:174
 msgid "Format Progress"
 msgstr "Napredek formatiranja"
 
@@ -777,9 +909,217 @@ msgstr ""
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:634
 #: gsearchtool/gsearchtool.c:912 gsearchtool/gsearchtool.c:998
-#: gsearchtool/gsearchtool.c:2365 gsearchtool/gsearchtool.c:2390
+#: gsearchtool/gsearchtool.c:2364 gsearchtool/gsearchtool.c:2385
 msgid "Search for Files"
 msgstr "Išči datoteke"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:1
+msgid "Disable Quick Search"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:2
+msgid "Disable Quick Search Second Scan"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:3
+msgid "Quick Search Excluded Paths"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:4
+msgid "Quick Search Second Scan Excluded Paths"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:5
+#, fuzzy
+msgid "Select Contains the Text"
+msgstr "Vsebuje _besedilo"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:6
+#, fuzzy
+msgid "Select Date Modified Less Than"
+msgstr "_Datum spremembe mlajši kot (dni)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:7
+#, fuzzy
+msgid "Select Date Modified More Than"
+msgstr "Datum spremembe starejši kot (d_ni)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:8
+#, fuzzy
+msgid "Select File is Empty"
+msgstr "Datoteka je prazna"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:9
+#, fuzzy
+msgid "Select Follow Symbolic Links"
+msgstr "Sledi simboličnim povezavam"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:10
+#, fuzzy
+msgid "Select Include Other Filesystems"
+msgstr "Vključi druge datotečne sisteme."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:11
+#, fuzzy
+msgid "Select Name Matches Regular Expression"
+msgstr "Ime ustreza _regularnemu izrazu"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:12
+#, fuzzy
+msgid "Select Name does not Contain"
+msgstr "_Ime ne vsebuje"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:13
+#, fuzzy
+msgid "Select Owned by Group"
+msgstr "Lastnik je _skupina"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:14
+#, fuzzy
+msgid "Select Owned by User"
+msgstr "Lasnik je _uporabnik"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:15
+#, fuzzy
+msgid "Select Owner is Unrecognized"
+msgstr "Lastnik ni prepoznan"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:16
+msgid "Select Show Hidden Files and Folders"
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:17
+#, fuzzy
+msgid "Select Size At Least"
+msgstr "Velikost naj_manj (kilobajtov)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:18
+#, fuzzy
+msgid "Select Size At Most"
+msgstr "Velikost naj_več (kilobajtov)"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:19
+#, fuzzy
+msgid "Show Additional Options"
+msgstr "Dodatne možnosti"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:20
+msgid ""
+"This key defines the paths the search tool will exclude from a quick search. "
+"The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
+"media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:21
+msgid ""
+"This key defines the paths the search tool will exclude from a second scan "
+"when performing a quick search. The second scan uses the find command to "
+"search for files. The purpose of the second scan is to find files that have "
+"not been indexed. The wildcards '*' and '?' are supported. The default value "
+"is /."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:22
+msgid ""
+"This key determines if the Additional Options section is expanded when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:23
+msgid ""
+"This key determines if the Contains the Text option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:24
+msgid ""
+"This key determines if the Date Modified Less Than option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:25
+msgid ""
+"This key determines if the Date Modified More Than option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:26
+msgid ""
+"This key determines if the File is Empty option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:27
+msgid ""
+"This key determines if the Follow Symbolic Links option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:28
+msgid ""
+"This key determines if the Include Other Filesystems option is selected when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:29
+msgid ""
+"This key determines if the Name Matches Regular Expression option is "
+"selected when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:30
+msgid ""
+"This key determines if the Name does not Contain option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:31
+msgid ""
+"This key determines if the Owned by Group option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:32
+msgid ""
+"This key determines if the Owned by User option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:33
+msgid ""
+"This key determines if the Owner is Unrecognized option is selected when the "
+"search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:34
+msgid ""
+"This key determines if the Show Hidden Files and Folders option is selected "
+"when the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:35
+msgid ""
+"This key determines if the Size At Least option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:36
+msgid ""
+"This key determines if the Size At Most option is selected when the search "
+"tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:37
+msgid ""
+"This key determines if the search tool disables the use of the find command "
+"after performing a quick search."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:38
+msgid ""
+"This key determines if the search tool disables the use of the locate "
+"command when performing simple file name searches."
+msgstr ""
 
 #: gsearchtool/gsearchtool-alert-dialog.c:100
 msgid "Image/label border"
@@ -841,7 +1181,7 @@ msgstr[0] "Ali ste prepričani, da želite izklopiti računalnik?"
 msgstr[1] "Ali ste prepričani, da želite izklopiti računalnik?"
 
 #: gsearchtool/gsearchtool-callbacks.c:324
-#: gsearchtool/gsearchtool-callbacks.c:477
+#: gsearchtool/gsearchtool-callbacks.c:476
 #, fuzzy, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -851,114 +1191,115 @@ msgstr[1] ""
 "To bo odprlo %d ločenih datotek. Ste prepričani, da to želite storiti?"
 
 #: gsearchtool/gsearchtool-callbacks.c:384
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:967
-#: gsearchtool/gsearchtool-callbacks.c:1001
+#: gsearchtool/gsearchtool-callbacks.c:417
+#: gsearchtool/gsearchtool-callbacks.c:966
+#: gsearchtool/gsearchtool-callbacks.c:999
 #, fuzzy, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Nisem mogel odpreti dokumenta \"%s\""
 
 #: gsearchtool/gsearchtool-callbacks.c:387
-#: gsearchtool/gsearchtool-callbacks.c:643
-#: gsearchtool/gsearchtool-callbacks.c:970
+#: gsearchtool/gsearchtool-callbacks.c:642
+#: gsearchtool/gsearchtool-callbacks.c:969
 #, fuzzy
 msgid "The document does not exist."
 msgstr "Začetni imenik ne obstaja."
 
-#: gsearchtool/gsearchtool-callbacks.c:421
-#: gsearchtool/gsearchtool-callbacks.c:1004
+#: gsearchtool/gsearchtool-callbacks.c:420
+#: gsearchtool/gsearchtool-callbacks.c:1002
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Za prikaz dokumenta ni nameščen noben pregledovalnik."
 
-#: gsearchtool/gsearchtool-callbacks.c:472
+#: gsearchtool/gsearchtool-callbacks.c:471
 #, fuzzy, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Ali ste prepričani, da želite izklopiti računalnik?"
 msgstr[1] "Ali ste prepričani, da želite izklopiti računalnik?"
 
-#: gsearchtool/gsearchtool-callbacks.c:530
+#: gsearchtool/gsearchtool-callbacks.c:529
 #, fuzzy, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Nisem mogel odpreti mape \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:537
+#: gsearchtool/gsearchtool-callbacks.c:536
 msgid "The nautilus file manager is not running."
 msgstr "Upravljalnik daotek nautilus ne teče."
 
-#: gsearchtool/gsearchtool-callbacks.c:640
+#: gsearchtool/gsearchtool-callbacks.c:639
 #, fuzzy, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Ne morem shraniti dokumenta \"%s\" v %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:680
+#: gsearchtool/gsearchtool-callbacks.c:679
 #, fuzzy, c-format
 msgid "Could not move \"%s\" to the trash."
 msgstr "Ne morem shraniti dokumenta \"%s\" v %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:683
+#: gsearchtool/gsearchtool-callbacks.c:682
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:713
+#: gsearchtool/gsearchtool-callbacks.c:712
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:716
+#: gsearchtool/gsearchtool-callbacks.c:715
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:758
+#: gsearchtool/gsearchtool-callbacks.c:757
 #, fuzzy, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Nisem mogel odpreti mape \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:760
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1189
+#: gsearchtool/gsearchtool-callbacks.c:1187
 msgid "Save Search Results As..."
 msgstr "Shrani izide iskanja kot..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1241
+#: gsearchtool/gsearchtool-callbacks.c:1239
 #, fuzzy
 msgid "Could not save document."
 msgstr "Nisem mogel shraniti dokumenta \"\" v %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1243
+#: gsearchtool/gsearchtool-callbacks.c:1241
 #, fuzzy
 msgid "You did not select a document name."
 msgstr "Nisem mogel odpreti dokumenta \"%s\""
 
-#: gsearchtool/gsearchtool-callbacks.c:1269
-#: gsearchtool/gsearchtool-callbacks.c:1364
+#: gsearchtool/gsearchtool-callbacks.c:1267
+#: gsearchtool/gsearchtool-callbacks.c:1362
 #, fuzzy, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nisem mogel shraniti dokumenta \"\" v %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1273
+#: gsearchtool/gsearchtool-callbacks.c:1271
 msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1302
+#: gsearchtool/gsearchtool-callbacks.c:1300
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1306
+#: gsearchtool/gsearchtool-callbacks.c:1304
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1317
+#: gsearchtool/gsearchtool-callbacks.c:1315
+#: gnome-screenshot/screenshot-xfer.c:190
 msgid "_Replace"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1367
+#: gsearchtool/gsearchtool-callbacks.c:1365
 #, fuzzy
 msgid "You may not have write permissions to the document."
 msgstr "Morda nimate dovoljenj za zapis dokumenta.  Dokument ni shranjen."
@@ -1244,10 +1585,6 @@ msgstr "Brskaj"
 msgid "Select the folder where you want to start the search."
 msgstr "Vpišite ime mape kjer želite začeti iskanje"
 
-#: gsearchtool/gsearchtool.c:2049
-msgid "Show more _options"
-msgstr "Kaži _več možnosti"
-
 #: gsearchtool/gsearchtool.c:2059
 #, fuzzy
 msgid "Show more options"
@@ -1265,159 +1602,159 @@ msgstr "Kliknite za pričetek iskanja"
 msgid "Click to Stop the search"
 msgstr "Kliknite za konec iskanja"
 
-#: gsearchtool/gsearchtool.c:2386
+#: gsearchtool/gsearchtool.c:2381
 msgid "Cannot initialize bonobo."
 msgstr "Ne morem inicializirabi bonoba."
 
-#: logview/about.c:48
+#: logview/about.c:47 logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "Pregledovalnik sistemskega dnevnika"
 
-#: logview/about.c:51
+#: logview/about.c:50
 msgid "A system log viewer for GNOME."
 msgstr "Pregledovalnik sistemskih dnevnikov GNOME"
 
-#: logview/actions.c:73
+#: logview/actions.c:86
 msgid "Action Database"
 msgstr "Zbirka dejanj"
 
-#: logview/actions.c:84
+#: logview/actions.c:97
 msgid "Actions"
 msgstr "Dejanja"
 
-#: logview/actions.c:156
+#: logview/actions.c:169
 msgid "_Add"
 msgstr "_Dodaj"
 
-#: logview/actions.c:161
+#: logview/actions.c:174
 #, fuzzy
 msgid "Add an action"
 msgstr "Dodaj pogoj iskanja"
 
-#: logview/actions.c:163 logview/logview.c:80
+#: logview/actions.c:176 logview/logview.c:88
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: logview/actions.c:168
+#: logview/actions.c:181
 #, fuzzy
 msgid "Edit an action"
 msgstr "_Izvedi dejanja"
 
-#: logview/actions.c:170
+#: logview/actions.c:183
 msgid "_Remove"
 msgstr "_Odstrani"
 
-#: logview/actions.c:175
+#: logview/actions.c:188
 #, fuzzy
 msgid "Remove an action"
 msgstr "Odstrani pogoj"
 
-#: logview/actions.c:262
+#: logview/actions.c:275
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
 msgstr "Ne morem odpreti zbirke podatkov dejanj <%s>! Odpiranje spodletelo."
 
-#: logview/actions.c:297 logview/actions.c:310 logview/actions.c:321
-#: logview/actions.c:332 logview/actions.c:343 logview/actions.c:354
+#: logview/actions.c:310 logview/actions.c:323 logview/actions.c:334
+#: logview/actions.c:345 logview/actions.c:356 logview/actions.c:367
 msgid "Error parsing actions data base"
 msgstr "Napaka pri razčlenjevanju zbirke dejanj"
 
-#: logview/actions.c:388
+#: logview/actions.c:401
 msgid "Can't write to actions database!"
 msgstr "Ne morem zapisati zbirke dejanj!"
 
-#: logview/actions.c:486
+#: logview/actions.c:499
 #, fuzzy, c-format
 msgid "Error while executing specified action: %s"
 msgstr "Napaka med izvajanjem navedenega dejanja"
 
-#: logview/actions.c:509
+#: logview/actions.c:522
 msgid "<empty>"
 msgstr "<prazno>"
 
-#: logview/actions.c:510
+#: logview/actions.c:523
 msgid "log name regexp"
 msgstr "regularni izraz za ime dnevnika"
 
-#: logview/actions.c:511
+#: logview/actions.c:524
 msgid "process regexp"
 msgstr "regularni izraz za proces"
 
-#: logview/actions.c:512
+#: logview/actions.c:525
 msgid "message regexp"
 msgstr "regularni izraz za sporočilo"
 
-#: logview/actions.c:513
+#: logview/actions.c:526
 msgid "action to execute when regexps are TRUE"
 msgstr "dejanje, ki naj se izvrši, kadar je regularni izraz uresničen"
 
-#: logview/actions.c:514
+#: logview/actions.c:527
 msgid "description"
 msgstr "opis"
 
-#: logview/actions.c:650
+#: logview/actions.c:663
 #, fuzzy
 msgid "Edit Action"
 msgstr "Uredi jo"
 
-#: logview/actions.c:686
+#: logview/actions.c:699
 #, fuzzy
 msgid "_Tag:"
 msgstr "_Stran:"
 
-#: logview/actions.c:695
+#: logview/actions.c:708
 msgid "Tag that identifies the log file."
 msgstr ""
 
-#: logview/actions.c:704
+#: logview/actions.c:717
 #, fuzzy
 msgid "_Log name:"
 msgstr "Ime _diska:"
 
-#: logview/actions.c:713
+#: logview/actions.c:726
 #, fuzzy
 msgid "Regular expression that will match the log name."
 msgstr "Iskanje z regularnim izrazom"
 
-#: logview/actions.c:723
+#: logview/actions.c:736
 #, fuzzy
 msgid "_Process:"
 msgstr "Proces:"
 
-#: logview/actions.c:732
+#: logview/actions.c:745
 msgid "Regular expression that will match process part of message."
 msgstr ""
 
-#: logview/actions.c:742
+#: logview/actions.c:755
 #, fuzzy
 msgid "_Message:"
 msgstr "Sporočilo:"
 
-#: logview/actions.c:751
+#: logview/actions.c:764
 #, fuzzy
 msgid "Regular expression that will match the message."
 msgstr "Iskanje z regularnim izrazom"
 
-#: logview/actions.c:761
+#: logview/actions.c:774
 #, fuzzy
 msgid "_Action:"
 msgstr "Dejanja"
 
-#: logview/actions.c:770
+#: logview/actions.c:783
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
 
-#: logview/actions.c:780
+#: logview/actions.c:793
 msgid "_Description:"
 msgstr "_Opis:"
 
-#: logview/actions.c:789
+#: logview/actions.c:802
 msgid "Description of this entry."
 msgstr "Opis tega vnosa."
 
-#: logview/actions.c:813
+#: logview/actions.c:826
 #, c-format
 msgid ""
 "tag: [%s]\n"
@@ -1434,39 +1771,24 @@ msgstr ""
 "opis: [%s]\n"
 "dejanje: [%s]\n"
 
-#: logview/calendar.c:73
+#: logview/calendar.c:55
 msgid "Calendar"
 msgstr "Koledar"
 
-#: logview/desc_db.c:34
+#: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "Ne morem odpreti zbirke podatkov regexp <%s>! Odpiranje spodletelo."
 
-#: logview/desc_db.c:144
+#: logview/desc_db.c:176
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "Ne morem odpreti zbirko podatkov opisov <%s> Odpiranje spodletelo."
 
-#: logview/gedit-output-window.c:350
-#, fuzzy
-msgid "Close the output window"
-msgstr "Zapri trenutni pogled"
-
-#: logview/gedit-output-window.c:388
-#, fuzzy
-msgid "Copy selected lines"
-msgstr "Kopiraj izbrano"
-
-#: logview/gedit-output-window.c:408
-#, fuzzy
-msgid "Clear the output window"
-msgstr "Pobriši iskalno okno"
-
-#: logview/gedit-output-window.c:448
-msgid "Output Lines"
-msgstr ""
-
+#. ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "Sistemski dnevnik"
@@ -1475,129 +1797,119 @@ msgstr "Sistemski dnevnik"
 msgid "View the system log file"
 msgstr "Kaži datoteko sistemskega dnevnika"
 
-#: logview/info.c:50
+#: logview/info.c:47
 msgid "Properties"
 msgstr "Lastnosti"
 
-#: logview/info.c:94
-msgid "Size:"
-msgstr "Velikost:"
+#: logview/info.c:95
+#, c-format
+msgid "<b>Size</b>: %ld bytes"
+msgstr ""
 
-#: logview/info.c:94
-msgid "Modified:"
+#: logview/info.c:99
+#, fuzzy, c-format
+msgid "<b>Modified</b>: %s"
 msgstr "Spremenjeno:"
 
-#: logview/info.c:95
-msgid "Start Date:"
+#: logview/info.c:103
+#, fuzzy, c-format
+msgid "<b>Start Date</b>: %s"
 msgstr "Začetni datum:"
 
-#: logview/info.c:95
-msgid "Last Date:"
+#: logview/info.c:107
+#, fuzzy, c-format
+msgid "<b>Last Date</b>: %s"
 msgstr "Končni datum:"
 
-#: logview/info.c:95
-msgid "Number of Lines:"
+#: logview/info.c:111
+#, fuzzy, c-format
+msgid "<b>Number of Lines</b>: %ld"
 msgstr "Število vrstic:"
 
-#: logview/info.c:121
-msgid "Log Information"
-msgstr "Podatki o dnevniku"
-
-#: logview/info.c:147 logview/zoom.c:163
-msgid "<No log loaded>"
-msgstr "<Dnevnik ni naložen>"
-
-#: logview/info.c:170
-#, fuzzy, c-format
-msgid "%ld byte"
-msgid_plural "%ld bytes"
-msgstr[0] "%ld bytov"
-msgstr[1] "%ld bytov"
-
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "January"
 msgstr "Januar"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "February"
 msgstr "Februar"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "March"
 msgstr "Marec"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "April"
 msgstr "April"
 
-#: logview/log_repaint.c:46
+#: logview/log_repaint.c:36
 msgid "May"
 msgstr "Maj"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "June"
 msgstr "Junij"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "July"
 msgstr "Julij"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "August"
 msgstr "Avgust"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "September"
 msgstr "September"
 
-#: logview/log_repaint.c:47
+#: logview/log_repaint.c:37
 msgid "October"
 msgstr "Oktober"
 
-#: logview/log_repaint.c:48
+#: logview/log_repaint.c:38
 msgid "November"
 msgstr "November"
 
-#: logview/log_repaint.c:48
+#: logview/log_repaint.c:38
 msgid "December"
 msgstr "December"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:279
+#: logview/log_repaint.c:278
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:298
+#: logview/log_repaint.c:297
 msgid "Last Modified: "
 msgstr "Zadnja sprememba: "
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:327
+#: logview/log_repaint.c:326
 msgid "%B %e"
 msgstr "%e %B"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:399
+#: logview/log_repaint.c:398
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:192
-msgid "Not enough memory!\n"
-msgstr "Ni dovolj pomnilnika!\n"
+#: logview/logrtns.c:43
+#, fuzzy
+msgid "This file cannot be opened"
+msgstr "datoteke %s ni mogoče odpreti."
 
-#: logview/logrtns.c:203
+#: logview/logrtns.c:206
 msgid "Unable to open logfile!\n"
 msgstr "Ne morem odpreti dnevniške datoteke!\n"
 
-#: logview/logrtns.c:263
-#, c-format
-msgid "%s is not a regular file."
-msgstr "%s ni ovičajna datoteka."
+#: logview/logrtns.c:213
+msgid "Not enough memory!\n"
+msgstr "Ni dovolj pomnilnika!\n"
 
-#: logview/logrtns.c:271
+#: logview/logrtns.c:277
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1606,168 +1918,174 @@ msgstr ""
 "Datoteka %s ni berljiva. Ali zaženite program kot root, ali pa vprašajte "
 "administratorja, da spremeni dovoljenja za dostop do datoteke."
 
-#: logview/logrtns.c:288
+#: logview/logrtns.c:282
+#, c-format
+msgid "%s is too big."
+msgstr ""
+
+#: logview/logrtns.c:286
 #, c-format
 msgid "%s could not be opened."
 msgstr "datoteke %s ni mogoče odpreti."
 
-#: logview/logrtns.c:318 logview/logrtns.c:327
+#: logview/logrtns.c:301 logview/logrtns.c:312
 #, c-format
 msgid "%s not a log file."
 msgstr "%s ni dnevniška datoteka."
 
-#: logview/logrtns.c:725 logview/logrtns.c:756 logview/logrtns.c:887
+#: logview/logrtns.c:563 logview/logrtns.c:587
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: zmanjkalo je pomnilnika"
 
-#: logview/logview-findbar.c:252
+#: logview/logview-findbar.c:265
 #, fuzzy
 msgid "Fin_d : "
 msgstr "Poišči"
 
-#: logview/logview-findbar.c:270
+#: logview/logview-findbar.c:283
 #, fuzzy
 msgid "Find Next"
 msgstr "Poišči"
 
-#: logview/logview-findbar.c:280
+#: logview/logview-findbar.c:293
 msgid "Find Previous"
 msgstr ""
 
-#: logview/logview.c:79
+#: logview/logview.c:87
 msgid "_Log"
 msgstr "_Dnevnik:"
 
-#: logview/logview.c:81
+#: logview/logview.c:89
 #, fuzzy
 msgid "_View"
 msgstr "Nov Pogled"
 
-#: logview/logview.c:84
+#: logview/logview.c:92
 #, fuzzy
 msgid "_Open..."
 msgstr "_Odpri"
 
-#: logview/logview.c:84
+#: logview/logview.c:92
 #, fuzzy
 msgid "Open a log from file"
 msgstr "Odpri novo dnevniško datoteko"
 
-#: logview/logview.c:86
+#: logview/logview.c:94
 msgid "_Properties"
 msgstr "_Lastnosti"
 
-#: logview/logview.c:86
+#: logview/logview.c:94
 msgid "Show Log Properties"
 msgstr "Kaži lastnosti dnevnika"
 
-#: logview/logview.c:88
+#: logview/logview.c:96
 #, fuzzy
 msgid "Close"
 msgstr "Cosinus"
 
-#: logview/logview.c:88
+#: logview/logview.c:96
 msgid "Close this log"
 msgstr ""
 
-#: logview/logview.c:90
-#, fuzzy
-msgid "_Quit"
-msgstr "Izhod"
-
-#: logview/logview.c:90
+#: logview/logview.c:98
 #, fuzzy
 msgid "Quit the log viewer"
 msgstr "Pregledovalnik sistemskega dnevnika"
 
-#: logview/logview.c:93
+#: logview/logview.c:101
+msgid "Copy"
+msgstr "Kopiraj"
+
+#: logview/logview.c:103
+#, fuzzy
+msgid "Select All"
+msgstr "Izbira:"
+
+#: logview/logview.c:103
+msgid "Select the entire log"
+msgstr ""
+
+#: logview/logview.c:105
 #, fuzzy
 msgid "Find pattern in logs"
 msgstr "Poišči niz"
 
-#: logview/logview.c:96
+#: logview/logview.c:108
 #, fuzzy
 msgid "Collapse _All"
 msgstr "_Skrči vse"
 
-#: logview/logview.c:96
+#: logview/logview.c:108
 msgid "Collapse all the rows"
 msgstr "Skrči vse vrstice"
 
-#: logview/logview.c:99
-msgid "_Contents"
-msgstr ""
-
-#: logview/logview.c:99
+#: logview/logview.c:111
 msgid "Open the help contents for the log viewer"
 msgstr ""
 
-#: logview/logview.c:101
+#: logview/logview.c:113
 msgid "Show the about dialog for the gconf editor"
 msgstr ""
 
-#: logview/logview.c:107
+#: logview/logview.c:119
 #, fuzzy
 msgid "_Monitor"
 msgstr "Monitor"
 
-#: logview/logview.c:107
+#: logview/logview.c:119
 #, fuzzy
 msgid "Monitor Current Log"
 msgstr "Nadzoruj dnevnike"
 
-#: logview/logview.c:109
-msgid "_Calendar"
-msgstr "_Koledar"
+#: logview/logview.c:121
+#, fuzzy
+msgid "Ca_lendar"
+msgstr "Koledar"
 
-#: logview/logview.c:109
+#: logview/logview.c:121
 msgid "Show Calendar Log"
 msgstr "Kaži koledarski dnevnik"
 
-#: logview/logview.c:111
+#: logview/logview.c:123
 msgid "_Entry Detail"
 msgstr "_Podrobnosti vnosa"
 
-#: logview/logview.c:111
+#: logview/logview.c:123
 msgid "Show Entry Detail"
 msgstr "Kaži podrobnosti vnosa"
 
-#: logview/logview.c:166
+#: logview/logview.c:178
 msgid "Open the specified log."
 msgstr ""
 
-#: logview/logview.c:298
-msgid "No log files to open"
-msgstr "Ni dnevniških datotek za odprtje"
-
-#: logview/logview.c:376
+#: logview/logview.c:389
 msgid "Date"
 msgstr "Datum"
 
-#: logview/logview.c:376
+#: logview/logview.c:389
 msgid "Host Name"
 msgstr "Ime računalnika"
 
-#: logview/logview.c:377
+#: logview/logview.c:390
 msgid "Process"
 msgstr "Posel"
 
-#: logview/logview.c:377
+#: logview/logview.c:390
 msgid "Message"
 msgstr "Sporočilo"
 
-#: logview/logview.c:581
+#: logview/logview.c:583
 msgid "Open new logfile"
 msgstr "Odpri novo dnevniško datoteko"
 
-#: logview/logview.c:922
-#, fuzzy, c-format
-msgid "There was an error displaying help: %s"
+#: logview/logview.c:879
+#, fuzzy
+msgid "There was an error displaying help."
 msgstr "Zgodila se je napaka. `%s' je prazna"
 
-#: logview/logview.c:934
+#: logview/logview.c:897
 #, c-format
-msgid "%s - %s (monitored)"
+msgid "%s (monitored) - %s"
 msgstr ""
 
 #: logview/logview.schemas.in.h:1
@@ -1782,34 +2100,250 @@ msgstr ""
 "Določa dnevniško datoteko, ki se odpre ob zagonu. Privzeto je ali /var/adm/"
 "messages ali /var/log/messages, odvisno od vašega operacijskega sistema."
 
-#: logview/zoom.c:65
+#: logview/zoom.c:71
 msgid "Entry Detail"
 msgstr "Podrobnosti vnosa"
 
-#: logview/zoom.c:102
-msgid "Date:"
-msgstr "Datum:"
-
-#: logview/zoom.c:102
-msgid "Process:"
-msgstr "Proces:"
-
-#: logview/zoom.c:103
-msgid "Message:"
-msgstr "Sporočilo:"
-
-#: logview/zoom.c:103
-msgid "Description:"
-msgstr "Opis:"
-
-#: logview/zoom.c:133
-msgid "Log Line Details"
-msgstr "Podrobnosti dnevniške vrstice"
-
 #. Translators: do not include year, it would be bogus
-#: logview/zoom.c:195
+#: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e %B %X"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:86
+#, fuzzy
+msgid "Error loading help"
+msgstr ""
+"Napaka pri nalaganju datoteke:\n"
+"%s\n"
+"%s"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:87
+#, fuzzy
+msgid "There was an error displaying the help pages for this dialog:"
+msgstr "Zgodila se je napaka. `%s' je prazna"
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if a specific window is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:111
+#, c-format
+msgid "Screenshot-%s.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if the entire screen is taken
+#: gnome-screenshot/gnome-panel-screenshot.c:117
+msgid "Screenshot.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:155
+#, c-format
+msgid "Screenshot-%s-%d.png"
+msgstr ""
+
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if the entire screen is
+#. * taken
+#: gnome-screenshot/gnome-panel-screenshot.c:163
+#, c-format
+msgid "Screenshot-%d.png"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:338
+msgid "Unable to take a screenshot of the current desktop."
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:409
+#, fuzzy
+msgid "Grab a window instead of the entire screen"
+msgstr "Zgrabi barvo na zaslonu"
+
+#: gnome-screenshot/gnome-panel-screenshot.c:410
+msgid "Include the window border with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:411
+msgid "Take screenshot after specified delay [in seconds]"
+msgstr ""
+
+#: gnome-screenshot/gnome-panel-screenshot.c:412
+msgid "Effect to add to the window border"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:191
+msgid " (invalid Unicode)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:471
+#, c-format
+msgid "(%d:%02d:%d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:476
+#, c-format
+msgid "(%d:%02d Remaining)"
+msgstr ""
+
+#: gnome-screenshot/gnome-egg-xfer-dialog.c:587
+#, c-format
+msgid "%ld of %ld"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.glade.h:2
+msgid "Save Screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.glade.h:3
+#, fuzzy
+msgid "Save in _folder:"
+msgstr "_Glej v mapi:"
+
+#: gnome-screenshot/gnome-screenshot.glade.h:4
+#, fuzzy
+msgid "_Name:"
+msgstr "Ime :"
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:1
+msgid "Border Effect"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:2
+msgid "Directory that the screenshooter last used to save in"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:3
+msgid ""
+"Effect to add to the outside of a border. Possible values are \"shadow\", "
+"\"none\", and \"black-line\"."
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Border"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the window manager border along with the screenshot"
+msgstr ""
+
+#: gnome-screenshot/gnome-screenshot.schemas.in.h:6
+msgid "Web directory"
+msgstr ""
+
+#: gnome-screenshot/screenshot-dialog.c:194
+msgid ""
+"Glade file for the screenshot program is missing.\n"
+"Please check your installation of gnome-panel"
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:40
+#, fuzzy, c-format
+msgid ""
+"Unable to clear the temporary directory:\n"
+"%s"
+msgstr "Nisem uspel pravilno ustvariti datotečnega sistema."
+
+#: gnome-screenshot/screenshot-save.c:78
+msgid ""
+"The child save process unexpectedly exited.  We are unable to write the "
+"screenshot to disk."
+msgstr ""
+
+#: gnome-screenshot/screenshot-save.c:188
+msgid "Unknown error saving screenshot to disk"
+msgstr ""
+
+#: gnome-screenshot/screenshot-utils.c:611
+#, fuzzy
+msgid "Untitled Window"
+msgstr "_Novo okno"
+
+#: gnome-screenshot/screenshot-xfer.c:103
+#, fuzzy
+msgid "Preparing to copy"
+msgstr "Besedilo za kopiranje"
+
+#: gnome-screenshot/screenshot-xfer.c:181
+#, fuzzy
+msgid "File already exists"
+msgstr "Datotela je že odprta"
+
+#: gnome-screenshot/screenshot-xfer.c:184
+#, fuzzy, c-format
+msgid "The file \"%s\" already exists.  Would you like to replace it?"
+msgstr "Datoteka \"%s\" že obstaja. Prepiši?"
+
+#: gnome-screenshot/screenshot-xfer.c:230
+#, c-format
+msgid "Unknown GnomeVFSXferProgressStatus %d"
+msgstr ""
+
+#~ msgid "_Dictionary"
+#~ msgstr "_Slovar"
+
+#~ msgid "_Lookup"
+#~ msgstr "_Poišči"
+
+#, fuzzy
+#~ msgid ""
+#~ "There was an error displaying help: \n"
+#~ "%s"
+#~ msgstr "Zgodila se je napaka. `%s' je prazna"
+
+#~ msgid "Search _results:"
+#~ msgstr "Izidi _iskanja:"
+
+#, fuzzy
+#~ msgid "Close the output window"
+#~ msgstr "Zapri trenutni pogled"
+
+#, fuzzy
+#~ msgid "Copy selected lines"
+#~ msgstr "Kopiraj izbrano"
+
+#, fuzzy
+#~ msgid "Clear the output window"
+#~ msgstr "Pobriši iskalno okno"
+
+#~ msgid "Size:"
+#~ msgstr "Velikost:"
+
+#~ msgid "Log Information"
+#~ msgstr "Podatki o dnevniku"
+
+#~ msgid "<No log loaded>"
+#~ msgstr "<Dnevnik ni naložen>"
+
+#, fuzzy
+#~ msgid "%ld byte"
+#~ msgid_plural "%ld bytes"
+#~ msgstr[0] "%ld bytov"
+#~ msgstr[1] "%ld bytov"
+
+#~ msgid "%s is not a regular file."
+#~ msgstr "%s ni ovičajna datoteka."
+
+#~ msgid "_Calendar"
+#~ msgstr "_Koledar"
+
+#~ msgid "No log files to open"
+#~ msgstr "Ni dnevniških datotek za odprtje"
+
+#~ msgid "Date:"
+#~ msgstr "Datum:"
+
+#~ msgid "Process:"
+#~ msgstr "Proces:"
+
+#~ msgid "Message:"
+#~ msgstr "Sporočilo:"
+
+#~ msgid "Description:"
+#~ msgstr "Opis:"
+
+#~ msgid "Log Line Details"
+#~ msgstr "Podrobnosti dnevniške vrstice"
 
 #~ msgid "Accessories"
 #~ msgstr "Pripomočki"
@@ -1838,9 +2372,6 @@ msgstr "%e %B %X"
 #~ msgid "Too many open logs. Close one and try again"
 #~ msgstr "Preveč odprtih dnevnikov. Zaprite enega in poskusite znova"
 
-#~ msgid "File already opened"
-#~ msgstr "Datotela je že odprta"
-
 #~ msgid "Error: [%s]\n"
 #~ msgstr "Napaka: [%s]\n"
 
@@ -1861,9 +2392,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Remove logs from monitor"
 #~ msgstr "Zbriši dnevnike iz nadzorovanih"
-
-#~ msgid "_Hide application"
-#~ msgstr "S_krij program"
 
 #~ msgid "_Execute actions"
 #~ msgstr "_Izvedi dejanja"
@@ -2289,17 +2817,8 @@ msgstr "%e %B %X"
 #~ msgid "_Text to copy:"
 #~ msgstr "_Besedilo za kopiranje:"
 
-#~ msgid "_Copy"
-#~ msgstr "_Kopiraj"
-
-#~ msgid "Text to copy"
-#~ msgstr "Besedilo za kopiranje"
-
 #~ msgid "Entry"
 #~ msgstr "Vpis"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiraj"
 
 #~ msgid "Copy the text"
 #~ msgstr "Kopiraj besedilo"
@@ -2312,18 +2831,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Ch_aracters"
 #~ msgstr "_Znaki"
-
-#~ msgid "Cut"
-#~ msgstr "Izreži"
-
-#~ msgid "Cut the selection"
-#~ msgstr "Izreži izbrano"
-
-#~ msgid "Paste"
-#~ msgstr "Prilepi"
-
-#~ msgid "Paste the clipboard"
-#~ msgstr "Prilepi odložišče"
 
 #~ msgid "Gdialog progressbar"
 #~ msgstr "Merilnik napredka Gdialog"
@@ -2394,12 +2901,6 @@ msgstr "%e %B %X"
 #~ msgid "Starting folder entry"
 #~ msgstr "Vpis začetne mape"
 
-#~ msgid "Additional Options"
-#~ msgstr "Dodatne možnosti"
-
-#~ msgid "Can't Display Help"
-#~ msgstr "Ne morem prikazati pomoči"
-
 #~ msgid "Open %d Files?"
 #~ msgstr "Odpri %d datotek"
 
@@ -2412,9 +2913,6 @@ msgstr "%e %B %X"
 #~ msgstr ""
 #~ "Ne morem shraniti izidov iskanja.\n"
 #~ "\"%s\" je mapa."
-
-#~ msgid "File \"%s\" already exists. Overwrite?"
-#~ msgstr "Datoteka \"%s\" že obstaja. Prepiši?"
 
 #~ msgid "Cannot save search results to the file \"%s\"."
 #~ msgstr "Ne morem shraniti izidov iskanja v datoteko \"%s\"."
@@ -3001,9 +3499,6 @@ msgstr "%e %B %X"
 #~ msgid "Select...               "
 #~ msgstr "Izberi...               "
 
-#~ msgid "Select log events"
-#~ msgstr "Izberi dnevniške dogodke"
-
 #~ msgid "Filter..                "
 #~ msgstr "Filter..                "
 
@@ -3015,9 +3510,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Cannot start the archive (tar) program"
 #~ msgstr "Ne morem zagnati programa za arhiviranje (tar)"
-
-#~ msgid "Cannot run tar/gtar"
-#~ msgstr "Ne morem pognati tar/gtar"
 
 #~ msgid "The GNOME Archive Generator"
 #~ msgstr "Generator arhivov GNOME"
@@ -3660,9 +4152,6 @@ msgstr "%e %B %X"
 #~ msgid "Common properties"
 #~ msgstr "Običajne nastavitve"
 
-#~ msgid "Name :"
-#~ msgstr "Ime :"
-
 #~ msgid "Blue :"
 #~ msgstr "Modra :"
 
@@ -3695,9 +4184,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Create a new view for a document"
 #~ msgstr "Ustvari nov pogled za dokument"
-
-#~ msgid "Close the current document"
-#~ msgstr "Zapri trenutni dokument"
 
 #~ msgid "Close view"
 #~ msgstr "Zapri pogled"
@@ -3850,9 +4336,6 @@ msgstr "%e %B %X"
 #~ msgid "Grab"
 #~ msgstr "Zgrabi"
 
-#~ msgid "Grab a color on the screen"
-#~ msgstr "Zgrabi barvo na zaslonu"
-
 #~ msgid ""
 #~ "Your config file is corrupted.\n"
 #~ "Do you want to create a new session ?"
@@ -3900,9 +4383,6 @@ msgstr "%e %B %X"
 #~ msgid "Font Selector"
 #~ msgstr "Izbirnik pisav"
 
-#~ msgid "Selection:"
-#~ msgstr "Izbira:"
-
 #~ msgid "Font to load"
 #~ msgstr "Pisava, ki naj se naloži"
 
@@ -3926,9 +4406,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Ignore standard input; may be needed in some cases."
 #~ msgstr "Ne upoštevaj običajnega vhoda; včasih je to potrebno."
-
-#~ msgid "_New Window"
-#~ msgstr "_Novo okno"
 
 #~ msgid "New text viewer window"
 #~ msgstr "Novo pogled besedil"
@@ -3970,15 +4447,6 @@ msgstr "%e %B %X"
 #~ msgstr ""
 #~ "Ne morem prikazati komprimirane datoteke.\n"
 #~ "zcat ni bil najden v poti."
-
-#~ msgid ""
-#~ "Error loading file:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Napaka pri nalaganju datoteke:\n"
-#~ "%s\n"
-#~ "%s"
 
 #~ msgid "Saving..."
 #~ msgstr "Shranjujem..."
@@ -4462,9 +4930,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Line"
 #~ msgstr "Črta"
-
-#~ msgid "Point"
-#~ msgstr "Točka"
 
 #~ msgid "Solid"
 #~ msgstr "Polno"
