@@ -20,12 +20,9 @@
 
 
 #include <config.h>
-#include <gnome.h>
-#include <time.h>
 #include "logview.h"
 #include "logrtns.h"
 #include "monitor.h"
-#include "misc.h"
 
 void
 monitor_stop (LogviewWindow *window)

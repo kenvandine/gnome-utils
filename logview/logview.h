@@ -24,10 +24,7 @@
 
 #include <time.h>
 #include "gtk/gtk.h"
-#include <stdio.h>
 #include <gconf/gconf-client.h>
-
-#define LOG_LINESEP              15
 
 #define LINES_P_PAGE             10
 #define NUM_PAGES                5 
@@ -38,14 +35,8 @@
 #define R_BUF_SIZE               1024	/* Size of read buffer */
 #define MAX_NUM_LOGS             10
 
-
-#define SPARE_LINES              5
 #define LOG_CANVAS_H             400
 #define LOG_CANVAS_W             600
-#define LOG_BOTTOM_MARGIN        200
-
-#define LOG_WINDOW_W             LOG_CANVAS_W+15
-#define LOG_WINDOW_H             LOG_CANVAS_H+LOG_BOTTOM_MARGIN
 
 #define APP_NAME                 _("System Log Viewer")
 

@@ -21,17 +21,10 @@
 
 #include <config.h>
 #include <sys/stat.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <malloc.h>
-#include <string.h>
 #include <gnome.h>
 #include "logview.h"
 #include "logrtns.h"
 #include "log_repaint.h"
-#include "info.h"
-#include "zoom.h"
 #include "misc.h"
 
 /* 

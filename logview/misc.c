@@ -21,7 +21,7 @@
 
 
 #include <config.h>
-#include <gnome.h>
+#include <gtk/gtk.h>
 
 #include "logview.h"
 
@@ -35,11 +35,18 @@ static GList *msg_queue = NULL;
 static void
 MakeErrorDialog (const char *msg)
 {
-	GtkWidget *msgbox;
-	msgbox = gnome_message_box_new (msg, GNOME_MESSAGE_BOX_ERROR,
-					GNOME_STOCK_BUTTON_OK, NULL);
-	gtk_window_set_modal (GTK_WINDOW(msgbox), TRUE); 
-	gtk_widget_show (msgbox);
+	GtkWidget *dialog;
+	dialog = gtk_message_dialog_new (NULL,
+					 GTK_DIALOG_MODAL,
+					 GTK_MESSAGE_ERROR,
+					 GTK_BUTTONS_OK,
+					 msg);
+	g_signal_connect (G_OBJECT (dialog), "response",
+			  G_CALLBACK (gtk_widget_destroy),
+			  NULL);
+
+	gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
+	gtk_widget_show (dialog);
 }
 
 /* ----------------------------------------------------------------------
