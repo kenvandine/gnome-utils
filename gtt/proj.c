@@ -1183,12 +1183,13 @@ gtt_project_timer_stop (GttProject *proj)
 
 	ival->running = FALSE;
 
-	/* do not record zero-length or very short intervals */
-	if (proj->min_interval >= (ival->stop - ival->start))
-	{
-		task->interval_list = g_list_remove (task->interval_list, ival);
-		g_free (ival);
-	}
+	/* When we stop the timer, call proj_refresh_time(),
+	 * as this will do several things: first, it will 
+	 * scrub away short intervals and/or short gaps,
+	 * and, secondly, it will force redraws of affected 
+	 * windows so that the old data doesn't show.
+	 */
+	proj_refresh_time (proj);
 }
 
 /* =========================================================== */
