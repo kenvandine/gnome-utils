@@ -336,25 +336,50 @@ click_file_cb 	     (GtkWidget 	*widget,
 		      GdkEventButton 	*event, 
 		      gpointer 		data)
 {
-	gchar *file = NULL;
-	gchar *locale_file = NULL;
-	gchar *utf8_name = NULL;
-	gchar *utf8_path = NULL;
-	gboolean no_files_found = FALSE;
-	GtkWidget *save_widget;
+	gboolean no_files_found = FALSE;	
+	GtkTreeSelection *selection;
+	GtkTreePath *path;
 	GtkTreeIter iter;
-	
-	if (event->type==GDK_2BUTTON_PRESS) {
-		
-		if (!gtk_tree_selection_get_selected (interface.selection, NULL, &iter))
-    			return FALSE;
-		
-		gtk_tree_model_get(GTK_TREE_MODEL(interface.model), &iter,
-				   COLUMN_NAME, &utf8_name,
-				   COLUMN_PATH, &utf8_path,
-				   COLUMN_NO_FILES_FOUND, &no_files_found,
-				   -1);
 
+	if (! gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (interface.tree),
+					     event->x, event->y,
+					     &path, NULL, NULL, NULL)) {
+		return FALSE;
+	}
+		
+	if (! gtk_tree_model_get_iter (GTK_TREE_MODEL (interface.model), &iter, path)) {
+		gtk_tree_path_free (path);
+		return FALSE;
+	}
+	gtk_tree_path_free (path);
+
+	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (interface.tree));
+	if (selection == NULL) {
+		return FALSE;
+	}
+	
+	if (! gtk_tree_selection_iter_is_selected (selection, &iter)) {
+		gtk_tree_selection_unselect_all (selection);
+		gtk_tree_selection_select_iter (selection, &iter);
+	}
+
+	if (!gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+		return FALSE;
+	}
+			
+	if (event->type == GDK_2BUTTON_PRESS) {
+	
+		gchar *file = NULL;
+		gchar *locale_file = NULL;
+		gchar *utf8_name = NULL;
+		gchar *utf8_path = NULL;
+		
+		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
+			    	    COLUMN_NAME, &utf8_name,
+			    	    COLUMN_PATH, &utf8_path,
+			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
+			   	    -1);
+		
 		if (!no_files_found) {
 			file = g_build_filename (utf8_path, utf8_name, NULL);
 			locale_file = g_locale_from_utf8(file, -1, NULL, NULL, NULL);
@@ -367,28 +392,22 @@ click_file_cb 	     (GtkWidget 	*widget,
 					gnome_error_dialog_parented(_("No viewer available for this mime type."),
 							    	    GTK_WINDOW(interface.main_window));
 			}
-
-			g_free (file);
-			g_free (locale_file);
 		}
-		
+		g_free (file);
+		g_free (locale_file);
 		g_free (utf8_name);
 		g_free (utf8_path);
 	}
 	else if ((event->type == GDK_BUTTON_PRESS) && (event->button == 3)) {	
 		GtkWidget *popup;
 		
-		if (!gtk_tree_selection_get_selected (interface.selection, NULL, &iter))
-    			return FALSE;
-		
 		gtk_tree_model_get (GTK_TREE_MODEL(interface.model), &iter,
-				    COLUMN_NAME, &utf8_name,
-				    COLUMN_PATH, &utf8_path,
-				    COLUMN_NO_FILES_FOUND, &no_files_found,
-				   -1);
-				   
+			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
+			   	    -1);
+				     
 		if (!no_files_found) {
-			
+			GtkWidget *save_widget;
+				
 			popup = gnome_popup_menu_new (popup_menu);
 			save_widget = popup_menu[3].widget;
 			
@@ -401,7 +420,7 @@ click_file_cb 	     (GtkWidget 	*widget,
 			
 			gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL, 
 						   (GdkEventButton *)event, data, NULL);
-		}
+		} 
 	}
 	return FALSE;
 }
