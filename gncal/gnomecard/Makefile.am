@@ -29,6 +29,8 @@ gnomecard_SOURCES =	\
 	list.h		\
 	my.c            \
 	my.h            \
+	phonelist.c     \
+	phonelist.h     \
 	pix.c           \
 	pix.h           \
 	popup-menu.c	\
