@@ -863,9 +863,11 @@ static GnomeUIInfo file_menu[] = {
 
 static GnomeUIInfo edit_menu[] = {
 	GNOMEUIINFO_ITEM_NONE (N_("_Remove"),
-			       N_("Remove the selected item(s)"),
+			       N_("Remove the selected item"),
 			       remove_cb),
-	GNOMEUIINFO_MENU_CLEAR_ITEM (clear_cb, NULL),
+	GNOMEUIINFO_ITEM_NONE (N_("R_emove All"),
+			       N_("Remove all items"),
+			       clear_cb),
 	GNOMEUIINFO_MENU_SELECT_ALL_ITEM (select_all_cb, NULL),
 	GNOMEUIINFO_END
 };
