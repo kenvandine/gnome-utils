@@ -21,6 +21,7 @@
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h> 
+#include <gdk/gdkkeysyms.h>
 
 #include <string.h>
 #include <unistd.h>
@@ -79,6 +80,7 @@ const static char defoptions[] = "'!' -type d";
 /*char defoptions[] = "-mindepth 0";*/
 
 GList *criteria_find = NULL;
+gboolean  gail_loaded = FALSE;
 
 static GtkWidget *find_box = NULL;
 
@@ -648,6 +650,63 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	g_free (date);
 }
 
+
+/*
+ * add_atk_namedesc
+ * @widget    : The Gtk Widget for which @name and @desc are added.
+ * @name      : Accessible Name
+ * @desc      : Accessible Description
+ * Description: This function adds accessible name and description to a
+ *              Gtk widget.
+ */
+
+void
+add_atk_namedesc(GtkWidget *widget, const gchar *name, const gchar *desc)
+{
+	AtkObject *atk_widget;
+
+	g_return_if_fail (GTK_IS_WIDGET(widget));
+
+	atk_widget = gtk_widget_get_accessible(widget);
+
+	if (name != NULL)
+		atk_object_set_name(atk_widget, name);
+	if (desc !=NULL)
+		atk_object_set_description(atk_widget, desc);
+}
+
+
+/*
+ * add_atk_relation
+ * @obj1      : The first widget in the relation @rel_type
+ * @obj2      : The second widget in the relation @rel_type.
+ * @rel_type  : Relation type which relates @obj1 and @obj2
+ * Description: This function establishes Atk Relation between two given
+ *              objects.
+ */
+
+void
+add_atk_relation(GtkWidget *obj1, GtkWidget *obj2, AtkRelationType rel_type)
+{
+	AtkObject *atk_obj1, *atk_obj2;
+	AtkRelationSet *relation_set;
+	AtkRelation *relation;
+	
+	g_return_if_fail (GTK_IS_WIDGET(obj1));
+	g_return_if_fail (GTK_IS_WIDGET(obj2));
+	
+	atk_obj1 = gtk_widget_get_accessible(obj1);
+			
+	atk_obj2 = gtk_widget_get_accessible(obj2);
+	
+	relation_set = atk_object_ref_relation_set (atk_obj1);
+	relation = atk_relation_new(&atk_obj2, 1, rel_type);
+	atk_relation_set_add(relation_set, relation);
+	g_object_unref(G_OBJECT (relation));
+	
+}
+
+
 static void
 really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, GtkListStore *store, GtkTreeIter *iter)
 {
@@ -875,7 +934,7 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 	char *cmd;
 	char *start_dir;
 	GtkWidget *dlg;
-	GtkWidget *w;
+	GtkWidget *w, *label;
 
 	if(start_dir_e) {
 		start_dir = gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(start_dir_e), TRUE);
@@ -915,10 +974,10 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
 		      
 	gtk_dialog_set_default_response (GTK_DIALOG(dlg), GTK_RESPONSE_CLOSE); 
 
-	w = gtk_label_new(_("This is the command line that can be used to "
+	label = gtk_label_new(_("This is the command line that can be used to "
 			    "execute this search from the console."
 			    "\n\nCommand:"));
-	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), w, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), label, TRUE, TRUE, 0);
 	
 	w = gtk_entry_new();
 	gtk_editable_set_editable(GTK_EDITABLE(w), FALSE);
@@ -929,6 +988,13 @@ run_cmd_dialog(GtkWidget *wid, gpointer data)
                              	  "response", 
                              	  G_CALLBACK (gtk_widget_destroy),
                                   GTK_OBJECT (dlg));
+	if (gail_loaded)
+	{
+		add_atk_namedesc (GTK_WIDGET(label), _("Command"), NULL);
+		add_atk_namedesc (GTK_WIDGET(w), _("Command Line Entry"), _("Use this command line to execute the search from console"));
+		add_atk_relation (w, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
+		add_atk_relation (GTK_WIDGET(label), w, ATK_RELATION_LABEL_FOR);
+	}
 
 	gtk_widget_show_all(dlg); 
 	
@@ -1158,13 +1224,24 @@ set_option_defaults(FindOption *opt)
 	}
 }
 
+/*
+ * This function starts advanced search when the user presses Enter/Return
+ */
+
+static void
+advanced_search_activate (GtkWidget *entry, gpointer data)
+{
+	GtkWidget **buttons = data;
+	run_command (buttons[1], buttons);
+}
+
 static GtkWidget *
 create_option_box(FindOption *opt, gboolean enabled)
 {
 	GtkWidget *hbox;
 	GtkWidget *option;
 	GtkWidget *frame;
-	GtkWidget *w;
+	GtkWidget *w, *label;
 
 	hbox = gtk_hbox_new(FALSE,5);
 
@@ -1181,12 +1258,22 @@ create_option_box(FindOption *opt, gboolean enabled)
 	case FIND_OPTION_NUMBER:
 	case FIND_OPTION_TIME:
 		option = gtk_hbox_new(FALSE,5);
-		w = gtk_label_new(_(templates[opt->templ].desc));
-		gtk_box_pack_start(GTK_BOX(option),w,FALSE,FALSE,0);
+		label = gtk_label_new(_(templates[opt->templ].desc));
+		gtk_box_pack_start(GTK_BOX(option),label,FALSE,FALSE,0);
 		w = gtk_entry_new();
 		g_signal_connect(G_OBJECT(w),"changed",
 				 G_CALLBACK(entry_changed),opt);
 		gtk_box_pack_start(GTK_BOX(option),w,TRUE,TRUE,0);
+
+		if (gail_loaded)
+		{
+			add_atk_namedesc (GTK_WIDGET(w), _("Search Rule Value Entry"), _("Enter a value for search rule"));
+			add_atk_relation (w, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
+			add_atk_relation (GTK_WIDGET(label), w, ATK_RELATION_LABEL_FOR);
+		}
+		g_signal_connect (G_OBJECT (w), "activate",
+				  G_CALLBACK (advanced_search_activate),
+				  find_buttons);
 		break;
 	default:
 		/* This should never happen, if it does, there is a bug */
@@ -1202,12 +1289,16 @@ create_option_box(FindOption *opt, gboolean enabled)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w), enabled);
 	enable_option(w, opt);
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE,0);
+	if (gail_loaded)
+		add_atk_namedesc (GTK_WIDGET(w), NULL, _("Toggle On/Off to enable/disable the rule"));
 
 	w = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
 	gtk_widget_set_size_request (GTK_WIDGET(w), 88, -1);
 	g_signal_connect(G_OBJECT(w), "clicked",
 			 G_CALLBACK(remove_option), opt);
 	gtk_box_pack_start(GTK_BOX(hbox), w, FALSE,FALSE, 0);
+	if (gail_loaded)
+		add_atk_namedesc (GTK_WIDGET(w), NULL, _("Click to Remove the Rule"));
 
 	return hbox;
 }
@@ -1241,7 +1332,7 @@ create_find_page(void)
 {
 	GtkWidget *vbox, *vbox2;
 	GtkWidget *hbox, *hbox2;
-	GtkWidget *label, *w;
+	GtkWidget *label, *w, *gnome_entry;
 	GtkWidget *vpaned, *image, *align;
 	GtkWidget *frame, *frame2;
 	GtkTreeViewColumn *column;
@@ -1253,13 +1344,24 @@ create_find_page(void)
 
 	hbox = gtk_hbox_new(FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_start(GTK_BOX(vbox),hbox,FALSE,FALSE,0);
-	w = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
-	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+	label = gtk_label_new_with_mnemonic(_("S_tarting in folder:"));
+	gtk_box_pack_start(GTK_BOX(hbox),label,FALSE,FALSE,0);
 	start_dir_e = gnome_file_entry_new("directory", _("Browse"));
 	gnome_file_entry_set_directory_entry(GNOME_FILE_ENTRY(start_dir_e), TRUE);
 	gtk_box_pack_start(GTK_BOX(hbox),start_dir_e,TRUE,TRUE,GNOME_PAD_SMALL);
-	gtk_label_set_mnemonic_widget(GTK_LABEL(w), gnome_file_entry_gtk_entry(GNOME_FILE_ENTRY(start_dir_e)));
-	w = gnome_file_entry_gtk_entry(GNOME_FILE_ENTRY(start_dir_e));
+	w = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(start_dir_e));
+	gtk_label_set_mnemonic_widget(GTK_LABEL(label), w);
+	gnome_entry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(start_dir_e));
+	if (gail_loaded)
+	{ 
+		add_atk_namedesc (GTK_WIDGET(gnome_entry), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_namedesc (GTK_WIDGET(w), _("Starting folder entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_relation (gnome_entry, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY); 
+	}
+	g_signal_connect (G_OBJECT (gnome_entry), "activate",
+			  G_CALLBACK (advanced_search_activate),
+			  find_buttons);
+
 	s = g_get_current_dir();
 	gtk_entry_set_text(GTK_ENTRY(w), s);
 	g_free(s);
@@ -1298,11 +1400,17 @@ create_find_page(void)
 	gtk_label_set_mnemonic_widget(GTK_LABEL(label), GTK_WIDGET(w));
 	gtk_option_menu_set_menu(GTK_OPTION_MENU(w), make_list_of_templates());
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
+
+	if (gail_loaded)
+	{
+		add_atk_namedesc (GTK_WIDGET(w), _("Search Rules Menu"), _("Select a search rule from the menu"));
+		add_atk_relation (w, GTK_WIDGET(label), ATK_RELATION_LABELLED_BY);
+	}
+
 	w = gtk_button_new_from_stock(GTK_STOCK_ADD);
 	gtk_widget_set_size_request (GTK_WIDGET(w), 88, -1);
 	g_signal_connect(G_OBJECT(w),"clicked",
 			 G_CALLBACK(add_option_cb),NULL);
-
 	add_option(0, TRUE);
 	gtk_box_pack_start(GTK_BOX(hbox),w,FALSE,FALSE,0);
 	
@@ -1335,8 +1443,14 @@ create_find_page(void)
 	gtk_box_pack_end(GTK_BOX(hbox),find_buttons[0],FALSE,FALSE,GNOME_PAD_SMALL);
 	gtk_box_pack_end(GTK_BOX(hbox),find_buttons[1],FALSE,FALSE,GNOME_PAD_SMALL);
 	gtk_widget_set_sensitive(find_buttons[0],FALSE);
-
-	
+ 
+	if (gail_loaded)
+	{
+		add_atk_namedesc (GTK_WIDGET(w), NULL, _("Click to Add a Rule"));
+		add_atk_namedesc (GTK_WIDGET(find_buttons[1]), NULL , _("Click to Start the Search"));
+		add_atk_namedesc (GTK_WIDGET(find_buttons[0]), NULL, _("Click to Stop the Search"));
+	}
+             
 	/* create search results section */
 	frame = gtk_frame_new(NULL);
 	gtk_paned_pack2 (GTK_PANED (vpaned), frame, TRUE, FALSE);
@@ -1498,10 +1612,37 @@ locate_activate (GtkWidget *entry, gpointer data)
 	run_locate_command (buttons[1], buttons);
 }
 
+/*
+ * This function stops the search when user presses Escape while the search
+ * is underway.
+ */
+
+static gboolean
+stop_search (GtkWidget *w, GdkEventKey *event)
+{
+	GtkWidget **buttons;
+	g_return_if_fail (GTK_IS_WIDGET(w));
+
+	if (event->keyval == GDK_Escape)
+	{
+		if (locate_running == RUNNING)
+		{
+			buttons = locate_buttons;
+			run_locate_command (buttons[0], buttons);
+		}
+		else if (find_running == RUNNING)
+		{
+			buttons = find_buttons;
+			run_command (buttons[0], buttons);
+		}
+	}
+	return FALSE;
+}
+
 static GtkWidget *
 create_locate_page(void)
 {
-	GtkWidget *w, *vbox, *hbox, *hbox2;
+	GtkWidget *w, *vbox, *hbox, *hbox2, *entry;
 	GtkWidget *image, *label, *frame, *align;
 	GtkTreeViewColumn *column;	
 	static gchar *history = NULL;
@@ -1519,7 +1660,16 @@ create_locate_page(void)
 	gtk_label_set_mnemonic_widget(GTK_LABEL(w), gnome_entry_gtk_entry(GNOME_ENTRY(locate_entry)));
 	gnome_entry_set_max_saved(GNOME_ENTRY(locate_entry), 10);
 	gtk_box_pack_start(GTK_BOX(hbox), locate_entry, TRUE, TRUE, 0);
-	
+	entry =  gnome_entry_gtk_entry (GNOME_ENTRY(locate_entry));
+       
+	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(locate_entry)))
+	{
+		gail_loaded = TRUE;
+		add_atk_namedesc (locate_entry, _("File Name Entry"), _("Enter the file name you want to search"));
+		add_atk_namedesc (entry, _("File Name Entry"), _("Enter the file name you want to search"));
+		add_atk_relation (locate_entry, GTK_WIDGET(w), ATK_RELATION_LABELLED_BY);
+	}	
+     
 	g_signal_connect (G_OBJECT (locate_entry), "activate",
 			  G_CALLBACK (locate_activate),
 			  locate_buttons);
@@ -1553,6 +1703,12 @@ create_locate_page(void)
 	gtk_box_pack_end(GTK_BOX(hbox),locate_buttons[0],FALSE,FALSE,0);
 	gtk_box_pack_end(GTK_BOX(hbox),locate_buttons[1],FALSE,FALSE,0);
 	gtk_widget_set_sensitive(locate_buttons[0],FALSE);
+  
+	if (gail_loaded)
+	{
+		add_atk_namedesc (GTK_WIDGET(locate_buttons[1]), NULL, _("Click to Start the search"));
+		add_atk_namedesc (GTK_WIDGET(locate_buttons[0]), NULL, _("Click to Stop the search"));
+	}
 
 	/* create search results section */
 	frame = gtk_frame_new(NULL);
@@ -1668,10 +1824,9 @@ create_window(void)
 
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_locate_page(),
 				 gtk_label_new_with_mnemonic(_("Si_mple")));  /* Can we connect to this  */
-
 	gtk_notebook_append_page(GTK_NOTEBOOK(nbook),create_find_page(),
 				 gtk_label_new_with_mnemonic(_("Ad_vanced")));
-	
+
 	return nbook;
 }
 
@@ -1879,7 +2034,9 @@ main(int argc, char *argv[])
 
 	g_signal_connect(G_OBJECT(app), "button_press_event",
 			 G_CALLBACK(window_click), NULL);
-		
+	g_signal_connect(G_OBJECT(app), "key_press_event",
+		         G_CALLBACK(stop_search), NULL);
+
 	/*set up session management*/		 
 	client = gnome_master_client ();		 
 			 
