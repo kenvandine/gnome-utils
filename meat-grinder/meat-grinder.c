@@ -487,6 +487,9 @@ select_all_cb (GtkWidget *w, gpointer data)
 	for (i = 0; i < num_icons; i++) {
 		gnome_icon_list_select_icon (GNOME_ICON_LIST (icon_list), i);
 	}
+        gtk_statusbar_push (GTK_STATUSBAR (status_bar), 
+                           0,
+                           _("All files selected"));
 }
 
 static gboolean
