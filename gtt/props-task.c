@@ -70,7 +70,7 @@ task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
 	
 		gtt_task_set_notes(dlg->task, xxxgtk_text_get_text(dlg->notes));
 
-		ivl = atof (gtk_entry_get_text(dlg->unit));
+		ivl = (int) (60.0 * atof (gtk_entry_get_text(dlg->unit)));
 		gtt_task_set_bill_unit (dlg->task, ivl);
 
 	        menu = gtk_option_menu_get_menu (dlg->billable);
@@ -105,7 +105,7 @@ do_set_task(GttTask *tsk, PropTaskDlg *dlg)
 		dlg->task = NULL;
 		gtk_entry_set_text(dlg->memo, "");
 		gtk_text_insert(dlg->notes, NULL, NULL, NULL, "", 0);
-		gtk_entry_set_text(dlg->unit, "0");
+		gtk_entry_set_text(dlg->unit, "0.0");
 		return;
 	}
 
@@ -116,7 +116,7 @@ do_set_task(GttTask *tsk, PropTaskDlg *dlg)
 	gtk_entry_set_text(dlg->memo, gtt_task_get_memo(tsk));
 	xxxgtk_text_set_text(dlg->notes, gtt_task_get_notes (tsk));
 
-	g_snprintf (buff, 132, "%d", gtt_task_get_bill_unit(tsk));
+	g_snprintf (buff, 132, "%g", ((double) gtt_task_get_bill_unit(tsk))/60.0);
 	gtk_entry_set_text(dlg->unit, buff);
 
 	able = gtt_task_get_billable (tsk);
