@@ -272,7 +272,7 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
 {
   GtkWidget * button;
   GtkWidget * box;
-  int i;
+  gint i;
 
   box = gtk_vbox_new(TRUE, GNOME_PAD_SMALL);
   gtk_container_border_width(GTK_CONTAINER(box), GNOME_PAD);
@@ -286,7 +286,7 @@ static void prepare_advanced_vbox(GtkWidget * vbox)
     
     gtk_signal_connect ( GTK_OBJECT(button), "clicked",
                          GTK_SIGNAL_FUNC(runlevel_cb),
-                         (gpointer)i );
+                         GINT_TO_POINTER(i) );
     gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 0); 
     ++i;
   }

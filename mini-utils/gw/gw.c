@@ -656,7 +656,7 @@ static void delete_action_cb(GtkButton * button, gpointer clist)
     gtk_entry_set_text(name_entry, "");
     gtk_entry_set_text(command_entry, "");
 
-    gtk_clist_remove(c, (gint)c->selection->data);
+    gtk_clist_remove(c, GPOINTER_TO_INT(c->selection->data));
 
     pb = GNOME_PROPERTY_BOX(gtk_object_get_data(GTK_OBJECT(clist), 
                                                 PROPERTY_BOX_KEY));
@@ -710,7 +710,7 @@ static void name_changed_cb(GtkEntry * entry, GtkCList * clist)
 
   name = gtk_entry_get_text(entry);
 
-  row = (gint) clist->selection->data;
+  row = GPOINTER_TO_INT(clist->selection->data);
 
   gtk_clist_set_text(clist, row, 0, name);
 }
@@ -722,7 +722,7 @@ static void command_changed_cb(GtkEntry * entry, GtkCList * clist)
 
   command = gtk_entry_get_text(entry);
   
-  row = (gint) clist->selection->data;
+  row = GPOINTER_TO_INT(clist->selection->data);
 
   gtk_clist_set_text(clist, row, 1, command);
 }

@@ -771,10 +771,13 @@ update_values(Param_glob *pgp)
       char buf[1000];
 
       if (p->filename)
-	if (*p->filename == '|')
-	  pu = popen(p->filename+1, "r");
-	else
-	  pu = fopen(p->filename, "r");
+	{
+	  if (*p->filename == '|')
+	    pu = popen(p->filename+1, "r");
+	  else
+	    pu = fopen(p->filename, "r");
+	}
+      
       if (pu)
 	{
 	  fgets(buf, sizeof(buf), pu);

@@ -41,7 +41,7 @@ static void err_outputter(gpointer d, GtkCList *cl)
 	 */
 	char *p;
 	
-	gtk_clist_get_text(cl,(gint)d,0,&p);
+	gtk_clist_get_text(cl,GPOINTER_TO_INT(d),0,&p);
 	
 	if(format==0)
 	{

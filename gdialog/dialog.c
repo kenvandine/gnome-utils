@@ -277,7 +277,7 @@ int callback_writeerr(GtkWidget *w, gpointer *pt)
 
 int callback_exitby(GtkWidget *w, gpointer *pt)
 {
-	int i = (int)pt;
+	gint i = GPOINTER_TO_INT(pt);
 	exit(i);
 }
 

@@ -147,7 +147,7 @@ static char * keep_set(int info)
  
 static void modify_drive(GtkWidget *w, gint row, gint col, GdkEventButton *event, gpointer *junk)
 {
-	int id=(int)junk;
+	int id=GPOINTER_TO_INT(junk);
 	int n;
 	char *p=NULL;
 	
@@ -327,7 +327,8 @@ static void ide_stat_drive(char *drive, int fd, GtkWidget *notebook)
 	
 	gtk_clist_thaw(cl);
 	
-	gtk_signal_connect(GTK_OBJECT(cl), "select_row", (GtkSignalFunc)modify_drive, (void *)(id+(drive[2]<<8)));
+	gtk_signal_connect(GTK_OBJECT(cl), "select_row", (GtkSignalFunc)modify_drive,
+			   GINT_TO_POINTER(id+(drive[2]<<8)) );
 	gtk_container_add(GTK_CONTAINER(vbox), GTK_WIDGET(cl));
 	gtk_widget_show_all(GTK_WIDGET(sw));
 	gtk_widget_show(vbox);
