@@ -1,8 +1,8 @@
 figs = \
-	gsearch.png  \
-	locate.png  \
-	mainwin.png  \
-	results.png
+	figures/gsearch.png  \
+	figures/locate.png  \
+	figures/mainwin.png  \
+	figures/results.png
 
 app = gsearchtool
 lang = C
