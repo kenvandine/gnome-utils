@@ -2,7 +2,7 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY version "1.4.0.1"> 
-<!ENTITY date "6/16/2001"> 
+<!ENTITY date "11/20/2001"> 
 ]>
 
 <!-- 
@@ -77,26 +77,27 @@
     </para>
  
     <para>
-      To run <application>GNOME Archive Generator</application>, select
+      To start <application>GNOME Archive Generator</application>, open the
+      <guimenu>Main Menu</guimenu>, then choose
       <menuchoice>
+	<guimenu>Programs</guimenu>
 	<guisubmenu>Utilities</guisubmenu>
 	<guimenuitem>Archive Generator</guimenuitem>
-      </menuchoice>
-      from the <guimenu>Main Menu</guimenu>, or type
-      <command>meat-grinder</command> on the command line.
-  </para>
+      </menuchoice>.
+      To run <application>GNOME Archive Generator</application> from a
+      command line type <command>meat-grinder</command>, then press Return.
+    </para>
 
     <para>
-      <application>GNOME Archive Generator</application> is included in the
-      <filename>gnome-utils</filename> package, part of the
-      GNOME desktop environment. This document describes version
+      The <filename>gnome-utils</filename> package, part of the GNOME desktop
+      environment, includes <application>GNOME Archive
+      Generator</application>. This document describes version
       &version; of <application>GNOME Archive Generator</application>.
     </para>
   </sect1>
 
 
  <!-- ================ Usage ================================ -->
- <!-- This section should describe basic usage of the application. -->
 
   <sect1 id="usage">
     <title>Basic usage</title>
@@ -118,7 +119,7 @@
     <!-- ==== End of Figure ==== -->
     </para> 
     <para>
-      To archive files or directories, drag and drop their icons from your file
+      To archive files or directories, drag their icons from your file
       manager to the <application>GNOME Archive Generator</application> main
       window. A folder icon represents a directory.
       <figure id="mainwindow-fig-full">
@@ -136,18 +137,39 @@
 	original location.</para>
       </note>
     </para>
-    <para>
-      To make the archive, chose <guimenuitem>Create archive</guimenuitem> from
-      the <guimenu>File</guimenu> menu. A standard file selection dialog will
-      open. Choose the location to save the
-      new archive file. Enter a name for the archive file and click
-      <guibutton>OK</guibutton>. <application>GNOME Archive
-	Generator</application> will create a <acronym>tar</acronym> file
-      compressed with <application>gzip</application>.
 
+    <para>
+      To make an archive:
+    </para>
+    <procedure>
+      <step>
+	<para>
+	  Choose <menuchoice> <guimenu>File</guimenu>
+	    <guimenuitem>Create archive</guimenuitem> </menuchoice>. A standard
+	    file selection dialog will open.
+	</para>
+      </step>
+      <step>
+	<para>
+	  Choose the location to save the new archive file.
+	</para>
+      </step>
+      <step>
+	<para>
+	Enter a name for the archive file.
+	</para>
+      </step>
+      <step>
+	<para>
+	Click <guibutton>OK</guibutton>.
+	</para>
+      </step>
+    </procedure>
+
+    <para>
       <note>
 	<para><application>GNOME Archive Generator</application> places no
-	restrictions on the file name you choose. Most applications expect
+	restrictions on the file name you enter. Most applications expect
 	names of compressed archive files to end in
 	<filename>.tar.gz</filename> or <filename>.tgz</filename>.</para>
       </note>
@@ -157,14 +179,9 @@
 
     <sect2 id="menubar">
 
-       <!-- Describing the menubar ensures comprehensive feature
-       coverage. Nest itemizedlists inside variablelists so that each
-       menu is easily located by indexing software. Proper indentation
-       makes it easier! -->
-
       <title>Menus</title>
       <para>
-	The menu bar, located at the top of the <interface>Main
+	The menubar, located at the top of the <interface>Main
 	Window</interface>, contains the following menus:
        </para>
       <variablelist>
@@ -208,9 +225,9 @@
 		     
 		      <guimenuitem>Remove</guimenuitem>
 		    </menuchoice>
-	            &mdash; Removes any highlighted file or directory from the main
-	            window. The original file is not removed, only the copy
-	            being used by <application>GNOME Archive Generator</application>.
+	            &mdash; Remove any highlighted file or directory from the main
+	            window. The original file is not removed. <application>GNOME
+	            Archive Generator</application> works on a copy.
 	          </para>
 		</listitem>
 		<listitem>
@@ -333,12 +350,3 @@
   </para>
  </sect1>
 </article>
-
-
-
-
-
-
-
-
-
