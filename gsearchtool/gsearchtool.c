@@ -331,10 +331,8 @@ build_search_command (void)
 	}
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, NULL);
 	
-	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
+	look_in_folder_utf8 = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (interface.look_in_folder_entry));
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
-	gnome_entry_prepend_history (GNOME_ENTRY(gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))), 
-				     TRUE, look_in_folder_utf8);
 	g_free (look_in_folder_utf8);
 	
 	if (!file_extension_is (look_in_folder_locale, G_DIR_SEPARATOR_S)) {
@@ -893,7 +891,7 @@ get_desktop_item_name (void)
 	g_string_append (gs, g_strdup_printf ("named=%s", file_is_named_locale));
 	g_free (file_is_named_locale);
 
-	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
+	look_in_folder_utf8 = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (interface.look_in_folder_entry));
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
 	                                            -1, NULL, NULL, NULL);
 	g_string_append (gs, g_strdup_printf ("&path=%s", look_in_folder_locale));
@@ -1017,8 +1015,8 @@ handle_popt_args (void)
 	}
 	if (PoptArgument.path != NULL) {
 		popt_args_found = TRUE;
-		gtk_entry_set_text (GTK_ENTRY(gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))),
-				    g_locale_to_utf8 (PoptArgument.path, -1, NULL, NULL, NULL));
+		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (interface.look_in_folder_entry),
+		                               g_locale_to_utf8 (PoptArgument.path, -1, NULL, NULL, NULL));
 	}	
 	if (PoptArgument.contains != NULL) {
 		popt_args_found = TRUE;	
@@ -1898,7 +1896,6 @@ create_main_window (void)
 	GtkWidget	*vbox;
 	GtkWidget 	*entry;
 	GtkWidget	*label;
-	GtkWidget 	*folder_entry;
 	GtkWidget 	*button;
 	GtkWidget 	*window;
 
@@ -1950,8 +1947,8 @@ create_main_window (void)
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(interface.file_is_named_entry)))
 	{
 		interface.is_gail_loaded = TRUE;
-		add_atk_namedesc (interface.file_is_named_entry, NULL, _("Enter the file name you want to search"));
-		add_atk_namedesc (entry, _("Name Contains Entry"), _("Enter the file name you want to search"));
+		add_atk_namedesc (interface.file_is_named_entry, NULL, _("Enter the file name you want to search."));
+		add_atk_namedesc (entry, _("Name Contains Entry"), _("Enter the file name you want to search."));
 	}	
      
 	g_signal_connect (G_OBJECT (interface.file_is_named_entry), "activate",
@@ -1968,33 +1965,24 @@ create_main_window (void)
 	
 	gtk_table_attach(GTK_TABLE(interface.table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 	
-	interface.look_in_folder_entry = gnome_file_entry_new ("gsearchtool-folder-entry", _("Browse"));
-	gnome_file_entry_set_directory_entry (GNOME_FILE_ENTRY (interface.look_in_folder_entry), TRUE);
-	g_object_set (G_OBJECT (interface.look_in_folder_entry), "use-filechooser", TRUE, NULL);
-	
-	entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
-	gtk_label_set_mnemonic_widget (GTK_LABEL(label), interface.look_in_folder_entry);
-	folder_entry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
+	interface.look_in_folder_entry = gtk_file_chooser_button_new (_("Browse"));
+	gtk_file_chooser_set_action (GTK_FILE_CHOOSER (interface.look_in_folder_entry), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
+	gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET (interface.look_in_folder_entry));		
 	gtk_table_attach (GTK_TABLE(interface.table), interface.look_in_folder_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
 	
 	if (interface.is_gail_loaded)
 	{ 
-		add_atk_namedesc (GTK_WIDGET(folder_entry), NULL, _("Enter the folder name where you want to start the search"));
-		add_atk_namedesc (GTK_WIDGET(entry), _("Look in Folder Entry"), _("Enter the folder name where you want to start the search"));
+		add_atk_namedesc (GTK_WIDGET(interface.look_in_folder_entry), NULL, _("Select the folder where you want to start the search."));
 	}
 	
-	g_signal_connect (G_OBJECT (entry), "key_press_event",
-			  G_CALLBACK (look_in_folder_key_press_cb),
-			  NULL);
-	
-	g_signal_connect (G_OBJECT (interface.look_in_folder_entry), "changed",
+	g_signal_connect (G_OBJECT (interface.look_in_folder_entry), "current-folder-changed",
 			  G_CALLBACK (constraint_entry_changed_cb),
 			  NULL);
 			  
 	locale_string = g_get_current_dir ();
 	utf8_string = g_filename_to_utf8 (locale_string, -1, NULL, NULL, NULL);
 	
-	gtk_entry_set_text (GTK_ENTRY(entry), utf8_string);
+	gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (interface.look_in_folder_entry), utf8_string);
 	g_free (locale_string);
 	g_free (utf8_string);
 	
@@ -2126,7 +2114,7 @@ set_clone_command (gint *argcp, gchar ***argvp, gpointer client_data, gboolean e
 	g_free (tmp);
 	g_free (file_is_named_locale);
 
-	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
+	look_in_folder_utf8 = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (interface.look_in_folder_entry));
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
 	                                            -1, NULL, NULL, NULL);
 	g_free (look_in_folder_utf8);

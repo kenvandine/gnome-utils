@@ -1,3 +1,18 @@
+2004-10-21  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* gsearchtool.c:  Convert the look-in-folder-entry widget from a 
+	gnome-file-entry to a new gtk+ 2.5 gtk-file-chooser-button. 
+
+	* gsearchtool-callbacks.[ch]: Remove look_in_folder_key_press_cb().
+	Replace legacy gnome_file_entry_get_full_path() with 
+	gtk_file_chooser_get_current_folder(). 
+	
+	* help/C/gnome-search-tool.xml:  Update for new gtk+ 2.5 file 
+	chooser button widget.
+	
+	* help/C/figures/gnome-search-tool_window.png:  Update for new
+	gtk+ 2.5 file chooser button widget.
+	
 2004-10-15  Dennis Cranston <dennis_cranston at yahoo com>
 
 	* gsearchtool-support.c: (compare_regex): Fix a potential

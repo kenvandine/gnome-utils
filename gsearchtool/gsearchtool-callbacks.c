@@ -272,7 +272,7 @@ constraint_entry_changed_cb (GtkWidget 	*widget,
 	}
 		
 	look_in_folder_string = 
-		gnome_file_entry_get_full_path(GNOME_FILE_ENTRY(interface.look_in_folder_entry), FALSE);
+		gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (interface.look_in_folder_entry));
 
 	if (look_in_folder_string == NULL) {
 		gtk_widget_set_sensitive (interface.find_button, FALSE);
@@ -1444,23 +1444,6 @@ key_press_cb (GtkWidget    	*widget,
 				gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL,
 							   (GdkEventButton *)event, data, NULL);
 			}
-		}
-	}
-	return FALSE;
-}
-
-gboolean
-look_in_folder_key_press_cb (GtkWidget    	*widget, 
-		     	     GdkEventKey	*event, 
-		     	     gpointer 		data)
-{
-	g_return_val_if_fail (GTK_IS_WIDGET(widget), FALSE);
-
-	if (event->keyval == GDK_Return)
-	{
-		if ((GTK_WIDGET_VISIBLE (interface.find_button)) && 
-		    (GTK_WIDGET_SENSITIVE (interface.find_button))) {
-			click_find_cb (interface.find_button, NULL);
 		}
 	}
 	return FALSE;
