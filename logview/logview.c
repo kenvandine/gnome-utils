@@ -138,6 +138,7 @@ static const char *ui_description =
 	"		<menu action='EditMenu'>"
 	"                       <menuitem action='Copy'/>"
 	"                       <menuitem action='SelectAll'/>"
+	"                       <separator/>"
 	"			<menuitem action='Search'/>"
 	"		</menu>"	
 	"		<menu action='ViewMenu'>"
@@ -773,13 +774,13 @@ logview_copy (GtkAction *action, GtkWidget *callback_data)
 
 	if (window->curlog->selected_line_first > -1 && window->curlog->selected_line_last > -1) {
 		nline = window->curlog->selected_line_last - window->curlog->selected_line_first + 1;
-		lines = g_new0(gchar *, (nline));
+		lines = g_new0(gchar *, (nline + 1));
 		for (i=0; i<=nline; i++) {
 			if (window->curlog->selected_line_first + i < window->curlog->total_lines) {
 				line = (window->curlog->lines)[window->curlog->selected_line_first + i];
-				lines[i] = g_strdup_printf ("%s %s %s", line->hostname, line->process, line->message);
-			} else
-				lines[i] = NULL;
+				if (line && line->hostname && line->process && line->message)
+					lines[i] = g_strdup_printf ("%s %s %s", line->hostname, line->process, line->message);
+			}
 		}
 		lines[nline] = NULL;
 		text = g_strjoinv ("\n", lines);
