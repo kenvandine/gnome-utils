@@ -25,26 +25,21 @@
 #include <X11/Xlib.h>
 
 typedef struct IdleTimeout IdleTimeout;
-typedef struct pref_s IdleTimeoutPrefs;
 typedef struct IdleTimeoutScreen IdleTimeoutScreen;
-
-struct pref_s
-{
-	/* in seconds */
-	int timeout;
-	int pointer_timeout;
-
-	/* notice_events_timeout is how often we re-walk the 
-	 * the window tree, looking for new windows */
-	int notice_events_timeout;
-};
 
 
 /* This structure holds all the data that applies to the program as a whole,
    or to the non-screen-specific parts of the display connection.
  */
-struct IdleTimeout {
-  IdleTimeoutPrefs prefs;
+struct IdleTimeout 
+{
+  /* pointer_timeout is how often we check for pinter 
+   * movements (in seconds) */
+  int pointer_timeout;
+
+  /* notice_events_timeout is how long we wait before we 
+   * walk the the window tree, selecting events on new windows */
+  int notice_events_timeout;
 
   int nscreens;
   IdleTimeoutScreen *screens;
@@ -70,9 +65,7 @@ struct IdleTimeout {
   int sgi_saver_ext_error_number;
 # endif
 
-  guint timer_id;		/* Timer to implement `prefs.timeout' */
   guint check_pointer_timer_id;	/* `prefs.pointer_timeout' */
-  guint notice_events_timer_id;	/* `prefs.notice_events_timeout' */
 
   time_t last_activity_time;		   /* Used only when no server exts. */
   time_t last_wall_clock_time;             /* Used to detect laptop suspend. */
