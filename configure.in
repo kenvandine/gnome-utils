@@ -132,7 +132,7 @@ fi
 AM_CONDITIONAL(BUILD_GCOLORSEL_APPLET, test $enable_gcolorsel_applet = yes)
 
 dnl *********************************************
-dnl gconf is needed by gtt
+dnl gconf is needed by gtkhtml which is needed by gtt
 dnl *********************************************
 
 PKG_CHECK_MODULES(GCONF, gconf-2.0 >= $GCONF_REQUIRED)
@@ -165,6 +165,13 @@ AC_CHECK_LIB(gtkhtml, gtk_html_new,
 AC_SUBST(GTKHTML_LIBS)
 AC_SUBST(GTKHTML_CFLAGS)
 
+dnl *******************************
+dnl Guile checks -- guile is needed by gtt
+dnl *******************************
+GUILE_INCS=`guile-config compile`
+GUILE_LIBS=`guile-config link`
+AC_SUBST(GUILE_INCS)
+AC_SUBST(GUILE_LIBS)
 
 dnl ***************************************************************
 dnl Other miscellaneous checks 
