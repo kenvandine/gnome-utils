@@ -59,8 +59,8 @@ static GnomeUIInfo menu_main_edit[] = {
 	GNOMEUIINFO_ITEM_STOCK(N_("Clear _Daily Counter"), NULL,
 			       menu_clear_daily_counter,
 			       GNOME_STOCK_MENU_BLANK),
-#define MENU_EDIT_PROP_POS 5
 	GNOMEUIINFO_SEPARATOR,
+#define MENU_EDIT_PROP_POS 6
 	GNOMEUIINFO_MENU_PROPERTIES_ITEM(menu_properties,NULL),
 	GNOMEUIINFO_END
 };

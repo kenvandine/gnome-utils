@@ -1,3 +1,15 @@
+1999-02-24  Eckehard Berns  <eb@berns.i-s-o.net>
+
+	* help/C/gtt.1: fixed typo
+	* help/C/gtt-db.sgml: fixed types
+	* help/C/index.html: rebuilt from gtt-db.sgml
+	* app.c (update_status_bar): obey config_show_secs in status bar.
+	* options.c (options_apply_cb): call update_status_bar if
+	config_show_secs changed.
+	* menus.c (MENU_EDIT_PROPS_POS): set to correct value.
+	* help/es/index.html: new file, built from gtt-db.sgml
+	* help/es/Makefile.am: install index.html and topic.dat
+
 1999-02-08  Tomas Ogren  <stric@ing.umu.se>
 
 	* app.c: Removed the widget realize call and changed

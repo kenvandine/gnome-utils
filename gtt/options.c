@@ -62,6 +62,9 @@ static void options_apply_cb(GnomePropertyBox *pb, gint page, OptionsDlg *odlg)
 	if (state != config_show_secs) {
 		config_show_secs = state;
                 setup_clist();
+		update_status_bar();
+		if (status_bar)
+		gtk_widget_queue_resize(status_bar);
 	}
 	if (GTK_TOGGLE_BUTTON(odlg->show_status_bar)->active) {
 		gtk_widget_show(GTK_WIDGET(status_bar));

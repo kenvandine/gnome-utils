@@ -91,7 +91,7 @@ void update_status_bar(void)
 	if (!status_bar) return;
         if (!old_day_time) old_day_time = g_strdup("");
         if (!old_project) old_project = g_strdup("");
-        s = g_strdup(project_get_timestr(NULL, 0));
+        s = g_strdup(project_get_timestr(NULL, config_show_secs));
         if (0 != strcmp(s, old_day_time)) {
 #ifdef GTK_USE_STATUSBAR
                 gtk_statusbar_remove(status_day_time, 2, status_day_time_id);
