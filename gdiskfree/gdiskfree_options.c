@@ -194,7 +194,8 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   GtkWidget    *checkbox;
   GtkObject    *udp_adjust;
   GSList       *orientation_group = NULL;
-  
+
+  static GnomeHelpMenuEntry help_entry = { "gdiskfree", "prefs.html" };
   working = g_malloc (sizeof (GDiskFreeOptions));
   propbox = gnome_property_box_new ();
   gtk_object_set_data (GTK_OBJECT (propbox), "app", app);
@@ -298,5 +299,8 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   gtk_signal_connect (GTK_OBJECT (propbox), "apply",
 		      (GtkSignalFunc) gdiskfree_option_dialog_apply,
 		      working);
+  gtk_signal_connect (GTK_OBJECT (propbox), "help",                      
+                                                                                 
+                                                                                                     GTK_SIGNAL_FUNC(gnome_help_pbox_goto), &help_entry); 
   return propbox;
 }
