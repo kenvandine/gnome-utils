@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gfloppy 1.0\n"
-"POT-Creation-Date: 2001-02-27 03:36-0800\n"
-"PO-Revision-Date: 2001-02-09 11:18+01:00\n"
+"POT-Creation-Date: 2001-04-25 16:01-0400\n"
+"PO-Revision-Date: 2001-04-25 16:02-04:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -78,26 +78,26 @@ msgstr "Verktøylinje for handling"
 msgid "Text to copy:"
 msgstr "Tekst som skal kopieres:"
 
-#: gcharmap/src/interface.c:223 gcharmap/src/menus.c:110
+#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:110
 #: mini-utils/gcolorsel/menus.c:921 stripchart/chart-app.c:253
 msgid "Exit"
 msgstr "Avslutt"
 
-#: gcharmap/src/interface.c:224 gcharmap/src/menus.c:100
+#: gcharmap/src/interface.c:225 gcharmap/src/menus.c:100
 #: gdictsrc/gdict-app.c:520 gtt/toolbar.c:163
 msgid "Copy"
 msgstr "Kopiér"
 
-#: gcharmap/src/interface.c:228 gcharmap/src/menus.c:107
+#: gcharmap/src/interface.c:229 gcharmap/src/menus.c:107
 #: mini-utils/gcolorsel/menus.c:919 mini-utils/gshutdown/gshutdown.c:321
-#: stripchart/chart-app.c:227 stripchart/params.c:1008
+#: stripchart/chart-app.c:227 stripchart/params.c:1010
 #: stripchart/stripchart-applet.c:89
 msgid "About"
 msgstr "Om"
 
-#: gcharmap/src/interface.c:230 gcharmap/src/menus.c:105
+#: gcharmap/src/interface.c:231 gcharmap/src/menus.c:105
 #: gdictsrc/gdict-applet.c:284 stripchart/chart-app.c:222
-#: stripchart/params.c:1043 stripchart/params.c:1046
+#: stripchart/params.c:1045 stripchart/params.c:1048
 #: stripchart/stripchart-applet.c:86
 msgid "Help"
 msgstr "Hjelp"
@@ -197,8 +197,8 @@ msgstr "Avslutt programmet"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:498
-#: gdictsrc/gdict-pref-dialog.c:542 gdictsrc/gdict-speller.c:393
+#: gdictsrc/dict.c:635 gdictsrc/gdict-pref-dialog.c:502
+#: gdictsrc/gdict-pref-dialog.c:546 gdictsrc/gdict-speller.c:393
 msgid "Cannot connect to server"
 msgstr "Kan ikke koble til tjener"
 
@@ -376,11 +376,11 @@ msgstr "Tjener"
 msgid "Fonts"
 msgstr "Skrifttyper"
 
-#: gdictsrc/gdict-pref-dialog.c:251
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "Display handle bar"
 msgstr "Vis håndtaklinje"
 
-#: gdictsrc/gdict-pref-dialog.c:255
+#: gdictsrc/gdict-pref-dialog.c:256
 msgid ""
 "You have to restart GDict for these\n"
 "settings to become active."
@@ -388,11 +388,11 @@ msgstr ""
 "Du må starte GDict for at disse\n"
 "innstillingene skal aktiveres."
 
-#: gdictsrc/gdict-pref-dialog.c:262
+#: gdictsrc/gdict-pref-dialog.c:263
 msgid "Applet"
 msgstr "Applet"
 
-#: gdictsrc/gdict-pref-dialog.c:581
+#: gdictsrc/gdict-pref-dialog.c:585
 msgid "The server you specified could not be found."
 msgstr "Tjeneren du spesifiserte ble ikke funnet."
 
@@ -513,26 +513,32 @@ msgstr "grep alternativer funnet i søkelisten fy fy!"
 msgid "non-grep option found in grep list, bad bad!"
 msgstr "ikke-grep alternativ funnet i grep-listen, fy fy!"
 
-#: gsearchtool/gsearchtool.c:201
+#: gsearchtool/gsearchtool.c:219
 msgid "Search already running on another page"
 msgstr "Søket kjører allerede på en annen side"
 
 #. create the results box
 #. FIXME: add an option to autoclear result box and pass TRUE in that
 #. case
-#: gsearchtool/gsearchtool.c:211
+#: gsearchtool/gsearchtool.c:229
 msgid "Search Results"
 msgstr "Søkeresultater"
 
-#: gsearchtool/gsearchtool.c:338 gsearchtool/gsearchtool.c:369
+#: gsearchtool/gsearchtool.c:336
+msgid ""
+"\n"
+"... Too many errors to display ..."
+msgstr "\nFor mange feil å vise..."
+
+#: gsearchtool/gsearchtool.c:369 gsearchtool/gsearchtool.c:400
 msgid "Start directory does not exist"
 msgstr "Startkatalogen eksisterer ikke"
 
-#: gsearchtool/gsearchtool.c:378
+#: gsearchtool/gsearchtool.c:409
 msgid "Search command line"
 msgstr "Kommandolinje for søk"
 
-#: gsearchtool/gsearchtool.c:384
+#: gsearchtool/gsearchtool.c:415
 msgid ""
 "This is the command line that can be used to execute this search from the "
 "console:\n"
@@ -544,48 +550,48 @@ msgstr ""
 "(Merk: for å skrive ut en fil per linje i stedet for null-separert,\n"
 "legg til \"| tr '\\000' '\\n\" på linjen under)"
 
-#: gsearchtool/gsearchtool.c:471
+#: gsearchtool/gsearchtool.c:502
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 "Oppføring endret ble kalt for et alternativ som ikke gjaldt oppføringen!"
 
-#: gsearchtool/gsearchtool.c:537
+#: gsearchtool/gsearchtool.c:568
 msgid "Enable"
 msgstr "Slå på"
 
-#: gsearchtool/gsearchtool.c:545 logview/actions.c:127
+#: gsearchtool/gsearchtool.c:576 logview/actions.c:127
 msgid "Remove"
 msgstr "Fjern"
 
-#: gsearchtool/gsearchtool.c:597
+#: gsearchtool/gsearchtool.c:628
 msgid "Start in directory:"
 msgstr "Start i katalog:"
 
-#: gsearchtool/gsearchtool.c:599
+#: gsearchtool/gsearchtool.c:630
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:619 mini-utils/gw/gw.c:505
+#: gsearchtool/gsearchtool.c:650 mini-utils/gw/gw.c:506
 msgid "Add"
 msgstr "Legg til"
 
-#: gsearchtool/gsearchtool.c:630
+#: gsearchtool/gsearchtool.c:661
 msgid "Show Command"
 msgstr "Vis kommando"
 
-#: gsearchtool/gsearchtool.c:635 gsearchtool/gsearchtool.c:718
+#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:749
 msgid "Start"
 msgstr "Start"
 
-#: gsearchtool/gsearchtool.c:636 gsearchtool/gsearchtool.c:719
+#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:750
 msgid "Stop"
 msgstr "Stopp"
 
-#: gsearchtool/gsearchtool.c:669
+#: gsearchtool/gsearchtool.c:700
 msgid "Nothing to locate"
 msgstr "Ingenting å søke etter"
 
-#: gsearchtool/gsearchtool.c:697
+#: gsearchtool/gsearchtool.c:728
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -596,31 +602,31 @@ msgstr ""
 "og hvis du skriver inn en streng med jokertegn, må den være lik\n"
 "hele stien"
 
-#: gsearchtool/gsearchtool.c:706
+#: gsearchtool/gsearchtool.c:737
 msgid "Locate file: "
 msgstr "Finn fil: "
 
-#: gsearchtool/gsearchtool.c:740
+#: gsearchtool/gsearchtool.c:771
 msgid "Full find (find)"
 msgstr "Utvidet søk (find)"
 
-#: gsearchtool/gsearchtool.c:742
+#: gsearchtool/gsearchtool.c:773
 msgid "Quick find (locate)"
 msgstr "Hurtigsøk (locate)"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:794
 msgid "The Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
-#: gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:795
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:766
+#: gsearchtool/gsearchtool.c:797
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Grensesnitt mot UNIXs find/grep/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:824
+#: gsearchtool/gsearchtool.c:855
 msgid "Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
@@ -664,7 +670,7 @@ msgstr "Idag"
 msgid "Project Title"
 msgstr "Prosjekttittel"
 
-#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:642
+#: gtt/clist.c:172 gtt/menucmd.c:118 stripchart/params.c:644
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -941,7 +947,7 @@ msgstr "[GTT]Ny"
 msgid "Reload"
 msgstr "Les på nytt"
 
-#: gtt/toolbar.c:152 stripchart/params.c:934
+#: gtt/toolbar.c:152 stripchart/params.c:936
 msgid "Save"
 msgstr "Lagre"
 
@@ -1460,13 +1466,13 @@ msgid "Grid"
 msgstr "Rutenett"
 
 #: mini-utils/gcolorsel/gcolorsel.c:32 mini-utils/gcolorsel/menus.c:573
-#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1036
-#: stripchart/params.c:1039
+#: mini-utils/gcolorsel/menus.c:660 stripchart/params.c:1038
+#: stripchart/params.c:1041
 msgid "Edit"
 msgstr "Redigér"
 
-#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1029
-#: stripchart/params.c:1032
+#: mini-utils/gcolorsel/gcolorsel.c:40 stripchart/params.c:1031
+#: stripchart/params.c:1034
 msgid "File"
 msgstr "Fil"
 
@@ -1853,8 +1859,8 @@ msgid "Save the current palette with a different name"
 msgstr "Lagre aktiv palett med et nytt navn"
 
 #: mini-utils/gcolorsel/menus.c:89 mini-utils/gcolorsel/menus.c:913
-#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:595
-#: stripchart/params.c:948
+#: mini-utils/gshutdown/gshutdown.c:155 mini-utils/gshutdown/gshutdown.c:598
+#: stripchart/params.c:950
 msgid "Close"
 msgstr "Lukk"
 
@@ -2077,7 +2083,7 @@ msgstr "Hex 16 bits"
 msgid "Float"
 msgstr "Flyttall"
 
-#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:815
+#: mini-utils/gcolorsel/view-color-list.c:196 stripchart/params.c:817
 msgid "Color"
 msgstr "Farge"
 
@@ -2087,7 +2093,7 @@ msgstr "Verdi"
 
 #. Create everything.
 #: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
-#: mini-utils/gw/gw.c:501 mini-utils/gw/gw.c:571
+#: mini-utils/gw/gw.c:502 mini-utils/gw/gw.c:572
 msgid "Name"
 msgstr "Navn"
 
@@ -2302,7 +2308,7 @@ msgstr "Er du sikker på at du vil bytte til kjøringsnivå 5?"
 msgid "Are you sure you want to reboot the system?"
 msgstr "Er du sikker på at du vil starte maskinen på nytt?"
 
-#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:592
+#: mini-utils/gshutdown/gshutdown.c:153 mini-utils/gshutdown/gshutdown.c:595
 msgid "You must be the super-user (root) to shut down or restart the computer."
 msgstr ""
 "Du må være superbruker (root) for å slå av eller starte maskinen på nytt."
@@ -2341,7 +2347,7 @@ msgstr "Kommandoer"
 msgid "Confirm before shutdown?"
 msgstr "Bekreft før nedstenging?"
 
-#: mini-utils/gshutdown/gshutdown.c:451
+#: mini-utils/gshutdown/gshutdown.c:454
 #, c-format
 msgid ""
 "%s\n"
@@ -2350,11 +2356,11 @@ msgstr ""
 "%s\n"
 "Du vil miste ulagret arbeid."
 
-#: mini-utils/gshutdown/gshutdown.c:461
+#: mini-utils/gshutdown/gshutdown.c:464
 msgid "Don't ask next time."
 msgstr "Ikke spør neste gang."
 
-#: mini-utils/gshutdown/gshutdown.c:685
+#: mini-utils/gshutdown/gshutdown.c:688
 msgid "Command execution failed: fork failed"
 msgstr "Kommandokjøringen feilet: fork feilet"
 
@@ -2370,53 +2376,53 @@ msgstr "en initialiseringsfeil oppstod under start av 'guname-capplet'."
 msgid "System Information"
 msgstr "Systeminformasjon"
 
-#: mini-utils/guname/guname.c:536
+#: mini-utils/guname/guname.c:540
 msgid "Logo file not found"
 msgstr "Logofilen ble ikke funnet"
 
 #. Up here so it uses the default font
-#: mini-utils/guname/guname.c:540
+#: mini-utils/guname/guname.c:544
 msgid "GNOME contributors:"
 msgstr "GNOME hjelpere:"
 
 #. fontset used by guname; adapt it if your language requires it
-#: mini-utils/guname/guname.c:544
+#: mini-utils/guname/guname.c:548
 msgid "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 msgstr "-Adobe-Helvetica-Medium-R-Normal--*-180-*-*-*-*-*-*"
 
-#: mini-utils/guname/guname.c:555
+#: mini-utils/guname/guname.c:559
 msgid "GNOME: The GNU Network Object Model Environment"
 msgstr "GNOME: The GNU Network Object Model Environment"
 
-#: mini-utils/guname/guname.c:579
+#: mini-utils/guname/guname.c:583
 msgid "Email Information..."
 msgstr "Send informasjon..."
 
-#: mini-utils/guname/guname.c:592
+#: mini-utils/guname/guname.c:596
 msgid "Save Information to File..."
 msgstr "Lagre informasjonen til en fil..."
 
-#: mini-utils/guname/guname.c:604 mini-utils/guname/guname.c:674
+#: mini-utils/guname/guname.c:608 mini-utils/guname/guname.c:678
 msgid "Detailed Information..."
 msgstr "Detaljert informasjon..."
 
-#: mini-utils/guname/guname.c:619
+#: mini-utils/guname/guname.c:623
 msgid "Category"
 msgstr "Kategori"
 
-#: mini-utils/guname/guname.c:619
+#: mini-utils/guname/guname.c:623
 msgid "Your System"
 msgstr "Ditt system"
 
-#: mini-utils/guname/guname.c:660 stripchart/params.c:941
+#: mini-utils/guname/guname.c:664 stripchart/params.c:943
 msgid "Save As..."
 msgstr "Lagre som..."
 
-#: mini-utils/guname/guname.c:666
+#: mini-utils/guname/guname.c:670
 msgid "Mail To..."
 msgstr "Send til..."
 
-#: mini-utils/guname/guname.c:714
+#: mini-utils/guname/guname.c:718
 #, c-format
 msgid ""
 "Error closing file `%s': \n"
@@ -2427,27 +2433,27 @@ msgstr ""
 "%s\n"
 "Deler av, eller alle data ble kanskje ikke skrevet."
 
-#: mini-utils/guname/guname.c:726
+#: mini-utils/guname/guname.c:730
 #, c-format
 msgid "Couldn't open file `%s': %s"
 msgstr "Kan ikke åpne filen `%s': %s"
 
-#: mini-utils/guname/guname.c:748
+#: mini-utils/guname/guname.c:752
 msgid "Save System Information As..."
 msgstr "Lagre systeminformasjonen som..."
 
 #. I don't think the error_string() will reliably mean anything.
-#: mini-utils/guname/guname.c:805
+#: mini-utils/guname/guname.c:809
 #, c-format
 msgid "Command failed ` %s ': %s"
 msgstr "Kommandoen feilet ` %s ': %s "
 
-#: mini-utils/guname/guname.c:813
+#: mini-utils/guname/guname.c:817
 #, c-format
 msgid "Couldn't run command ` %s ': %s"
 msgstr "Kunne ikke kjøre kommandoen ` %s ': %s "
 
-#: mini-utils/guname/guname.c:837
+#: mini-utils/guname/guname.c:841
 #, c-format
 msgid ""
 "The following mail will be sent to %s.\n"
@@ -2456,11 +2462,11 @@ msgstr ""
 "Den følgende meldingen vil bli sendt til %s.\n"
 " Er du sikker på at du vil sende denne informasjonen?"
 
-#: mini-utils/guname/guname.c:848
+#: mini-utils/guname/guname.c:852
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
-#: mini-utils/guname/guname.c:890
+#: mini-utils/guname/guname.c:894
 msgid "Address to mail to:"
 msgstr "Adresse for sending:"
 
@@ -2624,7 +2630,7 @@ msgstr "%ld megabytes, %ld ledig (%ld superbruker); %ld inoder, %ld ledig."
 msgid "%2d%% full "
 msgstr "%2dd full "
 
-#: mini-utils/gw/gw.c:143
+#: mini-utils/gw/gw.c:144
 msgid ""
 "Couldn't find the \"w\" command in your path.\n"
 "This command is needed for the program to work."
@@ -2632,43 +2638,43 @@ msgstr ""
 "Kunne ikke finne \"w\" kommandoen i stien.\n"
 "Denne kommandoen er nødvendig for at dette programmet skal virke."
 
-#: mini-utils/gw/gw.c:176
+#: mini-utils/gw/gw.c:177
 msgid "_Save..."
 msgstr "Lagre..."
 
-#: mini-utils/gw/gw.c:176
+#: mini-utils/gw/gw.c:177
 msgid "Write information to disk"
 msgstr "Skriv informasjonen tili disk"
 
-#: mini-utils/gw/gw.c:204
+#: mini-utils/gw/gw.c:205
 msgid "Active User Listing"
 msgstr "Liste over aktive brukere"
 
-#: mini-utils/gw/gw.c:221
+#: mini-utils/gw/gw.c:222
 msgid "Update Information"
 msgstr "Oppdater informasjonen"
 
-#: mini-utils/gw/gw.c:473
+#: mini-utils/gw/gw.c:474
 msgid "Save not implemented yet\n"
 msgstr "Lagre er ennå ikke implementert\n"
 
-#: mini-utils/gw/gw.c:502
+#: mini-utils/gw/gw.c:503
 msgid "Command Line"
 msgstr "Kommandolinje"
 
-#: mini-utils/gw/gw.c:504
+#: mini-utils/gw/gw.c:505
 msgid "Add some defaults"
 msgstr "Legg til noen standardverdier"
 
-#: mini-utils/gw/gw.c:506
+#: mini-utils/gw/gw.c:507
 msgid "Delete"
 msgstr "Slett"
 
-#: mini-utils/gw/gw.c:524
+#: mini-utils/gw/gw.c:525
 msgid "Command Editor"
 msgstr "Kommandoredigering"
 
-#: mini-utils/gw/gw.c:534
+#: mini-utils/gw/gw.c:535
 msgid ""
 "You can configure the commands on the popup menus.\n"
 "Just enter the name you want to appear on the \n"
@@ -2682,7 +2688,7 @@ msgstr ""
 "I kommandoen kan du bruke %u for å representere\n"
 "valgte brukernavn, og %t for tty'en."
 
-#: mini-utils/gw/gw.c:541
+#: mini-utils/gw/gw.c:542
 msgid ""
 "Click this button to add\n"
 "some sample commands."
@@ -2690,15 +2696,15 @@ msgstr ""
 "Klikk på denne knappen for å legge til\n"
 "noen eksempel-kommandoer."
 
-#: mini-utils/gw/gw.c:549
+#: mini-utils/gw/gw.c:550
 msgid "Menu items"
 msgstr "Menyvalg"
 
-#: mini-utils/gw/gw.c:577
+#: mini-utils/gw/gw.c:578
 msgid "Command"
 msgstr "Kommando"
 
-#: mini-utils/gw/gw.c:967
+#: mini-utils/gw/gw.c:978
 #, c-format
 msgid "Running: %s\n"
 msgstr "Kjører: %s\n"
@@ -3080,17 +3086,17 @@ msgstr "ENHET"
 
 #. We do this to get around a bug in libglade.  Ideally we won't need
 #. * to do this in the future.
-#: gfloppy/src/main.c:207
+#: gfloppy/src/main.c:211
 msgid "Format"
 msgstr "Format"
 
 #. initialize our widgets
-#: gfloppy/src/main.c:212
+#: gfloppy/src/main.c:216
 #, c-format
 msgid "Formatting %s"
 msgstr "Formaterer %s"
 
-#: gfloppy/src/main.c:254
+#: gfloppy/src/main.c:258
 msgid "Format another floppy?"
 msgstr "Formatere enda en diskett?"
 
@@ -3114,11 +3120,11 @@ msgstr "Param"
 msgid "Current"
 msgstr "Nåværende"
 
-#: stripchart/chart-app.c:159 stripchart/params.c:692
+#: stripchart/chart-app.c:159 stripchart/params.c:694
 msgid "Top"
 msgstr "Topp"
 
-#: stripchart/chart-app.c:160 stripchart/params.c:748
+#: stripchart/chart-app.c:160 stripchart/params.c:750
 msgid "Scale"
 msgstr "Skala"
 
@@ -3165,113 +3171,113 @@ msgstr "parantes slutt forventet"
 msgid "no such field: %d"
 msgstr "ikke noe slikt felt: %d"
 
-#: stripchart/eval.c:285
+#: stripchart/eval.c:294
 msgid "missing variable identifer"
 msgstr "variabel-identifikator mangler"
 
-#: stripchart/eval.c:287
+#: stripchart/eval.c:296
 #, c-format
 msgid "invalid variable identifer: %s"
 msgstr "ugyldig variabel-identifikator: %s"
 
-#: stripchart/eval.c:291
+#: stripchart/eval.c:300
 msgid "number expected"
 msgstr "tall forventet"
 
-#: stripchart/eval.c:362
+#: stripchart/eval.c:371
 #, c-format
 msgid "extra junk at end: \"%s\""
 msgstr "ekstra søppel på slutten: \"%s\""
 
-#: stripchart/params.c:621
+#: stripchart/params.c:623
 msgid "Parameter"
 msgstr "Parameter"
 
-#: stripchart/params.c:659
+#: stripchart/params.c:661
 msgid "Equation"
 msgstr "Likning"
 
-#: stripchart/params.c:670
+#: stripchart/params.c:672
 msgid "Filename"
 msgstr "Filnavn"
 
-#: stripchart/params.c:681
+#: stripchart/params.c:683
 msgid "Pattern"
 msgstr "Mønster"
 
-#: stripchart/params.c:702 stripchart/params.c:730
+#: stripchart/params.c:704 stripchart/params.c:732
 msgid "Min"
 msgstr "Min"
 
-#: stripchart/params.c:711 stripchart/params.c:739
+#: stripchart/params.c:713 stripchart/params.c:741
 msgid "Max"
 msgstr "Maks"
 
-#: stripchart/params.c:720
+#: stripchart/params.c:722
 msgid "Bottom"
 msgstr "Bunn"
 
-#: stripchart/params.c:759
+#: stripchart/params.c:761
 msgid "Linear"
 msgstr "Lineær"
 
-#: stripchart/params.c:767
+#: stripchart/params.c:769
 msgid "Logarithmic"
 msgstr "Logaritmisk"
 
-#: stripchart/params.c:772
+#: stripchart/params.c:774
 msgid "Type"
 msgstr "Type"
 
-#: stripchart/params.c:783
+#: stripchart/params.c:785
 msgid "Indicator"
 msgstr "Indikator"
 
-#: stripchart/params.c:790
+#: stripchart/params.c:792
 msgid "Line"
 msgstr "Linje"
 
-#: stripchart/params.c:797
+#: stripchart/params.c:799
 msgid "Point"
 msgstr "Punkt:"
 
-#: stripchart/params.c:804
+#: stripchart/params.c:806
 msgid "Solid"
 msgstr "Helfylt"
 
-#: stripchart/params.c:960
+#: stripchart/params.c:962
 msgid "Add Parameter Before"
 msgstr "Legg til parameter før"
 
-#: stripchart/params.c:967
+#: stripchart/params.c:969
 msgid "Add Parameter After"
 msgstr "Legg til parameter etter"
 
-#: stripchart/params.c:974
+#: stripchart/params.c:976
 msgid "Apply Parameter Changes"
 msgstr "Påfør parameterendringer"
 
-#: stripchart/params.c:981
+#: stripchart/params.c:983
 msgid "Delete Parameter"
 msgstr "Slett parameter"
 
-#: stripchart/params.c:989
+#: stripchart/params.c:991
 msgid "Add Color"
 msgstr "Legg til farge"
 
-#: stripchart/params.c:996
+#: stripchart/params.c:998
 msgid "Delete Color"
 msgstr "Slett farge"
 
-#: stripchart/params.c:1015
+#: stripchart/params.c:1017
 msgid "Info"
 msgstr "Info"
 
-#: stripchart/params.c:1086
+#: stripchart/params.c:1088
 msgid "Parameter Editor"
 msgstr "Parameterredigering"
 
-#: stripchart/params.c:1095
+#: stripchart/params.c:1097
 msgid "Parameters"
 msgstr "Parametere"
 
