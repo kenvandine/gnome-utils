@@ -63,7 +63,7 @@ static void gnomecard_find_card(GtkWidget *w, gpointer data);
 static void gnomecard_save_call(GtkWidget *widget, gpointer data);
 static int gnomecard_match_pattern(char *pattern, char *str, int sens);
 
-char *email_type_name[] = 
+gchar *email_type_name[] = 
                  { N_("America On-Line"), N_("Apple Link"), N_("AT&T"),
 		               N_("CIS"), N_("e-World"), N_("Internet"), N_("IBM"),
 		               N_("MCI"), N_("Power Share"), N_("Prodigy"), N_("TLX"),
@@ -165,12 +165,13 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	/* we may not have stored changes yet                     */
 	copyGUIToCurPhone(ce);
 
-	/* remove old address list */
+	/* remove old phone list */
 	deletePhoneList(crd->phone);
 
-	/* link to new address list */
+	/* link to new phone list */
 	crd->phone = ce->phone;
 
+	/* key data */
         MY_FREE(crd->key.data);
 	
 	crd->key.data = gtk_editable_get_chars(GTK_EDITABLE(ce->key), 

@@ -13,14 +13,61 @@
 #include "sort.h"
 #include "list.h"
 #include "type_name.h"
+#include "columnhdrs.h"
 
-static void 
-gnomecard_create_list_row(Card *crd, gchar **text)
+GList *
+gnomecardCreateColHeader(GList *cols)
 {
-	gchar  *cardname=NULL;
-	gchar  *name=NULL;
-	GList  *l;
+	gchar  *str;
+	GList  *l, *p;
+	
+	l = NULL;
+	for (p=cols; p; p=p->next) {
+	    ColumnHeader *s;
 
+	    s = (ColumnHeader *)p->data;
+	    str = getColumnNameFromType(s->coltype);
+	    if (!str)
+		str = g_strdup("");
+	    l = g_list_append(l, str);
+	}
+
+	return l;
+}
+
+void
+gnomecardFreeColHeader(GList *col)
+{
+    g_list_free(col);
+}
+
+
+GList *
+gnomecardCreateColValues(Card *crd, GList *cols)
+{
+	gchar  *str;
+	GList  *l, *p;
+	
+	l = NULL;
+	for (p=cols; p; p=p->next) {
+	    str = getValFromColumnHdr(crd, p->data);
+	    if (!str)
+		str = g_strdup("");
+	    l = g_list_append(l, str);
+	}
+
+	return l;
+}
+
+void
+gnomecardFreeColValues(GList *col)
+{
+    g_list_foreach(col, (GFunc)g_free, NULL);
+    g_list_free(col);
+}
+
+#if 0
+/* OLD CODE - ignore */
 	/* for now we just display either cardname or real name and email */
 	cardname = crd->fname.str;
 	name = gnomecard_join_name(crd->name.prefix, crd->name.given, 
@@ -67,20 +114,33 @@ gnomecard_destroy_list_row(gchar **text)
     MY_FREE(text[3]);
 }
 
+#endif
 
 void
 gnomecard_update_list(Card *crd)
 {
-    gchar  *text[4];
     gint   row;
+    gint   col;
+    GList  *rowtxt, *l, *cols;
 
+    cols = gtk_object_get_data(GTK_OBJECT(gnomecard_list), "ColumnHeaders");
+    if (!cols) {
+	g_message("gnomecard_add_card_to_list: col hdrs not defined");
+	return;
+    }
     row = gtk_clist_find_row_from_data( gnomecard_list, crd);
     
-    gnomecard_create_list_row(crd, text);
-    gtk_clist_remove(gnomecard_list, row);
-    gtk_clist_insert(gnomecard_list, row, text);
+    if (row < 0) {
+	g_message("gnomecard_update_list: row < 0");
+	return;
+    }
+
+    rowtxt = gnomecardCreateColValues(crd, cols);
+    for (col=0, l=rowtxt; !l; l=l->next)
+	gtk_clist_set_text(gnomecard_list, row, col, l->data);
+
     gtk_clist_set_row_data(gnomecard_list, row, crd);
-    gnomecard_destroy_list_row(text);
+    gnomecardFreeColValues(rowtxt);
 }
 
 
@@ -96,10 +156,16 @@ gnomecard_rebuild_list(Card *curcard)
     for (c = gnomecard_crds; c; c = c->next)
 	gnomecard_add_card_to_list((Card *) c->data);
     gtk_clist_thaw(gnomecard_list);
-    if (curcard)
-	gnomecard_scroll_list(curcard);
-    else
+    if (curcard) {
+	GList *l;
+	l = g_list_find(gnomecard_crds, curcard);
+	if (l)
+	    gnomecard_scroll_list(l);
+	else 
+	    gnomecard_scroll_list(gnomecard_crds);
+    } else {
 	gnomecard_scroll_list(gnomecard_crds);
+    }
 }
 
 void
@@ -186,16 +252,35 @@ gnomecard_list_remove_card(Card *crd)
 void
 gnomecard_add_card_to_list(Card *crd)
 {
-	gchar  *text[4];
 	gint   row;
+	gint   col;
+	gint   ncols;
+        gchar  **tmp;
+	GList  *rowtxt, *l, *cols;
 
-	gnomecard_create_list_row(crd, text);
-	g_message("gnomcard_add_card_to_list - adding name %s to list",text[0]);
-	row = gtk_clist_append(gnomecard_list, text); 
-/*	crd->prop.user_data = GINT_TO_POINTER(row); */
+	cols = gtk_object_get_data(GTK_OBJECT(gnomecard_list), "ColumnHeaders");
+	if (!cols) {
+	    g_message("gnomecard_add_card_to_list: col hdrs not defined");
+	    return;
+	}
+
+	ncols = g_list_length(cols);
+	tmp = (gchar **) g_new0(gchar *, ncols+1);
+	for (col=0; col<ncols; col++)
+	    tmp[col] = "";
+	tmp[ncols] = NULL;
+	row = gtk_clist_append(gnomecard_list, tmp);
+
+	rowtxt = gnomecardCreateColValues(crd, cols);
+	for (col=0, l=rowtxt; !l; l=l->next) {
+	    g_message("gnomecard_add_card_to_list - col %d data is %s",
+		      col, (gchar *) l->data);
+	    gtk_clist_set_text(gnomecard_list, row, col, l->data);
+	}
+	    
 	gtk_clist_set_row_data(gnomecard_list, row, crd);
+	gnomecardFreeColValues(rowtxt);
 
-	gnomecard_destroy_list_row(text);
 }
 
 void

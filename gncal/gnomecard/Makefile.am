@@ -15,6 +15,8 @@ gnomecard_SOURCES =	\
 	addresslist.h   \
 	card.c		\
 	card.h		\
+	columnhdrs.c    \
+	columnhdrs.h    \
 	cardtypes.h	\
 	canvas.c	\
 	canvas.h	\

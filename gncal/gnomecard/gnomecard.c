@@ -18,6 +18,8 @@
 #include "sort.h"
 #include "list.h"
 
+#include "columnhdrs.h" /* only used because I'm hardcoding col hdrs 4 now */
+
 #define NAME_COL_WIDTH 100
 #define ORG_COL_WIDTH 100
 #define PHONE_COL_WIDTH 100
@@ -673,6 +675,10 @@ void gnomecard_init(void)
 	char *titles[] = { "Name", "Organization", "Phone #", "Email"};
 	GtkWidget *canvas, *align, *hbox, *hbox1, *hbox2;
 	GtkWidget *scrollwin;
+	GList *cols;
+	ColumnType hdrs[] = {COLTYPE_CARDNAME, COLTYPE_EMAIL, COLTYPE_ORG, 
+			     COLTYPE_END};
+
 	/*, *omenu, *menu, *item;
 	int i;*/
 
@@ -694,7 +700,17 @@ void gnomecard_init(void)
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
 	scrollwin = gtk_scrolled_window_new(NULL, NULL);
-	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles));
+/*	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(4, titles)); */
+	gnomecard_list = GTK_CLIST(gtk_clist_new(4);
+
+	/* Hard coding column types for now */
+	cols = buildColumnHeaders(hdrs);
+	gtk_object_set_data(GTK_OBJECT(gnomecard_list), "ColumnHeaders",
+			    cols);
+
+WORK HERE ON ADDING CODE TO BUILD COLUMN HEADHINGS FROM cols 
+
+
 	gtk_box_pack_start(GTK_BOX(hbox), scrollwin, TRUE, TRUE, 0);
 	gtk_container_add(GTK_CONTAINER(scrollwin), GTK_WIDGET(gnomecard_list));
 /* 	gtk_widget_realize(GTK_WIDGET(gnomecard_list)); */

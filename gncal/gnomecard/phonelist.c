@@ -115,7 +115,7 @@ copyPhoneList(CardList src, CardList *dest)
 
 /* try to find specific phone type in a list of phone numbers */
 /* returns ptr to list item if found, otherwise return NULL   */
-static GList *
+GList *
 findmatchPhoneType(GList *l, gint type)
 {
     GList *k;
