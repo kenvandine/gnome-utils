@@ -72,6 +72,7 @@ const FindOptionTemplate templates[] = {
 	{ FIND_OPTION_BOOL, "\\( -nouser -o -nogroup \\)", N_("Invalid user or group") },
 	{ FIND_OPTION_TIME, "-mtime '%s'", N_("Last time modified") },
 	{ FIND_OPTION_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty") },
+	{ FIND_OPTION_TEXT, "-regex '%s'", N_("Matches regular expression") },
 	{ FIND_OPTION_END, NULL,NULL}
 };
 
@@ -169,6 +170,8 @@ make_find_cmd (const char *start_dir)
 	GString *cmdbuf;
 	GList *list;
 	gchar *escape_dir = NULL;
+	gchar *regex = NULL;
+
 	
 	if (criteria_find==NULL) return NULL;
 
@@ -190,12 +193,16 @@ make_find_cmd (const char *start_dir)
 						  templates[opt->templ].option);
 				break;
 			case FIND_OPTION_TEXT:
-				s = quote_quote_string(opt->data.text);
-				g_string_append_printf(cmdbuf,
+				if (!strcmp(templates[opt->templ].option,"-regex '%s'"))
+					regex=quote_quote_string(opt->data.text);
+				else {
+					s = quote_quote_string(opt->data.text);
+					g_string_append_printf(cmdbuf,
 						  templates[opt->templ].option,
 						  s);
-				g_free(s);
-				g_string_append_c(cmdbuf, ' ');
+					g_free(s);
+					g_string_append_c(cmdbuf, ' ');
+				}
 				break;
 			case FIND_OPTION_NUMBER:
 				g_string_append_printf(cmdbuf,
@@ -217,6 +224,10 @@ make_find_cmd (const char *start_dir)
 		}
 	}
 	g_string_append (cmdbuf, "-print ");
+
+	if(regex!=NULL)
+		g_string_append_printf (cmdbuf, " |egrep '%s'",regex);
+
 
 	g_free(escape_dir);
 
