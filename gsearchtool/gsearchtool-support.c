@@ -904,11 +904,14 @@ open_file_with_nautilus (const gchar *filename)
 gboolean
 open_file_with_application (const gchar *filename)
 {
-	const char *mimeType = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);	
-	GnomeVFSMimeApplication *mimeApp = gnome_vfs_mime_get_default_application (mimeType);
+	GnomeVFSMimeApplication *application;
+	const char *mime;
+	
+	mime = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);
+	application = gnome_vfs_mime_get_default_application (mime);
 		
 	if (!g_file_test (filename, G_FILE_TEST_IS_DIR)) {
-		if (mimeApp) {
+		if (application) {
 			const char *desktop_file;
 			GnomeDesktopItem *ditem;
 		 	GdkScreen *screen;
@@ -917,13 +920,13 @@ open_file_with_application (const gchar *filename)
 			gboolean result;
 			char *uri;
 
-			desktop_file = gnome_vfs_mime_application_get_desktop_file_path (mimeApp);
+			desktop_file = gnome_vfs_mime_application_get_desktop_file_path (application);
 				 
 			uri = gnome_vfs_get_uri_from_local_path (filename);
 			uris = g_list_append (uris, uri);
 			
 			if (!g_file_test (desktop_file, G_FILE_TEST_EXISTS)) {
-				result = (gnome_vfs_mime_application_launch (mimeApp, uris) == GNOME_VFS_OK);
+				result = (gnome_vfs_mime_application_launch (application, uris) == GNOME_VFS_OK);
 			}
 			else {
 				result = TRUE;
@@ -943,6 +946,7 @@ open_file_with_application (const gchar *filename)
 				}
 				gnome_desktop_item_unref (ditem);
 			}
+			gnome_vfs_mime_application_free (application);
 			g_list_free (uris);
 			g_free (uri);
 
