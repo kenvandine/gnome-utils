@@ -20,25 +20,10 @@
 #ifndef __LOG_DESC_DB_H__
 #define __LOG_DESC_DB_H__
 
-typedef struct
-{
-  char *regexp;
-  GList *matching;
-} ProcessDB;
-
-typedef struct
-{
-  char *text;
-  char tag[50];
-} DescriptionEntry;
-
 int read_regexp_db (char *filename, GList **db);
 int find_tag_in_db (LogLine *line, GList *db);
 int read_descript_db (char *filename, GList **db);
-
-static void free_database (GList **db);
-static void print_db (GList *db);
-
+int match_line_in_db (LogLine *line, GList *db);
 
 #endif /* __LOG_DESC_DB_H__ */
 

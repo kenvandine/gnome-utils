@@ -20,7 +20,12 @@
 
 #include <config.h>
 #include <gconf/gconf-client.h>
-#include <gnome.h>
+#include <libgnomevfs/gnome-vfs.h>
+#include <libgnomeui/gnome-ui-init.h>
+#include <libgnomeui/gnome-client.h>
+#include <gtk/gtk.h>
+#include <popt.h>
+#include <glib/gi18n.h>
 #include "logview.h"
 #include "log_repaint.h"
 #include "logrtns.h"
@@ -31,8 +36,6 @@
 #include "desc_db.h"
 #include "misc.h"
 #include "logview-findbar.h"
-#include <popt.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include "userprefs.h"
 #include "configdata.h"
 
@@ -42,7 +45,7 @@ static gchar *program_name = NULL;
 static GConfClient *client = NULL;
 static UserPrefsStruct *user_prefs;
 
-#define APP_NAME                 _("System Log Viewer")
+#define APP_NAME _("System Log Viewer")
 
 /*
  *    -------------------
@@ -396,7 +399,7 @@ CreateMainWin (LogviewWindow *window)
    if (!gtk_ui_manager_add_ui_from_string (window->ui_manager, ui_description, -1, &error)) {
 	   g_message ("Building menus failed: %s", error->message);
 	   g_error_free (error);
-	   exit (EXIT_FAILURE);
+	   exit (1);
    }
    
    menubar = gtk_ui_manager_get_widget (window->ui_manager, "/LogviewMenu");

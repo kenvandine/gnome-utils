@@ -23,7 +23,12 @@
 #include "logview.h"
 #include "logrtns.h"
 #include "monitor.h"
-#include <libgnomevfs/gnome-vfs.h>
+#include <libgnomevfs/gnome-vfs-ops.h>
+
+static void mon_format_line (char *buffer, int bufsize, LogLine *line);
+static gboolean mon_check_logs (gpointer data);
+
+#define MONITORED_LINES 15
 
 void
 monitor_stop (LogviewWindow *window)
@@ -177,7 +182,7 @@ mon_update_display (LogviewWindow *window)
    DESCRIPTION:	format the output for a log line.
    ---------------------------------------------------------------------- */
 
-void
+static void
 mon_format_line (char *buffer, int bufsize, LogLine *line)
 {
     if (line == NULL)
@@ -203,7 +208,8 @@ mon_format_line (char *buffer, int bufsize, LogLine *line)
 mon_check_logs (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri, 
 		const gchar *info_uri, GnomeVFSMonitorEventType event_type, 
 		gpointer data)*/
-gboolean mon_check_logs (gpointer data)
+static gboolean
+mon_check_logs (gpointer data)
 {
 	LogviewWindow *window = data;
 

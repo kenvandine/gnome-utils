@@ -19,16 +19,14 @@
 
     ---------------------------------------------------------------------- */
 
-#include <config.h>
 #ifdef __CYGWIN__
 #define timezonevar
 #endif
-#include <gnome.h>
-#include <locale.h>
-#include <errno.h>
+#include <gtk/gtk.h>
+#include <glib/gi18n.h>
+#include <string.h>
 #include "logview.h"
 #include "logrtns.h"
-#include <libgnomevfs/gnome-vfs.h>
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 
 /*
@@ -37,8 +35,8 @@
  * -------------------
  */
 
-int match_line_in_db (LogLine *line, GList *db);
-void UpdateLastPage (Log *log);
+static int isSameDay (time_t day1, time_t day2);
+static void ReadLogStats (Log * log, gchar **buffer_lines);
 
 extern GList *regexp_db;
 extern GList *actions_db;
@@ -166,7 +164,7 @@ file_is_zipped (char *filename)
 {
 	char *mime_type;
 
-	mime_type = gnome_vfs_get_file_mime_type (filename, NULL, FALSE);
+	mime_type = gnome_vfs_get_mime_type (filename);
 
 	if (strcmp (mime_type, "application/x-gzip")==0 ||
 	    strcmp (mime_type, "application/x-zip")==0 ||
@@ -175,7 +173,7 @@ file_is_zipped (char *filename)
 	else
 		return FALSE;
 }
-	   	
+
 /* ----------------------------------------------------------------------
    NAME:          OpenLogFile
    DESCRIPTION:   Open a log file and read several pages.
@@ -511,17 +509,6 @@ ParseLine (char *buff, LogLine * line)
       line->message [MAX_WIDTH-1] = '\0';
    }
 
-   /* Search current data base for string and attach descritpion */
-   /* -------------------------
-   if (regexp_db == NULL)
-     return;
-   if (match_line_in_db (line, regexp_db))
-     {
-       sprintf (scratch, _("Expression /%s/ matched."),
-		 line->description->regexp);
-       line->description->description = g_strdup(scratch);
-     }
-     ---------------------------- */
 }
 
 /* ----------------------------------------------------------------------
@@ -534,7 +521,7 @@ ParseLine (char *buff, LogLine * line)
    buffer_lines must NOT be freed.
    ---------------------------------------------------------------------- */
 
-void
+static void
 ReadLogStats (Log *log, gchar **buffer_lines)
 {
    gchar *buffer;
@@ -684,7 +671,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    DESCRIPTION:   Determine if the given times are the same.
    ---------------------------------------------------------------------- */
 
-int
+static int
 isSameDay (time_t day1, time_t day2)
 {
    struct tm d1, d2, *foo;

@@ -29,11 +29,6 @@
 #define MAX_HOSTNAME_WIDTH       257	/* Need authoritative answer on this value. */
 #define MAX_PROC_WIDTH           60
 
-#define LOG_CANVAS_H             400
-#define LOG_CANVAS_W             600
-
-#define APP_NAME                 _("System Log Viewer")
-
 /* the following is a simple hashing function that will convert a
  * given date into an integer value that can be used as a key for
  * the date_headers hash table */
@@ -123,7 +118,6 @@ Log;
  *    | Function Prototypes |
  *    `---------------------'
  */
-
 
 #define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())
 #define LOGVIEW_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))

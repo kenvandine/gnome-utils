@@ -28,6 +28,21 @@
 #define MAX_NUM_MATCHES     10
 #define DELIM               ":"
 
+typedef struct
+{
+  char *regexp;
+  GList *matching;
+} ProcessDB;
+
+typedef struct
+{
+  char *text;
+  char tag[50];
+} DescriptionEntry;
+
+static void free_database (GList **db);
+static void print_db (GList *db);
+
 /* ----------------------------------------------------------------------
    NAME:        read_regexp_db
    DESCRIPTION: Reads the database with regular expressions to match.

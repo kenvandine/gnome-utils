@@ -44,6 +44,9 @@ enum {
    MESSAGE
 };
 
+static void DrawLogLines (LogviewWindow *window, Log *current_log);
+static void UpdateStatusArea (LogviewWindow *window);
+
 /**
  * Recursively called until the row specified by orig is found.
  *
@@ -221,7 +224,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
         window->curlog->current_line_no = row;
 
 	if (window->zoom_visible)
-		log_redrawdetail (window);
+		repaint_zoom (window);
     }
 
 }
@@ -242,7 +245,8 @@ log_repaint (LogviewWindow *window)
    tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
    gtk_tree_store_clear (GTK_TREE_STORE (tree_model));
 
-   log_redrawdetail (window); 
+   if (window->zoom_visible)
+	   repaint_zoom (window);
    UpdateStatusArea (window);	   
 
    /* Check that there is at least one log */
@@ -433,16 +437,4 @@ DrawLogLines (LogviewWindow *window, Log *current_log)
 
    g_free (utf8);
    
-}
-
-/* ----------------------------------------------------------------------
-   NAME:        log_redrawdetail
-   DESCRIPTION: Redraw area were the detailed information is drawn.
-   ---------------------------------------------------------------------- */
-
-void
-log_redrawdetail (LogviewWindow *window)
-{
-  if (window->zoom_visible)
-    repaint_zoom (window);
 }

@@ -22,7 +22,6 @@
 
 void create_zoom_view (LogviewWindow *window);
 void close_zoom_view (LogviewWindow *window);
-void quit_zoom_view (GtkWidget *widget, gpointer data);
 int repaint_zoom (LogviewWindow *window);
 
 #endif /* __LOG_ZOOM_H__ */

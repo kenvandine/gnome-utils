@@ -23,6 +23,7 @@
 #include "logview.h"
 #include "zoom.h"
 #include "misc.h"
+#include "desc_db.h"
 
 /*
  *  --------------------------
@@ -33,7 +34,7 @@
 extern char *month[12];
 extern GList *regexp_db, *descript_db;
 
-int match_line_in_db (LogLine *line, GList *db);
+static void quit_zoom_view (GtkWidget *widget, gpointer data);
 
 void
 zoom_close_button (GtkWidget *zoom_dialog, int arg, gpointer data)

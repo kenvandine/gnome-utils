@@ -24,7 +24,9 @@
 #include "info.h"
 #include "misc.h"
 
-void RepaintLogInfo (LogviewWindow *window);
+static void RepaintLogInfo (LogviewWindow *window);
+static void QuitLogInfo (GtkWidget *widget, gpointer data);
+static void CloseLogInfo (GtkWidget *widget, int arg, gpointer data);
 
 /* ----------------------------------------------------------------------
    NAME:          LogInfo
@@ -90,7 +92,7 @@ LogInfo (GtkAction *action, GtkWidget *callback_data)
    DESCRIPTION:   Repaint the log info window.
    ---------------------------------------------------------------------- */
 
-void
+static void
 RepaintLogInfo (LogviewWindow *window)
 {
    char *utf8;
@@ -142,7 +144,7 @@ RepaintLogInfo (LogviewWindow *window)
    DESCRIPTION:   Callback called when the log info window is closed.
    ---------------------------------------------------------------------- */
 
-void
+static void
 CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
 {
    LogviewWindow *window = data;
@@ -151,7 +153,8 @@ CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
    window->loginfovisible = FALSE;
 }
 
-void QuitLogInfo (GtkWidget *widget, gpointer data)
+static void
+QuitLogInfo (GtkWidget *widget, gpointer data)
 {
    LogviewWindow *window = data;
    gtk_widget_destroy (GTK_WIDGET (window->info_dialog));
