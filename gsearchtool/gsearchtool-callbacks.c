@@ -373,8 +373,34 @@ open_file_cb (GtkWidget 	*widget,
 				
 			file = g_build_filename (utf8_path, utf8_name, NULL);
 			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
+			
+			if (!g_file_test (locale_file, G_FILE_TEST_EXISTS)) {
+		
+				GtkWidget      *dialog;
+				gchar          *primary;
+				gchar          *secondary;
+			
+				primary = g_strdup_printf (_("Could not open document \"%s\"."), 
+			                           g_path_get_basename (utf8_name));
+					
+				secondary = g_strdup  (_("The document does not exist."));
 
-			if (open_file_with_application (locale_file) == FALSE) {
+				dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+			    	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+								   GTK_MESSAGE_ERROR,
+								   GTK_BUTTONS_OK,
+								   primary,
+								   secondary,
+								   NULL);
+			
+				gtk_dialog_run (GTK_DIALOG (dialog));
+		
+				gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (interface.selection), &iter);
+				gtk_widget_destroy (GTK_WIDGET(dialog));
+				g_free (primary);
+				g_free (secondary);
+			}
+			else if (open_file_with_application (locale_file) == FALSE) {
 				
 				if (launch_file (locale_file) == FALSE) {
 					
@@ -928,7 +954,33 @@ file_event_after_cb  (GtkWidget 	*widget,
 			file = g_build_filename (utf8_path, utf8_name, NULL);
 			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
 		
-			if (open_file_with_application (locale_file) == FALSE) {
+			if (!g_file_test (locale_file, G_FILE_TEST_EXISTS)) {
+		
+				GtkWidget      *dialog;
+				gchar          *primary;
+				gchar          *secondary;
+			
+				primary = g_strdup_printf (_("Could not open document \"%s\"."), 
+			                           g_path_get_basename (utf8_name));
+					
+				secondary = g_strdup  (_("The document does not exist."));
+
+				dialog = gsearch_alert_dialog_new (GTK_WINDOW (interface.main_window),
+			    	                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+								   GTK_MESSAGE_ERROR,
+								   GTK_BUTTONS_OK,
+								   primary,
+								   secondary,
+								   NULL);
+			
+				gtk_dialog_run (GTK_DIALOG (dialog));
+		
+				gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (interface.selection), &iter);
+				gtk_widget_destroy (GTK_WIDGET(dialog));
+				g_free (primary);
+				g_free (secondary);
+			}
+			else if (open_file_with_application (locale_file) == FALSE) {
 				
 				if (launch_file (locale_file) == FALSE) {
 				
