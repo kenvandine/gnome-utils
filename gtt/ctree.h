@@ -33,7 +33,17 @@ void ctree_setup(ProjTreeWindow *ptw);
 void ctree_destroy(ProjTreeWindow *ptw);
 
 /* The ctree_insert_before() routine inserts the new project p
- *   before the project "before me" 
+ *   before the project "before me".
+ *
+ * The ctree_update_column_visibility() routine sets/changes
+ *    which columns will be visible in the ctree window.  Note
+ *    that it does *not* redraw the data in the columns: use
+ *    ctree_refresh() for that.
+ *
+ * The ctree_refresh() routine redraws the entire ctree window.
+ *    It will update the column visibility according to the current
+ *    defaults, then grab all data out of the top project list,
+ *    and then redraw everything.
  */
 void ctree_add(ProjTreeWindow *, GttProject *p, GtkCTreeNode *parent);
 void ctree_insert_before(ProjTreeWindow *, GttProject *p, GttProject *insert_before_me);
@@ -48,6 +58,8 @@ void ctree_select(ProjTreeWindow *, GttProject *p);
 
 void ctree_set_col_width (ProjTreeWindow *ptw, int col, int width);
 int  ctree_get_col_width (ProjTreeWindow *ptw, int col);
+
+void ctree_refresh (ProjTreeWindow *ptw);
 void ctree_update_column_visibility (ProjTreeWindow *ptw);
 void ctree_titles_show (ProjTreeWindow *ptw);
 void ctree_titles_hide (ProjTreeWindow *ptw);

@@ -844,6 +844,67 @@ ctree_col_values (ProjTreeNode *ptn, gboolean expand)
 }
 
 /* ============================================================== */
+/* redraw utility, recursively walks visibile project tree */
+
+static void
+refresh_list (ProjTreeWindow *ptw, GList *prjlist)
+{
+	GList *node;
+	GtkCTree *tree_w = ptw->ctree;
+
+	/* now, draw each project */
+	for (node = prjlist; node; node = node->next) 
+	{
+		int i;
+		gboolean expand;
+		ProjTreeNode *ptn;
+		GttProject *prj = node->data;
+
+		ptn = gtt_project_get_private_data (prj);
+		expand = GTK_CTREE_ROW(ptn->ctnode)->expanded;
+		ctree_col_values (ptn, expand);
+
+		for (i=0; i<ptw->ncols; i++)
+		{
+			gtk_ctree_node_set_text(tree_w, ptn->ctnode, 
+				i, ptn->col_values[i]);
+		}
+
+		/* should we show sub-projects? recurse */
+		if (expand)
+		{
+			prjlist = gtt_project_get_children (prj);
+			refresh_list (ptw, prjlist);
+		}
+	}
+}
+
+/* ============================================================== */
+/* redraw all */
+
+void
+ctree_refresh (ProjTreeWindow *ptw)
+{
+	GtkCTree *tree_w;
+	GList *prjlist;
+
+	if (!ptw) return;
+	tree_w = ptw->ctree;
+
+	/* freeze, in prep for a massive update */
+	gtk_clist_freeze(GTK_CLIST(tree_w));
+
+	/* make sure the right set of columns are visibile */
+	ctree_update_column_visibility (ptw);
+
+	/* now, draw each project */
+	prjlist = gtt_get_project_list();
+	refresh_list (ptw, prjlist);
+
+	gtk_clist_thaw(GTK_CLIST(tree_w));
+}
+
+/* ============================================================== */
 /* redraw handler */
 
 static void
@@ -972,10 +1033,12 @@ ctree_new(void)
 void
 ctree_setup (ProjTreeWindow *ptw)
 {
-	GtkCTree *tree_w = ptw->ctree;
+	GtkCTree *tree_w;
 	GList *node, *prjlist;
 	GttProject *running_project = cur_proj;
 
+	if (!ptw) return;
+	tree_w = ptw->ctree;
 	cur_proj_set (NULL);
 
 	/* first, add all projects to the ctree */

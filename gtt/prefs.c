@@ -183,7 +183,7 @@ prefs_set(GnomePropertyBox * pb, gint page, PrefsDialog *odlg)
 
 		if (change)
 		{
-			ctree_update_column_visibility (global_ptw);
+			ctree_refresh (global_ptw);
 		}
 	
 	}
