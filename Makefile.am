@@ -6,6 +6,12 @@ if GUILE
 guile_DIRS = #cromagnon find-file notepad
 endif
 
+##
+## msf@redhat.com - take gtop out temporarily since it won't build w/o
+##                  needed properties.h file
+##
+PROGRAMS_GTOP=
+
 SUBDIRS = po intl macros \
 	@PROGRAMS_GENIUS@ gcalc ghex gncal gedit\
 	@PROGRAMS_GTOP@ gtt $(guile_DIRS) $(objc_DIRS)
