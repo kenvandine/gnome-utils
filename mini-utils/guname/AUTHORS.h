@@ -10,7 +10,7 @@
 "Jaka Mocnik",
 "Jens Christian Restemeier",
 "John Ellis",
-"Jonathan Blanford",
+"Jonathan Blandford",
 "Marc Ewing",
 "Marius Vollmer",
 "Michael Fulbright",
