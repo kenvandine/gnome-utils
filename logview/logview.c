@@ -866,7 +866,7 @@ void SetDefaultUserPrefs(UserPrefsStruct *prefs)
 	gchar *logfile = NULL;
 	struct stat filestat;
 	
-	logfile = gconf_client_get_string (client, "/apps/logview/logfile", NULL);
+	logfile = gconf_client_get_string (client, "/apps/gnome-system-log/logfile", NULL);
 	if (logfile != NULL && strcmp (logfile, "")) {
 		prefs->logfile = g_strdup (logfile);
 		g_free (logfile);
