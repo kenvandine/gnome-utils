@@ -122,8 +122,6 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 				ptn = gtk_ctree_node_get_row_data(ctree, rownode);
 				if ((ptn->prj == cur_proj) && timer_is_running())
 				{
-					gtt_project_timer_update (ptn->prj);
-					ctree_update_label (ptn->ptw, ptn->prj);
 					gtk_ctree_unselect (ctree, rownode);
 					cur_proj_set (NULL);
 				}
@@ -131,9 +129,9 @@ widget_key_event(GtkCTree *ctree, GdkEvent *event, gpointer data)
 				{
 					gtk_ctree_select (ctree, rownode);
 					cur_proj_set (ptn->prj);
-					gtt_project_timer_update (ptn->prj);
-					ctree_update_label (ptn->ptw, ptn->prj);
 				}
+				gtt_project_timer_update (ptn->prj);
+				ctree_update_label (ptn->ptw, ptn->prj);
 			}
 			return TRUE;
 		case GDK_Up:
@@ -233,9 +231,9 @@ tree_unselect_row(GtkCTree *ctree, GtkCTreeNode* rownode, gint column)
 	ProjTreeNode *ptn;
 	ptn = gtk_ctree_node_get_row_data(ctree, rownode);
 	if (ptn->prj != cur_proj) return;
+	cur_proj_set(NULL);
 	gtt_project_timer_update (ptn->prj);
 	ctree_update_label (ptn->ptw, ptn->prj);
-	cur_proj_set(NULL);
 }
 
 static void 
@@ -824,7 +822,7 @@ ctree_update_column_visibility (ProjTreeWindow *ptw)
 		} else {						\
 			secs = gtt_project_total_secs_##SLOT(prj); 	\
 		}							\
-		if (0 < secs) { 					\
+		if (0 < secs || ((0 == secs) && (prj == cur_proj))) { 	\
 			print_hours_elapsed (ptn->SLOT##_timestr, 24,	\
 				secs, config_show_secs);		\
 		} else {						\
