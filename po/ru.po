@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-util\n"
-"POT-Creation-Date: 2000-05-30 14:39+0000\n"
-"PO-Revision-Date: 2000-05-30 14:43+00:00\n"
+"POT-Creation-Date: 2000-06-08 23:53+0000\n"
+"PO-Revision-Date: 2000-06-08 23:54+00:00\n"
 "Last-Translator: Sergey Panov <sipan@mit.edu>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -467,12 +467,12 @@ msgstr "Новый"
 msgid "Clear the search window"
 msgstr "Очистить окно поиска"
 
-#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:565
+#: gnome-find/gnome-find.c:100 gsearchtool/gsearchtool.c:610
 #: mini-utils/gw/gw.c:508
 msgid "Add"
 msgstr "Добавить"
 
-#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:491
+#: gnome-find/gnome-find.c:102 gsearchtool/gsearchtool.c:536
 #: logview/actions.c:127
 msgid "Remove"
 msgstr "Удалить"
@@ -583,35 +583,55 @@ msgstr "Поиск всегда запускается на другой странице"
 msgid "Search Results"
 msgstr "Результаты поиска"
 
-#: gsearchtool/gsearchtool.c:329
+#: gsearchtool/gsearchtool.c:329 gsearchtool/gsearchtool.c:360
 msgid "Start directory does not exist"
 msgstr "Начальный каталог не существует"
 
-#: gsearchtool/gsearchtool.c:483
+#: gsearchtool/gsearchtool.c:369
+msgid "Search command line"
+msgstr "Командная строка поиска"
+
+#: gsearchtool/gsearchtool.c:375
+msgid ""
+"This is the command line that can be used to execute this search from the "
+"console:\n"
+"(Note: to print one file per line rather then null separated,\n"
+"append \"| tr '\\000' '\\n'\" to the line below)"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:462
+msgid "Entry changed called for a non entry option!"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:528
 msgid "Enable"
 msgstr "Включить"
 
-#: gsearchtool/gsearchtool.c:543
+#: gsearchtool/gsearchtool.c:588
 msgid "Start in directory:"
 msgstr "Начать с каталога:"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:590
 msgid "Browse"
 msgstr "Просмотр"
 
-#: gsearchtool/gsearchtool.c:576 gsearchtool/gsearchtool.c:659
+#: gsearchtool/gsearchtool.c:621
+msgid "Show Command"
+msgstr "Показать команду"
+
+#: gsearchtool/gsearchtool.c:626 gsearchtool/gsearchtool.c:709
 msgid "Start"
 msgstr "Старт"
 
-#: gsearchtool/gsearchtool.c:577 gsearchtool/gsearchtool.c:660
+#: gsearchtool/gsearchtool.c:627 gsearchtool/gsearchtool.c:710
 msgid "Stop"
 msgstr "Стоп"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:660
 msgid "Nothing to locate"
 msgstr "Нечего искать"
 
-#: gsearchtool/gsearchtool.c:638
+#: gsearchtool/gsearchtool.c:688
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -621,31 +641,31 @@ msgstr ""
 "она будет сравниваться как подмножество полного пути и если вы введете\n"
 "строку с шаблонами, она будет сравниваться с полным путем."
 
-#: gsearchtool/gsearchtool.c:647
+#: gsearchtool/gsearchtool.c:697
 msgid "Locate file: "
 msgstr "Найти файл: "
 
-#: gsearchtool/gsearchtool.c:681
+#: gsearchtool/gsearchtool.c:731
 msgid "Full find (find)"
 msgstr "Полный поиск (find)"
 
-#: gsearchtool/gsearchtool.c:683
+#: gsearchtool/gsearchtool.c:733
 msgid "Quick find (locate)"
 msgstr "Быстрый поиск (locate)"
 
-#: gsearchtool/gsearchtool.c:704
+#: gsearchtool/gsearchtool.c:754
 msgid "The Gnome Search Tool"
 msgstr "Искатель Gnome"
 
-#: gsearchtool/gsearchtool.c:705
+#: gsearchtool/gsearchtool.c:755
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998, 2000 Фонд Свободного программного обеспечения"
 
-#: gsearchtool/gsearchtool.c:707
+#: gsearchtool/gsearchtool.c:757
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Оболочка для UNIX-команд find/grep/locate"
 
-#: gsearchtool/gsearchtool.c:765
+#: gsearchtool/gsearchtool.c:815
 msgid "Gnome Search Tool"
 msgstr "Искатель Gnome"
 
@@ -2434,31 +2454,31 @@ msgstr "Название"
 msgid "Tolerance :"
 msgstr "Терпимость:"
 
-#: mini-utils/gfontsel/gfontsel.c:157
+#: mini-utils/gfontsel/gfontsel.c:162
 msgid "Font Selector"
 msgstr "Переключатель шрифтов"
 
-#: mini-utils/gfontsel/gfontsel.c:185
+#: mini-utils/gfontsel/gfontsel.c:190
 msgid "Selection:"
 msgstr "Выделение:"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "Font to load"
 msgstr "Шрифт для загрузки"
 
-#: mini-utils/gfontsel/gfontsel.c:268
+#: mini-utils/gfontsel/gfontsel.c:273
 msgid "FONTSPEC"
 msgstr "ШРИФТ"
 
-#: mini-utils/gfontsel/gfontsel.c:269
+#: mini-utils/gfontsel/gfontsel.c:274
 msgid "Print selected font name on exit"
 msgstr "Напечатать название выделенного шрифта при выходе"
 
-#: mini-utils/gfontsel/gfontsel.c:270
+#: mini-utils/gfontsel/gfontsel.c:275
 msgid "Inhibit remembering selected font for next run"
 msgstr "Отключить запоминание выделенного шрифта для следующего запуска"
 
-#: mini-utils/gfontsel/gfontsel.c:271
+#: mini-utils/gfontsel/gfontsel.c:276
 msgid "Inhibit loading of last font"
 msgstr "Отключить загрузку последнего шрифта"
 
