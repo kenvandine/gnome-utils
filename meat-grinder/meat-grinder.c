@@ -207,17 +207,28 @@ whack_links_fe (gpointer key, gpointer value, gpointer user_data)
 	g_free (file);
 }
 
+static gint
+update_progress_bar (gpointer p)
+{
+        gtk_progress_bar_pulse (GTK_PROGRESS_BAR (progress_bar));
+
+        return TRUE;
+}
 static void
 setup_busy (GtkWidget *w, gboolean busy)
 {
 	GdkCursor *cursor;
+	gint timeout;
 
 	if (busy) {
 		/* Change cursor to busy */
+        	timeout = gtk_timeout_add (100, update_progress_bar, NULL);	
 		cursor = gdk_cursor_new (GDK_WATCH);
 		gdk_window_set_cursor (w->window, cursor);
 		gdk_cursor_unref (cursor);
 	} else {
+        	gtk_timeout_remove (timeout);
+        	gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progress_bar), 0.0);
 		gdk_window_set_cursor (w->window, NULL);
 	}
 
@@ -230,9 +241,9 @@ create_archive (const gchar *fname,
 		gboolean gui_errors)
 {
 	gboolean status = TRUE;
-	pid_t pid;
 	struct argv_adder argv_adder;
 	gchar *tmpfname = NULL;
+	gchar *command;
 
 	if (dir == NULL)
 		argv_adder.link_dir = make_temp_dir ();
@@ -266,30 +277,22 @@ create_archive (const gchar *fname,
 	argv_adder.argv[2] = g_strconcat(tarstr, filestr, gzipstr, NULL);	
 	argv_adder.argv[3] = NULL;
 
+	
 	/* FIXME: get error output, check for errors, etc... */
 
-	pid = fork ();
-	if (pid < 0) {
-		if (gui_errors) {
-			ERRDLG (_("Cannot start the archive (tar) program"));
-		} else {
-			fprintf (stderr,
-				 _("Cannot start the archive (tar) program"));
-		}
-		status = FALSE;
-	} else if (pid == 0) {
-		umask (022);
-		/* FIXME: handler errors */
-		chdir (argv_adder.link_dir);
-		execv (sh_prog, argv_adder.argv);
-		fprintf (stderr, _("Cannot run tar/gtar"));
-		cleanup_tmpstr ();
-		_exit (1);
-	}
+	command = g_strjoinv (" ", argv_adder.argv);
 
-	/* FIXME: Do some progress bar or what not rather then block */
-	if (pid > 0)
-		waitpid (pid, 0, 0);
+	if (!g_spawn_command_line_async (command, NULL)) {
+		status = FALSE;
+		if (gui_errors) {
+			gchar *tmp = NULL;
+			tmp = g_strdup_printf (_("Failed to create %s"), filestr);
+			ERRDLG (tmp);
+			g_free (tmp);
+		}
+		else
+			fprintf (stderr, _("Failed to create %s"), filestr);
+	}
 
 	/* FIXME: handle errors */
 	g_hash_table_foreach (file_ht, whack_links_fe, argv_adder.link_dir);
@@ -301,6 +304,7 @@ create_archive (const gchar *fname,
 	}
 
 	g_free (argv_adder.argv);
+	g_free (command);
 	cleanup_tmpstr ();
 	return status;
 }
@@ -1035,6 +1039,12 @@ init_gui (void)
 	gnome_app_set_contents (GNOME_APP (app), vbox);
 
         app_bar = gnome_appbar_new (TRUE, TRUE, GNOME_PREFERENCES_NEVER);
+        progress_bar = GTK_WIDGET (gnome_appbar_get_progress (
+                                GNOME_APPBAR (app_bar)));
+        g_object_set (G_OBJECT (progress_bar),
+                      "pulse_step", 0.1,
+                      NULL);
+
         gtk_box_pack_start (GTK_BOX (vbox), app_bar, FALSE, FALSE, 0);
 	gtk_widget_show_all (vbox);
 	gtk_widget_show (app);
@@ -1189,3 +1199,4 @@ main (gint argc, gchar *argv [])
 	
 	return 0;
 }
+
