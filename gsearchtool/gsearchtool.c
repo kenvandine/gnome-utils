@@ -193,7 +193,8 @@ build_search_command (void)
 		file_is_named_escaped = escape_single_quotes (file_is_named_locale);
 		search_command.file_is_named_pattern = g_strdup(file_is_named_utf8);
 		
-		if ((locate != NULL) && (is_path_in_home_folder (look_in_folder_locale) != TRUE)) {
+		if ((locate != NULL) && (is_path_in_home_folder (look_in_folder_locale) != TRUE)
+		    && (is_path_in_mount_folder (look_in_folder_locale) != TRUE)) {
 			g_string_append_printf (command, "%s '%s*%s'", 
 						locate, 
 						look_in_folder_locale,

@@ -408,6 +408,12 @@ is_path_hidden (const gchar *path)
 }
 
 gboolean 
+is_path_in_mount_folder (const gchar *path)
+{
+	return (g_strstr_len (path, strlen ("/mnt/"), "/mnt/") != NULL);
+}
+
+gboolean 
 is_path_in_home_folder (const gchar *path)
 {
 	return (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL);
