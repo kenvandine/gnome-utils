@@ -102,10 +102,10 @@ cb_charbtn_click (GtkButton *button, gpointer user_data)
         utf [g_unichar_to_utf8 (wc, utf)] = 0;
     }
 
-    gtk_editable_get_position(GTK_EDITABLE(mainapp->entry));
+    current_pos = gtk_editable_get_position(GTK_EDITABLE(mainapp->entry));
     gtk_editable_insert_text (GTK_EDITABLE (mainapp->entry), text,
 			      strlen (text), &current_pos);
-    gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos + 1);
+    gtk_editable_set_position (GTK_EDITABLE (mainapp->entry), current_pos);
 }
 
 
