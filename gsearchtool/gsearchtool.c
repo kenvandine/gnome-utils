@@ -87,7 +87,7 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '*%s*'", N_("Na_me does not contain"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("Name matches regular e_xpression"), FALSE }, 
 	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_BOOL, "SHOW_HIDDEN_FILES", N_("Show hidden files and folders"), FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "SHOW_HIDDEN_FILES", N_("Show hidden and backup files"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "INCLUDE_OTHER_FILESYSTEMS", N_("Include other filesystems"), FALSE },
 	{ SEARCH_CONSTRAINT_END, NULL, NULL, FALSE}
