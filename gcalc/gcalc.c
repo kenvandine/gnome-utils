@@ -88,8 +88,13 @@ main(int argc, char *argv[])
 	gnome_app_set_contents(GNOME_APP(app), calc);
 
 	/* add calculator accel table to our window*/
+#ifdef GTK_HAVE_ACCEL_GROUP
 	gtk_window_add_accel_group(GTK_WINDOW(app),
 				   GNOME_CALCULATOR(calc)->accel);
+#else
+	gtk_window_add_accelerator_table (GTK_WINDOW (app),
+					  GNOME_CALCULATOR (calc)->accel);
+#endif
 
 	gtk_widget_show(app);
 
