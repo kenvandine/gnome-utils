@@ -1,3 +1,20 @@
+Sun May 14 12:45:10 2000  George Lebl <jirka@5z.com>
+
+	* gdictsrc/{gdict-defbox.h,main.c}: fix up some warnings
+
+2000-05-13 Ali Abdin <aliabdin@aucegypt.edu>
+
+	* gdictsrc/main.c,
+	  gdictsrc/gdict-app.c,
+	  gdictsrc/gdict-applet.c,
+	  gdictsrc/gdict-pref-dialog.c: Made it so that when you
+	  are offline. It will barf in much less places. If
+	  you try to run the app while online it will basically
+	  just quit since everything is unusable.
+
+	  If you try to run while in applet it will continue
+	  as before (and not spew out as much error messages)
+
 2000-05-13  Karl Eichwalder  <ke@suse.de>
 
 	* gcharmap/gcharmap.desktop (Comment): Add de; add sv to one Name.
