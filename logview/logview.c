@@ -207,7 +207,6 @@ save_session (GnomeClient *gclient, gint phase,
 static gboolean
 restore_session (void)
 {
-#ifdef FIXME
    Log *tl;
    gint i, logcnt = 0;
 
@@ -219,7 +218,6 @@ restore_session (void)
    log_repaint ();
    if (loginfovisible)
        RepaintLogInfo ();
-   set_scrollbar_size (1);
    numlogs = 0;
 
    next_opt = poptGetNextOpt (poptCon);
@@ -239,7 +237,6 @@ restore_session (void)
             g_free (f);
       }
    } while ((next_opt = poptGetNextOpt (poptCon)) != -1);
-#endif
 }
 
 static gint
