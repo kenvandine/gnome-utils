@@ -102,6 +102,7 @@ extern struct _InterfaceStruct {
 	GtkWidget		*add_button;
 	GtkWidget 		*additional_constraints;
 	GtkWidget		*constraint_menu;
+	GtkWidget		*constraint_menu_label;
 	GtkWidget 		*constraint;
 	GtkWidget		*results_label;
 	GtkWidget       	*results;

@@ -686,10 +686,14 @@ set_constraint_selected_state (gint 		constraint_id,
 			gtk_option_menu_set_history (GTK_OPTION_MENU(interface.constraint_menu), index);
 			interface.selected_constraint = (long)index;
 			gtk_widget_set_sensitive (interface.add_button, TRUE);
+			gtk_widget_set_sensitive (interface.constraint_menu, TRUE);
+			gtk_widget_set_sensitive (interface.constraint_menu_label, TRUE);
 			return;
 		}
 	}
 	gtk_widget_set_sensitive (interface.add_button, FALSE);
+	gtk_widget_set_sensitive (interface.constraint_menu, FALSE);
+	gtk_widget_set_sensitive (interface.constraint_menu_label, FALSE);
 }
 
 void
@@ -1585,7 +1589,6 @@ static GtkWidget *
 create_additional_constraint_section (void)
 {
 	GtkWidget *hbox;
-	GtkWidget *label;
 	gchar *desc;
 
 	interface.constraint = gtk_vbox_new (FALSE, 6);	
@@ -1594,13 +1597,13 @@ create_additional_constraint_section (void)
 	gtk_box_pack_end (GTK_BOX(interface.constraint), hbox, FALSE, FALSE, 0);
 
 	desc = g_strconcat (LEFT_LABEL_SPACING, _("A_vailable options:"), NULL);
-	label = gtk_label_new_with_mnemonic (desc);
+	interface.constraint_menu_label = gtk_label_new_with_mnemonic (desc);
 	g_free (desc);
 
-	gtk_box_pack_start (GTK_BOX(hbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu_label, FALSE, FALSE, 0);
 	
 	interface.constraint_menu = gtk_option_menu_new ();
-	gtk_label_set_mnemonic_widget (GTK_LABEL(label), GTK_WIDGET(interface.constraint_menu));
+	gtk_label_set_mnemonic_widget (GTK_LABEL(interface.constraint_menu_label), GTK_WIDGET(interface.constraint_menu));
 	gtk_option_menu_set_menu (GTK_OPTION_MENU(interface.constraint_menu), make_list_of_templates());
 	gtk_box_pack_start (GTK_BOX(hbox), interface.constraint_menu, TRUE, TRUE, 0);
 
