@@ -12,8 +12,7 @@ endif
 ##
 SUBDIRS = po intl macros \
 	@PROGRAMS_GENIUS@ gcalc ghex gncal gedit\
-	gtt $(guile_DIRS) $(objc_DIRS)
-#	@PROGRAMS_GTOP@ gtt $(guile_DIRS) $(objc_DIRS)
+	@PROGRAMS_GTOP@ gtt $(guile_DIRS) $(objc_DIRS)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
 ## `macros/' change
