@@ -9,23 +9,24 @@ Name: gnome-utils
 Version: %ver
 Release: %rel
 Copyright: LGPL
-Group: X11/Libraries
+Group: Appilcations/System
 Source: ftp://ftp.gnome.org/pub/GNOME/sources/gnome-utils-%{ver}.tar.gz
 BuildRoot: /var/tmp/gnome-utils-%{PACKAGE_VERSION}-root
 Obsoletes: gnome
-
 URL: http://www.gnome.org
 Requires: gnome-libs >= @VERSION@
 Docdir: %{prefix}/doc
 
 %description
-GNOME utility programs.
+GNOME is the GNU Network Object Model Environment. This powerful
+environment is both easy to use and easy to configure.
 
-GNOME is the GNU Network Object Model Environment.  That's a fancy
-name but really GNOME is a nice GUI desktop environment.  It makes
-using your computer easy, powerful, and easy to configure.
+This package will install some GNOME utilities, such as the
+calculator, search tool, and system information overview tool.
 
 %changelog
+* Wed Sep 08 1999 Elliot Lee <sopwith@redhat.com>
+- Updates from RHL package...
 
 * Wed Sep 23 1998 Michael Fulbright <msf@redhat.com>
 
@@ -39,16 +40,18 @@ using your computer easy, powerful, and easy to configure.
 %setup
 
 %build
+%ifarch alpha
+MYARCH_FLAGS=--host=alpha-redhat-linux
+%endif
 # Needed for snapshot releases.
 if [ ! -f configure ]; then
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%prefix
+  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%prefix $MYARCH_FLAGS
 else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix
+  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%prefix $MYARCH_FLAGS
 fi
 
 if [ "$SMP" != "" ]; then
-  (make "MAKE=make -k -j $SMP"; exit 0)
-  make
+  make MAKE="make -j$SMP"
 else
   make
 fi
@@ -57,6 +60,14 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 make prefix=$RPM_BUILD_ROOT%{prefix} install
+
+# New users will never get rid of this :)
+rm -f $RPM_BUILD_ROOT%{prefix}/share/gnome/apps/Utilities/gpenguin.desktop
+
+# gshutdown isn't what we want at this time
+#rm -f $RPM_BUILD_ROOT%{prefix}/bin/gshutdown
+#rm -f $RPM_BUILD_ROOT%{prefix}/share/gnome/apps/*/gshutdown.desktop
+#rm -rf $RPM_BUILD_ROOT%{prefix}/share/gnome/help/gshutdown
 
 %clean
 rm -rf $RPM_BUILD_ROOT

@@ -24,7 +24,7 @@ SUBDIRS = po intl macros idl \
 
 EXTRA_DIST = gnome-utils.spec.in
 
-dist-hook:
+dist-hook: gnome-utils.spec
 	cp gnome-utils.spec $(distdir)
 
 ## to automatically rebuild aclocal.m4 if any of the macros in
