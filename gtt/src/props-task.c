@@ -89,6 +89,7 @@ task_prop_set(GnomePropertyBox * pb, gint page, PropTaskDlg *dlg)
 
 		rate = (GttBillRate) GET_MENU (dlg->billrate, "billrate");
 		gtt_task_set_billrate (dlg->task, rate);
+		gtt_task_thaw (dlg->task);
 	}
 }
 

@@ -1129,6 +1129,7 @@ scrub_intervals (GttTask *tsk)
 
 	/* prevent recursion */
 	prj = tsk->parent;
+	g_return_val_if_fail (prj, FALSE);
 	save_freeze = prj->frozen;
 	prj->frozen = TRUE;
 
