@@ -1978,7 +1978,7 @@ static GnomeUIInfo help_menu[] = {
 };
 
 static GnomeUIInfo gsearch_menu[] = {
-	GNOMEUIINFO_SUBTREE (N_("_Search"), search_menu),
+	GNOMEUIINFO_SUBTREE (N_("Sear_ch"), search_menu),
 	GNOMEUIINFO_MENU_HELP_TREE(help_menu),
         GNOMEUIINFO_END
 };
