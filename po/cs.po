@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 10:11-0500\n"
-"PO-Revision-Date: 2005-03-05 13:31+0100\n"
+"POT-Creation-Date: 2005-03-31 06:01+0200\n"
+"PO-Revision-Date: 2005-03-31 10:55+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -370,6 +370,10 @@ msgstr "Název databáze"
 #: gdictsrc/gdict-pref-dialog.c:834
 msgid "Default Strategy"
 msgstr "Implicitní strategie"
+
+#: gdictsrc/gdict-speller.c:114
+msgid "Spellings"
+msgstr "Zápisy"
 
 #: gdictsrc/gdict-speller.c:234
 msgid "Spell-checking..."
@@ -769,15 +773,16 @@ msgstr "_Důkladné (ke standardnímu režimu se přidá kontrola špatných blo
 msgid "Volume _name:"
 msgstr "_Název svazku:"
 
-#: gfloppy/src/gfloppy2.glade.h:19
+#. This is the "format" verb (not the noun).
+#: gfloppy/src/gfloppy2.glade.h:20
 msgid "_Format"
 msgstr "_Formátovat"
 
-#: gfloppy/src/gfloppy2.glade.h:20
+#: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Quick (only creates the filesystem)"
 msgstr "_Rychlé (pouze vytvoří systém souborů)"
 
-#: gfloppy/src/gfloppy2.glade.h:21
+#: gfloppy/src/gfloppy2.glade.h:22
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standardní (k rychlému režimu se přidá formátování na nízké úrovni)"
 
@@ -1055,7 +1060,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "Soubor \"%s\" již existuje. Chcete jej nahradit?"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "_Nahradit"
 
@@ -1337,11 +1342,11 @@ msgstr ""
 "Tento klíč určuje, jestli nástroj hledání zakazuje použití příkazu locate "
 "při provádění jednoduchých hledání názvů souborů."
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "Nemohu otevřít dokument nápovědy."
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
@@ -1349,8 +1354,8 @@ msgstr[0] "Opravdu chcete otevřít %d dokument?"
 msgstr[1] "Opravdu chcete otevřít %d dokumenty?"
 msgstr[2] "Opravdu chcete otevřít %d dokumentů?"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -1358,21 +1363,30 @@ msgstr[0] "Toto otevře %d oddělené okno."
 msgstr[1] "Toto otevře %d oddělená okna."
 msgstr[2] "Toto otevře %d oddělených oken."
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Nemohu otevřít dokument \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "Nemohu otevřít adresář \"%s\"."
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr "Správce souborů Nautilus neběží."
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "Dokument neexistuje."
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Není nainstalován žádný prohlížeč schopný zobrazit tento dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
@@ -1380,80 +1394,71 @@ msgstr[0] "Opravdu chcete otevřít %d adresář?"
 msgstr[1] "Opravdu chcete otevřít %d adresáře?"
 msgstr[2] "Opravdu chcete otevřít %d adresářů?"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "Nemohu otevřít adresář \"%s\"."
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr "Správce souborů Nautilus neběží."
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Nemohu přesunout \"%s\" do koše."
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Chcete \"%s\" odstranit natrvalo?"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Koš není k dispozici. Nemohu přesunout \"%s\" do koše."
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Nemohu odstranit \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Přesun \"%s\" selhal: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Odstraňování \"%s\" selhalo: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "Uložit výsledky hledání jako..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "Nemohu uložit dokument."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "Nevybrali jste název dokumentu."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nemohu uložit dokument \"%s\" do \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokument \"%s\" již existuje. Chcete jej nahradit?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Pokud nahradíte existující soubor, jeho obsah bude přepsán."
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "Název dokumentu, který jste vybrali, je adresář."
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "Možná nemáte oprávnění zápisu do dokumentu."
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:69
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1467,23 +1472,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:520
 msgid "today at %-I:%M %p"
 msgstr "dnes v %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:522
 msgid "yesterday at %-I:%M %p"
 msgstr "včera v %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:524 gsearchtool/gsearchtool-support.c:526
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A %-d. %B %Y v %-H:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:710
 msgid "link (broken)"
 msgstr "odkaz (chybný)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:716
 #, c-format
 msgid "link to %s"
 msgstr "odkaz na %s"
