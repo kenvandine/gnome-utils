@@ -66,30 +66,31 @@ struct _FindOptionTemplate {
 	SearchConstraintType type;
 	gchar 	 *option;          /* the option string to pass to find or whatever */
 	gchar 	 *desc;            /* description */
+	gchar    *units;           /* units */
 	gboolean is_selected;     
 };
 	
 static FindOptionTemplate templates[] = {
-	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the _text"), FALSE },
-	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TIME_LESS, "-mtime -%d", N_("_Date modified less than (days)"), FALSE },
-	{ SEARCH_CONSTRAINT_TIME_MORE, "\\( -mtime +%d -o -mtime %d \\)", N_("Date modified more than (da_ys)"), FALSE },
-	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("S_ize at least (kilobytes)"), FALSE }, 
-	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Si_ze at most (kilobytes)"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), FALSE },	
-	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TEXT, "-user '%s'", N_("Owned by _user"), FALSE },
-	{ SEARCH_CONSTRAINT_TEXT, "-group '%s'", N_("Owned by _group"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "\\( -nouser -o -nogroup \\)", N_("Owner is unrecognized"), FALSE },
-	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '*%s*'", N_("Na_me does not contain"), FALSE },
-	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("Name matches regular e_xpression"), FALSE }, 
-	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
-	{ SEARCH_CONSTRAINT_BOOL, "SHOW_HIDDEN_FILES", N_("Show hidden and backup files"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "INCLUDE_OTHER_FILESYSTEMS", N_("Include other filesystems"), FALSE },
-	{ SEARCH_CONSTRAINT_END, NULL, NULL, FALSE}
+	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -c '%s' {} \\;", N_("Contains the _text"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_TIME_LESS, "-mtime -%d", N_("_Date modified less than"), N_("days"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME_MORE, "\\( -mtime +%d -o -mtime %d \\)", N_("Date modified more than"), N_("days"), FALSE },
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_NUMBER, "-size +%uc", N_("S_ize at least"), N_("kilobytes"), FALSE }, 
+	{ SEARCH_CONSTRAINT_NUMBER, "-size -%uc", N_("Si_ze at most"), N_("kilobytes"), FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), NULL, FALSE },	
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_TEXT, "-user '%s'", N_("Owned by _user"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-group '%s'", N_("Owned by _group"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "\\( -nouser -o -nogroup \\)", N_("Owner is unrecognized"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '*%s*'", N_("Na_me does not contain"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("Name matches regular e_xpression"), NULL, FALSE }, 
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_BOOL, "SHOW_HIDDEN_FILES", N_("Show hidden and backup files"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "INCLUDE_OTHER_FILESYSTEMS", N_("Include other filesystems"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_END, NULL, NULL, NULL, FALSE}
 }; 
 
 static GtkTargetEntry dnd_table[] = {
@@ -1440,6 +1441,7 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 	GtkWidget *hbox;
 	GtkWidget *label;
 	GtkWidget *entry;
+	GtkWidget *entry_hbox;
 	GtkWidget *button;
 	
 	hbox = gtk_hbox_new (FALSE, 12);
@@ -1464,6 +1466,8 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 			label = gtk_label_new_with_mnemonic (desc);
 			g_free (desc);
 		}
+		
+		/* add description label */
 		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 		
 		if (templates[opt->constraint_id].type == SEARCH_CONSTRAINT_TEXT) {
@@ -1504,8 +1508,17 @@ create_constraint_box (SearchConstraint *opt, gchar *value)
 				  G_CALLBACK (constraint_activate_cb),
 				  NULL);
 				  
-		/* add label and text field */
-		gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+		/* add text field */
+		entry_hbox = gtk_hbox_new (FALSE, 6);
+		gtk_box_pack_start(GTK_BOX(hbox), entry_hbox, TRUE, TRUE, 0);
+		gtk_box_pack_start(GTK_BOX(entry_hbox), entry, TRUE, TRUE, 0);
+		
+		/* add units label */
+		if (templates[opt->constraint_id].units != NULL)
+		{
+			label = gtk_label_new_with_mnemonic (_(templates[opt->constraint_id].units));
+			gtk_box_pack_start (GTK_BOX(entry_hbox), label, FALSE, FALSE, 0);
+		}
 		
 		break;
 	default:
