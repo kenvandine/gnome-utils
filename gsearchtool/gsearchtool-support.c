@@ -29,6 +29,7 @@
 #  include <config.h>
 #endif
 
+#include <glib/gi18n.h>
 #include <gdk/gdkx.h>
 #include <gnome.h>
 

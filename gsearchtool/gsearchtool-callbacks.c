@@ -31,6 +31,7 @@
 
 #define SILENT_WINDOW_OPEN_LIMIT 5
 
+#include <glib/gi18n.h>
 #include <gnome.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>

@@ -40,6 +40,7 @@
 #  define FNM_CASEFOLD 0
 #endif
 
+#include <glib/gi18n.h>
 #include <gnome.h>
 
 #include "gsearchtool.h"
