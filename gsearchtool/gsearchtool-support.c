@@ -33,6 +33,7 @@
 #include <gnome.h>
 
 #include <regex.h>
+#include <libgnome/gnome-desktop-item.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <libgnomevfs/gnome-vfs-ops.h> 
@@ -908,17 +909,51 @@ open_file_with_application (const gchar *filename)
 		
 	if (!g_file_test (filename, G_FILE_TEST_IS_DIR)) {
 		if (mimeApp) {
-			GnomeVFSResult result;
+			const char *mimeBinary = gnome_vfs_mime_application_get_binary_name (mimeApp);
+			GnomeDesktopItem *ditem;
+		 	GdkScreen *screen;
+		 	GError *error = NULL;
 			GList *uris = NULL;
+			gboolean result;
+			char *desktop_file;
+			char *desktop_path;
+			char *data_path;
 			char *uri;
 
+			data_path = gnome_program_locate_file (NULL, GNOME_FILE_DOMAIN_APP_DATADIR, "", FALSE, NULL);
+			desktop_file = g_strconcat (mimeBinary, ".desktop", NULL);
+			desktop_path = g_build_filename (data_path, "applications", desktop_file, NULL);
+				 
 			uri = gnome_vfs_get_uri_from_local_path (filename);
 			uris = g_list_append (uris, uri);
-			result = gnome_vfs_mime_application_launch (mimeApp, uris);
+			
+			if (!g_file_test (desktop_path, G_FILE_TEST_EXISTS)) {
+				result = (gnome_vfs_mime_application_launch (mimeApp, uris) == GNOME_VFS_OK);
+			}
+			else {
+				result = TRUE;
+				ditem = gnome_desktop_item_new_from_file (desktop_path, 0, &error);
+				if (error) {
+					result = FALSE;
+					g_error_free (error);
+				}
+				else {
+				 	screen = gtk_widget_get_screen (interface.main_window);
+					gnome_desktop_item_launch_on_screen (ditem, uris, 0, screen, -1, &error);
+					if (error) {
+						result = FALSE;			
+						g_error_free (error);
+					}
+				}
+				gnome_desktop_item_unref (ditem);
+			}
 			g_list_free (uris);
+			g_free (desktop_file);
+			g_free (desktop_path);
+			g_free (data_path);
 			g_free (uri);
 
-			return (result == GNOME_VFS_OK);
+			return result;
 		}
 	}
 	return FALSE;

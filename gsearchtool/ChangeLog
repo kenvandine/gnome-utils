@@ -1,3 +1,10 @@
+2004-12-06  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-support.c (open_file_with_application):
+	If a desktop file exists for the default application, 
+	launch it using gnome_desktop_item_launch_on_screen()
+	to use startup notification if available.
+	  
 2004-12-05  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool-support.c (open_file_with_nautilus):
