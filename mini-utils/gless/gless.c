@@ -49,6 +49,10 @@ struct _GnomeLessApp {
                        the window closes. */
 };
 
+enum {
+	TARGET_URI_LIST
+};
+
 /****************************
   Function prototypes
   ******************************/
@@ -72,6 +76,10 @@ static void save_as_cb(GtkWidget * w, gpointer data);
 static void exit_cb(GtkWidget * w, gpointer data);
 static void new_app_cb(GtkWidget * w, gpointer data);
 static void fixed_cb(GtkWidget * w, gpointer data);
+
+static void drop_file(GtkWidget *widget, GdkDragContext *context,
+                      gint x, gint y, GtkSelectionData *selectionData,
+                      guint info, guint time, GnomeLessApp *app );
 
 /***********************************
   Globals
@@ -308,11 +316,19 @@ static GnomeUIInfo main_menu[] = {
 	GNOMEUIINFO_END
 };
 
+static const GtkTargetEntry drop_types[] = {
+  { "text/uri-list", 0, TARGET_URI_LIST },
+};
+
 static void gless_new_app(const gchar * filename, const gchar * geometry,
                           gint fd)
 {
   GnomeLessApp * app;
   GtkWidget * app_box;
+
+  const gint num_drop_types = sizeof( drop_types ) / 
+    sizeof( drop_types [0] );
+
 
   gint width = 480, height = 500;
   gboolean geometry_error = FALSE;
@@ -365,6 +381,16 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
   gtk_box_pack_start(GTK_BOX(app_box), app->less, TRUE, TRUE, GNOME_PAD);
 
   gtk_widget_show_all(app->app);
+
+  /* setup drop support */
+  gtk_drag_dest_set( app->less,
+                     GTK_DEST_DEFAULT_MOTION |
+                     GTK_DEST_DEFAULT_HIGHLIGHT |
+                     GTK_DEST_DEFAULT_DROP,
+                     drop_types, num_drop_types,
+                     GDK_ACTION_COPY );
+  gtk_signal_connect( GTK_OBJECT( app->less ), "drag_data_received",
+                      drop_file, app );
 
   app->file = NULL; 
 
@@ -702,5 +728,20 @@ static void fixed_cb(GtkWidget * w, gpointer data)
 }
 
 
+static void drop_file(GtkWidget *widget, GdkDragContext *context,
+                      gint x, gint y, GtkSelectionData *selectionData,
+                      guint info, guint time, GnomeLessApp *app )
+{
+	gchar *text = NULL;
 
+    switch( info ) {
+	case TARGET_URI_LIST:
+      text = selectionData->data + strlen( "file:" );
+      /* get rid of the \r\n from the end */
+      *(text + strlen( text ) - 2) = 0;
+      gless_app_show_file(app, text);
+      break;
+    }
+    
+}
 
