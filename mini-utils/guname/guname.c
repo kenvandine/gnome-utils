@@ -4,7 +4,7 @@
  *    It shouldn't be so Linux-centric; if you have another system,
  *    please add the appropriate stuff.
  *
- *   Copyright (C) 1998 Havoc Pennington <hp@pobox.com>
+ *   Copyright (C) 1998 Havoc Pennington <hp@pobox.com> except marquee code.
  *
  * This program is free software; you can redistribute it and/or 
  * modify it under the terms of the GNU General Public License as 
@@ -53,6 +53,8 @@ static void write_to_filestream(FILE * f);
 static void do_logo_box(GtkWidget * box);
 static void do_list_box(GtkWidget * box);
 static void do_popup(GtkWidget * clist);
+static void do_marquee(GtkWidget * box);
+static int marquee_timer (gpointer data);
 
 static void get_system_info();
 static void get_portable_info();
@@ -134,9 +136,9 @@ const gchar * disk_descriptions[] = {
   N_("Mount point")
 };
 
-const gchar * info[end_system_info];
-GList * disks = NULL;
-GtkWidget * popup = NULL;
+static const gchar * info[end_system_info];
+static GList * disks = NULL;
+static GtkWidget * popup = NULL;
 
 /*******************************
   Main
@@ -187,20 +189,22 @@ static void popup_main_dialog()
   gtk_box_pack_start(GTK_BOX(GNOME_DIALOG(d)->vbox), list_box,
                      TRUE, TRUE, GNOME_PAD);
 
-  gtk_signal_connect(GTK_OBJECT(d), "clicked",
+  gtk_signal_connect(GTK_OBJECT(d), "close",
                      GTK_SIGNAL_FUNC(gtk_main_quit),
                      NULL);
 
+  gtk_window_position(GTK_WINDOW(d), GTK_WIN_POS_CENTER);
   gtk_widget_show_all(d);
 }
 
 static void do_logo_box(GtkWidget * box)
 {
-  GtkWidget * label;
+  GtkWidget * label, *contrib_label;
   GtkWidget * pixmap;
+  GtkStyle * style;
+  GdkFont * font;
   gchar * s;
-
-  /*  gtk_widget_set_usize(box, , 150); */
+  GtkWidget * marquee_frame, * align;
 
   s = gnome_pixmap_file ("gnome-default.png");
 
@@ -212,10 +216,39 @@ static void do_logo_box(GtkWidget * box)
     pixmap = gtk_label_new(_("Logo file not found"));
   }
 
+  /* Up here so it uses the default font */
+  contrib_label = gtk_label_new(_("GNOME contributors:"));
+
+  style = gtk_style_new ();
+  font = gdk_font_load ("-Adobe-Helvetica-Medium-R-Normal--*-160-*-*-*-*-*-*");
+
+  if (font) {
+    gdk_font_unref (style->font);
+    style->font = font;
+  }
+
+  if (style->font) {
+    gtk_widget_push_style (style);
+  }
+
   label = gtk_label_new(_("GNOME: The GNU Network Object Model Environment"));
 
   gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, GNOME_PAD);
   gtk_box_pack_start(GTK_BOX(box), pixmap, TRUE, TRUE, GNOME_PAD);
+
+  marquee_frame = gtk_frame_new(NULL);
+  gtk_frame_set_shadow_type(GTK_FRAME(marquee_frame), GTK_SHADOW_IN);
+  do_marquee(marquee_frame);
+  align = gtk_alignment_new(0.5, 0.5, 0.0, 0.0);
+  gtk_container_add(GTK_CONTAINER(align), marquee_frame);
+
+  gtk_box_pack_start(GTK_BOX(box), contrib_label, FALSE, FALSE, 0);
+  gtk_box_pack_start(GTK_BOX(box), align, FALSE, FALSE, 0);
+
+  if (style->font) {
+    gtk_widget_pop_style();
+  }
+  else gtk_style_unref(style);
 }
 
 /* Want a function not a macro, so a and b are calculated only once */
@@ -516,4 +549,152 @@ static void write_to_filestream(FILE * f)
     }
     ++i;
   }  
+}
+
+/***************************** 
+  Marquee thingy - probably there should be a widget to do this.  Code
+  taken from the GIMP, about_dialog.c, Copyright Spencer Kimball and
+  Peter Mattis.
+  ***********************************/
+
+static const gchar * scroll_text[] = {
+  "John Doe",
+  "Doe Jane",
+  "Your Name Here",
+  "Yet Another Name",
+  "Wanda the GNOME Fish"
+};
+
+static int nscroll_texts = sizeof (scroll_text) / sizeof (scroll_text[0]);
+static int scroll_text_widths[100] = { 0 };
+static int cur_scroll_text = 0;
+static int cur_scroll_index = 0;
+
+static int shuffle_array[ sizeof(scroll_text) / sizeof(scroll_text[0]) ];
+
+static GtkWidget *scroll_area = NULL;
+static GdkPixmap *scroll_pixmap = NULL;
+static int do_scrolling = TRUE;
+static int scroll_state = 0;
+static int offset = 0;
+static int timer = 0;
+
+static gint marquee_expose (GtkWidget * widget, GdkEventExpose * event, gpointer data)
+{
+  if (!timer) {
+    marquee_timer(NULL);
+    timer = gtk_timeout_add (75, marquee_timer, NULL);
+  }
+  return FALSE;
+}
+
+static void do_marquee(GtkWidget * box)
+{
+  int i; 
+  int max_width;
+
+  max_width = 0;
+  for (i = 0; i < nscroll_texts; i++) {
+    scroll_text_widths[i] = gdk_string_width (box->style->font, scroll_text[i]);
+    max_width = MAX (max_width, scroll_text_widths[i]);
+  }
+  
+  scroll_area = gtk_drawing_area_new ();
+  gtk_drawing_area_size (GTK_DRAWING_AREA (scroll_area),
+                         max_width + 10,
+                         box->style->font->ascent +
+                         box->style->font->descent + 5 ); /* 5 is for border. */
+  gtk_container_add (GTK_CONTAINER (box), scroll_area);
+
+  for (i = 0; i < nscroll_texts; i++) {
+    shuffle_array[i] = i;
+  }
+  
+  for (i = 0; i < nscroll_texts; i++) {
+    int j, k;
+    j = rand() % nscroll_texts;
+    k = rand() % nscroll_texts;
+    if (j != k) 
+      {
+        int t;
+        t = shuffle_array[j];
+        shuffle_array[j] = shuffle_array[k];
+        shuffle_array[k] = t;
+      }
+  }
+
+  gtk_widget_set_events(scroll_area, GDK_EXPOSURE_MASK);
+  gtk_signal_connect(GTK_OBJECT(scroll_area), "expose_event",
+                     GTK_SIGNAL_FUNC(marquee_expose), NULL);
+}
+
+static int marquee_timer (gpointer data)
+{
+  gint return_val;
+
+  return_val = TRUE;
+
+  if (do_scrolling)
+    {
+      if (!scroll_pixmap)
+        scroll_pixmap = gdk_pixmap_new (scroll_area->window,
+                                        scroll_area->allocation.width,
+                                        scroll_area->allocation.height,
+                                        -1);
+  
+      switch (scroll_state)
+        {
+        case 1:
+          scroll_state = 2;
+          timer = gtk_timeout_add (700, marquee_timer, NULL);
+          return_val = FALSE;
+          break;
+        case 2:
+          scroll_state = 3;
+          timer = gtk_timeout_add (75, marquee_timer, NULL);
+          return_val = FALSE;
+          break;
+        }
+
+      if (offset > (scroll_text_widths[cur_scroll_text] + scroll_area->allocation.width))
+        {
+          scroll_state = 0;
+          cur_scroll_index += 1;
+          if (cur_scroll_index == nscroll_texts)
+            cur_scroll_index = 0;
+	  
+          cur_scroll_text = shuffle_array[cur_scroll_index];
+
+          offset = 0;
+        }
+
+      gdk_draw_rectangle (scroll_pixmap,
+                          scroll_area->style->white_gc,
+                          TRUE, 0, 0,
+                          scroll_area->allocation.width,
+                          scroll_area->allocation.height);
+      gdk_draw_string (scroll_pixmap,
+                       scroll_area->style->font,
+                       scroll_area->style->black_gc,
+                       scroll_area->allocation.width - offset,
+                       scroll_area->style->font->ascent + 2, /* 2 from top */
+                       scroll_text[cur_scroll_text]);
+      gdk_draw_pixmap (scroll_area->window,
+                       scroll_area->style->black_gc,
+                       scroll_pixmap, 0, 0, 0, 0,
+                       scroll_area->allocation.width,
+                       scroll_area->allocation.height);
+
+      offset += 15;
+      if (scroll_state == 0)
+        {
+          if (offset > ((scroll_area->allocation.width + scroll_text_widths[cur_scroll_text]) / 2))
+            {
+              scroll_state = 1;
+              offset = (scroll_area->allocation.width + scroll_text_widths[cur_scroll_text]) / 2;
+            }
+        }
+    }
+
+  return return_val;
 }

@@ -1,3 +1,13 @@
+Mon May 18 17:14:44 1998  Havoc Pennington  <hp@pobox.com>
+
+	* guname.c: Pasted in marquee thingy from Gimp about dialog. I
+	might take it out again; is it cool, or annoying? 
+	Declared globals static.
+	(popup_main_dialog): Connect to "close" not "clicked" for quit.
+	Use GTK_WIN_POS_CENTER for window.
+	(do_logo_box): Display the marquee, and use a larger font for
+	title.
+
 Mon May 18 14:45:47 1998  Havoc Pennington  <hp@pobox.com>
 
 	* guname.c: Added Mail To and Save As features. Use gnome foot as
