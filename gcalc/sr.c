@@ -16,6 +16,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 #include <signal.h>
