@@ -178,11 +178,15 @@ gtt_help_class_init(GttHelpClass *helpclass)
 	object_class->destroy = gtt_help_destroy;
         entry = g_malloc(sizeof(GnomeStockPixmapEntry));
         entry->type = GNOME_STOCK_PIXMAP_TYPE_DATA;
+	entry->any.width = 20;
+	entry->any.height = 20;
         entry->data.xpm_data = tb_back_xpm;
         gnome_stock_pixmap_register("GttHelp_Back", GNOME_STOCK_PIXMAP_REGULAR,
                                     entry);
         entry = g_malloc(sizeof(GnomeStockPixmapEntry));
         entry->type = GNOME_STOCK_PIXMAP_TYPE_DATA;
+	entry->any.width = 20;
+	entry->any.height = 20;
         entry->data.xpm_data = tb_forward_xpm;
         gnome_stock_pixmap_register("GttHelp_Forward",
                                     GNOME_STOCK_PIXMAP_REGULAR,

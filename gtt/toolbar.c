@@ -174,7 +174,7 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
 	 * The toolbar will not have the correct size, though, until
 	 * Gnome-stock is fixed. - Federico
 	 */
-#if 1
+#if 0
 	if (!GTK_WIDGET_REALIZED(window))
 		gtk_widget_realize(window);
 #endif
