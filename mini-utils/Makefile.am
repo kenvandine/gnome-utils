@@ -3,6 +3,6 @@
 # endif
 
 # Not made currently 
-# gsu gpenguin
+# gsu gpenguin gfontsel gcolorsel
 
-SUBDIRS = gfontsel gcolorsel $(idetool)
+#SUBDIRS = $(idetool)
