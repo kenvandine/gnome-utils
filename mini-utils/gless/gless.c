@@ -370,12 +370,17 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
 {
   GnomeLessApp * app;
   GtkWidget * app_box;
+  GtkWidget * statusbar;
+
   gint width = 480, height = 500;
   gboolean geometry_error = FALSE;
 
   app = g_new(GnomeLessApp, 1);
 
   app->app = gnome_app_new( APPNAME, _("Text File Viewer") ); 
+  statusbar = gtk_statusbar_new();
+  gnome_app_set_statusbar(GNOME_APP(app->app), statusbar);
+
   apps = g_list_append(apps, app);
 
   if (geometry) {
@@ -430,8 +435,9 @@ static void gless_new_app(const gchar * filename, const gchar * geometry,
   }
 
   if (geometry_error) {
-    gnome_error_dialog(_("Couldn't understand geometry (position and size)\n"
-                         " specified on command line"));
+    gnome_app_error ( GNOME_APP(app->app),
+                      _("Couldn't understand geometry (position and size)\n"
+                        " specified on command line"));
   }
 
   app->dialogs = NULL;
@@ -456,21 +462,29 @@ static void popup_about()
 /******************************
   Misc.
   *******************************/
+static void
+gless_show_file_error(GnomeLessApp * app, const gchar * error)
+{
+  gnome_app_pop_status(GNOME_APP(app->app));
+  gnome_app_error(GNOME_APP(app->app), error);
+}
+
 static gboolean 
 gless_app_show_file(GnomeLessApp * app, const gchar * filename)
 {
-  int i;
   gint len;
 
   g_return_val_if_fail(app != NULL, FALSE);
   g_return_val_if_fail(filename != NULL, FALSE);
+
+  gnome_app_push_status(GNOME_APP(app->app), _("Loading..."));
 
   if ( ! g_file_exists(filename) ) {
     gchar * s;
     s = 
       g_copy_strings(_("No such file or directory:\n"),
                      filename, NULL);
-    gnome_error_dialog(s);
+    gless_show_file_error(app, s);
     g_free(s);
     return FALSE;
   }
@@ -487,14 +501,18 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
         gchar * err = 
           g_copy_strings(_("Failed to decompress and display the file:\n"),
                          filename, "\n", g_unix_error_string(errno), NULL);
-        gnome_error_dialog(err);
+        gless_show_file_error(app, err);
         g_free(err);
+        g_free(c);
+        return FALSE;
       }
       g_free(c);
     }
     else {
-      gnome_error_dialog(_("Unable to display compressed file.\n"
-                           "zcat not found in your path."));
+      gless_show_file_error(app,
+                            _("Unable to display compressed file.\n"
+                              "zcat not found in your path."));
+      return FALSE;
     }
   }
   else {
@@ -502,14 +520,16 @@ gless_app_show_file(GnomeLessApp * app, const gchar * filename)
       gchar * err = 
         g_copy_strings(_("Error loading file:\n"), filename,
                        "\n", g_unix_error_string(errno), NULL);
-      gnome_error_dialog(err);
+      gless_show_file_error(app, err);
       g_free(err);
+      return FALSE;
     }
   }
 
-  i = g_filename_index(filename);
+  gnome_app_pop_status(GNOME_APP(app->app));
 
-  gtk_window_set_title(GTK_WINDOW(app->app), &filename[i]);
+  gtk_window_set_title(GTK_WINDOW(app->app), g_filename_pointer(filename));
+  gnome_app_set_status(GNOME_APP(app->app), g_filename_pointer(filename));
 
   app->file = g_strdup(filename);
 
@@ -552,15 +572,21 @@ static gboolean gless_app_save(GnomeLessApp * app, const gchar * path)
   g_return_val_if_fail(app != NULL, FALSE);
   g_return_val_if_fail(path != NULL, FALSE);
 
+  gnome_app_push_status(GNOME_APP(app->app), _("Saving..."));
+
   /* FIXME this just overwrites; need to ask whether to do so. */
 
-  if ( gnome_less_write_file(GNOME_LESS(app->less), path) ) 
+  if ( gnome_less_write_file(GNOME_LESS(app->less), path) ) {
+    gnome_app_pop_status(GNOME_APP(app->app));
     return TRUE; /* succeeded */
+  }
+
+  gnome_app_pop_status(GNOME_APP(app->app));
 
   s = g_copy_strings(_("Failed to write file:\n"), path, 
                      "\n", g_unix_error_string(errno), NULL);
 
-  gnome_error_dialog(s);
+  gnome_app_error(GNOME_APP(app->app), s);
   
   g_free(s);
 
@@ -728,3 +754,7 @@ static void fixed_cb(GtkWidget * w, gpointer data)
                             GTK_CHECK_MENU_ITEM(w)->active);
   gnome_less_reshow        (less);
 }
+
+
+
+
