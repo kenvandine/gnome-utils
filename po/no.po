@@ -4,13 +4,13 @@
 #
 #. Translator credits
 #: gcalc/gcalc.c:39 gcharmap/src/callbacks.c:44 gdictsrc/gdict-about.c:39
-#: gsearchtool/gsearchtool.c:800 logview/about.c:52
+#: gsearchtool/gsearchtool.c:1001 logview/about.c:52
 #: meat-grinder/meat-grinder.c:380
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.4.0.1\n"
-"POT-Creation-Date: 2002-01-14 01:06+0100\n"
-"PO-Revision-Date: 2002-01-14 01:09+0100\n"
+"POT-Creation-Date: 2002-01-29 00:07+0100\n"
+"PO-Revision-Date: 2002-01-29 00:21+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -125,6 +125,10 @@ msgstr "Bytt om grader / radianer / grad"
 #: gcalc/gnome-calc.c:1078
 msgid "e"
 msgstr "e"
+
+#: gcalc/gnome-calc.c:1078
+msgid "Base of Natural Logarithm"
+msgstr "Basis for naturlig logaritme"
 
 #: gcalc/gnome-calc.c:1079
 msgid "EE"
@@ -274,7 +278,7 @@ msgstr "3"
 msgid "+"
 msgstr "+"
 
-#: gcalc/gnome-calc.c:1106 gsearchtool/gsearchtool.c:650
+#: gcalc/gnome-calc.c:1106
 msgid "Add"
 msgstr "Legg til"
 
@@ -695,78 +699,61 @@ msgstr "S_lå opp"
 msgid "Spell checker"
 msgstr "Stavekontroll"
 
-#: gsearchtool/gsearchtool.c:33
-msgid "File name"
-msgstr "Filnavn"
+#: gsearchtool/gsearchtool.c:43
+msgid "File name is"
+msgstr "Filnavnet er"
 
-#: gsearchtool/gsearchtool.c:35
-msgid "Don't search subdirectories"
-msgstr "Ikke søk i underkataloger"
+#: gsearchtool/gsearchtool.c:44
+msgid "File name is not"
+msgstr "Filnavnet er ikke"
 
-#: gsearchtool/gsearchtool.c:36
-msgid "File owner"
-msgstr "Fileier"
-
-#: gsearchtool/gsearchtool.c:37
-msgid "File owner group"
-msgstr "Fileiergruppe"
-
-#: gsearchtool/gsearchtool.c:38
-msgid "Last modification time"
-msgstr "Siste modifiseringstid"
-
-#: gsearchtool/gsearchtool.c:40
+#: gsearchtool/gsearchtool.c:46
 msgid "Don't search mounted filesystems"
 msgstr "Ikke søk i monterte filsystemer"
 
-#: gsearchtool/gsearchtool.c:41
-msgid "Empty file"
-msgstr "Tom fil"
-
-#: gsearchtool/gsearchtool.c:43
-msgid "Invalid user or group"
-msgstr "Ugyldig bruker eller gruppe"
-
-#: gsearchtool/gsearchtool.c:44
-msgid "Filenames except"
-msgstr "Filnavn untatt"
-
-#: gsearchtool/gsearchtool.c:45
+#: gsearchtool/gsearchtool.c:48
 msgid "Follow symbolic links"
 msgstr "Følg symbolske lenker"
 
-#: gsearchtool/gsearchtool.c:46
-msgid "Simple substring search"
-msgstr "Enkelt understreng søk"
-
-#: gsearchtool/gsearchtool.c:47
-msgid "Regular expression search"
-msgstr "Søk på vanlig uttrykk"
-
 #: gsearchtool/gsearchtool.c:49
-msgid "Extended regular expression search"
-msgstr "Søk på utvidet vanlig uttrykk"
+msgid "Process directory contents depth first"
+msgstr "Prosesser dybden på kataloginnhold først"
 
-#: gsearchtool/gsearchtool.c:151
-msgid "grep options found in find list bad bad!"
-msgstr "grep alternativer funnet i søkelisten fy fy!"
+#: gsearchtool/gsearchtool.c:50
+msgid "Don't search subdirectories"
+msgstr "Ikke søk i underkataloger"
 
-#: gsearchtool/gsearchtool.c:165
-msgid "non-grep option found in grep list, bad bad!"
-msgstr "ikke-grep alternativ funnet i grep-listen, fy fy!"
+#: gsearchtool/gsearchtool.c:51
+msgid "Owned by user"
+msgstr "Eid av bruker"
 
-#: gsearchtool/gsearchtool.c:219
-msgid "Search already running on another page"
-msgstr "Søket kjører allerede på en annen side"
+#: gsearchtool/gsearchtool.c:52
+msgid "Owned by group"
+msgstr "Eid av gruppe"
 
-#. create the results box
-#. FIXME: add an option to autoclear result box and pass TRUE in that
-#. case
-#: gsearchtool/gsearchtool.c:229
-msgid "Search Results"
-msgstr "Søkeresultater"
+#: gsearchtool/gsearchtool.c:53
+msgid "Invalid user or group"
+msgstr "Ugyldig bruker eller gruppe"
 
-#: gsearchtool/gsearchtool.c:336
+#: gsearchtool/gsearchtool.c:54
+msgid "Last time modified"
+msgstr "Siste modifiseringstid"
+
+#: gsearchtool/gsearchtool.c:55
+msgid "File is empty"
+msgstr "Filen er tomt"
+
+#: gsearchtool/gsearchtool.c:56
+msgid "Matches regular expression"
+msgstr "Treff på vanlig uttrykk"
+
+#: gsearchtool/gsearchtool.c:240
+msgid ""
+"A search is already running.  Please wait for that search to complete or "
+"cancel it."
+msgstr "Et søk kjører allerede. Vennligst vent til dette fullføres eller avbryt det."
+
+#: gsearchtool/gsearchtool.c:357
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -774,120 +761,109 @@ msgstr ""
 "\n"
 "For mange feil å vise..."
 
-#: gsearchtool/gsearchtool.c:369 gsearchtool/gsearchtool.c:400
+#: gsearchtool/gsearchtool.c:390
+msgid "Start directory does not exist."
+msgstr "Startkatalogen eksisterer ikke."
+
+#: gsearchtool/gsearchtool.c:401 gsearchtool/gsearchtool.c:875
+msgid "Cannot perform the search. Please specify a search criteria."
+msgstr "Kan ikke utføre søket. Vennligst spesifiser et søkekriterie."
+
+#: gsearchtool/gsearchtool.c:427
 msgid "Start directory does not exist"
 msgstr "Startkatalogen eksisterer ikke"
 
-#: gsearchtool/gsearchtool.c:409
-msgid "Search command line"
+#: gsearchtool/gsearchtool.c:442
+msgid "Cannot show the search command line. Please specify a search criteria."
+msgstr "Kan ikke vise kommandolinjen for søket. Vennligst spesifiser et søkekriterie."
+
+#: gsearchtool/gsearchtool.c:446
+msgid "Search Command Line"
 msgstr "Kommandolinje for søk"
 
-#: gsearchtool/gsearchtool.c:415
+#: gsearchtool/gsearchtool.c:461
 msgid ""
 "This is the command line that can be used to execute this search from the "
-"console:\n"
-"(Note: to print one file per line rather then null separated,\n"
-"append \"| tr '\\000' '\\n'\" to the line below)"
+"console.\n"
+"(Note: To print one file per line rather then null separated, append \"| tr "
+"'\\000' '\\n'\" to the line below.)\n"
+"\n"
+"Command:"
 msgstr ""
-"Dette er kommandolinjen som kan brukes til å kjøre dette søket fra "
-"konsollet:\n"
+"Dette er kommandolinjen som kan brukes til å kjøre dette søket fra konsollet:\n"
 "(Merk: for å skrive ut en fil per linje i stedet for null-separert,\n"
-"legg til \"| tr '\\000' '\\n\" på linjen under)"
+"legg til \"| tr '\\000' '\\n\" på linjen under.)\n"
+"\n"
+"Kommando:"
 
-#: gsearchtool/gsearchtool.c:502
+#: gsearchtool/gsearchtool.c:571
+msgid "No viewer available for this mime type."
+msgstr "Ingen visningsprogram tilgjengelig for denne MIME-typen."
+
+#: gsearchtool/gsearchtool.c:656
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 "Oppføring endret ble kalt for et alternativ som ikke gjaldt oppføringen!"
 
-#: gsearchtool/gsearchtool.c:568
-msgid "Enable"
-msgstr "Slå på"
+#: gsearchtool/gsearchtool.c:720
+msgid "Enabled"
+msgstr "Slått på"
 
-#: gsearchtool/gsearchtool.c:576 logview/actions.c:163
-#: meat-grinder/meat-grinder.c:718
-msgid "Remove"
-msgstr "Fjern"
+#: gsearchtool/gsearchtool.c:777
+msgid "Start in directory "
+msgstr "Start i katalog "
 
-#: gsearchtool/gsearchtool.c:628
-msgid "Start in directory:"
-msgstr "Start i katalog:"
-
-#: gsearchtool/gsearchtool.c:630
+#: gsearchtool/gsearchtool.c:779
 msgid "Browse"
 msgstr "Bla gjennom"
 
-#: gsearchtool/gsearchtool.c:661
-msgid "Show Command"
-msgstr "Vis kommando"
+#: gsearchtool/gsearchtool.c:912
+msgid "Search For "
+msgstr "Søk etter "
 
-#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759
-#: gtt/src/ctree.c:582 gtt/src/ghtml.c:95 gtt/src/ghtml.c:267
-msgid "Start"
-msgstr "Start"
+#: gsearchtool/gsearchtool.c:981
+msgid "Simple"
+msgstr "Enkelt"
 
-#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760
-#: gtt/src/ghtml.c:95 gtt/src/ghtml.c:270
-msgid "Stop"
-msgstr "Stopp"
+#: gsearchtool/gsearchtool.c:984
+msgid "Advanced"
+msgstr "Avansert"
 
-#: gsearchtool/gsearchtool.c:700
-msgid "Nothing to locate"
-msgstr "Ingenting å søke etter"
-
-#: gsearchtool/gsearchtool.c:735
-msgid ""
-"This is an interface to locate.  If you type in a simple string it\n"
-"will be matched as a subset of the full path, and if you type\n"
-"in a string with wildcards, it will have to match the full path."
-msgstr ""
-"Dette er et grensesnitt for locate. Hvis du skriver inn en enkel\n"
-"streng, vil denne sammenlignes som et subsett av den fulle stien,\n"
-"og hvis du skriver inn en streng med jokertegn, må den være lik\n"
-"hele stien"
-
-#: gsearchtool/gsearchtool.c:744
-msgid "Locate file: "
-msgstr "Finn fil: "
-
-#: gsearchtool/gsearchtool.c:781
-msgid "Full find (find)"
-msgstr "Utvidet søk (find)"
-
-#: gsearchtool/gsearchtool.c:783
-msgid "Quick find (locate)"
-msgstr "Hurtigsøk (locate)"
-
-#: gsearchtool/gsearchtool.c:809
+#: gsearchtool/gsearchtool.c:1010
 msgid "The Gnome Search Tool"
 msgstr "Gnome søkeverktøy"
 
-#: gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:1011
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "(C) 1998,2000 the Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:811
-msgid "Frontend to the unix find/grep/locate commands"
-msgstr "Grensesnitt mot UNIXs find/grep/locate kommandoer"
+#: gsearchtool/gsearchtool.c:1012
+msgid "Frontend to the unix find/locate commands"
+msgstr "Grensesnitt mot UNIXs find/locate kommandoer"
 
-#: gsearchtool/gsearchtool.c:873
-msgid "Gnome Search Tool"
-msgstr "Gnome søkeverktøy"
+#: gsearchtool/gsearchtool.c:1057
+msgid "Cannot save the results file."
+msgstr "Kan ikke lagre resultatfil."
 
-#: gsearchtool/outdlg.c:53
-msgid "Cannot save file"
-msgstr "Kan ikke lagre fil"
-
-#: gsearchtool/outdlg.c:71 meat-grinder/meat-grinder.c:492
+#: gsearchtool/gsearchtool.c:1064 meat-grinder/meat-grinder.c:492
 msgid "Save Results"
 msgstr "Lagre resultater"
 
-#: gsearchtool/outdlg.c:137
-msgid "Command mangled"
-msgstr "Kommandolinje ødelagt"
+#: gsearchtool/gsearchtool.c:1099
+msgid "S_how Command"
+msgstr "_Vis kommando"
 
-#: gsearchtool/outdlg.c:166
-msgid "No command for this mime type"
-msgstr "Ingen kommando for denne MIME-typen"
+#: gsearchtool/gsearchtool.c:1100
+msgid "Save Results _As..."
+msgstr "Lagre resultater _som..."
+
+#: gsearchtool/gsearchtool.c:1133
+msgid "Cannot initialize bonobo."
+msgstr "Kan ikke initiere bonobo."
+
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1137
+msgid "Search Tool"
+msgstr "Søkeverktøy"
 
 #: logview/about.c:42
 msgid "Cesar Miquel (miquel@df.uba.ar)"
@@ -929,6 +905,10 @@ msgstr "Legg til..."
 #: logview/actions.c:157
 msgid "Edit..."
 msgstr "Rediger..."
+
+#: logview/actions.c:163 meat-grinder/meat-grinder.c:718
+msgid "Remove"
+msgstr "Fjern"
 
 #: logview/actions.c:278
 #, c-format
@@ -1825,58 +1805,46 @@ msgstr ""
 "Dette er programmet som brukes for å lage arkiv."
 
 #: gfloppy/gfloppy.desktop.in.h:1
+msgid "Floppy Formatter"
+msgstr "Formatering av diskett"
+
+#: gfloppy/gfloppy.desktop.in.h:2
 msgid "Format Floppy Disks"
 msgstr "Formater disketter"
 
-#: gfloppy/gfloppy.desktop.in.h:2
-msgid "gfloppy"
-msgstr "gfloppy"
-
-#: gdictsrc/GDict.desktop.in.h:1
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Ordbok"
 
-#: gdictsrc/GDict.desktop.in.h:2
+#: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Slå opp ord i en ordbok på nett"
 
-#: meat-grinder/meat-grinder.desktop.in.h:1
+#: meat-grinder/archive-generator.desktop.in.h:1
 msgid "Archive Generator"
 msgstr "Arkivgenerator"
 
-#: meat-grinder/meat-grinder.desktop.in.h:2
+#: meat-grinder/archive-generator.desktop.in.h:2
 msgid "Create compressed archives containing many files"
 msgstr "Opprett komprimerte arkiv som inneholder mange filer"
 
-#: logview/logview.desktop.in.h:1
-msgid "SysLog tool"
-msgstr "Visning av systemlogger"
-
-#: logview/logview.desktop.in.h:2
-msgid "System log monitor"
-msgstr "Systemlogg-monitor"
-
-#: gsearchtool/gsearchtool.desktop.in.h:1
-msgid "Search Tool"
-msgstr "Søkeverktøy"
-
-#: gsearchtool/gsearchtool.desktop.in.h:2
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search your disk for files"
 msgstr "Søk etter filer på din disk"
 
-#: gcharmap/gcharmap.desktop.in.h:1
+#: gcharmap/gnome-character-map.desktop.in.h:1
 msgid "Character Map"
 msgstr "Tegnkart"
 
-#: gcharmap/gcharmap.desktop.in.h:2
+#: gcharmap/gnome-character-map.desktop.in.h:2
 msgid "Insert special characters into documents"
 msgstr "Sett inn spesielle tegn i dokumenter"
 
-#: gcalc/gcalc.desktop.in.h:1
+#: gcalc/gnome-calculator.desktop.in.h:1
 msgid "Calculator"
 msgstr "Kalkulator"
 
-#: gcalc/gcalc.desktop.in.h:2
+#: gcalc/gnome-calculator.desktop.in.h:2
 msgid "Perform simple calculations"
 msgstr "Utfør enkle beregninger"
 
@@ -1963,6 +1931,10 @@ msgstr "Dagbokoppføring"
 #: gtt/src/ctree.c:577
 msgid "The current diary entry"
 msgstr "Aktiv dagbokoppføring"
+
+#: gtt/src/ctree.c:582 gtt/src/ghtml.c:95 gtt/src/ghtml.c:267
+msgid "Start"
+msgstr "Start"
 
 #: gtt/src/ctree.c:584
 msgid "Estimated Project Start Date"
@@ -2087,6 +2059,9 @@ msgid ""
 "\t%s\n"
 "doesn't seem to be a GTT project data file\n"
 msgstr ""
+"Filen\n"
+"\t%s\n"
+"ser ikke ut til å være en datafil for et GTT-prosjekt\n"
 
 #: gtt/src/err-throw.c:81
 #, c-format
@@ -2095,6 +2070,9 @@ msgid ""
 "\t%s\n"
 "seems to be corrupt\n"
 msgstr ""
+"Filen\n"
+"\t%s\n"
+"ser ut til å være korrupt\n"
 
 #: gtt/src/err-throw.c:87
 #, c-format
@@ -2102,6 +2080,8 @@ msgid ""
 "An unknown token was found during the parsing of\n"
 "\t%s\n"
 msgstr ""
+"Et ukjent tegn ble funnet under lesing av\n"
+"\t%s\n"
 
 #: gtt/src/err-throw.c:92
 #, c-format
@@ -2109,6 +2089,8 @@ msgid ""
 "An unknown value was found during the parsing of\n"
 "\t%s\n"
 msgstr ""
+"En ukjent verdi ble funnet under lesing av\n"
+"\t%s\n"
 
 #: gtt/src/err-throw.c:97
 #, c-format
@@ -2134,6 +2116,10 @@ msgstr "stoppet prosjekt %t"
 #, c-format
 msgid "%d:%02d:%02d"
 msgstr "%d:%02d:%02d"
+
+#: gtt/src/ghtml.c:95 gtt/src/ghtml.c:270
+msgid "Stop"
+msgstr "Stopp"
 
 #: gtt/src/ghtml.c:95 gtt/src/ghtml.c:273
 msgid "Elapsed"
@@ -2575,6 +2561,11 @@ msgid ""
 "%s cannot continue and will exit now.\n"
 "You should check your installation of %s or reinstall %s."
 msgstr ""
+"En feil oppsto under lasting av brukergrensesnitt-\n"
+"elementet %s%s fra fil %s.\n"
+"Det er mulig at brukergrensesnittbeskrivelsen er korrupt.\n"
+"%s kan ikke fortsette og vil avslutte nå.\n"
+"Du bør sjekke installasjonen av %s eller reinstallere %s."
 
 #: vicious-extensions/glade-helper.c:194
 #, c-format
@@ -2582,6 +2573,8 @@ msgid ""
 "Glade file is on crack! Make sure the correct file is installed!\n"
 "file: %s widget: %s"
 msgstr ""
+"Glade-filen er på crack! Sjekk at riktig fil er installert!\n"
+"fil: %s widget: %s"
 
 #: vicious-extensions/glade-helper.c:223
 #, c-format
@@ -2593,6 +2586,12 @@ msgid ""
 "%s cannot continue and will exit now.\n"
 "You should check your installation of %s or reinstall %s."
 msgstr ""
+"En feil oppsto under lasting av brukergrensesnitt-\n"
+"elementet %s%s fra filen %s.\n"
+"Widgeter av type CList skal ha %d kolonner.\n"
+"Det er mulig at glade grensesnittbeskrivelsen er korrupt.\n"
+"%s kan ikke fortsette og vil avslutte nå.\n"
+"Du bør sjekke installasjonen av %s eller reinstallere %s."
 
 #: vicious-extensions/glade-helper.c:241
 #, c-format
@@ -2600,6 +2599,8 @@ msgid ""
 "Glade file is on crack! Make sure the correct file is installed!\n"
 "file: %s widget: %s expected clist columns: %d"
 msgstr ""
+"Glade-filen er på crack! Sjekk at riktig fil er installert!\n"
+"fil: %s widget: %s forventet clist kolonner: %d"
 
 #: vicious-extensions/glade-helper.c:258
 #, c-format
@@ -2610,11 +2611,86 @@ msgid ""
 "%s cannot continue and will exit now.\n"
 "You should check your installation of %s or reinstall %s."
 msgstr ""
+"En feil oppsto under lasting av brukergrensesnittet\n"
+"fra fil %s.\n"
+"Det er mulig at brukergrensesnittbeskrivelsen ikke ble funnet.\n"
+"%s kan ikke fortsette og vil avslutte nå.\n"
+"Du bør sjekke installasjonen av %s eller reinstallere %s."
 
 #: vicious-extensions/glade-helper.c:269
 #, c-format
 msgid "No interface could be loaded, BAD! (file: %s)"
 msgstr "Ingen grensesnitt kunne lastes, HJELP! (fil: %s)"
+
+#~ msgid "File name"
+#~ msgstr "Filnavn"
+
+#~ msgid "File owner"
+#~ msgstr "Fileier"
+
+#~ msgid "Empty file"
+#~ msgstr "Tom fil"
+
+#~ msgid "Filenames except"
+#~ msgstr "Filnavn untatt"
+
+#~ msgid "Simple substring search"
+#~ msgstr "Enkelt understreng søk"
+
+#~ msgid "Regular expression search"
+#~ msgstr "Søk på vanlig uttrykk"
+
+#~ msgid "grep options found in find list bad bad!"
+#~ msgstr "grep alternativer funnet i søkelisten fy fy!"
+
+#~ msgid "non-grep option found in grep list, bad bad!"
+#~ msgstr "ikke-grep alternativ funnet i grep-listen, fy fy!"
+
+#~ msgid "Search already running on another page"
+#~ msgstr "Søket kjører allerede på en annen side"
+
+#~ msgid "Search Results"
+#~ msgstr "Søkeresultater"
+
+#~ msgid "Enable"
+#~ msgstr "Slå på"
+
+#~ msgid "Nothing to locate"
+#~ msgstr "Ingenting å søke etter"
+
+#~ msgid ""
+#~ "This is an interface to locate.  If you type in a simple string it\n"
+#~ "will be matched as a subset of the full path, and if you type\n"
+#~ "in a string with wildcards, it will have to match the full path."
+#~ msgstr ""
+#~ "Dette er et grensesnitt for locate. Hvis du skriver inn en enkel\n"
+#~ "streng, vil denne sammenlignes som et subsett av den fulle stien,\n"
+#~ "og hvis du skriver inn en streng med jokertegn, må den være lik\n"
+#~ "hele stien"
+
+#~ msgid "Locate file: "
+#~ msgstr "Finn fil: "
+
+#~ msgid "Full find (find)"
+#~ msgstr "Utvidet søk (find)"
+
+#~ msgid "Quick find (locate)"
+#~ msgstr "Hurtigsøk (locate)"
+
+#~ msgid "Gnome Search Tool"
+#~ msgstr "Gnome søkeverktøy"
+
+#~ msgid "Command mangled"
+#~ msgstr "Kommandolinje ødelagt"
+
+#~ msgid "gfloppy"
+#~ msgstr "gfloppy"
+
+#~ msgid "SysLog tool"
+#~ msgstr "Visning av systemlogger"
+
+#~ msgid "System log monitor"
+#~ msgstr "Systemlogg-monitor"
 
 #~ msgid "Cannot create applet!\n"
 #~ msgstr "Kan ikke opprette applet!\n"
@@ -3264,9 +3340,6 @@ msgstr "Ingen grensesnitt kunne lastes, HJELP! (fil: %s)"
 #~ msgid "Edit"
 #~ msgstr "Rediger"
 
-#~ msgid "File"
-#~ msgstr "Fil"
-
 #~ msgid "Search RGB"
 #~ msgstr "Søk RGB"
 
@@ -3450,9 +3523,6 @@ msgstr "Ingen grensesnitt kunne lastes, HJELP! (fil: %s)"
 #~ msgstr ""
 #~ "Slutt\n"
 #~ "Kommentarer :"
-
-#~ msgid "File name :"
-#~ msgstr "Filnavn :"
 
 #~ msgid "Header :"
 #~ msgstr "Header :"
@@ -3882,9 +3952,6 @@ msgstr "Ingen grensesnitt kunne lastes, HJELP! (fil: %s)"
 #~ msgid "Easy"
 #~ msgstr "Enkel"
 
-#~ msgid "Advanced"
-#~ msgstr "Avansert"
-
 #~ msgid ""
 #~ "Click OK to shutdown or reboot. You will lose\n"
 #~ "any unsaved information in open applications."
@@ -4181,9 +4248,6 @@ msgstr "Ingen grensesnitt kunne lastes, HJELP! (fil: %s)"
 
 #~ msgid "The DMA setting for this drive cannot be changed."
 #~ msgstr "DMA instillingene for denne disken kan ikke endres."
-
-#~ msgid "Enabled"
-#~ msgstr "Slått på"
 
 #~ msgid "Disabled"
 #~ msgstr "Slått av"
