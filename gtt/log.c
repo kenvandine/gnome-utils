@@ -48,43 +48,63 @@ static int log_write(time_t t, char *s)
 
 
 
+static char *last_msg = NULL;
+static char *last_logged_msg = NULL;
+static time_t last_time = -1;
+
+static void log_last(time_t t, project *proj)
+{
+	char *s;
+
+	if (last_msg) {
+		s = last_msg;
+	} else {
+		s = g_strdup(_("stopped project"));
+	}
+	if ((!last_logged_msg) || (0 != strcmp(s, last_logged_msg))) {
+		if (!log_write(last_time, s)) {
+			g_warning("couldn't write to logfile `%s'.\n",
+				  config_logfile_name);
+		}
+	}
+	if (last_logged_msg) g_free(last_logged_msg);
+	last_logged_msg = s;
+	if (proj) last_msg = g_strdup(proj->title);
+	else last_msg = NULL;
+	last_time = t;
+}
+
 static void log_proj_intern(project *proj, int log_if_equal)
 {
-	static project *last_proj = NULL;
-	static project *last_real_proj = NULL;
-	static time_t last_time = -1;
 	time_t t;
 
+	if ((log_if_equal) && (last_logged_msg)) {
+		g_free(last_logged_msg);
+		last_logged_msg = NULL;
+	}
 	if ((!config_logfile_name) || (!config_logfile_use)) {
-		last_proj = NULL;
-		last_time = -1;
+		log_last(-1, NULL);
 		return;
 	}
-	if ((last_proj == proj) && (!log_if_equal)) return;
+	if (config_logfile_min_secs == 0) {
+		log_last(-1, proj);
+		log_last(-1, proj);
+	}
 	t = time(NULL);
 	if ((last_time != -1) &&
 	    ((long int)(t - last_time) < config_logfile_min_secs)) {
-		last_proj = proj;
-		last_time = t;
+		if (proj == NULL) {
+			if (last_msg) last_time = t;
+		} else {
+			if ((!last_msg) ||
+			    (0 != strcmp(last_msg, proj->title)))
+				last_time = t;
+		}
+		if (last_msg) g_free(last_msg);
+		last_msg = (proj) ? g_strdup(proj->title) : NULL;
 		return;
 	}
-	if (!last_proj) {
-		if (last_time != -1) {
-			if (!log_write(last_time, _("stopped project")))
-				g_warning("couldn't write to logfile \"%s\"\n",
-					  config_logfile_name);
-                        else
-                                last_real_proj = NULL;
-                }
-	} else 	{
-                if (!log_write(last_time, last_proj->title)) {
-                        g_warning("couldn't write to logfile \"%s\"\n", config_logfile_name);
-                } else {
-                        last_real_proj = last_proj;
-                }
-	}
-	last_time = t;
-	last_proj = proj;
+	log_last(t, proj);
 }
 
 
@@ -105,8 +125,16 @@ void log_exit(void)
 	/* TODO: make shure this isn't run twice at exit */
 	g_return_if_fail(was_run == 0);
 	was_run++;
-	log_proj_intern(NULL, 1);
+	log_last(-1, NULL);
 	log_write(-1, _("program exited"));
+}
+
+
+
+void
+log_start(void)
+{
+	last_msg = g_strdup(_("program started"));
 }
 
 

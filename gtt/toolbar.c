@@ -108,10 +108,12 @@ add_button(GtkToolbar *tbar, char *text, char *tt_text,
 {
 	GtkWidget *w, *pixmap;
 
-        /* TODO: hmmm, I should rename some global variables some
-           time. `window' is the main window of the app.
-           I will be doing this at least when I have to support
-           multiple app window (e.g. for the networked version) */
+        /*
+	 * TODO: hmmm, I should rename some global variables some time.
+	 * `window' is the main window of the app. I will be doing this at
+	 * least when I have to support multiple app window (e.g. for the
+	 * networked version)
+	 */
 #if 1
         pixmap = gnome_create_pixmap_widget_d((GtkWidget *)window,
                                               (GtkWidget *)tbar,
@@ -166,16 +168,20 @@ add_stock_button(GtkToolbar *tbar, char *text, char *tt_text,
         w = button;
 #elif 1
         /* TODO: see notes above (window) */
-	/* FIXME!!!  Gnome-stock is seriously broken.  This force-realize is just a bad
-	 * hack to make the pixmaps use the correct visual.  The toolbar will not have
-	 * the correct size, though, until Gnome-stock is fixed. - Federico
+	/* 
+	 * FIXME!!!  Gnome-stock is seriously broken.  This force-realize
+	 * is just a bad hack to make the pixmaps use the correct visual.
+	 * The toolbar will not have the correct size, though, until
+	 * Gnome-stock is fixed. - Federico
 	 */
+#if 1
 	if (!GTK_WIDGET_REALIZED(window))
 		gtk_widget_realize(window);
+#endif
 	pixmap = gnome_stock_pixmap_widget((GtkWidget *)window, icon);
-        w = gtk_toolbar_append_item(tbar, text, tt_text, pixmap,
-                                    (GtkSignalFunc)sigfunc,
-                                    (gpointer *)menu_path);
+	w = gtk_toolbar_append_item(tbar, text, tt_text, pixmap,
+				    (GtkSignalFunc)sigfunc,
+				    (gpointer *)menu_path);
 #else
         /* TODO: see notes above (window) */
 	pixmap = (GtkWidget *)gnome_stock_pixmap((GtkWidget *)window, icon,

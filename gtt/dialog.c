@@ -26,6 +26,8 @@
 #include "gtt.h"
 
 
+#define DEFBUTTON_TEST
+
 
 gint
 gtt_delete_event(GtkWidget *w, gpointer *data)
@@ -138,6 +140,10 @@ void new_dialog_ok_cancel(char *title, GtkWidget **dlg, GtkBox **vbox,
 	gtk_signal_connect_object(GTK_OBJECT(t), "clicked",
 				  GTK_SIGNAL_FUNC(gtk_widget_destroy),
 				  GTK_OBJECT(*dlg));
+#ifdef DEFBUTTON_TEST
+	GTK_WIDGET_SET_FLAGS(t, GTK_CAN_DEFAULT);
+	gtk_widget_grab_default(t);
+#endif
 #ifdef DIALOG_USE_ACCEL
 	accel = gtk_accelerator_table_new();
 	gtk_accelerator_table_install(accel, GTK_OBJECT(t), "clicked",

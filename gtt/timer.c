@@ -34,6 +34,7 @@ static gint timer_func(gpointer data)
 	time_t t, diff_time;
 	struct tm t1, t0;
 
+	log_proj(cur_proj);
 	t = time(NULL);
 	if (last_timer != -1) {
 		memcpy(&t0, localtime(&last_timer), sizeof(struct tm));

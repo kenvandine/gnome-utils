@@ -118,6 +118,7 @@ void options_dialog(void);
 /* log.c */
 
 void log_proj(project *proj);
+void log_start(void);
 void log_exit(void);
 void log_endofday(void);
 

@@ -133,6 +133,7 @@ int main(int argc, char *argv[])
 
 	lock_gtt();
 	app_new(argc, argv);
+	log_start();
 	gtk_main();
 	/* TODO: verify, that unlock_gtt is always run at exit */
 	unlock_gtt();

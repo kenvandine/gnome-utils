@@ -1,3 +1,17 @@
+1998-02-16  Eckehard Berns <eb@berns.prima.de>
+
+	* log.c (log_proj_intern): added instant log if min_secs is zero.
+	Projects will now get logged, as soon as the log file timeout
+	expires.
+	* timer.c (timer_func): call to log_proj added. log_proj will never
+	log a project twice. This makes sure, that the log entry will be
+	written as soon as the timeout expires.
+
+	* dialog.c (dialog_new_ok_cancel): made the first button the default
+	button. Doesn't work as I thought though.
+	* menucmd.c (new_project): added default actions for the `activate'
+	signal of the entry.
+
 1998-02-15  Raja R Harinath  <harinath@cs.umn.edu>
 
 	* main.c (lock_gtt): Remove bogus declaration of `getpid'.

@@ -147,13 +147,17 @@ new_project(GtkWidget *widget, gpointer data)
 	gtk_widget_show(text);
 	gtk_box_pack_end(vbox, text, TRUE, TRUE, 2);
 	gtk_widget_grab_focus(text);
-	/* TODO: verify me
+
+	/*
+	 * TODO: this is kinda hack for the default action to work. I tried
+	 * to do it with just a default button, but that didn't work. So I
+	 * do the default action when the entry gets `activated'.
+	 */
 	gtk_signal_connect(GTK_OBJECT(text), "activate",
 			   GTK_SIGNAL_FUNC(project_name), (gpointer *)text);
 	gtk_signal_connect_object(GTK_OBJECT(text), "activate",
 				  GTK_SIGNAL_FUNC(gtk_widget_destroy),
 				  GTK_OBJECT(dlg));
-	 */
 	
 	gtk_widget_show(dlg);
 }
