@@ -772,7 +772,8 @@ negate_val(GtkWidget *w, gpointer data)
 		else
 			*p='-';
 	} else {
-		if(gc->_priv->result_string[0]=='-')
+		if(gc->_priv->result_string[0]=='-' || 
+		   gc->_priv->result == 0)
 			gc->_priv->result_string[0]=' ';
 		else
 			gc->_priv->result_string[0]='-';
