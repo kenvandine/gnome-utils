@@ -1,3 +1,10 @@
+2002-02-21  Bastien Nocera  <hadess@hadess.net>
+
+	* gsearchtool.c: (add_file_to_list_store), (really_run_command):
+	cast the filesize to gdouble to avoid warnings, and look for sh
+	in the path rather than using hardcoded /bin/sh path
+	(adapted from patch by <dennis_cranston@yahoo.com>, Closes:70827)
+
 2002-02-10 John Fleck <jfleck@inkstain.net>
 
 	* help/C/gsearchtool.xml, figures/*.png

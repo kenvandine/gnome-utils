@@ -606,14 +606,14 @@ add_file_to_list_store(const gchar *file, GtkListStore *store, GtkTreeIter *iter
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (vfs_file_info->mtime);
 	date = get_basic_date (vfs_file_info->mtime);
-	
+
 	gtk_list_store_append (GTK_LIST_STORE(store), iter); 
-	gtk_list_store_set (GTK_LIST_STORE(store), iter, 
+	gtk_list_store_set (GTK_LIST_STORE(store), iter,
 			    COLUMN_ICON, pixbuf, 
 			    COLUMN_NAME, get_file_base_name(utf8_file),
 			    COLUMN_PATH, get_file_dir_name(utf8_file),
 			    COLUMN_READABLE_SIZE, readable_size,
-			    COLUMN_SIZE, vfs_file_info->size,
+			    COLUMN_SIZE, (gdouble) vfs_file_info->size,
 			    COLUMN_TYPE, description,
 			    COLUMN_READABLE_DATE, readable_date,
 			    COLUMN_DATE, date,
@@ -666,7 +666,27 @@ really_run_command(char *cmd, char sepchar, RunLevel *running, GtkWidget *tree, 
 		close(fd[1]);
 		close(fderr[1]);
 
-		execl("/bin/sh", "/bin/sh", "-c", cmd, NULL);
+		{
+			gchar *shell = NULL;
+
+			shell = g_find_program_in_path ("sh");
+			if (shell == NULL)
+			{
+				GtkWidget *dialog;
+
+				dialog = gtk_message_dialog_new(NULL,
+					0,
+					GTK_MESSAGE_ERROR,
+					GTK_BUTTONS_OK,
+					_("Cannot perform the search.\n"
+					"The Bourne shell was not found\n"
+					"It is typically installed as /bin/sh or /usr/bin/sh."));
+				gtk_dialog_run (GTK_DIALOG (dialog));
+				gtk_widget_destroy (dialog);
+			}
+			execl(shell, shell, "-c", cmd, NULL);
+			g_free(shell);
+		}
 		_exit(0); /* in case it fails */
 	}
 	close(fd[1]);
