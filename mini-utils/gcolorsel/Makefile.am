@@ -6,7 +6,7 @@ gladedir = $(datadir)/gcolorsel/glade
 Utilitiesdir = $(datadir)/gnome/apps/Utilities
 
 CFLAGS += -DGCOLORSEL_GLADEDIR=\""$(gladedir)/"\" -g
-CFLAGS += -DXLIBDIR=\""$(LIBDIR)/"\"
+CFLAGS += -DXLIBDIR=\""$(XLIBDIR)/"\"
 
 INCLUDES = 						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" 	\
