@@ -77,7 +77,6 @@ static void lock_gtt()
 {
 	FILE *f;
 	char *fname;
-	int getpid(void);
 	
 	fname = build_lock_fname();
 	if (NULL != (f = fopen(fname, "rt"))) {
