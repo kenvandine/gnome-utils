@@ -43,6 +43,7 @@ extern int errno;
 #endif
 
 #include "save-cwd.h"
+#include "error.h"
 
 char *xgetcwd __P((void));
 
@@ -70,7 +71,7 @@ save_cwd (cwd)
       cwd->desc = open (".", O_RDONLY);
       if (cwd->desc < 0)
 	{
-	  g_error (0, errno, "cannot open current directory");
+	  error (0, errno, "cannot open current directory");
 	  return 1;
 	}
 
@@ -87,7 +88,7 @@ save_cwd (cwd)
 	    }
 	  else
 	    {
-	      g_error (0, errno, "current directory");
+	      error (0, errno, "current directory");
 	      close (cwd->desc);
 	      cwd->desc = -1;
 	      return 1;
@@ -105,7 +106,7 @@ save_cwd (cwd)
       cwd->name = xgetcwd ();
       if (cwd->name == NULL)
 	{
-	  g_error (0, errno, "cannot get current directory");
+	  error (0, errno, "cannot get current directory");
 	  return 1;
 	}
     }
@@ -127,7 +128,7 @@ restore_cwd (cwd, dest, from)
     {
       if (fchdir (cwd->desc))
 	{
-	  g_error (0, errno, "cannot return to %s%s%s",
+	  error (0, errno, "cannot return to %s%s%s",
 		 (dest ? dest : "saved working directory"),
 		 (from ? " from " : ""),
 		 (from ? from : ""));
@@ -136,7 +137,7 @@ restore_cwd (cwd, dest, from)
     }
   else if (chdir (cwd->name) < 0)
     {
-      g_error (0, errno, "%s", cwd->name);
+      error (0, errno, "%s", cwd->name);
       fail = 1;
     }
   return fail;

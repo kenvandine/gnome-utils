@@ -1,3 +1,11 @@
+1998-06-24  Raja R Harinath  <harinath@cs.umn.edu>
+
+	* gdiskfree/error.c: Import from GLIBC.
+	* gdiskfree/error.h: Likewise.
+	* gdiskfree/save-cwd.c: Revert last two changes.
+	* gdiskfree/Makefile.am (gdiskfree_LDADD): Add @LIBOBJS@, which is
+	figured out in `macros/gnome-fileutils.m4'.
+	
 Wed Jun 24 11:13:02 EDT 1998 Gregory McLean <gregm@comstar.net>
 
 	* gdiskfree/save-cwd.c : some patches to get it to build on something
@@ -84,8 +92,9 @@ Fri Apr 24 18:30:57 1998  Havoc Pennington  <hp@pobox.com>
 
 Thu Apr 23 13:01:50 EDT 1998 Gregory McLean
 	
-	* configure.in: added AC_PROG_YACC to correct the getdate.y -> getdate.c
-	  problem on a fresh build. (that file is in gncal)
+	* configure.in: added AC_PROG_YACC to correct the 
+	getdate.y -> getdate.c problem on a fresh build. 
+	(that file is in gncal)
 	
 1998-04-21  Miguel de Icaza  <miguel@nuclecu.unam.mx>
 
@@ -101,10 +110,9 @@ Sun Apr 19 17:00:02 1998  Havoc Pennington  <hp@pobox.com>
 	
 Sun Apr 12 18:19:39 1998  George Lebl  <jirka@5z.com>
 
-	* gcalc: added Gnome Calculator based on
-          GnomeCalculator widget
+	* gcalc: Added Gnome Calculator based on GnomeCalculator widget.
 
-        * configure.in, Makefile.am: added gcalc
+        * configure.in, Makefile.am: Added gcalc.
 
 1998-04-08  Raja R Harinath  <harinath@cs.umn.edu>
 

@@ -6,14 +6,12 @@ bin_PROGRAMS = gdiskfree
 
 gdiskfree_SOURCES =				\
 	df.c					\
-	mountlist.c				\
-	mountlist.h				\
-	fsusage.c				\
-	fsusage.h				\
 	pathmax.h				\
 	xgetcwd.c				\
 	save-cwd.c				\
 	save-cwd.h
 
-gdiskfree_LDADD = $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
+noinst_HEADERS=error.h mountlist.h fsusage.h
+
+gdiskfree_LDADD = @LIBOBJS@ $(GNOME_LIBDIR) $(GTKXMHTML_LIBS) \
 		   $(GNOMEUI_LIBS) $(INTLLIBS) -lgtktty
