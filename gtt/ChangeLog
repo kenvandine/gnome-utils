@@ -27,6 +27,11 @@ Tue Jan 27 08:31:01 1998  Eckehard Berns  <eb@berns.prima.de>
  	  added a prefix to "New". That way I don't need my own domain
  	  _and_ have no ambiguities.
 
+1998-01-26  Mark Galassi  <rosalia@cygnus.com>
+
+	* Makefile.am (LDADD): added $(DL_LIB) since these are now
+	required for any user of libgnome.a.
+	
 Mon Jan 26 14:25:17 1998  Eckehard Berns  <eb@berns.prima.de>
 
 	* {options,prop}.c: used gnome_stock_button for the dialogs.
@@ -93,6 +98,10 @@ Mon Jan 19 22:24:13 1998  Eckehard Berns  <eb@berns.prima.de>
  	  problem with free/malloc in my libc or in gtk - I worked around
  	  it by not destroying anything.
 
+Mon Jan 19 15:52:46 1998 MET  Eckehard Berns  <eb@berns.prima.de>
+
+	* made gtt use gnome-stock.[ch]
+	
 Mon Jan 19 01:34:13 1998  Eckehard Berns  <eb@berns.prima.de>
 
 	* dialog.c (new_dialog): included GtkDialog support when
@@ -109,3 +118,8 @@ Mon Jan 19 01:34:13 1998  Eckehard Berns  <eb@berns.prima.de>
 	* prior to this I added many things to GTT, I do not remember
  	  exactly (that's why I started this ChangeLog :-) ).All changes,
  	  the user might see, are covered in NEWS though.
+
+Tue Jan 13 17:13:26 1998  Federico Mena  <federico@bananoid.nuclecu.unam.mx>
+
+	* timer.c: #include <string.h>
+	* main.c: #include <string.h>
