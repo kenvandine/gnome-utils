@@ -231,6 +231,8 @@ gdiskfree_option_dialog (GDiskFreeApp *app)
   orientation_group = gtk_radio_button_group (GTK_RADIO_BUTTON (checkbox));
   gtk_table_attach (GTK_TABLE (box), checkbox, 2, 3, 2, 3,
 		    GTK_SHRINK | GTK_FILL, GTK_SHRINK, 3, 0);
+  /* Do this again */
+  working->orientation = current_options->orientation;
   working->update_interval = current_options->update_interval;
   udp_adjust = gtk_adjustment_new ((gfloat)working->update_interval, 
 				   1, 20000, 1, 10, 0);

@@ -29,7 +29,6 @@
 
 #include "gdiskfree_app.h"
 #include "gdiskfree_menus.h"
-
 /****************************************************************************
  * Forward references 
  **/
