@@ -5,9 +5,9 @@ SUBDIRS = pixmaps
 Utilitiesdir = $(datadir)/gnome/apps/System
 additionaldir  = $(datadir)/logview
 
-INCLUDES = -DG_LOG_DOMAIN=\"logview\"					\
+INCLUDES = -DG_LOG_DOMAIN=\"logview\"	$(GNOME_UTILS_CFLAGS) 		\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"			\
-	-I$(includedir) $(GNOME_UTILS_CFLAGS) -I$(top_srcdir)/logview/pixmaps\
+	-I$(includedir) -I$(top_srcdir)/logview/pixmaps\
 	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""
 
 bin_PROGRAMS = logview
