@@ -148,7 +148,8 @@ save_state(GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 	if (!window)
 		return FALSE;
 
-	gdk_window_get_geometry(window->window, &x, &y, &w, &h, NULL);
+	gdk_window_get_origin(window->window, &x, &y);
+	gdk_window_get_size(window->window, &w, &h);
 	argv[0] = (char *)data;
 	argv[1] = "--geometry";
 	argv[2] = g_malloc(32);

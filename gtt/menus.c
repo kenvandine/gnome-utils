@@ -236,19 +236,6 @@ menu_set_states(void)
 				 (cutted_project) ? 1 : 0);
 
 	toolbar_set_states();
-
-#if 0
-	menus_set_state(_("<Main>/Timer/Timer running"), (main_timer == 0) ? 0 : 1);
-	menus_set_sensitive(_("<Main>/Timer/Start"), (main_timer == 0) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Timer/Stop"), (main_timer == 0) ? 0 : 1);
-	menus_set_sensitive(_("<Main>/Edit/Cut"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Copy"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Paste"), (cutted_project) ? 1 : 0);
-	menus_set_sensitive(_("<Popup>/Paste"), (cutted_project) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Clear Daily Counter"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Popup>/Clear Daily Counter"), (cur_proj) ? 1 : 0);
-	menus_set_sensitive(_("<Main>/Edit/Properties..."), (cur_proj) ? 1 : 0);
-#endif
 }
 
 
