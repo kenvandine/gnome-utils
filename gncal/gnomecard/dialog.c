@@ -218,6 +218,10 @@ extern void gnomecard_edit(GList *node)
 	GtkWidget *addrtypeframe;
 	GtkWidget *radio1, *radio2, *button;
 	GtkObject *adj;
+	
+	GtkWidget *nametable;
+
+
 	GSList    *addrtypegroup=NULL;
 	Card *crd;
 	time_t tmp_time;
@@ -242,13 +246,13 @@ extern void gnomecard_edit(GList *node)
 	gtk_signal_connect(GTK_OBJECT(box), "destroy",
 			   (GtkSignalFunc)gnomecard_prop_close, node);
 	
-	/* Identity */
+	/* Identity notebook page*/
 	vbox = my_gtk_vbox_new();
 	label = gtk_label_new(_("Identity"));
 	gtk_notebook_append_page(GTK_NOTEBOOK(box->notebook), vbox, label);
 	
 	hbox = gtk_hbox_new(FALSE, GNOME_PAD_SMALL);
-	label = gtk_label_new(_("Card Name:"));
+	label = gtk_label_new(_("File As:"));
 	ce->fn = entry = my_gtk_entry_new(0, crd->fname.str);
 	my_connect(entry, "changed", box, &crd->fname.prop, PROP_FNAME);
 	button = gtk_button_new_with_label(_("Take from Name"));
@@ -262,54 +266,63 @@ extern void gnomecard_edit(GList *node)
 	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-	
+
+	/* create name frame */
 	frame = gtk_frame_new(_("Name"));	
-	gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, 0);
-	table = my_gtk_table_new(6, 2);
-	gtk_container_add(GTK_CONTAINER(frame), table);
+	gtk_box_pack_start(GTK_BOX(vbox), frame, TRUE, FALSE, 0);
+
+	/* pack all name fields into a table */
+	nametable = my_gtk_table_new(1, 6);
+	gtk_container_add(GTK_CONTAINER(frame), nametable);
+
+	/* first name */
 	label = gtk_label_new(_("First:"));
 	ce->given = entry = my_gtk_entry_new(12, crd->name.given);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
+	gtk_table_attach(GTK_TABLE(nametable), label, 0, 1, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1, 0, 0, 
+	gtk_table_attach(GTK_TABLE(nametable), entry, 1, 2, 0, 1, 
+			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
 	label = gtk_label_new(_("Middle:"));
 	ce->add = entry = my_gtk_entry_new(12, crd->name.additional);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 2, 3, 0, 1,
+	gtk_table_attach(GTK_TABLE(nametable), label, 2, 3, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 3, 4, 0, 1, 0, 0, 
+	gtk_table_attach(GTK_TABLE(nametable), entry, 3, 4, 0, 1, 0, 0, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
 	label = gtk_label_new(_("Last:"));
 	ce->fam = entry = my_gtk_entry_new(15, crd->name.family);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 4, 5, 0, 1,
+	gtk_table_attach(GTK_TABLE(nametable), label, 4, 5, 0, 1,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
-	gtk_table_attach(GTK_TABLE(table), entry, 5, 6, 0, 1, 0, 0, 
+	gtk_table_attach(GTK_TABLE(nametable), entry, 5, 6, 0, 1, 0, 0, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
+
 	label = gtk_label_new(_("Prefix:"));
 	ce->pre = entry = my_gtk_entry_new(5, crd->name.prefix);
 	align = gtk_alignment_new(0.0, 0.0, 0, 0);
         gtk_container_add (GTK_CONTAINER (align), entry);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
+	gtk_table_attach(GTK_TABLE(nametable), label, 0, 1, 1, 2,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), align, 1, 2, 1, 2, 
+	gtk_table_attach(GTK_TABLE(nametable), align, 1, 2, 1, 2, 
 			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	label = gtk_label_new(_("Suffix:"));
 	ce->suf = entry = my_gtk_entry_new(5, crd->name.suffix);
-	align = gtk_alignment_new(0.0, 0.0, 0, 0);
+	align = gtk_alignment_new(0.0, 0.0, 0, 0); 
         gtk_container_add (GTK_CONTAINER (align), entry);
 	my_connect(entry, "changed", box, &crd->name.prop, PROP_NAME);
-        gtk_table_attach(GTK_TABLE(table), label, 4, 5, 1, 2,
+        gtk_table_attach(GTK_TABLE(nametable), label, 4, 5, 1, 2,
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 0, 0);
-	gtk_table_attach(GTK_TABLE(table), align, 5, 6, 1, 2, 
+	gtk_table_attach(GTK_TABLE(nametable), align, 5, 6, 1, 2, 
 			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
@@ -319,7 +332,7 @@ extern void gnomecard_edit(GList *node)
 	gtk_box_pack_start(GTK_BOX(vbox), hbox2, FALSE, FALSE, 0);
 
 	frame = gtk_frame_new(_("Organization"));
-	gtk_box_pack_start(GTK_BOX(hbox2), frame, TRUE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox2), frame, TRUE, TRUE, 0);
 
 	table = my_gtk_table_new(2, 2);
 	gtk_container_add(GTK_CONTAINER(frame), table);
@@ -332,7 +345,7 @@ extern void gnomecard_edit(GList *node)
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
 	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK,
+			 GTK_FILL | GTK_SHRINK | GTK_EXPAND, GTK_FILL | GTK_SHRINK,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	label = gtk_label_new(_("Title:"));
@@ -342,13 +355,13 @@ extern void gnomecard_edit(GList *node)
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
 	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GTK_FILL | GTK_SHRINK | GTK_EXPAND, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 
 	/* internet related information */
 	frame = gtk_frame_new(_("Internet Info"));
-	gtk_box_pack_start(GTK_BOX(hbox2), frame, TRUE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox2), frame, TRUE, TRUE, 0);
 
 	table = my_gtk_table_new(2, 2);
 	gtk_container_add(GTK_CONTAINER(frame), table);
@@ -361,7 +374,7 @@ extern void gnomecard_edit(GList *node)
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
 	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0, 1,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK,
+			 GTK_FILL | GTK_SHRINK | GTK_EXPAND, GTK_FILL | GTK_SHRINK,
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	label = gtk_label_new(_("Homepage URL:"));
@@ -371,7 +384,7 @@ extern void gnomecard_edit(GList *node)
 			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
 			 0, 0);
 	gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 1, 2,
-			 GTK_FILL | GTK_SHRINK, GTK_FILL | GTK_SHRINK, 
+			 GTK_FILL | GTK_SHRINK | GTK_EXPAND, GTK_FILL | GTK_SHRINK, 
 			 GNOME_PAD_SMALL, GNOME_PAD_SMALL);
 
 	/* add address notetab */
@@ -415,7 +428,7 @@ extern void gnomecard_edit(GList *node)
 	}
 
 	/* make the actual entry boxes for entering the address */
-	table = my_gtk_table_new(2, 6);
+	table = my_gtk_table_new(6, 2);
 	gtk_box_pack_start(GTK_BOX(addrhbox), table, TRUE, FALSE, 0);
 
 	label = gtk_label_new(_("Street 1:"));
