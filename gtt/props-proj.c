@@ -115,9 +115,6 @@ do_set_project(GttProject *proj, PropDlg *dlg)
 
 	if (!dlg) return;
 
-/* hack alert -- fixme -- we don't really need to do this work
- * if the thing aint visible. we should check for visibility and defer ...
- */
 	if (!proj) 
 	{
 		/* We null these out, because old values may be left

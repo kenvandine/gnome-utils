@@ -3,13 +3,20 @@ Enhancements
 ------------
 create feature to (auto-)prune old entries from the log.
 
+main window should show not just 'today' and 'ever', but also,
+'week', 'month'.
+
+create invoice for work by day/by week/by month, etc.
+create a 'filter' for showing a journal only between certain dates ..
+
 Create a gtt panel applet for switching projects fast.
 
 Documentation has to be updated/finished.
 
 Optionally allow more then one running project.
 
-Support some SQL database for logging?
+Support SQL database for multi-user support; should be easier now,
+just mimic the xml file format layout...
 
 Create bonobo component to allow tasks to be put into calander (e.g.
 evolution calender).
@@ -20,6 +27,9 @@ Later:
 Networked version (Server on one machine -- all others are network clients).
 Security (but read-only for some users). Viewable / editable on multiple
 machines at the same time.
+
+This shouldn't be too hard, since (1) gtt already uses xml, can be shipped 
+over the net (2) gtt already has an html viewer.
 
 
 Bugs -- High Priority
@@ -61,3 +71,4 @@ build fancier reports/journals, including
 
 the log file should be gziped on write.
 
+should use local currencies in invoice reports

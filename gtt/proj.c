@@ -37,7 +37,7 @@ typedef struct notif_s
 	gpointer user_data;
 } Notifier;
 
-// hack alert -- should be static
+// hack alert -- should be static/private to this file
 GList * plist = NULL;
 
 static void proj_refresh_time (GttProject *proj);
