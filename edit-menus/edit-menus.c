@@ -58,9 +58,10 @@ static void tree_selection_changed_cb(GtkTree * tree);
 
 static void menu_entry_cb(MenuEntryWiz *, gchar *, 
 			  gchar *, gchar *);
-static void new_what_cb(GtkWidget * button, gpointer data);
+static void new_what_cb(GnomeDialog * dialog, gint button, 
+                        gpointer data);
 static void test_menuitem_cb(GtkWidget * mi, gpointer data);
-static void quit_for_sure_cb(GnomeMessageBox * mb, gint button);
+static void quit_for_sure_cb(GnomeDialog * d, gint button);
 
 static GtkWidget * tree_from_menu (Menu * m,
 				   GtkTree * root); 
@@ -238,13 +239,13 @@ void prepare_app()
 
   scrolled_win = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
-				  GTK_POLICY_AUTOMATIC, 
-				  GTK_POLICY_AUTOMATIC);
+                                  GTK_POLICY_AUTOMATIC, 
+                                  GTK_POLICY_AUTOMATIC);
   gtk_widget_set_usize ( scrolled_win, 180, 400 );
   gtk_container_add ( GTK_CONTAINER(frame), scrolled_win );
   gtk_widget_show(scrolled_win);
   gtk_container_border_width(GTK_CONTAINER(scrolled_win), 
-			     GNOME_PAD);
+                             GNOME_PAD);
   gtk_box_pack_end( GTK_BOX(app_box), frame,
 		    TRUE, TRUE, GNOME_PAD );
 
@@ -397,8 +398,8 @@ static GtkWidget * gtk_menu_from_menu (Menu * m,
   else if ( IS_MENU_COMMAND(m) ){
     /* Connect command items to run a command */
     gtk_signal_connect ( GTK_OBJECT(menuitem), "activate",
-			 GTK_SIGNAL_FUNC(test_menuitem_cb),
-			 m );
+                         GTK_SIGNAL_FUNC(test_menuitem_cb),
+                         m );
   }
 
   /* Return value ignored by recursive calls */
@@ -429,7 +430,7 @@ static void tree_selection_changed_cb(GtkTree * tree)
 
   /* Both or neither */
   g_assert( (selected_tree_item && selected_menu) ||
-	    !(selected_tree_item || selected_menu) );
+            !(selected_tree_item || selected_menu) );
 }
 
 
@@ -456,11 +457,11 @@ static void about_cb(GtkWidget * w, gpointer data)
   GtkWidget * ga;
 
   ga = gnome_about_new (APPNAME,
-			VERSION, 
-			COPYRIGHT_NOTICE,
-			authors,
-			0,
-			0 );
+                        VERSION, 
+                        COPYRIGHT_NOTICE,
+                        authors,
+                        0,
+                        0 );
 
   gtk_widget_show(ga);
 }
@@ -554,22 +555,14 @@ static void popup_test(Menu * m)
   GtkWidget * d;
   GtkWidget * frame;
   GtkWidget * menu_box;
-  GtkWidget * button;
   
-  d = gtk_dialog_new();
-  gtk_window_set_title( GTK_WINDOW(d), _("Testing menu"));
-
-  button = gnome_stock_button(GNOME_STOCK_BUTTON_CLOSE);
-  gtk_signal_connect_object ( GTK_OBJECT(button), "clicked",
-                              GTK_SIGNAL_FUNC(gtk_widget_destroy),
-                              GTK_OBJECT(d) );
-  gtk_container_add ( GTK_CONTAINER(GTK_DIALOG(d)->action_area),
-		      button );
-  gtk_widget_show(button);
+  d = gnome_dialog_new(_("Testing menu"), 
+                       GNOME_STOCK_BUTTON_CLOSE, NULL);
+  gnome_dialog_set_destroy(GNOME_DIALOG(d), TRUE);
 
   frame = gtk_frame_new(_("Working Test Menu"));
   gtk_container_border_width(GTK_CONTAINER(frame), GNOME_PAD);
-  gtk_box_pack_start ( GTK_BOX(GTK_DIALOG(d)->vbox), frame, 
+  gtk_box_pack_start ( GTK_BOX(GNOME_DIALOG(d)->vbox), frame, 
                        TRUE, TRUE, GNOME_PAD );
   
   menu_box = gtk_vbox_new ( FALSE, GNOME_PAD);
@@ -605,24 +598,26 @@ static void popup_new_what()
   GSList * group;
   GtkWidget * label;
 
-  d = gtk_dialog_new();
-  gtk_window_set_title( GTK_WINDOW(d), _("Menu item type"));
+  d = gnome_dialog_new(_("Menu item type"),
+                       GNOME_STOCK_BUTTON_OK, NULL);
+  gnome_dialog_set_destroy(GNOME_DIALOG(d), TRUE);
+  gnome_dialog_set_modal(GNOME_DIALOG(d));
   
   label = gtk_label_new(_("What kind of menu item?"));
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
+  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG(d)->vbox), 
 		      label, TRUE, TRUE, 0);
   gtk_widget_show(label);
 
   button = gtk_radio_button_new_with_label(NULL, _("Command"));
   gtk_toggle_button_set_state (GTK_TOGGLE_BUTTON (button), TRUE);
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
+  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG(d)->vbox), 
 		      button, TRUE, TRUE, 0);
   gtk_widget_show (button);
   
   group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
 
   button = gtk_radio_button_new_with_label (group, _("Folder"));
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
+  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG(d)->vbox), 
 		      button, TRUE, TRUE, 0);
   gtk_widget_show (button);
   
@@ -630,28 +625,16 @@ static void popup_new_what()
 
   button = gtk_radio_button_new_with_label (group,
 					    _("Separator"));
-  gtk_box_pack_start (GTK_BOX (GTK_DIALOG(d)->vbox), 
+  gtk_box_pack_start (GTK_BOX (GNOME_DIALOG(d)->vbox), 
 		      button, TRUE, TRUE, 0);
   gtk_widget_show (button);
 
   /* Get group to pass to the callback */
   group = gtk_radio_button_group (GTK_RADIO_BUTTON (button));
   
-  button = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
-
-  gtk_signal_connect ( GTK_OBJECT(button), "clicked",
-		       GTK_SIGNAL_FUNC(new_what_cb),
-		       group );
-  gtk_signal_connect_object( GTK_OBJECT(button), "clicked",
-			     GTK_SIGNAL_FUNC(gtk_widget_destroy),
-			     GTK_OBJECT(d) );
-
-  gtk_container_add ( GTK_CONTAINER(GTK_DIALOG(d)->action_area),
-		      button );
-  gtk_widget_show(button);
-
-  /* modal - isn't there another way to do this? */
-  gtk_grab_add (GTK_WIDGET (d));
+  gtk_signal_connect ( GTK_OBJECT(d), "clicked",
+                       GTK_SIGNAL_FUNC(new_what_cb),
+                       group );
 
   gtk_widget_show(d);
 }
@@ -665,8 +648,8 @@ static void popup_quit_for_sure()
                              GNOME_STOCK_BUTTON_YES,
                              GNOME_STOCK_BUTTON_NO,
                              NULL);
-  gnome_message_box_set_modal(GNOME_MESSAGE_BOX(mb));
-  gnome_message_box_set_default(GNOME_MESSAGE_BOX(mb), 0);
+  gnome_dialog_set_modal(GNOME_DIALOG(mb));
+  gnome_dialog_set_default(GNOME_DIALOG(mb), 0);
 
   gtk_signal_connect( GTK_OBJECT(mb), "clicked",
                       GTK_SIGNAL_FUNC(quit_for_sure_cb),
@@ -683,7 +666,7 @@ static void popup_ok(gchar * message)
 			     GNOME_MESSAGE_BOX_INFO,
 			     GNOME_STOCK_BUTTON_OK,
 			     NULL);
-  gnome_message_box_set_modal(GNOME_MESSAGE_BOX(mb));
+  gnome_dialog_set_modal(GNOME_DIALOG(mb));
 
   gtk_widget_show(mb);
 }
@@ -712,14 +695,15 @@ static void popup_clipboard_empty()
    since it can be called on a new menu not yet in the tree */
 
 static void menu_entry_cb(MenuEntryWiz * mew, gchar * name, 
-			  gchar * icon, gchar * command)
+                          gchar * icon, gchar * command)
 {
   Menu * m = (Menu *)gtk_object_get_user_data(GTK_OBJECT(mew));
   make_menu_changes(m, name, icon, command);
   relabel_tree_item(m);
 }
 
-static void new_what_cb(GtkWidget * button, gpointer data)
+static void new_what_cb(GnomeDialog * dialog, gint button, 
+                        gpointer data)
 {
   GSList * group;
   int which;
@@ -727,7 +711,7 @@ static void new_what_cb(GtkWidget * button, gpointer data)
 
   group = (GSList *)data;
 
-  /* Decide which button is selected */
+  /* Decide which radio item is selected */
   /* There really must be a better way, no? */
   which = 0;
   while (group) {
@@ -769,9 +753,9 @@ static void test_menuitem_cb(GtkWidget * mi, gpointer data)
   run_command(MENU_COMMAND_COMMAND(m));
 }
 
-static void quit_for_sure_cb(GnomeMessageBox * mb, gint button)
+static void quit_for_sure_cb(GnomeDialog * d, gint button)
 {
-  g_return_if_fail(GNOME_IS_MESSAGE_BOX(mb));
+  g_return_if_fail(GNOME_IS_MESSAGE_BOX(d));
 
   /* yes */
   if ( button == 0 ) {
@@ -812,7 +796,7 @@ static void relabel_tree_item(Menu * m)
 }
 
 static void init_tree_item(GtkWidget * treeitem, GtkWidget * root, 
-			   Menu * m)
+                           Menu * m)
 {
   MENU_TREEITEM(m) = treeitem;
   
@@ -851,7 +835,7 @@ static void edit_this_menu(Menu * m)
 }
 
 static void make_menu_changes(Menu * m, gchar * name, gchar * icon,
-			      gchar * command)
+                              gchar * command)
 {
   if (name) {
     g_free(MENU_NAME(m));
