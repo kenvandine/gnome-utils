@@ -58,18 +58,23 @@ struct _FindOptionTemplate {
 	
 static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_TEXT, "-exec grep -q '%s' {} \\;", N_("Contains the text"), FALSE },
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("Date modified less than (days)"), FALSE },
+	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Date modified more than (days)"), FALSE },
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
+	{ SEARCH_CONSTRAINT_NUMBER, "-size +%dk", N_("Size at least (kilobytes)"), FALSE }, 
+	{ SEARCH_CONSTRAINT_NUMBER, "-size -%dk", N_("Size at most (kilobytes)"), FALSE },
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TEXT, "-user '%s'", N_("Owned by user"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "-group '%s'", N_("Owned by group"), FALSE },
 	{ SEARCH_CONSTRAINT_BOOL, "\\( -nouser -o -nogroup \\)", N_("Owner is unrecognized"), FALSE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime -%d", N_("Date modified before (days)"), FALSE },
-	{ SEARCH_CONSTRAINT_TIME, "-mtime +%d", N_("Date modified after (days)"), FALSE },	
-	{ SEARCH_CONSTRAINT_NUMBER, "-size -%dk", N_("Size is less than (kilobytes)"), FALSE },
-	{ SEARCH_CONSTRAINT_NUMBER, "-size +%dk", N_("Size is more than (kilobytes)"), FALSE }, 
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_BOOL, "-size 0c \\( -type f -o -type d \\)", N_("File is empty"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "'!' -name '%s'", N_("File is not named"), FALSE },
 	{ SEARCH_CONSTRAINT_TEXT, "-regex '%s'", N_("File matches regular expression"), FALSE }, 
+	{ SEARCH_CONSTRAINT_SEPARATOR, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_BOOL, "-follow", N_("Follow symbolic links"), FALSE },
-	{ SEARCH_CONSTRAINT_BOOL, "-xdev", N_("Search other filesystems"), FALSE },
+	{ SEARCH_CONSTRAINT_BOOL, "-xdev", N_("Include other filesystems"), FALSE },
 	{ SEARCH_CONSTRAINT_END, NULL, NULL, FALSE}
 }; 
 
@@ -131,21 +136,21 @@ struct poptOption options[] = {
 	  N_("Automatically start a search"), NULL},
   	{ "contains", '\0', POPT_ARG_STRING, &PoptArgument.contains, 0, 
 	  N_("Select the 'Contains the text' constraint"), NULL},
-	{ "user", '\0', POPT_ARG_STRING, &PoptArgument.user, 0, 
+  	{ "mtimeless", '\0', POPT_ARG_STRING, &PoptArgument.mtimeless, 0, 
+	  N_("Select the 'Date modified less than (days)' constraint"), NULL},
+  	{ "mtimemore", '\0', POPT_ARG_STRING, &PoptArgument.mtimemore, 0, 
+	  N_("Select the 'Date modified more than (days)' constraint"), NULL},
+	{ "sizeless", '\0', POPT_ARG_STRING, &PoptArgument.sizeless, 0, 
+	  N_("Select the 'Size at most (kilobytes)' constraint"), NULL},
+	{ "sizemore", '\0', POPT_ARG_STRING, &PoptArgument.sizemore, 0, 
+	  N_("Select the 'Size at least (kilobytes)' constraint"), NULL},  
+  	{ "user", '\0', POPT_ARG_STRING, &PoptArgument.user, 0, 
 	  N_("Select the 'Owned by user' constraint"), NULL},
   	{ "group", '\0', POPT_ARG_STRING, &PoptArgument.group, 0, 
 	  N_("Select the 'Owned by group' constraint"), NULL},
   	{ "nouser", '\0', POPT_ARG_NONE, &PoptArgument.nouser, 0, 
 	  N_("Select the 'Owner is unrecognized' constraint"), NULL},
-  	{ "mtimeless", '\0', POPT_ARG_STRING, &PoptArgument.mtimeless, 0, 
-	  N_("Select the 'Date modified before (days)' constraint"), NULL},
-  	{ "mtimemore", '\0', POPT_ARG_STRING, &PoptArgument.mtimemore, 0, 
-	  N_("Select the 'Date modified after (days)' constraint"), NULL},
-  	{ "sizeless", '\0', POPT_ARG_STRING, &PoptArgument.sizeless, 0, 
-	  N_("Select the 'Size is less than (kilobytes)' constraint"), NULL},
-  	{ "sizemore", '\0', POPT_ARG_STRING, &PoptArgument.sizemore, 0, 
-	  N_("Select the 'Size is more than (kilobytes)' constraint"), NULL},
-  	{ "empty", '\0', POPT_ARG_NONE, &PoptArgument.empty, 0, 
+	{ "empty", '\0', POPT_ARG_NONE, &PoptArgument.empty, 0, 
 	  N_("Select the 'File is empty' constraint"), NULL},
   	{ "notnamed", '\0', POPT_ARG_STRING, &PoptArgument.notnamed, 0, 
 	  N_("Select the 'File is not named' constraint"), NULL},
@@ -154,7 +159,7 @@ struct poptOption options[] = {
   	{ "follow", '\0', POPT_ARG_NONE, &PoptArgument.follow, 0, 
 	  N_("Select the 'Follow symbolic links' constraint"), NULL},
   	{ "allmounts", '\0', POPT_ARG_NONE, &PoptArgument.allmounts, 0, 
-	  N_("Select the 'Search other filesystems' constraint"), NULL},
+	  N_("Select the 'Include other filesystems' constraint"), NULL},
   	{ NULL,'\0', 0, NULL, 0, NULL, NULL}
 };
 
@@ -402,6 +407,7 @@ make_list_of_templates (void)
 {
 	GtkWidget *menu;
 	GtkWidget *menuitem;
+	GtkWidget *separator;
 	GSList    *group = NULL;
 	gint i;
 
@@ -409,14 +415,24 @@ make_list_of_templates (void)
 
 	for(i=0; templates[i].type != SEARCH_CONSTRAINT_END; i++) {
 		
-		menuitem = gtk_radio_menu_item_new_with_label (group,
-							       _(templates[i].desc));
-		g_signal_connect (G_OBJECT(menuitem), "toggled",
-				  G_CALLBACK(constraint_menu_toggled_cb),
-		        	  (gpointer)(long)i);
-		group = gtk_radio_menu_item_get_group (GTK_RADIO_MENU_ITEM(menuitem));
-		gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
-		gtk_widget_show (menuitem);
+		if (templates[i].type == SEARCH_CONSTRAINT_SEPARATOR) {
+			menuitem = gtk_menu_item_new ();
+			separator = gtk_hseparator_new ();
+			gtk_container_add (GTK_CONTAINER (menuitem), separator);	
+			gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+			gtk_widget_show (separator);
+			gtk_widget_show (menuitem);
+		} 
+		else {
+			menuitem = gtk_radio_menu_item_new_with_label (group,
+							      	_(templates[i].desc));
+			g_signal_connect (G_OBJECT(menuitem), "toggled",
+					  G_CALLBACK(constraint_menu_toggled_cb),
+		        		  (gpointer)(long)i);
+			group = gtk_radio_menu_item_get_group (GTK_RADIO_MENU_ITEM (menuitem));
+			gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+			gtk_widget_show (menuitem);
+		}
 		
 		if (templates[i].is_selected == TRUE) {
 			gtk_widget_set_sensitive (menuitem, FALSE);
