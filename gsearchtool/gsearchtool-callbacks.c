@@ -826,18 +826,20 @@ save_results_cb (GtkFileSelection *selector,
 			
 			for (i = 0; i < n_children; i++)
 			{
-				gchar *utf8_path, *utf8_name, *file;
+				gchar *utf8_path, *utf8_name, *utf8_file, *locale_file;
 				
 				gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, COLUMN_PATH, &utf8_path, -1);
 				gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, COLUMN_NAME, &utf8_name, -1);
 				gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &iter);	
-				
-				file = g_build_filename (utf8_path, utf8_name, NULL);					    
-				fprintf(fp, "%s\n", file);
+   
+				utf8_file = g_build_filename (utf8_path, utf8_name, NULL);					    
+				locale_file = g_filename_from_utf8 (utf8_file, -1, NULL, NULL, NULL);	
+				fprintf(fp, "%s\n", locale_file);
 				
 				g_free(utf8_path);
 				g_free(utf8_name);
-				g_free(file);
+				g_free(utf8_file);
+				g_free(locale_file);
 			}
 		}		 
 		fclose(fp);
