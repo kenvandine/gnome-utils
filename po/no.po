@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.0.13\n"
-"POT-Creation-Date: 2000-05-20 10:58+0200\n"
-"PO-Revision-Date: 2000-05-20 11:38+02:00\n"
+"POT-Creation-Date: 2000-05-20 21:41+0200\n"
+"PO-Revision-Date: 2000-05-20 21:41+02:00\n"
 "Last-Translator: Kjartan Maraas <kmaraas@online.no>\n"
 "Language-Team: Norwegian <no@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -410,11 +410,12 @@ msgid "File"
 msgstr "Fil"
 
 #: gnome-find/gnome-find.c:87 mini-utils/gcolorsel/gcolorsel.c:32
-#: mini-utils/gcolorsel/menus.c:566
+#: mini-utils/gcolorsel/menus.c:566 mini-utils/gcolorsel/menus.c:652
 msgid "Edit"
 msgstr "Redigér"
 
 #: gnome-find/gnome-find.c:88 gnome-find/gnome-find.c:109
+#: mini-utils/gcolorsel/session.c:424
 msgid "Search"
 msgstr "Søk"
 
@@ -745,7 +746,7 @@ msgstr "Hjelp"
 msgid "Param"
 msgstr "Param"
 
-#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:196
+#: gstripchart/gstripchart.c:1605 mini-utils/gcolorsel/view-color-list.c:197
 #: mini-utils/guname/moreinfo.c:227
 msgid "Value"
 msgstr "Verdi"
@@ -754,7 +755,7 @@ msgstr "Verdi"
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:195
+#: gstripchart/gstripchart.c:1611 mini-utils/gcolorsel/view-color-list.c:196
 msgid "Color"
 msgstr "Farge"
 
@@ -1738,19 +1739,19 @@ msgstr "Melding:"
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:116
+#: mini-utils/gcolorsel/dialog-prefs.c:117
 msgid "Do nothing"
 msgstr "Ikke gjør noe"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:121
+#: mini-utils/gcolorsel/dialog-prefs.c:122
 msgid "Append it to ->"
 msgstr "Legg den til ->"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:126
+#: mini-utils/gcolorsel/dialog-prefs.c:127
 msgid "Search it in ->"
 msgstr "Søk etter den i ->"
 
-#: mini-utils/gcolorsel/dialog-prefs.c:132
+#: mini-utils/gcolorsel/dialog-prefs.c:133
 msgid "Edit it"
 msgstr "Redigér den"
 
@@ -1853,7 +1854,9 @@ msgstr "Velg kildedokument"
 msgid ""
 "This document read document from one or more other document. Please, choose "
 "these documents."
-msgstr "Dette dokumentet leser dokumenter fra ett eller flere andre dokumenter. Vær vennlig og velg disse dokumentene."
+msgstr ""
+"Dette dokumentet leser dokumenter fra ett eller flere andre dokumenter. Vær "
+"vennlig og velg disse dokumentene."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:17
 msgid "Available documents"
@@ -1900,7 +1903,9 @@ msgstr "Lag visninger"
 msgid ""
 "You can create one or more views for this document. Note that you have to "
 "create at least one view."
-msgstr "Du kan lage ett eller flere visninger for dette dokumentet. Merk at du må ha minst en visning."
+msgstr ""
+"Du kan lage ett eller flere visninger for dette dokumentet. Merk at du må ha "
+"minst en visning."
 
 #: mini-utils/gcolorsel/glade/dialog-new-doc.glade.h:27
 msgid "Available views"
@@ -2075,17 +2080,17 @@ msgid "Name :"
 msgstr "Navn :"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:9
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:97
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:98
 msgid "Red :"
 msgstr "Rød :"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:10
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:101
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:102
 msgid "Green :"
 msgstr "Grønn :"
 
 #: mini-utils/gcolorsel/glade/view-color-edit.glade.h:11
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:105
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:106
 msgid "Blue :"
 msgstr "Blå :"
 
@@ -2277,7 +2282,7 @@ msgstr ""
 
 #: mini-utils/gcolorsel/menus.c:487
 msgid "Gnome Color Browser"
-msgstr "Gnome fargeleser"
+msgstr "GNOME fargevelger"
 
 #: mini-utils/gcolorsel/menus.c:490
 msgid "Small utility to browse available X11 colors."
@@ -2319,7 +2324,7 @@ msgstr "Hent en farge fra skjermen"
 msgid "About this application"
 msgstr "Om denne applikasjonen"
 
-#: mini-utils/gcolorsel/session.c:303
+#: mini-utils/gcolorsel/session.c:304
 msgid ""
 "Your config file is corrupted.\n"
 "Do you want to create a new session ?"
@@ -2327,11 +2332,11 @@ msgstr ""
 "Din konfigurasjonsfil er korrupt.\n"
 "Vil du lage en ny sesjon?"
 
-#: mini-utils/gcolorsel/session.c:356
+#: mini-utils/gcolorsel/session.c:357
 msgid "Loading files, please wait ..."
 msgstr "Laster filer, vennligst vent ..."
 
-#: mini-utils/gcolorsel/session.c:381
+#: mini-utils/gcolorsel/session.c:382
 msgid ""
 "One or more files can not be restored :\n"
 "\n"
@@ -2339,33 +2344,37 @@ msgstr ""
 "En eller flere filer kan ikke gjenopprettes:\n"
 "\n"
 
-#: mini-utils/gcolorsel/view-color-generic.c:15
+#: mini-utils/gcolorsel/session.c:407
+msgid "System"
+msgstr "System"
+
+#: mini-utils/gcolorsel/view-color-generic.c:16
 msgid "Decimal 8 bits"
 msgstr "Desimal 8 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:16
+#: mini-utils/gcolorsel/view-color-generic.c:17
 msgid "Decimal 16 bits"
 msgstr "Desimal 16 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:17
+#: mini-utils/gcolorsel/view-color-generic.c:18
 msgid "Hex 8 bits"
 msgstr "Hex 8 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:18
+#: mini-utils/gcolorsel/view-color-generic.c:19
 msgid "Hex 16 bits"
 msgstr "Hex 16 bits"
 
-#: mini-utils/gcolorsel/view-color-generic.c:19
+#: mini-utils/gcolorsel/view-color-generic.c:20
 msgid "Float"
 msgstr "Flyttall"
 
 #. Create everything.
-#: mini-utils/gcolorsel/view-color-list.c:197 mini-utils/guname/moreinfo.c:225
+#: mini-utils/gcolorsel/view-color-list.c:198 mini-utils/guname/moreinfo.c:225
 #: mini-utils/gw/gw.c:504 mini-utils/gw/gw.c:574
 msgid "Name"
 msgstr "Navn"
 
-#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:109
+#: mini-utils/gcolorsel/widget-control-virtual-rgb.c:110
 msgid "Tolerance :"
 msgstr "Toleranse:"
 
