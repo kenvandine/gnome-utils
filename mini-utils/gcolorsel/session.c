@@ -404,7 +404,7 @@ session_create (GnomeMDI *mdi, gboolean init_actions)
   file_sys = mdi_color_file_new ();
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file_sys));
   
-  mdi_color_file_set_filename (file_sys, "/usr/X11R6/lib/X11/rgb.txt", FALSE);
+  mdi_color_file_set_filename (file_sys, XLIBDIR "/X11/rgb.txt", FALSE);
   mdi_color_generic_set_name (MDI_COLOR_GENERIC (file_sys), _("System Colors"));
   
   /* Add a ColorList view for the system colors document */

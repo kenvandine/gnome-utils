@@ -90,6 +90,13 @@ GNOME_COMPILE_WARNINGS
 
 GNOME_X_CHECKS
 
+# so that people on places like solaris can set where the rgb.txt file is
+XLIBDIR=$x_libraries
+if test x$XLIBDIR = xNONE ; then
+	XLIBDIR="/usr/X11R6/lib/"
+fi
+AC_SUBST(XLIBDIR)
+
 dnl Check for new enough gnome-libs
 CFLAGS_save=$CFLAGS
 LIBS_save=$LIBS
@@ -423,6 +430,7 @@ echo "bin dir : "`eval echo $bindir`
 echo "sbin dir : "`eval echo $sbindir`
 echo "PAM prefix : $PAM_PREFIX"
 echo "data dir : "`eval echo $datadir`
+echo "X libraries dir : $XLIBDIR"
 echo ""
 
 dnl <= Console Helper =>
