@@ -38,10 +38,10 @@
 
 void repaint (GtkWidget * canvas, GdkRectangle * area);
 void CreateMainWin (void);
-void log_repaint (GtkWidget * canvas, GdkRectangle * area);
-void PointerMoved (GtkWidget * canvas, GdkEventMotion * event);
-void HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
-void handle_log_mouse_button (GtkWidget * win, GdkEventButton *event);
+gboolean log_repaint (GtkWidget * canvas, GdkRectangle * area);
+gboolean PointerMoved (GtkWidget * canvas, GdkEventMotion * event);
+gboolean HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
+gboolean handle_log_mouse_button (GtkWidget * win, GdkEventButton *event);
 void ExitProg (GtkWidget * widget, gpointer user_data);
 void LoadLogMenu (GtkWidget * widget, gpointer user_data);
 void CloseLogMenu (GtkWidget * widget, gpointer user_data);
@@ -57,7 +57,7 @@ void FileSelectCancel (GtkWidget * w, GtkFileSelection * fs);
 void FileSelectOk (GtkWidget * w, GtkFileSelection * fs);
 void MainWinScrolled (GtkAdjustment *adjustment, GtkRange *);
 void CanvasResized (GtkWidget *widget, GtkAllocation *allocation);
-void ScrollWin (GtkRange *range, gpointer event);
+gboolean ScrollWin (GtkRange *range, gpointer event);
 void LogInfo (GtkWidget * widget, gpointer user_data);
 void UpdateStatusArea (void);
 void set_scrollbar_size (int);
@@ -421,14 +421,16 @@ CanvasResized (GtkWidget *widget, GtkAllocation *allocation)
    DESCRIPTION:   When the mouse button is released we scroll the window.
    ---------------------------------------------------------------------- */
 
-void
+gboolean
 ScrollWin (GtkRange *range, gpointer event)
 {
   int newln;
   
   newln = (int) range->adjustment->value;
-  if (newln >= curlog->lstats.numlines || newln == 0)
-    return;
+  if (curlog == NULL ||
+      newln >= curlog->lstats.numlines ||
+      newln == 0)
+    return FALSE;
   
   /* Goto mark */
   MoveToMark (curlog);
@@ -438,8 +440,8 @@ ScrollWin (GtkRange *range, gpointer event)
   
   /* Repaint screen */
   log_repaint(NULL, NULL);
-     
-  return;
+
+  return FALSE;
 }
 
 /* ----------------------------------------------------------------------
@@ -455,7 +457,8 @@ MainWinScrolled (GtkAdjustment *adjustment, GtkRange *range)
 
   newln = (int) range->adjustment->value;
 
- if (newln == 0)
+ if (newln == 0 ||
+     curlog == NULL)
    return;
 
  if (newln >= curlog->lstats.numlines)
@@ -508,8 +511,6 @@ MainWinScrolled (GtkAdjustment *adjustment, GtkRange *range)
 
   if (howmuch != 0)
     log_repaint(NULL, NULL);
-  
-  return;
 }
 
 

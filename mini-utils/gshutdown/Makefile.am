@@ -34,8 +34,8 @@ System_DATA = gshutdown.desktop
 
 install-data-local: gshutdown-security
 if CONSOLE_HELPER
-	$(INSTALL_DATA) -D gshutdown-pam $(PAM_PREFIX)/pam.d/gshutdown
-	$(INSTALL_DATA) -D gshutdown-security $(PAM_PREFIX)/security/console.apps/gshutdown
+	$(INSTALL_DATA) -D gshutdown-pam $(DESTDIR)$(PAM_PREFIX)/pam.d/gshutdown
+	$(INSTALL_DATA) -D gshutdown-security $(DESTDIR)$(PAM_PREFIX)/security/console.apps/gshutdown
 	$(INSTALL_DATA) -m 755 -d $(sbindir)
 	mv -f $(bindir)/gshutdown $(sbindir)
 	$(LN_S) @CONSOLE_HELPER@ $(bindir)/gshutdown

@@ -101,9 +101,9 @@ int NumTextLines (int l);
 int RepaintCalendar (GtkWidget * widget, GdkEventExpose * event);
 int RepaintLogInfo (GtkWidget *, GdkEventExpose *);
 int rapaint_zoom (GtkWidget * widget, GdkEventExpose * event);
-void HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
-void PointerMoved (GtkWidget * cv, GdkEventMotion * event);
-void log_repaint (GtkWidget * cv, GdkEventExpose * event);
+gboolean HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key);
+gboolean PointerMoved (GtkWidget * cv, GdkEventMotion * event);
+gboolean log_repaint (GtkWidget * cv, GdkEventExpose * event);
 void log_redrawcursor (int ol, int nl, Page * np);
 void log_redrawdetail (void);
 void DrawMonthHeader (LogLine * line, int y);
@@ -116,7 +116,7 @@ void UpdateStatusArea (void);
 void change_log (int direction);
 void create_zoom_view (GtkWidget * widget, gpointer user_data);
 void close_zoom_view (GtkWidget * widget, GtkWindow ** window);
-void handle_log_mouse_button (GtkWidget * win, GdkEventButton * event_key);
+gboolean handle_log_mouse_button (GtkWidget * win, GdkEventButton * event_key);
 Page *GetPageAtCursor (int y);
 
 /* ----------------------------------------------------------------------
@@ -124,7 +124,7 @@ Page *GetPageAtCursor (int y);
    DESCRIPTION: The pointer moved inside the window.
    ---------------------------------------------------------------------- */
 
-void
+gboolean
 PointerMoved (GtkWidget * cv, GdkEventMotion * event)
 {
    int cursory, nl;
@@ -132,7 +132,7 @@ PointerMoved (GtkWidget * cv, GdkEventMotion * event)
 
    /* Check that there is at least one log */
    if (curlog == NULL)
-      return;
+      return FALSE;
 
    cursory = event->y;
    cursor_visible = TRUE;
@@ -144,6 +144,8 @@ PointerMoved (GtkWidget * cv, GdkEventMotion * event)
       curlog->pointerpg = np;
       log_redrawdetail ();
    }
+
+   return FALSE;
 }
 
 
@@ -187,7 +189,7 @@ NumTextLines (int l)
    DESCRIPTION: User clicked on main window: open zoom view. 
    ---------------------------------------------------------------------- */
 
-void
+gboolean
 handle_log_mouse_button (GtkWidget * win, GdkEventButton *event)
 {
   static guint32 lasttime;
@@ -197,18 +199,19 @@ handle_log_mouse_button (GtkWidget * win, GdkEventButton *event)
     {
       lasttime = event->time;
       clicked_before = TRUE;
-      return;
+      return FALSE;
     }
   
   clicked_before = FALSE;
   if (event->time - lasttime < 100 ||
       event->time - lasttime > 200)
-    return;
+    return FALSE;
 
   /* If zoom is already visible ignore */
   if (!zoom_visible)
     create_zoom_view (NULL, NULL);
-  return;
+
+  return FALSE;
 }
 
 /* ----------------------------------------------------------------------
@@ -216,7 +219,7 @@ handle_log_mouse_button (GtkWidget * win, GdkEventButton *event)
    DESCRIPTION: Handle all posible keyboard actions.
    ---------------------------------------------------------------------- */
 
-void
+gboolean
 HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key)
 {
   GtkAdjustment *adj;
@@ -224,7 +227,7 @@ HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key)
 
   /* Check that there is at least one log */
   if (curlog == NULL)
-    return;
+    return FALSE;
   
   adj = GTK_ADJUSTMENT (GTK_RANGE (main_win_scrollbar)->adjustment);
   key = event_key->keyval;
@@ -268,10 +271,11 @@ HandleLogKeyboard (GtkWidget * win, GdkEventKey * event_key)
       break;
       
     default:
+      return FALSE;
       break;
     };
   
-   return;
+   return TRUE;
 }
 
 /* ----------------------------------------------------------------------
@@ -385,7 +389,7 @@ ScrollUp (int howmuch)
    DESCRIPTION: Redraw screen.
    ---------------------------------------------------------------------- */
 
-void
+gboolean
 log_repaint (GtkWidget * win, GdkEventExpose * event)
 {
    static int firsttime = TRUE;
@@ -397,7 +401,7 @@ log_repaint (GtkWidget * win, GdkEventExpose * event)
    if (firsttime)
    {
       if (win == NULL)
-	 return;
+	 return FALSE;
       firsttime = FALSE;
       canvas = win->window;
       gc = gdk_gc_new (canvas);
@@ -418,7 +422,7 @@ log_repaint (GtkWidget * win, GdkEventExpose * event)
 
    /* Check that there is at least one log */
    if (curlog == NULL)
-      return;
+      return FALSE;
 
    pg = curlog->currentpg;
    ln = curlog->firstline;
@@ -459,6 +463,8 @@ log_repaint (GtkWidget * win, GdkEventExpose * event)
 
   /* Repaint status bar */
    UpdateStatusArea ();
+
+   return TRUE;
 }
 
 void
