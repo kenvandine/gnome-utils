@@ -1,3 +1,17 @@
+2002-09-05  Dennis M. Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-support.h:  Add file_extension_is().
+	
+	* gsearchtool-support.c:  Improve the code for grabbing 
+	the icons.  Use the current nautilus theme if available.
+	Fixes bug #92177.
+	
+	* gsearchtool-support.c:  Run nautilus with "--sm-disable 
+	--no-desktop --no-default-window" arguments.  
+	
+	* gsearchtool.c:  Increase the icon size from 20 to 24 pixels.
+	Append the G_DIR_SEPARATOR_S to the search path.
+	
 2002-08-24  Dennis M. Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c:  Implement drag and drop support to copy

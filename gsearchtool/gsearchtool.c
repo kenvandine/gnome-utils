@@ -25,7 +25,7 @@
  *
  */
 
-#define ICON_SIZE 20
+#define ICON_SIZE 24
 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
@@ -100,6 +100,10 @@ build_search_command (void)
 	
 	look_in_folder_utf8 = gnome_file_entry_get_full_path (GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
 	look_in_folder_locale = g_filename_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, NULL);
+	
+	if (!file_extension_is (look_in_folder_locale, G_DIR_SEPARATOR_S)) {
+		look_in_folder_locale = g_strconcat (look_in_folder_locale, G_DIR_SEPARATOR_S, NULL);
+	}
 	
 	command = g_string_new ("");
 	

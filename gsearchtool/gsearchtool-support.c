@@ -41,9 +41,14 @@
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <bonobo-activation/bonobo-activation.h>
+#include <gconf/gconf-client.h>
+#include <gconf/gconf.h>
 
+#define PREF_DESKTOP_ICON_THEME "/desktop/gnome/file_views/icon_theme"
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
+
+/* START OF THE CDDB FUNCTIONS */
 
 static GtkCheckButtonClass *parent_class = NULL;
 
@@ -315,7 +320,79 @@ cddb_disclosure_set_container (CDDBDisclosure *disclosure,
 	disclosure->priv->container = container;
 }
 
-/* START OF NON CDDB FUNCTIONS */
+/* START OF THE GCONF FUNCTIONS */
+
+static GConfClient *global_gconf_client = NULL;
+
+static void
+global_client_free (void)
+{
+	if (global_gconf_client == NULL) {
+		return;
+	}
+	
+	g_object_unref (global_gconf_client);
+	global_gconf_client = NULL;
+}
+
+gboolean
+gsearchtool_gconf_handle_error (GError **error)
+{
+	g_return_val_if_fail (error != NULL, FALSE);
+
+	if (*error != NULL) {
+		g_warning (_("GConf error:\n  %s"), (*error)->message);
+		g_error_free (*error);
+		*error = NULL;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+GConfClient *
+gsearchtool_gconf_client_get_global (void)
+{
+	/* Initialize gconf if needed */
+	if (!gconf_is_initialized ()) {
+		char *argv[] = { "eel-preferences", NULL };
+		GError *error = NULL;
+		
+		if (!gconf_init (1, argv, &error)) {
+			if (gsearchtool_gconf_handle_error (&error)) {
+				return NULL;
+			}
+		}
+	}
+	
+	if (global_gconf_client == NULL) {
+		global_gconf_client = gconf_client_get_default ();
+	}
+	
+	return global_gconf_client;
+}
+
+char *
+gsearchtool_gconf_get_string (const gchar *key)
+{
+	gchar *result;
+	GConfClient *client;
+	GError *error = NULL;
+	
+	g_return_val_if_fail (key != NULL, NULL);
+	
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_val_if_fail (client != NULL, NULL);
+	
+	result = gconf_client_get_string (client, key, &error);
+	
+	if (gsearchtool_gconf_handle_error (&error)) {
+		result = g_strdup ("");
+	}
+	
+	return result;
+}
+
+/* START OF GENERIC GNOME-SEARCH-TOOL FUNCTIONS */
 
 gboolean 
 is_path_hidden (const gchar *path)
@@ -332,6 +409,20 @@ gboolean
 is_path_in_home_folder (const gchar *path)
 {
 	return (g_strstr_len (path, strlen (g_get_home_dir ()), g_get_home_dir ()) != NULL);
+}
+
+gboolean
+file_extension_is (const char *filename, 
+		   const char *ext)
+{
+	int filename_l, ext_l;
+	
+	filename_l = strlen (filename);
+	ext_l = strlen (ext);
+	
+	if (filename_l < ext_l)
+		return FALSE;
+	return strcasecmp (filename + filename_l - ext_l, ext) == 0;
 }
 
 gboolean
@@ -570,62 +661,112 @@ get_file_type_with_mime_type (const gchar *filename,
 	return (gchar *)gnome_vfs_mime_get_description (mimetype);
 } 
 
+static gchar *
+get_mime_name (const gchar *mime_type, 
+	       gint         size)
+{
+	gchar *mime_type_modified;
+	gchar *first_slash;
+	gchar *mime_name;
+
+	mime_type_modified = g_strdup (mime_type);
+	first_slash = strchr (mime_type_modified, '/');
+	if (first_slash != NULL)
+		*first_slash = '-';
+
+	if (size > 0)
+		mime_name = g_strdup_printf ("gnome-%s-%d", 
+					     mime_type_modified, 
+					     size);
+	else
+		mime_name = g_strconcat ("gnome-",
+					 mime_type_modified,
+					 NULL);
+	g_free (mime_type_modified);
+
+	return mime_name;
+}
+
 gchar *
 get_file_icon_with_mime_type (const gchar *filename, 
 			      const gchar *mimetype) 
 {
-	const char *icon_name; 
-	gchar *icon_path;
+	const gchar *icon_name;
+	gchar *mime_name = NULL;	
+	gchar *icon_path = NULL;
+	gchar *name_with_ext;
 	gchar *tmp;
+	gchar *icon_theme = gsearchtool_gconf_get_string (PREF_DESKTOP_ICON_THEME);
 	
-	icon_name = gnome_vfs_mime_get_icon(mimetype);
-	if (g_file_test ((icon_name), G_FILE_TEST_EXISTS)) {
-		icon_path = g_strdup (icon_name);
-		return icon_path;
+	icon_name = gnome_vfs_mime_get_icon (mimetype);
+	
+	if (g_file_test ((filename), G_FILE_TEST_IS_DIR) == TRUE) {
+		icon_name = g_strdup ("i-directory");
 	}
 	
-	if (icon_name == NULL)
-		icon_name = g_strdup ("i-regular.png");
+	if (icon_name == NULL) {
+		mime_name = get_mime_name (mimetype, 0);
+		icon_name = mime_name;
+	}
+
+	if (!file_extension_is (icon_name, ".png")) {
+		name_with_ext = g_strconcat (icon_name, ".png", NULL);
+	}
+	else {
+		name_with_ext = g_strdup (icon_name);
+	}
 	
-	if (g_file_test ((filename), G_FILE_TEST_IS_DIR)) 
-		icon_name = g_strdup ("i-directory-24.png");
-
-	icon_path = gnome_vfs_icon_path_from_filename (icon_name);
+        if (icon_path == NULL) {
+                tmp = g_strconcat ("nautilus/", 
+				   icon_theme, 
+				   "/", 
+				   name_with_ext, 
+				   NULL);
+		icon_path = gnome_vfs_icon_path_from_filename (tmp);
+		g_free (tmp);
+        }
 
 	if (icon_path == NULL) {
-		tmp = g_strconcat (icon_name, ".png", NULL);
+                tmp = g_strconcat ("document-icons/", 
+				   name_with_ext, 
+				   NULL);
+                icon_path = gnome_vfs_icon_path_from_filename (tmp);
+                g_free (tmp);
+	}
+
+	if (icon_path == NULL) {
+		tmp = g_strconcat (g_get_home_dir (),
+				   "/.nautilus/themes/",
+				   icon_theme, 
+				   "/", 
+				   name_with_ext, 
+				   NULL);
 		icon_path = gnome_vfs_icon_path_from_filename (tmp);
 		g_free (tmp);
 	}
 
-	if (icon_path == NULL) {
-		tmp = g_strconcat ("document-icons/", icon_name, NULL);
+        if (icon_path == NULL) {
+		tmp = g_strconcat ("nautilus/", 
+				   icon_theme, 
+				   "/", 
+				   "i-regular.png", 
+				   NULL);
 		icon_path = gnome_vfs_icon_path_from_filename (tmp);
 		g_free (tmp);
 	}
-
+	
 	if (icon_path == NULL) {
-		tmp = g_strconcat ("document-icons/", icon_name, ".png", NULL);
+		tmp = g_strconcat ("document-icons/",
+				   "i-regular.png", 
+				   NULL);
 		icon_path = gnome_vfs_icon_path_from_filename (tmp);
 		g_free (tmp);
 	}
+	
+	g_free (name_with_ext);
+	g_free (icon_theme);
 
-	if (icon_path == NULL) {
-		tmp = g_strconcat ("nautilus/gnome/", icon_name, NULL);
-		icon_path = gnome_vfs_icon_path_from_filename (tmp);
-		g_free (tmp);
-	}
-
-	if (icon_path == NULL) {
-		tmp = g_strconcat ("nautilus/gnome/", icon_name, ".png", NULL);
-		icon_path = gnome_vfs_icon_path_from_filename (tmp);
-		g_free (tmp);
-	}
-
-	if (icon_path == NULL)
-		icon_path = gnome_vfs_icon_path_from_filename ("nautilus/gnome/i-regular.png");
-
-	return icon_path;
+	return icon_path;	
 }
 
 gboolean
@@ -650,11 +791,14 @@ is_nautilus_running (void)
 gboolean
 open_file_with_nautilus (const gchar *filename)
 {
-	int argc = 2;
+	int argc = 5;
 	char **argv = g_new0 (char *, argc);
 	
 	argv[0] = "nautilus";
-	argv[1] = (gchar *)filename;
+	argv[1] = "--sm-disable";
+	argv[2] = "--no-desktop";
+	argv[3] = "--no-default-window";
+	argv[4] = (gchar *)filename;
 	
 	gnome_execute_async(NULL, argc, argv);
 	g_free(argv);

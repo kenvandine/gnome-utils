@@ -66,6 +66,9 @@ is_path_hidden 			(const gchar *path);
 gboolean  	
 is_path_in_home_folder 		(const gchar *path);
 
+gboolean
+file_extension_is 		(const char *filename, 
+		   		 const char *ext);
 gboolean  	
 compare_regex	 		(const gchar *regex, 
 				 const gchar *string);
