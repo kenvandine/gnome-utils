@@ -76,3 +76,9 @@ if CONSOLE_HELPER
 	mv -f $(DESTDIR)$(bindir)/gnome-system-log $(DESTDIR)$(sbindir)
 	$(LN_S) @CONSOLE_HELPER@ $(DESTDIR)$(bindir)/gnome-system-log
 endif
+
+CLEANFILES = gnome-system-log.desktop
+
+dist-hook:
+	cd $(distdir) ; rm -f $(CLEANFILES)
+

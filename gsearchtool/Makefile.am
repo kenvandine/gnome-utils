@@ -50,3 +50,8 @@ install-data-local:
 else
 install-data-local:
 endif
+
+CLEANFILES = gnome-search-tool.desktop
+
+disthook:
+	cd $(distdir) ; rm -f $(CLEANFILES)

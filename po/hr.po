@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 0\n"
-"POT-Creation-Date: 2004-03-28 23:21+0200\n"
+"POT-Creation-Date: 2004-04-20 22:54+1200\n"
 "PO-Revision-Date: 2004-03-28 23:21+CEST\n"
 "Last-Translator: auto\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
@@ -12,7 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: TransDict server\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
@@ -48,7 +49,8 @@ msgid "_Show Dictionary"
 msgstr "_Pokaži rječnik"
 
 #. Could not look up search strategies, so just display a
-#.  * label; FIXME: Memory leak
+#. * label; FIXME: Memory leak
+#.
 #: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
 #: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
 msgid "Cannot connect to server"
@@ -60,7 +62,8 @@ msgid ""
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
 "Došlo je do ozbiljne greške. Molim provjertite da li su ispravni poslužitelj "
-"i port. Ispravan rad možete provjeriti postavljanjem poslužitelja na dict.org i port na 2628"
+"i port. Ispravan rad možete provjeriti postavljanjem poslužitelja na dict."
+"org i port na 2628"
 
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
@@ -337,8 +340,8 @@ msgid ""
 "within Levenshtein distance one"
 msgstr ""
 "Strategija pretraživanja koju treba koristiti. Ovo je ovisno o strategiji "
-"pretraživanja koju podržava poslužitelj rječnika. Uobičajena strategija je 'lev' - "
-"podudaranje riječi sa Levenstheinovom udaljenošću jedan"
+"pretraživanja koju podržava poslužitelj rječnika. Uobičajena strategija je "
+"'lev' - podudaranje riječi sa Levenstheinovom udaljenošću jedan"
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
@@ -377,12 +380,13 @@ msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
-"TRUE za postavljanje mkdosfs kao predefinirani način formatiranja ili FALSE za "
-"postavljanje mtools kao preferiranog načina FAT formatiranja."
+"TRUE za postavljanje mkdosfs kao predefinirani način formatiranja ili FALSE "
+"za postavljanje mtools kao preferiranog načina FAT formatiranja."
 
 #: gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr "ext2 za uobičajeni linux datotečni sustav ili fat za DOS datotečni sustav."
+msgstr ""
+"ext2 za uobičajeni linux datotečni sustav ili fat za DOS datotečni sustav."
 
 #: gfloppy/src/badblocks.c:94
 msgid "Internal Error: Unable to seek to the correct location."
@@ -394,7 +398,7 @@ msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Interna greška: Čudna vrijednost (%ld) u do_test-u\n"
 
 #. while (!i)
-#.  ;
+#. ;
 #: gfloppy/src/badblocks.c:261
 msgid "Checking for bad blocks..."
 msgstr "Traženje neispravnih blokova..."
@@ -523,7 +527,9 @@ msgstr "Ne mogu odrediti geometriju trenutne diskete"
 
 #: gfloppy/src/gfloppy.c:221
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr "Greška prilikom stvaranja jedinstvenog imena datoteke za popis neispravnih blokova."
+msgstr ""
+"Greška prilikom stvaranja jedinstvenog imena datoteke za popis neispravnih "
+"blokova."
 
 #: gfloppy/src/gfloppy.c:241
 msgid "Error while filling the bad blocks list file."
@@ -564,7 +570,8 @@ msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
-"Alat za provjeru neispravnih blokova (mbadblocks) dojavio je sljedeće greške:\n"
+"Alat za provjeru neispravnih blokova (mbadblocks) dojavio je sljedeće "
+"greške:\n"
 "%s."
 
 #: gfloppy/src/gfloppy.c:441
@@ -660,7 +667,8 @@ msgstr "Linux uobičajeni (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr "Temeljito (dodaje provjeru neispravnih blokova standardnom načinu rada)"
+msgstr ""
+"Temeljito (dodaje provjeru neispravnih blokova standardnom načinu rada)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -739,16 +747,21 @@ msgstr "Uređaj za formatiranje"
 msgid "DEVICE"
 msgstr "UREĐAJ"
 
-#. plural form
 #: gfloppy/src/progress.c:123
-#, , c-format
-msgid "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
+#, c-format
+msgid ""
+"The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
 "found and marked."
-msgid_plural "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
+msgid_plural ""
+"The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
-msgstr[0] "Disketa je oblikovana, ali nađen je i označen <b>%d loš blok</b>(od %d)."
-msgstr[1] "Disketa je oblikovana, ali nađeno je i označeno <b>%d loša bloka</b>(od %d)."
-msgstr[2] "Disketa je oblikovana, ali nađeno je i označeno <b>%d loših blokova</b>(od %d)."
+msgstr[0] ""
+"Disketa je oblikovana, ali nađen je i označen <b>%d loš blok</b>(od %d)."
+msgstr[1] ""
+"Disketa je oblikovana, ali nađeno je i označeno <b>%d loša bloka</b>(od %d)."
+msgstr[2] ""
+"Disketa je oblikovana, ali nađeno je i označeno <b>%d loših blokova</b>(od %"
+"d)."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
@@ -762,9 +775,9 @@ msgstr "Otkazano je formatiranje diskete."
 msgid "Format Progress"
 msgstr "Napredovanje formatiranja"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:562
-#: gsearchtool/gsearchtool.c:816 gsearchtool/gsearchtool.c:900
-#: gsearchtool/gsearchtool.c:2178 gsearchtool/gsearchtool.c:2203
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:565
+#: gsearchtool/gsearchtool.c:819 gsearchtool/gsearchtool.c:903
+#: gsearchtool/gsearchtool.c:2181 gsearchtool/gsearchtool.c:2206
 msgid "Search for Files"
 msgstr "Traži datoteke"
 
@@ -816,7 +829,6 @@ msgstr "_Spremi rezultate kao..."
 msgid "Could not open help document."
 msgstr "Nisam mogao otvoriti dokument s pomoći."
 
-#. plural form
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
 msgid "Are you sure you want to open %d document?"
@@ -825,7 +837,6 @@ msgstr[0] "Sigurni ste da želite otvoriti %d dokument?"
 msgstr[1] "Sigurni ste da želite otvoriti %d dokumenta?"
 msgstr[2] "Sigurni ste da želite otvoriti %d dokumenata?"
 
-#. plural form
 #: gsearchtool/gsearchtool-callbacks.c:323
 #: gsearchtool/gsearchtool-callbacks.c:449
 #, c-format
@@ -846,7 +857,6 @@ msgstr "Nisam mogao otvoriti dokument \"%s\"."
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Ne postoji preglednik koji može prikazati dokument."
 
-#. plural form
 #: gsearchtool/gsearchtool-callbacks.c:444
 #, c-format
 msgid "Are you sure you want to open %d folder?"
@@ -856,7 +866,7 @@ msgstr[1] "Sigurni ste da želite otvoriti %d mape?"
 msgstr[2] "Sigurni ste da želite otvoriti %d mapa?"
 
 #: gsearchtool/gsearchtool-callbacks.c:502
-#, , c-format
+#, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Nisam mogao otvoriti mapu \"%s\"."
 
@@ -865,7 +875,7 @@ msgid "The nautilus file manager is not running."
 msgstr "Nautilus upravitelj datotekama nije pokrenut"
 
 #: gsearchtool/gsearchtool-callbacks.c:612
-#, , c-format
+#, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Nisam mogao premjestiti  \"%s\" u kantu za smeće."
 
@@ -891,7 +901,8 @@ msgstr "Želi te li trajno obrisati  \"%s\"?"
 #: gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr "Kanta za smeće nije dostupna. Ne mogu premjestiti  \"%s\" u kantu za smeće."
+msgstr ""
+"Kanta za smeće nije dostupna. Ne mogu premjestiti  \"%s\" u kantu za smeće."
 
 #: gsearchtool/gsearchtool-callbacks.c:730
 #, c-format
@@ -917,7 +928,7 @@ msgstr "Niste označili ime dokumenta."
 
 #: gsearchtool/gsearchtool-callbacks.c:1212
 #: gsearchtool/gsearchtool-callbacks.c:1307
-#, , c-format
+#, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nisam mogao spremiti dokument \"%s\" u \"%s\"."
 
@@ -942,7 +953,7 @@ msgstr "_Zamijeni"
 msgid "You may not have write permissions to the document."
 msgstr "Možda nemate dozvole za pisanje u ovaj dokument."
 
-#: gsearchtool/gsearchtool-support.c:64
+#: gsearchtool/gsearchtool-support.c:66
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -952,101 +963,100 @@ msgstr ""
 "  %s"
 
 #. Translators:  Below are the strings displayed in the 'Date Modified'
-#.  column of the list view.  The format of this string can vary depending
-#.  on age of a file.  Please modify the format of the timestamp to match
-#.  your locale.  For example, to display 24 hour time replace the '%-I'
-#.  with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:349
+#. column of the list view.  The format of this string can vary depending
+#. on age of a file.  Please modify the format of the timestamp to match
+#. your locale.  For example, to display 24 hour time replace the '%-I'
+#. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
+#: gsearchtool/gsearchtool-support.c:470
 msgid "today at %-I:%M %p"
 msgstr "danas u %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:351
+#: gsearchtool/gsearchtool-support.c:472
 msgid "yesterday at %-I:%M %p"
 msgstr "jučer u %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:353 gsearchtool/gsearchtool-support.c:355
+#: gsearchtool/gsearchtool-support.c:474 gsearchtool/gsearchtool-support.c:476
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%d.%m.%y, %-H:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:526
+#: gsearchtool/gsearchtool-support.c:647
 msgid "link (broken)"
 msgstr "veza (neispravna)"
 
-#: gsearchtool/gsearchtool-support.c:531
+#: gsearchtool/gsearchtool-support.c:652
 #, c-format
 msgid "link to %s"
 msgstr "veza na %s"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:73
 msgid "Contains the _text"
 msgstr "Sadrži _tekst"
 
-#: gsearchtool/gsearchtool.c:72
+#: gsearchtool/gsearchtool.c:75
 msgid "_Date modified less than (days)"
 msgstr "Datum promijene manji od (dana)"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:76
 msgid "Date modified more than (da_ys)"
 msgstr "Datum promijenjem prije (dana)"
 
-#: gsearchtool/gsearchtool.c:75
+#: gsearchtool/gsearchtool.c:78
 msgid "S_ize at least (kilobytes)"
 msgstr "_Veličina barem (kilobajta)"
 
-#: gsearchtool/gsearchtool.c:76
+#: gsearchtool/gsearchtool.c:79
 msgid "Si_ze at most (kilobytes)"
 msgstr "Veličina najviše (kilobajta)"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:80
 msgid "File is empty"
 msgstr "Datoteka je prazna"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:82
 msgid "Owned by _user"
 msgstr "U vlasništvu _korisnika"
 
-#: gsearchtool/gsearchtool.c:80
+#: gsearchtool/gsearchtool.c:83
 msgid "Owned by _group"
 msgstr "U vlasništvu _grupe"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:84
 msgid "Owner is unrecognized"
 msgstr "Vlasnik nije prepoznat"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:86
 msgid "Na_me does not contain"
 msgstr "_Ime ne sadrži"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:87
 msgid "Name matches regular e_xpression"
 msgstr "Ime odgovara regularnom izrazu"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:89
 msgid "Show hidden and backup files"
 msgstr "Pokaži skrivene datoteke i zaštitne kopije datoteka"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
 msgstr "Slijedi simboličke linkove"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:91
 msgid "Include other filesystems"
 msgstr "Uključi druge datoteče sustave"
 
-#: gsearchtool/gsearchtool.c:509 gsearchtool/gsearchtool.c:537
+#: gsearchtool/gsearchtool.c:512 gsearchtool/gsearchtool.c:540
 msgid "No files found"
 msgstr "Nisu nađene datoteke"
 
-#: gsearchtool/gsearchtool.c:530
+#: gsearchtool/gsearchtool.c:533
 msgid "(stopped)"
 msgstr "(zaustavljeno)"
 
-#: gsearchtool/gsearchtool.c:536
+#: gsearchtool/gsearchtool.c:539
 msgid "No Files Found"
 msgstr "Nisu nađene datoteke"
 
-#. plural form
-#: gsearchtool/gsearchtool.c:541
+#: gsearchtool/gsearchtool.c:544
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
@@ -1054,8 +1064,7 @@ msgstr[0] "nađena je %d datoteka"
 msgstr[1] "nađene su %d datoteke"
 msgstr[2] "nađeno je %d datoteka"
 
-#. plural form
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:548
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
@@ -1063,44 +1072,46 @@ msgstr[0] "nađena je %d datoteka"
 msgstr[1] "nađene su %d datoteke"
 msgstr[2] "nađeno je %d datoteka"
 
-#: gsearchtool/gsearchtool.c:651
+#: gsearchtool/gsearchtool.c:654
 msgid "Entry changed called for a non entry option!"
 msgstr "Zahtijev za promijenu zapisa pozvan na postavci koja nije zapis!"
 
-#: gsearchtool/gsearchtool.c:900
+#: gsearchtool/gsearchtool.c:903
 msgid "Searching..."
 msgstr "Tražim..."
 
-#: gsearchtool/gsearchtool.c:921
+#: gsearchtool/gsearchtool.c:924
 msgid "Set the text of 'Name contains'"
 msgstr "Postavi tekst od 'Ime sadrži'"
 
-#: gsearchtool/gsearchtool.c:922
+#: gsearchtool/gsearchtool.c:925
 msgid "Set the text of 'Look in folder'"
 msgstr "Postavi tekst od 'Traži u mapi'"
 
-#: gsearchtool/gsearchtool.c:923
+#: gsearchtool/gsearchtool.c:926
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Razvrstaj datoteke po nečemu od sljedećeg: ime, mapa, veličina, tip, datum"
+msgstr ""
+"Razvrstaj datoteke po nečemu od sljedećeg: ime, mapa, veličina, tip, datum"
 
-#: gsearchtool/gsearchtool.c:924
+#: gsearchtool/gsearchtool.c:927
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Postavi poredak razvrstavanja na opadajući, obično je rastući"
 
-#: gsearchtool/gsearchtool.c:925
+#: gsearchtool/gsearchtool.c:928
 msgid "Automatically start a search"
 msgstr "Automatsko započinjanje pretrage"
 
-#: gsearchtool/gsearchtool.c:930
+#: gsearchtool/gsearchtool.c:933
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Odaberi ograničenje '%s'"
 
-#: gsearchtool/gsearchtool.c:1036
+#: gsearchtool/gsearchtool.c:1039
 msgid "Invalid option passed to sortby command line argument."
-msgstr "Nevažeća vrijednost predata preko sortby argumenta u naredbenoj liniji."
+msgstr ""
+"Nevažeća vrijednost predata preko sortby argumenta u naredbenoj liniji."
 
-#: gsearchtool/gsearchtool.c:1301
+#: gsearchtool/gsearchtool.c:1304
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1108,7 +1119,7 @@ msgstr ""
 "Prilikom pretraživanja dojavljene su sljedeće greške.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1305
+#: gsearchtool/gsearchtool.c:1308
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1116,116 +1127,116 @@ msgstr ""
 "\n"
 "... Previše grešaka da bi se moglo prikazati ..."
 
-#: gsearchtool/gsearchtool.c:1312
+#: gsearchtool/gsearchtool.c:1315
 msgid "Error while searching for files."
 msgstr "Greška prilikom traženja datoteka."
 
-#: gsearchtool/gsearchtool.c:1353
+#: gsearchtool/gsearchtool.c:1356
 msgid "Error parsing the search command."
 msgstr "Greška prilikom analize naredbe za pretraživanje."
 
-#: gsearchtool/gsearchtool.c:1376
+#: gsearchtool/gsearchtool.c:1379
 msgid "Error running the search command."
 msgstr "Greška prilikom pokretanja naredbe za pretraživanje."
 
-#: gsearchtool/gsearchtool.c:1472
+#: gsearchtool/gsearchtool.c:1475
 msgid "Search Rule Value Entry"
 msgstr "Zapis pravila pretraživanja"
 
-#: gsearchtool/gsearchtool.c:1473
+#: gsearchtool/gsearchtool.c:1476
 msgid "Enter a value for search rule"
 msgstr "Unesite vrijednost za pravilo traženja"
 
-#: gsearchtool/gsearchtool.c:1509
+#: gsearchtool/gsearchtool.c:1512
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliknite za uklanjanje pravila '%s'"
 
-#: gsearchtool/gsearchtool.c:1565
+#: gsearchtool/gsearchtool.c:1568
 msgid "A_vailable options:"
 msgstr "_Dostupne postavke:"
 
-#: gsearchtool/gsearchtool.c:1578
+#: gsearchtool/gsearchtool.c:1581
 msgid "Search Rules Menu"
 msgstr "Izbornik sa pravilima za pretraživanje"
 
-#: gsearchtool/gsearchtool.c:1579
+#: gsearchtool/gsearchtool.c:1582
 msgid "Select a search rule from the menu"
 msgstr "Izaberi pravilo pretraživanja iz izbornika"
 
-#: gsearchtool/gsearchtool.c:1610
+#: gsearchtool/gsearchtool.c:1613
 msgid "S_earch results:"
 msgstr "_Rezultati pretraživanja:"
 
-#: gsearchtool/gsearchtool.c:1690
+#: gsearchtool/gsearchtool.c:1693
 msgid "Name"
 msgstr "Ime"
 
-#: gsearchtool/gsearchtool.c:1710
+#: gsearchtool/gsearchtool.c:1713
 msgid "Folder"
 msgstr "Mapa"
 
-#: gsearchtool/gsearchtool.c:1721
+#: gsearchtool/gsearchtool.c:1724
 msgid "Size"
 msgstr "Veličina"
 
-#: gsearchtool/gsearchtool.c:1731
+#: gsearchtool/gsearchtool.c:1734
 msgid "Type"
 msgstr "Tip"
 
-#: gsearchtool/gsearchtool.c:1741
+#: gsearchtool/gsearchtool.c:1744
 msgid "Date Modified"
 msgstr "Datum izmjene"
 
-#: gsearchtool/gsearchtool.c:1799
+#: gsearchtool/gsearchtool.c:1802
 msgid "_Name contains:"
 msgstr "_Ime sadrži:"
 
-#: gsearchtool/gsearchtool.c:1814 gsearchtool/gsearchtool.c:1815
+#: gsearchtool/gsearchtool.c:1817 gsearchtool/gsearchtool.c:1818
 msgid "Enter the file name you want to search"
 msgstr "Unesite ime datoteke koju želite pronaći"
 
-#: gsearchtool/gsearchtool.c:1815
+#: gsearchtool/gsearchtool.c:1818
 msgid "Name Contains Entry"
 msgstr "Ime sadrži zapis"
 
-#: gsearchtool/gsearchtool.c:1826
+#: gsearchtool/gsearchtool.c:1829
 msgid "_Look in folder:"
 msgstr "_Potraži u mapi"
 
-#: gsearchtool/gsearchtool.c:1832
+#: gsearchtool/gsearchtool.c:1835
 msgid "Browse"
 msgstr "Potraži"
 
-#: gsearchtool/gsearchtool.c:1843 gsearchtool/gsearchtool.c:1844
+#: gsearchtool/gsearchtool.c:1846 gsearchtool/gsearchtool.c:1847
 msgid "Enter the folder name where you want to start the search"
 msgstr "Unesite ime mape u kojoj želite započeti pretragu"
 
-#: gsearchtool/gsearchtool.c:1844
+#: gsearchtool/gsearchtool.c:1847
 msgid "Look in Folder Entry"
 msgstr "Traži u zapisu mape"
 
-#: gsearchtool/gsearchtool.c:1862
+#: gsearchtool/gsearchtool.c:1865
 msgid "Show more _options"
 msgstr "Pokaži više postavki"
 
-#: gsearchtool/gsearchtool.c:1872
+#: gsearchtool/gsearchtool.c:1875
 msgid "Show more options"
 msgstr "Prikaži više postavki"
 
-#: gsearchtool/gsearchtool.c:1872
+#: gsearchtool/gsearchtool.c:1875
 msgid "Expands or collapses a list of search options."
 msgstr "Proširuje ili sužava popis opcija pretraživanja."
 
-#: gsearchtool/gsearchtool.c:1919
+#: gsearchtool/gsearchtool.c:1922
 msgid "Click to Start the search"
 msgstr "Kliknite za početak pretraživanja"
 
-#: gsearchtool/gsearchtool.c:1920
+#: gsearchtool/gsearchtool.c:1923
 msgid "Click to Stop the search"
 msgstr "Kliknite za prekid pretraživanja"
 
-#: gsearchtool/gsearchtool.c:2199
+#: gsearchtool/gsearchtool.c:2202
 msgid "Cannot initialize bonobo."
 msgstr "Ne mogu inicijalizirati bonobo."
 
@@ -1360,7 +1371,9 @@ msgstr "_Akcija:"
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
-msgstr "Akcija koja će biti izvršena ako se svi prethodni regexps. podudaraju. Ovo se izvršava sistemskom komandom: system (akcija)"
+msgstr ""
+"Akcija koja će biti izvršena ako se svi prethodni regexps. podudaraju. Ovo "
+"se izvršava sistemskom komandom: system (akcija)"
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1394,7 +1407,8 @@ msgstr "Kalendar"
 #: logview/desc_db.c:37
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "Ne mogu otvoriti bazu sa regularnim izrazima <%s>!. Otvaranje nije uspjelo."
+msgstr ""
+"Ne mogu otvoriti bazu sa regularnim izrazima <%s>!. Otvaranje nije uspjelo."
 
 #: logview/desc_db.c:147
 #, c-format
@@ -1402,9 +1416,9 @@ msgid "Cannot open description data base <%s>! Open failed."
 msgstr "Ne mogu otvoriti bazu sa opisima <%s>!. Otvaranje nije uspjelo."
 
 #. ----------------------------------------------------------------------
-#.  NAME:
-#.  DESCRIPTION:
-#.  ----------------------------------------------------------------------
+#. NAME:
+#. DESCRIPTION:
+#. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "Dnevnik sustava"
@@ -1445,7 +1459,6 @@ msgstr "Log informacije"
 msgid "<No log loaded>"
 msgstr "<Log datoteka nije učitana>"
 
-#. plural form
 #: logview/info.c:183
 #, c-format
 msgid "%ld byte"
@@ -1504,17 +1517,19 @@ msgstr "Prosinac"
 
 #. Translators: Date only format, %x should well do really
 #: logview/log_repaint.c:397
+#, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
-#.  * will be bogus here
+#. * will be bogus here
 #: logview/log_repaint.c:452
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
 #: logview/log_repaint.c:524
+#, c-format
 msgid "%X"
 msgstr "%X"
 
@@ -1527,6 +1542,7 @@ msgid "Unable to open logfile!\n"
 msgstr "Ne mogu otvoriti log datoteku!\n"
 
 #: logview/logrtns.c:265
+#, c-format
 msgid "%s is not a regular file."
 msgstr "%s nije obična datoteka."
 
@@ -1536,8 +1552,8 @@ msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
-"%s se može pročitati od strane korisnika. Ili pokrenite program kao root korisnik ili "
-"zatražite od administratora promijenu dozvola na datoteci."
+"%s se može pročitati od strane korisnika. Ili pokrenite program kao root "
+"korisnik ili zatražite od administratora promijenu dozvola na datoteci."
 
 #: logview/logrtns.c:290
 #, c-format
@@ -1654,8 +1670,8 @@ msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"Određuje koju log datoteku otvoriti prilikom pokretanja. Obično je to ili /var/adm/"
-"messages ili /var/log/messages, ovisno o operativnom sustavu."
+"Određuje koju log datoteku otvoriti prilikom pokretanja. Obično je to ili /"
+"var/adm/messages ili /var/log/messages, ovisno o operativnom sustavu."
 
 #: logview/misc.c:56
 #, c-format
@@ -1739,4 +1755,3 @@ msgstr "Detalji log linije"
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
-
