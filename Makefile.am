@@ -1,5 +1,6 @@
 if OBJECTIVE_C
-objc_DIRS =  gpostit
+objc_DIRS =  
+#gpostit
 endif
 
 if GUILE
