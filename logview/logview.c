@@ -130,6 +130,7 @@ static const char *ui_description =
 	"		<menu action='ViewMenu'>"
 	"			<menuitem action='ShowCalendar'/>"
 	"			<menuitem action='ShowDetails'/>"
+	"                       <separator/>"
 	"			<menuitem action='CollapseAll'/>"
 	"		</menu>"
 	"		<menu action='HelpMenu'>"
