@@ -407,6 +407,53 @@ click_file_cb 	     (GtkWidget 	*widget,
 	return FALSE;
 }
 
+void  
+drag_file_cb  (GtkWidget          *widget,
+	       GdkDragContext     *context,
+	       GtkSelectionData   *selection_data,
+	       guint               info,
+	       guint               time,
+	       gpointer            data)
+{
+	gchar 	 		*file = NULL;
+	gchar 	 		*locale_file = NULL;
+	gchar    		*url_file = NULL;
+	gchar 	 		*utf8_name = NULL;
+	gchar 	 		*utf8_path = NULL;
+	gboolean 		no_files_found = FALSE;
+	GtkTreeSelection 	*selection;
+	GtkListStore 		*store;
+	GtkTreeIter 		iter;
+	
+	store = interface.model;
+	selection = interface.selection;
+	
+	if (!gtk_tree_selection_get_selected (selection, NULL, &iter))
+		return;
+	
+	gtk_tree_model_get(GTK_TREE_MODEL(store),&iter,COLUMN_NAME, &utf8_name,
+     		           COLUMN_PATH, &utf8_path,
+			   COLUMN_NO_FILES_FOUND, &no_files_found,
+		           -1);
+			   	   
+	if (!no_files_found) {
+		file = g_build_filename (utf8_path, utf8_name, NULL);
+		locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
+		url_file = g_strconcat ("file://", locale_file, NULL);
+		g_free (locale_file);
+		g_free (file);
+			
+	}	
+	gtk_selection_data_set (selection_data, 
+				selection_data->target,
+				8, 
+				url_file, 
+				strlen (url_file));
+	g_free (utf8_name);
+	g_free (utf8_path);
+	g_free (url_file);
+}
+
 void
 show_file_selector_cb (GtkWidget 	*widget, 
 		       gpointer		data)

@@ -72,6 +72,14 @@ static FindOptionTemplate templates[] = {
 	{ SEARCH_CONSTRAINT_END, NULL, NULL, FALSE}
 }; 
 
+static GtkTargetEntry dnd_table[] = {
+	{ "STRING",        0, 0 },
+	{ "text/plain",    0, 0 },
+	{ "text/uri-list", 0, 1 }
+};
+
+static guint n_dnds = sizeof (dnd_table) / sizeof (dnd_table[0]);
+
 gchar *
 build_search_command (void)
 {
@@ -882,8 +890,20 @@ create_search_results_section (void)
 	
 	interface.selection = gtk_tree_view_get_selection (GTK_TREE_VIEW(interface.tree));
 	
-	g_signal_connect (G_OBJECT(interface.tree), "button_press_event",
-		          G_CALLBACK(click_file_cb), NULL);		   
+	gtk_drag_source_set (interface.tree, 
+			     GDK_BUTTON1_MASK,
+			     dnd_table, n_dnds, 
+			     GDK_ACTION_COPY);	
+
+	g_signal_connect (G_OBJECT (interface.tree), 
+			  "drag_data_get",
+			  G_CALLBACK (drag_file_cb), 
+			  NULL);
+			  
+	g_signal_connect (G_OBJECT(interface.tree), 
+			  "button_press_event",
+		          G_CALLBACK(click_file_cb), 
+			  NULL);		   
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), interface.tree);
 	
