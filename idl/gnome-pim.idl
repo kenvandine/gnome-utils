@@ -5,17 +5,17 @@ module gnome_PIM {
   };
   
   /* Types */
-  struct Vcard {
+  struct vCard {
   
     string ID;
   };
-  typedef sequence<Vcard> Vcard_seq;
+  typedef sequence<vCard> vCard_seq;
   
-  interface Vcard_server {
-     Vcard_seq get_records ();
+  interface vCard_server {
+     vCard_seq get_records ();
     
-     Vcard get_record (in string ID);
-     void set_record (in string ID, Vcard record);
+     vCard get_record (in string ID);
+     void set_record (in string ID, vCard record);
   }
 }
   
