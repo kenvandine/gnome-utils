@@ -755,17 +755,16 @@ do_show_scm (GttGhtml *ghtml, SCM node)
 	int len;
 	char * str = NULL;
 
-	/* guile-1.3.4 returns garbage at low addrs */
-	if ((0xffff > node) && (0 <= node))
+	/* Need to test for numbers first, since later tests 
+	 * may core-dump guile-1.3.4 */
+	if (SCM_NUMBERP(node))
 	{
-		g_warning ("You must upgrade the guile package "
-			"to version guile-1.4 or newer!\n"
-			"Until you do this, the HTML Reports and "
-			"the scheme extensions will not work "
-			"correctly!\n");
-		return SCM_UNSPECIFIED;
+		char buf[132];
+		double x = scm_num2dbl (node, "do_show_scm");
+		sprintf (buf, "%g ", x);
+		(ghtml->write_stream) (ghtml, buf, strlen(buf), ghtml->user_data);
 	}
-
+	else
 	/* either a 'symbol or a "quoted string" */
 	if (SCM_SYMBOLP(node) || SCM_STRINGP (node))
 	{
@@ -773,14 +772,6 @@ do_show_scm (GttGhtml *ghtml, SCM node)
 		(ghtml->write_stream) (ghtml, str, strlen(str), ghtml->user_data);
 		(ghtml->write_stream) (ghtml, " ", 1, ghtml->user_data);
 		free (str);
-	}
-	else
-	if (SCM_NUMBERP(node))
-	{
-		char buf[132];
-		double x = scm_num2dbl (node, "do_show_scm");
-		sprintf (buf, "%g ", x);
-		(ghtml->write_stream) (ghtml, buf, strlen(buf), ghtml->user_data);
 	}
 	else
 	if (SCM_CONSP(node))
