@@ -1195,8 +1195,9 @@ static gint
 config_handler(GtkWidget *widget, GdkEventConfigure *not_used, gpointer unused)
 {
   int p, c, w = widget->allocation.width, h = widget->allocation.height;
-
-  (printf)("config: %p, %dx%d\n", widget, w, h);
+#ifdef DEBUG
+  printf("config: %p, %dx%d\n", widget, w, h);
+#endif
   /* On the initial configuration event, get the window colormap and
      allocate a color in it for each parameter color. */
   if (colormap == NULL)
@@ -1293,6 +1294,9 @@ overlay_status_box(GtkWidget *widget)
 /*
  * val2y -- scales a parameter value into a y coordinate value.
  */
+#ifndef HAVE_LOGF
+#define logf(x) ((float)log(x))
+#endif
 static int
 val2y(float val, float top, int height, scale_t scale)
 {
@@ -1914,7 +1918,9 @@ applet_orient_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
   gtk_drawing_area_size(drawings[0], w, h);
   if (drawings[1])
     gtk_drawing_area_size(drawings[1], slider_width, h);
-  (printf)("orient: %dx%d, %c(%d), %d\n", w, h, "UDLR"[o], o, i);
+#ifdef DEBUG
+  printf("orient: %dx%d, %c(%d), %d\n", w, h, "UDLR"[o], o, i);
+#endif
 }
 
 static void
@@ -1930,7 +1936,9 @@ applet_resize_handler(AppletWidget *applet, int i, GtkDrawingArea *drawings[2])
   gtk_drawing_area_size(drawings[0], w, h);
   if (drawings[1])
     gtk_drawing_area_size(drawings[1], slider_width, h);
-  (printf)("resize: %dx%d, %c(%d), %d\n", w, h, "UDLR"[o], o, i);
+#ifdef DEBUG
+  printf("resize: %dx%d, %c(%d), %d\n", w, h, "UDLR"[o], o, i);
+#endif
 }
 
 /*
@@ -2093,7 +2101,11 @@ poptOption arglist[] =
   { "omit-slider",     'S', POPT_ARG_NONE, NULL, 'S',
     N_("Omits slider window"), NULL },
   { "display-type",    't', POPT_ARG_STRING, NULL, 't',
-    N_("TYPE is one of gtk, text, graph, or none"), N_("TYPE") },
+#ifdef HAVE_GNOME_APPLET
+    N_("TYPE is one of gtk, applet, text, or none"), N_("TYPE") },
+#else
+    N_("TYPE is one of gtk, text, or none"), N_("TYPE") },
+#endif
   { NULL,             '\0', 0, NULL, 0 }
 };
 
@@ -2214,37 +2226,38 @@ main(int argc, char **argv)
   usleep(1000000);
   update_values(&chart_glob, NULL);
 
-  /* During the update_chart==3 pass, each prev value of each
-     parameter is considered valid, and is used in the low-pass
-     filtering of this and subsequent parameter values. */
-  /* update_chart = 3, set by the display() prior to update_values(). */
+  /* During the update_chart==3 pass (set by the display() prior to
+     update_values()), each prev value of each parameter is considered
+     valid, and is used in the low-pass filtering of this and
+     subsequent parameter values. */
   usleep(1000000);
   display();
 
   return EXIT_SUCCESS;
 }
 
-/* This is a placeholder so that stringsinherited from the default config file
-   can be seen by xgettext and marked as translatable; and they can be
-   translated for the gstripchart configuration dialog box.
+/* This is a placeholder so that strings inherited from the default
+   config file can be seen by xgettext and marked as translatable; and
+   they can be translated for the gstripchart configuration dialog
+   box.
 
-   Of course it is not possible to translate all possible words; but if the 
-   user changes the default config file it is probable that he will choose
-   words in his own language (or at least that please him); keeping this ones
-   here allow for the people that don't change the default config file to still
-   have an interface in their language; something people appreciate a lot; more
-   if you think that the newbies are the most likely to a) never touch to the
-   default files, b) appreciate an interface in their language (most of them
+   Of course it is not possible to translate all possible words; but
+   if the user changes the default config file it is probable that he
+   will choose words in his own language (or at least that please
+   him); keeping this ones here allow for the people that don't change
+   the default config file to still have an interface in their
+   language; something people appreciate a lot; more if you think that
+   the newbies are the most likely to a) never touch to the default
+   files, b) appreciate an interface in their language (most of them
    don't even know English).
 
-   So, please don't remove this.
-*/
-
+   So, please don't remove this. */
 #if 0
-char *placeholder_for_strings_in_config[] = {
-	N_("white"), N_("black"), N_("red"), N_("yellow"), N_("blue"),
-	N_("green"), N_("cyan"), N_("magenta"), N_("Busy"), N_("Load"),
-	N_("Swap"), N_("Net In"), N_("Net Out"), N_("ppp")
+char *placeholder_for_strings_in_config[] =
+{
+  N_("white"), N_("black"), N_("red"), N_("yellow"),
+  N_("blue"), N_("green"), N_("cyan"), N_("magenta"),
+  N_("Busy"), N_("Load"), N_("Swap"), N_("Battery"),
+  N_("Net In"), N_("Net Out"), N_("ppp")
 };
 #endif
-
