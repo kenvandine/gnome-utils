@@ -20,10 +20,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtk/gtk.h>
-#include <errno.h>
 
 #include "gtt.h"
 
+#include <errno.h>
 
 
 project *project_new(void)
@@ -258,6 +258,14 @@ int project_list_load(char *fname)
 		} else if (s[0] == 's') {
 			/* show seconds? */
 			config_show_secs = (s[3] == 'n');
+		} else if (s[0] == 'b') {
+			if (s[1] == 'i') {
+				/* show icons in the toolbar */
+				config_show_tb_icons = (s[4] == 'n');
+			} else if (s[1] == 't') {
+				/* show text in the toolbar */
+				config_show_tb_texts = (s[4] == 'n');
+			}
 		} else if (s[0] == 'c') {
 			/* switch project command */
 			while (s[strlen(s) - 1] == '\n')
@@ -345,6 +353,8 @@ int project_list_save(char *fname)
 	/* TODO: time_t can be float! */
 	fprintf(f, "t%ld\n", last_timer);
 	fprintf(f, "s %s\n", (config_show_secs) ? "on" : "off");
+	fprintf(f, "bi %s\n", (config_show_tb_icons) ? "on" : "off");
+	fprintf(f, "bt %s\n", (config_show_tb_texts) ? "on" : "off");
 	if (config_command)
 		fprintf(f, "c %s\n", config_command);
 	if (config_command_null)

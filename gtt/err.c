@@ -50,6 +50,7 @@ static int x11_error_handler(Display *d, XErrorEvent *e)
 {
 	fprintf(stderr, "%s: X11 error caight", APP_NAME);
 	die();
+	return 0; /* keep the compiler happy */
 }
 #endif
 

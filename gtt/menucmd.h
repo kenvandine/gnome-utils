@@ -42,7 +42,7 @@ void menu_options(GtkWidget *w, gpointer data);
 void menu_properties(GtkWidget *w, gpointer data);
 
 
-#ifdef GNOME_USE_MENU_INFO
+#ifdef GNOME_USE_APP
 void menu_create(GtkWidget *gnome_app);
 #endif
 

@@ -25,6 +25,9 @@
 typedef struct _OptionsDlg {
 	GtkDialog *dlg;
 	GtkCheckButton *show_secs;
+#ifdef GNOME_USE_APP
+	GtkCheckButton *show_tb_icons, *show_tb_texts;
+#endif 
 	GtkEntry *command;
 	GtkEntry *command_null;
 	GtkEntry *logfilename;
@@ -49,6 +52,11 @@ static void options_ok(GtkWidget *w, OptionsDlg *odlg)
 		config_show_secs = state;
 		setup_list();
 	}
+#ifdef GNOME_USE_APP
+	config_show_tb_icons = GTK_TOGGLE_BUTTON(odlg->show_tb_icons)->active;
+	config_show_tb_texts = GTK_TOGGLE_BUTTON(odlg->show_tb_texts)->active;
+	toolbar_set_states();
+#endif
 
 	/* shell command options */
 	ENTRY_TO_CHAR(odlg->command, config_command);
@@ -99,15 +107,32 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 static void display_options(OptionsDlg *odlg, GtkBox *vbox)
 {
 	GtkWidget *w, *frame;
+	GtkWidget *vb;
 
 	frame = gtk_frame_new("Display");
 	gtk_widget_show(frame);
 	gtk_box_pack_start(vbox, frame, FALSE, FALSE, 2);
 
+	vb = gtk_vbox_new(FALSE, 0);
+	gtk_widget_show(vb);
+	gtk_container_add(GTK_CONTAINER(frame), vb);
+
 	w = gtk_check_button_new_with_label("Show Seconds");
 	gtk_widget_show(w);
-	gtk_container_add(GTK_CONTAINER(frame), w);
+	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
 	odlg->show_secs = GTK_CHECK_BUTTON(w);
+	
+#ifdef GNOME_USE_APP
+	w = gtk_check_button_new_with_label("Show Toolbar Icons");
+	gtk_widget_show(w);
+	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
+	odlg->show_tb_icons = GTK_CHECK_BUTTON(w);
+
+	w = gtk_check_button_new_with_label("Show Toolbar Texts");
+	gtk_widget_show(w);
+	gtk_box_pack_start(GTK_BOX(vb), w, FALSE, FALSE, 0);
+	odlg->show_tb_texts = GTK_CHECK_BUTTON(w);
+#endif 
 }
 
 
@@ -219,6 +244,12 @@ static void options_dialog_set(OptionsDlg *odlg)
 {
 	char s[20];
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_secs), config_show_secs);
+#ifdef GNOME_USE_APP
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_icons),
+				    config_show_tb_icons);
+	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->show_tb_texts),
+				    config_show_tb_texts);
+#endif 
 	if (config_command) gtk_entry_set_text(odlg->command, config_command);
 	if (config_command_null) gtk_entry_set_text(odlg->command_null, config_command_null);
 	gtk_toggle_button_set_state(GTK_TOGGLE_BUTTON(odlg->logfileuse), config_logfile_use);

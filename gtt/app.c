@@ -32,6 +32,8 @@
 #endif
 
 
+#include <string.h>
+
 
 project *cur_proj = NULL;
 GtkWidget *glist, *window;
@@ -41,6 +43,8 @@ int config_show_secs = 1;
 #else
 int config_show_secs = 0;
 #endif
+int config_show_tb_icons = 1;
+int config_show_tb_texts = 0;
 char *config_command = NULL;
 char *config_command_null = NULL;
 char *config_logfile_name = NULL;
@@ -50,8 +54,6 @@ int config_logfile_min_secs = 0;
 
 void cur_proj_set(project *proj)
 {
-	/* TODO: aarg - using brutal force here */
-	void strcat(char *, const char *);
 	pid_t fork(void);
 	void execlp(const char *file, const char *arg, ...);
 
@@ -61,6 +63,7 @@ void cur_proj_set(project *proj)
 	int i;
 
 	cur_proj = proj;
+	log_proj(proj);
 	prop_dialog_set_project(proj);
 	menu_set_states();
 	cmd = (proj) ? config_command : config_command_null;

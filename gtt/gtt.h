@@ -109,6 +109,7 @@ void options_dialog(void);
 /* log.c */
 
 void log_proj(project *proj);
+void log_exit(void);
 void log_endofday(void);
 
 
@@ -117,6 +118,8 @@ void log_endofday(void);
 extern project *cur_proj;
 extern GtkWidget *glist, *window;
 extern int config_show_secs;
+extern int config_show_tb_icons;
+extern int config_show_tb_texts;
 extern char *config_command, *config_command_null, *config_logfile_name;
 extern int config_logfile_use, config_logfile_min_secs;
 

@@ -60,6 +60,17 @@
 
 
 /*
+ * GNOME_CHANGE_TOOLBAR
+ * GtkToolbar doesn't support changing icons yet.
+ * Defining GNOME_CHNAGE_TOOLBAR enables an experimental workaround.
+ * I refcomment not to use it. If you want better toolbar support, disable
+ * GNOME_USE_APP
+ */
+#undef GNOME_CHANGE_TOOLBAR
+
+
+
+/*
  * EXTENDED_TOOLBAR
  * I only define this when DEBUG defined also. If defined, I add two more
  * buttons to the toolbar, one of which is the quit button, which I'm using
@@ -91,6 +102,7 @@
 
 #ifndef GNOME_USE_APP
 #undef GNOME_USE_MENU_INFO
+#undef GNOME_CHANGE_TOOLBAR
 #endif
 
 

@@ -301,7 +301,7 @@ static GnomeToolbarInfo tbar[] = {
 
 
 
-#ifndef GNOME_USE_APP
+#ifdef GNOME_CHANGE_TOOLBAR
 static GnomeToolbarInfo *toolbar_find(GnomeToolbarInfo *tinfo, const char *text)
 {
 	int i;
@@ -341,8 +341,10 @@ void toolbar_create(GtkWidget *gnome_app)
 void toolbar_set_states(void)
 {
 #ifdef GNOME_USE_APP
-	/* TODO: hmm - that doesn't work */
-# if 0
+	GtkToolbarStyle tb_style;
+
+# ifdef GNOME_CHANGE_TOOLBAR
+	/* TODO: hmm - that works but is ugly! */
 	if (!app) return;
 	if (app->toolbar)
 		gtk_widget_destroy(app->toolbar);
@@ -350,7 +352,15 @@ void toolbar_set_states(void)
 	toolbar_find(tbar, "Timer")->pixmap_info =
 		(main_timer != 0) ? tb_timer_xpm : tb_timer_stopped_xpm;
 	gnome_app_create_toolbar(app, tbar);
-# endif
+# endif /* GNOME_CHANGE_TOOLBAR */
+	
+	if ((config_show_tb_icons) && (config_show_tb_texts))
+		tb_style = GTK_TOOLBAR_BOTH;
+	else if ((!config_show_tb_icons) && (config_show_tb_texts))
+		tb_style = GTK_TOOLBAR_TEXT;
+	else
+		tb_style = GTK_TOOLBAR_ICONS;
+	gtk_toolbar_set_style(GTK_TOOLBAR(GNOME_APP(app)->toolbar), tb_style);
 #else /* GNOME_USE_APP */ 
 	if (toggle_timer) set_toggle_state(toggle_timer);
 	/* TODO: remove me

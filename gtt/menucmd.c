@@ -37,7 +37,6 @@ void not_implemented(GtkWidget *w, gpointer data)
 
 void quit_app(GtkWidget *w, gpointer data)
 {
-	unlock_gtt();
 	if (!project_list_save(NULL)) {
 		msgbox_ok("Warning", "Could not write init file!", "Oops",
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
