@@ -124,7 +124,7 @@ show_table (GttPhtml *phtml, GttProject *prj, int show_links, int invoice)
 
 	if (0 < phtml->ninvl_cols)
 	{
-		p = stpcpy (p, "<tr>");
+		p = stpcpy (p, "</th></tr><tr>");
 	}
 	for (i=0; i<phtml->ninvl_cols; i++)
 	{
@@ -146,6 +146,10 @@ show_table (GttPhtml *phtml, GttProject *prj, int show_links, int invoice)
 			default:
 				p = stpcpy (p, _("Error - Unknown"));
 		}
+	}
+	if (0 < phtml->ninvl_cols)
+	{
+		p = stpcpy (p, "</th></tr>");
 	}
 
 
@@ -294,12 +298,16 @@ show_table (GttPhtml *phtml, GttProject *prj, int show_links, int invoice)
 					break;
 
 				default:
-					p = stpcpy (p, "<th>");
+					p = stpcpy (p, "<td>");
 					p = stpcpy (p, _("Error - Unknown"));
 			}
 		}
 
-		(phtml->write_stream) (phtml, buff, p-buff, phtml->user_data);
+		if (0 < phtml->ntask_cols)
+		{
+			p = stpcpy (p, "</td></tr>");
+			(phtml->write_stream) (phtml, buff, p-buff, phtml->user_data);
+		}
 		
 		/* write out intervals */
 		for (in=gtt_task_get_intervals(tsk); in; in=in->next)
@@ -382,6 +390,7 @@ show_table (GttPhtml *phtml, GttProject *prj, int show_links, int invoice)
 				}
 			}
 
+			p = stpcpy (p, "</td></tr>");
 			len = p - buff;
 			(phtml->write_stream) (phtml, buff, len, phtml->user_data);
 		}
