@@ -121,8 +121,8 @@ struct _CalculatorButton {
 	gpointer data;
 	gpointer invdata;
 	gboolean convert_to_rad;
-	guint keys[4]; /*key shortcuts, 0 terminated list,
-			 make sure to increase the number if more is needed*/
+	guint keys[10]; /*key shortcuts, 0 terminated list,
+			  make sure to increase the number if more is needed*/
 };
 
 typedef void (*GnomeCalcualtorResultChangedSignal) (GtkObject * object,
@@ -226,7 +226,7 @@ gnome_calc_class_init (GnomeCalcClass *class)
 #endif	
 }
 
-#if 1 /*only used for debugging*/
+#if 0 /*only used for debugging*/
 static void
 dump_stack(GnomeCalc *gc)
 {
@@ -749,17 +749,17 @@ gnome_calc_clear(GnomeCalc *gc, const gboolean reset)
 }
 
 static void
-add_digit(GtkWidget *w, gpointer data)
+add_digit (GtkWidget *w, gpointer data)
 {
-	GnomeCalc *gc = gtk_object_get_user_data(GTK_OBJECT(w));
+	GnomeCalc *gc = gtk_object_get_user_data (GTK_OBJECT (w));
 	CalculatorButton *but = data;
 	gchar *digit = but->name;
 
 	if(gc->_priv->error)
 		return;
 
-	/*if the string is set, used for EE*/
-	if(but->data)
+	/* For "EE" where name is not what we want to add */
+	if (but->data != NULL)
 		digit = but->data;
 
 	g_return_if_fail(gc!=NULL);
@@ -1175,7 +1175,7 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("x^2"),  (GtkSignalFunc)simple_func, c_pow2, sqrt,   FALSE, {0} },
 		{N_("SQRT"), (GtkSignalFunc)simple_func, sqrt,   c_pow2, FALSE, {'r','R',0} },
 		{N_("CE/C"), (GtkSignalFunc)clear_calc,  NULL,   NULL,   FALSE, {GDK_Clear,0} },
-		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a','A'} }
+		{N_("AC"),   (GtkSignalFunc)reset_calc,  NULL,   NULL,   FALSE, {'a','A', GDK_Escape, 0} }
 	},{
 		{NULL,       NULL,                       NULL,   NULL,   FALSE, {0} }, /*inverse button*/
 		{N_("sin"),  (GtkSignalFunc)simple_func, sin,    asin,   TRUE,  {'s','S',0} },
@@ -1196,26 +1196,26 @@ static const CalculatorButton buttons[8][5] = {
 		{N_("/"),    (GtkSignalFunc)math_func,   c_div,  NULL,   FALSE, {'/',GDK_KP_Divide,0} }
 	},{
 		{N_("STO"),  (GtkSignalFunc)store_m,     NULL,   NULL,   FALSE, {0} },
-		{N_("7"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'7',GDK_KP_7,0} },
-		{N_("8"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'8',GDK_KP_8,0} },
-		{N_("9"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'9',GDK_KP_9,0} },
+		{N_("7"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'7',GDK_KP_7,GDK_KP_Home,0} },
+		{N_("8"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'8',GDK_KP_8,GDK_KP_Up,0} },
+		{N_("9"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'9',GDK_KP_9,GDK_KP_Page_Up,0} },
 		{N_("*"),    (GtkSignalFunc)math_func,   c_mul,  NULL,   FALSE, {'*',GDK_KP_Multiply,0} }
 	},{
 		{N_("RCL"),  (GtkSignalFunc)recall_m,    NULL,   NULL,   FALSE, {0} },
-		{N_("4"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'4',GDK_KP_4,0} },
-		{N_("5"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'5',GDK_KP_5,0} },
-		{N_("6"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'6',GDK_KP_6,0} },
+		{N_("4"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'4',GDK_KP_4,GDK_KP_Left,0} },
+		{N_("5"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'5',GDK_KP_5,GDK_KP_Begin,0} },
+		{N_("6"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'6',GDK_KP_6,GDK_KP_Right,0} },
 		{N_("-"),    (GtkSignalFunc)math_func,   c_sub,  NULL,   FALSE, {'-',GDK_KP_Subtract,0} }
 	},{
 		{N_("SUM"),  (GtkSignalFunc)sum_m,       NULL,   NULL,   FALSE, {0} },
-		{N_("1"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'1',GDK_KP_1,0} },
-		{N_("2"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'2',GDK_KP_2,0} },
-		{N_("3"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'3',GDK_KP_3,0} },
+		{N_("1"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'1',GDK_KP_1,GDK_KP_End,0} },
+		{N_("2"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'2',GDK_KP_2,GDK_KP_Down,0} },
+		{N_("3"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'3',GDK_KP_3,GDK_KP_Page_Down,0} },
 		{N_("+"),    (GtkSignalFunc)math_func,   c_add,  NULL,   FALSE, {'+',GDK_KP_Add,0} }
 	},{
 		{N_("EXC"),  (GtkSignalFunc)exchange_m,  NULL,   NULL,   FALSE, {0} },
-		{N_("0"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'0',GDK_KP_0,0} },
-		{N_("."),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'.',GDK_KP_Decimal,',',0} },
+		{N_("0"),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'0',GDK_KP_0,GDK_KP_Insert,0} },
+		{N_("."),    (GtkSignalFunc)add_digit,   NULL,   NULL,   FALSE, {'.',GDK_KP_Decimal,',',GDK_KP_Delete,0} },
 		{N_("+/-"),  (GtkSignalFunc)negate_val,  c_neg,  NULL,   FALSE, {0} },
 		{N_("="),    (GtkSignalFunc)no_func,     NULL,   NULL,   FALSE, {'=',GDK_KP_Enter,0} }
 	}
@@ -1240,8 +1240,12 @@ ref_font (void)
 
 	g_assert (calc_font_ref_count == 0);
 
-	filename = gnome_pixmap_file ("calculator-font.png");
-	if (!filename) {
+	/* Translators:  This allows you to create translated font pngs,
+	 * though probably won't be necessary */
+	filename = gnome_pixmap_file (_("calculator-font.png"));
+	if (filename == NULL)
+		filename = gnome_pixmap_file ("calculator-font.png");
+	if (filename == NULL) {
 		g_message ("ref_font(): could not find calculator-font.png");
 		return;
 	}
@@ -1645,18 +1649,31 @@ typedef struct _GnomeCalcExtraKeys GnomeCalcExtraKeys;
 struct _GnomeCalcExtraKeys {
 	gint key;
 	GtkSignalFunc signal_func;
+	gpointer data;
 };
 
 static const GnomeCalcExtraKeys extra_keys [] = {
-	{GDK_BackSpace, backspace_cb},
-	{GDK_Return,    no_func},
+	{GDK_BackSpace, backspace_cb, NULL},
+	{GDK_Return,    no_func,      NULL},
+	{GDK_KP_Enter,  no_func,      NULL},
+	{GDK_KP_Delete, add_digit,    "."},
+	{GDK_KP_Left,   add_digit,    "4"},
+	{GDK_KP_Right,  add_digit,    "6"},
+	{GDK_KP_Up,     add_digit,    "8"},
+	{GDK_KP_Down,   add_digit,    "2"}
 };
 	
-static gint
-key_press_event_cb (GtkWidget *widget, GdkEventKey *event, gpointer calc)
+static gboolean
+event_cb (GtkWidget *widget, GdkEvent *event, gpointer calc)
 {
 	GnomeCalc *gc;
 	gint i, num;
+	GdkEventKey *kevent;
+
+	if (event->type != GDK_KEY_PRESS)
+		return FALSE;
+
+	kevent = (GdkEventKey *)event;
 
 	gc = (GnomeCalc *) calc;
 	g_return_val_if_fail (GNOME_IS_CALC (gc), FALSE);
@@ -1664,15 +1681,16 @@ key_press_event_cb (GtkWidget *widget, GdkEventKey *event, gpointer calc)
 	num = sizeof (extra_keys) / sizeof (GnomeCalcExtraKeys);
 
 	for (i = 0; i < num; i++) {
-		if (event->keyval == extra_keys[i].key) {
+		if (kevent->keyval == extra_keys[i].key) {
+			CalculatorButton but = {NULL};
 			GtkSignalFunc func = extra_keys [i].signal_func;
-			(* func) (widget, NULL);
+			but.data = extra_keys[i].data;
+			(* func) (widget, &but);
 			return TRUE;
 		}
 	}
-		
 
-	return TRUE;
+	return FALSE;
 }
 
 
@@ -1685,7 +1703,7 @@ gnome_calc_bind_extra_keys (GnomeCalc *gc,
 
 	gtk_object_set_user_data (GTK_OBJECT (widget), gc);
 	
-	gtk_signal_connect (GTK_OBJECT (widget), "key_press_event",
-			    GTK_SIGNAL_FUNC (key_press_event_cb), gc);
+	gtk_signal_connect (GTK_OBJECT (widget), "event",
+			    GTK_SIGNAL_FUNC (event_cb), gc);
 
 }
