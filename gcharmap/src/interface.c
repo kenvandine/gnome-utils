@@ -149,8 +149,9 @@ main_app_create_ui (MainApp *app)
 
         gnome_app_create_menus (GNOME_APP (app->window), menubar);
         gnome_app_install_menu_hints (GNOME_APP (app->window), menubar);
-
+#ifdef GO_AWAY
         gnome_app_create_toolbar (GNOME_APP (app->window), toolbar);
+#endif
         item = g_list_nth_data (GNOME_APP (app->window)->layout->items, 0);
         app->actionbar = GTK_WIDGET (item->item);
     }
@@ -169,7 +170,7 @@ main_app_create_ui (MainApp *app)
         gnome_app_add_docked (GNOME_APP (app->window), hbox, _("Action Toolbar"),
           BONOBO_DOCK_ITEM_BEH_EXCLUSIVE | BONOBO_DOCK_ITEM_BEH_NEVER_VERTICAL,
           BONOBO_DOCK_TOP, 2, 0, 1);
-
+#ifdef GO_AWAY
         app->fontpicker = gnome_font_picker_new ();
         gnome_font_picker_set_mode (GNOME_FONT_PICKER (app->fontpicker),
           GNOME_FONT_PICKER_MODE_FONT_INFO);
@@ -181,15 +182,20 @@ main_app_create_ui (MainApp *app)
         gtk_box_pack_start (GTK_BOX (hbox), app->fontpicker, FALSE, TRUE, 0);
         gtk_signal_connect (GTK_OBJECT (app->fontpicker), "font_set",
           GTK_SIGNAL_FUNC (cb_fontpicker_font_set), NULL);
-	
+
         vsep = gtk_vseparator_new ();
         gtk_box_pack_start (GTK_BOX (hbox), vsep, FALSE, FALSE, 0);
-
+#endif	
         alabel = gtk_label_new (_("Text to copy:"));
         gtk_box_pack_start (GTK_BOX (hbox), alabel, FALSE, TRUE, 0);
 
         app->entry = gtk_entry_new ();
         gtk_box_pack_start (GTK_BOX (hbox), app->entry, TRUE, TRUE, 0);
+        
+        button = gtk_button_new_with_mnemonic (_("_Copy"));
+        g_signal_connect (G_OBJECT (button), "clicked",
+        		  G_CALLBACK (cb_copy_click), NULL);
+        gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);		  
 
         gtk_widget_show_all (hbox);
         item = g_list_nth_data (GNOME_APP (app->window)->layout->items, 0);
@@ -208,11 +214,13 @@ main_app_create_ui (MainApp *app)
         tmp = gtk_button_new ();
         gtk_widget_ensure_style(tmp);
         app->btnstyle = gtk_style_copy (gtk_widget_get_style (tmp));
+#ifdef THIS_SOULHD_GO_AWAY       
         font = gdk_fontset_load (
           _("-*-helvetica-medium-r-normal-*-12-*-*-*-p-*-*-*,*-r-*")
         );
 	if (font != NULL)
 		gtk_style_set_font(app->btnstyle, font);
+#endif
         gtk_widget_destroy (tmp);
 
         chartable = create_chartable ();
@@ -223,7 +231,7 @@ main_app_create_ui (MainApp *app)
     vbox2 = gtk_vbox_new (FALSE, 0);
     gtk_box_pack_start (GTK_BOX (hbox2), vbox2, FALSE, TRUE, 0);
 
-
+#ifdef GO_AWAY
     /* The buttonbox */
     {
         buttonbox = gtk_vbutton_box_new ();
@@ -270,7 +278,7 @@ main_app_create_ui (MainApp *app)
         gtk_container_add (GTK_CONTAINER (viewport), app->preview_label);
         gtk_widget_set_style (app->preview_label, style);
     }
-
+#endif
     gtk_widget_show_all (vbox);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
       view_menu[0].widget), TRUE);
@@ -279,7 +287,7 @@ main_app_create_ui (MainApp *app)
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
       view_menu[2].widget), TRUE);
     gtk_check_menu_item_set_active (GTK_CHECK_MENU_ITEM (
-      settings_menu[3].widget), TRUE);
+      settings_menu[1].widget), TRUE);
     gtk_widget_grab_focus (app->entry);
 }
 

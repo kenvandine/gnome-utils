@@ -45,7 +45,7 @@ GnomeUIInfo edit_menu[] =
     GNOMEUIINFO_SEPARATOR,
     GNOMEUIINFO_MENU_SELECT_ALL_ITEM (cb_select_all_click, NULL),
     GNOMEUIINFO_SEPARATOR,
-    GNOMEUIINFO_ITEM_DATA(N_("Insert Character..."),
+    GNOMEUIINFO_ITEM_DATA(N_("Browse Characters..."),
       N_("Insert character(s) by choosing character codes."), cb_insert_char_click,
 			  NULL, NULL),
     GNOMEUIINFO_END
@@ -64,9 +64,9 @@ GnomeUIInfo view_menu[] =
 
 GnomeUIInfo settings_menu[] =
 {
-    GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
+    /*GNOMEUIINFO_ITEM_STOCK(N_("Character Table's Font..."), N_("Set the character "
       "table's font."), cb_set_chartable_font, GNOME_STOCK_MENU_FONT),
-    GNOMEUIINFO_SEPARATOR,
+    GNOMEUIINFO_SEPARATOR,*/
     GNOMEUIINFO_TOGGLEITEM(N_("_Insert at end"), N_("Insert every selected character "
       "at the end of the text entry"), cb_set_insert_at_end, NULL),
     GNOMEUIINFO_TOGGLEITEM(N_("_Focusable Buttons"), N_("Set the buttons to be "
@@ -93,9 +93,9 @@ GnomeUIInfo menubar[] =
 };
 
 GnomeUIInfo toolbar[] = {
-    GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
+    /*GNOMEUIINFO_ITEM(N_("Insert"), N_("Insert character(s) by choosing character codes"),
       cb_insert_char_click, NULL),
-    GNOMEUIINFO_SEPARATOR,
+    GNOMEUIINFO_SEPARATOR,*/
     GNOMEUIINFO_ITEM_STOCK(N_("Cut"), N_("Cut the selection"),
       cb_cut_click, GNOME_STOCK_PIXMAP_CUT),
     GNOMEUIINFO_ITEM_STOCK(N_("Copy"), N_("Copy the selection"),
@@ -103,13 +103,6 @@ GnomeUIInfo toolbar[] = {
     GNOMEUIINFO_ITEM_STOCK(N_("Paste"), N_("Paste the clipboard"),
       cb_paste_click, GNOME_STOCK_PIXMAP_PASTE),
     GNOMEUIINFO_SEPARATOR,
-    GNOMEUIINFO_ITEM_STOCK(N_("Help"), N_("Show Gnome Character Map's manual"),
-      cb_help_click, GNOME_STOCK_PIXMAP_HELP),
-    GNOMEUIINFO_ITEM_STOCK(N_("About"), N_("About this application"),
-      cb_about_click, GNOME_STOCK_PIXMAP_ABOUT),
-    GNOMEUIINFO_SEPARATOR,
-    GNOMEUIINFO_ITEM_STOCK(N_("Exit"), N_("Exit the program"),
-      cb_exit_click, GNOME_STOCK_PIXMAP_EXIT),
     GNOMEUIINFO_END
 };
 

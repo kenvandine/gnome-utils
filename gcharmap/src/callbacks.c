@@ -67,6 +67,12 @@ cb_about_click (GtkWidget *widget, gpointer user_data)
     gtk_widget_show (dialog);
 }
 
+void 
+cb_browsebtn_click (GtkButton *button, gpointer data)
+{
+	cb_insert_char_click (NULL, data);
+}
+
 
 void
 cb_charbtn_click (GtkButton *button, gpointer user_data)
@@ -124,7 +130,9 @@ cb_charbtn_enter (GtkButton *button, gpointer user_data)
 
     s = g_strdup_printf (_(" %s: Character code %d"), text, code);
     gnome_appbar_set_status (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar), s);
+#if 0
     gtk_label_set_text (GTK_LABEL (mainapp->preview_label), text);
+#endif
     g_free (s);
 }
 
@@ -133,7 +141,9 @@ void
 cb_charbtn_leave (GtkButton *button, gpointer user_data)
 {
     gnome_appbar_pop (GNOME_APPBAR (GNOME_APP (mainapp->window)->statusbar));
+#if 0    
     gtk_label_set_text (GTK_LABEL (mainapp->preview_label), NULL);
+#endif
 }
 
 
@@ -204,8 +214,6 @@ cb_insert_char_click (GtkWidget *widget, gpointer user_data)
     AsciiSelect *ascii_selector;
 
     ascii_selector = ascii_select_new ();
-    gnome_dialog_set_parent (GNOME_DIALOG (ascii_selector->window),
-      GTK_WINDOW (mainapp->window));
     gtk_widget_show (ascii_selector->window);
 }
 

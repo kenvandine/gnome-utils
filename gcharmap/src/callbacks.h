@@ -25,6 +25,7 @@
 #include <gnome.h>
 
 void cb_about_click (GtkWidget *widget, gpointer user_data);
+void cb_browsebtn_click (GtkButton *button, gpointer data);
 void cb_charbtn_click (GtkButton *button, gpointer user_data);
 void cb_charbtn_enter (GtkButton *button, gpointer user_data);
 void cb_charbtn_leave (GtkButton *button, gpointer user_data);
