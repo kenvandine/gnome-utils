@@ -67,6 +67,9 @@
 /* Define to `int' if <sys/types.h> doesn't define.  */
 #undef uid_t
 
+/* Define if the X Window System is missing or not being used.  */
+#undef X_DISPLAY_MISSING
+
 /* Define if lex declares yytext as a char * by default, not a char[].  */
 #undef YYTEXT_POINTER
 
@@ -77,6 +80,7 @@
 #undef ENABLE_NLS
 #undef HAVE_CATGETS
 #undef HAVE_GETTEXT
+#undef HAVE_LIBSM
 
 /* Define if you have the __argz_count function.  */
 #undef HAVE___ARGZ_COUNT
@@ -92,6 +96,9 @@
 
 /* Define if you have the getcwd function.  */
 #undef HAVE_GETCWD
+
+/* Define if you have the getopt_long function.  */
+#undef HAVE_GETOPT_LONG
 
 /* Define if you have the getpagesize function.  */
 #undef HAVE_GETPAGESIZE
@@ -125,6 +132,9 @@
 
 /* Define if you have the strdup function.  */
 #undef HAVE_STRDUP
+
+/* Define if you have the strtok_r function.  */
+#undef HAVE_STRTOK_R
 
 /* Define if you have the strtoul function.  */
 #undef HAVE_STRTOUL
