@@ -56,7 +56,7 @@ gtt_show_err (GttErrCode code)
 		default:
 		{
 			msgbox_ok(_("Warning"),
-			  _("Unknown error occured"),
+			  _("Unknown error occurred"),
 			  GNOME_STOCK_BUTTON_OK,
 			  GTK_SIGNAL_FUNC(gtk_main_quit));
 			return;
