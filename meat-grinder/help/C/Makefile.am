@@ -1,7 +1,7 @@
 figdir = figures
-docname = meat-grinder
+docname = archive-generator
 lang = C
-omffile = meat-grinder-C.omf
+omffile = archive-generator-C.omf
 entities = legal.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
