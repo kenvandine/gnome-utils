@@ -6,6 +6,6 @@ figs = \
 docname = gdialog
 lang = C
 omffile = gdialog-C.omf
-entities =
+entities = legal.xml
 include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
