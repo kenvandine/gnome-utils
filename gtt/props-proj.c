@@ -136,8 +136,9 @@ do_set_project(GttProject *proj, PropDlg *dlg)
 		return;
 	}
 
-	if (dlg->proj == proj) return;
 
+	/* set all the values. Do this even is new project is same as old
+	 * project, since widget may be holding rejected changes. */
 	dlg->proj = proj;
 
 	gtk_entry_set_text(dlg->title, gtt_project_get_title(proj));

@@ -109,8 +109,8 @@ do_set_task(GttTask *tsk, PropTaskDlg *dlg)
 		return;
 	}
 
-	if (dlg->task == tsk) return;
-
+	/* set the task, evenm if its same as the old task.  Do this because
+	 * the widget may contain rejected edit values  */
 	dlg->task = tsk;
 
 	gtk_entry_set_text(dlg->memo, gtt_task_get_memo(tsk));
