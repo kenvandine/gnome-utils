@@ -702,6 +702,7 @@
     (gtk-container-add window (cm-create-main-menu))
     (gtk-widget-show window)))
 
+(gnome-init-hack "cromagnon" (lambda (option arg) #f) '())
 (launch-gnome main)
 
 ;; hbox: homogeneous
