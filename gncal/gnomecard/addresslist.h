@@ -7,6 +7,7 @@ void deleteAddrList(CardList src);
 void copyAddrList(CardList src, CardList *dest);
 void copyGUIToCurAddr(GnomeCardEditor *ce);
 void copyCurAddrToGUI(GnomeCardEditor *ce);
+GList *findmatchAddrType(GList *l, gint type);
 
 #endif
 

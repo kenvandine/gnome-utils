@@ -101,7 +101,7 @@ copyAddrList(CardList src, CardList *dest)
 
 /* try to find specific address type in a list of addresses */
 /* returns ptr to list item if found, otherwise return NULL */
-static GList *
+GList *
 findmatchAddrType(GList *l, gint type)
 {
     GList *k;
