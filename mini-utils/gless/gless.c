@@ -334,11 +334,6 @@ static GnomeUIInfo main_menu[] = {
   GNOMEUIINFO_SUBTREE (N_("File"), file_menu),
   GNOMEUIINFO_SUBTREE (N_("View"), view_menu),
   GNOMEUIINFO_SUBTREE (N_("Preferences"), prefs_menu),
-  /* FIXME in gnome-libs - need a macro for this. */
-  {GNOME_APP_UI_JUSTIFY_RIGHT, 
-   NULL, NULL, NULL, NULL, 
-   NULL, 0, 0, '\0',
-   0, NULL},
   GNOMEUIINFO_SUBTREE (N_("Help"), help_menu),
   GNOMEUIINFO_END
 };
