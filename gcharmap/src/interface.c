@@ -152,7 +152,7 @@ main_app_create_ui (MainApp *app)
     {
         BonoboDockLayoutItem *item;
 
-        app->window = gnome_app_new (_(PACKAGE), _("Gnome Character Map"));
+        app->window = gnome_app_new (_(PACKAGE), _("Character Map"));
         gtk_widget_set_name (app->window, "mainapp");
         
         g_signal_connect_swapped (G_OBJECT (app->window), "destroy",
