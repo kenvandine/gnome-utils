@@ -1,3 +1,4 @@
+#include <config.h>
 #include "widget-control-virtual-rgb.h"
 #include "mdi-color-virtual-rgb.h"
 #include "utils.h"

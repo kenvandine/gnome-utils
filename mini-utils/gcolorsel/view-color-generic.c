@@ -1,3 +1,4 @@
+#include <config.h>
 #include <stdio.h>
 #include <gnome.h>
 #include <glade/glade.h>

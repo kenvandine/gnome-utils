@@ -1,3 +1,4 @@
+#include <config.h>
 #include "session.h"
 #include "mdi-color-generic.h"
 #include "mdi-color-file.h"
@@ -403,7 +404,7 @@ session_create (GnomeMDI *mdi, gboolean init_actions)
   gnome_mdi_add_child (mdi, GNOME_MDI_CHILD (file));
   
   mdi_color_file_set_filename (file, "/usr/X11R6/lib/X11/rgb.txt");
-  mdi_color_generic_set_name (MDI_COLOR_GENERIC (file), "System");
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (file), _("System"));
   
   /* Add a ColorList view for the file document */
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (file));
@@ -420,7 +421,7 @@ session_create (GnomeMDI *mdi, gboolean init_actions)
 
   /* Configure search */
   mdi_color_virtual_rgb_set (virtual, 255, 255, 255, 100);
-  mdi_color_generic_set_name (MDI_COLOR_GENERIC (virtual), "Search");
+  mdi_color_generic_set_name (MDI_COLOR_GENERIC (virtual), _("Search"));
   
   /* Add a ColorList view for the search document  */  
   gnome_mdi_add_view (mdi, GNOME_MDI_CHILD (virtual)); 
