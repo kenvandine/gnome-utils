@@ -118,7 +118,7 @@ main (int argc, gchar *argv[])
   bindtextdomain (PACKAGE, GNOMELOCALEDIR);
   textdomain (PACKAGE);
   
-  gnome_init_with_popt_table (PACKAGE, VERSION, argc, argv, options, 0, &pctx);
+  gnome_init_with_popt_table ("gdiskfree", VERSION, argc, argv, options, 0, &pctx);
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-diskfree.png");
   poptFreeContext (pctx);
   /** Get the configuration (or default) **/
