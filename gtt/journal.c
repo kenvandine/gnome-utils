@@ -43,10 +43,12 @@ typedef struct wiggy_s {
 	GtkHTMLStream *handle;
 	GtkWidget *top;
 	GtkWidget *interval_popup;
+	GtkWidget *task_popup;
 	GtkFileSelection *filesel;
 	EditIntervalDialog *edit_ivl;
 	char * filepath;
 	GttInterval * interval;
+	GttTask * task;
 	GttProject *prj;
 } Wiggy;
 
@@ -281,6 +283,43 @@ interval_popup_cb (Wiggy *wig)
 }
 
 /* ============================================================== */
+	  
+static void
+task_new_task_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+printf ("duuude new\n");
+}
+
+static void
+task_edit_task_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+	prop_task_dialog_show (wig->task);
+}
+
+static void
+task_delete_memo_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+printf ("duuude del mem\n");
+}
+
+static void
+task_delete_times_clicked_cb(GtkWidget * w, gpointer data) 
+{
+	Wiggy *wig = (Wiggy *) data;
+printf ("duuude del tim\n");
+}
+
+static void
+task_popup_cb (Wiggy *wig)
+{
+	gtk_menu_popup(GTK_MENU(wig->task_popup), 
+		NULL, NULL, NULL, wig, 1, 0);
+}
+
+/* ============================================================== */
 /* html events */
 
 static void
@@ -305,7 +344,8 @@ html_link_clicked_cb(GtkHTML * html, const gchar * url, gpointer data)
 	else
 	if (0 == strncmp (url, "gtt:task", 8))
 	{
-		prop_task_dialog_show (addr);
+		wig->interval = addr;
+		if (addr) task_popup_cb (wig);
 	}
 	else
 	{
@@ -393,6 +433,26 @@ do_show_report (const char * report, GttProject *prj)
 	  
 	glade_xml_signal_connect_data (glxml, "on_insert_memo_activate",
 	        GTK_SIGNAL_FUNC (interval_insert_memo_cb), wig);
+	  
+	/* ---------------------------------------------------- */
+	/* this is the popup menu that says 'edit/delete/merge' */
+	/* for tasks */
+
+	glxml = glade_xml_new ("glade/task_popup.glade", "Task Popup");
+	wig->task_popup = glade_xml_get_widget (glxml, "Task Popup");
+	wig->task=NULL;
+
+	glade_xml_signal_connect_data (glxml, "on_new_task_activate",
+	        GTK_SIGNAL_FUNC (task_new_task_clicked_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_edit_task_activate",
+	        GTK_SIGNAL_FUNC (task_edit_task_clicked_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_delete_memo_activate",
+	        GTK_SIGNAL_FUNC (task_delete_memo_clicked_cb), wig);
+	  
+	glade_xml_signal_connect_data (glxml, "on_delete_times_activate",
+	        GTK_SIGNAL_FUNC (task_delete_times_clicked_cb), wig);
 	  
 	/* ---------------------------------------------------- */
 	/* finally ... display the actual journal */
