@@ -55,7 +55,7 @@ typedef struct _MainAppClass
 
 extern MainApp *mainapp;
 
-guint main_app_get_type (void);
+GType main_app_get_type (void);
 MainApp *main_app_new (void);
 void main_app_destroy (MainApp *obj);
 
