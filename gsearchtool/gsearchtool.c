@@ -1209,6 +1209,7 @@ create_search_results_section (void)
 {
 	GtkWidget 	  *label;
 	GtkWidget 	  *frame;	
+	GtkWidget 	  *window;	
 	GtkTreeViewColumn *column;	
 	GtkCellRenderer   *renderer;
 	
@@ -1220,12 +1221,11 @@ create_search_results_section (void)
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	gtk_frame_set_label_widget (GTK_FRAME(frame), label);
 	
-	interface.results = gtk_scrolled_window_new (NULL, NULL);
-	gtk_widget_set_sensitive (GTK_WIDGET(interface.results), FALSE); 
-	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(interface.results), GTK_SHADOW_IN);	
-	gtk_container_set_border_width (GTK_CONTAINER(interface.results), 0);
-	gtk_widget_set_size_request (interface.results, 530, 200); 
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(interface.results),
+	window = gtk_scrolled_window_new (NULL, NULL); 
+	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_IN);	
+	gtk_container_set_border_width (GTK_CONTAINER(window), 0);
+	gtk_widget_set_size_request (window, 530, 200); 
+	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(window),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
 	
@@ -1283,8 +1283,8 @@ create_search_results_section (void)
 
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), interface.tree);
 	
-	gtk_container_add (GTK_CONTAINER(interface.results), GTK_WIDGET(interface.tree));
-	gtk_container_add (GTK_CONTAINER(frame), GTK_WIDGET(interface.results));
+	gtk_container_add (GTK_CONTAINER(window), GTK_WIDGET(interface.tree));
+	gtk_container_add (GTK_CONTAINER(frame), GTK_WIDGET(window));
 	
 	/* create the name column */
 	column = gtk_tree_view_column_new ();
@@ -1360,7 +1360,6 @@ create_main_window (void)
 	GtkWidget 	*folder_entry;
 	GtkWidget 	*button;
 	GtkWidget 	*table;
-	GtkWidget 	*results;
 	GtkWidget 	*window;
 	GtkWidget	*image;
 
@@ -1447,8 +1446,9 @@ create_main_window (void)
 
 	gtk_box_pack_start (GTK_BOX(window), GTK_WIDGET(interface.additional_constraints), FALSE, FALSE, 0);
 	
-	results = create_search_results_section ();
-	gtk_box_pack_start (GTK_BOX(window), results, TRUE, TRUE, GNOME_PAD_SMALL);
+	interface.results = create_search_results_section ();
+	gtk_widget_set_sensitive (GTK_WIDGET(interface.results), FALSE);
+	gtk_box_pack_start (GTK_BOX(window), interface.results, TRUE, TRUE, GNOME_PAD_SMALL);
 	
 	hbox = gtk_hbutton_box_new ();
 	gtk_button_box_set_layout (GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
