@@ -2378,7 +2378,7 @@ main (int 	argc,
 	icon_info = gtk_icon_theme_lookup_icon (gtk_icon_theme_get_default (), GNOME_SEARCH_TOOL_ICON, 
 	                                        GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE, 0);
 	if (icon_info) {
-		gnome_window_icon_set_default_from_file (gtk_icon_info_get_filename (icon_info));
+		gtk_window_set_default_icon_from_file (gtk_icon_info_get_filename (icon_info), NULL);
 		gtk_icon_info_free (icon_info);
 	}
 
