@@ -145,6 +145,7 @@ struct _LogviewWindow {
 
 	GtkWidget *zoom_dialog;
 	GtkWidget *zoom_scrolled_window;
+	GtkWidget *zoom_label;
 	GtkListStore *zoom_store;
 	gboolean zoom_visible;
 	

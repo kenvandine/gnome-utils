@@ -67,7 +67,7 @@ static void toggle_collapse_rows (GtkAction *action, GtkWidget *callback_data);
 static void toggle_monitor (GtkAction *action, GtkWidget *callback_data);
 static void logview_menus_set_state (LogviewWindow *logviewwindow);
 static void logview_search (GtkAction *action, GtkWidget *callback_data);
-static void logview_help (GtkAction *action, GtkWidget *callback_data);
+static void logview_help (GtkAction *action, GtkWidget *parent_window);
 static void logview_copy (GtkAction *action, GtkWidget *callback_data);
 static void logview_select_all (GtkAction *action, GtkWidget *callback_data);
 static int logview_count_logs (void);
