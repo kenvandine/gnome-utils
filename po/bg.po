@@ -3,13 +3,14 @@
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
 # Updated by Vladimir "Kaladan" Petkov <vpetkov@i-space.org>, 2004
 # Updated by Peter "Peshka" Slavov <pslavov@i-space.org>, 2004
-#
+# 
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils\n"
+"Project-Id-Version: gnome-utils 2.8\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-06-08 02:49+0200\n"
-"PO-Revision-Date: 2004-06-08 13:35+0300\n"
+"POT-Creation-Date: 2004-07-04 15:52+0200\n"
+"PO-Revision-Date: 2004-07-04 20:03+0300\n"
 "Last-Translator: Updated by Peter \"Peshka\" Slavov <pslavov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@linux.zonebg.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,20 +19,20 @@ msgstr ""
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:1
 msgid "Accessories"
-msgstr "Аксесоари"
+msgstr "Помощни програми"
 
 #: gdictsrc/GNOME_GDictApplet.server.in.in.h:2 gdictsrc/gdict-applet.c:151
 msgid "Dictionary Lookup"
 msgstr "Търсене в Речник"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:3 gdictsrc/gdict-applet.c:421
 #: gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
-msgstr "Търсене на думи в речник"
+msgstr "Търсене на думи в интернет речник"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1
-msgid "_About..."
-msgstr "_Относно..."
+msgid "_About"
+msgstr "_Относно"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:2
 msgid "_Help"
@@ -42,130 +43,130 @@ msgid "_Look Up Selected Text"
 msgstr "Търсене в Избрания Текст"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:4
-msgid "_Preferences..."
-msgstr "_Настройки..."
+msgid "_Preferences"
+msgstr "_Настройки"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:5
 msgid "_Show Dictionary"
-msgstr "Показва Речник"
+msgstr "_Показване на Речник"
 
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:462
-#: gdictsrc/gdict-pref-dialog.c:511 gdictsrc/gdict-speller.c:453
+#: gdictsrc/dict.c:664 gdictsrc/gdict-pref-dialog.c:460
+#: gdictsrc/gdict-pref-dialog.c:509 gdictsrc/gdict-speller.c:452
 msgid "Cannot connect to server"
-msgstr "Не мога да се свържа със сървъра"
+msgstr "Връзката със сървъра е неуспешна"
 
 #: gdictsrc/dict.c:677
 msgid ""
 "A serious error occured. Please check that your server and port are correct. "
 "For reference the default server is dict.org and the port 2628"
 msgstr ""
-"Появи се сериозна грешка. Моля проверете дали сървъра и портовете са "
+"Появи се сериозна грешка. Моля, проверете дали сървъра и портовете са "
 "коректни. За справка: сървър по подразбиране - dict.org - порт 2628"
 
 #. Translator credits
 #: gdictsrc/gdict-about.c:43 logview/about.c:49
 msgid "translator_credits"
-msgstr ""
-"оригинален превод:Борислав Александровосъвременен превод:Петър "
-"СлавовВладимир Петковhttp://i-space.org/i18n"
+msgstr "Борислав Александров\n"
+"Petar \"Peshka\" Slavov <pslavov@i-space.org>\n"
+"Vladimir \"Kaladan\" Petko <vpetkov@i-space.org>"
 
-#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:776
+#: gdictsrc/gdict-about.c:56 gdictsrc/gdict-app.c:925
 #: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Речник"
 
 #: gdictsrc/gdict-about.c:58
 msgid "A client for the MIT dictionary server."
-msgstr "Клиент за сървъра за речници на MIT."
+msgstr "Клиент за речниковия сървър на MIT."
 
-#: gdictsrc/gdict-app.c:125
+#: gdictsrc/gdict-app.c:127
 msgid "Spell-checking..."
-msgstr "Проверка на правопис..."
+msgstr "Проверка на правописа..."
 
-#: gdictsrc/gdict-app.c:133
+#: gdictsrc/gdict-app.c:135
 msgid "Spell check done"
-msgstr "Проверка на правопис завърши"
+msgstr "Проверката на правописа завърши"
 
-#: gdictsrc/gdict-app.c:141 gdictsrc/gdict-app.c:288
+#: gdictsrc/gdict-app.c:143 gdictsrc/gdict-app.c:290
 msgid "No matches found"
 msgstr "Не са намерени съвпадения"
 
-#: gdictsrc/gdict-app.c:271
+#: gdictsrc/gdict-app.c:273
 msgid "Looking up word..."
-msgstr "Търсене на дума..."
+msgstr "Търсене за дума..."
 
-#: gdictsrc/gdict-app.c:279
+#: gdictsrc/gdict-app.c:281
 msgid "Lookup done"
 msgstr "Търсенето завърши"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:303
 msgid "String not found"
-msgstr "Низа не е намерен"
+msgstr "Низът не е намерен"
 
-#: gdictsrc/gdict-app.c:469
+#: gdictsrc/gdict-app.c:471
 msgid "Find"
 msgstr "Търсене"
 
-#: gdictsrc/gdict-app.c:477
+#: gdictsrc/gdict-app.c:479
 msgid "_Search for:"
-msgstr "Търсене за:"
+msgstr "_Търсене за:"
 
-#: gdictsrc/gdict-app.c:490
+#: gdictsrc/gdict-app.c:492
 msgid "_Find"
 msgstr "_Търсене"
 
-#: gdictsrc/gdict-app.c:532
+#: gdictsrc/gdict-app.c:534
 msgid ""
 "Unable to perform requested operation. \n"
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
-"Не мога да изпълня заявената операция. \n"
+"Заявената операция не може да бъде изпълнена. \n"
 "Или сървъра не е наличен \n"
 "или не сте свързани с Интернет."
 
-#: gdictsrc/gdict-app.c:693 gdictsrc/gdict-app.c:803
-#: gdictsrc/gdict-speller.c:215
+#: gdictsrc/gdict-app.c:697 gdictsrc/gdict-app.c:952
+#: gdictsrc/gdict-speller.c:214
 msgid "_Look Up Word"
-msgstr "_Търсене на Дума"
+msgstr "_Търсене за Дума"
 
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:698
 msgid "Lookup word in dictionary"
-msgstr "Търсене на дума в речник"
+msgstr "Търсене за дума в речник"
 
-#: gdictsrc/gdict-app.c:696 gdictsrc/gdict-speller.c:161
+#: gdictsrc/gdict-app.c:700 gdictsrc/gdict-speller.c:160
 msgid "Check _Spelling"
-msgstr "Про_верка на Правопис"
+msgstr "Про_верка на Правописа"
 
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:701
 msgid "Check word spelling"
-msgstr "Проверка правопис на дума"
+msgstr "Проверка за правописа на дума"
 
-#: gdictsrc/gdict-app.c:741
+#: gdictsrc/gdict-app.c:745
 msgid "_Dictionary"
 msgstr "_Речник"
 
-#: gdictsrc/gdict-app.c:799 gdictsrc/gdict-speller.c:134
+#: gdictsrc/gdict-app.c:948 gdictsrc/gdict-speller.c:134
 msgid "_Word:"
 msgstr "_Дума:"
 
-#: gdictsrc/gdict-app.c:827 gdictsrc/gdict-speller.c:146
+#: gdictsrc/gdict-app.c:976 gdictsrc/gdict-speller.c:146
 msgid "Word"
 msgstr "Дума"
 
-#: gdictsrc/gdict-app.c:828 gdictsrc/gdict-app.c:829
+#: gdictsrc/gdict-app.c:977 gdictsrc/gdict-app.c:978
 #: gdictsrc/gdict-speller.c:147
 msgid "Word Entry"
-msgstr "Елемент Дума"
+msgstr "Запис на Дума"
 
-#: gdictsrc/gdict-app.c:828
+#: gdictsrc/gdict-app.c:977
 msgid "Enter a Word or select one from the list below"
 msgstr "Въведете Дума или изберете една от списъка по-долу"
 
-#: gdictsrc/gdict-app.c:831
+#: gdictsrc/gdict-app.c:980
 msgid "Look Up for a Word"
 msgstr "Търсене за Дума"
 
@@ -173,18 +174,22 @@ msgstr "Търсене за Дума"
 msgid "_Lookup"
 msgstr "_Търсене"
 
-#: gdictsrc/gdict-defbox.c:650 gdictsrc/gdict-speller.c:478
+#: gdictsrc/gdict-applet.c:155
+msgid "Dictionary word entry"
+msgstr "Дума в речника"
+
+#: gdictsrc/gdict-defbox.c:665 gdictsrc/gdict-speller.c:477
 #, c-format
 msgid "Error invoking query: %s"
-msgstr "Грешка при изпълнение на заявка: %s"
+msgstr "Грешка при изпълнение на заявката: %s"
 
 #: gdictsrc/gdict-pref-dialog.c:158
 msgid "Dictionary Preferences"
-msgstr "Настройки на Речник"
+msgstr "Настройки на Речника"
 
 #: gdictsrc/gdict-pref-dialog.c:171
 msgid "Smart _lookup"
-msgstr "Разумно _търсене"
+msgstr "Умно _търсене"
 
 #: gdictsrc/gdict-pref-dialog.c:189
 msgid "_Server:"
@@ -196,7 +201,7 @@ msgstr "Подразбиращ се сървър"
 
 #: gdictsrc/gdict-pref-dialog.c:205
 msgid "Reset server to default"
-msgstr "Инициализира сървър с подразбиращи се настройки"
+msgstr "Задаване на сървъра с подразбиращите се настройки"
 
 #: gdictsrc/gdict-pref-dialog.c:213
 msgid "_Port:"
@@ -208,7 +213,7 @@ msgstr "Порт по Подразбиране"
 
 #: gdictsrc/gdict-pref-dialog.c:238
 msgid "Reset port to default"
-msgstr "Установява подразбираща се стойност за порт"
+msgstr "Установяване на подразбираща се стойност за порт"
 
 #: gdictsrc/gdict-pref-dialog.c:239
 msgid "Server"
@@ -220,45 +225,45 @@ msgstr "Елемент Сървър"
 
 #: gdictsrc/gdict-pref-dialog.c:240
 msgid "Enter the Server Name"
-msgstr "Въведете Име на Сървър"
+msgstr "Въвеждане Име на Сървър"
 
-#: gdictsrc/gdict-pref-dialog.c:243
+#: gdictsrc/gdict-pref-dialog.c:242
 msgid "Port"
 msgstr "Порт"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Port Entry"
 msgstr "Елемент Порт"
 
-#: gdictsrc/gdict-pref-dialog.c:244
+#: gdictsrc/gdict-pref-dialog.c:243
 msgid "Enter the Port Number"
-msgstr "Въведете Номер на Порт"
+msgstr "Въвеждане Номер на Порт"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:252
 msgid "_Database:"
 msgstr "Баз_за данни:"
 
-#: gdictsrc/gdict-pref-dialog.c:261
+#: gdictsrc/gdict-pref-dialog.c:259
 msgid "D_efault strategy:"
 msgstr "Под_разбираща се стратегия:"
 
-#: gdictsrc/gdict-pref-dialog.c:454
+#: gdictsrc/gdict-pref-dialog.c:452
 msgid "Search all databases"
 msgstr "Търсене във всички бази данни"
 
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database"
 msgstr "База данни"
 
-#: gdictsrc/gdict-pref-dialog.c:615
+#: gdictsrc/gdict-pref-dialog.c:613
 msgid "Database Name"
-msgstr "Име на База данни"
+msgstr "Име на Базата данни"
 
-#: gdictsrc/gdict-pref-dialog.c:631
+#: gdictsrc/gdict-pref-dialog.c:629
 msgid "Default Strategy"
 msgstr "Подразбираща се Стратегия"
 
-#: gdictsrc/gdict-pref-dialog.c:658
+#: gdictsrc/gdict-pref-dialog.c:656
 #, c-format
 msgid ""
 "There was an error displaying help: \n"
@@ -269,25 +274,25 @@ msgstr ""
 
 #: gdictsrc/gdict-speller.c:147
 msgid "Enter a word to know the spelling"
-msgstr "Въведете дума, за която искате да научите правописа"
+msgstr "Въведете думата, за която искате да научите правописа"
 
-#: gdictsrc/gdict-speller.c:154
+#: gdictsrc/gdict-speller.c:153
 msgid "Search s_trategy:"
 msgstr "С_тратегия за Търсене:"
 
-#: gdictsrc/gdict-speller.c:166
+#: gdictsrc/gdict-speller.c:165
 msgid "Click to do the spell check"
 msgstr "Натиснете тук за проверка на правописа"
 
-#: gdictsrc/gdict-speller.c:170
+#: gdictsrc/gdict-speller.c:169
 msgid "Search _results:"
 msgstr "_Резултати от Търсенето:"
 
-#: gdictsrc/gdict-speller.c:230
+#: gdictsrc/gdict-speller.c:229
 msgid "Check Spelling"
-msgstr "Проверка на Правопис"
+msgstr "Проверка на Правописа"
 
-#: gdictsrc/gdict-speller.c:644
+#: gdictsrc/gdict-speller.c:643
 msgid "Search Strategy"
 msgstr "Стратегия за Търсене"
 
@@ -304,8 +309,8 @@ msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE"
 msgstr ""
-"Задава дали са използва умен изглед. Тази настройка зависи от това "
-"далисъвъра за речника поддържа тази опция. По подразбиране е истина"
+"Задаване дали да се използва умения изглед. Тази настройка зависи от това "
+"дали съвъра за речника поддържа тази опция. По подразбиране е истина"
 
 #: gdictsrc/gdict.schemas.in.h:4
 msgid "The database to use in the dictionary server."
@@ -316,7 +321,7 @@ msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers"
 msgstr ""
-"Сървър за речника към който да се свърже. Сървъра по подразбиране е dict."
+"Сървър за речника, към който да се свърже. Сървъра по подразбиране е dict."
 "org. Може да видите http://www.dict.org за повече подробности за други "
 "сървъри"
 
@@ -428,11 +433,11 @@ msgstr "Не знам какво е това, но е много грешно."
 #: gfloppy/src/fdformat.c:60 gfloppy/src/fdformat.c:73
 #, c-format
 msgid "Error formatting track #%d"
-msgstr "Грешка при форматиране на пътечка #%d"
+msgstr "Грешка при форматиране на пътека #%d"
 
 #: gfloppy/src/fdformat.c:82
 msgid "Error during completion of formatting"
-msgstr "Грешка при завършване на форматирането"
+msgstr "Грешка при завършването на форматирането"
 
 #. XXXX - need to tell parent we're finished
 #: gfloppy/src/fdformat.c:86
@@ -450,9 +455,9 @@ msgid ""
 "\n"
 "Please confirm that it is not write-protected."
 msgstr ""
-"Не е възможно е да пиша на дискетата.\n"
+"Записа върху дискетата е невъзможен.\n"
 "\n"
-"Моля, проверете дали не е защитено за запис."
+"Моля, проверете дали не е защитена от запис."
 
 #: gfloppy/src/fdformat.c:110 gfloppy/src/fdformat.c:195
 #, c-format
@@ -466,9 +471,9 @@ msgid ""
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
 msgstr ""
-"Нямам достъп до флопи диска.\n"
+"Нямате достъп до дискетата.\n"
 "\n"
-"Моля, убедете се ,че е в устройството\n"
+"Моля, убедете се ,че тя е в устройството\n"
 "и вратата му е затворена."
 
 #: gfloppy/src/fdformat.c:117
@@ -508,7 +513,7 @@ msgstr "Грешка при затваряне на устройство %s"
 
 #: gfloppy/src/fdformat.c:170
 msgid "Verifying the format... Done"
-msgstr "Проверка на формата... Завърши"
+msgstr "Проверка на форматирането... Завърши"
 
 #: gfloppy/src/fdformat.c:182
 #, c-format
@@ -532,8 +537,7 @@ msgstr "Не мога да определя физически геометри�
 
 #: gfloppy/src/gfloppy.c:221
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr ""
-"Грешка при създаването на уникално име на файл за списъка с лоши блокове."
+msgstr "Грешка при създаването на уникално име на файл за списъка с лоши блокове."
 
 #: gfloppy/src/gfloppy.c:241
 msgid "Error while filling the bad blocks list file."
@@ -546,7 +550,7 @@ msgstr "Грешка при изпълнението (%s) на командат�
 
 #: gfloppy/src/gfloppy.c:330
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr "Непознат начален подпис на mke2fs, отказвам."
+msgstr "Непознат начален подпис на mke2fs, отказ."
 
 #: gfloppy/src/gfloppy.c:344
 #, c-format
@@ -558,7 +562,7 @@ msgstr ""
 "Инструмента за създаване на файлови системи (%s) докладва за следните "
 "грешки:\n"
 "\n"
-"%s·(%d)"
+"%s (%d)"
 
 #: gfloppy/src/gfloppy.c:361
 msgid "Abnormal child process termination."
@@ -567,7 +571,7 @@ msgstr "Необикновено прекратяване на процес."
 #: gfloppy/src/gfloppy.c:386
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
-msgstr "Грешка докато изпълнява командата mbadblocks: %s."
+msgstr "Грешка при изпълнение на командата mbadblocks: %s."
 
 #: gfloppy/src/gfloppy.c:398
 #, c-format
@@ -575,7 +579,7 @@ msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
-"Инструмента за проверка на лоши блокове (mbadblocks) докладва за следните "
+"Инструментът за проверка на лоши блокове (mbadblocks) докладва за следните "
 "грешки:\n"
 "%s"
 
@@ -586,15 +590,15 @@ msgstr "Необикновенно прекратяване на процес о
 #. make the filesystem
 #: gfloppy/src/gfloppy.c:467 gfloppy/src/gfloppy.c:507
 msgid "Making filesystem on disk..."
-msgstr "Правя файлова система на диска..."
+msgstr "Създаване на файловата система на диска..."
 
 #: gfloppy/src/gfloppy.c:475
 msgid "Unable to create filesystem correctly."
-msgstr "Немога да създам правилно файловата система."
+msgstr "Правилното създаване на файловата система е невъзможно."
 
 #: gfloppy/src/gfloppy.c:480 gfloppy/src/gfloppy.c:519
 msgid "Making filesystem on disk... Done"
-msgstr "Създаване на файлова система на диск... Завърши"
+msgstr "Създаване на файловата система на диска... Завърши"
 
 #: gfloppy/src/gfloppy.c:524
 msgid "Checking for bad blocks... (this might take a while)"
@@ -606,7 +610,7 @@ msgstr "Грешка при проверката за лоши блокове."
 
 #: gfloppy/src/gfloppy2.glade.h:1
 msgid "    "
-msgstr "...."
+msgstr "    "
 
 #: gfloppy/src/gfloppy2.glade.h:2
 msgid "*"
@@ -618,9 +622,9 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<small><i><b>Забележка</b>:·Инструмента mbadblocks·не е инсталиран.·Той "
+"<small><i><b>Забележка</b>: Инструментът mbadblocks не е инсталиран. Той "
 "трябва да се инсталира за да се извърши пълното форматиране в файловата "
-"система ·DOS·(fat).</i></small>"
+"система DOS (fat).</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "<span weight=\"bold\">Filesystem Settings</span>"
@@ -672,7 +676,7 @@ msgstr "Linux файлова система (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr "Напълно (добавя проверка за лоши блокове към стандартния режим)"
+msgstr "Напълно (добавяне на проверка за лоши блокове към стандартния режим)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -684,11 +688,11 @@ msgstr "_Формат"
 
 #: gfloppy/src/gfloppy2.glade.h:20
 msgid "_Quick (only creates the filesystem)"
-msgstr "Бързо (само създава файлова система)."
+msgstr "Бързо (създаване само на файловата система)."
 
 #: gfloppy/src/gfloppy2.glade.h:21
 msgid "_Standard (adds a low-level format to the quick mode)"
-msgstr "_Стандартно (добавя форматиране от ниско ниво към бързото форматиране)"
+msgstr "_Стандартно (добавяне на форматиране от ниско ниво към бързото форматиране)"
 
 #: gfloppy/src/main.c:140
 msgid ""
@@ -710,7 +714,7 @@ msgid ""
 "Please attach device to continue."
 msgstr ""
 "Устройството %s е разкачено.\n"
-"Моля закачете устройството за да продължа."
+"Моля, закачете устройството за да продължите."
 
 #: gfloppy/src/main.c:170 gfloppy/src/main.c:222
 #, c-format
@@ -720,7 +724,7 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 "Вие нямата подходящи права за запис в %s, форматирането не е възможно.\n"
-"Обърнете се към системният администратор за да получите права."
+"Обърнете се към системния администратор за да получите права."
 
 #: gfloppy/src/main.c:216
 msgid "Unable to open any device, formatting cannot continue."
@@ -736,7 +740,7 @@ msgid ""
 "Could not display help for the floppy formatter.\n"
 "%s"
 msgstr ""
-"Не мога да покажа помощна информация за програмата форматираща флопи.\n"
+"Помощнтаа информация не може да бъде показана.\n"
 "%s"
 
 #: gfloppy/src/main.c:427
@@ -759,14 +763,14 @@ msgid ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr ""
-"Флопито е форматирано, но <b>%d лош сектор</b> (от %d) беше намерен "
-"и маркиран."
-"Флопито е форматирано, но <b>%d лоши сектори</b> (от %d) бяха намерени "
-"и маркирани."
+"Флопито е форматирано, но <b>%d лош сектор</b> (от %d) беше намерен и "
+"маркиран."
+"Флопито е форматирано, но <b>%d лош сектор</b> (от %d) беше намерен и "
+"маркиран."
 
 #: gfloppy/src/progress.c:126
 msgid "Floppy formatted successfully."
-msgstr "Дискетата беше успешно форматирана."
+msgstr "Дискетата беше форматирана успешно."
 
 #: gfloppy/src/progress.c:132
 msgid "Floppy formatting cancelled."
@@ -774,17 +778,17 @@ msgstr "Форматирането на дискетата е прекъснат
 
 #: gfloppy/src/progress.c:175
 msgid "Format Progress"
-msgstr "Прогрес на форматирането"
+msgstr "Развитие на форматирането"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:577
-#: gsearchtool/gsearchtool.c:831 gsearchtool/gsearchtool.c:915
-#: gsearchtool/gsearchtool.c:2193 gsearchtool/gsearchtool.c:2218
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:578
+#: gsearchtool/gsearchtool.c:832 gsearchtool/gsearchtool.c:916
+#: gsearchtool/gsearchtool.c:2209 gsearchtool/gsearchtool.c:2234
 msgid "Search for Files"
 msgstr "Търсене за Файлове"
 
 #: gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search your disk for files"
-msgstr "Търсене за файлове на вашият диск."
+msgstr "Търсене за файлове във вашият диск."
 
 #: gsearchtool/gsearchtool-alert-dialog.c:99
 msgid "Image/label border"
@@ -800,7 +804,7 @@ msgstr "Вид сигнал"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:110
 msgid "The type of alert"
-msgstr "Вида на сигнала"
+msgstr "Видът на сигнала"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:118
 msgid "Alert Buttons"
@@ -808,27 +812,27 @@ msgstr "Бутони за сигнал"
 
 #: gsearchtool/gsearchtool-alert-dialog.c:119
 msgid "The buttons shown in the alert dialog"
-msgstr "Бутоните показани в прозореца за сигнал"
+msgstr "Бутоните показани в прозореца за сигнала"
 
 #: gsearchtool/gsearchtool-callbacks.c:50
 msgid "_Open"
-msgstr "_Отваря"
+msgstr "_Отваряне"
 
 #: gsearchtool/gsearchtool-callbacks.c:54
 msgid "O_pen Folder"
-msgstr "Отва_ря Папка"
+msgstr "Отва_ряне на Папка"
 
 #: gsearchtool/gsearchtool-callbacks.c:59
 msgid "Mo_ve to Trash"
-msgstr "Премества в кошчето"
+msgstr "Преместване в кошчето"
 
 #: gsearchtool/gsearchtool-callbacks.c:64
 msgid "_Save Results As..."
-msgstr "Запазва _Резултата Като..."
+msgstr "Запазване на _Резултата Като..."
 
 #: gsearchtool/gsearchtool-callbacks.c:111
 msgid "Could not open help document."
-msgstr "Не мога да отворя документа с помощ."
+msgstr "Документът за помощта не може да бъде отворен."
 
 #: gsearchtool/gsearchtool-callbacks.c:318
 #, c-format
@@ -836,111 +840,115 @@ msgid "Are you sure you want to open %d document?"
 msgstr "Сигурни ли сте, че искате да отворите документа %d?"
 
 #: gsearchtool/gsearchtool-callbacks.c:323
-#: gsearchtool/gsearchtool-callbacks.c:449
+#: gsearchtool/gsearchtool-callbacks.c:475
 #, c-format
 msgid "This will open %d separate window."
 msgstr "Това ще отвори %d отделен прозорец."
 
-#: gsearchtool/gsearchtool-callbacks.c:390
-#: gsearchtool/gsearchtool-callbacks.c:944
+#: gsearchtool/gsearchtool-callbacks.c:383
+#: gsearchtool/gsearchtool-callbacks.c:416
+#: gsearchtool/gsearchtool-callbacks.c:965
+#: gsearchtool/gsearchtool-callbacks.c:998
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Документът \"%s\" не може да бъде отворен."
 
-#: gsearchtool/gsearchtool-callbacks.c:393
-#: gsearchtool/gsearchtool-callbacks.c:947
+#: gsearchtool/gsearchtool-callbacks.c:386
+#: gsearchtool/gsearchtool-callbacks.c:641
+#: gsearchtool/gsearchtool-callbacks.c:968
+msgid "The document does not exist."
+msgstr "Документът не съществува."
+
+#: gsearchtool/gsearchtool-callbacks.c:419
+#: gsearchtool/gsearchtool-callbacks.c:1001
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Няма инсталирана програма, която може да изобрази този документ."
 
-#: gsearchtool/gsearchtool-callbacks.c:444
+#: gsearchtool/gsearchtool-callbacks.c:470
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgstr "Сигурни ли сте, че желаете да отворите папката %d?"
 
-#: gsearchtool/gsearchtool-callbacks.c:502
+#: gsearchtool/gsearchtool-callbacks.c:528
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Папката \"%s\" не може да бъде отворена."
 
-#: gsearchtool/gsearchtool-callbacks.c:509
+#: gsearchtool/gsearchtool-callbacks.c:535
 msgid "The nautilus file manager is not running."
-msgstr "Файловия маниджър Nautilus на е стартиран."
+msgstr "Файловият маниджър Nautilus на е стартиран."
 
-#: gsearchtool/gsearchtool-callbacks.c:612
+#: gsearchtool/gsearchtool-callbacks.c:638
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Документът \"%s\" не може да бъде преместен в Кошчето."
 
-#: gsearchtool/gsearchtool-callbacks.c:615
-msgid "The document does not exist."
-msgstr "Документът не съществува."
-
-#: gsearchtool/gsearchtool-callbacks.c:652
+#: gsearchtool/gsearchtool-callbacks.c:678
 #, c-format
 msgid "Could not move \"%s\" to the trash."
-msgstr "Документа·\"%s\" не може ад бъде преместен в Кошчето."
+msgstr "Документът \"%s\" не може да бъде преместен в Кошчето."
 
-#: gsearchtool/gsearchtool-callbacks.c:655
+#: gsearchtool/gsearchtool-callbacks.c:681
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr "Преместване на \"%s\" пропадна: %s"
+msgstr "Преместването на \"%s\" е неуспешно: %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:685
+#: gsearchtool/gsearchtool-callbacks.c:711
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
-msgstr "Искате ли да изтриете \"%s\" за постоянно?"
+msgstr "Искате ли да изтриете за постоянно \"%s\"?"
 
-#: gsearchtool/gsearchtool-callbacks.c:688
+#: gsearchtool/gsearchtool-callbacks.c:714
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Кошчето е недостъпно. Не успях да преместя \"%s\" в кошчето."
 
-#: gsearchtool/gsearchtool-callbacks.c:730
+#: gsearchtool/gsearchtool-callbacks.c:756
 #, c-format
 msgid "Could not delete \"%s\"."
-msgstr "Не мога да изтрия \"%s\""
+msgstr "Изтриването на \"%s\" е неуспешно."
 
-#: gsearchtool/gsearchtool-callbacks.c:733
+#: gsearchtool/gsearchtool-callbacks.c:759
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr "Изтриване·на·\"%s\"·пропадна:·%s"
-
-#: gsearchtool/gsearchtool-callbacks.c:1132
-msgid "Save Search Results As..."
-msgstr "Запазва _Резултата Като..."
-
-#: gsearchtool/gsearchtool-callbacks.c:1184
-msgid "Could not save document."
-msgstr "Документът не може да се запише."
+msgstr "Изтриването на \"%s\" е неуспешно: %s"
 
 #: gsearchtool/gsearchtool-callbacks.c:1186
+msgid "Save Search Results As..."
+msgstr "Запазване на Резултата Като..."
+
+#: gsearchtool/gsearchtool-callbacks.c:1238
+msgid "Could not save document."
+msgstr "Документът не може да бъде запазен."
+
+#: gsearchtool/gsearchtool-callbacks.c:1240
 msgid "You did not select a document name."
 msgstr "Не сте избрали име на документа."
 
-#: gsearchtool/gsearchtool-callbacks.c:1212
-#: gsearchtool/gsearchtool-callbacks.c:1307
+#: gsearchtool/gsearchtool-callbacks.c:1266
+#: gsearchtool/gsearchtool-callbacks.c:1361
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
-msgstr "Не мога да запиша документа \"%s\" в %s"
+msgstr "Документът \"%s\" не може да бъде запазен в \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:1216
+#: gsearchtool/gsearchtool-callbacks.c:1270
 msgid "The document name you selected is a folder."
 msgstr "Името на документа, което сте избрали е папка."
 
-#: gsearchtool/gsearchtool-callbacks.c:1245
+#: gsearchtool/gsearchtool-callbacks.c:1299
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
-msgstr "Документа \"%s\" вече съществува.  Желаете ли да го презапишете?"
+msgstr "Документът \"%s\" вече съществува.  Желаете ли да го презапишете?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1249
+#: gsearchtool/gsearchtool-callbacks.c:1303
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr "Ако презапишете съществуващ файл, старото му съдържание ще изчезне."
+msgstr "Ако презапишете съществуващ файл, ще загубите старото му съдържание."
 
-#: gsearchtool/gsearchtool-callbacks.c:1260
+#: gsearchtool/gsearchtool-callbacks.c:1314
 msgid "_Replace"
-msgstr "Заменя"
+msgstr "_Заменяне"
 
-#: gsearchtool/gsearchtool-callbacks.c:1310
+#: gsearchtool/gsearchtool-callbacks.c:1364
 msgid "You may not have write permissions to the document."
 msgstr "Може да нямате права за писане в този документ."
 
@@ -979,122 +987,130 @@ msgstr "връзка (прекъсната)"
 msgid "link to %s"
 msgstr "връзка до %s"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:74
 msgid "Contains the _text"
 msgstr "Съдържа _текста"
 
-#: gsearchtool/gsearchtool.c:75
-msgid "_Date modified less than (days)"
-msgstr "_Дата на модифициране по малко от (дни)"
-
 #: gsearchtool/gsearchtool.c:76
-msgid "Date modified more than (da_ys)"
-msgstr "Датата на модифициране е повече от (дни)"
+msgid "_Date modified less than"
+msgstr "_Дата на промяна по малко от (дни)"
 
-#: gsearchtool/gsearchtool.c:78
-msgid "S_ize at least (kilobytes)"
-msgstr "Размер поне (К_ило - байтове)"
+#: gsearchtool/gsearchtool.c:76 gsearchtool/gsearchtool.c:77
+msgid "days"
+msgstr "дни"
+
+#: gsearchtool/gsearchtool.c:77
+msgid "Date modified more than"
+msgstr "Дата на промяна е повече от (дни)"
 
 #: gsearchtool/gsearchtool.c:79
-msgid "Si_ze at most (kilobytes)"
-msgstr "Ра_змер най-много (Кило - байтове)"
+msgid "S_ize at least"
+msgstr "Размер поне"
+
+#: gsearchtool/gsearchtool.c:79 gsearchtool/gsearchtool.c:80
+msgid "kilobytes"
+msgstr "килобайта"
 
 #: gsearchtool/gsearchtool.c:80
+msgid "Si_ze at most"
+msgstr "Ра_змер най-много"
+
+#: gsearchtool/gsearchtool.c:81
 msgid "File is empty"
 msgstr "Файлът е празен"
 
-#: gsearchtool/gsearchtool.c:82
+#: gsearchtool/gsearchtool.c:83
 msgid "Owned by _user"
 msgstr "Собственост на потребител"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:84
 msgid "Owned by _group"
 msgstr "Собственост на _група"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:85
 msgid "Owner is unrecognized"
 msgstr "Собственикът не е разпознат"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:87
 msgid "Na_me does not contain"
 msgstr "И_мето не съдържа"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:88
 msgid "Name matches regular e_xpression"
 msgstr "Съвпадение на регулярни изрази"
 
-#: gsearchtool/gsearchtool.c:89
-msgid "Show hidden and backup files"
-msgstr "Показва скрити файлове и резервни копия"
-
 #: gsearchtool/gsearchtool.c:90
-msgid "Follow symbolic links"
-msgstr "Следва символичните указатели"
+msgid "Show hidden and backup files"
+msgstr "Показване на скритите файлове и резервните копия"
 
 #: gsearchtool/gsearchtool.c:91
-msgid "Include other filesystems"
-msgstr "Добавя други файлови системи"
+msgid "Follow symbolic links"
+msgstr "Следване на символните връзки"
 
-#: gsearchtool/gsearchtool.c:524 gsearchtool/gsearchtool.c:552
+#: gsearchtool/gsearchtool.c:92
+msgid "Include other filesystems"
+msgstr "Добавяне на други файлови системи"
+
+#: gsearchtool/gsearchtool.c:525 gsearchtool/gsearchtool.c:553
 msgid "No files found"
 msgstr "Не са намерени файлове"
 
-#: gsearchtool/gsearchtool.c:545
+#: gsearchtool/gsearchtool.c:546
 msgid "(stopped)"
 msgstr "(спрян)"
 
-#: gsearchtool/gsearchtool.c:551
+#: gsearchtool/gsearchtool.c:552
 msgid "No Files Found"
 msgstr "Не са Намерени Файлове"
 
-#: gsearchtool/gsearchtool.c:556
+#: gsearchtool/gsearchtool.c:557
 #, c-format
 msgid "%d File Found"
-msgstr "%d файл е намерен"
+msgstr "%d Файлът е Намерен"
 
-#: gsearchtool/gsearchtool.c:560
+#: gsearchtool/gsearchtool.c:561
 #, c-format
 msgid "%d file found"
 msgstr "%d файл е намерен"
 
-#: gsearchtool/gsearchtool.c:666
+#: gsearchtool/gsearchtool.c:667
 msgid "Entry changed called for a non entry option!"
 msgstr "Извиканото значение за записа не е опция за записа!"
 
-#: gsearchtool/gsearchtool.c:915
+#: gsearchtool/gsearchtool.c:916
 msgid "Searching..."
 msgstr "Търсене..."
 
-#: gsearchtool/gsearchtool.c:936
-msgid "Set the text of 'Name contains'"
-msgstr "Задайте текст за 'Името съдържа'"
-
 #: gsearchtool/gsearchtool.c:937
-msgid "Set the text of 'Look in folder'"
-msgstr "Задайте·текст·за·'Гледа в папка'"
+msgid "Set the text of 'Name contains'"
+msgstr "Задайте текст за \"Името съдържа\""
 
 #: gsearchtool/gsearchtool.c:938
-msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Сортира файлове по: име, папка, размер, тип, или дата"
+msgid "Set the text of 'Look in folder'"
+msgstr "Задайте·текст·за·\"Гледа в папка\""
 
 #: gsearchtool/gsearchtool.c:939
-msgid "Set sort order to descending, the default is ascending"
-msgstr "Задава намаляващ ред на сортирането, по подразбиране е възходящ"
+msgid "Sort files by one of the following: name, folder, size, type, or date"
+msgstr "Подрежда файловете по: име, папка, размер, тип, или дата"
 
 #: gsearchtool/gsearchtool.c:940
+msgid "Set sort order to descending, the default is ascending"
+msgstr "Задаване на намаляващ ред на сортирането, по подразбиране е възходящ"
+
+#: gsearchtool/gsearchtool.c:941
 msgid "Automatically start a search"
 msgstr "Автоматично стартира търсене"
 
-#: gsearchtool/gsearchtool.c:945
+#: gsearchtool/gsearchtool.c:946
 #, c-format
 msgid "Select the '%s' constraint"
-msgstr "Избира ограничението '%s'"
+msgstr "Избиране на ограничението \"%s\""
 
-#: gsearchtool/gsearchtool.c:1051
+#: gsearchtool/gsearchtool.c:1052
 msgid "Invalid option passed to sortby command line argument."
-msgstr "Невалидна опция зададена в командата за сортиране"
+msgstr "Невалидна опция зададена в командата за подреждане"
 
-#: gsearchtool/gsearchtool.c:1316
+#: gsearchtool/gsearchtool.c:1317
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1102,7 +1118,7 @@ msgstr ""
 "При търсенето са докладвани следните грешки.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1320
+#: gsearchtool/gsearchtool.c:1321
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1110,118 +1126,119 @@ msgstr ""
 "\n"
 "... Твърде много грешки за показване ..."
 
-#: gsearchtool/gsearchtool.c:1327
+#: gsearchtool/gsearchtool.c:1328
 msgid "Error while searching for files."
-msgstr "Грешка при търсене на файлове."
+msgstr "Грешка при търсенето на файлове."
 
-#: gsearchtool/gsearchtool.c:1368
+#: gsearchtool/gsearchtool.c:1369
 msgid "Error parsing the search command."
-msgstr "Грешка при изпълнение командата за търсене"
+msgstr "Грешка при изпълнението на командата за търсене"
 
-#: gsearchtool/gsearchtool.c:1391
+#: gsearchtool/gsearchtool.c:1392
 msgid "Error running the search command."
 msgstr "Грешка при изпълнение на командата за търсене."
 
-#: gsearchtool/gsearchtool.c:1487
-msgid "Search Rule Value Entry"
-msgstr "Низ за Стойностите на Правилата за Търсне"
+#: gsearchtool/gsearchtool.c:1492
+#, c-format
+msgid "'%s' entry"
+msgstr "\"%s\" запис"
 
-#: gsearchtool/gsearchtool.c:1488
+#: gsearchtool/gsearchtool.c:1493
 msgid "Enter a value for search rule"
-msgstr "Въведете стойност за правила на търсене"
+msgstr "Въведете стойност за правило за търсене"
 
-#: gsearchtool/gsearchtool.c:1524
+#: gsearchtool/gsearchtool.c:1540
 #, c-format
 msgid "Click to Remove the '%s' Rule"
-msgstr "Натиска за да Премахне Правилото '%s'"
+msgstr "Натиснете за да Премахнете Правилото \"%s\""
 
-#: gsearchtool/gsearchtool.c:1580
+#: gsearchtool/gsearchtool.c:1596
 msgid "A_vailable options:"
 msgstr "Възмо_жни опции:"
 
-#: gsearchtool/gsearchtool.c:1593
+#: gsearchtool/gsearchtool.c:1609
 msgid "Search Rules Menu"
-msgstr "Меню за Правила на Търсене"
+msgstr "Меню за Правилата за Търсене"
 
-#: gsearchtool/gsearchtool.c:1594
+#: gsearchtool/gsearchtool.c:1610
 msgid "Select a search rule from the menu"
 msgstr "Избор на правила за търсене от менюто"
 
-#: gsearchtool/gsearchtool.c:1625
+#: gsearchtool/gsearchtool.c:1641
 msgid "S_earch results:"
 msgstr "_Резултати от Търсенето:"
 
-#: gsearchtool/gsearchtool.c:1705
+#: gsearchtool/gsearchtool.c:1721
 msgid "Name"
 msgstr "Име"
 
-#: gsearchtool/gsearchtool.c:1725
+#: gsearchtool/gsearchtool.c:1741
 msgid "Folder"
 msgstr "Папка"
 
-#: gsearchtool/gsearchtool.c:1736
+#: gsearchtool/gsearchtool.c:1752
 msgid "Size"
 msgstr "Размер"
 
-#: gsearchtool/gsearchtool.c:1746
+#: gsearchtool/gsearchtool.c:1762
 msgid "Type"
 msgstr "Тип"
 
-#: gsearchtool/gsearchtool.c:1756
+#: gsearchtool/gsearchtool.c:1772
 msgid "Date Modified"
-msgstr "Дата на Модифициране"
+msgstr "Дата на Промяна"
 
-#: gsearchtool/gsearchtool.c:1814
+#: gsearchtool/gsearchtool.c:1830
 msgid "_Name contains:"
 msgstr "_Името съдържа:"
 
-#: gsearchtool/gsearchtool.c:1829 gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1845 gsearchtool/gsearchtool.c:1846
 msgid "Enter the file name you want to search"
-msgstr "Въведете име на файл, за който искате да търсите"
+msgstr "Въведете името на файла, за който искате да търсите"
 
-#: gsearchtool/gsearchtool.c:1830
+#: gsearchtool/gsearchtool.c:1846
 msgid "Name Contains Entry"
 msgstr "Името Съдържа"
 
-#: gsearchtool/gsearchtool.c:1841
+#: gsearchtool/gsearchtool.c:1857
 msgid "_Look in folder:"
-msgstr "_Гледа в папка:"
+msgstr "_Търсене в папка:"
 
-#: gsearchtool/gsearchtool.c:1847
+#: gsearchtool/gsearchtool.c:1863
 msgid "Browse"
-msgstr "Преглед"
+msgstr "Разглеждане"
 
-#: gsearchtool/gsearchtool.c:1858 gsearchtool/gsearchtool.c:1859
+#: gsearchtool/gsearchtool.c:1874 gsearchtool/gsearchtool.c:1875
 msgid "Enter the folder name where you want to start the search"
-msgstr "Въведете името на папката където вие искате да започнете търсенето"
+msgstr "Въведете името на папката, където искате да започнете търсенето"
 
-#: gsearchtool/gsearchtool.c:1859
+#: gsearchtool/gsearchtool.c:1875
 msgid "Look in Folder Entry"
-msgstr "_Започва в папка:"
+msgstr "Търсене в папка:"
 
-#: gsearchtool/gsearchtool.c:1877
+#: gsearchtool/gsearchtool.c:1893
 msgid "Show more _options"
-msgstr "Показва повече настр_ойки"
+msgstr "Показване на повече настр_ойки"
 
-#: gsearchtool/gsearchtool.c:1887
+#: gsearchtool/gsearchtool.c:1903
 msgid "Show more options"
-msgstr "Показва още опции"
+msgstr "Показване на още опции"
 
-#: gsearchtool/gsearchtool.c:1887
+#: gsearchtool/gsearchtool.c:1903
 msgid "Expands or collapses a list of search options."
-msgstr "Показва или скрива списък с опции за търсене"
+msgstr "Показва или скриване на списъка с опциите за търсене"
 
-#: gsearchtool/gsearchtool.c:1934
+#: gsearchtool/gsearchtool.c:1950
 msgid "Click to Start the search"
-msgstr "Натинете за да Започне търсенето"
+msgstr "Натинете за да Започнете търсенето"
 
-#: gsearchtool/gsearchtool.c:1935
+#: gsearchtool/gsearchtool.c:1951
 msgid "Click to Stop the search"
-msgstr "Натиснете за Спиране на търсенето"
+msgstr "Натиснете за Спирането на търсенето"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2230
 msgid "Cannot initialize bonobo."
-msgstr "Не мога да инициализиран bonobo."
+msgstr "bonobo не може да бъде инициализиран."
 
 #. Author needs some sort of dash over the 'e' in Cesar  - U-00E9
 #: logview/about.c:43
@@ -1230,11 +1247,11 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 
 #: logview/about.c:44
 msgid "A system log viewer for GNOME."
-msgstr "Системна програма за разглеждане на журналите на GNOME."
+msgstr "GNOME програма за преглед на системните дневници."
 
 #: logview/about.c:58
 msgid "System Log Viewer"
-msgstr "Програма за Преглед на Журнали"
+msgstr "Програма за Преглед на Дневници"
 
 #: logview/actions.c:74
 msgid "Action Database"
@@ -1246,41 +1263,41 @@ msgstr "Действия"
 
 #: logview/actions.c:157
 msgid "_Add"
-msgstr "Доб_авя"
+msgstr "Доб_авяне"
 
 #: logview/actions.c:162
 msgid "Add an action"
-msgstr "Добавя действие"
+msgstr "Добавяне на действие"
 
 #: logview/actions.c:164
 msgid "_Edit"
-msgstr "Р_едактира"
+msgstr "Р_едактиране"
 
 #: logview/actions.c:169
 msgid "Edit an action"
-msgstr "Редактира действие"
+msgstr "Редактиране на действие"
 
 #: logview/actions.c:171
 msgid "_Remove"
-msgstr "_Премахва"
+msgstr "_Премахване"
 
 #: logview/actions.c:176
 msgid "Remove an action"
-msgstr "Премахва действие"
+msgstr "Премахване на действие"
 
 #: logview/actions.c:263
 #, c-format
 msgid "Cannot open action data base <%s>! Open failed."
-msgstr "Не мога да отворя базата данни с действия <%s>! Отварянето пропадна."
+msgstr "Базата данни с действия <%s> не може да бъде отворена! Неуспешно отваряне."
 
 #: logview/actions.c:298 logview/actions.c:311 logview/actions.c:322
 #: logview/actions.c:333 logview/actions.c:344 logview/actions.c:355
 msgid "Error parsing actions data base"
-msgstr "Грешка при обработка на базата данни с действия"
+msgstr "Грешка при обработката на базата данни с действия"
 
 #: logview/actions.c:389
 msgid "Can't write to actions database!"
-msgstr "Не мога да пиша в базата данни с действия!"
+msgstr "Записът в базата данни с действия е невъзможен!"
 
 #: logview/actions.c:489
 msgid "Error while executing specified action"
@@ -1292,7 +1309,7 @@ msgstr "<празно>"
 
 #: logview/actions.c:511
 msgid "log name regexp"
-msgstr "регулярен израз за журнал"
+msgstr "регулярен израз за дневник"
 
 #: logview/actions.c:512
 msgid "process regexp"
@@ -1312,7 +1329,7 @@ msgstr "описание"
 
 #: logview/actions.c:651
 msgid "Edit Action"
-msgstr "Редактира действие"
+msgstr "Редактиране на Действие"
 
 #: logview/actions.c:687
 msgid "_Tag:"
@@ -1320,15 +1337,15 @@ msgstr "_Етикет"
 
 #: logview/actions.c:696
 msgid "Tag that identifies the log file."
-msgstr "Етикет, който идентифицира журналния файл."
+msgstr "Етикет, който идентифицира дневника."
 
 #: logview/actions.c:705
 msgid "_Log name:"
-msgstr "Име на журнала:"
+msgstr "Име на дневника:"
 
 #: logview/actions.c:714
 msgid "Regular expression that will match the log name."
-msgstr "Правилен израз, който съвпада с името на журнала."
+msgstr "Правилен израз, който съвпада с името на дневника."
 
 #: logview/actions.c:724
 msgid "_Process:"
@@ -1354,9 +1371,9 @@ msgstr "Действие:"
 msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
-msgstr "Действие, което ще се извърши, ако всички предходни "
-"правилни изрази съвпадна. Това се извършва от система номанда: "
-"system (действие)."
+msgstr ""
+"Действие, което ще се извърши, ако всички предходни правилни изрази "
+"съвпадна. Това се извършва от система номанда: system (действие)."
 
 #: logview/actions.c:781
 msgid "_Description:"
@@ -1377,7 +1394,7 @@ msgid ""
 "action: [%s]\n"
 msgstr ""
 "таг: [%s]\n"
-"Име_на_журнал: [%s]\n"
+"Име_на_дневника: [%s]\n"
 "процес: [%s]\n"
 "съобщение: [%s]\n"
 "описание: [%s]\n"
@@ -1404,11 +1421,11 @@ msgstr "Не мога да отворя базата данни с описан�
 #. ----------------------------------------------------------------------
 #: logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
-msgstr "Системен Журнал"
+msgstr "Системен Дневник"
 
 #: logview/gnome-system-log.desktop.in.h:2
 msgid "View the system log file"
-msgstr "Преглед на файловете със системни журнали"
+msgstr "Преглед на файла със системния дневник"
 
 #: logview/info.c:62
 msgid "Properties"
@@ -1420,7 +1437,7 @@ msgstr "Размер:"
 
 #: logview/info.c:108
 msgid "Modified:"
-msgstr "Модифициран:"
+msgstr "Променян:"
 
 #: logview/info.c:109
 msgid "Start Date:"
@@ -1436,16 +1453,16 @@ msgstr "Брой редове:"
 
 #: logview/info.c:134
 msgid "Log Information"
-msgstr "Журнална информация"
+msgstr "Информация"
 
 #: logview/info.c:160 logview/zoom.c:155
 msgid "<No log loaded>"
-msgstr "<Журналът не е зареден>"
+msgstr "<Дневникът не е зареден>"
 
 #: logview/info.c:183
 #, c-format
 msgid "%ld byte"
-msgstr "%ld байта"
+msgstr "%ld байт"
 
 #: logview/log_repaint.c:59
 msgid "January"
@@ -1496,19 +1513,19 @@ msgid "December"
 msgstr "Декември"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:397
+#: logview/log_repaint.c:394
 #, c-format
 msgid "%x"
 msgstr "%x"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:452
+#: logview/log_repaint.c:449
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:524
+#: logview/log_repaint.c:521
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -1519,7 +1536,7 @@ msgstr "Няма достатъчно памет!\n"
 
 #: logview/logrtns.c:204
 msgid "Unable to open logfile!\n"
-msgstr "Не мога да отворя журнален файл!\n"
+msgstr "Не мога да отворя дневника!\n"
 
 #: logview/logrtns.c:265
 #, c-format
@@ -1532,7 +1549,7 @@ msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
-"%s не е четим. Изпълнете програмата като 'root' или помолете системният "
+"%s не е четим. Изпълнете програмата като администратор или помолете системният "
 "администратор да смени правата на файла."
 
 #: logview/logrtns.c:290
@@ -1543,114 +1560,114 @@ msgstr "%s не може да бъде отворен."
 #: logview/logrtns.c:320 logview/logrtns.c:329
 #, c-format
 msgid "%s not a log file."
-msgstr "%s  не е журнален файл."
+msgstr "%s  не е дневник."
 
 #: logview/logrtns.c:727 logview/logrtns.c:758 logview/logrtns.c:889
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: недостатъчно памет"
 
-#: logview/logview.c:97
+#: logview/logview.c:100
 msgid "S_witch Log"
-msgstr "П_ревключва Журнал"
+msgstr "П_ревключване на Дневника"
 
-#: logview/logview.c:98
+#: logview/logview.c:101
 msgid "Switch between already opened logs"
-msgstr "Превключва между вече е отворени фаилове"
+msgstr "Превключване между вече е отворените файлове"
 
-#: logview/logview.c:104
+#: logview/logview.c:107
 msgid "_Monitor..."
 msgstr "_Наблюдение..."
 
-#: logview/logview.c:105
+#: logview/logview.c:108
 msgid "Monitor Logs"
-msgstr "Наблюдение на Журнал"
+msgstr "Наблюдение на Дневник"
 
-#: logview/logview.c:113
+#: logview/logview.c:116
 msgid "_Properties"
 msgstr "Н_астройки"
 
-#: logview/logview.c:114
+#: logview/logview.c:117
 msgid "Show Log Properties"
-msgstr "Показва Настройки на Журнал"
+msgstr "Показване на Настройките на Журнала"
 
-#: logview/logview.c:122
+#: logview/logview.c:125
 msgid "Clos_e All"
-msgstr "Затваря Всичко"
+msgstr "Затваряне на Всичко"
 
-#: logview/logview.c:123
+#: logview/logview.c:126
 msgid "Close all Log files"
-msgstr "Затваря всички Журнални файлове"
+msgstr "Затваряне на всички Дневници"
 
-#: logview/logview.c:135
+#: logview/logview.c:138
 msgid "_Calendar"
 msgstr "_Календар"
 
-#: logview/logview.c:136
+#: logview/logview.c:139
 msgid "Show Calendar Log"
-msgstr "Показва Журнал на Календар"
+msgstr "Показване на Дневника на Календара"
 
-#: logview/logview.c:142
+#: logview/logview.c:145
 msgid "_Entry Detail"
 msgstr "Подробно за _Елемент"
 
-#: logview/logview.c:143
+#: logview/logview.c:146
 msgid "Show Entry Detail"
-msgstr "Показва Подробности за Елемент"
+msgstr "Показване на Подробности за Елемента"
 
-#: logview/logview.c:149
+#: logview/logview.c:152
 msgid "_Collapse All"
-msgstr "Разрушава Всичко"
+msgstr "_Повече информация за Всичко"
 
-#: logview/logview.c:150
+#: logview/logview.c:153
 msgid "Collapse all the rows"
 msgstr "Разрушава всички редове"
 
-#: logview/logview.c:367
+#: logview/logview.c:370
 msgid "No log files to open"
-msgstr "Няма журнален файл за отваряне"
+msgstr "Няма дневник за отваряне"
 
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Date"
 msgstr "Дата"
 
-#: logview/logview.c:389
+#: logview/logview.c:392
 msgid "Host Name"
-msgstr "Име"
+msgstr "Име на хоста"
 
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Process"
 msgstr "Процес"
 
-#: logview/logview.c:390
+#: logview/logview.c:393
 msgid "Message"
 msgstr "Съобщение"
 
-#: logview/logview.c:471
+#: logview/logview.c:474
 msgid "Last Modified: "
-msgstr "Последна Модификация: "
+msgstr "Последна Промяна: "
 
-#: logview/logview.c:570 logview/logview.c:645
+#: logview/logview.c:573 logview/logview.c:648
 msgid "Too many open logs. Close one and try again"
 msgstr "Твърде много отворени файлове. Затворете един и опитайте отново"
 
-#: logview/logview.c:582
+#: logview/logview.c:585
 msgid "File already opened"
 msgstr "Файлът вече е отворен"
 
-#: logview/logview.c:658
+#: logview/logview.c:661
 msgid "Open new logfile"
-msgstr "Отваря нов журнален файл"
+msgstr "Отваряне на нов дневник"
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
-msgstr "Журнален файл който да се отвори в началото"
+msgstr "Дневник, който да се отвори в началото"
 
 #: logview/logview.schemas.in.h:2
 msgid ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"Специален журнален файл който да се отвори в началото. Файловете по "
+"Специален дневник, който да се отвори в началото. Файловете по "
 "подразбиране са /var/adm/messages·or·/var/log/messages, в зависимост от "
 "операционната система."
 
@@ -1673,28 +1690,28 @@ msgstr "Избор на журнал за наблюдение:"
 
 #: logview/monitor.c:142
 msgid "Currently _monitored logs:"
-msgstr "Текущи журнални файлове, които се следят:"
+msgstr "Текущи дневници, които се следят:"
 
 #: logview/monitor.c:190
 msgid "Add logs to monitor"
-msgstr "Избор на журнал за наблюдение"
+msgstr "Избор на дневник за наблюдение"
 
 #: logview/monitor.c:199
 msgid "Remove logs from monitor"
-msgstr "Премахване на журналът за наблюдение"
+msgstr "Премахване на дневникът за наблюдение"
 
 #. Check boxes
 #: logview/monitor.c:246
 msgid "_Hide application"
-msgstr "Скрива приложение"
+msgstr "_Скриване на програма"
 
 #: logview/monitor.c:254
 msgid "_Execute actions"
-msgstr "Изпълнява д_ействия"
+msgstr "Изпълняване на д_ействия"
 
 #: logview/monitor.c:290
 msgid "Too many logs to monitor. Remove one and try again"
-msgstr "Твърде много журнали за наблюдение. Премахнете един и опитайте отново"
+msgstr "Твърде много дневници за наблюдение. Премахнете един и опитайте отново"
 
 #: logview/monitor.c:298 logview/monitor.c:335
 #, c-format
@@ -1703,7 +1720,7 @@ msgstr "tmp_list е NULL\n"
 
 #: logview/monitor.c:457
 msgid "Monitoring Logs..."
-msgstr "Наблюдава журнали..."
+msgstr "Наблюдаване на Дневници..."
 
 #: logview/monitor.c:643
 #, c-format
@@ -1732,12 +1749,15 @@ msgstr "Описание:"
 
 #: logview/zoom.c:129
 msgid "Log Line Details"
-msgstr "Подробност на ред от журнала"
+msgstr "Подробност за Ред от Дневника"
 
 #. Translators: do not include year, it would be bogus
 #: logview/zoom.c:187
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Search Rule Value Entry"
+#~ msgstr "Низ за Стойностите на Правилата за Търсне"
 
 #~ msgid "The animation file is missing or invalid: %s"
 #~ msgstr "Файла с анимацията липсва или не е валиден: %s"
