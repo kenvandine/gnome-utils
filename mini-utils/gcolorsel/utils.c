@@ -40,20 +40,6 @@ void pixel_to_rgb (GdkColormap *cmap, guint32 pixel,
   }  
 }
 
-GtkWidget *
-scrolled_window_get_child (GtkScrolledWindow *sw)
-{
-  GList *list;
-
-  g_assert (sw != NULL);
-  
-  list = gtk_container_children (GTK_CONTAINER (sw));
-  g_assert (list != NULL);
-  g_assert (list->data != NULL);
-  
-  return list->data;
-}
-
 /* From gtk+, gtkcolorsel.c */
 GtkWidget *
 drag_window_create (gint red, gint green, gint blue)
@@ -75,5 +61,4 @@ drag_window_create (gint red, gint green, gint blue)
 
   return window;
 }
-
 

@@ -3,8 +3,16 @@
 #include <gnome.h>
 
 #include "widget-color-list.h"
+#include "mdi-color-generic.h"
 
 #include "utils.h"
+
+enum {
+  DATA_CHANGED,
+  LAST_SIGNAL
+};
+
+static guint cl_signals [LAST_SIGNAL] = { 0 };
 
 #define COLOR_LIST_FORMAT        COLOR_LIST_FORMAT_DEC_8;
 #define COLOR_LIST_PIXMAP_WIDTH  48
@@ -19,7 +27,7 @@
 
 #define GIMP_PALETTE_HEADER      "GIMP Palette"
 
-/* From nautilus, fm-directory-view-list.c */
+/* From nautilus */
 static char * down_xpm[] = {
 "6 5 2 1",
 " 	c None",
@@ -30,7 +38,7 @@ static char * down_xpm[] = {
 "      ",
 "  ..  "};
 
-/* From nautilus, fm-directory-view-list.c */
+/* From nautilus */
 static char * up_xpm[] = {
 "6 5 2 1",
 " 	c None",
@@ -46,20 +54,25 @@ static const GtkTargetEntry color_list_drag_targets[] = {
 };
 
 static void color_list_class_init (ColorListClass *class);
-static void color_list_init (ColorList *cl);
+static void color_list_init       (ColorList *cl);
 
-GtkWidget *color_list_create_column_widget (ColorList *cl, int num, char *text);
+static GtkWidget *color_list_create_column_widget (ColorList *cl, 
+						   int num, char *text);
 
-char *color_list_render_value (ColorList *cl, int r, int g, int b);
-gulong color_list_render_pixmap (ColorList *cl, GdkPixmap *pixmap,
-				int r, int g, int b, int num);
+static char *color_list_render_value  (ColorList *cl, MDIColorGenericCol *col);
+static void  color_list_render_pixmap (ColorList *cl, GdkPixmap *pixmap,
+				       MDIColorGenericCol *col);
 
-static void color_list_drag_begin (GtkWidget *widget, GdkDragContext *context);
-static void color_list_drag_data_get (GtkWidget *widget, 
-				      GdkDragContext *context, 
-				      GtkSelectionData *selection_data, 
-				      guint info, guint time);
-static void color_list_click_column (GtkCList *clist, gint column);
+static void  color_list_drag_begin    (GtkWidget *widget, 
+				       GdkDragContext *context);
+static void  color_list_drag_data_get (GtkWidget *widget, 
+				       GdkDragContext *context, 
+				       GtkSelectionData *selection_data, 
+				       guint info, guint time);
+static void  color_list_click_column  (GtkCList *clist, gint column);
+
+static gint  color_list_append        (ColorList *cl, MDIColorGenericCol *col);
+static void  color_list_data_changed  (ColorList *cl, gpointer data);
 
 static GtkCListClass *parent_class = NULL;
 static GtkContainerClass *container_class = NULL;
@@ -92,11 +105,25 @@ color_list_class_init (ColorListClass *class)
 {
   GtkWidgetClass *widget_class;
   GtkCListClass *clist_class;
+  GtkObjectClass *object_class;
 
+  object_class = GTK_OBJECT_CLASS (class);
   parent_class = gtk_type_class (GTK_TYPE_CLIST);
   container_class = gtk_type_class (GTK_TYPE_CONTAINER);
   widget_class = (GtkWidgetClass *)class;
   clist_class = (GtkCListClass *)class;
+
+  cl_signals [DATA_CHANGED] = 
+    gtk_signal_new ("data_changed",
+		    GTK_RUN_LAST,
+		    object_class->type,
+		    GTK_SIGNAL_OFFSET (ColorListClass, data_changed),
+		    gtk_marshal_NONE__POINTER,
+		    GTK_TYPE_NONE, 1, GTK_TYPE_POINTER);
+
+  gtk_object_class_add_signals (object_class, cl_signals, LAST_SIGNAL);
+
+  class->data_changed = color_list_data_changed;
 
   widget_class->drag_begin = color_list_drag_begin;
   widget_class->drag_data_get = color_list_drag_data_get;
@@ -116,11 +143,9 @@ static void
 color_list_init (ColorList *cl)
 {
   cl->format = COLOR_LIST_FORMAT;
-
-  cl->modified = FALSE;
 }
 
-GtkWidget *
+static GtkWidget *
 color_list_create_column_widget (ColorList *cl, int num, char *text)
 {
   GtkWidget *hbox;
@@ -158,24 +183,24 @@ color_list_compare_rows (GtkCList *clist,
 {
   GtkCListRow *row1;
   GtkCListRow *row2;
-  ColorListData *c1;
-  ColorListData *c2;
+  MDIColorGenericCol *c1;
+  MDIColorGenericCol *c2;
   int t1;
   int t2;
   
   row1 = (GtkCListRow *) ptr1;
   row2 = (GtkCListRow *) ptr2;
 
-  c1 = (ColorListData *) row1->data;
-  c2 = (ColorListData *) row2->data;
+  c1 = (MDIColorGenericCol *) row1->data;
+  c2 = (MDIColorGenericCol *) row2->data;
 
   if (!c2) return (c1 != NULL);
   if (!c1) return -1;
 
   switch (clist->sort_column) {
   case COLOR_LIST_COLUMN_PIXMAP:
-    if (c1->num < c2->num) return -1;
-    if (c1->num > c2->num) return 1;
+    if (c1->pos < c2->pos) return -1;
+    if (c1->pos > c2->pos) return 1;
     return 0;
 
   case COLOR_LIST_COLUMN_NAME:
@@ -280,7 +305,7 @@ color_list_set_sort_column (ColorList *cl, gint column, GtkSortType type)
 static void
 color_list_drag_begin (GtkWidget *widget, GdkDragContext *context)
 {
-  ColorListData *col;
+  MDIColorGenericCol *col;
   int row;
 
   if (GTK_CLIST (widget)->focus_row < 0) 
@@ -302,7 +327,7 @@ color_list_drag_data_get (GtkWidget *widget, GdkDragContext *context,
 			  GtkSelectionData *selection_data, guint info,
 			  guint time)
 {
-  ColorListData *col;
+  MDIColorGenericCol *col;
   guint16 vals[4];
 
   col = gtk_clist_get_row_data (GTK_CLIST (widget), 
@@ -334,30 +359,26 @@ color_list_click_column (GtkCList *clist, gint column)
   color_list_set_sort_column (COLOR_LIST (clist), column, type);
 }
 
-void
-color_list_set_format (ColorList *cl, ColorListFormat format)
-{
-  cl->format = format;
-}
-
-char *
-color_list_render_value (ColorList *cl, int r, int g, int b)
+static char *
+color_list_render_value (ColorList *cl, MDIColorGenericCol *col)
 {
   g_assert (cl != NULL);
 
   switch (cl->format) {
   case COLOR_LIST_FORMAT_DEC_8:
-    return g_strdup_printf ("%d %d %d", r, g, b);
+    return g_strdup_printf ("%d %d %d", col->r, col->g, col->b);
   case COLOR_LIST_FORMAT_DEC_16:
-    return g_strdup_printf ("%d %d %d", r * 256, g * 256, b * 256);
+    return g_strdup_printf ("%d %d %d", 
+			    col->r * 256, col->g * 256, col->b * 256);
   case COLOR_LIST_FORMAT_HEX_8:
-    return g_strdup_printf ("#%02x%02x%02x", r, g, b);
+    return g_strdup_printf ("#%02x%02x%02x", col->r, col->g, col->b);
   case COLOR_LIST_FORMAT_HEX_16:
-    return g_strdup_printf ("#%04x%04x%04x", r * 256, g * 256, b * 256);
+    return g_strdup_printf ("#%04x%04x%04x", 
+			    col->r * 256, col->g * 256, col->b * 256);
   case COLOR_LIST_FORMAT_FLOAT:
-    return g_strdup_printf ("%1.4g %1.4g %1.4g", (float) r / 256,
-                    			         (float) g / 256,
-                        			 (float) b / 256);
+    return g_strdup_printf ("%1.4g %1.4g %1.4g", (float) col->r / 256,
+                    			         (float) col->g / 256,
+                        			 (float) col->b / 256);
   default:
     g_assert_not_reached ();
   }
@@ -365,17 +386,17 @@ color_list_render_value (ColorList *cl, int r, int g, int b)
   return NULL;   
 }
 
-gulong
+static void
 color_list_render_pixmap (ColorList *cl, GdkPixmap *pixmap,
-			  int r, int g, int b, int num)
+			  MDIColorGenericCol *col)
 {
   GdkColor color;
   int h, w;
   char *str;
 
-  color.red = r * 255; 
-  color.green = g * 255;
-  color.blue = b * 255;
+  color.red   = col->r * 255; 
+  color.green = col->g * 255;
+  color.blue  = col->b * 255;
   
   gdk_color_alloc (gtk_widget_get_default_colormap (), &color);
 
@@ -394,9 +415,9 @@ color_list_render_pixmap (ColorList *cl, GdkPixmap *pixmap,
 		      COLOR_LIST_PIXMAP_HEIGHT - 2);
 
 
-  str = g_strdup_printf ("%d", num);
+  str = g_strdup_printf ("%d", col->pos);
   
-  if ((r + g + b) < ((255 * 3) / 2)) 
+  if ((col->r + col->g + col->b) < ((255 * 3) / 2)) 
     gdk_gc_set_foreground (cl->gc, &COLOR_LIST_GET_CLASS (cl)->color_white);
   else
     gdk_gc_set_foreground (cl->gc, &COLOR_LIST_GET_CLASS (cl)->color_black);
@@ -409,58 +430,33 @@ color_list_render_pixmap (ColorList *cl, GdkPixmap *pixmap,
 		   ((COLOR_LIST_PIXMAP_HEIGHT - h) / 2) + h, str);
   
   g_free (str);
-
-  return color.pixel;
 }
 
 static void
 row_destroy_notify (gpointer data)
 {
-//  GdkColor c;
-  ColorListData *col = data;
+//  MDIColorGenericCol *col = data;
 
-  g_assert (col != NULL);
-
-//  c.pixel = col->pixel;
-//  gdk_colormap_free_colors (gtk_widget_get_default_colormap (), &c, 1);
-
-  g_free (col->name);
-  g_free (col);
+  /* Todo : unref col */
 }
 
-gint
-color_list_append (ColorList *cl, int r, int g, int b, int num, char *name)
+static gint
+color_list_append (ColorList *cl, MDIColorGenericCol *col)
 {
-  ColorListData *data;
   gchar *string[3];
   gint row;
   GdkPixmap *pixmap;
-
-  g_assert (cl != NULL);
-  g_assert (name != NULL);
-  g_assert ((r >= 0) && (r <= 255));
-  g_assert ((g >= 0) && (g <= 255));
-  g_assert ((b >= 0) && (b <= 255));
-  
-  data = g_new (ColorListData, 1);
-
-  data->r = r;
-  data->g = g;
-  data->b = b;
-  data->num = num;
-  data->name = g_strdup (name);
 
   pixmap = gdk_pixmap_new (GTK_WIDGET (cl)->window, 
 			   COLOR_LIST_PIXMAP_WIDTH,
 			   COLOR_LIST_PIXMAP_HEIGHT, 
 			   -1);
 
-  data->pixel = color_list_render_pixmap (COLOR_LIST (cl), pixmap, 
-					 r, g, b, num);
+  color_list_render_pixmap (cl, pixmap, col);
 
   string[COLOR_LIST_COLUMN_PIXMAP] = NULL;
-  string[COLOR_LIST_COLUMN_VALUE] = color_list_render_value (cl, r, g, b);
-  string[COLOR_LIST_COLUMN_NAME] = data->name;
+  string[COLOR_LIST_COLUMN_VALUE]  = color_list_render_value (cl, col);
+  string[COLOR_LIST_COLUMN_NAME]   = col->name;
   
   row = gtk_clist_append (GTK_CLIST (cl), string);
   gtk_clist_set_pixmap (GTK_CLIST (cl), row, 
@@ -469,126 +465,61 @@ color_list_append (ColorList *cl, int r, int g, int b, int num, char *name)
   if (string[COLOR_LIST_COLUMN_VALUE]) 
     g_free (string[COLOR_LIST_COLUMN_VALUE]);
 
-  gtk_clist_set_row_data_full (GTK_CLIST (cl), row, data, row_destroy_notify);
+  gtk_clist_set_row_data_full (GTK_CLIST (cl), row, col, row_destroy_notify);
 
   gdk_pixmap_unref (pixmap);
     
   return row;
 }
 
-gint 
-color_list_load (ColorList *cl, gchar *filename, GnomeApp *app)
+static void
+color_list_data_changed (ColorList *cl, gpointer data)
 {
-  FILE *fp;
-  int r, g, b;
-  char tmp[256], name[256];
-  int i = 0;
-  long size;
-  char *str;
-
-  g_assert (cl != NULL);
-  g_assert (filename != NULL);
-
-  fp = fopen(filename, "r");
-  if (!fp) return -1;
+  GList *list = data;
+  MDIColorGenericCol *col;
+  GdkPixmap *pixmap;
+  GdkBitmap *mask;
+  gint row;
 
   gtk_clist_freeze (GTK_CLIST (cl));
 
-  fseek (fp, 0, SEEK_END);
-  size = ftell (fp);
-  fseek (fp, 0, SEEK_SET);
+  while (list) {
+    col = list->data;
 
-  str = g_strdup_printf (_("Loading %s ..."), filename);
-  gnome_appbar_push (GNOME_APPBAR (app->statusbar), str);
-  g_free (str);
+    if (col->change & CHANGE_CLEAR) {
+      gtk_clist_clear (GTK_CLIST (cl));
+    }
 
-  while (1) {
-    fgets(tmp, 255, fp);    
-
-    if (feof (fp)) break;
-
-    if ((tmp[0] == '!') || (tmp[0] == '#')) continue;
-    if (!strncmp (tmp, GIMP_PALETTE_HEADER, 
-		  strlen (GIMP_PALETTE_HEADER)))  continue;
-
-    name[0] = 0;
-    if (sscanf(tmp, "%d %d %d\t\t%[a-zA-Z0-9 ]\n", &r, &g, &b, name) >= 3) 
-      color_list_append (cl, r, g, b, i, name);
     else
-      return -1;
 
-    gnome_appbar_set_progress (GNOME_APPBAR (app->statusbar), 
-			       (float)ftell (fp) / (float)size);
-
-    while (gtk_events_pending ()) gtk_main_iteration ();
-      
-    i++;
+      if (col->change & CHANGE_APPEND) {
+	color_list_append (cl, col);
+      } 
+    
+      else
+	
+	if (col->change & CHANGE_REMOVE) {
+	  row = gtk_clist_find_row_from_data (GTK_CLIST (cl), col);
+	  gtk_clist_remove (GTK_CLIST (cl), row);
+	}
+    
+	else
+	  
+	  if (col->change & CHANGE_POS) { 
+	    row = gtk_clist_find_row_from_data (GTK_CLIST (cl), col);
+	    gtk_clist_get_pixmap (GTK_CLIST (cl), row, 0, &pixmap, &mask);
+	    color_list_render_pixmap (cl, pixmap, col);
+	  }
+    
+    list = g_list_next (list);
   }
-
-  gnome_appbar_pop (GNOME_APPBAR (app->statusbar));
-  gnome_appbar_set_progress (GNOME_APPBAR (app->statusbar), 0); 
 
   gtk_clist_thaw (GTK_CLIST (cl));
   gtk_clist_sort (GTK_CLIST (cl));
-
-  return 0;
 }
 
-gint 
-color_list_save (ColorList *cl, gchar *filename, GnomeApp *app)
+void
+color_list_set_format (ColorList *cl, ColorListFormat format)
 {
-  FILE *file;
-  GList *row_list;
-  GtkCListRow *row;
-  ColorListData *data;
-  char *tmp;
-  int size, pos = 0;
-
-  g_assert (cl != NULL);
-  g_assert (filename != NULL);
-
-  file = fopen (filename, "w");
-  if (!file) return -1;
-  
-  row_list = GTK_CLIST (cl)->row_list;
-
-  size = g_list_length (row_list);
-
-  tmp = g_strdup_printf (_("Saving %s ..."), filename);
-  gnome_appbar_push (GNOME_APPBAR (app->statusbar), tmp);
-  g_free (tmp);
-
-  while (row_list) {
-    row = row_list->data;
-    g_assert (row != NULL);
-
-    data = row->data; 
-    g_assert (data != NULL);
-
-    tmp = g_strdup_printf ("%d %d %d\t\t%s\n", 
-			   data->r, data->g, data->b, data->name);
-
-    fputs (tmp, file);   
-    g_free (tmp);
-    
-    gnome_appbar_set_progress (GNOME_APPBAR (app->statusbar), 
-			       (float)pos / (float)size);
-
-    while (gtk_events_pending ()) gtk_main_iteration ();
-
-    row_list = row_list->next; pos++;
-  }
-
-  fclose (file);
-
-  gnome_appbar_pop (GNOME_APPBAR (app->statusbar));
-  gnome_appbar_set_progress (GNOME_APPBAR (app->statusbar), 0); 
-
-  return 0;
-}
-
-void 
-color_list_set_modified (ColorList *cl, gboolean val)
-{
-  cl->modified = val;
+  cl->format = format;
 }

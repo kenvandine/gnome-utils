@@ -1,5 +1,5 @@
-#ifndef _COLOR_LIST_H_
-#define _COLOR_LIST_H_
+#ifndef WIDGET_COLOR_LIST_H
+#define WIDGET_COLOR_LIST_H
 
 #include <gdk/gdk.h>
 #include <gtk/gtkclist.h>
@@ -25,7 +25,6 @@ typedef enum {
 
 typedef struct _ColorList ColorList;
 typedef struct _ColorListClass ColorListClass;
-typedef struct _ColorListData ColorListData;
 
 struct _ColorList {
   GtkCList clist;    
@@ -33,8 +32,6 @@ struct _ColorList {
   GdkGC *gc;
   
   ColorListFormat format;
-
-  gboolean modified;
 
   int drag_row;
 };
@@ -46,16 +43,8 @@ struct _ColorListClass {
   GdkColor color_white;
 
   GdkFont *pixmap_font;
-};
 
-struct _ColorListData {
-  char *name;
-  int r;
-  int g;
-  int b;
-  int num;
-  GdkColor *col;
-  gulong pixel;
+  void (*data_changed) (ColorList *cl, gpointer data);
 };
 
 GtkType color_list_get_type (void);
@@ -65,13 +54,6 @@ GtkWidget *color_list_new (void);
 void color_list_set_format (ColorList *cl, ColorListFormat format);
 
 void color_list_set_sort_column (ColorList *cl, gint column, GtkSortType type);
-
-gint color_list_append (ColorList *cl, int r, int g, int b, int num, char *name);
-gint color_list_load (ColorList *cl, gchar *filename, GnomeApp *app);
-gint color_list_save (ColorList *cl, gchar *filename, GnomeApp *app);
-
-void color_list_set_modified (ColorList *cl, gboolean val);
-void color_list_set_editable (ColorList *cl, gboolean val);
 
 END_GNOME_DECLS
 
