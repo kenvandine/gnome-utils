@@ -1,6 +1,6 @@
 #!/bin/sh
-#Version: 1.2.3
 
+VERSION="1.2.5"
 PACKAGE="gnome-utils"
 
 if [ "x$1" = "x--help" ]; then
@@ -8,27 +8,42 @@ if [ "x$1" = "x--help" ]; then
 echo Usage: ./update.sh langcode
 echo --help                  display this help and exit
 echo --missing	             search for missing files in POTFILES.in
+echo --version		     shows the version
 echo
 echo Examples of use:
 echo ./update.sh ----- just creates a new pot file from the source
 echo ./update.sh da -- created new pot file and updated the da.po file 
 
+elif [ "x$1" = "x--version" ]; then
+
+echo "update.sh release $VERSION"
+
 elif [ "x$1" = "x--missing" ]; then
 
 echo "Searching for files containing _( ) but missing in POTFILES.in..."
+echo
 find ../ -print | egrep '.*\.(c|y|cc|c++|h|gob)' | xargs grep _\( | cut -d: -f1 | uniq | cut -d/ -f2- > POTFILES.in.missing
+wait
 
-echo Sorting... comparing...
-sort -d POTFILES.in -o POTFILES.in
-sort -d POTFILES.in.missing -o POTFILES.in.missing
-
+echo "Sorting data..." 
+sort -d POTFILES.in -o POTFILES.in &&
+sort -d POTFILES.in.missing -o POTFILES.in.missing 
+wait
+echo "Comparing data..."
 diff POTFILES.in POTFILES.in.missing -u0 | grep '^+' |grep -v '^+++'|grep -v '^@@' > POTFILES.in.missing
+wait
 
-if [ -s POTFILES.in.missing ]; then
+if [ -s POTFILES.ignore ]; then
 
 sort -d POTFILES.ignore -o POTFILES.tmp
-diff POTFILES.tmp POTFILES.in.missing -u0 | grep '^+' |grep -v '^+++'|grep -v '^@@' > POTFILES.in.missing
+echo "Evaluating ignored files..."
+wait 
+diff POTFILES.tmp POTFILES.in.missing -u0 | grep '^+' |grep -v '^+++'|grep -v '^@@' > POTFILES.in.missing 
 rm POTFILES.tmp
+
+fi
+
+if [ -s POTFILES.in.missing ]; then
 
 echo && echo "Here are the results:"
 echo && cat POTFILES.in.missing
@@ -37,7 +52,7 @@ echo "Please add the files that should be ignored in POTFILES.ignore"
 
 else
 
-echo &&echo "There are no missing files, thanks God!"
+echo &&echo "There are no missing files, thanks God!" 
 rm POTFILES.in.missing
 
 fi 

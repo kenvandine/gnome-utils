@@ -1,3 +1,24 @@
+2000-05-20  Kenneth Christiansen  <kenneth@gnome.org>
+
+        * update.sh: Now versin 1.2.5
+          Is now much more bulletproof, since I added 
+          some wait's. ./update-sh --missing should now
+          always print out the right status
+	  
+          Also removed some bugs with the ignore system
+          Some times I'm really stupid
+
+        * POTFILES.in: Added some glade.h files 
+          These should be added, since the top of the
+          files say:
+
+          Chaînes de caractères à traduire générées par
+          Glade. Ajouter ce fichier au fichier POTFILE.in
+          de votre projet. NE PAS compiler ce fichier
+          avec le reste de votre application.          
+
+          This french says it all, doesn't it :)
+
 2000-05-19  Martin Norbäck  <d95mback@dtek.chalmers.se>
 
 	* sv.po: Updated Swedish translation.
