@@ -29,12 +29,12 @@
 #  include <config.h>
 #endif
 
+#include <fnmatch.h>
 #ifndef FNM_CASEFOLD
 #  define FNM_CASEFOLD 0
 #endif
 
 #include <string.h>
-#include <fnmatch.h>
 #include <signal.h>
 #include <unistd.h>
 #include <glib/gi18n.h>
