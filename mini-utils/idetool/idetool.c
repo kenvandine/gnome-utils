@@ -16,8 +16,7 @@
 
 static char *bit32_names[]=
 {
-	N_("Default"),
-	N_("16-bit"),
+	N_("Default 16-bit"),
 	N_("32-bit"),
 	N_("32-bit w/sync")
 };
