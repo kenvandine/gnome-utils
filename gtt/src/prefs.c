@@ -357,6 +357,7 @@ options_dialog_set(PrefsDialog *odlg)
 	SET_ACTIVE(tb_new);
 	SET_ACTIVE(tb_file);
 	SET_ACTIVE(tb_ccp);
+	SET_ACTIVE(tb_journal);
 	SET_ACTIVE(tb_prop);
 	SET_ACTIVE(tb_timer);
 	SET_ACTIVE(tb_pref);
@@ -508,6 +509,7 @@ toolbar_options(PrefsDialog *dlg)
 	TBWID (new);
 	TBWID (file);
 	TBWID (ccp);
+	TBWID (journal);
 	TBWID (prop);
 	TBWID (timer);
 	TBWID (pref);
