@@ -1594,7 +1594,8 @@ create_search_results_section (void)
 GtkWidget *
 create_main_window (void)
 {
-	gchar 		*string;
+	gchar 		*locale_string;
+	gchar		*utf8_string;
 	GtkWidget 	*hbox;	
 	GtkWidget 	*entry;
 	GtkWidget	*label;
@@ -1673,10 +1674,13 @@ create_main_window (void)
 			  G_CALLBACK (constraint_entry_changed_cb),
 			  NULL);
 			  
-	string = g_get_current_dir ();
-	gtk_entry_set_text (GTK_ENTRY(entry), string);
-	g_free (string);
+	locale_string = g_get_current_dir ();
+	utf8_string = g_filename_to_utf8 (locale_string, -1, NULL, NULL, NULL);
 	
+	gtk_entry_set_text (GTK_ENTRY(entry), utf8_string);
+	g_free (locale_string);
+	g_free (utf8_string);
+
 	interface.disclosure = cddb_disclosure_new (_("Additional Options"),
 						    _("Additional Options"));
 	gtk_box_pack_start (GTK_BOX(window), interface.disclosure, FALSE, FALSE, 0);
