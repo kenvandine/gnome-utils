@@ -157,11 +157,11 @@ typedef struct
   char message[MAX_WIDTH];
   char process[MAX_PROC_WIDTH];
   char hostname[MAX_HOSTNAME_WIDTH];
-  char month;
-  char date;
-  char hour;
-  char min;
-  char sec;
+  signed char month;
+  signed char date;
+  signed char hour;
+  signed char min;
+  signed char sec;
   Description *description;
 } LogLine;
 

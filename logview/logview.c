@@ -736,7 +736,9 @@ CloseApp (void)
 
    for (i = 0; i < numlogs; i++)
       CloseLog (loglist[i]);
-      
+
+   numlogs = 0;
+
    gtk_main_quit ();   
 }
 

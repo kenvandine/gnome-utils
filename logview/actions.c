@@ -749,7 +749,7 @@ edit_action_entry (Action *action)
   gtk_widget_show (label);
   text = gtk_text_view_new ();
   gtk_widget_set_usize (text, 200, -1);
-  gtk_text_set_editable (GTK_TEXT_VIEW (text), TRUE);
+  gtk_text_view_set_editable (GTK_TEXT_VIEW (text), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), text, TRUE, TRUE, 0);
   gtk_tooltips_set_tip (tips, text, _("Description of this entry."), NULL);
   gtk_widget_show (text); 
@@ -787,8 +787,10 @@ edit_action_entry (Action *action)
   gtk_widget_show (action_record);
 
   /* Insert text into text widget */
-  gtk_text_insert (GTK_TEXT_VIEW (text), NULL, NULL, NULL, action->description, 
-		   strlen (action->description));
+  gtk_text_buffer_insert_at_cursor
+	  (gtk_text_view_get_buffer(GTK_TEXT_VIEW (text)),
+	  action->description, 
+	  strlen (action->description));
 }
 
 /* ----------------------------------------------------------------------

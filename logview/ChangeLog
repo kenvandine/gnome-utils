@@ -1,3 +1,12 @@
+2002-02-21  Bastien Nocera  <hadess@hadess.net>
+
+	* actions.c: (edit_action_entry): use non-deprecated calls
+	(and the proper ones in fact)
+	* logview.h, logrtns.c: (ReadPageUp), (ReadPageDown): fix bug on
+	platforms where a char is unsigned (Closes:68013)
+	(patch from Jochen Voss <voss@debian.org>)
+	* logview.c: (CloseApp): fix double-closing exit core dump
+
 2002-01-31  Zbigniew Chyla  <cyba@gnome.pl>
 
 	* about.c (AboutShowWindow): Don't try to translate empty string.

@@ -405,7 +405,8 @@ ReadPageUp (Log * lg, Page * pg)
 {
    LogLine *line;
    FILE *fp;
-   char *c, ch, buffer[R_BUF_SIZE + 1];
+   char *c, buffer[R_BUF_SIZE + 1];
+   int ch;
    int ln;
    long int old_pos;
 
@@ -476,7 +477,8 @@ ReadPageDown (Log * lg, Page * pg, gboolean exec_actions)
 {
    FILE *fp;
    LogLine *line;
-   char *c, ch, buffer[R_BUF_SIZE + 1];
+   char *c, buffer[R_BUF_SIZE + 1];
+   int ch;
    int ln, len;
 
    g_return_val_if_fail (lg != NULL, FALSE);
