@@ -131,11 +131,6 @@ menus_get_popup(void)
 	GnomeUIInfo *p;
 
 	if (menu) return menu;
-	/*kill the accelerators as we want them in the edit menu only*/
-	for(p=menu_popup;p->type!=GNOME_APP_UI_ENDOFINFO;p++) {
-		p->accelerator_key = 0;
-		p->ac_mods = 0;
-	}
 
 	menu = gnome_popup_menu_new(menu_popup);
 	return menu;
