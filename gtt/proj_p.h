@@ -35,14 +35,19 @@
 
 
 struct gtt_project_s {
-	char *title;
-	int secs;
-	int day_secs;
-	char *desc;
-        gint row;
+	char *title;     /* short title */
+	char *desc;      /* breif description */
 
-	GList *task_list;
-	GList *sub_projects;
+	int secs;        /* seconds spend on this project */
+	int day_secs;    /* seconds spent on this project today */
+
+        double rate;     /* billing rate/price, in units of currency per hour */
+
+	GList *task_list;      /* annotated chunks of time */
+	GList *sub_projects;   /* sub-projects */
+
+        /* miscellaneous -- used bu GUI to display */
+        gint row;
 };
 
 

@@ -1,5 +1,6 @@
-/*   GTimeTracker - a time tracker
+/*   project structure handling for GTimeTracker - a time tracker
  *   Copyright (C) 1997,98 Eckehard Berns
+ *   Copyright (C) 2001 Linas Vepstas
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,8 +25,11 @@
 #include <errno.h>
 
 
+#include "err-throw.h"
 #include "gtt.h"
 #include "proj_p.h"
+#include "toolbar.h"
+#include "xml-gtt.h"
 
 #ifdef DEBUG
 #define GTT "/gtt-DEBUG/"
@@ -38,7 +42,8 @@ char *first_proj_title = NULL;
 
 
 
-GttProject *project_new(void)
+GttProject *
+gtt_project_new(void)
 {
 	GttProject *proj;
 	
@@ -46,18 +51,20 @@ GttProject *project_new(void)
 	proj->title = NULL;
 	proj->desc = NULL;
 	proj->secs = proj->day_secs = 0;
-        proj->row = -1;
+	proj->rate = 1.0;
 	proj->task_list = NULL;
 	proj->sub_projects = NULL;
+        proj->row = -1;
 	return proj;
 }
 
 
-GttProject *project_new_title_desc(const char *t, const char *d)
+GttProject *
+gtt_project_new_title_desc(const char *t, const char *d)
 {
 	GttProject *proj;
 
-	proj = project_new();
+	proj = gtt_project_new();
 	if (!t || !d) return proj;
 	proj->title = g_strdup (t);
         proj->desc = g_strdup (d);
@@ -66,12 +73,13 @@ GttProject *project_new_title_desc(const char *t, const char *d)
 
 
 
-GttProject *project_dup(GttProject *proj)
+GttProject *
+project_dup(GttProject *proj)
 {
 	GttProject *p;
 
 	if (!proj) return NULL;
-	p = project_new();
+	p = gtt_project_new();
 	p->secs = proj->secs;
 	p->day_secs = proj->day_secs;
 	if (proj->title)
@@ -83,6 +91,7 @@ GttProject *project_dup(GttProject *proj)
 	else
 		p->desc = NULL;
 
+	p->rate = proj->rate;
 	p->task_list = NULL;
 	p->sub_projects = NULL;
 	return p;
@@ -90,7 +99,8 @@ GttProject *project_dup(GttProject *proj)
 
 
 
-void project_destroy(GttProject *proj)
+void 
+project_destroy(GttProject *proj)
 {
 	if (!proj) return;
 	project_list_remove(proj);
@@ -125,8 +135,10 @@ void project_destroy(GttProject *proj)
 }
 
 
+/* ========================================================= */
 
-void project_set_title(GttProject *proj, const char *t)
+void 
+gtt_project_set_title(GttProject *proj, const char *t)
 {
 	if (!proj) return;
 	if (proj->title) g_free(proj->title);
@@ -141,7 +153,8 @@ void project_set_title(GttProject *proj, const char *t)
 
 
 
-void project_set_desc(GttProject *proj, const char *d)
+void 
+gtt_project_set_desc(GttProject *proj, const char *d)
 {
 	if (!proj) return;
 	if (proj->desc) g_free(proj->desc);
@@ -152,6 +165,66 @@ void project_set_desc(GttProject *proj, const char *d)
 	proj->desc = g_strdup(d);
 	if (proj->row != -1)
 		clist_update_desc(proj);
+}
+
+const char * 
+gtt_project_get_title (GttProject *proj)
+{
+	if (!proj) return NULL;
+	return (proj->title);
+}
+
+const char * 
+gtt_project_get_desc (GttProject *proj)
+{
+	if (!proj) return NULL;
+	return (proj->desc);
+}
+
+void
+gtt_project_set_rate (GttProject *proj, double r)
+{
+	if (!proj) return;
+	proj->rate = r;
+}
+
+double
+gtt_project_get_rate (GttProject *proj)
+{
+	if (!proj) return 0.0;
+	return proj->rate;
+}
+
+/* =========================================================== */
+
+void 
+gtt_project_add_project (GttProject *proj, GttProject *child)
+{
+	if (!proj || !child) return;
+	proj->sub_projects = g_list_append (proj->sub_projects, child);
+}
+
+void 
+gtt_project_add_task (GttProject *proj, GttTask *task)
+{
+	if (!proj || !task) return;
+	proj->task_list = g_list_append (proj->task_list, task);
+}
+
+
+GList * 
+gtt_project_get_children (GttProject *proj)
+{
+	if (!proj) return NULL;
+	return proj->sub_projects;
+}
+
+
+GList * 
+gtt_project_get_tasks (GttProject *proj)
+{
+	if (!proj) return NULL;
+	return proj->task_list;
 }
 
 /* =========================================================== */
@@ -300,6 +373,7 @@ gtt_task_destroy (GttTask *task)
 		GList *node;
 		for (node = task->interval_list; node; node=node->next)
 		{
+			/* free the individual intervals */
 			g_free (node->data);
 		}
 		g_list_free (task->interval_list);
@@ -308,102 +382,182 @@ gtt_task_destroy (GttTask *task)
 }
 
 
+void
+gtt_task_add_interval (GttTask *tsk, GttInterval *ival)
+{
+	if (!tsk || !ival) return;
+	tsk->interval_list = g_list_append (tsk->interval_list, ival);
+}
+
+void 
+gtt_task_set_memo(GttTask *tsk, const char *m)
+{
+	if (!tsk) return;
+	if (tsk->memo) g_free(tsk->memo);
+	if (!m) 
+	{
+		tsk->memo = NULL;
+		return;
+	}
+	tsk->memo = g_strdup(m);
+}
+
+const char * 
+gtt_task_get_memo (GttTask *tsk)
+{
+	if (!tsk) return NULL;
+	return tsk->memo;
+}
+
+GList *
+gtt_task_get_intervals (GttTask *tsk)
+{
+	if (!tsk) return NULL;
+	return tsk->interval_list;
+}
+
+/* =========================================================== */
+
+GttInterval *
+gtt_interval_new (void)
+{
+	GttInterval * ivl;
+	ivl = g_new0 (GttInterval, 1);
+	ivl->start = 0;
+	ivl->stop = 0;
+	ivl->running = FALSE;
+	return ivl;
+}
+
+void 
+gtt_interval_destroy (GttInterval * ivl)
+{
+	if (!ivl) return;
+	g_free (ivl);
+}
+
+void
+gtt_interval_set_start (GttInterval *ivl, time_t st)
+{
+	if (!ivl) return;
+	ivl->start = st;
+}
+
+void
+gtt_interval_set_stop (GttInterval *ivl, time_t st)
+{
+	if (!ivl) return;
+	ivl->stop = st;
+}
+
+void
+gtt_interval_set_running (GttInterval *ivl, gboolean st)
+{
+	if (!ivl) return;
+	ivl->running = st;
+}
+
+time_t 
+gtt_interval_get_start (GttInterval * ivl)
+{
+	if (!ivl) return 0;
+	return ivl->start;
+}
+
+time_t 
+gtt_interval_get_stop (GttInterval * ivl)
+{
+	if (!ivl) return 0;
+	return ivl->stop;
+}
+
+gboolean 
+gtt_interval_get_running (GttInterval * ivl)
+{
+	if (!ivl) return FALSE;
+	return (gboolean) ivl->running;
+}
+
 /*******************************************************************
- * project_list
+ * project_list -- simple wrapper around glib routines
  */
 
-project_list *plist = NULL;
+static GList * plist = NULL;
 
-
-void project_list_add(GttProject *p)
+GList *
+gtt_get_project_list (void)
 {
-	project_list *t, *t2;
+	return plist;
+}
 
+void 
+gtt_project_list_add(GttProject *p)
+{
 	if (!p) return;
-	t = g_malloc(sizeof(project_list));
-	t->proj = p;
-	t->next = NULL;
-	if (!plist) {
-		plist = t;
-		return;
-	}
-	for (t2 = plist; t2->next; t2 = t2->next) ;
-	t2->next = t;
+// hack alert XXX FIXME --- disabled for testing
+//	plist = g_list_append (plist, p);
 }
 
-
-
-void project_list_insert(GttProject *p, int pos)
+void 
+project_list_add(GttProject *p)
 {
-	project_list *t, *t2;
-	int i;
-
 	if (!p) return;
-	t = g_malloc(sizeof(project_list));
-	t->proj = p;
-	t->next = NULL;
-	if (!plist) {
-		plist = t;
-		return;
-	}
-	if (pos == 0) {
-		t->next = plist;
-		plist = t;
-		return;
-	}
-	for (t2 = plist, i = 1; (t2->next) && (i < pos); t2 = t2->next, i++) ;
-	t->next = t2->next;
-	t2->next = t;
+	plist = g_list_append (plist, p);
 }
 
-
-
-void project_list_remove(GttProject *p)
+void 
+project_list_insert(GttProject *p, int pos)
 {
-	project_list *t, *t2;
-	
-	if ((!p) || (!plist)) return;
-	if (plist->proj == p) {
-		t = plist;
-		plist = plist->next;
-		g_free(t);
-		return;
-	}
-	for (t = plist; (t->next) && (t->next->proj != p); t = t->next) ;
-	if (!t->next) return;
-	t2 = t->next;
-	t->next = t2->next;
-	g_free(t2);
+	if (!p) return;
+	plist = g_list_insert (plist, p, pos);
 }
 
-
-
-void project_list_destroy(void)
+void 
+project_list_remove(GttProject *p)
 {
-	project_list *t;
-	
-	while (plist) {
-		t = plist->next;
-		project_destroy(plist->proj);
-		plist = t;
-	}
+	if (!p) return;
+	plist = g_list_remove (plist, p);
 }
 
-
-
-void project_list_time_reset(void)
+void 
+project_list_destroy(void)
 {
-	project_list *t;
-	
-	for (t = plist; t; t = t->next) {
-		t->proj->day_secs = 0;
-		if (t->proj->row != -1) clist_update_label(t->proj);
+	GList *node;
+	for (node = plist; node; node=node->next)
+	{
+		project_destroy(node->data);
 	}
+	g_list_free (plist);
+	plist = NULL;
+}
+
+static void
+project_list_sort(int (cmp)(const void *, const void *))
+{
+	plist = g_list_sort (plist, cmp);
 }
 
 
+/* ============================================================= */
+/* misc GUI-related routines */
 
-static const char *build_rc_name(void)
+void 
+project_list_time_reset(void)
+{
+	GList *node;
+	for (node = plist; node; node=node->next)
+	{
+		GttProject *prj = node->data;
+		prj->day_secs = 0;
+		if (prj->row != -1) clist_update_label(prj);
+	}
+}
+
+/* ============================================================= */
+/* file I/O routines */
+
+static const char *
+build_rc_name(void)
 {
 	static char *buf = NULL;
 
@@ -447,7 +601,7 @@ project_list_load_old(const char *fname)
 {
 	FILE *f;
 	const char *realname;
-	project_list *pl, *t;
+	GList *pl, *t;
 	GttProject *proj = NULL;
 	char s[1024];
 	int i;
@@ -485,7 +639,7 @@ project_list_load_old(const char *fname)
 			/* desc for last project */
 			while (s[strlen(s) - 1] == '\n')
 				s[strlen(s) - 1] = 0;
-			project_set_desc(proj, &s[1]);
+			gtt_project_set_desc(proj, &s[1]);
 		} else if (s[0] == 't') {
 			/* last_timer */
 			tmp_time = (time_t)atol(&s[1]);
@@ -545,7 +699,7 @@ project_list_load_old(const char *fname)
 			}
 		} else if ((s[0] >= '0') && (s[0] <='9')) {
 			/* new project */
-			proj = project_new();
+			proj = gtt_project_new();
 			project_list_add(proj);
 			proj->secs = atol(s);
 			for (i = 0; s[i] != ' '; i++) ;
@@ -555,7 +709,7 @@ project_list_load_old(const char *fname)
 			i++;
 			while (s[strlen(s) - 1] == '\n')
 				s[strlen(s) - 1] = 0;
-			project_set_title(proj, &s[i]);
+			gtt_project_set_title(proj, &s[i]);
 		}
 	}
 	if ((errno) && (!feof(f))) goto err;
@@ -668,10 +822,10 @@ printf ("duuude timer is stopped on startup\n");
 	}
         num = gnome_config_get_int(GTT"Misc/NumProjects=0");
         for (i = 0; i < num; i++) {
-                proj = project_new();
+                proj = gtt_project_new();
                 project_list_add(proj);
                 g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
-                project_set_title(proj, gnome_config_get_string(s));
+                gtt_project_set_title(proj, gnome_config_get_string(s));
 		if ((proj->title) && (first_proj_title)) {
 			if (0 == strcmp(proj->title, first_proj_title)) {
 				cur_proj_set(proj);
@@ -679,7 +833,7 @@ printf ("duuude timer is stopped on startup\n");
 			}
 		}
                 g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
-                project_set_desc(proj, gnome_config_get_string(s));
+                gtt_project_set_desc(proj, gnome_config_get_string(s));
                 g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver=0", i);
                 proj->secs = gnome_config_get_int(s);
                 g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay=0", i);
@@ -697,6 +851,12 @@ printf ("duuude timer is stopped on startup\n");
             (_e != config_show_tb_exit)) {
                 update_toolbar_sections();
         }
+#if 0
+	/* hack alert XXX FIXME bogus */
+	gtt_err_set_code (GTT_NO_ERR);
+	gtt_xml_read_file ("/home/linas/.gnome/gtt.xml");
+	printf ("duuude err = %d\n", gtt_err_get_code());
+#endif
         return 1;
 }
 
@@ -706,8 +866,12 @@ int
 project_list_save(const char *fname)
 {
         char s[64];
-        project_list *pl;
+	GList *node;
         int i, old_num;
+#if 0
+	/* hack alert XXX FIXME bogus */
+	gtt_xml_write_file ("/home/linas/.gnome/gtt.xml");
+#endif
 
         old_num = gnome_config_get_int(GTT"Misc/NumProjects=0");
         g_snprintf(s, sizeof (s), "%ld", time(0));
@@ -755,21 +919,22 @@ project_list_save(const char *fname)
 		gnome_config_set_int(s, GTK_CLIST(glist)->column[i].width);
 	}
         i = 0;
-        for (pl = plist; pl; pl = pl->next) {
-                if (!pl->proj) continue;
-                if (!pl->proj->title) continue;
+        for (node = plist; node; node = node->next) 
+	{
+		GttProject *prj = node->data;
+                if (!prj->title) continue;
                 g_snprintf(s, sizeof (s), GTT"Project%d/Title", i);
-                gnome_config_set_string(s, pl->proj->title);
+                gnome_config_set_string(s, prj->title);
                 g_snprintf(s, sizeof (s), GTT"Project%d/Desc", i);
-                if (pl->proj->desc) {
-                        gnome_config_set_string(s, pl->proj->desc);
+                if (prj->desc) {
+                        gnome_config_set_string(s, prj->desc);
                 } else {
                         gnome_config_clean_key(s);
                 }
                 g_snprintf(s, sizeof (s), GTT"Project%d/SecsEver", i);
-                gnome_config_set_int(s, pl->proj->secs);
+                gnome_config_set_int(s, prj->secs);
                 g_snprintf(s, sizeof (s), GTT"Project%d/SecsDay", i);
-                gnome_config_set_int(s, pl->proj->day_secs);
+                gnome_config_set_int(s, prj->day_secs);
                 i++;
         }
         gnome_config_set_int(GTT"Misc/NumProjects", i);
@@ -780,6 +945,9 @@ project_list_save(const char *fname)
         gnome_config_sync();
         return 1;
 }
+
+/* ======================================================= */
+/* project list export */
 
 static char *
 get_time (int secs)
@@ -797,7 +965,7 @@ gboolean
 project_list_export (const char *fname)
 {
 	FILE *fp;
-        project_list *pl;
+	GList *node;
 
 	fp = fopen (fname, "w");
 	if (fp == NULL)
@@ -808,15 +976,16 @@ project_list_export (const char *fname)
 	 * I don't think most spreadsheets would handle that well. */
 	fprintf (fp, "Title\tDescription\tTotal time\tTime today\n");
 
-        for (pl = plist; pl; pl = pl->next) {
+        for (node = plist; node; node = node->next) 
+	{
+		GttProject *prj = node->data;
 		char *total_time, *time_today;
-                if (!pl->proj) continue;
-                if (!pl->proj->title) continue;
-		total_time = get_time (pl->proj->secs);
-		time_today = get_time (pl->proj->day_secs);
+                if (!prj->title) continue;
+		total_time = get_time (prj->secs);
+		time_today = get_time (prj->day_secs);
 		fprintf (fp, "%s\t%s\t%s\t%s\n",
-			 gtt_sure_string (pl->proj->title),
-			 gtt_sure_string (pl->proj->desc),
+			 gtt_sure_string (prj->title),
+			 gtt_sure_string (prj->desc),
 			 total_time,
 			 time_today);
 		g_free (total_time);
@@ -830,17 +999,23 @@ project_list_export (const char *fname)
 
 
 
-char *project_get_timestr(GttProject *proj, int show_secs)
+char *
+project_get_timestr(GttProject *proj, int show_secs)
 {
 	static char s[20];
 	time_t t;
 	
-	if (proj == NULL) {
-		project_list *p;
+	if (proj == NULL) 
+	{
+		GList *node;
 		t = 0;
-		for (p = plist; p != NULL; p = p->next)
-			t += p->proj->day_secs;
-	} else {
+		for (node = plist; node; node = node->next)
+		{
+			GttProject *prj = node->data;
+			t += prj->day_secs;
+		}
+	} else 
+	{
 		t = proj->day_secs;
 	}
 	if (t >= 0) {
@@ -864,7 +1039,8 @@ char *project_get_timestr(GttProject *proj, int show_secs)
 	return s;
 }
 
-char *project_get_total_timestr(GttProject *proj, int show_secs)
+char *
+project_get_total_timestr(GttProject *proj, int show_secs)
 {
 	static char s[20];
 	time_t t;
@@ -884,47 +1060,24 @@ char *project_get_total_timestr(GttProject *proj, int show_secs)
 }
 
 
-
-static void
-project_list_sort(int (cmp)(const void *, const void *))
-{
-        project_list *pl;
-        project_list **parray;
-        int i, num;
-
-        if (!plist) return;
-        for (i = 0, pl = plist; pl; pl = pl->next, i++) ;
-        parray = g_malloc(i * sizeof(project_list *));
-        for (i = 0, pl = plist; pl; pl = pl->next, i++)
-                parray[i] = pl;
-        qsort(parray, i, sizeof(project_list *), cmp);
-        num = i;
-        plist = parray[0];
-        pl = plist;
-        for (i = 1; i < num; i++) {
-                pl->next = parray[i];
-                pl = parray[i];
-        }
-        pl->next = NULL;
-        g_free(parray);
-}
-
+/* ==================================================================== */
+/* sort funcs */
 
 
 static int
 cmp_time(const void *aa, const void *bb)
 {
-        project_list *a = *(project_list **)aa;
-        project_list *b = *(project_list **)bb;
-        return (int)(b->proj->day_secs - a->proj->day_secs);
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+        return (int)(b->day_secs - a->day_secs);
 }
 
 static int
 cmp_total_time(const void *aa, const void *bb)
 {
-	project_list *a = *(project_list **)aa;
-	project_list *b = *(project_list **)bb;
-	return (int)(b->proj->secs - a->proj->secs);
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	return (int)(b->secs - a->secs);
 }
 
 
@@ -932,23 +1085,23 @@ cmp_total_time(const void *aa, const void *bb)
 static int
 cmp_title(const void *aa, const void *bb)
 {
-        project_list *a = *(project_list **)aa;
-        project_list *b = *(project_list **)bb;
-        return strcmp(a->proj->title, b->proj->title);
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+        return strcmp(a->title, b->title);
 }
 
 static int
 cmp_desc(const void *aa, const void *bb)
 {
-	project_list *a = *(project_list **)aa;
-	project_list *b = *(project_list **)bb;
-	if (!a->proj->desc) {
-		return (b->proj->desc == NULL)? 0 : 1;
+	const GttProject *a = aa;
+	const GttProject *b = bb;
+	if (!a->desc) {
+		return (b->desc == NULL)? 0 : 1;
 	}
-	if (!b->proj->desc) {
+	if (!b->desc) {
 		return -1;
 	}
-	return strcmp(a->proj->desc, b->proj->desc);
+	return strcmp(a->desc, b->desc);
 }
 
 
@@ -976,3 +1129,4 @@ project_list_sort_desc(void)
 	project_list_sort(cmp_desc);
 }
 
+/* =========================== END OF FILE ========================= */

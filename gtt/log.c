@@ -82,7 +82,7 @@ build_log_entry(const char *format, GttProject *proj)
 	if (!proj)
 		return g_strdup(_("program started"));
 	if ((!format) || (!format[0]))
-		return g_strdup(proj->title);
+		return g_strdup(gtt_project_get_title(proj));
 	str = g_string_new (NULL);
 	for (p = format; *p; p++) {
 		if (*p != '%') {
@@ -91,11 +91,11 @@ build_log_entry(const char *format, GttProject *proj)
 			p++;
 			switch (*p) {
 			case 't':
-				g_string_append(str, proj->title);
+				g_string_append(str, gtt_project_get_title(proj));
 				break;
 			case 'd':
-				if (proj->desc)
-					g_string_append(str, proj->desc);
+				if (gtt_project_get_desc(proj))
+					g_string_append(str, gtt_project_get_desc(proj));
 				else
 					g_string_append(str,
 							_("no description"));

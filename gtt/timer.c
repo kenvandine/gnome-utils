@@ -50,6 +50,9 @@ void start_timer(void)
 	if (main_timer) return;
 	log_proj(cur_proj);
 	gtt_project_timer_start (cur_proj);
+
+	/* the timer is measured in milliseconds, so 1000
+         * means it pops once a second. */
 	main_timer = gtk_timeout_add(1000, timer_func, NULL);
 	update_status_bar();
 }
@@ -60,7 +63,7 @@ void stop_timer(void)
 {
 	if (!main_timer) return;
 	log_proj(NULL);
-	gtt_project_timer_update (cur_proj);
+	gtt_project_timer_stop (cur_proj);
 	gtk_timeout_remove(main_timer);
 	main_timer = 0;
 	update_status_bar();

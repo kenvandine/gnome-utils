@@ -21,6 +21,8 @@
 #include <string.h>
 
 #include "gtt.h"
+#include "menucmd.h"
+#include "toolbar.h"
 
 
 static GnomeUIInfo menu_main_file[] = {

@@ -22,7 +22,8 @@
 #include <string.h>
 
 #include "gtt.h"
-
+#include "menucmd.h"
+#include "toolbar.h"
 
 
 

@@ -24,7 +24,8 @@
 #include <string.h>
 
 #include "gtt.h"
-#include "proj_p.h"
+#include "menucmd.h"
+#include "toolbar.h"
 
 
 /* I had some problems with the GtkStatusbar (frame and label didn't
@@ -113,7 +114,7 @@ void update_status_bar(void)
                 g_free(s);
         }
         if (cur_proj) {
-                s = g_strdup(cur_proj->title);
+                s = g_strdup(gtt_project_get_title(cur_proj));
         } else {
                 s = g_strdup(_("no project selected"));
         }
@@ -142,11 +143,16 @@ void cur_proj_set(GttProject *proj)
 	if (cur_proj == proj) return;
 
 	log_proj(NULL);
-	cur_proj = proj;
 	if (proj)
+	{
+		cur_proj = proj;
 		start_timer();
+	}
 	else
+	{
 		stop_timer();
+		cur_proj = proj;
+	}
 	log_proj(proj);
 	menu_set_states();
 	prop_dialog_set_project(proj);
@@ -157,7 +163,9 @@ void cur_proj_set(GttProject *proj)
 	for (p = cmd; *p; p++) {
 		if ((p[0] == '%') && (p[1] == 's')) {
 			if (cur_proj)
-				g_string_append (str, cur_proj->title);
+			{
+				g_string_append (str, gtt_project_get_title(cur_proj));
+			}
 			p++;
 		} else {
 			g_string_append_c (str, *p);

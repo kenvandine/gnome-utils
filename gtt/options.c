@@ -21,6 +21,7 @@
 #include <libgnome/gnome-help.h>
 
 #include "gtt.h"
+#include "toolbar.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and
  * should be passed around in the data fields */

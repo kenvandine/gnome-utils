@@ -20,6 +20,8 @@
 #define __GTT_H__
 
 
+#include <gnome.h>
+
 #ifdef TIME_WITH_SYS_TIME
 #include <sys/time.h>
 #include <time.h>
@@ -30,12 +32,8 @@
 #include <time.h>
 #endif /* TIME_WITH_SYS_TIME */
 
+#include "proj.h"
 
-typedef struct gtt_project_s GttProject;
-
-#include "dialog.h"
-#include "menucmd.h"
-#include "toolbar.h"
 
 #ifdef DEBUG
 #define APP_NAME "GTimeTracker DEBUG"
@@ -67,59 +65,6 @@ extern gint main_timer;
 
 void start_timer(void);
 void stop_timer(void);
-
-
-
-/* proj.c */
-typedef struct gtt_task_s GttTask;
-typedef struct gtt_interval_s GttInterval;
-
-typedef struct _project_list {
-	GttProject *proj;
-	struct _project_list *next;
-} project_list;
-
-
-
-extern project_list *plist;
-extern char *first_proj_title;
-
-
-GttProject *project_new(void);
-GttProject *project_new_title_desc(const char *, const char *);
-GttProject *project_dup(GttProject *);
-void project_destroy(GttProject *);
-void project_set_title(GttProject *proj, const char *t);
-void project_set_desc(GttProject *proj, const char *d);
-
-/* The project_timer_start() routine logs the time when
- *    a new task interval starts.
- * The project_timer_update() routine updates the end-time
- *    for a task interval. 
- */
-void gtt_project_timer_start (GttProject *);
-void gtt_project_timer_update (GttProject *);
-void gtt_project_timer_stop (GttProject *);
-
-void project_list_add(GttProject *p);
-void project_list_insert(GttProject *p, int pos);
-void project_list_remove(GttProject *p);
-void project_list_destroy(void);
-void project_list_time_reset(void);
-int project_list_load(const char *fname);
-int project_list_save(const char *fname);
-gboolean project_list_export (const char *fname);
-void project_list_sort_time(void);
-void project_list_sort_total_time(void);
-void project_list_sort_title(void);
-void project_list_sort_desc(void);
-
-char *project_get_timestr(GttProject *p, int show_secs);
-char *project_get_total_timestr(GttProject *p, int show_secs);
-
-/* tasks */
-GttTask *	gtt_task_new (void);
-void 		gtt_task_destroy (GttTask *task);
 
 
 /* prop.c */

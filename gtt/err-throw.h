@@ -1,0 +1,46 @@
+/*   Implement a catch-throw-like error mechanism for gtt
+ *   Copyright (C) 2001 Linas Vepstas
+ *
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 2 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program; if not, write to the Free Software
+ *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+
+typedef enum {
+	GTT_NO_ERR = 0,
+	GTT_CANT_OPEN_FILE,
+	GTT_NOT_A_GTT_FILE,
+	GTT_FILE_CORRUPT
+} GttErrCode;
+
+
+/* 
+ * These two routines can be used ot implement a poor-mans 
+ * try-catch block by doing as follows:
+ *
+ *  gtt_err_set_code (GTT_NO_ERR);  // start of try block
+ *  { do stuff ... }
+ *  switch (gtt_err_get_code()) {     // catch block
+ *     case GTT_NO ERR: break;
+ *     case GTT_BOGUS_ERROR: { try to recover...}
+ *  }
+ */
+
+GttErrCode gtt_err_get_code (void);
+
+void gtt_err_set_code (GttErrCode);
+	
+ 
+
+/* =========================== END OF FILE ======================== */

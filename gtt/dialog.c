@@ -19,6 +19,7 @@
 #include <config.h>
 #include <gnome.h>
  
+#include "dialog.h"
 #include "gtt.h"
 
 

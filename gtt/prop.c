@@ -55,9 +55,9 @@ static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 	if (!s) g_warning("%s:%d\n", __FILE__, __LINE__);
 	if (0 != strcmp(dlg->proj->title, s)) {
 		if (s[0]) {
-			project_set_title(dlg->proj, s);
+			gtt_project_set_title(dlg->proj, s);
 		} else {
-			project_set_title(dlg->proj, _("empty"));
+			gtt_project_set_title(dlg->proj, _("empty"));
 			gtk_entry_set_text(dlg->title, dlg->proj->title);
 		}
 	}
@@ -65,17 +65,17 @@ static void prop_set(GnomePropertyBox * pb, gint page, PropDlg *dlg)
 	s = gtk_entry_get_text(dlg->desc);
 	if (!s) {
 		if (dlg->proj->desc)
-			project_set_desc(dlg->proj, NULL);
+			gtt_project_set_desc(dlg->proj, NULL);
 	} else if (!s[0]) {
 		if (dlg->proj->desc)
-			project_set_desc(dlg->proj, NULL);
+			gtt_project_set_desc(dlg->proj, NULL);
 	} else if (NULL == dlg->proj->desc) {
-		project_set_desc(dlg->proj, s);
+		gtt_project_set_desc(dlg->proj, s);
 	} else if (0 != strcmp(dlg->proj->desc, s)) {
 		if (s[0])
-			project_set_desc(dlg->proj, s);
+			gtt_project_set_desc(dlg->proj, s);
 		else
-			project_set_desc(dlg->proj, NULL);
+			gtt_project_set_desc(dlg->proj, NULL);
 	}
 
 	s = gtk_entry_get_text(dlg->day.h);

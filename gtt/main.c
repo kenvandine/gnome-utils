@@ -24,8 +24,10 @@
 #include <errno.h>
 #include <unistd.h>
 
+#include "dialog.h"
 #include "gtt.h"
-#include "proj_p.h"
+#include "menucmd.h"
+#include "xml-gtt.h"
 
 #include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */
 
@@ -185,10 +187,10 @@ save_state(GnomeClient *client, gint phase, GnomeRestartStyle save_style,
 	argv[0] = (char *)data;
 	argv[1] = "--geometry";
 	argv[2] = g_strdup_printf("%dx%d+%d+%d", w, h, x, y);
-	if ((cur_proj) && (cur_proj->title)) {
+	if ((cur_proj) && (gtt_project_get_title(cur_proj))) {
 		argc = 5;
 		argv[3] = "--select-project";
-		argv[4] = cur_proj->title;
+		argv[4] = (char *) gtt_project_get_title(cur_proj);
 	} else {
 		argc = 3;
 	}

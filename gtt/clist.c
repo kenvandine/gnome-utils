@@ -20,6 +20,7 @@
 #include <gnome.h>
 
 #include "gtt.h"
+#include "menucmd.h"
 #include "proj_p.h"
 
 /* There is a bug in clist which makes all but the last column headers
@@ -208,17 +209,21 @@ create_clist(void)
 void
 setup_clist(void)
 {
-	project_list *pl;
+	GList *node, *plist;
 	int timer_running, cp_found = 0;
 
 	timer_running = (main_timer != 0);
 	stop_timer();
+
+	plist = gtt_get_project_list();
 	if (plist) {
 		gtk_clist_freeze(GTK_CLIST(glist));
 		gtk_clist_clear(GTK_CLIST(glist));
-		for (pl = plist; pl; pl = pl->next) {
-			clist_add(pl->proj);
-			if (pl->proj == cur_proj) cp_found = 1;
+		for (node = plist; node; node = node->next) 
+		{
+			GttProject *prj = node->data;
+			clist_add(prj);
+			if (prj == cur_proj) cp_found = 1;
 		}
 		gtk_clist_thaw(GTK_CLIST(glist));
 	} else {
@@ -258,8 +263,8 @@ clist_add(GttProject *p)
 
 	tmp[TOTAL_COL] = project_get_total_timestr(p, config_show_secs);
 	tmp[TIME_COL]  = project_get_timestr(p, config_show_secs);
-	tmp[TITLE_COL] = p->title;
-	tmp[DESC_COL]  = p->desc;
+	tmp[TITLE_COL] = (char *) gtt_project_get_title(p);
+	tmp[DESC_COL]  = (char *) gtt_project_get_desc(p);
 	p->row = gtk_clist_append(GTK_CLIST(glist), tmp);
 	gtk_clist_set_row_data(GTK_CLIST(glist), p->row, p);
 }
@@ -269,18 +274,19 @@ clist_add(GttProject *p)
 void
 clist_insert(GttProject *p, gint pos)
 {
-	project_list *pl;
+	GList *node;
 	char *tmp[4];
 
 	tmp[TOTAL_COL] = project_get_total_timestr(p, config_show_secs);
 	tmp[TIME_COL]  = project_get_timestr(p, config_show_secs);
-	tmp[TITLE_COL] = p->title;
-	tmp[DESC_COL]  = p->desc;
+	tmp[TITLE_COL] = (char *) gtt_project_get_title(p);
+	tmp[DESC_COL]  = (char *) gtt_project_get_desc(p);
 	gtk_clist_insert(GTK_CLIST(glist), pos, tmp);
 	gtk_clist_set_row_data(GTK_CLIST(glist), pos, p);
-	for (pl = plist; pl; pl = pl->next) {
-		if (pl->proj->row >= pos)
-			pl->proj->row++;
+	for (node = gtt_get_project_list(); node; node = node->next) 
+	{
+		GttProject *prj = node->data;
+		if (prj->row >= pos) prj->row++;
 	}
 	p->row = pos;
 }
@@ -290,12 +296,13 @@ clist_insert(GttProject *p, gint pos)
 void
 clist_remove(GttProject *p)
 {
-	project_list *pl;
+	GList *node;
 
 	gtk_clist_remove(GTK_CLIST(glist), p->row);
-	for (pl = plist; pl; pl = pl->next) {
-		if (pl->proj->row >= p->row)
-			pl->proj->row--;
+	for (node = gtt_get_project_list(); node; node = node->next) 
+	{
+		GttProject *prj = node->data;
+		if (prj->row >= p->row) prj->row--;
 	}
 	p->row = -1;
 }
@@ -320,7 +327,7 @@ clist_update_title(GttProject *p)
 {
 	g_return_if_fail(p->row != -1);
 	gtk_clist_set_text(GTK_CLIST(glist), p->row, TITLE_COL,
-			   p->title);
+			   gtt_project_get_title(p));
 }
 
 

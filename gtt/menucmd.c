@@ -20,7 +20,9 @@
 #include <gnome.h>
 #include <string.h>
 
+#include "dialog.h"
 #include "gtt.h"
+#include "menucmd.h"
 #include "proj_p.h"
 
 /* XXX: this is our main window, perhaps it is a bit ugly this way and
@@ -85,8 +87,9 @@ project_name_desc(GtkWidget *w, GtkEntry **entries)
         if (!(desc = gtk_entry_get_text(entries[1]))) return;
 	if (!name[0]) return;
 
-	project_list_add(proj = project_new_title_desc(name, desc));
-        clist_add(proj);
+	proj = gtt_project_new_title_desc(name, desc);
+	project_list_add (proj);
+        clist_add (proj);
 }
 
 static void
