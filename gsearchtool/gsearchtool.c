@@ -756,7 +756,7 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 				}
 			}	
 			
-		} while (g_io_channel_get_buffer_condition(ioc) == G_IO_IN);
+		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
 		
 		g_string_free (string, TRUE);
 	}
@@ -811,60 +811,86 @@ static gboolean
 handle_search_command_stderr_io (GIOChannel 	*ioc, 
 				 GIOCondition 	condition, 
 				 gpointer 	data) 
-{
-	gboolean   truncate_error_msgs = FALSE;
-	gchar      *locale = NULL;
-	GError     *error = NULL;
-	GtkWidget  *dialog;
-	GString    *error_msgs;
-	GString    *string;
+{	
+	struct _SearchStruct *search_data = data;
+	static GString       *error_msgs = NULL;
+	static gboolean      truncate_error_msgs = FALSE;
 	
-	error_msgs = g_string_new (NULL);
-	string = g_string_new (NULL);
-
-	while (ioc->is_readable != TRUE);
-
-	while (g_io_channel_read_line_string (ioc, string, NULL, &error) == G_IO_STATUS_NORMAL) {
+	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
 	
-		if (truncate_error_msgs == FALSE) {
-			if ((strstr (string->str, "ermission denied") == NULL) &&
-			    (strstr (string->str, "No such file or directory") == NULL) &&
-			    (strncmp (string->str, "grep: ", 6) != 0) &&
-			    (strcmp (string->str, "find: ") != 0)){
-				locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
-				error_msgs = g_string_append (error_msgs, locale); 
-				truncate_error_msgs = limit_string_to_x_lines (error_msgs, 20);
+		GString         *string;
+		GError          *error = NULL;
+		gchar           *locale = NULL;
+		
+		string = g_string_new (NULL);
+		
+		if (error_msgs == NULL) {
+			error_msgs = g_string_new (NULL);
+		}
+
+		while (ioc->is_readable != TRUE);
+
+		do {
+			gint status;
+		
+			do {
+				status = g_io_channel_read_line_string (ioc, string, NULL, &error);
+	
+				while (gtk_events_pending ()) {
+					if (search_data->running == MAKE_IT_QUIT) {
+						break;
+					}
+					gtk_main_iteration ();
+				}
+					
+			} while (status == G_IO_STATUS_AGAIN);
+			
+			if (status != G_IO_STATUS_NORMAL) {
+				if (error != NULL) {
+					g_warning ("handle_search_command_stderr_io(): %s", error->message);
+					g_error_free (error);
+				}
+				continue;
 			}
-		}
+			
+			if (truncate_error_msgs == FALSE) {
+				if ((strstr (string->str, "ermission denied") == NULL) &&
+			   	    (strstr (string->str, "No such file or directory") == NULL) &&
+			   	    (strncmp (string->str, "grep: ", 6) != 0) &&
+			 	    (strcmp (string->str, "find: ") != 0)) { 
+					locale = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
+					error_msgs = g_string_append (error_msgs, locale); 
+					truncate_error_msgs = limit_string_to_x_lines (error_msgs, 20);
+				}
+			}
 		
-		while (gtk_events_pending ()) {
-			gtk_main_iteration ();
-		}
+		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
+		
+		g_string_free (string, TRUE);
+		g_free (locale);
 	}
 	
-	if (error != NULL) {
-		g_warning ("handle_search_command_stderr_io(): %s", error->message);
-		g_error_free (error);
-	}
+	if (condition != G_IO_IN) { 
 	
-	if (error_msgs->len > 0) {	
-		error_msgs = g_string_prepend (error_msgs, 
-			     _("While searching the following errors were reported.\n\n"));
-				
-		if (truncate_error_msgs == TRUE) {
-			error_msgs = g_string_append (error_msgs, 
-				     _("\n... Too many errors to display ..."));
-		}
-		
-		gnome_app_error (GNOME_APP (interface.main_window), error_msgs->str);	
-	}
+		if (error_msgs != NULL) {
 
-	g_io_channel_shutdown(ioc, TRUE, NULL);
-	g_string_free (error_msgs, TRUE);	
-	g_string_free (string, TRUE);
-	g_free (locale);
-	
-	return FALSE;
+			if (error_msgs->len > 0) {	
+				error_msgs = g_string_prepend (error_msgs, 
+				     _("While searching the following errors were reported.\n\n"));
+				
+				if (truncate_error_msgs == TRUE) {
+					error_msgs = g_string_append (error_msgs, 
+				     		_("\n... Too many errors to display ..."));
+				}
+		
+				gnome_app_error (GNOME_APP (interface.main_window), error_msgs->str);	
+			}
+			g_string_truncate (error_msgs, 0);
+		}
+		g_io_channel_shutdown(ioc, TRUE, NULL);
+		return FALSE;
+	}
+	return TRUE;
 }
 
 void
@@ -935,11 +961,12 @@ spawn_search_command (gchar *command)
 	g_io_channel_set_encoding (ioc_stderr, NULL, NULL);
 	
 	g_io_channel_set_flags (ioc_stdout, G_IO_FLAG_NONBLOCK, NULL);
+	g_io_channel_set_flags (ioc_stderr, G_IO_FLAG_NONBLOCK, NULL);
 	
 	g_io_add_watch (ioc_stdout, G_IO_IN | G_IO_HUP,
 			handle_search_command_stdout_io, &search_command);	
-	g_io_add_watch (ioc_stderr, G_IO_HUP,
-			handle_search_command_stderr_io, NULL);
+	g_io_add_watch (ioc_stderr, G_IO_IN | G_IO_HUP,
+			handle_search_command_stderr_io, &search_command);
 
 	g_io_channel_unref (ioc_stdout);
 	g_io_channel_unref (ioc_stderr);
