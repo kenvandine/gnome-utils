@@ -64,9 +64,13 @@ struct gtt_ghtml_s
 	/* table layout info */
 	int ntask_cols;
 	TableCol task_cols[NCOL];
+	char * task_titles[NCOL];
 
 	int ninvl_cols;
 	TableCol invl_cols[NCOL];
+	char * invl_titles[NCOL];
+
+	char **tp;
 };
 
 /* ============================================================== */
@@ -167,6 +171,24 @@ do_show_journal (GttGhtml *ghtml, GttProject*prj)
 
 /* ============================================================== */
 
+#define TASK_COL_TITLE(DEFAULT_STR)			\
+{							\
+	if (ghtml->task_titles[i]) {			\
+		p = stpcpy (p, ghtml->task_titles[i]);	\
+	} else {					\
+		p = stpcpy (p, DEFAULT_STR);		\
+	}						\
+}
+
+#define INVL_COL_TITLE(DEFAULT_STR)			\
+{							\
+	if (ghtml->invl_titles[i]) {			\
+		p = stpcpy (p, ghtml->invl_titles[i]);	\
+	} else {					\
+		p = stpcpy (p, DEFAULT_STR);		\
+	}						\
+}
+
 static void
 do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 {
@@ -193,32 +215,32 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 				mcols = ghtml->ninvl_cols - ghtml->ntask_cols;
 				if (0 >= mcols) mcols = 1; 
 				p += sprintf (p, "<th colspan=%d>", mcols);
-				p = stpcpy (p, _("Memo"));
+				TASK_COL_TITLE (_("Memo"));
 				break;
 			}
 			case TASK_TIME:
 				p = stpcpy (p, "<th>");
-				p = stpcpy (p, _("Task Time"));
+				TASK_COL_TITLE (_("Task Time"));
 				break;
 			case BILLABLE:
 				p = stpcpy (p, "<th>");
-				p = stpcpy (p, _("Billable"));
+				TASK_COL_TITLE (_("Billable"));
 				break;
 			case BILLRATE:
 				p = stpcpy (p, "<th>");
-				p = stpcpy (p, _("Bill Rate"));
+				TASK_COL_TITLE (_("Bill Rate"));
 				break;
 			case VALUE:
 				p = stpcpy (p, "<th>");
-				p = stpcpy (p, _("Value"));
+				TASK_COL_TITLE (_("Value"));
 				break;
 			case BILLABLE_VALUE:
 				p = stpcpy (p, "<th>");
-				p = stpcpy (p, _("Billable Value"));
+				TASK_COL_TITLE (_("Billable Value"));
 				break;
 			default:
 				p = stpcpy (p, "<th>");
-				p = stpcpy (p, _("Error - Unknown"));
+				TASK_COL_TITLE (_("No Default Value"));
 		}
 	}
 
@@ -232,19 +254,19 @@ do_show_table (GttGhtml *ghtml, GttProject *prj, int show_links, int invoice)
 		switch (ghtml->invl_cols[i]) 
 		{
 			case START_DATIME:
-				p = stpcpy (p, _("Start"));
+				INVL_COL_TITLE (_("Start"));
 				break;
 			case STOP_DATIME:
-				p = stpcpy (p, _("Stop"));
+				INVL_COL_TITLE (_("Stop"));
 				break;
 			case ELAPSED:
-				p = stpcpy (p, _("Elapsed"));
+				INVL_COL_TITLE (_("Elapsed"));
 				break;
 			case FUZZ:
-				p = stpcpy (p, _("Start Time Fuzziness"));
+				INVL_COL_TITLE (_("Start Time Fuzziness"));
 				break;
 			default:
-				p = stpcpy (p, _("Error - Unknown"));
+				TASK_COL_TITLE (_("No Default Value"));
 		}
 	}
 	if (0 < ghtml->ninvl_cols)
@@ -562,67 +584,79 @@ show_journal (void)
 
 /* ============================================================== */
 
+#define TASK_COL(TYPE)	{					\
+	ghtml->task_cols[ghtml->ntask_cols] = TYPE;		\
+	ghtml->tp = &(ghtml->task_titles[ghtml->ntask_cols]);	\
+	*(ghtml->tp) = NULL;					\
+	if (NCOL-1 > ghtml->ntask_cols) ghtml->ntask_cols ++;	\
+}
+#define INVL_COL(TYPE)	{					\
+	ghtml->invl_cols[ghtml->ninvl_cols] = TYPE;		\
+	ghtml->tp = &(ghtml->invl_titles[ghtml->ninvl_cols]);	\
+	*(ghtml->tp) = NULL;					\
+	if (NCOL-1 > ghtml->ninvl_cols) ghtml->ninvl_cols ++;	\
+}
+
 static void
 decode_column (GttGhtml *ghtml, const char * tok)
 {
+	if ('$' != tok[0])
+	{
+		if (ghtml->tp)
+		{
+			if (*ghtml->tp) g_free (*ghtml->tp);
+			*ghtml->tp = g_strdup (tok);
+		}
+	}
+	else
 	if (0 == strncmp (tok, "$start_datime", 13))
 	{
-		ghtml->invl_cols[ghtml->ninvl_cols] = START_DATIME;
-		if (NCOL-1 > ghtml->ninvl_cols) ghtml->ninvl_cols ++;
+		INVL_COL (START_DATIME);
 	}
 	else
 	if (0 == strncmp (tok, "$stop_datime", 12))
 	{
-		ghtml->invl_cols[ghtml->ninvl_cols] = STOP_DATIME;
-		if (NCOL-1 > ghtml->ninvl_cols) ghtml->ninvl_cols ++;
+		INVL_COL (STOP_DATIME);
 	}
 	else
 	if (0 == strncmp (tok, "$fuzz", 5))
 	{
-		ghtml->invl_cols[ghtml->ninvl_cols] = FUZZ;
-		if (NCOL-1 > ghtml->ninvl_cols) ghtml->ninvl_cols ++;
+		INVL_COL (FUZZ);
 	}
 	else
 	if (0 == strncmp (tok, "$elapsed", 8))
 	{
-		ghtml->invl_cols[ghtml->ninvl_cols] = ELAPSED;
-		if (NCOL-1 > ghtml->ninvl_cols) ghtml->ninvl_cols ++;
+		INVL_COL (ELAPSED);
 	}
 	else
 	if (0 == strncmp (tok, "$memo", 5))
 	{
-		ghtml->task_cols[ghtml->ntask_cols] = MEMO;
-		if (NCOL-1 > ghtml->ntask_cols) ghtml->ntask_cols ++;
+		TASK_COL(MEMO);
 	}
 	else
 	if (0 == strncmp (tok, "$task_time", 10))
 	{
-		ghtml->task_cols[ghtml->ntask_cols] = TASK_TIME;
-		if (NCOL-1 > ghtml->ntask_cols) ghtml->ntask_cols ++;
+		TASK_COL(TASK_TIME);
 	}
 	else
 	if (0 == strncmp (tok, "$billable", 9))
 	{
-		ghtml->task_cols[ghtml->ntask_cols] = BILLABLE;
-		if (NCOL-1 > ghtml->ntask_cols) ghtml->ntask_cols ++;
+		TASK_COL(BILLABLE);
 	}
 	else
 	if (0 == strncmp (tok, "$billrate", 9))
 	{
-		ghtml->task_cols[ghtml->ntask_cols] = BILLRATE;
-		if (NCOL-1 > ghtml->ntask_cols) ghtml->ntask_cols ++;
+		TASK_COL(BILLRATE);
 	}
 	else
 	if (0 == strncmp (tok, "$value", 6))
 	{
-		ghtml->task_cols[ghtml->ntask_cols] = VALUE;
-		if (NCOL-1 > ghtml->ntask_cols) ghtml->ntask_cols ++;
+		TASK_COL(VALUE);
 	}
 	else
 	if (0 == strncmp (tok, "$bill_value", 11))
 	{
-		ghtml->task_cols[ghtml->ntask_cols] = BILLABLE_VALUE;
-		if (NCOL-1 > ghtml->ntask_cols) ghtml->ntask_cols ++;
+		TASK_COL(BILLABLE_VALUE);
 	}
 	else
 	{
@@ -861,6 +895,7 @@ GttGhtml *
 gtt_ghtml_new (void)
 {
 	GttGhtml *p;
+	int i;
 
 	if (!is_inited)
 	{
@@ -872,7 +907,13 @@ gtt_ghtml_new (void)
 	p->prj = NULL;
 	p->ninvl_cols = 0;
 	p->ntask_cols = 0;
-		
+	p->tp = NULL;
+
+	for (i=0; i<NCOL; i++)
+	{
+		p->task_titles[i] = NULL;
+		p->invl_titles[i] = NULL;
+	}
 
 	return p;
 }

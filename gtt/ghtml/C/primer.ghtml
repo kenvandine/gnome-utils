@@ -16,30 +16,45 @@ Some sample scheme expressions, and thier output:
 
 <p>
 <ul>
-<li>
-(gtt-hello)  prints the following:
-<?scm  (gtt-hello) ?>
+<li> (gtt-hello)  prints the following:
+     <?scm  (gtt-hello) ?>
+     <br><br>
 
-<li>
-(gtt-show-project-title)  prints the following:
-<?scm  (gtt-show-project-title) ?>
+<li> (gtt-show-project-title)  prints the following:
+     <?scm  (gtt-show-project-title) ?>
+     <br><br>
 
-<li>
-(gtt-show-project-desc)  prints the following:
-<?scm  (gtt-show-project-desc) ?>
+<li> (gtt-show-project-desc)  prints the following:
+     <?scm  (gtt-show-project-desc) ?>
+     <br><br>
 
-<li>
-(gtt-show-basic-journal)  prints a basic layout of the journal, see journal.ghtml for an example.
+<li> (gtt-show-basic-journal)  prints a basic layout of the journal, 
+     see journal.ghtml for an example.
+     <br><br>
 
-<li>
-(gtt-show-table)  prints a configurable table showing the journal entries. See bigtable.ghtml for an example.
+<li> (gtt-show-table)  prints a configurable table showing the 
+     journal entries.  See <tt>bigtable.ghtml</tt> for an extended example. 
+     <br><br>
+     Here's a little example:
+     <br><br>
+     (gtt-show-table '($memo "blah blah memo" $billable "bulbous blort" $billrate $value "da bucks" $bill_value))
+     <br><br>
+     will print: <br>
+     <?scm (gtt-show-table '($memo "blah blah memo" $billable "bulbous blort" $billrate $value "da bucks" $bill_value)) ?>
+     <br><br>
 
-<li>
-(gtt-show-invoice)  prints a configurable invoice, see invoice.ghtml for an example.
+<li> (gtt-show-invoice)  prints a configurable invoice, see 
+     <tt>invoice.ghtml</tt> for an example.
+     <br><br>
 
-<li>
-(gtt-show-list '(yabba dabba <i>do</i> (<b>eh duude</b>)))  prints the following:
-<?scm (gtt-show-list '(yabba dabba <i>do</i> (<b>eh duude</b>))) ?>
+<li> (gtt-show-list '(yabba dabba <i>do</i> (<b>eh duude</b>)))  prints the following:
+     <?scm (gtt-show-list '(yabba dabba <i>do</i> (<b>eh duude</b>))) ?>
+     <br><br>
+
+<!-- 
+<?scm (gtt-show-table '($memo $billable $billrate $task_time $value $bill_value 
+$start_datime $stop_datime $elapsed $fuzz))  ?>
+-->
 
 </ul>
 
