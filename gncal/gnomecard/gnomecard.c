@@ -305,7 +305,7 @@ void gnomecard_tree_selected(GtkCTree *tree, GList *row, gint column)
 		  break;
 	}
 	
-	if (i)
+	if (i && i != curr_crd)
 	  gnomecard_set_curr(i);
 }
 
@@ -418,13 +418,44 @@ void gnomecard_prop_close(GtkWidget *widget, gpointer node)
 	  gnomecard_set_edit_del(TRUE);
 }
 
+void gnomecard_take_from_fname(GtkWidget *widget, gpointer data)
+{
+        GnomeCardEditor *ce;
+	char *pre, *given, *add, *fam, *suf, *name;
+	
+	ce = (GnomeCardEditor *) data;
+	
+	pre = gtk_entry_get_text(GTK_ENTRY(ce->pre));
+	given = gtk_entry_get_text(GTK_ENTRY(ce->given));
+	add = gtk_entry_get_text(GTK_ENTRY(ce->add));
+	fam = gtk_entry_get_text(GTK_ENTRY(ce->fam));
+	suf = gtk_entry_get_text(GTK_ENTRY(ce->suf));
+	name = g_malloc(strlen(given) + strlen(add) + strlen(fam) +
+			strlen(pre) + strlen(suf) + 5);
+	
+	*name = 0;
+	if (*pre)   { strcpy(name, pre);   strcat(name, " "); }
+	if (*given) { strcat(name, given); strcat(name, " "); }
+	if (*add)   { strcat(name, add);   strcat(name, " "); }
+	if (*fam)   { strcat(name, fam);   strcat(name, " "); }
+	if (*suf)     
+	  strcat(name, suf);
+	else
+	  if (*name)
+	    name[strlen(name) - 1] = 0;
+	
+	gtk_entry_set_text(GTK_ENTRY(ce->fn), name);
+	
+	g_free(name);
+}
+	
 void gnomecard_edit(GList *node)
 {
 	GnomePropertyBox *box;
 	GnomeCardEditor *ce;
 	GtkWidget *hbox, *hbox2, *vbox, *frame, *table;
 	GtkWidget *label, *entry, *align, *align2, *pix;
-	GtkWidget *radio1, *radio2;
+	GtkWidget *radio1, *radio2, *button;
 	GtkObject *adj;
 	Card *crd;
 	time_t tmp_time;
@@ -457,8 +488,16 @@ void gnomecard_edit(GList *node)
 	label = gtk_label_new(_("Formatted Name:"));
 	ce->fn = entry = my_gtk_entry_new(0, crd->fname.str);
 	my_connect(entry, "changed", box, &crd->fname.prop);
+	button = gtk_button_new_with_label(_("Take from Name"));
+ 	gtk_signal_connect_object(GTK_OBJECT(button), "clicked",
+				  GTK_SIGNAL_FUNC(gnome_property_box_changed),
+				  GTK_OBJECT(box));
+	gtk_signal_connect(GTK_OBJECT(button), "clicked",
+			   GTK_SIGNAL_FUNC(gnomecard_take_from_fname),
+			   ce);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 	
 	frame = gtk_frame_new(_("Name"));	
