@@ -19,6 +19,20 @@ Journals are displayed as html by the gtkhtml widget.  The
 generation of the html output has been abstracted so that
 it could be piped to anything (e.g. to a cgi-bin).
 
+Projects, Sub-projects, Tasks and Intervals
+-------------------------------------------
+An 'interval' is supposed to just be a record of a timer start & stop
+and not much more.  (see, however, 'interval fuzz' below).
+
+A 'task' is supposed to be just a text memo associated with some
+intervals.  Think of a task as a kind of a "diary entry": a place
+where you can write down what you did today.   You can't go back
+and restart old tasks because you can't go back and re-live yesterday.
+
+If you want to 'restart' a task, then what you should really do is to
+set up a set of sub-projects.  Projects & sub-projects can always be
+restarted: that is what a sub-projects are supposed to be. 
+
 
 All About Billing
 -----------------
