@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.0.4\n"
-"POT-Creation-Date: 2002-12-26 11:49+0200\n"
+"POT-Creation-Date: 2003-01-06 11:45+0000\n"
 "PO-Revision-Date: 2002-12-26 11:47+0200\n"
 "Last-Translator: Kostas Papadimas <pkst@gmx.net>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -1374,7 +1374,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 για το σύστημα αρχείων linux ή fat για το σύστημα αρχείων DOS."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1563
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1569
 msgid "Search for Files"
 msgstr "Αναζήτηση για Αρχεία"
 
@@ -1434,114 +1434,60 @@ msgstr "Ακολούθηση συμβολικών συνδέσμων"
 msgid "Include other filesystems"
 msgstr "Συμπεριλαμβάνει και άλλα συστήματα αρχείων."
 
-#: gsearchtool/gsearchtool.c:136
+#: gsearchtool/gsearchtool.c:397 gsearchtool/gsearchtool.c:823
+msgid "No files found"
+msgstr "Δε βρέθηκαν αρχεία"
+
+#: gsearchtool/gsearchtool.c:482
+msgid "Entry changed called for a non entry option!"
+msgstr "Η αλλαγή εισαγωγής καλέστηκε για επιλογή που δεν επιτρέπει εισαγωγή!"
+
+#: gsearchtool/gsearchtool.c:592
 msgid "Set the text of 'file is named'"
 msgstr "Ορισμός του κειμένου 'αρχείο ονομάζεται'"
 
-#: gsearchtool/gsearchtool.c:138
+#: gsearchtool/gsearchtool.c:593
 msgid "Set the text of 'look in folder'"
 msgstr "Καθορίστε το κείμενο στο 'αναζήτηση στο φάκελο'"
 
-#: gsearchtool/gsearchtool.c:140
+#: gsearchtool/gsearchtool.c:594
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Ταξινόμηση αρχείων σύμφωνα με τα ακόλουθα: όνομα, φάκελος. μέγεθος, τύπος, ή "
 "ημερομηνία"
 
-#: gsearchtool/gsearchtool.c:142
+#: gsearchtool/gsearchtool.c:595
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Καθορισμός σειράς ταξινόμησης σε φθίνουσα, η εξ ορισμού είναι αύξουσα"
 
-#: gsearchtool/gsearchtool.c:144
+#: gsearchtool/gsearchtool.c:596
 msgid "Automatically start a search"
 msgstr "Αυτόματη έναρξη μιας αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:146
-msgid "Select the 'Contains the text' constraint"
-msgstr "Επιλογή του περιορισμού 'Περιέχει το κείμενο"
-
-#: gsearchtool/gsearchtool.c:148
-msgid "Select the 'Date modified less than (days)' constraint"
-msgstr "Επιλογή του περιορισμού 'Ημερομηνία τροποποίησης λίγότερη από (μέρες)'"
-
-#: gsearchtool/gsearchtool.c:150
-msgid "Select the 'Date modified more than (days)' constraint"
-msgstr ""
-"Επιλογή του περιορισμού 'Ημερομηνία τροποποίησης μεγαλύτερη από (μέρες)'"
-
-#: gsearchtool/gsearchtool.c:152
-msgid "Select the 'Size at most (kilobytes)' constraint"
-msgstr "Επιλογή του περιορισμού 'Μέγιστο μέγεθος (kilobytes)'"
-
-#: gsearchtool/gsearchtool.c:154
-msgid "Select the 'Size at least (kilobytes)' constraint"
-msgstr "Επιλογή του περιορισμού 'Ελάχιστο μέγεθος (kilobytes)'"
-
-#: gsearchtool/gsearchtool.c:156
-msgid "Select the 'File is empty' constraint"
+#: gsearchtool/gsearchtool.c:600
+#, fuzzy, c-format
+msgid "Select the '%s' constraint"
 msgstr "Επιλογή του περιορισμού 'Το αρχείο είναι κενό'"
 
-#: gsearchtool/gsearchtool.c:158
-msgid "Select the 'Owned by user' constraint"
-msgstr "Επιλογή του περιορισμού 'Ανήκει στον χρήστη'"
-
-#: gsearchtool/gsearchtool.c:160
-msgid "Select the 'Owned by group' constraint"
-msgstr "Επιλογή του περιορισμού 'Ανήκει στην ομάδα'"
-
-#: gsearchtool/gsearchtool.c:162
-msgid "Select the 'Owner is unrecognized' constraint"
-msgstr "Επιλογή του περιορισμού 'Ο χρήστης δεν είναι αναγνωρίσιμος'"
-
-#: gsearchtool/gsearchtool.c:164
-msgid "Select the 'File is not named' constraint"
-msgstr "Επιλογή του περιορισμού 'Το αρχείο δεν ονομάζεται'"
-
-#: gsearchtool/gsearchtool.c:166
-msgid "Select the 'File matches regular expression' constraint"
-msgstr "Επιλογή του περιορισμού 'Το αρχείο ταίριάζει με κανονική έκφραση'"
-
-#: gsearchtool/gsearchtool.c:168
-msgid "Select the 'Follow symbolic links' constraint"
-msgstr "Επιλογή του περιορισμού 'Ακολούθηση συμβολικών συνδέσμων'"
-
-#: gsearchtool/gsearchtool.c:170
-msgid "Select the 'Include other filesystems' constraint"
-msgstr ""
-"Επιλογή του περιορισμού 'Να συμπεριλαμβάνονται και άλλα συστήματα αρχείων'"
-
-#: gsearchtool/gsearchtool.c:415
-msgid "No files found"
-msgstr "Δε βρέθηκαν αρχεία"
-
-#: gsearchtool/gsearchtool.c:500
-msgid "Entry changed called for a non entry option!"
-msgstr "Η αλλαγή εισαγωγής καλέστηκε για επιλογή που δεν επιτρέπει εισαγωγή!"
-
-#: gsearchtool/gsearchtool.c:684
+#: gsearchtool/gsearchtool.c:685
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Πέρασε μή έγκυρη επιλογή στην εντολή ταξινόμησης κατά."
 
-#: gsearchtool/gsearchtool.c:813
+#: gsearchtool/gsearchtool.c:814
 msgid "(aborted)"
 msgstr "(ακυρώθηκε)"
 
-#: gsearchtool/gsearchtool.c:822
-#, c-format
-msgid "No files found %s"
-msgstr "Δε βρέθηκαν αρχεία %s"
-
 #: gsearchtool/gsearchtool.c:827
-#, c-format
-msgid "One file found %s"
+#, fuzzy
+msgid "One file found"
 msgstr "Βρέθηκε ένα αρχείο %s"
 
-#: gsearchtool/gsearchtool.c:831
-#, c-format
-msgid "%d files found %s"
+#: gsearchtool/gsearchtool.c:830
+#, fuzzy, c-format
+msgid "%d files found"
 msgstr "βρέθηκαν %d αρχεία %s"
 
-#: gsearchtool/gsearchtool.c:924
+#: gsearchtool/gsearchtool.c:926
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -1549,7 +1495,7 @@ msgstr ""
 "Κατά την αναζήτηση αναφέρθηκαν τα ακόλουθα σφάλματα.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:928
+#: gsearchtool/gsearchtool.c:930
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1557,104 +1503,104 @@ msgstr ""
 "\n"
 "...Πάρα πολλά λόθη για εμφάνιση..."
 
-#: gsearchtool/gsearchtool.c:941
+#: gsearchtool/gsearchtool.c:943
 msgid "Search Errors"
 msgstr "Σφάλματα κατά την αναζήτηση"
 
-#: gsearchtool/gsearchtool.c:979 gsearchtool/gsearchtool.c:1003
+#: gsearchtool/gsearchtool.c:981 gsearchtool/gsearchtool.c:1005
 msgid "Search for Files Error"
 msgstr "Σφάλμα αναζήτησης αρχείων"
 
-#: gsearchtool/gsearchtool.c:1084
+#: gsearchtool/gsearchtool.c:1089
 msgid "Search Rule Value Entry"
 msgstr "Καταχώρηση Τιμής Κανόνα Αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1085
+#: gsearchtool/gsearchtool.c:1090
 msgid "Enter a value for search rule"
 msgstr "Εισάγετε μια τιμή για τον κανόνα αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1119
+#: gsearchtool/gsearchtool.c:1124
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Πατήστε για να Διαγράψετε τον '%s' Κανόνα"
 
-#: gsearchtool/gsearchtool.c:1174
+#: gsearchtool/gsearchtool.c:1179
 msgid "A_vailable options:"
 msgstr "Δια_θέσιμες επιλογές:"
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1192
 msgid "Search Rules Menu"
 msgstr "Μενού Κανόνων Αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1188
+#: gsearchtool/gsearchtool.c:1193
 msgid "Select a search rule from the menu"
 msgstr "Επιλέξτε ένα κανόνα αναζήτησης από το μενού"
 
-#: gsearchtool/gsearchtool.c:1219
+#: gsearchtool/gsearchtool.c:1225
 msgid "S_earch Results"
 msgstr "Απο_τελέσματα Αναζήτησης"
 
-#: gsearchtool/gsearchtool.c:1292
+#: gsearchtool/gsearchtool.c:1297
 msgid "Name"
 msgstr "Όνομα"
 
-#: gsearchtool/gsearchtool.c:1312
+#: gsearchtool/gsearchtool.c:1317
 msgid "Folder"
 msgstr "Φάκελος"
 
-#: gsearchtool/gsearchtool.c:1323
+#: gsearchtool/gsearchtool.c:1328
 msgid "Size"
 msgstr "Μέγεθος"
 
-#: gsearchtool/gsearchtool.c:1333
+#: gsearchtool/gsearchtool.c:1338
 msgid "Type"
 msgstr "Είδος"
 
-#: gsearchtool/gsearchtool.c:1343
+#: gsearchtool/gsearchtool.c:1348
 msgid "Date Modified"
 msgstr "Ημερομηνία Τροποποίησης"
 
-#: gsearchtool/gsearchtool.c:1382
+#: gsearchtool/gsearchtool.c:1385
 msgid "File is _named:"
 msgstr "Το αρχείο ο_νομάζεται:"
 
-#: gsearchtool/gsearchtool.c:1397 gsearchtool/gsearchtool.c:1398
+#: gsearchtool/gsearchtool.c:1400 gsearchtool/gsearchtool.c:1401
 msgid "File Name Entry"
 msgstr "Καταχώρηση Ονόματος Αρχείου"
 
-#: gsearchtool/gsearchtool.c:1397 gsearchtool/gsearchtool.c:1398
+#: gsearchtool/gsearchtool.c:1400 gsearchtool/gsearchtool.c:1401
 msgid "Enter the file name you want to search"
 msgstr "Εισάγετε το όνομα αρχείου που θέλετε να αναζητήσετε"
 
-#: gsearchtool/gsearchtool.c:1410
+#: gsearchtool/gsearchtool.c:1413
 msgid "_Look in folder:"
 msgstr "_Αναζήτηση στο φάκελο:"
 
-#: gsearchtool/gsearchtool.c:1416
+#: gsearchtool/gsearchtool.c:1419
 msgid "Browse"
 msgstr "Εξερεύνηση"
 
-#: gsearchtool/gsearchtool.c:1425 gsearchtool/gsearchtool.c:1426
+#: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
 msgid "Starting folder entry"
 msgstr "Καταχώρηση φάκελου έναρξης"
 
-#: gsearchtool/gsearchtool.c:1425 gsearchtool/gsearchtool.c:1426
+#: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
 msgid "Enter the folder name where you want to start the search"
 msgstr "Εισάγετε το όνομα του φακέλου από όπου θέλετε να ξεκινήσει η αναζήτηση"
 
-#: gsearchtool/gsearchtool.c:1442 gsearchtool/gsearchtool.c:1443
+#: gsearchtool/gsearchtool.c:1445 gsearchtool/gsearchtool.c:1446
 msgid "Additional Options"
 msgstr "Πρόσθετες Επιλογές"
 
-#: gsearchtool/gsearchtool.c:1487
+#: gsearchtool/gsearchtool.c:1491
 msgid "Click to Start the search"
 msgstr "Πατήστε για να Ξεκινήσετε την αναζήτηση"
 
-#: gsearchtool/gsearchtool.c:1488
+#: gsearchtool/gsearchtool.c:1492
 msgid "Click to Stop the search"
 msgstr "Πατήστε για να Διακόψετε την αναζήτηση"
 
-#: gsearchtool/gsearchtool.c:1559
+#: gsearchtool/gsearchtool.c:1565
 msgid "Cannot initialize bonobo."
 msgstr "Αδυναμία αρχικοποίησης bonobo."
 
@@ -1955,12 +1901,6 @@ msgstr "Αριθμός γραμμών:"
 msgid "Log Information"
 msgstr "Πληροφορίες καταγραφής"
 
-#: logview/info.c:161 logview/info.c:190 logview/info.c:197 logview/info.c:204
-#: logview/zoom.c:155
-#, c-format
-msgid "%s"
-msgstr "%s"
-
 #: logview/info.c:163 logview/zoom.c:157
 msgid "<No log loaded>"
 msgstr "<δεν φορτώθηκε καταγραφή>"
@@ -2257,6 +2197,51 @@ msgstr ""
 "Καθορίζει το αρχείο καταγραφής που θα ανοίγει κατά την εκκίνηση. Το εξ "
 "ορισμού είναι είτε μηνύματα /var/adm/ ή μηνύματα  /var/log/, ανάλογα με την "
 "διανομή σας."
+
+#~ msgid "Select the 'Contains the text' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Περιέχει το κείμενο"
+
+#~ msgid "Select the 'Date modified less than (days)' constraint"
+#~ msgstr ""
+#~ "Επιλογή του περιορισμού 'Ημερομηνία τροποποίησης λίγότερη από (μέρες)'"
+
+#~ msgid "Select the 'Date modified more than (days)' constraint"
+#~ msgstr ""
+#~ "Επιλογή του περιορισμού 'Ημερομηνία τροποποίησης μεγαλύτερη από (μέρες)'"
+
+#~ msgid "Select the 'Size at most (kilobytes)' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Μέγιστο μέγεθος (kilobytes)'"
+
+#~ msgid "Select the 'Size at least (kilobytes)' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Ελάχιστο μέγεθος (kilobytes)'"
+
+#~ msgid "Select the 'Owned by user' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Ανήκει στον χρήστη'"
+
+#~ msgid "Select the 'Owned by group' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Ανήκει στην ομάδα'"
+
+#~ msgid "Select the 'Owner is unrecognized' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Ο χρήστης δεν είναι αναγνωρίσιμος'"
+
+#~ msgid "Select the 'File is not named' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Το αρχείο δεν ονομάζεται'"
+
+#~ msgid "Select the 'File matches regular expression' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Το αρχείο ταίριάζει με κανονική έκφραση'"
+
+#~ msgid "Select the 'Follow symbolic links' constraint"
+#~ msgstr "Επιλογή του περιορισμού 'Ακολούθηση συμβολικών συνδέσμων'"
+
+#~ msgid "Select the 'Include other filesystems' constraint"
+#~ msgstr ""
+#~ "Επιλογή του περιορισμού 'Να συμπεριλαμβάνονται και άλλα συστήματα αρχείων'"
+
+#~ msgid "No files found %s"
+#~ msgstr "Δε βρέθηκαν αρχεία %s"
+
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #~ msgid "del"
 #~ msgstr "del"

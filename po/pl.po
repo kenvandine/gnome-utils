@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2002-12-15 22:28+0000\n"
+"POT-Creation-Date: 2003-01-06 11:45+0000\n"
 "PO-Revision-Date: 2002-07-15 13:47+0200\n"
 "Last-Translator: GNOME PL Team <translators@gnome.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -90,7 +90,7 @@ msgstr "Kalkulator GNOME"
 
 #: gcalc/gcalc.c:61
 #, fuzzy
-msgid "(C) 1998 Free Software Foundation"
+msgid "(C) 1998 Free Software Foundation, Inc."
 msgstr "(C) 1998,2002 the Free Software Foundation"
 
 #: gcalc/gcalc.c:62
@@ -1346,7 +1346,7 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1563
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1569
 msgid "Search for Files"
 msgstr "Wyszukiwanie plików"
 
@@ -1412,123 +1412,64 @@ msgstr "Podążanie za dowiązaniami symbolicznymi"
 msgid "Include other filesystems"
 msgstr "Bez przeszukiwania zamontowanych systemów plików"
 
-#: gsearchtool/gsearchtool.c:136
-msgid "Set the text of 'file is named'"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:138
-msgid "Set the text of 'look in folder'"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:140
-msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:142
-msgid "Set sort order to descending, the default is ascending"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:144
-msgid "Automatically start a search"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:146
-msgid "Select the 'Contains the text' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:148
-#, fuzzy
-msgid "Select the 'Date modified less than (days)' constraint"
-msgstr "Podążanie za dowiązaniami symbolicznymi"
-
-#: gsearchtool/gsearchtool.c:150
-#, fuzzy
-msgid "Select the 'Date modified more than (days)' constraint"
-msgstr "Podążanie za dowiązaniami symbolicznymi"
-
-#: gsearchtool/gsearchtool.c:152
-#, fuzzy
-msgid "Select the 'Size at most (kilobytes)' constraint"
-msgstr "Pasuje do wyrażenia regularnego"
-
-#: gsearchtool/gsearchtool.c:154
-#, fuzzy
-msgid "Select the 'Size at least (kilobytes)' constraint"
-msgstr "Pasuje do wyrażenia regularnego"
-
-#: gsearchtool/gsearchtool.c:156
-msgid "Select the 'File is empty' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:158
-msgid "Select the 'Owned by user' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:160
-msgid "Select the 'Owned by group' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:162
-msgid "Select the 'Owner is unrecognized' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:164
-msgid "Select the 'File is not named' constraint"
-msgstr ""
-
-#: gsearchtool/gsearchtool.c:166
-#, fuzzy
-msgid "Select the 'File matches regular expression' constraint"
-msgstr "Pasuje do wyrażenia regularnego"
-
-#: gsearchtool/gsearchtool.c:168
-#, fuzzy
-msgid "Select the 'Follow symbolic links' constraint"
-msgstr "Podążanie za dowiązaniami symbolicznymi"
-
-#: gsearchtool/gsearchtool.c:170
-#, fuzzy
-msgid "Select the 'Include other filesystems' constraint"
-msgstr "Pasuje do wyrażenia regularnego"
-
-#: gsearchtool/gsearchtool.c:415
+#: gsearchtool/gsearchtool.c:397 gsearchtool/gsearchtool.c:823
 msgid "No files found"
 msgstr "Nie odnaleziono plików"
 
-#: gsearchtool/gsearchtool.c:500
+#: gsearchtool/gsearchtool.c:482
 msgid "Entry changed called for a non entry option!"
 msgstr "Wywołano entry_changed dla elementu nie będącego elementem wejściowym!"
 
-#: gsearchtool/gsearchtool.c:684
+#: gsearchtool/gsearchtool.c:592
+msgid "Set the text of 'file is named'"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:593
+msgid "Set the text of 'look in folder'"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:594
+msgid "Sort files by one of the following: name, folder, size, type, or date"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:595
+msgid "Set sort order to descending, the default is ascending"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:596
+msgid "Automatically start a search"
+msgstr ""
+
+#: gsearchtool/gsearchtool.c:600
+#, fuzzy, c-format
+msgid "Select the '%s' constraint"
+msgstr "Podążanie za dowiązaniami symbolicznymi"
+
+#: gsearchtool/gsearchtool.c:685
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:813
+#: gsearchtool/gsearchtool.c:814
 msgid "(aborted)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:822
-#, fuzzy, c-format
-msgid "No files found %s"
-msgstr "Nie odnaleziono plików"
-
 #: gsearchtool/gsearchtool.c:827
-#, fuzzy, c-format
-msgid "One file found %s"
+#, fuzzy
+msgid "One file found"
 msgstr "Odnaleziono jeden plik"
 
-#: gsearchtool/gsearchtool.c:831
+#: gsearchtool/gsearchtool.c:830
 #, fuzzy, c-format
-msgid "%d files found %s"
+msgid "%d files found"
 msgstr "Odnaleziono %d plików"
 
-#: gsearchtool/gsearchtool.c:924
+#: gsearchtool/gsearchtool.c:926
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:928
+#: gsearchtool/gsearchtool.c:930
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1536,109 +1477,109 @@ msgstr ""
 "\n"
 "... Zbyt wiele błędów, aby je wyświetlić ..."
 
-#: gsearchtool/gsearchtool.c:941
+#: gsearchtool/gsearchtool.c:943
 #, fuzzy
 msgid "Search Errors"
 msgstr "Wyszukiwanie plików"
 
-#: gsearchtool/gsearchtool.c:979 gsearchtool/gsearchtool.c:1003
+#: gsearchtool/gsearchtool.c:981 gsearchtool/gsearchtool.c:1005
 #, fuzzy
 msgid "Search for Files Error"
 msgstr "Wyszukiwanie plików"
 
-#: gsearchtool/gsearchtool.c:1084
+#: gsearchtool/gsearchtool.c:1089
 msgid "Search Rule Value Entry"
 msgstr "Wejście na wartość reguły wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1085
+#: gsearchtool/gsearchtool.c:1090
 msgid "Enter a value for search rule"
 msgstr "Wprowadź wartość reguły wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1119
+#: gsearchtool/gsearchtool.c:1124
 #, fuzzy, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Kliknij, aby usunąć regułę"
 
-#: gsearchtool/gsearchtool.c:1174
+#: gsearchtool/gsearchtool.c:1179
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1192
 msgid "Search Rules Menu"
 msgstr "Menu reguł wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1188
+#: gsearchtool/gsearchtool.c:1193
 msgid "Select a search rule from the menu"
 msgstr "Wybierz z menu regułę wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1219
+#: gsearchtool/gsearchtool.c:1225
 msgid "S_earch Results"
 msgstr "_Wyniki wyszukiwania"
 
-#: gsearchtool/gsearchtool.c:1292
+#: gsearchtool/gsearchtool.c:1297
 msgid "Name"
 msgstr "Nazwa"
 
-#: gsearchtool/gsearchtool.c:1312
+#: gsearchtool/gsearchtool.c:1317
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:1323
+#: gsearchtool/gsearchtool.c:1328
 msgid "Size"
 msgstr "Rozmiar"
 
-#: gsearchtool/gsearchtool.c:1333
+#: gsearchtool/gsearchtool.c:1338
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1343
+#: gsearchtool/gsearchtool.c:1348
 msgid "Date Modified"
 msgstr "Data modyfikacji"
 
-#: gsearchtool/gsearchtool.c:1382
+#: gsearchtool/gsearchtool.c:1385
 #, fuzzy
 msgid "File is _named:"
 msgstr "Wyszukanie plików o _nazwach:"
 
-#: gsearchtool/gsearchtool.c:1397 gsearchtool/gsearchtool.c:1398
+#: gsearchtool/gsearchtool.c:1400 gsearchtool/gsearchtool.c:1401
 msgid "File Name Entry"
 msgstr "Wejście nazwy pliku"
 
-#: gsearchtool/gsearchtool.c:1397 gsearchtool/gsearchtool.c:1398
+#: gsearchtool/gsearchtool.c:1400 gsearchtool/gsearchtool.c:1401
 msgid "Enter the file name you want to search"
 msgstr "Podaj nazwę pliku, który chcesz odnaleźć"
 
-#: gsearchtool/gsearchtool.c:1410
+#: gsearchtool/gsearchtool.c:1413
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Rozpoczęcie _w folderze:"
 
-#: gsearchtool/gsearchtool.c:1416
+#: gsearchtool/gsearchtool.c:1419
 msgid "Browse"
 msgstr "Wybór katalogu"
 
-#: gsearchtool/gsearchtool.c:1425 gsearchtool/gsearchtool.c:1426
+#: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
 msgid "Starting folder entry"
 msgstr "Wejście na folder początkowy"
 
-#: gsearchtool/gsearchtool.c:1425 gsearchtool/gsearchtool.c:1426
+#: gsearchtool/gsearchtool.c:1428 gsearchtool/gsearchtool.c:1429
 msgid "Enter the folder name where you want to start the search"
 msgstr "Wprowadź nazwę folderu, w którym chcesz rozpocząć wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:1442 gsearchtool/gsearchtool.c:1443
+#: gsearchtool/gsearchtool.c:1445 gsearchtool/gsearchtool.c:1446
 #, fuzzy
 msgid "Additional Options"
 msgstr "Opcje monitorowania"
 
-#: gsearchtool/gsearchtool.c:1487
+#: gsearchtool/gsearchtool.c:1491
 msgid "Click to Start the search"
 msgstr "Kliknij, aby rozpocząć wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:1488
+#: gsearchtool/gsearchtool.c:1492
 msgid "Click to Stop the search"
 msgstr "Kliknij, aby zatrzymać wyszukiwanie"
 
-#: gsearchtool/gsearchtool.c:1559
+#: gsearchtool/gsearchtool.c:1565
 msgid "Cannot initialize bonobo."
 msgstr "Nie można zainicjować bonobo."
 
@@ -1721,42 +1662,42 @@ msgstr "Plik %s istnieje. Czy go nadpisać?"
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "Nie można zapisać pliku z wynikami."
 
-#: gsearchtool/gsearchtool-support.c:272
+#: gsearchtool/gsearchtool-support.c:284
 msgid "Expander Size"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:273
+#: gsearchtool/gsearchtool-support.c:285
 msgid "Size of the expander arrow"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:334
+#: gsearchtool/gsearchtool-support.c:346
 #, c-format
 msgid ""
 "GConf error:\n"
 "  %s"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:489
+#: gsearchtool/gsearchtool-support.c:501
 msgid "%Y%m%d%H%M%S"
 msgstr "%Y%m%d%H%M%S"
 
-#: gsearchtool/gsearchtool-support.c:520
+#: gsearchtool/gsearchtool-support.c:532
 msgid "today at %-I:%M %p"
 msgstr "dziś o %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:522
+#: gsearchtool/gsearchtool-support.c:534
 msgid "yesterday at %-I:%M %p"
 msgstr "wczoraj o %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:524 gsearchtool/gsearchtool-support.c:526
+#: gsearchtool/gsearchtool-support.c:536 gsearchtool/gsearchtool-support.c:538
 msgid "%m/%-d/%y, %-I:%M %p"
 msgstr "%-d/%m/%y, %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:651
+#: gsearchtool/gsearchtool-support.c:663
 msgid "link (broken)"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:656
+#: gsearchtool/gsearchtool-support.c:668
 #, c-format
 msgid "link to %s"
 msgstr ""
@@ -1772,10 +1713,10 @@ msgstr "Cesar Miquel (miquel@df.uba.ar)"
 #: logview/about.c:43
 #, fuzzy
 msgid ""
-"This  program  is  part of  the  GNOME  project.Logview comes with "
-"ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to "
-"redistribute it under the conditions of the GNU General Public Licence. The "
-"log icon is a courtesy of Tuomas Kuosmanen (a.k.a tigert)."
+"This program is part of the GNOME project. Logview comes with ABSOLUTELY NO "
+"WARRANTY. This is free software, and you are welcome to redistribute it "
+"under the conditions of the GNU General Public Licence. The log icon is a "
+"courtesy of Tuomas Kuosmanen (a.k.a tigert)."
 msgstr ""
 "Program ten jest częścią projektu GNOME dla Linuksa. Na program logview nie "
 "udziela się ABSOLUTNIE ŻADNEJ GWARANCJI. Jest to oprogramowanie darmowe, "
@@ -1935,12 +1876,6 @@ msgstr "Liczba wierszy:"
 #: logview/info.c:137
 msgid "Log Information"
 msgstr "Informacje o dzienniku"
-
-#: logview/info.c:161 logview/info.c:190 logview/info.c:197 logview/info.c:204
-#: logview/zoom.c:155
-#, c-format
-msgid "%s"
-msgstr "%s"
 
 #: logview/info.c:163 logview/zoom.c:157
 msgid "<No log loaded>"
@@ -2242,6 +2177,37 @@ msgid ""
 msgstr ""
 "Określa plik dziennika otwierany przy uruchamianiu. Domyślną wartością jest /"
 "var/adm/messages lub /var/log/messages, w zależności od używanej dystrybucji."
+
+#, fuzzy
+#~ msgid "Select the 'Date modified less than (days)' constraint"
+#~ msgstr "Podążanie za dowiązaniami symbolicznymi"
+
+#, fuzzy
+#~ msgid "Select the 'Date modified more than (days)' constraint"
+#~ msgstr "Podążanie za dowiązaniami symbolicznymi"
+
+#, fuzzy
+#~ msgid "Select the 'Size at most (kilobytes)' constraint"
+#~ msgstr "Pasuje do wyrażenia regularnego"
+
+#, fuzzy
+#~ msgid "Select the 'Size at least (kilobytes)' constraint"
+#~ msgstr "Pasuje do wyrażenia regularnego"
+
+#, fuzzy
+#~ msgid "Select the 'File matches regular expression' constraint"
+#~ msgstr "Pasuje do wyrażenia regularnego"
+
+#, fuzzy
+#~ msgid "Select the 'Include other filesystems' constraint"
+#~ msgstr "Pasuje do wyrażenia regularnego"
+
+#, fuzzy
+#~ msgid "No files found %s"
+#~ msgstr "Nie odnaleziono plików"
+
+#~ msgid "%s"
+#~ msgstr "%s"
 
 #~ msgid ""
 #~ "Client for MIT dictionary server.\n"
