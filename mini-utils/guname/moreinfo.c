@@ -336,11 +336,11 @@ void load_fsinfo()
         len = strlen (device_info_format) + (MAX_ITOA_LEN * 5);
         s = g_malloc(len);
         g_snprintf(s, len, device_info_format, 
-                   BLOCKS_TO_MB(fsusage.blocks),
-                   BLOCKS_TO_MB(fsusage.bavail), 
-                   BLOCKS_TO_MB(fsusage.bfree), 
-                   fsusage.files,
-                   fsusage.ffree);
+                   (long) BLOCKS_TO_MB(fsusage.blocks),
+                   (long) BLOCKS_TO_MB(fsusage.bavail), 
+                   (long) BLOCKS_TO_MB(fsusage.bfree), 
+                   (long) fsusage.files,
+                   (long) fsusage.ffree);
         fs_info[fs_numbers] = s;
 
         percent_full = g_malloc(sizeof(gdouble));
