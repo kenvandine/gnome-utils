@@ -785,7 +785,7 @@ static const gchar * scroll_text[] = {
 };
 
 static int nscroll_texts = sizeof (scroll_text) / sizeof (scroll_text[0]);
-static int scroll_text_widths[100] = { 0 };
+static int scroll_text_widths[200] = { 0 };
 static int cur_scroll_text = 0;
 static int cur_scroll_index = 0;
 

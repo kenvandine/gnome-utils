@@ -1,3 +1,19 @@
+1998-12-24  Martin Baulig  <martin@home-of-linux.org>
+
+	* build-authors.pl: Perl script to create the AUTHORS.h file.
+	Reads the CVSROOT/modules file to get everything that's in the
+	`gnome' CVS alias and fetches the AUTHORS file of all those
+	modules from CVS before creating the list.
+
+	Invoke this script with the name of a temp directory and pipe
+	its output through `sort -u' to create the AUTHORS.h file.
+
+	* AUTHORS.h: Recreated using my new build-authors.pl script and
+	edited a little bit by hand.
+
+	* guname.c: Small fix to allow more than 100 entires in the
+	authors list.
+
 1998-12-18  Havoc Pennington  <hp@pobox.com>
 
 	* moreinfo.c (fill_disk_page): add_with_viewport to scrolled
