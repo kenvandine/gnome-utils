@@ -374,6 +374,7 @@ main_app_set_font (MainApp *app, gchar *font)
         gtk_widget_modify_font (label, desc);
         list = list->next;
     }
+    pango_font_description_free (desc);
 }
 
 
