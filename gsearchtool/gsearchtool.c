@@ -1695,6 +1695,25 @@ save_results(GtkFileSelection *selector, gpointer user_data)
 	
 	filename = (gchar *)gtk_file_selection_get_filename(GTK_FILE_SELECTION(file_selector));
 	
+	if (access (filename, F_OK) == 0) {
+		GtkWidget *dialog;
+		gint response;
+		
+		dialog = gtk_message_dialog_new
+			(GTK_WINDOW (file_selector),
+			 0 /* flags */,
+			 GTK_MESSAGE_QUESTION,
+			 GTK_BUTTONS_YES_NO,
+			 _("File %s already exists. Overwrite?"),
+			 filename);
+			 
+		response = gtk_dialog_run (GTK_DIALOG (dialog));
+		
+		gtk_widget_destroy (GTK_WIDGET(dialog));
+		
+		if (response != GTK_RESPONSE_YES) return;
+	}
+	
 	if (fp = fopen(filename, "w")) {
 	
 		if (gtk_tree_model_get_iter_root(GTK_TREE_MODEL(store), &iter)) {
