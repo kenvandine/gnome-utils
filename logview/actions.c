@@ -778,9 +778,10 @@ edit_action_entry (Action *action)
   gtk_widget_show (action_record);
 
   /* Insert text into text widget */
-  gtk_text_buffer_set_text (gtk_text_view_get_buffer(GTK_TEXT_VIEW (text)),
-  			    action->description, 
-	  		    strlen (action->description));
+  if (action->description)
+     gtk_text_buffer_set_text (gtk_text_view_get_buffer(GTK_TEXT_VIEW (text)),
+  			       action->description, 
+	  		       strlen (action->description));
 }
 
 /* ----------------------------------------------------------------------
