@@ -43,7 +43,7 @@ gtt_LDADD = \
 	$(top_builddir)/intl/libintl.a			\
 	$(GTK_LIBS)					\
         $(X_LIBS) $(x_libs) $(INTLLIBS)			\
-	$(XPM_LIBS)
+	$(XPM_LIBS) $(DL_LIB)
 
 
 GTT_HELP_FILES = \
