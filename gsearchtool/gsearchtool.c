@@ -309,8 +309,13 @@ add_file_to_search_results (const gchar 	*file,
 	gchar *readable_size, *readable_date, *date;
 	gchar *utf8_base_name, *utf8_dir_name;
 	gchar *base_name, *dir_name;
+	GdkRectangle vis_rect;
 	
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), TRUE);
+	if (gtk_tree_view_get_headers_visible (GTK_TREE_VIEW(interface.tree)) == FALSE) {
+		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW(interface.tree), TRUE);
+	}
+	
+	gtk_tree_view_get_visible_rect (GTK_TREE_VIEW(interface.tree), &vis_rect);
 	
 	if (pixbuf != NULL) {
 		GdkPixbuf *scaled;
@@ -358,7 +363,12 @@ add_file_to_search_results (const gchar 	*file,
 			    COLUMN_DATE, date,
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
-			    
+
+	if (vis_rect.y == 0) {
+		/* we were at the top of the tree view, so stay at the top */ 
+		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), -1, vis_rect.y);
+	}
+	
 	gnome_vfs_file_info_unref (vfs_file_info);
 	g_object_unref (G_OBJECT(pixbuf));
 	g_free (base_name);
