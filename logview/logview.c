@@ -555,8 +555,9 @@ FileSelectOk (GtkWidget * w, GtkFileSelection * fs)
            }
            if (!numlogs) 
                gtk_widget_set_sensitive (log_menu[8].widget, TRUE); 
-
+           
 	       curlog = tl;
+	       curlog->first_time = TRUE; 
 		   loglist[numlogs] = tl;
 		   numlogs++;
 		   curlognum = numlogs - 1;

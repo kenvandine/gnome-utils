@@ -176,6 +176,7 @@ typedef struct
   gint current_line_no; /* indicates the line that is selected */
   gint total_lines; /* no of lines in the file */
   LogLine **lines; /* actual lines */
+  gboolean first_time;
   GtkTreePath *expand_paths[32];
 
   /* Monitor info */

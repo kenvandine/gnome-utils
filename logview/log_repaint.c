@@ -547,9 +547,10 @@ DrawLogLines (Log *current_log)
    }
  
    /* Expand the rows */
-   if (!current_log->expand_paths[0]) {
+   if (current_log->first_time) {
        path = gtk_tree_model_get_path (tree_model, &iter);
        gtk_tree_view_expand_row (GTK_TREE_VIEW (view), path, FALSE);
+       current_log->first_time = FALSE;
        gtk_tree_path_free (path);
    } else 
        for (i = 0; current_log->expand_paths[i]; ++i) 
@@ -587,6 +588,7 @@ InitPages ()
    numlogs = 0;
    for (i = 0; i < DEF_NUM_LOGS; i++) {
        curlog = OpenLogFile (user_prefs->logfile);
+       curlog->first_time = TRUE;
        if (curlog == NULL)
 	       continue;
        loglist[numlogs] = curlog;
