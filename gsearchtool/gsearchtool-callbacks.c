@@ -200,15 +200,10 @@ void
 add_constraint_cb (GtkWidget 	*widget, 
 		   gpointer 	data)
 {
-	GtkWidget *menu;
-	GtkWidget *item;
+	gint index;
 	
-	menu = gtk_option_menu_get_menu (GTK_OPTION_MENU(interface.constraint_menu));
-	item = gtk_menu_get_active (GTK_MENU(menu));
-	
-	if (GTK_WIDGET_SENSITIVE(item)) {
-		add_constraint (interface.selected_constraint, NULL, FALSE);
-	}
+	index = gtk_combo_box_get_active (GTK_COMBO_BOX (interface.constraint_menu));
+	add_constraint (index, NULL, FALSE);
 }
 
 void
@@ -252,13 +247,6 @@ constraint_update_info_cb (GtkWidget 	*widget,
 	
 	string = (gchar *)gtk_entry_get_text(GTK_ENTRY(widget));
 	update_constraint_info(opt, string);
-}
-
-void
-constraint_menu_item_activate_cb (GtkWidget  *widget, 
-                                  gpointer   data)
-{
-	interface.selected_constraint = (long)data;
 }
 
 void
