@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
-"PO-Revision-Date: 2005-01-07 22:24+0100\n"
+"POT-Creation-Date: 2005-01-23 03:55+0100\n"
+"PO-Revision-Date: 2005-01-23 03:56+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "Búsqueda en diccionario"
 
@@ -38,7 +38,7 @@ msgstr "Búsqueda en diccionario"
 msgid "Lookup words in an online dictionary"
 msgstr "Busca palabras en un diccionario en línea"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 msgid "_About"
 msgstr "A_cerca de"
@@ -92,32 +92,21 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Un cliente para el servidor de diccionario del MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Diccionario"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "Comprobando la ortografía..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "Corrección ortográfica terminada"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "No se encontró ninguna coincidencia"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 msgid "Connection error"
 msgstr "Error de conexión"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr "Imposible efectuar la operación solicitada."
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -125,175 +114,179 @@ msgstr ""
 "O el servidor que está usando no está disponible\n"
 "o no está conectado a Internet."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "Buscando la palabra..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "Búsqueda realizada"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "No se encuentra la cadena"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr "Imprime la definición de palabra"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "_Buscar:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "No se ha podido mostrar la ayuda"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "_Buscar palabra"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "Busca una palabra en el diccionario"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 msgid "_Print"
 msgstr "Im_primir"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr "Imprime la definición actual"
 
+#: gdictsrc/gdict-app.c:649
+msgid "_Close"
+msgstr "_Cerrar"
+
+#: gdictsrc/gdict-app.c:650
+msgid "Close the application"
+msgstr "Cierra la aplicación"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 msgid "_Find..."
 msgstr "_Buscar…"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 msgid "Find a word in the text"
 msgstr "Buscar una palabra en el texto"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 msgid "Find Ne_xt"
 msgstr "Buscar _siguiente"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr "Busca la siguiente aparición de la palabra"
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 msgid "P_references"
 msgstr "_Preferencias"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 msgid "Configure the application"
 msgstr "Configura la aplicación"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr "_Índice"
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr "Ver la ayuda para esta aplicación"
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 msgid "About this application"
 msgstr "Acerca de esta aplicación"
 
-#: gdictsrc/gdict-app.c:919
-msgid "_Close"
-msgstr "_Cerrar"
-
-#: gdictsrc/gdict-app.c:920
-msgid "Close the application"
-msgstr "Cierra la aplicación"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 msgid "On a Dictionary Server"
 msgstr "En un servidor de diccionario"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr "En un sitio web"
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 msgid "Cu_t"
 msgstr "Cor_tar"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "Corta la selección"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr "_Copiar"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "Copia la selección"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 msgid "_Paste"
 msgstr "_Pegar"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 msgid "Paste clipboard"
 msgstr "Pegar del portapapeles"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr "Seleccionar _todo"
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr "Selecciona todo"
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 msgid "_Spellings"
 msgstr "_Ortografías"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr "Ver ortografías alternativas"
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "_Palabra:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "Palabra"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "Introducir palabra"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "Introduzca una palabra o seleccione una de la siguiente lista"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "Buscar una palabra"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "Entrada de palabra de diccionario"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "Buscando la palabra..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "Búsqueda realizada"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "No se encontró ninguna coincidencia"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "No se encuentra la cadena"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr "Vista previa de la definición"
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:881 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr "Error al invocar la consulta"
 
@@ -385,6 +378,14 @@ msgstr "Nombre de la base de datos"
 msgid "Default Strategy"
 msgstr "Estrategia predeterminada"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "Comprobando la ortografía..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "Corrección ortográfica terminada"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "Servidor de diccionario"
@@ -425,8 +426,7 @@ msgstr ""
 
 #: gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
-msgstr ""
-"El número de puerto al cual conectarse. El puerto predeterminado es 2628."
+msgstr "El número de puerto al cual conectarse. El puerto predeterminado es 2628."
 
 #: gdictsrc/gdict.schemas.in.h:8
 msgid "The search strategy to use"
@@ -563,8 +563,7 @@ msgstr ""
 #: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
-msgstr ""
-"Permisos insuficientes para abrir el dispositivo de discos flexibles %s."
+msgstr "Permisos insuficientes para abrir el dispositivo de discos flexibles %s."
 
 #: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
 msgid ""
@@ -708,8 +707,7 @@ msgstr "Creando un sistema de archivos en el disco... Finalizado"
 
 #: gfloppy/src/gfloppy.c:518
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr ""
-"Comprobando si hay bloques defectuosos... (esto puede tardar un tiempo)"
+msgstr "Comprobando si hay bloques defectuosos... (esto puede tardar un tiempo)"
 
 #: gfloppy/src/gfloppy.c:523
 msgid "Error while checking the bad blocks."
@@ -848,8 +846,7 @@ msgstr "No se puede inicializar el dispositivo"
 
 #: gfloppy/src/main.c:308
 msgid "Unable to open any device, formatting cannot continue."
-msgstr ""
-"Imposible abrir cualquier dispositivo, no se puede continuar el formateo."
+msgstr "Imposible abrir cualquier dispositivo, no se puede continuar el formateo."
 
 #: gfloppy/src/main.c:311 gfloppy/src/main.c:314
 msgid "/dev/floppy/0 or /dev/fd0"
@@ -1021,8 +1018,7 @@ msgstr "Incluir borde"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:5
 msgid "Include the window manager border along with the screenshot"
-msgstr ""
-"Incluir el borde del gestor de ventanas junto con la captura de pantalla"
+msgstr "Incluir el borde del gestor de ventanas junto con la captura de pantalla"
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Web directory"
@@ -1036,6 +1032,10 @@ msgstr ""
 "No se encuentra el archivo de glade para el programa de captura de "
 "pantalla.\n"
 "Revise su instalación de gnome-panel"
+
+#: gnome-screenshot/screenshot-dialog.c:213
+msgid "Select a directory"
+msgstr "Seleccione un directorio"
 
 #: gnome-screenshot/screenshot-save.c:40
 #, c-format
@@ -1089,11 +1089,9 @@ msgstr "GnomeVFSXferProgressStatus %d desconocido"
 msgid "Find files, folders, and documents on your computer"
 msgstr "Busca archivos, carpetas y documentos en su equipo"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
-msgstr "Buscar archivos"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+msgid "Search for Files..."
+msgstr "Buscar archivos..."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
 msgid "Disable Quick Search"
@@ -1617,6 +1615,11 @@ msgid_plural "%d files found"
 msgstr[0] "%d archivo encontrado"
 msgstr[1] "%d archivos encontrados"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "Buscar archivos"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "¡Ha pedido un cambio para una casilla que no tiene opciones!"
@@ -1971,8 +1974,7 @@ msgstr "Calendario"
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr ""
-"¡No se puede abrir la base de datos exp-reg <%s>!. Ha fallado la apertura."
+msgstr "¡No se puede abrir la base de datos exp-reg <%s>!. Ha fallado la apertura."
 
 #: logview/desc_db.c:176
 #, c-format
@@ -2221,8 +2223,7 @@ msgstr "Abre el índice de la ayuda para el visor de registros de actividad"
 
 #: logview/logview.c:111
 msgid "Show the about dialog for the log viewer"
-msgstr ""
-"Muestra el diálogo «Acerca de» para el visor de registros de actividades"
+msgstr "Muestra el diálogo «Acerca de» para el visor de registros de actividades"
 
 #: logview/logview.c:117
 msgid "_Monitor"
@@ -2360,3 +2361,4 @@ msgstr "%B %e %X"
 
 #~ msgid "_Calendar"
 #~ msgstr "_Calendario"
+
