@@ -172,7 +172,7 @@ static void popup_main_dialog()
 
   d = gnome_dialog_new( _("Shutdown or Reboot"), GNOME_STOCK_BUTTON_OK,
 			GNOME_STOCK_BUTTON_CANCEL, NULL );
-  gnome_dialog_set_destroy( GNOME_DIALOG(d), TRUE );
+  gnome_dialog_set_close( GNOME_DIALOG(d), TRUE );
   /*  gnome_dialog_set_modal( GNOME_DIALOG(d) ); */
 
   notebook = gtk_notebook_new();

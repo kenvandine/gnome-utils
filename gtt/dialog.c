@@ -45,7 +45,7 @@ static void dialog_setup(GnomeDialog *dlg, GtkBox **vbox_return)
 	gtk_signal_connect(GTK_OBJECT(dlg), "delete_event",
 			   GTK_SIGNAL_FUNC(gtk_true), NULL);
 
-	gnome_dialog_set_destroy(dlg, TRUE);
+	gnome_dialog_set_close(dlg, TRUE);
 
 	if (vbox_return) *vbox_return = GTK_BOX(dlg->vbox);
 }
