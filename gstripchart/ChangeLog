@@ -10,6 +10,11 @@
 	Param_glob struct.  Also eliminated the evil params, chart_param,
 	and slider_param file-scope globals.
 
+1998-12-19  Herbert Valerio Riedel  <hvr@hvrlab.ml.org>
+
+	* gstripchart.c (update_values): Added explicit braces to
+	eliminate a warning about an ambiguous if-clause.
+
 1998-12-25  John Kodis  <kodis@jagunet.com>
 
 	* gstripchart.c (chart_timer_handler): Fake an exposure event to

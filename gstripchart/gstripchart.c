@@ -817,56 +817,61 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
     next_val_pos = pgp->new_val = 0;
 
   for (param_num = 0; param_num < pgp->params; param_num++)
-    if (pgp->parray[param_num]->active)
-      {
-	Param *p = pgp->parray[param_num];
-	double prev, val = 0;
-	FILE *pu = NULL;
-	char buf[1000];
+    {
+      if (pgp->parray[param_num]->active)
+	{
+	  Param *p = pgp->parray[param_num];
+	  double prev, val = 0;
+	  FILE *pu = NULL;
+	  char buf[1000];
 
-	if (p->filename)
-	  if (*p->filename == '|')
-	    pu = popen(p->filename+1, "r");
-	  else
-	    pu = fopen(p->filename, "r");
-	if (pu)
-	  {
-	    fgets(buf, sizeof(buf), pu);
-	    if (p->pattern)
-	      while (!ferror(pu) && !feof(pu) && !strstr(buf, p->pattern))
-		fgets(buf, sizeof(buf), pu);
-	    if (*p->filename == '|') pclose(pu); else fclose(pu);
-	  }
+	  if (p->filename)
+	    {
+	      if (*p->filename == '|')
+		pu = popen(p->filename+1, "r");
+	      else
+		pu = fopen(p->filename, "r");
+	    }
 
-	/* Copy now vals to last vals, update now vals, and compute a
-	   new param value based on the new now vals.  */
-	memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
-	split_and_extract(buf, p);
-	val = eval(
-	  p->eqn, p->eqn_src, pgp->t_diff,
+	  if (pu)
+	    {
+	      fgets(buf, sizeof(buf), pu);
+	      if (p->pattern)
+		while (!ferror(pu) && !feof(pu) && !strstr(buf, p->pattern))
+		  fgets(buf, sizeof(buf), pu);
+	      if (*p->filename == '|') pclose(pu); else fclose(pu);
+	    }
+
+	  /* Copy now vals to last vals, update now vals, and compute
+	     a new param value based on the new now vals.  */
+	  memcpy(p->last, p->now, p->vars * sizeof(*(p->last)));
+	  split_and_extract(buf, p);
+	  val = eval(
+	    p->eqn, p->eqn_src, pgp->t_diff,
 #ifdef HAVE_LIBGTOP
-	  &pgp->gtop,
+	    &pgp->gtop,
 #endif
-	  p->vars, p->last, p->now );
+	    p->vars, p->last, p->now );
 
-	/* Low-pass filter the new val, and add to the val history. */
-	prev = p->val[last_val_pos];
-	val = p->val[next_val_pos] = prev + pgp->lpf_const * (val - prev);
+	  /* Low-pass filter the new val, and add to the val history. */
+	  prev = p->val[last_val_pos];
+	  val = p->val[next_val_pos] = prev + pgp->lpf_const * (val - prev);
 
-	/* Update the min and max values. */
-	if (val < p->min) p->min = p->bot = val;
-	if (val > p->max)
-	  {
-	    p->max = val;
-	    if (val > p->top)
-	      {
-		p->top = cap(val);
-		if (slave_pgp)
-		  slave_pgp->parray[param_num]->top = p->top;
-		capped = 1;
-	      }
-	  }
-      }
+	  /* Update the min and max values. */
+	  if (val < p->min) p->min = p->bot = val;
+	  if (val > p->max)
+	    {
+	      p->max = val;
+	      if (val > p->top)
+		{
+		  p->top = cap(val);
+		  if (slave_pgp)
+		    slave_pgp->parray[param_num]->top = p->top;
+		  capped = 1;
+		}
+	    }
+	}
+    }
   return capped;
 }
 
@@ -1193,9 +1198,9 @@ GnomeUIInfo file_menu[] =
   },
 #endif
   {
-    GNOME_APP_UI_ITEM, N_("Exit"), N_("Terminate the stripchart program"), 
+    GNOME_APP_UI_ITEM, N_("E_xit"), N_("Terminate the stripchart program"), 
     exit_callback, NULL, NULL, 
-    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 0, 0, NULL
+    GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_EXIT, 'x', GDK_CONTROL_MASK, NULL
   },
   GNOMEUIINFO_END
 };
@@ -1224,7 +1229,7 @@ about_callback(void)
 GnomeUIInfo help_menu[] =
 {
   {
-    GNOME_APP_UI_ITEM, N_("About"), N_("Info about the striphart program"),
+    GNOME_APP_UI_ITEM, N_("_About"), N_("Info about the striphart program"),
     about_callback, NULL, NULL,
     GNOME_APP_PIXMAP_NONE, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL
   },
@@ -1235,8 +1240,8 @@ GnomeUIInfo help_menu[] =
 
 GnomeUIInfo mainmenu[] =
 {
-  GNOMEUIINFO_SUBTREE(N_("File"), file_menu),
-  GNOMEUIINFO_SUBTREE(N_("Help"), help_menu),
+  GNOMEUIINFO_SUBTREE(N_("_File"), file_menu),
+  GNOMEUIINFO_SUBTREE(N_("_Help"), help_menu),
   GNOMEUIINFO_END
 };
 
