@@ -6,5 +6,5 @@ docname = gcharmap
 lang = C
 omffile = gcharmap-C.omf
 sgml_ents =
-include $(top_srcdir)/sgmldocs.make
+include $(top_srcdir)/xmldocs.make
 dist-hook: app-dist-hook
