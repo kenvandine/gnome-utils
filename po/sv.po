@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2001-06-07 02:00+0200\n"
-"PO-Revision-Date: 2001-06-07 02:01+0200\n"
+"POT-Creation-Date: 2001-06-15 14:17+0200\n"
+"PO-Revision-Date: 2001-06-15 14:17+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -449,7 +449,7 @@ msgstr "Kunde inte tolka geometristrängen \"%s\""
 msgid "Specify the geometry of the window."
 msgstr "Ange fönstrets geometri."
 
-#: gdiskfree/gdiskfree.c:60 gtt/main.c:207 mini-utils/gless/gless.c:130
+#: gdiskfree/gdiskfree.c:60 gtt/main.c:231 mini-utils/gless/gless.c:130
 msgid "GEOMETRY"
 msgstr "GEOMETRI"
 
@@ -601,6 +601,7 @@ msgid "Enable"
 msgstr "Slå på"
 
 #: gsearchtool/gsearchtool.c:576 logview/actions.c:162
+#: meat-grinder/meat-grinder.c:583
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -620,11 +621,11 @@ msgstr "Lägg till"
 msgid "Show Command"
 msgstr "Visa kommando"
 
-#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:749
+#: gsearchtool/gsearchtool.c:666 gsearchtool/gsearchtool.c:759
 msgid "Start"
 msgstr "Starta"
 
-#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:750
+#: gsearchtool/gsearchtool.c:667 gsearchtool/gsearchtool.c:760
 msgid "Stop"
 msgstr "Stopp"
 
@@ -632,7 +633,7 @@ msgstr "Stopp"
 msgid "Nothing to locate"
 msgstr "Inget att hitta"
 
-#: gsearchtool/gsearchtool.c:728
+#: gsearchtool/gsearchtool.c:735
 msgid ""
 "This is an interface to locate.  If you type in a simple string it\n"
 "will be matched as a subset of the full path, and if you type\n"
@@ -642,35 +643,39 @@ msgstr ""
 "kommer den att jämföras med en delmängd av hela sökvägen, och om du skriver\n"
 "in en sträng med jokertecken, kommer den att jämföras med hela sökvägen."
 
-#: gsearchtool/gsearchtool.c:737
+#: gsearchtool/gsearchtool.c:744
 msgid "Locate file: "
 msgstr "Hitta fil: "
 
-#: gsearchtool/gsearchtool.c:771
+#: gsearchtool/gsearchtool.c:781
 msgid "Full find (find)"
 msgstr "Fullständig sökning (find)"
 
-#: gsearchtool/gsearchtool.c:773
+#: gsearchtool/gsearchtool.c:783
 msgid "Quick find (locate)"
 msgstr "Snabbsökning (locate)"
 
-#: gsearchtool/gsearchtool.c:794
+#: gsearchtool/gsearchtool.c:804
 msgid "The Gnome Search Tool"
 msgstr "Sökverktyget i Gnome"
 
-#: gsearchtool/gsearchtool.c:795
+#: gsearchtool/gsearchtool.c:805
 msgid "(C) 1998,2000 the Free Software Foundation"
 msgstr "© 1998,2000 Free Software Foundation"
 
-#: gsearchtool/gsearchtool.c:797
+#: gsearchtool/gsearchtool.c:807
 msgid "Frontend to the unix find/grep/locate commands"
 msgstr "Gränssnitt för unixkommandona find/grep/locate"
 
-#: gsearchtool/gsearchtool.c:855
+#: gsearchtool/gsearchtool.c:865
 msgid "Gnome Search Tool"
 msgstr "Gnome-sökverktyg"
 
-#: gsearchtool/outdlg.c:69
+#: gsearchtool/outdlg.c:51
+msgid "Cannot save file"
+msgstr "Kan inte spara filen"
+
+#: gsearchtool/outdlg.c:69 meat-grinder/meat-grinder.c:430
 msgid "Save Results"
 msgstr "Spara resultat"
 
@@ -682,15 +687,15 @@ msgstr "Felaktigt kommando"
 msgid "No command for this mime type"
 msgstr "Inget kommando för denna MIME-typ"
 
-#: gtt/app.c:117 gtt/app.c:223
+#: gtt/app.c:117 gtt/app.c:221
 msgid "no project selected"
 msgstr "inget projekt valt"
 
-#: gtt/app.c:212
+#: gtt/app.c:210
 msgid "00:00"
 msgstr "00.00"
 
-#: gtt/app.c:251 mini-utils/gless/gless.c:423
+#: gtt/app.c:249 mini-utils/gless/gless.c:423
 msgid ""
 "Couldn't understand geometry (position and size)\n"
 " specified on command line"
@@ -714,19 +719,24 @@ msgstr "Projekttitel"
 msgid "Description"
 msgstr "Beskrivning"
 
-#: gtt/log.c:64 gtt/log.c:216
+#: gtt/log.c:46
+#, c-format
+msgid "Cannot open logfile %s for append"
+msgstr "Kan inte öppna loggfilen %s för tillägg"
+
+#: gtt/log.c:69 gtt/log.c:227
 msgid "program started"
 msgstr "programmet startades"
 
-#: gtt/log.c:82
+#: gtt/log.c:87
 msgid "no description"
 msgstr "ingen beskrivning"
 
-#: gtt/log.c:208
+#: gtt/log.c:219
 msgid "program exited"
 msgstr "programmet avslutades"
 
-#: gtt/main.c:80
+#: gtt/main.c:98
 msgid ""
 "There seems to be another GTimeTracker running.\n"
 "Press OK to start GTimeTracker anyway, or press Cancel to quit."
@@ -734,11 +744,15 @@ msgstr ""
 "Du verkar redan köra en GTimeTracker.\n"
 "Klicka på OK för att starta ändå eller tryck Avbryt för att hoppa ur."
 
-#: gtt/main.c:124
+#: gtt/main.c:109
+msgid "Cannot create pid-file!"
+msgstr "Kan inte skapa pid-fil!"
+
+#: gtt/main.c:141
 msgid "Error"
 msgstr "Fel"
 
-#: gtt/main.c:125
+#: gtt/main.c:142
 msgid ""
 "An error occured while reading the configuration file.\n"
 "Shall I setup a new configuration?"
@@ -746,23 +760,23 @@ msgstr ""
 "Ett fel uppstod vid läsning av inställningsfilen.\n"
 "Ska jag skapa en ny uppsättning inställningar?"
 
-#: gtt/main.c:207
+#: gtt/main.c:231
 msgid "Specify geometry"
 msgstr "Ange geometri"
 
-#: gtt/main.c:209
+#: gtt/main.c:233
 msgid "Select a project on startup"
 msgstr "Välj ett projekt vid uppstart"
 
-#: gtt/main.c:209
+#: gtt/main.c:233
 msgid "PROJECT"
 msgstr "PROJEKT"
 
-#: gtt/menucmd.c:33 gtt/menucmd.c:161 gtt/menucmd.c:193
+#: gtt/menucmd.c:33 gtt/menucmd.c:163 gtt/menucmd.c:195
 msgid "Warning"
 msgstr "Varning"
 
-#: gtt/menucmd.c:34 gtt/menucmd.c:195
+#: gtt/menucmd.c:34 gtt/menucmd.c:197
 msgid "I could not write the configuration file!"
 msgstr "Jag kunde inte spara inställningsfilen!"
 
@@ -774,15 +788,15 @@ msgstr "Tidmätningsverktyg för GNOME"
 msgid "New Project..."
 msgstr "Nytt projekt..."
 
-#: gtt/menucmd.c:163
+#: gtt/menucmd.c:165
 msgid "I could not read the configuration file"
 msgstr "Jag kunde inte läsa om inställningsfilen"
 
-#: gtt/menucmd.c:177 gtt/toolbar.c:149
+#: gtt/menucmd.c:179 gtt/toolbar.c:149
 msgid "Reload Configuration File"
 msgstr "Läs om inställningsfilen"
 
-#: gtt/menucmd.c:178
+#: gtt/menucmd.c:180
 msgid ""
 "This will overwrite your current set of projects.\n"
 "Do you really want to reload the configuration file?"
@@ -838,7 +852,7 @@ msgstr "Visa statusrad"
 msgid "Show Table Header"
 msgstr "Visa tabellrubriker"
 
-#: gtt/options.c:223 gtt/options.c:537
+#: gtt/options.c:223 gtt/options.c:538
 msgid "Toolbar"
 msgstr "Knapprad"
 
@@ -927,15 +941,15 @@ msgid "Timeout in secs:"
 msgstr "Tidsgräns i sekunder:"
 
 # FIXME
-#: gtt/options.c:524
+#: gtt/options.c:525
 msgid "Misc"
 msgstr "Diverse"
 
-#: gtt/proj.c:463
+#: gtt/proj.c:462
 msgid "project %t started"
 msgstr "projektet %t startade"
 
-#: gtt/proj.c:466
+#: gtt/proj.c:465
 msgid "stopped project %t"
 msgstr "stoppade projektet %t"
 
@@ -947,35 +961,35 @@ msgstr "tom"
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: gtt/prop.c:174
+#: gtt/prop.c:175
 msgid "Project"
 msgstr "Projekt"
 
-#: gtt/prop.c:193
+#: gtt/prop.c:194
 msgid "Project Title:"
 msgstr "Projekttitel:"
 
-#: gtt/prop.c:206
+#: gtt/prop.c:207
 msgid "Project Description:"
 msgstr "Projektbeskrivning:"
 
-#: gtt/prop.c:219
+#: gtt/prop.c:220
 msgid "Project Time today:"
 msgstr "Projekttid idag:"
 
-#: gtt/prop.c:235 gtt/prop.c:273
+#: gtt/prop.c:236 gtt/prop.c:274
 msgid "hours"
 msgstr "timmar"
 
-#: gtt/prop.c:246 gtt/prop.c:284
+#: gtt/prop.c:247 gtt/prop.c:285
 msgid "mins"
 msgstr "minuter"
 
-#: gtt/prop.c:257 gtt/prop.c:295
+#: gtt/prop.c:258 gtt/prop.c:296
 msgid "secs"
 msgstr "sekunder"
 
-#: gtt/prop.c:261
+#: gtt/prop.c:262
 msgid "Project Time ever:"
 msgstr "Projekttid totalt:"
 
@@ -3082,27 +3096,27 @@ msgstr "EKunde inte skapa filsystem."
 msgid "MChecking for bad blocks... (this might take a while)"
 msgstr "MSöker efter trasiga block... (det kan ta ett tag)"
 
-#: gfloppy/src/main.c:186
+#: gfloppy/src/main.c:188
 msgid "The device to format"
 msgstr "Enheten som skall formateras"
 
-#: gfloppy/src/main.c:187
+#: gfloppy/src/main.c:189
 msgid "DEVICE"
 msgstr "ENHET"
 
 #. We do this to get around a bug in libglade.  Ideally we won't need
 #. * to do this in the future.
-#: gfloppy/src/main.c:218
+#: gfloppy/src/main.c:220
 msgid "Format"
 msgstr "Formatera"
 
 #. initialize our widgets
-#: gfloppy/src/main.c:223
+#: gfloppy/src/main.c:225
 #, c-format
 msgid "Formatting %s"
 msgstr "Formaterar %s"
 
-#: gfloppy/src/main.c:265
+#: gfloppy/src/main.c:267
 msgid "Format another floppy?"
 msgstr "Formatera en diskett till?"
 
@@ -3339,7 +3353,7 @@ msgstr "Inställningar..."
 msgid "Params..."
 msgstr "Parametrar..."
 
-#: exe-handler/gnome-exe-handler.c:43
+#: exe-handler/gnome-exe-handler.c:56
 #, c-format
 msgid ""
 "Executing arbitrary programs that you downloaded from the network might be "
@@ -3351,54 +3365,135 @@ msgstr ""
 "\n"
 "Är du säker på att du vill köra \"%s\"?"
 
-#: exe-handler/gnome-exe-handler.c:50
+#: exe-handler/gnome-exe-handler.c:63
 msgid "Could not access file permissions"
 msgstr "Kunde inte få tag i filrättigheter"
 
-#: exe-handler/gnome-exe-handler.c:55
+#: exe-handler/gnome-exe-handler.c:68
 #, c-format
 msgid "Could not execute the file `%s' due to a permission problem"
 msgstr "Kunde inte köra filen \"%s\" på grund av ett problem med rättigheter"
 
-#: exe-handler/gnome-exe-handler.c:71
+#: exe-handler/gnome-exe-handler.c:84
 #, c-format
 msgid "Failure at executing `%s'"
 msgstr "Misslyckades med att köra \"%s\""
 
-#: exe-handler/gnome-exe-handler.c:89
+#: exe-handler/gnome-exe-handler.c:103
 #, c-format
 msgid "It was not possible to open the file `%s'"
 msgstr "Kunde inte öppna filen \"%s\""
 
-#: exe-handler/gnome-exe-handler.c:98
+#: exe-handler/gnome-exe-handler.c:112
 #, c-format
 msgid "The file `%s' is empty"
 msgstr "Filen \"%s\" är tom"
 
-#: exe-handler/gnome-exe-handler.c:103
+#: exe-handler/gnome-exe-handler.c:117
 #, c-format
 msgid "There was an error. `%s' is empty"
 msgstr "Det uppstod ett fel. \"%s\" är tom"
 
-#: exe-handler/gnome-exe-handler.c:118
+#: exe-handler/gnome-exe-handler.c:132
 msgid "This is a library and can not be executed"
 msgstr "Detta är ett bibliotek och kan inte köras"
 
-#: exe-handler/gnome-exe-handler.c:124
+#: exe-handler/gnome-exe-handler.c:138
 msgid "The file is a core file and can not be executed"
 msgstr "Filen är en core-fil och kan inte köras"
 
-#: exe-handler/gnome-exe-handler.c:128 exe-handler/gnome-exe-handler.c:157
+#: exe-handler/gnome-exe-handler.c:142 exe-handler/gnome-exe-handler.c:176
 msgid "This is an unknown kind of executable"
 msgstr "Det här är en okänd typ av körbar fil"
 
-#: exe-handler/gnome-exe-handler.c:154
+#: exe-handler/gnome-exe-handler.c:172
 msgid ""
 "The executable is for a different platform and can not be executed on this "
 "system"
 msgstr ""
 "Den körbara filen är för en annan plattform och kan inte köras på detta "
 "system"
+
+#: meat-grinder/meat-grinder.c:182 meat-grinder/meat-grinder.c:185
+msgid "Cannot start the archive (tar) program"
+msgstr "Kan inte starta arkiveringsprogrammet (tar)"
+
+#: meat-grinder/meat-grinder.c:193
+msgid "Cannot run tar/gtar"
+msgstr "Kan inte köra tar/gtar"
+
+#: meat-grinder/meat-grinder.c:244
+msgid "Archive.tar.gz"
+msgstr "Arkiv.tar.gz"
+
+#: meat-grinder/meat-grinder.c:341
+msgid "The GNOME Archive Generator"
+msgstr "Arkivskapare för GNOME"
+
+#: meat-grinder/meat-grinder.c:344
+msgid "Drag files in to make archives"
+msgstr "Dra in filer för att skapa arkiv"
+
+#: meat-grinder/meat-grinder.c:403
+msgid "No filename selected"
+msgstr "Inget filnamn valt"
+
+#: meat-grinder/meat-grinder.c:406
+msgid "File exists, overwrite?"
+msgstr "Filen finns redan, skriv över?"
+
+#: meat-grinder/meat-grinder.c:426
+msgid "No items to archive"
+msgstr "Inga objekt att arkivera"
+
+#: meat-grinder/meat-grinder.c:518
+#, c-format
+msgid ""
+"Number of files: %d\n"
+"Nuber of folders: %d"
+msgstr ""
+"Antal filer: %d\n"
+"Antal mappar: %d"
+
+#: meat-grinder/meat-grinder.c:574
+msgid "Create archive..."
+msgstr "Skapa arkiv..."
+
+#: meat-grinder/meat-grinder.c:575
+msgid "Create a new archive from the selected items"
+msgstr "Skapa ett nytt arkiv med de markerade objekten"
+
+#: meat-grinder/meat-grinder.c:584
+msgid "Remove the selected item(s)"
+msgstr "Ta bort de markerade objekten"
+
+#: meat-grinder/meat-grinder.c:613
+msgid "GNOME Archive Generator"
+msgstr "Arkivskapare för GNOME"
+
+#: meat-grinder/meat-grinder.c:657
+msgid "Archive"
+msgstr "Arkiv"
+
+#: meat-grinder/meat-grinder.c:678
+msgid ""
+"Number of files: 0\n"
+"Number of folders: 0"
+msgstr ""
+"Antal filer: 0\n"
+"Antal mappar: 0"
+
+#: meat-grinder/meat-grinder.c:752
+msgid "Cannot find proper icons anywhere!"
+msgstr "Kan inte hitta ordentliga ikoner någonstans!"
+
+#: meat-grinder/meat-grinder.c:760
+msgid ""
+"Cannot find the archive (tar) program!\n"
+"This is the program used for creating archives."
+msgstr ""
+"Kan inte hitta arkiveringsprogrammet (tar)!\n"
+"Detta program används för att skapa arkiv."
 
 #~ msgid "Cancel"
 #~ msgstr "Avbryt"
