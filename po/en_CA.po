@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-24 16:29-0500\n"
-"PO-Revision-Date: 2005-01-23 12:11-0500\n"
+"POT-Creation-Date: 2005-01-25 10:58-0500\n"
+"PO-Revision-Date: 2005-01-25 12:11-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: English/Canada <adamw@FreeBSD.org>\n"
 "MIME-Version: 1.0\n"
@@ -712,9 +712,8 @@ msgid "File system _type:"
 msgstr "File system _type:"
 
 #: gfloppy/src/gfloppy2.glade.h:8
-#, fuzzy
 msgid "Filesystem Settings"
-msgstr "File system _type:"
+msgstr "Filesystem Settings"
 
 #: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
@@ -725,9 +724,8 @@ msgid "Floppy de_vice:"
 msgstr "Floppy de_vice:"
 
 #: gfloppy/src/gfloppy2.glade.h:12
-#, fuzzy
 msgid "Formatting Mode"
-msgstr "Default formatting mode"
+msgstr "Formatting Mode"
 
 #: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
@@ -743,7 +741,7 @@ msgstr "Linux Native (ext2)"
 
 #: gfloppy/src/gfloppy2.glade.h:16
 msgid "Physical Settings"
-msgstr ""
+msgstr "Physical Settings"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -1575,7 +1573,7 @@ msgstr[0] "%d file found"
 msgstr[1] "%d files found"
 
 #: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
-#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2716
 msgid "Search for Files"
 msgstr "Search for Files"
 
@@ -1666,101 +1664,138 @@ msgstr "Error parsing the search command."
 msgid "Error running the search command."
 msgstr "Error running the search command."
 
-#: gsearchtool/gsearchtool.c:1792
+#: gsearchtool/gsearchtool.c:1796
 #, c-format
-msgid "'%s' entry"
-msgstr "'%s' entry"
+msgid "Enter a text value for the \"%s\" search option."
+msgstr "Enter a text value for the \"%s\" search option."
 
-#: gsearchtool/gsearchtool.c:1793
-msgid "Enter a value for search rule"
-msgstr "Enter a value for search rule"
-
-#: gsearchtool/gsearchtool.c:1847
+#. Translators:  Below is a string displaying the search options name
+#. and unit value.  For example, "\"Date modified less than\" in days".
+#: gsearchtool/gsearchtool.c:1801
 #, c-format
-msgid "Click to Remove the '%s' Rule"
-msgstr "Click to Remove the '%s' Rule"
+msgid "\"%s\" in %s"
+msgstr "\"%s\" in %s"
 
-#: gsearchtool/gsearchtool.c:1939
+#: gsearchtool/gsearchtool.c:1803
+#, c-format
+msgid "Enter a value in %s for the \"%s\" search option."
+msgstr "Enter a value in %s for the \"%s\" search option."
+
+#: gsearchtool/gsearchtool.c:1862
+#, c-format
+msgid "Remove \"%s\""
+msgstr "Remove \"%s\""
+
+#: gsearchtool/gsearchtool.c:1863
+#, c-format
+msgid "Click to remove the \"%s\" search option."
+msgstr "Click to remove the \"%s\" search option."
+
+#: gsearchtool/gsearchtool.c:1956
 msgid "A_vailable options:"
 msgstr "A_vailable options:"
 
-#: gsearchtool/gsearchtool.c:1969
-msgid "Search Rules Menu"
-msgstr "Search Rules Menu"
+#: gsearchtool/gsearchtool.c:1985
+msgid "Available options"
+msgstr "Available options"
 
-#: gsearchtool/gsearchtool.c:1970
-msgid "Select a search rule from the menu"
-msgstr "Select a search rule from the menu"
+#: gsearchtool/gsearchtool.c:1986
+msgid "Select a search option from the drop-down list."
+msgstr "Select a search option from the drop-down list."
+
+#: gsearchtool/gsearchtool.c:1998
+msgid "Add search option"
+msgstr "Add search option"
 
 #: gsearchtool/gsearchtool.c:1999
+msgid "Click to add the selected available search option."
+msgstr "Click to add the selected available search option."
+
+#: gsearchtool/gsearchtool.c:2020
 msgid "S_earch results:"
 msgstr "S_earch results:"
 
-#: gsearchtool/gsearchtool.c:2081
+#: gsearchtool/gsearchtool.c:2056
+msgid "List View"
+msgstr "List View"
+
+#: gsearchtool/gsearchtool.c:2106
 msgid "Name"
 msgstr "Name"
 
-#: gsearchtool/gsearchtool.c:2101
+#: gsearchtool/gsearchtool.c:2126
 msgid "Folder"
 msgstr "Folder"
 
-#: gsearchtool/gsearchtool.c:2112
+#: gsearchtool/gsearchtool.c:2137
 msgid "Size"
 msgstr "Size"
 
-#: gsearchtool/gsearchtool.c:2122
+#: gsearchtool/gsearchtool.c:2147
 msgid "Type"
 msgstr "Type"
 
-#: gsearchtool/gsearchtool.c:2132
+#: gsearchtool/gsearchtool.c:2157
 msgid "Date Modified"
 msgstr "Date Modified"
 
-#: gsearchtool/gsearchtool.c:2500
+#: gsearchtool/gsearchtool.c:2525
 msgid "_Name contains:"
 msgstr "_Name contains:"
 
-#: gsearchtool/gsearchtool.c:2515 gsearchtool/gsearchtool.c:2516
-msgid "Enter the file name you want to search."
-msgstr "Enter the file name you want to search."
+#: gsearchtool/gsearchtool.c:2539 gsearchtool/gsearchtool.c:2540
+msgid "Enter a filename or partial filename with or without wildcards."
+msgstr "Enter a filename or partial filename with or without wildcards."
 
-#: gsearchtool/gsearchtool.c:2516
-msgid "Name Contains Entry"
-msgstr "Name Contains Entry"
+#: gsearchtool/gsearchtool.c:2540
+msgid "Name contains"
+msgstr "Name contains"
 
-#: gsearchtool/gsearchtool.c:2522
+#: gsearchtool/gsearchtool.c:2546
 msgid "_Look in folder:"
 msgstr "_Look in folder:"
 
-#: gsearchtool/gsearchtool.c:2528
+#: gsearchtool/gsearchtool.c:2552
 msgid "Browse"
 msgstr "Browse"
 
-#: gsearchtool/gsearchtool.c:2534
-msgid "Select the folder where you want to start the search."
-msgstr "Select the folder in which you want to start the search."
+#: gsearchtool/gsearchtool.c:2557
+msgid "Look in folder"
+msgstr "Look in folder"
 
-#: gsearchtool/gsearchtool.c:2545
+#: gsearchtool/gsearchtool.c:2557
+msgid "Select the folder or device from which you want to begin the search."
+msgstr "Select the folder or device from which you want to begin the search."
+
+#: gsearchtool/gsearchtool.c:2568
 msgid "Show more _options"
 msgstr "Show more _options"
 
-#: gsearchtool/gsearchtool.c:2555
+#: gsearchtool/gsearchtool.c:2577
 msgid "Show more options"
 msgstr "Show more options"
 
-#: gsearchtool/gsearchtool.c:2555
-msgid "Expands or collapses a list of search options."
-msgstr "Expands or collapses a list of search options."
+#: gsearchtool/gsearchtool.c:2577
+msgid "Click to expand or collapse the list of available options."
+msgstr "Click to expand or collapse the list of available options."
 
-#: gsearchtool/gsearchtool.c:2607
-msgid "Click to Start the search"
-msgstr "Click to Start the search"
+#: gsearchtool/gsearchtool.c:2601
+msgid "Click to display the help manual."
+msgstr "Click to display the help manual."
 
-#: gsearchtool/gsearchtool.c:2608
-msgid "Click to Stop the search"
-msgstr "Click to Stop the search"
+#: gsearchtool/gsearchtool.c:2609
+msgid "Click to close \"Search for Files\"."
+msgstr "Click to close \"Search for Files\"."
 
-#: gsearchtool/gsearchtool.c:2708
+#: gsearchtool/gsearchtool.c:2635
+msgid "Click to perform a search."
+msgstr "Click to perform a search."
+
+#: gsearchtool/gsearchtool.c:2636
+msgid "Click to stop a search."
+msgstr "Click to stop a search."
+
+#: gsearchtool/gsearchtool.c:2736
 msgid "Cannot initialize bonobo."
 msgstr "Cannot initialize bonobo."
 
@@ -2249,12 +2284,3 @@ msgstr "Entry Detail"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e %B %X"
-
-#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
-#~ msgstr "<span weight=\"bold\">Filesystem Settings</span>"
-
-#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
-#~ msgstr "<span weight=\"bold\">Formatting Mode</span>"
-
-#~ msgid "<span weight=\"bold\">Physical Settings</span>"
-#~ msgstr "<span weight=\"bold\">Physical Settings</span>"
