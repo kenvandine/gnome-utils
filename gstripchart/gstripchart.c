@@ -485,18 +485,22 @@ static double eval(
  */
 typedef struct
 {
-  char active;		/* set if this parameter should be displayed */
+  char active;		/* set if this parameter should be evaluated */
+  char is_led;		/* set if this is an LED display, rather than a plot */
   char id_char;		/* single-char parameter name abbreviation */
   char *ident;		/* paramater name */
-  char *color_name;	/* the name of the fg color for this parameter */
   char *filename;	/* the file to read this parameter from */
   char *pattern;	/* marks the line in the file for this paramater */
   char *eqn;		/* equation used to compute this paramater value */
   char *eqn_src;	/* where the eqn was defined, for error reporting */
   float hi, lo;		/* highest and lowest values expected */
   float top, bot;	/* highest and lowest display values */
+  char *color_name;	/* the name of the fg color for this parameter */
   GdkColor gdk_color;	/* the rgb values for the color */
-  GdkGC *gdk_gc;	/* FIX THIS:the graphics context entry for the color */
+  GdkGC *gdk_gc;	/* the graphics context entry for the color */
+  char *led_name[3];	/* the names of the fg colors for the LEDs */
+  GdkColor led_color[3];/* the rgb values for the LED colors */
+  GdkGC *led_gc[3];	/* the graphics context entries for the LED colors */
   int vars;		/* how many vars to read from the line in the file */
   double *last, *now;	/* the last and current vars, as enumerated above */
   float *val;		/* value history */
@@ -725,6 +729,7 @@ read_param_defns(Param_glob *pgp)
 		  p[params-1] = malloc(sizeof(*p[params-1]));
 		  p[params-1]->ident = strdup(val);
 		  p[params-1]->active = 1;
+		  p[params-1]->is_led = 0;
 		  p[params-1]->vars = 0;
 		  p[params-1]->id_char = '*';
 		  p[params-1]->pattern = NULL;
@@ -732,6 +737,9 @@ read_param_defns(Param_glob *pgp)
 		  p[params-1]->eqn = NULL;
 		  p[params-1]->eqn_src = NULL;
 		  p[params-1]->color_name = NULL;
+		  p[params-1]->led_name[0] =
+		  p[params-1]->led_name[1] =
+		  p[params-1]->led_name[2] = NULL;
 		  p[params-1]->hi = p[params-1]->top = 1.0;
 		  p[params-1]->lo = p[params-1]->bot = 0.0;
 		}
@@ -750,6 +758,29 @@ read_param_defns(Param_glob *pgp)
 		  p[params-1]->color_name = strdup(val);
 		  if (!gdk_color_parse(val, &p[params-1]->gdk_color))
 		    defns_error(fn, lineno, "unrecognized color: %s", val);
+		}
+	      else if (streq(key, "lights"))
+		{
+		  int n;
+		  Param *pp = p[params-1];
+		  char *t = strtok(val, ",");
+		  for (n = 0; t != NULL; n++, t = strtok(NULL, ","))
+		    if (n < 3)
+		      {
+			pp->led_name[n] = strdup(skipbl(t));
+			trimtb(pp->led_name[n]);
+			if (!gdk_color_parse(
+			  pp->led_name[n], &pp->led_color[n]))
+			  {
+			    defns_error(
+			      fn, lineno, "unrecognized color: %s", t);
+			  }
+		      }
+		  if (n != 3)
+		    defns_error(
+		      fn, lineno,
+		      "wrong number of LED colors: found %d, expected 3", n);
+		  pp->is_led = 1;
 		}
 	      else if (streq(key, "active"))
 		p[params-1]->active = yes_no(val);
@@ -908,17 +939,19 @@ update_values(Param_glob *pgp, Param_glob *slave_pgp)
 	  /* Copy now vals to last vals, update now vals, and compute
 	     a new param value based on the new now vals.  */
 	  memcpy(p->last, p->now, p->vars * sizeof(p->last[0]));
-	  split_and_extract(buf, p);
-	  val = eval(
-	    p->eqn, p->eqn_src, pgp->t_diff,
+	  if ((!p->pattern || strstr(buf, p->pattern))
+	      && p->vars <= split_and_extract(buf, p))
+	    {
+	      val = eval(
+		p->eqn, p->eqn_src, pgp->t_diff,
 #ifdef HAVE_LIBGTOP
-	    &pgp->gtop,
+		&pgp->gtop,
 #endif
-	    p->vars, p->last, p->now );
-
+		p->vars, p->last, p->now );
+	    }
 	  /* Low-pass filter the new val, and add to the val history. */
 	  prev = p->val[last_val_pos];
-	  val = p->val[next_val_pos] = prev + pgp->lpf_const * (val - prev);
+	  p->val[next_val_pos] = prev + pgp->lpf_const * (val - prev);
 	}
     }
 }
@@ -931,7 +964,7 @@ no_display(void)
 {
   while (1)
     {
-      usleep((int)(1e6 * chart_interval + 0.5));
+      usleep((int)(1e6 * chart_interval));
       update_values(&chart_glob, NULL);
     }
 }
@@ -946,7 +979,7 @@ numeric_with_ident(void)
 
   while (1)
     {
-      usleep((int)(1e6 * chart_interval + 0.5));
+      usleep((int)(1e6 * chart_interval));
       update_values(&chart_glob, NULL);
 
       for (p=0; p<chart_glob.params; p++)
@@ -976,10 +1009,10 @@ numeric_with_graph(void)
 
   while (1)
     {
-      usleep((int)(1e6 * chart_interval + 0.5));
+      usleep((int)(1e6 * chart_interval));
       update_values(&chart_glob, NULL);
 
-      for (p=0; p<chart_glob.params; p++)
+      for (p = 0; p < chart_glob.params; p++)
 	if (chart_glob.parray[p]->active)
 	  {
 	    float v = chart_glob.parray[p]->val[chart_glob.new_val];
@@ -1008,7 +1041,7 @@ readjust_top_for_width(int width)
       /* Find the largest value that'll be visible at this width. */
       v = chart_glob.new_val;
       t = chart_glob.parray[p]->val[v];
-      for (i=1; i<n; i++)
+      for (i = 1; i < n; i++)
 	{
 	  if (--v < 0)
 	    v = chart_glob.max_val - 1;
@@ -1044,24 +1077,31 @@ static GdkColormap *colormap;
 static gint
 config_handler(GtkWidget *widget, GdkEventConfigure *e, gpointer whence)
 {
-  int p, w = widget->allocation.width, h = widget->allocation.height;
+  int p, c, w = widget->allocation.width, h = widget->allocation.height;
 
   /* On the initial configuration event, get the window colormap and
      allocate a color in it for each parameter color. */
   if (colormap == NULL)
     {
       colormap = gdk_window_get_colormap(widget->window);
-      for (p=0; p<chart_glob.params; p++)
+      for (p = 0; p < chart_glob.params; p++)
 	{
-	  gdk_color_alloc(colormap, &chart_glob.parray[p]->gdk_color);
-	  chart_glob.parray[p]->gdk_gc = gdk_gc_new(widget->window);
-	  if (include_slider)
-	    slider_glob.parray[p]->gdk_gc = chart_glob.parray[p]->gdk_gc;
-	  gdk_gc_set_foreground(
-	    chart_glob.parray[p]->gdk_gc, &chart_glob.parray[p]->gdk_color);
-	  if (include_slider)
-	    gdk_gc_set_foreground(
-	      slider_glob.parray[p]->gdk_gc, &chart_glob.parray[p]->gdk_color);
+	  Param *cgp = chart_glob.parray[p];
+	  if (cgp->is_led)
+	    for (c = 0; c < 3; c++)
+	      {
+	      gdk_color_alloc(colormap, &cgp->led_color[c]);
+	      cgp->led_gc[c] = gdk_gc_new(widget->window);
+	      gdk_gc_set_foreground(cgp->led_gc[c], &cgp->led_color[c]);
+	      }
+	  else
+	    {
+	      gdk_color_alloc(colormap, &cgp->gdk_color);
+	      cgp->gdk_gc = gdk_gc_new(widget->window);
+	      gdk_gc_set_foreground(cgp->gdk_gc, &cgp->gdk_color);
+	      if (include_slider)
+		slider_glob.parray[p]->gdk_gc = cgp->gdk_gc;
+	    }
 	}
     }
 
@@ -1100,6 +1140,36 @@ overlay_tick_marks(GtkWidget *widget, int minor, int major)
 }
 
 /*
+ * overlay_status_box -- draws a box in the upper-left corner of the
+ * chart window. 
+ */
+static void
+overlay_status_box(GtkWidget *widget)
+{
+  int p, s=10, x=0, y=0;
+  for (p = 0; p < chart_glob.params; p++)
+    {
+      Param *cgp = chart_glob.parray[p];
+      if (cgp->is_led)
+	{
+	  float v = cgp->val[chart_glob.new_val];
+	  int c = v + 0.5; // (0.5 < v) + (1.5 < v);
+	  /* printf("%d: %s:\t%d, %g\n", p, cgp->ident, c, v); */
+	  if (c > 0)
+	    {
+	      /* gdk_draw_rectangle(
+		 widget->window, widget->style->black_gc, FALSE, x,y, s,s); */
+	      if (c > 3)
+		c = 3;
+	      gdk_draw_rectangle(
+		widget->window, cgp->led_gc[c-1], TRUE, x+1,y+1, s-1,s-1);
+	    }
+	  x += s;
+	}
+    }
+}
+
+/*
  * val2y -- scales a parameter value into a y coordinate value.
  */
 static int
@@ -1117,7 +1187,7 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
      window will hold.  Plot points from newest to oldest until we run
      out of data or the window is full. */
   for (p = chart_glob.params; p--; )
-    if (chart_glob.parray[p]->active)
+    if (chart_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
       {
 	float top = chart_glob.parray[p]->top;
 	int n = w < chart_glob.num_val ? w : chart_glob.num_val;
@@ -1142,6 +1212,7 @@ chart_expose_handler(GtkWidget *widget, GdkEventExpose *event)
     event->area.width, event->area.height);
 
   overlay_tick_marks(widget, minor_tick, major_tick);
+  overlay_status_box(widget);
 
   return FALSE;
 }
@@ -1174,7 +1245,7 @@ chart_timer_handler(GtkWidget *widget)
 	pixmap, widget->style->bg_gc[GTK_WIDGET_STATE(widget)],
 	TRUE, w-1, 0, 1, h);
       for (p = chart_glob.params; p--; )
-	if (chart_glob.parray[p]->active)
+	if (chart_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
 	  {
 	    float top = chart_glob.parray[p]->top;
 	    int i = chart_glob.new_val;
@@ -1188,6 +1259,7 @@ chart_timer_handler(GtkWidget *widget)
 	widget->window, widget->style->fg_gc[GTK_WIDGET_STATE(widget)], 
 	pixmap, 0,0, 0,0, w,h);
       overlay_tick_marks(widget, minor_tick, major_tick);
+      overlay_status_box(widget);
     }
   return TRUE;
 }
@@ -1199,7 +1271,7 @@ slider_redraw(GtkWidget *widget)
   GdkGC *bg = widget->style->bg_gc[GTK_WIDGET_STATE(widget)];
   gdk_draw_rectangle(widget->window, bg, TRUE, 0,0, w,h);
   for (p = slider_glob.params; p--; )
-    if (slider_glob.parray[p]->active)
+    if (slider_glob.parray[p]->active && !chart_glob.parray[p]->is_led)
       {
 	GdkPoint tri[3];
 	int y = val2y(
@@ -1650,8 +1722,6 @@ gtk_graph(void)
 static int
 proc_arg(int opt, const char *arg)
 {
-  /*  printf("proc_arg: opt=%c (0x%02x), arg=%s\n", isgraph(c)?c:'.', opt, arg); */
-
   switch (opt)
     {
     case 'f': config_file = strdup(arg); break;
