@@ -1,5 +1,5 @@
 #!/bin/sh
-#Version: 1.2.2
+#Version: 1.2.3
 
 PACKAGE="gnome-utils"
 
@@ -26,7 +26,9 @@ diff POTFILES.in POTFILES.in.missing -u0 | grep '^+' |grep -v '^+++'|grep -v '^@
 
 if [ -s POTFILES.in.missing ]; then
 
-diff POTFILES.ignore POTFILES.in.missing -u0 | grep '^+' |grep -v '^+++'|grep -v '^@@' > POTFILES.in.missing
+sort -d POTFILES.ignore -o POTFILES.tmp
+diff POTFILES.tmp POTFILES.in.missing -u0 | grep '^+' |grep -v '^+++'|grep -v '^@@' > POTFILES.in.missing
+rm POTFILES.tmp
 
 echo && echo "Here are the results:"
 echo && cat POTFILES.in.missing
