@@ -1,3 +1,19 @@
+2000-07-30  Adrian Johnston
+
+	* Major code rewrite and cleanup.  Wrote a set of hooks with an api
+	for converting any permission granting util into the "gsu-suid"
+	executable.  This was formerly provided by gsu-helper.c.  Provided
+	a general purpose function for a client to call the suid code.  This
+	is useful for writing any admin tool that shouldn't run as root,
+	but wants to call a command as such.  
+
+	Providing gsu-suid will require patching the local su/sudo/whatever.
+	This is a Good Thing as it puts responsibility for something this
+	serious where it belongs: the distribution.  We don't just build
+	a suid executable that people will start using without looking at.
+
+	* Wrote a libglade interface.
+
 2000-02-27  Vince Hodges  <vhodges@home.com>
 
 	* gsu-lib.c (fill_command_args): Added function to fill in args array.

@@ -1,65 +1,38 @@
-This utility is included in the GNOME 1.0 release, but it has not yet
-been security audited and the GUI is not yet written.
+Adrian Johnston Sun Aug 6 2000
 
-It won't get build by default.
+	Before you begin:
 
-February 24, 1999
-Martin Baulig <martin@home-of-linux.org>
+	The Red-Hat patch has only been tested to compile on my Debian
+	box.  Sorry.
 
------------------------------------------------------------------------------
+	The CORBA server code needs a little more conversion work.
 
-The following files are taken from sh-utils 1.16:
+	THIS IS A DEVELOPMENT VERSION OF THE SOFTWARE.	DO NOT USE
+	WITHOUT AUDITING YOUR IMPLEMENTATION.
 
-	gsu-helper.c
-	xmalloc.c
-	xstrdup.c
-	system.h
 
-There is a `sh_utils' branch in CVS which contains the unchanged source from
-sh_utils, the latest version is also tagged `sh_utils_1_16'.
+	How it works:
 
-This means you can run a cvs diff against the `sh_utils' branch to get all
-changes I made.
+	This package doesn't build the suid code right now.  That takes a
+	custom patch to your local su.c (or sudo with a little more work).
 
-February 10, 1999
-Martin
+	gsu_call_suid (in gsu-gui-api.c) forks and execs gsu-suid (some
+	su patched to use gsu-suid-api.c).  The calling convention
+	for gsu-suid should be the same as su (-c command username).
+	A message and password pipe are set up to gsu-suid so that the
+	password can be read, and if anything is written to the message
+	pipe it winds up in an error dialog that the user has to confirm.
+	Read the gsu-*-api.[hc] files, they are short and sweet.
 
------------------------------------------------------------------------------
+	libglade interface written.
 
-How it works:
+	Check the ChangeLog for a list of revisions.
 
-gsu creates two sets of pipes - a password pipe and a message pipe.
+Martin Baulig <martin@home-of-linux.org> February 24, 1999
 
-The number of the password pipe's input fd and the number of the
-message pipe's output fd are passed to gsu-helper as the last two
-command line arguments.
+	This utility is included in the GNOME 1.0 release, but it has
+	not yet been security audited and the GUI is not yet written.
 
-In gsu-helper, helper_init () checks whether there are enough command
-line arguments, decrement argc by two and sets passwd_fd and message_fd
-from the last two arguments. After that the original command line parsing
-code can be used.
-
-When using standard UNIX passwords (no PAM) we call helper_read_password ()
-to read the password from the password pipe and then close that pipe.
-
-With PAM, it's a little bit complicated since PAM insists on reading
-standard input. So we first dup () stdin to saved_stdin_fd and stderr
-to saved_stderr_fd, then dup2 () the passwd_fd to stdin and /dev/null
-to stderr, call pam_authenticate () and restore stdin/stderr.
-
-This needs to be security audited before we can use it.
-
-1999-02-10  Martin Baulig  <martin@home-of-linux.org>
-
-	* gsu-helper.c (passwd_fd): This is the number of an open file
-	descriptor which we use to read the password from.
-	(message_fd): This is the number of an open file descriptor which
-	we use to pass a message to our parent.
-	(helper_abort): Abort on fatal errors.
-	(helper_io_error): Print an error message to stderr and abort.
-	(helper_error): This is a modified error () that passes the error
- 	text to our parent.
-	(helper_read_password): If not using PAM, we use this function to
-	read the password.
-	(correct_password): Read the password from the password_fd.
-
+	It won't get build by default.
+	
+[ Remander of README was obsoleted. ]

@@ -4,7 +4,7 @@ INCLUDES = 			\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\" \
 	$(GNOME_INCLUDEDIR)
 
-bin_PROGRAMS = gsu-helper gsu-test gsu-test-server gsu-server
+bin_PROGRAMS = gsu-test-server gsu-server
 
 EXTRA_PROGRAMS = gsu
 
@@ -25,17 +25,8 @@ BUILT_SOURCES = \
 	$(CORBA_GENERATED)
 
 gsu_SOURCES = \
-	gsu.c
-
-gsu_helper_SOURCES = \
-	gsu-helper.c		\
-	xmalloc.c		\
-	xstrdup.c
-
-gsu_test_SOURCES = \
-	gsu-lib.c		\
-	gsu-lib.h		\
-	gsu-test.c
+	gsu.c		\
+	gsu-gui-api.c
 
 gsu_test_server_SOURCES = \
 	$(CORBA_GENERATED)	\
@@ -48,14 +39,6 @@ gsu_server_SOURCES = \
 	gsu-impl.h		\
 	gsu-lib.c		\
 	gsu-lib.h
-
-gsu_helper_LDADD = \
-	$(PAM_LIBS)
-
-gsu_test_LDADD = \
-	$(GNOME_LIBDIR)		\
-	$(GNOMEUI_LIBS)		\
-	$(INTLLIBS)
 
 gsu_test_server_LDADD = \
 	$(GNOME_LIBDIR)		\

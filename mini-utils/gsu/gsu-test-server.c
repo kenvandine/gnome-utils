@@ -1,6 +1,5 @@
-#include <gsu-lib.h>
 #include <libgnorba/gnorba.h>
-#include <gsu.h>
+#include <gsu-gui-api.h>
 
 static gchar *user = NULL;
 
