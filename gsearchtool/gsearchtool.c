@@ -673,7 +673,6 @@ handle_popt_args (void)
 	if (PoptArgument.name != NULL) {
 		gtk_entry_set_text (GTK_ENTRY(gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry))),
 				    g_locale_to_utf8 (PoptArgument.name, -1, NULL, NULL, NULL));
-		gtk_widget_set_sensitive (interface.find_button, TRUE);
 	}
 	if (PoptArgument.path != NULL) {
 		gtk_entry_set_text (GTK_ENTRY(gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry))),
