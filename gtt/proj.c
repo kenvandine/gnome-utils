@@ -855,7 +855,7 @@ gtt_project_timer_start (GttProject *proj)
 	{
 		task = gtt_task_new();
 		proj->task_list = g_list_prepend (NULL, task);
-		task->memo = g_strdup (_("New Task"));
+		gtt_task_set_memo (task, _("New Task"));
 	}
 
 	/* By definition, the current task is the one at the head 
@@ -932,7 +932,7 @@ gtt_project_timer_stop (GttProject *proj)
 	ival->running = FALSE;
 
 	/* do not record zero-length or very short intervals */
-	if (proj->min_interval >= (ival->start - ival->stop))
+	if (proj->min_interval >= (ival->stop - ival->start))
 	{
 		task->interval_list = g_list_remove (task->interval_list, ival);
 		g_free (ival);
