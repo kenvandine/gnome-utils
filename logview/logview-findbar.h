@@ -20,23 +20,6 @@
 #ifndef __LOG_FINDBAR_H__
 #define __LOG_FINDBAR_H__
 
-#include "logview.h"
-#include <gtk/gtk.h>
-
-typedef enum {
-    YELP_WINDOW_FIND_PREV = 1,
-    YELP_WINDOW_FIND_NEXT
-} LogviewFindAction;
-
-typedef struct _SearchIter SearchIter;
-
-struct _SearchIter {
-	const char *pattern;
-	GtkTreePath *found_path;
-	GtkTreePath *current_path;
-	int comparison;
-	gboolean forward;
-};
 void logview_findbar_populate (LogviewWindow *window, GtkWidget *widget);
 
 #endif /* __LOG_FINDBAR_H__ */

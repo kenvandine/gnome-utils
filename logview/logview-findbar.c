@@ -20,10 +20,23 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include "logview.h"
-#include "logview-findbar.h"
 
-static
-gboolean
+typedef enum {
+    LOGVIEW_FIND_PREV = 1,
+    LOGVIEW_FIND_NEXT
+} LogviewFindAction;
+
+typedef struct _SearchIter SearchIter;
+
+struct _SearchIter {
+	const char *pattern;
+	GtkTreePath *found_path;
+	GtkTreePath *current_path;
+	int comparison;
+	gboolean forward;
+};
+
+static gboolean
 logview_tree_model_search_iter_foreach (GtkTreeModel *model, GtkTreePath *path,
 					GtkTreeIter *iter, gpointer data)
 {
@@ -179,7 +192,7 @@ logview_findbar_action (LogviewWindow *window, LogviewFindAction action, gboolea
 {
 	logview_findbar_save_settings (window);
 	return (logview_findbar_find (window, window->find_string, 
-				      (action == YELP_WINDOW_FIND_NEXT) ? TRUE: FALSE, keep_current));
+				      (action == LOGVIEW_FIND_NEXT) ? TRUE: FALSE, keep_current));
 }
 
 static void
@@ -190,7 +203,7 @@ logview_findbar_entry_activate_cb (GtkEditable *editable, gpointer data)
 	if (!window->curlog)
 		return;
 
-	if (!logview_findbar_action (window, YELP_WINDOW_FIND_NEXT, FALSE)) {
+	if (!logview_findbar_action (window, LOGVIEW_FIND_NEXT, FALSE)) {
 		gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), FALSE);
 		gtk_widget_set_sensitive (GTK_WIDGET (window->find_prev), TRUE);
 	} else {
@@ -207,7 +220,7 @@ logview_findbar_entry_changed_cb (GtkEditable *editable,
 	if (!window->curlog)
 		return;
 	
-	if (!logview_findbar_action (window, YELP_WINDOW_FIND_NEXT, TRUE)) {
+	if (!logview_findbar_action (window, LOGVIEW_FIND_NEXT, TRUE)) {
 		gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), FALSE);
 		gtk_widget_set_sensitive (GTK_WIDGET (window->find_prev), TRUE);
 	} else {
@@ -222,7 +235,7 @@ logview_findbar_clicked_cb (GtkWidget  *widget,
     g_return_if_fail (GTK_IS_TOOL_ITEM (widget));
 
     if (GTK_TOOL_ITEM (widget) == window->find_next) {
-	    if (!logview_findbar_action (window, YELP_WINDOW_FIND_NEXT, FALSE)) {
+	    if (!logview_findbar_action (window, LOGVIEW_FIND_NEXT, FALSE)) {
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), FALSE);
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_prev), TRUE);
 	} else {
@@ -230,7 +243,7 @@ logview_findbar_clicked_cb (GtkWidget  *widget,
 	}
     }
     else if (GTK_TOOL_ITEM (widget) == window->find_prev) {
-	    if (!logview_findbar_action (window, YELP_WINDOW_FIND_PREV, FALSE)) {
+	    if (!logview_findbar_action (window, LOGVIEW_FIND_PREV, FALSE)) {
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), TRUE);
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_prev), FALSE);
 	} else {

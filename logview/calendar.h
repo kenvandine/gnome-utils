@@ -21,14 +21,6 @@
 #define __LOG_CALENDAR_H__
 
 void CalendarMenu (LogviewWindow *window);
-void calendar_month_changed (GtkWidget *widget, LogviewWindow *window);
 CalendarData* init_calendar_data (LogviewWindow *window);
-static void calendar_day_selected (GtkWidget *widget, LogviewWindow *window);
-static void calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window);
-static void close_calendar (GtkWidget * widget, int arg, gpointer client_data);
-static DateMark* find_prev_mark (CalendarData*);
-static DateMark* find_next_mark (CalendarData*);
-static DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
-static DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
 
 #endif /* __LOG_CALENDAR_H__ */

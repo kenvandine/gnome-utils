@@ -23,6 +23,15 @@
 #include "logview.h"
 #include "calendar.h"
 
+static void calendar_day_selected (GtkWidget *widget, LogviewWindow *window);
+static void calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window);
+static void close_calendar (GtkWidget * widget, int arg, gpointer client_data);
+static DateMark* find_prev_mark (CalendarData*);
+static DateMark* find_next_mark (CalendarData*);
+static DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
+static DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
+static void calendar_month_changed (GtkWidget *widget, LogviewWindow *window);
+
 /* ----------------------------------------------------------------------
    NAME:          CalendarMenu
    DESCRIPTION:   Display the calendar.
@@ -169,7 +178,7 @@ init_calendar_data (LogviewWindow *window)
    DESCRIPTION:   User changed the month in the calendar.
    ---------------------------------------------------------------------- */
 
-void
+static void
 calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
 {
   GtkCalendar *calendar;
