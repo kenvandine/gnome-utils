@@ -18,7 +18,7 @@ if FALSE
 extras = gnome-find
 endif
 
-SUBDIRS = po intl macros \
+SUBDIRS = po intl macros idl \
 	gcalc ghex gsearchtool $(gdiskfree) $(gstripchart) gtt \
 	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog $(extras)
 
