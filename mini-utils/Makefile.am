@@ -3,8 +3,8 @@ idetool = idetool
 endif
 
 if FALSE
-gsu = gsu
+gsu = gsu gpenguin
 endif
 
 SUBDIRS = gshutdown guname gw gnome-run grun gless $(idetool) \
-	gpenguin gfontsel gcolorsel $(gsu)
+	gfontsel gcolorsel $(gsu)
