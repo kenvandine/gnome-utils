@@ -3,6 +3,6 @@ idetool = idetool
 endif
 
 SUBDIRS = gshutdown guname gw gnome-run grun gless $(idetool) \
-	gpenguin gfontsel
+	gpenguin gfontsel gcolorsel
 
 
