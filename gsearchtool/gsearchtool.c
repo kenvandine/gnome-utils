@@ -322,7 +322,7 @@ make_find_cmd (const char *start_dir)
 			}
 		}
 	}
-	g_string_append (cmdbuf, "-print0 ");
+	g_string_append (cmdbuf, "-print ");
 
 	return g_string_free(cmdbuf, FALSE);
 }
@@ -833,7 +833,7 @@ run_command(GtkWidget *w, gpointer data)
 		gtk_widget_show(buttons[0]);
 		gtk_widget_hide(buttons[1]);
 
-		really_run_command(cmd, '\0', &find_running, find_tree, find_model, &find_iter);
+		really_run_command(cmd, '\n', &find_running, find_tree, find_model, &find_iter);
 		
 		gtk_widget_set_sensitive(buttons[1], TRUE);
 		gtk_widget_hide(buttons[0]);

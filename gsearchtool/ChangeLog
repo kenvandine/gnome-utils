@@ -1,5 +1,11 @@
 2002-02-21  Bastien Nocera  <hadess@hadess.net>
 
+	* gsearchtool.c: (make_find_cmd), (run_command): use -print
+	instead of -print0 (patch by dennis_cranston@yahoo.com)
+	Should fix problems on Solaris, still works on Linux
+
+2002-02-21  Bastien Nocera  <hadess@hadess.net>
+
 	* gsearchtool.c: (add_file_to_list_store), (really_run_command):
 	cast the filesize to gdouble to avoid warnings, and look for sh
 	in the path rather than using hardcoded /bin/sh path
