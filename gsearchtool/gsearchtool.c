@@ -1468,7 +1468,7 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 {
 	SearchConstraint *constraint = g_new(SearchConstraint,1);
 	GtkWidget *widget;
-	
+
 	if (show_constraint == TRUE) {
 		if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == FALSE) {
 			g_signal_emit_by_name (G_OBJECT(interface.checkbutton), "clicked", 0);
@@ -1476,11 +1476,15 @@ add_constraint (gint constraint_id, gchar *value, gboolean show_constraint)
 		}
 	} 
 	
-	interface.geometry.min_height += 35; 
-	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), 
-				       GTK_WIDGET(interface.main_window),
-				       &interface.geometry, GDK_HINT_MIN_SIZE);
+	interface.geometry.min_height += 35;
 	
+	if (GTK_WIDGET_VISIBLE (interface.additional_constraints) == TRUE) {
+		gtk_window_set_geometry_hints (GTK_WINDOW (interface.main_window), 
+		                               GTK_WIDGET (interface.main_window),
+		                               &interface.geometry, 
+		                               GDK_HINT_MIN_SIZE);
+	}
+		
 	constraint->constraint_id = constraint_id;
 	set_constraint_info_defaults (constraint);
 	set_constraint_gconf_boolean (constraint->constraint_id, TRUE);
@@ -2055,8 +2059,8 @@ main (int 	argc,
 	GtkWidget    *window;
 
 	global_gconf_client = NULL;
-	interface.geometry.min_height = 310;
-	interface.geometry.min_width  = 422;
+	interface.geometry.min_height = MINIMUM_WINDOW_HEIGHT;
+	interface.geometry.min_width  = MINIMUM_WINDOW_WIDTH;
 
 	/* initialize the i18n stuff */
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);

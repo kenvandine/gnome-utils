@@ -34,6 +34,9 @@
 #define GTK_DISABLE_DEPRECATED
 #define GNOME_DISABLE_DEPRECATED
 
+#define MINIMUM_WINDOW_WIDTH   422
+#define MINIMUM_WINDOW_HEIGHT  310
+
 #ifdef __cplusplus
 extern "C" {
 #pragma }

@@ -117,9 +117,22 @@ click_check_button_cb (GtkWidget	*widget,
 {
 	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)) == TRUE) {
 		gtk_widget_show (interface.additional_constraints);
+		gtk_window_set_geometry_hints (GTK_WINDOW (interface.main_window), 
+		                               GTK_WIDGET (interface.main_window),
+		                               &interface.geometry, 
+	                                       GDK_HINT_MIN_SIZE);
 	} 
 	else {
+		GdkGeometry 		default_geometry;
+		
+		default_geometry.min_height = MINIMUM_WINDOW_HEIGHT;
+		default_geometry.min_width  = MINIMUM_WINDOW_WIDTH;
+		
 		gtk_widget_hide (interface.additional_constraints);
+		gtk_window_set_geometry_hints (GTK_WINDOW (interface.main_window), 
+		                               GTK_WIDGET (interface.main_window),
+		                               &default_geometry, 
+		                               GDK_HINT_MIN_SIZE);
 	}
 }
 
