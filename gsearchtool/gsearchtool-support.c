@@ -48,7 +48,6 @@
 #define C_STANDARD_STRFTIME_CHARACTERS "aAbBcdHIjmMpSUwWxXyYZ"
 #define C_STANDARD_NUMERIC_STRFTIME_CHARACTERS "dHIjmMSUwWyY"
 #define BINARY_EXEC_MIME_TYPE      "application/x-executable-binary"
-#define ICON_THEME_DIRECTORY_ICON  "gnome-fs-directory"
 #define ICON_THEME_EXECUTABLE_ICON "gnome-fs-executable"
 
 /* START OF THE CDDB FUNCTIONS */
@@ -682,11 +681,8 @@ get_file_icon_with_mime_type (const gchar *filename,
 	gchar *icon_path = NULL;
 	int base_size;
 
-	if (g_file_test (filename, G_FILE_TEST_IS_DIR) == TRUE) {
-		icon_name = g_strdup (ICON_THEME_DIRECTORY_ICON);
-	} 
-	else if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE) == TRUE) &&
-		 (g_ascii_strcasecmp (mimetype, "application/x-executable-binary") == 0)) {
+	if ((g_file_test (filename, G_FILE_TEST_IS_EXECUTABLE) == TRUE) &&
+	    (g_ascii_strcasecmp (mimetype, "application/x-executable-binary") == 0)) {
 		icon_name = g_strdup (ICON_THEME_EXECUTABLE_ICON);
 	}
 	else {
