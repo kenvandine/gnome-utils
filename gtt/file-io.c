@@ -31,6 +31,7 @@
 #include "err-throw.h"
 #include "file-io.h"
 #include "plug-in.h"
+#include "prefs.h"
 #include "proj.h"
 #include "proj_p.h"
 #include "toolbar.h"
@@ -335,9 +336,9 @@ gtt_load_config (const char *fname)
         config_command_null = gnome_config_get_string(GTT"Actions/NullCommand");
         config_logfile_use = gnome_config_get_bool(GTT"LogFile/Use=false");
         config_logfile_name = gnome_config_get_string(GTT"LogFile/Filename");
-	config_logfile_str = gnome_config_get_string(GTT"LogFile/Entry");
-	if (!config_logfile_str)
-		config_logfile_str = g_strdup(_("project %t started"));
+	config_logfile_start = gnome_config_get_string(GTT"LogFile/Entry");
+	if (!config_logfile_start)
+		config_logfile_start = g_strdup(_("project %t started"));
 	config_logfile_stop = gnome_config_get_string(GTT"LogFile/EntryStop");
 	if (!config_logfile_stop)
 		config_logfile_stop = g_strdup(_("stopped project %t"));
@@ -520,8 +521,8 @@ gtt_save_config(const char *fname)
                 gnome_config_set_string(GTT"LogFile/Filename", config_logfile_name);
         else
                 gnome_config_clean_key(GTT"LogFile/Filename");
-	if (config_logfile_str)
-		gnome_config_set_string(GTT"LogFile/Entry", config_logfile_str);
+	if (config_logfile_start)
+		gnome_config_set_string(GTT"LogFile/Entry", config_logfile_start);
 	else
 		gnome_config_set_string(GTT"LogFile/Entry", "");
 	if (config_logfile_stop)

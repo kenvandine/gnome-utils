@@ -22,6 +22,7 @@
 
 #include "err-throw.h"
 #include "gtt.h"
+#include "proj.h"
 #include "xml-gtt.h"
 
 

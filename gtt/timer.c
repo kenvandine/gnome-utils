@@ -25,6 +25,8 @@
 #include "dialog.h"
 #include "gtt.h"
 #include "idle-timer.h"
+#include "log.h"
+#include "prefs.h"
 #include "proj.h"
 
 

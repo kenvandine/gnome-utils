@@ -32,8 +32,6 @@
 #include <time.h>
 #endif /* TIME_WITH_SYS_TIME */
 
-#include "proj.h"
-
 
 #ifdef DEBUG
 #define APP_NAME "GTimeTracker DEBUG"
@@ -56,47 +54,10 @@ gboolean timer_is_running (void);
 extern int config_idle_timeout;
 
 
-/* options.c */
-
-void options_dialog(void);
-extern int config_show_secs;
-extern int config_show_statusbar;
-extern int config_show_clist_titles;
-extern int config_show_subprojects;
-extern int config_show_tb_icons;
-extern int config_show_tb_texts;
-extern int config_show_tb_tips;
-extern int config_show_tb_new;
-extern int config_show_tb_file;
-extern int config_show_tb_ccp;
-extern int config_show_tb_journal;
-extern int config_show_tb_prop;
-extern int config_show_tb_timer;
-extern int config_show_tb_pref;
-extern int config_show_tb_help;
-extern int config_show_tb_exit;
-
-
-/* log.c */
-
-void log_proj(GttProject *proj);
-void log_start(void);
-void log_exit(void);
-void log_endofday(void);
-
-
 /* app.c */
 
 extern GtkWidget *glist, *window;
 extern GtkWidget *status_bar;
-
-extern char *config_command;
-extern char *config_command_null;
-extern char *config_logfile_name;
-extern char *config_logfile_str;
-extern char *config_logfile_stop;
-extern int config_logfile_use;
-extern int config_logfile_min_secs;
 
 /* true if command line over-rides geometry */
 extern gboolean geom_size_override;

@@ -24,6 +24,7 @@
 #include "cur-proj.h"
 #include "menucmd.h"
 #include "menus.h"
+#include "prefs.h"
 #include "proj_p.h"
 #include "props-proj.h"
 #include "util.h"

@@ -34,6 +34,7 @@
 #include "err-throw.h"
 #include "file-io.h"
 #include "gtt.h"
+#include "log.h"
 #include "menus.h"
 #include "menucmd.h"
 #include "shorts.h"		/* SMH 2000-03-22: connect_short_cuts() */

@@ -19,9 +19,9 @@
 #ifndef __MENUCMD_H__
 #define __MENUCMD_H__
 
+#include "proj.h"
 
 extern GttProject *cutted_project;
-
 
 void quit_app(GtkWidget *, gpointer);
 void about_box(GtkWidget *, gpointer);

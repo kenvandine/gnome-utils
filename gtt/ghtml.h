@@ -16,10 +16,10 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#include "config.h"
-
 #ifndef __GTT_GHTML_H__
 #define __GTT_GHTML_H__
+
+#include "proj.h"
 
 /* GHTML == guile-parsed html.  These routines will read in html
  * files with embedded scheme code, evaluate the scheme, and output 

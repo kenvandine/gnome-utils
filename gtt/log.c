@@ -22,7 +22,7 @@
 #include <stdlib.h>
 
 #include "cur-proj.h"
-#include "gtt.h"
+#include "prefs.h"
 #include "proj.h"
 
 #define CAN_LOG ((config_logfile_name!=NULL)&&(config_logfile_use))
@@ -79,7 +79,7 @@ build_log_entry(const char *format, GttProject *proj)
 	int sss;
 
 	if (!format)
-		format = config_logfile_str;
+		format = config_logfile_start;
 	if (!proj)
 		return g_strdup(_("program started"));
 	if ((!format) || (!format[0]))
@@ -165,7 +165,7 @@ do_log_proj (time_t t, GttProject *proj, gboolean start)
 	char *s;
 
 	if (start) {
-		s = build_log_entry (config_logfile_str, proj);
+		s = build_log_entry (config_logfile_start, proj);
 	} else /*stop*/ {
 		s = build_log_entry (config_logfile_stop, proj);
 	}

@@ -17,8 +17,8 @@ gtt_SOURCES = 		\
 	menucmd.c	\
 	menus.c		\
 	menus.h		\
-	options.c	\
 	plug-in.c	\
+	prefs.c		\
 	proj.c		\
 	props-invl.c	\
 	props-proj.c	\
@@ -40,8 +40,10 @@ noinst_HEADERS = 	\
 	gtt.h		\
 	idle-timer.h	\
 	journal.h	\
+	log.h		\
 	menucmd.h	\
 	plug-in.h	\
+	prefs.h		\
 	proj.h		\
 	proj_p.h	\
 	props-invl.h	\

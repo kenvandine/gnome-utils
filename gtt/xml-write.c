@@ -22,6 +22,7 @@
 
 #include "err-throw.h"
 #include "gtt.h"
+#include "proj.h"
 #include "xml-gtt.h"
 
 static xmlNodePtr gtt_project_list_to_dom_tree (GList *list);

@@ -27,6 +27,7 @@
 #include "file-io.h"
 #include "gtt.h"
 #include "menucmd.h"
+#include "prefs.h"
 #include "proj.h"
 #include "props-proj.h"
 #include "xml-gtt.h"
@@ -429,7 +430,7 @@ menu_toggle_timer(GtkWidget *w, gpointer data)
 void
 menu_options(GtkWidget *w, gpointer data)
 {
-	options_dialog();
+	prefs_dialog_show();
 }
 
 

@@ -25,6 +25,7 @@
 #include "gtt.h"
 #include "journal.h"
 #include "menucmd.h"
+#include "prefs.h"
 #include "toolbar.h"
 
 
