@@ -21,6 +21,8 @@
 #define TREE_WIDTH 400
 #define TREE_HEIGHT 320
 
+#define FNAME 0
+
 #define MY_FREE(a) if (a) g_free (a)
 #define MY_STRLEN(x) (x?strlen(x):0)
 #define MY_STRDUP(x) (*x?g_strdup(x):NULL)
@@ -175,6 +177,69 @@ void gnomecard_init_defaults(void)
 	gnomecard_find_back = gnome_config_get_bool("/GnomeCard/find/back=False");
 	gnomecard_find_str = gnome_config_get_string("/GnomeCard/find/str=");
 	gnomecard_fname = gnome_config_get_string("/GnomeCard/file/open=");
+}
+
+void gnomecard_set_changed(gboolean val)
+{
+	gnomecard_changed = val;
+	gtk_widget_set_sensitive(tb_save, val);
+	gtk_widget_set_sensitive(menu_save, val);
+}
+
+void gnomecard_scroll_tree(GList *node)
+{
+	GtkCTreeNode *tree_node;
+	
+	tree_node = ((Card *) node->data)->user_data;
+
+	gtk_ctree_moveto(crd_tree, tree_node, 0, 0, 0);
+	gtk_ctree_select(crd_tree, tree_node);
+}
+
+int gnomecard_cmp_fnames(const void *crd1, const void *crd2)
+{
+	return strcmp((* (Card **) crd1)->fname.str, (*(Card **) crd2)->fname.str);
+}
+
+void gnomecard_sort_cards(GtkWidget *w, gpointer data)
+{
+	int (*compar)(const void *, const void *);
+	GList *l;
+	Card **array, *curr;
+	guint i, len, criteria;
+	
+	criteria = (guint) data;
+	curr = curr_crd->data;
+	
+	switch (criteria) {
+	 case FNAME:
+		compar = gnomecard_cmp_fnames;
+		break;
+	}
+	
+	len = g_list_length(crds);
+	array = g_malloc(sizeof(Card *) * len);
+	i = 0;
+	for (l = crds; l; l = l->next)
+		array[i++] = l->data;
+	
+	qsort(array, len, sizeof(Card *), compar);
+	
+	i = 0;
+	gtk_clist_freeze(GTK_CLIST(crd_tree));
+	for (l = crds; l; l = l->next, i++) {
+		if (curr == array[i])
+			curr_crd = l;
+		
+		l->data = array[i];
+		gtk_ctree_move(crd_tree, array[i]->user_data, NULL, NULL);
+	}
+	gtk_clist_thaw(GTK_CLIST(crd_tree));
+	
+	gnomecard_scroll_tree(curr_crd);
+	gnomecard_set_changed(TRUE);
+	
+	g_free(array);
 }
 
 void gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
@@ -624,23 +689,6 @@ void gnomecard_set_edit_del(gboolean state)
 	gtk_widget_set_sensitive(menu_del, state);
 	gtk_widget_set_sensitive(tb_find, state);
 	gtk_widget_set_sensitive(menu_find, state);
-}
-
-void gnomecard_set_changed(gboolean val)
-{
-	gnomecard_changed = val;
-	gtk_widget_set_sensitive(tb_save, val);
-	gtk_widget_set_sensitive(menu_save, val);
-}
-
-void gnomecard_scroll_tree(GList *node)
-{
-	GtkCTreeNode *tree_node;
-	
-	tree_node = ((Card *) node->data)->user_data;
-
-	gtk_ctree_moveto(crd_tree, tree_node, 0, 0, 0);
-	gtk_ctree_select(crd_tree, tree_node);
 }
 
 /* I'm using collapse and expand to avoid ctree_remove SIGSEGV */
@@ -2260,7 +2308,11 @@ void gnomecard_init(void)
 			   GTK_SIGNAL_FUNC(gnomecard_tree_selected), NULL);
 	gtk_ctree_set_line_style (crd_tree, GTK_CTREE_LINES_SOLID);
 	gtk_ctree_set_reorderable (crd_tree, FALSE);
-	gtk_clist_column_titles_passive(GTK_CLIST(crd_tree));
+	gtk_clist_column_title_active(GTK_CLIST(crd_tree), 0);
+	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(crd_tree)->column->button),
+										 "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_cards),
+										 (gpointer) FNAME);
+	gtk_clist_column_title_passive(GTK_CLIST(crd_tree), 1);
 	gtk_clist_set_policy(GTK_CLIST(crd_tree),
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_widget_set_usize (GTK_WIDGET(crd_tree), TREE_WIDTH, TREE_HEIGHT);
