@@ -46,28 +46,6 @@
 #include "gsearchtool-callbacks.h"
 #include "gsearchtool-alert-dialog.h"
 
-static GnomeUIInfo popup_menu[] = {
-	GNOMEUIINFO_ITEM_STOCK (N_("_Open"), 
-				NULL, 
-				open_file_cb,
-				GTK_STOCK_OPEN),
-	GNOMEUIINFO_ITEM_STOCK (N_("O_pen Folder"), 
-				NULL, 
-				open_folder_cb,
-				GTK_STOCK_OPEN),
-	GNOMEUIINFO_SEPARATOR,		
-	GNOMEUIINFO_ITEM_STOCK (N_("Mo_ve to Trash"), 
-				NULL, 
-				move_to_trash_cb,
-				GTK_STOCK_DELETE),
-	GNOMEUIINFO_SEPARATOR,	
-	GNOMEUIINFO_ITEM_STOCK (N_("_Save Results As..."), 
-				NULL, 
-				show_file_selector_cb,
-				GTK_STOCK_SAVE_AS),						
-	GNOMEUIINFO_END
-};
-
 gboolean row_selected_by_button_press_event;
 
 void
@@ -872,7 +850,6 @@ file_button_release_event_cb (GtkWidget 	*widget,
 	
 	if (event->button == 3) {	
 		
-		GtkWidget *popup;
 		GList *list;
 		
 		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION(interface.selection),
@@ -888,8 +865,7 @@ file_button_release_event_cb (GtkWidget 	*widget,
 		if (!no_files_found) {
 			GtkWidget *save_widget;
 				
-			popup = gnome_popup_menu_new (popup_menu);
-			save_widget = popup_menu[5].widget;
+			save_widget = gtk_ui_manager_get_widget (interface.ui_manager, "/PopupMenu/SaveResultsAs");
 			
 			if (search_command.running != NOT_RUNNING) {		    	
 		        	gtk_widget_set_sensitive (save_widget, FALSE);
@@ -897,10 +873,9 @@ file_button_release_event_cb (GtkWidget 	*widget,
 			else {
 				gtk_widget_set_sensitive (save_widget, TRUE);
 			}
-			
-			gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL, 
-						   (GdkEventButton *)event, data, NULL);
 						   
+			gtk_menu_popup (GTK_MENU (interface.popup_menu), NULL, NULL, NULL, NULL,
+					event->button, event->time);						   
 		} 
 		g_list_free (list);
 	}	
@@ -1324,7 +1299,6 @@ key_press_cb (GtkWidget    	*widget,
 	else if (event->keyval == GDK_F10) {
 		if (event->state & GDK_SHIFT_MASK) {
 			gboolean no_files_found = FALSE;
-			GtkWidget *popup;
 			GtkTreeIter iter;
 			GList *list;
 			
@@ -1343,10 +1317,21 @@ key_press_cb (GtkWidget    	*widget,
 				    	    -1);
 				    
 			if (!no_files_found) {
-				popup = gnome_popup_menu_new (popup_menu);
-		    
-				gnome_popup_menu_do_popup (GTK_WIDGET (popup), NULL, NULL,
-							   (GdkEventButton *)event, data, NULL);
+				GtkWidget *save_widget;
+
+				save_widget = gtk_ui_manager_get_widget (interface.ui_manager, "/PopupMenu/SaveResultsAs");
+			
+				if (search_command.running != NOT_RUNNING) {		    	
+			        	gtk_widget_set_sensitive (save_widget, FALSE);
+				}
+				else {
+					gtk_widget_set_sensitive (save_widget, TRUE);
+				} 
+ 
+				gtk_menu_popup (GTK_MENU (interface.popup_menu), NULL, NULL, NULL, NULL,
+				                event->keyval, event->time);
+						
+				return TRUE;
 			}
 		}
 	}

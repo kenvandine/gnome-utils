@@ -101,6 +101,7 @@ extern struct _InterfaceStruct {
 	GtkWidget		*stop_button;
 	GtkWidget 		*save_button;
 	GtkWidget 		*main_window;	
+	GtkWidget		*popup_menu;	
 	GtkWidget               *spinner;
 	GdkPixbuf		*pixbuf;	
 	GtkWidget		*table;	
@@ -120,6 +121,7 @@ extern struct _InterfaceStruct {
 	GtkTreeIter       	iter;
 	GdkGeometry 		geometry;
 	GtkSizeGroup 	 	*constraint_size_group;
+	GtkUIManager		*ui_manager;
 	GList 			*selected_constraints;
 	gchar 		 	*save_results_file;	
 	gboolean  	  	is_gail_loaded;

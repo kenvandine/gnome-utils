@@ -169,6 +169,25 @@ struct poptOption options[] = {
   	{ NULL,'\0', 0, NULL, 0, NULL, NULL}
 };
 
+static GtkActionEntry ui_entries[] = {
+  { "Open",          GTK_STOCK_OPEN,    N_("_Open"),               NULL, NULL, G_CALLBACK (open_file_cb) },
+  { "OpenFolder",    GTK_STOCK_OPEN,    N_("O_pen Folder"),        NULL, NULL, G_CALLBACK (open_folder_cb) },
+  { "MoveToTrash",   GTK_STOCK_DELETE,  N_("Mo_ve to Trash"),      NULL, NULL, G_CALLBACK (move_to_trash_cb) },
+  { "SaveResultsAs", GTK_STOCK_SAVE_AS, N_("_Save Results As..."), NULL, NULL, G_CALLBACK (show_file_selector_cb) },
+};
+
+static const char *ui_description =
+"<ui>"
+"  <popup name='PopupMenu'>"
+"      <menuitem action='Open'/>"
+"      <menuitem action='OpenFolder'/>"
+"      <separator/>"
+"      <menuitem action='MoveToTrash'/>"
+"      <separator/>"
+"      <menuitem action='SaveResultsAs'/>"
+"  </popup>"
+"</ui>";
+
 static gchar *find_command_default_name_option;
 static gchar *locate_command_default_options;
 	
@@ -2422,6 +2441,33 @@ handle_gconf_settings (void)
 	}
 }
 
+void
+gsearchtool_ui_manager_setup (void) 
+{
+	GtkActionGroup *action_group;
+	GtkAccelGroup *accel_group;
+	GError *error;
+			
+	action_group = gtk_action_group_new ("PopupActions");
+	gtk_action_group_set_translation_domain (action_group, NULL);
+	gtk_action_group_add_actions (action_group, ui_entries, G_N_ELEMENTS (ui_entries), interface.main_window);
+			
+	interface.ui_manager = gtk_ui_manager_new ();
+	gtk_ui_manager_insert_action_group (interface.ui_manager, action_group, 0);
+				
+	accel_group = gtk_ui_manager_get_accel_group (interface.ui_manager);
+	gtk_window_add_accel_group (GTK_WINDOW (interface.main_window), accel_group);
+			
+	error = NULL;
+	if (!gtk_ui_manager_add_ui_from_string (interface.ui_manager, ui_description, -1, &error)) {
+      		g_message ("Building menus failed: %s", error->message);
+		g_error_free (error);
+      		exit (EXIT_FAILURE);
+	}
+	
+	interface.popup_menu = gtk_ui_manager_get_widget (interface.ui_manager, "/PopupMenu");							   
+}
+
 int
 main (int 	argc, 
       char 	*argv[])
@@ -2478,6 +2524,8 @@ main (int 	argc,
 
 	window = create_main_window ();
 	gnome_app_set_contents (GNOME_APP(interface.main_window), window);
+	
+	gsearchtool_ui_manager_setup ();
 
 	gtk_window_set_geometry_hints (GTK_WINDOW(interface.main_window), GTK_WIDGET(interface.main_window),
 				       &interface.geometry, GDK_HINT_MIN_SIZE);
