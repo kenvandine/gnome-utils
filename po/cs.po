@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-23 12:29+0100\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2005-01-23 15:18+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
@@ -274,7 +274,7 @@ msgstr "Řetězec nenalezen"
 msgid "Definition preview"
 msgstr "Náhled definice"
 
-#: gdictsrc/gdict-defbox.c:881 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr "Chyba při spouštění dotazu"
 
@@ -434,11 +434,11 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Použít chytré hledání"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 msgid "Gnome Dictionary"
 msgstr "Gnome Slovník"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Formátovač disket"
 
@@ -709,52 +709,54 @@ msgstr ""
 "být tento nástroj nainstalován.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Nastavení systému souborů</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">Režim formátování</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">Fyzická nastavení</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Dvojitá hustota 3.5\" (720KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Dvojitá hustota 5.25\" (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "_Typ systému souborů:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "_Typ systému souborů:"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "_Hustota diskety:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "Zařízení _diskety:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "Implicitní režim formátování"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Vysoká hustota 3.5\" (1.44MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Vysoká hustota 5.25\" (1.2MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Nativní Linux (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -836,11 +838,11 @@ msgstr "Nesprávný název svazku"
 msgid "The volume name can't contain any blank space."
 msgstr "Název svazku nesmí obsahovat prázdné znaky."
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "Zařízení k formátování"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "ZAŘÍZENÍ"
 
@@ -2068,19 +2070,19 @@ msgstr "%e. %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 msgid "The file could not be opened"
 msgstr "Soubor nelze otevřít"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "Nemohu otevřít soubor záznamů!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "Nedostatek paměti!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2090,22 +2092,22 @@ msgstr ""
 "uživatel root, nebo požádejte správce systému, aby změnil přístupová práva k "
 "tomuto souboru."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr "%s je příliš velký."
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "Nemohu otevřít %s."
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "Soubor %s není souborem záznamů."
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: nedostatek paměti"
 
@@ -2266,6 +2268,15 @@ msgstr "Detaily položky"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e. %B %X"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">Nastavení systému souborů</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">Režim formátování</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">Fyzická nastavení</span>"
 
 #~ msgid "Select the '%s' constraint"
 #~ msgstr "Vybrat omezení '%s'"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2003-03-13 19:29+0330\n"
 "Last-Translator: Roozbeh Pournader <roozbeh@sharif.edu>\n"
 "Language-Team: Persian <farsi@lists.sharif.edu>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr ""
 
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Lookup words in an online dictionary"
 msgstr "جستجوی لغات در یک لغت‌نامه‌ی اینترنتی"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 #, fuzzy
 msgid "_About"
@@ -72,223 +72,216 @@ msgstr "ترجمه‌ی: روزبه پورنادر"
 msgid "A client for the MIT dictionary server."
 msgstr ""
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "لغت‌نامه"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr ""
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr ""
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr ""
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 msgid "Connection error"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr ""
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "جستجو انجام شد"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "رشته یافت نشد"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "یافتن"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 #, fuzzy
 msgid "_Search for:"
 msgstr "خطاهای جستجو"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "نمی‌توان راهنما را نمایش داد"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "جستجوی کلمه"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "جستجوی کلمه در لغت‌نامه"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 #, fuzzy
 msgid "_Print"
 msgstr "درگاه:"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr ""
 
+#: gdictsrc/gdict-app.c:649
+#, fuzzy
+msgid "_Close"
+msgstr "پاک کردن"
+
+#: gdictsrc/gdict-app.c:650
+#, fuzzy
+msgid "Close the application"
+msgstr "مخفی کردن برنامه"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "یافتن"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "نسخه‌برداری از متن"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "یافتن"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "P_references"
 msgstr "ترجیحات"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 #, fuzzy
 msgid "Configure the application"
 msgstr "مخفی کردن برنامه"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "About this application"
 msgstr "مخفی کردن برنامه"
 
-#: gdictsrc/gdict-app.c:919
-#, fuzzy
-msgid "_Close"
-msgstr "پاک کردن"
-
-#: gdictsrc/gdict-app.c:920
-#, fuzzy
-msgid "Close the application"
-msgstr "مخفی کردن برنامه"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "لغت‌نامه"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 #, fuzzy
 msgid "Cu_t"
 msgstr "برش"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "برش انتخاب"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr "نسخه‌برداری"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 #, fuzzy
 msgid "Copy the selection"
 msgstr "برش انتخاب"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "_Paste"
 msgstr "چسباندن"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 #, fuzzy
 msgid "Paste clipboard"
 msgstr "چسباندن تخته‌برش"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 msgid "_Spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "کلمه:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "لغت"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "مدخل لغت"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "جستجوی یک لغت"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "لغت‌نامه"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr ""
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "جستجو انجام شد"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr ""
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "رشته یافت نشد"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr ""
 
@@ -382,6 +375,14 @@ msgstr ""
 msgid "Default Strategy"
 msgstr ""
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr ""
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr ""
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr ""
@@ -431,12 +432,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr ""
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "لغت‌نامه"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "قالب‌بند دیسک نرم"
 
@@ -677,54 +678,53 @@ msgid ""
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:4
-#, fuzzy
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">تنظیمات سیستم پرونده‌ها</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-#, fuzzy
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">حالت قالب‌بندی</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-#, fuzzy
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">تنظیمات فیزیکی</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "چگالی دوبرابر ۳٫۵ اینچ (۷۲۰ کیلوبایت)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "چگالی دوبرابر ۵٫۲۵ اینچ (۳۶۰ کیلوبایت)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "نوی سیستم پرونده‌ای:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "نوی سیستم پرونده‌ای:"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "چگالی دیسک نرم:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "دستگاه دیسک نرم:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "حالت پیش‌فرض قالب‌بندی"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "چگالی بالا ۳٫۵ اینچ (۱٫۴۴ مگابایت)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "چگالی بالا ۵٫۲۵ اینچ (۱٫۲ مگابایت)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
+msgstr ""
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
@@ -802,11 +802,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr ""
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr ""
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr ""
 
@@ -964,6 +964,11 @@ msgid ""
 "Please check your installation of gnome-panel"
 msgstr ""
 
+#: gnome-screenshot/screenshot-dialog.c:213
+#, fuzzy
+msgid "Select a directory"
+msgstr "انتخاب نویسه"
+
 #: gnome-screenshot/screenshot-save.c:40
 #, c-format
 msgid ""
@@ -1013,10 +1018,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+#, fuzzy
+msgid "Search for Files..."
 msgstr "جستجوی پرونده‌ها"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1508,6 +1512,11 @@ msgid_plural "%d files found"
 msgstr[0] "%d پرونده یافته شد"
 msgstr[1] "%d پرونده یافته شد"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "جستجوی پرونده‌ها"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr ""
@@ -1978,41 +1987,41 @@ msgstr ""
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 msgid "The file could not be opened"
 msgstr ""
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr ""
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "حافظه کافی نیست!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr ""
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr ""
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr ""
 
@@ -2179,6 +2188,18 @@ msgstr ""
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr ""
+
+#, fuzzy
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">تنظیمات سیستم پرونده‌ها</span>"
+
+#, fuzzy
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">حالت قالب‌بندی</span>"
+
+#, fuzzy
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">تنظیمات فیزیکی</span>"
 
 #, fuzzy
 #~ msgid "_Show Dictionary"
@@ -2417,9 +2438,6 @@ msgstr ""
 
 #~ msgid "Character Map"
 #~ msgstr "نقشه‌ی نویسه‌ها"
-
-#~ msgid "Select Character"
-#~ msgstr "انتخاب نویسه"
 
 #~ msgid "_Insert"
 #~ msgstr "درج"

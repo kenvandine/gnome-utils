@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2004-09-29 18:20+0800\n"
 "Last-Translator: KU  <pawan@nplinux.org>\n"
 "Language-Team: Nepali <nlp@mpp.org.np>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Pawan Chitrakar <pawan@nplinux.org>\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "शब्दकोश हेर"
 
@@ -25,7 +25,7 @@ msgstr "शब्दकोश हेर"
 msgid "Lookup words in an online dictionary"
 msgstr "प्रत्यक्ष सम्बन्ध भएको शब्दकोशमा शब्दहरु हेर "
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 #, fuzzy
 msgid "_About"
@@ -73,220 +73,213 @@ msgstr "अनुबादक_श्रेय"
 msgid "A client for the MIT dictionary server."
 msgstr "एमआईटि सेवाप्रदायक शब्दकोषको लगि एक ग्राहक"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "शब्दकोष"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "वर्णविन्यास जांच....."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "वर्णविन्यास जांचीयो"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "मिल्दो जुल्दो पाईएन"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 #, fuzzy
 msgid "Connection error"
 msgstr "सेवा प्रदायक सम्बन्ध गर्न सकिएन"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "शब्दहरु हेरिरहनु....."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "हेरियो"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "सुत्र पाईएन"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "पत्ता लगाउनु"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "_खोज्नको लागि:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "सहयोग लेखोट खुल्न सकेन"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "_शब्दहरु हेर"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "शब्दकोशमा शब्द हेर "
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 #, fuzzy
 msgid "_Print"
 msgstr "_तार छिराउने प्वाल"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr ""
 
+#: gdictsrc/gdict-app.c:649
+#, fuzzy
+msgid "_Close"
+msgstr "सबै बन्द गर"
+
+#: gdictsrc/gdict-app.c:650
+#, fuzzy
+msgid "Close the application"
+msgstr "_अनुरोधपत्र लुकउ"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "_पत्तालगाउनु"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "पाठको बिषय बस्तु"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "पत्ता लगाउनु"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "P_references"
 msgstr "_प्राथमिकिकरण"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 #, fuzzy
 msgid "Configure the application"
 msgstr "_अनुरोधपत्र लुकउ"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "About this application"
 msgstr "_अनुरोधपत्र लुकउ"
 
-#: gdictsrc/gdict-app.c:919
-#, fuzzy
-msgid "_Close"
-msgstr "सबै बन्द गर"
-
-#: gdictsrc/gdict-app.c:920
-#, fuzzy
-msgid "Close the application"
-msgstr "_अनुरोधपत्र लुकउ"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "सेवाप्रदायक शब्दकोष"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 msgid "Cu_t"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 msgid "Copy the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "_Paste"
 msgstr "मिति"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 msgid "Paste clipboard"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "_Spellings"
 msgstr "वर्णविन्यास जांच"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "_शब्द:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "शब्द"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "शब्द प्रवेश"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "शब्द हाल अथवा तलको सुचिबाट एउटा छान"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "एउटा शब्दको लागि हेर"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "शब्दकोशमा शब्द प्रबेश"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "शब्दहरु हेरिरहनु....."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "हेरियो"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "मिल्दो जुल्दो पाईएन"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "सुत्र पाईएन"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr ""
 
@@ -380,6 +373,14 @@ msgstr "डाटाबेस नाम"
 msgid "Default Strategy"
 msgstr "पूर्वनिर्धारित योजना"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "वर्णविन्यास जांच....."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "वर्णविन्यास जांचीयो"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "सेवाप्रदायक शब्दकोष"
@@ -429,12 +430,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "तगडा हेराई प्रयोग गर"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "शब्दकोष"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "फ्लपि रुपरेखा"
 
@@ -684,52 +685,54 @@ msgid ""
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "डस(फ्याट)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "3.5\" (720KB) दोहोरो घनत्व"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "5.25\" (360KB)दोहोरो घनत्व"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "आलेख पद्दति _ प्रकार"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "आलेख पद्दति _ प्रकार"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "फ्लपि _ घनत्व"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "फ्लपि साधन"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "पूर्व निर्धारित खालि गरने शैलि"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "उच्च घनत्व"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "उच्च घनत्व 5.25\" (1.2MB) "
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "लिनक्स नेतिभ (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -810,11 +813,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr "आयतनको नाममा कुनै खालि ठाँउ हुन सक्दैन"
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "खालि गर्ने साधन"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "साधन"
 
@@ -976,6 +979,10 @@ msgid ""
 "Please check your installation of gnome-panel"
 msgstr ""
 
+#: gnome-screenshot/screenshot-dialog.c:213
+msgid "Select a directory"
+msgstr ""
+
 #: gnome-screenshot/screenshot-save.c:40
 #, fuzzy, c-format
 msgid ""
@@ -1025,10 +1032,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+#, fuzzy
+msgid "Search for Files..."
 msgstr "फाइलको लागि खोज"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1524,6 +1530,11 @@ msgid_plural "%d files found"
 msgstr[0] "%d फाइल भेटियो"
 msgstr[1] "%d फाइलहरु भेटियो"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "फाइलको लागि खोज"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr ""
@@ -1995,42 +2006,42 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 #, fuzzy
 msgid "The file could not be opened"
 msgstr "%s खुल्न सक्दैन"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "लग गरिएको लेखपत्र खोल्न असक्षम \n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "स्मरणक्षमता प्रसस्त छैन \n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file."
 msgstr ""
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s खुल्न सक्दैन"
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s प्रबेस लेखपत्र हैन"
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "लग औकात पड: स्म्रिति क्षमता भन्दा बाहिर"
 

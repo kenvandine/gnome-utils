@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.96.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2002-04-30 14:02MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 0.9.5\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "Cweraedje dins l' diccionaire"
 
@@ -30,7 +30,7 @@ msgstr "Cweraedje dins l' diccionaire"
 msgid "Lookup words in an online dictionary"
 msgstr "Cweri on mot dins on diccionaire so fyis"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 #, fuzzy
 msgid "_About"
@@ -90,33 +90,22 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Sierveu di diccionairaedje"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Diccionaire"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "Coridjaedje..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "Coridjaedje fwait"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "Dji n' a rén trové"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 #, fuzzy
 msgid "Connection error"
 msgstr "Dji n' pout m' raloyî å sierveu"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 #, fuzzy
 msgid ""
 "Either the server you are using is not available \n"
@@ -126,194 +115,198 @@ msgstr ""
 "Soeye-t i ki l' sierveu ki vos vloz eployî n' est nén en alaedje \n"
 "soeye-t i ki vos n' estoz nén raloyî al daegntoele."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "Cwerant on mot..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "Cweraedje fwait"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "Tchinne nén trovêye"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "Trover"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 #, fuzzy
 msgid "_Search for:"
 msgstr "Cweri après des fitchîs"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "Dji n' a savu drovi %s."
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "C_weri l' mot"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "Cweri on mot el diccionaire"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 #, fuzzy
 msgid "_Print"
 msgstr "_Pôrt:"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr ""
 
+#: gdictsrc/gdict-app.c:649
+#, fuzzy
+msgid "_Close"
+msgstr "Cosinus"
+
+#: gdictsrc/gdict-app.c:650
+#, fuzzy
+msgid "Close the application"
+msgstr "_Catchî l' programe"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "_Trover"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "Copyî l' tecse"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "Trover"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "P_references"
 msgstr "_Preferinces"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 #, fuzzy
 msgid "Configure the application"
 msgstr "_Catchî l' programe"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "About this application"
 msgstr "_Catchî l' programe"
 
-#: gdictsrc/gdict-app.c:919
-#, fuzzy
-msgid "_Close"
-msgstr "Cosinus"
-
-#: gdictsrc/gdict-app.c:920
-#, fuzzy
-msgid "Close the application"
-msgstr "_Catchî l' programe"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "Sierveu di diccionairaedje"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 #, fuzzy
 msgid "Cu_t"
 msgstr "Côper"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "Côper li tchuze"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr "_Copyî"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 #, fuzzy
 msgid "Copy the selection"
 msgstr "Côper li tchuze"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "_Paste"
 msgstr "Claper"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 #, fuzzy
 msgid "Paste clipboard"
 msgstr "Aclaper çu k' i gn a el tchapea emacralé"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 #, fuzzy
 msgid "Select everything"
 msgstr "Tchoezi evenmints log"
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "_Spellings"
 msgstr "_Coridjî"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "_Mot:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "Mot"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "Intrêye"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "Tapez on mot ou l' tchoezi dins l' djivêye chal pa dzo"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "Cweri après on mot"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "Sierveu di diccionairaedje"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "Cwerant on mot..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "Cweraedje fwait"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "Dji n' a rén trové"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "Tchinne nén trovêye"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 #, fuzzy
 msgid "Error invoking query"
 msgstr "Åk n' a nén stî tot cwerant: %s"
@@ -410,6 +403,14 @@ msgstr "No del båze di dnêyes"
 msgid "Default Strategy"
 msgstr "Prémetowe sitratédjeye"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "Coridjaedje..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "Coridjaedje fwait"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "Sierveu di diccionairaedje"
@@ -471,12 +472,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Eployî li sûti cweraedje"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "Diccionaire"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Abwesnaedje di plaketes"
 
@@ -729,53 +730,55 @@ msgid ""
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:7
 #, fuzzy
 msgid "DOS (FAT)"
 msgstr "Dos (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Dobe densité 3\" 1/2 (720 Ko)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Dobe densité 5\" 1/4 (360 Ko)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "_Sôre do sistinme di fitchîs:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "Apontiaedjes do sistinme di fitchîs"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "_Densité del plakete:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "_Éndjin pol plakete:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "Môde d' abwesnaedje"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Hôte densité 3\" 1/2 (1.44 Mo)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Hôte densité 5\" 1/4 (1.2 Mo)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Natif Linux (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -852,11 +855,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr ""
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "L' éndjin a-z abwesner"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "ÉNDJIN"
 
@@ -1017,6 +1020,11 @@ msgid ""
 "Please check your installation of gnome-panel"
 msgstr ""
 
+#: gnome-screenshot/screenshot-dialog.c:213
+#, fuzzy
+msgid "Select a directory"
+msgstr "Tchoezixhoz on caractere"
+
 #: gnome-screenshot/screenshot-save.c:40
 #, fuzzy, c-format
 msgid ""
@@ -1067,10 +1075,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+#, fuzzy
+msgid "Search for Files..."
 msgstr "Cweri après des fitchîs"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1573,6 +1580,11 @@ msgid_plural "%d files found"
 msgstr[0] "Dj' a trové %d fitchîs"
 msgstr[1] "Dj' a trové %d fitchîs"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "Cweri après des fitchîs"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr ""
@@ -2061,20 +2073,20 @@ msgstr "%e di %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 #, fuzzy
 msgid "The file could not be opened"
 msgstr "Dji n' a savu drovi %s."
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "Dji n' sai drovi li fitchî log!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "Nén del memwere assez!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2084,22 +2096,22 @@ msgstr ""
 "metowes insi. Vos dvoz enonder li programe come root ou dmander å manaedjeu "
 "do sistinme di candjî les permissions do fitchîs."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "Dji n' a savu drovi %s."
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s n' est nén on fitchî log."
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memwere sipoujheye"
 
@@ -2711,9 +2723,6 @@ msgstr "%e di %B %X"
 #~ msgid "Character Map"
 #~ msgstr "Tåvlea di caracteres"
 
-#~ msgid "Select Character"
-#~ msgstr "Tchoezixhoz on caractere"
-
 #~ msgid "_Insert"
 #~ msgstr "_Sititchî"
 
@@ -2884,12 +2893,6 @@ msgstr "%e di %B %X"
 
 #~ msgid "DOS (fat)"
 #~ msgstr "DOS (fat)"
-
-#~ msgid "Filesystem settings"
-#~ msgstr "Apontiaedjes do sistinme di fitchîs"
-
-#~ msgid "Formatting mode"
-#~ msgstr "Môde d' abwesnaedje"
 
 #~ msgid "-adobe-helvetica-bold-r-normal-*-*-180-*-*-p-*-*-*,*-r-*"
 #~ msgstr "-adobe-helvetica-bold-r-normal--*-180-*-*-*-*-*-*,*"

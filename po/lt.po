@@ -10,16 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-13 22:14+0200\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2005-01-13 22:42+0200\n"
 "Last-Translator: Žygimantas Beručka <uid0@tuxfamily.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
+"100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "Paieška žodyne"
 
@@ -28,7 +29,7 @@ msgstr "Paieška žodyne"
 msgid "Lookup words in an online dictionary"
 msgstr "Ieškoti žodžių tinkliniame žodyne"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 msgid "_About"
 msgstr "_Apie"
@@ -81,32 +82,21 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "MIT žodyno serverio klientinė programa"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Žodynas"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "Tikrinu rašybą..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "Rašyba patikrinta"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "Atitikmenų nerasta"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 msgid "Connection error"
 msgstr "Prisijungimo klaida"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr "Nepavyko atlikti nurodytos operacijos."
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -114,175 +104,179 @@ msgstr ""
 "Arba Jūsų naudojamas serveris yra nepasiekiamas,\n"
 "arba Jūs nesate prisijungę prie Interneto."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "Ieškomas žodis..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "Paieška baigta"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "Eilutė nerasta"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr "Spausdinti žodžio aprašymą"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "Rasti"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "_Ieškoti:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Nepavyko atidaryti pagalbos"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "_Ieškoti žodžio"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "Ieškoti žodžio žodyne"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 msgid "_Print"
 msgstr "S_pausdinti"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr "Spausdinti šį aprašymą"
 
+#: gdictsrc/gdict-app.c:649
+msgid "_Close"
+msgstr "_Uždaryti"
+
+#: gdictsrc/gdict-app.c:650
+msgid "Close the application"
+msgstr "Uždaryti šią programą"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 msgid "_Find..."
 msgstr "_Rasti..."
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 msgid "Find a word in the text"
 msgstr "Rasti žodį tekste"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 msgid "Find Ne_xt"
 msgstr "Rasti se_kantį"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr "Rasti sekantį žodžio pasikartojimą"
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 msgid "P_references"
 msgstr "_Nustatymai"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 msgid "Configure the application"
 msgstr "Konfigūruoti šią programą"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr "Žiūrėti šios programos pagalbą"
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 msgid "About this application"
 msgstr "Apie šią programą"
 
-#: gdictsrc/gdict-app.c:919
-msgid "_Close"
-msgstr "_Uždaryti"
-
-#: gdictsrc/gdict-app.c:920
-msgid "Close the application"
-msgstr "Uždaryti šią programą"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 msgid "On a Dictionary Server"
 msgstr "Žodyno serveryje"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr "Tinklalapyje"
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 msgid "Cu_t"
 msgstr "_Iškirpti"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "Iškirpti pažymėtą tekstą"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr "_Kopijuoti"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "Kopijuoti pažymėtą tekstą"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 msgid "_Paste"
 msgstr "Į_dėti"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 msgid "Paste clipboard"
 msgstr "Įdėti tekstą iš atmintinės"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr "Pažymėti _viską"
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr "Pažymėti visą tekstą"
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 msgid "_Spellings"
 msgstr "_Galima rašyba"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr "Žiūrėti galimus rašybos variantus"
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "Žo_dis:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "Žodis"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "Žodžio įvestis"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "Įveskite žodį arba pasirinkite jį iš žemiau esančio sąrašo"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "Ieškoti žodžio"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "Žodžio žodyne įvedimas"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "Ieškomas žodis..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "Paieška baigta"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "Atitikmenų nerasta"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "Eilutė nerasta"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr "Aprašymo peržiūra"
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr "Klaida išsiunčiant užklausą"
 
@@ -374,6 +368,14 @@ msgstr "Duomenų bazės vardas"
 msgid "Default Strategy"
 msgstr "Įprasta strategija"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "Tikrinu rašybą..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "Rašyba patikrinta"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "Žodyno serveris"
@@ -432,11 +434,11 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Naudoti gudrią paiešką"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 msgid "Gnome Dictionary"
 msgstr "Gnome žodynas"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Diskelių formatavimas"
 
@@ -703,52 +705,54 @@ msgstr ""
 "formatavimą.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Bylų Sistemos Nustatymai</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">Formatavimo Režimas</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">Fiziniai Nustatymai</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Dvigubo tankumo 3.5\" (720KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Dvigubo tankumo 5.25\" (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "Bylų sistemos _tipas:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "Bylų sistemos _tipas:"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "Diskelio t_ankumas:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "Diskelio į_renginys:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "Įprastas formatavimo režimas"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Didelio tankumo 3.5\" (1.44MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Didelio tankumo 5.25\" (1.2MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Linux Native (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -832,11 +836,11 @@ msgstr "Neteisingas laikmenos vardas"
 msgid "The volume name can't contain any blank space."
 msgstr "Skirsnio vardas negali turėti jokių tarpų."
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "Formatuojamas įrenginys"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "ĮRENGINYS"
 
@@ -1002,6 +1006,11 @@ msgid ""
 msgstr ""
 "Nėra ekrano nuotraukų programai reikalingos Glade bylos\n"
 "Patikrinkite ar korektiškai įdiegta gnome-panel"
+
+#: gnome-screenshot/screenshot-dialog.c:213
+#, fuzzy
+msgid "Select a directory"
+msgstr "Web aplankas"
 
 #: gnome-screenshot/screenshot-save.c:40
 #, c-format
@@ -2063,19 +2072,19 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 msgid "The file could not be opened"
 msgstr "Ši byla negali būti atidaryta"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "Nepavyko atidaryti žurnalo bylos!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "Nepakanka atminties!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2084,22 +2093,22 @@ msgstr ""
 "%s negali būti skaitoma naudotojų. Arba leiskite programą kaip root, arba "
 "paprašykit administratoriaus, kad pakeistų bylos teises."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr "%s yra per didelė."
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s negali būti atidaryta."
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s nėra žurnalo byla."
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: baigėsi atmintis"
 
@@ -2261,6 +2270,15 @@ msgstr "Įrašo detalės"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">Bylų Sistemos Nustatymai</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">Formatavimo Režimas</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">Fiziniai Nustatymai</span>"
 
 #~ msgid "Select the '%s' constraint"
 #~ msgstr "Pasirinkti '%s' sąlygą"

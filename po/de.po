@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-23 13:20+0100\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2005-01-23 13:18+0100\n"
 "Last-Translator: Hendrik Brandt <heb@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -282,7 +282,7 @@ msgstr "Zeichenkette nicht gefunden"
 msgid "Definition preview"
 msgstr "Definitionsvorschau"
 
-#: gdictsrc/gdict-defbox.c:881 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr "Abfragefehler"
 
@@ -446,12 +446,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Intelligente Suche verwenden"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 msgid "Gnome Dictionary"
 msgstr "Gnome-Wörterbuch"
 
 # CHECK - nicht perfekt aber Formatierprogramm ist noch grausamer
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Diskette formatieren"
 
@@ -728,52 +728,54 @@ msgstr ""
 "durchgeführt werden.</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Dateisystem-Einstellungen</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">Formatiermodus</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">Physikalische Einstellungen</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Doppelte Dichte 3.5\" (720KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Doppelte Dichte 5.25\" (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "Dateisystem_typ:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "Dateisystem_typ:"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "Disketten-_Dichte:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "Disketten_laufwerk:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "Vorgabe-Formatiermodus"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Hohe Dichte 3.5\" (1.44MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Hohe Dichte 5.25\" (1.2MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Linux Nativ (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -863,11 +865,11 @@ msgstr "Ungültiger Medienname"
 msgid "The volume name can't contain any blank space."
 msgstr "Der Name des Mediums darf keine Leerzeichen enthalten."
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "Das zu formatierende Gerät"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "GERÄT"
 
@@ -2106,19 +2108,19 @@ msgstr "%e. %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 msgid "The file could not be opened"
 msgstr "Die Datei konnte nicht geöffnet werden"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "Protokolldatei konnte nicht geöffnet werden!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "Nicht genügend Speicher!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2128,22 +2130,22 @@ msgstr ""
 "oder bitten Sie Ihren Systemadministrator, die Zugriffsrechte auf die Datei "
 "zu ändern."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr "%s ist zu groß."
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s konnte nicht geöffnet werden."
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s ist keine Protokolldatei."
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: Kein Speicher mehr"
 
@@ -2305,3 +2307,12 @@ msgstr "Details zum Eintrag"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e %X %B"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">Dateisystem-Einstellungen</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">Formatiermodus</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">Physikalische Einstellungen</span>"

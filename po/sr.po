@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2004-08-21 15:19+0200\n"
 "Last-Translator: Данило Шеган <danilo@prevod.org>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3;    plural=n%10==1 && n%100!=11 ? 0 :    n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "Претрага речника"
 
@@ -29,7 +29,7 @@ msgstr "Претрага речника"
 msgid "Lookup words in an online dictionary"
 msgstr "Пронађи речи у речнику који је на мрежи"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 msgid "_About"
 msgstr "_О програму"
@@ -80,33 +80,22 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Клијент за сервер речника са МИТ-а."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Речник"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "Провера правописа..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "Провера правописа завршена"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "Ништа није нађено"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 #, fuzzy
 msgid "Connection error"
 msgstr "Не могу да се повежем на сервер"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 #, fuzzy
 msgid ""
 "Either the server you are using is not available \n"
@@ -116,191 +105,195 @@ msgstr ""
 "Или сервер који користите није расположив \n"
 "или нисте везани на Интернет."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "Тражи реч..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "Претрага завршена"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "Ниска није нађена"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "Пронађи"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "_Тражи:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "Не могу да прикажем Помоћ"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "_Нађи реч"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "Пронађи реч у речнику"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 #, fuzzy
 msgid "_Print"
 msgstr "_Порт:"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr ""
 
+#: gdictsrc/gdict-app.c:649
+#, fuzzy
+msgid "_Close"
+msgstr "Косинус"
+
+#: gdictsrc/gdict-app.c:650
+#, fuzzy
+msgid "Close the application"
+msgstr "_Сакриј програм"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "Про_нађи"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "Сад_ржи текст"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "Пронађи"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "P_references"
 msgstr "По_ставке"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 #, fuzzy
 msgid "Configure the application"
 msgstr "_Сакриј програм"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "About this application"
 msgstr "_Сакриј програм"
 
-#: gdictsrc/gdict-app.c:919
-#, fuzzy
-msgid "_Close"
-msgstr "Косинус"
-
-#: gdictsrc/gdict-app.c:920
-#, fuzzy
-msgid "Close the application"
-msgstr "_Сакриј програм"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "Сервер речника"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 #, fuzzy
 msgid "Cu_t"
 msgstr "Исеци"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "Исеци означено"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr "_Копирај"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 #, fuzzy
 msgid "Copy the selection"
 msgstr "Исеци означено"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "_Paste"
 msgstr "Залепи"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 #, fuzzy
 msgid "Paste clipboard"
 msgstr "Залепи меморисано"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "_Spellings"
 msgstr "Провери пра_вопис"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "_Реч: "
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "Реч"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "Унос речи"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "Унесите реч или изаберите неку из доњег списка"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "Потражи реч"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "Унос речи речника"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "Тражи реч..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "Претрага завршена"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "Ништа није нађено"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "Ниска није нађена"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 #, fuzzy
 msgid "Error invoking query"
 msgstr "Грешка приликом упита: %s"
@@ -395,6 +388,14 @@ msgstr "Име базе података"
 msgid "Default Strategy"
 msgstr "Подразумевана стратегија"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "Провера правописа..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "Провера правописа завршена"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "Сервер речника"
@@ -454,12 +455,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Користи паметну претрагу"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "Речник"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Форматирање дискета"
 
@@ -734,52 +735,54 @@ msgstr ""
 "инсталирати.</small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Подешавања система датотека</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">Начин форматирања</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">Физичка подешавања</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "ДОС (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Двострука густина 3,5\" (720KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Двострука густина 5,25\" (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "Врста _система датотека:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "Врста _система датотека:"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "Густина _дискете:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "Дискетни _уређај:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "Уобичајен начин форматирања"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Велика густина 3,5\" (1.44MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Велика густина 5,25\" (1.2MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Природни за Линукс (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -866,11 +869,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr "Име диска не сме да садржи размаке."
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "Уређај који се форматира"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "УРЕЂАЈ"
 
@@ -1037,6 +1040,11 @@ msgid ""
 "Please check your installation of gnome-panel"
 msgstr ""
 
+#: gnome-screenshot/screenshot-dialog.c:213
+#, fuzzy
+msgid "Select a directory"
+msgstr "Изаберит карактер"
+
 #: gnome-screenshot/screenshot-save.c:40
 #, fuzzy, c-format
 msgid ""
@@ -1087,10 +1095,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr "Тражите датотеке, директоријуме и документе на вашем рачунару"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+#, fuzzy
+msgid "Search for Files..."
 msgstr "Потражи датотеке"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1593,6 +1600,11 @@ msgstr[0] "Нађена је %d датотека"
 msgstr[1] "Нађене су %d датотеке"
 msgstr[2] "Нађено је %d датотека"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "Потражи датотеке"
+
 # bug: this is probably something about wrong signal
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
@@ -2078,20 +2090,20 @@ msgstr "%e. %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 #, fuzzy
 msgid "The file could not be opened"
 msgstr "Не могу да отворим %s."
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "Не могу да отворим датотеку дневника!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "Недовољно меморије!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2100,22 +2112,22 @@ msgstr ""
 "%s не може читати корисник. Покрените програм као root корисник или замолите "
 "администратора система да промени овлашћења за датотеку."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "Не могу да отворим %s."
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s није датотека дневника."
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: понестало меморије"
 
@@ -2292,6 +2304,15 @@ msgstr "Детаљи уноса"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e. %B, %X"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">Подешавања система датотека</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">Начин форматирања</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">Физичка подешавања</span>"
 
 #~ msgid "_Show Dictionary"
 #~ msgstr "При_кажи речник"
@@ -2888,9 +2909,6 @@ msgstr "%e. %B, %X"
 
 #~ msgid "Insert special characters into documents"
 #~ msgstr "Убаците специјалне карактере у документе"
-
-#~ msgid "Select Character"
-#~ msgstr "Изаберит карактер"
 
 #~ msgid "_Insert"
 #~ msgstr "Уметн_и"

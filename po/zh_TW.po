@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.8.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2004-09-29 18:16+0800\n"
 "Last-Translator: Roy Hiu-yeung Chan <roy.chan@debian.org.hk>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "查字典"
 
@@ -26,7 +26,7 @@ msgstr "查字典"
 msgid "Lookup words in an online dictionary"
 msgstr "在線上字典中查字"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 msgid "_About"
 msgstr "關於(_A)"
@@ -79,33 +79,22 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "使用 MIT 字典伺服器的客戶端程式。"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "字典"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "正在進行拼字檢查..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "拼字檢查完成"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "找不到符合的結果"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 #, fuzzy
 msgid "Connection error"
 msgstr "無法連接伺服器"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 #, fuzzy
 msgid ""
 "Either the server you are using is not available \n"
@@ -115,191 +104,195 @@ msgstr ""
 "原因是無法連接所使用的伺服器，\n"
 "或是根本未連接至網際網路。"
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "正在檢索字詞..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "完成檢索"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "找不到字串"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "搜尋"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "搜尋(_S)："
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "無法顯示說明文件"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "查字(_L)"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "在字典中查字"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 #, fuzzy
 msgid "_Print"
 msgstr "連接埠(_P)："
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr ""
 
+#: gdictsrc/gdict-app.c:649
+#, fuzzy
+msgid "_Close"
+msgstr "全部關閉(_E)"
+
+#: gdictsrc/gdict-app.c:650
+#, fuzzy
+msgid "Close the application"
+msgstr "隱藏程式(_H)"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "搜尋(_F)"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "包含指定的文字(_T)"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "搜尋"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "P_references"
 msgstr "偏好設定(_P)"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 #, fuzzy
 msgid "Configure the application"
 msgstr "隱藏程式(_H)"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "About this application"
 msgstr "隱藏程式(_H)"
 
-#: gdictsrc/gdict-app.c:919
-#, fuzzy
-msgid "_Close"
-msgstr "全部關閉(_E)"
-
-#: gdictsrc/gdict-app.c:920
-#, fuzzy
-msgid "Close the application"
-msgstr "隱藏程式(_H)"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "字典伺服器"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 #, fuzzy
 msgid "Cu_t"
 msgstr "剪下"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "剪下選定的範圍"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 #, fuzzy
 msgid "Copy the selection"
 msgstr "剪下選定的範圍"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "_Paste"
 msgstr "貼上"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 #, fuzzy
 msgid "Paste clipboard"
 msgstr "貼上剪貼簿的內容"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "_Spellings"
 msgstr "拼字檢查(_S)"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "字詞(_W)："
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "字詞"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "字詞輸入欄"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "請輸入字詞或在下列的清單中選擇"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "查字"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "正在檢索字詞..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "完成檢索"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "找不到符合的結果"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "找不到字串"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 #, fuzzy
 msgid "Error invoking query"
 msgstr "詢問時出現錯誤：%s"
@@ -394,6 +387,14 @@ msgstr "資料庫名稱"
 msgid "Default Strategy"
 msgstr "預設搜尋方式"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "正在進行拼字檢查..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "拼字檢查完成"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "字典伺服器"
@@ -451,12 +452,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "使用智慧型檢索"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "字典"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "軟碟格式化程式"
 
@@ -723,52 +724,54 @@ msgstr ""
 "DOS (fat) 格式化，就必須安裝該程式。</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">檔案系統設定</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">格式化模式</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">硬體設定</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "倍密度 3.5\" (720 KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "倍密度 5.25\" (360 KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "檔案系統類型(_T)："
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "檔案系統類型(_T)："
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "軟碟密度(_D)："
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "軟碟裝置(_V)："
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "預設格式化方式"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "高密度 3.5\" (1.44 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "高密度 5.25\" (1.2 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Linux Native (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -854,11 +857,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr "檔案系統標記名稱內不可含有任何空格。"
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "準備格式化的裝置"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "裝置"
 
@@ -1021,6 +1024,10 @@ msgid ""
 "Please check your installation of gnome-panel"
 msgstr ""
 
+#: gnome-screenshot/screenshot-dialog.c:213
+msgid "Select a directory"
+msgstr ""
+
 #: gnome-screenshot/screenshot-save.c:40
 #, fuzzy, c-format
 msgid ""
@@ -1070,10 +1077,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr "在電腦中搜尋檔案、資料夾和文件"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+#, fuzzy
+msgid "Search for Files..."
 msgstr "搜尋檔案"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1564,6 +1570,11 @@ msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "找到 %d 個檔案"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "搜尋檔案"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "已更改的欄位使用了無效的欄位選項！"
@@ -2037,20 +2048,20 @@ msgstr "%b%e日"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 #, fuzzy
 msgid "The file could not be opened"
 msgstr "無法開啟 %s。"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "無法開啟日誌！\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "記憶體不足！\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2059,22 +2070,22 @@ msgstr ""
 "用戶不能讀取 %s。您可以使用 root 的身份來執行程式，或是要求系統管理員更改檔案"
 "的權限。"
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "無法開啟 %s。"
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 不是日誌檔案。"
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats：記憶體不足"
 
@@ -2250,6 +2261,15 @@ msgstr "項目細節"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%b%d日 %X"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">檔案系統設定</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">格式化模式</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">硬體設定</span>"
 
 #~ msgid "_Show Dictionary"
 #~ msgstr "顯示字典(_S)"

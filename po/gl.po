@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2001-08-19 03:21+0200\n"
 "Last-Translator: Jesús Bravo Álvarez <jba@pobox.com>\n"
 "Language-Team: Galician <trasno@ceu.fi.udc.es>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Lookup words in an online dictionary"
 msgstr "Buscar palabra no diccionario"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 #, fuzzy
 msgid "_About"
@@ -81,33 +81,22 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Cliente de GNOME para o servidor de diccionario do MIT"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "Comprobando a ortografía..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "Comprobación ortográfica rematada"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "Non se atopou ningunha coincidencia"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 #, fuzzy
 msgid "Connection error"
 msgstr "Conectar a"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 #, fuzzy
 msgid ""
 "Either the server you are using is not available \n"
@@ -117,203 +106,207 @@ msgstr ""
 "que está a usar non funciona ou porque non está conectado á Internet.\n"
 "Se aínda non está conectado á Internet, fágao e tente de novo."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "Buscando palabra..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "Busca rematada"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "Cadea non atopada"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 #, fuzzy
 msgid "Print Word Definition"
 msgstr "Definición da palabra"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 #, fuzzy
 msgid "Find"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 #, fuzzy
 msgid "_Search for:"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "Nome do display X:"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 #, fuzzy
 msgid "_Look Up Word"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "Buscar palabra no diccionario"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 #, fuzzy
 msgid "_Print"
 msgstr "Punto"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 #, fuzzy
 msgid "Print the current definition"
 msgstr "Pechar o documento actual"
 
+#: gdictsrc/gdict-app.c:649
+#, fuzzy
+msgid "_Close"
+msgstr "Pechar"
+
+#: gdictsrc/gdict-app.c:650
+#, fuzzy
+msgid "Close the application"
+msgstr "Acerca desta aplicación"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "Buscar:"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "Copiar a selección"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "P_references"
 msgstr "Preferencias"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 #, fuzzy
 msgid "Configure the application"
 msgstr "Acerca desta aplicación"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "About this application"
 msgstr "Acerca desta aplicación"
 
-#: gdictsrc/gdict-app.c:919
-#, fuzzy
-msgid "_Close"
-msgstr "Pechar"
-
-#: gdictsrc/gdict-app.c:920
-#, fuzzy
-msgid "Close the application"
-msgstr "Acerca desta aplicación"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "Editar as preferencias..."
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 #, fuzzy
 msgid "Cu_t"
 msgstr "Cortar"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "Cortar a selección"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 #, fuzzy
 msgid "_Copy"
 msgstr "Copiar"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 #, fuzzy
 msgid "Copy the selection"
 msgstr "Cortar a selección"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "_Paste"
 msgstr "Pegar"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 #, fuzzy
 msgid "Paste clipboard"
 msgstr "Pegar do portarretallos"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 #, fuzzy
 msgid "Select everything"
 msgstr "Seleccionar os eventos do rexistro"
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "_Spellings"
 msgstr "Corrixir"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 #, fuzzy
 msgid "_Word:"
 msgstr "Palabra:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 #, fuzzy
 msgid "Word"
 msgstr "Palabra:"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 #, fuzzy
 msgid "Look Up for a Word"
 msgstr "Buscar"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 #, fuzzy
 msgid "Dictionary word entry"
 msgstr "Editar as preferencias..."
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "Buscando palabra..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "Busca rematada"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "Non se atopou ningunha coincidencia"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "Cadea non atopada"
+
+#: gdictsrc/gdict-defbox.c:542
 #, fuzzy
 msgid "Definition preview"
 msgstr "Clic dobre nas previsualizacións:"
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 #, fuzzy
 msgid "Error invoking query"
 msgstr "Erro ao efectuar a consulta: %s"
@@ -423,6 +416,14 @@ msgstr "Base de datos:"
 msgid "Default Strategy"
 msgstr "Estratexia por defecto:"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "Comprobando a ortografía..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "Comprobación ortográfica rematada"
+
 #: gdictsrc/gdict.schemas.in.h:1
 #, fuzzy
 msgid "Dictionary server"
@@ -476,12 +477,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Busca intelixente"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "Barra de ferramentas de _accións"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 #, fuzzy
 msgid "Floppy Formatter"
 msgstr "Formato de disquete cancelado."
@@ -760,60 +761,63 @@ msgid ""
 msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr ""
-
-#: gfloppy/src/gfloppy2.glade.h:7
 #, fuzzy
 msgid "DOS (FAT)"
 msgstr "Dos (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 #, fuzzy
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Dobre densidade 3.5\" (720 KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 #, fuzzy
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Dobre densidade 5.25\" (360 KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 #, fuzzy
 msgid "File system _type:"
 msgstr "Tipo de sistema de ficheiros:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "Manter configuración"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 #, fuzzy
 msgid "Floppy _density:"
 msgstr "Densidade do disquete:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 #, fuzzy
 msgid "Floppy de_vice:"
 msgstr "Dispositivo do disquete:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "MFormatando o disquete..."
+
+#: gfloppy/src/gfloppy2.glade.h:13
 #, fuzzy
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Alta densidade 3.5\" (1.44 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 #, fuzzy
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Alta densidade 5.25\" (1.2 MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Nativo de Linux (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+#, fuzzy
+msgid "Physical Settings"
+msgstr "Propiedades xerais"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -899,11 +903,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr ""
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "O dispositivo para formatar"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "DISPOSITIVO"
 
@@ -1069,6 +1073,11 @@ msgid ""
 "Please check your installation of gnome-panel"
 msgstr ""
 
+#: gnome-screenshot/screenshot-dialog.c:213
+#, fuzzy
+msgid "Select a directory"
+msgstr "Empezar no directorio:"
+
 #: gnome-screenshot/screenshot-save.c:40
 #, fuzzy, c-format
 msgid ""
@@ -1120,11 +1129,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
 #, fuzzy
-msgid "Search for Files"
+msgid "Search for Files..."
 msgstr "Buscar"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1642,6 +1649,12 @@ msgid_plural "%d files found"
 msgstr[0] "Non se atopou ningunha coincidencia"
 msgstr[1] "Non se atopou ningunha coincidencia"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+#, fuzzy
+msgid "Search for Files"
+msgstr "Buscar"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "¡\"Entry changed\" foi chamada para unha opción non válida!"
@@ -2141,20 +2154,20 @@ msgstr "%d de %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 #, fuzzy
 msgid "The file could not be opened"
 msgstr "%s non se pode abrir."
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "¡Non é posible abrir o ficheiro de rexistro!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "¡Memoria insuficiente!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2163,22 +2176,22 @@ msgstr ""
 "%s non e lexible polo usuario. Execúteo coma root, ou ben pídalle ao "
 "administrador que modifique os permisos do ficheiro."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s non se pode abrir."
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s non e un ficheiro de rexistro."
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoria esgotada"
 
@@ -3166,18 +3179,6 @@ msgstr "%d de %B, %X"
 
 #~ msgid "EUnable to create filesystem."
 #~ msgstr "ENon foi posible crear o sistema de ficheiros."
-
-#, fuzzy
-#~ msgid "Filesystem settings"
-#~ msgstr "Manter configuración"
-
-#, fuzzy
-#~ msgid "Formatting mode"
-#~ msgstr "MFormatando o disquete..."
-
-#, fuzzy
-#~ msgid "Physical settings"
-#~ msgstr "Propiedades xerais"
 
 #~ msgid "x^2"
 #~ msgstr "x^2"

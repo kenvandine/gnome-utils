@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2004-12-16 12:26+0200\n"
 "Last-Translator: Kostas <pkst@gmx.net>\n"
 "Language-Team:  <nls@tux.hellug.gr>\n"
@@ -34,7 +34,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "Αναζήτηση Λεξικού"
 
@@ -43,7 +43,7 @@ msgstr "Αναζήτηση Λεξικού"
 msgid "Lookup words in an online dictionary"
 msgstr "Αναζήτηση λέξης σε λεξικό του Διαδικτύου"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 msgid "_About"
 msgstr "_Περί"
@@ -93,33 +93,22 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "Ένας πελάτης για τον εξυπηρετητή λεξικού του MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "Λεξικό"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "Έλεγχος ορθογραφίας..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "Ο έλεγχος ορθογραφίας ολοκληρώθηκε"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "Δε βρέθηκαν ταιριάσματα"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 #, fuzzy
 msgid "Connection error"
 msgstr "Σφάλμα σύνδεσης"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr "Αδυναμία εκτέλεσης απιτούμενης λειτουργίας."
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -127,177 +116,181 @@ msgstr ""
 "Είτε ο εξυπηρετητής που χρησιμοποιείτε είναι ανενεργός \n"
 "ή δεν είστε συνδεδεμένος στο Διαδίκτυο."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "Αναζήτηση λέξης..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "Η εύρεση του λήμματος ολοκληρώθηκε"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "Το αλφαριθμητικό δε βρέθηκε"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr "Εκτύπωση ορισμού λέξης"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "Εύρεση"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "Ανα_ζήτηση για:"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "Αδυναμία εμφάνισης βοήθειας"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "_Αναζήτηση Λέξης"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "Αναζήτηση λέξης στο λεξικό"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 msgid "_Print"
 msgstr "Εκτύ_πωση"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr "Εκτύπωση του τρέχοντος ορισμού"
 
+#: gdictsrc/gdict-app.c:649
+msgid "_Close"
+msgstr "Κλεί_σιμο"
+
+#: gdictsrc/gdict-app.c:650
+msgid "Close the application"
+msgstr "Κλείσιμο της εφαρμογής"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 msgid "_Find..."
 msgstr "_Εύρεση"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 msgid "Find a word in the text"
 msgstr "Εύρεση μια λέξης στο κείμενο"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 msgid "Find Ne_xt"
 msgstr "Εύρεση επο_μένου"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr "Εύρεση της επόμενης εμφάνισης της λέξης"
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 msgid "P_references"
 msgstr "Π_ροτιμήσεις"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 msgid "Configure the application"
 msgstr "Ρύθμιση της εφαρμογής"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr "_Περιεχόμενα"
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr "Προβολή βοήθειας για αυτή την εφαρμογή"
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 msgid "About this application"
 msgstr "Περί αυτής της εφαρμογής"
 
-#: gdictsrc/gdict-app.c:919
-msgid "_Close"
-msgstr "Κλεί_σιμο"
-
-#: gdictsrc/gdict-app.c:920
-msgid "Close the application"
-msgstr "Κλείσιμο της εφαρμογής"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "Εξυπηρετητής λεξικού"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 msgid "Cu_t"
 msgstr "Απο_κοπή"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "Αποκοπή της επιλογής"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr "Αντι_γραφή"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "Αντιγραφή της επιλογής"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 msgid "_Paste"
 msgstr "Ε_πικόλληση"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 msgid "Paste clipboard"
 msgstr "Επικόλληση προχείρου"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr "Επιλογή ό_λων"
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr "Επλογή όλων"
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "_Spellings"
 msgstr "Προβολή  ορ_θογραφίας"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr "Προβολή εναλλακτκής ορθογραφίας"
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "_Λέξη:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "Λέξη"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "Καταχώρηση Λέξης"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "Εισάγετε μια λέξη ή επιλέξτε μια από την παρακάτω λίστα"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "Αναζήτηση για Λέξη"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "Κατταχώρηση λέξης λεξικού"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "Αναζήτηση λέξης..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "Η εύρεση του λήμματος ολοκληρώθηκε"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "Δε βρέθηκαν ταιριάσματα"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "Το αλφαριθμητικό δε βρέθηκε"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr "Προεπισκόπηση ορισμού"
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr "Σφάλμα εκτέλεσης ερωτήματος"
 
@@ -390,6 +383,14 @@ msgstr "Όνομα Βάσης Δεδομένων"
 msgid "Default Strategy"
 msgstr "Προεπιλεγμένη Στρατηγική"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "Έλεγχος ορθογραφίας..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "Ο έλεγχος ορθογραφίας ολοκληρώθηκε"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "Εξυπηρετητής λεξικού"
@@ -450,11 +451,11 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "Χρήση έξυπνης αναζήτησης"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 msgid "Gnome Dictionary"
 msgstr "Λεξικό του Gnome"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Μορφοποιητής Δισκέτας"
 
@@ -728,52 +729,54 @@ msgstr ""
 "μορφοποίηση DOS (fat).</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">Ρυθμίσεις Συστήματος Αρχείων</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">Λειτουργία Μορφοποίησης</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">Φυσικές Ρυθμίσεις</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "Διπλής Πυκνότητας 3.5\" (720KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "Διπλής Πυκνότητας 5.25\" (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "_Τύπος συστήματος αρχείων:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "_Τύπος συστήματος αρχείων:"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "_Πυκνότητα δισκέτας:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "Συσκ_ευή  δισκέτας:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "Προεπιλεγμένη λειτουργία μορφοποίησης"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "Υψηλής Πυκνότητας 3.5\" (1.44MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "Υψηλής Πυκνότητας 5.25\" (1.2MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Linux Native (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -859,11 +862,11 @@ msgstr "Μη έγκυρο όνομα τόμου"
 msgid "The volume name can't contain any blank space."
 msgstr "Το όνομα τόμου δε μπορεί να περιέχει κανένα κενό διάστημα."
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "Η συσκευή για μορφοποίηση"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "ΣΥΣΚΕΥΗ"
 
@@ -1034,6 +1037,11 @@ msgstr ""
 "Το αρχείο Glade για το πρόγραμμα αρπαγής οθόνης λείπει.\n"
 "Παρακαλώ ελέγξτε την εγκατάσταση του gnome-panel"
 
+#: gnome-screenshot/screenshot-dialog.c:213
+#, fuzzy
+msgid "Select a directory"
+msgstr "Web directory"
+
 #: gnome-screenshot/screenshot-save.c:40
 #, fuzzy, c-format
 msgid ""
@@ -1085,10 +1093,9 @@ msgstr "Άγνωστο GnomeVFSXferProgressStatus %d"
 msgid "Find files, folders, and documents on your computer"
 msgstr "Εύρεση αρχείων, φακέλων και εγγράφων στον υπολογιστή σας"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+#, fuzzy
+msgid "Search for Files..."
 msgstr "Αναζήτηση για Αρχεία"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1588,6 +1595,11 @@ msgid_plural "%d files found"
 msgstr[0] "Δε βρέθηκαν αρχεία"
 msgstr[1] "Δε βρέθηκαν αρχεία"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "Αναζήτηση για Αρχεία"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "Η αλλαγή εισαγωγής καλέστηκε για επιλογή που δεν επιτρέπει εισαγωγή!"
@@ -2077,20 +2089,20 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 #, fuzzy
 msgid "The file could not be opened"
 msgstr "Το %s δε μπόρεσε να ανοιχτεί."
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "Αδύνατο το άνοιγμα αρχείου καταγραφών!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "Δεν υπάρχει αρκετή μνήμη!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2100,22 +2112,22 @@ msgstr ""
 "διαχειριστής ή ζητήστε από το διαχειριστή να αλλάξει τα δικαιώματα του "
 "αρχείου."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr "%s είναι πολύ μεγάλο"
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "Το %s δε μπόρεσε να ανοιχτεί."
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "To %s δεν είναι αρχείο καταγραφών."
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: η μνήμη εξαντλήθηκε"
 
@@ -2292,6 +2304,15 @@ msgstr "Λεπτομέρεια Καταχώρησης"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">Ρυθμίσεις Συστήματος Αρχείων</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">Λειτουργία Μορφοποίησης</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">Φυσικές Ρυθμίσεις</span>"
 
 #, fuzzy
 #~ msgid "Select Size At Most"

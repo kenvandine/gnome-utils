@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-10 15:41-0500\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2004-09-01 11:38+0530\n"
 "Last-Translator: Jayaradha N <jaya@pune.redhat.com>\n"
 "Language-Team: Tamil <zhakanini@yahoogroups.com>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "அகராதியை தேடுக"
 
@@ -28,7 +28,7 @@ msgstr "அகராதியை தேடுக"
 msgid "Lookup words in an online dictionary"
 msgstr "சொற்களஞ்சியத்தில் வார்தையைத் தேடிப்பார்"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 msgid "_About"
 msgstr "(_A)பற்றி..."
@@ -75,33 +75,22 @@ msgstr "மொழிபெயர்பாளர் நன்றிகள்"
 msgid "A client for the MIT dictionary server."
 msgstr "MIT அகராதி சேவக்னுக்கான புரவலன்"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "அகராதி"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "எழுத்துகளை சாிபார்க்கின்றது..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "எழுத்து சாிபார்ப்பு முடிந்துவிட்டது"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "பொருத்தமானவை கிடைக்கவில்லை"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 #, fuzzy
 msgid "Connection error"
 msgstr "சேவையகத்துடன் இணைக்க முடியவில்லை"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 #, fuzzy
 msgid ""
 "Either the server you are using is not available \n"
@@ -111,188 +100,192 @@ msgstr ""
 "நீங்கள் பயன்படுத்தும் சேவகன் இல்லை\n"
 "அல்லது நீங்கள் இணையத்தில் இல்லை."
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "எழுத்தை தேடுகின்றது..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "தேடுதல் முடிந்தது"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "சரம் கிடைக்கவில்லை"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr " கண்டுபிடி"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "(_S)தேடு"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 #, fuzzy
 msgid "Could not display help"
 msgstr "உதவி ஆவணத்தை திற்க முடியவில்லை"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "வார்த்தை தேடுதல்"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "சொற்களஞ்சியத்தில் வார்தையைத் தேடிப்பார்"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 #, fuzzy
 msgid "_Print"
 msgstr "துறை:"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr ""
 
+#: gdictsrc/gdict-app.c:649
+#, fuzzy
+msgid "_Close"
+msgstr "அனைத்தையும் மூடு"
+
+#: gdictsrc/gdict-app.c:650
+#, fuzzy
+msgid "Close the application"
+msgstr "(_H)பயன்பாட்டை மறை"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 #, fuzzy
 msgid "_Find..."
 msgstr "தேடு"
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "(_t)உரையில்"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr " கண்டுபிடி"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "P_references"
 msgstr "(_P)விருப்ப முதன்மைகள்..."
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 #, fuzzy
 msgid "Configure the application"
 msgstr "(_H)பயன்பாட்டை மறை"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "About this application"
 msgstr "(_H)பயன்பாட்டை மறை"
 
-#: gdictsrc/gdict-app.c:919
-#, fuzzy
-msgid "_Close"
-msgstr "அனைத்தையும் மூடு"
-
-#: gdictsrc/gdict-app.c:920
-#, fuzzy
-msgid "Close the application"
-msgstr "(_H)பயன்பாட்டை மறை"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "அகராதி சேவகன்"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 msgid "Cu_t"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 msgid "Copy the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "_Paste"
 msgstr "தேதி"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 msgid "Paste clipboard"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "_Spellings"
 msgstr "எழுத்துப் பிழையை சோதி"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "வார்த்தை:"
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "வார்த்தை"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "வார்த்தை வழி"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "வார்த்தையை நுழை அல்லது பட்டியலின் கீழே இருந்து ஒன்றை தேர்ந்து எடு"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "வார்த்தையை தேடிப்பார்"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "அகராதி வார்த்தை உள்ளீடு"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "எழுத்தை தேடுகின்றது..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "தேடுதல் முடிந்தது"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "பொருத்தமானவை கிடைக்கவில்லை"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "சரம் கிடைக்கவில்லை"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 #, fuzzy
 msgid "Error invoking query"
 msgstr "%s கேள்வியை உருவாக்குவதில் பிழை"
@@ -387,6 +380,14 @@ msgstr "தரவுத் தளம் பெயர்"
 msgid "Default Strategy"
 msgstr "இயல்பான திட்டம்:"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "எழுத்துகளை சாிபார்க்கின்றது..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "எழுத்து சாிபார்ப்பு முடிந்துவிட்டது"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "அகராதி சேவகன்"
@@ -444,12 +445,12 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "சூட்டிகை தேடுதலை பயன்படுத்து"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 #, fuzzy
 msgid "Gnome Dictionary"
 msgstr "அகராதி"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "நெகிழ்வட்டு வடிவமைப்பான்"
 
@@ -717,52 +718,54 @@ msgstr ""
 "It  DOS (fat) வடிவமைப்பின் படி வட்டுகளை அமைக்க இந்த மென்பொருள் தேவை. </i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">கணினி கோப்பு அமைப்புகள்</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">வடிவமைக்கும் பாங்கு</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">நீங்களாக அமைத்தல்</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "இரட்டை அடர்த்தி 3.5\" (720KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "இரட்டை அடர்த்தி5.25\" (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "(_t)கோப்பு அமைப்பு வகை:"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "(_t)கோப்பு அமைப்பு வகை:"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "(_d)ஃபிளாப்பியின் அடர்த்தி:"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "(_v)நெகிழ்வட்டு சாதனம்:"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "இயல்பான வடிவமைப்பு பாங்கு"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "மிகுந்த அடர்த்தி3.5\" (1.44MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "மிகுந்த அடர்த்தி5.25\" (1.2MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "லினக்ஸ் நேடிவ் (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -849,11 +852,11 @@ msgstr ""
 msgid "The volume name can't contain any blank space."
 msgstr "நிறையில் வெற்றிடம் எதுவும் இருக்கக்கூடாது."
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "ஃபார்மாட் செய்ய வேண்டிய சாதனம்"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "சாதனம்"
 
@@ -1015,6 +1018,10 @@ msgid ""
 "Please check your installation of gnome-panel"
 msgstr ""
 
+#: gnome-screenshot/screenshot-dialog.c:213
+msgid "Select a directory"
+msgstr ""
+
 #: gnome-screenshot/screenshot-save.c:40
 #, fuzzy, c-format
 msgid ""
@@ -1064,10 +1071,9 @@ msgstr ""
 msgid "Find files, folders, and documents on your computer"
 msgstr "உங்கள் கணினியில் உள்ள கோப்புகள்,அடைவுகள் மற்றும் ஆவணங்களை கண்டுபிடி"
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:2 gsearchtool/gsearchtool.c:704
-#: gsearchtool/gsearchtool.c:963 gsearchtool/gsearchtool.c:1049
-#: gsearchtool/gsearchtool.c:2688
-msgid "Search for Files"
+#: gsearchtool/gnome-search-tool.desktop.in.h:2
+#, fuzzy
+msgid "Search for Files..."
 msgstr "கோப்புகளை தேடு"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:1
@@ -1563,6 +1569,11 @@ msgid_plural "%d files found"
 msgstr[0] "%d கோப்பு கிடைத்துள்ளது"
 msgstr[1] "%d கோப்பு கிடைத்துள்ளது"
 
+#: gsearchtool/gsearchtool.c:704 gsearchtool/gsearchtool.c:963
+#: gsearchtool/gsearchtool.c:1049 gsearchtool/gsearchtool.c:2688
+msgid "Search for Files"
+msgstr "கோப்புகளை தேடு"
+
 #: gsearchtool/gsearchtool.c:797
 msgid "Entry changed called for a non entry option!"
 msgstr "உள்ளீடு மாற்றப்பட்டதால் உள்ளீடு இல்லாத தேர்வை அழைக்கிறது!"
@@ -2037,20 +2048,20 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 #, fuzzy
 msgid "The file could not be opened"
 msgstr "%s ஐ திறக்க முடியவில்லை"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "பதிவு கோப்பை திறக்க முடியவில்லை!\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "நினைவகத்தில் போதிய இடமில்லை!\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2059,22 +2070,22 @@ msgstr ""
 "%s ஐ பயனீட்டாளரால் படிக்க முடியாது, முதன்மை பயனீட்டாளராக நிரலை இயக்கவும் அல்லது உங்கள் "
 "நிர்வாகியிடம் அனுமதி கேட்கவும்."
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s ஐ திறக்க முடியவில்லை"
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s பதிவு கோப்பு இல்லை"
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "பதிவு புள்ளிவிவரத்தை படி: நினைவகத்தில் இடமில்லை"
 
@@ -2249,6 +2260,15 @@ msgstr "நுழைவு விவரம்"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">கணினி கோப்பு அமைப்புகள்</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">வடிவமைக்கும் பாங்கு</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">நீங்களாக அமைத்தல்</span>"
 
 #~ msgid "_Show Dictionary"
 #~ msgstr "அகராதியை காட்டு"

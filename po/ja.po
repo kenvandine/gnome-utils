@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-16 02:57+0900\n"
+"POT-Creation-Date: 2005-01-24 16:29-0500\n"
 "PO-Revision-Date: 2005-01-16 02:56+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:150
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
 msgid "Dictionary Lookup"
 msgstr "辞書検索"
 
@@ -30,7 +30,7 @@ msgstr "辞書検索"
 msgid "Lookup words in an online dictionary"
 msgstr "オンライン辞書で単語を検索します"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:914
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:663
 #: logview/logview.c:111
 msgid "_About"
 msgstr "情報(_A)"
@@ -83,32 +83,21 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "MIT 辞書サーバのクライアントです。"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-app.c:351 gdictsrc/gdict-app.c:363
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
+#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
+#: gdictsrc/gnome-dictionary.desktop.in.h:1
 msgid "Dictionary"
 msgstr "辞書"
 
-#: gdictsrc/gdict-app.c:131
-msgid "Spell-checking..."
-msgstr "スペルチェック中..."
-
-#: gdictsrc/gdict-app.c:140
-msgid "Spell check done"
-msgstr "スペルチェック完了"
-
-#: gdictsrc/gdict-app.c:150 gdictsrc/gdict-app.c:380
-msgid "No matches found"
-msgstr "一致するものは見つかりません"
-
-#: gdictsrc/gdict-app.c:164
+#: gdictsrc/gdict-app.c:87
 msgid "Connection error"
 msgstr "接続エラー"
 
-#: gdictsrc/gdict-app.c:209
+#: gdictsrc/gdict-app.c:134
 msgid "Unable to perform requested operation."
 msgstr "要求された操作を実行できません。"
 
-#: gdictsrc/gdict-app.c:210
+#: gdictsrc/gdict-app.c:135
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -116,175 +105,179 @@ msgstr ""
 "使っているサーバが利用可能な状態でないか、\n"
 "インターネットに接続されていないのが原因です。"
 
-#: gdictsrc/gdict-app.c:352
-msgid "Looking up word..."
-msgstr "単語の検索中..."
-
-#: gdictsrc/gdict-app.c:369
-msgid "Lookup done"
-msgstr "検索完了"
-
-#: gdictsrc/gdict-app.c:393
-msgid "String not found"
-msgstr "文字が見つかりません"
-
-#: gdictsrc/gdict-app.c:467
+#: gdictsrc/gdict-app.c:314
 msgid "Print Word Definition"
 msgstr "この意味定義を印刷します"
 
-#: gdictsrc/gdict-app.c:582
+#: gdictsrc/gdict-app.c:429
 msgid "Find"
 msgstr "検索"
 
-#: gdictsrc/gdict-app.c:592
+#: gdictsrc/gdict-app.c:439
 msgid "_Search for:"
 msgstr "検索の対象(_S):"
 
-#: gdictsrc/gdict-app.c:669 gdictsrc/gdict-applet.c:320
+#: gdictsrc/gdict-app.c:509 gdictsrc/gdict-applet.c:313
 #: gdictsrc/gdict-pref-dialog.c:863
 msgid "Could not display help"
 msgstr "ヘルプを表示できませんでした"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:898 gdictsrc/gdict-app.c:1034
+#: gdictsrc/gdict-app.c:645 gdictsrc/gdict-app.c:776
 msgid "_Look Up Word"
 msgstr "単語の検索(_L)"
 
-#: gdictsrc/gdict-app.c:899
+#: gdictsrc/gdict-app.c:646
 msgid "Lookup word in dictionary"
 msgstr "辞書で単語を検索します"
 
-#: gdictsrc/gdict-app.c:900
+#: gdictsrc/gdict-app.c:647
 msgid "_Print"
 msgstr "印刷(_P)"
 
-#: gdictsrc/gdict-app.c:901
+#: gdictsrc/gdict-app.c:648
 msgid "Print the current definition"
 msgstr "この意味定義を印刷します"
 
+#: gdictsrc/gdict-app.c:649
+msgid "_Close"
+msgstr "閉じる(_C)"
+
+#: gdictsrc/gdict-app.c:650
+msgid "Close the application"
+msgstr "アプリケーションを閉じます"
+
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:904 logview/logview.c:103
+#: gdictsrc/gdict-app.c:653 logview/logview.c:103
 msgid "_Find..."
 msgstr "検索(_F).."
 
-#: gdictsrc/gdict-app.c:905
+#: gdictsrc/gdict-app.c:654
 msgid "Find a word in the text"
 msgstr "テキストから単語を検索します"
 
-#: gdictsrc/gdict-app.c:906
+#: gdictsrc/gdict-app.c:655
 msgid "Find Ne_xt"
 msgstr "次の検索(_X)"
 
-#: gdictsrc/gdict-app.c:907
+#: gdictsrc/gdict-app.c:656
 msgid "Find next occurrence of the word"
 msgstr "単語が次に現れる場所を探します"
 
-#: gdictsrc/gdict-app.c:908
+#: gdictsrc/gdict-app.c:657
 msgid "P_references"
 msgstr "設定(_R)"
 
-#: gdictsrc/gdict-app.c:909
+#: gdictsrc/gdict-app.c:658
 msgid "Configure the application"
 msgstr "アプリケーションを設定します"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:912 logview/logview.c:109
+#: gdictsrc/gdict-app.c:661 logview/logview.c:109
 msgid "_Contents"
 msgstr "目次(_C)"
 
-#: gdictsrc/gdict-app.c:913
+#: gdictsrc/gdict-app.c:662
 msgid "View help for this application"
 msgstr "このアプリケーションのヘルプを表示します"
 
-#: gdictsrc/gdict-app.c:915
+#: gdictsrc/gdict-app.c:664
 msgid "About this application"
 msgstr "このアプリケーションの情報を表示します"
 
-#: gdictsrc/gdict-app.c:919
-msgid "_Close"
-msgstr "閉じる(_C)"
-
-#: gdictsrc/gdict-app.c:920
-msgid "Close the application"
-msgstr "アプリケーションを閉じます"
-
-#: gdictsrc/gdict-app.c:925
+#: gdictsrc/gdict-app.c:670
 msgid "On a Dictionary Server"
 msgstr "辞書サーバから"
 
-#: gdictsrc/gdict-app.c:927
+#: gdictsrc/gdict-app.c:672
 msgid "On a Web Site"
 msgstr "ウェブ・サイトから"
 
-#: gdictsrc/gdict-app.c:933
+#: gdictsrc/gdict-app.c:678
 msgid "Cu_t"
 msgstr "切り取り(_T)"
 
-#: gdictsrc/gdict-app.c:934
+#: gdictsrc/gdict-app.c:679
 msgid "Cut the selection"
 msgstr "選択範囲を切り取ります"
 
-#: gdictsrc/gdict-app.c:935
+#: gdictsrc/gdict-app.c:680
 msgid "_Copy"
 msgstr "コピー(_C)"
 
-#: gdictsrc/gdict-app.c:936 logview/logview.c:99
+#: gdictsrc/gdict-app.c:681 logview/logview.c:99
 msgid "Copy the selection"
 msgstr "選択範囲をコピーします"
 
-#: gdictsrc/gdict-app.c:937
+#: gdictsrc/gdict-app.c:682
 msgid "_Paste"
 msgstr "貼り付け(_P)"
 
-#: gdictsrc/gdict-app.c:938
+#: gdictsrc/gdict-app.c:683
 msgid "Paste clipboard"
 msgstr "クリップボードから貼り付けます"
 
-#: gdictsrc/gdict-app.c:939
+#: gdictsrc/gdict-app.c:684
 msgid "Select _All"
 msgstr "全て選択(_A)"
 
-#: gdictsrc/gdict-app.c:940
+#: gdictsrc/gdict-app.c:685
 msgid "Select everything"
 msgstr "全て選択します"
 
-#: gdictsrc/gdict-app.c:945
+#: gdictsrc/gdict-app.c:690
 msgid "_Spellings"
 msgstr "スペル(_S)"
 
-#: gdictsrc/gdict-app.c:946
+#: gdictsrc/gdict-app.c:691
 msgid "View alternate spellings"
 msgstr "他のスペルを表示します"
 
-#: gdictsrc/gdict-app.c:1031
+#: gdictsrc/gdict-app.c:773
 msgid "_Word:"
 msgstr "単語(_W) : "
 
-#: gdictsrc/gdict-app.c:1055
+#: gdictsrc/gdict-app.c:801
 msgid "Word"
 msgstr "単語"
 
-#: gdictsrc/gdict-app.c:1056 gdictsrc/gdict-app.c:1058
+#: gdictsrc/gdict-app.c:802 gdictsrc/gdict-app.c:804
 msgid "Word Entry"
 msgstr "単語のエントリ"
 
-#: gdictsrc/gdict-app.c:1057
+#: gdictsrc/gdict-app.c:803
 msgid "Enter a Word or select one from the list below"
 msgstr "単語を入力するか、下の一覧から選択して下さい"
 
-#: gdictsrc/gdict-app.c:1061
+#: gdictsrc/gdict-app.c:807
 msgid "Look Up for a Word"
 msgstr "単語の検索"
 
-#: gdictsrc/gdict-applet.c:155
+#: gdictsrc/gdict-applet.c:152
 msgid "Dictionary word entry"
 msgstr "辞書の単語のエントリ"
 
-#: gdictsrc/gdict-defbox.c:335
+#: gdictsrc/gdict-defbox.c:83
+msgid "Looking up word..."
+msgstr "単語の検索中..."
+
+#: gdictsrc/gdict-defbox.c:100
+msgid "Lookup done"
+msgstr "検索完了"
+
+#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+msgid "No matches found"
+msgstr "一致するものは見つかりません"
+
+#: gdictsrc/gdict-defbox.c:122
+msgid "String not found"
+msgstr "文字が見つかりません"
+
+#: gdictsrc/gdict-defbox.c:542
 msgid "Definition preview"
 msgstr "定義のプレビュー"
 
-#: gdictsrc/gdict-defbox.c:674 gdictsrc/gdict-speller.c:279
+#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
 msgid "Error invoking query"
 msgstr "問い合わせ中にエラー"
 
@@ -376,6 +369,14 @@ msgstr "データベース名"
 msgid "Default Strategy"
 msgstr "デフォルトの検索方法"
 
+#: gdictsrc/gdict-speller.c:234
+msgid "Spell-checking..."
+msgstr "スペルチェック中..."
+
+#: gdictsrc/gdict-speller.c:243
+msgid "Spell check done"
+msgstr "スペルチェック完了"
+
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
 msgstr "辞書サーバ"
@@ -434,11 +435,11 @@ msgstr ""
 msgid "Use smart lookup"
 msgstr "スマート検索を有効にする"
 
-#: gdictsrc/main.c:80
+#: gdictsrc/main.c:90
 msgid "Gnome Dictionary"
 msgstr "GNOME 辞書"
 
-#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:11
+#: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "フロッピー初期化ツール"
 
@@ -708,52 +709,54 @@ msgstr ""
 "い。</i></small>"
 
 #: gfloppy/src/gfloppy2.glade.h:4
-msgid "<span weight=\"bold\">Filesystem Settings</span>"
-msgstr "<span weight=\"bold\">ファイルシステムの選択</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:5
-msgid "<span weight=\"bold\">Formatting Mode</span>"
-msgstr "<span weight=\"bold\">フォーマットのモード</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:6
-msgid "<span weight=\"bold\">Physical Settings</span>"
-msgstr "<span weight=\"bold\">物理フォーマットの指定</span>"
-
-#: gfloppy/src/gfloppy2.glade.h:7
 msgid "DOS (FAT)"
 msgstr "DOS (FAT)"
 
-#: gfloppy/src/gfloppy2.glade.h:8
+#: gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
 msgstr "倍密度 3.5\" (720KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:9
+#: gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
 msgstr "倍密度 5.25\" (360KB)"
 
-#: gfloppy/src/gfloppy2.glade.h:10
+#: gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
 msgstr "ファイルシステム種別(_T):"
 
-#: gfloppy/src/gfloppy2.glade.h:12
+#: gfloppy/src/gfloppy2.glade.h:8
+#, fuzzy
+msgid "Filesystem Settings"
+msgstr "ファイルシステム種別(_T):"
+
+#: gfloppy/src/gfloppy2.glade.h:10
 msgid "Floppy _density:"
 msgstr "ディスク容量(_D):"
 
-#: gfloppy/src/gfloppy2.glade.h:13
+#: gfloppy/src/gfloppy2.glade.h:11
 msgid "Floppy de_vice:"
 msgstr "フロッピーデバイス(_V):"
 
-#: gfloppy/src/gfloppy2.glade.h:14
+#: gfloppy/src/gfloppy2.glade.h:12
+#, fuzzy
+msgid "Formatting Mode"
+msgstr "デフォルトの初期化モード"
+
+#: gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
 msgstr "高密度 3.5\" (1.44MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:15
+#: gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
 msgstr "高密度 5.25\" (1.2MB)"
 
-#: gfloppy/src/gfloppy2.glade.h:16
+#: gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
 msgstr "Linux ネイティブ (ext2)"
+
+#: gfloppy/src/gfloppy2.glade.h:16
+msgid "Physical Settings"
+msgstr ""
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
@@ -835,11 +838,11 @@ msgstr "ボリューム名が正しくありません"
 msgid "The volume name can't contain any blank space."
 msgstr "ボリューム名をブロック・スペースに書き込めません。"
 
-#: gfloppy/src/main.c:543
+#: gfloppy/src/main.c:544
 msgid "The device to format"
 msgstr "フォーマットするデバイス"
 
-#: gfloppy/src/main.c:544
+#: gfloppy/src/main.c:545
 msgid "DEVICE"
 msgstr "DEVICE"
 
@@ -1003,6 +1006,11 @@ msgstr ""
 "GNOME スクリーンショットのユーザ・インタフェース・ファイルが見つかりませ"
 "ん。\n"
 "パッケージ 'gnome-utils' のインストールを確認して下さい。"
+
+#: gnome-screenshot/screenshot-dialog.c:213
+#, fuzzy
+msgid "Select a directory"
+msgstr "ウェブのフォルダ"
 
 #: gnome-screenshot/screenshot-save.c:40
 #, c-format
@@ -2060,19 +2068,19 @@ msgstr "%B%e日"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:47
+#: logview/logrtns.c:50
 msgid "The file could not be opened"
 msgstr "そのファイルを開けませんでした"
 
-#: logview/logrtns.c:213
+#: logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
 msgstr "ログファイルを開けません！\n"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:223
 msgid "Not enough memory!\n"
 msgstr "メモリが足りません！\n"
 
-#: logview/logrtns.c:272
+#: logview/logrtns.c:275
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2081,22 +2089,22 @@ msgstr ""
 "%s を読むことはできません。root でプログラムを起動するか、管理者に頼んでファ"
 "イルのパーミッションを変更してもらって下さい。"
 
-#: logview/logrtns.c:277
+#: logview/logrtns.c:280
 #, c-format
 msgid "%s is too big."
 msgstr "%s は大きすぎます。"
 
-#: logview/logrtns.c:281
+#: logview/logrtns.c:284
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s を開けませんでした。"
 
-#: logview/logrtns.c:322 logview/logrtns.c:333
+#: logview/logrtns.c:325 logview/logrtns.c:336
 #, c-format
 msgid "%s not a log file."
 msgstr "%s はログファイルではありません。"
 
-#: logview/logrtns.c:584 logview/logrtns.c:608
+#: logview/logrtns.c:587 logview/logrtns.c:611
 msgid "ReadLogStats: out of memory"
 msgstr "ログの読み込み: メモリ不足"
 
@@ -2258,3 +2266,12 @@ msgstr "エントリの詳細"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B%e日 %X"
+
+#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
+#~ msgstr "<span weight=\"bold\">ファイルシステムの選択</span>"
+
+#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
+#~ msgstr "<span weight=\"bold\">フォーマットのモード</span>"
+
+#~ msgid "<span weight=\"bold\">Physical Settings</span>"
+#~ msgstr "<span weight=\"bold\">物理フォーマットの指定</span>"
