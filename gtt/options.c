@@ -482,7 +482,8 @@ void options_dialog(void)
 		gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
                 w = gtk_label_new(_("Misc"));
                 gtk_widget_show(w);
-                gnome_property_box_append_page(odlg->dlg, GTK_WIDGET(vbox), w);
+                gtk_notebook_append_page (GTK_NOTEBOOK (odlg->dlg->notebook), 
+					  GTK_WIDGET(vbox), w);
 
 		signals(odlg);
 		display_options(odlg, vbox);
@@ -494,7 +495,8 @@ void options_dialog(void)
 		gtk_container_border_width(GTK_CONTAINER(vbox), 10);
                 w = gtk_label_new(_("Toolbar"));
                 gtk_widget_show(w);
-                gnome_property_box_append_page(odlg->dlg, GTK_WIDGET(vbox), w);
+                gtk_notebook_append_page (GTK_NOTEBOOK (odlg->dlg->notebook), 
+					  GTK_WIDGET(vbox), w);
                 toolbar_options(odlg, vbox);
 
 		gnome_dialog_close_hides(GNOME_DIALOG(odlg->dlg), TRUE);

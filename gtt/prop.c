@@ -177,8 +177,9 @@ void prop_dialog(project *proj)
 
 		vbox = GTK_BOX(gtk_vbox_new(FALSE, 2));
 		gtk_widget_show(GTK_WIDGET(vbox));
-		gnome_property_box_append_page(dlg->dlg, GTK_WIDGET(vbox),
-					       gtk_label_new(_("Project")));
+		gtk_notebook_append_page (GTK_NOTEBOOK (dlg->dlg->notebook),
+					  GTK_WIDGET(vbox),
+					  gtk_label_new(_("Project")));
 
 		gtk_container_border_width(GTK_CONTAINER(vbox), GNOME_PAD);
 
