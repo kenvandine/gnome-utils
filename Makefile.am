@@ -23,7 +23,7 @@ endif
 SUBDIRS = po intl macros idl $(gfloppy) logview gcharmap \
 	gcalc gsearchtool $(gdiskfree) $(stripchart) gtt gdictsrc \
 	$(guile_DIRS) $(objc_DIRS) mini-utils splash gdialog \
-	meat-grinder omf-install
+	meat-grinder exe-handler omf-install
 
 EXTRA_DIST = gnome-utils.spec.in
 
