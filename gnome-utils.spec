@@ -1,6 +1,6 @@
 # Note that this is NOT a relocatable package
 %define ver      0.30
-%define rel      SNAP
+%define rel      1
 %define prefix   /usr
 
 Summary: GNOME utility programs
@@ -9,10 +9,13 @@ Version: %ver
 Release: %rel
 Copyright: LGPL
 Group: X11/Libraries
-Source: ftp://ftp.gnome.org/pub/gnome-utils-%{ver}.tar.gz
-BuildRoot: /tmp/gnome-utils-root
+Source: ftp://ftp.gnome.org/pub/GNOME/sources/gnome-utils-%{ver}.tar.gz
+BuildRoot: /var/tmp/gnome-utils-root
 Obsoletes: gnome
-Packager: Marc Ewing <marc@redhat.com>
+Requires: gnome-libs >= 0.30
+Requires: libgtop >= 0.25.0
+
+Packager: Michael Fulbright <msf@redhat.com>
 URL: http://www.gnome.org
 Docdir: %{prefix}/doc
 
@@ -25,7 +28,11 @@ using your computer easy, powerful, and easy to configure.
 
 %changelog
 
-* Mon Apr 6 1998 Marc Ewing <marc@redhat.com>
+* Tue Sep 22 1998 Michael Fulbright <msf@redhat.com>
+
+- Update to gnome-libs-0.30
+
+* Mon Apr  6 1998 Marc Ewing <marc@redhat.com>
 
 - Integrate into gnome-utils CVS source tree
 
@@ -66,5 +73,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %{prefix}/share/locale/*/*/*
 %{prefix}/share/apps
-#%{prefix}/share/gtoprc
 %{prefix}/share/gnome/help/*
