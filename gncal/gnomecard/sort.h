@@ -17,5 +17,6 @@ void gnomecard_sort_cards(GtkWidget *w, gpointer data);
 gint gnomecard_cmp_fnames(const void *crd1, const void *crd2);
 gint gnomecard_cmp_names(const void *crd1, const void *crd2);
 gint gnomecard_cmp_emails(const void *crd1, const void *crd2);
+gint gnomecard_cmp_org(const void *crd1, const void *crd2);
 
 #endif

@@ -497,6 +497,10 @@ GnomeUIInfo sortradios[] = {
 	{GNOME_APP_UI_ITEM, N_("By E-mail"), "",
 	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_emails, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+
+	{GNOME_APP_UI_ITEM, N_("By Organization"), "",
+	 gnomecard_sort_cards, (gpointer) gnomecard_cmp_org, NULL,
+	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
 	
 	{GNOME_APP_UI_ENDOFINFO}
 };

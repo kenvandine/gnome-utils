@@ -35,13 +35,6 @@ gnomecard_sort_card_list(sort_func compar)
 	g_free(array);
 }
 
-#if 0
-static void
-gnomecard_do_sort_cards(sort_func criteria)
-{
-    g_message("gnomecard_do_sort_cards not implemented");
-}
-#else
 static void
 gnomecard_do_sort_cards(sort_func criteria)
 {
@@ -58,7 +51,6 @@ gnomecard_do_sort_cards(sort_func criteria)
     gnomecard_rebuild_list(gnomecard_curr_crd);
 /*	gnomecard_set_changed(TRUE); WHY? We didnt change data any */
 }
-#endif
 
 void
 gnomecard_sort_cards(GtkWidget *w, gpointer data)
@@ -165,4 +157,22 @@ gnomecard_cmp_emails(const void *crd1, const void *crd2)
 	g_free(email1);
 	g_free(email2);
 	return ret;
+}
+
+gint
+gnomecard_cmp_org(const void *crd1, const void *crd2)
+{
+	char *fname1, *fname2;
+	
+	fname1 = (* (Card **) crd1)->org.name;
+	fname2 = (* (Card **) crd2)->org.name;
+	
+	if (fname1 == fname2)
+	  return 0;
+	if (!fname1)
+	  return 1;
+	if (!fname2)
+	  return -1;
+	
+	return strcmp(fname1, fname2);
 }

@@ -19,6 +19,7 @@ gnomecard_create_list_row(Card *crd, gchar **text)
 {
 	gchar  *cardname=NULL;
 	gchar  *name=NULL;
+	GList  *l;
 
 	/* for now we just display either cardname or real name and email */
 	cardname = crd->fname.str;
@@ -37,8 +38,17 @@ gnomecard_create_list_row(Card *crd, gchar **text)
 	else
 	    text[1] = g_strdup("");
 
-	/* no phone # yet */
+	/* show first phone # for now */
 	text[2] = g_strdup("");
+	for (l=crd->phone.l; l; l=l->next) {
+	    CardPhone *phone;
+
+	    phone = (CardPhone *)l->data;
+	    if (l && phone && phone->data) {
+		MY_FREE(text[2]);
+		text[2] = g_strdup(phone->data);
+	    }
+	}
 
 	if (crd->email.address) {
 	    text[3] = g_strdup(crd->email.address);
