@@ -23,6 +23,7 @@
 #include "dialog.h"
 
 static GtkCList *cl;
+static int format;
 
 static void cancelled(GtkWidget *w, gpointer *d)
 {
@@ -41,11 +42,21 @@ static void err_outputter(gpointer d, GtkCList *cl)
 	char *p;
 	
 	gtk_clist_get_text(cl,(gint)d,0,&p);
-	/*
-	char *p=GTK_CELL_TEXT(r->cell[0])->text;
-	*/
-	write(2, p, strlen(p));
-	write(2, "\n", 1);
+	
+	if(format==0)
+	{
+		write(2, p, strlen(p));
+		write(2, "\n", 1);
+	}
+	else
+	{
+		if(format++>1)
+			write(2," \"", 2);
+		else
+			write(2, "\"", 1);
+		write(2, p, strlen(p));
+		write(2, "\"", 1);
+	}
 }
 
 static void okayed(GtkWidget *w, int button, gpointer *d)
@@ -54,6 +65,8 @@ static void okayed(GtkWidget *w, int button, gpointer *d)
 	{
 		GList *l=GTK_CLIST(cl)->selection;
 		g_list_foreach(l, err_outputter, GTK_CLIST(cl));
+		if(format!=0)
+			write(2,"\n",1);
 	}
 	exit(button);
 }
@@ -137,9 +150,15 @@ int dialog_checklist(const char *title, const char *prompt, int height, int widt
 
 		cl=GTK_CLIST(gtk_clist_new(2));
 		if(flag!=FLAG_CHECK)
+		{
+			format=0;
 			gtk_clist_set_selection_mode(cl, GTK_SELECTION_BROWSE);
+		}
 		else
+		{
+			format=1;
 			gtk_clist_set_selection_mode(cl, GTK_SELECTION_MULTIPLE);
+		}
 		gtk_clist_set_policy(cl, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 		gtk_clist_freeze(cl);
 		gtk_clist_set_border(cl, GTK_SHADOW_IN);		
