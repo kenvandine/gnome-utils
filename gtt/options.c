@@ -18,6 +18,7 @@
 
 #include <config.h>
 #if HAS_GNOME
+#include "../../libgnomeui/gnome-stock.h"
 #include <gnome.h>
 #else
 #include <gtk/gtk.h>
@@ -155,7 +156,7 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 {
 	GtkWidget *w;
 
-	w = gtk_button_new_with_label(_("OK"));
+        w = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
 	gtk_widget_show(w);
 	gtk_signal_connect(GTK_OBJECT(w), "clicked",
 			   GTK_SIGNAL_FUNC(options_ok),
@@ -163,21 +164,21 @@ static void buttons(OptionsDlg *odlg, GtkBox *aa)
 	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 	odlg->ok = w;
 
-	w = gtk_button_new_with_label(_("Apply"));
+	w = gnome_stock_button(GNOME_STOCK_BUTTON_APPLY);
 	gtk_widget_show(w);
 	gtk_signal_connect(GTK_OBJECT(w), "clicked",
 			   GTK_SIGNAL_FUNC(options_ok),
 			   (gpointer *)odlg);
 	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 
-	w = gtk_button_new_with_label(_("Cancel"));
+	w = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 	gtk_widget_show(w);
 	gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
 				  GTK_SIGNAL_FUNC(gtk_widget_hide),
 				  GTK_OBJECT(odlg->dlg));
 	gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 
-	w = gtk_button_new_with_label(_("Help"));
+	w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
 	gtk_widget_show(w);
 	gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
 				  GTK_SIGNAL_FUNC(options_help),

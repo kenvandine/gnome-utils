@@ -351,7 +351,8 @@ build_toolbar(void)
 
 #ifdef WANT_STOCK
         if (config_show_tb_new) {
-                add_stock_button(mytbar->tbar, _("New"), _("New Project..."),
+                add_stock_button(mytbar->tbar, dgettext("gtt", "New"),
+                                 _("New Project..."),
                                  GNOME_STOCK_PIXMAP_NEW,
                                  _("<Main>/File/New Project..."));
                 gtk_toolbar_append_space(mytbar->tbar);
@@ -390,7 +391,8 @@ build_toolbar(void)
 #else /* not WANT_STOCK */
         /* TODO: If I keep this, I will have to add config_show_tb_bla
            checks */
-        add_button(mytbar->tbar, _("New"), _("New Project..."), tb_new_xpm,
+        add_button(mytbar->tbar, dgettext("gtt", "New"),
+                   _("New Project..."), tb_new_xpm,
                    _("<Main>/File/New Project..."));
         gtk_toolbar_append_space(mytbar->tbar);
 	add_button(mytbar->tbar, _("Reload"), _("Reload Configuration File"),

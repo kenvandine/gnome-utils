@@ -17,7 +17,12 @@
  */
 
 #include <config.h>
+#if HAS_GNOME
+#include "../../libgnomeui/gnome-stock.h"
+#include <gnome.h>
+#else /* not HAS_GNOME */
 #include <gtk/gtk.h>
+#endif /* not HAS_GNOME */
 #include <string.h>
 
 #include "gtt.h"
@@ -183,24 +188,24 @@ void prop_dialog(project *proj)
 				   GTK_WIDGET(vbox), FALSE, FALSE, 2);
 		gtk_container_border_width(GTK_CONTAINER(vbox), 10);
 
-		w = gtk_button_new_with_label(_("OK"));
+		w = gnome_stock_button(GNOME_STOCK_BUTTON_OK);
 		gtk_widget_show(w);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 				   GTK_SIGNAL_FUNC(prop_set), (gpointer *)dlg);
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
 		dlg->ok = GTK_BUTTON(w);
-		w = gtk_button_new_with_label(_("Apply"));
+		w = gnome_stock_button(GNOME_STOCK_BUTTON_APPLY);
 		gtk_widget_show(w);
 		gtk_signal_connect(GTK_OBJECT(w), "clicked",
 				   GTK_SIGNAL_FUNC(prop_set), (gpointer *)dlg);
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-		w = gtk_button_new_with_label(_("Cancel"));
+		w = gnome_stock_button(GNOME_STOCK_BUTTON_CANCEL);
 		gtk_widget_show(w);
 		gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
 					  GTK_SIGNAL_FUNC(gtk_widget_hide),
 					  GTK_OBJECT(dlg->dlg));
 		gtk_box_pack_start(aa, w, FALSE, FALSE, 2);
-		w = gtk_button_new_with_label(_("Help"));
+		w = gnome_stock_button(GNOME_STOCK_BUTTON_HELP);
 		gtk_widget_show(w);
 		gtk_signal_connect_object(GTK_OBJECT(w), "clicked",
 					  GTK_SIGNAL_FUNC(prop_help),
