@@ -3,9 +3,16 @@
 
    Author: George Lebl <jirka@5z.com>
 */
+#define WITH_FOOT
+
 
 #include <config.h>
 #include <gnome.h>
+
+#ifdef WITH_FOOT
+#include "foot.xpm"
+#endif
+
 
 static void
 about_cb (GtkWidget *widget, gpointer data)
@@ -18,7 +25,7 @@ about_cb (GtkWidget *widget, gpointer data)
 
 	about = gnome_about_new(_("The Gnome Calculator"), VERSION,
 				"(C) 1998 the Free Software Foundation",
-				authors,
+				(const char **)authors,
 				_("Simple double precision calculator similiar "
 				  "to xcalc"),
 				NULL);
@@ -31,32 +38,36 @@ quit_cb (GtkWidget *widget, gpointer data)
 	gtk_main_quit ();
 }
 
-
-
-GnomeUIInfo calc_menu[] = {
-	{GNOME_APP_UI_ITEM, N_("Exit"), NULL, quit_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_EXIT, 'X', GDK_CONTROL_MASK, NULL},
-	{GNOME_APP_UI_ENDOFINFO}
+/* Menus */
+GnomeUIInfo gcalc_program_menu[] = {
+	{GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT},
+	/*{GNOME_APP_UI_ITEM, N_("Preferences..."), NULL, NULL, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_PREF},*/
+	{GNOME_APP_UI_SEPARATOR},
+	{GNOME_APP_UI_ITEM, N_("Quit"),  NULL, quit_cb, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_QUIT,
+	'Q', GDK_CONTROL_MASK, NULL},
+	GNOMEUIINFO_END
 };
 
-GnomeUIInfo help_menu[] = {  
-	{ GNOME_APP_UI_HELP, NULL, NULL, NULL, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL}, 
-	
-	{GNOME_APP_UI_ITEM, N_("About..."), NULL, about_cb, NULL, NULL,
-		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_ABOUT, 0, 0, NULL},
-	
-	{GNOME_APP_UI_ENDOFINFO}
+GnomeUIInfo gcalc_edit_menu[] = {
+	{GNOME_APP_UI_ITEM, N_("Copy"), NULL, NULL, NULL, NULL,
+		GNOME_APP_PIXMAP_STOCK, GNOME_STOCK_MENU_COPY},
+	GNOMEUIINFO_END
 };
 
 GnomeUIInfo gcalc_menu[] = {
-	{GNOME_APP_UI_SUBTREE, N_("Calculator"), NULL, calc_menu, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	
-	{GNOME_APP_UI_SUBTREE, N_("Help"), NULL, help_menu, NULL, NULL,
-		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	
-	{GNOME_APP_UI_ENDOFINFO}
+#ifdef WITH_FOOT
+	{GNOME_APP_UI_SUBTREE, "", NULL, &gcalc_program_menu, NULL, NULL,
+	        GNOME_APP_PIXMAP_DATA, foot_xpm, 0, 0, NULL },            
+#else
+        {GNOME_APP_UI_SUBTREE, N_("Program"), NULL, gcalc_program_menu, NULL, NULL,
+	        GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+#endif
+	{GNOME_APP_UI_SUBTREE, N_("Edit"), NULL, gcalc_edit_menu, NULL, NULL,
+		GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL },
+        GNOMEUIINFO_END
 };
 
 
@@ -67,7 +78,7 @@ main(int argc, char *argv[])
 	GtkWidget *calc;
 
 	argp_program_version = VERSION;
-
+	
 	/* Initialize the i18n stuff */
 	bindtextdomain (PACKAGE, GNOMELOCALEDIR);
 	textdomain (PACKAGE);
@@ -84,7 +95,6 @@ main(int argc, char *argv[])
 
 	/*set up the menu*/
         gnome_app_create_menus(GNOME_APP(app), gcalc_menu);
-	gtk_menu_item_right_justify(GTK_MENU_ITEM(gcalc_menu[1].widget));
 
 	calc = gnome_calculator_new();
 	gtk_widget_show(calc);
