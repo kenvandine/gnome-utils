@@ -836,6 +836,9 @@ handle_search_command_stdout_io (GIOChannel 	*ioc,
 		gnome_appbar_push (GNOME_APPBAR (interface.status_bar), status_bar_string);
 		gtk_timeout_remove (search_data->timeout);
 
+		gtk_widget_set_sensitive (interface.additional_constraints, TRUE);
+		gtk_widget_set_sensitive (interface.disclosure, TRUE);
+		gtk_widget_set_sensitive (interface.table, TRUE);
 		gtk_widget_set_sensitive (interface.find_button, TRUE);
 		gtk_widget_hide (interface.stop_button);
 		gtk_widget_show (interface.find_button);
@@ -1014,6 +1017,9 @@ spawn_search_command (gchar *command)
 	gtk_widget_hide (interface.find_button);
 	gtk_widget_set_sensitive (interface.find_button, FALSE);
 	gtk_widget_set_sensitive (interface.results, TRUE);
+	gtk_widget_set_sensitive (interface.additional_constraints, FALSE);
+	gtk_widget_set_sensitive (interface.disclosure, FALSE);
+	gtk_widget_set_sensitive (interface.table, FALSE);
 
 	gtk_tree_view_scroll_to_point (GTK_TREE_VIEW(interface.tree), 0, 0);
 	gtk_list_store_clear (GTK_LIST_STORE(interface.model));
@@ -1224,7 +1230,7 @@ create_search_results_section (void)
 	window = gtk_scrolled_window_new (NULL, NULL); 
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW(window), GTK_SHADOW_IN);	
 	gtk_container_set_border_width (GTK_CONTAINER(window), 0);
-	gtk_widget_set_size_request (window, 530, 200); 
+	gtk_widget_set_size_request (window, 530, 160); 
 	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(window),
                                         GTK_POLICY_AUTOMATIC,
                                         GTK_POLICY_AUTOMATIC);
@@ -1359,7 +1365,6 @@ create_main_window (void)
 	GtkWidget 	*entry;
 	GtkWidget 	*folder_entry;
 	GtkWidget 	*button;
-	GtkWidget 	*table;
 	GtkWidget 	*window;
 	GtkWidget	*image;
 
@@ -1372,21 +1377,21 @@ create_main_window (void)
 	image = gtk_image_new_from_stock (GNOME_SEARCH_TOOL_STOCK, gsearchtool_icon_size);
 	gtk_box_pack_start (GTK_BOX (hbox), image, FALSE, FALSE, GNOME_PAD_SMALL);
 	
-	table = gtk_table_new (2, 2, FALSE);
-	gtk_table_set_row_spacings (GTK_TABLE(table), GNOME_PAD);
-	gtk_table_set_col_spacings (GTK_TABLE(table), GNOME_PAD);
-	gtk_container_add (GTK_CONTAINER(hbox), table);
+	interface.table = gtk_table_new (2, 2, FALSE);
+	gtk_table_set_row_spacings (GTK_TABLE(interface.table), GNOME_PAD);
+	gtk_table_set_col_spacings (GTK_TABLE(interface.table), GNOME_PAD);
+	gtk_container_add (GTK_CONTAINER(hbox), interface.table);
 	
 	label = gtk_label_new_with_mnemonic (_("File is _named:"));
 	gtk_label_set_justify (GTK_LABEL(label), GTK_JUSTIFY_LEFT);
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	
-	gtk_table_attach (GTK_TABLE(table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
+	gtk_table_attach (GTK_TABLE(interface.table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
 
 	interface.file_is_named_entry = gnome_entry_new ("gsearchtool-file-entry");
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry)));
 	gnome_entry_set_max_saved (GNOME_ENTRY(interface.file_is_named_entry), 10);
-	gtk_table_attach (GTK_TABLE(table), interface.file_is_named_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+	gtk_table_attach (GTK_TABLE(interface.table), interface.file_is_named_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL, 0, 0, 0);
 	entry =  gnome_entry_gtk_entry (GNOME_ENTRY(interface.file_is_named_entry));
        
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible(interface.file_is_named_entry)))
@@ -1409,14 +1414,14 @@ create_main_window (void)
 	gtk_label_set_justify (GTK_LABEL(label), GTK_JUSTIFY_LEFT);
 	g_object_set (G_OBJECT(label), "xalign", 0.0, NULL);
 	
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(interface.table), label, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 	
 	interface.look_in_folder_entry = gnome_file_entry_new ("gsearchtool-folder-entry", _("Browse"));
 	gnome_file_entry_set_directory_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry), TRUE);
 	entry = gnome_file_entry_gtk_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
 	gtk_label_set_mnemonic_widget (GTK_LABEL(label), entry);
 	folder_entry = gnome_file_entry_gnome_entry (GNOME_FILE_ENTRY(interface.look_in_folder_entry));
-	gtk_table_attach (GTK_TABLE(table), interface.look_in_folder_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+	gtk_table_attach (GTK_TABLE(interface.table), interface.look_in_folder_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL, 0, 0, 0);
 	
 	if (interface.is_gail_loaded)
 	{ 

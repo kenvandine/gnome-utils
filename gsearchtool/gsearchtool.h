@@ -87,6 +87,7 @@ struct _InterfaceStruct {
 	GtkWidget		*stop_button;
 	GtkWidget 		*save_button;
 	GtkWidget 		*main_window;	
+	GtkWidget		*table;	
 	GtkWidget 		*file_selector;
 	GtkWidget 		*status_bar;
 	GtkWidget   		*progress_bar;
