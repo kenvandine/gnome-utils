@@ -606,12 +606,21 @@ char *project_get_timestr(project *proj, int show_secs)
 	} else {
 		t = proj->day_secs;
 	}
-        if (show_secs)
-                sprintf(s, "%02d:%02d:%02d", (int)(t / 3600),
-                        (int)((t % 3600) / 60), (int)(t % 60));
-        else
-                sprintf(s, "%02d:%02d", (int)(t / 3600),
-                        (int)((t % 3600) / 60));
+	if (t >= 0) {
+		if (show_secs)
+			sprintf(s, "%02d:%02d:%02d", (int)(t / 3600),
+				(int)((t % 3600) / 60), (int)(t % 60));
+		else
+			sprintf(s, "%02d:%02d", (int)(t / 3600),
+				(int)((t % 3600) / 60));
+	} else {
+		if (show_secs)
+			sprintf(s, "-%02d:%02d:%02d", (int)(-t / 3600),
+				(int)((-t % 3600) / 60), (int)(-t % 60));
+		else
+			sprintf(s, "-%02d:%02d", (int)(-t / 3600),
+				(int)((-t % 3600) / 60));
+	}
 	return s;
 }
 
