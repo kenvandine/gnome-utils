@@ -6,8 +6,6 @@ glade_DATA = 	dialog-new-doc.glade				\
 		dialog-new-doc.glade.h				\
 		dialog-new-view.glade				\
 		dialog-new-view.glade.h				\
-		dialog-prefs.glade				\
-		dialog-prefs.glade.h				\
 	 	mdi-color-generic-properties.glade		\
 		mdi-color-generic-properties.glade.h		\
 		mdi-color-file-properties.glade			\
