@@ -1,5 +1,5 @@
 figs = \
-	gcalc-main.png
+	figures/gcalc-main.png
 app = gcalc
 lang = C
 include $(top_srcdir)/app-docs.make
