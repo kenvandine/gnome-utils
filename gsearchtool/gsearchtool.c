@@ -2118,6 +2118,7 @@ main (int 	argc,
 	gtk_widget_show (interface.main_window);
 	
 	interface.icon_theme = gnome_icon_theme_new ();
+	gnome_icon_theme_set_allow_svg (interface.icon_theme, TRUE);
 
 	setup_animation_image ();
 	
