@@ -149,7 +149,7 @@ RepaintLogInfo (void)
        /* Add entries to the list */
        for (i = 0; titles[i]; i++) {
            gtk_list_store_append (GTK_LIST_STORE (store), &iter);
-           gtk_list_store_set (GTK_LIST_STORE (store), &iter, 0, titles[i], -1);
+           gtk_list_store_set (GTK_LIST_STORE (store), &iter, 0, _(titles[i]), -1);
        }
 
    }

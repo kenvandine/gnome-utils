@@ -113,7 +113,7 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
   cell_renderer = gtk_cell_renderer_text_new ();
   ctree_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (ctree));
   g_object_unref (G_OBJECT (ctree));
-  column = gtk_tree_view_column_new_with_attributes (*title, cell_renderer,
+  column = gtk_tree_view_column_new_with_attributes (_(*title), cell_renderer,
                                                      "text", 0, NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (ctree_view), column);
   selected_node = NULL;
@@ -159,21 +159,21 @@ mon_edit_actions (GtkWidget *widget, gpointer data)
 		      GTK_SIGNAL_FUNC (add_actions_entry_cb), NULL);
   gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
   gtk_widget_show (button);
-  gtk_tooltips_set_tip (tips, button, "Add an action", NULL);
+  gtk_tooltips_set_tip (tips, button, _("Add an action"), NULL);
   
   button = gtk_button_new_with_mnemonic (_("_Edit"));
   gtk_signal_connect (GTK_OBJECT (button), "clicked", 
 		      GTK_SIGNAL_FUNC (edit_actions_entry_cb), NULL);
   gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
   gtk_widget_show (button);
-  gtk_tooltips_set_tip (tips, button, "Edit an action", NULL);
+  gtk_tooltips_set_tip (tips, button, _("Edit an action"), NULL);
   
   button = gtk_button_new_with_mnemonic (_("_Remove"));
   gtk_signal_connect (GTK_OBJECT (button), "clicked", 
 		      GTK_SIGNAL_FUNC (remove_actions_entry_cb), NULL);
   gtk_box_pack_start (GTK_BOX (vbox2), button, FALSE, TRUE, 0);
   gtk_widget_show (button);
-  gtk_tooltips_set_tip (tips, button, "Remove an action", NULL);
+  gtk_tooltips_set_tip (tips, button, _("Remove an action"), NULL);
 
   /* Copy all actions */
   free_actions_db (&local_actions_db);
@@ -648,7 +648,7 @@ edit_action_entry (Action *action)
   /* Create main window ------------------------------------------------  */
   action_record = gtk_dialog_new ();
 
-  gtk_window_set_title (GTK_WINDOW (action_record), "Edit Action");
+  gtk_window_set_title (GTK_WINDOW (action_record), _("Edit Action"));
   gtk_dialog_set_has_separator (GTK_DIALOG(action_record), FALSE);
   button = gtk_dialog_add_button (GTK_DIALOG (action_record),
                GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
@@ -684,7 +684,7 @@ edit_action_entry (Action *action)
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new_with_mnemonic ("_Tag:");
+  label = gtk_label_new_with_mnemonic (_("_Tag:"));
   gtk_size_group_add_widget (size_group, label);
   gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -693,7 +693,7 @@ edit_action_entry (Action *action)
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->tag);
-  gtk_tooltips_set_tip (tips, entry, "Tag that identifies the log file.", NULL);
+  gtk_tooltips_set_tip (tips, entry, _("Tag that identifies the log file."), NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "tag", entry);
   set_atk_relation (label, entry);
@@ -702,7 +702,7 @@ edit_action_entry (Action *action)
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new_with_mnemonic ("_Log name:");
+  label = gtk_label_new_with_mnemonic (_("_Log name:"));
   gtk_size_group_add_widget (size_group, label);
   gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -711,7 +711,7 @@ edit_action_entry (Action *action)
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->log_name);
-  gtk_tooltips_set_tip (tips, entry, "Regular expression that will match the log name.", 
+  gtk_tooltips_set_tip (tips, entry, _("Regular expression that will match the log name."), 
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "log_name", entry);
@@ -721,7 +721,7 @@ edit_action_entry (Action *action)
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new_with_mnemonic ("_Process:");
+  label = gtk_label_new_with_mnemonic (_("_Process:"));
   gtk_size_group_add_widget (size_group, label);
   gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -730,7 +730,7 @@ edit_action_entry (Action *action)
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->process);
-  gtk_tooltips_set_tip (tips, entry, "Regular expression that will match process part of message.", 
+  gtk_tooltips_set_tip (tips, entry, _("Regular expression that will match process part of message."), 
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "process", entry);
@@ -740,7 +740,7 @@ edit_action_entry (Action *action)
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new_with_mnemonic ("_Message:");
+  label = gtk_label_new_with_mnemonic (_("_Message:"));
   gtk_size_group_add_widget (size_group, label);
   gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -749,7 +749,7 @@ edit_action_entry (Action *action)
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->message);
-  gtk_tooltips_set_tip (tips, entry, "Regular expression that will match the message.", 
+  gtk_tooltips_set_tip (tips, entry, _("Regular expression that will match the message."), 
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "message", entry);
@@ -759,7 +759,7 @@ edit_action_entry (Action *action)
   hbox = gtk_hbox_new (FALSE, 12);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
-  label = gtk_label_new_with_mnemonic ("_Action:");
+  label = gtk_label_new_with_mnemonic (_("_Action:"));
   gtk_size_group_add_widget (size_group, label);
   gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
@@ -768,7 +768,7 @@ edit_action_entry (Action *action)
   gtk_entry_set_editable (GTK_ENTRY (entry), TRUE);
   gtk_box_pack_start (GTK_BOX (hbox), entry, TRUE, TRUE, 0);
   gtk_entry_set_text (GTK_ENTRY (entry), action->action);
-  gtk_tooltips_set_tip (tips, entry, "Action that will be executed if all previous regexps. are matched. This is executed by a system command: system (action).", 
+  gtk_tooltips_set_tip (tips, entry, _("Action that will be executed if all previous regexps. are matched. This is executed by a system command: system (action)."), 
 			NULL);
   gtk_widget_show (entry); 
   gtk_object_set_data (GTK_OBJECT (action_record), "action", entry);
