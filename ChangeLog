@@ -1,3 +1,15 @@
+2000-06-10   Bradford Hovinen <hovinen@udel.edu>
+
+	* gdictsrc/gdict-speller.c (spell_word_data_cb):
+	(spell_strat_data_cb):
+	(spell_word_status_cb):
+	(spell_strat_status_cb): Check if widget is visible before adding
+	strategy of word or acting on status report
+
+	* gdictsrc/gdict-speller.c (gdict_speller_class_init): Set
+	parent_class and destroy method
+	(gdict_speller_destroy) Call parent class' destroy method
+
 Sat Jun 10 11:53:47 EDT 2000 Gregory McLean <gregm@comstar.net>
 
 	* gdiskfree/* : Applied patch from chema 
