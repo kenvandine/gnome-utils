@@ -1,3 +1,16 @@
+2001-11-19  Kevin Vandersloot <kfv101@psu.edu>
+
+	Make gdict compile. 
+
+	* gdictsrc/gdict-applet.c: #ifdef most of the stuff
+	so gdict can compile
+
+	* gdictsrc/main.c: #ifdef any applet stuff
+
+	* gdictsrc/defbox.[c,h]: text box is now a gtktextview. Doesn't
+	work yet but it displays something :) Comment out any GtkText
+	for now until textview is working 
+
 2001-11-17  Glynn Foster  <glynn.foster@sun.com>
 
 	* configure.in:
