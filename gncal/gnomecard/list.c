@@ -1,0 +1,126 @@
+#include <config.h>
+#include <string.h>
+#include <gnome.h>
+
+#include "card.h"
+#include "gnomecard.h"
+#include "my.h"
+#include "pix.h"
+#include "sort.h"
+#include "list.h"
+#include "type_name.h"
+
+static void gnomecard_create_list_row(Card *crd, gchar **text)
+{
+	gchar  *cardname=NULL;
+	gchar  *name=NULL;
+	gchar  *email=NULL;
+	gchar  *phone=NULL;
+
+	/* for now we just display either cardname or real name and email */
+	cardname = crd->fname.str;
+	name = gnomecard_join_name(crd->name.prefix, crd->name.given, 
+				      crd->name.additional, crd->name.family, 
+				      crd->name.suffix);
+	if (cardname)
+	    text[0] = g_strdup(cardname);
+	else if (name)
+	    text[0] = name;
+	else
+	    text[0] = g_strdup("No name");
+
+	if (crd->email.l) {
+	    text[1] = g_strdup(((CardEMail *) (crd->email.l->data))->data);
+	} else {
+	    text[1] = g_strdup("");
+	}
+}
+
+static void gnomecard_destroy_list_row(gchar **text)
+{
+    if (text[0])
+	g_free(text[0]);
+    if (text[1])
+	g_free(text[1]);
+}
+
+
+extern void gnomecard_update_list(Card *crd)
+{
+    gchar  *text[2];
+    gint   row;
+
+    row = GPOINTER_TO_INT(crd->prop.user_data);
+    
+    gnomecard_create_list_row(crd, text);
+    gtk_clist_remove(gnomecard_list, row);
+    gtk_clist_insert(gnomecard_list, row, text);
+    gnomecard_destroy_list_row(text);
+}
+
+extern void gnomecard_scroll_list(GList *node)
+{
+    gint row;
+
+    row = GPOINTER_TO_INT(((Card *) node->data)->prop.user_data);
+
+    if (gtk_clist_row_is_visible(gnomecard_list, row) != GTK_VISIBILITY_FULL)
+	gtk_clist_moveto(gnomecard_list, row, 0, 0.5, 0.0);
+
+    gtk_clist_select_row(gnomecard_list, row, 0);
+}
+
+static char *gnomecard_first_phone_str(GList *phone)
+{
+	char *ret;
+	
+	if (! phone)
+	  return NULL;
+	
+	ret = ((CardPhone *) phone->data)->data;
+	
+	for ( ; phone; phone = phone->next)
+	  if (((CardPhone *) phone->data)->type & PHONE_PREF)	
+	    ret = ((CardPhone *) phone->data)->data;
+	
+	return ret;
+}
+
+extern void gnomecard_list_set_node_info(Card *crd)
+{
+    g_message("in gnomecard_list_set_node_info - not implemented");
+}
+
+static int gnomecard_next_addr_type(int type, int start)
+{
+	int j;
+	
+	for (j = start; j < 6; j++)
+		if (type & (1 << j))
+			return j;
+	
+	return j;
+}
+
+extern void gnomecard_add_card_sections_to_list(Card *crd)
+{
+    g_message("gnomecard_add_card_sections_to_list not implemented");
+}
+
+extern void gnomecard_add_card_to_list(Card *crd)
+{
+	gchar  *text[2];
+	gint   row;
+
+	gnomecard_create_list_row(crd, text);
+	g_message("gnomcard_add_card_to_list - adding name %s to list",text[0]);
+	row = gtk_clist_append(gnomecard_list, text); 
+	crd->prop.user_data = GINT_TO_POINTER(row);
+
+	gnomecard_destroy_list_row(text);
+}
+
+extern void gnomecard_list_set_sorted_pos(Card *crd)
+{
+    g_message("gnomecard_tree_set_sorted_pos not implemented");
+}

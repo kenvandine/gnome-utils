@@ -11,6 +11,12 @@
 #include "type_name.h"
 
 /* I'm using collapse and expand to avoid ctree_remove SIGSEGV */
+#ifndef B4MSF
+extern void gnomecard_update_tree(Card *crd)
+{
+    g_message("in gnomecard_update_tree - shouldnt be!");
+}
+#else
 extern void gnomecard_update_tree(Card *crd)
 {
 	GtkCTreeNode *node, *tmp;
@@ -30,7 +36,14 @@ extern void gnomecard_update_tree(Card *crd)
 	gnomecard_add_card_sections_to_tree(crd);
 	gnomecard_tree_set_sorted_pos(crd);
 }
+#endif
 
+#ifndef B4MSF
+extern void gnomecard_scroll_tree(GList *node)
+{
+    g_message("in gnomecard_scroll_tree - shouldnt be");
+}
+#else
 extern void gnomecard_scroll_tree(GList *node)
 {
 	GtkCTreeNode *tree_node;
@@ -40,7 +53,7 @@ extern void gnomecard_scroll_tree(GList *node)
 	gtk_ctree_node_moveto(gnomecard_tree, tree_node, 0, 0, 0);
 	gtk_ctree_select(gnomecard_tree, tree_node);
 }
-
+#endif
 static char *gnomecard_first_phone_str(GList *phone)
 {
 	char *ret;
@@ -57,6 +70,12 @@ static char *gnomecard_first_phone_str(GList *phone)
 	return ret;
 }
 
+#ifndef B4MSF
+extern void gnomecard_tree_set_node_info(Card *crd)
+{
+    g_message("in gnomecard_tree_set_node_info - not implemented");
+}
+#else
 extern void gnomecard_tree_set_node_info(Card *crd)
 {
 	char *text, *tmp;
@@ -90,7 +109,7 @@ extern void gnomecard_tree_set_node_info(Card *crd)
 	
 	g_free(text);
 }
-
+#endif
 static int gnomecard_next_addr_type(int type, int start)
 {
 	int j;
@@ -341,8 +360,16 @@ extern void gnomecard_add_card_to_tree(Card *crd)
 	gnomecard_add_card_sections_to_tree(crd);
 }
 
+#ifndef B4MSF
+extern void gnomecard_tree_set_sorted_pos(Card *crd)
+{
+    g_message("gnomecard_tree_set_sorted_pos not implemented");
+}
+#else
 extern void gnomecard_tree_set_sorted_pos(Card *crd)
 {
 	gtk_ctree_move(gnomecard_tree, crd->prop.user_data,
 		       NULL, gnomecard_search_sorted_pos(crd));
 }
+#endif
+

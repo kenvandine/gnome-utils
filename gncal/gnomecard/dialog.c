@@ -162,9 +162,9 @@ static void gnomecard_prop_apply(GtkWidget *widget, int page)
 	else
 	  crd->key.type = KEY_X509;
 
-	gnomecard_update_tree(crd);
+	gnomecard_update_list(crd);
 	gnomecard_update_canvas(crd);
-	gnomecard_scroll_tree(ce->l);
+	gnomecard_scroll_list(ce->l);
 	gnomecard_set_changed(TRUE);
 }
 
@@ -530,10 +530,6 @@ void gnomecard_setup_apply(GtkWidget *widget, int page)
 	
 	if (GTK_TOGGLE_BUTTON(setup->def_email)->active)
 		gnomecard_def_data |= EMAIL;
-	
-	if (gnomecard_def_data != old_def_data)
-		for (i = gnomecard_crds; i; i = i->next)
-			gnomecard_tree_set_node_info((Card *) i->data);
 
 	gnome_config_set_int("/GnomeCard/layout/def_data",  gnomecard_def_data);
 }
@@ -599,7 +595,8 @@ void gnomecard_add_email(GtkWidget *widget, gpointer data)
 	email->type = (int) gtk_object_get_user_data(GTK_OBJECT(gtk_menu_get_active(GTK_MENU(e->type))));
 	
 	((Card *) e->l->data)->email.l = g_list_append(((Card *) e->l->data)->email.l, email);
-	gnomecard_update_tree(e->l->data);
+
+	gnomecard_update_list(e->l->data);
 	
 	gtk_editable_delete_text(GTK_EDITABLE(e->data), 0, strlen(text));
 	gnomecard_set_changed(TRUE);
@@ -678,7 +675,8 @@ void gnomecard_add_phone(GtkWidget *widget, gpointer data)
 			phone->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
 	
 	((Card *) p->l->data)->phone.l = g_list_append(((Card *) p->l->data)->phone.l, phone);
-	gnomecard_update_tree(p->l->data);
+
+	gnomecard_update_list(p->l->data);
 	
 	gtk_editable_delete_text(GTK_EDITABLE(p->data), 0, strlen(text));
 	gnomecard_set_changed(TRUE);
@@ -771,7 +769,8 @@ void gnomecard_add_deladdr(GtkWidget *widget, gpointer data)
 			addr->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
 	
 	((Card *) p->l->data)->deladdr.l = g_list_append(((Card *) p->l->data)->deladdr.l, addr);
-	gnomecard_update_tree(p->l->data);
+
+	gnomecard_update_list(p->l->data);
 
 	for (i = 0; i < DELADDR_MAX; i++)
 		gtk_editable_delete_text(GTK_EDITABLE(p->data[i]), 0, strlen(text[i]));
@@ -893,7 +892,8 @@ void gnomecard_add_dellabel(GtkWidget *widget, gpointer data)
 	    addr->type |= (int) gtk_object_get_user_data(GTK_OBJECT(p->type[i]));
 	
 	((Card *) p->l->data)->dellabel.l = g_list_append(((Card *) p->l->data)->dellabel.l, addr);
-	gnomecard_update_tree(p->l->data);
+
+	gnomecard_update_list(p->l->data);
 
 	gtk_editable_delete_text(GTK_EDITABLE(p->data), 0, strlen(text));
 	gnomecard_set_changed(TRUE);
@@ -931,14 +931,14 @@ static gboolean gnomecard_append_file(char *fname)
 	
 	gnomecard_crds = crds;
 	gnomecard_sort_card_list(gnomecard_sort_criteria);
-	gtk_clist_freeze(GTK_CLIST(gnomecard_tree));
-	gtk_ctree_remove_node(gnomecard_tree, NULL);
+
+	gtk_clist_freeze(gnomecard_list);
+	gtk_clist_clear(gnomecard_list);
 	for (c = gnomecard_crds; c; c = c->next)
-	  gnomecard_add_card_to_tree((Card *) c->data);
-	gtk_clist_thaw(GTK_CLIST(gnomecard_tree));
-	
-	gnomecard_scroll_tree(gnomecard_crds);
-	
+	    gnomecard_add_card_to_list((Card *) c->data);
+	gtk_clist_thaw(gnomecard_list);
+	gnomecard_scroll_list(gnomecard_crds);
+
 	return TRUE;
 }
 
@@ -1146,7 +1146,7 @@ void gnomecard_find_card(GtkWidget *w, gpointer data)
 						found = 1;
 			
 			if (found) {
-				gnomecard_scroll_tree(l);
+				gnomecard_scroll_list(l);
 				break;
 			}
 			

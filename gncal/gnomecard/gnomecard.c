@@ -18,8 +18,8 @@
 #include "tree.h"
 
 #define COL_WIDTH 192
-#define TREE_WIDTH 400
-#define TREE_HEIGHT 320
+#define LIST_WIDTH 400
+#define LIST_HEIGHT 320
 
 #define NONE  0
 #define FNAME 1
@@ -32,11 +32,8 @@
 
 GtkWidget *gnomecard_window;
 
-GtkCTreeNode *gnomecard_selected_node;
-GtkCTree  *gnomecard_tree;
-GdkGCValues crd_tree_values;
-GdkColor *crd_tree_sel_col;
-GdkColor *crd_tree_usel_col;
+GtkCList *gnomecard_list=NULL;
+gint     gnomecard_selected_row=0;
 
 GtkWidget *tb_next, *tb_prev, *tb_first, *tb_last;
 GtkWidget *tb_edit, *tb_find, *tb_save, *tb_del;
@@ -94,6 +91,7 @@ void gnomecard_toggle_card_view(GtkWidget *w, gpointer data)
 		gtk_widget_show(gnomecard_canvas);
 }
 
+#ifdef B4MSF
 void gnomecard_toggle_tree_view(GtkWidget *w, gpointer data)
 {
 	if (GTK_CHECK_MENU_ITEM(w)->active)
@@ -101,6 +99,7 @@ void gnomecard_toggle_tree_view(GtkWidget *w, gpointer data)
 	else
 		gtk_widget_show(GTK_WIDGET(gnomecard_tree));
 }
+#endif
 
 void gnomecard_set_next(gboolean state)
 {
@@ -172,46 +171,27 @@ extern void gnomecard_set_curr(GList *node)
 	}
 }
 
-void gnomecard_set_bg(GtkCTree *tree, GtkCTreeNode *node, gpointer data)
+void gnomecard_list_selected(GtkCList *list, gint row, gint column,
+			     GdkEventButton *event, gpointer data)
 {
-	gtk_ctree_node_set_background(tree, node, (GdkColor *) data);
-}
+        GList *tmp;
 
-void gnomecard_cmp_nodes(GtkCTree *tree, GtkCTreeNode *node, gpointer data)
-{
-	if ((GtkCTreeNode *) data == node)
-	  gnomecard_found = TRUE;
-}
-
-void gnomecard_tree_selected(GtkCTree *tree, GtkCTreeNode *row, gint column)
-{
-	GList *i;
+	gnomecard_selected_row = row;
 	
-	gnomecard_selected_node = row;
+	tmp = g_list_nth(gnomecard_crds, row);
 	
-	gtk_ctree_post_recursive(tree, row,
-				 GTK_CTREE_FUNC(gnomecard_set_bg),
-				 crd_tree_sel_col);
-	
-	gnomecard_found = FALSE;
-	for (i = gnomecard_crds; i; i = i->next) {
-		gtk_ctree_post_recursive(tree, ((Card *) i->data)->prop.user_data,
-					 GTK_CTREE_FUNC(gnomecard_cmp_nodes), 
-					 row);
-		if (gnomecard_found)
-		  break;
-	}
-	
-	if (i && i != gnomecard_curr_crd) {
-	  gnomecard_set_curr(i);
+	if (tmp) {
+	  gnomecard_set_curr(tmp);
 	}
 }
 
-void gnomecard_tree_unselected(GtkCTree *tree, GtkCTreeNode *row, gint column)
+void gnomecard_list_unselected(GtkCTree *tree, GtkCTreeNode *row, gint column)
 {
-	gtk_ctree_post_recursive(tree, row,
+    g_message("gnomecard_list_unselected not implemented");
+/*	gtk_ctree_post_recursive(tree, row,
 				 GTK_CTREE_FUNC(gnomecard_set_bg),
 				 crd_tree_usel_col);
+*/
 }
 
 extern void gnomecard_save(void)
@@ -287,9 +267,9 @@ extern int gnomecard_destroy_cards(void)
 	}
 	
 	for (l = gnomecard_crds; l; l = l->next)
-	  card_free (l->data);
-	
-	gtk_ctree_remove_node(gnomecard_tree, NULL);
+	    card_free (l->data);
+
+	gtk_clist_clear(gnomecard_list);
 	g_list_free(gnomecard_crds);
 	gnomecard_crds = NULL;
 	
@@ -305,36 +285,35 @@ void gnomecard_new_card(GtkWidget *widget, gpointer data)
 	GList *last;
 	
 	crd = card_new();
-	gnomecard_add_card_to_tree(crd);
+	gnomecard_add_card_to_list(crd);
 	gnomecard_crds = g_list_append(gnomecard_crds, crd);
 	
 	last = g_list_last(gnomecard_crds);
 	gnomecard_edit(last);
-	gnomecard_scroll_tree(last);
-	
+	gnomecard_scroll_list(last);
 	gnomecard_set_changed(TRUE);
 }
 
 void gnomecard_first_card(GtkWidget *widget, gpointer data)
 {
-	gnomecard_scroll_tree(g_list_first(gnomecard_crds));
+	gnomecard_scroll_list(g_list_first(gnomecard_crds));
 }
 
 void gnomecard_prev_card(GtkWidget *widget, gpointer data)
 {
 	if (gnomecard_curr_crd->prev)
-	  gnomecard_scroll_tree(gnomecard_curr_crd->prev);
+	  gnomecard_scroll_list(gnomecard_curr_crd->prev);
 }
 
 void gnomecard_next_card(GtkWidget *widget, gpointer data)
 {
 	if (gnomecard_curr_crd->next)
-	  gnomecard_scroll_tree(gnomecard_curr_crd->next);
+	  gnomecard_scroll_list(gnomecard_curr_crd->next);
 }
 
 void gnomecard_last_card(GtkWidget *widget, gpointer data)
 {
-	gnomecard_scroll_tree(g_list_last(gnomecard_crds));
+	gnomecard_scroll_list(g_list_last(gnomecard_crds));
 }
 
 void gnomecard_quit(GtkWidget *widget, gpointer data)
@@ -515,10 +494,12 @@ GnomeUIInfo viewmenu[] = {
 	{GNOME_APP_UI_TOGGLEITEM, N_("Card"), N_("Toggle Card View"),
 	 gnomecard_toggle_card_view, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
-	
+
+#ifdef B4MSF	
 	{GNOME_APP_UI_TOGGLEITEM, N_("Tree"), N_("Toggle Tree View"),
 	 gnomecard_toggle_tree_view, NULL, NULL,
 	GNOME_APP_PIXMAP_NONE, NULL, 0, 0, NULL},
+#endif
 	
 	{GNOME_APP_UI_ENDOFINFO}
 };
@@ -638,27 +619,32 @@ void gnomecard_init(void)
 	gnome_app_create_menus(GNOME_APP(gnomecard_window), mainmenu);
 	gnome_app_create_toolbar(GNOME_APP(gnomecard_window), toolbar);
 
-	gnomecard_tree = GTK_CTREE(gtk_ctree_new_with_titles(2, 0, titles));
-	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(gnomecard_tree));
-	gtk_widget_realize(GTK_WIDGET(gnomecard_tree));
+	gnomecard_list = GTK_CLIST(gtk_clist_new_with_titles(2, titles));
+	gtk_paned_add1(GTK_PANED(hpaned), GTK_WIDGET(gnomecard_list));
+ 	gtk_widget_realize(GTK_WIDGET(gnomecard_list));
+/*
 	gdk_gc_get_values(gnomecard_tree->lines_gc, &crd_tree_values);
-	gtk_clist_set_column_width(GTK_CLIST(gnomecard_tree), 0, COL_WIDTH);
-	gtk_signal_connect(GTK_OBJECT(gnomecard_tree), 
-			   "tree_select_row",
-			   GTK_SIGNAL_FUNC(gnomecard_tree_selected), NULL);
-	gtk_signal_connect(GTK_OBJECT(gnomecard_tree), 
-			   "tree_unselect_row",
-			   GTK_SIGNAL_FUNC(gnomecard_tree_unselected), NULL);
-	gtk_ctree_set_line_style (gnomecard_tree, GTK_CTREE_LINES_SOLID);
-	gtk_ctree_set_reorderable (gnomecard_tree, FALSE);
-	gtk_widget_set_usize (GTK_WIDGET(gnomecard_tree), TREE_WIDTH, TREE_HEIGHT);
-	gtk_clist_column_titles_active(GTK_CLIST(gnomecard_tree));
-	
+*/
+	gtk_clist_set_column_width(GTK_CLIST(gnomecard_list), 0, COL_WIDTH);
+
+	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
+			   "select_row",
+			   GTK_SIGNAL_FUNC(gnomecard_list_selected), NULL);
+	gtk_signal_connect(GTK_OBJECT(gnomecard_list), 
+			   "unselect_row",
+			   GTK_SIGNAL_FUNC(gnomecard_list_unselected), NULL);
+
+	gtk_widget_set_usize (GTK_WIDGET(gnomecard_list), LIST_WIDTH, LIST_HEIGHT);
+	gtk_clist_column_titles_active(gnomecard_list);
+
+/*	
 	gtk_signal_connect(GTK_OBJECT(GTK_CLIST(gnomecard_tree)->column->button),
 			   "clicked", GTK_SIGNAL_FUNC(gnomecard_sort_by_fname),
 			   (gpointer) NULL);
-	gtk_clist_set_policy(GTK_CLIST(gnomecard_tree),
+*/
+	gtk_clist_set_policy(gnomecard_list,
 			     GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_clist_set_selection_mode(gnomecard_list, GTK_SELECTION_BROWSE);
 
 /*	omenu = gtk_option_menu_new();
 	gtk_clist_set_column_widget(GTK_CLIST(gnomecard_tree), 1, omenu);
@@ -672,7 +658,8 @@ void gnomecard_init(void)
 	
 	gtk_option_menu_set_menu(GTK_OPTION_MENU(omenu), menu);
 	gtk_widget_show(omenu);*/
-	
+
+/*	
 	crd_tree_sel_col = g_new (GdkColor, 1);
 	crd_tree_sel_col->red = crd_tree_sel_col->green = 
 	  crd_tree_sel_col->blue = 50000;
@@ -684,9 +671,10 @@ void gnomecard_init(void)
 		crd_tree_usel_col->blue = 60000;
 	gdk_color_alloc(gtk_widget_get_colormap (GTK_WIDGET (gnomecard_tree)),
 			crd_tree_usel_col);
+*/
 /* & (GTK_WIDGET(crd_tree)->style->fg[GTK_STATE_NORMAL]);*/
 	
-	gtk_widget_show(GTK_WIDGET(gnomecard_tree));
+	gtk_widget_show(GTK_WIDGET(gnomecard_list));
 
 	align = gtk_alignment_new(0.5, 0.5, 0.5, 0.5);
 	gtk_paned_add2(GTK_PANED(hpaned), align);

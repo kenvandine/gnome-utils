@@ -8,7 +8,9 @@
 
 #define TREE_SPACING 16
 
-extern GtkCTree  *gnomecard_tree;
+/*extern GtkCTree  *gnomecard_tree; */
+extern GtkCList *gnomecard_list;
+extern gint gnomecard_selected_row;
 
 extern GList *gnomecard_crds;
 extern GList *gnomecard_curr_crd;

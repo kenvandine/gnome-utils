@@ -4,6 +4,14 @@
 #include "gnomecard.h"
 #include "my.h"
 
+#ifndef B4MSF
+extern GtkCTreeNode *
+my_gtk_ctree_insert(GtkCTreeNode *parent, GtkCTreeNode *sibling, 
+		    char **text, pix *p, gpointer data)
+{
+    g_message("in my_gtk_ctree_insert - shouldnt be!");
+}
+#else
 extern GtkCTreeNode *
 my_gtk_ctree_insert(GtkCTreeNode *parent, GtkCTreeNode *sibling, 
 		    char **text, pix *p, gpointer data)
@@ -17,6 +25,7 @@ my_gtk_ctree_insert(GtkCTreeNode *parent, GtkCTreeNode *sibling,
 	
 	return node;
 }
+#endif
 
 extern GtkWidget *my_gtk_entry_new(gint len, char *init)
 {

@@ -13,9 +13,12 @@ static void del_prop(GtkCTreeNode *node, gpointer data)
 	
 	card_prop_free(*prop);
 	
+        g_message(" in del_prop - did not remove from list");
+/*
 	gtk_ctree_remove_node(gnomecard_tree, node);
 	gtk_ctree_select(gnomecard_tree, 
 			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+*/
 }
 
 static void del_str_prop(GtkCTreeNode *node, gpointer data)
@@ -38,12 +41,15 @@ static void del_card(GtkCTreeNode *node, gpointer data)
 	
 	card_free(gnomecard_curr_crd->data);
 	gnomecard_crds = g_list_remove_link(gnomecard_crds, gnomecard_curr_crd);
-	gtk_ctree_remove_node(gnomecard_tree, ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+/*
+  gtk_ctree_remove_node(gnomecard_tree, ((Card *) gnomecard_curr_crd->data)->prop.user_data); */
+	g_message("in del_card - did not remove node");
 	g_list_free(gnomecard_curr_crd);
 	
-	if (tmp)
-	  gnomecard_scroll_tree(tmp);
-	else
+	if (tmp) {
+	    /*gnomecard_scroll_tree(tmp); */
+	    g_message("in del_card - did not scroll");
+	} else
 	  gnomecard_set_curr(NULL);
 }
 
@@ -56,10 +62,13 @@ static void del_name(GtkCTreeNode *node, gpointer data)
 	MY_FREE(name->additional);
 	MY_FREE(name->prefix);
 	MY_FREE(name->suffix);
-	
+
+	g_message("In del_name - did not remove node");
+/*	
 	gtk_ctree_remove_node(gnomecard_tree, node);
 	gtk_ctree_select(gnomecard_tree, 
 			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+*/
 }
 
 static void del_deladdr_list(GtkCTreeNode *node, gpointer data)
@@ -95,18 +104,24 @@ static void del_email_list(GtkCTreeNode *node, gpointer data)
 	card_prop_free(email_list->prop);
 	
 	while ((email = email_list->l)) {
+	    /*
 		gtk_ctree_remove_node(gnomecard_tree, 
 				      ((CardEMail *) email->data)->prop.user_data);
+	    */
+	    g_message("in del_email_list - did not remove node");
 
 		email_list->l = g_list_remove_link(email_list->l, email);
 		g_free(((CardEMail *) email->data)->data);
 		g_free(email->data);
 		g_list_free(email);
 	}
-	
+
+	g_message("in del_email_list - did not remove node and select");
+/*	
 	gtk_ctree_remove_node(gnomecard_tree, node);
 	gtk_ctree_select(gnomecard_tree, 
 			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+*/
 }
 
 static void del_email(GtkCTreeNode *node, gpointer data)
@@ -126,23 +141,28 @@ static void del_email(GtkCTreeNode *node, gpointer data)
 		  curr = email->next;
 		else if (email->prev)
 		  curr = email->prev;
-		
+
+/*		
 		if (curr)
 		  gtk_ctree_select(gnomecard_tree, 
 				   ((CardEMail *) curr->data)->prop.user_data);
 		else
 		  gtk_ctree_select(gnomecard_tree, 
 				   ((Card *) gnomecard_curr_crd->data)->prop.user_data);
-		
+*/
+		g_message("in del_email - did not select");
 		email_list->l = g_list_remove_link(email_list->l, email);
 		g_free(((CardEMail *) email->data)->data);
 		g_free(email->data);
 		g_list_free(email);
 		
-		gtk_ctree_remove_node(gnomecard_tree, node);
+/*		gtk_ctree_remove_node(gnomecard_tree, node); */
+		g_message("in del_email - did not remove node");
 		
 		if (email_list->l && !email_list->l->next) {
-			gnomecard_update_tree(gnomecard_curr_crd->data);
+
+/*			gnomecard_update_tree(gnomecard_curr_crd->data); */
+		    g_message("in del_email, did not update tree");
 /*			gtk_ctree_collapse_recursive(gnomecard_tree,
 						     ((Card *) gnomecard_curr_crd->data)->prop.user_data);
 			gtk_ctree_move(gnomecard_tree, ((CardEMail *) email->data)->prop.user_data,
@@ -162,10 +182,13 @@ static void del_org(GtkCTreeNode *node, gpointer data)
 	MY_FREE(org->unit2);
 	MY_FREE(org->unit3);
 	MY_FREE(org->unit4);
-	
+
+/*	
 	gtk_ctree_remove_node(gnomecard_tree, node);
 	gtk_ctree_select(gnomecard_tree, 
 			 ((Card *) gnomecard_curr_crd->data)->prop.user_data);
+*/
+	g_message("in del_org, did not remove node and select");
 }
 
 typedef void (*DelFunc) (GtkCTreeNode *, gpointer);
@@ -180,11 +203,16 @@ extern void gnomecard_del(GtkWidget *widget, gpointer data)
 		del_email, del_str_prop, del_prop, del_prop, del_str_prop, 
 		del_str_prop, NULL, NULL, del_org, del_str_prop, NULL, NULL, 
 		del_str_prop, del_str_prop, NULL, NULL };
-	
+
+/*	
 	prop = gtk_ctree_node_get_row_data(gnomecard_tree, gnomecard_selected_node);
-	
+*/
+	g_message("in gnomecard_del - did not get row data for prop");
+/*
 	if (del_func[prop->type])
 	  (*del_func[prop->type]) (gnomecard_selected_node, prop);
+*/
+	g_message("in gnomecard_del - did not delete selected node");
 	
 	gnomecard_set_changed(TRUE);
 }

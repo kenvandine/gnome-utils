@@ -34,6 +34,12 @@ extern void gnomecard_sort_card_list(sort_func compar)
 	g_free(array);
 }
 
+#ifndef B4MSF
+static void gnomecard_do_sort_cards(sort_func criteria)
+{
+    g_message("gnomecard_do_sort_cards not implemented");
+}
+#else
 static void gnomecard_do_sort_cards(sort_func criteria)
 {
 	GList *l;
@@ -54,7 +60,7 @@ static void gnomecard_do_sort_cards(sort_func criteria)
 	gnomecard_scroll_tree(gnomecard_curr_crd);
 	gnomecard_set_changed(TRUE);
 }
-
+#endif
 extern void gnomecard_sort_cards(GtkWidget *w, gpointer data)
 {
 	sort_func criteria;

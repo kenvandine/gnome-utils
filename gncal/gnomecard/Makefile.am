@@ -25,6 +25,8 @@ gnomecard_SOURCES =	\
 	images.h        \
 	init.c          \
 	init.h          \
+	list.c		\
+	list.h		\
 	my.c            \
 	my.h            \
 	pix.c           \
@@ -34,7 +36,7 @@ gnomecard_SOURCES =	\
 	pairs.h         \
 	tree.c          \
 	tree.h
-	
+
 LINK_FLAGS = \
 	$(GNOME_LIBDIR) \
 	$(GNOMEUI_LIBS) \
