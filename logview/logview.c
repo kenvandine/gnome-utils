@@ -151,7 +151,6 @@ GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
 UserPrefsStruct *user_prefs = NULL;
 UserPrefsStruct user_prefs_struct = {0};
 ConfigData *cfg = NULL;
-GtkWidget *open_file_dialog = NULL;
 gchar *file_to_open;
 
 poptContext poptCon;
@@ -364,13 +363,11 @@ CreateMainWin (LogviewWindow *window)
    GtkTreeViewColumn *column;
    GtkCellRenderer *renderer;
    GtkWidget *scrolled_window = NULL;
-   gint i, f;
+   gint i;
    GtkActionGroup *action_group;
    GtkAccelGroup *accel_group;
-   GError *error;
+   GError *error = NULL;
    GtkWidget *menubar;
-   PangoContext      *context;
-   PangoFontMetrics  *metrics;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
 
@@ -392,7 +389,6 @@ CreateMainWin (LogviewWindow *window)
    accel_group = gtk_ui_manager_get_accel_group (window->ui_manager);
    gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
    
-   error = NULL;
    if (!gtk_ui_manager_add_ui_from_string (window->ui_manager, ui_description, -1, &error)) {
 	   g_message ("Building menus failed: %s", error->message);
 	   g_error_free (error);
@@ -512,16 +508,15 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 {
    char *f;
    Log *tl;
-   gint i;
    LogviewWindow *window = data;
 
+   gtk_widget_hide (GTK_WIDGET (chooser));
    if (response != GTK_RESPONSE_OK) {
-	   gtk_widget_destroy (chooser);
+	   //	   gtk_widget_hide (chooser);
 	   return;
    }
    
    f = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
-   gtk_widget_destroy (GTK_WIDGET (chooser));
 
    if (f != NULL) {
 	   /* Check if the log is not already opened */
@@ -568,45 +563,32 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 static void
 LoadLogMenu (GtkAction *action, GtkWidget *callback_data)
 {
-   GtkWidget *chooser = NULL;
+   static GtkWidget *chooser = NULL;
    LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
    
-   /*  Cannot have more than one file chooser window */
-   /*  at one time. */
-   if (open_file_dialog != NULL) {
-	   gtk_widget_show_now (open_file_dialog);
-	   gdk_window_raise (open_file_dialog->window);
-	   return;
+   if (chooser == NULL) {
+	   chooser = gtk_file_chooser_dialog_new (_("Open new logfile"),
+						  GTK_WINDOW (window),
+						  GTK_FILE_CHOOSER_ACTION_OPEN,
+						  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+						  GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+						  NULL);
+	   gtk_dialog_set_default_response (GTK_DIALOG (chooser),
+					    GTK_RESPONSE_OK);
+	   gtk_window_set_default_size (GTK_WINDOW (chooser), 600, 400);
+	   gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
+	   g_signal_connect (G_OBJECT (chooser), "response",
+			     G_CALLBACK (FileSelectResponse), window);
+	   g_signal_connect (G_OBJECT (chooser), "destroy",
+			     G_CALLBACK (gtk_widget_destroyed), &chooser);
    }
-
-   chooser = gtk_file_chooser_dialog_new (_("Open new logfile"),
-					  GTK_WINDOW (window),
-					  GTK_FILE_CHOOSER_ACTION_OPEN,
-					  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					  GTK_STOCK_OPEN, GTK_RESPONSE_OK,
-					  NULL);
-   gtk_dialog_set_default_response (GTK_DIALOG (chooser),
-		   		    GTK_RESPONSE_OK);
-   gtk_window_set_default_size (GTK_WINDOW (chooser), 600, 400);
-
-   /* Make window modal */
-   gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
 
    if (user_prefs->logfile != NULL)
    	gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (chooser), 
 				       user_prefs->logfile);
-
    gtk_window_set_position (GTK_WINDOW (chooser), GTK_WIN_POS_MOUSE);
-   g_signal_connect (G_OBJECT (chooser), "response",
-		     G_CALLBACK (FileSelectResponse), window);
 
-   g_signal_connect (G_OBJECT (chooser), "destroy",
-		     G_CALLBACK (gtk_widget_destroyed), &open_file_dialog);
-
-   gtk_widget_show (chooser);
-
-   open_file_dialog = chooser;
-
+   gtk_window_present (GTK_WINDOW (chooser));
 }
 
 /* ----------------------------------------------------------------------

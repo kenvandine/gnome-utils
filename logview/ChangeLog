@@ -2,6 +2,8 @@
 
 	* logview.c (CloseLogMenu): Close the calendar when closing the log.
 	(CloseLogMenu): Same for details window.
+	(LoadLogMenu): Don't destroy the filechooser when we're done with
+	it, keep it around for later.
 
 	* calendar.c (CalendarMenu): Make sure to re-create calendar data
 	if there is none.
