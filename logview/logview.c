@@ -174,6 +174,18 @@ ConfigData *cfg = NULL;
 GtkWidget *open_file_dialog = NULL;
 
 GConfClient *client;
+poptContext poptCon;
+gint next_opt;
+
+struct poptOption options[] = { {
+	"file",
+	'f',
+	POPT_ARG_STRING,
+	NULL,
+	1,
+	NULL,
+	NULL,
+} };
 
 extern GdkGC *gc;
 extern Log *curlog, *loglist[];
@@ -192,6 +204,70 @@ destroy (void)
    CloseApp ();
 }
 
+static gint
+save_session (GnomeClient *gclient, gint phase,
+              GnomeRestartStyle save_style, gint shutdown,
+              GnomeInteractStyle interact_style, gint fast,
+              gpointer client_data)
+{
+   gchar **argv;
+   gint i;
+
+   argv = g_malloc0 (sizeof (gchar *) * (numlogs+1));
+   argv[0] = (gchar *) client_data;
+   for ( i = 1; i <= numlogs; i++) 
+       argv[i] = g_strconcat ("--file=", loglist[i-1]->name, NULL);
+   
+   gnome_client_set_clone_command (gclient, numlogs+1, argv);
+   gnome_client_set_restart_command (gclient, numlogs+1, argv);
+
+   g_free (argv);
+
+   return TRUE;
+}
+
+static gboolean
+restore_session (void)
+{
+   Log *tl;
+   gint i, logcnt = 0;
+
+   /* closing the log file opened by default */
+   CloseLog (loglist[0]);
+   curlog = NULL;
+   loglist[0] = NULL;
+   curlognum = 0;
+   log_repaint (NULL, NULL);
+   if (loginfovisible)
+       RepaintLogInfo (NULL, NULL);
+   set_scrollbar_size (1);
+   numlogs = 0;
+
+   next_opt = poptGetNextOpt (poptCon);
+
+   do {
+      if ( next_opt == 1) {
+         gchar *f = (gchar *) poptGetOptArg (poptCon);
+         if (f != NULL) {
+            if ((tl = OpenLogFile (f)) != NULL) {
+               curlog = tl;
+               loglist[numlogs] = tl;
+               numlogs++;
+               curlognum = numlogs - 1;
+            }
+         }
+         if (f)
+            g_free (f);
+      }
+   } while ((next_opt = poptGetNextOpt (poptCon)) != -1);
+}
+
+static gint
+die (GnomeClient *gclient, gpointer client_data)
+{
+    gtk_main_quit ();
+}
+
 /* ----------------------------------------------------------------------
    NAME:          main
    DESCRIPTION:   Program entry point.
@@ -200,6 +276,8 @@ destroy (void)
 int
 main (int argc, char *argv[])
 {
+  GnomeClient *gclient;
+
   bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
   textdomain(GETTEXT_PACKAGE);
@@ -211,6 +289,13 @@ main (int argc, char *argv[])
 
   gnome_window_icon_set_default_from_file (GNOME_ICONDIR"/gnome-log.png");
   
+  poptCon = poptGetContext ("gnome-system-log", argc, (const gchar **) argv, 
+                            options, 0);  
+  gclient = gnome_master_client ();
+  g_signal_connect (gclient, "save_yourself",
+                    G_CALLBACK (save_session), (gpointer)argv[0]);
+  g_signal_connect (gclient, "die", G_CALLBACK (die), NULL);
+
   gconf_init (argc, argv, NULL);
   client = gconf_client_get_default ();
   
@@ -225,6 +310,10 @@ main (int argc, char *argv[])
   QueueErrMessages (FALSE);
   ShowQueuedErrMessages ();
    
+  if (gnome_client_get_flags (gclient) & GNOME_CLIENT_RESTORED) {
+     restore_session ();
+  }
+
   /*  Loop application */
   gtk_main ();
   
