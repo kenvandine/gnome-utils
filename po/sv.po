@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"POT-Creation-Date: 2003-05-21 14:50+0200\n"
-"PO-Revision-Date: 2003-05-21 14:50+0100\n"
+"POT-Creation-Date: 2003-05-22 22:18+0200\n"
+"PO-Revision-Date: 2003-05-22 22:19+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -816,8 +816,9 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 för linux egna filsystem eller fat för DOS-filsystemet."
 
-#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:1953
-#: gsearchtool/gsearchtool.c:1973
+#: gsearchtool/gnome-search-tool.desktop.in.h:1 gsearchtool/gsearchtool.c:836
+#: gsearchtool/gsearchtool.c:1162 gsearchtool/gsearchtool.c:2067
+#: gsearchtool/gsearchtool.c:2087
 msgid "Search for Files"
 msgstr "Sök efter filer"
 
@@ -825,115 +826,124 @@ msgstr "Sök efter filer"
 msgid "Search your disk for files"
 msgstr "Sök på din disk efter filer"
 
-#: gsearchtool/gsearchtool.c:68
+#: gsearchtool/gsearchtool.c:73
 msgid "Contains the _text"
 msgstr "Innehåller _texten"
 
-#: gsearchtool/gsearchtool.c:70
+#: gsearchtool/gsearchtool.c:75
 msgid "_Date modified less than (days)"
 msgstr "_Modifieringsdatum mindre än (dagar)"
 
-#: gsearchtool/gsearchtool.c:71
+#: gsearchtool/gsearchtool.c:76
 msgid "Dat_e modified more than (days)"
 msgstr "Modifieringsdat_um större än (dagar)"
 
-#: gsearchtool/gsearchtool.c:73
+#: gsearchtool/gsearchtool.c:78
 msgid "S_ize at least (kilobytes)"
 msgstr "St_orleken är minst (kilobyte)"
 
-#: gsearchtool/gsearchtool.c:74
+#: gsearchtool/gsearchtool.c:79
 msgid "Si_ze at most (kilobytes)"
 msgstr "Sto_rleken är som mest (kilobyte)"
 
-#: gsearchtool/gsearchtool.c:75
+#: gsearchtool/gsearchtool.c:80
 msgid "File is empty"
 msgstr "Filen är tom"
 
-#: gsearchtool/gsearchtool.c:77
+#: gsearchtool/gsearchtool.c:82
 msgid "Owned by _user"
 msgstr "Ägs av _användaren"
 
-#: gsearchtool/gsearchtool.c:78
+#: gsearchtool/gsearchtool.c:83
 msgid "Owned by _group"
 msgstr "Ägs av _gruppen"
 
-#: gsearchtool/gsearchtool.c:79
+#: gsearchtool/gsearchtool.c:84
 msgid "Owner is unrecognized"
 msgstr "Ägaren är okänd"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:86
 msgid "Na_me does not contain"
 msgstr "Na_mnet innehåller inte"
 
-#: gsearchtool/gsearchtool.c:82
+#: gsearchtool/gsearchtool.c:87
 msgid "Name matches regular e_xpression"
 msgstr "Filen matchar reguljärt u_ttryck"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:89
 msgid "Show hidden files and folders"
 msgstr "Visa dolda filer och mappar"
 
-#: gsearchtool/gsearchtool.c:85
+#: gsearchtool/gsearchtool.c:90
 msgid "Follow symbolic links"
 msgstr "Följ symboliska länkar"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:91
 msgid "Include other filesystems"
 msgstr "Inkludera andra filsystem"
 
-#: gsearchtool/gsearchtool.c:517 gsearchtool/gsearchtool.c:1050
+#: gsearchtool/gsearchtool.c:522 gsearchtool/gsearchtool.c:1147
 msgid "No files found"
 msgstr "Inga filer hittades"
 
-#: gsearchtool/gsearchtool.c:610
+#: gsearchtool/gsearchtool.c:615
 msgid "Entry changed called for a non entry option!"
 msgstr "Poständring anropades för ett alternativ som inte är en post!"
 
-#: gsearchtool/gsearchtool.c:787
+#: gsearchtool/gsearchtool.c:781
+#, c-format
+msgid "The animation file is missing or invalid: %s"
+msgstr "Animationsfilen saknas eller är ogiltig: %s"
+
+#: gsearchtool/gsearchtool.c:836
+msgid "Searching..."
+msgstr "Söker..."
+
+#: gsearchtool/gsearchtool.c:884
 msgid "Set the text of 'Name contains'"
 msgstr "Ställ in texten för \"Namnet innehåller\""
 
-#: gsearchtool/gsearchtool.c:788
+#: gsearchtool/gsearchtool.c:885
 msgid "Set the text of 'Look in folder'"
 msgstr "Ställ in texten för \"Leta i mappen\""
 
-#: gsearchtool/gsearchtool.c:789
+#: gsearchtool/gsearchtool.c:886
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sortera filer efter ett av följande: namn, mapp, storlek, typ eller datum"
 
-#: gsearchtool/gsearchtool.c:790
+#: gsearchtool/gsearchtool.c:887
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 "Ställ in sorteringsordningen till fallande. Standardalternativet är stigande"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:888
 msgid "Automatically start a search"
 msgstr "Starta en sökning automatiskt"
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:893
 #, c-format
 msgid "Select the '%s' constraint"
 msgstr "Välj begränsningen \"%s\""
 
-#: gsearchtool/gsearchtool.c:902
+#: gsearchtool/gsearchtool.c:999
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ogiltigt alternativ skickat till sortby-kommandoradsargument."
 
-#: gsearchtool/gsearchtool.c:1038
-msgid "(aborted)"
-msgstr "(avbrutet)"
+#: gsearchtool/gsearchtool.c:1135
+msgid "(stopped)"
+msgstr "(stoppad)"
 
-#: gsearchtool/gsearchtool.c:1054
+#: gsearchtool/gsearchtool.c:1151
 msgid "One file found"
 msgstr "En fil hittades"
 
-#: gsearchtool/gsearchtool.c:1057
+#: gsearchtool/gsearchtool.c:1154
 #, c-format
 msgid "%d files found"
 msgstr "%d filer hittades"
 
-#: gsearchtool/gsearchtool.c:1154
+#: gsearchtool/gsearchtool.c:1255
 msgid ""
 "While searching the following errors were reported.\n"
 "\n"
@@ -941,7 +951,7 @@ msgstr ""
 "Under sökningen rapporterades följande fel.\n"
 "\n"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1259
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -949,28 +959,28 @@ msgstr ""
 "\n"
 "...För många fel för att visa..."
 
-#: gsearchtool/gsearchtool.c:1171
+#: gsearchtool/gsearchtool.c:1272
 msgid "Search Errors"
 msgstr "Sökfel"
 
-#: gsearchtool/gsearchtool.c:1209 gsearchtool/gsearchtool.c:1233
+#: gsearchtool/gsearchtool.c:1309 gsearchtool/gsearchtool.c:1330
 msgid "Search for Files Error"
 msgstr "Fel vid sökning efter filer"
 
-#: gsearchtool/gsearchtool.c:1323
+#: gsearchtool/gsearchtool.c:1420
 msgid "Search Rule Value Entry"
 msgstr "Värdepost för sökregel"
 
-#: gsearchtool/gsearchtool.c:1324
+#: gsearchtool/gsearchtool.c:1421
 msgid "Enter a value for search rule"
 msgstr "Ange ett värde för sökregeln"
 
-#: gsearchtool/gsearchtool.c:1362
+#: gsearchtool/gsearchtool.c:1459
 #, c-format
 msgid "Click to Remove the '%s' Rule"
 msgstr "Klicka för att ta bort regeln \"%s\""
 
-#: gsearchtool/gsearchtool.c:1414
+#: gsearchtool/gsearchtool.c:1511
 msgid "A_vailable options:"
 msgstr "_Tillgängliga alternativ:"
 
@@ -979,7 +989,7 @@ msgstr "_Tillgängliga alternativ:"
 # Sun vill ha "Sökningsregelmeny"
 # Jag vill ha "Sökregelmeny"
 #
-#: gsearchtool/gsearchtool.c:1427
+#: gsearchtool/gsearchtool.c:1524
 msgid "Search Rules Menu"
 msgstr "Sökregelmeny"
 
@@ -991,81 +1001,81 @@ msgstr "Sökregelmeny"
 # Sun vill ha "sökningsregel"
 # Jag vill ha "sökregel"
 #
-#: gsearchtool/gsearchtool.c:1428
+#: gsearchtool/gsearchtool.c:1525
 msgid "Select a search rule from the menu"
 msgstr "Välj en sökregel från menyn"
 
-#: gsearchtool/gsearchtool.c:1456
+#: gsearchtool/gsearchtool.c:1557
 msgid "_Search results:"
 msgstr "_Sökresultat:"
 
-#: gsearchtool/gsearchtool.c:1532
+#: gsearchtool/gsearchtool.c:1637
 msgid "Name"
 msgstr "Namn"
 
-#: gsearchtool/gsearchtool.c:1552
+#: gsearchtool/gsearchtool.c:1657
 msgid "Folder"
 msgstr "Mapp"
 
-#: gsearchtool/gsearchtool.c:1563
+#: gsearchtool/gsearchtool.c:1668
 msgid "Size"
 msgstr "Storlek"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1678
 msgid "Type"
 msgstr "Typ"
 
-#: gsearchtool/gsearchtool.c:1583
+#: gsearchtool/gsearchtool.c:1688
 msgid "Date Modified"
 msgstr "Modifieringsdatum"
 
-#: gsearchtool/gsearchtool.c:1622
+#: gsearchtool/gsearchtool.c:1736
 msgid "_Name contains:"
 msgstr "_Namnet innehåller:"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1637 gsearchtool/gsearchtool.c:1638
+#: gsearchtool/gsearchtool.c:1751 gsearchtool/gsearchtool.c:1752
 msgid "File Name Entry"
 msgstr "Filnamnspost"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1637 gsearchtool/gsearchtool.c:1638
+#: gsearchtool/gsearchtool.c:1751 gsearchtool/gsearchtool.c:1752
 msgid "Enter the file name you want to search"
 msgstr "Ange namnet på den fil som du vill söka"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1764
 msgid "_Look in folder:"
 msgstr "_Leta i mappen:"
 
-#: gsearchtool/gsearchtool.c:1656
+#: gsearchtool/gsearchtool.c:1770
 msgid "Browse"
 msgstr "Bläddra"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1665 gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1779 gsearchtool/gsearchtool.c:1780
 msgid "Starting folder entry"
 msgstr "Startmappspost"
 
 # SUN NEW TRANSLATION
-#: gsearchtool/gsearchtool.c:1665 gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1779 gsearchtool/gsearchtool.c:1780
 msgid "Enter the folder name where you want to start the search"
 msgstr "Ange namnet på den mapp där du vill påbörja sökningen"
 
-#: gsearchtool/gsearchtool.c:1685
+#: gsearchtool/gsearchtool.c:1799
 msgid "Show more _options"
 msgstr "Visa fler _alternativ"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1735
+#: gsearchtool/gsearchtool.c:1849
 msgid "Click to Start the search"
 msgstr "Klicka om du vill starta sökningen"
 
 # SUN CHANGED MESSAGE
-#: gsearchtool/gsearchtool.c:1736
+#: gsearchtool/gsearchtool.c:1850
 msgid "Click to Stop the search"
 msgstr "Klicka om du vill stoppa sökningen"
 
-#: gsearchtool/gsearchtool.c:1969
+#: gsearchtool/gsearchtool.c:2083
 msgid "Cannot initialize bonobo."
 msgstr "Kan inte initiera bonobo."
 
@@ -1085,53 +1095,49 @@ msgstr "_Spara resultat som..."
 msgid "Can't Display Help"
 msgstr "Kan inte visa hjälp"
 
-#: gsearchtool/gsearchtool-callbacks.c:144
-msgid "Searching..."
-msgstr "Söker..."
-
-#: gsearchtool/gsearchtool-callbacks.c:302
+#: gsearchtool/gsearchtool-callbacks.c:297
 #, c-format
 msgid "This will open %d separate files. Are you sure you want to do this?"
 msgstr ""
 "Detta kommer att öppna %d separata filer. Är du säker att du vill göra detta?"
 
-#: gsearchtool/gsearchtool-callbacks.c:305
+#: gsearchtool/gsearchtool-callbacks.c:300
 #, c-format
 msgid "Open %d Files?"
 msgstr "Öppna %d filer?"
 
-#: gsearchtool/gsearchtool-callbacks.c:362
-#: gsearchtool/gsearchtool-callbacks.c:635
+#: gsearchtool/gsearchtool-callbacks.c:357
+#: gsearchtool/gsearchtool-callbacks.c:630
 #, c-format
 msgid "There is no installed viewer capable of displaying \"%s\"."
 msgstr "Det finns ingen visare installerad som klarar visning av \"%s\"."
 
-#: gsearchtool/gsearchtool-callbacks.c:369
-#: gsearchtool/gsearchtool-callbacks.c:642
+#: gsearchtool/gsearchtool-callbacks.c:364
+#: gsearchtool/gsearchtool-callbacks.c:637
 msgid "Can't Display Location"
 msgstr "Kan inte visa plats"
 
-#: gsearchtool/gsearchtool-callbacks.c:407
+#: gsearchtool/gsearchtool-callbacks.c:402
 #, c-format
 msgid "This will open %d separate folders. Are you sure you want to do this?"
 msgstr ""
 "Detta kommer att öppna %d separata mappar. Är du säker att du vill göra "
 "detta?"
 
-#: gsearchtool/gsearchtool-callbacks.c:410
+#: gsearchtool/gsearchtool-callbacks.c:405
 #, c-format
 msgid "Open %d Folders?"
 msgstr "Öppna %d mappar?"
 
-#: gsearchtool/gsearchtool-callbacks.c:449
+#: gsearchtool/gsearchtool-callbacks.c:444
 msgid "The nautilus file manager is not running."
 msgstr "Filhanteraren nautilus körs inte."
 
-#: gsearchtool/gsearchtool-callbacks.c:744
+#: gsearchtool/gsearchtool-callbacks.c:739
 msgid "Save Search Results As..."
 msgstr "Spara sökresultat som..."
 
-#: gsearchtool/gsearchtool-callbacks.c:787
+#: gsearchtool/gsearchtool-callbacks.c:782
 #, c-format
 msgid ""
 "Cannot save search results.\n"
@@ -1140,12 +1146,12 @@ msgstr ""
 "Kan inte spara sökresultat.\n"
 "\"%s\" är en mapp."
 
-#: gsearchtool/gsearchtool-callbacks.c:815
+#: gsearchtool/gsearchtool-callbacks.c:810
 #, c-format
 msgid "File \"%s\" already exists. Overwrite?"
 msgstr "Filen \"%s\" finns redan. Skriva över?"
 
-#: gsearchtool/gsearchtool-callbacks.c:852
+#: gsearchtool/gsearchtool-callbacks.c:847
 #, c-format
 msgid "Cannot save search results to the file \"%s\"."
 msgstr "Kan inte spara sökresultat i filen \"%s\"."
@@ -1637,6 +1643,9 @@ msgstr ""
 "Anger den loggfil som ska öppnas vid uppstart. Standardalternativet är "
 "antingen /var/adm/messages eller /var/log/messages, beroende på ditt "
 "operativsystem."
+
+#~ msgid "(aborted)"
+#~ msgstr "(avbrutet)"
 
 #~ msgid "Look Up Selected Text"
 #~ msgstr "Slå upp markerad text"
