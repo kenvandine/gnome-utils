@@ -10,16 +10,12 @@ if P_GENIUS
 genius = genius
 endif
 
-if P_GTOP
-gtop = gtop
-endif
-
 if HAVE_LIBGTOP
 gdiskfree = gdiskfree
 endif
 
 SUBDIRS = po intl macros \
-	gcalc gedit $(genius) ghex gsearchtool $(gdiskfree) $(gtop) gtt \
+	gcalc gedit $(genius) ghex gsearchtool $(gdiskfree) gtt \
 	$(guile_DIRS) $(objc_DIRS) mini-utils gncal splash gdialog
 
 EXTRA_DIST = gnome-utils.spec
