@@ -1,5 +1,13 @@
 2001-06-23  John Kodis  <kodis@jagunet.com>
 
+	* params.c (param_page_set_from_desc): Move both calls to
+	add_color(page) here, since they both immediately proceeded a call
+	to param_page_set_from_desc anyway.  Shuffled code around to put
+	definitions before calls to avoid forward declarations,
+	artificially bloating this diff with code churn.
+	(on_option): Add 'do { add_color(page); } while (...);', as is
+	done in create_param_page().  This corrects bug #53324.
+
 	* strip.c (strip_update): Redraw the strip to erase any tick marks
 	when first turning off tick marks.
 	(strip_redraw): Move the indicator position initializations

@@ -38,6 +38,53 @@ set_entry(GtkWidget *entry, const char *text)
 }
 
 static void
+set_color(ChartDatum *datum, char *color_name, int cnum)
+{
+  Chart *chart = datum->chart;
+
+  gdk_color_parse(color_name, &datum->gdk_color[cnum]);
+  gdk_color_alloc(chart->colormap, &datum->gdk_color[cnum]);
+  datum->gdk_gc[cnum] = gdk_gc_new(GTK_WIDGET(chart)->window);
+  gdk_gc_set_foreground(datum->gdk_gc[cnum], &datum->gdk_color[cnum]);
+}
+
+static void
+on_color_set(GnomeColorPicker *picker,
+  guint red, guint grn, guint blu, guint alpha, Param_page *page)
+{
+  int cnum;
+  char color_name[20];
+  sprintf(color_name, "#%04x%04x%04x", red, grn, blu);
+
+  for (cnum = 0; cnum <= page->colors; cnum++)
+    if (GNOME_COLOR_PICKER(page->color[cnum]) == picker)
+      break;
+
+  if (cnum < page->colors && page->strip_data && page->pen_data)
+    {
+      set_color(page->strip_data, color_name, cnum);
+      set_color(page->pen_data, color_name, cnum);
+    }
+}
+
+static void
+add_color(Param_page *page)
+{
+  if (page->colors <= page->shown)
+    {
+      page->color = realloc(page->color,
+	(page->colors + 1) * sizeof(*page->color));
+      page->color[page->colors] = gnome_color_picker_new();
+      gtk_box_pack_start(GTK_BOX(page->color_hbox),
+	page->color[page->colors], FALSE, FALSE, 0);
+      gtk_signal_connect(GTK_OBJECT(page->color[page->colors]),
+	"color_set", on_color_set, page);
+      page->colors++;
+    }
+  gtk_widget_show(page->color[page->shown++]);
+}
+
+static void
 param_page_set_from_desc(Param_page *page, Param_desc *desc)
 {
   int c;
@@ -90,6 +137,10 @@ param_page_set_from_desc(Param_page *page, Param_desc *desc)
       break;
     }
 
+  do {
+    add_color(page);
+  } while (desc && page->colors < desc->colors);
+
   names = g_strdup(desc->color_names);
   color = strtok(names, whitespace);
   for (c = 0; color != NULL; c++)
@@ -117,48 +168,6 @@ get_current_page_param(GtkNotebook *notebook)
 
   page = gtk_notebook_get_nth_page(notebook, pageno);
   return (Param_page *)gtk_object_get_user_data(GTK_OBJECT(page));
-}
-
-/*
- * on_option -- called when the user selects a canned parameter from
- * the Params window's Parameter menu.  Deactivate the current
- * parameter, if any, set the parameter options, and activate the new
- * parameter.
- */
-static void
-on_option(GtkMenuItem *menuitem, Param_name_page *po)
-{
-  GtkNotebook *notebook = GTK_NOTEBOOK(po->app->notebook);
-  int pageno = gtk_notebook_get_current_page(notebook);
-  GtkWidget *nb_page = gtk_notebook_get_nth_page(notebook, pageno);
-  Param_page *page = gtk_object_get_user_data(GTK_OBJECT(nb_page));
-  ChartDatum *strip_datum = NULL, *pen_datum = NULL;
-
-  param_page_set_from_desc(po->page, po->desc);
-  if (po->desc->name && *po->desc->name)
-    gtk_notebook_set_tab_label_text(notebook, nb_page, po->desc->name);
-
-  strip_datum = chart_equation_add(CHART(po->app->strip),
-    po->app->strip_param_group, po->desc, NULL,
-    str_to_plot_style(po->desc->plot) != chart_plot_indicator);
-
-  if (strip_datum)
-    {
-      pen_datum = chart_equation_add(CHART(po->app->pen),
-	po->app->pen_param_group, po->desc, strip_datum->adj, FALSE);
-      strip_set_history_size(STRIP(po->app->strip), gdk_screen_width());
-    }
-
-  if (strip_datum && pen_datum)
-    {
-      if (page->strip_data != NULL)
-	chart_parameter_deactivate(CHART(po->app->strip), page->strip_data);
-      page->strip_data = strip_datum;
-
-      if (page->pen_data != NULL)
-	chart_parameter_deactivate(CHART(po->app->strip), page->pen_data);
-      page->pen_data = pen_datum;
-    }
 }
 
 /*
@@ -245,33 +254,6 @@ param_desc_ingest(const char *fn)
 
   desc_ptr[item_count] = NULL;
   return desc_ptr;
-}
-
-static GtkWidget *
-param_options_menu(Chart_app *app, Param_page *page)
-{
-  static Param_desc **descs;
-  Param_desc **desc;
-  GtkWidget *menu;
-
-  if (descs == NULL)
-    descs = param_desc_ingest(app->params_fn);
-
-  menu = gtk_menu_new();
-  for (desc = descs; desc && *desc; desc++)
-    {
-      Param_name_page *pg_opt = g_malloc(sizeof(*pg_opt));
-      GtkWidget *menuitem = gtk_menu_item_new_with_label((*desc)->name);
-      gtk_widget_show(menuitem);
-      gtk_menu_append(GTK_MENU(menu), menuitem);
-      pg_opt->page = page;
-      pg_opt->desc = *desc;
-      pg_opt->app = app;
-      gtk_signal_connect(GTK_OBJECT(menuitem),
-	"activate", GTK_SIGNAL_FUNC(on_option), pg_opt);
-    }
-
-  return menu;
 }
 
 static char *
@@ -430,51 +412,73 @@ on_close(GtkMenuItem *menuitem, Chart_app *app)
   gtk_widget_hide(GTK_WIDGET(app->editor));
 }
 
+/*
+ * on_option -- called when the user selects a canned parameter from
+ * the Params window's Parameter menu.  Deactivate the current
+ * parameter, if any, set the parameter options, and activate the new
+ * parameter.
+ */
 static void
-set_color(ChartDatum *datum, char *color_name, int cnum)
+on_option(GtkMenuItem *menuitem, Param_name_page *po)
 {
-  Chart *chart = datum->chart;
+  GtkNotebook *notebook = GTK_NOTEBOOK(po->app->notebook);
+  int pageno = gtk_notebook_get_current_page(notebook);
+  GtkWidget *nb_page = gtk_notebook_get_nth_page(notebook, pageno);
+  Param_page *page = gtk_object_get_user_data(GTK_OBJECT(nb_page));
+  ChartDatum *strip_datum = NULL, *pen_datum = NULL;
 
-  gdk_color_parse(color_name, &datum->gdk_color[cnum]);
-  gdk_color_alloc(chart->colormap, &datum->gdk_color[cnum]);
-  datum->gdk_gc[cnum] = gdk_gc_new(GTK_WIDGET(chart)->window);
-  gdk_gc_set_foreground(datum->gdk_gc[cnum], &datum->gdk_color[cnum]);
-}
+  param_page_set_from_desc(po->page, po->desc);
+  if (po->desc->name && *po->desc->name)
+    gtk_notebook_set_tab_label_text(notebook, nb_page, po->desc->name);
 
-static void
-on_color_set(GnomeColorPicker *picker,
-  guint red, guint grn, guint blu, guint alpha, Param_page *page)
-{
-  int cnum;
-  char color_name[20];
-  sprintf(color_name, "#%04x%04x%04x", red, grn, blu);
+  strip_datum = chart_equation_add(CHART(po->app->strip),
+    po->app->strip_param_group, po->desc, NULL,
+    str_to_plot_style(po->desc->plot) != chart_plot_indicator);
 
-  for (cnum = 0; cnum <= page->colors; cnum++)
-    if (GNOME_COLOR_PICKER(page->color[cnum]) == picker)
-      break;
-
-  if (cnum < page->colors && page->strip_data && page->pen_data)
+  if (strip_datum)
     {
-      set_color(page->strip_data, color_name, cnum);
-      set_color(page->pen_data, color_name, cnum);
+      pen_datum = chart_equation_add(CHART(po->app->pen),
+	po->app->pen_param_group, po->desc, strip_datum->adj, FALSE);
+      strip_set_history_size(STRIP(po->app->strip), gdk_screen_width());
+    }
+
+  if (strip_datum && pen_datum)
+    {
+      if (page->strip_data != NULL)
+	chart_parameter_deactivate(CHART(po->app->strip), page->strip_data);
+      page->strip_data = strip_datum;
+
+      if (page->pen_data != NULL)
+	chart_parameter_deactivate(CHART(po->app->strip), page->pen_data);
+      page->pen_data = pen_datum;
     }
 }
 
-static void
-add_color(Param_page *page)
+static GtkWidget *
+param_options_menu(Chart_app *app, Param_page *page)
 {
-  if (page->colors <= page->shown)
+  static Param_desc **descs;
+  Param_desc **desc;
+  GtkWidget *menu;
+
+  if (descs == NULL)
+    descs = param_desc_ingest(app->params_fn);
+
+  menu = gtk_menu_new();
+  for (desc = descs; desc && *desc; desc++)
     {
-      page->color = realloc(page->color,
-	(page->colors + 1) * sizeof(*page->color));
-      page->color[page->colors] = gnome_color_picker_new();
-      gtk_box_pack_start(GTK_BOX(page->color_hbox),
-	page->color[page->colors], FALSE, FALSE, 0);
-      gtk_signal_connect(GTK_OBJECT(page->color[page->colors]),
-	"color_set", on_color_set, page);
-      page->colors++;
+      Param_name_page *pg_opt = g_malloc(sizeof(*pg_opt));
+      GtkWidget *menuitem = gtk_menu_item_new_with_label((*desc)->name);
+      gtk_widget_show(menuitem);
+      gtk_menu_append(GTK_MENU(menu), menuitem);
+      pg_opt->page = page;
+      pg_opt->desc = *desc;
+      pg_opt->app = app;
+      gtk_signal_connect(GTK_OBJECT(menuitem),
+	"activate", GTK_SIGNAL_FUNC(on_option), pg_opt);
     }
-  gtk_widget_show(page->color[page->shown++]);
+
+  return menu;
 }
 
 static void
@@ -828,12 +832,6 @@ create_param_page(Chart_app *app, Param_page *page, Param_desc *desc)
   gtk_widget_show(page->color_hbox);
   gtk_table_attach(GTK_TABLE(page->table),
     page->color_hbox, 1, 2, 9, 10, GTK_FILL, GTK_FILL, 0, 0);
-
-  /* Create and add colorpickers to the page here; set the colors in
-     param_page_set_from_desc(); */
-  do {
-    add_color(page);
-  } while (desc && page->colors < desc->colors);
 
   param_page_set_from_desc(page, desc);
 }
