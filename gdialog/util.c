@@ -367,8 +367,10 @@ void label_autowrap(GtkWidget *vbox, const char *input, int w)
 		else
 			pspace=1;
 	}
+#if 0
+	/* Used in various conditions, no need to free it */
 	g_free((gpointer)input); /* allocated by unquote_nl() */
-
+#endif
 	if(blen)
 	{
 		GtkWidget *t;

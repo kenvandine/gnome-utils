@@ -1,3 +1,8 @@
+1999-03-30  Miguel de Icaza  <miguel@nuclecu.unam.mx>
+
+	* gdialog/util.c (label_autowrap): Do not free this.  It is not a
+	terrible leak anyways and fixes the crash.
+
 1999-02-27  Shooby Ban <bansz@szif.hu>
 
 	* Added hungarian translations first ver.
