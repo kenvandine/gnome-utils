@@ -111,25 +111,30 @@ create_disk_box(const gchar ** fs_info, gdouble * percent_full)
 static void fill_disk_page(GtkWidget * box)
 {
   GtkWidget * disk_box;
+  GtkWidget * viewport;
   GtkWidget * scrolled_win;
   GtkWidget * scrolled_box;
-  GtkWidget * frame;
   GList * tmp1, *tmp2;
   
-  frame = gtk_frame_new(_("Mounted filesystems"));
-
   scrolled_win = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_win),
-                                  GTK_POLICY_AUTOMATIC, 
+                                  GTK_POLICY_NEVER, 
                                   GTK_POLICY_AUTOMATIC);
-  gtk_container_border_width(GTK_CONTAINER(scrolled_win), GNOME_PAD);
-  gtk_container_add (GTK_CONTAINER(frame), scrolled_win);
+  gtk_container_border_width(GTK_CONTAINER(scrolled_win), 0);
+  gtk_box_pack_start(GTK_BOX(box), scrolled_win, TRUE, TRUE, 0);
 
   scrolled_box = gtk_vbox_new(FALSE, GNOME_PAD_SMALL);
   gtk_container_border_width(GTK_CONTAINER(scrolled_box), GNOME_PAD_SMALL);
-  gtk_scrolled_window_add_with_viewport (GTK_CONTAINER(scrolled_win), scrolled_box);
-  gtk_box_pack_start(GTK_BOX(box), frame, TRUE, TRUE, 0);
-  
+
+  viewport = gtk_viewport_new(gtk_scrolled_window_get_hadjustment
+                              (GTK_SCROLLED_WINDOW(scrolled_win)),
+                              gtk_scrolled_window_get_vadjustment
+                              (GTK_SCROLLED_WINDOW(scrolled_win)));
+  gtk_viewport_set_shadow_type(GTK_VIEWPORT(viewport), GTK_SHADOW_ETCHED_IN);
+  gtk_container_add (GTK_CONTAINER (scrolled_win), viewport);
+  gtk_widget_show (viewport);
+
+  gtk_container_add (GTK_CONTAINER (viewport), scrolled_box);
   
   tmp1 = filesystems;
   tmp2 = filesystems_percent_full;
