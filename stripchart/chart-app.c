@@ -166,6 +166,8 @@ on_show_values(GtkWidget *unused, Chart_app *app)
       app->text_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
       gtk_widget_set_style(GTK_WIDGET(app->text_window), app->frame->style);
       gtk_container_add(GTK_CONTAINER(app->text_window), app->text_clist);
+      gtk_window_set_policy(GTK_WINDOW(app->text_window),
+	/*allow-shrink*/1, /*allow-grow*/1, /*auto-shrink*/1);
       gtk_window_set_transient_for(GTK_WINDOW(app->text_window),
 	GTK_WINDOW(app->frame));
       gtk_widget_show(app->text_window);
