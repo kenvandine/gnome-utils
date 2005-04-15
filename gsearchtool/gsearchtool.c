@@ -633,9 +633,9 @@ add_file_to_search_results (const gchar * file,
 			    GSearchWindow * gsearch)
 {					
 	const char * mime_type; 
-	const char * description;
 	GdkPixbuf * pixbuf;
 	GnomeVFSFileInfo * vfs_file_info;
+	gchar * description;
 	gchar * readable_size;
 	gchar * readable_date;
 	gchar * utf8_base_name;
@@ -714,6 +714,7 @@ add_file_to_search_results (const gchar * file,
 	g_free (utf8_dir_name);
 	g_free (utf8_relative_dir_name);
 	g_free (look_in_folder);
+	g_free (description);
 	g_free (readable_size);
 	g_free (readable_date);
 }
@@ -1447,6 +1448,12 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 		    
 			gchar * command;
 			
+			/* Free these strings now because they are reassign values during the second pass. */
+			g_free (gsearch->command_details->look_in_folder_string);
+			g_free (gsearch->command_details->name_contains_pattern_string);
+			g_free (gsearch->command_details->name_contains_regex_string);
+			g_free (gsearch->search_results_date_format_string);
+			
 			command = build_search_command (gsearch, FALSE);
 			if (command != NULL) {
 				spawn_search_command (gsearch, command);
@@ -1760,8 +1767,8 @@ spawn_search_command (GSearchWindow * gsearch,
 		
 		gsearch->command_details->command_status = RUNNING; 
 		gsearch->is_search_results_single_click_to_activate = FALSE;
-		gsearch->search_results_pixbuf_hash_table = g_hash_table_new (g_str_hash, g_str_equal);
-		gsearch->search_results_filename_hash_table = g_hash_table_new (g_str_hash, g_str_equal);
+		gsearch->search_results_pixbuf_hash_table = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, g_object_unref);
+		gsearch->search_results_filename_hash_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 	
 		/* Get value of nautilus date_format key */
 		gsearch->search_results_date_format_string = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");

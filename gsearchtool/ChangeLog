@@ -1,3 +1,11 @@
+2005-04-14  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-support.[ch]: (get_file_type_for_mime_type):
+	Fix memory leaks reported by Kjartan Maraas in bug 300634.
+	* gsearchtool.c:  (add_file_to_search_results), 
+	(handle_search_command_stdout_io), (spawn_search_command):
+	Fix memory leaks reported by Kjartan Maraas in bug 300638.
+ 
 2005-04-01  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool-support.c: (open_file_with_application):

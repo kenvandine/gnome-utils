@@ -669,17 +669,17 @@ gsearchtool_strdup_strftime (const gchar * format,
 	return result;
 }
 
-const char *
+gchar *
 get_file_type_for_mime_type (const gchar * file, 
                              const gchar * mime)
 {
-	const char * desc;
+	gchar * desc;
 	
 	if (file == NULL || mime == NULL) {
-		return gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN);
+		return g_strdup (gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN));
 	}
 
-	desc = gnome_vfs_mime_get_description (mime);
+	desc = g_strdup (gnome_vfs_mime_get_description (mime));
 
 	if (g_file_test (file, G_FILE_TEST_IS_SYMLINK)) {
 	
@@ -707,7 +707,7 @@ get_file_type_for_mime_type (const gchar * file,
                            (g_ascii_strcasecmp (mime, "x-special/fifo") != 0)) {
 				gnome_vfs_file_info_unref (file_info);
 				g_free (absolute_symlink);
-				return _("link (broken)");
+				return g_strdup (_("link (broken)"));
 			}
 		}
 			

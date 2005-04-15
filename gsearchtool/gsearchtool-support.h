@@ -79,7 +79,7 @@ get_readable_date (const gchar * format_string,
 gchar *    	
 gsearchtool_strdup_strftime (const gchar * format, 
                              struct tm * time_pieces); 
-const char *
+gchar *
 get_file_type_for_mime_type (const gchar * file,
                              const gchar * mime);
 GdkPixbuf *
