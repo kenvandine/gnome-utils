@@ -1767,7 +1767,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		
 		gsearch->command_details->command_status = RUNNING; 
 		gsearch->is_search_results_single_click_to_activate = FALSE;
-		gsearch->search_results_pixbuf_hash_table = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, g_object_unref);
+		gsearch->search_results_pixbuf_hash_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 		gsearch->search_results_filename_hash_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 	
 		/* Get value of nautilus date_format key */

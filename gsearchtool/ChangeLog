@@ -1,3 +1,10 @@
+2005-04-16  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-support.c: (get_file_pixbuf_for_mime_type): Do
+	not free the key values after inserting them into the hash. 
+	* gsearchtool.c: (spawn_search_command):  Free the key values
+	on destroy.
+
 2005-04-14  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool-support.[ch]: (get_file_type_for_mime_type):

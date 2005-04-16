@@ -755,10 +755,17 @@ get_file_pixbuf_for_mime_type (GHashTable * hash,
 	if (pixbuf == NULL) {
 		pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 
 		                                   ICON_SIZE, 0, NULL);
-		g_hash_table_insert (hash, &icon_name, pixbuf);
+		if (pixbuf != NULL) {
+			g_hash_table_insert (hash, icon_name, pixbuf);
+		}
+		else {
+			g_free (icon_name);
+		}
 	}
-						  
-	g_free (icon_name);
+	else {
+		g_free (icon_name);
+	}					  
+
 	return pixbuf;
 }
 
