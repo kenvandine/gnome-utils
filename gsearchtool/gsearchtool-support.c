@@ -251,6 +251,7 @@ is_quick_search_excluded_path (const gchar * path)
 			if (g_pattern_match_simple (dir, path) == TRUE) {
 
 				g_slist_free (exclude_path_list);
+				g_slist_free (tmp_list);
 				g_free (dir);			
 
 				return TRUE;
@@ -271,6 +272,7 @@ is_quick_search_excluded_path (const gchar * path)
 			if (strcmp (path, dir) == 0) {
 				
 				g_slist_free (exclude_path_list);
+				g_slist_free (tmp_list);
 				g_free (dir);
 				
 				return TRUE;
@@ -279,6 +281,7 @@ is_quick_search_excluded_path (const gchar * path)
 		g_free (dir);
 	}
 	g_slist_free (exclude_path_list);
+	g_slist_free (tmp_list);
 	
 	return FALSE;
 }
@@ -325,6 +328,7 @@ is_second_scan_excluded_path (const gchar * path)
 			if (g_pattern_match_simple (dir, path) == TRUE) {
 
 				g_slist_free (exclude_path_list);
+				g_slist_free (tmp_list);
 				g_free (dir);			
 
 				return TRUE;
@@ -345,6 +349,7 @@ is_second_scan_excluded_path (const gchar * path)
 			if (strcmp (path, dir) == 0) {
 				
 				g_slist_free (exclude_path_list);
+				g_slist_free (tmp_list);
 				g_free (dir);
 				
 				return TRUE;
@@ -353,6 +358,7 @@ is_second_scan_excluded_path (const gchar * path)
 		g_free (dir);
 	}
 	g_slist_free (exclude_path_list);
+	g_slist_free (tmp_list);
 	
 	return FALSE;
 }
