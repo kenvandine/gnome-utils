@@ -689,8 +689,9 @@ get_file_type_for_mime_type (const gchar * file,
 
 	if (g_file_test (file, G_FILE_TEST_IS_SYMLINK)) {
 	
-		GnomeVFSFileInfo *file_info;
-		gchar *absolute_symlink = NULL;
+		GnomeVFSFileInfo * file_info;
+		gchar * absolute_symlink = NULL;
+		gchar * str = NULL;
 		
 		file_info = gnome_vfs_file_info_new ();
 		gnome_vfs_get_file_info (file, file_info, GNOME_VFS_FILE_INFO_DEFAULT);
@@ -713,13 +714,16 @@ get_file_type_for_mime_type (const gchar * file,
                            (g_ascii_strcasecmp (mime, "x-special/fifo") != 0)) {
 				gnome_vfs_file_info_unref (file_info);
 				g_free (absolute_symlink);
+				g_free (desc);
 				return g_strdup (_("link (broken)"));
 			}
 		}
 			
+		str = g_strdup_printf (_("link to %s"), (desc != NULL) ? desc : mime);
 		gnome_vfs_file_info_unref (file_info);
 		g_free (absolute_symlink);
-		return g_strdup_printf (_("link to %s"), (desc != NULL) ? desc : mime);
+		g_free (desc);
+		return str;
 	}
 	return desc;
 } 
