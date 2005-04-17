@@ -1,5 +1,13 @@
 2005-04-16  Dennis Cranston <dennis_cranston@yahoo.com>
 
+	* gsearchtool-support.c: (is_second_scan_excluded_path),
+	(is_quick_search_excluded_path):  Call g_free() on each list 
+	element.  Fixes another memory leak. 
+	(gsearchtool_gconf_get_list): Fix g_return_val_if_fail()'s
+	return value.
+
+2005-04-16  Dennis Cranston <dennis_cranston@yahoo.com>
+
 	* gsearchtool-support.c: (get_file_type_for_mime_type):
 	Another memory leak fix.
 	

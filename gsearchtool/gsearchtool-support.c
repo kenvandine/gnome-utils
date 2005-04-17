@@ -129,7 +129,7 @@ gsearchtool_gconf_get_list (const gchar * key)
 	g_return_val_if_fail (key != NULL, FALSE);
 	
 	client = gsearchtool_gconf_client_get_global ();
-	g_return_val_if_fail (client != NULL, FALSE);
+	g_return_val_if_fail (client != NULL, NULL);
 	
 	result = gconf_client_get_list (client, key, GCONF_VALUE_STRING, &error);
 	
@@ -215,6 +215,7 @@ is_quick_search_excluded_path (const gchar * path)
 	GSList     * exclude_path_list;
 	GSList     * tmp_list;
 	gchar      * dir;
+	gboolean     results = FALSE;
 	
 	dir = g_strdup (path);
 	
@@ -238,23 +239,21 @@ is_quick_search_excluded_path (const gchar * path)
 	
 		gchar * dir;
 		
-		dir = g_strdup (tmp_list->data);
-		
 		/* Skip empty or null values. */
-		if ((dir == NULL) || (strlen (dir) == 0)) {
+		if ((tmp_list->data == NULL) || (strlen (tmp_list->data) == 0)) {
 			continue;
 		}
+		
+		dir = g_strdup (tmp_list->data);
 			
 		/* Wild-card comparisons. */		
 		if (g_strstr_len (dir, strlen (dir), "*") != NULL) { 
 		
 			if (g_pattern_match_simple (dir, path) == TRUE) {
 
-				g_slist_free (exclude_path_list);
-				g_slist_free (tmp_list);
+				results = TRUE;
 				g_free (dir);			
-
-				return TRUE;
+				break;
 			}
 		} 
 		/* Non-wild-card comparisons. */
@@ -271,19 +270,20 @@ is_quick_search_excluded_path (const gchar * path)
 			
 			if (strcmp (path, dir) == 0) {
 				
-				g_slist_free (exclude_path_list);
-				g_slist_free (tmp_list);
+				results = TRUE;
 				g_free (dir);
-				
-				return TRUE;
+				break;
 			}
 		}
 		g_free (dir);
 	}
-	g_slist_free (exclude_path_list);
-	g_slist_free (tmp_list);
 	
-	return FALSE;
+	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
+		g_free (tmp_list->data);
+	}
+	g_slist_free (exclude_path_list);
+	
+	return results;
 }
 
 gboolean  	
@@ -292,6 +292,7 @@ is_second_scan_excluded_path (const gchar * path)
 	GSList     * exclude_path_list;
 	GSList     * tmp_list;
 	gchar      * dir;
+	gboolean     results = FALSE;
 	
 	dir = g_strdup (path);
 	
@@ -315,23 +316,21 @@ is_second_scan_excluded_path (const gchar * path)
 	
 		gchar * dir;
 		
-		dir = g_strdup (tmp_list->data);
-		
 		/* Skip empty or null values. */
-		if ((dir == NULL) || (strlen (dir) == 0)) {
+		if ((tmp_list->data == NULL) || (strlen (tmp_list->data) == 0)) {
 			continue;
 		}
+
+		dir = g_strdup (tmp_list->data);
 			
 		/* Wild-card comparisons. */		
 		if (g_strstr_len (dir, strlen (dir), "*") != NULL) { 
 		
 			if (g_pattern_match_simple (dir, path) == TRUE) {
 
-				g_slist_free (exclude_path_list);
-				g_slist_free (tmp_list);
-				g_free (dir);			
-
-				return TRUE;
+				results = TRUE;
+				g_free (dir);
+				break;
 			}
 		} 
 		/* Non-wild-card comparisons. */
@@ -348,19 +347,20 @@ is_second_scan_excluded_path (const gchar * path)
 			
 			if (strcmp (path, dir) == 0) {
 				
-				g_slist_free (exclude_path_list);
-				g_slist_free (tmp_list);
+				results = TRUE;
 				g_free (dir);
-				
-				return TRUE;
+				break;
 			}
 		}
 		g_free (dir);
 	}
-	g_slist_free (exclude_path_list);
-	g_slist_free (tmp_list);
 	
-	return FALSE;
+	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
+		g_free (tmp_list->data);
+	}
+	g_slist_free (exclude_path_list);
+	
+	return results;
 }
 
 gboolean
