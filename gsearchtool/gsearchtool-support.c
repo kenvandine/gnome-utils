@@ -995,11 +995,13 @@ gsearchtool_icon_lookup (GSearchWindow * gsearch,
 
 	uri = gnome_vfs_get_uri_from_local_path (file);
 
-	if ((gsearch->show_thumbnails == TRUE) && 
-	    (file_info->size < gsearch->show_thumbnails_file_size_limit)) {
-		thumbnail_factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
-		lookup_flags = GNOME_ICON_LOOKUP_FLAGS_SHOW_SMALL_IMAGES_AS_THEMSELVES | 
-		               GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES;
+	if (gsearch->show_thumbnails == TRUE) {
+		if ((strncmp (file_info->mime_type, "image/", 6) != 0) ||
+	    	    (file_info->size < gsearch->show_thumbnails_file_size_limit)) {
+		    	thumbnail_factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+			lookup_flags = GNOME_ICON_LOOKUP_FLAGS_SHOW_SMALL_IMAGES_AS_THEMSELVES | 
+			               GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES;
+		}
 	}
 
 	icon_name = gnome_icon_lookup (gtk_icon_theme_get_default (), 
@@ -1053,15 +1055,18 @@ get_file_pixbuf (GSearchWindow * gsearch,
 	
 	if (pixbuf == NULL) {
 
-		if ((gsearch->show_thumbnails == TRUE) && 
-		    (file_info->size < gsearch->show_thumbnails_file_size_limit)) {
+		if (gsearch->show_thumbnails == TRUE) { 
+
+			if ((strncmp (file_info->mime_type, "image/", 6) != 0) ||
+	    		    (file_info->size < gsearch->show_thumbnails_file_size_limit)) {
 		
-			if (strcmp (icon_name, file) == 0) {
-				pixbuf = gdk_pixbuf_new_from_file_at_scale (file, ICON_SIZE, ICON_SIZE, TRUE, NULL);
-			}
+				if (strcmp (icon_name, file) == 0) {
+					pixbuf = gdk_pixbuf_new_from_file_at_scale (file, ICON_SIZE, ICON_SIZE, TRUE, NULL);
+				}
 			
-			if (pixbuf == NULL) {
-				pixbuf = gsearchtool_get_thumbnail_image (file);
+				if (pixbuf == NULL) {
+					pixbuf = gsearchtool_get_thumbnail_image (file);
+				}
 			}
 		}
 
