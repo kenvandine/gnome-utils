@@ -483,12 +483,25 @@ build_search_command (GSearchWindow * gsearch,
 		if (gsearch->command_details->is_command_first_pass == TRUE) {
 		
 			gchar * locate;
+			gchar * show_thumbnails_string;
 			gboolean disable_quick_search;
 		
 			locate = g_find_program_in_path ("locate");
 			disable_quick_search = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search");		
 			gsearch->command_details->is_command_second_pass_enabled = !gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search_second_pass");
 		
+			show_thumbnails_string = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/show_image_thumbnails");
+			if ((show_thumbnails_string != NULL) &&
+			    ((strcmp (show_thumbnails_string, "always") == 0) ||
+			     (strcmp (show_thumbnails_string, "local_only") == 0))) {
+			    	gsearch->show_thumbnails = TRUE;
+				gsearch->show_thumbnails_file_size_limit = gsearchtool_gconf_get_int ("/apps/nautilus/preferences/thumbnail_limit");
+			}
+			else {
+				gsearch->show_thumbnails = FALSE;
+				gsearch->show_thumbnails_file_size_limit = 0;
+			}
+			
 			if ((disable_quick_search == FALSE)
 			    && (gsearch->is_locate_database_available == TRUE)
 			    && (locate != NULL)
@@ -508,6 +521,7 @@ build_search_command (GSearchWindow * gsearch,
 							file_is_named_escaped);
 			}
 			g_free (locate);
+			g_free (show_thumbnails_string);
 		}
 		else {
 			g_string_append_printf (command, "find \"%s\" %s '%s' -xdev -print", 
@@ -632,7 +646,6 @@ add_file_to_search_results (const gchar * file,
 			    GtkTreeIter * iter,
 			    GSearchWindow * gsearch)
 {					
-	const char * mime_type; 
 	GdkPixbuf * pixbuf;
 	GnomeVFSFileInfo * vfs_file_info;
 	gchar * description;
@@ -645,28 +658,34 @@ add_file_to_search_results (const gchar * file,
 	gchar * dir_name;
 	gchar * relative_dir_name;
 	gchar * look_in_folder;
+	gchar * escape_path_string;
 	
 	if (g_hash_table_lookup_extended (gsearch->search_results_filename_hash_table, file, NULL, NULL) == TRUE) {
 		return;
 	}
 	
-	if (g_file_test (file, G_FILE_TEST_EXISTS) != TRUE) {
+       if ((g_file_test (file, G_FILE_TEST_EXISTS) != TRUE) && 
+           (g_file_test (file, G_FILE_TEST_IS_SYMLINK) != TRUE)) {
 		return;
 	}
 	
 	g_hash_table_insert (gsearch->search_results_filename_hash_table, g_strdup (file), NULL);
-	
-	mime_type = gnome_vfs_get_file_mime_type (file, NULL, FALSE);
-	 
-	description = get_file_type_for_mime_type (file, mime_type);
-	pixbuf = get_file_pixbuf_for_mime_type (gsearch->search_results_pixbuf_hash_table, file, mime_type);
 	
 	if (gtk_tree_view_get_headers_visible (GTK_TREE_VIEW (gsearch->search_results_tree_view)) == FALSE) {
 		gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (gsearch->search_results_tree_view), TRUE);
 	}
 	
 	vfs_file_info = gnome_vfs_file_info_new ();
-	gnome_vfs_get_file_info (file, vfs_file_info, GNOME_VFS_FILE_INFO_DEFAULT);
+	escape_path_string = gnome_vfs_escape_path_string (file);
+	gnome_vfs_get_file_info (escape_path_string, vfs_file_info, 
+	                         GNOME_VFS_FILE_INFO_DEFAULT | 
+	                         GNOME_VFS_FILE_INFO_GET_MIME_TYPE | 
+	                         GNOME_VFS_FILE_INFO_FORCE_SLOW_MIME_TYPE | 
+	                         GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+	
+	pixbuf = get_file_pixbuf (gsearch, file, vfs_file_info);
+	description = get_file_type_description (file, vfs_file_info);
+		
 	readable_size = gnome_vfs_format_file_size_for_display (vfs_file_info->size);
 	readable_date = get_readable_date (gsearch->search_results_date_format_string, vfs_file_info->mtime);
 	
@@ -700,7 +719,7 @@ add_file_to_search_results (const gchar * file,
 			    COLUMN_PATH, utf8_dir_name,
 			    COLUMN_READABLE_SIZE, readable_size,
 			    COLUMN_SIZE, (-1) * (gdouble) vfs_file_info->size,
-			    COLUMN_TYPE, (description != NULL) ? description : mime_type,
+			    COLUMN_TYPE, (description != NULL) ? description : vfs_file_info->mime_type,
 			    COLUMN_READABLE_DATE, readable_date,
 			    COLUMN_DATE, (-1) * (gdouble) vfs_file_info->mtime,
 			    COLUMN_NO_FILES_FOUND, FALSE,
@@ -714,6 +733,7 @@ add_file_to_search_results (const gchar * file,
 	g_free (utf8_dir_name);
 	g_free (utf8_relative_dir_name);
 	g_free (look_in_folder);
+	g_free (escape_path_string);
 	g_free (description);
 	g_free (readable_size);
 	g_free (readable_date);

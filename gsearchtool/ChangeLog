@@ -1,3 +1,43 @@
+2005-05-01  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	Add support for displaying thumbnails.  The thumbnail must 
+	already exist and will be shown according to the file manager's 
+	preview settings.
+
+	* Makefile.am:  Add data to SUBDIRS.
+	* gsearchtool.h:  Add show_thumbnails_file_size_limit
+	and show_thumbnails to GSearchWindow struct.
+	* gsearchtool-support.h:  Add gsearchtool_gconf_get_int().
+	Rename function get_file_type_for_mime_type() to 
+	get_file_type_description() and add a GnomeVFSFileInfo
+	argument.  Rename function get_file_pixbuf_for_mime_type()
+	to get_file_pixbuf() and add GnomeVFSFileInfo argument.
+	* gsearchtool.c:  (build_search_command):  Load nautilus
+	show_image_thumbnails and thumbnail_limit gconf values.
+	(add_file_to_search_results):  Use gnome_vfs_get_file_info()
+	to determine the mime type.  Use the new functions, 
+	get_file_pixbuf() and get_file_type_description().  
+	* gsearchtool-support.c:  Add gsearchtool_gconf_get_int(),
+	gsearchtool_pixmap_file(), gsearchtool_load_thumbnail_frame(),
+	gsearchtool_draw_frame_row(), gsearchtool_draw_frame_column(),
+	gsearchtool_stretch_frame_image(), gsearchtool_embed_image_in_frame(),
+	gsearchtool_thumbnail_frame_image(), gsearchtool_get_thumbnail_image(),
+	and gsearchtool_icon_lookup(). 
+	* data/Makefile.am: New file.
+	* data/thumbnail_frame.png:  New file.
+	
+2005-04-30  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c: (add_file_to_search_results): 
+	Do not filter broken links.
+
+2005-04-30  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c: (add_file_to_search_results): 
+	Call gnome-vfs_escape_path_string() prior to using 
+	gnome_vfs_get_file_info() to correct possible 
+	GNOME_VFS_ERROR_NOT_FOUND errors.
+	
 2005-04-16  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool-support.c: (is_second_scan_excluded_path),

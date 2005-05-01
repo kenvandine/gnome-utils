@@ -43,6 +43,9 @@ gsearchtool_gconf_get_boolean (const gchar * key);
 void
 gsearchtool_gconf_set_boolean (const gchar * key, 
                                const gboolean flag);
+gint 
+gsearchtool_gconf_get_int (const gchar * key);
+
 char *
 gsearchtool_gconf_get_string (const gchar * key);
 
@@ -80,12 +83,12 @@ gchar *
 gsearchtool_strdup_strftime (const gchar * format, 
                              struct tm * time_pieces); 
 gchar *
-get_file_type_for_mime_type (const gchar * file,
-                             const gchar * mime);
+get_file_type_description (const gchar * file,
+                           GnomeVFSFileInfo * file_info);
 GdkPixbuf *
-get_file_pixbuf_for_mime_type (GHashTable * hash,
-                               const gchar * file,
-                               const gchar * mime);
+get_file_pixbuf (GSearchWindow * gsearch,
+                 const gchar * file,
+                 GnomeVFSFileInfo * file_info);
 gboolean 	
 open_file_with_nautilus (GtkWidget * window,
                          const gchar * file);

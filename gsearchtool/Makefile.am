@@ -1,6 +1,6 @@
 Utilitiesdir = $(datadir)/applications
 
-SUBDIRS = help
+SUBDIRS = data help
 
 INCLUDES = 	\
 	$(GNOME_UTILS_CFLAGS)					\
