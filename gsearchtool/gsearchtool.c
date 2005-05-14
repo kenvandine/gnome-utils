@@ -2680,7 +2680,7 @@ gsearch_app_create (GSearchWindow * gsearch)
 	g_free (locale_string);
 	g_free (utf8_string);
 
-	gsearch->show_more_options_expander = gtk_expander_new_with_mnemonic (_("Show more _options"));
+	gsearch->show_more_options_expander = gtk_expander_new_with_mnemonic (_("Select more _options"));
 	gtk_box_pack_start (GTK_BOX (container), gsearch->show_more_options_expander, FALSE, FALSE, 0);
 	g_signal_connect (G_OBJECT (gsearch->show_more_options_expander), "notify::expanded",
 			  G_CALLBACK (click_expander_cb), (gpointer) gsearch);
@@ -2689,7 +2689,7 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_box_pack_start (GTK_BOX (container), GTK_WIDGET (gsearch->available_options_vbox), FALSE, FALSE, 0);
 	
 	if (gsearch->is_window_accessible) { 
-		add_atk_namedesc (GTK_WIDGET (gsearch->show_more_options_expander), _("Show more options"), _("Click to expand or collapse the list of available options."));
+		add_atk_namedesc (GTK_WIDGET (gsearch->show_more_options_expander), _("Select more options"), _("Click to expand or collapse the list of available options."));
 		add_atk_relation (GTK_WIDGET (gsearch->available_options_vbox), GTK_WIDGET (gsearch->show_more_options_expander), ATK_RELATION_CONTROLLED_BY);
 		add_atk_relation (GTK_WIDGET (gsearch->show_more_options_expander), GTK_WIDGET (gsearch->available_options_vbox), ATK_RELATION_CONTROLLER_FOR);
 	}
