@@ -31,13 +31,19 @@
 #define GCONF_WIDTH_KEY  "/apps/gnome-system-log/width"
 #define GCONF_HEIGHT_KEY "/apps/gnome-system-log/height"
 #define GCONF_LOGFILE "/apps/gnome-system-log/logfile"
+#define GCONF_LOGFILES "/apps/gnome-system-log/logfiles"
 
-char * parse_syslog(gchar * syslog_file) {
+GSList*
+parse_syslog(gchar *syslog_file) {
+
 	/* Most of this stolen from sysklogd sources */
-	char * logfile = NULL;
+
+	char *logfile = NULL;
 	char cbuf[BUFSIZ];
 	char *cline, *p;
-	FILE * cf;
+	FILE *cf;
+	GSList *logfiles = NULL;
+
 	if ((cf = fopen(syslog_file, "r")) == NULL) {
 		return NULL;
 	}
@@ -56,10 +62,10 @@ char * parse_syslog(gchar * syslog_file) {
 			/* remove trailing newline */
 			if (logfile[strlen(logfile)-1] == '\n')
 				logfile[strlen(logfile)-1] = '\0';
-			return logfile;
+			logfiles = g_slist_append (logfiles, logfile);
 		}
 	}
-	return logfile; 
+	return logfiles; 
 }
 
 void
@@ -68,25 +74,31 @@ prefs_create_defaults (UserPrefsStruct *prefs)
 	int i;
 	gchar *logfiles[] = {"/var/adm/messages","/var/log/messages","/var/log/sys.log"};
 	struct stat filestat;
-
+	GSList *logs;
+	
 	/* For first time running, try parsing various logfiles */
 	/* Try to parse syslog.conf to get logfile names */
-	if (lstat("/etc/syslog.conf", &filestat) == 0) {
-		gchar *logfile;
-		logfile = parse_syslog ("/etc/syslog.conf");
-		if (logfile != NULL) {
-			prefs->logfile = g_strdup (logfile);
-			g_free (logfile);
-			return;
-		}
-	}
-		
+
+	if (lstat("/etc/syslog.conf", &filestat) == 0)
+		logs = parse_syslog ("/etc/syslog.conf");
+	
 	for (i=0; i<3; i++) {
-		if (isLogFile (logfiles[i], FALSE)) {
-			prefs->logfile = g_strdup (logfiles[i]);
-			break;
-		}
+		if (isLogFile (logfiles[i], FALSE))
+			logs = g_slist_append (logs, g_strdup(logfiles[i]));
 	}
+
+	if (logs != NULL) {
+		prefs->logs = logs;
+		prefs->logfile = logs->data;
+	}
+}
+
+void
+prefs_free_loglist (UserPrefsStruct *prefs)
+{
+	GSList *list;
+	g_slist_free (prefs->logs);
+	prefs->logs = NULL;
 }
 
 UserPrefsStruct *
@@ -95,16 +107,28 @@ prefs_load (GConfClient *client)
 	gchar *logfile = NULL;
 	int width, height;
 	UserPrefsStruct *prefs;
+	GSList *list;
+	gboolean found;
 
 	prefs = g_new0 (UserPrefsStruct, 1);
-	
+
+	prefs->logs = gconf_client_get_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, NULL);
+	if (prefs->logs == NULL)
+		prefs_create_defaults (prefs);
+
 	logfile = gconf_client_get_string (client, GCONF_LOGFILE, NULL);
 	if (logfile != NULL && strcmp (logfile, "") && isLogFile(logfile, FALSE)) {
 		prefs->logfile = g_strdup (logfile);
 		g_free (logfile);
 	}
-	else
-		prefs_create_defaults(prefs);
+
+	found = FALSE;
+	for (list = prefs->logs; list!=NULL; list = g_slist_next (list)) {
+		if (g_ascii_strncasecmp (list->data, prefs->logfile, 255) == 0)
+			found = TRUE;
+	}
+	if (!found)
+		prefs->logs = g_slist_append (prefs->logs, prefs->logfile);
 
 	width = gconf_client_get_int (client, GCONF_WIDTH_KEY, NULL);
 	height = gconf_client_get_int (client, GCONF_HEIGHT_KEY, NULL);
@@ -117,15 +141,19 @@ prefs_load (GConfClient *client)
 void
 prefs_save (GConfClient *client, UserPrefsStruct *prefs)
 {
+  GSList *logs;
 	if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL) &&
-	    prefs->logfile != NULL)
+	    prefs->logfile != NULL) {
 		gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);
+	}
 	if (prefs->width > 0 && prefs->height > 0) {
 		if (gconf_client_key_is_writable (client, GCONF_WIDTH_KEY, NULL))
 			gconf_client_set_int (client, GCONF_WIDTH_KEY, prefs->width, NULL);
 		if (gconf_client_key_is_writable (client, GCONF_HEIGHT_KEY, NULL))
 			gconf_client_set_int (client, GCONF_HEIGHT_KEY, prefs->height, NULL);
 	}
+	if (prefs->logs != NULL)
+		gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);
 }
 
 void

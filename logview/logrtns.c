@@ -47,7 +47,7 @@ static gboolean file_exist (char *filename, gboolean show_error);
 
 extern GList *regexp_db;
 extern GList *actions_db;
-const char *error_main = N_("The file could not be opened");
+const char *error_main = N_("One file or more could not be opened");
 
 /*
  * -------------------
@@ -275,7 +275,7 @@ file_exist (char *filename, gboolean show_error)
 			   g_snprintf (buff, sizeof (buff),
 				       _("%s is not user readable. "
 					 "Either run the program as root or ask the sysadmin to "
-					 "change the permissions on the file."), filename);
+					 "change the permissions on the file.\n"), filename);
 			   break;
 		   case GNOME_VFS_ERROR_TOO_BIG:
 			   g_snprintf (buff, sizeof (buff), _("%s is too big."));

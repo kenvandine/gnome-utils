@@ -65,6 +65,7 @@ void
 ShowQueuedErrMessages (void)
 {
 	if (msg_queue_main != NULL) {
+		gboolean title_created = FALSE;
 		GList *li, *li_sec;
 		GString *gs = g_string_new (NULL);
 		GString *gs_sec = g_string_new (NULL);
@@ -76,13 +77,14 @@ ShowQueuedErrMessages (void)
 			li->data = NULL;
 			li_sec->data = NULL;
 
-			g_string_append (gs, msg);
-			g_string_append (gs_sec, sec);
-
-			if (li->next != NULL) {
-				g_string_append (gs, "\n");
-				g_string_append (gs_sec, "\n");
+			if (!title_created) {
+				g_string_append (gs, msg);
+				title_created = TRUE;
 			}
+			
+			g_string_append (gs_sec, sec);
+			if (li->next != NULL)
+				g_string_append (gs_sec, "\n");
 
 			g_free (msg);
 			g_free (sec);

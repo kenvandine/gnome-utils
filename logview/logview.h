@@ -112,6 +112,7 @@ typedef struct
 	GnomeVFSFileOffset mon_offset;
 	GnomeVFSMonitorHandle *mon_handle;
 	GnomeVFSHandle *mon_file_handle;
+	gboolean monitored;
 }
 Log;
 
@@ -160,6 +161,11 @@ struct _LogviewWindow {
 	GtkToolItem *find_next;
 	GtkToolItem *find_prev;
 	gchar *find_string;
+
+	GtkWidget *treeview;
+	GtkWidget *loglist; 
+  
+  GList *logs;
 
 	Log *curlog;
 

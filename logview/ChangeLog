@@ -1,3 +1,25 @@
+2005-05-17  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: (file_exist):
+	* logview.c: (logview_save_prefs), (destroy), (logview_select_log),
+	(logview_add_log), (logview_add_log_from_name),
+	(logview_add_logs_from_names), (logview_remove_log), (main),
+	(logview_create_window), (logview_find_log_from_name),
+	(loglist_selection_changed), (loglist_find_logname),
+	(loglist_select_log_from_name), (loglist_add_log),
+	(loglist_remove_selected_log), (loglist_create), (CreateMainWin),
+	(CloseLogMenu), (FileSelectResponse), (toggle_monitor),
+	(logview_menus_set_state), (logview_set_window_title):
+	* logview.h:
+	* misc.c: (ShowQueuedErrMessages):
+	* userprefs.c: (parse_syslog), (prefs_create_defaults),
+	(prefs_free_loglist), (prefs_load), (prefs_save):
+	* userprefs.h:
+
+	Big UI change : add a sidebar that shows all the opened logs.
+	This is a work in progress - monitoring does not work yet, and it
+	might crash. As usual.
+
 2005-03-02  Vincent Noel  <vnoel@cox.net>
 
 	* logrtns.c (OpenLogFile): Free an allocated buffer. Fix bug
