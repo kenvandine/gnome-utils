@@ -284,9 +284,7 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 	GSList *list;
 	Log *log;
 	
-	g_print("OPENING SAVED LOGS : ");
 	for (list = lognames; list != NULL; list = g_slist_next (list)) {
-		g_printf("%s ", list->data);
 		if (logview_find_log_from_name (logview, list->data) == NULL) {
 			log = OpenLogFile (list->data);
 			if (log != NULL) {
@@ -294,7 +292,6 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 			}
 		}
 	}
-	g_print(".\n");
 }
 
 logview_remove_log (LogviewWindow *logview, Log *log)
@@ -442,7 +439,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   gchar *name;
   Log *log;
   
-  if (!gtk_tree_selection_get_selected (selection, NULL, &iter)) {
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
 		/* there is no selected log right now */
 		logview->curlog = NULL;
 		logview_set_window_title (logview);
@@ -451,7 +448,6 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
     return;
 	}
   
-  model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
   gtk_tree_model_get (model, &iter, 0, &name, -1);
   log = logview_find_log_from_name (logview, name);
   if (log != logview->curlog)
@@ -523,7 +519,6 @@ loglist_remove_selected_log (LogviewWindow *logview)
 	gtk_tree_selection_get_selected (selection, &model, &iter);
 
 	gtk_tree_model_get (model, &iter, 0, &name, -1);
-	g_print("Removing selection : %s\n", name);
 	
 	if (name) {
 		Log *log;
@@ -1033,7 +1028,7 @@ logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean 
 static void
 logview_menus_set_state (LogviewWindow *window)
 {
-	if (window->curlog->monitored) {
+	if (window->curlog && window->curlog->monitored) {
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
