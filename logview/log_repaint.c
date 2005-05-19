@@ -189,13 +189,6 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
     gtk_tree_path_free (root_tree);
 
     window->curlog->current_line_no = row;
-
-    if (window->zoom_visible)
-	    repaint_zoom (window);
-    else {
-	    GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails");
-	    gtk_action_activate (action);
-    }
 }
 
 /* ----------------------------------------------------------------------
@@ -250,8 +243,6 @@ log_repaint (LogviewWindow *window)
    tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
    gtk_tree_store_clear (GTK_TREE_STORE (tree_model));
 
-   if (window->zoom_visible)
-	   repaint_zoom (window);
    UpdateStatusArea (window);	   
 
    /* Check that there is at least one log */

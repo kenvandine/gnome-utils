@@ -39,8 +39,6 @@ gnome_system_log_SOURCES = 	\
 	monitor.h		\
 	userprefs.c             \
 	userprefs.h		\
-	zoom.c 			\
-	zoom.h			\
 	logview-findbar.c	\
 	logview-findbar.h
 

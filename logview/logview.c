@@ -30,7 +30,6 @@
 #include "log_repaint.h"
 #include "logrtns.h"
 #include "info.h"
-#include "zoom.h"
 #include "monitor.h"
 #include "about.h"
 #include "desc_db.h"
@@ -64,7 +63,6 @@ static GtkWidget *logview_create_window (void);
 static void logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state);
 static void toggle_sidebar (GtkAction *action, GtkWidget *callback_data);
 static void toggle_calendar (GtkAction *action, GtkWidget *callback_data);
-static void toggle_zoom (GtkAction *action, GtkWidget *callback_data);
 static void toggle_collapse_rows (GtkAction *action, GtkWidget *callback_data);
 static void toggle_monitor (GtkAction *action, GtkWidget *callback_data);
 static void logview_menus_set_state (LogviewWindow *logviewwindow);
@@ -126,8 +124,6 @@ static GtkToggleActionEntry toggle_entries[] = {
 	  G_CALLBACK (toggle_monitor) },
 	{"ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
 	 G_CALLBACK (toggle_calendar), TRUE },
-	{"ShowDetails", NULL,  N_("_Entry Detail"), "<control>E", N_("Show Entry Detail"), 
-	 G_CALLBACK (toggle_zoom) },
 };
 
 static const char *ui_description = 
@@ -152,7 +148,6 @@ static const char *ui_description =
 	"		<menu action='ViewMenu'>"
   "     <menuitem action='ShowSidebar'/>"
 	"			<menuitem action='ShowCalendar'/>"
-	"			<menuitem action='ShowDetails'/>"
 	"                       <separator/>"
 	"			<menuitem action='CollapseAll'/>"
 	"		</menu>"
@@ -402,10 +397,8 @@ logview_create_window ()
    logview = LOGVIEW_WINDOW (window);
 
 	 logview->sidebar_visible = TRUE;
+	 logview->calendar_visible = TRUE;
    logview->loginfovisible = FALSE;
-   logview->zoom_visible = FALSE;
-   logview->zoom_scrolled_window = NULL;
-   logview->zoom_dialog = NULL;
    logview->logs = NULL;
    logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
 							     GDK_SELECTION_CLIPBOARD);
@@ -727,11 +720,6 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 	   gtk_action_activate (action);
    }
 
-   if (window->zoom_visible) {
-	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails");
-	   gtk_action_activate (action);
-   }
-
    gtk_widget_hide (window->find_bar);
 	 loglist_remove_selected_log (window);
 }
@@ -944,20 +932,14 @@ toggle_calendar (GtkAction *action, GtkWidget *callback_data)
 
 	if (window->calendar_visible)
 		gtk_widget_hide (window->calendar);
-	else
+	else {
 		gtk_widget_show (window->calendar);
+		if (!window->sidebar_visible) {
+			GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowSidebar");
+			gtk_action_activate (action);
+		}
+	}
 	window->calendar_visible = !(window->calendar_visible);
-}
-
-static void
-toggle_zoom (GtkAction *action, GtkWidget *callback_data)
-{
-    LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
-    if (window->zoom_visible) {
-	    window->zoom_visible = FALSE;
-	    gtk_widget_hide (window->zoom_dialog);
-    } else
-	    create_zoom_view (window);
 }
 
 static void 
@@ -1049,7 +1031,6 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
-		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", FALSE); 
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", FALSE);
 	} else {
@@ -1064,7 +1045,6 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
-		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowDetails", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", (window->curlog != NULL));

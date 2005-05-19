@@ -1,5 +1,14 @@
 2005-05-19  Vincent Noel  <vnoel@cox.net>
 
+	* Makefile.am:
+	* log_repaint.c: (handle_row_activation_cb), (log_repaint):
+	* logview.c: (logview_create_window), (CloseLogMenu),
+	(toggle_calendar), (logview_menus_set_state):
+	Remove the "details" window - it shows the same info as
+	the main window.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
 	* calendar.c: (CalendarMenu), (read_marked_dates),
 	(init_calendar_data):
 	* logview.c: (logview_select_log), (logview_create_window),
