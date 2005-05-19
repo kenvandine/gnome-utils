@@ -174,6 +174,9 @@ struct _LogviewWindow {
 	gboolean monitored;
 	gint timer_tag;
 	GtkClipboard *clipboard;
+	
+	PangoFontDescription *fontdesc;
+	int original_fontsize, fontsize;
 };
 
 struct _LogviewWindowClass {

@@ -24,7 +24,7 @@ typedef struct
 {
 	gchar *logfile;
 	GSList *logs;
-	int width, height;
+	int width, height, fontsize;
 } UserPrefsStruct;
 
 void prefs_save (GConfClient *client, UserPrefsStruct *prefs);

@@ -63,8 +63,12 @@ static GtkWidget *logview_create_window (void);
 static void logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state);
 static void toggle_sidebar (GtkAction *action, GtkWidget *callback_data);
 static void toggle_calendar (GtkAction *action, GtkWidget *callback_data);
-static void toggle_collapse_rows (GtkAction *action, GtkWidget *callback_data);
+static void logview_collapse_rows (GtkAction *action, GtkWidget *callback_data);
 static void toggle_monitor (GtkAction *action, GtkWidget *callback_data);
+static void logview_set_fontsize (LogviewWindow *logview);
+static void logview_bigger_text (GtkAction *action, GtkWidget *callback_data);
+static void logview_smaller_text (GtkAction *action, GtkWidget *callback_data);
+static void logview_normal_text (GtkAction *action, GtkWidget *callback_data);
 static void logview_menus_set_state (LogviewWindow *logviewwindow);
 static void logview_search (GtkAction *action, GtkWidget *callback_data);
 static void logview_help (GtkAction *action, GtkWidget *parent_window);
@@ -107,8 +111,15 @@ static GtkActionEntry entries[] = {
 	{ "Search", GTK_STOCK_FIND, N_("_Find..."), "<control>F", N_("Find pattern in logs"),
 	  G_CALLBACK (logview_search) },
 
+	{"ViewZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<control>plus", N_("Bigger text size"),
+	 G_CALLBACK (logview_bigger_text)},
+	{"ViewZoomOut", GTK_STOCK_ZOOM_OUT, NULL, "<control>minus", N_("Smaller text size"),
+	 G_CALLBACK (logview_smaller_text)},
+	{"ViewZoom100", GTK_STOCK_ZOOM_100, NULL, "<control>0", N_("Normal text size"),
+	 G_CALLBACK (logview_normal_text)},
+
 	{"CollapseAll", NULL, N_("Collapse _All"), NULL, N_("Collapse all the rows"),
-	 G_CALLBACK (toggle_collapse_rows) },
+	 G_CALLBACK (logview_collapse_rows) },
 
 	{ "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
 	  G_CALLBACK (logview_help) },
@@ -150,6 +161,10 @@ static const char *ui_description =
 	"			<menuitem action='ShowCalendar'/>"
 	"                       <separator/>"
 	"			<menuitem action='CollapseAll'/>"
+  "                       <separator/>"
+  "     <menuitem action='ViewZoomIn'/>"
+  "     <menuitem action='ViewZoomOut'/>"
+  "     <menuitem action='ViewZoom100'/>"
 	"		</menu>"
 	"		<menu action='HelpMenu'>"
 	"			<menuitem action='HelpContents'/>"
@@ -185,6 +200,7 @@ logview_save_prefs (LogviewWindow *logview)
       user_prefs->logs = g_slist_append (user_prefs->logs, log->name);
 	}
   user_prefs->logfile = logview->curlog->name;
+	user_prefs->fontsize = logview->fontsize;
 
 	if (restoration_complete)
 		prefs_save (client, user_prefs);
@@ -252,11 +268,19 @@ die (GnomeClient *gnome_client, gpointer client_data)
 void
 logview_select_log (LogviewWindow *logview, Log *log)
 {
-   logview->curlog = log;
-   logview_menus_set_state (logview);
-	 init_calendar_data (logview);
-   log_repaint (logview);
-	 logview_save_prefs (logview);
+	if (logview->curlog) {
+		if (logview->curlog->monitored != log->monitored) {
+			GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager,
+																										 "/LogviewMenu/FileMenu/MonitorLogs");
+			gtk_action_activate (action);
+		}
+	}
+
+	logview->curlog = log;
+	logview_menus_set_state (logview);
+	init_calendar_data (logview);
+	log_repaint (logview);
+	logview_save_prefs (logview);
 } 
 
 void
@@ -596,6 +620,8 @@ CreateMainWin (LogviewWindow *window)
    GtkWidget *menubar;
    GtkWidget *loglist;
    GtkWidget *hpaned;
+	 PangoFontDescription *fontdesc;
+	 PangoContext *context;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
 
@@ -670,6 +696,11 @@ CreateMainWin (LogviewWindow *window)
         gtk_tree_view_column_set_resizable (column, TRUE);
         gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
    }
+	 /* Remember the original font size */
+	 context = gtk_widget_get_pango_context (window->view);
+	 fontdesc = pango_context_get_font_description (context);
+	 window->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
+	 window->fontsize = window->original_fontsize;		 
 
    gtk_container_add (GTK_CONTAINER (window->log_scrolled_window), GTK_WIDGET (window->view));
    gtk_widget_show_all (window->log_scrolled_window);
@@ -940,7 +971,7 @@ toggle_calendar (GtkAction *action, GtkWidget *callback_data)
 }
 
 static void 
-toggle_collapse_rows (GtkAction *action, GtkWidget *callback_data)
+logview_collapse_rows (GtkAction *action, GtkWidget *callback_data)
 {
     LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
     gtk_tree_view_collapse_all (GTK_TREE_VIEW (window->view));
@@ -968,6 +999,43 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
     }
 }
 
+static void
+logview_set_fontsize (LogviewWindow *logview)
+{
+	PangoFontDescription *fontdesc;
+	PangoContext *context;
+	
+	context = gtk_widget_get_pango_context (logview->view);
+	fontdesc = pango_context_get_font_description (context);
+	pango_font_description_set_size (fontdesc, (logview->fontsize)*PANGO_SCALE);
+	gtk_widget_modify_font (logview->view, fontdesc);
+	logview_save_prefs (logview);
+}	
+
+static void
+logview_bigger_text (GtkAction *action, GtkWidget *callback_data)
+{
+	LogviewWindow *logview = LOGVIEW_WINDOW (callback_data);
+	logview->fontsize = MIN (logview->fontsize + 1, 24);
+	logview_set_fontsize (logview);
+}	
+
+static void
+logview_smaller_text (GtkAction *action, GtkWidget *callback_data)
+{
+	LogviewWindow *logview = LOGVIEW_WINDOW (callback_data);
+	logview->fontsize = MAX (logview->fontsize-1, 6);
+	logview_set_fontsize (logview);
+}	
+
+static void
+logview_normal_text (GtkAction *action, GtkWidget *callback_data)
+{
+	LogviewWindow *logview = LOGVIEW_WINDOW (callback_data);
+	logview->fontsize = logview->original_fontsize;
+	logview_set_fontsize (logview);
+}
+	
 static void
 logview_search (GtkAction *action,GtkWidget *callback_data)
 {

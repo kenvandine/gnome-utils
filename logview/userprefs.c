@@ -32,6 +32,7 @@
 #define GCONF_HEIGHT_KEY "/apps/gnome-system-log/height"
 #define GCONF_LOGFILE "/apps/gnome-system-log/logfile"
 #define GCONF_LOGFILES "/apps/gnome-system-log/logfiles"
+#define GCONF_FONTSIZE_KEY "/apps/gnome-system-log/fontsize"
 
 GSList*
 parse_syslog(gchar *syslog_file) {
@@ -105,7 +106,7 @@ UserPrefsStruct *
 prefs_load (GConfClient *client)
 {
 	gchar *logfile = NULL;
-	int width, height;
+	int width, height, fontsize;
 	UserPrefsStruct *prefs;
 	GSList *list;
 	gboolean found;
@@ -132,8 +133,11 @@ prefs_load (GConfClient *client)
 
 	width = gconf_client_get_int (client, GCONF_WIDTH_KEY, NULL);
 	height = gconf_client_get_int (client, GCONF_HEIGHT_KEY, NULL);
+	fontsize = gconf_client_get_int (client, GCONF_FONTSIZE_KEY, NULL);
+
 	prefs->width = (width == 0 ? LOG_CANVAS_W : width);
 	prefs->height = (height == 0 ? LOG_CANVAS_H : height);
+	prefs->fontsize = fontsize;
 
 	return prefs;
 }
@@ -152,8 +156,14 @@ prefs_save (GConfClient *client, UserPrefsStruct *prefs)
 		if (gconf_client_key_is_writable (client, GCONF_HEIGHT_KEY, NULL))
 			gconf_client_set_int (client, GCONF_HEIGHT_KEY, prefs->height, NULL);
 	}
+
 	if (prefs->logs != NULL)
-		gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);
+		if (gconf_client_key_is_writable (client, GCONF_LOGFILES, NULL))
+			gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);
+
+	if (prefs->fontsize > 0)
+		if (gconf_client_key_is_writable (client, GCONF_FONTSIZE_KEY, NULL))
+			gconf_client_set_int (client, GCONF_FONTSIZE_KEY, prefs->fontsize, NULL);
 }
 
 void
