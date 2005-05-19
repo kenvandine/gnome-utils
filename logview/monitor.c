@@ -77,11 +77,12 @@ mon_update_display (LogviewWindow *window)
    GtkListStore *list;
    GtkTreePath *path;
    GtkTreeSelection *selection;
+	 GtkTreeModel *model;
    gboolean bold;
    Log *log = window->curlog;
 
    g_return_if_fail (log);
-      
+
    /* Read either the whole file to get the last page or only the new lines */
    if (log->mon_offset == 0) {
 	   buffer_lines = ReadLastPage (log);
@@ -91,7 +92,7 @@ mon_update_display (LogviewWindow *window)
 	   bold = TRUE;
    }
 
-   if (buffer_lines[0] != NULL) {
+   if (buffer_lines!=NULL && buffer_lines[0] != NULL) {
 	   LogLine *line;
 	   int i;
 
@@ -131,6 +132,17 @@ mon_update_display (LogviewWindow *window)
 	   gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->mon_list_view), path, NULL,
 							FALSE, 0, 0);
 	   gtk_tree_path_free (path);
+
+		 /* write the log name in bold as well */
+		 path = loglist_find_logname (window, log->name);
+		 if (path && bold) {
+			 GtkTreeIter iter;
+			 gchar *label;
+			 model =  gtk_tree_view_get_model (GTK_TREE_VIEW(window->treeview));
+			 gtk_tree_model_get_iter (model, &iter, path);
+			 label = g_strdup_printf ("<b>%s</b>", log->name);
+			 gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, label, -1);
+		 }
    }
 }
 
@@ -165,7 +177,7 @@ mon_check_logs (gpointer data)
 {
 	LogviewWindow *window = data;
 
-	if (!window || !window->monitored)
+	if (!window || !window->curlog->monitored)
 		return FALSE;
 
 	if (WasModified (window->curlog))

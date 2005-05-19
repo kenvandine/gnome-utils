@@ -270,9 +270,11 @@ logview_select_log (LogviewWindow *logview, Log *log)
 {
 	if (logview->curlog) {
 		if (logview->curlog->monitored != log->monitored) {
-			GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager,
-																										 "/LogviewMenu/FileMenu/MonitorLogs");
-			gtk_action_activate (action);
+			gboolean state;
+			GtkAction *action;
+			action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs");
+			state = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION(action));
+			gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), !state);
 		}
 	}
 
@@ -586,7 +588,7 @@ loglist_create (LogviewWindow *window)
 		    G_CALLBACK (loglist_selection_changed), window);
 
   cell = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes ("words", cell, "text", 0, NULL);
+  column = gtk_tree_view_column_new_with_attributes ("words", cell, "markup", 0, NULL);
   gtk_tree_view_column_set_sort_column_id (column, 0);
   
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);

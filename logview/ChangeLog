@@ -1,5 +1,15 @@
 2005-05-19  Vincent Noel  <vnoel@cox.net>
 
+	* logview.c: (logview_select_log), (loglist_create),
+	(toggle_monitor):
+	* logview.h:
+	* monitor.c: (monitor_start), (mon_update_display),
+	(mon_check_logs): Changed some things in the monitoring. Does not
+	work just yet. Applied patch from Sylvain Pasche in bug #170244 to
+	prevent a crash.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
 	* logview.c: (logview_save_prefs), (logview_select_log),
 	(CreateMainWin), (logview_collapse_rows), (logview_set_fontsize),
 	(logview_bigger_text), (logview_smaller_text),

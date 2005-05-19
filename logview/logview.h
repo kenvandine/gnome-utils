@@ -184,5 +184,7 @@ struct _LogviewWindowClass {
 };
 
 void logview_set_window_title (LogviewWindow *window);
+GtkTreePath *loglist_find_logname (LogviewWindow *logview, gchar *logname);
+
 
 #endif /* __LOGVIEW_H__ */
