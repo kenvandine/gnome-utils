@@ -560,7 +560,7 @@ loglist_create (LogviewWindow *window)
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
   g_signal_connect (G_OBJECT (selection), "changed",
 		    G_CALLBACK (loglist_selection_changed), window);
-  
+
   cell = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes ("words", cell, "text", 0, NULL);
   gtk_tree_view_column_set_sort_column_id (column, 0);
@@ -641,8 +641,8 @@ CreateMainWin (LogviewWindow *window)
 
 	 gtk_paned_pack1 (GTK_PANED (hpaned), window->sidebar, FALSE, FALSE);
 
-   /* Second pane : logs themselves */
-   window->main_view = gtk_frame_new (NULL);
+   /* Second pane : log and monitor */
+   window->main_view = gtk_vbox_new (FALSE, 0);
    gtk_paned_pack2 (GTK_PANED (hpaned), GTK_WIDGET (window->main_view), TRUE, TRUE);
 
    /* Scrolled windows for the main view and monitor view */
@@ -651,13 +651,8 @@ CreateMainWin (LogviewWindow *window)
                GTK_POLICY_AUTOMATIC,
                GTK_POLICY_AUTOMATIC);
    window->mon_scrolled_window = logview_create_monitor_widget (window);
-
-   /* We ref the two scrolled_windows so they are not destroyed when we remove one from
-    * the main_view to put the other */
-   g_object_ref (window->log_scrolled_window);
-   g_object_ref (window->mon_scrolled_window);
-
-   gtk_container_add (GTK_CONTAINER (window->main_view), window->log_scrolled_window);
+	 gtk_box_pack_start (GTK_BOX(window->main_view), window->log_scrolled_window, TRUE, TRUE, 0);
+	 gtk_box_pack_start (GTK_BOX(window->main_view), window->mon_scrolled_window, TRUE, TRUE, 0);
 
    /* Main Tree View */
    tree_store = gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
@@ -702,6 +697,7 @@ CreateMainWin (LogviewWindow *window)
 
 	 gtk_widget_show_all (vbox);
    gtk_widget_hide (window->find_bar);
+	 gtk_widget_hide (window->mon_scrolled_window);
 }
 
 /* ----------------------------------------------------------------------
@@ -957,13 +953,13 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
     g_return_if_fail (window->curlog);
     if (!window->curlog->display_name) {
 	    if (window->curlog->monitored) {
-		    gtk_container_remove (GTK_CONTAINER (window->main_view), window->mon_scrolled_window);
-		    gtk_container_add (GTK_CONTAINER (window->main_view), window->log_scrolled_window);
+				gtk_widget_hide (window->mon_scrolled_window);
+				gtk_widget_show (window->log_scrolled_window);
 		    monitor_stop (window);
 		    window->curlog->monitored = FALSE;
 	    } else {
-		    gtk_container_remove (GTK_CONTAINER(window->main_view), window->log_scrolled_window);
-		    gtk_container_add (GTK_CONTAINER(window->main_view), window->mon_scrolled_window);
+				gtk_widget_hide (window->log_scrolled_window);
+				gtk_widget_show (window->mon_scrolled_window);
 		    monitor_start (window);
 		    window->curlog->monitored = TRUE;
 	    }

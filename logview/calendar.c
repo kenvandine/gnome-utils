@@ -23,7 +23,7 @@
 #include "logview.h"
 #include "calendar.h"
 
-static void calendar_day_selected (GtkWidget *widget, LogviewWindow *window);
+static GtkTreePath *calendar_day_selected (GtkWidget *widget, LogviewWindow *window);
 static void calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window);
 static void close_calendar (GtkWidget * widget, int arg, gpointer client_data);
 static DateMark* find_prev_mark (CalendarData*);
@@ -182,7 +182,7 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
    DESCRIPTION:   User clicked on a calendar entry
    ---------------------------------------------------------------------- */
 
-void
+static GtkTreePath *
 calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 {
   /* find the selected day in the current logfile */
@@ -190,16 +190,16 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
   GtkTreePath *path;
 
 	if (window->curlog == NULL)
-		return;
+		return NULL;
 
   gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);
 
   path = g_hash_table_lookup (window->curlog->date_headers,
                 DATEHASH (month, day));
   if (path != NULL)
-    {
-	    gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
-    }
+		gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
+
+	return path;
 }
 
 /* ----------------------------------------------------------------------
@@ -210,7 +210,10 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 void
 calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window)
 {
-  calendar_day_selected(widget, window);
+	GtkTreePath *path;
+  path = calendar_day_selected(widget, window);
+	if (path)
+		gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
 }
 
 /* ----------------------------------------------------------------------
