@@ -40,71 +40,32 @@ static void calendar_month_changed (GtkWidget *widget, LogviewWindow *window);
 void
 CalendarMenu (LogviewWindow *window)
 {
+	PangoFontDescription *fontdesc;
+	PangoContext *context;
+	GtkCalendar *calendar;
+	int size;
+	
+	calendar = (GtkCalendar *)gtk_calendar_new();
+	
+	g_signal_connect (G_OBJECT (calendar), "month_changed",
+										G_CALLBACK (calendar_month_changed),
+										window);
+	g_signal_connect (G_OBJECT (calendar), "day_selected",
+										G_CALLBACK (calendar_day_selected),
+										window);
+	g_signal_connect (G_OBJECT (calendar), "day_selected_double_click",
+										G_CALLBACK (calendar_day_selected_double_click),
+										window);
+	window->calendar = GTK_WIDGET (calendar);
+	window->calendar_visible = TRUE;
 
-   if (window->curlog == NULL || window->calendar_visible)
-      return;
+	context = gtk_widget_get_pango_context (GTK_WIDGET(calendar));
+	fontdesc = pango_context_get_font_description (context);
+	size = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
+	pango_font_description_set_size (fontdesc, (size-2)*PANGO_SCALE);
+	gtk_widget_modify_font (GTK_WIDGET (calendar), fontdesc);
 
-   if (window->calendar_dialog == NULL)
-   {
-      GtkCalendar *calendar;
-      GtkWidget *CalendarDialog, *CalendarWidget;
-      GtkWidget *vbox;
-
-      CalendarDialog = gtk_dialog_new ();
-
-      gtk_window_set_title (GTK_WINDOW (CalendarDialog), _("Calendar"));
-      gtk_window_set_resizable (GTK_WINDOW (CalendarDialog), FALSE);
-      gtk_dialog_set_has_separator (GTK_DIALOG(CalendarDialog), FALSE);
-      gtk_container_set_border_width (GTK_CONTAINER (GTK_DIALOG (CalendarDialog)), 5);
-
-      gtk_dialog_add_button (GTK_DIALOG (CalendarDialog), 
-			     GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
-      g_signal_connect (G_OBJECT (CalendarDialog), "response",
-		        G_CALLBACK (close_calendar),
-			window);
-      g_signal_connect (G_OBJECT (CalendarDialog), "destroy",
-			G_CALLBACK (close_calendar),
-			window);
-      g_signal_connect (G_OBJECT (CalendarDialog), "delete_event",
-			G_CALLBACK (gtk_true),
-			NULL);
-
-      vbox = gtk_vbox_new (FALSE, 6);
-
-      gtk_box_pack_start (GTK_BOX (GTK_DIALOG (CalendarDialog)->vbox), vbox, 
-			  TRUE, TRUE, 0);
-      gtk_container_set_border_width (GTK_CONTAINER (vbox), 5);
-
-      calendar = (GtkCalendar *)gtk_calendar_new();
-
-      g_signal_connect (G_OBJECT (calendar), "month_changed",
-			G_CALLBACK (calendar_month_changed),
-			window);
-      g_signal_connect (G_OBJECT (calendar), "day_selected",
-			G_CALLBACK (calendar_day_selected),
-			window);
-      g_signal_connect (G_OBJECT (calendar), "day_selected_double_click",
-			G_CALLBACK (calendar_day_selected_double_click),
-			window);
-      gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (calendar), TRUE, TRUE, 0);
-      gtk_widget_show (GTK_WIDGET (calendar));
-
-      gtk_dialog_set_default_response (GTK_DIALOG (CalendarDialog), GTK_RESPONSE_CLOSE); 
-   
-      gtk_widget_show (vbox);
-      
-      CalendarWidget = GTK_WIDGET (calendar);
-
-      window->calendar_dialog = CalendarDialog;
-      window->calendar = CalendarWidget;
-   }
-
-   if (window->curlog->caldata == NULL)
-	   init_calendar_data (window);
-
-   window->calendar_visible = TRUE;
-   gtk_widget_show (window->calendar_dialog);
-
+	gtk_widget_show (GTK_WIDGET (calendar));
 }
 
 /* ----------------------------------------------------------------------
@@ -134,8 +95,8 @@ read_marked_dates (CalendarData *data, LogviewWindow *window)
   while (mark)
     {
       if (mark->fulldate.tm_mon != month || 
-	  mark->fulldate.tm_year != year)
-	break;
+					mark->fulldate.tm_year != year)
+				break;
       gtk_calendar_mark_day (calendar, mark->fulldate.tm_mday);
       mark = mark->next;
     }
@@ -160,14 +121,23 @@ init_calendar_data (LogviewWindow *window)
 
    if (data)
      {
+			 DateMark *mark;
        data->curmonthmark = window->curlog->lstats.firstmark;
        window->curlog->caldata = data;
 
-       read_marked_dates (data, window);
-       
-       /* signal a redraw event */
-       g_signal_emit_by_name (GTK_OBJECT (window->calendar), "month_changed");
-       
+			 mark = data->curmonthmark;
+			 if (mark) {
+				 gtk_calendar_select_month (GTK_CALENDAR(window->calendar), 
+																		mark->fulldate.tm_mon,
+																		mark->fulldate.tm_year + 1900);
+				 gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
+																	mark->fulldate.tm_mday);
+			 }
+
+       read_marked_dates (data, window);       
+
+			 /* signal a redraw event */
+			 g_signal_emit_by_name (GTK_OBJECT (window->calendar), "day_selected");       
      }
 
    return data;

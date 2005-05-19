@@ -62,6 +62,7 @@ static void open_databases (void);
 GtkWidget *logview_create_monitor_widget (LogviewWindow *window);
 static GtkWidget *logview_create_window (void);
 static void logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state);
+static void toggle_sidebar (GtkAction *action, GtkWidget *callback_data);
 static void toggle_calendar (GtkAction *action, GtkWidget *callback_data);
 static void toggle_zoom (GtkAction *action, GtkWidget *callback_data);
 static void toggle_collapse_rows (GtkAction *action, GtkWidget *callback_data);
@@ -111,7 +112,7 @@ static GtkActionEntry entries[] = {
 	{"CollapseAll", NULL, N_("Collapse _All"), NULL, N_("Collapse all the rows"),
 	 G_CALLBACK (toggle_collapse_rows) },
 
-       	{ "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
+	{ "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
 	  G_CALLBACK (logview_help) },
 	{ "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the log viewer"), 
 	  G_CALLBACK (AboutShowWindow) },
@@ -119,10 +120,12 @@ static GtkActionEntry entries[] = {
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
+	{ "ShowSidebar", NULL, N_("Sidebar"), NULL, N_("Show the sidebar"), 
+		G_CALLBACK (toggle_sidebar), TRUE },
 	{ "MonitorLogs", NULL, N_("_Monitor"), "<control>M", N_("Monitor Current Log"),
 	  G_CALLBACK (toggle_monitor) },
 	{"ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
-	 G_CALLBACK (toggle_calendar) },
+	 G_CALLBACK (toggle_calendar), TRUE },
 	{"ShowDetails", NULL,  N_("_Entry Detail"), "<control>E", N_("Show Entry Detail"), 
 	 G_CALLBACK (toggle_zoom) },
 };
@@ -147,6 +150,7 @@ static const char *ui_description =
 	"			<menuitem action='Search'/>"
 	"		</menu>"	
 	"		<menu action='ViewMenu'>"
+  "     <menuitem action='ShowSidebar'/>"
 	"			<menuitem action='ShowCalendar'/>"
 	"			<menuitem action='ShowDetails'/>"
 	"                       <separator/>"
@@ -255,6 +259,7 @@ logview_select_log (LogviewWindow *logview, Log *log)
 {
    logview->curlog = log;
    logview_menus_set_state (logview);
+	 init_calendar_data (logview);
    log_repaint (logview);
 	 logview_save_prefs (logview);
 } 
@@ -387,30 +392,31 @@ main (int argc, char *argv[])
 static GtkWidget *
 logview_create_window ()
 {
-   LogviewWindow *logviewwindow;
+   LogviewWindow *logview;
    GtkWidget *window;
 
    regexp_db = NULL;
 
    /*  Display main window */
    window = g_object_new (LOGVIEW_TYPE_WINDOW, NULL);
-   logviewwindow = LOGVIEW_WINDOW (window);
+   logview = LOGVIEW_WINDOW (window);
 
-   logviewwindow->loginfovisible = FALSE;
-   logviewwindow->zoom_visible = FALSE;
-   logviewwindow->zoom_scrolled_window = NULL;
-   logviewwindow->zoom_dialog = NULL;
-   logviewwindow->logs = NULL;
-   logviewwindow->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
+	 logview->sidebar_visible = TRUE;
+   logview->loginfovisible = FALSE;
+   logview->zoom_visible = FALSE;
+   logview->zoom_scrolled_window = NULL;
+   logview->zoom_dialog = NULL;
+   logview->logs = NULL;
+   logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
 							     GDK_SELECTION_CLIPBOARD);
 
    /* FIXME : we need to listen to this key, not just read it. */
-   gtk_ui_manager_set_add_tearoffs (logviewwindow->ui_manager, 
-				    gconf_client_get_bool 
-				    (client, "/desktop/gnome/interface/menus_have_tearoff", NULL));
+   gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
+																		gconf_client_get_bool 
+																		(client, "/desktop/gnome/interface/menus_have_tearoff", NULL));
 
    g_signal_connect (GTK_OBJECT (window), "destroy",
-		     G_CALLBACK (destroy), logviewwindow);
+										 G_CALLBACK (destroy), logview);
 
    logview_windows = g_slist_prepend (logview_windows, window);
 
@@ -630,9 +636,16 @@ CreateMainWin (LogviewWindow *window)
    hpaned = gtk_hpaned_new ();
    gtk_box_pack_start (GTK_BOX (vbox), hpaned, TRUE, TRUE, 0);
 
-   /* First pane : list of logs */
-   window->loglist = loglist_create (window);
-   gtk_paned_pack1 (GTK_PANED (hpaned), GTK_WIDGET (window->loglist), FALSE, FALSE);
+   /* First pane : sidebar (list of logs + calendar) */
+	 window->sidebar = gtk_vbox_new (FALSE, 0);
+
+	 CalendarMenu (window);
+	 gtk_box_pack_end (GTK_BOX (window->sidebar), GTK_WIDGET(window->calendar), FALSE, FALSE, 0);
+
+	 window->loglist = loglist_create (window);
+	 gtk_box_pack_start (GTK_BOX (window->sidebar), window->loglist, TRUE, TRUE, 0);
+
+	 gtk_paned_pack1 (GTK_PANED (hpaned), window->sidebar, FALSE, FALSE);
 
    /* Second pane : logs themselves */
    window->main_view = gtk_frame_new (NULL);
@@ -714,11 +727,6 @@ CloseLogMenu (GtkAction *action, GtkWidget *callback_data)
 	   gtk_action_activate (action);
    }
 
-   if (window->calendar_visible) {
-	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar");
-	   gtk_action_activate (action);
-   }
-
    if (window->zoom_visible) {
 	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowDetails");
 	   gtk_action_activate (action);
@@ -758,11 +766,8 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 	   }
 
 	   Log *tl;
-	   if ((tl = OpenLogFile (f)) != NULL) {
+	   if ((tl = OpenLogFile (f)) != NULL)
 	     logview_add_log (logview, tl);
-	     if (logview->calendar_visible)
-	       init_calendar_data(logview);
-	   }
    }
    
    g_free (f);
@@ -920,16 +925,28 @@ open_databases (void)
 
 }
 
+static void
+toggle_sidebar (GtkAction *action, GtkWidget *callback_data)
+{
+	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
+
+	if (window->sidebar_visible)
+		gtk_widget_hide (window->sidebar);
+	else
+		gtk_widget_show (window->sidebar);
+	window->sidebar_visible = !(window->sidebar_visible);
+}
+
 static void 
 toggle_calendar (GtkAction *action, GtkWidget *callback_data)
 {
-    LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
-    if (window->calendar_visible) {
-	window->calendar_visible = FALSE;
-	gtk_widget_hide (window->calendar_dialog);
-    }
-    else
-	CalendarMenu (window);
+	LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
+
+	if (window->calendar_visible)
+		gtk_widget_hide (window->calendar);
+	else
+		gtk_widget_show (window->calendar);
+	window->calendar_visible = !(window->calendar_visible);
 }
 
 static void

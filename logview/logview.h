@@ -162,8 +162,10 @@ struct _LogviewWindow {
 	GtkToolItem *find_prev;
 	gchar *find_string;
 
+	GtkWidget *loglist;
 	GtkWidget *treeview;
-	GtkWidget *loglist; 
+	GtkWidget *sidebar; 
+	gboolean sidebar_visible;
   
   GList *logs;
 
