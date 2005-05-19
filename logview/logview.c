@@ -443,6 +443,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
 		logview->curlog = NULL;
 		logview_set_window_title (logview);
 		logview_menus_set_state (logview);
+		gtk_calendar_clear_marks (GTK_CALENDAR(logview->calendar));
 		log_repaint (logview);
     return;
 	}

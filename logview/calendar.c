@@ -114,31 +114,30 @@ CalendarData*
 init_calendar_data (LogviewWindow *window)
 {
    CalendarData *data;
+	 
+	 if (window->curlog == NULL)
+		 return;
 
    data = window->curlog->caldata;
    if (data == NULL)
      data = (CalendarData*) malloc (sizeof (CalendarData));
 
-   if (data)
-     {
-			 DateMark *mark;
-       data->curmonthmark = window->curlog->lstats.firstmark;
-       window->curlog->caldata = data;
-
-			 mark = data->curmonthmark;
-			 if (mark) {
-				 gtk_calendar_select_month (GTK_CALENDAR(window->calendar), 
-																		mark->fulldate.tm_mon,
-																		mark->fulldate.tm_year + 1900);
-				 gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
-																	mark->fulldate.tm_mday);
-			 }
-
-       read_marked_dates (data, window);       
-
-			 /* signal a redraw event */
-			 g_signal_emit_by_name (GTK_OBJECT (window->calendar), "day_selected");       
-     }
+   if (data) {
+		 DateMark *mark;
+		 data->curmonthmark = window->curlog->lstats.firstmark;
+		 window->curlog->caldata = data;
+		 
+		 mark = data->curmonthmark;
+		 if (mark) {
+			 gtk_calendar_select_month (GTK_CALENDAR(window->calendar), 
+																	mark->fulldate.tm_mon,
+																	mark->fulldate.tm_year + 1900);
+			 gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
+																mark->fulldate.tm_mday);
+		 }
+		 
+		 read_marked_dates (data, window);       
+	 }
 
    return data;
 }
@@ -155,6 +154,9 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
   CalendarData *data;
   DateMark *mark;
   gint day, month, year;
+
+	if (window->curlog == NULL)
+		return;
 
   calendar = GTK_CALENDAR (window->calendar);
   g_return_if_fail (calendar);
@@ -186,6 +188,9 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
   /* find the selected day in the current logfile */
   gint day, month, year;
   GtkTreePath *path;
+
+	if (window->curlog == NULL)
+		return;
 
   gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);
 
