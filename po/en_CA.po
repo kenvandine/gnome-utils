@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-26 02:25-0500\n"
-"PO-Revision-Date: 2005-03-26 12:11-0500\n"
+"POT-Creation-Date: 2005-05-19 14:25-0400\n"
+"PO-Revision-Date: 2005-05-19 12:11-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,11 @@ msgid "Lookup words in an online dictionary"
 msgstr "Lookup words in an online dictionary"
 
 #: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:650
-#: ../logview/logview.c:111
+#: ../logview/logview.c:126
 msgid "_About"
 msgstr "_About"
 
-#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:88
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:96
 msgid "_Help"
 msgstr "_Help"
 
@@ -73,9 +73,10 @@ msgstr "Adam Weinberger <adamw@gnome.org>"
 msgid "A client for the MIT dictionary server."
 msgstr "A client for the MIT dictionary server."
 
-#: ../gdictsrc/gdict-about.c:47 ../gdictsrc/gdict-defbox.c:82
-#: ../gdictsrc/gdict-defbox.c:94 ../gdictsrc/gdict-pref-dialog.c:470
-#: ../gdictsrc/gnome-dictionary.desktop.in.h:1
+#: ../gdictsrc/gdict-about.c:47 ../gdictsrc/gdict-applet.c:366
+#: ../gdictsrc/gdict-defbox.c:82 ../gdictsrc/gdict-defbox.c:94
+#: ../gdictsrc/gdict-pref-dialog.c:470
+#: ../gdictsrc/gnome-dictionary.desktop.in.h:1 ../gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "Dictionary"
 
@@ -118,7 +119,7 @@ msgid "_Dictionary"
 msgstr "_Dictionary"
 
 #. Dictionary menu
-#: ../gdictsrc/gdict-app.c:632 ../gdictsrc/gdict-app.c:763
+#: ../gdictsrc/gdict-app.c:632 ../gdictsrc/gdict-app.c:826
 msgid "_Look Up Word"
 msgstr "_Look Up Word"
 
@@ -143,7 +144,7 @@ msgid "Close the application"
 msgstr "Close the application"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:640 ../logview/logview.c:103
+#: ../gdictsrc/gdict-app.c:640 ../logview/logview.c:111
 msgid "_Find..."
 msgstr "_Find..."
 
@@ -168,7 +169,7 @@ msgid "Configure the application"
 msgstr "Configure the application"
 
 #. Help menu
-#: ../gdictsrc/gdict-app.c:648 ../logview/logview.c:109
+#: ../gdictsrc/gdict-app.c:648 ../logview/logview.c:124
 msgid "_Contents"
 msgstr "_Contents"
 
@@ -180,71 +181,71 @@ msgstr "View help for this application"
 msgid "About this application"
 msgstr "About this application"
 
-#: ../gdictsrc/gdict-app.c:657
+#: ../gdictsrc/gdict-app.c:656
 msgid "On a Dictionary Server"
 msgstr "On a Dictionary Server"
 
-#: ../gdictsrc/gdict-app.c:659
+#: ../gdictsrc/gdict-app.c:658
 msgid "On a Web Site"
 msgstr "On a Web Site"
 
-#: ../gdictsrc/gdict-app.c:665
+#: ../gdictsrc/gdict-app.c:664
 msgid "Cu_t"
 msgstr "Cu_t"
 
-#: ../gdictsrc/gdict-app.c:666
+#: ../gdictsrc/gdict-app.c:665
 msgid "Cut the selection"
 msgstr "Cut the selection"
 
-#: ../gdictsrc/gdict-app.c:667
+#: ../gdictsrc/gdict-app.c:666
 msgid "_Copy"
 msgstr "_Copy"
 
-#: ../gdictsrc/gdict-app.c:668 ../logview/logview.c:99
+#: ../gdictsrc/gdict-app.c:667 ../logview/logview.c:107
 msgid "Copy the selection"
 msgstr "Copy the selection"
 
-#: ../gdictsrc/gdict-app.c:669
+#: ../gdictsrc/gdict-app.c:668
 msgid "_Paste"
 msgstr "_Paste"
 
-#: ../gdictsrc/gdict-app.c:670
+#: ../gdictsrc/gdict-app.c:669
 msgid "Paste clipboard"
 msgstr "Paste clipboard"
 
-#: ../gdictsrc/gdict-app.c:671
+#: ../gdictsrc/gdict-app.c:670
 msgid "Select _All"
 msgstr "Select _All"
 
-#: ../gdictsrc/gdict-app.c:672
+#: ../gdictsrc/gdict-app.c:671
 msgid "Select everything"
 msgstr "Select everything"
 
-#: ../gdictsrc/gdict-app.c:677
+#: ../gdictsrc/gdict-app.c:676
 msgid "_Spellings"
 msgstr "_Spellings"
 
-#: ../gdictsrc/gdict-app.c:678
+#: ../gdictsrc/gdict-app.c:677
 msgid "View alternate spellings"
 msgstr "View alternate spellings"
 
-#: ../gdictsrc/gdict-app.c:760
+#: ../gdictsrc/gdict-app.c:823
 msgid "_Word:"
 msgstr "_Word:"
 
-#: ../gdictsrc/gdict-app.c:788
+#: ../gdictsrc/gdict-app.c:851
 msgid "Word"
 msgstr "Word"
 
-#: ../gdictsrc/gdict-app.c:789 ../gdictsrc/gdict-app.c:791
+#: ../gdictsrc/gdict-app.c:852 ../gdictsrc/gdict-app.c:854
 msgid "Word Entry"
 msgstr "Word Entry"
 
-#: ../gdictsrc/gdict-app.c:790
+#: ../gdictsrc/gdict-app.c:853
 msgid "Enter a Word or select one from the list below"
 msgstr "Enter a Word or select one from the list below"
 
-#: ../gdictsrc/gdict-app.c:794
+#: ../gdictsrc/gdict-app.c:857
 msgid "Look Up for a Word"
 msgstr "Look Up for a Word"
 
@@ -433,10 +434,6 @@ msgstr ""
 #: ../gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "Use smart lookup"
-
-#: ../gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr "Gnome Dictionary"
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1047,7 +1044,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "The file \"%s\" already exists.  Would you like to replace it?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:190
-#: ../gsearchtool/gsearchtool-callbacks.c:1271
+#: ../gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "_Replace"
 
@@ -1280,23 +1277,23 @@ msgstr ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:61
-msgid ""
-"This key determines if the \"Show hidden files and folders\" search option "
-"is selected when the search tool is started."
-msgstr ""
-"This key determines if the \"Show hidden files and folders\" search option "
-"is selected when the search tool is started."
-
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:64
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:63
 msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
+"This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
 msgstr ""
-"This key determines if the \"Show more options\" section is expanded when "
+"This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
+
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:64
+msgid ""
+"This key determines if the \"Show hidden files and folders\" search option "
+"is selected when the search tool is started."
+msgstr ""
+"This key determines if the \"Show hidden files and folders\" search option "
+"is selected when the search tool is started."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
@@ -1330,120 +1327,120 @@ msgstr ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:165
+#: ../gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "Could not open help document."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:300
+#: ../gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Are you sure you want to open %d document?"
 msgstr[1] "Are you sure you want to open %d documents?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:305
-#: ../gsearchtool/gsearchtool-callbacks.c:493
+#: ../gsearchtool/gsearchtool-callbacks.c:309
+#: ../gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "This will open %d separate window."
 msgstr[1] "This will open %d separate windows."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:345
+#: ../gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Could not open document \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:374
+#: ../gsearchtool/gsearchtool-callbacks.c:378
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Could not open folder \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:382
+#: ../gsearchtool/gsearchtool-callbacks.c:386
 msgid "The nautilus file manager is not running."
 msgstr "The nautilus file manager is not running."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:449
-#: ../gsearchtool/gsearchtool-callbacks.c:763
+#: ../gsearchtool/gsearchtool-callbacks.c:453
+#: ../gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "The document does not exist."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:464
+#: ../gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "There is no installed viewer capable of displaying the document."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:488
+#: ../gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Are you sure you want to open %d folder?"
 msgstr[1] "Are you sure you want to open %d folders?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:589
+#: ../gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Could not move \"%s\" to trash."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:620
+#: ../gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Do you want to delete \"%s\" permanently?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:623
+#: ../gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Trash is unavailable.  Could not move \"%s\" to the trash."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:662
+#: ../gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Could not delete \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:782
+#: ../gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Moving \"%s\" failed: %s."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:814
+#: ../gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Deleting \"%s\" failed: %s."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1160
+#: ../gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "Save Search Results As..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1188
+#: ../gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "Could not save document."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1189
+#: ../gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "You did not select a document name."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1219
+#: ../gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Could not save \"%s\" document to \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1252
+#: ../gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "The document \"%s\" already exists.  Would you like to replace it?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1256
+#: ../gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "If you replace an existing file, its contents will be overwritten."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1320
+#: ../gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "The document name you selected is a folder."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1371
+#: ../gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "You may not have write permissions to the document."
 
-#: ../gsearchtool/gsearchtool-support.c:69
+#: ../gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1457,24 +1454,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:520
+#: ../gsearchtool/gsearchtool-support.c:549
 msgid "today at %-I:%M %p"
 msgstr "today at %-I:%M %p"
 
-#: ../gsearchtool/gsearchtool-support.c:522
+#: ../gsearchtool/gsearchtool-support.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "yesterday at %-I:%M %p"
 
-#: ../gsearchtool/gsearchtool-support.c:524
-#: ../gsearchtool/gsearchtool-support.c:526
+#: ../gsearchtool/gsearchtool-support.c:553
+#: ../gsearchtool/gsearchtool-support.c:555
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %-d %B %Y at %-I:%M:%S %p"
 
-#: ../gsearchtool/gsearchtool-support.c:710
+#: ../gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr "link (broken)"
 
-#: ../gsearchtool/gsearchtool-support.c:716
+#: ../gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr "link to %s"
@@ -1568,80 +1565,80 @@ msgstr "A locate database has probably not been created."
 msgid "Character set conversion failed for \"%s\""
 msgstr "Character set conversion failed for \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:735 ../gsearchtool/gsearchtool.c:764
+#: ../gsearchtool/gsearchtool.c:756 ../gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "No files found"
 
-#: ../gsearchtool/gsearchtool.c:757
+#: ../gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr "(stopped)"
 
-#: ../gsearchtool/gsearchtool.c:763
+#: ../gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr "No Files Found"
 
-#: ../gsearchtool/gsearchtool.c:768
+#: ../gsearchtool/gsearchtool.c:789
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d File Found"
 msgstr[1] "%d Files Found"
 
-#: ../gsearchtool/gsearchtool.c:772 ../gsearchtool/gsearchtool.c:810
+#: ../gsearchtool/gsearchtool.c:793 ../gsearchtool/gsearchtool.c:831
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d file found"
 msgstr[1] "%d files found"
 
-#: ../gsearchtool/gsearchtool.c:789 ../gsearchtool/gsearchtool.c:1048
-#: ../gsearchtool/gsearchtool.c:1134 ../gsearchtool/gsearchtool.c:2804
+#: ../gsearchtool/gsearchtool.c:810 ../gsearchtool/gsearchtool.c:1069
+#: ../gsearchtool/gsearchtool.c:1155 ../gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "Search for Files"
 
-#: ../gsearchtool/gsearchtool.c:882
+#: ../gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr "Entry changed called for a non entry option!"
 
-#: ../gsearchtool/gsearchtool.c:1134
+#: ../gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "Searching..."
 
-#: ../gsearchtool/gsearchtool.c:1157
+#: ../gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Set the text of the \"Name contains\" search option"
 
-#: ../gsearchtool/gsearchtool.c:1158
+#: ../gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Set the text of the \"Look in folder\" search option"
 
-#: ../gsearchtool/gsearchtool.c:1159
+#: ../gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "Sort files by one of the following: name, folder, size, type, or date"
 
-#: ../gsearchtool/gsearchtool.c:1160
+#: ../gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Set sort order to descending, the default is ascending"
 
-#: ../gsearchtool/gsearchtool.c:1161
+#: ../gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr "Automatically start a search"
 
-#: ../gsearchtool/gsearchtool.c:1167
+#: ../gsearchtool/gsearchtool.c:1188
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Select the \"%s\" search option"
 
-#: ../gsearchtool/gsearchtool.c:1170
+#: ../gsearchtool/gsearchtool.c:1191
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Select and set the \"%s\" search option"
 
-#: ../gsearchtool/gsearchtool.c:1277
+#: ../gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Invalid option passed to sortby command line argument."
 
-#: ../gsearchtool/gsearchtool.c:1573
+#: ../gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1649,7 +1646,7 @@ msgstr ""
 "\n"
 "... Too many errors to display ..."
 
-#: ../gsearchtool/gsearchtool.c:1587
+#: ../gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1657,11 +1654,11 @@ msgstr ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 
-#: ../gsearchtool/gsearchtool.c:1599 ../gsearchtool/gsearchtool.c:1639
+#: ../gsearchtool/gsearchtool.c:1626 ../gsearchtool/gsearchtool.c:1666
 msgid "Show more _details"
 msgstr "Show more _details"
 
-#: ../gsearchtool/gsearchtool.c:1627
+#: ../gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1669,155 +1666,155 @@ msgstr ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 
-#: ../gsearchtool/gsearchtool.c:1650
+#: ../gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr "Disable _Quick Search"
 
-#: ../gsearchtool/gsearchtool.c:1677
+#: ../gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Failed to set process group id of child %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1704
+#: ../gsearchtool/gsearchtool.c:1731
 msgid "Error parsing the search command."
 msgstr "Error parsing the search command."
 
-#: ../gsearchtool/gsearchtool.c:1737
+#: ../gsearchtool/gsearchtool.c:1764
 msgid "Error running the search command."
 msgstr "Error running the search command."
 
-#: ../gsearchtool/gsearchtool.c:1884
+#: ../gsearchtool/gsearchtool.c:1911
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Enter a text value for the \"%s\" search option."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1889
+#: ../gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" in %s"
 
-#: ../gsearchtool/gsearchtool.c:1891
+#: ../gsearchtool/gsearchtool.c:1918
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Enter a value in %s for the \"%s\" search option."
 
-#: ../gsearchtool/gsearchtool.c:1950
+#: ../gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Remove \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:1951
+#: ../gsearchtool/gsearchtool.c:1978
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Click to remove the \"%s\" search option."
 
-#: ../gsearchtool/gsearchtool.c:2044
+#: ../gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr "A_vailable options:"
 
-#: ../gsearchtool/gsearchtool.c:2073
+#: ../gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr "Available options"
 
-#: ../gsearchtool/gsearchtool.c:2074
+#: ../gsearchtool/gsearchtool.c:2101
 msgid "Select a search option from the drop-down list."
 msgstr "Select a search option from the drop-down list."
 
-#: ../gsearchtool/gsearchtool.c:2086
+#: ../gsearchtool/gsearchtool.c:2113
 msgid "Add search option"
 msgstr "Add search option"
 
-#: ../gsearchtool/gsearchtool.c:2087
+#: ../gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr "Click to add the selected available search option."
 
-#: ../gsearchtool/gsearchtool.c:2108
+#: ../gsearchtool/gsearchtool.c:2135
 msgid "S_earch results:"
 msgstr "S_earch results:"
 
-#: ../gsearchtool/gsearchtool.c:2144
+#: ../gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr "List View"
 
-#: ../gsearchtool/gsearchtool.c:2194
+#: ../gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "Name"
 
-#: ../gsearchtool/gsearchtool.c:2214
+#: ../gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "Folder"
 
-#: ../gsearchtool/gsearchtool.c:2225
+#: ../gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "Size"
 
-#: ../gsearchtool/gsearchtool.c:2235
+#: ../gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "Type"
 
-#: ../gsearchtool/gsearchtool.c:2245
+#: ../gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr "Date Modified"
 
-#: ../gsearchtool/gsearchtool.c:2613
+#: ../gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr "_Name contains:"
 
-#: ../gsearchtool/gsearchtool.c:2627 ../gsearchtool/gsearchtool.c:2628
+#: ../gsearchtool/gsearchtool.c:2654 ../gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Enter a filename or partial filename with or without wildcards."
 
-#: ../gsearchtool/gsearchtool.c:2628
+#: ../gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr "Name contains"
 
-#: ../gsearchtool/gsearchtool.c:2634
+#: ../gsearchtool/gsearchtool.c:2661
 msgid "_Look in folder:"
 msgstr "_Look in folder:"
 
-#: ../gsearchtool/gsearchtool.c:2640
+#: ../gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "Browse"
 
-#: ../gsearchtool/gsearchtool.c:2645
+#: ../gsearchtool/gsearchtool.c:2672
 msgid "Look in folder"
 msgstr "Look in folder"
 
-#: ../gsearchtool/gsearchtool.c:2645
+#: ../gsearchtool/gsearchtool.c:2672
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Select the folder or device from which you want to begin the search."
 
-#: ../gsearchtool/gsearchtool.c:2656
-msgid "Show more _options"
-msgstr "Show more _options"
+#: ../gsearchtool/gsearchtool.c:2683
+msgid "Select more _options"
+msgstr "Select more _options"
 
-#: ../gsearchtool/gsearchtool.c:2665
-msgid "Show more options"
-msgstr "Show more options"
+#: ../gsearchtool/gsearchtool.c:2692
+msgid "Select more options"
+msgstr "Select more options"
 
-#: ../gsearchtool/gsearchtool.c:2665
+#: ../gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr "Click to expand or collapse the list of available options."
 
-#: ../gsearchtool/gsearchtool.c:2689
+#: ../gsearchtool/gsearchtool.c:2716
 msgid "Click to display the help manual."
 msgstr "Click to display the help manual."
 
-#: ../gsearchtool/gsearchtool.c:2697
+#: ../gsearchtool/gsearchtool.c:2724
 msgid "Click to close \"Search for Files\"."
 msgstr "Click to close \"Search for Files\"."
 
-#: ../gsearchtool/gsearchtool.c:2723
+#: ../gsearchtool/gsearchtool.c:2750
 msgid "Click to perform a search."
 msgstr "Click to perform a search."
 
-#: ../gsearchtool/gsearchtool.c:2724
+#: ../gsearchtool/gsearchtool.c:2751
 msgid "Click to stop a search."
 msgstr "Click to stop a search."
 
-#: ../gsearchtool/gsearchtool.c:2824
+#: ../gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr "Cannot initialize bonobo."
 
@@ -1845,7 +1842,7 @@ msgstr "_Add"
 msgid "Add an action"
 msgstr "Add an action"
 
-#: ../logview/actions.c:175 ../logview/logview.c:86
+#: ../logview/actions.c:175 ../logview/logview.c:94
 msgid "_Edit"
 msgstr "_Edit"
 
@@ -1977,10 +1974,6 @@ msgstr ""
 "description: [%s]\n"
 "action: [%s]\n"
 
-#: ../logview/calendar.c:55
-msgid "Calendar"
-msgstr "Calendar"
-
 #: ../logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -2088,30 +2081,30 @@ msgid "December"
 msgstr "December"
 
 #. Translators: Date only format, %x should well do really
-#: ../logview/log_repaint.c:278
+#: ../logview/log_repaint.c:269
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: ../logview/log_repaint.c:297
+#: ../logview/log_repaint.c:288
 msgid "Last Modified:"
 msgstr "Last Modified:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: ../logview/log_repaint.c:326
+#: ../logview/log_repaint.c:317
 msgid "%B %e"
 msgstr "%e %B"
 
 #. Translators: should be only the time, date could be bogus
-#: ../logview/log_repaint.c:398
+#: ../logview/log_repaint.c:389
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: ../logview/logrtns.c:50
-msgid "The file could not be opened"
-msgstr "The file could not be opened"
+msgid "One file or more could not be opened"
+msgstr "One or more files could not be opened"
 
 #: ../logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
@@ -2125,10 +2118,10 @@ msgstr "Not enough memory!\n"
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"%s is not user-readable. Either run the program as root or ask the sysadmin "
+"to change the permissions on the file.\n"
 
 #: ../logview/logrtns.c:281
 #, c-format
@@ -2161,127 +2154,139 @@ msgstr "Find Next"
 msgid "Find Previous"
 msgstr "Find Previous"
 
-#: ../logview/logview.c:85
+#: ../logview/logview.c:93
 msgid "_Log"
 msgstr "_Log"
 
-#: ../logview/logview.c:87
+#: ../logview/logview.c:95
 msgid "_View"
 msgstr "_View"
 
-#: ../logview/logview.c:90
+#: ../logview/logview.c:98
 msgid "_Open..."
 msgstr "_Open..."
 
-#: ../logview/logview.c:90
+#: ../logview/logview.c:98
 msgid "Open a log from file"
 msgstr "Open a log from file"
 
-#: ../logview/logview.c:92
+#: ../logview/logview.c:100
 msgid "_Properties"
 msgstr "_Properties"
 
-#: ../logview/logview.c:92
+#: ../logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "Show Log Properties"
 
-#: ../logview/logview.c:94
+#: ../logview/logview.c:102
 msgid "Close"
 msgstr "Close"
 
-#: ../logview/logview.c:94
+#: ../logview/logview.c:102
 msgid "Close this log"
 msgstr "Close this log"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:104
 msgid "_Quit"
 msgstr "_Quit"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:104
 msgid "Quit the log viewer"
 msgstr "Quit the log viewer"
 
-#: ../logview/logview.c:99
+#: ../logview/logview.c:107
 msgid "Copy"
 msgstr "Copy"
 
-#: ../logview/logview.c:101
+#: ../logview/logview.c:109
 msgid "Select All"
 msgstr "Select All"
 
-#: ../logview/logview.c:101
+#: ../logview/logview.c:109
 msgid "Select the entire log"
 msgstr "Select the entire log"
 
-#: ../logview/logview.c:103
+#: ../logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr "Find pattern in logs"
 
-#: ../logview/logview.c:106
+#: ../logview/logview.c:114
+msgid "Bigger text size"
+msgstr "Bigger text size"
+
+#: ../logview/logview.c:116
+msgid "Smaller text size"
+msgstr "Smaller text size"
+
+#: ../logview/logview.c:118
+msgid "Normal text size"
+msgstr "Normal text size"
+
+#: ../logview/logview.c:121
 msgid "Collapse _All"
 msgstr "Collapse _All"
 
-#: ../logview/logview.c:106
+#: ../logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr "Collapse all the rows"
 
-#: ../logview/logview.c:109
+#: ../logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr "Open the help contents for the log viewer"
 
-#: ../logview/logview.c:111
+#: ../logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr "Show the \"About\" dialogue for the log viewer"
 
-#: ../logview/logview.c:117
+#: ../logview/logview.c:132
+msgid "Sidebar"
+msgstr "Sidebar"
+
+#: ../logview/logview.c:132
+msgid "Show the sidebar"
+msgstr "Show the sidebar"
+
+#: ../logview/logview.c:134
 msgid "_Monitor"
 msgstr "_Monitor"
 
-#: ../logview/logview.c:117
+#: ../logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr "Monitor Current Log"
 
-#: ../logview/logview.c:119
+#: ../logview/logview.c:136
 msgid "Ca_lendar"
 msgstr "Ca_lendar"
 
-#: ../logview/logview.c:119
+#: ../logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "Show Calendar Log"
 
-#: ../logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "_Entry Detail"
-
-#: ../logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "Show Entry Detail"
-
-#: ../logview/logview.c:386
+#: ../logview/logview.c:625
 msgid "Date"
 msgstr "Date"
 
-#: ../logview/logview.c:386
+#: ../logview/logview.c:625
 msgid "Host Name"
 msgstr "Host Name"
 
-#: ../logview/logview.c:387
+#: ../logview/logview.c:626
 msgid "Process"
 msgstr "Process"
 
-#: ../logview/logview.c:387
+#: ../logview/logview.c:626
 msgid "Message"
 msgstr "Message"
 
-#: ../logview/logview.c:580
+#: ../logview/logview.c:804
 msgid "Open new logfile"
 msgstr "Open new logfile"
 
-#: ../logview/logview.c:876
+#: ../logview/logview.c:1141
 msgid "There was an error displaying help."
 msgstr "There was an error displaying help."
 
-#: ../logview/logview.c:894
+#: ../logview/logview.c:1159
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (monitored) - %s"
