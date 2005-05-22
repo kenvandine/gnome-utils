@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-15 13:47+0000\n"
-"PO-Revision-Date: 2005-05-15 20:47+0200\n"
+"POT-Creation-Date: 2005-05-19 13:52+0000\n"
+"PO-Revision-Date: 2005-05-22 13:17+0200\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,11 @@ msgid "Lookup words in an online dictionary"
 msgstr "Vyhledávání slov v on-line slovníku"
 
 #: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:650
-#: ../logview/logview.c:111
+#: ../logview/logview.c:116
 msgid "_About"
 msgstr "O _aplikaci"
 
-#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:88
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:93
 msgid "_Help"
 msgstr "_Nápověda"
 
@@ -152,7 +152,7 @@ msgid "Close the application"
 msgstr "Zavřít aplikaci"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:640 ../logview/logview.c:103
+#: ../gdictsrc/gdict-app.c:640 ../logview/logview.c:108
 msgid "_Find..."
 msgstr "_Hledat..."
 
@@ -177,7 +177,7 @@ msgid "Configure the application"
 msgstr "Nastavit aplikaci"
 
 #. Help menu
-#: ../gdictsrc/gdict-app.c:648 ../logview/logview.c:109
+#: ../gdictsrc/gdict-app.c:648 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Obsah"
 
@@ -209,7 +209,7 @@ msgstr "Vyjmout výběr"
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: ../gdictsrc/gdict-app.c:667 ../logview/logview.c:99
+#: ../gdictsrc/gdict-app.c:667 ../logview/logview.c:104
 msgid "Copy the selection"
 msgstr "Kopírovat výběr"
 
@@ -1297,7 +1297,9 @@ msgstr ""
 msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
-msgstr "Tento klíč určuje, jestli je při spuštění nástroje hledání rozbalen oddíl \"Vybrat další možnosti\"."
+msgstr ""
+"Tento klíč určuje, jestli je při spuštění nástroje hledání rozbalen oddíl "
+"\"Vybrat další možnosti\"."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
@@ -1835,7 +1837,7 @@ msgstr "Kliknutím zastavte hledání."
 msgid "Cannot initialize bonobo."
 msgstr "Nemohu inicializovat bonobo."
 
-#: ../logview/about.c:47 ../logview/logview.c:47
+#: ../logview/about.c:47 ../logview/logview.c:48
 msgid "System Log Viewer"
 msgstr "Prohlížeč systémových záznamů"
 
@@ -1859,7 +1861,7 @@ msgstr "_Přidat"
 msgid "Add an action"
 msgstr "Přidat akci"
 
-#: ../logview/actions.c:175 ../logview/logview.c:86
+#: ../logview/actions.c:175 ../logview/logview.c:91
 msgid "_Edit"
 msgstr "_Upravit"
 
@@ -2125,8 +2127,8 @@ msgid "%X"
 msgstr "%X"
 
 #: ../logview/logrtns.c:50
-msgid "The file could not be opened"
-msgstr "Soubor nelze otevřít"
+msgid "One file or more could not be opened"
+msgstr "Jeden nebo více souborů nelze otevřít"
 
 #: ../logview/logrtns.c:216
 msgid "Unable to open logfile!\n"
@@ -2140,11 +2142,8 @@ msgstr "Nedostatek paměti!\n"
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
-msgstr ""
-"Soubor %s není pro uživatele čitelný. Buď tento program spusťte jako "
-"uživatel root, nebo požádejte správce systému, aby změnil přístupová práva k "
-"tomuto souboru."
+"to change the permissions on the file.\n"
+msgstr "%s není pro uživatele čitelný. Buď tento program spusťte jako root, nebo požádejte správce systému, aby změnil přístupová práva k tomuto souboru.\n"
 
 #: ../logview/logrtns.c:281
 #, c-format
@@ -2177,127 +2176,127 @@ msgstr "Hledat následující"
 msgid "Find Previous"
 msgstr "Hledat předchozí"
 
-#: ../logview/logview.c:85
+#: ../logview/logview.c:90
 msgid "_Log"
 msgstr "_Záznam"
 
-#: ../logview/logview.c:87
+#: ../logview/logview.c:92
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../logview/logview.c:90
+#: ../logview/logview.c:95
 msgid "_Open..."
 msgstr "_Otevřít..."
 
-#: ../logview/logview.c:90
+#: ../logview/logview.c:95
 msgid "Open a log from file"
 msgstr "Otevřít záznam ze souboru"
 
-#: ../logview/logview.c:92
+#: ../logview/logview.c:97
 msgid "_Properties"
 msgstr "_Vlastnosti"
 
-#: ../logview/logview.c:92
+#: ../logview/logview.c:97
 msgid "Show Log Properties"
 msgstr "Zobrazit vlastnosti záznamu"
 
-#: ../logview/logview.c:94
+#: ../logview/logview.c:99
 msgid "Close"
 msgstr "Zavřít"
 
-#: ../logview/logview.c:94
+#: ../logview/logview.c:99
 msgid "Close this log"
 msgstr "Zavřít tento záznam"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:101
 msgid "_Quit"
 msgstr "U_končit"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:101
 msgid "Quit the log viewer"
 msgstr "Ukončit prohlížeč záznamů"
 
-#: ../logview/logview.c:99
+#: ../logview/logview.c:104
 msgid "Copy"
 msgstr "Kopírovat"
 
-#: ../logview/logview.c:101
+#: ../logview/logview.c:106
 msgid "Select All"
 msgstr "Vybrat vše"
 
-#: ../logview/logview.c:101
+#: ../logview/logview.c:106
 msgid "Select the entire log"
 msgstr "Vybrat celý záznam"
 
-#: ../logview/logview.c:103
+#: ../logview/logview.c:108
 msgid "Find pattern in logs"
 msgstr "Hledat v záznamech vzorek"
 
-#: ../logview/logview.c:106
+#: ../logview/logview.c:111
 msgid "Collapse _All"
 msgstr "S_balit vše"
 
-#: ../logview/logview.c:106
+#: ../logview/logview.c:111
 msgid "Collapse all the rows"
 msgstr "Sbalí všechny řádky"
 
-#: ../logview/logview.c:109
+#: ../logview/logview.c:114
 msgid "Open the help contents for the log viewer"
 msgstr "Otevřít obsah nápovědy prohlížeče záznamů"
 
-#: ../logview/logview.c:111
+#: ../logview/logview.c:116
 msgid "Show the about dialog for the log viewer"
 msgstr "Zobrazit dialog o prohlížeči záznamů"
 
-#: ../logview/logview.c:117
+#: ../logview/logview.c:122
 msgid "_Monitor"
 msgstr "_Sledovat"
 
-#: ../logview/logview.c:117
+#: ../logview/logview.c:122
 msgid "Monitor Current Log"
 msgstr "Sledovat aktuální záznam"
 
-#: ../logview/logview.c:119
+#: ../logview/logview.c:124
 msgid "Ca_lendar"
 msgstr "_Kalendář"
 
-#: ../logview/logview.c:119
+#: ../logview/logview.c:124
 msgid "Show Calendar Log"
 msgstr "Zobrazit záznamy z kalendáře"
 
-#: ../logview/logview.c:121
+#: ../logview/logview.c:126
 msgid "_Entry Detail"
 msgstr "D_etaily položky"
 
-#: ../logview/logview.c:121
+#: ../logview/logview.c:126
 msgid "Show Entry Detail"
 msgstr "Zobrazit podrobnosti položky"
 
-#: ../logview/logview.c:386
+#: ../logview/logview.c:599
 msgid "Date"
 msgstr "Datum"
 
-#: ../logview/logview.c:386
+#: ../logview/logview.c:599
 msgid "Host Name"
 msgstr "Název počítače"
 
-#: ../logview/logview.c:387
+#: ../logview/logview.c:600
 msgid "Process"
 msgstr "Proces"
 
-#: ../logview/logview.c:387
+#: ../logview/logview.c:600
 msgid "Message"
 msgstr "Zpráva"
 
-#: ../logview/logview.c:580
+#: ../logview/logview.c:783
 msgid "Open new logfile"
 msgstr "Otevřít nový soubor"
 
-#: ../logview/logview.c:876
+#: ../logview/logview.c:1079
 msgid "There was an error displaying help."
 msgstr "Při zobrazování nápovědy došlo k chybě."
 
-#: ../logview/logview.c:894
+#: ../logview/logview.c:1097
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (sledován) - %s"
