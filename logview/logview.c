@@ -718,10 +718,9 @@ CreateMainWin (LogviewWindow *window)
    g_signal_connect (G_OBJECT (window), "configure_event",
 		     G_CALLBACK (window_size_changed_cb), window);
 
-   window->find_bar = gtk_toolbar_new ();
-   logview_findbar_populate (window, window->find_bar);
-   gtk_toolbar_set_style (GTK_TOOLBAR (window->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
-   gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
+   window->find_bar = logview_findbar_new (window);
+	 //   gtk_toolbar_set_style (GTK_TOOLBAR (window->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
+	 gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
    gtk_widget_show (window->find_bar);
 
    /* Status area at bottom */

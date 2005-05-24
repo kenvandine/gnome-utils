@@ -20,7 +20,7 @@
 #ifndef __LOG_FINDBAR_H__
 #define __LOG_FINDBAR_H__
 
-void logview_findbar_populate (LogviewWindow *window, GtkWidget *widget);
+GtkWidget *logview_findbar_new (LogviewWindow *window);
 
 #endif /* __LOG_FINDBAR_H__ */
 

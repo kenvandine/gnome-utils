@@ -232,9 +232,7 @@ static void
 logview_findbar_clicked_cb (GtkWidget  *widget,
 			    LogviewWindow *window)
 {
-    g_return_if_fail (GTK_IS_TOOL_ITEM (widget));
-
-    if (GTK_TOOL_ITEM (widget) == window->find_next) {
+    if (GTK_WIDGET (widget) == window->find_next) {
 	    if (!logview_findbar_action (window, LOGVIEW_FIND_NEXT, FALSE)) {
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), FALSE);
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_prev), TRUE);
@@ -242,7 +240,7 @@ logview_findbar_clicked_cb (GtkWidget  *widget,
 	    logview_findbar_buttons_set_sensitive (window, TRUE);
 	}
     }
-    else if (GTK_TOOL_ITEM (widget) == window->find_prev) {
+    else if (GTK_WIDGET (widget) == window->find_prev) {
 	    if (!logview_findbar_action (window, LOGVIEW_FIND_PREV, FALSE)) {
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_next), TRUE);
 		    gtk_widget_set_sensitive (GTK_WIDGET (window->find_prev), FALSE);
@@ -254,58 +252,63 @@ logview_findbar_clicked_cb (GtkWidget  *widget,
 	g_assert_not_reached ();
 }
 
-void
-logview_findbar_populate (LogviewWindow *window, GtkWidget *find_bar)
+static gboolean
+logview_findbar_hide (GtkWidget *widget, GdkEventFocus *event, LogviewWindow *window)
 {
+	gtk_widget_hide (window->find_bar);
+	return (FALSE);
+}
+
+GtkWidget *
+logview_findbar_new (LogviewWindow *window)
+{
+	GtkWidget *hbox;
 	GtkWidget *label;
-	GtkToolItem *item;
+	GtkWidget *image_prev, *image_next;
 	
-	g_return_if_fail (GTK_IS_TOOLBAR (find_bar));
-	
+	gtk_widget_push_composite_child ();
+
+	hbox = gtk_hbox_new (FALSE, 6);
+	gtk_container_set_border_width (GTK_CONTAINER (hbox), 3);
+
 	label = gtk_label_new_with_mnemonic (_("Fin_d:"));
-	item = gtk_tool_item_new ();
-	gtk_container_add (GTK_CONTAINER (item), label);
-	gtk_container_set_border_width (GTK_CONTAINER (item), 5);
-	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
 	
 	window->find_entry = gtk_entry_new ();
-	g_signal_connect (G_OBJECT (window->find_entry), "changed",
-			  G_CALLBACK (logview_findbar_entry_changed_cb), window);
-	g_signal_connect (G_OBJECT (window->find_entry), "activate",
-			  G_CALLBACK (logview_findbar_entry_activate_cb), window);
-	item = gtk_tool_item_new ();
-	gtk_container_add (GTK_CONTAINER (item), window->find_entry);
-	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
-	
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), window->find_entry);
 	
-	window->find_next = gtk_tool_button_new_from_stock (GTK_STOCK_GO_DOWN);
-	gtk_tool_button_set_label (GTK_TOOL_BUTTON(window->find_next), _("Find Next"));
-	gtk_tool_item_set_is_important (window->find_next, TRUE);
-	g_signal_connect (window->find_next,
-			  "clicked",
-			  G_CALLBACK (logview_findbar_clicked_cb),
-			  window);
-	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), window->find_next, -1);
-	
-	window->find_prev = gtk_tool_button_new_from_stock (GTK_STOCK_GO_UP);
-	gtk_tool_item_set_is_important (window->find_prev, TRUE);
-	gtk_tool_button_set_label (GTK_TOOL_BUTTON(window->find_prev), _("Find Previous"));
-	g_signal_connect (window->find_prev,
-			  "clicked",
-			  G_CALLBACK (logview_findbar_clicked_cb),
-			  window);
-	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), window->find_prev, -1);
+	window->find_prev = gtk_button_new_with_mnemonic (_("_Previous"));
+	gtk_button_set_focus_on_click (GTK_BUTTON (window->find_prev), FALSE);
+	window->find_next = gtk_button_new_with_mnemonic (_("_Next"));
+	gtk_button_set_focus_on_click (GTK_BUTTON (window->find_next), FALSE);
 
-	item = gtk_tool_item_new ();
-	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
-	gtk_tool_item_set_expand (item, TRUE);
+	image_prev = gtk_image_new_from_stock (GTK_STOCK_GO_BACK, GTK_ICON_SIZE_BUTTON);
+	image_next = gtk_image_new_from_stock (GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_BUTTON);
+
+	gtk_button_set_image (GTK_BUTTON (window->find_prev), image_prev);
+	gtk_button_set_image (GTK_BUTTON (window->find_next), image_next);
 	
-	item = gtk_tool_button_new_from_stock (GTK_STOCK_CLOSE);
-	gtk_tool_item_set_is_important (item, FALSE);
-	g_signal_connect_swapped (item,
-				  "clicked",
-				  G_CALLBACK (gtk_widget_hide),
-				  window->find_bar);
-	gtk_toolbar_insert (GTK_TOOLBAR (find_bar), item, -1);
+	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), window->find_entry, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), window->find_prev, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (hbox), window->find_next, FALSE, FALSE, 0);
+
+	gtk_widget_show (hbox);
+	gtk_widget_show (window->find_entry);
+	gtk_widget_show (window->find_next);
+	gtk_widget_show (window->find_prev);
+
+	gtk_widget_pop_composite_child ();
+
+	g_signal_connect (G_OBJECT (window->find_entry), "changed",
+			  G_CALLBACK (logview_findbar_entry_changed_cb), window);
+	g_signal_connect (G_OBJECT (window->find_entry), "focus-out-event",
+			  G_CALLBACK (logview_findbar_hide), window);
+	g_signal_connect (G_OBJECT (window->find_entry), "activate",
+			  G_CALLBACK (logview_findbar_entry_activate_cb), window);
+	g_signal_connect (G_OBJECT(window->find_next), "clicked",
+			  G_CALLBACK (logview_findbar_clicked_cb), window);
+	g_signal_connect (G_OBJECT(window->find_prev), "clicked",
+			  G_CALLBACK (logview_findbar_clicked_cb), window);
+
+	return hbox;
 }

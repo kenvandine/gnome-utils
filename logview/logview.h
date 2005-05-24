@@ -158,8 +158,8 @@ struct _LogviewWindow {
 
 	GtkWidget *find_bar;
 	GtkWidget *find_entry;
-	GtkToolItem *find_next;
-	GtkToolItem *find_prev;
+	GtkWidget *find_next;
+	GtkWidget *find_prev;
 	gchar *find_string;
 
 	GtkWidget *loglist;
