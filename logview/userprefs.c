@@ -156,7 +156,6 @@ prefs_save (GConfClient *client, UserPrefsStruct *prefs)
 		if (gconf_client_key_is_writable (client, GCONF_HEIGHT_KEY, NULL))
 			gconf_client_set_int (client, GCONF_HEIGHT_KEY, prefs->height, NULL);
 	}
-
 	if (prefs->logs != NULL)
 		if (gconf_client_key_is_writable (client, GCONF_LOGFILES, NULL))
 			gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);

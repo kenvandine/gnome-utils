@@ -249,7 +249,15 @@ log_repaint (LogviewWindow *window)
    if (window->curlog == NULL) {
 	   return FALSE;
    }
-   
+	 
+	 if (window->curlog->monitored) {
+		 gtk_widget_hide (window->log_scrolled_window);
+		 gtk_widget_show (window->mon_scrolled_window);
+	 } else {
+		 gtk_widget_hide (window->mon_scrolled_window);
+		 gtk_widget_show (window->log_scrolled_window);
+	 }
+
    /* Draw the tree view */ 
    DrawLogLines (window, window->curlog); 
 

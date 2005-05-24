@@ -201,7 +201,6 @@ logview_save_prefs (LogviewWindow *logview)
 	}
   user_prefs->logfile = logview->curlog->name;
 	user_prefs->fontsize = logview->fontsize;
-
 	if (restoration_complete)
 		prefs_save (client, user_prefs);
 }
@@ -268,16 +267,6 @@ die (GnomeClient *gnome_client, gpointer client_data)
 void
 logview_select_log (LogviewWindow *logview, Log *log)
 {
-	if (logview->curlog) {
-		if (logview->curlog->monitored != log->monitored) {
-			gboolean state;
-			GtkAction *action;
-			action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs");
-			state = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION(action));
-			gtk_toggle_action_set_active (GTK_TOGGLE_ACTION(action), !state);
-		}
-	}
-
 	logview->curlog = log;
 	logview_menus_set_state (logview);
 	init_calendar_data (logview);
@@ -475,7 +464,14 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
 	}
   
   gtk_tree_model_get (model, &iter, 0, &name, -1);
+	if (g_str_has_prefix (name, "<b>")) {
+		gchar *stripped;
+		stripped = g_strndup (name + 3, strlen(name)-7);
+		g_free (name);
+		name = stripped;
+	}
   log = logview_find_log_from_name (logview, name);
+	g_free (name);
   if (log != logview->curlog)
       logview_select_log (logview, log);
 }
@@ -495,9 +491,11 @@ loglist_find_logname (LogviewWindow *logview, gchar *logname)
 	do {
 		gtk_tree_model_get (model, &iter, 0, &name, -1);
 		if (g_ascii_strncasecmp (logname, name, 255) == 0) {
+			g_free (name);
 			path = gtk_tree_model_get_path (model, &iter);
-			return path;
+			return path;			
 		}
+		g_free (name);
 	} while (gtk_tree_model_iter_next (model, &iter));
 
 	return NULL;
