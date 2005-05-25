@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-24 08:14+0100\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-05-24 08:15+0000\n"
 "Last-Translator: Rhys Jones <rhys@sgwarnog.com>\n"
 "Language-Team: Cymraeg <gnome-cy@lists.linux.org.uk>\n"
@@ -40,7 +40,7 @@ msgstr "Chwiliad Geiriadur"
 msgid "Lookup words in an online dictionary"
 msgstr "Chwilio am eiriau mewn geiriadur ar-lein"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:649
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
 #: logview/logview.c:126
 msgid "_About"
 msgstr "_Ynghylch"
@@ -60,8 +60,8 @@ msgstr "_Hoffterau"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "Methu cysylltu â'r gweinydd"
 
@@ -78,7 +78,7 @@ msgstr ""
 "gwybodaeth, dict.org yw'r gweinydd rhagosodedig, a 2628 yw'r porth"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "Owain Green\n"
@@ -87,13 +87,13 @@ msgstr ""
 "Dafydd Tomos <l10n@da.fydd.org>\n"
 "Rhys Jones <rhys@sgwarnog.com>"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 msgid "A client for the MIT dictionary server."
 msgstr "Cleient ar gyfer gweinydd geiriadur MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
 #: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
-#: gdictsrc/gdict-pref-dialog.c:470 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
 #: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "Geiriadur"
@@ -114,156 +114,165 @@ msgstr ""
 "Nid yw'r gweinydd ar gael neu \n"
 "dydych chi ddim wedi cysylltu â'r Rhyngrwyd."
 
-#: gdictsrc/gdict-app.c:302
+#: gdictsrc/gdict-app.c:301
 msgid "Print Word Definition"
 msgstr "Argraffu Diffiniad Gair"
 
-#: gdictsrc/gdict-app.c:417
+#: gdictsrc/gdict-app.c:416
 msgid "Find"
 msgstr "Canfod"
 
-#: gdictsrc/gdict-app.c:427
+#: gdictsrc/gdict-app.c:426
 msgid "_Search for:"
 msgstr "_Chwilio am:"
 
-#: gdictsrc/gdict-app.c:497 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
+#: gdictsrc/gdict-pref-dialog.c:889
 msgid "Could not display help"
 msgstr "Methwyd dangos cymorth"
 
 #. Top
-#: gdictsrc/gdict-app.c:625
+#: gdictsrc/gdict-app.c:646
 msgid "_Dictionary"
 msgstr "_Geiriadur"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:631 gdictsrc/gdict-app.c:825
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "_Chwilio Am Air"
 
-#: gdictsrc/gdict-app.c:632
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "Chwilio am y gair yn y geiriadur"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:654
 msgid "_Print"
 msgstr "_Argraffu"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr "Argraffu'r diffiniad presennol"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:656
 msgid "_Close"
 msgstr "_Cau"
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:657
 msgid "Close the application"
 msgstr "Cau'r rhaglen"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:639 logview/logview.c:111
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 msgid "_Find..."
 msgstr "_Canfod..."
 
-#: gdictsrc/gdict-app.c:640
+#: gdictsrc/gdict-app.c:661
 msgid "Find a word in the text"
 msgstr "Canfod gair yn y testun"
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:662
 msgid "Find Ne_xt"
 msgstr "Canfod _Nesaf"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr "Canfod ble mae'r gair yn ymddangos nesaf"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:664
 msgid "P_references"
 msgstr "_Hoffterau"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:665
 msgid "Configure the application"
 msgstr "Cyflunio'r rhaglen"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:647 logview/logview.c:124
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr "_Cynnwys"
 
-#: gdictsrc/gdict-app.c:648
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr "Gweld cymorth y rhaglen"
 
-#: gdictsrc/gdict-app.c:650
+#: gdictsrc/gdict-app.c:677
 msgid "About this application"
 msgstr "Ynghylch y rhaglen"
 
-#: gdictsrc/gdict-app.c:655
+#: gdictsrc/gdict-app.c:682
 msgid "On a Dictionary Server"
 msgstr "Ar Weinydd Geiriadur"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr "Ar safle gwe"
 
-#: gdictsrc/gdict-app.c:663
+#: gdictsrc/gdict-app.c:690
 msgid "Cu_t"
 msgstr "_Torri"
 
-#: gdictsrc/gdict-app.c:664
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "Torri'r dewisiad"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "_Copïo"
 
-#: gdictsrc/gdict-app.c:666 logview/logview.c:107
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 msgid "Copy the selection"
 msgstr "Torri'r dewisiad"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:694
 msgid "_Paste"
 msgstr "_Gludo"
 
-#: gdictsrc/gdict-app.c:668
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "Gludo'r gludfwrdd"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr "Dewis _Popeth"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr "Dewis popeth"
 
-#: gdictsrc/gdict-app.c:675
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr "_Sillafiadau"
 
-#: gdictsrc/gdict-app.c:676
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr "Gweld sillafiadau amgen"
 
-#: gdictsrc/gdict-app.c:822
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "_Gair:"
 
-#: gdictsrc/gdict-app.c:850
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "Gair"
 
-#: gdictsrc/gdict-app.c:851 gdictsrc/gdict-app.c:853
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "Mewnosod Gair"
 
-#: gdictsrc/gdict-app.c:852
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "Mewnosodwch Air neu dewiswch un ô'r rhestr isod"
 
-#: gdictsrc/gdict-app.c:856
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "Chwiliad am Air"
 
@@ -283,99 +292,104 @@ msgstr "Ni chanfuwyd cydweddiad"
 msgid "String not found"
 msgstr "Ni allwyd canfod y llinyn"
 
-#: gdictsrc/gdict-defbox.c:571
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr "Rhagolwg diffiniad"
 
-#: gdictsrc/gdict-defbox.c:910 gdictsrc/gdict-speller.c:294
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 msgid "Error invoking query"
 msgstr "Gwall wrth redeg yr ymholiad"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr "G_weinydd Rhagosodedig"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "_Gweinydd:"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "Ail-osod y gweinydd i'r rhagosodedig"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "_Porth:"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr "Porth Rh_agosodedig"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "Ail-osod porth i'r rhagosod"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "Gweinydd"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "Cofnod Gweinydd"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "Mewnosodwch Enw'r Gweinydd"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "Porth"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "Cofnod Porth"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "Mewnosodwch Rif y Porth"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "_Cronfa ddata:"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr "S_trategaeth:"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+#, fuzzy
+msgid "Font:"
+msgstr "_Ffont:"
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr "Safle gwe"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr "Cyfeiriad Chwilio"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "Hoffterau Geiriadur"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "Safleoedd gwe"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "Chwilio pob cronfa ddata"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "Cronfa ddata"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "Enw'r Gronfa Ddata"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "Strategaeth Ragosodedig"
 
@@ -2098,23 +2112,23 @@ msgid "December"
 msgstr "Rhagfyr"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:269
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:288
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "Addaswyd Diwethaf:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:317
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:389
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -2162,17 +2176,18 @@ msgstr "Nid yw %s yn ffeil gofnod."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: allan o gof"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 msgid "Fin_d:"
 msgstr "_Canfod:"
 
-#: logview/logview-findbar.c:283
-msgid "Find Next"
-msgstr "Canfod Nesaf"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:279
+#, fuzzy
+msgid "_Previous"
 msgstr "Canfod y Blaenorol"
+
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
 
 #: logview/logview.c:93
 msgid "_Log"
@@ -2230,14 +2245,6 @@ msgstr "Dewis yr holl log"
 msgid "Find pattern in logs"
 msgstr "Canfod patrwm yn y logiau"
 
-#: logview/logview.c:114
-msgid "Bigger text size"
-msgstr ""
-
-#: logview/logview.c:116
-msgid "Smaller text size"
-msgstr ""
-
 #: logview/logview.c:118
 msgid "Normal text size"
 msgstr ""
@@ -2282,31 +2289,31 @@ msgstr "_Calendr"
 msgid "Show Calendar Log"
 msgstr "Dangos Cofnodion Calendr"
 
-#: logview/logview.c:627
+#: logview/logview.c:625
 msgid "Date"
 msgstr "Dyddiad"
 
-#: logview/logview.c:627
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "Enw Gwesteiwr"
 
-#: logview/logview.c:628
+#: logview/logview.c:626
 msgid "Process"
 msgstr "Proses"
 
-#: logview/logview.c:628
+#: logview/logview.c:626
 msgid "Message"
 msgstr "Neges"
 
-#: logview/logview.c:806
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "Agor ffeil gofnod newydd"
 
-#: logview/logview.c:1143
+#: logview/logview.c:1140
 msgid "There was an error displaying help."
 msgstr "'Roedd yna wall wrth ddangos y cymorth."
 
-#: logview/logview.c:1161
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (yn monitro) - %s"
@@ -2331,6 +2338,9 @@ msgstr "Manylion _Cofnod"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Find Next"
+#~ msgstr "Canfod Nesaf"
 
 #~ msgid "Lookup done"
 #~ msgstr "Chwiliad ar ben"
@@ -2934,9 +2944,6 @@ msgstr "%B %e %X"
 
 #~ msgid "Action Toolbar"
 #~ msgstr "Bar Gweithrediadau"
-
-#~ msgid "_Font:"
-#~ msgstr "_Ffont:"
 
 #~ msgid "_Text to copy:"
 #~ msgstr "_Testun i'w gopïo:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-28 07:13+0100\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-03-21 21:23+0330\n"
 "Last-Translator: Roozbeh Pournader <roozbeh@farsiweb.info>\n"
 "Language-Team: Persian <farsi@lists.sharif.edu>\n"
@@ -26,12 +26,12 @@ msgstr "مراجعه به لغت‌نامه"
 msgid "Lookup words in an online dictionary"
 msgstr "گشتن به دنبال لغات در یک لغت‌نامه‌ی اینترنتی"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 msgid "_About"
 msgstr "_درباره"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 msgid "_Help"
 msgstr "_راهنما"
 
@@ -46,8 +46,8 @@ msgstr "_ترجیحات"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "اتصال به کارگزار ممکن نیست"
 
@@ -64,20 +64,21 @@ msgstr ""
 "است که سرور پیش‌فرض dict.org و درگاه ۲۶۲۸ است."
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "روزبه پورنادر <roozbeh@farsiweb.info>\n"
 "بهنام اسفهبد <behnam@farsiweb.info>\n"
 "سارا خلعت‌بری <sara@bamdad.org>"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 msgid "A client for the MIT dictionary server."
 msgstr "کارگیری برای کارگزارِ لغت‌نامه‌ی MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "لغت‌نامه"
 
@@ -109,139 +110,153 @@ msgstr "پیدا کردن"
 msgid "_Search for:"
 msgstr "_جستجو به دنبال:"
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:313
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
+#: gdictsrc/gdict-pref-dialog.c:889
 msgid "Could not display help"
 msgstr "نمایش راهنما ممکن نیست."
 
+#. Top
+#: gdictsrc/gdict-app.c:646
+msgid "_Dictionary"
+msgstr "لغت‌نامه"
+
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "_گشتن به دنبال کلمه"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "گشتن به دنبال کلمه در لغت‌نامه"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 msgid "_Print"
 msgstr "_چاپ"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr "چاپ معنی فعلی "
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 msgid "_Close"
 msgstr "_بستن"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 msgid "Close the application"
 msgstr "بستن برنامه"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 msgid "_Find..."
 msgstr "_پیدا کردن..."
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 msgid "Find a word in the text"
 msgstr "پیدا کردن یک کلمه در متن"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 msgid "Find Ne_xt"
 msgstr "پیدا کردن ب_عدی"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr "پیدا کردن مورد بعدی وقوع کلمه"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 msgid "P_references"
 msgstr "_ترجیحات"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 msgid "Configure the application"
 msgstr "پیکربندی برنامه"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr "_محتویات"
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr "نمایش راهنمای این برنامه"
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 msgid "About this application"
 msgstr "درباره‌ی این برنامه"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 msgid "On a Dictionary Server"
 msgstr "در یک کارگزار لغت‌نامه"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr "در یک پایگاه وب"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 msgid "Cu_t"
 msgstr "_برش"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "برش انتخاب"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "_نسخه‌برداری"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 msgid "Copy the selection"
 msgstr "نسخه‌برداری انتخاب"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 msgid "_Paste"
 msgstr "_چسباندن"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "چسباندن تخته‌گیره"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr "انتخاب _همه"
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr "انتخاب همه‌چیز"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr "ه_جی‌ها"
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr "مشاهده‌ی هجی‌های معادل"
 
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "_کلمه:"
 
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "کلمه"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "مدخل کلمه"
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "کلمه‌ای وارد کرده یا از فهرست زیر انتخاب کنید"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "گشتن به دنبال یک لغت"
 
@@ -249,125 +264,127 @@ msgstr "گشتن به دنبال یک لغت"
 msgid "Dictionary word entry"
 msgstr "مدخل کلمه‌ی لغت‌نامه"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 msgid "Looking up word..."
 msgstr "در حال گشتن به دنبال کلمه..."
 
-#: gdictsrc/gdict-defbox.c:100
-msgid "Lookup done"
-msgstr "گشتن تمام شد"
-
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "موردی پیدا نشد"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 msgid "String not found"
 msgstr "رشته پیدا نشد"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr "پیش‌نمایش معنی"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 msgid "Error invoking query"
 msgstr "خطا در احضار پرس‌وجو"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr "کارگزار پیش‌_فرض"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "_کارگزار:"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "برگرداندن کارگزار به پیش‌فرض"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "در_گاه:"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr "درگاهِ پیش‌فر_ض"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "برگرداندنِ درگاه به پیش‌فرض"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "کارگزار"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "مدخل کارگزار"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "نام کارگزار را وارد کنید"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "درگاه"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "مدخل درگاه"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "نام درگاه را وارد کنید"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "پایگاه _‌داده:"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr "راهکار:"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+#, fuzzy
+msgid "Font:"
+msgstr "قلم:"
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr "پایگاه وب"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr "نشانی جست‌وجو"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "ترجیحات لغت‌نامه"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "پایگاه‌های وب"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "جستجوی همه‌ی پایگاه‌داده‌ها"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "پایگاه‌داده"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "نام پایگاه‌داده"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "راهکار پیش‌فرض"
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:114
+#, fuzzy
+msgid "Spellings"
+msgstr "ه_جی‌ها"
+
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr "غلط‌یابی..."
-
-#: gdictsrc/gdict-speller.c:243
-msgid "Spell check done"
-msgstr "غلط‌یابی انجام شد"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -394,15 +411,17 @@ msgstr "پایگاه‌داده‌ای که در کارگزار لغت‌نام�
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers"
-msgstr "کارگزار لغت‌نامه‌ای که باید به آن متصل شد. کارگزار پیش‌فرض dict.org است. "
-"برای گرفتن جزئیات درباره‌ی کارگزار‌های دیگر http://www.dict.org را ببینید"
+msgstr ""
+"کارگزار لغت‌نامه‌ای که باید به آن متصل شد. کارگزار پیش‌فرض dict.org است. برای "
+"گرفتن جزئیات درباره‌ی کارگزار‌های دیگر http://www.dict.org را ببینید"
 
 #: gdictsrc/gdict.schemas.in.h:6
 msgid ""
 "The name of the individual database to use in the dictionary server. ! "
 "specifies that gnome-dictionary should search all databases in a given server"
-msgstr "نام پایگاه‌داده‌ی خاص در کارگزار لغت‌نامه که استفاده می‌شود.!"
-"مشخص می‌کند که لغت‌نامه‌ی گنوم باید همه‌ی پایگاه داده‌ها را در کارگزار داده شده جستجو کند"
+msgstr ""
+"نام پایگاه‌داده‌ی خاص در کارگزار لغت‌نامه که استفاده می‌شود.!مشخص می‌کند که "
+"لغت‌نامه‌ی گنوم باید همه‌ی پایگاه داده‌ها را در کارگزار داده شده جستجو کند"
 
 #: gdictsrc/gdict.schemas.in.h:7
 msgid "The port number to connect to. The default port is 2628."
@@ -418,16 +437,13 @@ msgid ""
 "the dictionary server supports. The default strategy is 'lev' - Match words "
 "within Levenshtein distance one"
 msgstr ""
-" راهکار جستجوی مورد استفاده، که به راهکار جستجویی که کارگزار لغت‌نامه پشتیبانی می‌کند بستگی دارد. راهکار پیش‌فرض «lev» است - "
-"تطبیق کلمات با فاصله لونشتاین"
+" راهکار جستجوی مورد استفاده، که به راهکار جستجویی که کارگزار لغت‌نامه "
+"پشتیبانی می‌کند بستگی دارد. راهکار پیش‌فرض «lev» است - تطبیق کلمات با فاصله "
+"لونشتاین"
 
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "استفاده از جستجوی هوشمند   "
-
-#: gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr "لغت‌نامه‌ی گنوم"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -441,8 +457,9 @@ msgstr "قالب‌بندی دیسک‌های نرم"
 msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr "۰  برای قالب‌بندی سریع، ۱ برای استاندارد (یک قالب‌بندی سطح پایین اضافه می‌کند) و بالاُخره "
-"۲ برای قالب‌بندی کامل (پویش بلوک‌های بد را اضافه می‌کند)."
+msgstr ""
+"۰  برای قالب‌بندی سریع، ۱ برای استاندارد (یک قالب‌بندی سطح پایین اضافه می‌کند) "
+"و بالاُخره ۲ برای قالب‌بندی کامل (پویش بلوک‌های بد را اضافه می‌کند)."
 
 #: gfloppy/gfloppy.schemas.in.h:2
 msgid "ADVANCED USERS ONLY - Default backend for FAT formatting"
@@ -522,9 +539,10 @@ msgid ""
 "Unable to write to the floppy.\n"
 "\n"
 "Please confirm that it is not write-protected."
-msgstr "نمی‌توان بر دیسک نرم نوشت.\n"
+msgstr ""
+"نمی‌توان بر دیسک نرم نوشت.\n"
 "\n"
-"لطفاً اطمینان حاصل کنید که دیسک در برابرِ نوشتن حفاظت شده نیست." 
+"لطفاً اطمینان حاصل کنید که دیسک در برابرِ نوشتن حفاظت شده نیست."
 
 #: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
 #, c-format
@@ -541,7 +559,7 @@ msgstr ""
 "دسترسی به دیسک نرم ممکن نیست.\n"
 "\n"
 "لطفاً اطمینان حاصل کنید که دیسک در دستگاه است \n"
-"و درب دیسک گردان بسته است." 
+"و درب دیسک گردان بسته است."
 
 #: gfloppy/src/fdformat.c:110
 #, c-format
@@ -553,7 +571,6 @@ msgstr ""
 "خطای عام در دسترسی به دستگاه دیسک نرم %s.\n"
 "\n"
 "کد خطا %s:%Id"
-
 
 #: gfloppy/src/fdformat.c:133
 #, c-format
@@ -594,7 +611,8 @@ msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
-msgstr "خطای عام در دسترسی به دستگاه دیسک نرم %s.\n"
+msgstr ""
+"خطای عام در دسترسی به دستگاه دیسک نرم %s.\n"
 "\n"
 " کد خطا %s"
 
@@ -630,7 +648,6 @@ msgstr ""
 "\n"
 "%s (%Id)"
 
-
 #: gfloppy/src/gfloppy.c:355
 msgid "Abnormal child process termination."
 msgstr "پایان غیرطبیعی فراروند  فرزند."
@@ -645,7 +662,8 @@ msgstr "خطا هنگام ایجاد فرمان mbadblocks:%s."
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
-msgstr "برنامه‌ی بررسی بلوک‌های بد (mbadblocks) خطاهای زیر را گزارش کرد:\n"
+msgstr ""
+"برنامه‌ی بررسی بلوک‌های بد (mbadblocks) خطاهای زیر را گزارش کرد:\n"
 "%s."
 
 #: gfloppy/src/gfloppy.c:435
@@ -687,8 +705,9 @@ msgid ""
 "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
-msgstr "<small><i><b>تذکر</b>: برنامه‌ی mbadblocks روی این سیستم نصب نشده است. "
-"برای اجرای قالب بندی کامل DOS، (fat) نصب این برنامه لازم است."
+msgstr ""
+"<small><i><b>تذکر</b>: برنامه‌ی mbadblocks روی این سیستم نصب نشده است. برای "
+"اجرای قالب بندی کامل DOS، (fat) نصب این برنامه لازم است."
 
 #: gfloppy/src/gfloppy2.glade.h:4
 msgid "DOS (FAT)"
@@ -780,7 +799,8 @@ msgstr "نمی‌توان دستگاه %s را باز کرد، ادامه‌ی �
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
-msgstr "دستگاه %s قطع است.\n"
+msgstr ""
+"دستگاه %s قطع است.\n"
 "برای ادامه لطفاً دستگاه را وصل کنید."
 
 #: gfloppy/src/main.c:251 gfloppy/src/main.c:314
@@ -789,8 +809,9 @@ msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
 "be possible.\n"
 "Contact your system administrator about getting write permissions."
-msgstr "شما اجازه‌های مناسب برای نوشتن بر %s را ندارید، قالب بندی ممکن نیست.\n "
-"برای کسب اجازه‌های نوشتن با مدیر سیستمتان تماس بگیرید."
+msgstr ""
+"شما اجازه‌های مناسب برای نوشتن بر %s را ندارید، قالب بندی ممکن نیست.\n"
+" برای کسب اجازه‌های نوشتن با مدیر سیستمتان تماس بگیرید."
 
 #: gfloppy/src/main.c:258 gfloppy/src/main.c:322
 msgid "Cannot initialize device"
@@ -833,7 +854,8 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"دیسک‌نرم قالب‌بندی شد، ولی‎ <b>%Id بلوک بد</b> (از ٪Id تا) یافته و علامت گذاری شدند."
+"دیسک‌نرم قالب‌بندی شد، ولی‎ <b>%Id بلوک بد</b> (از ٪Id تا) یافته و علامت گذاری "
+"شدند."
 
 #: gfloppy/src/progress.c:125
 msgid "Floppy formatted successfully."
@@ -986,7 +1008,9 @@ msgstr "یک شاخه انتخاب کنید"
 msgid ""
 "Unable to clear the temporary directory:\n"
 "%s"
-msgstr "نمی‌توان شاخه‌ی موقتی را پاک کرد:\n%s"
+msgstr ""
+"نمی‌توان شاخه‌ی موقتی را پاک کرد:\n"
+"%s"
 
 #: gnome-screenshot/screenshot-save.c:78
 msgid ""
@@ -1016,7 +1040,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "پرونده‌ی «%s» از قبل وجود دارد. آیا می‌خواهید آن را جایگزین کنید؟"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "_جای‌گزینی"
 
@@ -1219,18 +1243,18 @@ msgid ""
 "selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
-msgstr ""
-
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
-msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
 msgstr ""
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
@@ -1257,117 +1281,117 @@ msgid ""
 "command when performing simple file name searches."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "نمی‌توان راهنمای نوشتار را باز کرد"
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "آیا مطمئنید که می‌خواهید %Id نوشتار را باز کنید؟"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "این کار باعث باز شدن %Id پنجره‌ی مجزا خواهد شد."
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "نمی‌توان نوشتار «%s» را باز کرد."
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "نمی‌توان پوشه‌ی «%s» را باز کرد."
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr "مدیر پرونده‌های ناتیلوس در حال اجرا نیست."
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "نوشتار وجود ندارد."
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "هیچ‌کدام از نمایشگرهای نصب‌شده قابلیت نمایش نوشتار را ندارند."
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "آیا مطمئنید که می‌خواهید %Id پرونده را باز کنید؟"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "نمی‌توان پوشه‌ی «%s» را باز کرد."
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr "مدیر پرونده‌های ناتیلوس در حال اجرا نیست."
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "نمی‌توان «%s» را به زباله‌دان انداخت."
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "آیا می‌خواهید «%s» را برای همیشه حذف کنید؟"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "زباله‌دان قابل دسترسی نیست. نمی‌توان «%s» را به زباله‌دان انداخت."
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "نمی‌توان «%s» را حذف کرد."
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "جابه‌جایی «%s» شکست خورد: %s. "
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "حذف «%s» شکست خورد: %s. "
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "ذخیره‌ی نتایج جستجو به نام..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "نمی‌توان نوشتار را ذخیره کرد."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "نامی برای نوشتار انتخاب نکرده‌اید."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "نمی‌توان نوشتار «%s» را در «%s» ذخیره کرد."
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "نوشتار «%s» از قبل وجود دارد. آیا می‌خواهید آن را جایگزین کنید؟"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "اگر پرونده‌ موجودی را جایگزین کنید، محتویات آن رونویسی خواهد شد."
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "نام نوشتاری که انتخاب کرده‌اید یک پوشه است."
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "شاید اجازه‌های نوشتن بر نوشتار را ندارید."
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1379,25 +1403,25 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:549
 #, fuzzy
 msgid "today at %-I:%M %p"
 msgstr "امروز در"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:551
 #, fuzzy
 msgid "yesterday at %-I:%M %p"
 msgstr "دیروز در "
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr "پیوند (شکسته)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr "پیوند به %s"
@@ -1482,88 +1506,89 @@ msgstr "انداختن در زباله‌دان"
 msgid "_Save Results As..."
 msgstr "_ذخیره‌ی نتایج به نام..."
 
-#: gsearchtool/gsearchtool.c:245 gsearchtool/gsearchtool.c:262
+#: gsearchtool/gsearchtool.c:249 gsearchtool/gsearchtool.c:266
 #, fuzzy
 msgid "A locate database has probably not been created."
 msgstr "احتمالاً پایگاه داده‌ی مکان‌یابی ایجاد نشده است."
 
-#: gsearchtool/gsearchtool.c:358
+#: gsearchtool/gsearchtool.c:369
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:724 gsearchtool/gsearchtool.c:753
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "هیچ پرونده‌ای پیدا نشد"
 
-#: gsearchtool/gsearchtool.c:746
+#: gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr "(متوقف شده)"
 
-#: gsearchtool/gsearchtool.c:752
+#: gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr "هیچ پرونده‌ای پیدا نشد"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:789
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%Id پرونده پیدا شد"
 
-#: gsearchtool/gsearchtool.c:761 gsearchtool/gsearchtool.c:799
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%Id پرونده پیدا شد"
 
-#: gsearchtool/gsearchtool.c:778 gsearchtool/gsearchtool.c:1037
-#: gsearchtool/gsearchtool.c:1123 gsearchtool/gsearchtool.c:2793
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "جستجوی پرونده‌ها"
 
-#: gsearchtool/gsearchtool.c:871
+#: gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1123
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "در حال جستجو..."
 
-#: gsearchtool/gsearchtool.c:1146
+#: gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr "تنظیم متن گزینه‌ی جستجوی «نام حاوی»"
 
-#: gsearchtool/gsearchtool.c:1147
+#: gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "تنظیم متن گزینه‌ی جستجوی «جستجو در پوشه»"
 
-#: gsearchtool/gsearchtool.c:1148
+#: gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "مرتب سازی پرونده‌ها با یکی از این گزینه‌ها: نام،‌ پوشه، اندازه، نوع، یا تاریخ "
+msgstr ""
+"مرتب سازی پرونده‌ها با یکی از این گزینه‌ها: نام،‌ پوشه، اندازه، نوع، یا تاریخ "
 
-#: gsearchtool/gsearchtool.c:1149
+#: gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
 msgstr "نزولی کردن ترتیب مرتب سازی، پیش‌فرض صعودی است."
 
-#: gsearchtool/gsearchtool.c:1150
+#: gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr "شروع خودکار جستجو"
 
-#: gsearchtool/gsearchtool.c:1156
+#: gsearchtool/gsearchtool.c:1188
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "انتخاب گزینه‌ی جستجوی «%s»"
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1191
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "انتخاب و تنظیم گزینه‌ی جستجوی «%s»"
 
-#: gsearchtool/gsearchtool.c:1266
+#: gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1562
+#: gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1571,174 +1596,178 @@ msgstr ""
 "\n"
 "...تعداد خطاها بیش از آن است که نمایش داده شوند..."
 
-#: gsearchtool/gsearchtool.c:1576
+#: gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
-"نتایج جستجو ممکن است نامعتبر باشد.  در حین اجرای این جستجو خطاهايی به وجود آمدند."
+"نتایج جستجو ممکن است نامعتبر باشد.  در حین اجرای این جستجو خطاهايی به وجود "
+"آمدند."
 
-#: gsearchtool/gsearchtool.c:1588 gsearchtool/gsearchtool.c:1628
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 msgid "Show more _details"
 msgstr "نمایش _جزئیات بیشتر"
 
-#: gsearchtool/gsearchtool.c:1616
+#: gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
-"نتایج جستجو ممکن است نامعتبر باشد.  آیا می‌خواهید امکان جستجوی سریع را از کار بیاندازید؟"
+"نتایج جستجو ممکن است نامعتبر باشد.  آیا می‌خواهید امکان جستجوی سریع را از کار "
+"بیاندازید؟"
 
-#: gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr "از کار انداختن جستجوی _سریع"
 
-#: gsearchtool/gsearchtool.c:1666
+#: gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1693
+#: gsearchtool/gsearchtool.c:1731
 msgid "Error parsing the search command."
 msgstr "خطا در تجزیه فرمان جستجو."
 
-#: gsearchtool/gsearchtool.c:1726
+#: gsearchtool/gsearchtool.c:1764
 msgid "Error running the search command."
 msgstr "خطا در اجرای فرمان جستجو.  "
 
-#: gsearchtool/gsearchtool.c:1873
+#: gsearchtool/gsearchtool.c:1911
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "یک مقدارمتنی برای گزینه‌ی جستجوی «%s» وارد کنید."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1878
+#: gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "«%s» برحسب %s"
 
-#: gsearchtool/gsearchtool.c:1880
+#: gsearchtool/gsearchtool.c:1918
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "مقداری در %s برای گزینه‌ی جستجوی «%s» وارد کنید."
 
-#: gsearchtool/gsearchtool.c:1939
+#: gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Remove \"%s\""
 msgstr "حذف «%s»"
 
-#: gsearchtool/gsearchtool.c:1940
+#: gsearchtool/gsearchtool.c:1978
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "برای حذف گزینه‌ی جستجوی «%s» کلیک کنید."
 
-#: gsearchtool/gsearchtool.c:2033
+#: gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr "گزینه‌‌های مو_جود:"
 
-#: gsearchtool/gsearchtool.c:2062
+#: gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr "گزینه‌‌های موجود"
 
-#: gsearchtool/gsearchtool.c:2063
+#: gsearchtool/gsearchtool.c:2101
 #, fuzzy
 msgid "Select a search option from the drop-down list."
 msgstr "گزینه جستجویی را از فهرست نمایشِ طوماری انتخاب کنید."
 
-#: gsearchtool/gsearchtool.c:2075
+#: gsearchtool/gsearchtool.c:2113
 msgid "Add search option"
 msgstr "افزودن گزینه جستجو"
 
-#: gsearchtool/gsearchtool.c:2076
+#: gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr "برای افزودن گزینه‌ی جستجوی در دسترس کلیک کنید. "
 
-#: gsearchtool/gsearchtool.c:2097
+#: gsearchtool/gsearchtool.c:2135
 msgid "S_earch results:"
 msgstr "_نتایج جستجو:"
 
-#: gsearchtool/gsearchtool.c:2133
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr "نمای فهرست"
 
-#: gsearchtool/gsearchtool.c:2183
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "نام"
 
-#: gsearchtool/gsearchtool.c:2203
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "پوشه"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "اندازه"
 
-#: gsearchtool/gsearchtool.c:2224
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "نوع"
 
-#: gsearchtool/gsearchtool.c:2234
+#: gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr "تاریخ تغییر"
 
-#: gsearchtool/gsearchtool.c:2602
+#: gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr "_نام حاوی:"
 
-#: gsearchtool/gsearchtool.c:2616 gsearchtool/gsearchtool.c:2617
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2617
+#: gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr "نام حاوی"
 
-#: gsearchtool/gsearchtool.c:2623
+#: gsearchtool/gsearchtool.c:2661
 msgid "_Look in folder:"
 msgstr "_گشتن در پوشه"
 
-#: gsearchtool/gsearchtool.c:2629
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "مرور"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2672
 msgid "Look in folder"
 msgstr "گشتن در پوشه"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2672
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "پوشه یا دستگاهی که می‌خواهید جستجو از آن شروع شود را انتخاب کنید."
 
-#: gsearchtool/gsearchtool.c:2645
-msgid "Show more _options"
+#: gsearchtool/gsearchtool.c:2683
+#, fuzzy
+msgid "Select more _options"
 msgstr "نمایش _گزینه‌های بیشتر"
 
-#: gsearchtool/gsearchtool.c:2654
-msgid "Show more options"
+#: gsearchtool/gsearchtool.c:2692
+#, fuzzy
+msgid "Select more options"
 msgstr "نمایش گزینه‌های بیشتر"
 
-#: gsearchtool/gsearchtool.c:2654
+#: gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr ".برای باز یا تاکردن گزینه‌های موجود کلیک کنید  "
 
-#: gsearchtool/gsearchtool.c:2678
+#: gsearchtool/gsearchtool.c:2716
 msgid "Click to display the help manual."
 msgstr ".برای نمایش راهنما کلیک کنید"
 
-#: gsearchtool/gsearchtool.c:2686
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to close \"Search for Files\"."
 msgstr ".برای بستن«جستجو برای پرونده‌ها»کلیک کنید"
 
-#: gsearchtool/gsearchtool.c:2712
+#: gsearchtool/gsearchtool.c:2750
 msgid "Click to perform a search."
 msgstr "برای انجام جستجو کلیک کنید."
 
-#: gsearchtool/gsearchtool.c:2713
+#: gsearchtool/gsearchtool.c:2751
 msgid "Click to stop a search."
 msgstr "برای توقف جستجو کلیک کنید. "
 
-#: gsearchtool/gsearchtool.c:2813
+#: gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr "نمی‌توان بونوبو را راه‌اندازی کرد."
 
@@ -1766,7 +1795,7 @@ msgstr "ا_ضافه کردن"
 msgid "Add an action"
 msgstr "اضافه کردن یک عمل"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 msgid "_Edit"
 msgstr "_ویرایش"
 
@@ -1870,7 +1899,8 @@ msgid ""
 "Action that will be executed if all previous regexps. are matched. This is "
 "executed by a system command: system (action)."
 msgstr ""
-"عملی که اگر تمام عبارات منظم قبلی منطبق باشند انجام می‌شود. این عمل با یک فرمان سیستم انجام میشود: سیستم (عمل)."
+"عملی که اگر تمام عبارات منظم قبلی منطبق باشند انجام می‌شود. این عمل با یک "
+"فرمان سیستم انجام میشود: سیستم (عمل)."
 
 #: logview/actions.c:792
 msgid "_Description:"
@@ -1890,21 +1920,18 @@ msgid ""
 "description: [%s]\n"
 "action: [%s]\n"
 msgstr ""
-"برچسب: [%s]\n "
-"نام ثبت:‌[%s]\n"
+"برچسب: [%s]\n"
+" نام ثبت:‌[%s]\n"
 "فرآیند: [%s]\n"
 "پیغام: [%s]\n"
 "شرح: [%s]\n"
 "عمل: [%s]\n"
 
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "تقویم"
-
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "نمی‌توان پایگاه داده‌ی عبارت منظم <%s>  را باز کرد! عملیات باز کردن شکست خورد."
+msgstr ""
+"نمی‌توان پایگاه داده‌ی عبارت منظم <%s>  را باز کرد! عملیات باز کردن شکست خورد."
 
 #: logview/desc_db.c:176
 #, c-format
@@ -2007,29 +2034,30 @@ msgid "December"
 msgstr "دسامبر"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "آخرین تغییر:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%Od %B"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-msgid "The file could not be opened"
+#, fuzzy
+msgid "One file or more could not be opened"
 msgstr "نمی‌توان پرونده را باز کرد"
 
 #: logview/logrtns.c:216
@@ -2040,166 +2068,172 @@ msgstr "نمی‌توان پرونده‌ی ثبتی را بازکرد!\n"
 msgid "Not enough memory!\n"
 msgstr "حافظه کافی نیست!\n"
 
-#: logview/logrtns.c:275
-#, c-format
+#: logview/logrtns.c:276
+#, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
-"%s قابل خواندن به وسیله‌ی کاربر نیست. یا برنامه با کاربر ریشه اجرا کنید یا از مدیر سیستم بخواهید که اجازه‌های پرونده را عوض کند."
+"%s قابل خواندن به وسیله‌ی کاربر نیست. یا برنامه با کاربر ریشه اجرا کنید یا از "
+"مدیر سیستم بخواهید که اجازه‌های پرونده را عوض کند."
 
-#: logview/logrtns.c:280
+#: logview/logrtns.c:281
 #, c-format
 msgid "%s is too big."
 msgstr "%s خیلی بزرگ است."
 
-#: logview/logrtns.c:284
+#: logview/logrtns.c:285
 #, c-format
 msgid "%s could not be opened."
 msgstr "نمی‌توان %s را باز کرد."
 
-#: logview/logrtns.c:325 logview/logrtns.c:336
+#: logview/logrtns.c:326 logview/logrtns.c:337
 #, c-format
 msgid "%s not a log file."
 msgstr "%s پرونده‌ی ثبتی نیست."
 
-#: logview/logrtns.c:587 logview/logrtns.c:611
+#: logview/logrtns.c:588 logview/logrtns.c:612
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: کمبود حافظه"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 msgid "Fin_d:"
 msgstr "_پیدا کردن"
 
-#: logview/logview-findbar.c:283
-msgid "Find Next"
-msgstr "پیدا کردن بعدی"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:279
+#, fuzzy
+msgid "_Previous"
 msgstr "پیدا کردن قبلی"
 
-#: logview/logview.c:85
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
+
+#: logview/logview.c:93
 msgid "_Log"
 msgstr "_ثبت"
 
-#: logview/logview.c:87
+#: logview/logview.c:95
 msgid "_View"
 msgstr "_نما"
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "_Open..."
 msgstr "_باز کردن..."
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "Open a log from file"
 msgstr "باز کردن یک ثبت از فایل"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "_Properties"
 msgstr "_ویژگی‌ها"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "نمایش ویژگی‌های ثبت"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close"
 msgstr "بستن"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close this log"
 msgstr "بستن این ثبت"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "_Quit"
 msgstr "_ترک"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "Quit the log viewer"
 msgstr "ترک نمایشگر ثبت "
 
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "نسخه‌برداری"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select All"
 msgstr "انتخاب همه"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select the entire log"
 msgstr "انتخاب سراسر ثبت"
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr "پیدا کردن الگو در ثبت‌ها"
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 msgid "Collapse _All"
 msgstr "تا کردن _همه"
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr "تا کردن همه‌ی سطرها"
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr "باز کردن محتویات راهنمای نمایشگر ثبت "
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr "نشان دادن محاوره‌ی درباره‌ی نمایشگر ثبت"
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 msgid "_Monitor"
 msgstr "_پایش"
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr "پایش ثبت جاری"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Ca_lendar"
 msgstr "ت_قویم"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "نمایش ثبت تقویم"
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "جزئیات _ورودی"
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "نمایش جزئیات ورودی"
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "تاریخ"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "نام میزبان"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr "فراروند"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "پیغام"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "باز کردن پرونده‌ی ثبتی جدید "
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 msgid "There was an error displaying help."
 msgstr "درنمایش راهنما خطایی به وجود آمد."
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (پایش شده) - %s"
@@ -2222,6 +2256,27 @@ msgstr "جزئیات ورودی"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%Od %B %X"
+
+#~ msgid "Lookup done"
+#~ msgstr "گشتن تمام شد"
+
+#~ msgid "Spell check done"
+#~ msgstr "غلط‌یابی انجام شد"
+
+#~ msgid "Gnome Dictionary"
+#~ msgstr "لغت‌نامه‌ی گنوم"
+
+#~ msgid "Calendar"
+#~ msgstr "تقویم"
+
+#~ msgid "Find Next"
+#~ msgstr "پیدا کردن بعدی"
+
+#~ msgid "_Entry Detail"
+#~ msgstr "جزئیات _ورودی"
+
+#~ msgid "Show Entry Detail"
+#~ msgstr "نمایش جزئیات ورودی"
 
 #~ msgid "Search Rules Menu"
 #~ msgstr "منوی قوانین جستجو"
@@ -2252,9 +2307,6 @@ msgstr "%Od %B %X"
 #, fuzzy
 #~ msgid "Select Size At Most"
 #~ msgstr "اندازه‌ی حداکثر (کیلوبایت)"
-
-#~ msgid "_Dictionary"
-#~ msgstr "لغت‌نامه"
 
 #~ msgid "_Lookup"
 #~ msgstr "جستجو"
@@ -2495,9 +2547,6 @@ msgstr "%Od %B %X"
 #, fuzzy
 #~ msgid "Character code: (Unicode) U+%04lX, (%s) 0x%s"
 #~ msgstr "کد نویسه: (یونی‌کد) U+%04lX"
-
-#~ msgid "_Font:"
-#~ msgstr "قلم:"
 
 #~ msgid "_Text to copy:"
 #~ msgstr "متن برای نسخه‌برداری:"

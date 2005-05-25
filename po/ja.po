@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 10:11-0500\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-03-04 18:26+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -30,12 +30,12 @@ msgstr "辞書検索"
 msgid "Lookup words in an online dictionary"
 msgstr "オンライン辞書で単語を検索します"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 msgid "_About"
 msgstr "情報(_A)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
@@ -50,8 +50,8 @@ msgstr "設定(_P)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "サーバに接続できません"
 
@@ -68,7 +68,7 @@ msgstr ""
 "考のために、デフォルトのサーバは dict.org で、ポートは 2628 です。"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <aihana@gnome.gr.jp>\n"
@@ -79,13 +79,14 @@ msgstr ""
 "Eiichiro ITANI <emu@ceres.dti.ne.jp>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 msgid "A client for the MIT dictionary server."
 msgstr "MIT 辞書サーバのクライアントです。"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "辞書"
 
@@ -118,143 +119,152 @@ msgid "_Search for:"
 msgstr "検索の対象(_S):"
 
 #: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-pref-dialog.c:889
 msgid "Could not display help"
 msgstr "ヘルプを表示できませんでした"
 
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:646
 msgid "_Dictionary"
 msgstr "辞書(_D)"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "単語の検索(_L)"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "辞書で単語を検索します"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 msgid "_Print"
 msgstr "印刷(_P)"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr "この意味定義を印刷します"
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 msgid "Close the application"
 msgstr "アプリケーションを閉じます"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 msgid "_Find..."
 msgstr "検索(_F).."
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 msgid "Find a word in the text"
 msgstr "テキストから単語を検索します"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 msgid "Find Ne_xt"
 msgstr "次の検索(_X)"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr "単語が次に現れる場所を探します"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 msgid "P_references"
 msgstr "設定(_R)"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 msgid "Configure the application"
 msgstr "アプリケーションを設定します"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr "目次(_C)"
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr "このアプリケーションのヘルプを表示します"
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 msgid "About this application"
 msgstr "このアプリケーションの情報を表示します"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 msgid "On a Dictionary Server"
 msgstr "辞書サーバから"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr "ウェブ・サイトから"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 msgid "Cu_t"
 msgstr "切り取り(_T)"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "選択範囲を切り取ります"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "コピー(_C)"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 msgid "Copy the selection"
 msgstr "選択範囲をコピーします"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 msgid "_Paste"
 msgstr "貼り付け(_P)"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "クリップボードから貼り付けます"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr "全て選択(_A)"
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr "全て選択します"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr "スペル(_S)"
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr "他のスペルを表示します"
 
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "単語(_W) : "
 
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "単語"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "単語のエントリ"
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "単語を入力するか、下の一覧から選択して下さい"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "単語の検索"
 
@@ -262,125 +272,126 @@ msgstr "単語の検索"
 msgid "Dictionary word entry"
 msgstr "辞書の単語のエントリ"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 msgid "Looking up word..."
 msgstr "単語の検索中..."
 
-#: gdictsrc/gdict-defbox.c:100
-msgid "Lookup done"
-msgstr "検索完了"
-
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "一致するものは見つかりません"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 msgid "String not found"
 msgstr "文字が見つかりません"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr "定義のプレビュー"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 msgid "Error invoking query"
 msgstr "問い合わせ中にエラー"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr "デフォルトのサーバ(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "サーバ(_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "サーバをデフォルトにリセット"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "ポート(_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr "デフォルトのポート(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "ポートをデフォルトにリセット"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "サーバ"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "サーバ・エントリ"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "サーバ名を入力して下さい"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "ポート"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "ポート・エントリ"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "ポート番号を入力して下さい"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "データベース(_D):"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr "検索方法(_E):"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+msgid "Font:"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr "ウェブ・サイト"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr "アドレス"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "辞書の設定"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "ウェブ・サイト"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "全てのデーターベースを検索する"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "データベース"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "データベース名"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "デフォルトの検索方法"
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:114
+#, fuzzy
+msgid "Spellings"
+msgstr "スペル(_S)"
+
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr "スペルチェック中..."
-
-#: gdictsrc/gdict-speller.c:243
-msgid "Spell check done"
-msgstr "スペルチェック完了"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -439,10 +450,6 @@ msgstr ""
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "スマート検索を有効にする"
-
-#: gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr "GNOME 辞書"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1053,7 +1060,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "ファイル \"%s\" は既に存在します。置き換えてもよろしいですか？"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "置き換える(_R)"
 
@@ -1285,23 +1292,24 @@ msgstr ""
 "検索オプション \"所有者が不明である\" を有効にして、検索ツールを起動するかど"
 "うかを選択します。"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+#, fuzzy
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+"検索オプション \"追加オプションを表示\" を有効にして検索ツールを起動するかど"
+"うかを選択します。"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
 msgstr ""
 "検索オプション \"隠しファイル/フォルダを表示する\" を有効にして、検索ツールを"
 "起動するかどうかを選択します。"
-
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
-msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
-msgstr ""
-"検索オプション \"追加オプションを表示\" を有効にして検索ツールを起動するかど"
-"うかを選択します。"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
@@ -1335,120 +1343,120 @@ msgstr ""
 "簡易ファイル名検索を実施した後に、コマンド `locate` を利用したスキャンを実施"
 "しないかどうかを選択します。"
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "ヘルプ・ドキュメントが開けませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "本当に %d 個のドキュメントを開きますか？"
 msgstr[1] "本当に %d 個のドキュメントを開きますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "これは %d 個の別々のウィンドウを開くことになります。"
 msgstr[1] "これは %d 個の別々のウィンドウを開くことになります。"
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "ドキュメント \"%s\" を開けませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "フォルダ \"%s\" を開けませんでした。"
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr "Nautilus ファイル・マネージャが実行されていません。"
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "ドキュメントは存在しません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "ドキュメントを表示するビュワーがインストールされていません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "本当に %d 個のフォルダを開きますか？"
 msgstr[1] "本当に %d 個のフォルダを開きますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "フォルダ \"%s\" を開けませんでした。"
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr "Nautilus ファイル・マネージャが実行されていません。"
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\" をゴミ箱に移動できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "\"%s\" を完全に削除しますか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "ゴミ箱は利用できません。\"%s\" をゴミ箱へ移動できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\" を削除できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "\"%s\" の移動に失敗しました: %s 。"
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\" の削除に失敗しました: %s 。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "検索結果に名前を付けて保存..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "ドキュメントを保存できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "ドキュメントの名前を選択していません。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "ドキュメント \"%s\" を %s へ保存できませんでした。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "ドキュメント \"%s\" は既に存在します。置き換えてもよろしいですか？"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "既存のファイルを置き換えると、その内容は上書きされます。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "指定したドキュメントはフォルダです。"
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "そのドキュメントに対する書き込み権限がないようです。"
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1462,23 +1470,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:549
 msgid "today at %-I:%M %p"
 msgstr "今日の %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "昨日の %p %-I:%M"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%Y年 %B%e日 %Aの %p %-I:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr "リンク (リンク切れ)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr "%s へのリンク"
@@ -1572,84 +1580,84 @@ msgstr "おそらく locate 用のデータベースが生成されていませ�
 msgid "Character set conversion failed for \"%s\""
 msgstr "\"%s\" の文字セットの変換に失敗しました"
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "ファイルが見つかりません"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr "(停止中)"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr "ファイルが見つかりません"
 
-#: gsearchtool/gsearchtool.c:768
+#: gsearchtool/gsearchtool.c:789
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d 個のファイルが見つかりました"
 msgstr[1] "%d 個のファイルが見つかりました"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d 個のファイルが見つかりました"
 msgstr[1] "%d 個のファイルが見つかりました"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "ファイルの検索"
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr "エントリオプションのないエントリに変更されました！"
 
-#: gsearchtool/gsearchtool.c:1134
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "検索中..."
 
-#: gsearchtool/gsearchtool.c:1157
+#: gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr ""
 "検索オプション \"次の名前を含む\" に該当するファイル名をセットして下さい"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr ""
 "検索オプション \"次のフォルダも捜す\" に該当するフォルダ名をセットして下さい"
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "次のエントリから一つ選んでファイルの並べ替えます: 名前、フォルダ、サイズ、種"
 "類、日付"
 
-#: gsearchtool/gsearchtool.c:1160
+#: gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
 msgstr "降順に並べ替えます。デフォルトは昇順です"
 
-#: gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr "自動的に検索を開始します"
 
-#: gsearchtool/gsearchtool.c:1167
+#: gsearchtool/gsearchtool.c:1188
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "検索オプション '%s' の選択"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1191
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "検索オプション \"%s\" の選択とセット"
 
-#: gsearchtool/gsearchtool.c:1277
+#: gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr "コマンドライン引数に不正なオプションが引き渡されました。"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1657,7 +1665,7 @@ msgstr ""
 "\n"
 "...エラーが多すぎて表示でません..."
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1665,167 +1673,169 @@ msgstr ""
 "この検索を実行した際にエラーが発生したので、検索結果が間違っているかもしれま"
 "せん。"
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 msgid "Show more _details"
 msgstr "詳細を表示する(_D)"
 
-#: gsearchtool/gsearchtool.c:1627
+#: gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 "検索結果が間違っているかもしれません。クィック検索を無効にしてみますか？"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr "クイック検索を無効にする(_Q)"
 
-#: gsearchtool/gsearchtool.c:1677
+#: gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "子プロセス %d のグループ ID のセットに失敗しました: %s\n"
 
-#: gsearchtool/gsearchtool.c:1704
+#: gsearchtool/gsearchtool.c:1731
 msgid "Error parsing the search command."
 msgstr "検索コマンドを解析する際にエラーが発生しました。"
 
-#: gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1764
 msgid "Error running the search command."
 msgstr "検索コマンドを実行する際にエラーが発生しました。"
 
-#: gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1911
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "検索条件 \"%s\" の値 (文) を入力して下さい"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" (単位: %s)"
 
-#: gsearchtool/gsearchtool.c:1891
+#: gsearchtool/gsearchtool.c:1918
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "検索条件 \"%2$s\" の %1$s の値を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" の削除"
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1978
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "削除する検索条件 \"%s\" をクリックして下さい"
 
-#: gsearchtool/gsearchtool.c:2044
+#: gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr "適用する検索条件(_V):"
 
-#: gsearchtool/gsearchtool.c:2073
+#: gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr "適用する検索条件"
 
-#: gsearchtool/gsearchtool.c:2074
+#: gsearchtool/gsearchtool.c:2101
 msgid "Select a search option from the drop-down list."
 msgstr "検索条件をメニューから選択して下さい"
 
-#: gsearchtool/gsearchtool.c:2086
+#: gsearchtool/gsearchtool.c:2113
 msgid "Add search option"
 msgstr "検索条件の追加"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr "追加する検索条件を選択してクリックして下さい"
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2135
 msgid "S_earch results:"
 msgstr "検索結果(_E):"
 
-#: gsearchtool/gsearchtool.c:2144
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr "一覧表示"
 
-#: gsearchtool/gsearchtool.c:2194
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "名前"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "フォルダ"
 
-#: gsearchtool/gsearchtool.c:2225
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "サイズ"
 
-#: gsearchtool/gsearchtool.c:2235
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "種類"
 
-#: gsearchtool/gsearchtool.c:2245
+#: gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr "変更日時"
 
-#: gsearchtool/gsearchtool.c:2613
+#: gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr "対象となる名前(_N):"
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "ファイル名、またはワイルドカード有り/無しでファイル名の一部を入力して下さい"
 
-#: gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr "対象となる名前"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2661
 msgid "_Look in folder:"
 msgstr "対象となるフォルダ(_L):"
 
-#: gsearchtool/gsearchtool.c:2640
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "参照"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Look in folder"
 msgstr "対象となるフォルダ"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "検索を開始したいフォルダまたはデバイスを選択して下さい"
 
-#: gsearchtool/gsearchtool.c:2656
-msgid "Show more _options"
+#: gsearchtool/gsearchtool.c:2683
+#, fuzzy
+msgid "Select more _options"
 msgstr "追加オプションの表示(_O)"
 
-#: gsearchtool/gsearchtool.c:2665
-msgid "Show more options"
+#: gsearchtool/gsearchtool.c:2692
+#, fuzzy
+msgid "Select more options"
 msgstr "もっとたくさんのオプションを表示します"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr "クリックすると利用可能な検索オプションの一覧を展開または畳みます"
 
-#: gsearchtool/gsearchtool.c:2689
+#: gsearchtool/gsearchtool.c:2716
 msgid "Click to display the help manual."
 msgstr "クリックするとヘルプを表示します"
 
-#: gsearchtool/gsearchtool.c:2697
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to close \"Search for Files\"."
 msgstr "クリックすると \"ファイルの検索\" を閉じます"
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2750
 msgid "Click to perform a search."
 msgstr "クリックすると検索を実行します"
 
-#: gsearchtool/gsearchtool.c:2724
+#: gsearchtool/gsearchtool.c:2751
 msgid "Click to stop a search."
 msgstr "クリックすると検索を停止します"
 
-#: gsearchtool/gsearchtool.c:2824
+#: gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo を初期化できません。"
 
@@ -1853,7 +1863,7 @@ msgstr "追加(_A)"
 msgid "Add an action"
 msgstr "アクションの追加"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 msgid "_Edit"
 msgstr "編集(_E)"
 
@@ -1985,10 +1995,6 @@ msgstr ""
 "説明: [%s]\n"
 "アクション: [%s]\n"
 
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "カレンダ"
-
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -2096,29 +2102,30 @@ msgid "December"
 msgstr "12月"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "最終変更日:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%B%e日"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-msgid "The file could not be opened"
+#, fuzzy
+msgid "One file or more could not be opened"
 msgstr "そのファイルを開けませんでした"
 
 #: logview/logrtns.c:216
@@ -2130,10 +2137,10 @@ msgid "Not enough memory!\n"
 msgstr "メモリが足りません！\n"
 
 #: logview/logrtns.c:276
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
 "%s を読むことはできません。root でプログラムを起動するか、管理者に頼んでファ"
 "イルのパーミッションを変更してもらって下さい。"
@@ -2157,139 +2164,144 @@ msgstr "%s はログファイルではありません。"
 msgid "ReadLogStats: out of memory"
 msgstr "ログの読み込み: メモリ不足"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 msgid "Fin_d:"
 msgstr "検索(_D):"
 
-#: logview/logview-findbar.c:283
-msgid "Find Next"
-msgstr "前方検索する"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:279
+#, fuzzy
+msgid "_Previous"
 msgstr "後方検索する"
 
-#: logview/logview.c:85
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
+
+#: logview/logview.c:93
 msgid "_Log"
 msgstr "ログ(_L)"
 
-#: logview/logview.c:87
+#: logview/logview.c:95
 msgid "_View"
 msgstr "表示(_V)"
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "_Open..."
 msgstr "開く(_O).."
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "Open a log from file"
 msgstr "ファイルからログを開きます"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "_Properties"
 msgstr "設定(_P)"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "ログのプロパティを表示します"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close"
 msgstr "閉じる"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close this log"
 msgstr "このログを閉じます"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "_Quit"
 msgstr "終了(_Q)"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "Quit the log viewer"
 msgstr "ログ・ビューアを終了します"
 
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "コピー"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select All"
 msgstr "全て選択"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select the entire log"
 msgstr "ログ全体を選択します"
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr "ログの中をパターンで検索します"
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 msgid "Collapse _All"
 msgstr "全て畳む(_A)"
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr "全ての行を畳みます"
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr "ログ・ビューアのヘルプの目次を開きます"
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr "ログ・ビューアの情報ダイアログを表示します"
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 msgid "_Monitor"
 msgstr "モニタ(_M)"
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr "現在表示しているログを監視します"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Ca_lendar"
 msgstr "カレンダ(_L)"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "ログ用のカレンダを表示します"
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "エントリの詳細(_E)"
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "エントリの詳細を表示します"
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "日付"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "ホスト名"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr "プロセス"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "メッセージ"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "新しいログファイルを開く..."
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 msgid "There was an error displaying help."
 msgstr "ヘルプを表示する際にエラーが発生しました。"
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (監視中) - %s"
@@ -2315,3 +2327,24 @@ msgstr "エントリの詳細"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B%e日 %X"
+
+#~ msgid "Lookup done"
+#~ msgstr "検索完了"
+
+#~ msgid "Spell check done"
+#~ msgstr "スペルチェック完了"
+
+#~ msgid "Gnome Dictionary"
+#~ msgstr "GNOME 辞書"
+
+#~ msgid "Calendar"
+#~ msgstr "カレンダ"
+
+#~ msgid "Find Next"
+#~ msgstr "前方検索する"
+
+#~ msgid "_Entry Detail"
+#~ msgstr "エントリの詳細(_E)"
+
+#~ msgid "Show Entry Detail"
+#~ msgstr "エントリの詳細を表示します"

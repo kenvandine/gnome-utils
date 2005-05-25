@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.9.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 10:11-0500\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-02-18 03:56+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
@@ -24,12 +24,12 @@ msgstr "사전 찾기"
 msgid "Lookup words in an online dictionary"
 msgstr "온라인 사전에서 단어 찾아 보기"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 msgid "_About"
 msgstr "정보(_A)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 msgid "_Help"
 msgstr "도움말(_H)"
 
@@ -44,8 +44,8 @@ msgstr "기본 설정(_P)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "서버로 접속할 수 없습니다."
 
@@ -62,19 +62,20 @@ msgstr ""
 "본 서버는 dict.org이고 포트는 2628입니다"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "류창우 <cwryu debian.org>\n"
 "차영호 <ganadist mizi.com>"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 msgid "A client for the MIT dictionary server."
 msgstr "MIT 사전 서버에 대한 클라이언트."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "사전"
 
@@ -107,144 +108,153 @@ msgid "_Search for:"
 msgstr "찾을 단어(_S):"
 
 #: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-pref-dialog.c:889
 msgid "Could not display help"
 msgstr "도움말을 표시할 수 없습니다"
 
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:646
 #, fuzzy
 msgid "_Dictionary"
 msgstr "사전"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "단어 찾아 보기(_L)"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "사전에서 단어를 찾음"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 msgid "_Print"
 msgstr "인쇄(_P)"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr "현재 정의를 인쇄합니다"
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 msgid "_Close"
 msgstr "닫기(_C)"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 msgid "Close the application"
 msgstr "프로그램을 닫습니다"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 msgid "_Find..."
 msgstr "찾기(_F)..."
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 msgid "Find a word in the text"
 msgstr "텍스트 안의 단어 찾기"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 msgid "Find Ne_xt"
 msgstr "다음 찾기(_X)"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr "다음에 나오는 단어를 찾습니다"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 msgid "P_references"
 msgstr "기본 설정(_R)"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 msgid "Configure the application"
 msgstr "프로그램을 설정합니다"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr "차례(_C)"
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr "이 프로그램에 대한 도움말을 봅니다"
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 msgid "About this application"
 msgstr "프로그램 정보"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 msgid "On a Dictionary Server"
 msgstr "사전 서버에"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr "웹사이트에"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 msgid "Cu_t"
 msgstr "잘라내기(_T)"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "선택한 부분을 잘라냅니다"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "복사(_C)"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 msgid "Copy the selection"
 msgstr "선택한 부분을 복사합니다"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 msgid "_Paste"
 msgstr "붙여 넣기(_P)"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "클립보드를 붙여 넣습니다"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr "모두 선택(_A)"
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr "모두 선택합니다"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr "스펠링(_S)"
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr "다른 스펠링을 봅니다"
 
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "단어(_W):"
 
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "단어"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "단어 입력란"
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "단어를 입력하거나 다음 목록에서 선택하십시오"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "단어 찾아 보기"
 
@@ -252,125 +262,126 @@ msgstr "단어 찾아 보기"
 msgid "Dictionary word entry"
 msgstr "사전 단어 입력창"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 msgid "Looking up word..."
 msgstr "단어를 찾는 중입니다..."
 
-#: gdictsrc/gdict-defbox.c:100
-msgid "Lookup done"
-msgstr "찾기 완료"
-
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "일치 하는것이 없습니다"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 msgid "String not found"
 msgstr "문자열을 찾을 수 없습니다"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr "정의 미리 보기"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 msgid "Error invoking query"
 msgstr "질의를 실행하는 데 오류"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr "기본 서버(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "서버(_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "서버를 기본값으로 합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "포트(_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr "기본 포트(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "포트 번호를 기본값으로 합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "서버"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "서버 입력란"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "서버 이름을 입력합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "포트"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "포트 입력란"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "포트 번호를 입력합니다"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "데이터베이스(_D):"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr "전략(_E):"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+msgid "Font:"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr "웹사이트"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr "찾기 주소"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "사전 기본 설정"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "웹사이트"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "모든 데이터베이스 찾기"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "데이터베이스"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "데이터베이스 이름"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "기본 전략"
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:114
+#, fuzzy
+msgid "Spellings"
+msgstr "스펠링(_S)"
+
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr "철자 검사 중입니다..."
-
-#: gdictsrc/gdict-speller.c:243
-msgid "Spell check done"
-msgstr "철자 검사 완료"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -429,10 +440,6 @@ msgstr ""
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "똑똑한 찾기"
-
-#: gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr "그놈 사전"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1035,7 +1042,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "\"%s\" 파일이 이미 있습니다.  이 파일을 바꾸시겠습니까?"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "바꾸기(_R)"
 
@@ -1267,23 +1274,24 @@ msgstr ""
 "이 키는 찾기 도구를 시작할 때 \"소유자 알 수 없음\" 찾기 옵션을 선택할 지 결"
 "정합니다."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+#, fuzzy
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+"이 키는 찾기 도구를 시작할 때 \"다른 옵션 보기\" 부분을 늘려 놓을 지 결정합니"
+"다."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
 msgstr ""
 "이 키는 찾기 도구를 시작할 때 \"숨겨진 파일 혹은 폴더 보기\" 찾기 옵션을 선택"
 "할 지 결정합니다."
-
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
-msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
-msgstr ""
-"이 키는 찾기 도구를 시작할 때 \"다른 옵션 보기\" 부분을 늘려 놓을 지 결정합니"
-"다."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
@@ -1315,118 +1323,118 @@ msgstr ""
 "이 키는 찾기 도구가 간단한 파일 이름 찾기를 할 때 locate 명령을 사용하지 않"
 "을 지 결정합니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "도움말 문서를 열 수 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "정말 %d개의 문서를 여시겠습니까?"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "%d개의 창을 각각 열게 됩니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "%s 문서를 열 수 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "\"%s\" 폴더를 열 수 없습니다."
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr "노틸러스 파일 관리자가 실행 중이 아닙니다."
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "해당 문서가 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "이 문서를 보여줄 수 있는 뷰어가 설치되어 있지 않습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "정말로 %d개의 폴더를 여시겠습니까"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "\"%s\" 폴더를 열 수 없습니다."
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr "노틸러스 파일 관리자가 실행 중이 아닙니다."
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\"을(를) 휴지통에 옮길 수 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "\"%s\"을(를) 영구히 지우시겠습니까?"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 "휴지통을 사용할 수 없습니다.  \"%s\"을(를) 휴지통으로 옮길 수 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\"을(를) 지울 수 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "\"%s\"을(를) 옮기는 데 실패했습니다: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\"을(를) 지우는 데 실패했습니다: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "결과를 다른 이름으로 저장..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "문서를 저장할 수 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "문서 이름을 선택하지 않았습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "\"%s\" 문서를 %s(으)로 저장할 수 없습니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "\"%s\" 문서가 이미 있습니다.  이 문서를 바꾸시겠습니까?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "이미 있는 파일을 바꾸면, 그 내용을 덮어 쓰게 됩니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "선택한 문서 이름이 폴더입니다."
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "문서에 쓰기 권한이 없습니다."
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1440,23 +1448,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:549
 msgid "today at %-I:%M %p"
 msgstr "오늘 %p %I:%M"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "어제 %p %I:%M"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%Y년 %b %e일 %A, %p %I:%M:%S"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr "바로 가기 (깨짐)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr "%s에 바로 가기"
@@ -1550,78 +1558,78 @@ msgstr "위치 데이터베이스를 아직 만들지 않았습니다."
 msgid "Character set conversion failed for \"%s\""
 msgstr "\"%s\"에 대한 문자세트 변환이 실패했습니다"
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "찾은 파일이 없습니다."
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr "(멈춤)"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr "파일이 없습니다"
 
-#: gsearchtool/gsearchtool.c:768
+#: gsearchtool/gsearchtool.c:789
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d개의 파일을 찾았습니다"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d개의 파일을 찾았습니다"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "파일 찾기"
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr "엔트리가 없는 옵션에 대하여 엔트리 바뀜 콜백이 실행되었습니다!"
 
-#: gsearchtool/gsearchtool.c:1134
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "찾는 중입니다..."
 
-#: gsearchtool/gsearchtool.c:1157
+#: gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr "\"이름에 포함\" 찾기 옵션의 텍스트 지정"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "\"폴더 안에 찾기\" 찾기 옵션의 텍스트 지정"
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "파일을 다음 중 하나로 정렬: 이름, 폴더, 크기, 타입, 날짜"
 
-#: gsearchtool/gsearchtool.c:1160
+#: gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
 msgstr "정렬 순서를 내림차순으로 합니다. 기본값은 오름차순입니다"
 
-#: gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr "자동으로 찾기 시작"
 
-#: gsearchtool/gsearchtool.c:1167
+#: gsearchtool/gsearchtool.c:1188
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "\"%s\" 찾기 옵션 선택"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1191
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "\"%s\" 찾기 옵션 선택 및 사용"
 
-#: gsearchtool/gsearchtool.c:1277
+#: gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr "명령행 인자 sortby에 전달된 옵션이 잘못되었습니다."
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1629,172 +1637,174 @@ msgstr ""
 "\n"
 "... 너무 오류가 많아서 보여 줄 수 없습니다  ..."
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 "찾은 결과가 잘못되었을 것입니다.  찾기를 실행하는 중에 오류가 발생했습니다."
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 msgid "Show more _details"
 msgstr "자세히 보기(_D)"
 
-#: gsearchtool/gsearchtool.c:1627
+#: gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr "찾은 결과가 잘못되었을 것입니다.  빠른 찾기 기능을 끄시겠습니까?"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr "빠른 찾기 끄기(_Q)"
 
-#: gsearchtool/gsearchtool.c:1677
+#: gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "하위 프로세스 %d의 프로세스 그룹 ID를 설정하는 데 실패했습니다: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1704
+#: gsearchtool/gsearchtool.c:1731
 msgid "Error parsing the search command."
 msgstr "찾기 명령어를 파싱하는 데 오류가 발생했습니다."
 
-#: gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1764
 msgid "Error running the search command."
 msgstr "찾기 명령어를 실행하는 데 오류가 발생했습니다."
 
-#: gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1911
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "\"%s\" 찾기 옵션의 텍스트 값을 입력하십시오."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" (%s 단위)"
 
-#: gsearchtool/gsearchtool.c:1891
+#: gsearchtool/gsearchtool.c:1918
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "\"%2$s\" 찾기 옵션의 %1$s 안의 값을 입력하십시오."
 
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" 지우기"
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1978
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "\"%s\" 찾기 옵션을 지우려면 클릭하십시오."
 
-#: gsearchtool/gsearchtool.c:2044
+#: gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr "사용 가능한 옵션(_V):"
 
-#: gsearchtool/gsearchtool.c:2073
+#: gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr "사용 가능한 옵션"
 
-#: gsearchtool/gsearchtool.c:2074
+#: gsearchtool/gsearchtool.c:2101
 msgid "Select a search option from the drop-down list."
 msgstr "드롭다운 목록에서 찾기 옵션을 선택합니다."
 
-#: gsearchtool/gsearchtool.c:2086
+#: gsearchtool/gsearchtool.c:2113
 msgid "Add search option"
 msgstr "찾기 옵션을 더합니다"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr "선택하신 사용 가능 찾기 옵션을 더하려면 클릭하십시오."
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2135
 msgid "S_earch results:"
 msgstr "찾은 결과(_E):"
 
-#: gsearchtool/gsearchtool.c:2144
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr "목록 보기"
 
-#: gsearchtool/gsearchtool.c:2194
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "이름"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "폴더"
 
-#: gsearchtool/gsearchtool.c:2225
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "크기"
 
-#: gsearchtool/gsearchtool.c:2235
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "종류"
 
-#: gsearchtool/gsearchtool.c:2245
+#: gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr "고친 날짜"
 
-#: gsearchtool/gsearchtool.c:2613
+#: gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr "이름에 포함(_N):"
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "파일 이름이나 파일 이름의 일부를 입력하십시오 (와일드 카드 사용 가능)."
 
-#: gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr "이름에 포함"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2661
 msgid "_Look in folder:"
 msgstr "폴더 안에 찾기(_L):"
 
-#: gsearchtool/gsearchtool.c:2640
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "찾아보기"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Look in folder"
 msgstr "폴더 안에 찾습니다"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "찾기를 시작할 폴더 혹은 장치를 선택하십시오."
 
-#: gsearchtool/gsearchtool.c:2656
-msgid "Show more _options"
+#: gsearchtool/gsearchtool.c:2683
+#, fuzzy
+msgid "Select more _options"
 msgstr "기타 옵션 보기(_O)"
 
-#: gsearchtool/gsearchtool.c:2665
-msgid "Show more options"
+#: gsearchtool/gsearchtool.c:2692
+#, fuzzy
+msgid "Select more options"
 msgstr "다른 옵션 보기"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr "사용 가능한 옵션 목록을 늘리거나 줄입니다."
 
-#: gsearchtool/gsearchtool.c:2689
+#: gsearchtool/gsearchtool.c:2716
 msgid "Click to display the help manual."
 msgstr "도움말을 보려면 클릭하십시오."
 
-#: gsearchtool/gsearchtool.c:2697
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to close \"Search for Files\"."
 msgstr "\"파일 찾기\"를 닫으려면 클릭하십시오."
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2750
 msgid "Click to perform a search."
 msgstr "찾기를 수행하려면 클릭하십시오."
 
-#: gsearchtool/gsearchtool.c:2724
+#: gsearchtool/gsearchtool.c:2751
 msgid "Click to stop a search."
 msgstr "찾기를 중단하려면 클릭하십시오."
 
-#: gsearchtool/gsearchtool.c:2824
+#: gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr "보노보를 초기화할 수 없습니다."
 
@@ -1822,7 +1832,7 @@ msgstr "더하기(_A)"
 msgid "Add an action"
 msgstr "동작을 더합니다"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 msgid "_Edit"
 msgstr "편집(_E)"
 
@@ -1954,10 +1964,6 @@ msgstr ""
 "설명: [%s]\n"
 "작업: [%s]\n"
 
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "달력"
-
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -2064,29 +2070,30 @@ msgid "December"
 msgstr "12월"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "마지막 변경:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%b %e일"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-msgid "The file could not be opened"
+#, fuzzy
+msgid "One file or more could not be opened"
 msgstr "이 파일을 열 수 없습니다"
 
 #: logview/logrtns.c:216
@@ -2098,10 +2105,10 @@ msgid "Not enough memory!\n"
 msgstr "메모리가 부족합니다!\n"
 
 #: logview/logrtns.c:276
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
 "%s은(는) 사용자가 읽을 수 없습니다. 이 프로그램을 root로 실행하거나 시스템 관"
 "리자에게 이 파일의 권한을 바꾸라고 요청하십시오."
@@ -2125,139 +2132,144 @@ msgstr "%s은(는) 로그 파일이 아닙니다."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: 메모리가 바닥났습니다"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 msgid "Fin_d:"
 msgstr "찾기(_D):"
 
-#: logview/logview-findbar.c:283
-msgid "Find Next"
-msgstr "다음 찾기"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:279
+#, fuzzy
+msgid "_Previous"
 msgstr "이전 찾기"
 
-#: logview/logview.c:85
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
+
+#: logview/logview.c:93
 msgid "_Log"
 msgstr "로그(_L)"
 
-#: logview/logview.c:87
+#: logview/logview.c:95
 msgid "_View"
 msgstr "보기(_V)"
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "_Open..."
 msgstr "열기(_O)..."
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "Open a log from file"
 msgstr "파일에서 로그 열기"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "_Properties"
 msgstr "등록 정보(_P)"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "로그 등록 정보를 봅니다"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close"
 msgstr "닫기"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close this log"
 msgstr "이 로그를 닫습니다"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "_Quit"
 msgstr "끝내기(_Q)"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "Quit the log viewer"
 msgstr "로그 보기 프로그램을 끝냅니다"
 
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "복사"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select All"
 msgstr "전부 선택"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select the entire log"
 msgstr "전체 로그를 선택합니다"
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr "로그에서 패턴을 찾습니다"
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 msgid "Collapse _All"
 msgstr "모두 감추기(_A)"
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr "모든 행을 감춥니다"
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr "로그 보기 프로그램에 대한 도움말의 차례를 엽니다"
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr "로그 보기 프로그램의 정보 대화 상자를 봅니다"
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 msgid "_Monitor"
 msgstr "감시(_M)"
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr "현재 로그 감시"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Ca_lendar"
 msgstr "달력(_L)"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "달력로그을 봅니다"
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "자세히 보기(_E)"
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "로그를 자세히 봅니다"
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "날짜"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "호스트 이름"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr "프로세스"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "메세지"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "새 로그 파일 열기"
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 msgid "There was an error displaying help."
 msgstr "도움말을 표시하는 데 오류가 발생했습니다."
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (감시중) - %s"
@@ -2282,3 +2294,24 @@ msgstr "항목 자세히"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%b %e일 %X"
+
+#~ msgid "Lookup done"
+#~ msgstr "찾기 완료"
+
+#~ msgid "Spell check done"
+#~ msgstr "철자 검사 완료"
+
+#~ msgid "Gnome Dictionary"
+#~ msgstr "그놈 사전"
+
+#~ msgid "Calendar"
+#~ msgstr "달력"
+
+#~ msgid "Find Next"
+#~ msgstr "다음 찾기"
+
+#~ msgid "_Entry Detail"
+#~ msgstr "자세히 보기(_E)"
+
+#~ msgid "Show Entry Detail"
+#~ msgstr "로그를 자세히 봅니다"

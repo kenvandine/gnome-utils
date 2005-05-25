@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 23:47+0100\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-03-08 09:46+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati <gu@li.org>\n"
@@ -14,7 +14,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "<magnet@magnet-i.com>\n"
-"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
 "\n"
 "X-Generator: KBabel 1.9.1\n"
 
@@ -27,12 +28,12 @@ msgstr "શબ્દકોષ જુઓ"
 msgid "Lookup words in an online dictionary"
 msgstr "ઓનલાઇન શબ્દકોષમાં શબ્દો જુઓ"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 msgid "_About"
 msgstr "વિશે (_A)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 msgid "_Help"
 msgstr "મદદ (_H)"
 
@@ -47,8 +48,8 @@ msgstr "પસંદગીઓ (_P)"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "સર્વર સાથે જોડાઈ શક્યુ નથી"
 
@@ -65,17 +66,18 @@ msgstr ""
 "મૂળભુત સર્વર dict.org અને પોર્ટ ૨૬૨૮ છે"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 msgid "translator-credits"
 msgstr "અંકિત પટેલ <ankit644@yahoo.com>"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 msgid "A client for the MIT dictionary server."
 msgstr "MIT શબ્દકોષ સર્વર માટે ગ્રાહક."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "શબ્દકોષ"
 
@@ -108,143 +110,152 @@ msgid "_Search for:"
 msgstr "માટે શોધો (_S):"
 
 #: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-pref-dialog.c:889
 msgid "Could not display help"
 msgstr "મદદ પ્રદર્શિત કરી શક્યા નહિં"
 
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:646
 msgid "_Dictionary"
 msgstr "શબ્દકોષ (_D)"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "શબ્દ જુઓ (_L)"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "શબ્દકોષમાં શબ્દ જુઓ"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 msgid "_Print"
 msgstr "છાપો (_P)"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr "વર્તમાન વ્યાખ્યા છાપો"
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 msgid "_Close"
 msgstr "બંધ કરો (_C)"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 msgid "Close the application"
 msgstr "કાર્યક્રમ બંધ કરો"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 msgid "_Find..."
 msgstr "શોધો (_F)..."
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 msgid "Find a word in the text"
 msgstr "લખાણમાં શબ્દ શોધો"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 msgid "Find Ne_xt"
 msgstr "આગળ શોધો (_x)"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr "શબ્દનો આગળનો વારો શોધો"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 msgid "P_references"
 msgstr "પસંદગીઓ (_r)"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 msgid "Configure the application"
 msgstr "કાર્યક્રમ રૂપરેખાંકિત કરો"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr "સમાવિષ્ટો (_C)"
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr "આ કાર્યક્રમ માટે મદદ જુઓ"
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 msgid "About this application"
 msgstr "આ કાર્યક્રમ વિશે"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 msgid "On a Dictionary Server"
 msgstr "શબ્દકોષ સર્વર પર"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr "વેબ સાઈટ પર"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 msgid "Cu_t"
 msgstr "કાપો (_t)"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "પસંદગી કાપો"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "નકલ કરો (_C)"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 msgid "Copy the selection"
 msgstr "પસંદગીની નકલ કરો"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 msgid "_Paste"
 msgstr "ચોંટાડો (_P)"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "ક્લિપબોર્ડમાંથી ચોંટાડો"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr "બધું પસંદ કરો (_A)"
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr "બધું પસંદ કરો"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr "જોડણીઓ (_S)"
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr "વૈકલ્પિક જોડણીઓ દર્શાવો"
 
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "શબ્દ (_W):"
 
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "શબ્દ"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "શબ્દ પ્રવેશ"
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "શબ્દ દાખલ કરો અથવા નીચે આપેલ યાદીમાંથી પસંદ કરો"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "શબ્દ માટે જુઓ"
 
@@ -252,125 +263,126 @@ msgstr "શબ્દ માટે જુઓ"
 msgid "Dictionary word entry"
 msgstr "શબ્દકોષ શબ્દ પ્રવેશ"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 msgid "Looking up word..."
 msgstr "શબ્દ જુએ છે..."
 
-#: gdictsrc/gdict-defbox.c:100
-msgid "Lookup done"
-msgstr "શોધવાનું પૂર્ણ"
-
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "બંધબેસતુ શોધાતુ નથી"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 msgid "String not found"
 msgstr "વાક્ય મળતું નથી"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr "વ્યાખ્યા પૂર્વદર્શન"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 msgid "Error invoking query"
 msgstr "પ્રશ્ન ઉકેલવામાં ભૂલ"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr "મૂળભુત સર્વર (_f)"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "સર્વર (_S):"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "સર્વરને મૂળભુત રીતે ફરીથી સુયોજિત કરો"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "પોર્ટ (_P):"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr "મૂળભુત પોર્ટ (_a)"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "પોર્ટને મૂળભુત રીતે બદલો"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "સર્વર"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "સર્વર પ્રવેશ"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "સર્વરનુ નામ દાખલ કરો"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "પોર્ટ"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "પોર્ટ પ્રવેશ"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "પોર્ટ નંબર દાખલ કરો"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "ડેટાબેઝ (_D):"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr "નીતિ (_e):"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+msgid "Font:"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr "વેબ સાઈટ"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr "શોધ સરનામું"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "શબ્દકોષની પસંદગી"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "વેબ સાઈટો"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "બધા ડેટાબેઝમાં શોધો"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "ડેટાબેઝ"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "ડેટાબેઝ નામ"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "મૂળભુત રચના"
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:114
+#, fuzzy
+msgid "Spellings"
+msgstr "જોડણીઓ (_S)"
+
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr "જોડણીની ચકાસણી..."
-
-#: gdictsrc/gdict-speller.c:243
-msgid "Spell check done"
-msgstr "જોડણીની ચકાસણી પૂરી થઈ ગઈ"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -428,10 +440,6 @@ msgstr ""
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "ચાલાક રીતે જુઓ વાપરો"
-
-#: gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr "જીનોમ શબ્દકોષ"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1039,7 +1047,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "ફાઈલ \"%s\" પહેલાથી જ હાજર છે.  શું તમે એને બદલવા માંગો છો?"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "ફરીથી બદલો (_R)"
 
@@ -1271,23 +1279,24 @@ msgstr ""
 "આ કી જ્યારે શોધ સાધન શરૂ થાય ત્યારે શું \"માલિક ઓળખાયેલ નથી\" શોધ વિકલ્પ પસંદ કરેલ છે તે "
 "નક્કી કરે છે."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+#, fuzzy
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+"આ કી જ્યારે શોધ સાધન શરૂ થાય ત્યારે શું \"વધુ વિકલ્પો બતાવો\" શોધ વિકલ્પ પસંદ કરેલ છે તે "
+"નક્કી કરે છે."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
 msgstr ""
 "આ કી જ્યારે શોધ સાધન શરૂ થાય ત્યારે શું \"છુપી ફાઈલો અને ફોલ્ડરો બતાવો\" શોધ વિકલ્પ પસંદ "
 "કરેલ છે તે નક્કી કરે છે."
-
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
-msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
-msgstr ""
-"આ કી જ્યારે શોધ સાધન શરૂ થાય ત્યારે શું \"વધુ વિકલ્પો બતાવો\" શોધ વિકલ્પ પસંદ કરેલ છે તે "
-"નક્કી કરે છે."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
@@ -1321,120 +1330,120 @@ msgstr ""
 "આ કી નક્કી કરે છે શું શોધ સાધન locate આદેશનો ઉપયોગ નિષ્ક્રિય કરે છે જ્યારે સાદા ફાઈલ "
 "નામો શોધી રહ્યા હોય."
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "મદદ દસ્તાવેજ ખોલી શકાયુ નથી."
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "શું તમે ખરેખર દસ્તાવેજ %d ને ખોલવા માંગો છો?"
 msgstr[1] "શું તમે ખરેખર દસ્તાવેજો %d ને ખોલવા માંગો છો?"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "આ કદાચ પોતાની વિન્ડો %d ને ખોલશે."
 msgstr[1] "આ કદાચ પોતાની વિન્ડો %d ને ખોલશે."
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "દસ્તાવેજ \"%s\" ખોલી શકાયું નથી."
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "ફોલ્ડર \"%s\" ખોલી શકાયુ નથી."
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr "નોટિલસ ફાઈલ વ્યવસ્થાપક ચાલી રહ્યું નથી."
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "દસ્તાવેજ હાજર નથી."
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "ત્યાં કોઈ સ્થાપિત દર્શક દસ્તાવેજન દેખાડવામાં સમર્ચ નથી."
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "શું તમે ખરેખર ફોલ્ડર %d ખોલવા માંગો છો?"
 msgstr[1] "શું તમે ખરેખર ફોલ્ડરો %d ખોલવા માંગો છો?"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "ફોલ્ડર \"%s\" ખોલી શકાયુ નથી."
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr "નોટિલસ ફાઈલ વ્યવસ્થાપક ચાલી રહ્યું નથી."
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\" ને કચરાપેટીમાં મોકલી શકાઈ નહિ."
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "શું તમે ખરેખર \"%s\" ને કાયમ માટે કાઢી નાખવા માંગો છો?"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "કચરાપેટી પ્રાપ્ય નથી. \"%s\" ને કચરાપેટીમાં મોકલી શકાઈ નહિ."
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\" ને કાઢી શકાઈ નહિ."
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "\"%s\" ને ખસેડવામાં નિષ્ફળ: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\" ને કાઢવામાં નિષ્ફળ: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "શોધ પરિણામનો આ નામથી સંગ્રહ કરો..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "દસ્તાવેજનો સંગ્રહ કરી શકાયો નથી."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "તમે દસ્તાવેજનું નામ પસંદ કર્યું નથી."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "દસ્તાવેજ \"%s\" ને \"%s\" માં સંગ્રહી શકાયું નહિ."
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "દસ્તાવેજ \"%s\" પહેલેથી જ હાજર છે.  શું તમે એને ફરીથી બદલવા માંગો છો?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "જો તમે હયાત ફાઈલને બદલો, તો એના સમાવિષ્ટો પર ફરીથી લખાઈ જશે."
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "તમે પસંદ કરેલ દસ્તાવેજનું નામ એ એક ફોલ્ડર છે."
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "કદાચ તમને દસ્તાવેજમાં લખવાની પરવાનગી નથી."
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1448,23 +1457,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:549
 msgid "today at %-I:%M %p"
 msgstr "આજે %-I:%M %p વાગ્યે"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "ગઈકાલે %-I:%M%p વાગ્યે"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %B %-d %Y at %-I:%M:%S %p"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr "કડી (તૂટેલી)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr "%s ની કડી"
@@ -1558,80 +1567,80 @@ msgstr "locate ડેટાબેઝ કદાચ બન્યો નહિં �
 msgid "Character set conversion failed for \"%s\""
 msgstr "\"%s\" માટે અક્ષર સમૂહ રૂપાંતરણ નિષ્ફળ"
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "કોઈ ફાઇલ મળતી નથી"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr "(અટકી ગયેલ છે)"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr "કોઈ ફાઇલ મળતી નથી"
 
-#: gsearchtool/gsearchtool.c:768
+#: gsearchtool/gsearchtool.c:789
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d ફાઇલ મળી છે"
 msgstr[1] "%d ફાઇલો મળી છે"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d ફાઇલ મળી છે"
 msgstr[1] "%d ફાઇલો મળી છે"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "ફાઇલો માટે શોધ"
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr "પ્રવેશ બદલાય છે પ્રવેશ વિકલ્પ ન હોય તે માટે બોલાવાય છે!"
 
-#: gsearchtool/gsearchtool.c:1134
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "શોધે છે..."
 
-#: gsearchtool/gsearchtool.c:1157
+#: gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr "\"નામ સમાવે\" શોધ વિકલ્પનું લખાણ સુયોજિત કરો"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "\"ફોલ્ડરમાં જુઓ\" શોધ વિકલ્પનું લખાણ સુયોજિત કરો"
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "ફાઈલો નીચે પ્રમાણે ક્રમમાં ગોઠવોઃ  નામ, ફોલ્ડર, માપ, પ્રકાર, અથવા તારીખ"
 
-#: gsearchtool/gsearchtool.c:1160
+#: gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
 msgstr "ક્રમમાં ગોઠવવાનું ઉતરતું સુયોજિત કર, ચઢતો મૂળભુત છે"
 
-#: gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr "આપોઆપ શોધવાનું શરુ કરો"
 
-#: gsearchtool/gsearchtool.c:1167
+#: gsearchtool/gsearchtool.c:1188
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "\"%s\" શોધ વિકલ્પ પસંદ કરો"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1191
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "\"%s\" શોધ વિકલ્પ પસંદ કરો અને સુયોજિત કરો"
 
-#: gsearchtool/gsearchtool.c:1277
+#: gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr "ક્રમમાં ગોઠવો આદેશ વાક્ય દલીલને અપાયેલ વિકલ્પ અમાન્ય છે."
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1639,17 +1648,17 @@ msgstr ""
 "\n"
 "... ઘણી બધી ભૂલો દેખાડવા માટે ..."
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "શોધનાં પરિણામો અયોગ્ય હોઈ શકે.  આ શોધ કરવામાં ત્યાં ભૂલ હોઈ શકે."
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 msgid "Show more _details"
 msgstr "ઘણી વિગતો બતાવો (_d)"
 
-#: gsearchtool/gsearchtool.c:1627
+#: gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1657,155 +1666,157 @@ msgstr ""
 "શોધનાં પરિણામો કદાચ અયોગ્ય હોઈ શકે.  શું તમે ઝડપી શોધની લાક્ષણિકતાઓ નિષ્ક્રિય કરવા "
 "માંગો છો?"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr "ઝડપી શોધ નિષ્ક્રિય કરો (_Q)"
 
-#: gsearchtool/gsearchtool.c:1677
+#: gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "બાળ %d નું પ્રક્રિયા જૂથ id સુયોજિત કરવામાં નિષ્ફળ: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1704
+#: gsearchtool/gsearchtool.c:1731
 msgid "Error parsing the search command."
 msgstr "શોધ આદેશ માટે પદચ્છેદ કરવામાં ભૂલ."
 
-#: gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1764
 msgid "Error running the search command."
 msgstr "શોધ આદેશ ચલાવવામાં ભૂલ."
 
-#: gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1911
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "\"%s\" શોધ વિકલ્પ માટે લખાણ કિંમત સુયોજિત કરો."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" એ %s માં"
 
-#: gsearchtool/gsearchtool.c:1891
+#: gsearchtool/gsearchtool.c:1918
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "%s માં \"%s\" શોધ વિકલ્પ માટે કિંમત દાખલ કરો."
 
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" દૂર કરો"
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1978
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "\"%s\" શોધ વિકલ્પ દૂર કરવા માટે ક્લિક કરો."
 
-#: gsearchtool/gsearchtool.c:2044
+#: gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr "પ્રાપ્ત વિકલ્પો (_v):"
 
-#: gsearchtool/gsearchtool.c:2073
+#: gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr "ઉપ્લબ્ધ વિકલ્પો"
 
-#: gsearchtool/gsearchtool.c:2074
+#: gsearchtool/gsearchtool.c:2101
 msgid "Select a search option from the drop-down list."
 msgstr "નીચે આવતા મેનુની યાદીમાંથી શોધ વિકલ્પ પસંદ કરો."
 
-#: gsearchtool/gsearchtool.c:2086
+#: gsearchtool/gsearchtool.c:2113
 msgid "Add search option"
 msgstr "શોધ વિકલ્પ ઉમેરો"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr "પસંદિત ઉપ્લબ્ધ શોધ વિકલ્પ ઉમેરવા માટે ક્લિક કરો."
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2135
 msgid "S_earch results:"
 msgstr "શોધ પરિણામો (_e):"
 
-#: gsearchtool/gsearchtool.c:2144
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr "યાદી દેખાવ"
 
-#: gsearchtool/gsearchtool.c:2194
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "નામ"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "ફોલ્ડર"
 
-#: gsearchtool/gsearchtool.c:2225
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "માપ"
 
-#: gsearchtool/gsearchtool.c:2235
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "પ્રકાર"
 
-#: gsearchtool/gsearchtool.c:2245
+#: gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr "તારીખ દલાયેલી છે"
 
-#: gsearchtool/gsearchtool.c:2613
+#: gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr "નામ આ ધરાવે છે (_N):"
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "ફાઈલનામ અથવા અંશતઃ ફાઈલનામ વાઈલ્ડકાર્ડ સાથે અથવા તેના વિના દાખલ કરો."
 
-#: gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr "નામ આ સમાવે છે"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2661
 msgid "_Look in folder:"
 msgstr "ફોલ્ડરમાં જુઓ (_L):"
 
-#: gsearchtool/gsearchtool.c:2640
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "શોધો"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Look in folder"
 msgstr "ફોલ્ડરમાં જુઓ"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "ફોલ્ડર અથવા ઉપકરણ પસંદ કરો કે જેમાંથી તમે શોધ શરૂ કરવા માંગો છો."
 
-#: gsearchtool/gsearchtool.c:2656
-msgid "Show more _options"
+#: gsearchtool/gsearchtool.c:2683
+#, fuzzy
+msgid "Select more _options"
 msgstr "ઘણા વિકલ્પો બતાવો (_o)"
 
-#: gsearchtool/gsearchtool.c:2665
-msgid "Show more options"
+#: gsearchtool/gsearchtool.c:2692
+#, fuzzy
+msgid "Select more options"
 msgstr "ઘણા વિકલ્પો બતાવો"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr "ઉપલબ્ધ વિકલ્પોની યાદી ખોલવા અથવા સંકોચવા ક્લિક કરો."
 
-#: gsearchtool/gsearchtool.c:2689
+#: gsearchtool/gsearchtool.c:2716
 msgid "Click to display the help manual."
 msgstr "મદદ માર્ગદર્શિક પ્રદર્શિત કરવા માટે ક્લિક કરો."
 
-#: gsearchtool/gsearchtool.c:2697
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to close \"Search for Files\"."
 msgstr "\"ફાઈલો માટેની શોધ\" બંધ કરવા માટે ક્લિક કરો."
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2750
 msgid "Click to perform a search."
 msgstr "શોધ કરવા માટે ક્લિક કરો."
 
-#: gsearchtool/gsearchtool.c:2724
+#: gsearchtool/gsearchtool.c:2751
 msgid "Click to stop a search."
 msgstr "શોધ અટકાવવા માટે ક્લિક કરો."
 
-#: gsearchtool/gsearchtool.c:2824
+#: gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr "બોનોબોનો પ્રારંભ કરી શકાતો નથી."
 
@@ -1833,7 +1844,7 @@ msgstr "ઉમેરો (_A)"
 msgid "Add an action"
 msgstr "કાર્ય ઉમેરો"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 msgid "_Edit"
 msgstr "ફેરફાર કરો (_E)"
 
@@ -1965,10 +1976,6 @@ msgstr ""
 "વર્ણન : [%s]\n"
 "કાર્ય : [%s]\n"
 
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "કેલેન્ડર"
-
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -2076,29 +2083,30 @@ msgid "December"
 msgstr "ડિસેમ્બર"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "છેલ્લે આ વખતે સુધારાયેલ:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-msgid "The file could not be opened"
+#, fuzzy
+msgid "One file or more could not be opened"
 msgstr "ફાઈલ ખોલી શકાઈ નહિં"
 
 #: logview/logrtns.c:216
@@ -2110,10 +2118,10 @@ msgid "Not enough memory!\n"
 msgstr "પૂરતી મેમરી નથી!\n"
 
 #: logview/logrtns.c:276
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
 "%s વપરાશકર્તા વાંચી શકે તેવી નથી. રૂટ તરીકે કાર્યક્રમ ચલાવો અથવા ફાઇલની પરવાનગી "
 "બદલવા સિસ્ટમ સંચાલકને પૂછો."
@@ -2137,139 +2145,144 @@ msgstr "%s લોગ ફાઇલ નથી."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: મેમરીમાંથી બહાર"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 msgid "Fin_d:"
 msgstr "શોધો (_d):"
 
-#: logview/logview-findbar.c:283
-msgid "Find Next"
-msgstr "આગળ શોધો"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:279
+#, fuzzy
+msgid "_Previous"
 msgstr "પહેલાનુ શોધો"
 
-#: logview/logview.c:85
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
+
+#: logview/logview.c:93
 msgid "_Log"
 msgstr "લોગ (_L)"
 
-#: logview/logview.c:87
+#: logview/logview.c:95
 msgid "_View"
 msgstr "દેખાવ (_V)"
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "_Open..."
 msgstr "ખોલો (_O)..."
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "Open a log from file"
 msgstr "ફાઈલમાંથી લોગ ખોલો"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "_Properties"
 msgstr "ગુણધર્મો (_P)"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "લોગ ગુણધર્મો બતાવો"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close"
 msgstr "બંધ કરો"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close this log"
 msgstr "આ લોગ બંધ કરો"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "_Quit"
 msgstr "બહાર નીકળો (_Q)"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "Quit the log viewer"
 msgstr "લોગ દર્શક બંધ કરો"
 
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "નકલ કરો"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select All"
 msgstr "બધું પસંદ કરો"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select the entire log"
 msgstr "વર્તમાન લોગ પસંદ કરો"
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr "લોગમાં ભાત શોધો"
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 msgid "Collapse _All"
 msgstr "બધું સંકોચો (_A)"
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr "બધી હરોળો ભેગી કરો"
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr "લોગ દર્શક માટે મદદ સમાવિષ્ટો ખોલો"
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr "લોગ દર્શક માટે વિશે સંવાદ બતાવો"
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 msgid "_Monitor"
 msgstr "મોનિટર (_M)"
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr "વર્તમાન લોગ મોનિટર કરો"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Ca_lendar"
 msgstr "કેલેન્ડર (_l)"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "કેલેન્ડરનો લોગ બતાવો"
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "પ્રવેશ વિગતો (_E)"
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "પ્રવેશ વિગતો બતાવો"
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "તારીખ"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "હોસ્ટ નામ"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr "પ્રક્રિયા"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "સંદેશ"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "નવી લોગ ફાઇલ ખોલો"
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 msgid "There was an error displaying help."
 msgstr "મદદ પ્રદર્શિત કરવામાં ભૂલ હતી."
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (મોનિટર થયેલ) - %s"
@@ -2295,3 +2308,23 @@ msgstr "પ્રવેશ વિગતો"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
+#~ msgid "Lookup done"
+#~ msgstr "શોધવાનું પૂર્ણ"
+
+#~ msgid "Spell check done"
+#~ msgstr "જોડણીની ચકાસણી પૂરી થઈ ગઈ"
+
+#~ msgid "Gnome Dictionary"
+#~ msgstr "જીનોમ શબ્દકોષ"
+
+#~ msgid "Calendar"
+#~ msgstr "કેલેન્ડર"
+
+#~ msgid "Find Next"
+#~ msgstr "આગળ શોધો"
+
+#~ msgid "_Entry Detail"
+#~ msgstr "પ્રવેશ વિગતો (_E)"
+
+#~ msgid "Show Entry Detail"
+#~ msgstr "પ્રવેશ વિગતો બતાવો"

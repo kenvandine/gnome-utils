@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 1.96.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 10:11-0500\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2002-04-30 14:02MET\n"
 "Last-Translator: Pablo Saratxaga <pablo@mandrakesoft.com>\n"
 "Language-Team: Walon <linux-wa@chanae.alphanet.ch>\n"
@@ -30,13 +30,13 @@ msgstr "Cweraedje dins l' diccionaire"
 msgid "Lookup words in an online dictionary"
 msgstr "Cweri on mot dins on diccionaire so fyis"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 #, fuzzy
 msgid "_About"
 msgstr "Å dfait"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 msgid "_Help"
 msgstr "_Aidance"
 
@@ -52,8 +52,8 @@ msgstr "_Preferinces"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "Dji n' pout m' raloyî å sierveu"
 
@@ -72,7 +72,7 @@ msgstr ""
 "pol sierveu eyet 2628 pol pôrt."
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 #, fuzzy
 msgid "translator-credits"
 msgstr ""
@@ -85,14 +85,15 @@ msgstr ""
 "eployeye chal loukîz so:\n"
 "http://rifondou.walon.org/"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 #, fuzzy
 msgid "A client for the MIT dictionary server."
 msgstr "Sierveu di diccionairaedje"
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "Diccionaire"
 
@@ -129,160 +130,169 @@ msgid "_Search for:"
 msgstr "Cweri après des fitchîs"
 
 #: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-pref-dialog.c:889
 #, fuzzy
 msgid "Could not display help"
 msgstr "Dji n' a savu drovi %s."
 
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:646
 msgid "_Dictionary"
 msgstr "_Diccionaire"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "C_weri l' mot"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "Cweri on mot el diccionaire"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "_Print"
 msgstr "_Pôrt:"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 #, fuzzy
 msgid "_Close"
 msgstr "Cosinus"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "Close the application"
 msgstr "_Catchî l' programe"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 #, fuzzy
 msgid "_Find..."
 msgstr "_Trover"
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "Copyî l' tecse"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "Trover"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "P_references"
 msgstr "_Preferinces"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 #, fuzzy
 msgid "Configure the application"
 msgstr "_Catchî l' programe"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 #, fuzzy
 msgid "About this application"
 msgstr "_Catchî l' programe"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "Sierveu di diccionairaedje"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "Cu_t"
 msgstr "Côper"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "Côper li tchuze"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "_Copyî"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 #, fuzzy
 msgid "Copy the selection"
 msgstr "Côper li tchuze"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 #, fuzzy
 msgid "_Paste"
 msgstr "Claper"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 #, fuzzy
 msgid "Paste clipboard"
 msgstr "Aclaper çu k' i gn a el tchapea emacralé"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 #, fuzzy
 msgid "Select everything"
 msgstr "Tchoezi evenmints log"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 #, fuzzy
 msgid "_Spellings"
 msgstr "_Coridjî"
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "_Mot:"
 
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "Mot"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "Intrêye"
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "Tapez on mot ou l' tchoezi dins l' djivêye chal pa dzo"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "Cweri après on mot"
 
@@ -291,130 +301,132 @@ msgstr "Cweri après on mot"
 msgid "Dictionary word entry"
 msgstr "Sierveu di diccionairaedje"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 msgid "Looking up word..."
 msgstr "Cwerant on mot..."
 
-#: gdictsrc/gdict-defbox.c:100
-msgid "Lookup done"
-msgstr "Cweraedje fwait"
-
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "Dji n' a rén trové"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 msgid "String not found"
 msgstr "Tchinne nén trovêye"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 #, fuzzy
 msgid "Error invoking query"
 msgstr "Åk n' a nén stî tot cwerant: %s"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 #, fuzzy
 msgid "De_fault Server"
 msgstr "Prémetowe sitratédjeye"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "_Sierveu:"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "Rimete li prémetou sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "_Pôrt:"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 #, fuzzy
 msgid "Def_ault Port"
 msgstr "Pré_metou"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "Rimete li prémetou pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "Sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "Intrêye do sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "Tapez li no do sierveu"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "Pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "Intrêye do pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "Tapez l' limero do pôrt"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "_Båze di dnêyes:"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 #, fuzzy
 msgid "Strat_egy:"
 msgstr "Sitratédjeye di c_weraedje:"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+#, fuzzy
+msgid "Font:"
+msgstr "_Pôrt:"
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 #, fuzzy
 msgid "Search Address"
 msgstr "Rizultats do c_weraedje"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "Preferinces pol diccionaire"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "Cweri dins totes les båzes di dnêyes"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "Båze di dnêyes"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "No del båze di dnêyes"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "Prémetowe sitratédjeye"
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:114
+#, fuzzy
+msgid "Spellings"
+msgstr "_Coridjî"
+
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr "Coridjaedje..."
-
-#: gdictsrc/gdict-speller.c:243
-msgid "Spell check done"
-msgstr "Coridjaedje fwait"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -476,11 +488,6 @@ msgstr ""
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "Eployî li sûti cweraedje"
-
-#: gdictsrc/main.c:90
-#, fuzzy
-msgid "Gnome Dictionary"
-msgstr "Diccionaire"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1067,7 +1074,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "Li fitchî %s egzisteye dedja. El sipotchî?"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr ""
 
@@ -1280,18 +1287,18 @@ msgid ""
 "selected when the search tool is started."
 msgstr ""
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
-msgstr ""
-
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
-msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
 msgstr ""
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
@@ -1318,124 +1325,124 @@ msgid ""
 "command when performing simple file name searches."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 #, fuzzy
 msgid "Could not open help document."
 msgstr "Dji n' a savu drovi %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, fuzzy, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "Dji n' a savu drovi %s."
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr ""
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 #, fuzzy
 msgid "The document does not exist."
 msgstr "Li ridant di dpårt n' egzisteye nén."
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, fuzzy, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "Dji n' a savu drovi %s."
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr ""
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 #, fuzzy
 msgid "Save Search Results As..."
 msgstr "Schaper eyet r_lomer les rzultats..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 #, fuzzy
 msgid "Could not save document."
 msgstr "Dji n' a savu drovi %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr ""
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1447,24 +1454,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:549
 msgid "today at %-I:%M %p"
 msgstr "ouy a %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "ayir a %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 #, fuzzy
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%-d/%-m/%y, %H:%M"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr ""
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr ""
@@ -1567,81 +1574,81 @@ msgstr ""
 msgid "Character set conversion failed for \"%s\""
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "Dji n' a trové nou fitchî"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:784
 #, fuzzy
 msgid "No Files Found"
 msgstr "Dji n' a trové nou fitchî"
 
-#: gsearchtool/gsearchtool.c:768
+#: gsearchtool/gsearchtool.c:789
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "Dj' a trové %d fitchîs"
 msgstr[1] "Dj' a trové %d fitchîs"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "Dj' a trové %d fitchîs"
 msgstr[1] "Dj' a trové %d fitchîs"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "Cweri après des fitchîs"
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1134
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "Cweriaedje..."
 
-#: gsearchtool/gsearchtool.c:1157
+#: gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1160
+#: gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1167
+#: gsearchtool/gsearchtool.c:1188
 #, fuzzy, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Shuve les loyéns simbolikes"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1191
 #, fuzzy, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Shuve les loyéns simbolikes"
 
-#: gsearchtool/gsearchtool.c:1277
+#: gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1649,186 +1656,186 @@ msgstr ""
 "\n"
 "... I gn a pår trop d' arokes po les pleur håyner ..."
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 #, fuzzy
 msgid "Show more _details"
 msgstr "Mostrer les prôpietés do djournå"
 
-#: gsearchtool/gsearchtool.c:1627
+#: gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1677
+#: gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1704
+#: gsearchtool/gsearchtool.c:1731
 #, fuzzy
 msgid "Error parsing the search command."
 msgstr "EÅk n' a nén stî to verifiant s' i gn a des bloks di måvas..."
 
-#: gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1764
 #, fuzzy
 msgid "Error running the search command."
 msgstr "EÅk n' a nén stî to verifiant s' i gn a des bloks di måvas..."
 
-#: gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1911
 #, fuzzy, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Shuve les loyéns simbolikes"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1891
+#: gsearchtool/gsearchtool.c:1918
 #, fuzzy, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Shuve les loyéns simbolikes"
 
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:1977
 #, fuzzy, c-format
 msgid "Remove \"%s\""
 msgstr "Oister"
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1978
 #, fuzzy, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Shuve les loyéns simbolikes"
 
-#: gsearchtool/gsearchtool.c:2044
+#: gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2073
+#: gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2074
+#: gsearchtool/gsearchtool.c:2101
 #, fuzzy
 msgid "Select a search option from the drop-down list."
 msgstr "Askepyî ene novele årtchive a pårti des cayets"
 
-#: gsearchtool/gsearchtool.c:2086
+#: gsearchtool/gsearchtool.c:2113
 #, fuzzy
 msgid "Add search option"
 msgstr "Accions"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2135
 #, fuzzy
 msgid "S_earch results:"
 msgstr "Rizultats do c_weraedje"
 
-#: gsearchtool/gsearchtool.c:2144
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2194
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "No"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "Ridant"
 
-#: gsearchtool/gsearchtool.c:2225
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "Grandeu"
 
-#: gsearchtool/gsearchtool.c:2235
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "Sôre"
 
-#: gsearchtool/gsearchtool.c:2245
+#: gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2613
+#: gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2661
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "Kimincî a pårti do ridant:"
 
-#: gsearchtool/gsearchtool.c:2640
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "Foyter"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 #, fuzzy
 msgid "Look in folder"
 msgstr "Kimincî a pårti do ridant:"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 #, fuzzy
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Clitchiz po-z enonder l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:2656
+#: gsearchtool/gsearchtool.c:2683
 #, fuzzy
-msgid "Show more _options"
+msgid "Select more _options"
 msgstr "Mostrer les prôpietés do djournå"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 #, fuzzy
-msgid "Show more options"
+msgid "Select more options"
 msgstr "Mostrer les prôpietés do djournå"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2689
+#: gsearchtool/gsearchtool.c:2716
 #, fuzzy
 msgid "Click to display the help manual."
 msgstr "Dji n' a savu drovi %s."
 
-#: gsearchtool/gsearchtool.c:2697
+#: gsearchtool/gsearchtool.c:2724
 #, fuzzy
 msgid "Click to close \"Search for Files\"."
 msgstr "Cweri après des fitchîs"
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2750
 #, fuzzy
 msgid "Click to perform a search."
 msgstr "Clitchîz po-z arester l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:2724
+#: gsearchtool/gsearchtool.c:2751
 #, fuzzy
 msgid "Click to stop a search."
 msgstr "Clitchîz po-z arester l' cweraedje"
 
-#: gsearchtool/gsearchtool.c:2824
+#: gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr ""
 
@@ -1858,7 +1865,7 @@ msgstr "_Radjouter"
 msgid "Add an action"
 msgstr "Accions"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 msgid "_Edit"
 msgstr "_Candjî"
 
@@ -1995,10 +2002,6 @@ msgstr ""
 "discrijhaedje: [%s]\n"
 "accion: [%s]\n"
 
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "Calindrî"
-
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -2107,31 +2110,31 @@ msgid "December"
 msgstr "Decimbe"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 #, fuzzy
 msgid "Last Modified:"
 msgstr "Candjî pol dierin côp: "
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%e di %B"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
 #, fuzzy
-msgid "The file could not be opened"
+msgid "One file or more could not be opened"
 msgstr "Dji n' a savu drovi %s."
 
 #: logview/logrtns.c:216
@@ -2143,10 +2146,10 @@ msgid "Not enough memory!\n"
 msgstr "Nén del memwere assez!\n"
 
 #: logview/logrtns.c:276
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
 "%s ni såreut esse lejhou di l' uzeu, dandjureu paski ses permissions sont "
 "metowes insi. Vos dvoz enonder li programe come root ou dmander å manaedjeu "
@@ -2171,151 +2174,155 @@ msgstr "%s n' est nén on fitchî log."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memwere sipoujheye"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 #, fuzzy
 msgid "Fin_d:"
 msgstr "Trover:"
 
-#: logview/logview-findbar.c:283
+#: logview/logview-findbar.c:279
 #, fuzzy
-msgid "Find Next"
-msgstr "Trover"
+msgid "_Previous"
+msgstr "_Prôpietés"
 
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:281
+msgid "_Next"
 msgstr ""
 
-#: logview/logview.c:85
+#: logview/logview.c:93
 msgid "_Log"
 msgstr "_Djournå:"
 
-#: logview/logview.c:87
+#: logview/logview.c:95
 msgid "_View"
 msgstr ""
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "_Open..."
 msgstr ""
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 #, fuzzy
 msgid "Open a log from file"
 msgstr "Drovi on novea fitchî log"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "_Properties"
 msgstr "_Prôpietés"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "Mostrer les prôpietés do djournå"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 #, fuzzy
 msgid "Close"
 msgstr "Cosinus"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close this log"
 msgstr ""
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 #, fuzzy
 msgid "_Quit"
 msgstr "_Candjî"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 #, fuzzy
 msgid "Quit the log viewer"
 msgstr "Po vey les djournås do sistinme"
 
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "Copyî"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 #, fuzzy
 msgid "Select All"
 msgstr "Clôr_e totafwait"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select the entire log"
 msgstr ""
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr ""
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 #, fuzzy
 msgid "Collapse _All"
 msgstr "Clôr_e totafwait"
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr ""
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr ""
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr ""
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 #, fuzzy
 msgid "_Monitor"
 msgstr "Cor_waitî..."
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 #, fuzzy
 msgid "Monitor Current Log"
 msgstr "Corwaitî li djournå"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 #, fuzzy
 msgid "Ca_lendar"
 msgstr "Calindrî"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "Mostrer li calindrî des djournås"
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "Detays del intrêye"
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "Mostrer les detays del intrêye"
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "Date"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "No do lodjoe"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr "Process"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "Messaedje"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "Drovi on novea fitchî log"
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 #, fuzzy
 msgid "There was an error displaying help."
 msgstr "Åk n' a nén stî. «%s» est vude"
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr ""
@@ -2339,6 +2346,29 @@ msgstr "Detays del intrêye"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e di %B %X"
+
+#~ msgid "Lookup done"
+#~ msgstr "Cweraedje fwait"
+
+#~ msgid "Spell check done"
+#~ msgstr "Coridjaedje fwait"
+
+#, fuzzy
+#~ msgid "Gnome Dictionary"
+#~ msgstr "Diccionaire"
+
+#~ msgid "Calendar"
+#~ msgstr "Calindrî"
+
+#, fuzzy
+#~ msgid "Find Next"
+#~ msgstr "Trover"
+
+#~ msgid "_Entry Detail"
+#~ msgstr "Detays del intrêye"
+
+#~ msgid "Show Entry Detail"
+#~ msgstr "Mostrer les detays del intrêye"
 
 #, fuzzy
 #~ msgid "Click to Remove the '%s' Rule"
@@ -2830,10 +2860,6 @@ msgstr "%e di %B %X"
 
 #~ msgid "Action Toolbar"
 #~ msgstr "Bår d' accions"
-
-#, fuzzy
-#~ msgid "_Font:"
-#~ msgstr "_Pôrt:"
 
 #~ msgid "_Text to copy:"
 #~ msgstr "_Tecse a copyî:"

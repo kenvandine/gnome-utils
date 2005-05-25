@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-07 10:11-0500\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-02-27 13:06+0200\n"
 "Last-Translator: Deniz Koçak <lenduha@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -29,12 +29,12 @@ msgstr "Sözlükte Ara"
 msgid "Lookup words in an online dictionary"
 msgstr "Sözcükleri çevrimiçi bir sözlükte ara"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 msgid "_About"
 msgstr "_Hakkında"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 msgid "_Help"
 msgstr "_Yardım"
 
@@ -49,8 +49,8 @@ msgstr "_Tercihler"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "Sunucuya bağlanılamıyor"
 
@@ -67,17 +67,18 @@ msgstr ""
 "Bilgi için öntanımlı sunucu dict.org ve port 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 msgid "translator-credits"
 msgstr "Deniz Koçak <lenduha@gmail.com>"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 msgid "A client for the MIT dictionary server."
 msgstr "MIT sözlük sunucusu için istemci."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "Sözlük"
 
@@ -111,144 +112,153 @@ msgid "_Search for:"
 msgstr "_Arama:"
 
 #: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-pref-dialog.c:889
 msgid "Could not display help"
 msgstr "Yardım belgesi gösterilemedi"
 
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:646
 #, fuzzy
 msgid "_Dictionary"
 msgstr "Sözlük"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "Kelime _Ara"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "Sözlükte kelime ara"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 msgid "_Print"
 msgstr "_Yazdır"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr "Gösterilen tanımı yazdır"
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 msgid "_Close"
 msgstr "_Kapat"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 msgid "Close the application"
 msgstr "Uygulamayı kapat"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 msgid "_Find..."
 msgstr "_Bul..."
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 msgid "Find a word in the text"
 msgstr "Metin içinde kelime ara"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 msgid "Find Ne_xt"
 msgstr "_Sonrakini Bul"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr "Kelimenin sonraki bulunduğu yeri göster"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 msgid "P_references"
 msgstr "_Tercihler"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 msgid "Configure the application"
 msgstr "Uygulamayı yapılandır"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr "_Içindekiler"
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr "Bu uygulama için yardımı göster"
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 msgid "About this application"
 msgstr "Bu uygulama hakkında"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 msgid "On a Dictionary Server"
 msgstr "Bir Sözlük Sunucusu Üstünde"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr "Bir Ağ Sistesi Üstünde"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 msgid "Cu_t"
 msgstr "_Kes"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "Seçimi kes"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "_Kopyala"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 msgid "Copy the selection"
 msgstr "Seçimi kopyala"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 msgid "_Paste"
 msgstr "Ya_pıştır"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "Panoyu yapıştır"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr "_Tümünü Seç"
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr "Her şeyi seç"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr "_Yazımlar"
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr "Alternatif yazımlara bak"
 
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "_Kelime:"
 
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "Kelime"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "Kelime Girişi"
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "Bir kelime girin ya da aşağıdaki listeden seçin"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "Bir Kelime Ara"
 
@@ -256,125 +266,126 @@ msgstr "Bir Kelime Ara"
 msgid "Dictionary word entry"
 msgstr "Sözlük kelime girişi"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 msgid "Looking up word..."
 msgstr "Kelime aranıyor..."
 
-#: gdictsrc/gdict-defbox.c:100
-msgid "Lookup done"
-msgstr "Arama tamamlandı"
-
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "Eşleşme bulunamadı"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 msgid "String not found"
 msgstr "Dizgi bulunamadı"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr "Tanım önizlemesi"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 msgid "Error invoking query"
 msgstr "Sorgu hatası"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr "_Öntanımlı Sunucu"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "_Sunucu:"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "Sunucuyu öntanımlı haline geri döndür"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr "Ö_ntanımlı Port"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "Portu öntanımlı haline geri döndür"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "Sunucu"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "Sunucu Girişi"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "Sunucu Adını Girin"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "Port Girişi"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "Port Numarasını Girin"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "_Veritabanı:"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr "Arama s_tratejisi:"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+msgid "Font:"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr "Ağ Sitesi"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr "Arama Adresi"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "Sözlük Tercihleri"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "Ağ Siteleri"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "Bütün veritabanlarında ara"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "Veritabanı"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "Veritabanı Adı"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "Öntanımlı Strateji"
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:114
+#, fuzzy
+msgid "Spellings"
+msgstr "_Yazımlar"
+
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr "Yazım denetimi..."
-
-#: gdictsrc/gdict-speller.c:243
-msgid "Spell check done"
-msgstr "Yazım denetimi tamamlandı"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -434,10 +445,6 @@ msgstr ""
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "Akıllı aramayı kullan"
-
-#: gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr "Gnome Sözlük"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1043,7 +1050,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "\"%s\" dosyası zaten mevcut.  Yerine koymak ister misiniz?"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "_Yerine koy"
 
@@ -1275,23 +1282,24 @@ msgstr ""
 "Bu anahtar arama aracı başladığında \"Sahibi tanımlanamıyor\" arama "
 "seçeneğinin seçili olup olmadığını belirler."
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+#, fuzzy
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+"Bu anahtar arama aracı başladığında \"Daha fazla seçenek göster\" arama "
+"seçeneğinin seçili olup olmadığını belirler."
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
 msgstr ""
 "Bu anahtar arama aracı başladığında \"Gizli dosya ve klasörleri göster\" "
 "arama seçeneğinin seçili olup olmadığını belirler."
-
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
-msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
-msgstr ""
-"Bu anahtar arama aracı başladığında \"Daha fazla seçenek göster\" arama "
-"seçeneğinin seçili olup olmadığını belirler."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
@@ -1325,121 +1333,121 @@ msgstr ""
 "Bu anahtar arama aracının basit dosya adı aramalarında 'locate' komutunun "
 "kullanımının iptal edilip edilmediğini gösterir."
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "Yardım belgesi açılamadı."
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "%d tane belge açmak istediğinizden emin misiniz?"
 msgstr[1] "%d belgeyi açmak istediğinizden emin misiniz?"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Bu %d farklı pencere açacak."
 msgstr[1] "Bu %d farklı pencere açacak."
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "\"%s\" belgesi açılamadı."
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "\"%s\" klasör açılamadı."
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr "Nautilus dosya yöneticisi çalışmıyor."
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "Belge bulunmuyor."
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Belgeyi gösterebilecek bir görüntüleyici yüklü değil."
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "%d tane klasörü açmak istediğinizden emin misiniz?"
 msgstr[1] "%d klasörü açmak istediğinizden emin misiniz?"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "\"%s\" klasör açılamadı."
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr "Nautilus dosya yöneticisi çalışmıyor."
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\" çöpe taşınamadı."
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "\"%s\" kalıcı olarak silinmesini istediğinizden emin misiniz?"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Çöp erişilemez.  \"%s\" çöpe taşınamadı."
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\" silinemedi."
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "\"%s\" taşınamadı: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\" silinemedi: %s."
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "Arama Sonuçlarını Farklı Kaydet..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "Belge kaydedilemedi."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "Belge ismi seçmediniz."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "\"%s\" belgesi \"%s\" içine kaydedilemedi."
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "\"%s\" belgesi zaten mevcut.  Yerine konulmasını ister misiniz?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 "Eğer mevcut bir dosyanın yerine koyarsanız, onun içeriği üzerine yazılır."
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "Seçtiğiniz belge ismi bir klasör."
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "Belgeye yazma haklarına sahip değilsiniz."
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1453,23 +1461,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:549
 msgid "today at %-I:%M %p"
 msgstr "bugün saat %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "dün saat %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%m/%-d/%y, %-H:%M"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr "bağlantı (kırık)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr "%s bağlantısı"
@@ -1563,81 +1571,81 @@ msgstr "Bir locate veritabanı muhtemelen oluşturulmamış."
 msgid "Character set conversion failed for \"%s\""
 msgstr "\"%s\" için karakter çevrimi başarısız oldu"
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "Dosya bulunamadı"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr "(durdu)"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr "Dosya Bulunamadı"
 
-#: gsearchtool/gsearchtool.c:768
+#: gsearchtool/gsearchtool.c:789
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d Dosya Bulundu"
 msgstr[1] "%d Dosya Bulundu"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d dosya bulundu"
 msgstr[1] "%d dosya bulundu"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "Dosya Ara"
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr "Giriş olmayan seçenek için çağrılan giriş değiştirildi!"
 
-#: gsearchtool/gsearchtool.c:1134
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "Aranıyor..."
 
-#: gsearchtool/gsearchtool.c:1157
+#: gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr "\"İsim içerir\" arama seçeneğinin değerini belirtin"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "\"Klasör içinde ara\" arama seçeneğinin metnini ayarlayın"
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Dosyaları şu ölçütlerden birine göre sırala: ad, dizin, boyut, tür ve tarih"
 
-#: gsearchtool/gsearchtool.c:1160
+#: gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Sıralama düzenini azalan olarak ayarla, öntanımlı değer artandır"
 
-#: gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr "Kendiliğinden aramaya başla"
 
-#: gsearchtool/gsearchtool.c:1167
+#: gsearchtool/gsearchtool.c:1188
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "\"%s\" arama seçeneğini seçin"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1191
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "\"%s\" arama seçeneğini seçin ve değerini belirtin"
 
-#: gsearchtool/gsearchtool.c:1277
+#: gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr "'sortby' komut satırı argümanı olarak girilmiş geçersiz seçenek."
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1645,7 +1653,7 @@ msgstr ""
 "\n"
 "... Görüntülemek için çok fazla hata var ..."
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1653,11 +1661,11 @@ msgstr ""
 "Arama sonuçları geçersiz olabilir.  Bu aramayı gerçekleştirirken hatalar "
 "oluştu."
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 msgid "Show more _details"
 msgstr "Daha fazla _detay göster"
 
-#: gsearchtool/gsearchtool.c:1627
+#: gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1665,157 +1673,159 @@ msgstr ""
 "Arama sonuçları geçersiz olabilir.  Hızlı arama özelliğini kapatmak ister "
 "misiniz?"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr "_Hızlı Aramayı Kapat"
 
-#: gsearchtool/gsearchtool.c:1677
+#: gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "%d alt süreci numara ataması başarısız oldu: %s\n"
 
-#: gsearchtool/gsearchtool.c:1704
+#: gsearchtool/gsearchtool.c:1731
 msgid "Error parsing the search command."
 msgstr "Arama komutu ayrıştırma hatası."
 
-#: gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1764
 msgid "Error running the search command."
 msgstr "Arama komutu çalıştırma hatası."
 
-#: gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1911
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "\"%s\" arama seçeneği için bir metin değeri girin."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "%2$s içinde \"%1$s\""
 
-#: gsearchtool/gsearchtool.c:1891
+#: gsearchtool/gsearchtool.c:1918
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "\"%2$s\" arama seçeneği için %1$s içine bir değer girin."
 
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" Seçeneğini Kaldır"
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1978
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "\"%s\" arama seçeneğini kaldırmak için tıklayın."
 
-#: gsearchtool/gsearchtool.c:2044
+#: gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr "Geçerli _seçenekler:"
 
-#: gsearchtool/gsearchtool.c:2073
+#: gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr "Geçerli seçenekler"
 
-#: gsearchtool/gsearchtool.c:2074
+#: gsearchtool/gsearchtool.c:2101
 msgid "Select a search option from the drop-down list."
 msgstr "Açılır menüden bir arama seçeneği seçiniz."
 
-#: gsearchtool/gsearchtool.c:2086
+#: gsearchtool/gsearchtool.c:2113
 msgid "Add search option"
 msgstr "Arama seçeneği ekle"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr "Seçili geçerli arama seçeneğini eklemek için tıklayın."
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2135
 msgid "S_earch results:"
 msgstr "Arama _sonuçları:"
 
-#: gsearchtool/gsearchtool.c:2144
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr "Liste Görünümü"
 
-#: gsearchtool/gsearchtool.c:2194
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "İsim"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "Klasör"
 
-#: gsearchtool/gsearchtool.c:2225
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "Boyut"
 
-#: gsearchtool/gsearchtool.c:2235
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "Tür"
 
-#: gsearchtool/gsearchtool.c:2245
+#: gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr "Değiştirildiği Tarih"
 
-#: gsearchtool/gsearchtool.c:2613
+#: gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr "_İsim içerir:"
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "Dosyanın tam ismini yada maske karakterli veya karaktersiz isminin bir "
 "parçasını girin."
 
-#: gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr "İsim içerir"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2661
 msgid "_Look in folder:"
 msgstr "_Klasör içinde bak:"
 
-#: gsearchtool/gsearchtool.c:2640
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "Gözat"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Look in folder"
 msgstr "Klasör içinde ara"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Aramaya başlamak istediğiniz klasör ya da aygıt adını girin."
 
-#: gsearchtool/gsearchtool.c:2656
-msgid "Show more _options"
+#: gsearchtool/gsearchtool.c:2683
+#, fuzzy
+msgid "Select more _options"
 msgstr "Daha fazla _seçenek göster"
 
-#: gsearchtool/gsearchtool.c:2665
-msgid "Show more options"
+#: gsearchtool/gsearchtool.c:2692
+#, fuzzy
+msgid "Select more options"
 msgstr "Daha fazla seçenek göster"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr "Arama seçenekleri listesini genişletmek ya da katlamak için tıklayın."
 
-#: gsearchtool/gsearchtool.c:2689
+#: gsearchtool/gsearchtool.c:2716
 msgid "Click to display the help manual."
 msgstr "Yardım belgesini görmek için tıklayın."
 
-#: gsearchtool/gsearchtool.c:2697
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to close \"Search for Files\"."
 msgstr "\"Dosya Ara\"yı kapamak için tıklayın."
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2750
 msgid "Click to perform a search."
 msgstr "Arama yapmak için tıklayın."
 
-#: gsearchtool/gsearchtool.c:2724
+#: gsearchtool/gsearchtool.c:2751
 msgid "Click to stop a search."
 msgstr "Aramayı durdurmak için tıklayın."
 
-#: gsearchtool/gsearchtool.c:2824
+#: gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr "Bonobo başlatılamadı."
 
@@ -1843,7 +1853,7 @@ msgstr "_Ekle"
 msgid "Add an action"
 msgstr "Eylem ekle"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 msgid "_Edit"
 msgstr "_Düzenle"
 
@@ -1975,10 +1985,6 @@ msgstr ""
 "açıklama: [%s]\n"
 "eylem: [%s]\n"
 
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "Takvim"
-
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -2086,29 +2092,30 @@ msgid "December"
 msgstr "Aralık"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "Son Değiştirilme:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-msgid "The file could not be opened"
+#, fuzzy
+msgid "One file or more could not be opened"
 msgstr "Dosya açılamadı"
 
 #: logview/logrtns.c:216
@@ -2120,10 +2127,10 @@ msgid "Not enough memory!\n"
 msgstr "Yeterli bellek yok!\n"
 
 #: logview/logrtns.c:276
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
 "%s kullanıcı tarafından okunabilir değil. Ya programı root olarak çalıştırın "
 "ya da sistem yöneticinizden dosya üzerindeki izinleri değiştirmesini isteyin."
@@ -2147,139 +2154,144 @@ msgstr "%s bir günlük dosyası değil."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: bellek yetersiz"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 msgid "Fin_d:"
 msgstr "_Bul:"
 
-#: logview/logview-findbar.c:283
-msgid "Find Next"
-msgstr "Sonrakini Bul"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:279
+#, fuzzy
+msgid "_Previous"
 msgstr "Öncekini Bul"
 
-#: logview/logview.c:85
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
+
+#: logview/logview.c:93
 msgid "_Log"
 msgstr "Gün_lük"
 
-#: logview/logview.c:87
+#: logview/logview.c:95
 msgid "_View"
 msgstr "_Görüntüle"
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "_Open..."
 msgstr "_Aç..."
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "Open a log from file"
 msgstr "Dosyadan günlük aç"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "_Properties"
 msgstr "_Özellikler"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "Günlük Özelliklerini Göster"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close"
 msgstr "Kapat"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close this log"
 msgstr "Günlüğü kapat"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "_Quit"
 msgstr "_Çık"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "Quit the log viewer"
 msgstr "Günlük görüntüleyicisinden çık"
 
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "Kopyala"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select All"
 msgstr "Hepsini Seç"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select the entire log"
 msgstr "Tüm günlüğü seç"
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr "Günlüklerde kalıp bul"
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 msgid "Collapse _All"
 msgstr "Hepsini _Katla"
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr "Tüm sütunları katla"
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr "Günlük görüntüleyici için yardım dosyasını aç"
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr "Günlük görüntüleyici için hakkında penceresini göster"
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 msgid "_Monitor"
 msgstr "_İzleyici"
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr "Güncel Günlüğü İzle"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Ca_lendar"
 msgstr "_Takvim"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "Takvim Günlüğünü Göster"
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "Giriş _Ayrıntıları"
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "Giriş Ayrıntılarını Göster"
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "Tarih"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "Makina İsmi"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr "Süreç"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "İleti"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "Yeni günlük dosyası aç"
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 msgid "There was an error displaying help."
 msgstr "Yardım gösterilirken bir hata oluştu."
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (izleniyor) - %s"
@@ -2304,3 +2316,24 @@ msgstr "Giriş Ayrıntıları"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "Lookup done"
+#~ msgstr "Arama tamamlandı"
+
+#~ msgid "Spell check done"
+#~ msgstr "Yazım denetimi tamamlandı"
+
+#~ msgid "Gnome Dictionary"
+#~ msgstr "Gnome Sözlük"
+
+#~ msgid "Calendar"
+#~ msgstr "Takvim"
+
+#~ msgid "Find Next"
+#~ msgstr "Sonrakini Bul"
+
+#~ msgid "_Entry Detail"
+#~ msgstr "Giriş _Ayrıntıları"
+
+#~ msgid "Show Entry Detail"
+#~ msgstr "Giriş Ayrıntılarını Göster"

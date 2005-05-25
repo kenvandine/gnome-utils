@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.12\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-31 17:54-0700\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-03-28 19:35-0700\n"
 "Last-Translator: Steve Murphy <murf@e-tools.com>\n"
 "Language-Team: Kinyarwanda <translation-team-rw@lists.sourceforge.net>\n"
@@ -34,13 +34,13 @@ msgstr ""
 msgid "Lookup words in an online dictionary"
 msgstr "Amagambo in kiri kuri interineti Inkoranyamagambo"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 #, fuzzy
 msgid "_About"
 msgstr "Bigyanye"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 #, fuzzy
 msgid "_Help"
 msgstr "Ifashayobora"
@@ -59,8 +59,8 @@ msgstr "Ibyahiswemo"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "Kwihuza na seriveri ntibishobotse"
 
@@ -78,12 +78,12 @@ msgstr ""
 "Na Umuyoboro"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 #, fuzzy
 msgid "translator-credits"
 msgstr "Umusemuzi"
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 #, fuzzy
 msgid "A client for the MIT dictionary server."
 msgstr "A Umukiriya kugirango Inkoranyamagambo Seriveri"
@@ -92,9 +92,10 @@ msgstr "A Umukiriya kugirango Inkoranyamagambo Seriveri"
 # svtools/source\control\ctrlbox.src:STR_SVT_COLLATE_DICTIONARY.text
 # #-#-#-#-#  svtools.pot (Gnome 2.12)  #-#-#-#-#
 # svtools/source\control\ctrlbox.src:STR_SVT_INDEXENTRY_DICTIONARY.text
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "Inkoranyamagambo"
 
@@ -130,7 +131,7 @@ msgid "_Search for:"
 msgstr "Gushakisha:"
 
 #: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-pref-dialog.c:889
 #, fuzzy
 msgid "Could not display help"
 msgstr "OYA Kugaragaza Ifashayobora"
@@ -140,29 +141,29 @@ msgstr "OYA Kugaragaza Ifashayobora"
 # #-#-#-#-#  svtools.pot (Gnome 2.12)  #-#-#-#-#
 # svtools/source\control\ctrlbox.src:STR_SVT_INDEXENTRY_DICTIONARY.text
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:646
 #, fuzzy
 msgid "_Dictionary"
 msgstr "Inkoranyamagambo"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 #, fuzzy
 msgid "Lookup word in dictionary"
 msgstr "ijambo in Inkoranyamagambo"
 
 # #-#-#-#-#  dbaccess.pot (Gnome 2.12)  #-#-#-#-#
 # #-#-#-#-#  dbaccess.pot (Gnome 2.12)  #-#-#-#-#
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 #, fuzzy
 msgid "_Print"
 msgstr "Gucapa"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 #, fuzzy
 msgid "Print the current definition"
 msgstr "KIGEZWEHO Insobanuro"
@@ -175,47 +176,56 @@ msgstr "KIGEZWEHO Insobanuro"
 # basctl/source\basicide\moduldlg.src:RID_TP_MODULS.RID_PB_CLOSE.text
 # #-#-#-#-#  basctl.pot (Gnome 2.12)  #-#-#-#-#
 # basctl/source\basicide\moduldlg.src:RID_TP_LIBS.RID_PB_CLOSE.text
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 #, fuzzy
 msgid "_Close"
 msgstr "Gufunga"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 #, fuzzy
 msgid "Close the application"
 msgstr "Funga Porogaramu"
 
 # sfx2/source\appl\newhelp.src:STR_HELP_BUTTON_SEARCHDIALOG.text
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 #, fuzzy
 msgid "_Find..."
 msgstr "Gushaka..."
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "a ijambo in Umwandiko"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "Shaka ibikurikira"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 #, fuzzy
 msgid "Find next occurrence of the word"
 msgstr "Komeza>> ukugaragara Bya ijambo"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 #, fuzzy
 msgid "P_references"
 msgstr "Ibyahiswemo"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 #, fuzzy
 msgid "Configure the application"
 msgstr "Porogaramu"
+
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
 
 # #-#-#-#-#  sc.pot (Gnome 2.12)  #-#-#-#-#
 # sc/source\ui\dbgui\validate.src:TP_VALIDATION_INPUTHELP.FL_CONTENT.text
@@ -226,61 +236,61 @@ msgstr "Porogaramu"
 # #-#-#-#-#  sc.pot (Gnome 2.12)  #-#-#-#-#
 # sc/source\ui\navipi\navipi.src:SCSTR_CONTENT_ROOT.text
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 #, fuzzy
 msgid "_Contents"
 msgstr "Ibigize"
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 #, fuzzy
 msgid "View help for this application"
 msgstr "Ifashayobora kugirango iyi Porogaramu"
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 #, fuzzy
 msgid "About this application"
 msgstr "iyi Porogaramu"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 #, fuzzy
 msgid "On a Dictionary Server"
 msgstr "a"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 #, fuzzy
 msgid "On a Web Site"
 msgstr "a"
 
 # dbaccess/source/ui/inc/toolbox.hrc:MID_SBA_QRY_CUT.text
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 #, fuzzy
 msgid "Cu_t"
 msgstr "Gukata"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 #, fuzzy
 msgid "Cut the selection"
 msgstr "Ihitamo"
 
 # dbaccess/source/ui/inc/toolbox.hrc:MID_SBA_QRY_COPY.text
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 #, fuzzy
 msgid "_Copy"
 msgstr "Gukoporora"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 #, fuzzy
 msgid "Copy the selection"
 msgstr "Ihitamo"
 
 # dbaccess/source/ui/inc/toolbox.hrc:MID_SBA_QRY_PASTE.text
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 #, fuzzy
 msgid "_Paste"
 msgstr "Komeka"
 
 # offmgr/source\offapp\dialog\optgdlg.src:OFA_TP_VIEW.LB_MOUSEMIDDLE.3.text
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "Komeka ububiko-koporora"
 
@@ -288,20 +298,20 @@ msgstr "Komeka ububiko-koporora"
 # padmin/source\padialog.src:RID_FONTIMPORT_DIALOG.RID_FIMP_BTN_SELECTALL.text
 # #-#-#-#-#  padmin.pot (Gnome 2.12)  #-#-#-#-#
 # padmin/source\padialog.src:RID_ADDP_PAGE_OLDPRINTERS.RID_ADDP_OLD_BTN_SELECTALL.text
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 #, fuzzy
 msgid "Select _All"
 msgstr "Hitamo byose"
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr ""
 
@@ -313,7 +323,7 @@ msgstr ""
 # svx/source\dialog\thesdlg.src:RID_SVXDLG_THESAURUS.FT_WORD.text
 # #-#-#-#-#  svx.pot (Gnome 2.12)  #-#-#-#-#
 # svx/source\options\optdict.src:RID_SFXDLG_EDITDICT.FT_WORD.text
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 #, fuzzy
 msgid "_Word:"
 msgstr "ijambo"
@@ -326,21 +336,21 @@ msgstr "ijambo"
 # svx/source\dialog\thesdlg.src:RID_SVXDLG_THESAURUS.FT_WORD.text
 # #-#-#-#-#  svx.pot (Gnome 2.12)  #-#-#-#-#
 # svx/source\options\optdict.src:RID_SFXDLG_EDITDICT.FT_WORD.text
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 #, fuzzy
 msgid "Word"
 msgstr "ijambo"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 #, fuzzy
 msgid "Enter a Word or select one from the list below"
 msgstr "a Cyangwa Guhitamo Bivuye Urutonde munsi"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 #, fuzzy
 msgid "Look Up for a Word"
 msgstr "kugirango a"
@@ -350,87 +360,82 @@ msgstr "kugirango a"
 msgid "Dictionary word entry"
 msgstr "ijambo Icyinjijwe"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 #, fuzzy
 msgid "Looking up word..."
 msgstr "Hejuru ijambo"
 
-#: gdictsrc/gdict-defbox.c:100
-#, fuzzy
-msgid "Lookup done"
-msgstr "Byakozwe"
-
 # # LOCALIZATION NOTE (matchesFound):  do not localize %S
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "Nta bihuje byabonetse"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 #, fuzzy
 msgid "String not found"
 msgstr "OYA Byabonetse"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 #, fuzzy
 msgid "Definition preview"
 msgstr "Igaragazambere"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 #, fuzzy
 msgid "Error invoking query"
 msgstr "Ikibazo#"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 #, fuzzy
 msgid "_Server:"
 msgstr "Seriveri"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 #, fuzzy
 msgid "Reset server to default"
 msgstr "Seriveri Kuri Mburabuzi"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 #, fuzzy
 msgid "_Port:"
 msgstr "Impagikiro:"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 #, fuzzy
 msgid "Reset port to default"
 msgstr "Umuyoboro Kuri Mburabuzi"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "Seriveri"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 #, fuzzy
 msgid "Enter the Server Name"
 msgstr "i"
 
 # framework/source\services\logindialog.src:RID_DLG_LOGIN.RID_FT_SECURITYPROXYPORT.text
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "Umuyoboro"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 #, fuzzy
 msgid "Enter the Port Number"
 msgstr "i"
@@ -439,32 +444,36 @@ msgstr "i"
 # officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Label.Inscription.Database.text
 # #-#-#-#-#  officecfg.pot (Gnome 2.12)  #-#-#-#-#
 # officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Envelope.Inscription.Database.text
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 #, fuzzy
 msgid "_Database:"
 msgstr "Ububikoshingiro"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+msgid "Font:"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "Webu"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 #, fuzzy
 msgid "Search all databases"
 msgstr "Byose Ububikoshingiro"
@@ -473,16 +482,16 @@ msgstr "Byose Ububikoshingiro"
 # officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Label.Inscription.Database.text
 # #-#-#-#-#  officecfg.pot (Gnome 2.12)  #-#-#-#-#
 # officecfg/registry\schema\org\openoffice\Office\Writer.xcs:....Envelope.Inscription.Database.text
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "Ububikoshingiro"
 
 # sw/source\ui\fldui\fldui.src:STR_DBNAMEFLD.text
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "Izina ry'ububikoshingiro"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr ""
 
@@ -490,14 +499,9 @@ msgstr ""
 msgid "Spellings"
 msgstr ""
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr ""
-
-#: gdictsrc/gdict-speller.c:243
-#, fuzzy
-msgid "Spell check done"
-msgstr "Kugenzura... Byakozwe"
 
 #: gdictsrc/gdict.schemas.in.h:1
 #, fuzzy
@@ -563,10 +567,6 @@ msgstr ""
 #, fuzzy
 msgid "Use smart lookup"
 msgstr "Cyiza GUSHAKISHA"
-
-#: gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr ""
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1462,7 +1462,17 @@ msgid ""
 "selected when the search tool is started."
 msgstr "Urufunguzo NIBA ni Gushaka Ihitamo ni Byahiswemo Ryari: Gushaka ni"
 
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+#, fuzzy
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+"Urufunguzo NIBA Birenzeho Amahitamo Icyiciro ni Cyagutse Ryari: Gushaka ni"
+
+#: gsearchtool/gnome-search-tool.schemas.in.h:64
 #, fuzzy
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
@@ -1470,16 +1480,6 @@ msgid ""
 msgstr ""
 "Urufunguzo NIBA gihishwe Idosiye Na Gushaka Ihitamo ni Byahiswemo Ryari: "
 "Gushaka ni"
-
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-#: gsearchtool/gnome-search-tool.schemas.in.h:64
-#, fuzzy
-msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
-msgstr ""
-"Urufunguzo NIBA Birenzeho Amahitamo Icyiciro ni Cyagutse Ryari: Gushaka ni"
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
 #, fuzzy
@@ -1631,7 +1631,7 @@ msgstr "Inyandiko Izina: Byahiswemo ni a Ububiko"
 msgid "You may not have write permissions to the document."
 msgstr "Gicurasi OYA Uruhushya Kuri Inyandiko"
 
-#: gsearchtool/gsearchtool-support.c:69
+#: gsearchtool/gsearchtool-support.c:71
 #, fuzzy, c-format
 msgid ""
 "GConf error:\n"
@@ -1643,28 +1643,28 @@ msgstr "Ikosa"
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:520
+#: gsearchtool/gsearchtool-support.c:549
 #, fuzzy
 msgid "today at %-I:%M %p"
 msgstr "UYUMUNSI ku"
 
-#: gsearchtool/gsearchtool-support.c:522
+#: gsearchtool/gsearchtool-support.c:551
 #, fuzzy
 msgid "yesterday at %-I:%M %p"
 msgstr "Ejo ku"
 
-#: gsearchtool/gsearchtool-support.c:524 gsearchtool/gsearchtool-support.c:526
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 #, fuzzy
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A,%B%-d%Yku"
 
-#: gsearchtool/gsearchtool-support.c:710
+#: gsearchtool/gsearchtool-support.c:734
 #, fuzzy
 msgid "link (broken)"
 msgstr "Ihuza"
 
 # sw/source\ui\wrtsh\wrtsh.src:STR_DDEERROR_LINK1.text
-#: gsearchtool/gsearchtool-support.c:716
+#: gsearchtool/gsearchtool-support.c:738
 #, fuzzy, c-format
 msgid "link to %s"
 msgstr "Guhuza na["
@@ -1782,201 +1782,201 @@ msgstr "A Ububikoshingiro OYA Byaremwe"
 msgid "Character set conversion failed for \"%s\""
 msgstr "Gushyiraho Ihindurangero Byanze kugirango"
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 #, fuzzy
 msgid "No files found"
 msgstr "Idosiye Byabonetse"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:778
 #, fuzzy
 msgid "(stopped)"
 msgstr "(Kyahagariswe"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:768
+#: gsearchtool/gsearchtool.c:789
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%dIdosiye"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%dIDOSIYE Byabonetse"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 #, fuzzy
 msgid "Search for Files"
 msgstr "kugirango"
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:903
 #, fuzzy
 msgid "Entry changed called for a non entry option!"
 msgstr "Byahinduwe kugirango a Icyinjijwe Ihitamo"
 
 # 5374
-#: gsearchtool/gsearchtool.c:1134
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "Gushakisha..."
 
-#: gsearchtool/gsearchtool.c:1157
+#: gsearchtool/gsearchtool.c:1178
 #, fuzzy
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Umwandiko Bya Kirimo Gushaka Ihitamo"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1179
 #, fuzzy
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Umwandiko Bya in Ububiko Gushaka Ihitamo"
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1180
 #, fuzzy
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "Idosiye ku Bya Izina: Ububiko Ingano Ubwoko Cyangwa Itariki"
 
-#: gsearchtool/gsearchtool.c:1160
+#: gsearchtool/gsearchtool.c:1181
 #, fuzzy
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Ishungura Itondekanya Kuri Ubujyesi Mburabuzi ni Ubujyejuru"
 
-#: gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1182
 #, fuzzy
 msgid "Automatically start a search"
 msgstr "Gutangira a Gushaka"
 
-#: gsearchtool/gsearchtool.c:1167
+#: gsearchtool/gsearchtool.c:1188
 #, fuzzy, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Gushaka Ihitamo"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1191
 #, fuzzy, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Na Gushyiraho Gushaka Ihitamo"
 
-#: gsearchtool/gsearchtool.c:1277
+#: gsearchtool/gsearchtool.c:1298
 #, fuzzy
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ihitamo Kuri Komandi: Umurongo"
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1600
 #, fuzzy
 msgid ""
 "\n"
 "... Too many errors to display ..."
 msgstr "...Amakosa Kuri Kugaragaza"
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1614
 #, fuzzy
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "Gushaka Ibisubizo ku Gicurasi Sibyo Amakosa iyi Gushaka"
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 #, fuzzy
 msgid "Show more _details"
 msgstr "Birenzeho Birambuye"
 
-#: gsearchtool/gsearchtool.c:1627
+#: gsearchtool/gsearchtool.c:1654
 #, fuzzy
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
 msgstr "Gushaka Ibisubizo ku Gicurasi Sibyo Kuri Gushaka"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1677
+#: gsearchtool/gsearchtool.c:1704
 #, fuzzy, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Kuri Gushyiraho Itsinda ID Bya"
 
-#: gsearchtool/gsearchtool.c:1704
+#: gsearchtool/gsearchtool.c:1731
 #, fuzzy
 msgid "Error parsing the search command."
 msgstr "Gushaka Komandi:"
 
-#: gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1764
 #, fuzzy
 msgid "Error running the search command."
 msgstr "Gushaka Komandi:"
 
-#: gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1911
 #, fuzzy, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "a Umwandiko Agaciro kugirango Gushaka Ihitamo"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1916
 #, fuzzy, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\"in"
 
-#: gsearchtool/gsearchtool.c:1891
+#: gsearchtool/gsearchtool.c:1918
 #, fuzzy, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "a Agaciro in kugirango Gushaka Ihitamo"
 
 # padmin/source\padialog.src:RID_PADIALOG.RID_PA_BTN_DEL.text
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:1977
 #, fuzzy, c-format
 msgid "Remove \"%s\""
 msgstr "Gukuraho..."
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1978
 #, fuzzy, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Kuri Gukuraho... Gushaka Ihitamo"
 
-#: gsearchtool/gsearchtool.c:2044
+#: gsearchtool/gsearchtool.c:2071
 #, fuzzy
 msgid "A_vailable options:"
 msgstr "Amahitamo"
 
-#: gsearchtool/gsearchtool.c:2073
+#: gsearchtool/gsearchtool.c:2100
 #, fuzzy
 msgid "Available options"
 msgstr "Amahitamo"
 
-#: gsearchtool/gsearchtool.c:2074
+#: gsearchtool/gsearchtool.c:2101
 #, fuzzy
 msgid "Select a search option from the drop-down list."
 msgstr "a Gushaka Ihitamo Bivuye Hasi Urutonde"
 
-#: gsearchtool/gsearchtool.c:2086
+#: gsearchtool/gsearchtool.c:2113
 #, fuzzy
 msgid "Add search option"
 msgstr "Gushaka Ihitamo"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2114
 #, fuzzy
 msgid "Click to add the selected available search option."
 msgstr "Kuri Kongeramo Byahiswemo Bihari Gushaka Ihitamo"
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2135
 #, fuzzy
 msgid "S_earch results:"
 msgstr "ibisubizo by'ishakisha"
 
-#: gsearchtool/gsearchtool.c:2144
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2194
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "Izina"
 
 # sfx2/source\explorer\explorer.src:STR_SFX_FOLDER.text
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "Ububiko"
 
@@ -1984,92 +1984,92 @@ msgstr "Ububiko"
 # goodies/source\filter.vcl\eos2met\dlgeos2.src:DLG_EXPORT_EMET.GRP_SIZE.text
 # #-#-#-#-#  goodies.pot (Gnome 2.12)  #-#-#-#-#
 # goodies/source\filter.vcl\epict\dlgepct.src:DLG_EXPORT_EPCT.GRP_SIZE.text
-#: gsearchtool/gsearchtool.c:2225
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "Ingano"
 
 # filter/source\xsltdialog\xmlfilterdialogstrings.src:STR_COLUMN_HEADER_TYPE.text
-#: gsearchtool/gsearchtool.c:2235
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "Ubwoko"
 
 # svtools/source\contnr\fileview.src:STR_SVT_FILEVIEW_COLUMN_DATE.text
-#: gsearchtool/gsearchtool.c:2245
+#: gsearchtool/gsearchtool.c:2272
 #, fuzzy
 msgid "Date Modified"
 msgstr "Itariki yahinduwe"
 
-#: gsearchtool/gsearchtool.c:2613
+#: gsearchtool/gsearchtool.c:2640
 #, fuzzy
 msgid "_Name contains:"
 msgstr "Kirimo"
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 #, fuzzy
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "a Izina ry'idosiye: Cyangwa Bituzuye Izina ry'idosiye: Na: Cyangwa"
 
-#: gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2655
 #, fuzzy
 msgid "Name contains"
 msgstr "Kirimo"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2661
 #, fuzzy
 msgid "_Look in folder:"
 msgstr "in Ububiko"
 
 # toolkit/source\awt\accessiblestrings.src:RID_STR_ACC_NAME_BROWSEBUTTON.text
-#: gsearchtool/gsearchtool.c:2640
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "Gushakisha"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 #, fuzzy
 msgid "Look in folder"
 msgstr "in Ububiko"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 #, fuzzy
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Ububiko Cyangwa APAREYE Bivuye Kuri Gushaka"
 
-#: gsearchtool/gsearchtool.c:2656
+#: gsearchtool/gsearchtool.c:2683
 #, fuzzy
-msgid "Show more _options"
+msgid "Select more _options"
 msgstr "Birenzeho Amahitamo"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 #, fuzzy
-msgid "Show more options"
+msgid "Select more options"
 msgstr "Birenzeho Amahitamo"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 #, fuzzy
 msgid "Click to expand or collapse the list of available options."
 msgstr "Kuri Kwagura Cyangwa Gusenyuka Urutonde Bya Bihari Amahitamo"
 
-#: gsearchtool/gsearchtool.c:2689
+#: gsearchtool/gsearchtool.c:2716
 #, fuzzy
 msgid "Click to display the help manual."
 msgstr "Kuri Kugaragaza Ifashayobora Bikorwa"
 
-#: gsearchtool/gsearchtool.c:2697
+#: gsearchtool/gsearchtool.c:2724
 #, fuzzy
 msgid "Click to close \"Search for Files\"."
 msgstr "Kuri Gufunga kugirango"
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2750
 #, fuzzy
 msgid "Click to perform a search."
 msgstr "Kuri a Gushaka"
 
-#: gsearchtool/gsearchtool.c:2724
+#: gsearchtool/gsearchtool.c:2751
 #, fuzzy
 msgid "Click to stop a search."
 msgstr "Kuri Guhagarara a Gushaka"
 
-#: gsearchtool/gsearchtool.c:2824
+#: gsearchtool/gsearchtool.c:2851
 #, fuzzy
 msgid "Cannot initialize bonobo."
 msgstr "gutangiza"
@@ -2111,7 +2111,7 @@ msgstr "Igikorwa"
 # basctl/source\basicide\moduldlg.src:RID_TP_MODULS.RID_PB_EDIT.text
 # #-#-#-#-#  basctl.pot (Gnome 2.12)  #-#-#-#-#
 # basctl/source\basicide\moduldlg.src:RID_TP_LIBS.RID_PB_EDIT.text
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 #, fuzzy
 msgid "_Edit"
 msgstr "Guhindura"
@@ -2263,11 +2263,6 @@ msgid ""
 "action: [%s]\n"
 msgstr "Itagi: Ubutumwa Isobanuramiterere Igikorwa"
 
-# svtools/source\dialogs\addresstemplate.src:STR_FIELD_CALENDAR.text
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "Kalindari"
-
 #: logview/desc_db.c:66
 #, fuzzy, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -2392,12 +2387,12 @@ msgstr "Ukuboza"
 
 # basctl/source\basicide\basidesh.src:RID_IMGBTN_REMOVEWATCH.text
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, fuzzy, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "Byahinduwe bwanyuma:"
 
@@ -2406,21 +2401,21 @@ msgstr "Byahinduwe bwanyuma:"
 # #-#-#-#-#  dbaccess.pot (Gnome 2.12)  #-#-#-#-#
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 #, fuzzy
 msgid "%B %e"
 msgstr "%B%e"
 
 # basctl/source\basicide\basidesh.src:RID_IMGBTN_REMOVEWATCH.text
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, fuzzy, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
 #, fuzzy
-msgid "The file could not be opened"
+msgid "One file or more could not be opened"
 msgstr "IDOSIYE OYA"
 
 #: logview/logrtns.c:216
@@ -2437,7 +2432,7 @@ msgstr "Ububiko ntibuhagije"
 #, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
 "%sni OYA Ukoresha: Gukoresha Porogaramu Nka Imizi Cyangwa Kuri Guhindura>> "
 "Uruhushya ku IDOSIYE"
@@ -2463,22 +2458,22 @@ msgid "ReadLogStats: out of memory"
 msgstr "Inyuma Bya Ububiko"
 
 # sfx2/source\appl\newhelp.src:STR_HELP_BUTTON_SEARCHDIALOG.text
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 #, fuzzy
 msgid "Fin_d:"
 msgstr "Gushaka..."
 
-#: logview/logview-findbar.c:283
+#: logview/logview-findbar.c:279
 #, fuzzy
-msgid "Find Next"
-msgstr "Shaka ibikurikira"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+msgid "_Previous"
 msgstr "Shaka ibibanjirije"
 
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
+
 # sc/source\core\src\compiler.src:RID_SC_FUNCTION_NAMES.SC_OPCODE_LOG.text
-#: logview/logview.c:85
+#: logview/logview.c:93
 #, fuzzy
 msgid "_Log"
 msgstr "LOG"
@@ -2487,18 +2482,18 @@ msgstr "LOG"
 # basctl/source\basicide\basidesh.src:RID_BASICMENU.MN_VIEW.text
 # #-#-#-#-#  basctl.pot (Gnome 2.12)  #-#-#-#-#
 # basctl/source\basicide\basidesh.src:RID_BASICPLUGINMENU.MN_PLVIEW.text
-#: logview/logview.c:87
+#: logview/logview.c:95
 #, fuzzy
 msgid "_View"
 msgstr "Kureba"
 
 # sfx2/source\appl\minbox.src:RID_MAIL_INBOX.BTN_MAILINBOX_OPEN.text
-#: logview/logview.c:90
+#: logview/logview.c:98
 #, fuzzy
 msgid "_Open..."
 msgstr "Gufungura..."
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 #, fuzzy
 msgid "Open a log from file"
 msgstr "a LOG Bivuye IDOSIYE"
@@ -2507,12 +2502,12 @@ msgstr "a LOG Bivuye IDOSIYE"
 # basctl/source\basicide\basidesh.src:RID_POPUP_BRKPROPS.text
 # #-#-#-#-#  basctl.pot (Gnome 2.12)  #-#-#-#-#
 # basctl/source\basicide\tbxctl.src:RID_TOOLBOX.SID_SHOW_PROPERTYBROWSER.text
-#: logview/logview.c:92
+#: logview/logview.c:100
 #, fuzzy
 msgid "_Properties"
 msgstr "indangakintu"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr ""
 
@@ -2524,119 +2519,123 @@ msgstr ""
 # basctl/source\basicide\moduldlg.src:RID_TP_MODULS.RID_PB_CLOSE.text
 # #-#-#-#-#  basctl.pot (Gnome 2.12)  #-#-#-#-#
 # basctl/source\basicide\moduldlg.src:RID_TP_LIBS.RID_PB_CLOSE.text
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close"
 msgstr "Gufunga"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 #, fuzzy
 msgid "Close this log"
 msgstr "Funga iyi LOG"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 #, fuzzy
 msgid "_Quit"
 msgstr "Kuvamo"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 #, fuzzy
 msgid "Quit the log viewer"
 msgstr "LOG"
 
 # dbaccess/source/ui/inc/toolbox.hrc:MID_SBA_QRY_COPY.text
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "Gukoporora"
 
 # sfx2/sdi\sfxslots.src:SID_SELECTALL.text
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select All"
 msgstr "Guhitamo Byose"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 #, fuzzy
 msgid "Select the entire log"
 msgstr "LOG"
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 #, fuzzy
 msgid "Find pattern in logs"
 msgstr "Ishusho in"
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 msgid "Collapse _All"
 msgstr ""
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 #, fuzzy
 msgid "Collapse all the rows"
 msgstr "Byose Imbariro"
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 #, fuzzy
 msgid "Open the help contents for the log viewer"
 msgstr "Ifashayobora Ibigize kugirango LOG"
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 #, fuzzy
 msgid "Show the about dialog for the log viewer"
 msgstr "Ibyerekeye Ikiganiro kugirango LOG"
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 msgid "_Monitor"
 msgstr ""
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr ""
 
 # svtools/source\dialogs\addresstemplate.src:STR_FIELD_CALENDAR.text
-#: logview/logview.c:119
+#: logview/logview.c:136
 #, fuzzy
 msgid "Ca_lendar"
 msgstr "Kalindari"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr ""
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr ""
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr ""
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "Itariki"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 #, fuzzy
 msgid "Host Name"
 msgstr "Izina ry'ubuturo"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr ""
 
 # sfx2/source\doc\doc.src:STR_DOCTYPENAME_MESSAGE.text
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "Ubutumwa"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 #, fuzzy
 msgid "Open new logfile"
 msgstr "Gishya"
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 #, fuzzy
 msgid "There was an error displaying help."
 msgstr "Ikosa Ifashayobora"
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr ""
@@ -2666,4 +2665,18 @@ msgstr ""
 msgid "%B %e %X"
 msgstr "%B%e%X"
 
-# 5374
+#, fuzzy
+#~ msgid "Lookup done"
+#~ msgstr "Byakozwe"
+
+#, fuzzy
+#~ msgid "Spell check done"
+#~ msgstr "Kugenzura... Byakozwe"
+
+# svtools/source\dialogs\addresstemplate.src:STR_FIELD_CALENDAR.text
+#~ msgid "Calendar"
+#~ msgstr "Kalindari"
+
+#, fuzzy
+#~ msgid "Find Next"
+#~ msgstr "Shaka ibikurikira"

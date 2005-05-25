@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.ro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-05 13:53+0100\n"
+"POT-Creation-Date: 2005-05-25 12:28-0400\n"
 "PO-Revision-Date: 2005-03-06 23:00+0200\n"
 "Last-Translator: Mugurel Tudor <mugurelu@go.ro>\n"
 "Language-Team: Romanian <@li.org>\n"
@@ -30,12 +30,12 @@ msgstr "Căutare dicţionar"
 msgid "Lookup words in an online dictionary"
 msgstr "Caută cuvântul într-un dicţionar online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:650
-#: logview/logview.c:111
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
+#: logview/logview.c:126
 msgid "_About"
 msgstr "_Despre"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:96
 msgid "_Help"
 msgstr "_Ajutor"
 
@@ -50,8 +50,8 @@ msgstr "_Preferinţe"
 #. Could not look up search strategies, so just display a
 #. * label; FIXME: Memory leak
 #.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:664
-#: gdictsrc/gdict-pref-dialog.c:713
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
+#: gdictsrc/gdict-pref-dialog.c:739
 msgid "Cannot connect to server"
 msgstr "Nu mă pot conecta la server"
 
@@ -69,20 +69,21 @@ msgstr ""
 "iar portul este 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:42 logview/about.c:43
+#: gdictsrc/gdict-about.c:43 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "Iustin Pop <iusty@geocities.com>\n"
 "Dan Damian <dand@dnttm.ro>\n"
 "Mugurel Tudor <mugurelu@go.ro> "
 
-#: gdictsrc/gdict-about.c:44
+#: gdictsrc/gdict-about.c:45
 msgid "A client for the MIT dictionary server."
 msgstr "Un client pentru server de tip dictionar MIT."
 
-#: gdictsrc/gdict-about.c:47 gdictsrc/gdict-defbox.c:82
-#: gdictsrc/gdict-defbox.c:94 gdictsrc/gdict-pref-dialog.c:470
-#: gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
+#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
+#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:90
 msgid "Dictionary"
 msgstr "Dicţionar"
 
@@ -115,143 +116,152 @@ msgid "_Search for:"
 msgstr "_Caută după:"
 
 #: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:863
+#: gdictsrc/gdict-pref-dialog.c:889
 msgid "Could not display help"
 msgstr "Nu am putut afişa ajutorul"
 
 #. Top
-#: gdictsrc/gdict-app.c:626
+#: gdictsrc/gdict-app.c:646
 msgid "_Dictionary"
 msgstr "_Dicţionar"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:632 gdictsrc/gdict-app.c:763
+#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
 msgid "_Look Up Word"
 msgstr "_Caută cuvântul"
 
-#: gdictsrc/gdict-app.c:633
+#: gdictsrc/gdict-app.c:653
 msgid "Lookup word in dictionary"
 msgstr "Caută cuvântul în dicţionar"
 
-#: gdictsrc/gdict-app.c:634
+#: gdictsrc/gdict-app.c:654
 msgid "_Print"
 msgstr "_Tipăreşte"
 
-#: gdictsrc/gdict-app.c:635
+#: gdictsrc/gdict-app.c:655
 msgid "Print the current definition"
 msgstr "Tipăreşte definiţia curentă"
 
-#: gdictsrc/gdict-app.c:636
+#: gdictsrc/gdict-app.c:656
 msgid "_Close"
 msgstr "În_chide"
 
-#: gdictsrc/gdict-app.c:637
+#: gdictsrc/gdict-app.c:657
 msgid "Close the application"
 msgstr "Închide aplicaţia"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:640 logview/logview.c:103
+#: gdictsrc/gdict-app.c:660 logview/logview.c:111
 msgid "_Find..."
 msgstr "_Caută..."
 
-#: gdictsrc/gdict-app.c:641
+#: gdictsrc/gdict-app.c:661
 msgid "Find a word in the text"
 msgstr "Caută un cuvânt în text"
 
-#: gdictsrc/gdict-app.c:642
+#: gdictsrc/gdict-app.c:662
 msgid "Find Ne_xt"
 msgstr "Caută _următorul"
 
-#: gdictsrc/gdict-app.c:643
+#: gdictsrc/gdict-app.c:663
 msgid "Find next occurrence of the word"
 msgstr "Caută următoarea potrivire a cuvântului"
 
-#: gdictsrc/gdict-app.c:644
+#: gdictsrc/gdict-app.c:664
 msgid "P_references"
 msgstr "P_referinţe"
 
-#: gdictsrc/gdict-app.c:645
+#: gdictsrc/gdict-app.c:665
 msgid "Configure the application"
 msgstr "Configurează aplicaţia"
 
+#. View menu
+#: gdictsrc/gdict-app.c:668 logview/logview.c:114
+msgid "Bigger text size"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:670 logview/logview.c:116
+msgid "Smaller text size"
+msgstr ""
+
 #. Help menu
-#: gdictsrc/gdict-app.c:648 logview/logview.c:109
+#: gdictsrc/gdict-app.c:674 logview/logview.c:124
 msgid "_Contents"
 msgstr "_Conţinut"
 
-#: gdictsrc/gdict-app.c:649
+#: gdictsrc/gdict-app.c:675
 msgid "View help for this application"
 msgstr "Vizualizează ajutorul pentru această aplicaţie"
 
-#: gdictsrc/gdict-app.c:651
+#: gdictsrc/gdict-app.c:677
 msgid "About this application"
 msgstr "Despre această aplicaţie"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:682
 msgid "On a Dictionary Server"
 msgstr "Pe un server dicţionar"
 
-#: gdictsrc/gdict-app.c:659
+#: gdictsrc/gdict-app.c:684
 msgid "On a Web Site"
 msgstr "Pe un sit web"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:690
 msgid "Cu_t"
 msgstr "_Taie"
 
-#: gdictsrc/gdict-app.c:666
+#: gdictsrc/gdict-app.c:691
 msgid "Cut the selection"
 msgstr "Taie selecţia"
 
-#: gdictsrc/gdict-app.c:667
+#: gdictsrc/gdict-app.c:692
 msgid "_Copy"
 msgstr "_Copiază"
 
-#: gdictsrc/gdict-app.c:668 logview/logview.c:99
+#: gdictsrc/gdict-app.c:693 logview/logview.c:107
 msgid "Copy the selection"
 msgstr "Copiază selecţia"
 
-#: gdictsrc/gdict-app.c:669
+#: gdictsrc/gdict-app.c:694
 msgid "_Paste"
 msgstr "Li_peşte"
 
-#: gdictsrc/gdict-app.c:670
+#: gdictsrc/gdict-app.c:695
 msgid "Paste clipboard"
 msgstr "Lipeşte conţinutul clipboard-ului"
 
-#: gdictsrc/gdict-app.c:671
+#: gdictsrc/gdict-app.c:696
 msgid "Select _All"
 msgstr "Selectează t_ot"
 
-#: gdictsrc/gdict-app.c:672
+#: gdictsrc/gdict-app.c:697
 msgid "Select everything"
 msgstr "Selectează tot"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:702
 msgid "_Spellings"
 msgstr "_Ortografia"
 
-#: gdictsrc/gdict-app.c:678
+#: gdictsrc/gdict-app.c:703
 msgid "View alternate spellings"
 msgstr "Vizualizează ortografiile alternative"
 
-#: gdictsrc/gdict-app.c:760
+#: gdictsrc/gdict-app.c:849
 msgid "_Word:"
 msgstr "_Cuvânt:"
 
-#: gdictsrc/gdict-app.c:788
+#: gdictsrc/gdict-app.c:877
 msgid "Word"
 msgstr "Cuvânt"
 
-#: gdictsrc/gdict-app.c:789 gdictsrc/gdict-app.c:791
+#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
 msgid "Word Entry"
 msgstr "Intrare cuvânt"
 
-#: gdictsrc/gdict-app.c:790
+#: gdictsrc/gdict-app.c:879
 msgid "Enter a Word or select one from the list below"
 msgstr "Introduceţi un cuvânt sau selectaţi unul din lista de mai jos"
 
-#: gdictsrc/gdict-app.c:794
+#: gdictsrc/gdict-app.c:883
 msgid "Look Up for a Word"
 msgstr "Caută un cuvânt"
 
@@ -259,125 +269,126 @@ msgstr "Caută un cuvânt"
 msgid "Dictionary word entry"
 msgstr "Intrare cuvânt dicţionar"
 
-#: gdictsrc/gdict-defbox.c:83
+#: gdictsrc/gdict-defbox.c:101
 msgid "Looking up word..."
 msgstr "Caut cuvântul..."
 
-#: gdictsrc/gdict-defbox.c:100
-msgid "Lookup done"
-msgstr "Căutare terminată"
-
-#: gdictsrc/gdict-defbox.c:112 gdictsrc/gdict-speller.c:253
+#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
 msgid "No matches found"
 msgstr "Nu am găsit nici o potrivire"
 
-#: gdictsrc/gdict-defbox.c:122
+#: gdictsrc/gdict-defbox.c:141
 msgid "String not found"
 msgstr "Textul nu a fost găsit"
 
-#: gdictsrc/gdict-defbox.c:542
+#: gdictsrc/gdict-defbox.c:616
 msgid "Definition preview"
 msgstr "Previzualizare definiţie"
 
-#: gdictsrc/gdict-defbox.c:902 gdictsrc/gdict-speller.c:293
+#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
 msgid "Error invoking query"
 msgstr "Eroare la lansarea cererii"
 
-#: gdictsrc/gdict-pref-dialog.c:254
+#: gdictsrc/gdict-pref-dialog.c:265
 msgid "De_fault Server"
 msgstr "Server _implicit"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-pref-dialog.c:276
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:273
+#: gdictsrc/gdict-pref-dialog.c:284
 msgid "Reset server to default"
 msgstr "Revin la implicite"
 
-#: gdictsrc/gdict-pref-dialog.c:275
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:285
+#: gdictsrc/gdict-pref-dialog.c:296
 msgid "Def_ault Port"
 msgstr "_Port implicit"
 
-#: gdictsrc/gdict-pref-dialog.c:300
+#: gdictsrc/gdict-pref-dialog.c:311
 msgid "Reset port to default"
 msgstr "Revin la implicite"
 
-#: gdictsrc/gdict-pref-dialog.c:301
+#: gdictsrc/gdict-pref-dialog.c:312
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server Entry"
 msgstr "Intrare server"
 
-#: gdictsrc/gdict-pref-dialog.c:303
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Enter the Server Name"
 msgstr "Introduceţi numele serverului"
 
-#: gdictsrc/gdict-pref-dialog.c:304
+#: gdictsrc/gdict-pref-dialog.c:315
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port Entry"
 msgstr "Intrare port"
 
-#: gdictsrc/gdict-pref-dialog.c:306
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Port Number"
 msgstr "Introduceţi numărul portului"
 
-#: gdictsrc/gdict-pref-dialog.c:309
+#: gdictsrc/gdict-pref-dialog.c:320
 msgid "_Database:"
 msgstr "_Bază de date:"
 
-#: gdictsrc/gdict-pref-dialog.c:316
+#: gdictsrc/gdict-pref-dialog.c:327
 msgid "Strat_egy:"
 msgstr "Strat_egie:"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:334
+msgid "Font:"
+msgstr ""
+
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Web Site"
 msgstr "Sit web"
 
-#: gdictsrc/gdict-pref-dialog.c:342
+#: gdictsrc/gdict-pref-dialog.c:361
 msgid "Search Address"
 msgstr "Adresă căutare"
 
-#: gdictsrc/gdict-pref-dialog.c:462
+#: gdictsrc/gdict-pref-dialog.c:481
 msgid "Dictionary Preferences"
 msgstr "Preferinţe dicţionar"
 
-#: gdictsrc/gdict-pref-dialog.c:474
+#: gdictsrc/gdict-pref-dialog.c:493
 msgid "Web Sites"
 msgstr "Situri web"
 
-#: gdictsrc/gdict-pref-dialog.c:656
+#: gdictsrc/gdict-pref-dialog.c:682
 msgid "Search all databases"
 msgstr "Caută toate bazele de date"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database"
 msgstr "Bază de date"
 
-#: gdictsrc/gdict-pref-dialog.c:817
+#: gdictsrc/gdict-pref-dialog.c:843
 msgid "Database Name"
 msgstr "Nume bază de date"
 
-#: gdictsrc/gdict-pref-dialog.c:834
+#: gdictsrc/gdict-pref-dialog.c:860
 msgid "Default Strategy"
 msgstr "Strategie implicită"
 
-#: gdictsrc/gdict-speller.c:234
+#: gdictsrc/gdict-speller.c:114
+#, fuzzy
+msgid "Spellings"
+msgstr "_Ortografia"
+
+#: gdictsrc/gdict-speller.c:235
 msgid "Spell-checking..."
 msgstr "Verificare ortografică..."
-
-#: gdictsrc/gdict-speller.c:243
-msgid "Spell check done"
-msgstr "Verificare ortografică terminată"
 
 #: gdictsrc/gdict.schemas.in.h:1
 msgid "Dictionary server"
@@ -437,10 +448,6 @@ msgstr ""
 #: gdictsrc/gdict.schemas.in.h:10
 msgid "Use smart lookup"
 msgstr "Foloseşte căutare inteligentă"
-
-#: gdictsrc/main.c:90
-msgid "Gnome Dictionary"
-msgstr "Dicţionar Gnome"
 
 #: gfloppy/gfloppy.desktop.in.h:1 gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -768,7 +775,8 @@ msgstr "Setări fizice"
 
 #: gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr "C_ompletă (adaugă o verificare a sectoarelor defecte la modul standard)"
+msgstr ""
+"C_ompletă (adaugă o verificare a sectoarelor defecte la modul standard)"
 
 #: gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -992,7 +1000,9 @@ msgstr "Directorul în care s-au salvat ultima dată capturile de ecran"
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
-msgstr "Efectul de adăugat pentru exteriorul unei margini. Valori posibile sunt „shadow”, „none” şi „black-line”."
+msgstr ""
+"Efectul de adăugat pentru exteriorul unei margini. Valori posibile sunt "
+"„shadow”, „none” şi „black-line”."
 
 #: gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -1031,7 +1041,9 @@ msgstr ""
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
-msgstr "Procesul copil pentru salvare s-a terminat în mod neaşteptat. Nu se mai poate salva captura de ecran pe disc."
+msgstr ""
+"Procesul copil pentru salvare s-a terminat în mod neaşteptat. Nu se mai "
+"poate salva captura de ecran pe disc."
 
 #: gnome-screenshot/screenshot-save.c:188
 msgid "Unknown error saving screenshot to disk"
@@ -1055,7 +1067,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "Fişierul „%s” deja există. Doriţi să îl înlocuiţi?"
 
 #: gnome-screenshot/screenshot-xfer.c:190
-#: gsearchtool/gsearchtool-callbacks.c:1269
+#: gsearchtool/gsearchtool-callbacks.c:1275
 msgid "_Replace"
 msgstr "În_locuieşte"
 
@@ -1134,7 +1146,8 @@ msgstr "Selectează opţiunea de căutare „Numele nu conţine”"
 #. search option that is translated elsewhere.
 #: gsearchtool/gnome-search-tool.schemas.in.h:28
 msgid "Select the search option \"Name matches regular expression\""
-msgstr "Selectează opţiunea de căutare „Fişierul corespunde expresiei regulate”"
+msgstr ""
+"Selectează opţiunea de căutare „Fişierul corespunde expresiei regulate”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
@@ -1181,7 +1194,10 @@ msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
-msgstr "Această cheie defineşte căile pe care utilitarul de căutare le va exclude de la o căutare rapidă. Metacaracterele „*” şi „?” sunt suportate. Valorile implicite sunt /mnt/* , /media/*, /dev/*, /tmp/*, /proc/*, şi /var/*."
+msgstr ""
+"Această cheie defineşte căile pe care utilitarul de căutare le va exclude de "
+"la o căutare rapidă. Metacaracterele „*” şi „?” sunt suportate. Valorile "
+"implicite sunt /mnt/* , /media/*, /dev/*, /tmp/*, /proc/*, şi /var/*."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:49
 msgid ""
@@ -1190,226 +1206,266 @@ msgid ""
 "search for files. The purpose of the second scan is to find files that have "
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
-msgstr "Această cheie defineşte căile pe care utilitarul de căutare le va exclude de la o a doua scanare în tmpul unei căutari rapidă. A doua scanare foloseşte comanda find pentru a căuta fişierele. Scopul celei de-a doua scanări este de a găsi fişierele ce nu au fost indexate. Metacaracterele „*” şi „?” sunt suportate. Valorile implicite /."
+msgstr ""
+"Această cheie defineşte căile pe care utilitarul de căutare le va exclude de "
+"la o a doua scanare în tmpul unei căutari rapidă. A doua scanare foloseşte "
+"comanda find pentru a căuta fişierele. Scopul celei de-a doua scanări este "
+"de a găsi fişierele ce nu au fost indexate. Metacaracterele „*” şi „?” sunt "
+"suportate. Valorile implicite /."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Conţine textul” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Conţine textul” este "
+"selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Data modificării mai mică decât” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Data modificării mai mică "
+"decât” este selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Data modificării mai mare decât” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Data modificării mai mare "
+"decât” este selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
 "This key determines if the \"File is empty\" search option is selected when "
 "the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Fişierul este gol” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Fişierul este gol” este "
+"selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Urmează legăturile simbolice” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Urmează legăturile "
+"simbolice” este selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Include şi alte sisteme de fişiere” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Include şi alte sisteme de "
+"fişiere” este selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Numele nu conţine” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Numele nu conţine” este "
+"selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Numele se potriveşte expresiei regulate” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Numele se potriveşte "
+"expresiei regulate” este selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Deţinut de grupul” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Deţinut de grupul” este "
+"selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Deţinut de utilizatorul” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Deţinut de utilizatorul” "
+"este selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Proprietarul nu a fost recunoscut” este selectată la pornirea utilitarului de căutare."
-
-#: gsearchtool/gnome-search-tool.schemas.in.h:61
-msgid ""
-"This key determines if the \"Show hidden files and folders\" search option "
-"is selected when the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Arată fişierele şi dosarele ascunse” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Proprietarul nu a fost "
+"recunoscut” este selectată la pornirea utilitarului de căutare."
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
+#: gsearchtool/gnome-search-tool.schemas.in.h:63
+#, fuzzy
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
+"the search tool is started."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Arată mai multe opţiuni” "
+"este selectată la pornirea utilitarului de căutare."
+
 #: gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
-"This key determines if the \"Show more options\" section is expanded when "
-"the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Arată mai multe opţiuni” este selectată la pornirea utilitarului de căutare."
+"This key determines if the \"Show hidden files and folders\" search option "
+"is selected when the search tool is started."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Arată fişierele şi "
+"dosarele ascunse” este selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Mărimea de cel puţin” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Mărimea de cel puţin” este "
+"selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
-msgstr "Această cheie determină dacă opţiunea de căutare „Mărimea de cel mult” este selectată la pornirea utilitarului de căutare."
+msgstr ""
+"Această cheie determină dacă opţiunea de căutare „Mărimea de cel mult” este "
+"selectată la pornirea utilitarului de căutare."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
-msgstr "Această cheie determină dacă utilitarul de căutare dezactivează utilizarea comenzii find după o căutare rapidă."
+msgstr ""
+"Această cheie determină dacă utilitarul de căutare dezactivează utilizarea "
+"comenzii find după o căutare rapidă."
 
 #: gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
-msgstr "Această cheie determină dacă utilitarul de căutare dezativează folosirea comenzii locate pentru căutări simple de fişiere."
+msgstr ""
+"Această cheie determină dacă utilitarul de căutare dezativează folosirea "
+"comenzii locate pentru căutări simple de fişiere."
 
-#: gsearchtool/gsearchtool-callbacks.c:163
+#: gsearchtool/gsearchtool-callbacks.c:169
 msgid "Could not open help document."
 msgstr "Nu am putut deschide ajutorul."
 
-#: gsearchtool/gsearchtool-callbacks.c:298
+#: gsearchtool/gsearchtool-callbacks.c:304
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Sunteţi sigur că doriţi să deschideţi %d document?"
 msgstr[1] "Sunteţi sigur că doriţi să deschideţi %d documente?"
 
-#: gsearchtool/gsearchtool-callbacks.c:303
-#: gsearchtool/gsearchtool-callbacks.c:460
+#: gsearchtool/gsearchtool-callbacks.c:309
+#: gsearchtool/gsearchtool-callbacks.c:497
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Se va deschide %d fereastră separată."
 msgstr[1] "Se vor deschide %d ferestre separate."
 
-#: gsearchtool/gsearchtool-callbacks.c:343
+#: gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Nu am putut deschide documentul „%s“."
 
-#: gsearchtool/gsearchtool-callbacks.c:418
-#: gsearchtool/gsearchtool-callbacks.c:761
+#: gsearchtool/gsearchtool-callbacks.c:378
+#, c-format
+msgid "Could not open folder \"%s\"."
+msgstr "Nu am putut deschide dosarul „%s“."
+
+#: gsearchtool/gsearchtool-callbacks.c:386
+msgid "The nautilus file manager is not running."
+msgstr "Managerul de fişiere nautilus nu rulează."
+
+#: gsearchtool/gsearchtool-callbacks.c:453
+#: gsearchtool/gsearchtool-callbacks.c:767
 msgid "The document does not exist."
 msgstr "Documentul nu există."
 
-#: gsearchtool/gsearchtool-callbacks.c:431
+#: gsearchtool/gsearchtool-callbacks.c:468
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Nu este instalat nici un vizualizator capabil de a afişa documentul."
 
-#: gsearchtool/gsearchtool-callbacks.c:455
+#: gsearchtool/gsearchtool-callbacks.c:492
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Sunteţi sigur că doriţi să deschideţi %d dosar?"
 msgstr[1] "Sunteţi sigur că doriţi să deschideţi %d dosare?"
 
-#: gsearchtool/gsearchtool-callbacks.c:499
-#, c-format
-msgid "Could not open folder \"%s\"."
-msgstr "Nu am putut deschide dosarul „%s“."
-
-#: gsearchtool/gsearchtool-callbacks.c:507
-msgid "The nautilus file manager is not running."
-msgstr "Managerul de fişiere nautilus nu rulează."
-
-#: gsearchtool/gsearchtool-callbacks.c:587
+#: gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Nu am putut muta „%s“ la gunoi."
 
-#: gsearchtool/gsearchtool-callbacks.c:618
+#: gsearchtool/gsearchtool-callbacks.c:624
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Doriţi să ştergeţi „%s“ permanent?"
 
-#: gsearchtool/gsearchtool-callbacks.c:621
+#: gsearchtool/gsearchtool-callbacks.c:627
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Gunoiul nu este disponibil.  Nu am putut muta „%s“ la gunoi."
 
-#: gsearchtool/gsearchtool-callbacks.c:660
+#: gsearchtool/gsearchtool-callbacks.c:666
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Nu am putut şterge „%s“."
 
-#: gsearchtool/gsearchtool-callbacks.c:780
+#: gsearchtool/gsearchtool-callbacks.c:786
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Mutarea lui „%s“ a eşuat: %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:812
+#: gsearchtool/gsearchtool-callbacks.c:818
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Ştergerea „%s“ a eşuat: %s"
 
-#: gsearchtool/gsearchtool-callbacks.c:1158
+#: gsearchtool/gsearchtool-callbacks.c:1164
 msgid "Save Search Results As..."
 msgstr "Salvează rezultatele căutării ca..."
 
-#: gsearchtool/gsearchtool-callbacks.c:1186
+#: gsearchtool/gsearchtool-callbacks.c:1192
 msgid "Could not save document."
 msgstr "Nu am putut salva documentul."
 
-#: gsearchtool/gsearchtool-callbacks.c:1187
+#: gsearchtool/gsearchtool-callbacks.c:1193
 msgid "You did not select a document name."
 msgstr "Nu aţi selectat un nume pentru document."
 
-#: gsearchtool/gsearchtool-callbacks.c:1217
+#: gsearchtool/gsearchtool-callbacks.c:1223
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Nu am putut salva documentul „%s“ către „%s“."
 
-#: gsearchtool/gsearchtool-callbacks.c:1250
+#: gsearchtool/gsearchtool-callbacks.c:1256
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Documentul „%s“ deja există. Doriţi să-l înlocuiţi?"
 
-#: gsearchtool/gsearchtool-callbacks.c:1254
+#: gsearchtool/gsearchtool-callbacks.c:1260
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Dacă înlocuiţi un fişier existent, conţinutul va fi suprascris."
 
-#: gsearchtool/gsearchtool-callbacks.c:1318
+#: gsearchtool/gsearchtool-callbacks.c:1324
 msgid "The document name you selected is a folder."
 msgstr "Numele documentului pe care l-aţi selectat este un dosar."
 
-#: gsearchtool/gsearchtool-callbacks.c:1369
+#: gsearchtool/gsearchtool-callbacks.c:1375
 msgid "You may not have write permissions to the document."
 msgstr "Este probabil să nu aveţi permisiuni de scriere pentru document."
 
-#: gsearchtool/gsearchtool-support.c:70
+#: gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1423,23 +1479,23 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: gsearchtool/gsearchtool-support.c:521
+#: gsearchtool/gsearchtool-support.c:549
 msgid "today at %-I:%M %p"
 msgstr "azi la %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:523
+#: gsearchtool/gsearchtool-support.c:551
 msgid "yesterday at %-I:%M %p"
 msgstr "ieri la %-I:%M %p"
 
-#: gsearchtool/gsearchtool-support.c:525 gsearchtool/gsearchtool-support.c:527
+#: gsearchtool/gsearchtool-support.c:553 gsearchtool/gsearchtool-support.c:555
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %B %-d %Y la %-I:%M:%S %p"
 
-#: gsearchtool/gsearchtool-support.c:711
+#: gsearchtool/gsearchtool-support.c:734
 msgid "link (broken)"
 msgstr "legătura (ruptă)"
 
-#: gsearchtool/gsearchtool-support.c:717
+#: gsearchtool/gsearchtool-support.c:738
 #, c-format
 msgid "link to %s"
 msgstr "legătură căte %s"
@@ -1533,82 +1589,83 @@ msgstr "O bază de date locate nu a fost probabil creată."
 msgid "Character set conversion failed for \"%s\""
 msgstr "Conversia setului de caractere a eşuat pentru „%s”"
 
-#: gsearchtool/gsearchtool.c:735 gsearchtool/gsearchtool.c:764
+#: gsearchtool/gsearchtool.c:756 gsearchtool/gsearchtool.c:785
 msgid "No files found"
 msgstr "Nici un fişier găsit"
 
-#: gsearchtool/gsearchtool.c:757
+#: gsearchtool/gsearchtool.c:778
 msgid "(stopped)"
 msgstr "(oprit)"
 
-#: gsearchtool/gsearchtool.c:763
+#: gsearchtool/gsearchtool.c:784
 msgid "No Files Found"
 msgstr "Nu am găsit nici un fişier."
 
-#: gsearchtool/gsearchtool.c:768
+#: gsearchtool/gsearchtool.c:789
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d fişier găsit"
 msgstr[1] "%d fişiere găsite"
 
-#: gsearchtool/gsearchtool.c:772 gsearchtool/gsearchtool.c:810
+#: gsearchtool/gsearchtool.c:793 gsearchtool/gsearchtool.c:831
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d fişier găsit"
 msgstr[1] "%d fişiere găsite"
 
-#: gsearchtool/gsearchtool.c:789 gsearchtool/gsearchtool.c:1048
-#: gsearchtool/gsearchtool.c:1134 gsearchtool/gsearchtool.c:2804
+#: gsearchtool/gsearchtool.c:810 gsearchtool/gsearchtool.c:1069
+#: gsearchtool/gsearchtool.c:1155 gsearchtool/gsearchtool.c:2831
 msgid "Search for Files"
 msgstr "Caută fişiere"
 
-#: gsearchtool/gsearchtool.c:882
+#: gsearchtool/gsearchtool.c:903
 msgid "Entry changed called for a non entry option!"
 msgstr "Intrarea s-a schimbat pentru o opţiune non-intrare!"
 
-#: gsearchtool/gsearchtool.c:1134
+#: gsearchtool/gsearchtool.c:1155
 msgid "Searching..."
 msgstr "Caut..."
 
-#: gsearchtool/gsearchtool.c:1157
+#: gsearchtool/gsearchtool.c:1178
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Setează textul pentru opţiunea de căutare „Numele conţine”"
 
-#: gsearchtool/gsearchtool.c:1158
+#: gsearchtool/gsearchtool.c:1179
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Setează textul pentru opţiunea de căutare „Caută în dosar”"
 
-#: gsearchtool/gsearchtool.c:1159
+#: gsearchtool/gsearchtool.c:1180
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sortează fişierele după una dintre următoarele: nume, dosar, mărime, tip sau "
 "dată"
 
-#: gsearchtool/gsearchtool.c:1160
+#: gsearchtool/gsearchtool.c:1181
 msgid "Set sort order to descending, the default is ascending"
-msgstr "Setează ordinea de sortare la descrescătoare, implicit este crescătoare"
+msgstr ""
+"Setează ordinea de sortare la descrescătoare, implicit este crescătoare"
 
-#: gsearchtool/gsearchtool.c:1161
+#: gsearchtool/gsearchtool.c:1182
 msgid "Automatically start a search"
 msgstr "Porneşte automat o căutare"
 
-#: gsearchtool/gsearchtool.c:1167
+#: gsearchtool/gsearchtool.c:1188
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Selectează opţiunea de căutare „%s”"
 
-#: gsearchtool/gsearchtool.c:1170
+#: gsearchtool/gsearchtool.c:1191
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Selectează şi setează opţiunea de căutare „%s”"
 
-#: gsearchtool/gsearchtool.c:1277
+#: gsearchtool/gsearchtool.c:1298
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Opţiune invalidă pasată ca argument comenzii de sortare."
 
-#: gsearchtool/gsearchtool.c:1573
+#: gsearchtool/gsearchtool.c:1600
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1616,7 +1673,7 @@ msgstr ""
 "\n"
 "... Prea multe erori pentru afişare ..."
 
-#: gsearchtool/gsearchtool.c:1587
+#: gsearchtool/gsearchtool.c:1614
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1624,11 +1681,11 @@ msgstr ""
 "Rezultatele căutării ar putea fi invalide. Au fost întâlnite erori în timpul "
 "acestei căutări."
 
-#: gsearchtool/gsearchtool.c:1599 gsearchtool/gsearchtool.c:1639
+#: gsearchtool/gsearchtool.c:1626 gsearchtool/gsearchtool.c:1666
 msgid "Show more _details"
 msgstr "Afişează mai multe _detalii"
 
-#: gsearchtool/gsearchtool.c:1627
+#: gsearchtool/gsearchtool.c:1654
 msgid ""
 "The search results may be invalid.  Do you want to disable the quick search "
 "feature?"
@@ -1636,155 +1693,158 @@ msgstr ""
 "Rezultatele căutării ar putea fi invalide. Doriţi să dezactivaţi opţiunea de "
 "căutare rapidă?"
 
-#: gsearchtool/gsearchtool.c:1650
+#: gsearchtool/gsearchtool.c:1677
 msgid "Disable _Quick Search"
 msgstr "Dezactivare căutare _rapidă"
 
-#: gsearchtool/gsearchtool.c:1677
+#: gsearchtool/gsearchtool.c:1704
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Nu am putut seta id-ul pentru grupul de procese %d: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1704
+#: gsearchtool/gsearchtool.c:1731
 msgid "Error parsing the search command."
 msgstr "Eroare la parsarea comenzii de căutare."
 
-#: gsearchtool/gsearchtool.c:1737
+#: gsearchtool/gsearchtool.c:1764
 msgid "Error running the search command."
 msgstr "Eroare la rularea comenzii de căutare."
 
-#: gsearchtool/gsearchtool.c:1884
+#: gsearchtool/gsearchtool.c:1911
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Introduceţi o valoare text pentru opţiunea de căutare „%s”."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1889
+#: gsearchtool/gsearchtool.c:1916
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "„%s” în %s"
 
-#: gsearchtool/gsearchtool.c:1891
+#: gsearchtool/gsearchtool.c:1918
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Introduceţi o valoare în %s pentru opţiunea de căutare „%s”."
 
-#: gsearchtool/gsearchtool.c:1950
+#: gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Şterge „%s”"
 
-#: gsearchtool/gsearchtool.c:1951
+#: gsearchtool/gsearchtool.c:1978
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Clic pentru a şterge opţiunea de căutare „%s”."
 
-#: gsearchtool/gsearchtool.c:2044
+#: gsearchtool/gsearchtool.c:2071
 msgid "A_vailable options:"
 msgstr "Opţiuni _disponibile:"
 
-#: gsearchtool/gsearchtool.c:2073
+#: gsearchtool/gsearchtool.c:2100
 msgid "Available options"
 msgstr "Opţiuni disponibile"
 
-#: gsearchtool/gsearchtool.c:2074
+#: gsearchtool/gsearchtool.c:2101
 msgid "Select a search option from the drop-down list."
 msgstr "Selectaţi o opţiune de căutare din lista derulantă."
 
-#: gsearchtool/gsearchtool.c:2086
+#: gsearchtool/gsearchtool.c:2113
 msgid "Add search option"
 msgstr "Adaugă o opţiune de căutare"
 
-#: gsearchtool/gsearchtool.c:2087
+#: gsearchtool/gsearchtool.c:2114
 msgid "Click to add the selected available search option."
 msgstr "Clic pentru a adăuga opţiunea selectată disponibilă pentru căutare."
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2135
 msgid "S_earch results:"
 msgstr "_Rezultate căutare:"
 
-#: gsearchtool/gsearchtool.c:2144
+#: gsearchtool/gsearchtool.c:2171
 msgid "List View"
 msgstr "Vizualizare listă"
 
-#: gsearchtool/gsearchtool.c:2194
+#: gsearchtool/gsearchtool.c:2221
 msgid "Name"
 msgstr "Nume"
 
-#: gsearchtool/gsearchtool.c:2214
+#: gsearchtool/gsearchtool.c:2241
 msgid "Folder"
 msgstr "Director"
 
-#: gsearchtool/gsearchtool.c:2225
+#: gsearchtool/gsearchtool.c:2252
 msgid "Size"
 msgstr "Dimensiune"
 
-#: gsearchtool/gsearchtool.c:2235
+#: gsearchtool/gsearchtool.c:2262
 msgid "Type"
 msgstr "Tip"
 
-#: gsearchtool/gsearchtool.c:2245
+#: gsearchtool/gsearchtool.c:2272
 msgid "Date Modified"
 msgstr "Data modificării"
 
-#: gsearchtool/gsearchtool.c:2613
+#: gsearchtool/gsearchtool.c:2640
 msgid "_Name contains:"
 msgstr "_Numele conţine:"
 
-#: gsearchtool/gsearchtool.c:2627 gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2654 gsearchtool/gsearchtool.c:2655
 msgid "Enter a filename or partial filename with or without wildcards."
-msgstr "Introduceţi un nume de fişier întreg sau parţial cu sau fără metacaractere."
+msgstr ""
+"Introduceţi un nume de fişier întreg sau parţial cu sau fără metacaractere."
 
-#: gsearchtool/gsearchtool.c:2628
+#: gsearchtool/gsearchtool.c:2655
 msgid "Name contains"
 msgstr "Numele conţine"
 
-#: gsearchtool/gsearchtool.c:2634
+#: gsearchtool/gsearchtool.c:2661
 msgid "_Look in folder:"
 msgstr "_Caută în dosarul:"
 
-#: gsearchtool/gsearchtool.c:2640
+#: gsearchtool/gsearchtool.c:2667
 msgid "Browse"
 msgstr "Navighează"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Look in folder"
 msgstr "Caută în dosarul"
 
-#: gsearchtool/gsearchtool.c:2645
+#: gsearchtool/gsearchtool.c:2672
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Selectaţi dosarul sau dispozitivul în care vreţi să porniţi căutarea."
 
-#: gsearchtool/gsearchtool.c:2656
-msgid "Show more _options"
+#: gsearchtool/gsearchtool.c:2683
+#, fuzzy
+msgid "Select more _options"
 msgstr "Afişează mai multe _opţiuni"
 
-#: gsearchtool/gsearchtool.c:2665
-msgid "Show more options"
+#: gsearchtool/gsearchtool.c:2692
+#, fuzzy
+msgid "Select more options"
 msgstr "Afişează mai multe opţiuni"
 
-#: gsearchtool/gsearchtool.c:2665
+#: gsearchtool/gsearchtool.c:2692
 msgid "Click to expand or collapse the list of available options."
 msgstr "Clic pentru a desfăşura sau plia lista cu opţiunile de căutare."
 
-#: gsearchtool/gsearchtool.c:2689
+#: gsearchtool/gsearchtool.c:2716
 msgid "Click to display the help manual."
 msgstr "Clic pentru a afişa ajutorul."
 
-#: gsearchtool/gsearchtool.c:2697
+#: gsearchtool/gsearchtool.c:2724
 msgid "Click to close \"Search for Files\"."
 msgstr "Clic pentru a închide „Caută fişiere”."
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2750
 msgid "Click to perform a search."
 msgstr "Clic pentru a realiza o căutare."
 
-#: gsearchtool/gsearchtool.c:2724
+#: gsearchtool/gsearchtool.c:2751
 msgid "Click to stop a search."
 msgstr "Clic pentru a opri o căutare."
 
-#: gsearchtool/gsearchtool.c:2824
+#: gsearchtool/gsearchtool.c:2851
 msgid "Cannot initialize bonobo."
 msgstr "Nu pot iniţializa bonobo."
 
@@ -1812,7 +1872,7 @@ msgstr "_Adaugă"
 msgid "Add an action"
 msgstr "Adaugă o acţiune"
 
-#: logview/actions.c:175 logview/logview.c:86
+#: logview/actions.c:175 logview/logview.c:94
 msgid "_Edit"
 msgstr "_Editare"
 
@@ -1944,10 +2004,6 @@ msgstr ""
 "descriere: [%s]\n"
 "acţiune: [%s]\n"
 
-#: logview/calendar.c:55
-msgid "Calendar"
-msgstr "Calendar"
-
 #: logview/desc_db.c:66
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
@@ -1956,7 +2012,8 @@ msgstr "Nu am putut deschide baza de date regexp <%s>! Deschidere eşuată."
 #: logview/desc_db.c:176
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
-msgstr "Nu am putut deschide baza de date pentru descrieri <%s>! Deschidere eşuată."
+msgstr ""
+"Nu am putut deschide baza de date pentru descrieri <%s>! Deschidere eşuată."
 
 #. ----------------------------------------------------------------------
 #. NAME:
@@ -2055,29 +2112,30 @@ msgid "December"
 msgstr "Decembrie"
 
 #. Translators: Date only format, %x should well do really
-#: logview/log_repaint.c:278
+#: logview/log_repaint.c:277
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: logview/log_repaint.c:297
+#: logview/log_repaint.c:296
 msgid "Last Modified:"
 msgstr "Modificat ultima oară:"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: logview/log_repaint.c:326
+#: logview/log_repaint.c:325
 msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: logview/log_repaint.c:398
+#: logview/log_repaint.c:397
 #, c-format
 msgid "%X"
 msgstr "%X"
 
 #: logview/logrtns.c:50
-msgid "The file could not be opened"
+#, fuzzy
+msgid "One file or more could not be opened"
 msgstr "Fişierul nu a putut fi deschis."
 
 #: logview/logrtns.c:216
@@ -2089,10 +2147,10 @@ msgid "Not enough memory!\n"
 msgstr "Memorie insuficientă!\n"
 
 #: logview/logrtns.c:276
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file."
+"to change the permissions on the file.\n"
 msgstr ""
 "%s nu poate fi citit de către utilizator. Fie rulaţi programul ca root sau "
 "rugaţi administratorul de sistem să schimbe permisiunile fişierului."
@@ -2116,139 +2174,144 @@ msgstr "%s nu este un fişier log."
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memorie insuficientă"
 
-#: logview/logview-findbar.c:265
+#: logview/logview-findbar.c:274
 msgid "Fin_d:"
 msgstr "Cau_tă:"
 
-#: logview/logview-findbar.c:283
-msgid "Find Next"
-msgstr "Caută următorul"
-
-#: logview/logview-findbar.c:293
-msgid "Find Previous"
+#: logview/logview-findbar.c:279
+#, fuzzy
+msgid "_Previous"
 msgstr "Caută precedentul"
 
-#: logview/logview.c:85
+#: logview/logview-findbar.c:281
+msgid "_Next"
+msgstr ""
+
+#: logview/logview.c:93
 msgid "_Log"
 msgstr "_Log"
 
-#: logview/logview.c:87
+#: logview/logview.c:95
 msgid "_View"
 msgstr "_Vizualizare"
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "_Open..."
 msgstr "_Deschide..."
 
-#: logview/logview.c:90
+#: logview/logview.c:98
 msgid "Open a log from file"
 msgstr "Deschide un log din fişier"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "_Properties"
 msgstr "_Proprietăţi"
 
-#: logview/logview.c:92
+#: logview/logview.c:100
 msgid "Show Log Properties"
 msgstr "Afişează proprietăţi log"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close"
 msgstr "Închide"
 
-#: logview/logview.c:94
+#: logview/logview.c:102
 msgid "Close this log"
 msgstr "Închide acest log"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "_Quit"
 msgstr "În_chide"
 
-#: logview/logview.c:96
+#: logview/logview.c:104
 msgid "Quit the log viewer"
 msgstr "Închide vizualizator log"
 
-#: logview/logview.c:99
+#: logview/logview.c:107
 msgid "Copy"
 msgstr "Copiază"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select All"
 msgstr "Selectează tot"
 
-#: logview/logview.c:101
+#: logview/logview.c:109
 msgid "Select the entire log"
 msgstr "Selectează tot logul"
 
-#: logview/logview.c:103
+#: logview/logview.c:111
 msgid "Find pattern in logs"
 msgstr "Caută modele în loguri"
 
-#: logview/logview.c:106
+#: logview/logview.c:118
+msgid "Normal text size"
+msgstr ""
+
+#: logview/logview.c:121
 msgid "Collapse _All"
 msgstr "_Pliază tot"
 
-#: logview/logview.c:106
+#: logview/logview.c:121
 msgid "Collapse all the rows"
 msgstr "Pliază toate liniile"
 
-#: logview/logview.c:109
+#: logview/logview.c:124
 msgid "Open the help contents for the log viewer"
 msgstr "Deschide ajutorul pentru vizualizatorul de loguri"
 
-#: logview/logview.c:111
+#: logview/logview.c:126
 msgid "Show the about dialog for the log viewer"
 msgstr "Afişează dialogul „despre” pentru vizualizatorul de loguri"
 
-#: logview/logview.c:117
+#: logview/logview.c:132
+msgid "Sidebar"
+msgstr ""
+
+#: logview/logview.c:132
+msgid "Show the sidebar"
+msgstr ""
+
+#: logview/logview.c:134
 msgid "_Monitor"
 msgstr "_Monitorizează"
 
-#: logview/logview.c:117
+#: logview/logview.c:134
 msgid "Monitor Current Log"
 msgstr "Monitorizează logul curent"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Ca_lendar"
 msgstr "Ca_lendar"
 
-#: logview/logview.c:119
+#: logview/logview.c:136
 msgid "Show Calendar Log"
 msgstr "Afişează calendarul log-ului"
 
-#: logview/logview.c:121
-msgid "_Entry Detail"
-msgstr "_Detalii"
-
-#: logview/logview.c:121
-msgid "Show Entry Detail"
-msgstr "Arată detalii"
-
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Date"
 msgstr "Data"
 
-#: logview/logview.c:386
+#: logview/logview.c:625
 msgid "Host Name"
 msgstr "Nume gazdă"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Process"
 msgstr "Proces"
 
-#: logview/logview.c:387
+#: logview/logview.c:626
 msgid "Message"
 msgstr "Mesaj"
 
-#: logview/logview.c:580
+#: logview/logview.c:803
 msgid "Open new logfile"
 msgstr "Deschide un nou fişier log"
 
-#: logview/logview.c:876
+#: logview/logview.c:1140
 msgid "There was an error displaying help."
 msgstr "A intervenit o eroare la afişarea ajutorului."
 
-#: logview/logview.c:894
+#: logview/logview.c:1158
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (monitorizat) - %s"
@@ -2274,3 +2337,23 @@ msgstr "Detalii"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
+#~ msgid "Lookup done"
+#~ msgstr "Căutare terminată"
+
+#~ msgid "Spell check done"
+#~ msgstr "Verificare ortografică terminată"
+
+#~ msgid "Gnome Dictionary"
+#~ msgstr "Dicţionar Gnome"
+
+#~ msgid "Calendar"
+#~ msgstr "Calendar"
+
+#~ msgid "Find Next"
+#~ msgstr "Caută următorul"
+
+#~ msgid "_Entry Detail"
+#~ msgstr "_Detalii"
+
+#~ msgid "Show Entry Detail"
+#~ msgstr "Arată detalii"
