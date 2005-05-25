@@ -717,7 +717,6 @@ CreateMainWin (LogviewWindow *window)
 		     G_CALLBACK (window_size_changed_cb), window);
 
    window->find_bar = logview_findbar_new (window);
-	 //   gtk_toolbar_set_style (GTK_TOOLBAR (window->find_bar), GTK_TOOLBAR_BOTH_HORIZ);
 	 gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
    gtk_widget_show (window->find_bar);
 

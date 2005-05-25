@@ -1,3 +1,18 @@
+2005-05-25  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (tree_view_column_set_visible), (DrawLogLines):
+	* logrtns.c: (OpenLogFile), (ParseLine):
+	* logrtns.h:
+	* logview.c: (CreateMainWin):
+	* logview.h:
+	* monitor.c: (mon_update_display):
+	Allow the opening of logs with no Date-Time-Machine-Message
+	structure (basically, any text file). If there is no date in the
+	first line of the log, don't bother checking all the other
+	lines. When drawing a log without dates, prepend lines instead of
+	appending in the treeview (A lot faster).  Allow a filename of any
+	size.
+
 2005-05-24  Vincent Noel  <vnoel@cox.net>
 
 	* log_repaint.c: (log_repaint):

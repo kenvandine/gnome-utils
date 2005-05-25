@@ -93,7 +93,7 @@ typedef void (*MonActions)();
 typedef struct
 {
 	DateMark *curmark;
-	char name[255];
+	char *name;
 	char *display_name;
 	CalendarData *caldata;
 	LogStats lstats;

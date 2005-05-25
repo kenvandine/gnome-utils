@@ -76,6 +76,9 @@ C_monthname[12] =
  * that effect */
 char *all_locales = "af_ZA ar_SA bg_BG ca_ES cs_CZ da_DK de_AT de_BE de_CH de_DE de_LU el_GR en_AU en_CA en_DK en_GB en_IE en_US es_ES et_EE eu_ES fi_FI fo_FO fr_BE fr_CA fr_CH fr_FR fr_LU ga_IE gl_ES gv_GB hr_HR hu_HU in_ID is_IS it_CH it_IT iw_IL kl_GL kw_GB lt_LT lv_LV mk_MK nl_BE nl_NL no_NO pl_PL pt_BR pt_PT ro_RO ru_RU.KOI8-R ru_RU ru_UA sk_SK sl_SI sr_YU sv_FI sv_SE th_TH tr_TR uk_UA";
 
+/* FIXME : bottleneck for loading */
+/* This function is extremely slow for some reason */
+
 static int
 get_month (const char *str)
 {
@@ -198,6 +201,7 @@ OpenLogFile (char *filename)
    GError *error;
    GnomeVFSResult result;
    int size;
+	 gboolean no_dates_in_log = FALSE;
    
    if (file_exist (filename, TRUE) == FALSE)
 	   return NULL;
@@ -208,8 +212,9 @@ OpenLogFile (char *filename)
    }   
 
    /* Check that the file is readable and is a logfile */
-   if (!isLogFile (filename, TRUE))
-	   return NULL;
+	 /* FIXME : just check if the file is an ASCII text file */
+	 //   if (!isLogFile (filename, TRUE))
+	 //	   return NULL;
 
    result = gnome_vfs_read_entire_file (filename, &size, &buffer);
    if (result != GNOME_VFS_OK) {
@@ -223,8 +228,7 @@ OpenLogFile (char *filename)
 	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 	   return NULL;
    }
-   strncpy (tlog->name, filename, sizeof (tlog->name)-1);
-   tlog->name[sizeof (tlog->name) - 1] = '\0';
+	 tlog->name = g_strdup (filename);
    tlog->display_name = display_name;
    if (display_name)
 	   g_free (filename);
@@ -236,15 +240,18 @@ OpenLogFile (char *filename)
    for (i=0; buffer_lines[i+1] != NULL; i++);
    tlog->total_lines = i;
 
-   tlog->lines = g_malloc (sizeof (*(tlog->lines)) * tlog->total_lines);
-   for (i=0; buffer_lines[i+1] != NULL; i++) {	   
-	   line = g_malloc (sizeof(**(tlog->lines)));
+   tlog->lines = g_new (LogLine*, tlog->total_lines);
+	 for (i=0; buffer_lines[i+1]!=NULL; i++)
+		 (tlog->lines)[i] = g_new (LogLine, 1);
+	 	 
+   for (i=0; buffer_lines[i+1] != NULL; i++) {
 	   if (!line) {
 		   ShowErrMessage (NULL, error_main, "Unable to malloc for lines[i]\n");
 		   return NULL;
 	   }
-	   ParseLine (buffer_lines[i], line);
-	   (tlog->lines)[i] = line;
+	   ParseLine (buffer_lines[i], (tlog->lines)[i], no_dates_in_log);
+		 if ((tlog->lines)[i]->month == -1)
+			 no_dates_in_log = TRUE;
    }   
 
    /* Read log stats */
@@ -256,7 +263,6 @@ OpenLogFile (char *filename)
 					       (GDestroyNotify) gtk_tree_path_free);
    tlog->first_time = TRUE;
    return tlog;
-
 }
 
 static gboolean
@@ -399,7 +405,7 @@ gchar **ReadNewLines (Log *log)
    ---------------------------------------------------------------------- */
 
 void
-ParseLine (char *buff, LogLine * line)
+ParseLine (char *buff, LogLine *line, gboolean no_date)
 {
    char *token;
    char scratch[1024];
@@ -409,28 +415,21 @@ ParseLine (char *buff, LogLine * line)
    strncpy (line->message, buff, MAX_WIDTH);
    line->message[MAX_WIDTH-1] = '\0';
 
+	 if (no_date) {
+		 line->month = -1;
+		 line->date = -1;
+		 line->hour = -1; line->min = -1; line->sec = -1;
+		 strcpy (line->hostname, "");
+		 strcpy (line->process, "");
+		 return;
+	 }
+
+	 /* FIXME : stop using strtok, it's unrecommended. */
    token = strtok (line->message, " ");
    if (token == NULL) return;
-   /* This is not a good assumption I don't think, especially
-    * if log is internationalized
-    * -George
-   if (strlen (token) != 3)
-   {
-      strncpy (line->message, buff, MAX_WIDTH);
-      line->month = -1;
-      line->date = -1;
-      line->hour = -1;
-      line->min = -1;
-      line->sec = -1;
-      strcpy (line->hostname, "");
-      strcpy (line->process, "");
-      return;
-   }
-   */
-   i = get_month (token);
 
-   if (i == 12)
-   {
+   i = get_month (token);
+	 if (i == 12) {
       line->month = -1;
       line->date = -1;
       line->hour = -1;
@@ -440,13 +439,12 @@ ParseLine (char *buff, LogLine * line)
       strcpy (line->process, "");
       return;
    }
-   line->month = i;
+   line->month = i;	 
 
    token = strtok (NULL, " ");
    if (token != NULL)
       line->date = (char) atoi (token);
-   else
-   {
+   else {
       line->date = -1;
       line->hour = -1;
       line->min = -1;
@@ -460,8 +458,7 @@ ParseLine (char *buff, LogLine * line)
    token = strtok (NULL, ":");
    if (token != NULL)
       line->hour = (char) atoi (token);
-   else
-   {
+   else {
       line->hour = -1;
       line->min = -1;
       line->sec = -1;

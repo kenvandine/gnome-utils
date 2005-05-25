@@ -337,6 +337,14 @@ GetDateHeader (LogLine *line)
 
 }
 
+static void
+tree_view_column_set_visible (GtkWidget *view, int colnum, gboolean visible)
+{
+	GtkTreeViewColumn *column;
+	column = gtk_tree_view_get_column (GTK_TREE_VIEW(view), colnum);
+	gtk_tree_view_column_set_visible (column, visible);
+}
+
 /* ----------------------------------------------------------------------
    NAME:        DrawLogLines
    DESCRIPTION: Displays a single log line
@@ -345,7 +353,7 @@ GetDateHeader (LogLine *line)
 void
 DrawLogLines (LogviewWindow *window, Log *current_log)
 {
-   GtkTreeModel *tree_model;
+   GtkTreeModel *model;
    GtkTreeIter iter;
    GtkTreeIter child_iter;
    GtkTreePath *path;
@@ -359,68 +367,84 @@ DrawLogLines (LogviewWindow *window, Log *current_log)
    if (!current_log->total_lines) 
        return;
 
-   tree_model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
+   model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
    cm = cd = -1;
 
-   for (i = 0; i < current_log->total_lines; ++i) {
-              
-       line = (current_log->lines)[i];
-       
+	 if (current_log->lines[0]->month == -1) {
+		 /* the log has no date/time/machine information */
+		 for (i=0; i<3; i++)
+			 tree_view_column_set_visible (window->view, i, FALSE);
+		 gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), FALSE);
+		 /* FIXME : we should hide the calendar and make it impossible to open it */
+		 for (i=current_log->total_lines-1; i>-1; i--) {
+			 line = (current_log->lines)[i];
+			 gtk_tree_store_prepend (GTK_TREE_STORE (model), &iter, NULL);
+			 gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+													 MESSAGE, line->message, -1);
+		 }
+	 } else {
+		 for (i=0; i<3; i++)
+			 tree_view_column_set_visible (window->view, i, TRUE);
+		 gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), TRUE);
+		 for (i = 0; i < current_log->total_lines; ++i) {
+			 
+       line = (current_log->lines)[i];       
+
        /* If data has changed then draw the date header */
        if ((line->month != cm && line->month > 0) ||
            (line->date != cd && line->date > 0)) {
-           utf8 = GetDateHeader (line);
-           gtk_tree_store_append (GTK_TREE_STORE (tree_model), &iter, NULL);
-           gtk_tree_store_set (GTK_TREE_STORE (tree_model), &iter,
-               DATE, utf8, HOSTNAME, FALSE,
-               PROCESS, FALSE, MESSAGE, FALSE, -1);
-           cm = line->month;
-           cd = line->date;
-
-           /* store pointer to this date header, using the current
-            * month and day as the key */
-           g_hash_table_insert (current_log->date_headers,
-                        DATEHASH (cm, cd),
-                        gtk_tree_model_get_path (tree_model, &iter));
+				 utf8 = GetDateHeader (line);
+				 gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
+				 gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+														 DATE, utf8, HOSTNAME, FALSE,
+														 PROCESS, FALSE, MESSAGE, FALSE, -1);
+				 cm = line->month;
+				 cd = line->date;
+				 
+				 /* store pointer to this date header, using the current
+					* month and day as the key */
+				 g_hash_table_insert (current_log->date_headers,
+															DATEHASH (cm, cd),
+															gtk_tree_model_get_path (model, &iter));
        }
        if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
 	       struct tm date = {0};
-           date.tm_mon = line->month;
-           date.tm_year = 70 /* bogus */;
-           date.tm_mday = line->date;
-           date.tm_hour = line->hour;
-           date.tm_min = line->min;
-           date.tm_sec = line->sec;
-           date.tm_isdst = 0;
-
+				 date.tm_mon = line->month;
+				 date.tm_year = 70 /* bogus */;
+				 date.tm_mday = line->date;
+				 date.tm_hour = line->hour;
+				 date.tm_min = line->min;
+				 date.tm_sec = line->sec;
+				 date.tm_isdst = 0;
+				 
 	       /* Translators: should be only the time, date could be bogus */
 	       if (strftime (tmp, sizeof (tmp), _("%X"), &date) <= 0) {
-               /* as a backup print in 24 hours style */
+					 /* as a backup print in 24 hours style */
 		       utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, 
-                                       line->min, line->sec);
+																	 line->min, line->sec);
 	       } else {
 		       utf8 = LocaleToUTF8 (tmp);
 	       }
        } else {
 	       utf8 = g_strdup (" ");
        }
+			 
+       gtk_tree_store_append (GTK_TREE_STORE (model), &child_iter, &iter);
+       gtk_tree_store_set (GTK_TREE_STORE (model), &child_iter,
+													 DATE, utf8, HOSTNAME, LocaleToUTF8 (line->hostname),
+													 PROCESS, LocaleToUTF8 (line->process),
+													 MESSAGE, LocaleToUTF8 (line->message), -1);
+		 }		 
+	 }
 
-       gtk_tree_store_append (GTK_TREE_STORE (tree_model), &child_iter, &iter);
-       gtk_tree_store_set (GTK_TREE_STORE (tree_model), &child_iter,
-           DATE, utf8, HOSTNAME, LocaleToUTF8 (line->hostname),
-           PROCESS, LocaleToUTF8 (line->process),
-           MESSAGE, LocaleToUTF8 (line->message), -1);
-   }
- 
    if (current_log->first_time) {
-
        /* Expand the rows */
-       path = gtk_tree_model_get_path (tree_model, &iter);
+       path = gtk_tree_model_get_path (model, &iter);
        gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
        current_log->first_time = FALSE;
 
        /* Scroll and set focus on last row */
-       path = gtk_tree_model_get_path (tree_model, &child_iter);
+       path = gtk_tree_model_get_path (model, &child_iter);
        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), path, NULL, FALSE); 
        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 
           1, 1);
