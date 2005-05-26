@@ -212,8 +212,8 @@ OpenLogFile (char *filename)
    }   
 
    /* Check that the file is readable and is a logfile */
-	 if (!isLogFile (filename, TRUE))
-		 return NULL;
+   if (!isLogFile (filename, TRUE))
+       return NULL;
 
    result = gnome_vfs_read_entire_file (filename, &size, &buffer);
    if (result != GNOME_VFS_OK) {
@@ -227,9 +227,9 @@ OpenLogFile (char *filename)
 	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 	   return NULL;
    }
-	 tlog->name = g_strdup (filename);
+   tlog->name = g_strdup (filename);
    tlog->display_name = display_name;
-	 tlog->has_date = TRUE;
+   tlog->has_date = TRUE;
    if (display_name)
 	   g_free (filename);
 
@@ -250,9 +250,9 @@ OpenLogFile (char *filename)
 		   return NULL;
 	   }
 	   ParseLine (buffer_lines[i], (tlog->lines)[i], tlog->has_date);
-		 if ((tlog->lines)[i]->month == -1 && tlog->has_date)
-			 tlog->has_date = FALSE;
-   }   
+       if ((tlog->lines)[i]->month == -1 && tlog->has_date)
+           tlog->has_date = FALSE;
+   }
 
    /* Read log stats */
    ReadLogStats (tlog, buffer_lines);
@@ -397,108 +397,65 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
    char *token;
    char scratch[1024];
    int i;
-	 int len;
+   int len;
 
-   /* just copy as a whole line to be the default */
-   strncpy (line->message, buff, MAX_WIDTH);
-	 len = MIN (MAX_WIDTH-1, strlen (buff));
-   line->message[len] = '\0';
+   /* create defaults */
+   strncpy (line->message, buff, MAX_WIDTH);   
+   len = MIN (MAX_WIDTH-1, strlen (buff));
+   line->message[len] = '\0';   
+   line->month = -1; line->date = -1;
+   line->hour = -1; line->min = -1; line->sec = -1;
+   strcpy (line->hostname, "");
+   strcpy (line->process, "");
 
-	 if (!has_date) {
-		 line->month = -1;
-		 line->date = -1;
-		 line->hour = -1; line->min = -1; line->sec = -1;
-		 strcpy (line->hostname, "");
-		 strcpy (line->process, "");
-		 return;
-	 }
+   if (!has_date)
+       return;
 
-	 /* FIXME : stop using strtok, it's unrecommended. */
+   /* FIXME : stop using strtok, it's unrecommended. */
    token = strtok (line->message, " ");
    if (token == NULL) return;
 
    i = get_month (token);
-	 if (i == 12) {
-      line->month = -1;
-      line->date = -1;
-      line->hour = -1;
-      line->min = -1;
-      line->sec = -1;
-      strcpy (line->hostname, "");
-      strcpy (line->process, "");
-      return;
-   }
+   if (i == 12)
+       return;
    line->month = i;	 
 
    token = strtok (NULL, " ");
    if (token != NULL)
-      line->date = (char) atoi (token);
-   else {
-      line->date = -1;
-      line->hour = -1;
-      line->min = -1;
-      line->sec = -1;
-      strcpy (line->hostname, "");
-      strcpy (line->process, "");
-      strcpy (line->message, "");
-      return;
-   }
+       line->date = (char) atoi (token);
+   else
+       return;
 
    token = strtok (NULL, ":");
    if (token != NULL)
-      line->hour = (char) atoi (token);
-   else {
-      line->hour = -1;
-      line->min = -1;
-      line->sec = -1;
-      strcpy (line->hostname, "");
-      strcpy (line->process, "");
-      strcpy (line->message, "");
-      return;
-   }
+       line->hour = (char) atoi (token);
+   else
+       return;
 
    token = strtok (NULL, ":");
    if (token != NULL)
       line->min = (char) atoi (token);
    else
-   {
-      line->min = -1;
-      line->sec = -1;
-      strcpy (line->hostname, "");
-      strcpy (line->process, "-");
-      strcpy (line->message, "");
-      return;
-   }
+       return;
 
    token = strtok (NULL, " ");
    if (token != NULL)
-      line->sec = (char) atoi (token);
+       line->sec = (char) atoi (token);
    else
-   {
-      line->sec = -1;
-      strcpy (line->hostname, "");
-      strcpy (line->process, "-");
-      strcpy (line->message, "");
-      return;
-   }
+       return;
 
    token = strtok (NULL, " ");
    if (token != NULL) {
       strncpy (line->hostname, token, MAX_HOSTNAME_WIDTH);
       line->hostname[MAX_HOSTNAME_WIDTH-1] = '\0';
-   } else {
-      line->sec = -1;
-      strcpy (line->hostname, "");
-      strcpy (line->process, "-");
-      strcpy (line->message, "");
-      return;
-   }
+   } else
+       return;
 
    token = strtok (NULL, ":\n");
    if (token != NULL)
-      strncpy (scratch, token, 254);
+       strncpy (scratch, token, 254);
    else
-      strncpy (scratch, " ", 254);
+       strncpy (scratch, " ", 254);
    scratch[254] = '\0';
    token = strtok (NULL, "\n");
 
