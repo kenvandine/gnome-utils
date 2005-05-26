@@ -1,8 +1,13 @@
 2005-05-26  Vincent Noel  <vnoel@cox.net>
 
+	* logview.c (CreateMainWin): Remove the signal for row activation.
 	* log_repaint.c: (handle_row_collapse_cb),
 	(handle_row_expansion_cb), (DrawLogLines): Free the expanded paths
 	when switching logs.
+	(handle_row_activation_cb): Remove the activation callback, we're
+	not doing anything with it anyway.
+	(logview_draw_log_lines): Renamed a few functions for consistency,
+	a little refactoring. Show the number of log lines in the status bar.
 
 2005-05-26  Vincent Noel  <vnoel@cox.net>
 

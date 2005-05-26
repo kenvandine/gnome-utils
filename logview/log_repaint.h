@@ -22,8 +22,6 @@
 
 gboolean log_repaint (LogviewWindow *window);
 void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
-void handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
-			       GtkTreeViewColumn *arg2, gpointer user_data);
 void handle_row_expansion_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 			 GtkTreePath *path, gpointer user_data);
 void handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter, 

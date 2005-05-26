@@ -709,8 +709,6 @@ CreateMainWin (LogviewWindow *window)
    /* Add signal handlers */
    g_signal_connect (G_OBJECT (selection), "changed",
                      G_CALLBACK (handle_selection_changed_cb), window);
-   g_signal_connect (G_OBJECT (window->view), "row_activated",
-                     G_CALLBACK (handle_row_activation_cb), window);
 	 g_signal_connect (G_OBJECT (window->view), "row-expanded",
 										 G_CALLBACK (handle_row_expansion_cb), window);
 	 g_signal_connect (G_OBJECT (window->view), "row-collapsed",

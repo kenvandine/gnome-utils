@@ -44,9 +44,6 @@ enum {
    MESSAGE
 };
 
-static void DrawLogLines (LogviewWindow *window, Log *current_log);
-static void UpdateStatusArea (LogviewWindow *window);
-
 /**
  * Recursively called until the row specified by orig is found.
  *
@@ -173,64 +170,41 @@ void
 handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 												GtkTreePath *path, gpointer user_data)
 {
-	GtkTreeModel *model;
-	int day;
-	gchar *date, *daystring;
 	LogviewWindow *logview = user_data;
+	GtkTreeModel *model;
+	gchar *date;
+	int day;
 
 	model = gtk_tree_view_get_model (treeview);
 	gtk_tree_model_get (model, iter, DATE, &date, -1);
-	
-	daystring = g_strrstr (date, " ");
-	day = atoi (daystring);
+	day = atoi (g_strrstr (date, " "));
 	
 	if (logview->curlog->expand_paths[day-1])
 		gtk_tree_path_free (logview->curlog->expand_paths[day-1]);
 	logview->curlog->expand[day-1] = FALSE;
 	logview->curlog->expand_paths[day-1] = NULL;
+
+	g_free (date);
 }
 
 void
 handle_row_expansion_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 												 GtkTreePath *path, gpointer user_data)
 {
-	GtkTreeModel *model;
-	int day;
-	gchar *date, *daystring;
 	LogviewWindow *logview = user_data;
+	GtkTreeModel *model;
+	gchar *date;
+	int day;
 
 	model = gtk_tree_view_get_model (treeview);
 	gtk_tree_model_get (model, iter, DATE, &date, -1);
 	
-	daystring = g_strrstr (date, " ");
-	day = atoi (daystring);
+	day = atoi (g_strrstr (date, " "));
 	
 	logview->curlog->expand[day-1] = TRUE;
 	logview->curlog->expand_paths[day-1] = gtk_tree_path_copy (path);
-}
 
-/* ----------------------------------------------------------------------
-   NAME:        handle_row_activation_cb
-   DESCRIPTION: User pressed space bar on a row in the main window
-   ---------------------------------------------------------------------- */
-
-void
-handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
-     GtkTreeViewColumn *arg2, gpointer user_data)
-{
-    GtkTreeModel *model;
-    GtkTreePath *root_tree;
-    gint row = 0;
-    LogviewWindow *window = user_data;
-
-    model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
-    root_tree = gtk_tree_path_new_root ();
-
-    iterate_thru_children (GTK_TREE_VIEW (window->view), model, root_tree, path, &row, 0);
-    
-    gtk_tree_path_free (root_tree);
-
-    window->curlog->current_line_no = row;
+	g_free (date);
 }
 
 /* ----------------------------------------------------------------------
@@ -241,68 +215,37 @@ handle_row_activation_cb (GtkTreeView *treeview, GtkTreePath *path,
 void
 handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
-    GtkTreeModel *model;
-    GList *selected_paths, *i;
-    int selected_first = -1, selected_last = -1;
-    LogviewWindow *window = data;
+	int selected_first = -1, selected_last = -1;
+	LogviewWindow *logview = data;
     GtkTreePath *selected_path;
-
-    selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
-
-    if (selected_paths) {
-	    for (i = selected_paths; i != NULL; i = g_list_next (i)) {		    
-		    GtkTreePath *root_tree = gtk_tree_path_new_root ();
-		    int row = 0;
-		    selected_path = i->data;
-		    iterate_thru_children (GTK_TREE_VIEW (window->view), model, root_tree, selected_path, &row, 0);		    
-		    if (selected_last == -1 || row > selected_last)
-			    selected_last = row;
-		    if (selected_first == -1 || row < selected_first)
-			    selected_first = row;
-	    }
-	    window->curlog->current_line_no = selected_last;
-	    window->curlog->current_path = gtk_tree_path_copy (selected_path);
-	    window->curlog->selected_line_first = selected_first;
-	    window->curlog->selected_line_last = selected_last;
-	    g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
-	    g_list_free (selected_paths);
-    }
-}
-
-/* ----------------------------------------------------------------------
-   NAME:        log_repaint
-   DESCRIPTION: Redraw screen.
-   ---------------------------------------------------------------------- */
-
-gboolean
-log_repaint (LogviewWindow *window)
-{
-   g_return_val_if_fail (LOGVIEW_IS_WINDOW (window), FALSE);
-
-   UpdateStatusArea (window);	   
-
-   /* Check that there is at least one log */
-   if (window->curlog == NULL) {
-	   return FALSE;
-   }
-	 
-	 if (window->curlog->monitored) {
-		 gtk_widget_hide (window->log_scrolled_window);
-		 gtk_widget_show (window->mon_scrolled_window);
-	 } else {
-		 gtk_widget_hide (window->mon_scrolled_window);
-		 gtk_widget_show (window->log_scrolled_window);
-	 }
-
-   /* Draw the tree view */ 
-   DrawLogLines (window, window->curlog); 
-
-   return TRUE;
-
+	GtkTreeModel *model;
+	GList *selected_paths, *i;
+	
+	selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
+	
+	if (selected_paths) {	
+		for (i = selected_paths; i != NULL; i = g_list_next (i)) {		    
+			GtkTreePath *root_tree = gtk_tree_path_new_root ();
+			int row = 0;
+			selected_path = i->data;
+			iterate_thru_children (GTK_TREE_VIEW (logview->view), model,
+                                   root_tree, selected_path, &row, 0);
+			if (selected_last == -1 || row > selected_last)
+				selected_last = row;
+			if (selected_first == -1 || row < selected_first)
+				selected_first = row;
+		}
+		logview->curlog->current_line_no = selected_last;
+		logview->curlog->current_path = gtk_tree_path_copy (selected_path);
+		logview->curlog->selected_line_first = selected_first;
+		logview->curlog->selected_line_last = selected_last;
+		g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
+		g_list_free (selected_paths);
+	}
 }
 
 void
-UpdateStatusArea (LogviewWindow *window)
+logview_update_statusbar (LogviewWindow *window)
 {
    struct tm *tdm;
    char status_text[255];
@@ -312,14 +255,10 @@ UpdateStatusArea (LogviewWindow *window)
    /* Translators: Date only format, %x should well do really */
    const char *time_fmt = _("%x"); /* an evil way to avoid warning */
 
-	 /* FIXME : show the number of lines in the status area */
- 
    if (window->curlog == NULL) { 
        gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar), 0);
        return;
    }
-
-   logview_set_window_title (window);
 
    if (window->curlog->curmark != NULL) {
 	   tdm = &(window->curlog)->curmark->fulldate;
@@ -328,17 +267,20 @@ UpdateStatusArea (LogviewWindow *window)
    	       /* as a backup print in US style */
   	       utf8 = g_strdup_printf ("%02d/%02d/%02d", tdm->tm_mday,
                     tdm->tm_mon, tdm->tm_year % 100);
-       } else {
+       } else
            utf8 = LocaleToUTF8 (status_text);
-       }
-       statusbar_text = g_strconcat (_("Last Modified:"), utf8, NULL);
+
+       statusbar_text = g_strdup_printf (_("Last Modified: %s, %d lines"),
+                                         utf8, window->curlog->total_lines);
+       g_free (utf8);
+   } else
+       statusbar_text = g_strdup_printf (_("%d lines"), window->curlog->total_lines);
+
+   if (statusbar_text) {
        gtk_statusbar_pop (GTK_STATUSBAR(window->statusbar), 0);
        gtk_statusbar_push (GTK_STATUSBAR(window->statusbar), 0, statusbar_text);
-       
-       g_free (utf8);
        g_free (statusbar_text);
    }
-
 }
 
 /* ----------------------------------------------------------------------
@@ -387,141 +329,174 @@ tree_view_columns_set_visible (GtkWidget *view, gboolean visible)
 }
 
 /* ----------------------------------------------------------------------
-   NAME:        DrawLogLines
+   NAME:        logview_draw_log_lines
    DESCRIPTION: Displays a single log line
    ---------------------------------------------------------------------- */
 
 void
-DrawLogLines (LogviewWindow *window, Log *current_log)
+logview_draw_log_lines (LogviewWindow *window, Log *current_log)
 {
-   GtkTreeIter iter;
-	 GtkTreeModel *model;
-   GtkTreeIter child_iter;
-   GtkTreePath *path;
-   LogLine *line;
-   char tmp[4096];
-   char *utf8 = NULL;
-   gint cm, cd;
-	 int i;
+    GtkTreeIter iter;
+    GtkTreeModel *model;
+    GtkTreeIter child_iter;
+    GtkTreePath *path;
+    LogLine *line;
+    char tmp[4096];
+    char *utf8 = NULL;
+    gint cm, cd;
+    int i;
+    
+    if (!current_log->total_lines) 
+        return;
+    
+    gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), NULL);
+    model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
+                                               G_TYPE_STRING, G_TYPE_STRING));
+    
+    if (current_log->has_date == FALSE) {
+        
+        for (i=current_log->total_lines-1; i>-1; i--) {
+            line = (current_log->lines)[i];
+            gtk_tree_store_prepend (GTK_TREE_STORE (model), &iter, NULL);
+            gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+                                MESSAGE, line->message, -1);
+            if (i == current_log->total_lines-1)
+                child_iter = iter;
+        }
+        
+    } else {
+        
+        cm = cd = -1;
+        for (i = 0 ; i < (current_log->total_lines)-1; i++) {
+            
+            line = (current_log->lines)[i];       
+            
+            /* If data has changed then draw the date header */
+            if ((line->month != cm && line->month > 0) ||
+                (line->date != cd && line->date > 0)) {
+                gchar *path_string;
+                GtkTreePath *path;
+                utf8 = GetDateHeader (line);
+                gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
+                gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+                                    DATE, utf8, HOSTNAME, FALSE,
+                                    PROCESS, FALSE, MESSAGE, FALSE, -1);
+                
+                /* store pointer to the date headers, using the month and day as the key */
+                
+                cm = line->month;
+                cd = line->date;
+                
+                path = gtk_tree_model_get_path (model, &iter);
+                path_string = gtk_tree_path_to_string (path);
+                g_hash_table_insert (current_log->date_headers,
+                                     DATEHASH (cm, cd), path);
+                g_free (path_string);
+                
+                if (current_log->expand[cd-1]) {
+                    gtk_tree_path_free (current_log->expand_paths[cd-1]);
+                    current_log->expand_paths[cd-1] = gtk_tree_path_copy (path);
+                }
+            }
+            
+            if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
+                struct tm date = {0};
+                date.tm_mon = line->month;
+                date.tm_year = 70 /* bogus */;
+                date.tm_mday = line->date;
+                date.tm_hour = line->hour;
+                date.tm_min = line->min;
+                date.tm_sec = line->sec;
+                date.tm_isdst = 0;
+                
+                /* Translators: should be only the time, date could be bogus */
+                if (strftime (tmp, sizeof (tmp), _("%X"), &date) <= 0) {
+                    /* as a backup print in 24 hours style */
+                    utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, 
+                                            line->min, line->sec);
+                } else {
+                    utf8 = LocaleToUTF8 (tmp);
+                }
+            } else {
+                utf8 = g_strdup (" ");
+            }			 
+            gtk_tree_store_append (GTK_TREE_STORE (model), &child_iter, &iter);
+            gtk_tree_store_set (GTK_TREE_STORE (model), &child_iter,
+                                DATE, utf8, HOSTNAME, LocaleToUTF8 (line->hostname),
+                                PROCESS, LocaleToUTF8 (line->process),
+                                MESSAGE, LocaleToUTF8 (line->message), -1);
+        }
+        
+    }
+    
+    tree_view_columns_set_visible (window->view, current_log->has_date);
+    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), current_log->has_date);
+    gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), model);
+    
+    if (current_log->first_time) {
+        for (i = 0; i<32; i++)
+            current_log->expand[i] = FALSE;
+        
+        /* Expand the rows */
+        path = gtk_tree_model_get_path (model, &iter);
+        gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
+        current_log->first_time = FALSE;
+        
+        /* Scroll and set focus on last row */
+        path = gtk_tree_model_get_path (model, &child_iter);
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), path, NULL, FALSE); 
+        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 
+                                      1, 1);
+        gtk_tree_path_free (path);
+        
+    } else {
+        /* Expand the rows */
+        for (i = 0; i<32; ++i) {
+            if (current_log->expand[i])
+                gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),
+                                          current_log->expand_paths[i], FALSE);
+        }
+        
+        /* Scroll and set focus on the previously focused row */
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
+                                  current_log->current_path, NULL, FALSE); 
+        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
+                                      current_log->current_path, NULL, FALSE, 0.5, 0.5);
+    }
+    
+    g_object_unref (model);
+    g_free (utf8);   
+}
 
-   if (!current_log->total_lines) 
-       return;
+/* ----------------------------------------------------------------------
+   NAME:        log_repaint
+   DESCRIPTION: Redraw screen.
+   ---------------------------------------------------------------------- */
 
-	 gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), NULL);
-	 model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
-																							G_TYPE_STRING, G_TYPE_STRING));
+gboolean
+log_repaint (LogviewWindow *window)
+{
+   g_return_val_if_fail (LOGVIEW_IS_WINDOW (window), FALSE);
 
-	 if (current_log->has_date == FALSE) {
+   logview_update_statusbar (window);
+   logview_set_window_title (window);
 
-		 for (i=current_log->total_lines-1; i>-1; i--) {
-			 line = (current_log->lines)[i];
-			 gtk_tree_store_prepend (GTK_TREE_STORE (model), &iter, NULL);
-			 gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
-													 MESSAGE, line->message, -1);
-			 if (i == current_log->total_lines-1)
-				 child_iter = iter;
-		 }
-
+   /* Check that there is at least one log */
+   if (window->curlog == NULL) {
+	   return FALSE;
+   }
+	 
+	 if (window->curlog->monitored) {
+		 gtk_widget_hide (window->log_scrolled_window);
+		 gtk_widget_show (window->mon_scrolled_window);
 	 } else {
-
-		 cm = cd = -1;
-		 for (i = 0 ; i < (current_log->total_lines)-1; i++) {
-			 
-       line = (current_log->lines)[i];       
-
-       /* If data has changed then draw the date header */
-       if ((line->month != cm && line->month > 0) ||
-           (line->date != cd && line->date > 0)) {
-				 gchar *path_string;
-				 GtkTreePath *path;
-				 utf8 = GetDateHeader (line);
-				 gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
-				 gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
-														 DATE, utf8, HOSTNAME, FALSE,
-														 PROCESS, FALSE, MESSAGE, FALSE, -1);
-
-				 /* store pointer to the date headers, using the month and day as the key */
-
-				 cm = line->month;
-				 cd = line->date;
-
-				 path = gtk_tree_model_get_path (model, &iter);
-				 path_string = gtk_tree_path_to_string (path);
-				 g_hash_table_insert (current_log->date_headers,
-															DATEHASH (cm, cd), path);
-				 g_free (path_string);
-
-				 if (current_log->expand[cd-1]) {
-					 gtk_tree_path_free (current_log->expand_paths[cd-1]);
-					 current_log->expand_paths[cd-1] = gtk_tree_path_copy (path);
-				 }
-			 }
-			 
-       if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
-	       struct tm date = {0};
-				 date.tm_mon = line->month;
-				 date.tm_year = 70 /* bogus */;
-				 date.tm_mday = line->date;
-				 date.tm_hour = line->hour;
-				 date.tm_min = line->min;
-				 date.tm_sec = line->sec;
-				 date.tm_isdst = 0;
-				 
-	       /* Translators: should be only the time, date could be bogus */
-	       if (strftime (tmp, sizeof (tmp), _("%X"), &date) <= 0) {
-					 /* as a backup print in 24 hours style */
-		       utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, 
-																	 line->min, line->sec);
-	       } else {
-		       utf8 = LocaleToUTF8 (tmp);
-	       }
-       } else {
-	       utf8 = g_strdup (" ");
-       }			 
-       gtk_tree_store_append (GTK_TREE_STORE (model), &child_iter, &iter);
-       gtk_tree_store_set (GTK_TREE_STORE (model), &child_iter,
-													 DATE, utf8, HOSTNAME, LocaleToUTF8 (line->hostname),
-													 PROCESS, LocaleToUTF8 (line->process),
-													 MESSAGE, LocaleToUTF8 (line->message), -1);
-		 }
-
+		 gtk_widget_hide (window->mon_scrolled_window);
+		 gtk_widget_show (window->log_scrolled_window);
 	 }
 
-	 tree_view_columns_set_visible (window->view, current_log->has_date);
-	 gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), current_log->has_date);
-	 gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), model);
+   /* Draw the tree view */ 
+   logview_draw_log_lines (window, window->curlog); 
 
-   if (current_log->first_time) {
-		 for (i = 0; i<32; i++)
-			 current_log->expand[i] = FALSE;
+   return TRUE;
 
-       /* Expand the rows */
-       path = gtk_tree_model_get_path (model, &iter);
-       gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
-       current_log->first_time = FALSE;
-
-       /* Scroll and set focus on last row */
-       path = gtk_tree_model_get_path (model, &child_iter);
-       gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), path, NULL, FALSE); 
-       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 
-          1, 1);
-       gtk_tree_path_free (path);
-
-   } else {
-		 /* Expand the rows */
-		 for (i = 0; i<32; ++i) {
-			 if (current_log->expand[i])
-				 gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),
-																	 current_log->expand_paths[i], FALSE);
-		 }
-		 
-		 /* Scroll and set focus on the previously focused row */
-		 gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
-															 current_log->current_path, NULL, FALSE); 
-		 gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
-																	 current_log->current_path, NULL, FALSE, 0.5, 0.5);
-   }
-
-	 g_object_unref (model);
-   g_free (utf8);   
 }
