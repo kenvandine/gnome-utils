@@ -1,3 +1,17 @@
+2005-05-26  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (DrawLogLines): Fill the model before setting it
+	in the treeview.
+	(handle_row_expansion_cb, handle_row_collapse_cb, DrawLogLines):
+	Remember which rows are expanded when switching logs.
+
+	* logview.c (logview_calendar_set_state, logview_menus_set_state):
+	Hide the calendar when there is no date info in the log.
+	* logview.h: Remove calendar_dialog.
+	* logrtns.c (ReadLogStats): Speed loading up when there's no date
+	in the log.
+	(isLogFile): Simplify log detection to allow freeform logs.
+
 2005-05-25  Vincent Noel  <vnoel@cox.net>
 
 	* log_repaint.c: (tree_view_column_set_visible), (DrawLogLines):

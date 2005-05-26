@@ -25,7 +25,7 @@
 
 int isLogFile (char *filename, gboolean show_error);
 int WasModified (Log *log);
-void ParseLine (char *buff, LogLine * line, gboolean no_dates_in_log);
+void ParseLine (char *buff, LogLine * line, gboolean has_date);
 void CloseLog (Log * log);
 time_t GetDate (char *line);
 Log * OpenLogFile (char *filename);

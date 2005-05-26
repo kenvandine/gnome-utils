@@ -69,6 +69,7 @@ static void logview_set_fontsize (LogviewWindow *logview);
 static void logview_bigger_text (GtkAction *action, GtkWidget *callback_data);
 static void logview_smaller_text (GtkAction *action, GtkWidget *callback_data);
 static void logview_normal_text (GtkAction *action, GtkWidget *callback_data);
+static void logview_calendar_set_state (LogviewWindow *LogviewWindow);
 static void logview_menus_set_state (LogviewWindow *logviewwindow);
 static void logview_search (GtkAction *action, GtkWidget *callback_data);
 static void logview_help (GtkAction *action, GtkWidget *parent_window);
@@ -269,7 +270,7 @@ logview_select_log (LogviewWindow *logview, Log *log)
 {
 	logview->curlog = log;
 	logview_menus_set_state (logview);
-	init_calendar_data (logview);
+	logview_calendar_set_state (logview);
 	log_repaint (logview);
 	logview_save_prefs (logview);
 } 
@@ -681,21 +682,18 @@ CreateMainWin (LogviewWindow *window)
 	 gtk_box_pack_start (GTK_BOX(window->main_view), window->mon_scrolled_window, TRUE, TRUE, 0);
 
    /* Main Tree View */
-   tree_store = gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
-				    G_TYPE_STRING, G_TYPE_STRING);
-
-   window->view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (tree_store));
+   window->view = gtk_tree_view_new ();
    gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), TRUE);
-   g_object_unref (G_OBJECT (tree_store)); 
    
    for (i = 0; column_titles[i]; i++) {
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_(column_titles[i]),
                     renderer, "text", i, NULL);
-        gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE); 
+        gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
         gtk_tree_view_column_set_resizable (column, TRUE);
         gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
    }
+
 	 /* Remember the original font size */
 	 context = gtk_widget_get_pango_context (window->view);
 	 fontdesc = pango_context_get_font_description (context);
@@ -713,6 +711,10 @@ CreateMainWin (LogviewWindow *window)
                      G_CALLBACK (handle_selection_changed_cb), window);
    g_signal_connect (G_OBJECT (window->view), "row_activated",
                      G_CALLBACK (handle_row_activation_cb), window);
+	 g_signal_connect (G_OBJECT (window->view), "row-expanded",
+										 G_CALLBACK (handle_row_expansion_cb), window);
+	 g_signal_connect (G_OBJECT (window->view), "row-collapsed",
+										 G_CALLBACK (handle_row_collapse_cb), window);
    g_signal_connect (G_OBJECT (window), "configure_event",
 		     G_CALLBACK (window_size_changed_cb), window);
 
@@ -1002,6 +1004,7 @@ logview_set_fontsize (LogviewWindow *logview)
 {
 	PangoFontDescription *fontdesc;
 	PangoContext *context;
+	int i;
 	
 	context = gtk_widget_get_pango_context (logview->view);
 	fontdesc = pango_context_get_font_description (context);
@@ -1088,12 +1091,23 @@ logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean 
 }
 
 static void
+logview_calendar_set_state (LogviewWindow *logview)
+{
+	if (logview->curlog->has_date) {
+		init_calendar_data (logview);
+		if (logview->calendar_visible)
+			gtk_widget_show (logview->calendar);
+	} else {
+		gtk_widget_hide (logview->calendar);
+	}
+}
+
+static void
 logview_menus_set_state (LogviewWindow *window)
 {
 	if (window->curlog && window->curlog->monitored) {
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", FALSE);
-		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", FALSE);
 	} else {
@@ -1107,11 +1121,15 @@ logview_menus_set_state (LogviewWindow *window)
 		
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
-		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", (window->curlog != NULL));
+		
+		if (window->curlog->has_date)
+			logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
+		else
+			logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
 	}
 }
 

@@ -111,7 +111,7 @@ mon_update_display (LogviewWindow *window)
 
 	   for (i=nlines; i >= (nlines-nlines_to_show); --i) {
 		   if (buffer_lines[i] != NULL) {
-			   ParseLine (buffer_lines[i], line, FALSE);
+			   ParseLine (buffer_lines[i], line, TRUE);
 			   if (line->date > 0) {
 				   mon_format_line (buffer, sizeof (buffer), line);
 				   gtk_list_store_insert_before (list, &iter, parent_pointer);

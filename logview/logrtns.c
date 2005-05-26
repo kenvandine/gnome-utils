@@ -76,9 +76,6 @@ C_monthname[12] =
  * that effect */
 char *all_locales = "af_ZA ar_SA bg_BG ca_ES cs_CZ da_DK de_AT de_BE de_CH de_DE de_LU el_GR en_AU en_CA en_DK en_GB en_IE en_US es_ES et_EE eu_ES fi_FI fo_FO fr_BE fr_CA fr_CH fr_FR fr_LU ga_IE gl_ES gv_GB hr_HR hu_HU in_ID is_IS it_CH it_IT iw_IL kl_GL kw_GB lt_LT lv_LV mk_MK nl_BE nl_NL no_NO pl_PL pt_BR pt_PT ro_RO ru_RU.KOI8-R ru_RU ru_UA sk_SK sl_SI sr_YU sv_FI sv_SE th_TH tr_TR uk_UA";
 
-/* FIXME : bottleneck for loading */
-/* This function is extremely slow for some reason */
-
 static int
 get_month (const char *str)
 {
@@ -124,6 +121,10 @@ get_month (const char *str)
 		locales_monthnames = g_hash_table_new (g_str_hash, g_str_equal);
 
 	/* Try all known locales */
+	/* FIXME :
+	 * This part of the function is very slow and should not be called
+	 * on every line of a log, we should use it just once */
+
 	for (j = 0; locales != NULL && locales[j] != NULL; j++) {
 		for (i = 0; i < 12; i++) {
 			char *key = g_strdup_printf ("%s %d", locales[j], i);
@@ -201,7 +202,6 @@ OpenLogFile (char *filename)
    GError *error;
    GnomeVFSResult result;
    int size;
-	 gboolean no_dates_in_log = FALSE;
    
    if (file_exist (filename, TRUE) == FALSE)
 	   return NULL;
@@ -212,9 +212,8 @@ OpenLogFile (char *filename)
    }   
 
    /* Check that the file is readable and is a logfile */
-	 /* FIXME : just check if the file is an ASCII text file */
-	 //   if (!isLogFile (filename, TRUE))
-	 //	   return NULL;
+	 if (!isLogFile (filename, TRUE))
+		 return NULL;
 
    result = gnome_vfs_read_entire_file (filename, &size, &buffer);
    if (result != GNOME_VFS_OK) {
@@ -230,6 +229,7 @@ OpenLogFile (char *filename)
    }
 	 tlog->name = g_strdup (filename);
    tlog->display_name = display_name;
+	 tlog->has_date = TRUE;
    if (display_name)
 	   g_free (filename);
 
@@ -249,9 +249,9 @@ OpenLogFile (char *filename)
 		   ShowErrMessage (NULL, error_main, "Unable to malloc for lines[i]\n");
 		   return NULL;
 	   }
-	   ParseLine (buffer_lines[i], (tlog->lines)[i], no_dates_in_log);
-		 if ((tlog->lines)[i]->month == -1)
-			 no_dates_in_log = TRUE;
+	   ParseLine (buffer_lines[i], (tlog->lines)[i], tlog->has_date);
+		 if ((tlog->lines)[i]->month == -1 && tlog->has_date)
+			 tlog->has_date = FALSE;
    }   
 
    /* Read log stats */
@@ -310,13 +310,11 @@ isLogFile (char *filename, gboolean show_error)
    char buff[1024];
    char **token;
    char *found_space;
-   int i;
    GnomeVFSHandle *handle;
    GnomeVFSResult result;
    GnomeVFSFileSize size;
 
-   /* Read first line and check that it has the format
-    * of a log file: Date ...    */
+   /* Read first line and check that it is text */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
    if (result != GNOME_VFS_OK)
 	   return FALSE;
@@ -335,17 +333,6 @@ isLogFile (char *filename, gboolean show_error)
 	   return FALSE;
    }
    
-   token = g_strsplit (buff, " ", 1);
-   i = get_month (token[0]);
-   g_strfreev (token);
-   if (i == 12) {
-	   if (show_error) {
-		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-		   ShowErrMessage (NULL, error_main, buff);
-	   }
-	   return FALSE;
-   }
-
    /* It looks like a log file... */
    return TRUE;
 }
@@ -405,17 +392,19 @@ gchar **ReadNewLines (Log *log)
    ---------------------------------------------------------------------- */
 
 void
-ParseLine (char *buff, LogLine *line, gboolean no_date)
+ParseLine (char *buff, LogLine *line, gboolean has_date)
 {
    char *token;
    char scratch[1024];
    int i;
+	 int len;
 
    /* just copy as a whole line to be the default */
    strncpy (line->message, buff, MAX_WIDTH);
-   line->message[MAX_WIDTH-1] = '\0';
+	 len = MIN (MAX_WIDTH-1, strlen (buff));
+   line->message[len] = '\0';
 
-	 if (no_date) {
+	 if (!has_date) {
 		 line->month = -1;
 		 line->date = -1;
 		 line->hour = -1; line->min = -1; line->sec = -1;
@@ -568,6 +557,9 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    log->lstats.size = info.size;
 
    /* Make sure we have at least a starting date. */
+	 if ((log->lines)[0]->month == -1)
+		 return;
+
    nl = 0;
    curdate = -1;
    while ((curdate < 0) && (buffer_lines[nl]!=NULL))

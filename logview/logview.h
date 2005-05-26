@@ -103,8 +103,10 @@ typedef struct
 	gint total_lines; /* no of lines in the file */
 	LogLine **lines; /* actual lines */
 	gboolean first_time;
+	gboolean has_date;
 	GtkTreePath *current_path;
 	GtkTreePath *expand_paths[32];
+	gboolean expand[32];
 	GHashTable *date_headers; /* stores paths to date headers */
 	
 	/* Monitor info */
@@ -150,7 +152,6 @@ struct _LogviewWindow {
 	GtkListStore *zoom_store;
 	gboolean zoom_visible;
 	
-	GtkWidget *calendar_dialog;
 	GtkWidget *calendar;
 	gboolean calendar_visible;
 
