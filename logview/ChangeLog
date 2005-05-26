@@ -1,5 +1,11 @@
 2005-05-26  Vincent Noel  <vnoel@cox.net>
 
+	* log_repaint.c: (handle_row_collapse_cb),
+	(handle_row_expansion_cb), (DrawLogLines): Free the expanded paths
+	when switching logs.
+
+2005-05-26  Vincent Noel  <vnoel@cox.net>
+
 	* log_repaint.c (DrawLogLines): Fill the model before setting it
 	in the treeview.
 	(handle_row_expansion_cb, handle_row_collapse_cb, DrawLogLines):

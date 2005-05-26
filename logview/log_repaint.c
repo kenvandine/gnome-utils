@@ -184,7 +184,10 @@ handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 	daystring = g_strrstr (date, " ");
 	day = atoi (daystring);
 	
+	if (logview->curlog->expand_paths[day-1])
+		gtk_tree_path_free (logview->curlog->expand_paths[day-1]);
 	logview->curlog->expand[day-1] = FALSE;
+	logview->curlog->expand_paths[day-1] = NULL;
 }
 
 void
@@ -203,6 +206,7 @@ handle_row_expansion_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 	day = atoi (daystring);
 	
 	logview->curlog->expand[day-1] = TRUE;
+	logview->curlog->expand_paths[day-1] = gtk_tree_path_copy (path);
 }
 
 /* ----------------------------------------------------------------------
@@ -447,8 +451,10 @@ DrawLogLines (LogviewWindow *window, Log *current_log)
 															DATEHASH (cm, cd), path);
 				 g_free (path_string);
 
-				 if (current_log->expand[cd-1])
-					 current_log->expand_paths[cd-1] = path;
+				 if (current_log->expand[cd-1]) {
+					 gtk_tree_path_free (current_log->expand_paths[cd-1]);
+					 current_log->expand_paths[cd-1] = gtk_tree_path_copy (path);
+				 }
 			 }
 			 
        if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
