@@ -470,7 +470,6 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   gtk_tree_model_get (model, &iter, 0, &name, -1);
   g_return_if_fail (name);
 
-  g_print("Checking for bold\n");
   if ((g_str_has_prefix (name, "<b>")) && (strlen (name) > 7)) {
       gchar *stripped;
       stripped = g_strndup (name + 3, strlen(name)-7);
@@ -478,14 +477,9 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
       name = stripped;
   }
 
-  g_print("Finding new log from name\n");
   log = logview_find_log_from_name (logview, name);
   g_free (name);
-
-  g_print("selecting log\n");
   logview_select_log (logview, log);
-
-  g_print("End of loglist_selection_changed\n");
 }
 
 GtkTreePath *
