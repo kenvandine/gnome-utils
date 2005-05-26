@@ -479,10 +479,13 @@ log_repaint (LogviewWindow *window)
    g_return_val_if_fail (LOGVIEW_IS_WINDOW (window), FALSE);
 
    logview_update_statusbar (window);
-   logview_set_window_title (window);
+   logview_set_window_title (window);   
 
    /* Check that there is at least one log */
    if (window->curlog == NULL) {
+       GtkTreeModel *model;
+       model = gtk_tree_view_get_model (GTK_TREE_VIEW(window->view));
+       gtk_tree_store_clear (GTK_TREE_STORE (model));
 	   return FALSE;
    }
 	 

@@ -454,27 +454,38 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   gchar *name;
   Log *log;
   
+  g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+  g_return_if_fail (selection);
+
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
-		/* there is no selected log right now */
-		logview->curlog = NULL;
-		logview_set_window_title (logview);
-		logview_menus_set_state (logview);
-		gtk_calendar_clear_marks (GTK_CALENDAR(logview->calendar));
-		log_repaint (logview);
-    return;
-	}
+      /* there is no selected log right now */
+      logview->curlog = NULL;
+      logview_set_window_title (logview);
+      logview_menus_set_state (logview);
+      gtk_calendar_clear_marks (GTK_CALENDAR(logview->calendar));
+      log_repaint (logview);
+      return;
+  }
   
   gtk_tree_model_get (model, &iter, 0, &name, -1);
-	if (g_str_has_prefix (name, "<b>")) {
-		gchar *stripped;
-		stripped = g_strndup (name + 3, strlen(name)-7);
-		g_free (name);
-		name = stripped;
-	}
+  g_return_if_fail (name);
+
+  g_print("Checking for bold\n");
+  if ((g_str_has_prefix (name, "<b>")) && (strlen (name) > 7)) {
+      gchar *stripped;
+      stripped = g_strndup (name + 3, strlen(name)-7);
+      g_free (name);
+      name = stripped;
+  }
+
+  g_print("Finding new log from name\n");
   log = logview_find_log_from_name (logview, name);
-	g_free (name);
-  if (log != logview->curlog)
-      logview_select_log (logview, log);
+  g_free (name);
+
+  g_print("selecting log\n");
+  logview_select_log (logview, log);
+
+  g_print("End of loglist_selection_changed\n");
 }
 
 GtkTreePath *
@@ -1110,10 +1121,17 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", FALSE);
 	} else {
 		if (window->curlog) {
+
 			if (window->curlog->display_name)
 				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
 			else
 				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", TRUE);
+
+            if (window->curlog->has_date)
+                logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
+            else
+                logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
+
 		} else
 			logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
 		
@@ -1123,11 +1141,7 @@ logview_menus_set_state (LogviewWindow *window)
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", (window->curlog != NULL));
-		
-		if (window->curlog->has_date)
-			logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
-		else
-			logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
+        logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
 	}
 }
 

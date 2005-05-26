@@ -241,14 +241,16 @@ OpenLogFile (char *filename)
    tlog->total_lines = i;
 
    tlog->lines = g_new (LogLine*, tlog->total_lines);
-	 for (i=0; buffer_lines[i+1]!=NULL; i++)
-		 (tlog->lines)[i] = g_new (LogLine, 1);
+   for (i=0; buffer_lines[i+1]!=NULL; i++) {
+       (tlog->lines)[i] = g_new (LogLine, 1);
+       if ((tlog->lines)[i]==NULL) {
+           ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+           return NULL;
+       }
+   }
+
 	 	 
    for (i=0; buffer_lines[i+1] != NULL; i++) {
-	   if (!line) {
-		   ShowErrMessage (NULL, error_main, "Unable to malloc for lines[i]\n");
-		   return NULL;
-	   }
 	   ParseLine (buffer_lines[i], (tlog->lines)[i], tlog->has_date);
        if ((tlog->lines)[i]->month == -1 && tlog->has_date)
            tlog->has_date = FALSE;
