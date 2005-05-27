@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-05-25 14:07-0400\n"
-"PO-Revision-Date: 2005-05-25 12:11-0500\n"
+"POT-Creation-Date: 2005-05-27 14:21-0400\n"
+"PO-Revision-Date: 2005-05-27 12:11-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,11 +28,11 @@ msgid "Lookup words in an online dictionary"
 msgstr "Lookup words in an online dictionary"
 
 #: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:676
-#: ../logview/logview.c:126
+#: ../logview/logview.c:127
 msgid "_About"
 msgstr "_About"
 
-#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:96
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:97
 msgid "_Help"
 msgstr "_Help"
 
@@ -144,7 +144,7 @@ msgid "Close the application"
 msgstr "Close the application"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:660 ../logview/logview.c:111
+#: ../gdictsrc/gdict-app.c:660 ../logview/logview.c:112
 msgid "_Find..."
 msgstr "_Find..."
 
@@ -169,16 +169,16 @@ msgid "Configure the application"
 msgstr "Configure the application"
 
 #. View menu
-#: ../gdictsrc/gdict-app.c:668 ../logview/logview.c:114
+#: ../gdictsrc/gdict-app.c:668 ../logview/logview.c:115
 msgid "Bigger text size"
 msgstr "Bigger text size"
 
-#: ../gdictsrc/gdict-app.c:670 ../logview/logview.c:116
+#: ../gdictsrc/gdict-app.c:670 ../logview/logview.c:117
 msgid "Smaller text size"
 msgstr "Smaller text size"
 
 #. Help menu
-#: ../gdictsrc/gdict-app.c:674 ../logview/logview.c:124
+#: ../gdictsrc/gdict-app.c:674 ../logview/logview.c:125
 msgid "_Contents"
 msgstr "_Contents"
 
@@ -210,7 +210,7 @@ msgstr "Cut the selection"
 msgid "_Copy"
 msgstr "_Copy"
 
-#: ../gdictsrc/gdict-app.c:693 ../logview/logview.c:107
+#: ../gdictsrc/gdict-app.c:693 ../logview/logview.c:108
 msgid "Copy the selection"
 msgstr "Copy the selection"
 
@@ -1847,7 +1847,7 @@ msgstr "_Add"
 msgid "Add an action"
 msgstr "Add an action"
 
-#: ../logview/actions.c:175 ../logview/logview.c:94
+#: ../logview/actions.c:175 ../logview/logview.c:95
 msgid "_Edit"
 msgstr "_Edit"
 
@@ -2086,23 +2086,33 @@ msgid "December"
 msgstr "December"
 
 #. Translators: Date only format, %x should well do really
-#: ../logview/log_repaint.c:277
+#: ../logview/log_repaint.c:256
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: ../logview/log_repaint.c:296
-msgid "Last Modified:"
-msgstr "Last Modified:"
+#: ../logview/log_repaint.c:273
+#, c-format
+msgid "Last Modified: %s, %d lines"
+msgstr "Last Modified: %s, %d lines"
+
+#: ../logview/log_repaint.c:277
+#, c-format
+msgid "%d lines"
+msgstr "%d lines"
+
+#: ../logview/log_repaint.c:308
+msgid "Current"
+msgstr "Current"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: ../logview/log_repaint.c:325
+#: ../logview/log_repaint.c:344
 msgid "%B %e"
 msgstr "%e %B"
 
 #. Translators: should be only the time, date could be bogus
-#: ../logview/log_repaint.c:397
+#: ../logview/log_repaint.c:452
 #, c-format
 msgid "%X"
 msgstr "%X"
@@ -2111,15 +2121,15 @@ msgstr "%X"
 msgid "One file or more could not be opened"
 msgstr "One or more files could not be opened"
 
-#: ../logview/logrtns.c:216
+#: ../logview/logrtns.c:220
 msgid "Unable to open logfile!\n"
 msgstr "Unable to open logfile!\n"
 
-#: ../logview/logrtns.c:223
+#: ../logview/logrtns.c:227 ../logview/logrtns.c:247
 msgid "Not enough memory!\n"
 msgstr "Not enough memory!\n"
 
-#: ../logview/logrtns.c:276
+#: ../logview/logrtns.c:302
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2128,22 +2138,22 @@ msgstr ""
 "%s is not user-readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file.\n"
 
-#: ../logview/logrtns.c:281
+#: ../logview/logrtns.c:307
 #, c-format
 msgid "%s is too big."
 msgstr "%s is too big."
 
-#: ../logview/logrtns.c:285
+#: ../logview/logrtns.c:311
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s could not be opened."
 
-#: ../logview/logrtns.c:326 ../logview/logrtns.c:337
+#: ../logview/logrtns.c:350
 #, c-format
 msgid "%s not a log file."
 msgstr "%s not a log file."
 
-#: ../logview/logrtns.c:588 ../logview/logrtns.c:612
+#: ../logview/logrtns.c:554 ../logview/logrtns.c:578
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: out of memory"
 
@@ -2159,131 +2169,135 @@ msgstr "_Previous"
 msgid "_Next"
 msgstr "_Next"
 
-#: ../logview/logview.c:93
+#: ../logview/logview.c:94
 msgid "_Log"
 msgstr "_Log"
 
-#: ../logview/logview.c:95
+#: ../logview/logview.c:96
 msgid "_View"
 msgstr "_View"
 
-#: ../logview/logview.c:98
+#: ../logview/logview.c:99
 msgid "_Open..."
 msgstr "_Open..."
 
-#: ../logview/logview.c:98
+#: ../logview/logview.c:99
 msgid "Open a log from file"
 msgstr "Open a log from file"
 
-#: ../logview/logview.c:100
+#: ../logview/logview.c:101
 msgid "_Properties"
 msgstr "_Properties"
 
-#: ../logview/logview.c:100
+#: ../logview/logview.c:101
 msgid "Show Log Properties"
 msgstr "Show Log Properties"
 
-#: ../logview/logview.c:102
+#: ../logview/logview.c:103
 msgid "Close"
 msgstr "Close"
 
-#: ../logview/logview.c:102
+#: ../logview/logview.c:103
 msgid "Close this log"
 msgstr "Close this log"
 
-#: ../logview/logview.c:104
+#: ../logview/logview.c:105
 msgid "_Quit"
 msgstr "_Quit"
 
-#: ../logview/logview.c:104
+#: ../logview/logview.c:105
 msgid "Quit the log viewer"
 msgstr "Quit the log viewer"
 
-#: ../logview/logview.c:107
+#: ../logview/logview.c:108
 msgid "Copy"
 msgstr "Copy"
 
-#: ../logview/logview.c:109
+#: ../logview/logview.c:110
 msgid "Select All"
 msgstr "Select All"
 
-#: ../logview/logview.c:109
+#: ../logview/logview.c:110
 msgid "Select the entire log"
 msgstr "Select the entire log"
 
-#: ../logview/logview.c:111
+#: ../logview/logview.c:112
 msgid "Find pattern in logs"
 msgstr "Find pattern in logs"
 
-#: ../logview/logview.c:118
+#: ../logview/logview.c:119
 msgid "Normal text size"
 msgstr "Normal text size"
 
-#: ../logview/logview.c:121
+#: ../logview/logview.c:122
 msgid "Collapse _All"
 msgstr "Collapse _All"
 
-#: ../logview/logview.c:121
+#: ../logview/logview.c:122
 msgid "Collapse all the rows"
 msgstr "Collapse all the rows"
 
-#: ../logview/logview.c:124
+#: ../logview/logview.c:125
 msgid "Open the help contents for the log viewer"
 msgstr "Open the help contents for the log viewer"
 
-#: ../logview/logview.c:126
+#: ../logview/logview.c:127
 msgid "Show the about dialog for the log viewer"
 msgstr "Show the \"About\" dialogue for the log viewer"
 
-#: ../logview/logview.c:132
+#: ../logview/logview.c:133
 msgid "Sidebar"
 msgstr "Sidebar"
 
-#: ../logview/logview.c:132
+#: ../logview/logview.c:133
 msgid "Show the sidebar"
 msgstr "Show the sidebar"
 
-#: ../logview/logview.c:134
+#: ../logview/logview.c:135
 msgid "_Monitor"
 msgstr "_Monitor"
 
-#: ../logview/logview.c:134
+#: ../logview/logview.c:135
 msgid "Monitor Current Log"
 msgstr "Monitor Current Log"
 
-#: ../logview/logview.c:136
+#: ../logview/logview.c:137
 msgid "Ca_lendar"
 msgstr "Ca_lendar"
 
-#: ../logview/logview.c:136
+#: ../logview/logview.c:137
 msgid "Show Calendar Log"
 msgstr "Show Calendar Log"
 
-#: ../logview/logview.c:625
+#: ../logview/logview.c:664
 msgid "Date"
 msgstr "Date"
 
-#: ../logview/logview.c:625
+#: ../logview/logview.c:664
 msgid "Host Name"
 msgstr "Host Name"
 
-#: ../logview/logview.c:626
+#: ../logview/logview.c:665
 msgid "Process"
 msgstr "Process"
 
-#: ../logview/logview.c:626
+#: ../logview/logview.c:665
 msgid "Message"
 msgstr "Message"
 
-#: ../logview/logview.c:803
+#: ../logview/logview.c:741
+msgid "Version : "
+msgstr "Version: "
+
+#: ../logview/logview.c:853
 msgid "Open new logfile"
 msgstr "Open new logfile"
 
-#: ../logview/logview.c:1140
+#: ../logview/logview.c:1209
 msgid "There was an error displaying help."
 msgstr "There was an error displaying help."
 
-#: ../logview/logview.c:1158
+#: ../logview/logview.c:1227
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (monitored) - %s"
