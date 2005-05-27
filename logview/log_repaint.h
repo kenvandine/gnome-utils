@@ -26,5 +26,7 @@ void handle_row_expansion_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 			 GtkTreePath *path, gpointer user_data);
 void handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter, 
 			     GtkTreePath *path, gpointer user_data);
+void logview_update_version_bar (LogviewWindow *logview);
+
 #endif /* __LOG_REPAINT_H__ */
 

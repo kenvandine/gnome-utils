@@ -191,7 +191,7 @@ file_is_zipped (char *filename)
    ---------------------------------------------------------------------- */
 
 Log *
-OpenLogFile (char *filename)
+OpenLogFile (char *filename, gboolean show_error)
 {
    Log *tlog;
    LogLine *line;
@@ -203,7 +203,7 @@ OpenLogFile (char *filename)
    GnomeVFSResult result;
    int size;
    
-   if (file_exist (filename, TRUE) == FALSE)
+   if (file_exist (filename, show_error) == FALSE)
 	   return NULL;
 
    if (file_is_zipped (filename)) {
@@ -264,6 +264,24 @@ OpenLogFile (char *filename)
    tlog->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
 					       (GDestroyNotify) gtk_tree_path_free);
    tlog->first_time = TRUE;
+
+	 /* Check for older versions of the log */
+	 tlog->versions = 0;
+	 tlog->current_version = 0;
+	 tlog->parent_log = NULL;
+	 for (i=1; i<5; i++) {
+		 gchar *older_name;
+		 older_name = g_strdup_printf ("%s.%d", filename, i);
+		 tlog->older_logs[i] = OpenLogFile (older_name, FALSE);
+		 if (tlog->older_logs[i] != NULL) {
+			 tlog->older_logs[i]->parent_log = tlog;
+			 tlog->older_logs[i]->current_version = i;
+			 tlog->versions++;
+		 }
+		 else
+			 break;
+	 }
+
    return tlog;
 }
 
@@ -731,6 +749,10 @@ CloseLog (Log * log)
    gint i;
 
    g_return_if_fail (log);
+
+	 /* Close archive logs if there's some */
+	 for (i = 0; i < log->versions; i++)
+		 CloseLog (log->older_logs[i]);
 
    /* Close file - this should not be needed */
    if (log->mon_file_handle != NULL) {

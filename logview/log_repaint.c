@@ -283,6 +283,45 @@ logview_update_statusbar (LogviewWindow *window)
    }
 }
 
+void
+logview_update_version_bar (LogviewWindow *logview)
+{
+	Log *log;
+	int i;
+	gchar *label;
+
+	log = logview->curlog;
+
+	if (log->versions > 0 || log->parent_log != NULL) {
+		Log *recent;
+
+		gtk_widget_show (logview->version_bar);
+
+		if (log->current_version > 0)
+			recent = log->parent_log;
+		else
+			recent = log;
+			
+		for (i=5; i>-1; i--)
+			gtk_combo_box_remove_text (GTK_COMBO_BOX (logview->version_selector), i);
+
+		gtk_combo_box_append_text (GTK_COMBO_BOX (logview->version_selector), _("Current"));
+
+		for (i=0; i<(recent->versions); i++) {
+			label = g_strdup_printf ("Archive %d", i+1);
+			gtk_combo_box_append_text (GTK_COMBO_BOX (logview->version_selector),
+																 label);
+			g_free (label);
+		}
+
+		gtk_combo_box_set_active (GTK_COMBO_BOX (logview->version_selector), 
+															log->current_version);
+
+	} else {
+		gtk_widget_hide (logview->version_bar);
+	}
+}
+
 /* ----------------------------------------------------------------------
    NAME:        GetDateHeader
    DESCRIPTION: Gets the Date to display 

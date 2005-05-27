@@ -268,9 +268,13 @@ die (GnomeClient *gnome_client, gpointer client_data)
 void
 logview_select_log (LogviewWindow *logview, Log *log)
 {
+	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+	g_return_if_fail (log);
+	
 	logview->curlog = log;
 	logview_menus_set_state (logview);
 	logview_calendar_set_state (logview);
+	logview_update_version_bar (logview);
 	log_repaint (logview);
 	logview_save_prefs (logview);
 } 
@@ -288,7 +292,7 @@ void
 logview_add_log_from_name (LogviewWindow *logview, gchar *file)
 {
 	Log *log;
-	log = OpenLogFile (file);
+	log = OpenLogFile (file, TRUE);
 	if (log != NULL) {
 		  logview_add_log (logview, log);
 	}
@@ -302,7 +306,7 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 	
 	for (list = lognames; list != NULL; list = g_slist_next (list)) {
 		if (logview_find_log_from_name (logview, list->data) == NULL) {
-			log = OpenLogFile (list->data);
+			log = OpenLogFile (list->data, FALSE);
 			if (log != NULL) {
 				logview_add_log (logview, log);
 			}
@@ -605,6 +609,34 @@ loglist_create (LogviewWindow *window)
   return vbox;
 }
 
+void
+logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_data)
+{
+	LogviewWindow *logview = user_data;
+	Log *log = logview->curlog;
+	int selected;
+
+	selected = gtk_combo_box_get_active (version_selector);
+
+	if (selected == log->current_version)
+		return;
+
+	/* select a new version */
+	if (selected == 0) {
+		logview_select_log (logview, log->parent_log);
+	} else {
+		Log *new;
+		if (log->parent_log) {
+			new = log->parent_log->older_logs[selected];
+		} else {
+			new = log->older_logs[selected];
+		}
+
+		logview_select_log (logview, new);
+	}
+}
+	
+
 
 /* ----------------------------------------------------------------------
    NAME:        CreateMainWin
@@ -626,6 +658,7 @@ CreateMainWin (LogviewWindow *window)
    GtkWidget *menubar;
    GtkWidget *loglist;
    GtkWidget *hpaned;
+	 GtkWidget *label;
 	 PangoFontDescription *fontdesc;
 	 PangoContext *context;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
@@ -699,6 +732,18 @@ CreateMainWin (LogviewWindow *window)
         gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
    }
 
+	 /* Version selector */
+	 window->version_bar = gtk_hbox_new (FALSE, 0);
+	 gtk_container_set_border_width (GTK_CONTAINER (window->version_bar), 3);
+	 window->version_selector = gtk_combo_box_new_text ();
+	 g_signal_connect (G_OBJECT (window->version_selector), "changed",
+										 G_CALLBACK (logview_version_selector_changed), window);
+	 label = gtk_label_new (_("Version : "));
+
+	 gtk_box_pack_end (GTK_BOX(window->version_bar), window->version_selector, FALSE, FALSE, 0);
+	 gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
+	 gtk_box_pack_end (GTK_BOX(window->main_view), window->version_bar, FALSE, FALSE, 0);
+
 	 /* Remember the original font size */
 	 context = gtk_widget_get_pango_context (window->view);
 	 fontdesc = pango_context_get_font_description (context);
@@ -732,6 +777,7 @@ CreateMainWin (LogviewWindow *window)
 	 gtk_widget_show_all (vbox);
    gtk_widget_hide (window->find_bar);
 	 gtk_widget_hide (window->mon_scrolled_window);
+	 gtk_widget_hide (window->version_bar);
 }
 
 /* ----------------------------------------------------------------------
@@ -785,7 +831,7 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 	   }
 
 	   Log *tl;
-	   if ((tl = OpenLogFile (f)) != NULL)
+	   if ((tl = OpenLogFile (f, TRUE)) != NULL)
 	     logview_add_log (logview, tl);
    }
    

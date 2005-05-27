@@ -28,6 +28,7 @@
 #define MAX_WIDTH                240
 #define MAX_HOSTNAME_WIDTH       257	/* Need authoritative answer on this value. */
 #define MAX_PROC_WIDTH           60
+#define MAX_VERSIONS             5
 
 /* the following is a simple hashing function that will convert a
  * given date into an integer value that can be used as a key for
@@ -90,7 +91,8 @@ typedef struct
 
 typedef void (*MonActions)();
 
-typedef struct
+typedef struct _log Log;
+struct _log
 {
 	DateMark *curmark;
 	char *name;
@@ -107,6 +109,11 @@ typedef struct
 	GtkTreePath *current_path;
 	GtkTreePath *expand_paths[32];
 	gboolean expand[32];
+	int versions;
+	int current_version;
+	/* older_logs[0] should not be used */
+	Log *older_logs[5];
+	Log *parent_log;
 	GHashTable *date_headers; /* stores paths to date headers */
 	
 	/* Monitor info */
@@ -115,8 +122,7 @@ typedef struct
 	GnomeVFSMonitorHandle *mon_handle;
 	GnomeVFSHandle *mon_file_handle;
 	gboolean monitored;
-}
-Log;
+};
 
 /*
  *    ,---------------------.
@@ -167,6 +173,8 @@ struct _LogviewWindow {
 	GtkWidget *treeview;
 	GtkWidget *sidebar; 
 	gboolean sidebar_visible;
+	GtkWidget *version_bar;
+	GtkWidget *version_selector;
   
   GList *logs;
 

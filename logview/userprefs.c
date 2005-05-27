@@ -128,8 +128,6 @@ prefs_load (GConfClient *client)
 		if (g_ascii_strncasecmp (list->data, prefs->logfile, 255) == 0)
 			found = TRUE;
 	}
-	if (!found)
-		prefs->logs = g_slist_append (prefs->logs, prefs->logfile);
 
 	width = gconf_client_get_int (client, GCONF_WIDTH_KEY, NULL);
 	height = gconf_client_get_int (client, GCONF_HEIGHT_KEY, NULL);
