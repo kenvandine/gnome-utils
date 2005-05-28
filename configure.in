@@ -84,7 +84,7 @@ esac],
 [ENABLE_HAL=yes]) dnl Default value
 
 if test "x$ENABLE_HAL" = "xyes"; then
-	PKG_CHECK_MODULES(HAL, hal >= 0.4.0,
+	PKG_CHECK_MODULES(HAL, hal >= 0.5.0,
 		AC_DEFINE(USE_HAL, 1, [defined if using libhal]),
 		[ USE_HAL=""])
 else
