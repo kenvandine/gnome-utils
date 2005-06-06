@@ -314,6 +314,26 @@ AC_CHECK_HEADER([ext2fs/ext2_io.h], [],
 AM_CONDITIONAL(BUILD_GFLOPPY, test "$build_gfloppy" = true)
 
 
+dnl *******************************
+dnl gnome-search-tool checks
+dnl ******************************* 
+
+withval=""
+AC_ARG_WITH(grep,
+[      --with-grep=<grep command>   specify grep],[
+if test x$withval != x; then
+   AC_MSG_RESULT(${withval} is used for gnome-search-tool.)
+else
+   AC_MSG_RESULT(grep is used for gnome-search-tool.)
+fi])
+if test x$withval != x; then
+	GREP_COMMAND="$withval"
+else
+	GREP_COMMAND="grep"
+fi
+AC_SUBST(GREP_COMMAND)
+
+
 dnl ********************
 dnl logview checks
 dnl ********************

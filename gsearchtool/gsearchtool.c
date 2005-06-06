@@ -78,7 +78,7 @@ struct _GSearchOptionTemplate {
 };
 
 static GSearchOptionTemplate GSearchOptionTemplates[] = {
-	{ SEARCH_CONSTRAINT_TYPE_TEXT, "'!' -type p -exec grep -c '%s' {} \\;", N_("Contains the _text"), NULL, FALSE },
+	{ SEARCH_CONSTRAINT_TYPE_TEXT, NULL, N_("Contains the _text"), NULL, FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_SEPARATOR, NULL, NULL, NULL, TRUE },
 	{ SEARCH_CONSTRAINT_TYPE_DATE_BEFORE, "-mtime -%d", N_("_Date modified less than"), N_("days"), FALSE },
 	{ SEARCH_CONSTRAINT_TYPE_DATE_AFTER, "\\( -mtime +%d -o -mtime %d \\)", N_("Date modified more than"), N_("days"), FALSE },
@@ -204,6 +204,7 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 	static gboolean case_insensitive_arguments_initialized = FALSE;
 	gchar * cmd_stdout;
 	gchar * cmd_stderr;
+	gchar * grep_cmd;
 	gchar * locate;
 
 	if (case_insensitive_arguments_initialized == TRUE) {
@@ -224,11 +225,16 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 	g_free (cmd_stderr);
 
 	/* check grep command for -i argument compatibility */
-	g_spawn_command_line_sync ("grep -i 'string' /dev/null", NULL, &cmd_stderr, NULL, NULL);
+	grep_cmd = g_strdup_printf ("%s -i 'string' /dev/null", GREP_COMMAND);
+ 	g_spawn_command_line_sync (grep_cmd, NULL, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
-		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = 
-		    g_strdup ("'!' -type p -exec grep -i -c '%s' {} \\;");
+ 		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = 
+		    g_strdup_printf ("'!' -type p -exec %s -i -c '%%s' {} \\;", GREP_COMMAND);
+ 	}
+	else {
+ 		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option = 
+		    g_strdup_printf ("'!' -type p -exec %s -c '%%s' {} \\;", GREP_COMMAND);
 	}
 	g_free (cmd_stderr);
 
@@ -274,6 +280,7 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 		locate_command_default_options = g_strdup ("");
 		gsearch->is_locate_database_available = FALSE;
 	}
+	g_free (grep_cmd);
 	g_free (locate);
 }
 

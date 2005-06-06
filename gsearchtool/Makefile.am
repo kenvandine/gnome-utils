@@ -9,7 +9,8 @@ INCLUDES = 	\
 	-DG_DISABLE_DEPRECATED					\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"			\
-	-DDATADIR=\""$(datadir)"\"
+	-DDATADIR=\""$(datadir)"\"				\
+	-DGREP_COMMAND=\""$(GREP_COMMAND)"\"
 
 bin_PROGRAMS = gnome-search-tool
 
