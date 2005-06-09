@@ -31,6 +31,7 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <string.h>
+#include <stdlib.h>
 #include "logview.h"
 #include "logrtns.h"
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
