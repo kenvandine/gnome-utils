@@ -81,7 +81,7 @@ prefs_create_defaults (UserPrefsStruct *prefs)
 	/* Try to parse syslog.conf to get logfile names */
 
 	if (lstat("/etc/syslog.conf", &filestat) == 0)
-		logs = g_slist_append (logs, parse_syslog ("/etc/syslog.conf"));
+		logs = parse_syslog ("/etc/syslog.conf");
 	
 	for (i=0; i<3; i++) {
 		if (isLogFile (logfiles[i], FALSE))
