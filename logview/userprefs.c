@@ -75,13 +75,13 @@ prefs_create_defaults (UserPrefsStruct *prefs)
 	int i;
 	gchar *logfiles[] = {"/var/adm/messages","/var/log/messages","/var/log/sys.log"};
 	struct stat filestat;
-	GSList *logs;
+	GSList *logs = NULL;
 	
 	/* For first time running, try parsing various logfiles */
 	/* Try to parse syslog.conf to get logfile names */
 
 	if (lstat("/etc/syslog.conf", &filestat) == 0)
-		logs = parse_syslog ("/etc/syslog.conf");
+		logs = g_slist_append (logs, parse_syslog ("/etc/syslog.conf"));
 	
 	for (i=0; i<3; i++) {
 		if (isLogFile (logfiles[i], FALSE))
