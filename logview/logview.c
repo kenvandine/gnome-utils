@@ -263,6 +263,7 @@ static gint
 die (GnomeClient *gnome_client, gpointer client_data)
 {
     gtk_main_quit ();
+    return 0;
 }
 
 void

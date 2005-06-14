@@ -108,7 +108,7 @@ repaint_zoom (LogviewWindow *window)
    GtkWidget *zoom_dialog = window->zoom_dialog;
    gchar *date_string, *description=NULL, *label_text;
 
-   g_return_if_fail (window->curlog);
+   g_return_val_if_fail (window->curlog, FALSE);
    
    if (window->zoom_label == NULL) {
 	   window->zoom_label = gtk_label_new (NULL);

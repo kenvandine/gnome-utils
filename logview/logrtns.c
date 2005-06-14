@@ -404,6 +404,7 @@ gchar **ReadNewLines (Log *log)
 		g_free (buffer);
 		return buffer_lines;
 	}
+	return NULL;
 }
 
 /* ----------------------------------------------------------------------
