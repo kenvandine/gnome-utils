@@ -22,6 +22,7 @@
 #include <gtk/gtkwidget.h>
 #include <gtk/gtkwindow.h>
 #include <gconf/gconf-client.h>
+#include <libgnomevfs/gnome-vfs.h>
 #include "userprefs.h"
 #include <sys/stat.h>
 
@@ -76,12 +77,17 @@ prefs_create_defaults (UserPrefsStruct *prefs)
 	gchar *logfiles[] = {"/var/adm/messages","/var/log/messages","/var/log/sys.log"};
 	struct stat filestat;
 	GSList *logs = NULL;
+	GnomeVFSResult result;
+	GnomeVFSHandle *handle;
 	
 	/* For first time running, try parsing various logfiles */
 	/* Try to parse syslog.conf to get logfile names */
 
-	if (lstat("/etc/syslog.conf", &filestat) == 0)
+	result = gnome_vfs_open (&handle, "/etc/syslog.conf", GNOME_VFS_OPEN_READ);
+	if (result == GNOME_VFS_OK) {
+		gnome_vfs_close (handle);
 		logs = parse_syslog ("/etc/syslog.conf");
+	}
 	
 	for (i=0; i<3; i++) {
 		if (isLogFile (logfiles[i], FALSE))
