@@ -19,6 +19,8 @@
     ---------------------------------------------------------------------- */
 
 #include <config.h>
+#include <stdlib.h>
+#include <string.h>
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-ui-init.h>

@@ -19,6 +19,7 @@
     ---------------------------------------------------------------------- */
 
 
+#include <string.h>
 #include <gtk/gtkwidget.h>
 #include <gtk/gtkwindow.h>
 #include <gconf/gconf-client.h>
