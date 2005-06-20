@@ -317,6 +317,7 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 	}
 }
 
+void
 logview_remove_log (LogviewWindow *logview, Log *log)
 {
 	CloseLog (log);

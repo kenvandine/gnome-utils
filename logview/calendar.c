@@ -117,7 +117,7 @@ init_calendar_data (LogviewWindow *window)
    CalendarData *data;
 	 
 	 if (window->curlog == NULL)
-		 return;
+		 return NULL;
 
    data = window->curlog->caldata;
    if (data == NULL)

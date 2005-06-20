@@ -75,7 +75,13 @@ void
 prefs_create_defaults (UserPrefsStruct *prefs)
 {
 	int i;
-	gchar *logfiles[] = {"/var/adm/messages","/var/log/messages","/var/log/sys.log"};
+	gchar *logfiles[] = {"/var/adm/messages",
+                       "/var/log/messages",
+                       "/var/log/sys.log",
+                       "/var/log/secure",
+                       "/var/log/maillog",
+                       "/var/log/cron",
+                       "/var/log/XFree86.0.log"};
 	struct stat filestat;
 	GSList *logs = NULL;
 	GnomeVFSResult result;
@@ -90,7 +96,7 @@ prefs_create_defaults (UserPrefsStruct *prefs)
 		logs = parse_syslog ("/etc/syslog.conf");
 	}
 	
-	for (i=0; i<3; i++) {
+	for (i=0; i<7; i++) {
 		if (isLogFile (logfiles[i], FALSE))
 			logs = g_slist_append (logs, g_strdup(logfiles[i]));
 	}
