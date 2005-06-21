@@ -707,7 +707,12 @@ add_file_to_search_results (const gchar * file,
 			look_in_folder[strlen (look_in_folder) - 1] = '\0'; 
 		}
 		path = g_path_get_dirname (look_in_folder);
-		relative_dir_name = g_strconcat (&dir_name[strlen (path) + 1], NULL);
+		if (strcmp (path, G_DIR_SEPARATOR_S) == 0) {
+			relative_dir_name = g_strconcat (&dir_name[strlen (path)], NULL);
+		} 
+		else {
+			relative_dir_name = g_strconcat (&dir_name[strlen (path) + 1], NULL);
+		}
 		g_free (path);
 	}
 	else {
