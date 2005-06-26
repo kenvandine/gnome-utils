@@ -467,6 +467,8 @@ build_search_command (GSearchWindow * gsearch,
 		look_in_folder_locale = g_strconcat (look_in_folder_locale, G_DIR_SEPARATOR_S, NULL);
 		g_free (tmp);
 	}
+	g_free (gsearch->command_details->look_in_folder_string);
+		
 	gsearch->command_details->look_in_folder_string = g_strdup (look_in_folder_locale);
 	
 	command = g_string_new ("");
@@ -1481,7 +1483,6 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 			gchar * command;
 			
 			/* Free these strings now because they are reassign values during the second pass. */
-			g_free (gsearch->command_details->look_in_folder_string);
 			g_free (gsearch->command_details->name_contains_pattern_string);
 			g_free (gsearch->command_details->name_contains_regex_string);
 			g_free (gsearch->search_results_date_format_string);
@@ -1512,7 +1513,6 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 			gtk_widget_show (gsearch->find_button); 
 
 			/* Free the gchar fields of search_command structure. */
-			g_free (gsearch->command_details->look_in_folder_string);
 			g_free (gsearch->command_details->name_contains_pattern_string);
 			g_free (gsearch->command_details->name_contains_regex_string);
 			g_free (gsearch->search_results_date_format_string);
@@ -1652,7 +1652,9 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 					
 					gtk_widget_show (dialog);
 				}
-				else {
+				else if ((gsearch->command_details->is_command_second_pass_enabled == FALSE) ||
+					 (is_second_scan_excluded_path (gsearch->command_details->look_in_folder_string) == TRUE)) {
+				
 					GtkWidget * button;
 					GtkWidget * hbox;
 					GtkWidget * spacer;
@@ -1663,9 +1665,11 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 					                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 					                                 GTK_MESSAGE_ERROR,
 					                                 GTK_BUTTONS_CANCEL,
-					                                 _("The search results may be invalid."
+					                                 _("The search results may be out of date or invalid."
 									   "  Do you want to disable the quick search feature?"));
-					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), " ");
+					gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), 
+					                                          "Please reference the help documentation for instructions "
+										  "on how to configure and enable quick searches.");
 
 					gtk_window_set_title (GTK_WINDOW (dialog), "");
 					gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);

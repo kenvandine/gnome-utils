@@ -99,6 +99,16 @@
 	</revdescription> 
  </revision>
 -->
+   <revision> 
+			<revnumber>&app; Manual V2.7</revnumber> 
+			<date>June 2005</date> 
+			<revdescription> 
+	  		<para role="author">Joachim Noreiko
+				<email>jnoreiko@yahoo.com</email>
+			</para>
+	  		<para role="publisher">&app; Maintainer</para>
+			</revdescription> 
+  </revision>
   <revision> 
 			<revnumber>&app; Manual V2.6</revnumber> 
 			<date>January 2005</date> 
@@ -181,7 +191,7 @@
   <sect1 id="gsearchtool-introduction"> 
     <title>Introduction</title> 
     <para>The <application>&app;</application> application enables you to search for files on your system. To perform a basic search, you can type a filename or a partial filename, with or without wildcards. To refine your search, you can apply additional search options.</para>
-    <para><application>&app;</application> uses the <command>find</command>, <command>grep</command>, and <command>locate</command> UNIX commands. </para>
+    <para><application>&app;</application> uses the <command>find</command>, <command>grep</command>, and <command>locate</command> UNIX commands.  By default, when performing a basic search <application>&app;</application> first uses the <command>locate</command> command, and then uses the slower but more thorough <command>find</command> command.</para>
     <para>The case sensitivity of the search depends on your operating system. For example, on Linux, the <command>find</command>, <command>grep</command>, and <command>locate</command> commands support the <literal>-i</literal> option, so all searches are case-insensitive.</para>
   </sect1>
 
@@ -302,6 +312,7 @@
       <application>&app;</application> searches in the directory that you specify and the subdirectories of the directory.
 <application>&app;</application> displays the results of the search in the <guilabel>Search results</guilabel> list box. If <application>&app;</application> does not find any files that match the search criteria, the application displays the message "No files found" in the <guilabel>Search results</guilabel> list box. 
 </para>
+    <para>By default, <application>&app;</application> will perform a quick search using the <command>locate</command> command followed by a more thorough second search using the <command>find</command> command. The <command>locate</command> command is faster because it uses a database of information about files. If this database is more than a week old, <application>&app;</application> will warn you that the search results may be out of date and give you the option of disabling the quick search. To update the database, run the command <command>updatedb</command> as the root user.</para>
   </sect2>
     
     <sect2 id="gsearchtool-advanced">
