@@ -1,3 +1,15 @@
+2005-07-06  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c:  Fix drag and drop to work with the
+	current CVS version of nautilus.
+	
+2005-07-06  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c: (get_desktop_item_name):  Fixes a bunch of 
+	memory leaks caused by strdup()'ing before appending with 
+	g_string_append(). (main):  Remove old and unused bonobo code.
+	Patches provided by Jörgen Viksell.
+	
 2005-06-26  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c: Be a little more selective on when

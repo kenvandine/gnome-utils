@@ -38,7 +38,6 @@
 #include <signal.h>
 #include <unistd.h>
 #include <glib/gi18n.h>
-#include <libbonobo.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
@@ -124,9 +123,9 @@ enum {
 };
 
 static GtkTargetEntry GSearchDndTable[] = {
-	{ "STRING",        0, 0 },
+	{ "text/uri-list", 0, 1 },
 	{ "text/plain",    0, 0 },
-	{ "text/uri-list", 0, 1 }
+	{ "STRING",        0, 0 }
 };
 
 static guint GSearchTotalDnds = sizeof (GSearchDndTable) / sizeof (GSearchDndTable[0]);
@@ -1086,13 +1085,13 @@ get_desktop_item_name (GSearchWindow * gsearch)
 	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry))));
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" , 
 	                                           -1, NULL, NULL, NULL);
-	g_string_append (gs, g_strdup_printf ("named=%s", file_is_named_locale));
+	g_string_append_printf (gs, "named=%s", file_is_named_locale);
 	g_free (file_is_named_locale);
 
 	look_in_folder_utf8 = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (gsearch->look_in_folder_button));
 	look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8 != NULL ? look_in_folder_utf8 : "", 
 	                                            -1, NULL, NULL, NULL);
-	g_string_append (gs, g_strdup_printf ("&path=%s", look_in_folder_locale));
+	g_string_append_printf (gs, "&path=%s", look_in_folder_locale);
 	g_free (look_in_folder_locale);
 	g_free (look_in_folder_utf8); 
 
@@ -1104,50 +1103,50 @@ get_desktop_item_name (GSearchWindow * gsearch)
 			switch (constraint->constraint_id) {
 			case SEARCH_CONSTRAINT_CONTAINS_THE_TEXT:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				g_string_append (gs, g_strdup_printf ("&contains=%s", locale));
+				g_string_append_printf (gs, "&contains=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_DATE_MODIFIED_BEFORE:
-				g_string_append (gs, g_strdup_printf ("&mtimeless=%d", constraint->data.time));
+				g_string_append_printf (gs, "&mtimeless=%d", constraint->data.time);
 				break;
 			case SEARCH_CONSTRAINT_DATE_MODIFIED_AFTER:
-				g_string_append (gs, g_strdup_printf ("&mtimemore=%d", constraint->data.time));
+				g_string_append_printf (gs, "&mtimemore=%d", constraint->data.time);
 				break;
 			case SEARCH_CONSTRAINT_SIZE_IS_MORE_THAN:
-				g_string_append (gs, g_strdup_printf ("&sizemore=%u", constraint->data.number));
+				g_string_append_printf (gs, "&sizemore=%u", constraint->data.number);
 				break;
 			case SEARCH_CONSTRAINT_SIZE_IS_LESS_THAN:
-				g_string_append (gs, g_strdup_printf ("&sizeless=%u", constraint->data.number));
+				g_string_append_printf (gs, "&sizeless=%u", constraint->data.number);
 				break;
 			case SEARCH_CONSTRAINT_FILE_IS_EMPTY:
-				g_string_append (gs, g_strdup ("&empty"));
+				g_string_append (gs, "&empty");
 				break;
 			case SEARCH_CONSTRAINT_OWNED_BY_USER:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				g_string_append (gs, g_strdup_printf ("&user=%s", locale));
+				g_string_append_printf (gs, "&user=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_OWNED_BY_GROUP:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				g_string_append (gs, g_strdup_printf ("&group=%s", locale));
+				g_string_append_printf (gs, "&group=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_OWNER_IS_UNRECOGNIZED:
-				g_string_append (gs, g_strdup ("&nouser"));
+				g_string_append (gs, "&nouser");
 				break;
 			case SEARCH_CONSTRAINT_FILE_IS_NOT_NAMED:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				g_string_append (gs, g_strdup_printf ("&notnamed=%s", locale));
+				g_string_append_printf (gs, "&notnamed=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_FILE_MATCHES_REGULAR_EXPRESSION:
 				locale = g_locale_from_utf8 (constraint->data.text, -1, NULL, NULL, NULL);
-				g_string_append (gs, g_strdup_printf ("&regex=%s", locale));
+				g_string_append_printf (gs, "&regex=%s", locale);
 				break;
 			case SEARCH_CONSTRAINT_SHOW_HIDDEN_FILES_AND_FOLDERS:
-				g_string_append (gs, g_strdup ("&hidden"));
+				g_string_append (gs, "&hidden");
 				break;
 			case SEARCH_CONSTRAINT_FOLLOW_SYMBOLIC_LINKS:
-				g_string_append (gs, g_strdup ("&follow"));
+				g_string_append (gs, "&follow");
 				break;
 			case SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS:
-				g_string_append (gs, g_strdup ("&allmounts"));
+				g_string_append (gs, "&allmounts");
 				break;
 			default:
 				break;
@@ -2862,11 +2861,6 @@ main (int argc,
 	g_signal_connect (G_OBJECT (gsearch->window), "key_press_event",
 	                            G_CALLBACK (key_press_cb), 
 	                            (gpointer) gsearch);
-
-	if (!bonobo_init_full (&argc, argv, bonobo_activation_orb_get (), NULL, NULL)) {
-		g_error (_("Cannot initialize bonobo."));
-	}
-	bonobo_activate ();
 
 	if ((client = gnome_master_client ()) != NULL) {
 		g_signal_connect (client, "save_yourself",
