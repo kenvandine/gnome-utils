@@ -312,7 +312,7 @@
       <application>&app;</application> searches in the directory that you specify and the subdirectories of the directory.
 <application>&app;</application> displays the results of the search in the <guilabel>Search results</guilabel> list box. If <application>&app;</application> does not find any files that match the search criteria, the application displays the message "No files found" in the <guilabel>Search results</guilabel> list box. 
 </para>
-    <para>By default, <application>&app;</application> will perform a quick search using the <command>locate</command> command followed by a more thorough second search using the <command>find</command> command. The <command>locate</command> command is faster because it uses a database of information about files. If this database is more than a week old, <application>&app;</application> will warn you that the search results may be out of date and give you the option of disabling the quick search. To update the database, run the command <command>updatedb</command> as the root user.</para>
+    <para>By default, <application>&app;</application> will perform a quick search using the <command>locate</command> command followed by a more thorough second search using the <command>find</command> command. The <command>locate</command> command is faster because it uses a database of information about files. If this database is more than a week old, <application>&app;</application> could warn you that the search results may be out of date and give you the option of disabling the quick search. To update the database, run the command <command>updatedb</command> as the root user.</para>
   </sect2>
     
     <sect2 id="gsearchtool-advanced">
@@ -327,7 +327,7 @@
     		<listitem><para>Repeat the above steps for each search option that you want to apply.</para></listitem>
     	</orderedlist>	
     	<para>To remove a search option from the current search, click on the <guibutton>Remove</guibutton> button next to the option. </para>
-    	
+    	<para>To disable the search options from the current search, click on the <guilabel>Select more options</guilabel> text.</para>
     
     <table id="tbl-search-rules" frame="topbot">
     <title>Search Options</title> 
