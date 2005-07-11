@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-08 09:32-0400\n"
+"POT-Creation-Date: 2005-07-11 13:19-0400\n"
 "PO-Revision-Date: 2005-05-31 13:51+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:149
 msgid "Dictionary Lookup"
 msgstr "查字典"
 
@@ -27,12 +27,12 @@ msgstr "查字典"
 msgid "Lookup words in an online dictionary"
 msgstr "在在线字典中查阅单词"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
-#: logview/logview.c:127
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:619
+#: logview/logview.c:129
 msgid "_About"
 msgstr "关于(_A)"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:97
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:99
 msgid "_Help"
 msgstr "帮助(_H)"
 
@@ -44,11 +44,8 @@ msgstr "查阅选中的文本(_L)"
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
-#: gdictsrc/gdict-pref-dialog.c:739
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:700
+#: gdictsrc/gdict-pref-dialog.c:747
 msgid "Cannot connect to server"
 msgstr "无法连接服务器"
 
@@ -57,40 +54,41 @@ msgid "Server Error"
 msgstr "服务器错误"
 
 #: gdictsrc/dict.c:690
+#, fuzzy
 msgid ""
-"A serious error occured. Please check that your server and port are correct. "
-"For reference the default server is dict.org and the port 2628"
+"A serious error occurred. Please check that your server and port are "
+"correct. For reference the default server is dict.org and the port 2628"
 msgstr ""
 "发生了严重错误。请检查您的服务器和端口是否正确。默认服务器 dict.org，端口 "
 "2628 可以作为参考"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:43
+#: gdictsrc/gdict-about.c:40 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "Wang Li <charlesw1234@163.com>\n"
 "Funda Wang <fundawang@linux.net.cn>"
 
-#: gdictsrc/gdict-about.c:45
+#: gdictsrc/gdict-about.c:42
 msgid "A client for the MIT dictionary server."
 msgstr "MIT 字典服务器客户端。"
 
-#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
-#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
-#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
-#: gdictsrc/main.c:90
+#: gdictsrc/gdict-about.c:45 gdictsrc/gdict-applet.c:351
+#: gdictsrc/gdict-defbox.c:101 gdictsrc/gdict-defbox.c:114
+#: gdictsrc/gdict-pref-dialog.c:499 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:87
 msgid "Dictionary"
 msgstr "字典"
 
-#: gdictsrc/gdict-app.c:87
+#: gdictsrc/gdict-app.c:101
 msgid "Connection error"
 msgstr "连接错误"
 
-#: gdictsrc/gdict-app.c:134
+#: gdictsrc/gdict-app.c:117
 msgid "Unable to perform requested operation."
 msgstr "无法执行所请求的操作。"
 
-#: gdictsrc/gdict-app.c:135
+#: gdictsrc/gdict-app.c:118
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -98,289 +96,299 @@ msgstr ""
 "要么您正使用的服务器不可用\n"
 "要么您没有连接到 Internet。"
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:276
 msgid "Print Word Definition"
 msgstr "打印当前定义"
 
-#: gdictsrc/gdict-app.c:416
+#: gdictsrc/gdict-app.c:391
 msgid "Find"
 msgstr "查找"
 
-#: gdictsrc/gdict-app.c:426
+#: gdictsrc/gdict-app.c:401
 msgid "_Search for:"
 msgstr "搜索(_S)："
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:889
+#: gdictsrc/gdict-app.c:500 gdictsrc/gdict-applet.c:299
+#: gdictsrc/gdict-pref-dialog.c:901
 msgid "Could not display help"
 msgstr "无法显示帮助"
 
 #. Top
-#: gdictsrc/gdict-app.c:646
+#: gdictsrc/gdict-app.c:589
 msgid "_Dictionary"
 msgstr "字典(_D)"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
+#: gdictsrc/gdict-app.c:595
 msgid "_Look Up Word"
 msgstr "查阅单词(_L)"
 
-#: gdictsrc/gdict-app.c:653
+#: gdictsrc/gdict-app.c:596
 msgid "Lookup word in dictionary"
 msgstr "在字典中查阅单词"
 
-#: gdictsrc/gdict-app.c:654
+#: gdictsrc/gdict-app.c:597
 msgid "_Print"
 msgstr "打印(_P)"
 
-#: gdictsrc/gdict-app.c:655
+#: gdictsrc/gdict-app.c:598
 msgid "Print the current definition"
 msgstr "打印当前定义"
 
-#: gdictsrc/gdict-app.c:656
+#: gdictsrc/gdict-app.c:599
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:600
 msgid "Close the application"
 msgstr "关闭应用程序"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:660 logview/logview.c:112
+#: gdictsrc/gdict-app.c:603 logview/logview.c:114
 msgid "_Find..."
 msgstr "查找(_F)..."
 
-#: gdictsrc/gdict-app.c:661
+#: gdictsrc/gdict-app.c:604
 msgid "Find a word in the text"
 msgstr "在文本中查找单词"
 
-#: gdictsrc/gdict-app.c:662
+#: gdictsrc/gdict-app.c:605
 msgid "Find Ne_xt"
 msgstr "查找下一个(_X)"
 
-#: gdictsrc/gdict-app.c:663
+#: gdictsrc/gdict-app.c:606
 msgid "Find next occurrence of the word"
 msgstr "查找单词的下一次出现"
 
-#: gdictsrc/gdict-app.c:664
+#: gdictsrc/gdict-app.c:607
 msgid "P_references"
 msgstr "首选项(_R)"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:608
 msgid "Configure the application"
 msgstr "配置应用程序"
 
 #. View menu
-#: gdictsrc/gdict-app.c:668 logview/logview.c:115
+#: gdictsrc/gdict-app.c:611 logview/logview.c:117
 msgid "Bigger text size"
 msgstr "较大的文本大小"
 
-#: gdictsrc/gdict-app.c:670 logview/logview.c:117
+#: gdictsrc/gdict-app.c:613 logview/logview.c:119
 msgid "Smaller text size"
 msgstr "较小的文本大小"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:674 logview/logview.c:125
+#: gdictsrc/gdict-app.c:617 logview/logview.c:127
 msgid "_Contents"
 msgstr "目录(_C)"
 
-#: gdictsrc/gdict-app.c:675
+#: gdictsrc/gdict-app.c:618
 msgid "View help for this application"
 msgstr "查看此应用程序的帮助"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:620
 msgid "About this application"
 msgstr "关于此应用程序"
 
-#: gdictsrc/gdict-app.c:682
-msgid "On a Dictionary Server"
-msgstr "在字典服务器"
-
-#: gdictsrc/gdict-app.c:684
-msgid "On a Web Site"
-msgstr "在网站"
-
-#: gdictsrc/gdict-app.c:690
+#: gdictsrc/gdict-app.c:625
 msgid "Cu_t"
 msgstr "剪切(_T)"
 
-#: gdictsrc/gdict-app.c:691
+#: gdictsrc/gdict-app.c:626
 msgid "Cut the selection"
 msgstr "剪切选中内容"
 
-#: gdictsrc/gdict-app.c:692
+#: gdictsrc/gdict-app.c:627
 msgid "_Copy"
 msgstr "复制(_C)"
 
-#: gdictsrc/gdict-app.c:693 logview/logview.c:108
+#: gdictsrc/gdict-app.c:628 logview/logview.c:110
 msgid "Copy the selection"
 msgstr "复制选中内容"
 
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:629
 msgid "_Paste"
 msgstr "粘贴(_P)"
 
-#: gdictsrc/gdict-app.c:695
+#: gdictsrc/gdict-app.c:630
 msgid "Paste clipboard"
 msgstr "粘贴剪贴板上的内容"
 
-#: gdictsrc/gdict-app.c:696
+#: gdictsrc/gdict-app.c:631
 msgid "Select _All"
 msgstr "全选(_A)"
 
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:632
 msgid "Select everything"
 msgstr "全部选中"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:637
 msgid "_Spellings"
 msgstr "拼写(_S)"
 
-#: gdictsrc/gdict-app.c:703
+#: gdictsrc/gdict-app.c:638
 msgid "View alternate spellings"
 msgstr "查看替代的拼写"
 
-#: gdictsrc/gdict-app.c:849
-msgid "_Word:"
-msgstr "单词(_W)："
+#: gdictsrc/gdict-app.c:748
+#, fuzzy
+msgid "_Look Up"
+msgstr "查阅单词(_L)"
 
-#: gdictsrc/gdict-app.c:877
+#: gdictsrc/gdict-app.c:757
+#, fuzzy
+msgid "In Dictionary"
+msgstr "字典"
+
+#: gdictsrc/gdict-app.c:758
+msgid "On a Web Site"
+msgstr "在网站"
+
+#: gdictsrc/gdict-app.c:774
 msgid "Word"
 msgstr "单词"
 
-#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
+#: gdictsrc/gdict-app.c:775
 msgid "Word Entry"
 msgstr "单词条目"
 
-#: gdictsrc/gdict-app.c:879
+#: gdictsrc/gdict-app.c:776
 msgid "Enter a Word or select one from the list below"
 msgstr "输入一个单词或从下面的列表中选择一个单词"
 
-#: gdictsrc/gdict-app.c:883
+#: gdictsrc/gdict-app.c:779
 msgid "Look Up for a Word"
 msgstr "搜索一个单词"
 
-#: gdictsrc/gdict-applet.c:152
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "字典单项"
 
-#: gdictsrc/gdict-defbox.c:101
+#: gdictsrc/gdict-defbox.c:103
 msgid "Looking up word..."
 msgstr "正在搜索单词..."
 
-#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
+#: gdictsrc/gdict-defbox.c:132 gdictsrc/gdict-entry.c:114
+#: gdictsrc/gdict-speller.c:255
 msgid "No matches found"
 msgstr "找不到匹配"
 
-#: gdictsrc/gdict-defbox.c:141
+#: gdictsrc/gdict-defbox.c:143
 msgid "String not found"
 msgstr "找不到字符串"
 
-#: gdictsrc/gdict-defbox.c:616
+#: gdictsrc/gdict-defbox.c:618
 msgid "Definition preview"
 msgstr "定义预览"
 
-#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
+#: gdictsrc/gdict-defbox.c:947 gdictsrc/gdict-entry.c:132
+#: gdictsrc/gdict-speller.c:295
 msgid "Error invoking query"
 msgstr "调用查询时出错"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-entry.c:102
+#, fuzzy
+msgid "Looking up entry..."
+msgstr "正在搜索单词..."
+
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "De_fault Server"
 msgstr "默认服务器(_F)"
 
-#: gdictsrc/gdict-pref-dialog.c:276
+#: gdictsrc/gdict-pref-dialog.c:278
 msgid "_Server:"
 msgstr "服务器(_S)："
 
-#: gdictsrc/gdict-pref-dialog.c:284
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "Reset server to default"
 msgstr "将服务器复位为默认设置"
 
-#: gdictsrc/gdict-pref-dialog.c:286
+#: gdictsrc/gdict-pref-dialog.c:288
 msgid "_Port:"
 msgstr "端口(_P)："
 
-#: gdictsrc/gdict-pref-dialog.c:296
+#: gdictsrc/gdict-pref-dialog.c:298
 msgid "Def_ault Port"
 msgstr "默认端口(_A)"
 
-#: gdictsrc/gdict-pref-dialog.c:311
+#: gdictsrc/gdict-pref-dialog.c:313
 msgid "Reset port to default"
 msgstr "将端口复位为默认设置"
 
-#: gdictsrc/gdict-pref-dialog.c:312
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server"
 msgstr "服务器"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Server Entry"
 msgstr "服务器条目"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Enter the Server Name"
 msgstr "输入服务器名"
 
-#: gdictsrc/gdict-pref-dialog.c:315
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port"
 msgstr "端口"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Port Entry"
 msgstr "端口条目"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Enter the Port Number"
 msgstr "输入端口编号"
 
-#: gdictsrc/gdict-pref-dialog.c:320
+#: gdictsrc/gdict-pref-dialog.c:322
 msgid "_Database:"
 msgstr "数据库(_D)："
 
-#: gdictsrc/gdict-pref-dialog.c:327
+#: gdictsrc/gdict-pref-dialog.c:332
 msgid "Strat_egy:"
 msgstr "策略(_E)："
 
-#: gdictsrc/gdict-pref-dialog.c:334
-msgid "Font:"
+#: gdictsrc/gdict-pref-dialog.c:342
+#, fuzzy
+msgid "F_ont:"
 msgstr "字体："
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 msgid "Web Site"
 msgstr "网站"
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 msgid "Search Address"
 msgstr "搜索地址"
 
-#: gdictsrc/gdict-pref-dialog.c:481
+#: gdictsrc/gdict-pref-dialog.c:491
 msgid "Dictionary Preferences"
 msgstr "字典首选项"
 
-#: gdictsrc/gdict-pref-dialog.c:493
+#: gdictsrc/gdict-pref-dialog.c:503
 msgid "Web Sites"
 msgstr "网站"
 
-#: gdictsrc/gdict-pref-dialog.c:682
+#: gdictsrc/gdict-pref-dialog.c:690
 msgid "Search all databases"
 msgstr "搜索所有数据库"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database"
 msgstr "数据库"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database Name"
 msgstr "数据库名称"
 
-#: gdictsrc/gdict-pref-dialog.c:860
+#: gdictsrc/gdict-pref-dialog.c:872
 msgid "Default Strategy"
 msgstr "默认策略"
 
-#: gdictsrc/gdict-speller.c:114
+#: gdictsrc/gdict-speller.c:115
 msgid "Spellings"
 msgstr "拼写"
 
-#: gdictsrc/gdict-speller.c:235
+#: gdictsrc/gdict-speller.c:236
 msgid "Spell-checking..."
 msgstr "正在检查拼写..."
 
@@ -481,58 +489,58 @@ msgstr ""
 "设为 ext2 将格式化为 Linux 内建的文件系统，或者设为 fat 将格式化为 DOS 文件系"
 "统。"
 
-#: gfloppy/src/badblocks.c:84
+#: gfloppy/src/badblocks.c:85
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "内部错误：无法搜索到正确位置。"
 
-#: gfloppy/src/badblocks.c:93
+#: gfloppy/src/badblocks.c:94
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "内部错误：do_test 中的非法值 (%ld)\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:251
+#: gfloppy/src/badblocks.c:252
 msgid "Checking for bad blocks..."
 msgstr "正在检查坏块..."
 
-#: gfloppy/src/badblocks.c:263
+#: gfloppy/src/badblocks.c:264
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "为执行坏块检查打开设备 %s 失败\n"
 
-#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
+#: gfloppy/src/badblocks.c:284 gfloppy/src/gfloppy.c:530
 msgid "Checking for bad blocks... Done"
 msgstr "正在检查坏块... 完成"
 
-#: gfloppy/src/fdformat.c:42
+#: gfloppy/src/fdformat.c:43
 msgid "Formatting the disk..."
 msgstr "正在格式化磁盘..."
 
-#: gfloppy/src/fdformat.c:45
+#: gfloppy/src/fdformat.c:46
 msgid "I don't know what this is, but it's very wrong."
 msgstr "未知原因的严重错误。"
 
-#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:67
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "格式化第 %d 道时出错"
 
-#: gfloppy/src/fdformat.c:75
+#: gfloppy/src/fdformat.c:76
 msgid "Error during completion of formatting"
 msgstr "完成格式时出错"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:79
+#: gfloppy/src/fdformat.c:80
 msgid "Formatting the disk... Done"
 msgstr "正在格式化磁盘... 完成"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:95
+#: gfloppy/src/fdformat.c:96
 msgid "Verifying the format..."
 msgstr "正在校验格式..."
 
-#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
+#: gfloppy/src/fdformat.c:101 gfloppy/src/fdformat.c:186
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -542,12 +550,12 @@ msgstr ""
 "\n"
 "请确认该软盘没有写保护。"
 
-#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
+#: gfloppy/src/fdformat.c:104 gfloppy/src/fdformat.c:189
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "没有足够的权限打开软驱设备 %s。"
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:108 gfloppy/src/fdformat.c:193
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -559,7 +567,7 @@ msgstr ""
 "请确认软盘在驱动器内\n"
 "并且关闭了驱动器门。"
 
-#: gfloppy/src/fdformat.c:110
+#: gfloppy/src/fdformat.c:111
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -570,7 +578,7 @@ msgstr ""
 "\n"
 "错误码 %s：%d"
 
-#: gfloppy/src/fdformat.c:133
+#: gfloppy/src/fdformat.c:134
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -579,31 +587,31 @@ msgstr ""
 "读取错误:\n"
 "读取柱面 %d 时出现问题，期待值 %d，读取值 %d"
 
-#: gfloppy/src/fdformat.c:136
+#: gfloppy/src/fdformat.c:137
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "读取柱面 %d 时出现问题，期待值 %d，读取值 %d"
 
-#: gfloppy/src/fdformat.c:147
+#: gfloppy/src/fdformat.c:148
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "柱面 %d 上有错误数据。继续..."
 
-#: gfloppy/src/fdformat.c:156
+#: gfloppy/src/fdformat.c:157
 #, c-format
 msgid "Error closing device %s"
 msgstr "关闭设备 %s 时出错"
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:164
 msgid "Verifying the format... Done"
 msgstr "正在校验格式... 完成"
 
-#: gfloppy/src/fdformat.c:175
+#: gfloppy/src/fdformat.c:176
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "无法写入设备 %s"
 
-#: gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:196
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -614,28 +622,28 @@ msgstr ""
 "\n"
 "错误码 %s"
 
-#: gfloppy/src/fdformat.c:207
+#: gfloppy/src/fdformat.c:208
 msgid "Could not determine current floppy geometry."
 msgstr "无法确定当前软盘的几何属性。"
 
-#: gfloppy/src/gfloppy.c:215
+#: gfloppy/src/gfloppy.c:218
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr "为坏块列表文件创建唯一的文件名时发生错误。"
 
-#: gfloppy/src/gfloppy.c:235
+#: gfloppy/src/gfloppy.c:238
 msgid "Error while filling the bad blocks list file."
 msgstr "填充坏块列表文件时发生错误。"
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:301
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "执行(%s)命令时发生错误：%s"
 
-#: gfloppy/src/gfloppy.c:324
+#: gfloppy/src/gfloppy.c:327
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "未知的 mke2fs 起始签名，正在取消。"
 
-#: gfloppy/src/gfloppy.c:338
+#: gfloppy/src/gfloppy.c:341
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -646,16 +654,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:355
+#: gfloppy/src/gfloppy.c:358
 msgid "Abnormal child process termination."
 msgstr "子进程异常终止。"
 
-#: gfloppy/src/gfloppy.c:380
+#: gfloppy/src/gfloppy.c:383
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "执行 mbadblocks 命令时发生错误：%s。"
 
-#: gfloppy/src/gfloppy.c:392
+#: gfloppy/src/gfloppy.c:395
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -664,28 +672,28 @@ msgstr ""
 "坏块检查工具(mbadblocks)报告如下错误：\n"
 "%s。"
 
-#: gfloppy/src/gfloppy.c:435
+#: gfloppy/src/gfloppy.c:438
 msgid "Abnormal mbadblocks child process termination."
 msgstr "mbadblocks 子进程异常终止。"
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
+#: gfloppy/src/gfloppy.c:464 gfloppy/src/gfloppy.c:504
 msgid "Making filesystem on disk..."
 msgstr "正在制作磁盘上的文件系统..."
 
-#: gfloppy/src/gfloppy.c:469
+#: gfloppy/src/gfloppy.c:472
 msgid "Unable to create filesystem correctly."
 msgstr "无法正确创建文件系统。"
 
-#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
+#: gfloppy/src/gfloppy.c:477 gfloppy/src/gfloppy.c:516
 msgid "Making filesystem on disk... Done"
 msgstr "正在制作磁盘上的文件系统... 完成"
 
-#: gfloppy/src/gfloppy.c:518
+#: gfloppy/src/gfloppy.c:521
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "正在检查坏块... (这将花些时间)"
 
-#: gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:526
 msgid "Error while checking the bad blocks."
 msgstr "检查坏块时发生错误。"
 
@@ -775,23 +783,23 @@ msgstr "快速(仅创建文件系统)(_Q)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "标准(在快速方式前增加低级格式化)(_S)"
 
-#: gfloppy/src/main.c:257
+#: gfloppy/src/main.c:259
 msgid "Cannot Format"
 msgstr "无法格式化"
 
-#: gfloppy/src/main.c:258
+#: gfloppy/src/main.c:260
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
 "mke2fs 和 mkdosfs/mformat 应用程序一个都没有安装。没有它们无法格式化软盘。"
 
-#: gfloppy/src/main.c:278
+#: gfloppy/src/main.c:280
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "无法打开设备 %s，无法继续格式化。"
 
-#: gfloppy/src/main.c:281 gfloppy/src/main.c:344
+#: gfloppy/src/main.c:283 gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -800,7 +808,7 @@ msgstr ""
 "设备 %s 已断开。\n"
 "请连接设备并继续。"
 
-#: gfloppy/src/main.c:284 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:286 gfloppy/src/main.c:349
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -810,39 +818,39 @@ msgstr ""
 "您没有适当的权限写入 %s，格式化是不可能的。\n"
 "与您的系统管理员交涉以获得写权限。"
 
-#: gfloppy/src/main.c:291 gfloppy/src/main.c:355
+#: gfloppy/src/main.c:293 gfloppy/src/main.c:357
 msgid "Cannot initialize device"
 msgstr "无法初始化设备"
 
-#: gfloppy/src/main.c:341
+#: gfloppy/src/main.c:343
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "无法打开任何设备，无法继续格式化。"
 
-#: gfloppy/src/main.c:344 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:346 gfloppy/src/main.c:349
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 或 /dev/fd0"
 
-#: gfloppy/src/main.c:508
+#: gfloppy/src/main.c:510
 msgid "Could not display help for the floppy formatter."
 msgstr "无法显示软盘格式化器的帮助信息。"
 
-#: gfloppy/src/main.c:527
+#: gfloppy/src/main.c:529
 msgid "Incorrect volume name"
 msgstr "卷标名不正确"
 
-#: gfloppy/src/main.c:528
+#: gfloppy/src/main.c:530
 msgid "The volume name can't contain any blank space."
 msgstr "卷标名不能含有任何空白。"
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:579
 msgid "The device to format"
 msgstr "要格式化的设备"
 
-#: gfloppy/src/main.c:578
+#: gfloppy/src/main.c:580
 msgid "DEVICE"
 msgstr "设备"
 
-#: gfloppy/src/progress.c:122
+#: gfloppy/src/progress.c:126
 #, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -853,15 +861,15 @@ msgid_plural ""
 msgstr[0] ""
 "该软盘已被格式化，但是发现和标记了 <b>%d 个坏块</b>(总区块数为 %d)。"
 
-#: gfloppy/src/progress.c:125
+#: gfloppy/src/progress.c:129
 msgid "Floppy formatted successfully."
 msgstr "软盘格式化成功。"
 
-#: gfloppy/src/progress.c:131
+#: gfloppy/src/progress.c:135
 msgid "Floppy formatting cancelled."
 msgstr "取消软盘格式化。"
 
-#: gfloppy/src/progress.c:174
+#: gfloppy/src/progress.c:178
 msgid "Format Progress"
 msgstr "格式化进度"
 
@@ -1428,167 +1436,167 @@ msgstr "链接(已断开)"
 msgid "link to %s"
 msgstr "链接到 %s"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:80
 msgid "Contains the _text"
 msgstr "含有文本(_T)"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:82
 msgid "_Date modified less than"
 msgstr "修改日期少于(_D)"
 
-#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:82 gsearchtool/gsearchtool.c:83
 msgid "days"
 msgstr "天"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:83
 msgid "Date modified more than"
 msgstr "修改日期多于(_Y)"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:85
 msgid "S_ize at least"
 msgstr "大小最少为(_I)"
 
-#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:85 gsearchtool/gsearchtool.c:86
 msgid "kilobytes"
 msgstr "千字节"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:86
 msgid "Si_ze at most"
 msgstr "大小最多为(_Z)"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:87
 msgid "File is empty"
 msgstr "文件为空"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:89
 msgid "Owned by _user"
 msgstr "文件所属用户(_U)"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:90
 msgid "Owned by _group"
 msgstr "文件所属组(_G)"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:91
 msgid "Owner is unrecognized"
 msgstr "未知的所属用户"
 
-#: gsearchtool/gsearchtool.c:94
+#: gsearchtool/gsearchtool.c:93
 msgid "Na_me does not contain"
 msgstr "名称不包含(_M)"
 
-#: gsearchtool/gsearchtool.c:95
+#: gsearchtool/gsearchtool.c:94
 msgid "Name matches regular e_xpression"
 msgstr "名城匹配正则表达式(_X)"
 
-#: gsearchtool/gsearchtool.c:97
+#: gsearchtool/gsearchtool.c:96
 msgid "Show hidden and backup files"
 msgstr "显示隐藏文件和备份文件"
 
-#: gsearchtool/gsearchtool.c:98
+#: gsearchtool/gsearchtool.c:97
 msgid "Follow symbolic links"
 msgstr "跟随符号连接"
 
-#: gsearchtool/gsearchtool.c:99
+#: gsearchtool/gsearchtool.c:98
 msgid "Include other filesystems"
 msgstr "包括其它文件系统"
 
-#: gsearchtool/gsearchtool.c:180
+#: gsearchtool/gsearchtool.c:179
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: gsearchtool/gsearchtool.c:181
+#: gsearchtool/gsearchtool.c:180
 msgid "O_pen Folder"
 msgstr "打开文件夹(_P)"
 
-#: gsearchtool/gsearchtool.c:182
+#: gsearchtool/gsearchtool.c:181
 msgid "Mo_ve to Trash"
 msgstr "移动到回收站(_V)"
 
-#: gsearchtool/gsearchtool.c:183
+#: gsearchtool/gsearchtool.c:182
 msgid "_Save Results As..."
 msgstr "结果另存为(_S)..."
 
-#: gsearchtool/gsearchtool.c:255 gsearchtool/gsearchtool.c:272
+#: gsearchtool/gsearchtool.c:254 gsearchtool/gsearchtool.c:271
 msgid "A locate database has probably not been created."
 msgstr "没有正确创建过 locate 数据库。"
 
-#: gsearchtool/gsearchtool.c:376
+#: gsearchtool/gsearchtool.c:375
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "“%s”的字符集转换失败"
 
-#: gsearchtool/gsearchtool.c:763 gsearchtool/gsearchtool.c:792
+#: gsearchtool/gsearchtool.c:769 gsearchtool/gsearchtool.c:798
 msgid "No files found"
 msgstr "未找到文件"
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:791
 msgid "(stopped)"
 msgstr "(已停止)"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:797
 msgid "No Files Found"
 msgstr "未找到文件"
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:802
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "找到了 %d 个文件"
 
-#: gsearchtool/gsearchtool.c:800 gsearchtool/gsearchtool.c:838
+#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:844
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "找到了 %d 个文件"
 
-#: gsearchtool/gsearchtool.c:817 gsearchtool/gsearchtool.c:1076
-#: gsearchtool/gsearchtool.c:1162 gsearchtool/gsearchtool.c:2838
+#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1082
+#: gsearchtool/gsearchtool.c:1168 gsearchtool/gsearchtool.c:2846
 msgid "Search for Files"
 msgstr "搜索文件"
 
-#: gsearchtool/gsearchtool.c:910
+#: gsearchtool/gsearchtool.c:916
 msgid "Entry changed called for a non entry option!"
 msgstr "已改变的条目调用非条目选项！"
 
-#: gsearchtool/gsearchtool.c:1162
+#: gsearchtool/gsearchtool.c:1168
 msgid "Searching..."
 msgstr "正在搜索..."
 
-#: gsearchtool/gsearchtool.c:1185
+#: gsearchtool/gsearchtool.c:1191
 msgid "Set the text of \"Name contains\" search option"
 msgstr "设置“名称包含”搜索选项的文字"
 
-#: gsearchtool/gsearchtool.c:1186
+#: gsearchtool/gsearchtool.c:1192
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "设置“搜索文件夹”搜索选项的文字"
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1193
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "按下列属性之一排序文件：名称、文件夹、大小、类型或日期"
 
-#: gsearchtool/gsearchtool.c:1188
+#: gsearchtool/gsearchtool.c:1194
 msgid "Set sort order to descending, the default is ascending"
 msgstr "设置为降序排序，默认值为升序排序"
 
-#: gsearchtool/gsearchtool.c:1189
+#: gsearchtool/gsearchtool.c:1195
 msgid "Automatically start a search"
 msgstr "自动开始搜索"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1201
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "选择“%s”搜索选项"
 
-#: gsearchtool/gsearchtool.c:1198
+#: gsearchtool/gsearchtool.c:1204
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "选择并设置“%s”搜索选项"
 
-#: gsearchtool/gsearchtool.c:1305
+#: gsearchtool/gsearchtool.c:1311
 msgid "Invalid option passed to sortby command line argument."
 msgstr "传递给命令行参数 sortby 的选项无效。"
 
-#: gsearchtool/gsearchtool.c:1607
+#: gsearchtool/gsearchtool.c:1611
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1596,175 +1604,172 @@ msgstr ""
 "\n"
 "... 错误太多无法完全显示 ..."
 
-#: gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1625
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "搜索结果可能无效，因为在执行本次搜索时发生了错误。"
 
-#: gsearchtool/gsearchtool.c:1633 gsearchtool/gsearchtool.c:1673
+#: gsearchtool/gsearchtool.c:1637 gsearchtool/gsearchtool.c:1681
 msgid "Show more _details"
 msgstr "显示更多细节(_D)"
 
-#: gsearchtool/gsearchtool.c:1661
+#: gsearchtool/gsearchtool.c:1667
+#, fuzzy
 msgid ""
-"The search results may be invalid.  Do you want to disable the quick search "
-"feature?"
+"The search results may be out of date or invalid.  Do you want to disable "
+"the quick search feature?"
 msgstr "搜索结果可能无效。您是否想要禁用快速搜索特性？"
 
-#: gsearchtool/gsearchtool.c:1684
+#: gsearchtool/gsearchtool.c:1692
 msgid "Disable _Quick Search"
 msgstr "禁用快速搜索(_Q)"
 
-#: gsearchtool/gsearchtool.c:1711
+#: gsearchtool/gsearchtool.c:1719
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "设定子 %d 的组 ID 失败：%s。\n"
 
-#: gsearchtool/gsearchtool.c:1738
+#: gsearchtool/gsearchtool.c:1746
 msgid "Error parsing the search command."
 msgstr "处理搜索命令时出错。"
 
-#: gsearchtool/gsearchtool.c:1771
+#: gsearchtool/gsearchtool.c:1779
 msgid "Error running the search command."
 msgstr "运行搜索命令时出错。"
 
-#: gsearchtool/gsearchtool.c:1918
+#: gsearchtool/gsearchtool.c:1926
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "输入“%s”搜索选项的文本值。"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1931
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "“%s”，以%s计"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1933
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "输入以 %s 计的“%s”搜索选项值。"
 
-#: gsearchtool/gsearchtool.c:1984
+#: gsearchtool/gsearchtool.c:1992
 #, c-format
 msgid "Remove \"%s\""
 msgstr "删除“%s”"
 
-#: gsearchtool/gsearchtool.c:1985
+#: gsearchtool/gsearchtool.c:1993
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "单击可删除“%s”搜索选项。"
 
-#: gsearchtool/gsearchtool.c:2078
+#: gsearchtool/gsearchtool.c:2086
 msgid "A_vailable options:"
 msgstr "可用选项(_V)："
 
-#: gsearchtool/gsearchtool.c:2107
+#: gsearchtool/gsearchtool.c:2115
 msgid "Available options"
 msgstr "可用选项"
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2116
 msgid "Select a search option from the drop-down list."
 msgstr "从下拉列表中选择搜索选项。"
 
-#: gsearchtool/gsearchtool.c:2120
+#: gsearchtool/gsearchtool.c:2128
 msgid "Add search option"
 msgstr "添加搜索选项"
 
-#: gsearchtool/gsearchtool.c:2121
+#: gsearchtool/gsearchtool.c:2129
 msgid "Click to add the selected available search option."
 msgstr "单击可添加选中的可用搜索选项。"
 
-#: gsearchtool/gsearchtool.c:2142
+#: gsearchtool/gsearchtool.c:2150
 msgid "S_earch results:"
 msgstr "搜索结果(_E)："
 
-#: gsearchtool/gsearchtool.c:2178
+#: gsearchtool/gsearchtool.c:2186
 msgid "List View"
 msgstr "列表视图"
 
-#: gsearchtool/gsearchtool.c:2228
+#: gsearchtool/gsearchtool.c:2236
 msgid "Name"
 msgstr "名称"
 
-#: gsearchtool/gsearchtool.c:2248
+#: gsearchtool/gsearchtool.c:2256
 msgid "Folder"
 msgstr "文件夹"
 
-#: gsearchtool/gsearchtool.c:2259
+#: gsearchtool/gsearchtool.c:2267
 msgid "Size"
 msgstr "大小"
 
-#: gsearchtool/gsearchtool.c:2269
+#: gsearchtool/gsearchtool.c:2277
 msgid "Type"
 msgstr "类型"
 
-#: gsearchtool/gsearchtool.c:2279
+#: gsearchtool/gsearchtool.c:2287
 msgid "Date Modified"
 msgstr "修改时间"
 
-#: gsearchtool/gsearchtool.c:2647
+#: gsearchtool/gsearchtool.c:2655
 msgid "_Name contains:"
 msgstr "名称包含(_N)："
 
-#: gsearchtool/gsearchtool.c:2661 gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2669 gsearchtool/gsearchtool.c:2670
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "输入文件名或部分文件名，可以使用通配符。"
 
-#: gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2670
 msgid "Name contains"
 msgstr "名称包含"
 
-#: gsearchtool/gsearchtool.c:2668
+#: gsearchtool/gsearchtool.c:2676
 msgid "_Look in folder:"
 msgstr "搜索文件夹(_L)："
 
-#: gsearchtool/gsearchtool.c:2674
+#: gsearchtool/gsearchtool.c:2682
 msgid "Browse"
 msgstr "浏览"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 msgid "Look in folder"
 msgstr "搜索文件夹"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "选择您想要开始搜索的文件夹或设备。"
 
-#: gsearchtool/gsearchtool.c:2690
+#: gsearchtool/gsearchtool.c:2698
 msgid "Select more _options"
 msgstr "选择更多选项(_O)"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 msgid "Select more options"
 msgstr "选择更多选项"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 msgid "Click to expand or collapse the list of available options."
 msgstr "单击可展开或折叠可用选项列表。"
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2731
 msgid "Click to display the help manual."
 msgstr "单击可显示帮助手册。"
 
-#: gsearchtool/gsearchtool.c:2731
+#: gsearchtool/gsearchtool.c:2739
 msgid "Click to close \"Search for Files\"."
 msgstr "单击可关闭“搜索文件”。"
 
-#: gsearchtool/gsearchtool.c:2757
+#: gsearchtool/gsearchtool.c:2765
 msgid "Click to perform a search."
 msgstr "单击可执行搜索。"
 
-#: gsearchtool/gsearchtool.c:2758
+#: gsearchtool/gsearchtool.c:2766
 msgid "Click to stop a search."
 msgstr "单击可停止搜索。"
 
-#: gsearchtool/gsearchtool.c:2858
-msgid "Cannot initialize bonobo."
-msgstr "无法初始化 bonobo。"
-
-#: logview/about.c:47 logview/logview.c:47
+#: logview/about.c:47 logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "系统日志查看器"
 
@@ -1788,7 +1793,7 @@ msgstr "添加(_A)"
 msgid "Add an action"
 msgstr "添加动作"
 
-#: logview/actions.c:175 logview/logview.c:95
+#: logview/actions.c:175 logview/logview.c:97
 msgid "_Edit"
 msgstr "编辑(_E)"
 
@@ -1920,12 +1925,12 @@ msgstr ""
 "描述：[%s]\n"
 "动作：[%s]\n"
 
-#: logview/desc_db.c:66
+#: logview/desc_db.c:67
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "无法打开正则表达式数据库 <%s>！打开失败。"
 
-#: logview/desc_db.c:176
+#: logview/desc_db.c:177
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr "无法打开描述数据库 <%s>！打开失败。"
@@ -2057,19 +2062,19 @@ msgstr "%m-%d"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:50
+#: logview/logrtns.c:51
 msgid "One file or more could not be opened"
 msgstr "无法打开一个或更多文件"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:221
 msgid "Unable to open logfile!\n"
 msgstr "无法打开日志文件！\n"
 
-#: logview/logrtns.c:227 logview/logrtns.c:247
+#: logview/logrtns.c:228 logview/logrtns.c:248
 msgid "Not enough memory!\n"
 msgstr "内存不足！\n"
 
-#: logview/logrtns.c:302
+#: logview/logrtns.c:303
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2078,166 +2083,166 @@ msgstr ""
 "用户不能读取 %s。要么以 root 身份运行程序，要么要求系统管理员改变文件的许可"
 "权。\n"
 
-#: logview/logrtns.c:307
+#: logview/logrtns.c:308
 #, c-format
 msgid "%s is too big."
 msgstr "%s 太大。"
 
-#: logview/logrtns.c:311
+#: logview/logrtns.c:312
 #, c-format
 msgid "%s could not be opened."
 msgstr "无法打开 %s。"
 
-#: logview/logrtns.c:350
+#: logview/logrtns.c:351
 #, c-format
 msgid "%s not a log file."
 msgstr "%s 不是日志文件。"
 
-#: logview/logrtns.c:554 logview/logrtns.c:578
+#: logview/logrtns.c:556 logview/logrtns.c:580
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats：内存耗尽"
 
-#: logview/logview-findbar.c:274
+#: logview/logview-findbar.c:275
 msgid "Fin_d:"
 msgstr "查找(_D)："
 
-#: logview/logview-findbar.c:279
+#: logview/logview-findbar.c:280
 msgid "_Previous"
 msgstr "上一个(_P)"
 
-#: logview/logview-findbar.c:281
+#: logview/logview-findbar.c:282
 msgid "_Next"
 msgstr "下一个(_N)"
 
-#: logview/logview.c:94
+#: logview/logview.c:96
 msgid "_Log"
 msgstr "日志(_L)"
 
-#: logview/logview.c:96
+#: logview/logview.c:98
 msgid "_View"
 msgstr "查看(_V)"
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "_Open..."
 msgstr "打开(_O)..."
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "Open a log from file"
 msgstr "从文件打开日志"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "_Properties"
 msgstr "属性(_P)"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "Show Log Properties"
 msgstr "显示日志属性"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 msgid "Close"
 msgstr "关闭"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 msgid "Close this log"
 msgstr "关闭此日志"
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 msgid "Quit the log viewer"
 msgstr "退出日志查看器"
 
-#: logview/logview.c:108
+#: logview/logview.c:110
 msgid "Copy"
 msgstr "复制"
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select All"
 msgstr "全选"
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select the entire log"
 msgstr "选中整个日志"
 
-#: logview/logview.c:112
+#: logview/logview.c:114
 msgid "Find pattern in logs"
 msgstr "在日志中查找模式"
 
-#: logview/logview.c:119
+#: logview/logview.c:121
 msgid "Normal text size"
 msgstr "普通文本大小"
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 msgid "Collapse _All"
 msgstr "全部折叠(_A)"
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 msgid "Collapse all the rows"
 msgstr "折叠所有的行"
 
-#: logview/logview.c:125
+#: logview/logview.c:127
 msgid "Open the help contents for the log viewer"
 msgstr "打开日志查看器的帮助目录"
 
-#: logview/logview.c:127
+#: logview/logview.c:129
 msgid "Show the about dialog for the log viewer"
 msgstr "显示日志查看器的关于对话框"
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Sidebar"
 msgstr "侧边栏"
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Show the sidebar"
 msgstr "显示侧边栏"
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "_Monitor"
 msgstr "监视(_M)"
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "Monitor Current Log"
 msgstr "监视当前日志"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 msgid "Ca_lendar"
 msgstr "日历(_L)"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 msgid "Show Calendar Log"
 msgstr "显示日历日志"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Date"
 msgstr "日期"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Host Name"
 msgstr "主机名"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Process"
 msgstr "进程"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Message"
 msgstr "消息"
 
-#: logview/logview.c:741
+#: logview/logview.c:745
 msgid "Version : "
 msgstr "版本："
 
-#: logview/logview.c:853
+#: logview/logview.c:857
 msgid "Open new logfile"
 msgstr "打开新的日志文件"
 
-#: logview/logview.c:1209
+#: logview/logview.c:1213
 msgid "There was an error displaying help."
 msgstr "显示帮助时出错。"
 
-#: logview/logview.c:1227
+#: logview/logview.c:1231
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (已监视) - %s"
@@ -2262,3 +2267,12 @@ msgstr "条目细节"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%m-%d %X"
+
+#~ msgid "On a Dictionary Server"
+#~ msgstr "在字典服务器"
+
+#~ msgid "_Word:"
+#~ msgstr "单词(_W)："
+
+#~ msgid "Cannot initialize bonobo."
+#~ msgstr "无法初始化 bonobo。"

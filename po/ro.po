@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.ro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-08 09:32-0400\n"
+"POT-Creation-Date: 2005-07-11 13:19-0400\n"
 "PO-Revision-Date: 2005-03-06 23:00+0200\n"
 "Last-Translator: Mugurel Tudor <mugurelu@go.ro>\n"
 "Language-Team: Romanian <@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.9.1\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:149
 msgid "Dictionary Lookup"
 msgstr "Căutare dicţionar"
 
@@ -30,12 +30,12 @@ msgstr "Căutare dicţionar"
 msgid "Lookup words in an online dictionary"
 msgstr "Caută cuvântul într-un dicţionar online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
-#: logview/logview.c:127
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:619
+#: logview/logview.c:129
 msgid "_About"
 msgstr "_Despre"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:97
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:99
 msgid "_Help"
 msgstr "_Ajutor"
 
@@ -47,11 +47,8 @@ msgstr "_Caută textul selectat"
 msgid "_Preferences"
 msgstr "_Preferinţe"
 
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
-#: gdictsrc/gdict-pref-dialog.c:739
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:700
+#: gdictsrc/gdict-pref-dialog.c:747
 msgid "Cannot connect to server"
 msgstr "Nu mă pot conecta la server"
 
@@ -60,42 +57,43 @@ msgid "Server Error"
 msgstr "Eroare server"
 
 #: gdictsrc/dict.c:690
+#, fuzzy
 msgid ""
-"A serious error occured. Please check that your server and port are correct. "
-"For reference the default server is dict.org and the port 2628"
+"A serious error occurred. Please check that your server and port are "
+"correct. For reference the default server is dict.org and the port 2628"
 msgstr ""
 "O eroare gravă a intervenit. Vă rugăm verificaţi că serverul şi portul au "
 "fost specificate corect. Pentru referinţă serverul implicit este dict.org "
 "iar portul este 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:43
+#: gdictsrc/gdict-about.c:40 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "Iustin Pop <iusty@geocities.com>\n"
 "Dan Damian <dand@dnttm.ro>\n"
 "Mugurel Tudor <mugurelu@go.ro> "
 
-#: gdictsrc/gdict-about.c:45
+#: gdictsrc/gdict-about.c:42
 msgid "A client for the MIT dictionary server."
 msgstr "Un client pentru server de tip dictionar MIT."
 
-#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
-#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
-#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
-#: gdictsrc/main.c:90
+#: gdictsrc/gdict-about.c:45 gdictsrc/gdict-applet.c:351
+#: gdictsrc/gdict-defbox.c:101 gdictsrc/gdict-defbox.c:114
+#: gdictsrc/gdict-pref-dialog.c:499 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:87
 msgid "Dictionary"
 msgstr "Dicţionar"
 
-#: gdictsrc/gdict-app.c:87
+#: gdictsrc/gdict-app.c:101
 msgid "Connection error"
 msgstr "Eroare la conectare"
 
-#: gdictsrc/gdict-app.c:134
+#: gdictsrc/gdict-app.c:117
 msgid "Unable to perform requested operation."
 msgstr "Nu am putut realiza operaţiunea solicitată."
 
-#: gdictsrc/gdict-app.c:135
+#: gdictsrc/gdict-app.c:118
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -103,290 +101,300 @@ msgstr ""
 "Fie serverul pe care îl utilizaţi nu este disponibil\n"
 "ori nu sunteţi conectat la Internet."
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:276
 msgid "Print Word Definition"
 msgstr "Tipăriţi definiţia cuvântului"
 
-#: gdictsrc/gdict-app.c:416
+#: gdictsrc/gdict-app.c:391
 msgid "Find"
 msgstr "Caută"
 
-#: gdictsrc/gdict-app.c:426
+#: gdictsrc/gdict-app.c:401
 msgid "_Search for:"
 msgstr "_Caută după:"
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:889
+#: gdictsrc/gdict-app.c:500 gdictsrc/gdict-applet.c:299
+#: gdictsrc/gdict-pref-dialog.c:901
 msgid "Could not display help"
 msgstr "Nu am putut afişa ajutorul"
 
 #. Top
-#: gdictsrc/gdict-app.c:646
+#: gdictsrc/gdict-app.c:589
 msgid "_Dictionary"
 msgstr "_Dicţionar"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
+#: gdictsrc/gdict-app.c:595
 msgid "_Look Up Word"
 msgstr "_Caută cuvântul"
 
-#: gdictsrc/gdict-app.c:653
+#: gdictsrc/gdict-app.c:596
 msgid "Lookup word in dictionary"
 msgstr "Caută cuvântul în dicţionar"
 
-#: gdictsrc/gdict-app.c:654
+#: gdictsrc/gdict-app.c:597
 msgid "_Print"
 msgstr "_Tipăreşte"
 
-#: gdictsrc/gdict-app.c:655
+#: gdictsrc/gdict-app.c:598
 msgid "Print the current definition"
 msgstr "Tipăreşte definiţia curentă"
 
-#: gdictsrc/gdict-app.c:656
+#: gdictsrc/gdict-app.c:599
 msgid "_Close"
 msgstr "În_chide"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:600
 msgid "Close the application"
 msgstr "Închide aplicaţia"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:660 logview/logview.c:112
+#: gdictsrc/gdict-app.c:603 logview/logview.c:114
 msgid "_Find..."
 msgstr "_Caută..."
 
-#: gdictsrc/gdict-app.c:661
+#: gdictsrc/gdict-app.c:604
 msgid "Find a word in the text"
 msgstr "Caută un cuvânt în text"
 
-#: gdictsrc/gdict-app.c:662
+#: gdictsrc/gdict-app.c:605
 msgid "Find Ne_xt"
 msgstr "Caută _următorul"
 
-#: gdictsrc/gdict-app.c:663
+#: gdictsrc/gdict-app.c:606
 msgid "Find next occurrence of the word"
 msgstr "Caută următoarea potrivire a cuvântului"
 
-#: gdictsrc/gdict-app.c:664
+#: gdictsrc/gdict-app.c:607
 msgid "P_references"
 msgstr "P_referinţe"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:608
 msgid "Configure the application"
 msgstr "Configurează aplicaţia"
 
 #. View menu
-#: gdictsrc/gdict-app.c:668 logview/logview.c:115
+#: gdictsrc/gdict-app.c:611 logview/logview.c:117
 msgid "Bigger text size"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:670 logview/logview.c:117
+#: gdictsrc/gdict-app.c:613 logview/logview.c:119
 msgid "Smaller text size"
 msgstr ""
 
 #. Help menu
-#: gdictsrc/gdict-app.c:674 logview/logview.c:125
+#: gdictsrc/gdict-app.c:617 logview/logview.c:127
 msgid "_Contents"
 msgstr "_Conţinut"
 
-#: gdictsrc/gdict-app.c:675
+#: gdictsrc/gdict-app.c:618
 msgid "View help for this application"
 msgstr "Vizualizează ajutorul pentru această aplicaţie"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:620
 msgid "About this application"
 msgstr "Despre această aplicaţie"
 
-#: gdictsrc/gdict-app.c:682
-msgid "On a Dictionary Server"
-msgstr "Pe un server dicţionar"
-
-#: gdictsrc/gdict-app.c:684
-msgid "On a Web Site"
-msgstr "Pe un sit web"
-
-#: gdictsrc/gdict-app.c:690
+#: gdictsrc/gdict-app.c:625
 msgid "Cu_t"
 msgstr "_Taie"
 
-#: gdictsrc/gdict-app.c:691
+#: gdictsrc/gdict-app.c:626
 msgid "Cut the selection"
 msgstr "Taie selecţia"
 
-#: gdictsrc/gdict-app.c:692
+#: gdictsrc/gdict-app.c:627
 msgid "_Copy"
 msgstr "_Copiază"
 
-#: gdictsrc/gdict-app.c:693 logview/logview.c:108
+#: gdictsrc/gdict-app.c:628 logview/logview.c:110
 msgid "Copy the selection"
 msgstr "Copiază selecţia"
 
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:629
 msgid "_Paste"
 msgstr "Li_peşte"
 
-#: gdictsrc/gdict-app.c:695
+#: gdictsrc/gdict-app.c:630
 msgid "Paste clipboard"
 msgstr "Lipeşte conţinutul clipboard-ului"
 
-#: gdictsrc/gdict-app.c:696
+#: gdictsrc/gdict-app.c:631
 msgid "Select _All"
 msgstr "Selectează t_ot"
 
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:632
 msgid "Select everything"
 msgstr "Selectează tot"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:637
 msgid "_Spellings"
 msgstr "_Ortografia"
 
-#: gdictsrc/gdict-app.c:703
+#: gdictsrc/gdict-app.c:638
 msgid "View alternate spellings"
 msgstr "Vizualizează ortografiile alternative"
 
-#: gdictsrc/gdict-app.c:849
-msgid "_Word:"
-msgstr "_Cuvânt:"
+#: gdictsrc/gdict-app.c:748
+#, fuzzy
+msgid "_Look Up"
+msgstr "_Caută cuvântul"
 
-#: gdictsrc/gdict-app.c:877
+#: gdictsrc/gdict-app.c:757
+#, fuzzy
+msgid "In Dictionary"
+msgstr "Dicţionar"
+
+#: gdictsrc/gdict-app.c:758
+msgid "On a Web Site"
+msgstr "Pe un sit web"
+
+#: gdictsrc/gdict-app.c:774
 msgid "Word"
 msgstr "Cuvânt"
 
-#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
+#: gdictsrc/gdict-app.c:775
 msgid "Word Entry"
 msgstr "Intrare cuvânt"
 
-#: gdictsrc/gdict-app.c:879
+#: gdictsrc/gdict-app.c:776
 msgid "Enter a Word or select one from the list below"
 msgstr "Introduceţi un cuvânt sau selectaţi unul din lista de mai jos"
 
-#: gdictsrc/gdict-app.c:883
+#: gdictsrc/gdict-app.c:779
 msgid "Look Up for a Word"
 msgstr "Caută un cuvânt"
 
-#: gdictsrc/gdict-applet.c:152
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "Intrare cuvânt dicţionar"
 
-#: gdictsrc/gdict-defbox.c:101
+#: gdictsrc/gdict-defbox.c:103
 msgid "Looking up word..."
 msgstr "Caut cuvântul..."
 
-#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
+#: gdictsrc/gdict-defbox.c:132 gdictsrc/gdict-entry.c:114
+#: gdictsrc/gdict-speller.c:255
 msgid "No matches found"
 msgstr "Nu am găsit nici o potrivire"
 
-#: gdictsrc/gdict-defbox.c:141
+#: gdictsrc/gdict-defbox.c:143
 msgid "String not found"
 msgstr "Textul nu a fost găsit"
 
-#: gdictsrc/gdict-defbox.c:616
+#: gdictsrc/gdict-defbox.c:618
 msgid "Definition preview"
 msgstr "Previzualizare definiţie"
 
-#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
+#: gdictsrc/gdict-defbox.c:947 gdictsrc/gdict-entry.c:132
+#: gdictsrc/gdict-speller.c:295
 msgid "Error invoking query"
 msgstr "Eroare la lansarea cererii"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-entry.c:102
+#, fuzzy
+msgid "Looking up entry..."
+msgstr "Caut cuvântul..."
+
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "De_fault Server"
 msgstr "Server _implicit"
 
-#: gdictsrc/gdict-pref-dialog.c:276
+#: gdictsrc/gdict-pref-dialog.c:278
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:284
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "Reset server to default"
 msgstr "Revin la implicite"
 
-#: gdictsrc/gdict-pref-dialog.c:286
+#: gdictsrc/gdict-pref-dialog.c:288
 msgid "_Port:"
 msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:296
+#: gdictsrc/gdict-pref-dialog.c:298
 msgid "Def_ault Port"
 msgstr "_Port implicit"
 
-#: gdictsrc/gdict-pref-dialog.c:311
+#: gdictsrc/gdict-pref-dialog.c:313
 msgid "Reset port to default"
 msgstr "Revin la implicite"
 
-#: gdictsrc/gdict-pref-dialog.c:312
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Server Entry"
 msgstr "Intrare server"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Enter the Server Name"
 msgstr "Introduceţi numele serverului"
 
-#: gdictsrc/gdict-pref-dialog.c:315
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port"
 msgstr "Port"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Port Entry"
 msgstr "Intrare port"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Enter the Port Number"
 msgstr "Introduceţi numărul portului"
 
-#: gdictsrc/gdict-pref-dialog.c:320
+#: gdictsrc/gdict-pref-dialog.c:322
 msgid "_Database:"
 msgstr "_Bază de date:"
 
-#: gdictsrc/gdict-pref-dialog.c:327
+#: gdictsrc/gdict-pref-dialog.c:332
 msgid "Strat_egy:"
 msgstr "Strat_egie:"
 
-#: gdictsrc/gdict-pref-dialog.c:334
-msgid "Font:"
-msgstr ""
+#: gdictsrc/gdict-pref-dialog.c:342
+#, fuzzy
+msgid "F_ont:"
+msgstr "_Port:"
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 msgid "Web Site"
 msgstr "Sit web"
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 msgid "Search Address"
 msgstr "Adresă căutare"
 
-#: gdictsrc/gdict-pref-dialog.c:481
+#: gdictsrc/gdict-pref-dialog.c:491
 msgid "Dictionary Preferences"
 msgstr "Preferinţe dicţionar"
 
-#: gdictsrc/gdict-pref-dialog.c:493
+#: gdictsrc/gdict-pref-dialog.c:503
 msgid "Web Sites"
 msgstr "Situri web"
 
-#: gdictsrc/gdict-pref-dialog.c:682
+#: gdictsrc/gdict-pref-dialog.c:690
 msgid "Search all databases"
 msgstr "Caută toate bazele de date"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database"
 msgstr "Bază de date"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database Name"
 msgstr "Nume bază de date"
 
-#: gdictsrc/gdict-pref-dialog.c:860
+#: gdictsrc/gdict-pref-dialog.c:872
 msgid "Default Strategy"
 msgstr "Strategie implicită"
 
-#: gdictsrc/gdict-speller.c:114
+#: gdictsrc/gdict-speller.c:115
 #, fuzzy
 msgid "Spellings"
 msgstr "_Ortografia"
 
-#: gdictsrc/gdict-speller.c:235
+#: gdictsrc/gdict-speller.c:236
 msgid "Spell-checking..."
 msgstr "Verificare ortografică..."
 
@@ -492,60 +500,60 @@ msgstr ""
 "ext2 pentru sistemul de fişiere nativ linux sau fat pentru sistemul de "
 "fişiere DOS."
 
-#: gfloppy/src/badblocks.c:84
+#: gfloppy/src/badblocks.c:85
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Eroare internă: Nu pot căuta până la locaţia curentă."
 
-#: gfloppy/src/badblocks.c:93
+#: gfloppy/src/badblocks.c:94
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Eroare internă: Valoare ciudată (%ld) în do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:251
+#: gfloppy/src/badblocks.c:252
 msgid "Checking for bad blocks..."
 msgstr "Verific blocurile invalide..."
 
-#: gfloppy/src/badblocks.c:263
+#: gfloppy/src/badblocks.c:264
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
 "Eşec la deschiderea dispozitivului %s pentru verificarea blocurilor "
 "invalide\n"
 
-#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
+#: gfloppy/src/badblocks.c:284 gfloppy/src/gfloppy.c:530
 msgid "Checking for bad blocks... Done"
 msgstr "Verific blocurile invalide... Gata"
 
-#: gfloppy/src/fdformat.c:42
+#: gfloppy/src/fdformat.c:43
 msgid "Formatting the disk..."
 msgstr "Formatez discul..."
 
-#: gfloppy/src/fdformat.c:45
+#: gfloppy/src/fdformat.c:46
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Nu ştiu ce este, însă e greşit rău."
 
-#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:67
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Eroare la formatarea pistei #%d"
 
-#: gfloppy/src/fdformat.c:75
+#: gfloppy/src/fdformat.c:76
 msgid "Error during completion of formatting"
 msgstr "Eroare în timpul terminării formatării"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:79
+#: gfloppy/src/fdformat.c:80
 msgid "Formatting the disk... Done"
 msgstr "Formatez discul... Gata"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:95
+#: gfloppy/src/fdformat.c:96
 msgid "Verifying the format..."
 msgstr "Verific formatarea..."
 
-#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
+#: gfloppy/src/fdformat.c:101 gfloppy/src/fdformat.c:186
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -555,12 +563,12 @@ msgstr ""
 "\n"
 "Vă rog să confirmaţi că nu este protejată la scriere."
 
-#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
+#: gfloppy/src/fdformat.c:104 gfloppy/src/fdformat.c:189
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Permisiuni insuficiente pentru a deschide dispozitivul dischetă %s."
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:108 gfloppy/src/fdformat.c:193
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -572,7 +580,7 @@ msgstr ""
 "Vă rog să confirmaţi dacă este în dispozitiv,\n"
 "complet introdus."
 
-#: gfloppy/src/fdformat.c:110
+#: gfloppy/src/fdformat.c:111
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -583,7 +591,7 @@ msgstr ""
 "\n"
 "Cod eroare: %s:%d"
 
-#: gfloppy/src/fdformat.c:133
+#: gfloppy/src/fdformat.c:134
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -592,31 +600,31 @@ msgstr ""
 "Eroare la citire:\n"
 "Problemă la citirea cilindrului %d, aşteptam %d, am citit %d"
 
-#: gfloppy/src/fdformat.c:136
+#: gfloppy/src/fdformat.c:137
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Problemă la citirea cilindrului %d, aşteptam %d, am citit %d"
 
-#: gfloppy/src/fdformat.c:147
+#: gfloppy/src/fdformat.c:148
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Date corupte în cil %d.  Continui... "
 
-#: gfloppy/src/fdformat.c:156
+#: gfloppy/src/fdformat.c:157
 #, c-format
 msgid "Error closing device %s"
 msgstr "Eroare la închiderea dispozitivului %s"
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:164
 msgid "Verifying the format... Done"
 msgstr "Verific formatarea... Gata"
 
-#: gfloppy/src/fdformat.c:175
+#: gfloppy/src/fdformat.c:176
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "Nu pot scrie pe dispozitivul %s"
 
-#: gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:196
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -627,30 +635,30 @@ msgstr ""
 "\n"
 "Cod eroare %s"
 
-#: gfloppy/src/fdformat.c:207
+#: gfloppy/src/fdformat.c:208
 msgid "Could not determine current floppy geometry."
 msgstr "Nu am putut determina geometria curentă a unităţii floppy."
 
-#: gfloppy/src/gfloppy.c:215
+#: gfloppy/src/gfloppy.c:218
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Eroare la crearea unui nume unic pentru fişierul cu lista de sectoare "
 "defecte."
 
-#: gfloppy/src/gfloppy.c:235
+#: gfloppy/src/gfloppy.c:238
 msgid "Error while filling the bad blocks list file."
 msgstr "Eroare la scrierea în fişierul cu lista de sectoare defecte."
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:301
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Eroare la crearea (%s) comanda: %s."
 
-#: gfloppy/src/gfloppy.c:324
+#: gfloppy/src/gfloppy.c:327
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Semnătură de start mke2fs necunoscută, abandonez."
 
-#: gfloppy/src/gfloppy.c:338
+#: gfloppy/src/gfloppy.c:341
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -662,16 +670,16 @@ msgstr ""
 "\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:355
+#: gfloppy/src/gfloppy.c:358
 msgid "Abnormal child process termination."
 msgstr "Terminare anormală a procesului copil."
 
-#: gfloppy/src/gfloppy.c:380
+#: gfloppy/src/gfloppy.c:383
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Eroare la crearea comenzii mbadblocks: %s"
 
-#: gfloppy/src/gfloppy.c:392
+#: gfloppy/src/gfloppy.c:395
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -681,28 +689,28 @@ msgstr ""
 "următoarea eroare:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:435
+#: gfloppy/src/gfloppy.c:438
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Terminare anormală a procesului copil mbadblocks."
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
+#: gfloppy/src/gfloppy.c:464 gfloppy/src/gfloppy.c:504
 msgid "Making filesystem on disk..."
 msgstr "Creez sistemul de fişiere pe disc..."
 
-#: gfloppy/src/gfloppy.c:469
+#: gfloppy/src/gfloppy.c:472
 msgid "Unable to create filesystem correctly."
 msgstr "Nu pot crea corect sistemul de fişiere."
 
-#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
+#: gfloppy/src/gfloppy.c:477 gfloppy/src/gfloppy.c:516
 msgid "Making filesystem on disk... Done"
 msgstr "Creez sistemul de fişiere pe disc... Gata"
 
-#: gfloppy/src/gfloppy.c:518
+#: gfloppy/src/gfloppy.c:521
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Verific pentru blocuri corupte... (poate să ia ceva timp)"
 
-#: gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:526
 msgid "Error while checking the bad blocks."
 msgstr "Eroare în timpul verificării sectoarelor defecte."
 
@@ -794,11 +802,11 @@ msgstr "_Rapidă (creează doar sistemul de fişiere)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standard (adaugă o formatare de nivel jos la modul rapid)"
 
-#: gfloppy/src/main.c:257
+#: gfloppy/src/main.c:259
 msgid "Cannot Format"
 msgstr "Nu pot formata"
 
-#: gfloppy/src/main.c:258
+#: gfloppy/src/main.c:260
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -806,12 +814,12 @@ msgstr ""
 "Nici una dintre aplicaţiile mke2fs sau mkdosfs/mformat nu sunt instalate. Nu "
 "puteţi formata o dischetă fără una dintre ele."
 
-#: gfloppy/src/main.c:278
+#: gfloppy/src/main.c:280
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nu am putut deschide dispozitivul %s, formatarea nu poate continua."
 
-#: gfloppy/src/main.c:281 gfloppy/src/main.c:344
+#: gfloppy/src/main.c:283 gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -820,7 +828,7 @@ msgstr ""
 "Dispozitivul %s este deconectat.\n"
 "Vă rugăm ataşaţi dispozitivul pentru a continua."
 
-#: gfloppy/src/main.c:284 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:286 gfloppy/src/main.c:349
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -832,39 +840,39 @@ msgstr ""
 "Contactaţi administratorul de sistem pentru a obţine permisiile necesare "
 "pentru scriere."
 
-#: gfloppy/src/main.c:291 gfloppy/src/main.c:355
+#: gfloppy/src/main.c:293 gfloppy/src/main.c:357
 msgid "Cannot initialize device"
 msgstr "Nu pot iniţializa dispozitivul"
 
-#: gfloppy/src/main.c:341
+#: gfloppy/src/main.c:343
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nu am putut deschide nici un dispozitiv, formatarea nu poate continua."
 
-#: gfloppy/src/main.c:344 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:346 gfloppy/src/main.c:349
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 sau /dev/fd0"
 
-#: gfloppy/src/main.c:508
+#: gfloppy/src/main.c:510
 msgid "Could not display help for the floppy formatter."
 msgstr "Nu am putut afişa ajutorul pentru formatarea dischetei."
 
-#: gfloppy/src/main.c:527
+#: gfloppy/src/main.c:529
 msgid "Incorrect volume name"
 msgstr "Nume incorect pentru volum"
 
-#: gfloppy/src/main.c:528
+#: gfloppy/src/main.c:530
 msgid "The volume name can't contain any blank space."
 msgstr "Numele volumului nu poate conţine spaţii goale."
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:579
 msgid "The device to format"
 msgstr "Dispozitivul de formatat"
 
-#: gfloppy/src/main.c:578
+#: gfloppy/src/main.c:580
 msgid "DEVICE"
 msgstr "DEVICE"
 
-#: gfloppy/src/progress.c:122
+#: gfloppy/src/progress.c:126
 #, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -879,15 +887,15 @@ msgstr[1] ""
 "Discheta a fost formatată, dar <b>%d sectoare defecte</b> (din %d) au fost "
 "găsite şi marcate."
 
-#: gfloppy/src/progress.c:125
+#: gfloppy/src/progress.c:129
 msgid "Floppy formatted successfully."
 msgstr "Dischetă formatată cu succes."
 
-#: gfloppy/src/progress.c:131
+#: gfloppy/src/progress.c:135
 msgid "Floppy formatting cancelled."
 msgstr "Formatarea dischetei abandonată."
 
-#: gfloppy/src/progress.c:174
+#: gfloppy/src/progress.c:178
 msgid "Format Progress"
 msgstr "Progresie formatare"
 
@@ -1500,172 +1508,172 @@ msgstr "legătura (ruptă)"
 msgid "link to %s"
 msgstr "legătură căte %s"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:80
 msgid "Contains the _text"
 msgstr "Conţine _textul"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:82
 msgid "_Date modified less than"
 msgstr "_Data modificării mai mică decât"
 
-#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:82 gsearchtool/gsearchtool.c:83
 msgid "days"
 msgstr "zile"
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:83
 msgid "Date modified more than"
 msgstr "Data modificării mai _mare decât"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:85
 msgid "S_ize at least"
 msgstr "Mă_rimea de cel puţin"
 
-#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:85 gsearchtool/gsearchtool.c:86
 msgid "kilobytes"
 msgstr "kilobytes"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:86
 msgid "Si_ze at most"
 msgstr "Mărim_ea cel mult"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:87
 msgid "File is empty"
 msgstr "Fişierul este gol"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:89
 msgid "Owned by _user"
 msgstr "Deţinut de _utilizator"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:90
 msgid "Owned by _group"
 msgstr "Deţinut de _grup"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:91
 msgid "Owner is unrecognized"
 msgstr "Proprietarul nu a fost recunoscut"
 
-#: gsearchtool/gsearchtool.c:94
+#: gsearchtool/gsearchtool.c:93
 msgid "Na_me does not contain"
 msgstr "N_umele nu conţine"
 
-#: gsearchtool/gsearchtool.c:95
+#: gsearchtool/gsearchtool.c:94
 msgid "Name matches regular e_xpression"
 msgstr "Fişierul corespunde e_xpresiei regulate"
 
-#: gsearchtool/gsearchtool.c:97
+#: gsearchtool/gsearchtool.c:96
 msgid "Show hidden and backup files"
 msgstr "Afişează fişierele ascunse şi de backup"
 
-#: gsearchtool/gsearchtool.c:98
+#: gsearchtool/gsearchtool.c:97
 msgid "Follow symbolic links"
 msgstr "Urmează legăturile simbolice"
 
-#: gsearchtool/gsearchtool.c:99
+#: gsearchtool/gsearchtool.c:98
 msgid "Include other filesystems"
 msgstr "Include şi alte fişiere de sisteme"
 
-#: gsearchtool/gsearchtool.c:180
+#: gsearchtool/gsearchtool.c:179
 msgid "_Open"
 msgstr "_Deschide"
 
-#: gsearchtool/gsearchtool.c:181
+#: gsearchtool/gsearchtool.c:180
 msgid "O_pen Folder"
 msgstr "D_eschide dosar"
 
-#: gsearchtool/gsearchtool.c:182
+#: gsearchtool/gsearchtool.c:181
 msgid "Mo_ve to Trash"
 msgstr "Mu_tă la Gunoi"
 
-#: gsearchtool/gsearchtool.c:183
+#: gsearchtool/gsearchtool.c:182
 msgid "_Save Results As..."
 msgstr "Salvează _rezultate ca..."
 
-#: gsearchtool/gsearchtool.c:255 gsearchtool/gsearchtool.c:272
+#: gsearchtool/gsearchtool.c:254 gsearchtool/gsearchtool.c:271
 msgid "A locate database has probably not been created."
 msgstr "O bază de date locate nu a fost probabil creată."
 
-#: gsearchtool/gsearchtool.c:376
+#: gsearchtool/gsearchtool.c:375
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Conversia setului de caractere a eşuat pentru „%s”"
 
-#: gsearchtool/gsearchtool.c:763 gsearchtool/gsearchtool.c:792
+#: gsearchtool/gsearchtool.c:769 gsearchtool/gsearchtool.c:798
 msgid "No files found"
 msgstr "Nici un fişier găsit"
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:791
 msgid "(stopped)"
 msgstr "(oprit)"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:797
 msgid "No Files Found"
 msgstr "Nu am găsit nici un fişier."
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:802
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d fişier găsit"
 msgstr[1] "%d fişiere găsite"
 
-#: gsearchtool/gsearchtool.c:800 gsearchtool/gsearchtool.c:838
+#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:844
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d fişier găsit"
 msgstr[1] "%d fişiere găsite"
 
-#: gsearchtool/gsearchtool.c:817 gsearchtool/gsearchtool.c:1076
-#: gsearchtool/gsearchtool.c:1162 gsearchtool/gsearchtool.c:2838
+#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1082
+#: gsearchtool/gsearchtool.c:1168 gsearchtool/gsearchtool.c:2846
 msgid "Search for Files"
 msgstr "Caută fişiere"
 
-#: gsearchtool/gsearchtool.c:910
+#: gsearchtool/gsearchtool.c:916
 msgid "Entry changed called for a non entry option!"
 msgstr "Intrarea s-a schimbat pentru o opţiune non-intrare!"
 
-#: gsearchtool/gsearchtool.c:1162
+#: gsearchtool/gsearchtool.c:1168
 msgid "Searching..."
 msgstr "Caut..."
 
-#: gsearchtool/gsearchtool.c:1185
+#: gsearchtool/gsearchtool.c:1191
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Setează textul pentru opţiunea de căutare „Numele conţine”"
 
-#: gsearchtool/gsearchtool.c:1186
+#: gsearchtool/gsearchtool.c:1192
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Setează textul pentru opţiunea de căutare „Caută în dosar”"
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1193
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sortează fişierele după una dintre următoarele: nume, dosar, mărime, tip sau "
 "dată"
 
-#: gsearchtool/gsearchtool.c:1188
+#: gsearchtool/gsearchtool.c:1194
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 "Setează ordinea de sortare la descrescătoare, implicit este crescătoare"
 
-#: gsearchtool/gsearchtool.c:1189
+#: gsearchtool/gsearchtool.c:1195
 msgid "Automatically start a search"
 msgstr "Porneşte automat o căutare"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1201
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Selectează opţiunea de căutare „%s”"
 
-#: gsearchtool/gsearchtool.c:1198
+#: gsearchtool/gsearchtool.c:1204
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Selectează şi setează opţiunea de căutare „%s”"
 
-#: gsearchtool/gsearchtool.c:1305
+#: gsearchtool/gsearchtool.c:1311
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Opţiune invalidă pasată ca argument comenzii de sortare."
 
-#: gsearchtool/gsearchtool.c:1607
+#: gsearchtool/gsearchtool.c:1611
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1673,7 +1681,7 @@ msgstr ""
 "\n"
 "... Prea multe erori pentru afişare ..."
 
-#: gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1625
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1681,174 +1689,171 @@ msgstr ""
 "Rezultatele căutării ar putea fi invalide. Au fost întâlnite erori în timpul "
 "acestei căutări."
 
-#: gsearchtool/gsearchtool.c:1633 gsearchtool/gsearchtool.c:1673
+#: gsearchtool/gsearchtool.c:1637 gsearchtool/gsearchtool.c:1681
 msgid "Show more _details"
 msgstr "Afişează mai multe _detalii"
 
-#: gsearchtool/gsearchtool.c:1661
+#: gsearchtool/gsearchtool.c:1667
+#, fuzzy
 msgid ""
-"The search results may be invalid.  Do you want to disable the quick search "
-"feature?"
+"The search results may be out of date or invalid.  Do you want to disable "
+"the quick search feature?"
 msgstr ""
 "Rezultatele căutării ar putea fi invalide. Doriţi să dezactivaţi opţiunea de "
 "căutare rapidă?"
 
-#: gsearchtool/gsearchtool.c:1684
+#: gsearchtool/gsearchtool.c:1692
 msgid "Disable _Quick Search"
 msgstr "Dezactivare căutare _rapidă"
 
-#: gsearchtool/gsearchtool.c:1711
+#: gsearchtool/gsearchtool.c:1719
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Nu am putut seta id-ul pentru grupul de procese %d: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1738
+#: gsearchtool/gsearchtool.c:1746
 msgid "Error parsing the search command."
 msgstr "Eroare la parsarea comenzii de căutare."
 
-#: gsearchtool/gsearchtool.c:1771
+#: gsearchtool/gsearchtool.c:1779
 msgid "Error running the search command."
 msgstr "Eroare la rularea comenzii de căutare."
 
-#: gsearchtool/gsearchtool.c:1918
+#: gsearchtool/gsearchtool.c:1926
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Introduceţi o valoare text pentru opţiunea de căutare „%s”."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1931
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "„%s” în %s"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1933
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Introduceţi o valoare în %s pentru opţiunea de căutare „%s”."
 
-#: gsearchtool/gsearchtool.c:1984
+#: gsearchtool/gsearchtool.c:1992
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Şterge „%s”"
 
-#: gsearchtool/gsearchtool.c:1985
+#: gsearchtool/gsearchtool.c:1993
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Clic pentru a şterge opţiunea de căutare „%s”."
 
-#: gsearchtool/gsearchtool.c:2078
+#: gsearchtool/gsearchtool.c:2086
 msgid "A_vailable options:"
 msgstr "Opţiuni _disponibile:"
 
-#: gsearchtool/gsearchtool.c:2107
+#: gsearchtool/gsearchtool.c:2115
 msgid "Available options"
 msgstr "Opţiuni disponibile"
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2116
 msgid "Select a search option from the drop-down list."
 msgstr "Selectaţi o opţiune de căutare din lista derulantă."
 
-#: gsearchtool/gsearchtool.c:2120
+#: gsearchtool/gsearchtool.c:2128
 msgid "Add search option"
 msgstr "Adaugă o opţiune de căutare"
 
-#: gsearchtool/gsearchtool.c:2121
+#: gsearchtool/gsearchtool.c:2129
 msgid "Click to add the selected available search option."
 msgstr "Clic pentru a adăuga opţiunea selectată disponibilă pentru căutare."
 
-#: gsearchtool/gsearchtool.c:2142
+#: gsearchtool/gsearchtool.c:2150
 msgid "S_earch results:"
 msgstr "_Rezultate căutare:"
 
-#: gsearchtool/gsearchtool.c:2178
+#: gsearchtool/gsearchtool.c:2186
 msgid "List View"
 msgstr "Vizualizare listă"
 
-#: gsearchtool/gsearchtool.c:2228
+#: gsearchtool/gsearchtool.c:2236
 msgid "Name"
 msgstr "Nume"
 
-#: gsearchtool/gsearchtool.c:2248
+#: gsearchtool/gsearchtool.c:2256
 msgid "Folder"
 msgstr "Director"
 
-#: gsearchtool/gsearchtool.c:2259
+#: gsearchtool/gsearchtool.c:2267
 msgid "Size"
 msgstr "Dimensiune"
 
-#: gsearchtool/gsearchtool.c:2269
+#: gsearchtool/gsearchtool.c:2277
 msgid "Type"
 msgstr "Tip"
 
-#: gsearchtool/gsearchtool.c:2279
+#: gsearchtool/gsearchtool.c:2287
 msgid "Date Modified"
 msgstr "Data modificării"
 
-#: gsearchtool/gsearchtool.c:2647
+#: gsearchtool/gsearchtool.c:2655
 msgid "_Name contains:"
 msgstr "_Numele conţine:"
 
-#: gsearchtool/gsearchtool.c:2661 gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2669 gsearchtool/gsearchtool.c:2670
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "Introduceţi un nume de fişier întreg sau parţial cu sau fără metacaractere."
 
-#: gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2670
 msgid "Name contains"
 msgstr "Numele conţine"
 
-#: gsearchtool/gsearchtool.c:2668
+#: gsearchtool/gsearchtool.c:2676
 msgid "_Look in folder:"
 msgstr "_Caută în dosarul:"
 
-#: gsearchtool/gsearchtool.c:2674
+#: gsearchtool/gsearchtool.c:2682
 msgid "Browse"
 msgstr "Navighează"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 msgid "Look in folder"
 msgstr "Caută în dosarul"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Selectaţi dosarul sau dispozitivul în care vreţi să porniţi căutarea."
 
-#: gsearchtool/gsearchtool.c:2690
+#: gsearchtool/gsearchtool.c:2698
 #, fuzzy
 msgid "Select more _options"
 msgstr "Afişează mai multe _opţiuni"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 #, fuzzy
 msgid "Select more options"
 msgstr "Afişează mai multe opţiuni"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 msgid "Click to expand or collapse the list of available options."
 msgstr "Clic pentru a desfăşura sau plia lista cu opţiunile de căutare."
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2731
 msgid "Click to display the help manual."
 msgstr "Clic pentru a afişa ajutorul."
 
-#: gsearchtool/gsearchtool.c:2731
+#: gsearchtool/gsearchtool.c:2739
 msgid "Click to close \"Search for Files\"."
 msgstr "Clic pentru a închide „Caută fişiere”."
 
-#: gsearchtool/gsearchtool.c:2757
+#: gsearchtool/gsearchtool.c:2765
 msgid "Click to perform a search."
 msgstr "Clic pentru a realiza o căutare."
 
-#: gsearchtool/gsearchtool.c:2758
+#: gsearchtool/gsearchtool.c:2766
 msgid "Click to stop a search."
 msgstr "Clic pentru a opri o căutare."
 
-#: gsearchtool/gsearchtool.c:2858
-msgid "Cannot initialize bonobo."
-msgstr "Nu pot iniţializa bonobo."
-
-#: logview/about.c:47 logview/logview.c:47
+#: logview/about.c:47 logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "Vizualizator log sistem"
 
@@ -1872,7 +1877,7 @@ msgstr "_Adaugă"
 msgid "Add an action"
 msgstr "Adaugă o acţiune"
 
-#: logview/actions.c:175 logview/logview.c:95
+#: logview/actions.c:175 logview/logview.c:97
 msgid "_Edit"
 msgstr "_Editare"
 
@@ -2004,12 +2009,12 @@ msgstr ""
 "descriere: [%s]\n"
 "acţiune: [%s]\n"
 
-#: logview/desc_db.c:66
+#: logview/desc_db.c:67
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr "Nu am putut deschide baza de date regexp <%s>! Deschidere eşuată."
 
-#: logview/desc_db.c:176
+#: logview/desc_db.c:177
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr ""
@@ -2143,20 +2148,20 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:50
+#: logview/logrtns.c:51
 #, fuzzy
 msgid "One file or more could not be opened"
 msgstr "Fişierul nu a putut fi deschis."
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:221
 msgid "Unable to open logfile!\n"
 msgstr "Nu pot deschide fişierul log!\n"
 
-#: logview/logrtns.c:227 logview/logrtns.c:247
+#: logview/logrtns.c:228 logview/logrtns.c:248
 msgid "Not enough memory!\n"
 msgstr "Memorie insuficientă!\n"
 
-#: logview/logrtns.c:302
+#: logview/logrtns.c:303
 #, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2165,167 +2170,167 @@ msgstr ""
 "%s nu poate fi citit de către utilizator. Fie rulaţi programul ca root sau "
 "rugaţi administratorul de sistem să schimbe permisiunile fişierului."
 
-#: logview/logrtns.c:307
+#: logview/logrtns.c:308
 #, c-format
 msgid "%s is too big."
 msgstr "%s este prea mare."
 
-#: logview/logrtns.c:311
+#: logview/logrtns.c:312
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s nu poate fi deschis."
 
-#: logview/logrtns.c:350
+#: logview/logrtns.c:351
 #, c-format
 msgid "%s not a log file."
 msgstr "%s nu este un fişier log."
 
-#: logview/logrtns.c:554 logview/logrtns.c:578
+#: logview/logrtns.c:556 logview/logrtns.c:580
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memorie insuficientă"
 
-#: logview/logview-findbar.c:274
+#: logview/logview-findbar.c:275
 msgid "Fin_d:"
 msgstr "Cau_tă:"
 
-#: logview/logview-findbar.c:279
+#: logview/logview-findbar.c:280
 #, fuzzy
 msgid "_Previous"
 msgstr "Caută precedentul"
 
-#: logview/logview-findbar.c:281
+#: logview/logview-findbar.c:282
 msgid "_Next"
 msgstr ""
 
-#: logview/logview.c:94
+#: logview/logview.c:96
 msgid "_Log"
 msgstr "_Log"
 
-#: logview/logview.c:96
+#: logview/logview.c:98
 msgid "_View"
 msgstr "_Vizualizare"
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "_Open..."
 msgstr "_Deschide..."
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "Open a log from file"
 msgstr "Deschide un log din fişier"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "_Properties"
 msgstr "_Proprietăţi"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "Show Log Properties"
 msgstr "Afişează proprietăţi log"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 msgid "Close"
 msgstr "Închide"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 msgid "Close this log"
 msgstr "Închide acest log"
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 msgid "_Quit"
 msgstr "În_chide"
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 msgid "Quit the log viewer"
 msgstr "Închide vizualizator log"
 
-#: logview/logview.c:108
+#: logview/logview.c:110
 msgid "Copy"
 msgstr "Copiază"
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select All"
 msgstr "Selectează tot"
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select the entire log"
 msgstr "Selectează tot logul"
 
-#: logview/logview.c:112
+#: logview/logview.c:114
 msgid "Find pattern in logs"
 msgstr "Caută modele în loguri"
 
-#: logview/logview.c:119
+#: logview/logview.c:121
 msgid "Normal text size"
 msgstr ""
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 msgid "Collapse _All"
 msgstr "_Pliază tot"
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 msgid "Collapse all the rows"
 msgstr "Pliază toate liniile"
 
-#: logview/logview.c:125
+#: logview/logview.c:127
 msgid "Open the help contents for the log viewer"
 msgstr "Deschide ajutorul pentru vizualizatorul de loguri"
 
-#: logview/logview.c:127
+#: logview/logview.c:129
 msgid "Show the about dialog for the log viewer"
 msgstr "Afişează dialogul „despre” pentru vizualizatorul de loguri"
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Sidebar"
 msgstr ""
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Show the sidebar"
 msgstr ""
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "_Monitor"
 msgstr "_Monitorizează"
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "Monitor Current Log"
 msgstr "Monitorizează logul curent"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 msgid "Ca_lendar"
 msgstr "Ca_lendar"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 msgid "Show Calendar Log"
 msgstr "Afişează calendarul log-ului"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Date"
 msgstr "Data"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Host Name"
 msgstr "Nume gazdă"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Process"
 msgstr "Proces"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Message"
 msgstr "Mesaj"
 
-#: logview/logview.c:741
+#: logview/logview.c:745
 msgid "Version : "
 msgstr ""
 
-#: logview/logview.c:853
+#: logview/logview.c:857
 msgid "Open new logfile"
 msgstr "Deschide un nou fişier log"
 
-#: logview/logview.c:1209
+#: logview/logview.c:1213
 msgid "There was an error displaying help."
 msgstr "A intervenit o eroare la afişarea ajutorului."
 
-#: logview/logview.c:1227
+#: logview/logview.c:1231
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (monitorizat) - %s"
@@ -2350,6 +2355,15 @@ msgstr "Detalii"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%B %e %X"
+
+#~ msgid "On a Dictionary Server"
+#~ msgstr "Pe un server dicţionar"
+
+#~ msgid "_Word:"
+#~ msgstr "_Cuvânt:"
+
+#~ msgid "Cannot initialize bonobo."
+#~ msgstr "Nu pot iniţializa bonobo."
 
 #~ msgid "Lookup done"
 #~ msgstr "Căutare terminată"

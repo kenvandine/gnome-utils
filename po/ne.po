@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-08 09:32-0400\n"
+"POT-Creation-Date: 2005-07-11 13:19-0400\n"
 "PO-Revision-Date: 2004-09-29 18:20+0800\n"
 "Last-Translator: KU  <pawan@nplinux.org>\n"
 "Language-Team: Nepali <nlp@mpp.org.np>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Pawan Chitrakar <pawan@nplinux.org>\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:149
 msgid "Dictionary Lookup"
 msgstr "शब्दकोश हेर"
 
@@ -25,13 +25,13 @@ msgstr "शब्दकोश हेर"
 msgid "Lookup words in an online dictionary"
 msgstr "प्रत्यक्ष सम्बन्ध भएको शब्दकोशमा शब्दहरु हेर "
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
-#: logview/logview.c:127
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:619
+#: logview/logview.c:129
 #, fuzzy
 msgid "_About"
 msgstr "-करिब"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:97
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:99
 msgid "_Help"
 msgstr "-सहयोग"
 
@@ -44,11 +44,8 @@ msgstr "_छानिएका अक्षर हेर"
 msgid "_Preferences"
 msgstr "_प्राथमिकिकरण"
 
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
-#: gdictsrc/gdict-pref-dialog.c:739
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:700
+#: gdictsrc/gdict-pref-dialog.c:747
 msgid "Cannot connect to server"
 msgstr "सेवा प्रदायक सम्बन्ध गर्न सकिएन"
 
@@ -59,341 +56,350 @@ msgstr "सेवाप्रदायक प्रवेश"
 
 #: gdictsrc/dict.c:690
 msgid ""
-"A serious error occured. Please check that your server and port are correct. "
-"For reference the default server is dict.org and the port 2628"
+"A serious error occurred. Please check that your server and port are "
+"correct. For reference the default server is dict.org and the port 2628"
 msgstr ""
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:43
+#: gdictsrc/gdict-about.c:40 logview/about.c:43
 #, fuzzy
 msgid "translator-credits"
 msgstr "अनुबादक_श्रेय"
 
-#: gdictsrc/gdict-about.c:45
+#: gdictsrc/gdict-about.c:42
 msgid "A client for the MIT dictionary server."
 msgstr "एमआईटि सेवाप्रदायक शब्दकोषको लगि एक ग्राहक"
 
-#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
-#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
-#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
-#: gdictsrc/main.c:90
+#: gdictsrc/gdict-about.c:45 gdictsrc/gdict-applet.c:351
+#: gdictsrc/gdict-defbox.c:101 gdictsrc/gdict-defbox.c:114
+#: gdictsrc/gdict-pref-dialog.c:499 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:87
 msgid "Dictionary"
 msgstr "शब्दकोष"
 
-#: gdictsrc/gdict-app.c:87
+#: gdictsrc/gdict-app.c:101
 #, fuzzy
 msgid "Connection error"
 msgstr "सेवा प्रदायक सम्बन्ध गर्न सकिएन"
 
-#: gdictsrc/gdict-app.c:134
+#: gdictsrc/gdict-app.c:117
 msgid "Unable to perform requested operation."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:135
+#: gdictsrc/gdict-app.c:118
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
 msgstr ""
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:276
 msgid "Print Word Definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:416
+#: gdictsrc/gdict-app.c:391
 msgid "Find"
 msgstr "पत्ता लगाउनु"
 
-#: gdictsrc/gdict-app.c:426
+#: gdictsrc/gdict-app.c:401
 msgid "_Search for:"
 msgstr "_खोज्नको लागि:"
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:889
+#: gdictsrc/gdict-app.c:500 gdictsrc/gdict-applet.c:299
+#: gdictsrc/gdict-pref-dialog.c:901
 #, fuzzy
 msgid "Could not display help"
 msgstr "सहयोग लेखोट खुल्न सकेन"
 
 #. Top
-#: gdictsrc/gdict-app.c:646
+#: gdictsrc/gdict-app.c:589
 msgid "_Dictionary"
 msgstr "_शब्दकोश"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
+#: gdictsrc/gdict-app.c:595
 msgid "_Look Up Word"
 msgstr "_शब्दहरु हेर"
 
-#: gdictsrc/gdict-app.c:653
+#: gdictsrc/gdict-app.c:596
 msgid "Lookup word in dictionary"
 msgstr "शब्दकोशमा शब्द हेर "
 
-#: gdictsrc/gdict-app.c:654
+#: gdictsrc/gdict-app.c:597
 #, fuzzy
 msgid "_Print"
 msgstr "_तार छिराउने प्वाल"
 
-#: gdictsrc/gdict-app.c:655
+#: gdictsrc/gdict-app.c:598
 msgid "Print the current definition"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:656
+#: gdictsrc/gdict-app.c:599
 #, fuzzy
 msgid "_Close"
 msgstr "सबै बन्द गर"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:600
 #, fuzzy
 msgid "Close the application"
 msgstr "_अनुरोधपत्र लुकउ"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:660 logview/logview.c:112
+#: gdictsrc/gdict-app.c:603 logview/logview.c:114
 #, fuzzy
 msgid "_Find..."
 msgstr "_पत्तालगाउनु"
 
-#: gdictsrc/gdict-app.c:661
+#: gdictsrc/gdict-app.c:604
 #, fuzzy
 msgid "Find a word in the text"
 msgstr "पाठको बिषय बस्तु"
 
-#: gdictsrc/gdict-app.c:662
+#: gdictsrc/gdict-app.c:605
 #, fuzzy
 msgid "Find Ne_xt"
 msgstr "पत्ता लगाउनु"
 
-#: gdictsrc/gdict-app.c:663
+#: gdictsrc/gdict-app.c:606
 msgid "Find next occurrence of the word"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:664
+#: gdictsrc/gdict-app.c:607
 #, fuzzy
 msgid "P_references"
 msgstr "_प्राथमिकिकरण"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:608
 #, fuzzy
 msgid "Configure the application"
 msgstr "_अनुरोधपत्र लुकउ"
 
 #. View menu
-#: gdictsrc/gdict-app.c:668 logview/logview.c:115
+#: gdictsrc/gdict-app.c:611 logview/logview.c:117
 msgid "Bigger text size"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:670 logview/logview.c:117
+#: gdictsrc/gdict-app.c:613 logview/logview.c:119
 msgid "Smaller text size"
 msgstr ""
 
 #. Help menu
-#: gdictsrc/gdict-app.c:674 logview/logview.c:125
+#: gdictsrc/gdict-app.c:617 logview/logview.c:127
 msgid "_Contents"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:675
+#: gdictsrc/gdict-app.c:618
 msgid "View help for this application"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:620
 #, fuzzy
 msgid "About this application"
 msgstr "_अनुरोधपत्र लुकउ"
 
-#: gdictsrc/gdict-app.c:682
-#, fuzzy
-msgid "On a Dictionary Server"
-msgstr "सेवाप्रदायक शब्दकोष"
-
-#: gdictsrc/gdict-app.c:684
-msgid "On a Web Site"
-msgstr ""
-
-#: gdictsrc/gdict-app.c:690
+#: gdictsrc/gdict-app.c:625
 msgid "Cu_t"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:691
+#: gdictsrc/gdict-app.c:626
 msgid "Cut the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:692
+#: gdictsrc/gdict-app.c:627
 msgid "_Copy"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:693 logview/logview.c:108
+#: gdictsrc/gdict-app.c:628 logview/logview.c:110
 msgid "Copy the selection"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:629
 #, fuzzy
 msgid "_Paste"
 msgstr "मिति"
 
-#: gdictsrc/gdict-app.c:695
+#: gdictsrc/gdict-app.c:630
 msgid "Paste clipboard"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:696
+#: gdictsrc/gdict-app.c:631
 msgid "Select _All"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:632
 msgid "Select everything"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:637
 #, fuzzy
 msgid "_Spellings"
 msgstr "वर्णविन्यास जांच"
 
-#: gdictsrc/gdict-app.c:703
+#: gdictsrc/gdict-app.c:638
 msgid "View alternate spellings"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:849
-msgid "_Word:"
-msgstr "_शब्द:"
+#: gdictsrc/gdict-app.c:748
+#, fuzzy
+msgid "_Look Up"
+msgstr "_हेराई"
 
-#: gdictsrc/gdict-app.c:877
+#: gdictsrc/gdict-app.c:757
+#, fuzzy
+msgid "In Dictionary"
+msgstr "शब्दकोष"
+
+#: gdictsrc/gdict-app.c:758
+msgid "On a Web Site"
+msgstr ""
+
+#: gdictsrc/gdict-app.c:774
 msgid "Word"
 msgstr "शब्द"
 
-#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
+#: gdictsrc/gdict-app.c:775
 msgid "Word Entry"
 msgstr "शब्द प्रवेश"
 
-#: gdictsrc/gdict-app.c:879
+#: gdictsrc/gdict-app.c:776
 msgid "Enter a Word or select one from the list below"
 msgstr "शब्द हाल अथवा तलको सुचिबाट एउटा छान"
 
-#: gdictsrc/gdict-app.c:883
+#: gdictsrc/gdict-app.c:779
 msgid "Look Up for a Word"
 msgstr "एउटा शब्दको लागि हेर"
 
-#: gdictsrc/gdict-applet.c:152
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "शब्दकोशमा शब्द प्रबेश"
 
-#: gdictsrc/gdict-defbox.c:101
+#: gdictsrc/gdict-defbox.c:103
 msgid "Looking up word..."
 msgstr "शब्दहरु हेरिरहनु....."
 
-#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
+#: gdictsrc/gdict-defbox.c:132 gdictsrc/gdict-entry.c:114
+#: gdictsrc/gdict-speller.c:255
 msgid "No matches found"
 msgstr "मिल्दो जुल्दो पाईएन"
 
-#: gdictsrc/gdict-defbox.c:141
+#: gdictsrc/gdict-defbox.c:143
 msgid "String not found"
 msgstr "सुत्र पाईएन"
 
-#: gdictsrc/gdict-defbox.c:616
+#: gdictsrc/gdict-defbox.c:618
 msgid "Definition preview"
 msgstr ""
 
-#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
+#: gdictsrc/gdict-defbox.c:947 gdictsrc/gdict-entry.c:132
+#: gdictsrc/gdict-speller.c:295
 msgid "Error invoking query"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-entry.c:102
+#, fuzzy
+msgid "Looking up entry..."
+msgstr "शब्दहरु हेरिरहनु....."
+
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "De_fault Server"
 msgstr "पुर्वनिरधारित सेवाप्रदायक"
 
-#: gdictsrc/gdict-pref-dialog.c:276
+#: gdictsrc/gdict-pref-dialog.c:278
 msgid "_Server:"
 msgstr "_सेवाप्रदायेक"
 
-#: gdictsrc/gdict-pref-dialog.c:284
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "Reset server to default"
 msgstr "पुर्वनिरधारित सेवाप्रदायक पुन: जडान "
 
-#: gdictsrc/gdict-pref-dialog.c:286
+#: gdictsrc/gdict-pref-dialog.c:288
 msgid "_Port:"
 msgstr "_तार छिराउने प्वाल"
 
-#: gdictsrc/gdict-pref-dialog.c:296
+#: gdictsrc/gdict-pref-dialog.c:298
 msgid "Def_ault Port"
 msgstr "पूर्वनिर्धारित तार छिराउने प्वाल"
 
-#: gdictsrc/gdict-pref-dialog.c:311
+#: gdictsrc/gdict-pref-dialog.c:313
 msgid "Reset port to default"
 msgstr "पूर्वनिर्धारित तार छिराउने प्वाल पुन: जडान"
 
-#: gdictsrc/gdict-pref-dialog.c:312
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server"
 msgstr "सेवाप्रदायक"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Server Entry"
 msgstr "सेवाप्रदायक प्रवेश"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Enter the Server Name"
 msgstr "सेवाप्रदायक नाम देउ"
 
-#: gdictsrc/gdict-pref-dialog.c:315
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port"
 msgstr "तार छिराउने प्वाल"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Port Entry"
 msgstr "तार छिराउने प्वाल प्रवेश"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Enter the Port Number"
 msgstr "तार छिराउने प्वालको संख्या देउ"
 
-#: gdictsrc/gdict-pref-dialog.c:320
+#: gdictsrc/gdict-pref-dialog.c:322
 msgid "_Database:"
 msgstr "_डाटाबेस"
 
-#: gdictsrc/gdict-pref-dialog.c:327
+#: gdictsrc/gdict-pref-dialog.c:332
 #, fuzzy
 msgid "Strat_egy:"
 msgstr "योजना खोज"
 
-#: gdictsrc/gdict-pref-dialog.c:334
-msgid "Font:"
-msgstr ""
+#: gdictsrc/gdict-pref-dialog.c:342
+#, fuzzy
+msgid "F_ont:"
+msgstr "_तार छिराउने प्वाल"
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 msgid "Web Site"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 #, fuzzy
 msgid "Search Address"
 msgstr "नतिजा खोज"
 
-#: gdictsrc/gdict-pref-dialog.c:481
+#: gdictsrc/gdict-pref-dialog.c:491
 msgid "Dictionary Preferences"
 msgstr "प्राथमिकिकरण"
 
-#: gdictsrc/gdict-pref-dialog.c:493
+#: gdictsrc/gdict-pref-dialog.c:503
 msgid "Web Sites"
 msgstr ""
 
-#: gdictsrc/gdict-pref-dialog.c:682
+#: gdictsrc/gdict-pref-dialog.c:690
 msgid "Search all databases"
 msgstr "सबै डाटाबेस खोज"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database"
 msgstr "डाटाबेस"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database Name"
 msgstr "डाटाबेस नाम"
 
-#: gdictsrc/gdict-pref-dialog.c:860
+#: gdictsrc/gdict-pref-dialog.c:872
 msgid "Default Strategy"
 msgstr "पूर्वनिर्धारित योजना"
 
-#: gdictsrc/gdict-speller.c:114
+#: gdictsrc/gdict-speller.c:115
 #, fuzzy
 msgid "Spellings"
 msgstr "वर्णविन्यास जांच"
 
-#: gdictsrc/gdict-speller.c:235
+#: gdictsrc/gdict-speller.c:236
 msgid "Spell-checking..."
 msgstr "वर्णविन्यास जांच....."
 
@@ -482,58 +488,58 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 
-#: gfloppy/src/badblocks.c:84
+#: gfloppy/src/badblocks.c:85
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "आन्तरिक समस्या: उपयुक्त स्थान चयन गर्न असक्षम"
 
-#: gfloppy/src/badblocks.c:93
+#: gfloppy/src/badblocks.c:94
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "आन्तरिक समस्या: अनौठो नमुना (%ld) in do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:251
+#: gfloppy/src/badblocks.c:252
 msgid "Checking for bad blocks..."
 msgstr "खराब रोक्न जांच"
 
-#: gfloppy/src/badblocks.c:263
+#: gfloppy/src/badblocks.c:264
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
 
-#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
+#: gfloppy/src/badblocks.c:284 gfloppy/src/gfloppy.c:530
 msgid "Checking for bad blocks... Done"
 msgstr "खराब रोक्न जांच.....भयो"
 
-#: gfloppy/src/fdformat.c:42
+#: gfloppy/src/fdformat.c:43
 msgid "Formatting the disk..."
 msgstr "डिस्क खालि हुदैछ"
 
-#: gfloppy/src/fdformat.c:45
+#: gfloppy/src/fdformat.c:46
 msgid "I don't know what this is, but it's very wrong."
 msgstr "यो के हो मालाई थाहा छैन, तर यो धेरै गलत हो"
 
-#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:67
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "#%d ट्रयाक खालि हुनलाई समस्या "
 
-#: gfloppy/src/fdformat.c:75
+#: gfloppy/src/fdformat.c:76
 msgid "Error during completion of formatting"
 msgstr "खालि हुने क्रममा समस्या देखियो"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:79
+#: gfloppy/src/fdformat.c:80
 msgid "Formatting the disk... Done"
 msgstr "डिस्क खालि हुदैछ ....भयो"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:95
+#: gfloppy/src/fdformat.c:96
 msgid "Verifying the format..."
 msgstr "खालि गर्न जाच......."
 
-#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
+#: gfloppy/src/fdformat.c:101 gfloppy/src/fdformat.c:186
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -543,12 +549,12 @@ msgstr ""
 "\n"
 " क्रिपया निस्चित गर्नुस कि त्यो लेख्न निसेधित त छैन। "
 
-#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
+#: gfloppy/src/fdformat.c:104 gfloppy/src/fdformat.c:189
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "%s फ्लपि खोल्न पुर्ण अधिकार छैन"
 
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:108 gfloppy/src/fdformat.c:193
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -560,7 +566,7 @@ msgstr ""
 " क्रिपया निस्चित गर्नुस कि यो ड्राईभ भित्रै छ \n"
 " र ड्राईभको ढोका बन्द छ"
 
-#: gfloppy/src/fdformat.c:110
+#: gfloppy/src/fdformat.c:111
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -568,7 +574,7 @@ msgid ""
 "Error code %s:%d"
 msgstr ""
 
-#: gfloppy/src/fdformat.c:133
+#: gfloppy/src/fdformat.c:134
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -577,31 +583,31 @@ msgstr ""
 "समस्या पढ :\n"
 "सिलिन्डर पढ्न समस्या %d, आस गरिएको %d, पढ %d, "
 
-#: gfloppy/src/fdformat.c:136
+#: gfloppy/src/fdformat.c:137
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "सिलिन्डर पढ्न समस्या %d, आस गरिएको %d, पढ %d, "
 
-#: gfloppy/src/fdformat.c:147
+#: gfloppy/src/fdformat.c:148
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "%d सिलिन्डर भित्र खराब तथ्याङ्क । लगातार......"
 
-#: gfloppy/src/fdformat.c:156
+#: gfloppy/src/fdformat.c:157
 #, c-format
 msgid "Error closing device %s"
 msgstr "समस्याले गर्दा साधन बन्दहुदैछ %s"
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:164
 msgid "Verifying the format... Done"
 msgstr "खालि गर्ने निरिक्षण ...... भयो"
 
-#: gfloppy/src/fdformat.c:175
+#: gfloppy/src/fdformat.c:176
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "साधनमा लेख्न असक्षम %s"
 
-#: gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:196
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -609,28 +615,28 @@ msgid ""
 "Error code %s"
 msgstr ""
 
-#: gfloppy/src/fdformat.c:207
+#: gfloppy/src/fdformat.c:208
 msgid "Could not determine current floppy geometry."
 msgstr "अहिलेको फ्लपिको रेखा गणित पत्ता लगाउन सकेन"
 
-#: gfloppy/src/gfloppy.c:215
+#: gfloppy/src/gfloppy.c:218
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr "खराब अवरोध भएको फाइलको सुचिकोलागि अनौठो फाइलनेम बनाउदा समस्या देखियो"
 
-#: gfloppy/src/gfloppy.c:235
+#: gfloppy/src/gfloppy.c:238
 msgid "Error while filling the bad blocks list file."
 msgstr "खराब अवरोध भएको फाइलको सुचि भर्दा समस्या देखियो"
 
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:301
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:324
+#: gfloppy/src/gfloppy.c:327
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:338
+#: gfloppy/src/gfloppy.c:341
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -638,44 +644,44 @@ msgid ""
 "%s (%d)"
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:355
+#: gfloppy/src/gfloppy.c:358
 msgid "Abnormal child process termination."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:380
+#: gfloppy/src/gfloppy.c:383
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:392
+#: gfloppy/src/gfloppy.c:395
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
 
-#: gfloppy/src/gfloppy.c:435
+#: gfloppy/src/gfloppy.c:438
 msgid "Abnormal mbadblocks child process termination."
 msgstr ""
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
+#: gfloppy/src/gfloppy.c:464 gfloppy/src/gfloppy.c:504
 msgid "Making filesystem on disk..."
 msgstr "डिस्कमा आलेखपद्दति बनिरहेकोछ"
 
-#: gfloppy/src/gfloppy.c:469
+#: gfloppy/src/gfloppy.c:472
 msgid "Unable to create filesystem correctly."
 msgstr "ठिक तरिकाले आलेखपद्दति बनाउन असक्षम"
 
-#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
+#: gfloppy/src/gfloppy.c:477 gfloppy/src/gfloppy.c:516
 msgid "Making filesystem on disk... Done"
 msgstr "डिस्कमा आलेखपद्दति बन्ने कार्य......भयो"
 
-#: gfloppy/src/gfloppy.c:518
+#: gfloppy/src/gfloppy.c:521
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "खराब ठाउँ जाँच हुँदैछ....(यसले केहि क्षण लिन्छ)"
 
-#: gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:526
 msgid "Error while checking the bad blocks."
 msgstr "खराब ठाँउ जाँच्दा समस्या देखियो"
 
@@ -765,30 +771,30 @@ msgstr ""
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 
-#: gfloppy/src/main.c:257
+#: gfloppy/src/main.c:259
 #, fuzzy
 msgid "Cannot Format"
 msgstr "खालिगर"
 
-#: gfloppy/src/main.c:258
+#: gfloppy/src/main.c:260
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr "तिनिहरु बिना एउटा फ्लपि खालि गर्न सक्दैन"
 
-#: gfloppy/src/main.c:278
+#: gfloppy/src/main.c:280
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "साधन%s,खोल्न असक्षम, खालिगर्ने काम लगातारहुन सकेन"
 
-#: gfloppy/src/main.c:281 gfloppy/src/main.c:344
+#: gfloppy/src/main.c:283 gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
 msgstr ""
 
-#: gfloppy/src/main.c:284 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:286 gfloppy/src/main.c:349
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -796,43 +802,43 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 
-#: gfloppy/src/main.c:291 gfloppy/src/main.c:355
+#: gfloppy/src/main.c:293 gfloppy/src/main.c:357
 #, fuzzy
 msgid "Cannot initialize device"
 msgstr "बोनोबोको शुरुवात हुना सक्दैन"
 
-#: gfloppy/src/main.c:341
+#: gfloppy/src/main.c:343
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "कुनैपनि साधन खोल्न असक्षम , खलिगर्ने कार्य लगातारहुन सकेन"
 
-#: gfloppy/src/main.c:344 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:346 gfloppy/src/main.c:349
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 or /dev/fd0"
 
-#: gfloppy/src/main.c:508
+#: gfloppy/src/main.c:510
 #, fuzzy
 msgid "Could not display help for the floppy formatter."
 msgstr ""
 "फ्लपि खालिगर्नेको लागि कुनै सहयोग देखाउन सकेन \n"
 "%s"
 
-#: gfloppy/src/main.c:527
+#: gfloppy/src/main.c:529
 msgid "Incorrect volume name"
 msgstr ""
 
-#: gfloppy/src/main.c:528
+#: gfloppy/src/main.c:530
 msgid "The volume name can't contain any blank space."
 msgstr "आयतनको नाममा कुनै खालि ठाँउ हुन सक्दैन"
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:579
 msgid "The device to format"
 msgstr "खालि गर्ने साधन"
 
-#: gfloppy/src/main.c:578
+#: gfloppy/src/main.c:580
 msgid "DEVICE"
 msgstr "साधन"
 
-#: gfloppy/src/progress.c:122
+#: gfloppy/src/progress.c:126
 #, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -843,15 +849,15 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: gfloppy/src/progress.c:125
+#: gfloppy/src/progress.c:129
 msgid "Floppy formatted successfully."
 msgstr "फ्लपि सफलतापुर्वक खालिगरियो"
 
-#: gfloppy/src/progress.c:131
+#: gfloppy/src/progress.c:135
 msgid "Floppy formatting cancelled."
 msgstr "फ्लपि खालिगर्ने कार्य रोकियो"
 
-#: gfloppy/src/progress.c:174
+#: gfloppy/src/progress.c:178
 msgid "Format Progress"
 msgstr "खालि गर्ने कार्य प्रगतिमाछ"
 
@@ -1431,173 +1437,173 @@ msgstr "सम्बन्ध(बिच्छेद)"
 msgid "link to %s"
 msgstr "%sसँग सम्बन्ध"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:80
 msgid "Contains the _text"
 msgstr "पाठको बिषय बस्तु"
 
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:82
 #, fuzzy
 msgid "_Date modified less than"
 msgstr "(दिनहरु)भन्दा थोरैमा मिति परिवर्तन"
 
-#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:82 gsearchtool/gsearchtool.c:83
 msgid "days"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:83
 #, fuzzy
 msgid "Date modified more than"
 msgstr "(दिनहरु)भन्दा धेरैमा मिति परिवर्तन"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:85
 #, fuzzy
 msgid "S_ize at least"
 msgstr "(किलोबाइट)कम्तिमा आकार"
 
-#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:85 gsearchtool/gsearchtool.c:86
 msgid "kilobytes"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:86
 #, fuzzy
 msgid "Si_ze at most"
 msgstr "(किलोबाइट)धेरैमा आकार"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:87
 msgid "File is empty"
 msgstr "फाइल खालि छ"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:89
 msgid "Owned by _user"
 msgstr "_प्रयोगकर्ताको स्वामित्वद्वारा"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:90
 msgid "Owned by _group"
 msgstr "_समुहको स्वामित्वद्वारा"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:91
 msgid "Owner is unrecognized"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:94
+#: gsearchtool/gsearchtool.c:93
 msgid "Na_me does not contain"
 msgstr "नाम समाबेश छैन"
 
-#: gsearchtool/gsearchtool.c:95
+#: gsearchtool/gsearchtool.c:94
 msgid "Name matches regular e_xpression"
 msgstr "लगातारको अभिब्यक्तिमा नाम मिल्छ"
 
-#: gsearchtool/gsearchtool.c:97
+#: gsearchtool/gsearchtool.c:96
 msgid "Show hidden and backup files"
 msgstr "लुकेको र सुरक्षित राखिएको फाइलहरु देखाउ"
 
-#: gsearchtool/gsearchtool.c:98
+#: gsearchtool/gsearchtool.c:97
 msgid "Follow symbolic links"
 msgstr "साङ्केतिक सम्बन्धलाइ पछ्याउ"
 
-#: gsearchtool/gsearchtool.c:99
+#: gsearchtool/gsearchtool.c:98
 msgid "Include other filesystems"
 msgstr "अर्को आलेखपद्दति समावेशगर"
 
-#: gsearchtool/gsearchtool.c:180
+#: gsearchtool/gsearchtool.c:179
 msgid "_Open"
 msgstr "खोल"
 
-#: gsearchtool/gsearchtool.c:181
+#: gsearchtool/gsearchtool.c:180
 msgid "O_pen Folder"
 msgstr "फोल्डर खोल"
 
-#: gsearchtool/gsearchtool.c:182
+#: gsearchtool/gsearchtool.c:181
 msgid "Mo_ve to Trash"
 msgstr "ब्र्यर्थकुरालाइ हटाउ"
 
-#: gsearchtool/gsearchtool.c:183
+#: gsearchtool/gsearchtool.c:182
 msgid "_Save Results As..."
 msgstr "परिणाम जस्तो बचाउ"
 
-#: gsearchtool/gsearchtool.c:255 gsearchtool/gsearchtool.c:272
+#: gsearchtool/gsearchtool.c:254 gsearchtool/gsearchtool.c:271
 msgid "A locate database has probably not been created."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:376
+#: gsearchtool/gsearchtool.c:375
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:763 gsearchtool/gsearchtool.c:792
+#: gsearchtool/gsearchtool.c:769 gsearchtool/gsearchtool.c:798
 msgid "No files found"
 msgstr "कुनै फाइलहरु भेटिएन"
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:791
 msgid "(stopped)"
 msgstr "(रोकियो)"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:797
 msgid "No Files Found"
 msgstr "कुनै फाइलहरु भेटिएन"
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:802
 #, fuzzy, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d फाइल भेटियो"
 msgstr[1] "%d फाइलहरु भेटियो"
 
-#: gsearchtool/gsearchtool.c:800 gsearchtool/gsearchtool.c:838
+#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:844
 #, fuzzy, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d फाइल भेटियो"
 msgstr[1] "%d फाइलहरु भेटियो"
 
-#: gsearchtool/gsearchtool.c:817 gsearchtool/gsearchtool.c:1076
-#: gsearchtool/gsearchtool.c:1162 gsearchtool/gsearchtool.c:2838
+#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1082
+#: gsearchtool/gsearchtool.c:1168 gsearchtool/gsearchtool.c:2846
 msgid "Search for Files"
 msgstr "फाइलको लागि खोज"
 
-#: gsearchtool/gsearchtool.c:910
+#: gsearchtool/gsearchtool.c:916
 msgid "Entry changed called for a non entry option!"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1162
+#: gsearchtool/gsearchtool.c:1168
 msgid "Searching..."
 msgstr "खोजिरहेकोछ"
 
-#: gsearchtool/gsearchtool.c:1185
+#: gsearchtool/gsearchtool.c:1191
 msgid "Set the text of \"Name contains\" search option"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1186
+#: gsearchtool/gsearchtool.c:1192
 msgid "Set the text of \"Look in folder\" search option"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1193
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1188
+#: gsearchtool/gsearchtool.c:1194
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1189
+#: gsearchtool/gsearchtool.c:1195
 msgid "Automatically start a search"
 msgstr "खोजिकार्य आफै शुरुगर"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1201
 #, fuzzy, c-format
 msgid "Select the \"%s\" search option"
 msgstr "'%s' बाधा अडचन छान"
 
-#: gsearchtool/gsearchtool.c:1198
+#: gsearchtool/gsearchtool.c:1204
 #, fuzzy, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "लगातारको अभिब्यक्तिमा नाम मिल्छ"
 
-#: gsearchtool/gsearchtool.c:1305
+#: gsearchtool/gsearchtool.c:1311
 msgid "Invalid option passed to sortby command line argument."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1607
+#: gsearchtool/gsearchtool.c:1611
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1605,187 +1611,183 @@ msgstr ""
 "\n"
 "...देखाउनलाइ धेरै समस्याहरु..."
 
-#: gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1625
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1633 gsearchtool/gsearchtool.c:1673
+#: gsearchtool/gsearchtool.c:1637 gsearchtool/gsearchtool.c:1681
 #, fuzzy
 msgid "Show more _details"
 msgstr "अरु बिकल्पहरु देखाउ"
 
-#: gsearchtool/gsearchtool.c:1661
+#: gsearchtool/gsearchtool.c:1667
 msgid ""
-"The search results may be invalid.  Do you want to disable the quick search "
-"feature?"
+"The search results may be out of date or invalid.  Do you want to disable "
+"the quick search feature?"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1684
+#: gsearchtool/gsearchtool.c:1692
 msgid "Disable _Quick Search"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1711
+#: gsearchtool/gsearchtool.c:1719
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1738
+#: gsearchtool/gsearchtool.c:1746
 msgid "Error parsing the search command."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1771
+#: gsearchtool/gsearchtool.c:1779
 msgid "Error running the search command."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1918
+#: gsearchtool/gsearchtool.c:1926
 #, fuzzy, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "लगातारको अभिब्यक्तिमा नाम मिल्छ"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1931
 #, c-format
 msgid "\"%s\" in %s"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1933
 #, fuzzy, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "लगातारको अभिब्यक्तिमा नाम मिल्छ"
 
-#: gsearchtool/gsearchtool.c:1984
+#: gsearchtool/gsearchtool.c:1992
 #, fuzzy, c-format
 msgid "Remove \"%s\""
 msgstr "॒हटाउ"
 
-#: gsearchtool/gsearchtool.c:1985
+#: gsearchtool/gsearchtool.c:1993
 #, fuzzy, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "'%s' बाधा अडचन छान"
 
-#: gsearchtool/gsearchtool.c:2078
+#: gsearchtool/gsearchtool.c:2086
 msgid "A_vailable options:"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2107
+#: gsearchtool/gsearchtool.c:2115
 msgid "Available options"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2116
 #, fuzzy
 msgid "Select a search option from the drop-down list."
 msgstr "सुचिबाट खोज्ने नियम छान"
 
-#: gsearchtool/gsearchtool.c:2120
+#: gsearchtool/gsearchtool.c:2128
 #, fuzzy
 msgid "Add search option"
 msgstr "कार्य जोड"
 
-#: gsearchtool/gsearchtool.c:2121
+#: gsearchtool/gsearchtool.c:2129
 msgid "Click to add the selected available search option."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2142
+#: gsearchtool/gsearchtool.c:2150
 msgid "S_earch results:"
 msgstr "परिणाम खोज"
 
-#: gsearchtool/gsearchtool.c:2178
+#: gsearchtool/gsearchtool.c:2186
 msgid "List View"
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2228
+#: gsearchtool/gsearchtool.c:2236
 msgid "Name"
 msgstr "नाम"
 
-#: gsearchtool/gsearchtool.c:2248
+#: gsearchtool/gsearchtool.c:2256
 msgid "Folder"
 msgstr "फोल्डर"
 
-#: gsearchtool/gsearchtool.c:2259
+#: gsearchtool/gsearchtool.c:2267
 msgid "Size"
 msgstr "आकार"
 
-#: gsearchtool/gsearchtool.c:2269
+#: gsearchtool/gsearchtool.c:2277
 msgid "Type"
 msgstr "प्रकार"
 
-#: gsearchtool/gsearchtool.c:2279
+#: gsearchtool/gsearchtool.c:2287
 msgid "Date Modified"
 msgstr "मिति परिवर्तनभयो"
 
-#: gsearchtool/gsearchtool.c:2647
+#: gsearchtool/gsearchtool.c:2655
 msgid "_Name contains:"
 msgstr "_नाम समावेश"
 
-#: gsearchtool/gsearchtool.c:2661 gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2669 gsearchtool/gsearchtool.c:2670
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2670
 #, fuzzy
 msgid "Name contains"
 msgstr "_नाम समावेश"
 
-#: gsearchtool/gsearchtool.c:2668
+#: gsearchtool/gsearchtool.c:2676
 msgid "_Look in folder:"
 msgstr "-फोल्डर भित्र हेर"
 
-#: gsearchtool/gsearchtool.c:2674
+#: gsearchtool/gsearchtool.c:2682
 msgid "Browse"
 msgstr "हेर्नु"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 #, fuzzy
 msgid "Look in folder"
 msgstr "-फोल्डर भित्र हेर"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 #, fuzzy
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "जहाँ तँपाइ खोजि शुरु गराउन चाहनुहुन्छ फोल्डरको नाम प्रवेश गराउनुस"
 
-#: gsearchtool/gsearchtool.c:2690
+#: gsearchtool/gsearchtool.c:2698
 #, fuzzy
 msgid "Select more _options"
 msgstr "अरु बिकल्पहरु देखाउ"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 #, fuzzy
 msgid "Select more options"
 msgstr "अरु बिकल्पहरु देखाउ"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 msgid "Click to expand or collapse the list of available options."
 msgstr ""
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2731
 #, fuzzy
 msgid "Click to display the help manual."
 msgstr "सहयोग लेखोट खुल्न सकेन"
 
-#: gsearchtool/gsearchtool.c:2731
+#: gsearchtool/gsearchtool.c:2739
 #, fuzzy
 msgid "Click to close \"Search for Files\"."
 msgstr "फाइलको लागि खोज"
 
-#: gsearchtool/gsearchtool.c:2757
+#: gsearchtool/gsearchtool.c:2765
 #, fuzzy
 msgid "Click to perform a search."
 msgstr "खोज बन्द गर्नलाई दबाउ"
 
-#: gsearchtool/gsearchtool.c:2758
+#: gsearchtool/gsearchtool.c:2766
 #, fuzzy
 msgid "Click to stop a search."
 msgstr "खोज बन्द गर्नलाई दबाउ"
 
-#: gsearchtool/gsearchtool.c:2858
-msgid "Cannot initialize bonobo."
-msgstr "बोनोबोको शुरुवात हुना सक्दैन"
-
-#: logview/about.c:47 logview/logview.c:47
+#: logview/about.c:47 logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "प्रबेस पद्दति हेर"
 
@@ -1809,7 +1811,7 @@ msgstr "॒जोड"
 msgid "Add an action"
 msgstr "कार्य जोड"
 
-#: logview/actions.c:175 logview/logview.c:95
+#: logview/actions.c:175 logview/logview.c:97
 msgid "_Edit"
 msgstr "॒सम्पादन"
 
@@ -1939,12 +1941,12 @@ msgstr ""
 "बर्णन: [%s]\n"
 "कार्य: [%s]\n"
 
-#: logview/desc_db.c:66
+#: logview/desc_db.c:67
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr ""
 
-#: logview/desc_db.c:176
+#: logview/desc_db.c:177
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr " <%s> डाटाबेसको वर्णन खुल्न सकेन! खुल्न असफल  "
@@ -2077,200 +2079,200 @@ msgstr "%B %e"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:50
+#: logview/logrtns.c:51
 #, fuzzy
 msgid "One file or more could not be opened"
 msgstr "%s खुल्न सक्दैन"
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:221
 msgid "Unable to open logfile!\n"
 msgstr "लग गरिएको लेखपत्र खोल्न असक्षम \n"
 
-#: logview/logrtns.c:227 logview/logrtns.c:247
+#: logview/logrtns.c:228 logview/logrtns.c:248
 msgid "Not enough memory!\n"
 msgstr "स्मरणक्षमता प्रसस्त छैन \n"
 
-#: logview/logrtns.c:302
+#: logview/logrtns.c:303
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file.\n"
 msgstr ""
 
-#: logview/logrtns.c:307
+#: logview/logrtns.c:308
 #, c-format
 msgid "%s is too big."
 msgstr ""
 
-#: logview/logrtns.c:311
+#: logview/logrtns.c:312
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s खुल्न सक्दैन"
 
-#: logview/logrtns.c:350
+#: logview/logrtns.c:351
 #, c-format
 msgid "%s not a log file."
 msgstr "%s प्रबेस लेखपत्र हैन"
 
-#: logview/logrtns.c:554 logview/logrtns.c:578
+#: logview/logrtns.c:556 logview/logrtns.c:580
 msgid "ReadLogStats: out of memory"
 msgstr "लग औकात पड: स्म्रिति क्षमता भन्दा बाहिर"
 
-#: logview/logview-findbar.c:274
+#: logview/logview-findbar.c:275
 #, fuzzy
 msgid "Fin_d:"
 msgstr "पत्ता लगाउनु"
 
-#: logview/logview-findbar.c:279
+#: logview/logview-findbar.c:280
 #, fuzzy
 msgid "_Previous"
 msgstr "_सम्पत्ति"
 
-#: logview/logview-findbar.c:281
+#: logview/logview-findbar.c:282
 msgid "_Next"
 msgstr ""
 
-#: logview/logview.c:94
+#: logview/logview.c:96
 msgid "_Log"
 msgstr ""
 
-#: logview/logview.c:96
+#: logview/logview.c:98
 msgid "_View"
 msgstr ""
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 #, fuzzy
 msgid "_Open..."
 msgstr "खोल"
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 #, fuzzy
 msgid "Open a log from file"
 msgstr "नंया प्रबेश गरिएको लेखपत्र खोल"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "_Properties"
 msgstr "_सम्पत्ति"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "Show Log Properties"
 msgstr "प्रबेस गरिएको सम्पत्ति देखाउ"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 #, fuzzy
 msgid "Close"
 msgstr "सबै बन्द गर"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 msgid "Close this log"
 msgstr ""
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 #, fuzzy
 msgid "_Quit"
 msgstr "॒सम्पादन"
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 #, fuzzy
 msgid "Quit the log viewer"
 msgstr "प्रबेस पद्दति हेर"
 
-#: logview/logview.c:108
+#: logview/logview.c:110
 msgid "Copy"
 msgstr ""
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select All"
 msgstr ""
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select the entire log"
 msgstr ""
 
-#: logview/logview.c:112
+#: logview/logview.c:114
 msgid "Find pattern in logs"
 msgstr ""
 
-#: logview/logview.c:119
+#: logview/logview.c:121
 msgid "Normal text size"
 msgstr ""
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 #, fuzzy
 msgid "Collapse _All"
 msgstr "सबै हराउनु"
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 msgid "Collapse all the rows"
 msgstr "सबै तेर्सो लाइनहरु हरायो"
 
-#: logview/logview.c:125
+#: logview/logview.c:127
 msgid "Open the help contents for the log viewer"
 msgstr ""
 
-#: logview/logview.c:127
+#: logview/logview.c:129
 msgid "Show the about dialog for the log viewer"
 msgstr ""
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Sidebar"
 msgstr ""
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Show the sidebar"
 msgstr ""
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 #, fuzzy
 msgid "_Monitor"
 msgstr "_पर्दा....."
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 #, fuzzy
 msgid "Monitor Current Log"
 msgstr "पर्दा छिर्ने तरिका"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 #, fuzzy
 msgid "Ca_lendar"
 msgstr "पात्रो"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 msgid "Show Calendar Log"
 msgstr "पात्रोमा छिर्ने तरिका देखाउ"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Date"
 msgstr "मिति"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Host Name"
 msgstr "सहयोगि नाम"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Process"
 msgstr "प्रक्रिया"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Message"
 msgstr "खबर"
 
-#: logview/logview.c:741
+#: logview/logview.c:745
 msgid "Version : "
 msgstr ""
 
-#: logview/logview.c:853
+#: logview/logview.c:857
 msgid "Open new logfile"
 msgstr "नंया प्रबेश गरिएको लेखपत्र खोल"
 
-#: logview/logview.c:1209
+#: logview/logview.c:1213
 #, fuzzy
 msgid "There was an error displaying help."
 msgstr ""
 "त्यहां सहयोग देखाउन समस्या थियो:\n"
 "%s"
 
-#: logview/logview.c:1227
+#: logview/logview.c:1231
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr ""
@@ -2293,6 +2295,16 @@ msgstr "पुरै देउ"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr ""
+
+#, fuzzy
+#~ msgid "On a Dictionary Server"
+#~ msgstr "सेवाप्रदायक शब्दकोष"
+
+#~ msgid "_Word:"
+#~ msgstr "_शब्द:"
+
+#~ msgid "Cannot initialize bonobo."
+#~ msgstr "बोनोबोको शुरुवात हुना सक्दैन"
 
 #~ msgid "Lookup done"
 #~ msgstr "हेरियो"
@@ -2379,9 +2391,6 @@ msgstr ""
 
 #~ msgid "The buttons shown in the alert dialog"
 #~ msgstr "सावधान सम्बाद भित्र बटन देखिन्छ"
-
-#~ msgid "_Lookup"
-#~ msgstr "_हेराई"
 
 #~ msgid ""
 #~ "There was an error displaying help: \n"

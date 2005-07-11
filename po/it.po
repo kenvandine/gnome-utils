@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-06-08 09:32-0400\n"
+"POT-Creation-Date: 2005-07-11 13:19-0400\n"
 "PO-Revision-Date: 2005-03-04 10:04+0100\n"
 "Last-Translator: Andrea Zagli <azagli@inwind.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:146
+#: gdictsrc/GNOME_GDictApplet.server.in.in.h:1 gdictsrc/gdict-applet.c:149
 msgid "Dictionary Lookup"
 msgstr "Ricerca sul dizionario"
 
@@ -28,12 +28,12 @@ msgstr "Ricerca sul dizionario"
 msgid "Lookup words in an online dictionary"
 msgstr "Cerca parole su un dizionario online"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:676
-#: logview/logview.c:127
+#: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:619
+#: logview/logview.c:129
 msgid "_About"
 msgstr "I_nformazioni"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:97
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:99
 msgid "_Help"
 msgstr "_Sommario"
 
@@ -45,11 +45,8 @@ msgstr "_Cerca testo selezionato"
 msgid "_Preferences"
 msgstr "Preferen_ze"
 
-#. Could not look up search strategies, so just display a
-#. * label; FIXME: Memory leak
-#.
-#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:690
-#: gdictsrc/gdict-pref-dialog.c:739
+#: gdictsrc/dict.c:676 gdictsrc/gdict-pref-dialog.c:700
+#: gdictsrc/gdict-pref-dialog.c:747
 msgid "Cannot connect to server"
 msgstr "Impossibile connettersi al server"
 
@@ -58,16 +55,17 @@ msgid "Server Error"
 msgstr "Errore del server"
 
 #: gdictsrc/dict.c:690
+#, fuzzy
 msgid ""
-"A serious error occured. Please check that your server and port are correct. "
-"For reference the default server is dict.org and the port 2628"
+"A serious error occurred. Please check that your server and port are "
+"correct. For reference the default server is dict.org and the port 2628"
 msgstr ""
 "Si è verificato un errore grave. Controllare che le impostazioni relative al "
 "server ed alla porta siano corretti. Le impostazioni predefinite sono: "
 "server \"dict.org\" sulla porta 2628."
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:43 logview/about.c:43
+#: gdictsrc/gdict-about.c:40 logview/about.c:43
 msgid "translator-credits"
 msgstr ""
 "Traduzione mantenuta da:\n"
@@ -78,26 +76,26 @@ msgstr ""
 "  Luca Ferretti <elle.uca@infinito.it>\n"
 "  ... e tutti i revisori del Translation Project."
 
-#: gdictsrc/gdict-about.c:45
+#: gdictsrc/gdict-about.c:42
 msgid "A client for the MIT dictionary server."
 msgstr "Un client per il server di dizionario del MIT."
 
-#: gdictsrc/gdict-about.c:48 gdictsrc/gdict-applet.c:366
-#: gdictsrc/gdict-defbox.c:99 gdictsrc/gdict-defbox.c:112
-#: gdictsrc/gdict-pref-dialog.c:489 gdictsrc/gnome-dictionary.desktop.in.h:1
-#: gdictsrc/main.c:90
+#: gdictsrc/gdict-about.c:45 gdictsrc/gdict-applet.c:351
+#: gdictsrc/gdict-defbox.c:101 gdictsrc/gdict-defbox.c:114
+#: gdictsrc/gdict-pref-dialog.c:499 gdictsrc/gnome-dictionary.desktop.in.h:1
+#: gdictsrc/main.c:87
 msgid "Dictionary"
 msgstr "Dizionario"
 
-#: gdictsrc/gdict-app.c:87
+#: gdictsrc/gdict-app.c:101
 msgid "Connection error"
 msgstr "Errore di connessione"
 
-#: gdictsrc/gdict-app.c:134
+#: gdictsrc/gdict-app.c:117
 msgid "Unable to perform requested operation."
 msgstr "Impossibile eseguire l'operazione richiesta."
 
-#: gdictsrc/gdict-app.c:135
+#: gdictsrc/gdict-app.c:118
 msgid ""
 "Either the server you are using is not available \n"
 "or you are not connected to the Internet."
@@ -105,290 +103,300 @@ msgstr ""
 "Il server utilizzato non è disponibile \n"
 "oppure non si è collegati ad Internet."
 
-#: gdictsrc/gdict-app.c:301
+#: gdictsrc/gdict-app.c:276
 msgid "Print Word Definition"
 msgstr "Stampa il significato della parola"
 
-#: gdictsrc/gdict-app.c:416
+#: gdictsrc/gdict-app.c:391
 msgid "Find"
 msgstr "Trova"
 
-#: gdictsrc/gdict-app.c:426
+#: gdictsrc/gdict-app.c:401
 msgid "_Search for:"
 msgstr "C_erca:"
 
-#: gdictsrc/gdict-app.c:496 gdictsrc/gdict-applet.c:314
-#: gdictsrc/gdict-pref-dialog.c:889
+#: gdictsrc/gdict-app.c:500 gdictsrc/gdict-applet.c:299
+#: gdictsrc/gdict-pref-dialog.c:901
 msgid "Could not display help"
 msgstr "Impossibile mostrare la guida"
 
 #. Top
-#: gdictsrc/gdict-app.c:646
+#: gdictsrc/gdict-app.c:589
 msgid "_Dictionary"
 msgstr "_Dizionario"
 
 #. Dictionary menu
-#: gdictsrc/gdict-app.c:652 gdictsrc/gdict-app.c:852
+#: gdictsrc/gdict-app.c:595
 msgid "_Look Up Word"
 msgstr "_Cerca parola"
 
-#: gdictsrc/gdict-app.c:653
+#: gdictsrc/gdict-app.c:596
 msgid "Lookup word in dictionary"
 msgstr "Cerca una parola nel dizionario"
 
-#: gdictsrc/gdict-app.c:654
+#: gdictsrc/gdict-app.c:597
 msgid "_Print"
 msgstr "_Stampa"
 
-#: gdictsrc/gdict-app.c:655
+#: gdictsrc/gdict-app.c:598
 msgid "Print the current definition"
 msgstr "Stampa la definizione attuale"
 
-#: gdictsrc/gdict-app.c:656
+#: gdictsrc/gdict-app.c:599
 msgid "_Close"
 msgstr "_Chiudi"
 
-#: gdictsrc/gdict-app.c:657
+#: gdictsrc/gdict-app.c:600
 msgid "Close the application"
 msgstr "Chiude l'applicazione"
 
 #. Edit menu, see below for cut, paste etc.
-#: gdictsrc/gdict-app.c:660 logview/logview.c:112
+#: gdictsrc/gdict-app.c:603 logview/logview.c:114
 msgid "_Find..."
 msgstr "Tr_ova..."
 
-#: gdictsrc/gdict-app.c:661
+#: gdictsrc/gdict-app.c:604
 msgid "Find a word in the text"
 msgstr "Trova una parola nel testo"
 
-#: gdictsrc/gdict-app.c:662
+#: gdictsrc/gdict-app.c:605
 msgid "Find Ne_xt"
 msgstr "Trova s_uccessivo"
 
-#: gdictsrc/gdict-app.c:663
+#: gdictsrc/gdict-app.c:606
 msgid "Find next occurrence of the word"
 msgstr "Trova l'occorrenza successiva della parola"
 
-#: gdictsrc/gdict-app.c:664
+#: gdictsrc/gdict-app.c:607
 msgid "P_references"
 msgstr "Preferen_ze"
 
-#: gdictsrc/gdict-app.c:665
+#: gdictsrc/gdict-app.c:608
 msgid "Configure the application"
 msgstr "Configura l'applicazione"
 
 #. View menu
-#: gdictsrc/gdict-app.c:668 logview/logview.c:115
+#: gdictsrc/gdict-app.c:611 logview/logview.c:117
 msgid "Bigger text size"
 msgstr ""
 
-#: gdictsrc/gdict-app.c:670 logview/logview.c:117
+#: gdictsrc/gdict-app.c:613 logview/logview.c:119
 msgid "Smaller text size"
 msgstr ""
 
 #. Help menu
-#: gdictsrc/gdict-app.c:674 logview/logview.c:125
+#: gdictsrc/gdict-app.c:617 logview/logview.c:127
 msgid "_Contents"
 msgstr "_Sommario"
 
-#: gdictsrc/gdict-app.c:675
+#: gdictsrc/gdict-app.c:618
 msgid "View help for this application"
 msgstr "Mostra la guida per questa applicazione"
 
-#: gdictsrc/gdict-app.c:677
+#: gdictsrc/gdict-app.c:620
 msgid "About this application"
 msgstr "Informazioni su questa applicazione"
 
-#: gdictsrc/gdict-app.c:682
-msgid "On a Dictionary Server"
-msgstr "Su un server di dizionario"
-
-#: gdictsrc/gdict-app.c:684
-msgid "On a Web Site"
-msgstr "Su un sito web"
-
-#: gdictsrc/gdict-app.c:690
+#: gdictsrc/gdict-app.c:625
 msgid "Cu_t"
 msgstr "_Taglia"
 
-#: gdictsrc/gdict-app.c:691
+#: gdictsrc/gdict-app.c:626
 msgid "Cut the selection"
 msgstr "Taglia la selezione"
 
-#: gdictsrc/gdict-app.c:692
+#: gdictsrc/gdict-app.c:627
 msgid "_Copy"
 msgstr "_Copia"
 
-#: gdictsrc/gdict-app.c:693 logview/logview.c:108
+#: gdictsrc/gdict-app.c:628 logview/logview.c:110
 msgid "Copy the selection"
 msgstr "Copia la selezione"
 
-#: gdictsrc/gdict-app.c:694
+#: gdictsrc/gdict-app.c:629
 msgid "_Paste"
 msgstr "_Incolla"
 
-#: gdictsrc/gdict-app.c:695
+#: gdictsrc/gdict-app.c:630
 msgid "Paste clipboard"
 msgstr "Incolla gli appunti"
 
-#: gdictsrc/gdict-app.c:696
+#: gdictsrc/gdict-app.c:631
 msgid "Select _All"
 msgstr "_Seleziona tutto"
 
-#: gdictsrc/gdict-app.c:697
+#: gdictsrc/gdict-app.c:632
 msgid "Select everything"
 msgstr "Seleziona tutto"
 
-#: gdictsrc/gdict-app.c:702
+#: gdictsrc/gdict-app.c:637
 msgid "_Spellings"
 msgstr "Controlla o_rtografia"
 
-#: gdictsrc/gdict-app.c:703
+#: gdictsrc/gdict-app.c:638
 msgid "View alternate spellings"
 msgstr "Visualizza ortografie alternative"
 
-#: gdictsrc/gdict-app.c:849
-msgid "_Word:"
-msgstr "_Parola:"
+#: gdictsrc/gdict-app.c:748
+#, fuzzy
+msgid "_Look Up"
+msgstr "_Cerca parola"
 
-#: gdictsrc/gdict-app.c:877
+#: gdictsrc/gdict-app.c:757
+#, fuzzy
+msgid "In Dictionary"
+msgstr "Dizionario"
+
+#: gdictsrc/gdict-app.c:758
+msgid "On a Web Site"
+msgstr "Su un sito web"
+
+#: gdictsrc/gdict-app.c:774
 msgid "Word"
 msgstr "Parola"
 
-#: gdictsrc/gdict-app.c:878 gdictsrc/gdict-app.c:880
+#: gdictsrc/gdict-app.c:775
 msgid "Word Entry"
 msgstr "Campo parola"
 
-#: gdictsrc/gdict-app.c:879
+#: gdictsrc/gdict-app.c:776
 msgid "Enter a Word or select one from the list below"
 msgstr "Inserire una parola o sceglierne una dalla lista sottostante"
 
-#: gdictsrc/gdict-app.c:883
+#: gdictsrc/gdict-app.c:779
 msgid "Look Up for a Word"
 msgstr "Cerca una parola"
 
-#: gdictsrc/gdict-applet.c:152
+#: gdictsrc/gdict-applet.c:155
 msgid "Dictionary word entry"
 msgstr "Campo voce dizionario"
 
-#: gdictsrc/gdict-defbox.c:101
+#: gdictsrc/gdict-defbox.c:103
 msgid "Looking up word..."
 msgstr "Ricerca della parola in corso..."
 
-#: gdictsrc/gdict-defbox.c:130 gdictsrc/gdict-speller.c:254
+#: gdictsrc/gdict-defbox.c:132 gdictsrc/gdict-entry.c:114
+#: gdictsrc/gdict-speller.c:255
 msgid "No matches found"
 msgstr "Non è stata trovata alcuna corrispondenza"
 
-#: gdictsrc/gdict-defbox.c:141
+#: gdictsrc/gdict-defbox.c:143
 msgid "String not found"
 msgstr "Stringa non trovata"
 
-#: gdictsrc/gdict-defbox.c:616
+#: gdictsrc/gdict-defbox.c:618
 msgid "Definition preview"
 msgstr "Anteprima della definizione"
 
-#: gdictsrc/gdict-defbox.c:945 gdictsrc/gdict-speller.c:294
+#: gdictsrc/gdict-defbox.c:947 gdictsrc/gdict-entry.c:132
+#: gdictsrc/gdict-speller.c:295
 msgid "Error invoking query"
 msgstr "Errore nell'invocare l'interrogazione"
 
-#: gdictsrc/gdict-pref-dialog.c:265
+#: gdictsrc/gdict-entry.c:102
+#, fuzzy
+msgid "Looking up entry..."
+msgstr "Ricerca della parola in corso..."
+
+#: gdictsrc/gdict-pref-dialog.c:267
 msgid "De_fault Server"
 msgstr "Server pre_definito"
 
-#: gdictsrc/gdict-pref-dialog.c:276
+#: gdictsrc/gdict-pref-dialog.c:278
 msgid "_Server:"
 msgstr "_Server:"
 
-#: gdictsrc/gdict-pref-dialog.c:284
+#: gdictsrc/gdict-pref-dialog.c:286
 msgid "Reset server to default"
 msgstr "Reimposta il server predefinito"
 
-#: gdictsrc/gdict-pref-dialog.c:286
+#: gdictsrc/gdict-pref-dialog.c:288
 msgid "_Port:"
 msgstr "_Porta:"
 
-#: gdictsrc/gdict-pref-dialog.c:296
+#: gdictsrc/gdict-pref-dialog.c:298
 msgid "Def_ault Port"
 msgstr "Porta prede_finita"
 
-#: gdictsrc/gdict-pref-dialog.c:311
+#: gdictsrc/gdict-pref-dialog.c:313
 msgid "Reset port to default"
 msgstr "Reimposta la porta predefinita"
 
-#: gdictsrc/gdict-pref-dialog.c:312
+#: gdictsrc/gdict-pref-dialog.c:314
 msgid "Server"
 msgstr "Server"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Server Entry"
 msgstr "Campo server"
 
-#: gdictsrc/gdict-pref-dialog.c:314
+#: gdictsrc/gdict-pref-dialog.c:316
 msgid "Enter the Server Name"
 msgstr "Inserire il nome del server"
 
-#: gdictsrc/gdict-pref-dialog.c:315
+#: gdictsrc/gdict-pref-dialog.c:317
 msgid "Port"
 msgstr "Porta"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Port Entry"
 msgstr "Campo porta"
 
-#: gdictsrc/gdict-pref-dialog.c:317
+#: gdictsrc/gdict-pref-dialog.c:319
 msgid "Enter the Port Number"
 msgstr "Inserire il numero della porta"
 
-#: gdictsrc/gdict-pref-dialog.c:320
+#: gdictsrc/gdict-pref-dialog.c:322
 msgid "_Database:"
 msgstr "_Database:"
 
-#: gdictsrc/gdict-pref-dialog.c:327
+#: gdictsrc/gdict-pref-dialog.c:332
 msgid "Strat_egy:"
 msgstr "Strat_egia:"
 
-#: gdictsrc/gdict-pref-dialog.c:334
-msgid "Font:"
-msgstr ""
+#: gdictsrc/gdict-pref-dialog.c:342
+#, fuzzy
+msgid "F_ont:"
+msgstr "_Porta:"
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 msgid "Web Site"
 msgstr "Sito web"
 
-#: gdictsrc/gdict-pref-dialog.c:361
+#: gdictsrc/gdict-pref-dialog.c:372
 msgid "Search Address"
 msgstr "Percorso di ricerca"
 
-#: gdictsrc/gdict-pref-dialog.c:481
+#: gdictsrc/gdict-pref-dialog.c:491
 msgid "Dictionary Preferences"
 msgstr "Preferenze di Dizionario"
 
-#: gdictsrc/gdict-pref-dialog.c:493
+#: gdictsrc/gdict-pref-dialog.c:503
 msgid "Web Sites"
 msgstr "Siti web"
 
-#: gdictsrc/gdict-pref-dialog.c:682
+#: gdictsrc/gdict-pref-dialog.c:690
 msgid "Search all databases"
 msgstr "Cerca in tutti i database"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database"
 msgstr "Database"
 
-#: gdictsrc/gdict-pref-dialog.c:843
+#: gdictsrc/gdict-pref-dialog.c:855
 msgid "Database Name"
 msgstr "Nome del database"
 
-#: gdictsrc/gdict-pref-dialog.c:860
+#: gdictsrc/gdict-pref-dialog.c:872
 msgid "Default Strategy"
 msgstr "Strategia predefinita"
 
-#: gdictsrc/gdict-speller.c:114
+#: gdictsrc/gdict-speller.c:115
 #, fuzzy
 msgid "Spellings"
 msgstr "Controlla o_rtografia"
 
-#: gdictsrc/gdict-speller.c:235
+#: gdictsrc/gdict-speller.c:236
 msgid "Spell-checking..."
 msgstr "Controllo ortografico in corso..."
 
@@ -494,59 +502,59 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 "\"ext2\" per il file system nativo di Linux o \"fat\" per il file system DOS."
 
-#: gfloppy/src/badblocks.c:84
+#: gfloppy/src/badblocks.c:85
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Errore interno: impossibile spostarsi sulla posizione corretta."
 
-#: gfloppy/src/badblocks.c:93
+#: gfloppy/src/badblocks.c:94
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Errore interno: valore assurdo (%ld) in do_test\n"
 
 #. while (!i)
 #. ;
-#: gfloppy/src/badblocks.c:251
+#: gfloppy/src/badblocks.c:252
 msgid "Checking for bad blocks..."
 msgstr "Verifica di blocchi danneggiati... "
 
-#: gfloppy/src/badblocks.c:263
+#: gfloppy/src/badblocks.c:264
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Apertura del device %s dalla ricerca dei blocchi danneggiati fallita\n"
 
-#: gfloppy/src/badblocks.c:283 gfloppy/src/gfloppy.c:527
+#: gfloppy/src/badblocks.c:284 gfloppy/src/gfloppy.c:530
 msgid "Checking for bad blocks... Done"
 msgstr "Verifica di blocchi danneggiati... Fatto"
 
-#: gfloppy/src/fdformat.c:42
+#: gfloppy/src/fdformat.c:43
 msgid "Formatting the disk..."
 msgstr "Formattazione del disco..."
 
 # questa la lascierei personale perchè mi piace il tono
-#: gfloppy/src/fdformat.c:45
+#: gfloppy/src/fdformat.c:46
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Non so che cosa sia questa cosa, ma è sbagliatissima!"
 
-#: gfloppy/src/fdformat.c:53 gfloppy/src/fdformat.c:66
+#: gfloppy/src/fdformat.c:54 gfloppy/src/fdformat.c:67
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Errore nel formattare la traccia #%d"
 
-#: gfloppy/src/fdformat.c:75
+#: gfloppy/src/fdformat.c:76
 msgid "Error during completion of formatting"
 msgstr "Errore durante il completamento della formattazione"
 
 #. XXXX - need to tell parent we're finished
-#: gfloppy/src/fdformat.c:79
+#: gfloppy/src/fdformat.c:80
 msgid "Formatting the disk... Done"
 msgstr "Formattazione del disco... Fatto"
 
 #. XXXX - tell parent we're starting verify stage
-#: gfloppy/src/fdformat.c:95
+#: gfloppy/src/fdformat.c:96
 msgid "Verifying the format..."
 msgstr "Verifica del formato..."
 
-#: gfloppy/src/fdformat.c:100 gfloppy/src/fdformat.c:185
+#: gfloppy/src/fdformat.c:101 gfloppy/src/fdformat.c:186
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -556,14 +564,14 @@ msgstr ""
 "\n"
 "Assicurarsi che non sia protetto da scrittura."
 
-#: gfloppy/src/fdformat.c:103 gfloppy/src/fdformat.c:188
+#: gfloppy/src/fdformat.c:104 gfloppy/src/fdformat.c:189
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Permessi insufficienti per aprire il device del floppy %s."
 
 # questa stringa fa schifo in inglese!
 # correggo in italiano e segnalo
-#: gfloppy/src/fdformat.c:107 gfloppy/src/fdformat.c:192
+#: gfloppy/src/fdformat.c:108 gfloppy/src/fdformat.c:193
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -575,7 +583,7 @@ msgstr ""
 "Controllare che il supporto sia inserito\n"
 "correttamente nell'unità."
 
-#: gfloppy/src/fdformat.c:110
+#: gfloppy/src/fdformat.c:111
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -586,7 +594,7 @@ msgstr ""
 "\n"
 "Codice di errore %s:%d"
 
-#: gfloppy/src/fdformat.c:133
+#: gfloppy/src/fdformat.c:134
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -595,31 +603,31 @@ msgstr ""
 "Errore di lettura.\n"
 "Problema nel leggere il cilindro %d: atteso %d, letto %d"
 
-#: gfloppy/src/fdformat.c:136
+#: gfloppy/src/fdformat.c:137
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Problema nel leggere il cilindro %d: atteso %d, letto %d"
 
-#: gfloppy/src/fdformat.c:147
+#: gfloppy/src/fdformat.c:148
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Dato errato nel cilindro %d.  L'operazione continua... "
 
-#: gfloppy/src/fdformat.c:156
+#: gfloppy/src/fdformat.c:157
 #, c-format
 msgid "Error closing device %s"
 msgstr "Errore nel chiudere il device %s"
 
-#: gfloppy/src/fdformat.c:163
+#: gfloppy/src/fdformat.c:164
 msgid "Verifying the format... Done"
 msgstr "Verifica del formato... Fatto"
 
-#: gfloppy/src/fdformat.c:175
+#: gfloppy/src/fdformat.c:176
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "Impossibile scrivere sul device %s"
 
-#: gfloppy/src/fdformat.c:195
+#: gfloppy/src/fdformat.c:196
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -630,32 +638,32 @@ msgstr ""
 "\n"
 "Codice di errore %s"
 
-#: gfloppy/src/fdformat.c:207
+#: gfloppy/src/fdformat.c:208
 msgid "Could not determine current floppy geometry."
 msgstr "Impossibile determinare la geometria del floppy corrente."
 
-#: gfloppy/src/gfloppy.c:215
+#: gfloppy/src/gfloppy.c:218
 msgid "Error while creating a unique filename for the bad blocks list file."
 msgstr ""
 "Errore durante la creazione di un nome unico per il file della lista dei "
 "blocchi danneggiati."
 
-#: gfloppy/src/gfloppy.c:235
+#: gfloppy/src/gfloppy.c:238
 msgid "Error while filling the bad blocks list file."
 msgstr "Errore nel riempire il file della lista dei blocchi danneggiati."
 
 # uhm è questo il senso?
-#: gfloppy/src/gfloppy.c:298
+#: gfloppy/src/gfloppy.c:301
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
 msgstr "Errore durante l'esecuzione del comando «%s»: %s"
 
 # aiuto
-#: gfloppy/src/gfloppy.c:324
+#: gfloppy/src/gfloppy.c:327
 msgid "Unknown mke2fs starting signature, cancelling."
 msgstr "Firma iniziale di mke2fs sconosciuta; operazione annullata."
 
-#: gfloppy/src/gfloppy.c:338
+#: gfloppy/src/gfloppy.c:341
 #, c-format
 msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
@@ -666,16 +674,16 @@ msgstr ""
 "errori:\n"
 "%s (%d)"
 
-#: gfloppy/src/gfloppy.c:355
+#: gfloppy/src/gfloppy.c:358
 msgid "Abnormal child process termination."
 msgstr "Il processo figlio è terminato in modo anomalo."
 
-#: gfloppy/src/gfloppy.c:380
+#: gfloppy/src/gfloppy.c:383
 #, c-format
 msgid "Error while spawning the mbadblocks command: %s."
 msgstr "Errore durante l'esecuzione del comando «mbadblocks»: %s."
 
-#: gfloppy/src/gfloppy.c:392
+#: gfloppy/src/gfloppy.c:395
 #, c-format
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
@@ -685,28 +693,28 @@ msgstr ""
 "i seguenti errori:\n"
 "%s."
 
-#: gfloppy/src/gfloppy.c:435
+#: gfloppy/src/gfloppy.c:438
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Il processo figlio «mbadblocks» è terminato in modo anomalo"
 
 #. make the filesystem
-#: gfloppy/src/gfloppy.c:461 gfloppy/src/gfloppy.c:501
+#: gfloppy/src/gfloppy.c:464 gfloppy/src/gfloppy.c:504
 msgid "Making filesystem on disk..."
 msgstr "Creazione del file system sul disco..."
 
-#: gfloppy/src/gfloppy.c:469
+#: gfloppy/src/gfloppy.c:472
 msgid "Unable to create filesystem correctly."
 msgstr "Impossibile creare correttamente il file system."
 
-#: gfloppy/src/gfloppy.c:474 gfloppy/src/gfloppy.c:513
+#: gfloppy/src/gfloppy.c:477 gfloppy/src/gfloppy.c:516
 msgid "Making filesystem on disk... Done"
 msgstr "Creazione del file system sul disco... Fatto"
 
-#: gfloppy/src/gfloppy.c:518
+#: gfloppy/src/gfloppy.c:521
 msgid "Checking for bad blocks... (this might take a while)"
 msgstr "Verifica di blocchi danneggiati... (può durare un po' di tempo)"
 
-#: gfloppy/src/gfloppy.c:523
+#: gfloppy/src/gfloppy.c:526
 msgid "Error while checking the bad blocks."
 msgstr "Errore durante la verifica dei blocchi danneggiati."
 
@@ -797,11 +805,11 @@ msgstr "_Veloce (crea solo il file system)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standard (formatta a basso livello oltre al modo «Veloce»)"
 
-#: gfloppy/src/main.c:257
+#: gfloppy/src/main.c:259
 msgid "Cannot Format"
 msgstr "Impossibile formattare"
 
-#: gfloppy/src/main.c:258
+#: gfloppy/src/main.c:260
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -809,12 +817,12 @@ msgstr ""
 "Non risultano installati né «mke2fs», né «mkdosfs» o «mformat». Per la "
 "formattazione di un floppy è necessaria almeno una di queste utilità."
 
-#: gfloppy/src/main.c:278
+#: gfloppy/src/main.c:280
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Impossibile aprire il device %s; la formattazione non può continuare"
 
-#: gfloppy/src/main.c:281 gfloppy/src/main.c:344
+#: gfloppy/src/main.c:283 gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -823,7 +831,7 @@ msgstr ""
 "Il device %s è scollegato.\n"
 "Attaccare il device per continuare."
 
-#: gfloppy/src/main.c:284 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:286 gfloppy/src/main.c:349
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -833,39 +841,39 @@ msgstr ""
 "Non si hanno i permessi per scrivere su %s; la formattazione è impossibile.\n"
 "Contattare l'amministratore di sistema per ottenere i permessi di scrittura."
 
-#: gfloppy/src/main.c:291 gfloppy/src/main.c:355
+#: gfloppy/src/main.c:293 gfloppy/src/main.c:357
 msgid "Cannot initialize device"
 msgstr "Impossibile inizializzare il dispositivo"
 
-#: gfloppy/src/main.c:341
+#: gfloppy/src/main.c:343
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Impossibile aprire il device, la formattazione non può continuare"
 
-#: gfloppy/src/main.c:344 gfloppy/src/main.c:347
+#: gfloppy/src/main.c:346 gfloppy/src/main.c:349
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 o /dev/fd0"
 
-#: gfloppy/src/main.c:508
+#: gfloppy/src/main.c:510
 msgid "Could not display help for the floppy formatter."
 msgstr "Impossibile mostrare la guida per la formattazione floppy."
 
-#: gfloppy/src/main.c:527
+#: gfloppy/src/main.c:529
 msgid "Incorrect volume name"
 msgstr "Nome del volume non corretto"
 
-#: gfloppy/src/main.c:528
+#: gfloppy/src/main.c:530
 msgid "The volume name can't contain any blank space."
 msgstr "Il nome del volume non può contenere spazi."
 
-#: gfloppy/src/main.c:577
+#: gfloppy/src/main.c:579
 msgid "The device to format"
 msgstr "Il device da formattare"
 
-#: gfloppy/src/main.c:578
+#: gfloppy/src/main.c:580
 msgid "DEVICE"
 msgstr "DEVICE"
 
-#: gfloppy/src/progress.c:122
+#: gfloppy/src/progress.c:126
 #, c-format
 msgid ""
 "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has been "
@@ -880,15 +888,15 @@ msgstr[1] ""
 "Il floppy è stato formattato, ma sono stati trovati e segnati <b>%d blocchi "
 "rovinati</b> (su %d)."
 
-#: gfloppy/src/progress.c:125
+#: gfloppy/src/progress.c:129
 msgid "Floppy formatted successfully."
 msgstr "Floppy formattato con successo."
 
-#: gfloppy/src/progress.c:131
+#: gfloppy/src/progress.c:135
 msgid "Floppy formatting cancelled."
 msgstr "Formattazione del floppy annullata."
 
-#: gfloppy/src/progress.c:174
+#: gfloppy/src/progress.c:178
 msgid "Format Progress"
 msgstr "Avanzamento della formattazione"
 
@@ -1512,175 +1520,175 @@ msgstr "collegamento (interrotto)"
 msgid "link to %s"
 msgstr "collegamento a %s"
 
-#: gsearchtool/gsearchtool.c:81
+#: gsearchtool/gsearchtool.c:80
 msgid "Contains the _text"
 msgstr "Contiene il _testo"
 
 # Data di modifica inferiore di [___] giorni
 #
 # era proprio brutto...
-#: gsearchtool/gsearchtool.c:83
+#: gsearchtool/gsearchtool.c:82
 msgid "_Date modified less than"
 msgstr "_Modificato da meno di"
 
-#: gsearchtool/gsearchtool.c:83 gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:82 gsearchtool/gsearchtool.c:83
 msgid "days"
 msgstr "giorni"
 
 # cfr sopra
-#: gsearchtool/gsearchtool.c:84
+#: gsearchtool/gsearchtool.c:83
 msgid "Date modified more than"
 msgstr "Modificato da più di"
 
-#: gsearchtool/gsearchtool.c:86
+#: gsearchtool/gsearchtool.c:85
 msgid "S_ize at least"
 msgstr "D_imensione almeno di"
 
-#: gsearchtool/gsearchtool.c:86 gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:85 gsearchtool/gsearchtool.c:86
 msgid "kilobytes"
 msgstr "kilobyte"
 
-#: gsearchtool/gsearchtool.c:87
+#: gsearchtool/gsearchtool.c:86
 msgid "Si_ze at most"
 msgstr "_Dimensione al massimo"
 
-#: gsearchtool/gsearchtool.c:88
+#: gsearchtool/gsearchtool.c:87
 msgid "File is empty"
 msgstr "Il file è vuoto"
 
-#: gsearchtool/gsearchtool.c:90
+#: gsearchtool/gsearchtool.c:89
 msgid "Owned by _user"
 msgstr "Posseduto dall'_utente"
 
-#: gsearchtool/gsearchtool.c:91
+#: gsearchtool/gsearchtool.c:90
 msgid "Owned by _group"
 msgstr "Posseduto dal _gruppo"
 
-#: gsearchtool/gsearchtool.c:92
+#: gsearchtool/gsearchtool.c:91
 msgid "Owner is unrecognized"
 msgstr "Il proprietario è non riconosciuto"
 
-#: gsearchtool/gsearchtool.c:94
+#: gsearchtool/gsearchtool.c:93
 msgid "Na_me does not contain"
 msgstr "Il nome non con_tiene"
 
-#: gsearchtool/gsearchtool.c:95
+#: gsearchtool/gsearchtool.c:94
 msgid "Name matches regular e_xpression"
 msgstr "Il nome corrisponde all'_espressione regolare"
 
-#: gsearchtool/gsearchtool.c:97
+#: gsearchtool/gsearchtool.c:96
 msgid "Show hidden and backup files"
 msgstr "Mostrare file nascosti e di backup"
 
-#: gsearchtool/gsearchtool.c:98
+#: gsearchtool/gsearchtool.c:97
 msgid "Follow symbolic links"
 msgstr "Seguire i collegamenti simbolici"
 
-#: gsearchtool/gsearchtool.c:99
+#: gsearchtool/gsearchtool.c:98
 msgid "Include other filesystems"
 msgstr "Includere altri file system"
 
-#: gsearchtool/gsearchtool.c:180
+#: gsearchtool/gsearchtool.c:179
 msgid "_Open"
 msgstr "_Apri"
 
-#: gsearchtool/gsearchtool.c:181
+#: gsearchtool/gsearchtool.c:180
 msgid "O_pen Folder"
 msgstr "Apri ca_rtella"
 
-#: gsearchtool/gsearchtool.c:182
+#: gsearchtool/gsearchtool.c:181
 msgid "Mo_ve to Trash"
 msgstr "S_posta nel cestino"
 
-#: gsearchtool/gsearchtool.c:183
+#: gsearchtool/gsearchtool.c:182
 msgid "_Save Results As..."
 msgstr "_Salva risultati come..."
 
-#: gsearchtool/gsearchtool.c:255 gsearchtool/gsearchtool.c:272
+#: gsearchtool/gsearchtool.c:254 gsearchtool/gsearchtool.c:271
 msgid "A locate database has probably not been created."
 msgstr "Il database per locate probabilmente non è stato creato."
 
-#: gsearchtool/gsearchtool.c:376
+#: gsearchtool/gsearchtool.c:375
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Conversione del set di caratteri fallita per «%s»"
 
-#: gsearchtool/gsearchtool.c:763 gsearchtool/gsearchtool.c:792
+#: gsearchtool/gsearchtool.c:769 gsearchtool/gsearchtool.c:798
 msgid "No files found"
 msgstr "Nessun file trovato"
 
-#: gsearchtool/gsearchtool.c:785
+#: gsearchtool/gsearchtool.c:791
 msgid "(stopped)"
 msgstr "(fermato)"
 
-#: gsearchtool/gsearchtool.c:791
+#: gsearchtool/gsearchtool.c:797
 msgid "No Files Found"
 msgstr "Nessun file trovato"
 
-#: gsearchtool/gsearchtool.c:796
+#: gsearchtool/gsearchtool.c:802
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "Trovato %d file"
 msgstr[1] "Trovati %d file"
 
-#: gsearchtool/gsearchtool.c:800 gsearchtool/gsearchtool.c:838
+#: gsearchtool/gsearchtool.c:806 gsearchtool/gsearchtool.c:844
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "Trovato %d file"
 msgstr[1] "Trovati %d file"
 
-#: gsearchtool/gsearchtool.c:817 gsearchtool/gsearchtool.c:1076
-#: gsearchtool/gsearchtool.c:1162 gsearchtool/gsearchtool.c:2838
+#: gsearchtool/gsearchtool.c:823 gsearchtool/gsearchtool.c:1082
+#: gsearchtool/gsearchtool.c:1168 gsearchtool/gsearchtool.c:2846
 msgid "Search for Files"
 msgstr "Cerca file"
 
-#: gsearchtool/gsearchtool.c:910
+#: gsearchtool/gsearchtool.c:916
 msgid "Entry changed called for a non entry option!"
 msgstr "Cambiamento della voce chiamato per un oggetto che non è una voce."
 
-#: gsearchtool/gsearchtool.c:1162
+#: gsearchtool/gsearchtool.c:1168
 msgid "Searching..."
 msgstr "Ricerca in corso..."
 
-#: gsearchtool/gsearchtool.c:1185
+#: gsearchtool/gsearchtool.c:1191
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Imposta il testo dell'opzione di ricerca «Il nome contiene»"
 
-#: gsearchtool/gsearchtool.c:1186
+#: gsearchtool/gsearchtool.c:1192
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Imposta il testo dell'opzione di ricerca «Cerca nella cartella»"
 
-#: gsearchtool/gsearchtool.c:1187
+#: gsearchtool/gsearchtool.c:1193
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Ordina i file per uno dei seguenti criteri: nome, cartella, dimensioni, tipo "
 "o data"
 
-#: gsearchtool/gsearchtool.c:1188
+#: gsearchtool/gsearchtool.c:1194
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Imposta l'ordine a decrescente, il valore predefinito è crescente"
 
-#: gsearchtool/gsearchtool.c:1189
+#: gsearchtool/gsearchtool.c:1195
 msgid "Automatically start a search"
 msgstr "Inizia la ricerca automaticamente"
 
-#: gsearchtool/gsearchtool.c:1195
+#: gsearchtool/gsearchtool.c:1201
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Seleziona l'opzione di ricerca «%s»"
 
-#: gsearchtool/gsearchtool.c:1198
+#: gsearchtool/gsearchtool.c:1204
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Seleziona e imposta l'opzione di ricerca «%s»"
 
-#: gsearchtool/gsearchtool.c:1305
+#: gsearchtool/gsearchtool.c:1311
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Parametro errato passato a \"sortby\""
 
-#: gsearchtool/gsearchtool.c:1607
+#: gsearchtool/gsearchtool.c:1611
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1688,7 +1696,7 @@ msgstr ""
 "\n"
 "... Troppi errori da visualizzare ..."
 
-#: gsearchtool/gsearchtool.c:1621
+#: gsearchtool/gsearchtool.c:1625
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1696,175 +1704,172 @@ msgstr ""
 "Il risultato della ricerca potrebbe non essere valido. Si sono verificati "
 "alcuni errori durante la ricerca."
 
-#: gsearchtool/gsearchtool.c:1633 gsearchtool/gsearchtool.c:1673
+#: gsearchtool/gsearchtool.c:1637 gsearchtool/gsearchtool.c:1681
 msgid "Show more _details"
 msgstr "Mostra altri _dettagli"
 
-#: gsearchtool/gsearchtool.c:1661
+#: gsearchtool/gsearchtool.c:1667
+#, fuzzy
 msgid ""
-"The search results may be invalid.  Do you want to disable the quick search "
-"feature?"
+"The search results may be out of date or invalid.  Do you want to disable "
+"the quick search feature?"
 msgstr ""
 "I risultati della ricerca potrebbero essere non validi. Disabilitare la "
 "funzionalità di riceca veloce?"
 
-#: gsearchtool/gsearchtool.c:1684
+#: gsearchtool/gsearchtool.c:1692
 msgid "Disable _Quick Search"
 msgstr "Disabilita ricerca _veloce"
 
-#: gsearchtool/gsearchtool.c:1711
+#: gsearchtool/gsearchtool.c:1719
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Impossibile impostare l'id del gruppo al processo figlio %d: %s.\n"
 
-#: gsearchtool/gsearchtool.c:1738
+#: gsearchtool/gsearchtool.c:1746
 msgid "Error parsing the search command."
 msgstr "Errore nell'analizzare il comando di ricerca."
 
-#: gsearchtool/gsearchtool.c:1771
+#: gsearchtool/gsearchtool.c:1779
 msgid "Error running the search command."
 msgstr "Errore nell'eseguire il comando di ricerca."
 
-#: gsearchtool/gsearchtool.c:1918
+#: gsearchtool/gsearchtool.c:1926
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Inserire un valore per l'opzione di ricerca «%s»."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: gsearchtool/gsearchtool.c:1923
+#: gsearchtool/gsearchtool.c:1931
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" in %s"
 
-#: gsearchtool/gsearchtool.c:1925
+#: gsearchtool/gsearchtool.c:1933
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Inserire un valore in %s per l'opzione di ricerca «%s»."
 
-#: gsearchtool/gsearchtool.c:1984
+#: gsearchtool/gsearchtool.c:1992
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Rimuovi \"%s\""
 
-#: gsearchtool/gsearchtool.c:1985
+#: gsearchtool/gsearchtool.c:1993
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Fare clic per rimuovere l'opzione di ricerca «%s»"
 
-#: gsearchtool/gsearchtool.c:2078
+#: gsearchtool/gsearchtool.c:2086
 msgid "A_vailable options:"
 msgstr "Op_zioni disponibili:"
 
-#: gsearchtool/gsearchtool.c:2107
+#: gsearchtool/gsearchtool.c:2115
 msgid "Available options"
 msgstr "Opzioni disponibili"
 
-#: gsearchtool/gsearchtool.c:2108
+#: gsearchtool/gsearchtool.c:2116
 msgid "Select a search option from the drop-down list."
 msgstr "Selezionare un'opzione di ricerca dal menù a discesa."
 
-#: gsearchtool/gsearchtool.c:2120
+#: gsearchtool/gsearchtool.c:2128
 msgid "Add search option"
 msgstr "Aggiunge un'opzione di ricerca"
 
-#: gsearchtool/gsearchtool.c:2121
+#: gsearchtool/gsearchtool.c:2129
 msgid "Click to add the selected available search option."
 msgstr "Fare clic per aggiungere l'opzione di ricerca selezionata."
 
-#: gsearchtool/gsearchtool.c:2142
+#: gsearchtool/gsearchtool.c:2150
 msgid "S_earch results:"
 msgstr "Ri_sultati della ricerca:"
 
-#: gsearchtool/gsearchtool.c:2178
+#: gsearchtool/gsearchtool.c:2186
 msgid "List View"
 msgstr "Vista a lista"
 
-#: gsearchtool/gsearchtool.c:2228
+#: gsearchtool/gsearchtool.c:2236
 msgid "Name"
 msgstr "Nome"
 
-#: gsearchtool/gsearchtool.c:2248
+#: gsearchtool/gsearchtool.c:2256
 msgid "Folder"
 msgstr "Cartella"
 
-#: gsearchtool/gsearchtool.c:2259
+#: gsearchtool/gsearchtool.c:2267
 msgid "Size"
 msgstr "Dimensione"
 
-#: gsearchtool/gsearchtool.c:2269
+#: gsearchtool/gsearchtool.c:2277
 msgid "Type"
 msgstr "Tipo"
 
-#: gsearchtool/gsearchtool.c:2279
+#: gsearchtool/gsearchtool.c:2287
 msgid "Date Modified"
 msgstr "Data di modifica"
 
-#: gsearchtool/gsearchtool.c:2647
+#: gsearchtool/gsearchtool.c:2655
 msgid "_Name contains:"
 msgstr "Il _nome contiene:"
 
-#: gsearchtool/gsearchtool.c:2661 gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2669 gsearchtool/gsearchtool.c:2670
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "Inserire un nome di file o un nome di file parziale con o senza "
 "metacaratteri."
 
-#: gsearchtool/gsearchtool.c:2662
+#: gsearchtool/gsearchtool.c:2670
 msgid "Name contains"
 msgstr "Il nome contiene"
 
-#: gsearchtool/gsearchtool.c:2668
+#: gsearchtool/gsearchtool.c:2676
 msgid "_Look in folder:"
 msgstr "C_erca nella cartella:"
 
-#: gsearchtool/gsearchtool.c:2674
+#: gsearchtool/gsearchtool.c:2682
 msgid "Browse"
 msgstr "Sfoglia"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 msgid "Look in folder"
 msgstr "Cerca nella cartella"
 
-#: gsearchtool/gsearchtool.c:2679
+#: gsearchtool/gsearchtool.c:2687
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Inserire la cartella o il device dal quale iniziare la ricerca"
 
-#: gsearchtool/gsearchtool.c:2690
+#: gsearchtool/gsearchtool.c:2698
 #, fuzzy
 msgid "Select more _options"
 msgstr "Mostra a_ltre opzioni"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 #, fuzzy
 msgid "Select more options"
 msgstr "Mostra altre opzioni"
 
-#: gsearchtool/gsearchtool.c:2699
+#: gsearchtool/gsearchtool.c:2707
 msgid "Click to expand or collapse the list of available options."
 msgstr "Fare clic per espandere o contrarre la lista di opzioni disponibili."
 
-#: gsearchtool/gsearchtool.c:2723
+#: gsearchtool/gsearchtool.c:2731
 msgid "Click to display the help manual."
 msgstr "Fare clic per visualizzare la guida."
 
-#: gsearchtool/gsearchtool.c:2731
+#: gsearchtool/gsearchtool.c:2739
 msgid "Click to close \"Search for Files\"."
 msgstr "Fare clic per chiudere \"Cerca file\"."
 
-#: gsearchtool/gsearchtool.c:2757
+#: gsearchtool/gsearchtool.c:2765
 msgid "Click to perform a search."
 msgstr "Fare clic per iniziare la ricerca."
 
-#: gsearchtool/gsearchtool.c:2758
+#: gsearchtool/gsearchtool.c:2766
 msgid "Click to stop a search."
 msgstr "Fare clic per fermare la ricerca."
 
-#: gsearchtool/gsearchtool.c:2858
-msgid "Cannot initialize bonobo."
-msgstr "Impossibile inizializzare bonobo."
-
-#: logview/about.c:47 logview/logview.c:47
+#: logview/about.c:47 logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "Visualizzatore log di sistema"
 
@@ -1888,7 +1893,7 @@ msgstr "A_ggiungi"
 msgid "Add an action"
 msgstr "Aggiunge un'azione"
 
-#: logview/actions.c:175 logview/logview.c:95
+#: logview/actions.c:175 logview/logview.c:97
 msgid "_Edit"
 msgstr "_Modifica"
 
@@ -2023,14 +2028,14 @@ msgstr ""
 "descrizione: [%s]\n"
 "azione: [%s]\n"
 
-#: logview/desc_db.c:66
+#: logview/desc_db.c:67
 #, c-format
 msgid "Cannot open regexp data base <%s>! Open failed."
 msgstr ""
 "Impossibile aprire il database delle espressioni regolari <%s>! Apertura "
 "fallita."
 
-#: logview/desc_db.c:176
+#: logview/desc_db.c:177
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
 msgstr ""
@@ -2166,20 +2171,20 @@ msgstr "%e %B"
 msgid "%X"
 msgstr "%X"
 
-#: logview/logrtns.c:50
+#: logview/logrtns.c:51
 #, fuzzy
 msgid "One file or more could not be opened"
 msgstr "Il file non può essere aperto."
 
-#: logview/logrtns.c:220
+#: logview/logrtns.c:221
 msgid "Unable to open logfile!\n"
 msgstr "Impossibile aprire il file di log!\n"
 
-#: logview/logrtns.c:227 logview/logrtns.c:247
+#: logview/logrtns.c:228 logview/logrtns.c:248
 msgid "Not enough memory!\n"
 msgstr "Memoria insufficiente!\n"
 
-#: logview/logrtns.c:302
+#: logview/logrtns.c:303
 #, fuzzy, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2189,167 +2194,167 @@ msgstr ""
 "di lettura. Provare a lanciare il programma come root o contattare "
 "l'amministratore di sistema per cambiare i permessi sul file."
 
-#: logview/logrtns.c:307
+#: logview/logrtns.c:308
 #, c-format
 msgid "%s is too big."
 msgstr "%s è troppo grande."
 
-#: logview/logrtns.c:311
+#: logview/logrtns.c:312
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s non può essere aperto."
 
-#: logview/logrtns.c:350
+#: logview/logrtns.c:351
 #, c-format
 msgid "%s not a log file."
 msgstr "%s non è un file di log."
 
-#: logview/logrtns.c:554 logview/logrtns.c:578
+#: logview/logrtns.c:556 logview/logrtns.c:580
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: memoria esaurita"
 
-#: logview/logview-findbar.c:274
+#: logview/logview-findbar.c:275
 msgid "Fin_d:"
 msgstr "Tr_ova:"
 
-#: logview/logview-findbar.c:279
+#: logview/logview-findbar.c:280
 #, fuzzy
 msgid "_Previous"
 msgstr "Trova precedente"
 
-#: logview/logview-findbar.c:281
+#: logview/logview-findbar.c:282
 msgid "_Next"
 msgstr ""
 
-#: logview/logview.c:94
+#: logview/logview.c:96
 msgid "_Log"
 msgstr "_Log"
 
-#: logview/logview.c:96
+#: logview/logview.c:98
 msgid "_View"
 msgstr "_Visualizza"
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "_Open..."
 msgstr "_Apri..."
 
-#: logview/logview.c:99
+#: logview/logview.c:101
 msgid "Open a log from file"
 msgstr "Apre un log dal file"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "_Properties"
 msgstr "_Proprietà"
 
-#: logview/logview.c:101
+#: logview/logview.c:103
 msgid "Show Log Properties"
 msgstr "Mostra le proprietà del log"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 msgid "Close"
 msgstr "Chiudi"
 
-#: logview/logview.c:103
+#: logview/logview.c:105
 msgid "Close this log"
 msgstr "Chiude questo log"
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 msgid "_Quit"
 msgstr "_Esci"
 
-#: logview/logview.c:105
+#: logview/logview.c:107
 msgid "Quit the log viewer"
 msgstr "Esce dal visualizzatore di log"
 
-#: logview/logview.c:108
+#: logview/logview.c:110
 msgid "Copy"
 msgstr "Copia"
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select All"
 msgstr "Seleziona tutto"
 
-#: logview/logview.c:110
+#: logview/logview.c:112
 msgid "Select the entire log"
 msgstr "Seleziona l'intero log"
 
-#: logview/logview.c:112
+#: logview/logview.c:114
 msgid "Find pattern in logs"
 msgstr "Trova il modello nei log"
 
-#: logview/logview.c:119
+#: logview/logview.c:121
 msgid "Normal text size"
 msgstr ""
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 msgid "Collapse _All"
 msgstr "Contrai _tutto"
 
-#: logview/logview.c:122
+#: logview/logview.c:124
 msgid "Collapse all the rows"
 msgstr "Contrae tutte le righe"
 
-#: logview/logview.c:125
+#: logview/logview.c:127
 msgid "Open the help contents for the log viewer"
 msgstr "Mostra il manuale del visualizzatore di log"
 
-#: logview/logview.c:127
+#: logview/logview.c:129
 msgid "Show the about dialog for the log viewer"
 msgstr "Mostra le informazioni sul visualizzatore di log"
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Sidebar"
 msgstr ""
 
-#: logview/logview.c:133
+#: logview/logview.c:135
 msgid "Show the sidebar"
 msgstr ""
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "_Monitor"
 msgstr "_Monitoraggio"
 
-#: logview/logview.c:135
+#: logview/logview.c:137
 msgid "Monitor Current Log"
 msgstr "Monitoraggio dei log"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 msgid "Ca_lendar"
 msgstr "Ca_lendario"
 
-#: logview/logview.c:137
+#: logview/logview.c:139
 msgid "Show Calendar Log"
 msgstr "Mostra il calendario dei log"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Date"
 msgstr "Data"
 
-#: logview/logview.c:664
+#: logview/logview.c:668
 msgid "Host Name"
 msgstr "Nome host"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Process"
 msgstr "Processo"
 
-#: logview/logview.c:665
+#: logview/logview.c:669
 msgid "Message"
 msgstr "Messaggio"
 
-#: logview/logview.c:741
+#: logview/logview.c:745
 msgid "Version : "
 msgstr ""
 
-#: logview/logview.c:853
+#: logview/logview.c:857
 msgid "Open new logfile"
 msgstr "Apre un nuovo file di log"
 
-#: logview/logview.c:1209
+#: logview/logview.c:1213
 msgid "There was an error displaying help."
 msgstr "Si è verificato un errore nel mostrare la guida."
 
-#: logview/logview.c:1227
+#: logview/logview.c:1231
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (monitorato) - %s"
@@ -2377,6 +2382,15 @@ msgstr "Dettagli voce"
 #: logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e %B %X"
+
+#~ msgid "On a Dictionary Server"
+#~ msgstr "Su un server di dizionario"
+
+#~ msgid "_Word:"
+#~ msgstr "_Parola:"
+
+#~ msgid "Cannot initialize bonobo."
+#~ msgstr "Impossibile inizializzare bonobo."
 
 #~ msgid "Lookup done"
 #~ msgstr "Ricerca completata"
