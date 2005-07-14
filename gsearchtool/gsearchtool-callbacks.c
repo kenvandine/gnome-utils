@@ -980,6 +980,91 @@ file_event_after_cb  (GtkWidget * widget,
 	return FALSE;
 }
 
+gboolean
+file_motion_notify_cb (GtkWidget *widget,
+                       GdkEventMotion *event,
+                       gpointer user_data)
+{
+        GSearchWindow * gsearch = user_data;
+	GdkCursor * cursor;
+	GtkTreePath * last_hover_path;
+	GtkTreeIter iter;
+ 	
+	if (gsearch->is_search_results_single_click_to_activate == FALSE) {
+		gdk_window_set_cursor (event->window, NULL);
+		return FALSE;
+	}
+	
+	if (event->window != gtk_tree_view_get_bin_window (GTK_TREE_VIEW (gsearch->search_results_tree_view))) {
+		gdk_window_set_cursor (event->window, NULL);
+                return FALSE;
+	}
+	
+	last_hover_path = gsearch->search_results_hover_path;
+
+	gtk_tree_view_get_path_at_pos (GTK_TREE_VIEW (widget),
+				       event->x, event->y,
+				       &gsearch->search_results_hover_path,
+				       NULL, NULL, NULL);
+
+	if (gsearch->search_results_hover_path != NULL) { 
+		cursor = gdk_cursor_new (GDK_HAND2);
+	}
+	else { 
+		cursor = NULL;
+	}
+	
+	gdk_window_set_cursor (event->window, cursor);
+
+	/* Redraw if the hover row has changed */
+	if (!(last_hover_path == NULL && gsearch->search_results_hover_path == NULL) &&
+	    (!(last_hover_path != NULL && gsearch->search_results_hover_path != NULL) ||
+	     gtk_tree_path_compare (last_hover_path, gsearch->search_results_hover_path))) {
+		if (last_hover_path) {
+			gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store),
+			                         &iter, last_hover_path);
+			gtk_tree_model_row_changed (GTK_TREE_MODEL (gsearch->search_results_list_store),
+			                            last_hover_path, &iter);
+		}
+		
+		if (gsearch->search_results_hover_path) {
+			gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store),
+			                         &iter, gsearch->search_results_hover_path);
+			gtk_tree_model_row_changed (GTK_TREE_MODEL (gsearch->search_results_list_store),
+			                            gsearch->search_results_hover_path, &iter);
+		}
+	}
+	
+	gtk_tree_path_free (last_hover_path);
+
+ 	return FALSE;
+}
+
+gboolean 
+file_leave_notify_cb (GtkWidget *widget,
+                      GdkEventCrossing *event,
+                      gpointer user_data)
+{
+        GSearchWindow * gsearch = user_data;
+	GtkTreeIter iter;
+
+	if (gsearch->is_search_results_single_click_to_activate && (gsearch->search_results_hover_path != NULL)) {
+		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store),
+		                         &iter, 
+		                         gsearch->search_results_hover_path);
+		gtk_tree_model_row_changed (GTK_TREE_MODEL (gsearch->search_results_list_store),
+		                            gsearch->search_results_hover_path,
+		                            &iter);
+
+		gtk_tree_path_free (gsearch->search_results_hover_path);
+		gsearch->search_results_hover_path = NULL;
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 void  
 drag_begin_file_cb (GtkWidget * widget,
                     GdkDragContext * context,

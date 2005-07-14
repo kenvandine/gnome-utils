@@ -138,6 +138,14 @@ file_key_press_event_cb (GtkWidget * widget,
                          GdkEventKey * event,
                          gpointer data);
 gboolean
+file_motion_notify_cb (GtkWidget *widget,
+                       GdkEventMotion *event,
+                       gpointer user_data);
+gboolean 
+file_leave_notify_cb (GtkWidget *widget,
+                      GdkEventCrossing *event,
+                      gpointer user_data);		       
+gboolean
 not_running_timeout_cb (gpointer data);
 
 void

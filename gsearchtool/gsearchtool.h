@@ -107,6 +107,7 @@ struct _GSearchWindow {
 	GtkCellRenderer       * search_results_name_cell_renderer;
 	GtkTreeSelection      * search_results_selection;
 	GtkTreeIter             search_results_iter;
+	GtkTreePath           * search_results_hover_path;
 	GHashTable            * search_results_filename_hash_table;
 	GHashTable            * search_results_pixbuf_hash_table;
 	gchar                 * search_results_date_format_string;

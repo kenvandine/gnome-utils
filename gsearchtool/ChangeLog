@@ -1,3 +1,17 @@
+2005-07-13  Dennis Cranston <dennis_cranston@yahoo.com>
+	
+	* gsearchtool.c  (spawn_search_command): remove pango underlines.
+	(create_search_results_section): connect to the motion and leave 
+	notify events (filename_cell_data_func): new function.
+	
+	* gsearchtool-callbacks.[ch]  (file_motion_notify_cb,
+	file_leave_notify_cb):  New functions.
+	
+	* gsearchtool.h: Add search_results_hover_path.
+	
+	Fix single click to activate items to match CVS version of 
+	nautilus.
+	
 2005-07-09  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* help/C/gnome-search-tool.xml:  Help prevent

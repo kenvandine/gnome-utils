@@ -38,6 +38,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include <glib/gi18n.h>
+#include <gdk/gdkcursor.h> 
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
@@ -1812,20 +1813,11 @@ spawn_search_command (GSearchWindow * gsearch,
 		click_to_activate_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/click_policy");
 		
 		if (strncmp (click_to_activate_pref, "single", 6) == 0) { 
-			/* Format name column for single click to activate items */
 			gsearch->is_search_results_single_click_to_activate = TRUE;		
-			g_object_set (gsearch->search_results_name_cell_renderer,
-			       "underline", PANGO_UNDERLINE_SINGLE,
-			       "underline-set", TRUE,
-			       NULL);
 		}
 		else {
-			/* Format name column for double click to activate items */
-			g_object_set (gsearch->search_results_name_cell_renderer,
-			       "underline", PANGO_UNDERLINE_NONE,
-			       "underline-set", FALSE,
-			       NULL);
-		}
+			gsearch->is_search_results_single_click_to_activate = FALSE;
+		} 
 		
 		gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->stop_button);
 		gtk_widget_show (gsearch->stop_button);
@@ -2132,6 +2124,43 @@ create_additional_constraint_section (GSearchWindow * gsearch)
 	gtk_box_pack_end (GTK_BOX (hbox), gsearch->available_options_add_button, FALSE, FALSE, 0); 
 }
 
+static void
+filename_cell_data_func (GtkTreeViewColumn * column,
+                         GtkCellRenderer * renderer,
+                         GtkTreeModel * model,
+                         GtkTreeIter * iter,
+                         GSearchWindow * gsearch)
+{
+	GtkTreePath * path;
+	PangoUnderline underline;
+	gboolean underline_set;
+
+	if (gsearch->is_search_results_single_click_to_activate == TRUE) {
+	
+		path = gtk_tree_model_get_path (model, iter);
+
+		if ((gsearch->search_results_hover_path == NULL) ||
+		    (gtk_tree_path_compare (path, gsearch->search_results_hover_path) != 0)) { 
+			underline = PANGO_UNDERLINE_NONE;
+			underline_set = FALSE;
+		}
+		else { 
+			underline = PANGO_UNDERLINE_SINGLE;
+			underline_set = TRUE;
+		}
+		gtk_tree_path_free (path);
+	} 
+	else { 
+		underline = PANGO_UNDERLINE_NONE;
+		underline_set = FALSE;
+	}
+
+	g_object_set (gsearch->search_results_name_cell_renderer,
+	              "underline", underline,
+	              "underline-set", underline_set,
+	              NULL);
+}
+
 static GtkWidget *
 create_search_results_section (GSearchWindow * gsearch)
 {
@@ -2226,6 +2255,16 @@ create_search_results_section (GSearchWindow * gsearch)
 			  G_CALLBACK (file_key_press_event_cb),
 			  (gpointer) gsearch);
 			  
+	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view),
+	                  "motion_notify_event",
+	                  G_CALLBACK (file_motion_notify_cb),
+	                  (gpointer) gsearch);
+			  
+	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view),
+	                  "leave_notify_event",
+	                  G_CALLBACK (file_leave_notify_cb),
+	                  (gpointer) gsearch);
+			  
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (gsearch->search_results_tree_view));
 	
 	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (gsearch->search_results_tree_view));
@@ -2249,6 +2288,9 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);				     
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_NAME); 
+	gtk_tree_view_column_set_cell_data_func (column, renderer,
+	                                         (GtkTreeCellDataFunc) filename_cell_data_func,
+						 gsearch, NULL);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
 
 	/* create the folder column */
