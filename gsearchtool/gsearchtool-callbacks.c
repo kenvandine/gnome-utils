@@ -1253,6 +1253,9 @@ show_file_selector_cb (GtkAction * action,
 	                                            GTK_STOCK_SAVE, GTK_RESPONSE_OK,
 	                                            NULL);
 
+#if GTK_CHECK_VERSION(2,7,3)
+	gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (file_chooser), TRUE);
+#endif
 	if (gsearch->save_results_as_default_filename != NULL) {
 		gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (file_chooser),
 		                               gsearch->save_results_as_default_filename);
@@ -1328,6 +1331,7 @@ display_dialog_could_not_save_to (GtkWidget * window,
 	g_free (primary);
 }
 
+#if !GTK_CHECK_VERSION(2,7,3)
 static gint
 display_dialog_could_not_save_exists (GtkWidget * window,
                                       const gchar * file)
@@ -1372,6 +1376,7 @@ display_dialog_could_not_save_exists (GtkWidget * window,
 
 	return response;
 }
+#endif
 
 void
 save_results_cb (GtkWidget * chooser,
@@ -1411,6 +1416,7 @@ save_results_cb (GtkWidget * chooser,
 		return;	
 	}
 	
+#if !GTK_CHECK_VERSION(2,7,3)	
 	if (g_file_test (gsearch->save_results_as_default_filename, G_FILE_TEST_EXISTS)) {
 
 		gint response;
@@ -1422,6 +1428,7 @@ save_results_cb (GtkWidget * chooser,
 			return;
 		}
 	}
+#endif	
 
 	if ((fp = fopen (gsearch->save_results_as_default_filename, "w")) != NULL) {
 
