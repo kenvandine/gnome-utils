@@ -367,11 +367,6 @@ tree_view_columns_set_visible (GtkWidget *view, gboolean visible)
 	}
 }
 
-/* ----------------------------------------------------------------------
-   NAME:        logview_draw_log_lines
-   DESCRIPTION: Displays a single log line
-   ---------------------------------------------------------------------- */
-
 void
 logview_draw_log_lines (LogviewWindow *window, Log *current_log)
 {

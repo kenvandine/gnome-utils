@@ -1170,22 +1170,23 @@ logview_menus_set_state (LogviewWindow *window)
 				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
 			else
 				logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", TRUE);
-
-            if (window->curlog->has_date)
-                logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", (window->curlog != NULL));
-            else
-                logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
-
-		} else
+      
+      if (window->curlog->has_date)
+        logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", TRUE);
+      else
+        logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
+      
+		} else {
 			logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
-		
+      logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
+		}
+
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/Properties", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/FileMenu/CloseLog", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/CollapseAll", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", (window->curlog != NULL));
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/SelectAll", (window->curlog != NULL));
-        logview_menu_item_set_state (window, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
 	}
 }
 
