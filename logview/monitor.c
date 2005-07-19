@@ -116,9 +116,9 @@ mon_update_display (LogviewWindow *window)
 				   mon_format_line (buffer, sizeof (buffer), line);
 				   gtk_list_store_insert_before (list, &iter, parent_pointer);
 				   if (bold)
-					   marked_line = g_strdup_printf ("<b>%s</b>", buffer);
+					   marked_line = g_markup_printf_escaped ("<b>%s</b>", buffer);
 				   else
-					   marked_line = g_strdup (buffer);
+					   marked_line = g_markup_printf_escaped ("%s", buffer);
 				   gtk_list_store_set (list, &iter, 0, marked_line, -1);
 				   parent = iter;
 				   g_free (marked_line);
