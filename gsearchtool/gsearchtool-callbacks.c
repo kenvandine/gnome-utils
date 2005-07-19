@@ -1554,3 +1554,19 @@ disable_quick_search_cb (GtkWidget * dialog,
 	}
 }
 
+void
+single_click_to_activate_key_changed_cb (GConfClient * client, 
+                                         guint cnxn_id,
+                                         GConfEntry * entry,
+                                         gpointer user_data)
+{
+	GSearchWindow * gsearch = user_data;
+	GConfValue * value;
+
+	value = gconf_entry_get_value (entry);
+
+	g_return_if_fail (value->type == GCONF_VALUE_STRING);
+
+	gsearch->is_search_results_single_click_to_activate = 
+		(strncmp (gconf_value_get_string (value), "single", 6) == 0) ? TRUE : FALSE;
+}

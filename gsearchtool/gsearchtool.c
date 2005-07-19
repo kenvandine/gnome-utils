@@ -1799,7 +1799,6 @@ spawn_search_command (GSearchWindow * gsearch,
 	}
 	
 	if (gsearch->command_details->is_command_first_pass == TRUE) {
-		gchar * click_to_activate_pref;
 		
 		gsearch->command_details->command_status = RUNNING; 
 		gsearch->is_search_results_single_click_to_activate = FALSE;
@@ -1808,16 +1807,6 @@ spawn_search_command (GSearchWindow * gsearch,
 	
 		/* Get value of nautilus date_format key */
 		gsearch->search_results_date_format_string = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");
-
-		/* Get value of nautilus click behaivor (single or double click to activate items) */
-		click_to_activate_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/click_policy");
-		
-		if (strncmp (click_to_activate_pref, "single", 6) == 0) { 
-			gsearch->is_search_results_single_click_to_activate = TRUE;		
-		}
-		else {
-			gsearch->is_search_results_single_click_to_activate = FALSE;
-		} 
 		
 		gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->stop_button);
 		gtk_widget_show (gsearch->stop_button);
@@ -1833,7 +1822,6 @@ spawn_search_command (GSearchWindow * gsearch,
 
 		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (gsearch->search_results_tree_view), 0, 0);	
 		gtk_list_store_clear (GTK_LIST_STORE (gsearch->search_results_list_store));
-		g_free (click_to_activate_pref);
 	}
 	
 	ioc_stdout = g_io_channel_unix_new (child_stdout);
@@ -2510,6 +2498,8 @@ set_clone_command (GSearchWindow * gsearch,
 static void
 handle_gconf_settings (GSearchWindow * gsearch)
 {
+	gsearchtool_gconf_add_dir ("/apps/gnome-search-tool");
+
 	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options")) {
 		if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox) == FALSE) {
 			gtk_expander_set_expanded (GTK_EXPANDER (gsearch->show_more_options_expander), TRUE);
@@ -2857,6 +2847,26 @@ gsearch_window_get_type (void)
 	return object_type;
 }
 
+static void
+gsearchtool_setup_gconf_notifications (GSearchWindow * gsearch)
+	
+{
+	gchar * click_to_activate_pref;
+	
+	/* Get value of nautilus click behavior (single or double click to activate items) */
+	click_to_activate_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/click_policy");
+	
+	gsearch->is_search_results_single_click_to_activate = 
+		(strncmp (click_to_activate_pref, "single", 6) == 0) ? TRUE : FALSE;	
+
+	gsearchtool_gconf_watch_key ("/apps/nautilus/preferences",
+	                             "/apps/nautilus/preferences/click_policy", 
+	                             (GConfClientNotifyFunc) single_click_to_activate_key_changed_cb,
+	                             gsearch);
+					
+	g_free (click_to_activate_pref);
+}
+
 int
 main (int argc, 
       char * argv[])
@@ -2914,6 +2924,8 @@ main (int argc,
 	}
 
 	gtk_widget_show (gsearch->window);
+
+	gsearchtool_setup_gconf_notifications (gsearch);
 
 	if (handle_goption_args (gsearch) == FALSE) {
 		handle_gconf_settings (gsearch);

@@ -185,7 +185,8 @@ gsearchtool_gconf_get_boolean (const gchar * key)
 }
 
 void
-gsearchtool_gconf_set_boolean (const gchar * key, const gboolean flag)
+gsearchtool_gconf_set_boolean (const gchar * key,
+                               const gboolean flag)
 {
 	GConfClient * client;
 	GError * error = NULL;
@@ -197,6 +198,57 @@ gsearchtool_gconf_set_boolean (const gchar * key, const gboolean flag)
 	
 	gconf_client_set_bool (client, key, flag, &error);
 	
+	gsearchtool_gconf_handle_error (&error);
+}
+
+void
+gsearchtool_gconf_add_dir (const gchar * dir)
+{
+	GConfClient * client;
+	GError * error = NULL;
+
+	g_return_if_fail (dir != NULL);
+
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_if_fail (client != NULL);
+
+	gconf_client_add_dir (client,
+	                      dir,
+	                      GCONF_CLIENT_PRELOAD_RECURSIVE,
+	                      &error);
+
+	gsearchtool_gconf_handle_error (&error);
+}
+
+void
+gsearchtool_gconf_watch_key (const gchar * dir,
+                             const gchar * key, 
+                             GConfClientNotifyFunc callback,
+                             gpointer user_data)
+{
+	GConfClient * client;
+	GError * error = NULL;
+		
+	g_return_if_fail (key != NULL);
+	g_return_if_fail (dir != NULL);
+			
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_if_fail (client != NULL);
+
+	gconf_client_add_dir (client,
+	                      dir,
+	                      GCONF_CLIENT_PRELOAD_NONE,
+	                      &error);
+
+	gsearchtool_gconf_handle_error (&error);
+
+	gconf_client_notify_add (client,
+	                         key,
+	                         callback,
+	                         user_data,
+	                         NULL,
+	                         &error);
+
 	gsearchtool_gconf_handle_error (&error);
 }
 

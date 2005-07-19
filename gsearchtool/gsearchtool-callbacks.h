@@ -152,6 +152,11 @@ void
 disable_quick_search_cb (GtkWidget * dialog,
                          gint response,
                          gpointer data);
+void
+single_click_to_activate_key_changed_cb (GConfClient * client, 
+                                         guint cnxn_id,
+                                         GConfEntry * entry,
+                                         gpointer user_data);
 #ifdef __cplusplus
 }
 #endif

@@ -52,6 +52,14 @@ gsearchtool_gconf_get_string (const gchar * key);
 GSList * 
 gsearchtool_gconf_get_list (const gchar * key);
 
+void
+gsearchtool_gconf_add_dir (const gchar * dir);
+
+void
+gsearchtool_gconf_watch_key (const gchar * dir,
+                             const gchar * key, 
+                             GConfClientNotifyFunc callback,
+                             gpointer user_data);
 gboolean  	
 is_path_hidden (const gchar * path);
 
