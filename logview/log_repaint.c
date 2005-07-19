@@ -406,7 +406,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
     } else {
         
         cm = cd = -1;
-        for (i = 0 ; i < (current_log->total_lines)-1; i++) {
+        for (i = 0 ; i < (current_log->total_lines); i++) {
             
             line = (current_log->lines)[i];       
             
