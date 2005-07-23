@@ -1128,8 +1128,46 @@ get_file_pixbuf (GSearchWindow * gsearch,
 		}
 
 		if (pixbuf == NULL) {
-			pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 
-			                                   ICON_SIZE, 0, NULL);
+		
+			GdkPixbuf * thumbnail_pixbuf = NULL;
+			
+			thumbnail_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 
+			                                             ICON_SIZE, 0, NULL);
+
+			/*  The following is workaround for bugzilla report #311318,                     */
+			/*  "gtk_icon_theme_load_icon () can return pixbufs larger than requested size". */
+			/*  Please see the url, http://bugzilla.gnome.org/show_bug.cgi?id=311318.        */
+										     
+			if ((gdk_pixbuf_get_width (thumbnail_pixbuf) > ICON_SIZE) || 
+			    (gdk_pixbuf_get_height (thumbnail_pixbuf) > ICON_SIZE)) {
+
+				gfloat scale_factor_x = 1.0;
+				gfloat scale_factor_y = 1.0;
+				gint scale_x;
+				gint scale_y;
+
+				if (gdk_pixbuf_get_width (thumbnail_pixbuf) > ICON_SIZE) {
+					scale_factor_x = (gfloat) ICON_SIZE / (gfloat) gdk_pixbuf_get_width (thumbnail_pixbuf);
+				}
+				if (gdk_pixbuf_get_height (thumbnail_pixbuf) > ICON_SIZE) {
+					scale_factor_y = (gfloat) ICON_SIZE / (gfloat) gdk_pixbuf_get_height (thumbnail_pixbuf);
+				}
+				
+				if (gdk_pixbuf_get_width (thumbnail_pixbuf) > gdk_pixbuf_get_height (thumbnail_pixbuf)) {
+					scale_x = ICON_SIZE;
+					scale_y = (gint) (gdk_pixbuf_get_height (thumbnail_pixbuf) * scale_factor_x);
+				}
+				else {
+					scale_x = (gint) (gdk_pixbuf_get_width (thumbnail_pixbuf) * scale_factor_y);
+					scale_y = ICON_SIZE;
+				}    
+			    
+				pixbuf = gdk_pixbuf_scale_simple (thumbnail_pixbuf, scale_x, scale_y, GDK_INTERP_BILINEAR);
+				g_object_unref (thumbnail_pixbuf);
+			}
+			else {
+				pixbuf = thumbnail_pixbuf;
+			}
 		}
 		
 		if (pixbuf != NULL) {
