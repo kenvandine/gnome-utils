@@ -497,7 +497,7 @@ build_search_command (GSearchWindow * gsearch,
 		
 			locate = g_find_program_in_path ("locate");
 			disable_quick_search = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search");		
-			gsearch->command_details->is_command_second_pass_enabled = !gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search_second_pass");
+			gsearch->command_details->is_command_second_pass_enabled = !gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/disable_quick_search_second_scan");
 		
 			show_thumbnails_string = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/show_image_thumbnails");
 			if ((show_thumbnails_string != NULL) &&
