@@ -242,14 +242,14 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 
 	if (locate != NULL) {
 		/* check locate command for -i argument compatibility */
-		g_spawn_command_line_sync ("locate -i /dev/null", &cmd_stdout, &cmd_stderr, NULL, NULL);
+		g_spawn_command_line_sync ("locate -i [/]", &cmd_stdout, &cmd_stderr, NULL, NULL);
 
 		if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
 			locate_command_default_options = g_strdup ("-i");
 
-			/* check locate found /dev/null */
-			if (strstr (cmd_stdout, "/dev/null") != NULL) {
-			gsearch->is_locate_database_available = TRUE;
+			/* check locate found the root directory */
+			if ((cmd_stdout != NULL) && (strncmp (cmd_stdout, "/", 1) == 0)) {
+				gsearch->is_locate_database_available = TRUE;
 			}
 			else {
 				g_warning (_("A locate database has probably not been created."));
@@ -263,9 +263,9 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 			g_free (cmd_stdout);
 			g_free (cmd_stderr);
 
-			/* run locate again to check if it can find /dev/null */
-			g_spawn_command_line_sync ("locate /dev/null", &cmd_stdout, NULL, NULL, NULL);
-			if ((cmd_stdout != NULL) && (strstr (cmd_stdout, "/dev/null") != NULL)) {
+			/* run locate again to check if it can find the root directory */
+			g_spawn_command_line_sync ("locate [/]", &cmd_stdout, &cmd_stderr, NULL, NULL);
+			if ((cmd_stdout != NULL) && (strncmp (cmd_stdout, "/", 1) == 0)) {
 				gsearch->is_locate_database_available = TRUE;
 			}
 			else {
