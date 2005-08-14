@@ -4,21 +4,21 @@
 # Copyright (C) 1999,2003, 2004, 2005 Free Software Foundation, Inc.
 # Iustin Pop <iusty@geocities.com>
 # Dan Damian <dand@dnttm.ro>, 1999, 2001.
-# Mugurel Tudor <mugurelu@go.ro>, 2002-2004, 2005.
+# Mugurel Tudor <mugurelu@gnome.ro>, 2002-2004, 2005.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.ro\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-08 10:26-0400\n"
-"PO-Revision-Date: 2005-03-06 23:00+0200\n"
-"Last-Translator: Mugurel Tudor <mugurelu@go.ro>\n"
-"Language-Team: Romanian <@li.org>\n"
+"POT-Creation-Date: 2005-08-14 14:38+0000\n"
+"PO-Revision-Date: 2005-08-14 23:36+0300\n"
+"Last-Translator: Mugurel Tudor <mugurelu@gnome.ro>\n"
+"Language-Team: Romanian <gnomero@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=((n!=1)+(n>19));\n"
 "X-Generator: KBabel 1.9.1\n"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:1
@@ -58,14 +58,12 @@ msgid "Server Error"
 msgstr "Eroare server"
 
 #: ../gdictsrc/dict.c:690
-#, fuzzy
 msgid ""
 "A serious error occurred. Please check that your server and port are "
 "correct. For reference the default server is dict.org and the port 2628"
 msgstr ""
-"O eroare gravă a intervenit. Vă rugăm verificaţi că serverul şi portul au "
-"fost specificate corect. Pentru referinţă serverul implicit este dict.org "
-"iar portul este 2628"
+"O eroare gravă a intervenit. Vă rugăm verificaţi că serverul şi portul sunt corecte. "
+"Pentru referinţă serverul implicit este dict.org iar portul este 2628"
 
 #. Translator credits
 #: ../gdictsrc/gdict-about.c:40 ../logview/about.c:43
@@ -73,7 +71,7 @@ msgid "translator-credits"
 msgstr ""
 "Iustin Pop <iusty@geocities.com>\n"
 "Dan Damian <dand@dnttm.ro>\n"
-"Mugurel Tudor <mugurelu@go.ro> "
+"Mugurel Tudor <mugurelu@gnome.ro> "
 
 #: ../gdictsrc/gdict-about.c:42
 msgid "A client for the MIT dictionary server."
@@ -177,11 +175,11 @@ msgstr "Configurează aplicaţia"
 #. View menu
 #: ../gdictsrc/gdict-app.c:611 ../logview/logview.c:117
 msgid "Bigger text size"
-msgstr ""
+msgstr "Text mai mare"
 
 #: ../gdictsrc/gdict-app.c:613 ../logview/logview.c:119
 msgid "Smaller text size"
-msgstr ""
+msgstr "Text mai mic"
 
 #. Help menu
 #: ../gdictsrc/gdict-app.c:617 ../logview/logview.c:127
@@ -237,14 +235,12 @@ msgid "View alternate spellings"
 msgstr "Vizualizează ortografiile alternative"
 
 #: ../gdictsrc/gdict-app.c:748
-#, fuzzy
 msgid "_Look Up"
-msgstr "_Caută cuvântul"
+msgstr "_Caută"
 
 #: ../gdictsrc/gdict-app.c:757
-#, fuzzy
 msgid "In Dictionary"
-msgstr "Dicţionar"
+msgstr "În dicţionar"
 
 #: ../gdictsrc/gdict-app.c:758
 msgid "On a Web Site"
@@ -293,7 +289,6 @@ msgid "Error invoking query"
 msgstr "Eroare la lansarea cererii"
 
 #: ../gdictsrc/gdict-entry.c:102
-#, fuzzy
 msgid "Looking up entry..."
 msgstr "Caut cuvântul..."
 
@@ -354,9 +349,8 @@ msgid "Strat_egy:"
 msgstr "Strat_egie:"
 
 #: ../gdictsrc/gdict-pref-dialog.c:342
-#, fuzzy
 msgid "F_ont:"
-msgstr "_Port:"
+msgstr "F_ont:"
 
 #: ../gdictsrc/gdict-pref-dialog.c:372
 msgid "Web Site"
@@ -391,9 +385,8 @@ msgid "Default Strategy"
 msgstr "Strategie implicită"
 
 #: ../gdictsrc/gdict-speller.c:115
-#, fuzzy
 msgid "Spellings"
-msgstr "_Ortografia"
+msgstr "Ortografia"
 
 #: ../gdictsrc/gdict-speller.c:236
 msgid "Spell-checking..."
@@ -451,7 +444,7 @@ msgid ""
 "within Levenshtein distance one"
 msgstr ""
 "Strategia de căutare folosită. Acest lucru depinde de strategiile de căutare "
-"suportate de serverul dicţionar. Strategia implicită este 'lev' - potriveşte "
+"suportate de serverul dicţionar. Strategia implicită este „lev” - potriveşte "
 "cuvintele cu distanţa Levenshtein unu"
 
 #: ../gdictsrc/gdict.schemas.in.h:10
@@ -785,8 +778,7 @@ msgstr "Setări fizice"
 
 #: ../gfloppy/src/gfloppy2.glade.h:17
 msgid "Thorou_gh (adds a bad blocks check to the standard mode)"
-msgstr ""
-"C_ompletă (adaugă o verificare a sectoarelor defecte la modul standard)"
+msgstr "C_ompletă (adaugă o verificare a sectoarelor defecte la modul standard)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:18
 msgid "Volume _name:"
@@ -888,6 +880,9 @@ msgstr[0] ""
 "şi marcat."
 msgstr[1] ""
 "Discheta a fost formatată, dar <b>%d sectoare defecte</b> (din %d) au fost "
+"găsite şi marcate."
+msgstr[2] ""
+"Discheta a fost formatată, dar <b>%d de sectoare defecte</b> (din %d) au fost "
 "găsite şi marcate."
 
 #: ../gfloppy/src/progress.c:129
@@ -1101,11 +1096,11 @@ msgstr "Dezactivare căutare rapidă"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:2
 msgid "Disable Quick Search Second Scan"
-msgstr "Dezactivare a doua scanare pentru căutare rapidă"
+msgstr "Dezactivează a doua scanare pentru căutare rapidă"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:3
 msgid "Quick Search Excluded Paths"
-msgstr "Căi exclude pentru căutări rapide"
+msgstr "Căi excluse pentru căutări rapide"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:4
 msgid "Quick Search Second Scan Excluded Paths"
@@ -1157,8 +1152,7 @@ msgstr "Selectează opţiunea de căutare „Numele nu conţine”"
 #. search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:28
 msgid "Select the search option \"Name matches regular expression\""
-msgstr ""
-"Selectează opţiunea de căutare „Fişierul corespunde expresiei regulate”"
+msgstr "Selectează opţiunea de căutare „Fişierul corespunde expresiei regulate”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
@@ -1315,13 +1309,12 @@ msgstr ""
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:63
-#, fuzzy
 msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
 msgstr ""
-"Această cheie determină dacă opţiunea de căutare „Arată mai multe opţiuni” "
-"este selectată la pornirea utilitarului de căutare."
+"Această cheie determină dacă secţiunea „Selectează mai multe opţiuni” este expandată"
+"la pornirea utilitarului de căutare."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
@@ -1373,6 +1366,7 @@ msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Sunteţi sigur că doriţi să deschideţi %d document?"
 msgstr[1] "Sunteţi sigur că doriţi să deschideţi %d documente?"
+msgstr[2] "Sunteţi sigur că doriţi să deschideţi %d de documente?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:309
 #: ../gsearchtool/gsearchtool-callbacks.c:497
@@ -1381,6 +1375,7 @@ msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Se va deschide %d fereastră separată."
 msgstr[1] "Se vor deschide %d ferestre separate."
+msgstr[2] "Se vor deschide %d de ferestre separate."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:349
 #, c-format
@@ -1411,6 +1406,7 @@ msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Sunteţi sigur că doriţi să deschideţi %d dosar?"
 msgstr[1] "Sunteţi sigur că doriţi să deschideţi %d dosare?"
+msgstr[2] "Sunteţi sigur că doriţi să deschideţi %d de dosare?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:593
 #, c-format
@@ -1505,7 +1501,7 @@ msgstr "%A, %B %-d %Y la %-I:%M:%S %p"
 
 #: ../gsearchtool/gsearchtool-support.c:786
 msgid "link (broken)"
-msgstr "legătura (ruptă)"
+msgstr "legătură (ruptă)"
 
 #: ../gsearchtool/gsearchtool-support.c:790
 #, c-format
@@ -1619,6 +1615,7 @@ msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d fişier găsit"
 msgstr[1] "%d fişiere găsite"
+msgstr[2] "%d de fişiere găsite"
 
 #: ../gsearchtool/gsearchtool.c:807 ../gsearchtool/gsearchtool.c:845
 #, c-format
@@ -1626,6 +1623,7 @@ msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d fişier găsit"
 msgstr[1] "%d fişiere găsite"
+msgstr[2] "%d de fişiere găsite"
 
 #: ../gsearchtool/gsearchtool.c:824 ../gsearchtool/gsearchtool.c:1083
 #: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2897
@@ -1656,8 +1654,7 @@ msgstr ""
 
 #: ../gsearchtool/gsearchtool.c:1195
 msgid "Set sort order to descending, the default is ascending"
-msgstr ""
-"Setează ordinea de sortare la descrescătoare, implicit este crescătoare"
+msgstr "Setează ordinea de sortare la descrescătoare, implicit este crescătoare"
 
 #: ../gsearchtool/gsearchtool.c:1196
 msgid "Automatically start a search"
@@ -1698,12 +1695,11 @@ msgid "Show more _details"
 msgstr "Afişează mai multe _detalii"
 
 #: ../gsearchtool/gsearchtool.c:1668
-#, fuzzy
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
 msgstr ""
-"Rezultatele căutării ar putea fi invalide. Doriţi să dezactivaţi opţiunea de "
+"Rezultatele căutării ar putea fi învechite sau invalide. Doriţi să dezactivaţi opţiunea de "
 "căutare rapidă?"
 
 #: ../gsearchtool/gsearchtool.c:1693
@@ -1804,8 +1800,7 @@ msgstr "_Numele conţine:"
 
 #: ../gsearchtool/gsearchtool.c:2700 ../gsearchtool/gsearchtool.c:2701
 msgid "Enter a filename or partial filename with or without wildcards."
-msgstr ""
-"Introduceţi un nume de fişier întreg sau parţial cu sau fără metacaractere."
+msgstr "Introduceţi un nume de fişier întreg sau parţial cu sau fără metacaractere."
 
 #: ../gsearchtool/gsearchtool.c:2701
 msgid "Name contains"
@@ -1828,14 +1823,12 @@ msgid "Select the folder or device from which you want to begin the search."
 msgstr "Selectaţi dosarul sau dispozitivul în care vreţi să porniţi căutarea."
 
 #: ../gsearchtool/gsearchtool.c:2729
-#, fuzzy
 msgid "Select more _options"
-msgstr "Afişează mai multe _opţiuni"
+msgstr "Selectează mai multe _opţiuni"
 
 #: ../gsearchtool/gsearchtool.c:2738
-#, fuzzy
 msgid "Select more options"
-msgstr "Afişează mai multe opţiuni"
+msgstr "Selectează mai multe opţiuni"
 
 #: ../gsearchtool/gsearchtool.c:2738
 msgid "Click to expand or collapse the list of available options."
@@ -1986,7 +1979,7 @@ msgid ""
 "executed by a system command: system (action)."
 msgstr ""
 "Acţiune ce se va executa dacă toate expresiile regexp anterioare se "
-"potrivesc. Aceastaeste executată de o comandă de sistem: system (acţiune)."
+"potrivesc. Aceasta este executată de o comandă de sistem: system (acţiune)."
 
 #: ../logview/actions.c:792
 msgid "_Description:"
@@ -2021,8 +2014,7 @@ msgstr "Nu am putut deschide baza de date regexp <%s>! Deschidere eşuată."
 #: ../logview/desc_db.c:177
 #, c-format
 msgid "Cannot open description data base <%s>! Open failed."
-msgstr ""
-"Nu am putut deschide baza de date pentru descrieri <%s>! Deschidere eşuată."
+msgstr "Nu am putut deschide baza de date pentru descrieri <%s>! Deschidere eşuată."
 
 #. ----------------------------------------------------------------------
 #. NAME:
@@ -2046,6 +2038,7 @@ msgid "%ld byte"
 msgid_plural "%ld bytes"
 msgstr[0] "%ld byte"
 msgstr[1] "%ld bytes"
+msgstr[2] "%ld de bytes"
 
 #: ../logview/info.c:97
 #, c-format
@@ -2127,18 +2120,18 @@ msgid "%x"
 msgstr "%x"
 
 #: ../logview/log_repaint.c:273
-#, fuzzy, c-format
+#, c-format
 msgid "Last Modified: %s, %d lines"
-msgstr "Modificat ultima oară:"
+msgstr "Modificat ultima oară:%s, %d linii"
 
 #: ../logview/log_repaint.c:277
 #, c-format
 msgid "%d lines"
-msgstr ""
+msgstr "%d linii"
 
 #: ../logview/log_repaint.c:308
 msgid "Current"
-msgstr ""
+msgstr "Curent"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
@@ -2153,9 +2146,8 @@ msgid "%X"
 msgstr "%X"
 
 #: ../logview/logrtns.c:51
-#, fuzzy
 msgid "One file or more could not be opened"
-msgstr "Fişierul nu a putut fi deschis."
+msgstr "Un fişier sau mai multe nu au putut fi deschise"
 
 #: ../logview/logrtns.c:221
 msgid "Unable to open logfile!\n"
@@ -2166,13 +2158,13 @@ msgid "Not enough memory!\n"
 msgstr "Memorie insuficientă!\n"
 
 #: ../logview/logrtns.c:303
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file.\n"
 msgstr ""
 "%s nu poate fi citit de către utilizator. Fie rulaţi programul ca root sau "
-"rugaţi administratorul de sistem să schimbe permisiunile fişierului."
+"rugaţi administratorul de sistem să schimbe permisiunile fişierului.\n"
 
 #: ../logview/logrtns.c:308
 #, c-format
@@ -2198,13 +2190,12 @@ msgid "Fin_d:"
 msgstr "Cau_tă:"
 
 #: ../logview/logview-findbar.c:280
-#, fuzzy
 msgid "_Previous"
-msgstr "Caută precedentul"
+msgstr "_Precedentul"
 
 #: ../logview/logview-findbar.c:282
 msgid "_Next"
-msgstr ""
+msgstr "_Următorul"
 
 #: ../logview/logview.c:96
 msgid "_Log"
@@ -2264,7 +2255,7 @@ msgstr "Caută modele în loguri"
 
 #: ../logview/logview.c:121
 msgid "Normal text size"
-msgstr ""
+msgstr "Text de dimensiuni normale"
 
 #: ../logview/logview.c:124
 msgid "Collapse _All"
@@ -2284,11 +2275,11 @@ msgstr "Afişează dialogul „despre” pentru vizualizatorul de loguri"
 
 #: ../logview/logview.c:135
 msgid "Sidebar"
-msgstr ""
+msgstr "Bara laterală"
 
 #: ../logview/logview.c:135
 msgid "Show the sidebar"
-msgstr ""
+msgstr "Afişează bara laterală"
 
 #: ../logview/logview.c:137
 msgid "_Monitor"
@@ -2324,7 +2315,7 @@ msgstr "Mesaj"
 
 #: ../logview/logview.c:745
 msgid "Version : "
-msgstr ""
+msgstr "Versiune : "
 
 #: ../logview/logview.c:857
 msgid "Open new logfile"
@@ -2349,7 +2340,7 @@ msgid ""
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "Specifică fişierul de log deschis la pornire. Cel implicit este fie /var/adm/"
-"messages sau /var/log/messages. depinzând de sistemul de operare."
+"messages sau /var/log/messages, depinzând de sistemul de operare."
 
 #: ../logview/zoom.c:71
 msgid "Entry Detail"
@@ -2360,32 +2351,3 @@ msgstr "Detalii"
 msgid "%B %e %X"
 msgstr "%B %e %X"
 
-#~ msgid "On a Dictionary Server"
-#~ msgstr "Pe un server dicţionar"
-
-#~ msgid "_Word:"
-#~ msgstr "_Cuvânt:"
-
-#~ msgid "Cannot initialize bonobo."
-#~ msgstr "Nu pot iniţializa bonobo."
-
-#~ msgid "Lookup done"
-#~ msgstr "Căutare terminată"
-
-#~ msgid "Spell check done"
-#~ msgstr "Verificare ortografică terminată"
-
-#~ msgid "Gnome Dictionary"
-#~ msgstr "Dicţionar Gnome"
-
-#~ msgid "Calendar"
-#~ msgstr "Calendar"
-
-#~ msgid "Find Next"
-#~ msgstr "Caută următorul"
-
-#~ msgid "_Entry Detail"
-#~ msgstr "_Detalii"
-
-#~ msgid "Show Entry Detail"
-#~ msgstr "Arată detalii"
