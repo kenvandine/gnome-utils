@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY legal SYSTEM "legal.xml">
-<!ENTITY appversion "2.10">
-<!ENTITY manrevision "2.6">
+<!ENTITY appversion "2.12">
+<!ENTITY manrevision "2.7">
 <!ENTITY date "January 2005">
 <!ENTITY app "Search for Files">
 <!ENTITY ug "GNOME Desktop User Guide">
@@ -19,7 +19,7 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>Довідка з програми "Пошук файлів" версії 2.6</title>       
+    <title>Довідка з програми "Пошук файлів" версії 2.7</title>       
 
     <copyright> 
       <year>2005</year> 
@@ -98,6 +98,14 @@
 	</revdescription> 
  </revision>
 -->
+   <revision> 
+			<revnumber>Довідка з програми "Пошук файлів" версії 2.7</revnumber> 
+			<date>Липень 2005</date> 
+			<revdescription> 
+	  		<para role="author">Joachim Noreiko <email>jnoreiko@yahoo.com</email></para>
+	  		<para role="publisher">Розробник програми "Пошук файлів"</para>
+			</revdescription> 
+  </revision>
   <revision> 
 			<revnumber>Довідка з програми "Пошук файлів" версії 2.6</revnumber> 
 			<date>Січень 2005</date> 
@@ -156,7 +164,7 @@
  </revision> 
  </revhistory> 
 
-    <releaseinfo>Цей посібник описує програму "Пошук файлів" версії 2.10</releaseinfo> 
+    <releaseinfo>У цьому посібнику описується програма "Пошук файлів" версії 2.12</releaseinfo> 
     <legalnotice> 
       <title>Зворотній зв'язок</title> 
       <para>Щоб сповістити про помилку або внести пропозицію відносно програми "Пошук файлів" або цієї довідки, дотримуйтесь інструкцій на сторінці <ulink url="ghelp:gnome-feedback" type="help">Зворотний зв'язок з GNOME</ulink>.</para>
@@ -172,9 +180,9 @@
 <!-- ============= Introduction ============================== -->
 
   <sect1 id="gsearchtool-introduction"> 
-    <title>Вступ</title> 
+    <title>Введення</title> 
     <para>Програма <application>Пошук файлів</application> дозволяє шукати файли у вашій файловій системі. Для виконання базового пошуку ви можете ввести назву файлу або часткову назву файлу з шаблонами. Щоб звузити пошук, виберіть додаткові параметри пошуку.</para>
-    <para><application>Пошук файлів</application> використовує UNIX команди <command>find</command>, <command>grep</command>, та <command>locate</command>.</para>
+    <para><application>Пошук файлів</application> використовує UNIX-команди  <command>find</command>, <command>grep</command>, та  <command>locate</command>. Зазвичай, при виконанні основного пошуку програма <application>Пошук файлів</application> спочатку використовує команду <command>locate</command>, а потім більш повільну але більш ретельну команду <command>find</command>.</para>
     <para>Чутливість до регістру при пошуку залежить від операційної системи. Наприклад, у Linux, команди <command>find</command>, <command>grep</command>, та <command>locate</command> підтримують ключ <literal>-i</literal>, тому пошук нечутливий до регістру.</para>
   </sect1>
 
@@ -182,7 +190,28 @@
     <title>Початок роботи</title> 
 
     <para>Програму <application>Пошук файлів</application> можна запустити наступними способами:</para> 
-    <variablelist><varlistentry><term>З <guimenu>панелі меню</guimenu></term><listitem><para>Виберіть <menuchoice><guisubmenu>Приладдя</guisubmenu><guimenuitem>Пошук файлів</guimenuitem></menuchoice>.</para></listitem></varlistentry><varlistentry><term>З <guimenu>головного меню</guimenu></term><listitem><para>Виберіть <guimenuitem>Пошук файлів...</guimenuitem>.</para></listitem></varlistentry><varlistentry><term>З командного рядка</term><listitem><para>Виконайте наступну команду: <command>gnome-search-tool</command></para><para/></listitem></varlistentry></variablelist>
+    <variablelist>
+    	<varlistentry>
+    		<term>З <guimenu>панелі меню</guimenu></term>
+    		<listitem>
+    		<para>Виберіть <menuchoice><guisubmenu>Стандартні</guisubmenu><guimenuitem>Пошук файлів</guimenuitem></menuchoice>.</para>
+    		</listitem>
+    	</varlistentry>
+   	<varlistentry>
+    		<term>З <guimenu>головного меню</guimenu></term>
+    		<listitem>
+    		<para>Виберіть <guimenuitem>Пошук файлів...</guimenuitem>.</para>
+    		</listitem>
+    	</varlistentry>
+    	<varlistentry>
+    		<term>З командного рядка</term>
+    		<listitem>
+    		<para>Виконайте наступну команду: <command>gnome-search-tool</command></para>
+    		<para> 		 
+    		</para> 
+    		</listitem>
+    	</varlistentry>
+    </variablelist>
 
     <para>Після запуску програми <application>Пошук файлів</application> відкриється наступне вікно.</para>
 
@@ -212,16 +241,74 @@
     <title>Виконання основних операцій</title>
     
     <para>Для виконання базового пошуку файлу у файловій системі, виконайте наступні кроки:</para>
-    <orderedlist><listitem><para>Введіть текст у полі <guilabel>Назва містить</guilabel>. Текстом може бути назва файлу або частина назви, з шаблоном або без шаблонів, як показано у наступній таблиці:</para><informaltable frame="all"><tgroup cols="3" colsep="1" rowsep="1"><colspec colname="COLSPEC0" colwidth="33*"/><colspec colname="COLSPEC1" colwidth="33*"/><colspec colname="COLSPEC2" colwidth="34*"/><thead><row valign="top"><entry colname="COLSPEC0"><para>Пошук файлів</para></entry><entry colname="COLSPEC1"><para>Приклад</para></entry><entry colname="COLSPEC2"><para>Результат</para></entry></row></thead><tbody><row valign="top"><entry><para>Повна або часткова назва</para></entry><entry><para><userinput>myfile.txt</userinput></para></entry><entry><para>Програма <application>Пошук файлів</application> шукатиме на файловій системі усі файли, назва яких містить <userinput>myfile.txt</userinput>.</para></entry></row><row valign="top"><entry><para>Частина назви файлу комбінується з шаблонами (*, [, ])</para></entry><entry><para><userinput>*.[ch]</userinput></para></entry><entry><para><application>Пошук файлів</application> шукатиме усі файли з розширеннями <userinput>.c</userinput> чи <userinput>.h</userinput>.</para></entry></row></tbody></tgroup></informaltable></listitem><listitem><para>У полі <guilabel>Шукати у теці</guilabel> введіть шлях до теки, у якій ви бажаєте почати пошук. Програма <application>Пошук файлів</application> шукатиме у вказаній теці та її підтеках.</para></listitem><listitem><para>Для виконання пошуку натисніть <guibutton>Знайти</guibutton>.</para></listitem></orderedlist>
+    <orderedlist>
+    <listitem><para>Введіть текст у полі <guilabel>Назва містить</guilabel>. Текстом може бути назва файлу або частина назви, з шаблоном або без шаблонів, як показано у наступній таблиці:</para>
+
+      <informaltable frame="all">
+        <tgroup cols="3" colsep="1" rowsep="1">
+          <colspec colname="COLSPEC0" colwidth="33*"/>
+          <colspec colname="COLSPEC1" colwidth="33*"/>
+          <colspec colname="COLSPEC2" colwidth="34*"/>
+          <thead>
+            <row valign="top">
+              <entry colname="COLSPEC0">
+                <para>Пошук файлів</para></entry>
+              <entry colname="COLSPEC1">
+                <para>Приклад</para></entry>
+              <entry colname="COLSPEC2">
+                <para>Результат</para></entry>
+            </row>
+          </thead>
+          <tbody>
+            <row valign="top">
+              <entry>
+                <para>Повна або часткова назва</para>
+              </entry>
+              <entry>
+                <para><userinput>myfile.txt</userinput>
+                </para>
+              </entry>
+              <entry>
+                <para>Програма <application>Пошук файлів</application> шукатиме на файловій системі усі файли, назва яких містить <userinput>myfile.txt</userinput>.</para>
+              </entry>
+            </row>
+            <row valign="top">
+              <entry>
+                <para>Частина назви файлу комбінується з шаблонами (*, [, ])</para>
+              </entry>
+              <entry>
+                <para><userinput>*.[ch]</userinput>
+                </para>
+              </entry>
+              <entry>
+                <para><application>Пошук файлів</application> шукатиме усі файли з розширеннями <userinput>.c</userinput> чи <userinput>.h</userinput>.</para>
+              </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </listitem>
+    <listitem><para>У полі <guilabel>Шукати у теці</guilabel> введіть шлях до теки, у якій ви бажаєте почати пошук. Програма <application>Пошук файлів</application> шукатиме у вказаній теці та її підтеках.</para></listitem>
+    <listitem><para>Для виконання пошуку натисніть <guibutton>Знайти</guibutton>.</para>
+    </listitem>
+    </orderedlist>
     <para>Програма <application>Пошук файлів</application> виконає пошук у вказаному каталозі та підкаталогах. <application>Пошук файлів</application> відображає результати пошуку у списку <guilabel>Результати пошуку</guilabel>. Якщо <application>Пошук файлів</application> не знайде жодного файлу, який відповідає критерію пошуку, тоді у списку <guilabel>Результати пошуку</guilabel> програма відобразить повідомлення "Файлів не знайдено".</para>
+    <para>Звичайно, програма <application>Пошук файлів</application> виконує швидкий пошук використовуючи команду <command>locate</command> за яким виконується більш ретельний пошук з використанням команди <command>find</command>. Команда <command>locate</command> швидша, тому що користується базою даних про файли. Якщо ця база даних старіша за один тиждень, <application>Пошук файлів</application> може вас попередити про те, що результати можуть бути застарілими та запропонує вимкнути швидкий пошук. Щоб оновити базу даних запустіть команду <command>updatedb</command> як адміністратор (root).</para>
   </sect2>
     
     <sect2 id="gsearchtool-advanced">
     <title>Додавання параметрів пошуку</title>
     <para>Також можна вказати додаткові параметри пошуку. Щоб додати параметри пошуку виконайте наступні дії:</para>
-  	<orderedlist><listitem><para>Натисніть на <guilabel>Показати додаткові параметри</guilabel>.</para></listitem><listitem><para>Натисніть на розкривному списку <guilabel>Можливі параметри</guilabel>.</para></listitem><listitem><para>Виберіть параметр, який ви хочете додати.</para></listitem><listitem><para>Натисніть <guibutton>Додати</guibutton>.</para></listitem><listitem><para>Вкажіть необхідну інформацію для правила пошуку, докладніше дивіться <xref linkend="tbl-search-rules"/>.</para></listitem><listitem><para>Повторіть ці кроки для кожного потрібного параметра.</para></listitem></orderedlist>	
+  	<orderedlist>
+    		<listitem><para>Натисніть на <guilabel>Показати додаткові параметри</guilabel>.</para></listitem>
+    		<listitem><para>Натисніть на розкривному списку <guilabel>Можливі параметри</guilabel>.</para></listitem>
+    		<listitem><para>Виберіть параметр, який ви хочете додати.</para></listitem>
+    		<listitem><para>Натисніть <guibutton>Додати</guibutton>.</para></listitem>
+    		<listitem><para>Вкажіть необхідну інформацію для правила пошуку, докладніше дивіться <xref linkend="tbl-search-rules"/>.</para></listitem>
+    		<listitem><para>Повторіть ці кроки для кожного потрібного параметра.</para></listitem>
+    	</orderedlist>	
     	<para>Щоб видалити параметр пошуку з списку <guilabel>Показати додаткові параметри</guilabel>, натисніть на кнопку <guibutton>Видалити</guibutton> навпроти параметра.</para>
-    	
+    	<para>Щоб вимкнути параметри пошуку з поточного пошуку клацніть на  <guilabel>Показати додаткові параметри</guilabel>.</para>
     
     <table id="tbl-search-rules" frame="topbot">
     <title>Додавання параметрів пошуку</title> 
@@ -336,7 +423,10 @@
     <sect2 id="gsearchtool-view">
     <title>Відкривання знайдених файлів</title>
     <para>Щоб відкрити файл, що показується у списку <guilabel>Результати пошуку</guilabel>, виконайте одну з наступних дій:</para>
-    <itemizedlist><listitem><para>Клацніть правою кнопкою на файлі, потім виберіть <guimenuitem>Відкрити</guimenuitem>.</para></listitem><listitem><para>Двічі клацніть на файлі.</para></listitem></itemizedlist>
+    <itemizedlist>
+    <listitem><para>Клацніть правою кнопкою на файлі, потім виберіть <guimenuitem>Відкрити</guimenuitem>.</para></listitem>
+     <listitem><para>Двічі клацніть на файлі.</para></listitem>
+    </itemizedlist>
     <para>Щоб відкрити теку, яка містить відображуваний у списку <guilabel>Результати пошуку</guilabel> файл, клацніть на ньому правою кнопкою, потім виберіть <guimenuitem>Відкрити теку</guimenuitem>.</para>
     </sect2>
 
@@ -365,7 +455,20 @@
     <title>Параметри</title> 
 
     <para>Програма <application>Пошук файлів</application> має gconf ключі для зміни деякої її поведінки. Значення ключів gconf можна змінити запустивши <application>Редактор конфігурації</application> наступний шлях:</para> 
-    <variablelist><varlistentry><term>З меню <guimenu>Програми</guimenu></term><listitem><para>Виберіть <menuchoice><guisubmenu>Система</guisubmenu><guimenuitem>Редактор конфігурації</guimenuitem></menuchoice>.</para></listitem></varlistentry><varlistentry><term>З командного рядка</term><listitem><para>Виконайте наступну команду: <command>gconf-editor</command></para></listitem></varlistentry></variablelist>
+    <variablelist>
+    	<varlistentry>
+    		<term>З меню <guimenu>Програми</guimenu></term>
+    		<listitem>
+    		<para>Виберіть <menuchoice><guisubmenu>Система</guisubmenu><guimenuitem>Редактор конфігурації</guimenuitem></menuchoice>.</para>
+    		</listitem>
+    	</varlistentry>
+    	<varlistentry>
+    		<term>З командного рядка</term>
+    		<listitem>
+    		<para>Виконайте наступну команду: <command>gconf-editor</command></para> 
+    		</listitem>
+    	</varlistentry>	
+    </variablelist>
     
     <sect2 id="gsearchtool-disablequicksearch">
     <title>Вимкнути "Швидкий пошук"</title>
