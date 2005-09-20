@@ -218,7 +218,7 @@ destroy (GObject *object, gpointer data)
 {
    LogviewWindow *window = data;
    logview_windows = g_slist_remove (logview_windows, window);
-   if (window->curlog->monitored)
+   if (window->curlog && window->curlog->monitored)
 	   monitor_stop (window);
    if (logview_windows == NULL) {
 	   if (window->curlog && !(window->curlog->display_name))
