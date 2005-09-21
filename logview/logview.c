@@ -202,7 +202,8 @@ logview_save_prefs (LogviewWindow *logview)
       log = list->data;
       user_prefs->logs = g_slist_append (user_prefs->logs, log->name);
 	}
-  user_prefs->logfile = logview->curlog->name;
+  if (logview->curlog)
+    user_prefs->logfile = logview->curlog->name;
 	user_prefs->fontsize = logview->fontsize;
 	if (restoration_complete)
 		prefs_save (client, user_prefs);
