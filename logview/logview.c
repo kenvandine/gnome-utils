@@ -826,7 +826,7 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
    if (f != NULL) {
 	   /* Check if the log is not already opened */
 	   GList *list;
-		 Log *log;
+		 Log *log, *tl;
 	   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
 		   log = list->data;
 		   if (g_ascii_strncasecmp (log->name, f, 255) == 0) {
@@ -835,7 +835,6 @@ FileSelectResponse (GtkWidget * chooser, gint response, gpointer data)
 		   }
 	   }
 
-	   Log *tl;
 	   if ((tl = OpenLogFile (f, TRUE)) != NULL)
 	     logview_add_log (logview, tl);
    }
