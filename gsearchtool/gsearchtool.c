@@ -442,7 +442,7 @@ build_search_command (GSearchWindow * gsearch,
 		return NULL;
 	}	
 
-	look_in_folder_utf8 = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (gsearch->look_in_folder_button));
+	look_in_folder_utf8 = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (gsearch->look_in_folder_button));
 
 	if (look_in_folder_utf8 != NULL) {
 		look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, &error);
@@ -2751,7 +2751,7 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_button_box_set_layout (GTK_BUTTON_BOX (hbox), GTK_BUTTONBOX_END);
 	gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
-	gtk_box_set_spacing (GTK_BOX (hbox), 10);
+	gtk_box_set_spacing (GTK_BOX (hbox), 6);
 	button = gtk_button_new_from_stock (GTK_STOCK_HELP);
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
