@@ -305,7 +305,7 @@ file_exist (char *filename, gboolean show_error)
 					 "change the permissions on the file.\n"), filename);
 			   break;
 		   case GNOME_VFS_ERROR_TOO_BIG:
-			   g_snprintf (buff, sizeof (buff), _("%s is too big."));
+			   g_snprintf (buff, sizeof (buff), _("%s is too big."), filename);
 			   break;
 		   default:
 			   g_snprintf (buff, sizeof (buff),
