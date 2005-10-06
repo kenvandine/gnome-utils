@@ -33,16 +33,24 @@ static gboolean mon_check_logs (gpointer data);
 void
 monitor_stop (LogviewWindow *window)
 {
+  Log *log;
+
 	if (!window)
 		return;
-	if (window->timer_tag > 0) {
+  log = window->curlog;
+  if (!log)
+    return;
+
+	if (log->mon_handle != NULL) {
 		GtkListStore *list;
 		list = (GtkListStore *) gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
 		gtk_list_store_clear (list);
 
-		window->timer_tag = 0;
 		window->monitored = FALSE;
 		window->curlog->mon_offset = 0;
+
+    gnome_vfs_monitor_cancel (log->mon_handle);
+    log->mon_handle = NULL;
 		gnome_vfs_close (window->curlog->mon_file_handle);
 		window->curlog->mon_file_handle = NULL;
 	}
@@ -53,7 +61,17 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
                   const gchar *info_uri, GnomeVFSMonitorEventType event_type,
                   gpointer data)
 {
-  /*  g_print("Monitor event triggered for file %s\n", info_uri); */
+  GnomeVFSResult result;
+  LogviewWindow *window = data;
+
+  if (mon_check_logs (data)==FALSE) {
+    Log *log = window->curlog;
+    if (log == NULL) 
+      return;
+    
+    result = gnome_vfs_monitor_cancel (log->mon_handle);
+    log->mon_handle = NULL;
+  }
 }
 
 void
@@ -65,7 +83,7 @@ monitor_start (LogviewWindow *window)
 	
   result = gnome_vfs_monitor_add (&(log->mon_handle), log->name,
                          GNOME_VFS_MONITOR_FILE, monitor_callback,
-                         log);
+                         window);
 
   if (result != GNOME_VFS_OK) {
     switch (result == GNOME_VFS_ERROR_NOT_SUPPORTED) {
@@ -78,9 +96,6 @@ monitor_start (LogviewWindow *window)
   }
 
 	mon_update_display (window);
-
-	/* the timeout is automatically stopped when mon_check_logs returns false. */
-	window->timer_tag = g_timeout_add (1000, mon_check_logs, window);
 }
 
 

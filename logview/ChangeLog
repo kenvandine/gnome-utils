@@ -1,5 +1,9 @@
 2005-10-06  noel  <vnoel@cox.net>
 
+	* logview.h: 
+	* monitor.c (monitor_stop, monitor_callback, monitor_start): 
+	Use gnome_vfs_monitor to monitor file instead of polling. 
+
 	* logview.c (CreateMainWin): Use the desktop monospace font by
 	default.
 

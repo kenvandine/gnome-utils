@@ -181,7 +181,6 @@ struct _LogviewWindow {
 	Log *curlog;
 
 	gboolean monitored;
-	gint timer_tag;
 	GtkClipboard *clipboard;
 	
 	PangoFontDescription *fontdesc;
