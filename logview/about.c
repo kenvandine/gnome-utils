@@ -21,6 +21,7 @@
 #include <config.h>
 #include <glib/gi18n.h>
 #include <gtk/gtkaboutdialog.h>
+#include <string.h>
 
 void
 AboutShowWindow (GtkWidget *widget, gpointer user_data)
