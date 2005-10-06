@@ -486,7 +486,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
         gtk_tree_path_free (path);
         
     } else {
-        /* Expand the rows */
+        /* Expand the rows according if required */
         for (i = 0; i<32; ++i) {
             if (current_log->expand[i])
                 gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),
@@ -495,6 +495,8 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
         
         if (current_log->monitored) {       
           /* If we monitor, go to the end of the file */
+          gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view),
+                                    current_log->current_path, NULL, FALSE);
           gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
                                         path, NULL, FALSE, 0.0, 1.0);        
         } else {

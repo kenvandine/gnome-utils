@@ -763,7 +763,6 @@ CreateMainWin (LogviewWindow *window)
 	 window->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
 	 window->fontsize = window->original_fontsize;
 
-
    gtk_container_add (GTK_CONTAINER (window->log_scrolled_window), GTK_WIDGET (window->view));
    gtk_widget_show_all (window->log_scrolled_window);
 
