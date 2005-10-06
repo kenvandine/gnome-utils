@@ -38,22 +38,18 @@ monitor_stop (LogviewWindow *window)
     return;
 
 	if (log->mon_handle != NULL) {
-		GtkListStore *list;
-		list = (GtkListStore *) gtk_tree_view_get_model (GTK_TREE_VIEW(window->mon_list_view));
-		gtk_list_store_clear (list);
-
-    log->monitored = FALSE;
-
     gnome_vfs_monitor_cancel (log->mon_handle);
     log->mon_handle = NULL;
 		log->mon_offset = 0;
 
     gnome_vfs_close (log->mon_file_handle);
     log->mon_file_handle = NULL;
+
+    log->monitored = FALSE;
 	}
 }
 
-void
+static void
 monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
                   const gchar *info_uri, GnomeVFSMonitorEventType event_type,
                   gpointer data)

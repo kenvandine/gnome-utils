@@ -727,8 +727,15 @@ CreateMainWin (LogviewWindow *window)
 
    /* Main Tree View */
    window->view = gtk_tree_view_new ();
-   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), TRUE);
-   
+   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), TRUE); 
+
+   /* Use the desktop monospace font */
+   monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
+   fontdesc = pango_font_description_from_string (monospace_font_name);
+   if (pango_font_description_get_family (fontdesc) != NULL)
+     gtk_widget_modify_font (GTK_WIDGET(window->view), fontdesc);
+   g_free (monospace_font_name);
+  
    for (i = 0; column_titles[i]; i++) {
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_(column_titles[i]),
@@ -749,13 +756,6 @@ CreateMainWin (LogviewWindow *window)
 	 gtk_box_pack_end (GTK_BOX(window->version_bar), window->version_selector, FALSE, FALSE, 0);
 	 gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
 	 gtk_box_pack_end (GTK_BOX(window->main_view), window->version_bar, FALSE, FALSE, 0);
-
-   /* Use the desktop monospace font */
-   monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
-   fontdesc = pango_font_description_from_string (monospace_font_name);
-   if (pango_font_description_get_family (fontdesc) != NULL)
-     gtk_widget_modify_font (GTK_WIDGET(window->view), fontdesc);
-   g_free (monospace_font_name);
 
 	 /* Remember the original font size */
 	 context = gtk_widget_get_pango_context (window->view);
@@ -880,37 +880,6 @@ LoadLogMenu (GtkAction *action, GtkWidget *parent_window)
    }
 
    gtk_window_present (GTK_WINDOW (chooser));
-}
-
-GtkWidget *logview_create_monitor_widget (LogviewWindow *window)
-{
-	GtkWidget *clist_view, *swin;
-	GtkListStore *clist;   
-	GtkCellRenderer *clist_cellrenderer;
-	GtkTreeViewColumn *clist_column;
-
-	clist = gtk_list_store_new (1, G_TYPE_STRING);
-	clist_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (clist));
-	g_object_unref (clist);
-	clist_cellrenderer = gtk_cell_renderer_text_new ();
-	clist_column = gtk_tree_view_column_new_with_attributes
-		(NULL, clist_cellrenderer, "markup", 0, NULL);
-	gtk_tree_view_append_column (GTK_TREE_VIEW (clist_view), clist_column);
-	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (clist_view), FALSE);
-	swin = gtk_scrolled_window_new (NULL, NULL);
-	gtk_container_add (GTK_CONTAINER (swin), GTK_WIDGET (clist_view));
-	gtk_tree_selection_set_mode
-		( (GtkTreeSelection *)gtk_tree_view_get_selection
-		  (GTK_TREE_VIEW (clist_view)),
-		  GTK_SELECTION_MULTIPLE);
-	gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (swin),
-					GTK_POLICY_AUTOMATIC,
-					GTK_POLICY_AUTOMATIC);
-	gtk_widget_show_all (swin);
-
-	window->mon_list_view = (GtkWidget *) clist_view;
-
-	return swin;
 }
 
 /* ----------------------------------------------------------------------

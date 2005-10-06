@@ -22,5 +22,5 @@
 
 void monitor_start (LogviewWindow *window);
 void monitor_stop (LogviewWindow *window);
-void mon_update_display (LogviewWindow *window);
+
 #endif /* __LOG_MONITOR_H__ */

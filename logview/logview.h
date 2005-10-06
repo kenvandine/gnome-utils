@@ -146,7 +146,6 @@ struct _LogviewWindow {
 	GtkWindow parent_instance;
 
 	GtkWidget *view;
-	GtkWidget *mon_list_view;
 	GtkWidget *main_view;
 	GtkWidget *log_scrolled_window;
 		
