@@ -365,6 +365,7 @@ main (int argc, char *argv[])
 				 GNOME_PARAM_APP_DATADIR, DATADIR, 
 				 NULL);
 
+   g_set_application_name (_("Log Viewer"));
    gconf_init (argc, argv, NULL);
    client = gconf_client_get_default ();
    gnome_vfs_init ();
