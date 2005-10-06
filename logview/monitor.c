@@ -27,15 +27,10 @@
 #include <libgnomevfs/gnome-vfs-ops.h>
 
 void
-monitor_stop (LogviewWindow *window)
+monitor_stop (LogviewWindow *window, Log *log)
 {
-  Log *log;
-
-	if (!window)
-		return;
-  log = window->curlog;
-  if (!log)
-    return;
+  g_return_if_fail (window);
+  g_return_if_fail (log);
 
 	if (log->mon_handle != NULL) {
     gnome_vfs_monitor_cancel (log->mon_handle);
@@ -74,14 +69,15 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
 }
 
 void
-monitor_start (LogviewWindow *window)
+monitor_start (LogviewWindow *window, Log *log)
 {
-	Log *log = window->curlog;
-	g_return_if_fail (log);
   GnomeVFSResult result;
   GnomeVFSFileSize size;
   gchar *main, *second;
 	 
+  g_return_if_fail (window);
+  g_return_if_fail (log);
+
   result = gnome_vfs_open (&(log->mon_file_handle), log->name, 
                            GNOME_VFS_OPEN_READ);
   result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_END, 0L);

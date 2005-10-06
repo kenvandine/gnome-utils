@@ -20,7 +20,7 @@
 #ifndef __LOG_MONITOR_H__
 #define __LOG_MONITOR_H__
 
-void monitor_start (LogviewWindow *window);
-void monitor_stop (LogviewWindow *window);
+void monitor_start (LogviewWindow *window, Log *log);
+void monitor_stop (LogviewWindow *window, Log *log);
 
 #endif /* __LOG_MONITOR_H__ */

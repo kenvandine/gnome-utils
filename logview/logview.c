@@ -136,7 +136,7 @@ static GtkToggleActionEntry toggle_entries[] = {
 	{ "ShowSidebar", NULL, N_("Sidebar"), NULL, N_("Show the sidebar"), 
 		G_CALLBACK (toggle_sidebar), TRUE },
 	{ "MonitorLogs", NULL, N_("_Monitor"), "<control>M", N_("Monitor Current Log"),
-	  G_CALLBACK (toggle_monitor) },
+	  G_CALLBACK (toggle_monitor), TRUE },
 	{"ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
 	 G_CALLBACK (toggle_calendar), TRUE },
 };
@@ -221,7 +221,7 @@ destroy (GObject *object, gpointer data)
    LogviewWindow *window = data;
    logview_windows = g_slist_remove (logview_windows, window);
    if (window->curlog && window->curlog->monitored)
-	   monitor_stop (window);
+	   monitor_stop (window, window->curlog);
    if (logview_windows == NULL) {
 	   if (window->curlog && !(window->curlog->display_name))
 		   user_prefs->logfile = window->curlog->name;
@@ -290,9 +290,10 @@ logview_add_log (LogviewWindow *logview, Log *log)
 {
   logview->logs = g_list_append (logview->logs, log);
   loglist_add_log (logview, log);
-  log->monitored = FALSE;
   log->first_time = TRUE;
   log->window = logview;
+
+  monitor_start (logview, log);
 } 
 
 void
@@ -927,7 +928,7 @@ open_databases (void)
 		}
 	}
 
-	if ( ! found) {
+	if (!found) {
 		g_snprintf (full_name, sizeof (full_name),
 			    "%s/share/gnome-system-log/gnome-system-log-descript.db", LOGVIEWINSTALLPREFIX);
 		if (access (full_name, R_OK) == 0) {
@@ -1013,11 +1014,11 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
     LogviewWindow *window = LOGVIEW_WINDOW (callback_data);
     g_return_if_fail (window->curlog);
     if (!window->curlog->display_name) {
-	    if (window->curlog->monitored) {
-		    monitor_stop (window);
-	    } else {
-		    monitor_start (window);
-	    }
+	    if (window->curlog->monitored)
+		    monitor_stop (window, window->curlog);
+	    else
+		    monitor_start (window, window->curlog);
+
 	    logview_set_window_title (window);
 	    logview_menus_set_state (window);
     }
