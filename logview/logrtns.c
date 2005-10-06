@@ -45,6 +45,7 @@
 static int isSameDay (time_t day1, time_t day2);
 static void ReadLogStats (Log * log, gchar **buffer_lines);
 static gboolean file_exist (char *filename, gboolean show_error);
+static time_t GetDate (char *line);
 
 extern GList *regexp_db;
 extern GList *actions_db;
@@ -276,6 +277,7 @@ OpenLogFile (char *filename, gboolean show_error)
 		 gchar *older_name;
 		 older_name = g_strdup_printf ("%s.%d", filename, i);
 		 tlog->older_logs[i] = OpenLogFile (older_name, FALSE);
+     g_free (older_name);
 		 if (tlog->older_logs[i] != NULL) {
 			 tlog->older_logs[i]->parent_log = tlog;
 			 tlog->older_logs[i]->current_version = i;
@@ -295,7 +297,6 @@ Log *log_add_lines (Log *log, gchar *buffer)
   LogLine **new_lines;
 
   buffer_lines = g_strsplit (buffer, "\n", -1);
-  g_free (buffer);
   
   for (i=0; buffer_lines[i+1] != NULL; i++);
   new_total_lines = log->total_lines + i;
@@ -370,8 +371,10 @@ isLogFile (char *filename, gboolean show_error)
 
    /* Read first line and check that it is text */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
-   if (result != GNOME_VFS_OK)
+   if (result != GNOME_VFS_OK) {
+     gnome_vfs_close (handle);     
 	   return FALSE;
+   }
 
    result = gnome_vfs_read (handle, buff, sizeof(buff), &size);
    gnome_vfs_close (handle);
@@ -391,6 +394,7 @@ isLogFile (char *filename, gboolean show_error)
    return TRUE;
 }
 
+/* the returned buffer needs to be freed at some point. */
 
 gchar *ReadNewLines (Log *log)
 {
@@ -530,7 +534,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    struct stat filestat;
    struct tm *tmptm, footm;
    GnomeVFSResult result;
-   GnomeVFSFileInfo info;
+   GnomeVFSFileInfo *info;
 
    /* Clear struct.      */
    log->lstats.startdate = 0;
@@ -539,9 +543,10 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    log->lstats.mtime = 0;
    log->lstats.size = 0;
 
-   result = gnome_vfs_get_file_info (log->name, &info, GNOME_VFS_FILE_INFO_DEFAULT);
-   log->lstats.mtime = info.mtime;
-   log->lstats.size = info.size;
+   info = gnome_vfs_file_info_new ();
+   result = gnome_vfs_get_file_info (log->name, info, GNOME_VFS_FILE_INFO_DEFAULT);
+   log->lstats.mtime = info->mtime;
+   log->lstats.size = info->size;
 
    /* Make sure we have at least a starting date. */
 	 if ((log->lines)[0]->month == -1)
@@ -568,7 +573,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    curmark->year = offsetyear;
    curmark->next = NULL;
    curmark->prev = NULL;
-   curmark->offset = info.size;
+   curmark->offset = info->size;
    curmark->ln = nl;
    log->lstats.firstmark = curmark;
 
@@ -605,7 +610,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    /* Correct years now. We assume that the last date on the log
       is the date last accessed */
 
-   curdate = info.mtime;
+   curdate = info->mtime;
    tmptm = localtime (&curdate);
    thisyear = tmptm->tm_year;
    lastyear = offsetyear;
@@ -614,6 +619,8 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    footm.tm_isdst = 0;
    footm.tm_mday = 1;
    curmark = log->lstats.firstmark;
+
+   gnome_vfs_file_info_unref (info);
 
    while (curmark != NULL) {
 	   footm.tm_year = (curmark->year - lastyear) + thisyear;
@@ -699,7 +706,7 @@ isSameDay (time_t day1, time_t day2)
    DESCRIPTION:   Extract the date from the log line.
    ---------------------------------------------------------------------- */
 
-time_t
+static time_t
 GetDate (char *line)
 {
    struct tm date;
@@ -754,7 +761,7 @@ GetDate (char *line)
    ---------------------------------------------------------------------- */
 
 void
-CloseLog (Log * log)
+CloseLog (Log *log)
 {
    gint i;
 
@@ -783,26 +790,4 @@ CloseLog (Log * log)
    g_free (log);
    return;
 
-}
-
-/* ----------------------------------------------------------------------
-   NAME:	WasModified
-   DESCRIPTION:	Returns true if modified flag in log changed. It also
-                changes the modified flag.
-   ---------------------------------------------------------------------- */
-
-int
-WasModified (Log *log)
-{
-	GnomeVFSResult result;
-	GnomeVFSFileInfo info;
-
-	result = gnome_vfs_get_file_info (log->name, 
-					  &(info),
-					  GNOME_VFS_FILE_INFO_DEFAULT);
-	if (info.mtime != log->lstats.mtime) {
-		log->lstats.mtime = info.mtime;
-		return TRUE;
-	} else
-		return FALSE;
 }

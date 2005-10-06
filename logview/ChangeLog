@@ -1,5 +1,22 @@
 2005-10-06  Vincent Noel  <vnoel@cox.net>
 
+	* log_repaint.c (logview_draw_log_lines): Plug a huge memory leak
+	(utf8 strings not freed after insertion in a GtkTreeStore).
+	(logview_draw_log_lines): Plug a leak. Valgrind is da bomb.
+
+	* logrtns.c (OpenLogFile): Plug leaks.
+	(ReadLogStats): Plug a leak by using
+	gnome_vfs_file_info_unref. Totally not obvious...
+	(WasModified): Removed.
+	(GetDate): make static.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Correctly scroll to the
+	end of the log when new lines are added.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
 	* logview.c (logview_create_monitor_widget, monitor_stop): Some leftover cruft.
 	* monitor.c (monitor_callback): Make it static.
 

@@ -228,6 +228,7 @@ destroy (GObject *object, gpointer data)
 	   else
 		   user_prefs->logfile = NULL;
 	   prefs_save (client, user_prefs);
+     prefs_free_loglist (user_prefs);
 	   gtk_main_quit ();
    }
 }

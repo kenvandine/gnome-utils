@@ -379,6 +379,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
     char *utf8 = NULL;
     gint cm, cd;
     int i;
+    char *hostname_utf8, *process_utf8, *message_utf8;
     
     if (!current_log->total_lines) 
         return;
@@ -387,6 +388,9 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
     model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
                                                G_TYPE_STRING, G_TYPE_STRING));
     
+    /* FIXME : this should be optimized for the case of monitored logs -
+       in such case we don't need to re-add everything but only some lines at the end */
+
     if (current_log->has_date == FALSE) {
         
         for (i=current_log->total_lines-1; i>-1; i--) {
@@ -454,13 +458,18 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
                 utf8 = g_strdup (" ");
             }			 
             gtk_tree_store_append (GTK_TREE_STORE (model), &child_iter, &iter);
+
+            hostname_utf8 = LocaleToUTF8 (line->hostname);
+            process_utf8 = LocaleToUTF8 (line->process);
+            message_utf8 = LocaleToUTF8 (line->message);
             gtk_tree_store_set (GTK_TREE_STORE (model), &child_iter,
-                                DATE, utf8, HOSTNAME, LocaleToUTF8 (line->hostname),
-                                PROCESS, LocaleToUTF8 (line->process),
-                                MESSAGE, LocaleToUTF8 (line->message), -1);
-            /* To get the path for the last cell when monitoring */
-            if (current_log->monitored)
-              path = gtk_tree_model_get_path (model, &child_iter);
+                                DATE, utf8, HOSTNAME, hostname_utf8,
+                                PROCESS, process_utf8,
+                                MESSAGE, message_utf8, -1);
+            g_free (utf8);
+            g_free (hostname_utf8);
+            g_free (process_utf8);
+            g_free (message_utf8);
         }
         
     }
@@ -470,13 +479,13 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
     gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), model);
     
     if (current_log->first_time) {
+
         for (i = 0; i<32; i++)
             current_log->expand[i] = FALSE;
         
-        /* Expand the rows */
+        /* Expand the last day */
         path = gtk_tree_model_get_path (model, &iter);
         gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
-        current_log->first_time = FALSE;
         
         /* Scroll and set focus on last row */
         path = gtk_tree_model_get_path (model, &child_iter);
@@ -484,7 +493,8 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
         gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 
                                       1, 1);
         gtk_tree_path_free (path);
-        
+
+        current_log->first_time = FALSE;        
     } else {
         /* Expand the rows according if required */
         for (i = 0; i<32; ++i) {
@@ -495,10 +505,12 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
         
         if (current_log->monitored) {       
           /* If we monitor, go to the end of the file */
+          path = gtk_tree_model_get_path (model, &child_iter);
           gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view),
                                     current_log->current_path, NULL, FALSE);
           gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
                                         path, NULL, FALSE, 0.0, 1.0);        
+          /* FIXME : if I call gtk_tree_path_free, it hangs. */
         } else {
           /* Scroll and set focus on the previously focused row */
           gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 

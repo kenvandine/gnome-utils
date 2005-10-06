@@ -55,18 +55,19 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
                   gpointer data)
 {
   GnomeVFSResult result;
-  gchar *buffer_lines;
+  gchar *buffer;
   LogviewWindow *logview;
   Log *log = data;
   
   g_return_if_fail (log);
-  buffer_lines = ReadNewLines (log);
+  buffer = ReadNewLines (log);
 
-  if (buffer_lines != NULL) {
-    log = log_add_lines (log, buffer_lines);
+  if (buffer != NULL) {
+    log = log_add_lines (log, buffer);
     logview  = (LogviewWindow *) log->window;
     if (logview->curlog == log) 
       log_repaint (logview);
+    g_free (buffer);
   }
   
   return;

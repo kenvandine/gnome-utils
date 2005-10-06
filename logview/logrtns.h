@@ -24,10 +24,8 @@
 #include "logview.h"
 
 int isLogFile (char *filename, gboolean show_error);
-int WasModified (Log *log);
 void ParseLine (char *buff, LogLine * line, gboolean has_date);
 void CloseLog (Log * log);
-time_t GetDate (char *line);
 Log * OpenLogFile (char *filename, gboolean show_error);
 gchar *ReadNewLines (Log *log);
 Log *log_add_lines (Log *log, gchar *buffer);
