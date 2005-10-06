@@ -47,6 +47,7 @@ static UserPrefsStruct *user_prefs;
 static gboolean restoration_complete = FALSE;
 
 #define APP_NAME _("System Log Viewer")
+#define GCONF_MONOSPACE_FONT_NAME "/desktop/gnome/interface/monospace_font_name"
 
 /*
  *    -------------------
@@ -666,6 +667,7 @@ CreateMainWin (LogviewWindow *window)
 	 GtkWidget *label;
 	 PangoFontDescription *fontdesc;
 	 PangoContext *context;
+   gchar *monospace_font_name;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
 
@@ -749,11 +751,19 @@ CreateMainWin (LogviewWindow *window)
 	 gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
 	 gtk_box_pack_end (GTK_BOX(window->main_view), window->version_bar, FALSE, FALSE, 0);
 
+   /* Use the desktop monospace font */
+   monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
+   fontdesc = pango_font_description_from_string (monospace_font_name);
+   if (pango_font_description_get_family (fontdesc) != NULL)
+     gtk_widget_modify_font (GTK_WIDGET(window->view), fontdesc);
+   g_free (monospace_font_name);
+
 	 /* Remember the original font size */
 	 context = gtk_widget_get_pango_context (window->view);
 	 fontdesc = pango_context_get_font_description (context);
 	 window->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
-	 window->fontsize = window->original_fontsize;		 
+	 window->fontsize = window->original_fontsize;
+
 
    gtk_container_add (GTK_CONTAINER (window->log_scrolled_window), GTK_WIDGET (window->view));
    gtk_widget_show_all (window->log_scrolled_window);

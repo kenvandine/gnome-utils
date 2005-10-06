@@ -49,11 +49,34 @@ monitor_stop (LogviewWindow *window)
 }
 
 void
+monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
+                  const gchar *info_uri, GnomeVFSMonitorEventType event_type,
+                  gpointer data)
+{
+  /*  g_print("Monitor event triggered for file %s\n", info_uri); */
+}
+
+void
 monitor_start (LogviewWindow *window)
 {
 	Log *log = window->curlog;
 	g_return_if_fail (log);
+  GnomeVFSResult result;
 	
+  result = gnome_vfs_monitor_add (&(log->mon_handle), log->name,
+                         GNOME_VFS_MONITOR_FILE, monitor_callback,
+                         log);
+
+  if (result != GNOME_VFS_OK) {
+    switch (result == GNOME_VFS_ERROR_NOT_SUPPORTED) {
+    case GNOME_VFS_ERROR_NOT_SUPPORTED :
+      g_print(_("File monitoring is not supported on this file system.\n"));
+    default:
+      g_print("This file cannot be monitored. !\n");
+    }
+    return;
+  }
+
 	mon_update_display (window);
 
 	/* the timeout is automatically stopped when mon_check_logs returns false. */
