@@ -1,4 +1,10 @@
-2005-10-06  noel  <vnoel@cox.net>
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* monitor.c (mon_update_display): Remove.
+	(monitor_callback): Only repaint the window if the updated log is
+	currently displayed.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
 
 	* logview.h: 
 	* logview.c (CreateMainWin): Remove the monitor widget. This feels

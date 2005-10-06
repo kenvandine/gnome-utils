@@ -392,7 +392,7 @@ isLogFile (char *filename, gboolean show_error)
 }
 
 
-gchar *ReadLastPage (Log *log)
+gchar *ReadNewLines (Log *log)
 {
 	GnomeVFSResult result;
 	gchar *buffer;
@@ -411,33 +411,6 @@ gchar *ReadLastPage (Log *log)
     result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);    
 		log->mon_offset = newsize;
 		return buffer;
-	}
-	return NULL;
-}
-
-gchar **ReadNewLines (Log *log)
-{
-	GnomeVFSFileSize bytes_read;
-	GnomeVFSFileInfo info;
-	GnomeVFSResult result;
-	gchar *buffer;
-	
-	g_return_val_if_fail (log, NULL);
-	g_return_val_if_fail (log->mon_file_handle, NULL);
-	
-	result = gnome_vfs_get_file_info_from_handle (log->mon_file_handle, &info, GNOME_VFS_FILE_INFO_DEFAULT);
-	buffer = g_malloc (info.size - log->mon_offset);
-
-	result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, log->mon_offset);
-	result = gnome_vfs_read (log->mon_file_handle, buffer, info.size - log->mon_offset, &bytes_read);
-	
-	if (result == GNOME_VFS_OK && bytes_read > 0) {
-		gchar **buffer_lines;
-		log->mon_offset = info.size;
-		result = gnome_vfs_tell (log->mon_file_handle, &(log->mon_offset));
-		buffer_lines = g_strsplit (buffer, "\n", -1);
-		g_free (buffer);
-		return buffer_lines;
 	}
 	return NULL;
 }

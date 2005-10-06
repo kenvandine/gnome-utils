@@ -122,6 +122,8 @@ struct _log
 	GnomeVFSMonitorHandle *mon_handle;
   GnomeVFSHandle *mon_file_handle;
 	gboolean monitored;
+
+  gpointer window;
 };
 
 /*

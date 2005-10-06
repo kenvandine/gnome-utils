@@ -59,8 +59,21 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
                   gpointer data)
 {
   GnomeVFSResult result;
-  LogviewWindow *window = data;
-  mon_update_display (window);
+  gchar *buffer_lines;
+  LogviewWindow *logview;
+  Log *log = data;
+  
+  g_return_if_fail (log);
+  buffer_lines = ReadNewLines (log);
+
+  if (buffer_lines != NULL) {
+    log = log_add_lines (log, buffer_lines);
+    logview  = (LogviewWindow *) log->window;
+    if (logview->curlog == log) 
+      log_repaint (logview);
+  }
+  
+  return;
 }
 
 void
@@ -80,7 +93,7 @@ monitor_start (LogviewWindow *window)
 
   result = gnome_vfs_monitor_add (&(log->mon_handle), log->name,
                          GNOME_VFS_MONITOR_FILE, monitor_callback,
-                         window);
+                         log);
 
   if (result != GNOME_VFS_OK) {
     g_sprintf (main, _("This file cannot be monitored."));
@@ -96,30 +109,4 @@ monitor_start (LogviewWindow *window)
   }
 
   log->monitored = TRUE;
-	mon_update_display (window);
-}
-
-
-/* ----------------------------------------------------------------------
-   NAME:	mon_update_display
-   DESCRIPTION:	Update the monitor display by reading the last page of the log or
-   newly-added lines.
-   ---------------------------------------------------------------------- */
-
-void
-mon_update_display (LogviewWindow *window)
-{
-   gchar *buffer_lines;
-   Log *log = window->curlog;
-
-   g_return_if_fail (log);
-
-   buffer_lines = ReadLastPage (log);
-   if (buffer_lines != NULL) {
-     window->curlog = log_add_lines (window->curlog, buffer_lines);
-     log_repaint (window);
-   }
-   
-   return;
-
 }

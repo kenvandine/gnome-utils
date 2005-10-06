@@ -291,6 +291,7 @@ logview_add_log (LogviewWindow *logview, Log *log)
   loglist_add_log (logview, log);
   log->monitored = FALSE;
   log->first_time = TRUE;
+  log->window = logview;
 } 
 
 void
