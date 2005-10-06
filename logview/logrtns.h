@@ -29,7 +29,8 @@ void ParseLine (char *buff, LogLine * line, gboolean has_date);
 void CloseLog (Log * log);
 time_t GetDate (char *line);
 Log * OpenLogFile (char *filename, gboolean show_error);
-gchar **ReadLastPage (Log *log);
+gchar *ReadLastPage (Log *log);
 gchar **ReadNewLines (Log *log);
+Log *log_add_lines (Log *log, gchar *buffer);
 
 #endif /* __LOGRTNS_H__ */

@@ -186,6 +186,8 @@ file_is_zipped (char *filename)
 		return FALSE;
 }
 
+
+
 /* ----------------------------------------------------------------------
    NAME:          OpenLogFile
    DESCRIPTION:   Open a log file and read several pages.
@@ -240,8 +242,8 @@ OpenLogFile (char *filename, gboolean show_error)
    /* count the lines */
    for (i=0; buffer_lines[i+1] != NULL; i++);
    tlog->total_lines = i;
-
    tlog->lines = g_new (LogLine*, tlog->total_lines);
+   
    for (i=0; buffer_lines[i+1]!=NULL; i++) {
        (tlog->lines)[i] = g_new (LogLine, 1);
        if ((tlog->lines)[i]==NULL) {
@@ -250,7 +252,6 @@ OpenLogFile (char *filename, gboolean show_error)
        }
    }
 
-	 	 
    for (i=0; buffer_lines[i+1] != NULL; i++) {
 	   ParseLine (buffer_lines[i], (tlog->lines)[i], tlog->has_date);
        if ((tlog->lines)[i]->month == -1 && tlog->has_date)
@@ -270,6 +271,7 @@ OpenLogFile (char *filename, gboolean show_error)
 	 tlog->versions = 0;
 	 tlog->current_version = 0;
 	 tlog->parent_log = NULL;
+   tlog->mon_offset = size;
 	 for (i=1; i<5; i++) {
 		 gchar *older_name;
 		 older_name = g_strdup_printf ("%s.%d", filename, i);
@@ -284,6 +286,37 @@ OpenLogFile (char *filename, gboolean show_error)
 	 }
 
    return tlog;
+}
+
+Log *log_add_lines (Log *log, gchar *buffer)
+{
+  char **buffer_lines;
+  int i, j, new_total_lines;
+  LogLine **new_lines;
+
+  buffer_lines = g_strsplit (buffer, "\n", -1);
+  g_free (buffer);
+  
+  for (i=0; buffer_lines[i+1] != NULL; i++);
+  new_total_lines = log->total_lines + i;
+  new_lines = g_new (LogLine *, new_total_lines);
+  
+  for (i=0; i<new_total_lines; i++)
+    new_lines [i] = (log->lines)[i];
+  
+  for (i=0; buffer_lines[i+1]!=NULL; i++) {
+    j = log->total_lines + i;
+    new_lines [j] = g_new (LogLine, 1);
+    ParseLine (buffer_lines[i], new_lines[j], log->has_date);
+  }
+  g_strfreev (buffer_lines);
+  
+  /* Now store the new lines in the log */
+  g_free (log->lines);
+  log->total_lines = new_total_lines;
+  log->lines = new_lines;
+  
+  return log;
 }
 
 static gboolean
@@ -359,23 +392,25 @@ isLogFile (char *filename, gboolean show_error)
 }
 
 
-gchar **ReadLastPage (Log *log)
+gchar *ReadLastPage (Log *log)
 {
 	GnomeVFSResult result;
 	gchar *buffer;
-	int size;
+  GnomeVFSFileSize newsize, read;
+  GnomeVFSFileOffset size;
 
 	g_return_val_if_fail (log, NULL);
+  
+  result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_END, 0L);
+	result = gnome_vfs_tell (log->mon_file_handle, &newsize);
+  size = log->mon_offset;
 
-	result = gnome_vfs_read_entire_file (log->name, &size, &buffer);
-	
-	if (size > 0 && buffer != NULL) {
-		gchar **buffer_lines;
-		result = gnome_vfs_open (&(log->mon_file_handle), log->name, GNOME_VFS_OPEN_READ);
-		log->mon_offset = size;
-		buffer_lines = g_strsplit (buffer, "\n", -1);
-		g_free (buffer);
-		return buffer_lines;
+	if (newsize > log->mon_offset) {
+    buffer = g_malloc (newsize-size);
+    result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
+    result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);    
+		log->mon_offset = newsize;
+		return buffer;
 	}
 	return NULL;
 }

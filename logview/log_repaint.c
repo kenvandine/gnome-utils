@@ -458,6 +458,9 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
                                 DATE, utf8, HOSTNAME, LocaleToUTF8 (line->hostname),
                                 PROCESS, LocaleToUTF8 (line->process),
                                 MESSAGE, LocaleToUTF8 (line->message), -1);
+            /* To get the path for the last cell when monitoring */
+            if (current_log->monitored)
+              path = gtk_tree_model_get_path (model, &child_iter);
         }
         
     }
@@ -490,11 +493,17 @@ logview_draw_log_lines (LogviewWindow *window, Log *current_log)
                                           current_log->expand_paths[i], FALSE);
         }
         
-        /* Scroll and set focus on the previously focused row */
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
-                                  current_log->current_path, NULL, FALSE); 
-        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
-                                      current_log->current_path, NULL, FALSE, 0.5, 0.5);
+        if (current_log->monitored) {       
+          /* If we monitor, go to the end of the file */
+          gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
+                                        path, NULL, FALSE, 0.0, 1.0);        
+        } else {
+          /* Scroll and set focus on the previously focused row */
+          gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
+                                    current_log->current_path, NULL, FALSE); 
+          gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
+                                        current_log->current_path, NULL, FALSE, 0.5, 0.5);
+        }
     }
     
     g_object_unref (model);
@@ -522,14 +531,6 @@ log_repaint (LogviewWindow *window)
 	   return FALSE;
    }
 	 
-	 if (window->curlog->monitored) {
-		 gtk_widget_hide (window->log_scrolled_window);
-		 gtk_widget_show (window->mon_scrolled_window);
-	 } else {
-		 gtk_widget_hide (window->mon_scrolled_window);
-		 gtk_widget_show (window->log_scrolled_window);
-	 }
-
    /* Draw the tree view */ 
    logview_draw_log_lines (window, window->curlog); 
 

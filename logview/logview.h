@@ -120,7 +120,7 @@ struct _log
 	MonActions alert;
 	GnomeVFSFileOffset mon_offset;
 	GnomeVFSMonitorHandle *mon_handle;
-	GnomeVFSHandle *mon_file_handle;
+  GnomeVFSHandle *mon_file_handle;
 	gboolean monitored;
 };
 
@@ -147,7 +147,6 @@ struct _LogviewWindow {
 	GtkWidget *mon_list_view;
 	GtkWidget *main_view;
 	GtkWidget *log_scrolled_window;
-	GtkWidget *mon_scrolled_window;
 		
 	GtkWidget *statusbar;
 	GtkUIManager *ui_manager;
@@ -180,7 +179,6 @@ struct _LogviewWindow {
 
 	Log *curlog;
 
-	gboolean monitored;
 	GtkClipboard *clipboard;
 	
 	PangoFontDescription *fontdesc;

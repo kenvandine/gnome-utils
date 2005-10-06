@@ -1,6 +1,21 @@
 2005-10-06  noel  <vnoel@cox.net>
 
 	* logview.h: 
+	* logview.c (CreateMainWin): Remove the monitor widget. This feels
+	so good.
+
+	* monitor.c (mon_format_line): Remove
+	* monitor.c (mon_check_log) : remove.
+
+	* log_repaint.c (logview_draw_log_lines): When monitoring, just
+	append the new lines to the end of the displayed log and scroll
+	down there.
+
+	* monitor.c (mon_update_display): Remove a whole bunch of stuff
+	for using the monitor widget.
+	* log_repaint.c (log_repaint): Remove reference to monitor widget.
+
+	* logview.h: 
 	* monitor.c (monitor_stop, monitor_callback, monitor_start): 
 	Use gnome_vfs_monitor to monitor file instead of polling. 
 

@@ -713,18 +713,16 @@ CreateMainWin (LogviewWindow *window)
 
 	 gtk_paned_pack1 (GTK_PANED (hpaned), window->sidebar, FALSE, FALSE);
 
-   /* Second pane : log and monitor */
+   /* Second pane : log */
    window->main_view = gtk_vbox_new (FALSE, 0);
    gtk_paned_pack2 (GTK_PANED (hpaned), GTK_WIDGET (window->main_view), TRUE, TRUE);
 
-   /* Scrolled windows for the main view and monitor view */
+   /* Scrolled windows for the main view */
    window->log_scrolled_window = gtk_scrolled_window_new (NULL, NULL);
    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (window->log_scrolled_window),
                GTK_POLICY_AUTOMATIC,
                GTK_POLICY_AUTOMATIC);
-   window->mon_scrolled_window = logview_create_monitor_widget (window);
 	 gtk_box_pack_start (GTK_BOX(window->main_view), window->log_scrolled_window, TRUE, TRUE, 0);
-	 gtk_box_pack_start (GTK_BOX(window->main_view), window->mon_scrolled_window, TRUE, TRUE, 0);
 
    /* Main Tree View */
    window->view = gtk_tree_view_new ();
@@ -791,7 +789,6 @@ CreateMainWin (LogviewWindow *window)
 
 	 gtk_widget_show_all (vbox);
    gtk_widget_hide (window->find_bar);
-	 gtk_widget_hide (window->mon_scrolled_window);
 	 gtk_widget_hide (window->version_bar);
 }
 
@@ -1047,15 +1044,9 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
     g_return_if_fail (window->curlog);
     if (!window->curlog->display_name) {
 	    if (window->curlog->monitored) {
-				gtk_widget_hide (window->mon_scrolled_window);
-				gtk_widget_show (window->log_scrolled_window);
 		    monitor_stop (window);
-		    window->curlog->monitored = FALSE;
 	    } else {
-				gtk_widget_hide (window->log_scrolled_window);
-				gtk_widget_show (window->mon_scrolled_window);
 		    monitor_start (window);
-		    window->curlog->monitored = TRUE;
 	    }
 	    logview_set_window_title (window);
 	    logview_menus_set_state (window);
