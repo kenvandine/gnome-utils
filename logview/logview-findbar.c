@@ -124,6 +124,8 @@ logview_tree_model_find_match (GtkTreeModel *tree_model, const char *pattern,
 	GtkTreeIter iter_root;
 	GtkTreePath *path;
 	SearchIter *st;
+
+	g_print("in logview_tree_model_find_match\n");
 	
 	st = g_new0 (SearchIter, 1);
 	st->pattern = pattern;

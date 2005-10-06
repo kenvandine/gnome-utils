@@ -61,7 +61,6 @@ static void LoadLogMenu (GtkAction *action, GtkWidget *parent_window);
 static void CloseLogMenu (GtkAction *action, GtkWidget *callback_data);
 static void FileSelectResponse (GtkWidget * chooser, gint response, gpointer data);
 static void open_databases (void);
-GtkWidget *logview_create_monitor_widget (LogviewWindow *window);
 static GtkWidget *logview_create_window (void);
 static void logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean state);
 static void toggle_sidebar (GtkAction *action, GtkWidget *callback_data);
@@ -276,13 +275,13 @@ logview_select_log (LogviewWindow *logview, Log *log)
 {
 	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 	g_return_if_fail (log);
-	
+
 	logview->curlog = log;
 	logview_menus_set_state (logview);
-	logview_calendar_set_state (logview);
 	logview_update_version_bar (logview);
 	log_repaint (logview);
-	logview_save_prefs (logview);
+	logview_save_prefs (logview); 
+	logview_calendar_set_state (logview);
 } 
 
 void
@@ -471,13 +470,13 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   g_return_if_fail (selection);
 
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
-      /* there is no selected log right now */
-      logview->curlog = NULL;
-      logview_set_window_title (logview);
-      logview_menus_set_state (logview);
-      gtk_calendar_clear_marks (GTK_CALENDAR(logview->calendar));
-      log_repaint (logview);
-      return;
+    /* there is no selected log right now */
+    logview->curlog = NULL;
+    logview_set_window_title (logview);
+    logview_menus_set_state (logview);
+    gtk_calendar_clear_marks (GTK_CALENDAR(logview->calendar));
+    log_repaint (logview);
+    return;
   }
   
   gtk_tree_model_get (model, &iter, 0, &name, -1);
@@ -1130,6 +1129,8 @@ logview_calendar_set_state (LogviewWindow *logview)
 static void
 logview_menus_set_state (LogviewWindow *window)
 {
+  g_return_if_fail (window);
+
 	if (window->curlog && window->curlog->monitored) {
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Copy", FALSE);
 		logview_menu_item_set_state (window, "/LogviewMenu/EditMenu/Search", FALSE);

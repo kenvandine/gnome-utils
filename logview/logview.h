@@ -66,6 +66,7 @@ LogStats;
 typedef struct {
   GtkWidget *calendar;
   DateMark *curmonthmark;
+  gboolean first_pass;
 } CalendarData;
 
 typedef struct

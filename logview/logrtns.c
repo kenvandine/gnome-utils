@@ -187,8 +187,6 @@ file_is_zipped (char *filename)
 		return FALSE;
 }
 
-
-
 /* ----------------------------------------------------------------------
    NAME:          OpenLogFile
    DESCRIPTION:   Open a log file and read several pages.
@@ -265,7 +263,7 @@ OpenLogFile (char *filename, gboolean show_error)
 
    /* initialize date headers hash table */
    tlog->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
-					       (GDestroyNotify) gtk_tree_path_free);
+                                               (GDestroyNotify) g_free);
    tlog->first_time = TRUE;
 
 	 /* Check for older versions of the log */

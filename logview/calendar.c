@@ -115,7 +115,7 @@ CalendarData*
 init_calendar_data (LogviewWindow *window)
 {
    CalendarData *data;
-	 
+
 	 if (window->curlog == NULL)
 		 return NULL;
 
@@ -127,14 +127,16 @@ init_calendar_data (LogviewWindow *window)
 		 DateMark *mark;
 		 data->curmonthmark = window->curlog->lstats.firstmark;
 		 window->curlog->caldata = data;
+
+     data->first_pass = TRUE;
 		 
 		 mark = data->curmonthmark;
 		 if (mark) {
 			 gtk_calendar_select_month (GTK_CALENDAR(window->calendar), 
 																	mark->fulldate.tm_mon,
 																	mark->fulldate.tm_year + 1900);
-			 gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
-																mark->fulldate.tm_mday);
+       gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
+                                mark->fulldate.tm_mday);
 		 }
 		 
 		 read_marked_dates (data, window);       
@@ -189,16 +191,24 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
   /* find the selected day in the current logfile */
   gint day, month, year;
   GtkTreePath *path;
+  gchar *path_string;
 
 	if (window->curlog == NULL)
 		return NULL;
 
+  if (window->curlog->caldata->first_pass == TRUE) {
+    window->curlog->caldata->first_pass = FALSE;
+    return NULL;
+  }
+  
   gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);
-
-  path = g_hash_table_lookup (window->curlog->date_headers,
-                DATEHASH (month, day));
-  if (path != NULL)
-		gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
+    
+  path_string = g_hash_table_lookup (window->curlog->date_headers,
+                                     DATEHASH (month, day));
+  path = gtk_tree_path_new_from_string (path_string);
+  if (path != NULL) {
+    gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
+  }
 
 	return path;
 }

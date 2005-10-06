@@ -1,3 +1,16 @@
+2005-10-06  noel  <vnoel@cox.net>
+
+	* calendar.c (calendar_day_selected): Track the currently selected
+	line when switching logs.
+
+	* log_repaint.c (logview_draw_log_lines): It took me 3 hours to
+	find the damned g_free that was crashing everything.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Some weird hanging issue
+	- glib complains about corrupted double-linked list. Mmmh.
+
 2005-10-06  Vincent Noel  <vnoel@cox.net>
 
 	* logview.c: Monitor logs by default.
