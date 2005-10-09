@@ -1041,7 +1041,6 @@ gsearchtool_icon_lookup (GSearchWindow * gsearch,
                          GnomeVFSFileInfo * file_info,
                          gboolean enable_thumbnails)
 {
-	GnomeThumbnailFactory * thumbnail_factory = NULL;
 	GnomeIconLookupFlags lookup_flags = GNOME_ICON_LOOKUP_FLAGS_NONE;
 	gchar * icon_name = NULL;
 	gchar * uri;
@@ -1051,24 +1050,22 @@ gsearchtool_icon_lookup (GSearchWindow * gsearch,
 	if ((enable_thumbnails == TRUE) && (gsearch->show_thumbnails == TRUE)) {
 		if ((strncmp (file_info->mime_type, "image/", 6) != 0) ||
 	    	    (file_info->size < gsearch->show_thumbnails_file_size_limit)) {
-		    	thumbnail_factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+		    	if (gsearch->thumbnail_factory == NULL) {
+			    	gsearch->thumbnail_factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+			}
 			lookup_flags = GNOME_ICON_LOOKUP_FLAGS_SHOW_SMALL_IMAGES_AS_THEMSELVES | 
 			               GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES;
 		}
 	}
 
 	icon_name = gnome_icon_lookup (gtk_icon_theme_get_default (), 
-	                               thumbnail_factory,
+	                               gsearch->thumbnail_factory,
 				       uri,
 				       NULL, 
 				       file_info,
 				       mime, 
 				       lookup_flags, 
 				       NULL);
-	
-	if (thumbnail_factory != NULL) {
-		g_object_unref (thumbnail_factory);
-	}
 	g_free (uri);
 	return icon_name;
 }

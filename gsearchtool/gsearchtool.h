@@ -111,6 +111,7 @@ struct _GSearchWindow {
 	GHashTable            * search_results_filename_hash_table;
 	GHashTable            * search_results_pixbuf_hash_table;
 	gchar                 * search_results_date_format_string;
+	GnomeThumbnailFactory * thumbnail_factory;
 	gint		        show_thumbnails_file_size_limit;
 	gboolean		show_thumbnails;
 	gboolean                is_search_results_single_click_to_activate;

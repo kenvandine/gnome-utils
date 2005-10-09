@@ -1516,6 +1516,11 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 			g_free (gsearch->command_details->name_contains_pattern_string);
 			g_free (gsearch->command_details->name_contains_regex_string);
 			g_free (gsearch->search_results_date_format_string);
+
+			if (gsearch->thumbnail_factory != NULL) {
+				g_object_unref (gsearch->thumbnail_factory);
+				gsearch->thumbnail_factory = NULL;
+			}
 		}
 		return FALSE;
 	}

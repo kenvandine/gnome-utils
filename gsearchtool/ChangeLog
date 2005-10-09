@@ -1,3 +1,16 @@
+2005-10-09  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	Discovered this CPU optimization while using sysprof from
+	http://www.daimi.au.dk/~sandmann/sysprof/.
+
+	* gsearchtool.h: Add thumbnail_factory to GSearchWindow.
+	* gsearchtool-support.c: (gsearchtool_icon_lookup):  Remove
+	the local thumbnail_factory and use the one added to the
+	GSearchWindow structure. Only call gnome_thumbnail_factory_new()
+	if thumbnail_factory is null.
+	* gsearchtool.c: (handle_search_command_stdout_io):  Unref
+	and null thumbnail_factory.
+	
 2005-10-03  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c: (build_search_command):
