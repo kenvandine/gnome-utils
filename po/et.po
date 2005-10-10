@@ -11,9 +11,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils\n"
+"Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-08 10:26-0400\n"
+"POT-Creation-Date: 2005-10-08 13:29+0200\n"
 "PO-Revision-Date: 2005-07-20 23:22+0300\n"
 "Last-Translator: Priit Laes <amd@store20.com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -23,16 +23,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-#: ../gdictsrc/gdict-applet.c:149
+#: ../gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr "Otsing sõnaraamatust"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:2
-#: ../gdictsrc/gdict-applet.c:27 ../gdictsrc/gnome-dictionary.desktop.in.h:2
+#: ../gdictsrc/gdict-applet.c:28 ../gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Otsi sõnu onlain-sõnaraamatust"
 
-#: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:619
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:595
 #: ../logview/logview.c:129
 msgid "_About"
 msgstr "_Programmist lähemalt"
@@ -49,8 +49,8 @@ msgstr "_Otsi valitud teksti"
 msgid "_Preferences"
 msgstr "_Eelistused"
 
-#: ../gdictsrc/dict.c:676 ../gdictsrc/gdict-pref-dialog.c:700
-#: ../gdictsrc/gdict-pref-dialog.c:747
+#: ../gdictsrc/dict.c:676 ../gdictsrc/gdict-pref-dialog.c:697
+#: ../gdictsrc/gdict-pref-dialog.c:744
 msgid "Cannot connect to server"
 msgstr "Serveriga pole võimalik ühenduda"
 
@@ -67,7 +67,7 @@ msgstr ""
 "Teadmiseks: vaikimisi server on dict.org ja port 2628"
 
 #. Translator credits
-#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:43
+#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:44
 msgid "translator-credits"
 msgstr ""
 "Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
@@ -79,9 +79,9 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "MIT sõnaraamatuserveri klientprogramm."
 
-#: ../gdictsrc/gdict-about.c:45 ../gdictsrc/gdict-applet.c:351
+#: ../gdictsrc/gdict-about.c:45 ../gdictsrc/gdict-applet.c:352
 #: ../gdictsrc/gdict-defbox.c:101 ../gdictsrc/gdict-defbox.c:114
-#: ../gdictsrc/gdict-pref-dialog.c:499
+#: ../gdictsrc/gdict-pref-dialog.c:500
 #: ../gdictsrc/gnome-dictionary.desktop.in.h:1 ../gdictsrc/main.c:87
 msgid "Dictionary"
 msgstr "Sõnaraamat"
@@ -114,157 +114,148 @@ msgstr "Otsing"
 msgid "_Search for:"
 msgstr "_Otsi stringi:"
 
-#: ../gdictsrc/gdict-app.c:500 ../gdictsrc/gdict-applet.c:299
-#: ../gdictsrc/gdict-pref-dialog.c:901
+#: ../gdictsrc/gdict-app.c:486 ../gdictsrc/gdict-applet.c:300
+#: ../gdictsrc/gdict-pref-dialog.c:898
 msgid "Could not display help"
 msgstr "Abiteavet pole võimalik kuvada"
 
 #. Top
-#: ../gdictsrc/gdict-app.c:589
+#: ../gdictsrc/gdict-app.c:571
 msgid "_Dictionary"
 msgstr "_Sõnaraamat"
 
 #. Dictionary menu
-#: ../gdictsrc/gdict-app.c:595
+#: ../gdictsrc/gdict-app.c:577
 msgid "_Look Up Word"
 msgstr "Otsi _sõna"
 
-#: ../gdictsrc/gdict-app.c:596
+#: ../gdictsrc/gdict-app.c:578
 msgid "Lookup word in dictionary"
 msgstr "Otsi sõna sõnaraamatust"
 
-#: ../gdictsrc/gdict-app.c:597
+#: ../gdictsrc/gdict-app.c:579
 msgid "_Print"
 msgstr "_Trüki"
 
-#: ../gdictsrc/gdict-app.c:598
+#: ../gdictsrc/gdict-app.c:580
 msgid "Print the current definition"
 msgstr "Trükib käesoleva kirjelduse"
 
-#: ../gdictsrc/gdict-app.c:599
+#: ../gdictsrc/gdict-app.c:581
 msgid "_Close"
 msgstr "_Sulge"
 
-#: ../gdictsrc/gdict-app.c:600
+#: ../gdictsrc/gdict-app.c:582
 msgid "Close the application"
 msgstr "Sulgeb rakenduse"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:603 ../logview/logview.c:114
+#: ../gdictsrc/gdict-app.c:585 ../logview/logview.c:114
 msgid "_Find..."
 msgstr "_Otsi..."
 
-#: ../gdictsrc/gdict-app.c:604
+#: ../gdictsrc/gdict-app.c:586
 msgid "Find a word in the text"
 msgstr "Otsib tekstist sõna"
 
-#: ../gdictsrc/gdict-app.c:605
+#: ../gdictsrc/gdict-app.c:587
 msgid "Find Ne_xt"
 msgstr "Otsi _järgmist"
 
-#: ../gdictsrc/gdict-app.c:606
+#: ../gdictsrc/gdict-app.c:588
 msgid "Find next occurrence of the word"
 msgstr "Otsib järgmist kohta, kus sõna asub"
 
-#: ../gdictsrc/gdict-app.c:607
+#: ../gdictsrc/gdict-app.c:589
 msgid "P_references"
 msgstr "_Eelistused"
 
-#: ../gdictsrc/gdict-app.c:608
+#: ../gdictsrc/gdict-app.c:590
 msgid "Configure the application"
 msgstr "Rakenduse seadistamine"
 
-#. View menu
-#: ../gdictsrc/gdict-app.c:611 ../logview/logview.c:117
-msgid "Bigger text size"
-msgstr "Suurem teksti suurus"
-
-#: ../gdictsrc/gdict-app.c:613 ../logview/logview.c:119
-msgid "Smaller text size"
-msgstr "Väiksem teksti suurus"
-
 #. Help menu
-#: ../gdictsrc/gdict-app.c:617 ../logview/logview.c:127
+#: ../gdictsrc/gdict-app.c:593 ../logview/logview.c:127
 msgid "_Contents"
 msgstr "_Sisu"
 
-#: ../gdictsrc/gdict-app.c:618
+#: ../gdictsrc/gdict-app.c:594
 msgid "View help for this application"
 msgstr "Näitab selle rakenduse abiteavet"
 
-#: ../gdictsrc/gdict-app.c:620
+#: ../gdictsrc/gdict-app.c:596
 msgid "About this application"
 msgstr "Rakendusest lähemalt"
 
-#: ../gdictsrc/gdict-app.c:625
+#: ../gdictsrc/gdict-app.c:601
 msgid "Cu_t"
 msgstr "_Lõika"
 
-#: ../gdictsrc/gdict-app.c:626
+#: ../gdictsrc/gdict-app.c:602
 msgid "Cut the selection"
 msgstr "Lõikab valiku"
 
-#: ../gdictsrc/gdict-app.c:627
+#: ../gdictsrc/gdict-app.c:603
 msgid "_Copy"
 msgstr "_Kopeeri"
 
-#: ../gdictsrc/gdict-app.c:628 ../logview/logview.c:110
+#: ../gdictsrc/gdict-app.c:604 ../logview/logview.c:110
 msgid "Copy the selection"
 msgstr "Kopeerib valiku"
 
-#: ../gdictsrc/gdict-app.c:629
+#: ../gdictsrc/gdict-app.c:605
 msgid "_Paste"
 msgstr "_Aseta"
 
-#: ../gdictsrc/gdict-app.c:630
+#: ../gdictsrc/gdict-app.c:606
 msgid "Paste clipboard"
 msgstr "Asetab lõikepuhvri"
 
-#: ../gdictsrc/gdict-app.c:631
+#: ../gdictsrc/gdict-app.c:607
 msgid "Select _All"
 msgstr "_Vali kõik"
 
-#: ../gdictsrc/gdict-app.c:632
+#: ../gdictsrc/gdict-app.c:608
 msgid "Select everything"
 msgstr "Valib kõik"
 
-#: ../gdictsrc/gdict-app.c:637
+#: ../gdictsrc/gdict-app.c:613
 msgid "_Spellings"
 msgstr "_Õigekiri"
 
-#: ../gdictsrc/gdict-app.c:638
+#: ../gdictsrc/gdict-app.c:614
 msgid "View alternate spellings"
 msgstr "Näitab alternatiivseid õigekirjavorme"
 
-#: ../gdictsrc/gdict-app.c:748
+#: ../gdictsrc/gdict-app.c:724
 msgid "_Look Up"
 msgstr "_Otsi"
 
-#: ../gdictsrc/gdict-app.c:757
+#: ../gdictsrc/gdict-app.c:733
 msgid "In Dictionary"
 msgstr "Sõnaraamatus"
 
-#: ../gdictsrc/gdict-app.c:758
+#: ../gdictsrc/gdict-app.c:734
 msgid "On a Web Site"
 msgstr "Veebisaidist"
 
-#: ../gdictsrc/gdict-app.c:774
+#: ../gdictsrc/gdict-app.c:750
 msgid "Word"
 msgstr "Sõna"
 
-#: ../gdictsrc/gdict-app.c:775
+#: ../gdictsrc/gdict-app.c:751
 msgid "Word Entry"
 msgstr "Sõna sisestusväli"
 
-#: ../gdictsrc/gdict-app.c:776
+#: ../gdictsrc/gdict-app.c:752
 msgid "Enter a Word or select one from the list below"
 msgstr "Sisesta sõna või vali üks järgnevast nimekirjast"
 
-#: ../gdictsrc/gdict-app.c:779
+#: ../gdictsrc/gdict-app.c:755
 msgid "Look Up for a Word"
 msgstr "Otsi sõna"
 
-#: ../gdictsrc/gdict-applet.c:155
+#: ../gdictsrc/gdict-applet.c:156
 msgid "Dictionary word entry"
 msgstr "Sõnaraamatu sõna kirje"
 
@@ -281,11 +272,11 @@ msgstr "Ühtegi vastavust ei leitud"
 msgid "String not found"
 msgstr "Stringi ei leitud"
 
-#: ../gdictsrc/gdict-defbox.c:618
+#: ../gdictsrc/gdict-defbox.c:588
 msgid "Definition preview"
 msgstr "Kirjelduse eelvaade"
 
-#: ../gdictsrc/gdict-defbox.c:947 ../gdictsrc/gdict-entry.c:132
+#: ../gdictsrc/gdict-defbox.c:917 ../gdictsrc/gdict-entry.c:132
 #: ../gdictsrc/gdict-speller.c:295
 msgid "Error invoking query"
 msgstr "Viga päringu täitmisel"
@@ -294,95 +285,95 @@ msgstr "Viga päringu täitmisel"
 msgid "Looking up entry..."
 msgstr "Kirje otsimine..."
 
-#: ../gdictsrc/gdict-pref-dialog.c:267
+#: ../gdictsrc/gdict-pref-dialog.c:268
 msgid "De_fault Server"
 msgstr "_Vaikimisi server"
 
-#: ../gdictsrc/gdict-pref-dialog.c:278
+#: ../gdictsrc/gdict-pref-dialog.c:279
 msgid "_Server:"
 msgstr "_Server:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:286
+#: ../gdictsrc/gdict-pref-dialog.c:287
 msgid "Reset server to default"
 msgstr "Taasta vaikeserver"
 
-#: ../gdictsrc/gdict-pref-dialog.c:288
+#: ../gdictsrc/gdict-pref-dialog.c:289
 msgid "_Port:"
 msgstr "_Port:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:298
+#: ../gdictsrc/gdict-pref-dialog.c:299
 msgid "Def_ault Port"
 msgstr "V_aikimisi port"
 
-#: ../gdictsrc/gdict-pref-dialog.c:313
+#: ../gdictsrc/gdict-pref-dialog.c:314
 msgid "Reset port to default"
 msgstr "Taasta vaikeport"
 
-#: ../gdictsrc/gdict-pref-dialog.c:314
+#: ../gdictsrc/gdict-pref-dialog.c:315
 msgid "Server"
 msgstr "Server"
 
-#: ../gdictsrc/gdict-pref-dialog.c:316
+#: ../gdictsrc/gdict-pref-dialog.c:317
 msgid "Server Entry"
 msgstr "Serveri sisestusväli"
 
-#: ../gdictsrc/gdict-pref-dialog.c:316
+#: ../gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Server Name"
 msgstr "Sisesta serveri nimi"
 
-#: ../gdictsrc/gdict-pref-dialog.c:317
+#: ../gdictsrc/gdict-pref-dialog.c:318
 msgid "Port"
 msgstr "Port"
 
-#: ../gdictsrc/gdict-pref-dialog.c:319
+#: ../gdictsrc/gdict-pref-dialog.c:320
 msgid "Port Entry"
 msgstr "Pordi sisestusväli"
 
-#: ../gdictsrc/gdict-pref-dialog.c:319
+#: ../gdictsrc/gdict-pref-dialog.c:320
 msgid "Enter the Port Number"
 msgstr "Sisesta pordi number"
 
-#: ../gdictsrc/gdict-pref-dialog.c:322
+#: ../gdictsrc/gdict-pref-dialog.c:323
 msgid "_Database:"
 msgstr "_Andmebaas:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:332
+#: ../gdictsrc/gdict-pref-dialog.c:333
 msgid "Strat_egy:"
 msgstr "_Strateegia:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:342
+#: ../gdictsrc/gdict-pref-dialog.c:343
 msgid "F_ont:"
 msgstr "_Kirjatüüp:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:372
+#: ../gdictsrc/gdict-pref-dialog.c:373
 msgid "Web Site"
 msgstr "Veebisait"
 
-#: ../gdictsrc/gdict-pref-dialog.c:372
+#: ../gdictsrc/gdict-pref-dialog.c:373
 msgid "Search Address"
 msgstr "Otsingu aadress"
 
-#: ../gdictsrc/gdict-pref-dialog.c:491
+#: ../gdictsrc/gdict-pref-dialog.c:492
 msgid "Dictionary Preferences"
 msgstr "Sõnaraamatu eelistused"
 
-#: ../gdictsrc/gdict-pref-dialog.c:503
+#: ../gdictsrc/gdict-pref-dialog.c:504
 msgid "Web Sites"
 msgstr "Veebisaidid"
 
-#: ../gdictsrc/gdict-pref-dialog.c:690
+#: ../gdictsrc/gdict-pref-dialog.c:687
 msgid "Search all databases"
 msgstr "Otsing kõikidest andmebaasidest"
 
-#: ../gdictsrc/gdict-pref-dialog.c:855
+#: ../gdictsrc/gdict-pref-dialog.c:852
 msgid "Database"
 msgstr "Andmebaas"
 
-#: ../gdictsrc/gdict-pref-dialog.c:855
+#: ../gdictsrc/gdict-pref-dialog.c:852
 msgid "Database Name"
 msgstr "Andmebaasi nimi"
 
-#: ../gdictsrc/gdict-pref-dialog.c:872
+#: ../gdictsrc/gdict-pref-dialog.c:869
 msgid "Default Strategy"
 msgstr "Vaikestrateegia"
 
@@ -492,58 +483,58 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 - linuxi failisüsteem, fat - DOSi failisüsteem."
 
-#: ../gfloppy/src/badblocks.c:85
+#: ../gfloppy/src/badblocks.c:88
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Sisemine viga: Õigele asukohale pole võimalik positsioneerida."
 
-#: ../gfloppy/src/badblocks.c:94
+#: ../gfloppy/src/badblocks.c:97
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Sisemine viga: Veider väärtus (%ld) do_test täitmisel\n"
 
 #. while (!i)
 #. ;
-#: ../gfloppy/src/badblocks.c:252
+#: ../gfloppy/src/badblocks.c:255
 msgid "Checking for bad blocks..."
 msgstr "Vigaste blokkide kontrollimine..."
 
-#: ../gfloppy/src/badblocks.c:264
+#: ../gfloppy/src/badblocks.c:267
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Seadet %s pole võimalik vigaste blokkide kontrolliks avada\n"
 
-#: ../gfloppy/src/badblocks.c:284 ../gfloppy/src/gfloppy.c:530
+#: ../gfloppy/src/badblocks.c:287 ../gfloppy/src/gfloppy.c:530
 msgid "Checking for bad blocks... Done"
 msgstr "Vigaste blokkide kontrollimine... Valmis"
 
-#: ../gfloppy/src/fdformat.c:43
+#: ../gfloppy/src/fdformat.c:46
 msgid "Formatting the disk..."
 msgstr "Ketta vormindamine..."
 
-#: ../gfloppy/src/fdformat.c:46
+#: ../gfloppy/src/fdformat.c:49
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Ma ei tea, mis see on, aga see on väga vale."
 
-#: ../gfloppy/src/fdformat.c:54 ../gfloppy/src/fdformat.c:67
+#: ../gfloppy/src/fdformat.c:57 ../gfloppy/src/fdformat.c:70
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Viga raja nr %d vormindamisel"
 
-#: ../gfloppy/src/fdformat.c:76
+#: ../gfloppy/src/fdformat.c:79
 msgid "Error during completion of formatting"
 msgstr "Viga vormindamise lõpetamisel"
 
 #. XXXX - need to tell parent we're finished
-#: ../gfloppy/src/fdformat.c:80
+#: ../gfloppy/src/fdformat.c:83
 msgid "Formatting the disk... Done"
 msgstr "Ketta vormindamine... valmis"
 
 #. XXXX - tell parent we're starting verify stage
-#: ../gfloppy/src/fdformat.c:96
+#: ../gfloppy/src/fdformat.c:99
 msgid "Verifying the format..."
 msgstr "Vorminduse kontrollimine..."
 
-#: ../gfloppy/src/fdformat.c:101 ../gfloppy/src/fdformat.c:186
+#: ../gfloppy/src/fdformat.c:104 ../gfloppy/src/fdformat.c:189
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -553,12 +544,12 @@ msgstr ""
 "\n"
 "Palun kontrolli, et kirjutuskaitset ei oleks peal."
 
-#: ../gfloppy/src/fdformat.c:104 ../gfloppy/src/fdformat.c:189
+#: ../gfloppy/src/fdformat.c:107 ../gfloppy/src/fdformat.c:192
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Kettaseadme %s avamiseks ei ole piisavalt õiguseid."
 
-#: ../gfloppy/src/fdformat.c:108 ../gfloppy/src/fdformat.c:193
+#: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -570,7 +561,7 @@ msgstr ""
 "Palun kontrolli, et ketas oleks\n"
 "seadmes ja seadmeluuk oleks suletud."
 
-#: ../gfloppy/src/fdformat.c:111
+#: ../gfloppy/src/fdformat.c:114
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -581,7 +572,7 @@ msgstr ""
 "\n"
 "Veakood %s:%d"
 
-#: ../gfloppy/src/fdformat.c:134
+#: ../gfloppy/src/fdformat.c:137
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -590,31 +581,31 @@ msgstr ""
 "Viga lugemisel:\n"
 "Probleem silindri %d lugemisel, oodatav %d, loetud %d"
 
-#: ../gfloppy/src/fdformat.c:137
+#: ../gfloppy/src/fdformat.c:140
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Probleem silindri %d lugemisel, oodatav %d, loetud %d"
 
-#: ../gfloppy/src/fdformat.c:148
+#: ../gfloppy/src/fdformat.c:151
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Vigased andmed silindril %d.  Töö jätkub... "
 
-#: ../gfloppy/src/fdformat.c:157
+#: ../gfloppy/src/fdformat.c:160
 #, c-format
 msgid "Error closing device %s"
 msgstr "Viga seadme %s sulgemisel"
 
-#: ../gfloppy/src/fdformat.c:164
+#: ../gfloppy/src/fdformat.c:167
 msgid "Verifying the format... Done"
 msgstr "Vorminduse kontroll... valmis"
 
-#: ../gfloppy/src/fdformat.c:176
+#: ../gfloppy/src/fdformat.c:179
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "Seadmele %s pole võimalik kirjutada"
 
-#: ../gfloppy/src/fdformat.c:196
+#: ../gfloppy/src/fdformat.c:199
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -625,7 +616,7 @@ msgstr ""
 "\n"
 "Veakood %s"
 
-#: ../gfloppy/src/fdformat.c:208
+#: ../gfloppy/src/fdformat.c:211
 msgid "Could not determine current floppy geometry."
 msgstr "Käesoleva ketta geomeetriat ei õnnestu tuvastada."
 
@@ -905,11 +896,11 @@ msgstr "(%d:%02d jäänud)"
 msgid "%ld of %ld"
 msgstr "%ld / %ld'st"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:85
+#: ../gnome-screenshot/gnome-panel-screenshot.c:86
 msgid "Error loading help"
 msgstr "Viga abiteabe laadimisel"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:86
+#: ../gnome-screenshot/gnome-panel-screenshot.c:87
 msgid "There was an error displaying the help pages for this dialog:"
 msgstr "Selle dialoogi abiteabe lehtede kuvamisel tekkis viga:"
 
@@ -929,7 +920,7 @@ msgstr "Kuvatõmmis.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:154
+#: ../gnome-screenshot/gnome-panel-screenshot.c:153
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Kuvatõmmis-%s-%d.png"
@@ -937,28 +928,28 @@ msgstr "Kuvatõmmis-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:162
+#: ../gnome-screenshot/gnome-panel-screenshot.c:161
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Kuvatõmmis-%d.png"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:341
+#: ../gnome-screenshot/gnome-panel-screenshot.c:338
 msgid "Unable to take a screenshot of the current desktop."
 msgstr "Käesoleva töölaua kuvatõmmist pole võimalik võtta."
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:414
+#: ../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "Grab a window instead of the entire screen"
 msgstr "Tõmmise tegemine aknast, mitte tervest töölauast"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:415
+#: ../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "Include the window border with the screenshot"
 msgstr "Kuvatõmmisesse lisatakse ka akna raam"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:416
+#: ../gnome-screenshot/gnome-panel-screenshot.c:441
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Kuvatõmmise võtmine peale määratud viivitust [sekundites]"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:417
+#: ../gnome-screenshot/gnome-panel-screenshot.c:442
 msgid "Effect to add to the window border"
 msgstr "Aknaraamile lisatav efekt"
 
@@ -1821,11 +1812,11 @@ msgstr "Klõpsa otsingu läbiviimiseks"
 msgid "Click to stop a search."
 msgstr "Klõpsa otsingu peatamiseks"
 
-#: ../logview/about.c:47 ../logview/logview.c:49
+#: ../logview/about.c:48 ../logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "Süsteemilogi vaataja"
 
-#: ../logview/about.c:50
+#: ../logview/about.c:51
 msgid "A system log viewer for GNOME."
 msgstr "Süsteemilogi vaataja GNOME keskkonnale."
 
@@ -2110,24 +2101,24 @@ msgid "%B %e"
 msgstr "%B %e"
 
 #. Translators: should be only the time, date could be bogus
-#: ../logview/log_repaint.c:446
+#: ../logview/log_repaint.c:455
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: ../logview/logrtns.c:51
+#: ../logview/logrtns.c:52
 msgid "One file or more could not be opened"
 msgstr "Faili või faile pole võimalik avada"
 
-#: ../logview/logrtns.c:221
+#: ../logview/logrtns.c:222
 msgid "Unable to open logfile!\n"
 msgstr "Logifaili pole võimalik avada!\n"
 
-#: ../logview/logrtns.c:228 ../logview/logrtns.c:248
+#: ../logview/logrtns.c:229 ../logview/logrtns.c:249
 msgid "Not enough memory!\n"
 msgstr "Pole piisavalt mälu!\n"
 
-#: ../logview/logrtns.c:303
+#: ../logview/logrtns.c:335
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2136,34 +2127,34 @@ msgstr ""
 "%s ei ole kasutajale loetav. Kas jooksuta programmi root kasutajana või palu "
 "süsteemihalduril faili juurdepääsuõiguseid muuta.\n"
 
-#: ../logview/logrtns.c:308
+#: ../logview/logrtns.c:340
 #, c-format
 msgid "%s is too big."
 msgstr "%s on liiga suur."
 
-#: ../logview/logrtns.c:312
+#: ../logview/logrtns.c:344
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s pole võimalik avada."
 
-#: ../logview/logrtns.c:351
+#: ../logview/logrtns.c:385
 #, c-format
 msgid "%s not a log file."
 msgstr "%s ei ole logifail."
 
-#: ../logview/logrtns.c:556 ../logview/logrtns.c:580
+#: ../logview/logrtns.c:567 ../logview/logrtns.c:591
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: mälu lõppes"
 
-#: ../logview/logview-findbar.c:275
+#: ../logview/logview-findbar.c:277
 msgid "Fin_d:"
 msgstr "_Otsing"
 
-#: ../logview/logview-findbar.c:280
+#: ../logview/logview-findbar.c:282
 msgid "_Previous"
 msgstr "_Eelmine"
 
-#: ../logview/logview-findbar.c:282
+#: ../logview/logview-findbar.c:284
 msgid "_Next"
 msgstr "_Järgmine"
 
@@ -2223,6 +2214,14 @@ msgstr "Valib terve logi"
 msgid "Find pattern in logs"
 msgstr "Otsib logist mustrit"
 
+#: ../logview/logview.c:117
+msgid "Bigger text size"
+msgstr "Suurem teksti suurus"
+
+#: ../logview/logview.c:119
+msgid "Smaller text size"
+msgstr "Väiksem teksti suurus"
+
 #: ../logview/logview.c:121
 msgid "Normal text size"
 msgstr "Tavaline teksti suurus"
@@ -2267,35 +2266,39 @@ msgstr "Ka_lender"
 msgid "Show Calendar Log"
 msgstr "Näitab logikalendrit"
 
-#: ../logview/logview.c:668
+#: ../logview/logview.c:368
+msgid "Log Viewer"
+msgstr "Logivaataja"
+
+#: ../logview/logview.c:674
 msgid "Date"
 msgstr "Kuupäev"
 
-#: ../logview/logview.c:668
+#: ../logview/logview.c:674
 msgid "Host Name"
 msgstr "Hosti nimi"
 
-#: ../logview/logview.c:669
+#: ../logview/logview.c:675
 msgid "Process"
 msgstr "Protsess"
 
-#: ../logview/logview.c:669
+#: ../logview/logview.c:675
 msgid "Message"
 msgstr "Teade"
 
-#: ../logview/logview.c:745
+#: ../logview/logview.c:756
 msgid "Version : "
 msgstr "Versioon : "
 
-#: ../logview/logview.c:857
+#: ../logview/logview.c:866
 msgid "Open new logfile"
 msgstr "Ava uus logifail"
 
-#: ../logview/logview.c:1214
+#: ../logview/logview.c:1188
 msgid "There was an error displaying help."
 msgstr "Abiteabe kuvamisel tekkis viga."
 
-#: ../logview/logview.c:1232
+#: ../logview/logview.c:1206
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (jälgimisel) - %s"
@@ -2312,6 +2315,18 @@ msgstr ""
 "Käivitamisel avatava logifaili määramine. Sõltuvalt sinu "
 "operatsioonisüsteemist on selleks vaikimisi kas /var/adm/messages või /var/"
 "log/messages."
+
+#: ../logview/monitor.c:92
+msgid "This file cannot be monitored."
+msgstr "Seda faili pole võimalik monitooirida."
+
+#: ../logview/monitor.c:95
+msgid "File monitoring is not supported on this file system.\n"
+msgstr "Selle failisüsteemi puhul pole failimonitooring toetatud.\n"
+
+#: ../logview/monitor.c:97
+msgid "Gnome-VFS Error.\n"
+msgstr "Gnome-VFS viga.\n"
 
 #: ../logview/zoom.c:71
 msgid "Entry Detail"
