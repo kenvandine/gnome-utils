@@ -606,9 +606,9 @@ loglist_create (LogviewWindow *window)
 
   cell = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes ("words", cell, "markup", 0, NULL);
-  gtk_tree_view_column_set_sort_column_id (column, 0);
   
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
+  gtk_tree_view_set_search_column (GTK_TREE_VIEW (treeview), -1);
   
   gtk_container_add (GTK_CONTAINER (scrolled), treeview);
   gtk_box_pack_start (GTK_BOX (vbox), scrolled, TRUE, TRUE, 0);
@@ -767,6 +767,7 @@ CreateMainWin (LogviewWindow *window)
         gtk_tree_view_column_set_resizable (column, TRUE);
         gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
    }
+   gtk_tree_view_set_search_column (GTK_TREE_VIEW (window->view), 3);
 
 	 /* Version selector */
 	 window->version_bar = gtk_hbox_new (FALSE, 0);
@@ -795,12 +796,12 @@ CreateMainWin (LogviewWindow *window)
    /* Add signal handlers */
    g_signal_connect (G_OBJECT (selection), "changed",
                      G_CALLBACK (handle_selection_changed_cb), window);
-	 g_signal_connect (G_OBJECT (window->view), "row-expanded",
-										 G_CALLBACK (handle_row_expansion_cb), window);
-	 g_signal_connect (G_OBJECT (window->view), "row-collapsed",
-										 G_CALLBACK (handle_row_collapse_cb), window);
+   g_signal_connect (G_OBJECT (window->view), "row-expanded",
+                     G_CALLBACK (handle_row_expansion_cb), window);
+   g_signal_connect (G_OBJECT (window->view), "row-collapsed",
+                     G_CALLBACK (handle_row_collapse_cb), window);
    g_signal_connect (G_OBJECT (window), "configure_event",
-		     G_CALLBACK (window_size_changed_cb), window);
+                     G_CALLBACK (window_size_changed_cb), window);
 
    window->find_bar = logview_findbar_new (window);
 	 gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);

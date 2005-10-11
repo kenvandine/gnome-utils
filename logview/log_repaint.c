@@ -179,10 +179,7 @@ handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 	gtk_tree_model_get (model, iter, DATE, &date, -1);
 	day = atoi (g_strrstr (date, " "));
 	
-	if (logview->curlog->expand_paths[day-1])
-		gtk_tree_path_free (logview->curlog->expand_paths[day-1]);
 	logview->curlog->expand[day-1] = FALSE;
-	logview->curlog->expand_paths[day-1] = NULL;
 
 	g_free (date);
 }
@@ -198,11 +195,9 @@ handle_row_expansion_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 
 	model = gtk_tree_view_get_model (treeview);
 	gtk_tree_model_get (model, iter, DATE, &date, -1);
-	
 	day = atoi (g_strrstr (date, " "));
 	
 	logview->curlog->expand[day-1] = TRUE;
-	logview->curlog->expand_paths[day-1] = gtk_tree_path_copy (path);
 
 	g_free (date);
 }
@@ -381,7 +376,8 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
     gint cm, cd;
     int i;
     char *date_utf8, *hostname_utf8, *process_utf8, *message_utf8;
-    
+    struct tm date = {0};
+
     g_return_if_fail (window->view);
 
     if (!log->total_lines) 
@@ -461,17 +457,12 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
                 path_string = gtk_tree_path_to_string (path);
                 g_hash_table_insert (log->date_headers,
                                      DATEHASH (cm, cd), path_string);
-
-                if (log->expand[cd-1]) {
-                  gtk_tree_path_free (log->expand_paths[cd-1]);
-                  log->expand_paths[cd-1] = gtk_tree_path_copy (path);
-                }
+                log->expand_paths[cd-1] = gtk_tree_path_copy (path);
                 gtk_tree_path_free (path);
                 path = NULL;
             }
             
             if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
-                struct tm date = {0};
                 date.tm_mon = line->month;
                 date.tm_year = 70 /* bogus */;
                 date.tm_mday = line->date;
@@ -549,7 +540,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
           gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
                                     log->current_path, NULL, FALSE); 
           gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
-                                        log->current_path, NULL, FALSE, 0.5, 0.5);
+                                        log->current_path, NULL, TRUE, 1, 1);
         }
     }
     
