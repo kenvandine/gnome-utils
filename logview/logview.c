@@ -688,6 +688,7 @@ CreateMainWin (LogviewWindow *window)
    gchar *monospace_font_name;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
+   const gint column_widths[] = {150,100,200,400};
 
    gtk_window_set_default_size (GTK_WINDOW (window), user_prefs->width, user_prefs->height);
 
@@ -745,6 +746,7 @@ CreateMainWin (LogviewWindow *window)
    /* Main Tree View */
    window->view = gtk_tree_view_new ();
    gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), TRUE); 
+   gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (window->view), TRUE);
 
    /* Use the desktop monospace font */
    monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
@@ -760,7 +762,8 @@ CreateMainWin (LogviewWindow *window)
         renderer = gtk_cell_renderer_text_new ();
         column = gtk_tree_view_column_new_with_attributes (_(column_titles[i]),
                     renderer, "text", i, NULL);
-        gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+        gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+        gtk_tree_view_column_set_fixed_width (column, column_widths[i]);
         gtk_tree_view_column_set_resizable (column, TRUE);
         gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
    }
