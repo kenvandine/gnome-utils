@@ -178,9 +178,10 @@ struct _LogviewWindow {
 	gboolean sidebar_visible;
 	GtkWidget *version_bar;
 	GtkWidget *version_selector;
-  
-  GList *logs;
-
+    GtkWidget *progressbar;
+    
+    GList *logs;
+    
 	Log *curlog;
 
 	GtkClipboard *clipboard;

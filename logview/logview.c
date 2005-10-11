@@ -311,17 +311,27 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 {
 	GSList *list;
 	Log *log;
-	
+    int n,i=0;
+
+    n = g_slist_length (list);
+
+    gtk_widget_show (logview->progressbar);
+
 	for (list = lognames; list != NULL; list = g_slist_next (list)) {
+        i++;
 		if (logview_find_log_from_name (logview, list->data) == NULL) {
 			log = OpenLogFile (list->data, FALSE);
 			if (log != NULL) {
 				logview_add_log (logview, log);
                 while (gtk_events_pending ())
                     gtk_main_iteration ();
+                gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (logview->progressbar),
+                                               (float) i / (float) n );
 			}
 		}
 	}
+    
+    gtk_widget_hide (logview->progressbar);
 }
 
 void
@@ -473,7 +483,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   GtkTreeIter iter;
   gchar *name;
   Log *log;
-  
+
   g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
   g_return_if_fail (selection);
 
@@ -501,6 +511,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   g_free (name);
   logview_select_log (logview, log);
   gtk_widget_grab_focus (logview->view);
+
 }
 
 GtkTreePath *
@@ -678,7 +689,7 @@ logview_monospace_font_changed (GConfClient *client, guint id,
 static void
 CreateMainWin (LogviewWindow *window)
 {
-   GtkWidget *vbox;
+   GtkWidget *vbox, *hbox;
    GtkTreeStore *tree_store;
    GtkTreeSelection *selection;
    GtkTreeViewColumn *column;
@@ -690,9 +701,9 @@ CreateMainWin (LogviewWindow *window)
    GtkWidget *menubar;
    GtkWidget *loglist;
    GtkWidget *hpaned;
-	 GtkWidget *label;
-	 PangoFontDescription *fontdesc;
-	 PangoContext *context;
+   GtkWidget *label;
+   PangoFontDescription *fontdesc;
+   PangoContext *context;
    gchar *monospace_font_name;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
@@ -812,16 +823,22 @@ CreateMainWin (LogviewWindow *window)
                      G_CALLBACK (window_size_changed_cb), window);
 
    window->find_bar = logview_findbar_new (window);
-	 gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
+   gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
    gtk_widget_show (window->find_bar);
 
    /* Status area at bottom */
+   hbox = gtk_hbox_new (FALSE, 0);   
    window->statusbar = gtk_statusbar_new ();
-   gtk_box_pack_start (GTK_BOX (vbox), window->statusbar, FALSE, FALSE, 0);
+   gtk_box_pack_start (GTK_BOX (hbox), window->statusbar, TRUE, TRUE, 0);
+   window->progressbar = gtk_progress_bar_new ();
+   gtk_box_pack_start (GTK_BOX (hbox), window->progressbar, FALSE, FALSE, 0);
 
-	 gtk_widget_show_all (vbox);
+   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
+
+   gtk_widget_show_all (vbox);
    gtk_widget_hide (window->find_bar);
-	 gtk_widget_hide (window->version_bar);
+   gtk_widget_hide (window->version_bar);
+   gtk_widget_hide (window->progressbar);
 }
 
 /* ----------------------------------------------------------------------

@@ -369,7 +369,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
 {
     GtkTreeIter iter;
     GtkTreeIter child_iter;
-    GtkTreePath *path;
+    GtkTreePath *path, *last_path;
     LogLine *line;
     char tmp[4096];
     char *utf8 = NULL;
@@ -416,8 +416,10 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
             gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &iter, NULL);
             gtk_tree_store_set (GTK_TREE_STORE (log->model), &iter,
                                 MESSAGE, line->message, -1);
-            if (i == log->total_lines-1)
+            if (i == log->total_lines-1) {
+                last_path = gtk_tree_model_get_path (log->model, &iter);
                 child_iter = iter;
+            }
         }
         
     } else {
@@ -496,54 +498,56 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
             g_free (process_utf8);
             g_free (message_utf8);
         }
-        
+
+        last_path = gtk_tree_model_get_path (log->model, &child_iter);
     }
-    
+
     gtk_widget_hide (window->view);
     tree_view_columns_set_visible (window->view, log->has_date);
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), log->has_date);
     gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
 
     if (log->first_time) {
+        if (log->has_date) {
+            for (i = 0; i<32; i++)
+                log->expand[i] = FALSE;
+        
+            /* Expand the last day */
+            path = gtk_tree_model_get_path (log->model, &iter);
+            gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
+            gtk_tree_path_free (path);
+        }
 
-        for (i = 0; i<32; i++)
-            log->expand[i] = FALSE;
-        
-        /* Expand the last day */
-        path = gtk_tree_model_get_path (log->model, &iter);
-        gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
-        gtk_tree_path_free (path);
-        
         /* Scroll and set focus on last row */
-        path = gtk_tree_model_get_path (log->model, &child_iter);
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), path, NULL, FALSE); 
-        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), last_path, NULL, FALSE); 
+        gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), last_path, NULL, TRUE, 
                                       1, 1);
-        gtk_tree_path_free (path);
-        log->first_time = FALSE;        
+        log->current_path = gtk_tree_path_copy (last_path);
+        log->first_time = FALSE;
     } else {
-        /* Expand the rows according if required */
-        for (i = 0; i<32; ++i) {
-            if (log->expand[i])
-                gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),
-                                          log->expand_paths[i], FALSE);
+        if (log->has_date) {
+            /* Expand the rows according if required */
+            for (i = 0; i<32; ++i) {
+                if (log->expand[i])
+                    gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),
+                                              log->expand_paths[i], FALSE);
+            }
         }
         
         if (log->monitored) {       
-          /* If we monitor, go to the end of the file to show new lines */
-          path = gtk_tree_model_get_path (log->model, &child_iter);
-          gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
-                                        path, NULL, TRUE, 1, 1);
-          gtk_tree_path_free (path);
+            /* If we monitor, go to the end of the file to show new lines */
+            gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
+                                          last_path, NULL, TRUE, 1, 1);
         } else {
-          /* Scroll and set focus on the previously focused row */
-          gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
-                                    log->current_path, NULL, FALSE); 
-          gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
-                                        log->current_path, NULL, TRUE, 1, 1);
+            /* Scroll and set focus on the previously focused row */
+            gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
+                                      log->current_path, NULL, FALSE); 
+            gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
+                                          log->current_path, NULL, TRUE, 1, 1);
         }
     }
-    
+     
+    gtk_tree_path_free (last_path);
     gtk_widget_show (window->view);
     log->displayed_lines = log->total_lines;
 }
