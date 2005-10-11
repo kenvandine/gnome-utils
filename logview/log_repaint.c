@@ -215,22 +215,36 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
     GtkTreePath *selected_path;
 	GtkTreeModel *model;
 	GList *selected_paths, *i;
+    gint *indices;
 	
+    while (gtk_events_pending ())
+	  gtk_main_iteration ();
+
 	selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
-	
+
 	if (selected_paths) {	
-		for (i = selected_paths; i != NULL; i = g_list_next (i)) {		    
-			GtkTreePath *root_tree = gtk_tree_path_new_root ();
-			int row = 0;
-			selected_path = i->data;
-			iterate_thru_children (GTK_TREE_VIEW (logview->view), model,
-                                   root_tree, selected_path, &row, 0);
-			if (selected_last == -1 || row > selected_last)
-				selected_last = row;
-			if (selected_first == -1 || row < selected_first)
-				selected_first = row;
-		}
-		logview->curlog->current_line_no = selected_last;
+        for (i = selected_paths; i != NULL; i = g_list_next (i)) {		    
+            selected_path = i->data;
+            if (logview->curlog->has_date) {
+                GtkTreePath *root_tree = gtk_tree_path_new_root ();
+                int row = 0;
+
+                iterate_thru_children (GTK_TREE_VIEW (logview->view), model,
+                                       root_tree, selected_path, &row, 0);
+                if (selected_last == -1 || row > selected_last)
+                    selected_last = row;
+                if (selected_first == -1 || row < selected_first)
+                    selected_first = row;
+            } else {
+                indices = gtk_tree_path_get_indices (selected_path);
+                if (selected_last == -1 || indices[0] > selected_last)
+                    selected_last = indices[0];
+                if (selected_first == -1 || indices[0] < selected_first)
+                    selected_first = indices[0];
+            }
+        }
+
+        logview->curlog->current_line_no = selected_last;
 		logview->curlog->current_path = gtk_tree_path_copy (selected_path);
 		logview->curlog->selected_line_first = selected_first;
 		logview->curlog->selected_line_last = selected_last;
