@@ -645,6 +645,21 @@ logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_d
 	}
 }
 	
+static void
+logview_monospace_font_changed (GConfClient *client, guint id, 
+                                GConfEntry *entry, gpointer data)
+{
+  LogviewWindow *logview = data;
+  gchar *monospace_font_name;
+  PangoFontDescription *fontdesc;
+
+  monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
+  fontdesc = pango_font_description_from_string (monospace_font_name);
+  if (pango_font_description_get_family (fontdesc) != NULL)
+    gtk_widget_modify_font (GTK_WIDGET(logview->view), fontdesc);
+  g_free (fontdesc);
+  g_free (monospace_font_name);
+}
 
 
 /* ----------------------------------------------------------------------
@@ -737,6 +752,9 @@ CreateMainWin (LogviewWindow *window)
    if (pango_font_description_get_family (fontdesc) != NULL)
      gtk_widget_modify_font (GTK_WIDGET(window->view), fontdesc);
    g_free (monospace_font_name);
+   g_free (fontdesc);
+   gconf_client_notify_add (client, GCONF_MONOSPACE_FONT_NAME, 
+                            logview_monospace_font_changed, window, NULL, NULL);
   
    for (i = 0; column_titles[i]; i++) {
         renderer = gtk_cell_renderer_text_new ();

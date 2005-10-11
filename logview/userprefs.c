@@ -187,3 +187,4 @@ prefs_store_size (GtkWidget *window, UserPrefsStruct *prefs)
 		prefs->height = height;
 	}
 }
+
