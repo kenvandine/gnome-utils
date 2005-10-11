@@ -282,6 +282,7 @@ logview_select_log (LogviewWindow *logview, Log *log)
 	log_repaint (logview);
 	logview_save_prefs (logview); 
 	logview_calendar_set_state (logview);
+    gtk_widget_grab_focus (logview->view);
 } 
 
 void
@@ -493,6 +494,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   log = logview_find_log_from_name (logview, name);
   g_free (name);
   logview_select_log (logview, log);
+  gtk_widget_grab_focus (logview->view);
 }
 
 GtkTreePath *

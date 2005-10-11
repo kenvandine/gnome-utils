@@ -111,7 +111,7 @@ RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
    last_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("<b>Number of Lines</b>: %ld"), window->curlog->lstats.numlines);
+   tmp = g_strdup_printf(_("<b>Number of Lines</b>: %ld"), window->curlog->total_lines);
    num_lines = LocaleToUTF8 (tmp);
    g_free (tmp);
    
