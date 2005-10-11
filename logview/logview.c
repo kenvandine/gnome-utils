@@ -317,6 +317,8 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 			log = OpenLogFile (list->data, FALSE);
 			if (log != NULL) {
 				logview_add_log (logview, log);
+                while (gtk_events_pending ())
+                    gtk_main_iteration ();
 			}
 		}
 	}
@@ -381,18 +383,22 @@ main (int argc, char *argv[])
 
    /* Open regular logs and add each log passed as a parameter */
 
-	 logview = LOGVIEW_WINDOW(logview_create_window ());
-	 logview_add_logs_from_names (logview, user_prefs->logs);
-	 loglist_select_log_from_name (logview, user_prefs->logfile);
+   logview = LOGVIEW_WINDOW(logview_create_window ());
+   gtk_widget_set_sensitive (GTK_WIDGET (logview), FALSE);
+   gtk_widget_show (GTK_WIDGET(logview));
+   while (gtk_events_pending ())
+       gtk_main_iteration ();
+   logview_add_logs_from_names (logview, user_prefs->logs);
+   loglist_select_log_from_name (logview, user_prefs->logfile);
    if (argc > 1) {
 	   for (i=1; i<argc; i++) {
 		   file_to_open = argv[i];
-			 logview_add_log_from_name (logview, file_to_open);
+           logview_add_log_from_name (logview, file_to_open);
 	   }
    }
-	 gtk_widget_show (GTK_WIDGET(logview));
-	 restoration_complete = TRUE;
-
+   restoration_complete = TRUE;
+   gtk_widget_set_sensitive (GTK_WIDGET (logview), TRUE);
+   
    gnome_client = gnome_master_client ();
 
    QueueErrMessages (FALSE);
