@@ -386,9 +386,10 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
 
     if (!log->total_lines) 
         return;
-    
+
     if (log->model != NULL && log->displayed_lines == log->total_lines) {
         /* If we already have a model, just set it, expand the rows and scroll */
+        gtk_widget_hide (window->view);
         gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
         for (i = 0; i<32; ++i) {
             if (log->expand[i])
@@ -398,7 +399,11 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
         gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), 
                                       log->current_path, NULL, FALSE, 0.5, 0.5);
         gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), 
-                                  log->current_path, NULL, FALSE); 
+                                  log->current_path, NULL, FALSE);
+        tree_view_columns_set_visible (window->view, log->has_date);
+        gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), log->has_date);
+ 
+        gtk_widget_show (window->view);
         return;
     }
 
@@ -503,6 +508,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
         
     }
     
+    gtk_widget_hide (window->view);
     tree_view_columns_set_visible (window->view, log->has_date);
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), log->has_date);
     gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
@@ -547,6 +553,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
         }
     }
     
+    gtk_widget_show (window->view);
     log->displayed_lines = log->total_lines;
 }
 
