@@ -367,6 +367,8 @@ tree_view_columns_set_visible (GtkWidget *view, gboolean visible)
 	}
 }
 
+/* Redraw the log */
+/* FIXME : this function needs a serious refactoring */
 void
 logview_draw_log_lines (LogviewWindow *window, Log *log)
 {
@@ -385,17 +387,23 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
 
     if (!log->total_lines) 
         return;
-    
-    gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), NULL);
-    model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
-                                               G_TYPE_STRING, G_TYPE_STRING));
-    
-    /* FIXME : this should be optimized for the case of monitored logs -
-       in such case we don't need to re-add everything but only some lines at the end */
 
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (window->view));
+    if (model == NULL) {
+      gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), NULL);
+      model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
+                                                 G_TYPE_STRING, G_TYPE_STRING));
+    }
+    
+    /* If we previously displayed the whole log, just redraw everything */
+    if (log->displayed_lines == log->total_lines) {
+      log->displayed_lines = 0;
+      gtk_tree_store_clear (GTK_TREE_STORE (model));
+    }
+    
     if (log->has_date == FALSE) {
         
-        for (i=log->total_lines-1; i>-1; i--) {
+        for (i=log->total_lines-1; i>log->displayed_lines-1; i--) {
             line = (log->lines)[i];
             gtk_tree_store_prepend (GTK_TREE_STORE (model), &iter, NULL);
             gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
@@ -406,8 +414,17 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
         
     } else {
         
-        cm = cd = -1;
-        for (i = 0 ; i < (log->total_lines); i++) {
+        if (log->displayed_lines == 0)
+            cm = cd = -1;
+        else {
+            line = (log->lines)[log->displayed_lines-1];
+            cm = line->month;
+            cd = line->date;
+            gtk_tree_model_get_iter (GTK_TREE_MODEL (model), &iter, 
+                                     log->expand_paths[cd-1]);
+        }
+
+        for (i = log->displayed_lines; i < (log->total_lines); i++) {
             
             line = (log->lines)[i];       
             
@@ -525,7 +542,7 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
         }
     }
     
-    g_object_unref (model);
+    log->displayed_lines = log->total_lines;
 }
 
 /* ----------------------------------------------------------------------

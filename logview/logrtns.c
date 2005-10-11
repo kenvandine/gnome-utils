@@ -242,6 +242,7 @@ OpenLogFile (char *filename, gboolean show_error)
    for (i=0; buffer_lines[i+1] != NULL; i++);
    tlog->total_lines = i;
    tlog->lines = g_new (LogLine*, tlog->total_lines);
+   tlog->displayed_lines = 0;
    
    for (i=0; buffer_lines[i+1]!=NULL; i++) {
        (tlog->lines)[i] = g_new (LogLine, 1);
