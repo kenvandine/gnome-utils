@@ -533,12 +533,10 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
         }
         
         if (log->monitored) {       
-          /* If we monitor, go to the end of the file */
+          /* If we monitor, go to the end of the file to show new lines */
           path = gtk_tree_model_get_path (log->model, &child_iter);
-          gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view),
-                                    log->current_path, NULL, FALSE);
           gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view),
-                                        path, NULL, FALSE, 0.0, 1.0);
+                                        path, NULL, TRUE, 1, 1);
           gtk_tree_path_free (path);
         } else {
           /* Scroll and set focus on the previously focused row */
