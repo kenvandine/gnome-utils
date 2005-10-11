@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-08 10:26-0400\n"
-"PO-Revision-Date: 2005-02-06 21:57+0100\n"
+"POT-Creation-Date: 2005-10-11 21:25+0200\n"
+"PO-Revision-Date: 2005-10-11 21:25+0200\n"
 "Last-Translator: Christian Rose <menthos@menthos.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,16 +20,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-#: ../gdictsrc/gdict-applet.c:149
+#: ../gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr "Ordboksuppslagning"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:2
-#: ../gdictsrc/gdict-applet.c:27 ../gdictsrc/gnome-dictionary.desktop.in.h:2
+#: ../gdictsrc/gdict-applet.c:28 ../gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "Slå upp ord i en onlineordbok"
 
-#: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:619
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:595
 #: ../logview/logview.c:129
 msgid "_About"
 msgstr "_Om"
@@ -46,8 +46,8 @@ msgstr "_Slå upp markerad text"
 msgid "_Preferences"
 msgstr "_Inställningar"
 
-#: ../gdictsrc/dict.c:676 ../gdictsrc/gdict-pref-dialog.c:700
-#: ../gdictsrc/gdict-pref-dialog.c:747
+#: ../gdictsrc/dict.c:676 ../gdictsrc/gdict-pref-dialog.c:697
+#: ../gdictsrc/gdict-pref-dialog.c:744
 msgid "Cannot connect to server"
 msgstr "Kan inte ansluta till server"
 
@@ -56,7 +56,6 @@ msgid "Server Error"
 msgstr "Serverfel"
 
 #: ../gdictsrc/dict.c:690
-#, fuzzy
 msgid ""
 "A serious error occurred. Please check that your server and port are "
 "correct. For reference the default server is dict.org and the port 2628"
@@ -65,7 +64,7 @@ msgstr ""
 "Som referens kan nämnas att standardservern är dict.org och porten är 2628"
 
 #. Translator credits
-#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:43
+#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:44
 msgid "translator-credits"
 msgstr ""
 "Christian Rose\n"
@@ -77,9 +76,9 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "En klient för MIT-ordboksservern."
 
-#: ../gdictsrc/gdict-about.c:45 ../gdictsrc/gdict-applet.c:351
+#: ../gdictsrc/gdict-about.c:45 ../gdictsrc/gdict-applet.c:352
 #: ../gdictsrc/gdict-defbox.c:101 ../gdictsrc/gdict-defbox.c:114
-#: ../gdictsrc/gdict-pref-dialog.c:499
+#: ../gdictsrc/gdict-pref-dialog.c:500
 #: ../gdictsrc/gnome-dictionary.desktop.in.h:1 ../gdictsrc/main.c:87
 msgid "Dictionary"
 msgstr "Ordbok"
@@ -112,158 +111,148 @@ msgstr "Sök"
 msgid "_Search for:"
 msgstr "_Sök efter:"
 
-#: ../gdictsrc/gdict-app.c:500 ../gdictsrc/gdict-applet.c:299
-#: ../gdictsrc/gdict-pref-dialog.c:901
+#: ../gdictsrc/gdict-app.c:486 ../gdictsrc/gdict-applet.c:300
+#: ../gdictsrc/gdict-pref-dialog.c:898
 msgid "Could not display help"
 msgstr "Kunde inte visa hjälp"
 
 #. Top
-#: ../gdictsrc/gdict-app.c:589
+#: ../gdictsrc/gdict-app.c:571
 msgid "_Dictionary"
 msgstr "_Ordbok"
 
 #. Dictionary menu
-#: ../gdictsrc/gdict-app.c:595
+#: ../gdictsrc/gdict-app.c:577
 msgid "_Look Up Word"
 msgstr "S_lå upp ord"
 
-#: ../gdictsrc/gdict-app.c:596
+#: ../gdictsrc/gdict-app.c:578
 msgid "Lookup word in dictionary"
 msgstr "Slå upp ord i ordboken"
 
-#: ../gdictsrc/gdict-app.c:597
+#: ../gdictsrc/gdict-app.c:579
 msgid "_Print"
 msgstr "Skriv _ut"
 
-#: ../gdictsrc/gdict-app.c:598
+#: ../gdictsrc/gdict-app.c:580
 msgid "Print the current definition"
 msgstr "Skriv ut den aktuella definitionen"
 
-#: ../gdictsrc/gdict-app.c:599
+#: ../gdictsrc/gdict-app.c:581
 msgid "_Close"
 msgstr "S_täng"
 
-#: ../gdictsrc/gdict-app.c:600
+#: ../gdictsrc/gdict-app.c:582
 msgid "Close the application"
 msgstr "Stäng programmet"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:603 ../logview/logview.c:114
+#: ../gdictsrc/gdict-app.c:585 ../logview/logview.c:114
 msgid "_Find..."
 msgstr "_Sök..."
 
-#: ../gdictsrc/gdict-app.c:604
+#: ../gdictsrc/gdict-app.c:586
 msgid "Find a word in the text"
 msgstr "Sök ett ord i texten"
 
-#: ../gdictsrc/gdict-app.c:605
+#: ../gdictsrc/gdict-app.c:587
 msgid "Find Ne_xt"
 msgstr "Sök _nästa"
 
-#: ../gdictsrc/gdict-app.c:606
+#: ../gdictsrc/gdict-app.c:588
 msgid "Find next occurrence of the word"
 msgstr "Sök nästa förekomst av ordet"
 
-#: ../gdictsrc/gdict-app.c:607
+#: ../gdictsrc/gdict-app.c:589
 msgid "P_references"
 msgstr "_Inställningar"
 
-#: ../gdictsrc/gdict-app.c:608
+#: ../gdictsrc/gdict-app.c:590
 msgid "Configure the application"
 msgstr "Konfigurera programmet"
 
-#. View menu
-#: ../gdictsrc/gdict-app.c:611 ../logview/logview.c:117
-msgid "Bigger text size"
-msgstr ""
-
-#: ../gdictsrc/gdict-app.c:613 ../logview/logview.c:119
-msgid "Smaller text size"
-msgstr ""
-
 #. Help menu
-#: ../gdictsrc/gdict-app.c:617 ../logview/logview.c:127
+#: ../gdictsrc/gdict-app.c:593 ../logview/logview.c:127
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../gdictsrc/gdict-app.c:618
+#: ../gdictsrc/gdict-app.c:594
 msgid "View help for this application"
 msgstr "Visa hjälpen för detta program"
 
-#: ../gdictsrc/gdict-app.c:620
+#: ../gdictsrc/gdict-app.c:596
 msgid "About this application"
 msgstr "Om detta program"
 
-#: ../gdictsrc/gdict-app.c:625
+#: ../gdictsrc/gdict-app.c:601
 msgid "Cu_t"
 msgstr "Klipp _ut"
 
-#: ../gdictsrc/gdict-app.c:626
+#: ../gdictsrc/gdict-app.c:602
 msgid "Cut the selection"
 msgstr "Klipp ut markeringen"
 
-#: ../gdictsrc/gdict-app.c:627
+#: ../gdictsrc/gdict-app.c:603
 msgid "_Copy"
 msgstr "_Kopiera"
 
-#: ../gdictsrc/gdict-app.c:628 ../logview/logview.c:110
+#: ../gdictsrc/gdict-app.c:604 ../logview/logview.c:110
 msgid "Copy the selection"
 msgstr "Kopiera markeringen"
 
-#: ../gdictsrc/gdict-app.c:629
+#: ../gdictsrc/gdict-app.c:605
 msgid "_Paste"
 msgstr "Klistra _in"
 
-#: ../gdictsrc/gdict-app.c:630
+#: ../gdictsrc/gdict-app.c:606
 msgid "Paste clipboard"
 msgstr "Klistra in från urklipp"
 
-#: ../gdictsrc/gdict-app.c:631
+#: ../gdictsrc/gdict-app.c:607
 msgid "Select _All"
 msgstr "Markera _alla"
 
-#: ../gdictsrc/gdict-app.c:632
+#: ../gdictsrc/gdict-app.c:608
 msgid "Select everything"
 msgstr "Markera allt"
 
-#: ../gdictsrc/gdict-app.c:637
+#: ../gdictsrc/gdict-app.c:613
 msgid "_Spellings"
 msgstr "_Stavningar"
 
-#: ../gdictsrc/gdict-app.c:638
+#: ../gdictsrc/gdict-app.c:614
 msgid "View alternate spellings"
 msgstr "Visa alternativa stavningar"
 
-#: ../gdictsrc/gdict-app.c:748
+#: ../gdictsrc/gdict-app.c:724
 msgid "_Look Up"
 msgstr "_Slå upp"
 
-#: ../gdictsrc/gdict-app.c:757
-#, fuzzy
+#: ../gdictsrc/gdict-app.c:733
 msgid "In Dictionary"
-msgstr "Ordbok"
+msgstr "I ordbok"
 
-#: ../gdictsrc/gdict-app.c:758
+#: ../gdictsrc/gdict-app.c:734
 msgid "On a Web Site"
 msgstr "På en webbplats"
 
-#: ../gdictsrc/gdict-app.c:774
+#: ../gdictsrc/gdict-app.c:750
 msgid "Word"
 msgstr "Ord"
 
-#: ../gdictsrc/gdict-app.c:775
+#: ../gdictsrc/gdict-app.c:751
 msgid "Word Entry"
 msgstr "Ordfält"
 
-#: ../gdictsrc/gdict-app.c:776
+#: ../gdictsrc/gdict-app.c:752
 msgid "Enter a Word or select one from the list below"
 msgstr "Ange ett ord eller välj ett från listan nedan"
 
-#: ../gdictsrc/gdict-app.c:779
+#: ../gdictsrc/gdict-app.c:755
 msgid "Look Up for a Word"
 msgstr "Slå upp ett ord"
 
-#: ../gdictsrc/gdict-applet.c:155
+#: ../gdictsrc/gdict-applet.c:156
 msgid "Dictionary word entry"
 msgstr "Fält för ordboksord"
 
@@ -280,115 +269,113 @@ msgstr "Inga sökträffar"
 msgid "String not found"
 msgstr "Hittade inte strängen"
 
-#: ../gdictsrc/gdict-defbox.c:618
+#: ../gdictsrc/gdict-defbox.c:588
 msgid "Definition preview"
 msgstr "Förhandsvisning av definition"
 
-#: ../gdictsrc/gdict-defbox.c:947 ../gdictsrc/gdict-entry.c:132
+#: ../gdictsrc/gdict-defbox.c:917 ../gdictsrc/gdict-entry.c:132
 #: ../gdictsrc/gdict-speller.c:295
 msgid "Error invoking query"
 msgstr "Fel vid körning av frågan"
 
 #: ../gdictsrc/gdict-entry.c:102
-#, fuzzy
 msgid "Looking up entry..."
-msgstr "Slår upp ord..."
+msgstr "Slår upp post..."
 
-#: ../gdictsrc/gdict-pref-dialog.c:267
+#: ../gdictsrc/gdict-pref-dialog.c:268
 msgid "De_fault Server"
 msgstr "Stan_dardserver"
 
 # SUN CHANGED MESSAGE
-#: ../gdictsrc/gdict-pref-dialog.c:278
+#: ../gdictsrc/gdict-pref-dialog.c:279
 msgid "_Server:"
 msgstr "_Server:"
 
 # SUN CHANGED MESSAGE
-#: ../gdictsrc/gdict-pref-dialog.c:286
+#: ../gdictsrc/gdict-pref-dialog.c:287
 msgid "Reset server to default"
 msgstr "Återställ servern till standard"
 
 # SUN CHANGED MESSAGE
-#: ../gdictsrc/gdict-pref-dialog.c:288
+#: ../gdictsrc/gdict-pref-dialog.c:289
 msgid "_Port:"
 msgstr "_Port:"
 
 # SUN CHANGED MESSAGE
-#: ../gdictsrc/gdict-pref-dialog.c:298
+#: ../gdictsrc/gdict-pref-dialog.c:299
 msgid "Def_ault Port"
 msgstr "Sta_ndardport"
 
 # SUN CHANGED MESSAGE
-#: ../gdictsrc/gdict-pref-dialog.c:313
+#: ../gdictsrc/gdict-pref-dialog.c:314
 msgid "Reset port to default"
 msgstr "Återställ porten till standard"
 
-#: ../gdictsrc/gdict-pref-dialog.c:314
+#: ../gdictsrc/gdict-pref-dialog.c:315
 msgid "Server"
 msgstr "Server"
 
-#: ../gdictsrc/gdict-pref-dialog.c:316
+#: ../gdictsrc/gdict-pref-dialog.c:317
 msgid "Server Entry"
 msgstr "Serverfält"
 
-#: ../gdictsrc/gdict-pref-dialog.c:316
+#: ../gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Server Name"
 msgstr "Ange servernamnet"
 
-#: ../gdictsrc/gdict-pref-dialog.c:317
+#: ../gdictsrc/gdict-pref-dialog.c:318
 msgid "Port"
 msgstr "Port"
 
-#: ../gdictsrc/gdict-pref-dialog.c:319
+#: ../gdictsrc/gdict-pref-dialog.c:320
 msgid "Port Entry"
 msgstr "Portfält"
 
-#: ../gdictsrc/gdict-pref-dialog.c:319
+#: ../gdictsrc/gdict-pref-dialog.c:320
 msgid "Enter the Port Number"
 msgstr "Ange portnumret"
 
-#: ../gdictsrc/gdict-pref-dialog.c:322
+#: ../gdictsrc/gdict-pref-dialog.c:323
 msgid "_Database:"
 msgstr "_Databas:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:332
+#: ../gdictsrc/gdict-pref-dialog.c:333
 msgid "Strat_egy:"
 msgstr "Strat_egi:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:342
-#, fuzzy
+#: ../gdictsrc/gdict-pref-dialog.c:343
 msgid "F_ont:"
 msgstr "_Typsnitt:"
 
-#: ../gdictsrc/gdict-pref-dialog.c:372
+#: ../gdictsrc/gdict-pref-dialog.c:373
 msgid "Web Site"
 msgstr "Webbplats"
 
-#: ../gdictsrc/gdict-pref-dialog.c:372
+#: ../gdictsrc/gdict-pref-dialog.c:373
 msgid "Search Address"
 msgstr "Sökadress"
 
-#: ../gdictsrc/gdict-pref-dialog.c:491
+#: ../gdictsrc/gdict-pref-dialog.c:492
 msgid "Dictionary Preferences"
 msgstr "Inställningar för ordbok"
 
-#: ../gdictsrc/gdict-pref-dialog.c:503
+#: ../gdictsrc/gdict-pref-dialog.c:504
 msgid "Web Sites"
 msgstr "Webbplatser"
 
-#: ../gdictsrc/gdict-pref-dialog.c:690
+#: ../gdictsrc/gdict-pref-dialog.c:687
 msgid "Search all databases"
 msgstr "Sök i alla databaser"
 
-#: ../gdictsrc/gdict-pref-dialog.c:855
+#: ../gdictsrc/gdict-pref-dialog.c:852
 msgid "Database"
 msgstr "Databas"
 
-#: ../gdictsrc/gdict-pref-dialog.c:855
+#: ../gdictsrc/gdict-pref-dialog.c:852
 msgid "Database Name"
 msgstr "Databasnamn"
 
-#: ../gdictsrc/gdict-pref-dialog.c:872
+#: ../gdictsrc/gdict-pref-dialog.c:869
 msgid "Default Strategy"
 msgstr "Standardstategi"
 
@@ -500,58 +487,58 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 för linux egna filsystem eller fat för DOS-filsystemet."
 
-#: ../gfloppy/src/badblocks.c:85
+#: ../gfloppy/src/badblocks.c:88
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "Internt fel: Kan inte uppsöka rätt plats."
 
-#: ../gfloppy/src/badblocks.c:94
+#: ../gfloppy/src/badblocks.c:97
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Internt fel: Konstigt värde (%ld) i do_test\n"
 
 #. while (!i)
 #. ;
-#: ../gfloppy/src/badblocks.c:252
+#: ../gfloppy/src/badblocks.c:255
 msgid "Checking for bad blocks..."
 msgstr "Söker efter trasiga block..."
 
-#: ../gfloppy/src/badblocks.c:264
+#: ../gfloppy/src/badblocks.c:267
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "Kunde inte öppna enhet %s för sökning efter trasiga block\n"
 
-#: ../gfloppy/src/badblocks.c:284 ../gfloppy/src/gfloppy.c:530
+#: ../gfloppy/src/badblocks.c:287 ../gfloppy/src/gfloppy.c:530
 msgid "Checking for bad blocks... Done"
 msgstr "Söker efter trasiga block... klart"
 
-#: ../gfloppy/src/fdformat.c:43
+#: ../gfloppy/src/fdformat.c:46
 msgid "Formatting the disk..."
 msgstr "Formaterar disketten..."
 
-#: ../gfloppy/src/fdformat.c:46
+#: ../gfloppy/src/fdformat.c:49
 msgid "I don't know what this is, but it's very wrong."
 msgstr "Jag vet inte vad detta är, men det är väldigt fel."
 
-#: ../gfloppy/src/fdformat.c:54 ../gfloppy/src/fdformat.c:67
+#: ../gfloppy/src/fdformat.c:57 ../gfloppy/src/fdformat.c:70
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "Fel vid formatering av spår #%d"
 
-#: ../gfloppy/src/fdformat.c:76
+#: ../gfloppy/src/fdformat.c:79
 msgid "Error during completion of formatting"
 msgstr "Fel vid fullgörande av formatering"
 
 #. XXXX - need to tell parent we're finished
-#: ../gfloppy/src/fdformat.c:80
+#: ../gfloppy/src/fdformat.c:83
 msgid "Formatting the disk... Done"
 msgstr "Formaterar disketten... Klar"
 
 #. XXXX - tell parent we're starting verify stage
-#: ../gfloppy/src/fdformat.c:96
+#: ../gfloppy/src/fdformat.c:99
 msgid "Verifying the format..."
 msgstr "Verifierar formatet..."
 
-#: ../gfloppy/src/fdformat.c:101 ../gfloppy/src/fdformat.c:186
+#: ../gfloppy/src/fdformat.c:104 ../gfloppy/src/fdformat.c:189
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -561,12 +548,12 @@ msgstr ""
 "\n"
 "Kontrollera att den inte är skrivskyddad."
 
-#: ../gfloppy/src/fdformat.c:104 ../gfloppy/src/fdformat.c:189
+#: ../gfloppy/src/fdformat.c:107 ../gfloppy/src/fdformat.c:192
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "Otillräckliga rättigheter för att öppna diskettenheten %s."
 
-#: ../gfloppy/src/fdformat.c:108 ../gfloppy/src/fdformat.c:193
+#: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -578,7 +565,7 @@ msgstr ""
 "Kontrollera att den är i diskettenheten\n"
 "och att luckan är stängd."
 
-#: ../gfloppy/src/fdformat.c:111
+#: ../gfloppy/src/fdformat.c:114
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -589,7 +576,7 @@ msgstr ""
 "\n"
 "Felkod %s:%d"
 
-#: ../gfloppy/src/fdformat.c:134
+#: ../gfloppy/src/fdformat.c:137
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -598,31 +585,31 @@ msgstr ""
 "Läsfel:\n"
 "Problem vid läsning av cylinder %d, väntade %d, läste %d"
 
-#: ../gfloppy/src/fdformat.c:137
+#: ../gfloppy/src/fdformat.c:140
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr "Problem vid läsning av cylinder %d, väntade %d, läste %d"
 
-#: ../gfloppy/src/fdformat.c:148
+#: ../gfloppy/src/fdformat.c:151
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "Felaktig data i cylinder %d. Fortsätter..."
 
-#: ../gfloppy/src/fdformat.c:157
+#: ../gfloppy/src/fdformat.c:160
 #, c-format
 msgid "Error closing device %s"
 msgstr "Fel vid stängning av enheten %s"
 
-#: ../gfloppy/src/fdformat.c:164
+#: ../gfloppy/src/fdformat.c:167
 msgid "Verifying the format... Done"
 msgstr "Verifierar formatet... Klar"
 
-#: ../gfloppy/src/fdformat.c:176
+#: ../gfloppy/src/fdformat.c:179
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "Kan inte skriva till enheten %s"
 
-#: ../gfloppy/src/fdformat.c:196
+#: ../gfloppy/src/fdformat.c:199
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -633,7 +620,7 @@ msgstr ""
 "\n"
 "Felkod %s"
 
-#: ../gfloppy/src/fdformat.c:208
+#: ../gfloppy/src/fdformat.c:211
 msgid "Could not determine current floppy geometry."
 msgstr "Kunde inte avgöra aktuell diskettgeometri."
 
@@ -915,11 +902,11 @@ msgstr "(%d.%02d återstår)"
 msgid "%ld of %ld"
 msgstr "%ld av %ld"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:85
+#: ../gnome-screenshot/gnome-panel-screenshot.c:86
 msgid "Error loading help"
 msgstr "Fil vid inläsning av hjälp"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:86
+#: ../gnome-screenshot/gnome-panel-screenshot.c:87
 msgid "There was an error displaying the help pages for this dialog:"
 msgstr "Det uppstod ett fel vid visning av hjälpsidorna för denna dialog:"
 
@@ -939,7 +926,7 @@ msgstr "Skärmdump.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:154
+#: ../gnome-screenshot/gnome-panel-screenshot.c:153
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Skärmdump-%s-%d.png"
@@ -947,28 +934,28 @@ msgstr "Skärmdump-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:162
+#: ../gnome-screenshot/gnome-panel-screenshot.c:161
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Skärmdump-%d.png"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:341
+#: ../gnome-screenshot/gnome-panel-screenshot.c:338
 msgid "Unable to take a screenshot of the current desktop."
 msgstr "Kan inte ta en skärmdump av det aktuella skrivbordet."
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:414
+#: ../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "Grab a window instead of the entire screen"
 msgstr "Fånga ett fönster istället för hela skärmen"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:415
+#: ../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "Include the window border with the screenshot"
 msgstr "Inkludera fönsterramen i skärmdumpen"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:416
+#: ../gnome-screenshot/gnome-panel-screenshot.c:441
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Ta skärmdump efter angiven fördröjning [i sekunder]"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:417
+#: ../gnome-screenshot/gnome-panel-screenshot.c:442
 msgid "Effect to add to the window border"
 msgstr "Effekt att lägga till fönsterramen"
 
@@ -1310,12 +1297,11 @@ msgstr ""
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:63
-#, fuzzy
 msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
 msgstr ""
-"Denna nyckel avgör om sektionen \"Visa fler alternativ\" är utfälld då "
+"Denna nyckel avgör om sektionen \"Välj fler alternativ\" är utfälld då "
 "sökverktyget startas."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:64
@@ -1625,7 +1611,7 @@ msgstr[0] "%d fil hittades"
 msgstr[1] "%d filer hittades"
 
 #: ../gsearchtool/gsearchtool.c:824 ../gsearchtool/gsearchtool.c:1083
-#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2897
+#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2902
 msgid "Search for Files"
 msgstr "Sök efter filer"
 
@@ -1673,7 +1659,7 @@ msgstr "Markera och ställ in sökalternativet \"%s\""
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ogiltigt alternativ skickat till sortby-kommandoradsargument."
 
-#: ../gsearchtool/gsearchtool.c:1612
+#: ../gsearchtool/gsearchtool.c:1617
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1681,7 +1667,7 @@ msgstr ""
 "\n"
 "...För många fel för att visa..."
 
-#: ../gsearchtool/gsearchtool.c:1626
+#: ../gsearchtool/gsearchtool.c:1631
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1689,175 +1675,173 @@ msgstr ""
 "Sökresultaten kan vara felaktiga. Det inträffade fel vid utförandet av denna "
 "sökning."
 
-#: ../gsearchtool/gsearchtool.c:1638 ../gsearchtool/gsearchtool.c:1682
+#: ../gsearchtool/gsearchtool.c:1643 ../gsearchtool/gsearchtool.c:1687
 msgid "Show more _details"
 msgstr "Visa fler _detaljer"
 
-#: ../gsearchtool/gsearchtool.c:1668
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:1673
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
 msgstr ""
-"Sökresultaten kan vara felaktiga. Vill du inaktivera snabbsökningsfunktionen?"
+"Sökresultaten kan vara föråldrade eller ogiltiga. Vill du inaktivera "
+"snabbsökningsfunktionen?"
 
-#: ../gsearchtool/gsearchtool.c:1693
+#: ../gsearchtool/gsearchtool.c:1698
 msgid "Disable _Quick Search"
 msgstr "Inaktivera _snabbsökning"
 
-#: ../gsearchtool/gsearchtool.c:1720
+#: ../gsearchtool/gsearchtool.c:1725
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Misslyckades med att ställa in processgruppid för barn %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1747
+#: ../gsearchtool/gsearchtool.c:1752
 msgid "Error parsing the search command."
 msgstr "Fel vid tolkning av sökkommandot."
 
-#: ../gsearchtool/gsearchtool.c:1780
+#: ../gsearchtool/gsearchtool.c:1785
 msgid "Error running the search command."
 msgstr "Fel vid körande av sökkommandot."
 
-#: ../gsearchtool/gsearchtool.c:1905
+#: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Ange ett textvärde för sökalternativet \"%s\"."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1910
+#: ../gsearchtool/gsearchtool.c:1915
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" i %s"
 
-#: ../gsearchtool/gsearchtool.c:1912
+#: ../gsearchtool/gsearchtool.c:1917
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Ange ett värde i %s för sökalternativet \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:1971
+#: ../gsearchtool/gsearchtool.c:1976
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Ta bort \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:1972
+#: ../gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Klicka för att ta bort sökalternativet \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:2065
+#: ../gsearchtool/gsearchtool.c:2070
 msgid "A_vailable options:"
 msgstr "_Tillgängliga alternativ:"
 
-#: ../gsearchtool/gsearchtool.c:2094
+#: ../gsearchtool/gsearchtool.c:2099
 msgid "Available options"
 msgstr "Tillgängliga alternativ"
 
-#: ../gsearchtool/gsearchtool.c:2095
+#: ../gsearchtool/gsearchtool.c:2100
 msgid "Select a search option from the drop-down list."
 msgstr "Välj ett sökalternativ från rullgardinslistan."
 
-#: ../gsearchtool/gsearchtool.c:2107
+#: ../gsearchtool/gsearchtool.c:2112
 msgid "Add search option"
 msgstr "Lägg till sökalternativet"
 
-#: ../gsearchtool/gsearchtool.c:2108
+#: ../gsearchtool/gsearchtool.c:2113
 msgid "Click to add the selected available search option."
 msgstr "Klicka för att lägga till det markerade tillgängliga sökalternativet."
 
-#: ../gsearchtool/gsearchtool.c:2166
+#: ../gsearchtool/gsearchtool.c:2171
 msgid "S_earch results:"
 msgstr "S_ökresultat:"
 
-#: ../gsearchtool/gsearchtool.c:2202
+#: ../gsearchtool/gsearchtool.c:2207
 msgid "List View"
 msgstr "Listvy"
 
-#: ../gsearchtool/gsearchtool.c:2262
+#: ../gsearchtool/gsearchtool.c:2267
 msgid "Name"
 msgstr "Namn"
 
-#: ../gsearchtool/gsearchtool.c:2285
+#: ../gsearchtool/gsearchtool.c:2290
 msgid "Folder"
 msgstr "Mapp"
 
-#: ../gsearchtool/gsearchtool.c:2296
+#: ../gsearchtool/gsearchtool.c:2301
 msgid "Size"
 msgstr "Storlek"
 
-#: ../gsearchtool/gsearchtool.c:2306
+#: ../gsearchtool/gsearchtool.c:2311
 msgid "Type"
 msgstr "Typ"
 
-#: ../gsearchtool/gsearchtool.c:2316
+#: ../gsearchtool/gsearchtool.c:2321
 msgid "Date Modified"
 msgstr "Ändringsdatum"
 
-#: ../gsearchtool/gsearchtool.c:2686
+#: ../gsearchtool/gsearchtool.c:2691
 msgid "_Name contains:"
 msgstr "_Namnet innehåller:"
 
-#: ../gsearchtool/gsearchtool.c:2700 ../gsearchtool/gsearchtool.c:2701
+#: ../gsearchtool/gsearchtool.c:2705 ../gsearchtool/gsearchtool.c:2706
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "Ange ett filnamn eller ett ofullständigt filnamn med eller utan jokertecken."
 
-#: ../gsearchtool/gsearchtool.c:2701
+#: ../gsearchtool/gsearchtool.c:2706
 msgid "Name contains"
 msgstr "Namnet innehåller"
 
-#: ../gsearchtool/gsearchtool.c:2707
+#: ../gsearchtool/gsearchtool.c:2712
 msgid "_Look in folder:"
 msgstr "_Leta i mappen:"
 
-#: ../gsearchtool/gsearchtool.c:2713
+#: ../gsearchtool/gsearchtool.c:2718
 msgid "Browse"
 msgstr "Bläddra"
 
-#: ../gsearchtool/gsearchtool.c:2718
+#: ../gsearchtool/gsearchtool.c:2723
 msgid "Look in folder"
 msgstr "Leta i mappen"
 
-#: ../gsearchtool/gsearchtool.c:2718
+#: ../gsearchtool/gsearchtool.c:2723
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Välj den mapp eller enhet där du vill påbörja sökningen."
 
-#: ../gsearchtool/gsearchtool.c:2729
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2734
 msgid "Select more _options"
-msgstr "Visa fler _alternativ"
+msgstr "Välj fler _alternativ"
 
-#: ../gsearchtool/gsearchtool.c:2738
-#, fuzzy
+#: ../gsearchtool/gsearchtool.c:2743
 msgid "Select more options"
-msgstr "Visa fler alternativ"
+msgstr "Välj fler alternativ"
 
-#: ../gsearchtool/gsearchtool.c:2738
+#: ../gsearchtool/gsearchtool.c:2743
 msgid "Click to expand or collapse the list of available options."
 msgstr ""
 "Klicka för att fälla ut eller fälla in listan med tillgängliga alternativ."
 
-#: ../gsearchtool/gsearchtool.c:2762
+#: ../gsearchtool/gsearchtool.c:2767
 msgid "Click to display the help manual."
 msgstr "Klicka för att visa hjälpmanualen."
 
-#: ../gsearchtool/gsearchtool.c:2770
+#: ../gsearchtool/gsearchtool.c:2775
 msgid "Click to close \"Search for Files\"."
 msgstr "Klicka för att stänga \"Sök efter filer\"."
 
-#: ../gsearchtool/gsearchtool.c:2796
+#: ../gsearchtool/gsearchtool.c:2801
 msgid "Click to perform a search."
 msgstr "Klicka för att utföra en sökning."
 
-#: ../gsearchtool/gsearchtool.c:2797
+#: ../gsearchtool/gsearchtool.c:2802
 msgid "Click to stop a search."
 msgstr "Klicka för att stoppa en sökning."
 
-#: ../logview/about.c:47 ../logview/logview.c:49
+#: ../logview/about.c:48 ../logview/logview.c:49
 msgid "System Log Viewer"
 msgstr "Systemloggvisare"
 
-#: ../logview/about.c:50
+#: ../logview/about.c:51
 msgid "A system log viewer for GNOME."
 msgstr "En systemloggvisare för GNOME."
 
@@ -2117,90 +2101,88 @@ msgid "December"
 msgstr "december"
 
 #. Translators: Date only format, %x should well do really
-#: ../logview/log_repaint.c:256
+#: ../logview/log_repaint.c:251
 #, c-format
 msgid "%x"
 msgstr "%x"
 
-#: ../logview/log_repaint.c:273
-#, fuzzy, c-format
+#: ../logview/log_repaint.c:268
+#, c-format
 msgid "Last Modified: %s, %d lines"
-msgstr "Senast ändrad: "
+msgstr "Senast ändrad: %s, %d rader"
 
-#: ../logview/log_repaint.c:277
+#: ../logview/log_repaint.c:272
 #, c-format
 msgid "%d lines"
-msgstr ""
+msgstr "%d rader"
 
-#: ../logview/log_repaint.c:308
+#: ../logview/log_repaint.c:303
 msgid "Current"
 msgstr "Nuvarande"
 
 #. Translators: Make sure this is only Month and Day format, year
 #. * will be bogus here
-#: ../logview/log_repaint.c:344
+#: ../logview/log_repaint.c:339
 msgid "%B %e"
 msgstr "%e %B"
 
 #. Translators: should be only the time, date could be bogus
-#: ../logview/log_repaint.c:446
+#: ../logview/log_repaint.c:475
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: ../logview/logrtns.c:51
-#, fuzzy
+#: ../logview/logrtns.c:52
 msgid "One file or more could not be opened"
-msgstr "Filen kunde inte öppnas"
+msgstr "En eller flera filer kunde inte öppnas"
 
-#: ../logview/logrtns.c:221
+#: ../logview/logrtns.c:222
 msgid "Unable to open logfile!\n"
 msgstr "Kan inte öppna loggfil!\n"
 
-#: ../logview/logrtns.c:228 ../logview/logrtns.c:248
+#: ../logview/logrtns.c:229 ../logview/logrtns.c:250
 msgid "Not enough memory!\n"
 msgstr "Inte tillräckligt med minne!\n"
 
-#: ../logview/logrtns.c:303
-#, fuzzy, c-format
+#: ../logview/logrtns.c:336
+#, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file.\n"
 msgstr ""
 "%s är inte läsbar för användare. Kör antingen programmet som root eller be "
-"systemadministratören ändra rättigheterna på filen."
+"systemadministratören ändra rättigheterna på filen.\n"
 
-#: ../logview/logrtns.c:308
+#: ../logview/logrtns.c:341
 #, c-format
 msgid "%s is too big."
 msgstr "%s är för stor."
 
-#: ../logview/logrtns.c:312
+#: ../logview/logrtns.c:345
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s kunde inte öppnas."
 
-#: ../logview/logrtns.c:351
+#: ../logview/logrtns.c:386
 #, c-format
 msgid "%s not a log file."
 msgstr "%s är ingen loggfil."
 
-#: ../logview/logrtns.c:556 ../logview/logrtns.c:580
+#: ../logview/logrtns.c:568 ../logview/logrtns.c:592
 msgid "ReadLogStats: out of memory"
 msgstr "ReadLogStats: slut på minne"
 
-#: ../logview/logview-findbar.c:275
+#: ../logview/logview-findbar.c:277
 msgid "Fin_d:"
 msgstr "S_ök:"
 
-#: ../logview/logview-findbar.c:280
-#, fuzzy
-msgid "_Previous"
-msgstr "Sök föregående"
-
 #: ../logview/logview-findbar.c:282
+msgid "_Previous"
+msgstr "_Föregående"
+
+#: ../logview/logview-findbar.c:284
 msgid "_Next"
-msgstr ""
+msgstr "_Nästa"
 
 #: ../logview/logview.c:96
 msgid "_Log"
@@ -2258,9 +2240,17 @@ msgstr "Markera hela loggen"
 msgid "Find pattern in logs"
 msgstr "Sök mönster i loggar"
 
+#: ../logview/logview.c:117
+msgid "Bigger text size"
+msgstr "Större textstorlek"
+
+#: ../logview/logview.c:119
+msgid "Smaller text size"
+msgstr "Mindre textstorlek"
+
 #: ../logview/logview.c:121
 msgid "Normal text size"
-msgstr ""
+msgstr "Normal textstorlek"
 
 #: ../logview/logview.c:124
 msgid "Collapse _All"
@@ -2279,14 +2269,12 @@ msgid "Show the about dialog for the log viewer"
 msgstr "Visa omdialogrutan för loggvisaren"
 
 #: ../logview/logview.c:135
-#, fuzzy
 msgid "Sidebar"
-msgstr "Linjär"
+msgstr "Sidopanel"
 
 #: ../logview/logview.c:135
-#, fuzzy
 msgid "Show the sidebar"
-msgstr "Visa enhetsstorlek"
+msgstr "Visa sidopanelen"
 
 #: ../logview/logview.c:137
 msgid "_Monitor"
@@ -2304,36 +2292,42 @@ msgstr "_Kalender"
 msgid "Show Calendar Log"
 msgstr "Visa kalenderlogg"
 
-#: ../logview/logview.c:668
+#: ../logview/logview.c:371
+msgid "Log Viewer"
+msgstr "Loggvisare"
+
+#: ../logview/logview.c:697
 msgid "Date"
 msgstr "Datum"
 
-#: ../logview/logview.c:668
+#: ../logview/logview.c:697
 msgid "Host Name"
 msgstr "Värdnamn"
 
-#: ../logview/logview.c:669
+#: ../logview/logview.c:698
 msgid "Process"
 msgstr "Process"
 
-#: ../logview/logview.c:669
+#: ../logview/logview.c:698
 msgid "Message"
 msgstr "Meddelande"
 
-#: ../logview/logview.c:745
-#, fuzzy
+# FIXME: This whitespace before colon has been bug reported:
+# http://bugzilla.gnome.org/show_bug.cgi?id=318602
+#
+#: ../logview/logview.c:786
 msgid "Version : "
-msgstr "Beskrivning:"
+msgstr "Version: "
 
-#: ../logview/logview.c:857
+#: ../logview/logview.c:896
 msgid "Open new logfile"
 msgstr "Öppna ny loggfil"
 
-#: ../logview/logview.c:1214
+#: ../logview/logview.c:1210
 msgid "There was an error displaying help."
 msgstr "Det uppstod ett fel vid visning av hjälp."
 
-#: ../logview/logview.c:1232
+#: ../logview/logview.c:1228
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (övervakad) - %s"
@@ -2351,6 +2345,18 @@ msgstr ""
 "antingen /var/adm/messages eller /var/log/messages, beroende på ditt "
 "operativsystem."
 
+#: ../logview/monitor.c:92
+msgid "This file cannot be monitored."
+msgstr "Denna fil kan inte övervakas."
+
+#: ../logview/monitor.c:95
+msgid "File monitoring is not supported on this file system.\n"
+msgstr "Filövervakning stöds inte på detta filsystem.\n"
+
+#: ../logview/monitor.c:97
+msgid "Gnome-VFS Error.\n"
+msgstr "Gnome-VFS-fel.\n"
+
 #: ../logview/zoom.c:71
 msgid "Entry Detail"
 msgstr "Postdetalj"
@@ -2359,6 +2365,46 @@ msgstr "Postdetalj"
 #: ../logview/zoom.c:135
 msgid "%B %e %X"
 msgstr "%e %B %X"
+
+#~ msgid "One or more files could not be opened"
+#~ msgstr "En eller flera filer kunde inte öppnas"
+
+#~ msgid "The file could not be opened"
+#~ msgstr "Filen kunde inte öppnas"
+
+#~ msgid ""
+#~ "%s is not user readable. Either run the program as root or ask the "
+#~ "sysadmin to change the permissions on the file."
+#~ msgstr ""
+#~ "%s är inte läsbar för användare. Kör antingen programmet som root eller "
+#~ "be systemadministratören ändra rättigheterna på filen."
+
+#~ msgid "Version: "
+#~ msgstr "Version: "
+
+#~ msgid "Version :"
+#~ msgstr "Version:"
+
+#~ msgid "Version:"
+#~ msgstr "Version:"
+
+#~ msgid "File monitoring is not supported on this file system."
+#~ msgstr "Filövervakning stöds inte på detta filsystem."
+
+#~ msgid "Gnome-VFS Error."
+#~ msgstr "Gnome-VFS-fel."
+
+#~ msgid "_Font:"
+#~ msgstr "_Typsnitt:"
+
+#~ msgid "Font:"
+#~ msgstr "Typsnitt:"
+
+#~ msgid "Last Modified: "
+#~ msgstr "Senast ändrad: "
+
+#~ msgid "Last modified:"
+#~ msgstr "Senast ändrad:"
 
 #~ msgid "On a Dictionary Server"
 #~ msgstr "På en ordboksserver"
@@ -2602,9 +2648,6 @@ msgstr "%e %B %X"
 
 #~ msgid "Number of Lines:"
 #~ msgstr "Antal rader:"
-
-#~ msgid "The file could not be opened."
-#~ msgstr "Filen kunde inte öppnas."
 
 #~ msgid "Find : "
 #~ msgstr "Sök: "
