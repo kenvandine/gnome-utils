@@ -53,6 +53,7 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
   gchar *buffer;
   LogviewWindow *logview;
   Log *log = data;
+  GtkTreePath *path;
   
   g_return_if_fail (log);
   buffer = ReadNewLines (log);
@@ -60,11 +61,12 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
   if (buffer != NULL) {
     log = log_add_lines (log, buffer);
     logview  = (LogviewWindow *) log->window;
+    loglist_bold_log (logview, log);    
     if (logview->curlog == log) 
       log_repaint (logview);
     g_free (buffer);
   }
-  
+
   return;
 }
 

@@ -476,12 +476,49 @@ logview_find_log_from_name (LogviewWindow *logview, gchar *name)
   return NULL;
 }
 
+static gchar *
+logname_remove_markup (gchar *logname)
+{
+    gchar *unmarkup;
+
+    g_return_if_fail (logname);
+
+    if (g_str_has_prefix (logname, "<b>")) {
+        int n;
+        n = strlen (logname);
+        unmarkup = g_strndup (logname+3, n-7);
+    } else
+        unmarkup = g_strdup (logname);
+    
+    return unmarkup;
+}
+
+/* loglist_unbold_log is called by a g_timeout */
+static gboolean
+loglist_unbold_log (gpointer data)
+{
+    GtkTreeIter iter;
+    GtkTreeModel *model;
+    GtkTreePath *path;
+    Log *log = data;
+    LogviewWindow *logview = log->window;
+
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+    path = loglist_find_logname (logview, log->name);
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
+    gtk_tree_model_get_iter (model, &iter, path);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, log->name, -1);
+    gtk_tree_path_free (path);
+    return FALSE;
+}    
+
 static void
 loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
-  gchar *name;
+  gchar *name, *unmarkup;
   Log *log;
 
   g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
@@ -500,18 +537,17 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   gtk_tree_model_get (model, &iter, 0, &name, -1);
   g_return_if_fail (name);
 
-  if ((g_str_has_prefix (name, "<b>")) && (strlen (name) > 7)) {
-      gchar *stripped;
-      stripped = g_strndup (name + 3, strlen(name)-7);
-      g_free (name);
-      name = stripped;
-  }
+  unmarkup = logname_remove_markup (name);
+  log = logview_find_log_from_name (logview, unmarkup);
 
-  log = logview_find_log_from_name (logview, name);
   g_free (name);
+  g_free (unmarkup);
+
   logview_select_log (logview, log);
   gtk_widget_grab_focus (logview->view);
 
+  /* add a timeout to unbold the log (if bolded) */
+  g_timeout_add (5000, loglist_unbold_log, log);
 }
 
 GtkTreePath *
@@ -520,7 +556,9 @@ loglist_find_logname (LogviewWindow *logview, gchar *logname)
 	GtkTreeIter iter;
 	GtkTreeModel *model;
 	GtkTreePath *path = NULL;
-	gchar *name;
+	gchar *name, *unmarkup;
+
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
 	model =  gtk_tree_view_get_model (GTK_TREE_VIEW(logview->treeview));
 	if (!gtk_tree_model_get_iter_first (model, &iter))
@@ -528,15 +566,42 @@ loglist_find_logname (LogviewWindow *logview, gchar *logname)
 
 	do {
 		gtk_tree_model_get (model, &iter, 0, &name, -1);
-		if (g_ascii_strncasecmp (logname, name, 255) == 0) {
+        unmarkup = logname_remove_markup (name);
+		if (g_ascii_strncasecmp (logname, unmarkup, 255) == 0) {
 			g_free (name);
+            g_free (unmarkup);
 			path = gtk_tree_model_get_path (model, &iter);
-			return path;			
+			return path;
 		}
 		g_free (name);
+        g_free (unmarkup);
 	} while (gtk_tree_model_iter_next (model, &iter));
 
 	return NULL;
+}
+
+void
+loglist_bold_log (LogviewWindow *logview, Log *log)
+{
+    GtkTreeIter iter;
+    GtkTreeModel *model;
+    GtkTreePath *path;
+    gchar *markup;
+    
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+    path = loglist_find_logname (logview, log->name);
+    model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
+    gtk_tree_model_get_iter (model, &iter, path);
+    markup = g_markup_printf_escaped ("<b>%s</b>", log->name);
+    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, markup, -1);
+    
+    g_free (markup);
+    gtk_tree_path_free (path);
+
+    /* if the log is currently shown, put up a timer to unbold it */
+    if (logview->curlog == log)
+        g_timeout_add (5000, loglist_unbold_log, log);
 }
 
 static void

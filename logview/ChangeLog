@@ -1,3 +1,12 @@
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logname_remove_markup), (loglist_unbold_log),
+	(loglist_selection_changed), (loglist_find_logname),
+	(loglist_bold_log):
+	* monitor.c: (monitor_callback): When new lines are added to a
+	log, bold its name in the list. When the log is displayed, unbold
+	its name after 5 seconds.
+
 2005-10-11  Vincent Noel  <vnoel@cox.net>
 
 	* log_repaint.c (handle_selection_changed_cb): Miserable
