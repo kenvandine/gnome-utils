@@ -785,6 +785,7 @@ CloseLog (Log *log)
 
    gtk_tree_path_free (log->current_path);
    g_hash_table_destroy (log->date_headers);
+   log->current_path = NULL;
 
    g_free (log);
    return;

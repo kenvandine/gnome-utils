@@ -98,9 +98,9 @@ struct _log
 	gboolean first_time;
 	gboolean has_date;
 	GtkTreePath *current_path;
-	GtkTreePath *expand_paths[32];
+	GtkTreePath *expand_paths[33];
     GtkTreeModel *model;
-	gboolean expand[32];
+	gboolean expand[33];
 	int versions;
 	int current_version;
 	/* older_logs[0] should not be used */

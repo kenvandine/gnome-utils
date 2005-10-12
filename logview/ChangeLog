@@ -1,3 +1,21 @@
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (tree_view_columns_set_visible),
+	(model_fill_date_iter), (model_fill_iter),
+	(logview_add_new_log_lines), (logview_show_model),
+	(log_scroll_and_focus_path), (logview_create_model_no_date),
+	(logview_create_model), (log_repaint):
+	* logview.c: (logview_add_logs_from_names), (main),
+	(CreateMainWin):
+	* logview.h: Massive refactoring of the drawing function. Massive
+	speedup when showing big logs (>20K lines).
+
+2005-10-12  Vincent Noel <vnoel@cox.net>
+
+	* logview.c: (main), (CreateMainWin):
+	Make the interface at least a bit responsive during initial
+	loading of logs.
+
 2005-10-12  Vincent Noel <vnoel@cox.net>
 
 	* Makefile.am:

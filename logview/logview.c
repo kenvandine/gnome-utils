@@ -333,10 +333,10 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 			log = OpenLogFile (list->data, FALSE);
 			if (log != NULL) {
 				logview_add_log (logview, log);
-                while (gtk_events_pending ())
-                    gtk_main_iteration ();
                 gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (logview->progressbar),
                                                (float) i / (float) n );
+                while (gtk_events_pending ())
+                    gtk_main_iteration ();
 			}
 		}
 	}
@@ -353,6 +353,7 @@ logview_remove_log (LogviewWindow *logview, Log *log)
 	CloseLog (log);
 	logview->logs = g_list_remove (logview->logs, log);
     log->window = NULL;
+    log = NULL;
 }
 
 GOptionContext *
@@ -399,7 +400,6 @@ main (int argc, char *argv[])
 
    gtk_window_set_default_icon_name ("logviewer");
    cfg = CreateConfig();
-   //   open_databases ();
    user_prefs = prefs_load (client);
    
    context = logview_init_options ();
@@ -408,7 +408,9 @@ main (int argc, char *argv[])
    /* Open regular logs and add each log passed as a parameter */
 
    logview = LOGVIEW_WINDOW(logview_create_window ());
-   gtk_widget_set_sensitive (GTK_WIDGET (logview), FALSE);
+   logview_menus_set_state (logview);
+   gtk_widget_set_sensitive (logview->view, FALSE);
+   gtk_widget_set_sensitive (logview->loglist, FALSE);
    gtk_widget_show (GTK_WIDGET(logview));
    while (gtk_events_pending ())
        gtk_main_iteration ();
@@ -421,7 +423,8 @@ main (int argc, char *argv[])
 	   }
    }
    restoration_complete = TRUE;
-   gtk_widget_set_sensitive (GTK_WIDGET (logview), TRUE);
+   gtk_widget_set_sensitive (logview->view, TRUE);
+   gtk_widget_set_sensitive (logview->loglist, TRUE);
    
    gnome_client = gnome_master_client ();
 
@@ -685,12 +688,12 @@ loglist_remove_selected_log (LogviewWindow *logview)
 	if (unmarkup) {
 		Log *log;
 		
-        if (gtk_list_store_remove (GTK_LIST_STORE (model), &iter))
-            gtk_tree_selection_select_iter (selection, &iter);
-
 		log = logview_find_log_from_name (logview, unmarkup);
 		logview_remove_log (logview, log);
         logview->curlog = NULL;
+
+        if (gtk_list_store_remove (GTK_LIST_STORE (model), &iter))
+            gtk_tree_selection_select_iter (selection, &iter);
 	}
 
     g_free (unmarkup);
@@ -947,6 +950,7 @@ CreateMainWin (LogviewWindow *window)
    gtk_widget_hide (window->find_bar);
    gtk_widget_hide (window->version_bar);
    gtk_widget_hide (window->progressbar);
+   gtk_widget_hide (window->calendar);
 }
 
 /* ----------------------------------------------------------------------
