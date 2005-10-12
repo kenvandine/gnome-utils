@@ -220,7 +220,7 @@ destroy (GObject *object, gpointer data)
    LogviewWindow *window = data;
    logview_windows = g_slist_remove (logview_windows, window);
    if (window->curlog && window->curlog->monitored)
-	   monitor_stop (window, window->curlog);
+	   monitor_stop (window->curlog);
    if (logview_windows == NULL) {
 	   if (window->curlog && !(window->curlog->display_name))
 		   user_prefs->logfile = window->curlog->name;
@@ -293,7 +293,7 @@ logview_add_log (LogviewWindow *logview, Log *log)
   log->first_time = TRUE;
   log->window = logview;
 
-  monitor_start (logview, log);
+  monitor_start (log);
 } 
 
 void
@@ -1134,9 +1134,9 @@ toggle_monitor (GtkAction *action, GtkWidget *callback_data)
     g_return_if_fail (window->curlog);
     if (!window->curlog->display_name) {
 	    if (window->curlog->monitored)
-		    monitor_stop (window, window->curlog);
+		    monitor_stop (window->curlog);
 	    else
-		    monitor_start (window, window->curlog);
+		    monitor_start (window->curlog);
 
 	    logview_set_window_title (window);
 	    logview_menus_set_state (window);

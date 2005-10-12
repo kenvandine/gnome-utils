@@ -27,21 +27,20 @@
 #include <libgnomevfs/gnome-vfs-ops.h>
 
 void
-monitor_stop (LogviewWindow *window, Log *log)
+monitor_stop (Log *log)
 {
-  g_return_if_fail (window);
   g_return_if_fail (log);
 
-	if (log->mon_handle != NULL) {
-    gnome_vfs_monitor_cancel (log->mon_handle);
-    log->mon_handle = NULL;
-		log->mon_offset = 0;
-
-    gnome_vfs_close (log->mon_file_handle);
-    log->mon_file_handle = NULL;
-
-    log->monitored = FALSE;
-	}
+  if (log->mon_handle != NULL) {
+      gnome_vfs_monitor_cancel (log->mon_handle);
+      log->mon_handle = NULL;
+      log->mon_offset = 0;
+      
+      gnome_vfs_close (log->mon_file_handle);
+      log->mon_file_handle = NULL;
+      
+      log->monitored = FALSE;
+  }
 }
 
 static void
@@ -71,13 +70,12 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
 }
 
 void
-monitor_start (LogviewWindow *window, Log *log)
+monitor_start (Log *log)
 {
   GnomeVFSResult result;
   GnomeVFSFileSize size;
   gchar *main, *second;
 	 
-  g_return_if_fail (window);
   g_return_if_fail (log);
 
   result = gnome_vfs_open (&(log->mon_file_handle), log->name, 
