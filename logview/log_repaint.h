@@ -20,12 +20,10 @@
 #ifndef __LOG_REPAINT_H__
 #define __LOG_REPAINT_H__
 
-gboolean log_repaint (LogviewWindow *window);
+void log_repaint (LogviewWindow *window);
 void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
-void handle_row_expansion_cb (GtkTreeView *treeview, GtkTreeIter *iter,
-			 GtkTreePath *path, gpointer user_data);
-void handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter, 
-			     GtkTreePath *path, gpointer user_data);
+void row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter, 
+		     GtkTreePath *path, gpointer user_data);
 void logview_update_version_bar (LogviewWindow *logview);
 
 #endif /* __LOG_REPAINT_H__ */

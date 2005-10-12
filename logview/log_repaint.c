@@ -26,12 +26,6 @@
 #include "log_repaint.h"
 #include "misc.h"
 
-/*
- * -------------------
- * Module variables 
- * -------------------
- */
-
 char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
  N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
@@ -43,6 +37,8 @@ enum {
    PROCESS,
    MESSAGE
 };
+
+GtkTreeStore *empty_model;
 
 /**
  * Recursively called until the row specified by orig is found.
@@ -167,8 +163,8 @@ iterate_thru_children(GtkTreeView  *tree_view,
 }
 	
 void
-handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter,
-												GtkTreePath *path, gpointer user_data)
+row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
+                GtkTreePath *path, gpointer user_data)
 {
 	LogviewWindow *logview = user_data;
 	GtkTreeModel *model;
@@ -179,25 +175,7 @@ handle_row_collapse_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 	gtk_tree_model_get (model, iter, DATE, &date, -1);
 	day = atoi (g_strrstr (date, " "));
 	
-	logview->curlog->expand[day-1] = FALSE;
-
-	g_free (date);
-}
-
-void
-handle_row_expansion_cb (GtkTreeView *treeview, GtkTreeIter *iter,
-												 GtkTreePath *path, gpointer user_data)
-{
-	LogviewWindow *logview = user_data;
-	GtkTreeModel *model;
-	gchar *date;
-	int day;
-
-	model = gtk_tree_view_get_model (treeview);
-	gtk_tree_model_get (model, iter, DATE, &date, -1);
-	day = atoi (g_strrstr (date, " "));
-	
-	logview->curlog->expand[day-1] = TRUE;
+	logview->curlog->expand[day-1] = gtk_tree_view_row_expanded (treeview, path);
 
 	g_free (date);
 }
@@ -253,7 +231,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 	}
 }
 
-void
+static void
 logview_update_statusbar (LogviewWindow *window)
 {
    struct tm *tdm;
@@ -571,25 +549,16 @@ logview_draw_log_lines (LogviewWindow *window, Log *log)
    DESCRIPTION: Redraw screen.
    ---------------------------------------------------------------------- */
 
-gboolean
+void
 log_repaint (LogviewWindow *window)
 {
-   g_return_val_if_fail (LOGVIEW_IS_WINDOW (window), FALSE);
+   g_return_if_fail (LOGVIEW_IS_WINDOW (window));
 
    logview_update_statusbar (window);
    logview_set_window_title (window);
 
-   /* Check that there is at least one log */
-   if (window->curlog == NULL) {
-       GtkTreeModel *model;
-       model = gtk_tree_view_get_model (GTK_TREE_VIEW(window->view));
-       gtk_tree_store_clear (GTK_TREE_STORE (model));
-	   return FALSE;
-   }
-	 
-   /* Draw the tree view */ 
-   logview_draw_log_lines (window, window->curlog); 
-
-   return TRUE;
-
+   if (window->curlog)
+       logview_draw_log_lines (window, window->curlog); 
+   else
+       gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), NULL);
 }

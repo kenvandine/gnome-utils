@@ -552,32 +552,37 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   Log *log;
 
   g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-  g_return_if_fail (selection);
+  g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
 
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
     /* there is no selected log right now */
     logview->curlog = NULL;
-    logview_set_window_title (logview);
     logview_menus_set_state (logview);
-    gtk_calendar_clear_marks (GTK_CALENDAR(logview->calendar));
+    gtk_widget_hide (logview->calendar);
     log_repaint (logview);
     return;
   }
   
   gtk_tree_model_get (model, &iter, 0, &name, -1);
-  g_return_if_fail (name);
-
   unmarkup = logname_remove_markup (name);
   log = logview_find_log_from_name (logview, unmarkup);
+  g_return_if_fail (log);
 
+  while (gtk_events_pending ())
+      gtk_main_iteration ();
+
+  if ((log != logview->curlog) && 
+      gtk_tree_selection_iter_is_selected (selection, &iter)) {
+      logview_select_log (logview, log);
+      gtk_widget_grab_focus (logview->view);
+
+      /* add a timeout to unbold the log if bolded */
+      if (g_str_has_prefix (name, "<b>"))
+          g_timeout_add (5000, loglist_unbold_log, log);
+  }
+  
   g_free (name);
   g_free (unmarkup);
-
-  logview_select_log (logview, log);
-  gtk_widget_grab_focus (logview->view);
-
-  /* add a timeout to unbold the log (if bolded) */
-  g_timeout_add (5000, loglist_unbold_log, log);
 }
 
 GtkTreePath *
@@ -918,9 +923,9 @@ CreateMainWin (LogviewWindow *window)
    g_signal_connect (G_OBJECT (selection), "changed",
                      G_CALLBACK (handle_selection_changed_cb), window);
    g_signal_connect (G_OBJECT (window->view), "row-expanded",
-                     G_CALLBACK (handle_row_expansion_cb), window);
+                     G_CALLBACK (row_toggled_cb), window);
    g_signal_connect (G_OBJECT (window->view), "row-collapsed",
-                     G_CALLBACK (handle_row_collapse_cb), window);
+                     G_CALLBACK (row_toggled_cb), window);
    g_signal_connect (G_OBJECT (window), "configure_event",
                      G_CALLBACK (window_size_changed_cb), window);
 
