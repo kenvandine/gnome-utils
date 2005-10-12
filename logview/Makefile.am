@@ -17,14 +17,10 @@ bin_PROGRAMS = gnome-system-log
 gnome_system_log_SOURCES = 	\
 	about.c			\
 	about.h			\
-	actions.c		\
-	actions.h		\
 	calendar.c		\
 	calendar.h		\
 	config.c		\
 	configdata.h		\
-	desc_db.c       	\
-	desc_db.h		\
 	info.c			\
 	info.h			\
 	log_repaint.c		\

@@ -71,14 +71,6 @@ typedef struct {
 
 typedef struct
 {
-  char tag[50];
-  char *regexp;
-  char *description;
-  int level;
-} Description;
-
-typedef struct
-{
   char message[MAX_WIDTH];
   char process[MAX_PROC_WIDTH];
   char hostname[MAX_HOSTNAME_WIDTH];
@@ -87,10 +79,7 @@ typedef struct
   signed char hour;
   signed char min;
   signed char sec;
-  Description *description;
 } LogLine;
-
-typedef void (*MonActions)();
 
 typedef struct _log Log;
 struct _log
@@ -120,7 +109,6 @@ struct _log
 	GHashTable *date_headers; /* stores paths to date headers */
 	
 	/* Monitor info */
-	MonActions alert;
 	GnomeVFSFileOffset mon_offset;
 	GnomeVFSMonitorHandle *mon_handle;
     GnomeVFSHandle *mon_file_handle;
@@ -172,12 +160,10 @@ struct _LogviewWindow {
     GtkWidget *progressbar;
     
     GList *logs;
-    
 	Log *curlog;
 
 	GtkClipboard *clipboard;
 	
-	PangoFontDescription *fontdesc;
 	int original_fontsize, fontsize;
 };
 

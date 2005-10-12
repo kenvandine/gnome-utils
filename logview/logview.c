@@ -34,7 +34,6 @@
 #include "info.h"
 #include "monitor.h"
 #include "about.h"
-#include "desc_db.h"
 #include "misc.h"
 #include "logview-findbar.h"
 #include "userprefs.h"
@@ -400,7 +399,7 @@ main (int argc, char *argv[])
 
    gtk_window_set_default_icon_name ("logviewer");
    cfg = CreateConfig();
-   open_databases ();
+   //   open_databases ();
    user_prefs = prefs_load (client);
    
    context = logview_init_options ();
@@ -1037,95 +1036,6 @@ LoadLogMenu (GtkAction *action, GtkWidget *parent_window)
    }
 
    gtk_window_present (GTK_WINDOW (chooser));
-}
-
-/* ----------------------------------------------------------------------
-   NAME:          open_databases
-   DESCRIPTION:   Try to locate regexp and descript databases and load
-   	          them.
-   ---------------------------------------------------------------------- */
-
-static void
-open_databases (void)
-{
-	char full_name[1024];
-	gboolean found;
-
-	/* Find regexp DB -----------------------------------------------------  */
-	found = FALSE;
-	if (cfg->regexp_db_path != NULL) {
-		g_snprintf (full_name, sizeof (full_name),
-			    "%s/gnome-system-log-regexp.db", cfg->regexp_db_path);
-		if (access (full_name, R_OK) == 0)  {
-			found = TRUE;
-			read_regexp_db (full_name, &regexp_db);
-		}
-	}
-
-	if ( ! found) {
-		g_snprintf (full_name, sizeof (full_name),
-			    "%s/share/gnome-system-log/gnome-system-log-regexp.db", LOGVIEWINSTALLPREFIX);
-		if (access (full_name, R_OK) == 0) {
-			found = TRUE;
-			g_free (cfg->regexp_db_path);
-			cfg->regexp_db_path = g_strdup (full_name);
-			read_regexp_db (full_name, &regexp_db);
-		}
-	}
-
-	/* Find description DB ------------------------------------------------  */
-	found = FALSE;
-	if (cfg->descript_db_path != NULL) {
-		g_snprintf (full_name, sizeof (full_name),
-			    "%s/gnome-system-log-descript.db", cfg->descript_db_path);
-		if (access (full_name, R_OK) == 0) {
-			read_descript_db (full_name, &descript_db);
-			found = TRUE;
-		}
-	}
-
-	if (!found) {
-		g_snprintf (full_name, sizeof (full_name),
-			    "%s/share/gnome-system-log/gnome-system-log-descript.db", LOGVIEWINSTALLPREFIX);
-		if (access (full_name, R_OK) == 0) {
-			found = TRUE;
-			g_free (cfg->descript_db_path);
-			cfg->descript_db_path = g_strdup (full_name);
-			read_descript_db (full_name, &descript_db);
-		}
-	}
-
-
-	/* Find action DB ------------------------------------------------  */
-	found = FALSE;
-	g_snprintf (full_name, sizeof (full_name),
-		    "%s/.gnome/gnome-system-log-actions.db", g_get_home_dir ());
-	if (access (full_name, R_OK) == 0) {
-		found = TRUE;
-		read_actions_db (full_name, &actions_db);
-	}
-
-	if ( ! found && cfg->action_db_path != NULL) {
-		g_snprintf (full_name, sizeof (full_name),
-			    "%s/gnome-system-log-actions.db", cfg->action_db_path);
-		if (access (full_name, R_OK) == 0) {
-			found = TRUE;
-			read_actions_db (full_name, &actions_db);
-		}
-	}
-
-
-	if ( ! found) {
-		g_snprintf (full_name, sizeof (full_name),
-			    "%s/share/gnome-system-log/gnome-system-log-actions.db", LOGVIEWINSTALLPREFIX);
-		if (access (full_name, R_OK) == 0) {
-			found = TRUE;
-			g_free (cfg->action_db_path);
-			cfg->action_db_path = g_strdup (full_name);
-			read_actions_db (full_name, &actions_db);
-		}
-	}
-
 }
 
 static void
