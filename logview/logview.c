@@ -194,16 +194,18 @@ GOptionEntry options[] = {
 void
 logview_save_prefs (LogviewWindow *logview)
 {
-  GList *list;
-  Log *log;
+    GList *list;
+    Log *log;
 
-	prefs_free_loglist(user_prefs);
-  for (list = logview->logs; list != NULL; list = g_list_next (list)) {
-      log = list->data;
-      user_prefs->logs = g_slist_append (user_prefs->logs, log->name);
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+    prefs_free_loglist(user_prefs);
+    for (list = logview->logs; list != NULL; list = g_list_next (list)) {
+        log = list->data;
+        user_prefs->logs = g_slist_append (user_prefs->logs, log->name);
 	}
-  if (logview->curlog)
-    user_prefs->logfile = logview->curlog->name;
+    if (logview->curlog)
+        user_prefs->logfile = logview->curlog->name;
 	user_prefs->fontsize = logview->fontsize;
 	if (restoration_complete)
 		prefs_save (client, user_prefs);
@@ -288,22 +290,28 @@ logview_select_log (LogviewWindow *logview, Log *log)
 void
 logview_add_log (LogviewWindow *logview, Log *log)
 {
-  logview->logs = g_list_append (logview->logs, log);
-  loglist_add_log (logview, log);
-  log->first_time = TRUE;
-  log->window = logview;
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_return_if_fail (log);
 
-  monitor_start (log);
-} 
+    logview->logs = g_list_append (logview->logs, log);
+    loglist_add_log (logview, log);
+    log->first_time = TRUE;
+    log->window = logview;
+    
+    monitor_start (log);
+}
 
 void
 logview_add_log_from_name (LogviewWindow *logview, gchar *file)
 {
 	Log *log;
+
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_return_if_fail (file);
+
 	log = OpenLogFile (file, TRUE);
-	if (log != NULL) {
+	if (log != NULL)
 		  logview_add_log (logview, log);
-	}
 }
 
 void
@@ -311,7 +319,10 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 {
 	GSList *list;
 	Log *log;
-    int n,i=0;
+    int n, i=0;
+
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_return_if_fail (lognames);
 
     n = g_slist_length (list);
 
@@ -337,8 +348,12 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 void
 logview_remove_log (LogviewWindow *logview, Log *log)
 {
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_return_if_fail (log);
+
 	CloseLog (log);
 	logview->logs = g_list_remove (logview->logs, log);
+    log->window = NULL;
 }
 
 GOptionContext *
@@ -442,8 +457,8 @@ logview_create_window ()
    window = g_object_new (LOGVIEW_TYPE_WINDOW, NULL);
    logview = LOGVIEW_WINDOW (window);
 
-	 logview->sidebar_visible = TRUE;
-	 logview->calendar_visible = TRUE;
+   logview->sidebar_visible = TRUE;
+   logview->calendar_visible = TRUE;
    logview->loginfovisible = FALSE;
    logview->logs = NULL;
    logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
@@ -496,6 +511,9 @@ logname_remove_markup (gchar *logname)
     return unmarkup;
 }
 
+/* loglist functions
+   FIXME : These should be factored out in their own module presumably */
+
 /* loglist_unbold_log is called by a g_timeout */
 static gboolean
 loglist_unbold_log (gpointer data)
@@ -504,9 +522,14 @@ loglist_unbold_log (gpointer data)
     GtkTreeModel *model;
     GtkTreePath *path;
     Log *log = data;
-    LogviewWindow *logview = log->window;
+    LogviewWindow *logview;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    if (log == NULL)
+        return FALSE;
+
+    logview = log->window;
+    if (logview == NULL)
+        return FALSE;
 
     /* If the log to unbold is not displayed, still wait */
     if (logview->curlog != log)
@@ -647,22 +670,27 @@ loglist_remove_selected_log (LogviewWindow *logview)
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
-	gchar *name;
+	gchar *name, *unmarkup;
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->treeview));
 	gtk_tree_selection_get_selected (selection, &model, &iter);
 
 	gtk_tree_model_get (model, &iter, 0, &name, -1);
+    unmarkup = logname_remove_markup (name);
 	
-	if (name) {
+	if (unmarkup) {
 		Log *log;
 		
-		log = logview_find_log_from_name (logview, name);
-		logview_remove_log (logview, log);
+        if (gtk_list_store_remove (GTK_LIST_STORE (model), &iter))
+            gtk_tree_selection_select_iter (selection, &iter);
 
-		if (gtk_list_store_remove (GTK_LIST_STORE (model), &iter))
-			gtk_tree_selection_select_iter (selection, &iter);
+		log = logview_find_log_from_name (logview, unmarkup);
+		logview_remove_log (logview, log);
+        logview->curlog = NULL;
 	}
+
+    g_free (unmarkup);
+    g_free (name);
 }
 
 GtkWidget *
@@ -715,6 +743,8 @@ logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_d
 	LogviewWindow *logview = user_data;
 	Log *log = logview->curlog;
 	int selected;
+
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
 	selected = gtk_combo_box_get_active (version_selector);
 
