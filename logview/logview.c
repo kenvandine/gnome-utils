@@ -467,6 +467,9 @@ logview_find_log_from_name (LogviewWindow *logview, gchar *name)
 {
   GList *list;
   Log *log;
+
+  g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
     log = list->data;
     if (g_ascii_strncasecmp (log->name, name, 255) == 0) {
@@ -504,6 +507,10 @@ loglist_unbold_log (gpointer data)
     LogviewWindow *logview = log->window;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+    /* If the log to unbold is not displayed, still wait */
+    if (logview->curlog != log)
+        return TRUE;
 
     path = loglist_find_logname (logview, log->name);
     model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
