@@ -809,6 +809,8 @@ CreateMainWin (LogviewWindow *window)
    GtkWidget *loglist;
    GtkWidget *hpaned;
    GtkWidget *label;
+   GtkWidget *main_view;
+   GtkWidget *scrolled;
    PangoFontDescription *fontdesc;
    PangoContext *context;
    gchar *monospace_font_name;
@@ -859,15 +861,15 @@ CreateMainWin (LogviewWindow *window)
 	 gtk_paned_pack1 (GTK_PANED (hpaned), window->sidebar, FALSE, FALSE);
 
    /* Second pane : log */
-   window->main_view = gtk_vbox_new (FALSE, 0);
-   gtk_paned_pack2 (GTK_PANED (hpaned), GTK_WIDGET (window->main_view), TRUE, TRUE);
+   main_view = gtk_vbox_new (FALSE, 0);
+   gtk_paned_pack2 (GTK_PANED (hpaned), GTK_WIDGET (main_view), TRUE, TRUE);
 
-   /* Scrolled windows for the main view */
-   window->log_scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (window->log_scrolled_window),
+   /* Scrolled window for the main view */
+   scrolled = gtk_scrolled_window_new (NULL, NULL);
+   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
                GTK_POLICY_AUTOMATIC,
                GTK_POLICY_AUTOMATIC);
-	 gtk_box_pack_start (GTK_BOX(window->main_view), window->log_scrolled_window, TRUE, TRUE, 0);
+   gtk_box_pack_start (GTK_BOX(main_view), scrolled, TRUE, TRUE, 0);
 
    /* Main Tree View */
    window->view = gtk_tree_view_new ();
@@ -905,7 +907,7 @@ CreateMainWin (LogviewWindow *window)
 
 	 gtk_box_pack_end (GTK_BOX(window->version_bar), window->version_selector, FALSE, FALSE, 0);
 	 gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
-	 gtk_box_pack_end (GTK_BOX(window->main_view), window->version_bar, FALSE, FALSE, 0);
+	 gtk_box_pack_end (GTK_BOX(main_view), window->version_bar, FALSE, FALSE, 0);
 
 	 /* Remember the original font size */
 	 context = gtk_widget_get_pango_context (window->view);
@@ -913,8 +915,8 @@ CreateMainWin (LogviewWindow *window)
 	 window->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
 	 window->fontsize = window->original_fontsize;
 
-   gtk_container_add (GTK_CONTAINER (window->log_scrolled_window), GTK_WIDGET (window->view));
-   gtk_widget_show_all (window->log_scrolled_window);
+   gtk_container_add (GTK_CONTAINER (scrolled), GTK_WIDGET (window->view));
+   gtk_widget_show_all (scrolled);
 
    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->view));
    gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);

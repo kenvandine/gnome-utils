@@ -40,9 +40,7 @@ gnome_system_log_SOURCES = 	\
 	userprefs.c             \
 	userprefs.h		\
 	logview-findbar.c	\
-	logview-findbar.h 	\
-	zoom.c 			\
-	zoom.h
+	logview-findbar.h 
 
 gnome_system_log_LDADD = \
 	$(GNOME_UTILS_LIBS)

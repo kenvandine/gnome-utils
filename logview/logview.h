@@ -148,19 +148,10 @@ typedef struct _LogviewWindowClass LogviewWindowClass;
 struct _LogviewWindow {
 	GtkWindow parent_instance;
 
-	GtkWidget *view;
-	GtkWidget *main_view;
-	GtkWidget *log_scrolled_window;
-		
+	GtkWidget *view;		
 	GtkWidget *statusbar;
 	GtkUIManager *ui_manager;
 
-	GtkWidget *zoom_dialog;
-	GtkWidget *zoom_scrolled_window;
-	GtkWidget *zoom_label;
-	GtkListStore *zoom_store;
-	gboolean zoom_visible;
-	
 	GtkWidget *calendar;
 	gboolean calendar_visible;
 

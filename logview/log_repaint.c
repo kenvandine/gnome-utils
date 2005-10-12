@@ -38,8 +38,6 @@ enum {
    MESSAGE
 };
 
-GtkTreeStore *empty_model;
-
 /**
  * Recursively called until the row specified by orig is found.
  *
