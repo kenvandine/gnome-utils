@@ -437,21 +437,27 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
    char scratch[1024];
    int i;
    int len;
+   char message[MAX_WIDTH];
+   char hostname[MAX_HOSTNAME_WIDTH];
+   char process[MAX_PROC_WIDTH];
 
    /* create defaults */
-   strncpy (line->message, buff, MAX_WIDTH);   
-   len = MIN (MAX_WIDTH-1, strlen (buff));
-   line->message[len] = '\0';   
    line->month = -1; line->date = -1;
    line->hour = -1; line->min = -1; line->sec = -1;
-   strcpy (line->hostname, "");
-   strcpy (line->process, "");
+   strncpy (message, buff, MAX_WIDTH);   
+   len = MIN (MAX_WIDTH-1, strlen (buff));
+   message[len] = '\0';   
 
-   if (!has_date)
+   if (!has_date) {
+       line->message = g_strdup (message);
        return;
+   }
+
+   strcpy (hostname, "");
+   strcpy (process, "");
 
    /* FIXME : stop using strtok, it's unrecommended. */
-   token = strtok (line->message, " ");
+   token = strtok (message, " ");
    if (token == NULL) return;
 
    i = get_month (token);
@@ -485,8 +491,8 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
 
    token = strtok (NULL, " ");
    if (token != NULL) {
-      strncpy (line->hostname, token, MAX_HOSTNAME_WIDTH);
-      line->hostname[MAX_HOSTNAME_WIDTH-1] = '\0';
+      strncpy (hostname, token, MAX_HOSTNAME_WIDTH);
+      hostname[MAX_HOSTNAME_WIDTH-1] = '\0';
    } else
        return;
 
@@ -500,22 +506,25 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
 
    if (token == NULL)
    {
-      strncpy (line->process, "", MAX_PROC_WIDTH);
+      strncpy (process, "", MAX_PROC_WIDTH);
       i = 0;
       while (scratch[i] == ' ')
 	 i++;
-      strncpy (line->message, &scratch[i], MAX_WIDTH);
-      line->message [MAX_WIDTH-1] = '\0';
+      strncpy (message, &scratch[i], MAX_WIDTH);
+      message [MAX_WIDTH-1] = '\0';
    } else
    {
-      strncpy (line->process, scratch, MAX_PROC_WIDTH);
-      line->process [MAX_PROC_WIDTH-1] = '\0';
+      strncpy (process, scratch, MAX_PROC_WIDTH);
+      process [MAX_PROC_WIDTH-1] = '\0';
       while (*token == ' ')
 	 token++;
-      strncpy (line->message, token, MAX_WIDTH);
-      line->message [MAX_WIDTH-1] = '\0';
+      strncpy (message, token, MAX_WIDTH);
+      message [MAX_WIDTH-1] = '\0';
    }
 
+   line->message = g_strdup (message);
+   line->hostname = g_strdup (hostname);
+   line->process = g_strdup (process);
 }
 
 /* ----------------------------------------------------------------------
@@ -782,9 +791,15 @@ CloseLog (Log *log)
 	   log->mon_file_handle = NULL;
    }
 
+   g_object_unref (log->model);
+
    /* Free all used memory */
-   for (i = 0; i < log->total_lines; i++)
-      g_free ((log->lines)[i]);
+   for (i = 0; i < log->total_lines; i++) {
+       g_free ((log->lines)[i] -> message);
+       g_free ((log->lines)[i] -> hostname);
+       g_free ((log->lines)[i] -> process);
+       g_free ((log->lines)[i]);
+   }
 
    for (i = 0; log->expand_paths[i]; ++i)
        gtk_tree_path_free (log->expand_paths[i]);

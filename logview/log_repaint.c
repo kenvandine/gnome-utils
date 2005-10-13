@@ -196,6 +196,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 	GList *selected_paths, *i;
     gint *indices;
 	
+    g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (logview->curlog);
 

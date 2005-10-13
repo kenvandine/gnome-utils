@@ -71,14 +71,14 @@ typedef struct {
 
 typedef struct
 {
-  char message[MAX_WIDTH];
-  char process[MAX_PROC_WIDTH];
-  char hostname[MAX_HOSTNAME_WIDTH];
-  signed char month;
-  signed char date;
-  signed char hour;
-  signed char min;
-  signed char sec;
+    char *message;
+    char *process;
+    char *hostname;
+    signed char month;
+    signed char date;
+    signed char hour;
+    signed char min;
+    signed char sec;
 } LogLine;
 
 typedef struct _log Log;
