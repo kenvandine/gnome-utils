@@ -2,9 +2,9 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
 "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [ 
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "2.1.1">
+  <!ENTITY appversion "2.12">
   <!ENTITY manrevision "2.4">
-  <!ENTITY date "January 2003">
+  <!ENTITY date "October 2005">
   <!ENTITY app "System Log Viewer">
 ]>
 <!-- 
@@ -79,11 +79,11 @@
 
     <revhistory>
       <revision> 
-		<revnumber>&app; Manual V&manrevision;</revnumber> 
-		<date>&date;</date> 
+		<revnumber>&app; Manual V2.4</revnumber> 
+		<date>October 2005</date> 
 		<revdescription> 
-	  		<para role="author">Sun GNOME Documentation Team
-	    		<email>gdocteam@sun.com</email>
+	  		<para role="author">Vincent Noel
+	    		<email>vincent.noel@gmail.com</email>
 	  		</para>
 	  		<para role="publisher">GNOME Documentation Project</para>
 		</revdescription> 
@@ -162,8 +162,30 @@
 
   <sect1 id="syslog-introduction"> 
     <title>Introduction</title> 
-    <para>The <application>&app;</application> application enables you to monitor and view system log files. 
-    To view system log files, you may need to log in as root.</para>
+
+      <para>
+      <application>&app;</application> is a graphical, menu-driven
+      viewer that you can use to view and monitor your system
+      logs. <application>&app;</application> comes with a few functions that
+      can help you manage your logs, including a calendar, log monitor and log statistics
+      display.
+      </para>
+
+      <para>
+      <application>&app;</application> is useful if you are new to system
+      administration because it provides an easier, more user-friendly
+      display of your logs than a
+      text display of the log file. It is also useful for more
+      experienced administrators, as it contains a calendar to help you
+      locate trends and track problems, as well as a monitor to enable you
+      to continuously monitor crucial logs.
+      </para>
+
+      <para>
+      <application>&app;</application> is useful only to those who have
+      access to the system log files, which generally requires root access.
+      </para>
+
   </sect1>
 
   <sect1 id="syslog-getting-started">
@@ -205,8 +227,17 @@
 	</screenshot> 
       </figure>
     <!-- ==== End of Figure ==== -->
-    <para>When you start <application>&app;</application>, the application displays the <filename>/var/log/messages</filename> 
-    log file by default.</para>
+    <para>The first time you start <application>&app;</application>, the application
+      displays several log files by default (such as
+      <filename>/var/log/messages</filename>).
+      Opened logs are listed on the left side of the 
+      application window. The log selected in this list is displayed in the
+      main area of the application window.
+      </para>
+
+      <para>By default, <application>&app;</application>
+        monitors every opened log, and any change appears automatically in the
+        main window. See <xref linkend="syslog-monitor"/> for more information.</para>
 
   </sect1>
 
@@ -216,87 +247,83 @@
     <title>Usage</title>
 
     <sect2 id="syslog-open">
-    	<title>To View a Log File</title>
-    	<para>To view a log file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Open</guimenuitem></menuchoice>. 
-    	In the <guilabel>Open new logfile</guilabel> dialog, enter the name of the log file that you want to open, then click 
-    	<guibutton>OK</guibutton>. Use the scrollbars to scroll through the log file.</para>
-    	<para>You can open as many log files as you want. <application>&app;</application> displays one log file at a time in 
-    	the <guilabel>System Log Viewer</guilabel> window. To display another log file that is already open in 
-    	<application>&app;</application>, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Switch Log</guimenuitem></menuchoice>. 
-    	To continue to move through the open log files, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Switch Log</guimenuitem>
-    	</menuchoice>.</para> 
-    </sect2>
-    
-    <sect2 id="syslog-details">
-    	<title>To View More Information About a Log File Entry</title>
-    	<para>To view more detailed information about a log file entry, select the entry in the display area, then choose
-    	<menuchoice><guimenu>View</guimenu><guimenuitem>Entry Detail</guimenuitem></menuchoice>. <application>&app;</application>
-    	displays a <guilabel>Zoom view</guilabel> window that contains the following information:</para>
-    	<itemizedlist>
-    		<listitem><para>The date of the log entry.</para>
-    		</listitem>
-    		<listitem><para>The name of the process that caused the log entry.</para>
-    		</listitem>
-    		<listitem><para>The log message.</para>
-    		</listitem>
-    		<listitem><para>A description of the log message if available.</para>
-    		</listitem>
-    	</itemizedlist> 
+    	<title>To View a Log</title>
+    	<para>To view a log, choose <menuchoice><guimenu>Log</guimenu><guimenuitem>Open</guimenuitem></menuchoice>. 
+    	In the <guilabel>Open Log</guilabel> dialog, select the 
+        log that you want to open, then click 
+    	<guibutton>Open</guibutton>. Use the scrollbars to scroll through the
+    	log.</para>
+
+        <para>You can open as many logs as you
+        want. <application>&app;</application> displays one log at a time in 
+    	the <guilabel>System Log Viewer</guilabel> window. Opened logs are listed on the left side of the
+        application window. The log selected in this list is displayed in the
+        main area of the application window. To display another log
+        already opened in <application>&app;</application>, select it in the
+        log list.</para>.
     </sect2>
     
     <sect2 id="syslog-monitor">
-    	<title>To Monitor Log Files</title>
-    	<para>You can use <application>&app;</application> to monitor selected log files. When you select a log file to monitor, 
-    	<application>&app;</application> displays the most recent entries from the log file in a separate window. 
-    	<application>&app;</application> updates the <guilabel>Monitoring logs</guilabel> window to display new entries 
-    	as they are added.</para>
-    	<para>To monitor a log file, perform the following steps:</para>
-    	<orderedlist>
-    		<listitem><para>Choose <menuchoice><guimenu>File</guimenu><guimenuitem>Monitor</guimenuitem></menuchoice>.</para></listitem>
-    		<listitem><para>Select the log file that you want to monitor in the left pane of the <guilabel>Monitor options</guilabel> 
-    		dialog. </para></listitem>
-    		<listitem><para>Click <guibutton>Add</guibutton>. </para></listitem>
-    		<listitem><para>To hide the main <application>&app;</application> window while you are monitoring log files, 
-    		select the <guilabel>Hide Application</guilabel> checkbox. </para></listitem>
-    	</orderedlist>	
-    	<para><application>&app;</application> displays the log file in a <guilabel>Monitoring logs</guilabel> window. 
-    	<application>&app;</application> can monitor several log files simultaneously but the application only displays one file 
-    	at a time in the <guilabel>Monitoring logs</guilabel> window. <application>&app;</application> adds a tab for each log
-    	file that the application is monitoring.</para> 
+    	<title>To Monitor Logs</title>
+    	<para>You can use <application>&app;</application> to monitor selected
+    	logs. By default, all logs opened in <application>&app;</application>
+        are monitored for changes. If new lines are added to an log monitored
+        by <application>&app;</application>, the log name will appear in bold in
+        the log list. If the log is currently displayed in the main area, the
+        new lines will appear automatically at the end of the log and, after five
+    	seconds, the log name will turn back to normal in the list.</para>
+      
+    	<para>To turn off monitor for a specific log, uncheck the
+        <menuchoice><guimenu>Log</guimenu><guimenuitem>Monitor</guimenuitem></menuchoice>
+        option. Check this option again to turn monitor back on.</para>
+
     </sect2>
     
     <sect2 id="syslog-calendar">
-    	<title>To View a Calendar</title>
-    	<para>To view a calendar, choose <menuchoice><guimenu>View</guimenu><guimenuitem>Calendar</guimenuitem></menuchoice>. The dates
-    	for which log files exist are displayed in bold. To view the log files for a particular date, select the date in the calendar.</para> 
+    	<title>To Use the Calendar</title>
+        <para>By default, a calendar is displayed in the left side of the
+        <application>&app;</application> window, under the log list. In this
+        calendar, the dates present in the currently select log are displayed
+        in bold. To jump to a particular date, select it in the calendar.</para>
+
+    	<para>To hide the calendar, uncheck the
+        <menuchoice><guimenu>View</guimenu><guimenuitem>Calendar</guimenuitem></menuchoice>
+        menu option. </para> 
     </sect2>
     
     <sect2 id="syslog-stats">
-    	<title>To View Log File Properties</title>
-    	<para>To view the properties of the log file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>.
-    	The <guilabel>Log stats</guilabel> dialog displays the following information about the file:</para> 
+    	<title>To View Log Properties</title>
+    	<para>To view the properties of a log, choose
+    	<menuchoice><guimenu>Log</guimenu><guimenuitem>Properties</guimenuitem></menuchoice>.
+    	A <guilabel>Properties</guilabel> dialog will display the following information about the log:</para> 
     	<itemizedlist>
-    		<listitem><para>Size of the file in bytes.</para>
+    		<listitem><para>Its size in bytes.</para>
     		</listitem>
-    		<listitem><para>Date the file was last modified.</para>
+    		<listitem><para>Date it was last modified.</para>
     		</listitem>
-    		<listitem><para>Date the file was created.</para>
+    		<listitem><para>Date it was created.</para>
     		</listitem>
     		<listitem><para>Date of the most recent log entry.</para>
     		</listitem>
-    		<listitem><para>Number of lines in the file.</para>
+    		<listitem><para>Number of lines in the log.</para>
     		</listitem>
     	</itemizedlist> 
+        <para>Note that the number of lines and the date of last modification
+    	are also conveniently displayed in the status bar.</para>
     </sect2>
     
     <sect2 id="syslog-close">
-    	<title>To Close a Log File</title>
-    	<para>To close a log file, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Close</guimenuitem></menuchoice>. </para> 
+    	<title>To Close a Log</title>
+    	<para>To close a log, choose
+    	<menuchoice><guimenu>Log</guimenu><guimenuitem>Close</guimenuitem></menuchoice>.
+    	</para>
     </sect2>
     
     <sect2 id="syslog-exit">
     	<title>To Exit &app;</title>
-    	<para>To exit <application>&app;</application>, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Quit</guimenuitem></menuchoice>. </para> 
+    	<para>To exit <application>&app;</application>, choose
+    	<menuchoice><guimenu>Log</guimenu><guimenuitem>Quit</guimenuitem></menuchoice>.
+    	</para>
     </sect2>
  
   </sect1>
