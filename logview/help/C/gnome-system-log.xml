@@ -261,21 +261,45 @@
         main area of the application window. To display another log
         already opened in <application>&app;</application>, select it in the
         log list.</para>.
+
+        <para>Note that <application>&app;</application> also lets you open
+    zipped logs (whole filenames end in ".gz").</para>
+    </sect2>
+
+    <sect2 id="syslog-selection">
+    <title>To Copy Log Lines to the Clipboard</title>
+    <para>To copy one or more log lines to the clipboard, just select the lines in
+    the main area and choose the 
+    <menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></menuchoice>
+    menu option.
+    If you want to copy the entire log to the clipboard, select it entirely
+    using the <menuchoice><guimenu>Edit</guimenu><guimenuitem>Select
+    All</guimenuitem></menuchoice> menu option, then choose
+    <menuchoice><guimenu>Edit</guimenu><guimenuitem>Copy</guimenuitem></menuchoice>.
+    </para>
+    </sect2>
+
+    <sect2 id="syslog-hide-sidebar">
+    <title>To Hide the Sidebar</title>
+    <para>To hide the left sidebar, which contains the log list and calendar,
+    just select the
+    <menuchoice><guimenu>View</guimenu><guimenuitem>Sidebar</guimenuitem></menuchoice>
+    menu option.</para>
     </sect2>
     
     <sect2 id="syslog-monitor">
     	<title>To Monitor Logs</title>
-    	<para>You can use <application>&app;</application> to monitor selected
+    	<para>You can use <application>&app;</application> to monitor
     	logs. By default, all logs opened in <application>&app;</application>
-        are monitored for changes. If new lines are added to an log monitored
+        are monitored for changes. If new lines are added to a log monitored
         by <application>&app;</application>, the log name will appear in bold in
         the log list. If the log is currently displayed in the main area, the
         new lines will appear automatically at the end of the log and, after five
     	seconds, the log name will turn back to normal in the list.</para>
       
-    	<para>To turn off monitor for a specific log, uncheck the
+    	<para>To stop monitoring a specific log, uncheck the
         <menuchoice><guimenu>Log</guimenu><guimenuitem>Monitor</guimenuitem></menuchoice>
-        option. Check this option again to turn monitor back on.</para>
+        option. Check this option again to turn monitoring back on.</para>
 
     </sect2>
     
