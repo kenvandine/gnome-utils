@@ -38,128 +38,6 @@ enum {
    MESSAGE
 };
 
-/**
- * Recursively called until the row specified by orig is found.
- *
- * *count will be set to the  row number of the child
- * relative to the row that was initially passed in as tree_path.
- *
- * *count will be -1 if orig is not found as a child.
- * If NULL is passed in as orig, *count will
- * be a count of the all the children (visible + collapsed (invisible)).
- *
- * NOTE: the value for depth must be 0 when this recursive function
- * is initially called, or it may not function as expected.
- **/
-static void 
-iterate_thru_children(GtkTreeView  *tree_view,
-                      GtkTreeModel *tree_model,
-                      GtkTreePath  *tree_path,
-                      GtkTreePath  *orig,
-                      gint         *count,
-                      gint         depth)
-{
-  GtkTreeIter iter;
-
-  gtk_tree_model_get_iter (tree_model, &iter, tree_path);
-
-  if (orig != NULL && !gtk_tree_path_compare (tree_path, orig)) 
-    /* Found it! */
-    return;
-
-  if (orig != NULL && gtk_tree_path_compare (tree_path, orig) > 0)
-    {
-      /* Past it, so return -1 */
-      *count = -1;
-      return;
-    }
-  else if (gtk_tree_model_iter_has_child (tree_model, &iter))
-    {
-      gtk_tree_path_append_index (tree_path, 0);
-      iterate_thru_children (tree_view, tree_model, tree_path,
-                             orig, count, (depth + 1));
-      return;
-    }
-  else if (gtk_tree_model_iter_next (tree_model, &iter)) 
-    {
-      (*count)++;
-      tree_path = gtk_tree_model_get_path (tree_model, &iter);
-      iterate_thru_children (tree_view, tree_model, tree_path,
-                             orig, count, depth); 
-      gtk_tree_path_free (tree_path);
-      return;
-		}
-  else if (gtk_tree_path_up (tree_path))
-    {
-      GtkTreeIter temp_iter;
-      gboolean exit_loop = FALSE;
-      gint new_depth = depth - 1;
-
-      (*count)++;
-
-     /*
-      * Make sure that we back up until we find a row
-      * where gtk_tree_path_next does not return NULL.
-      */
-      while (!exit_loop)
-        {
-          if (gtk_tree_path_get_depth (tree_path) == 0)
-              /* depth is now zero so */
-            return;
-          gtk_tree_path_next (tree_path);	
-
-          /* Verify that the next row is a valid row! */
-          exit_loop = gtk_tree_model_get_iter (tree_model, &temp_iter, tree_path);
-
-          if (!exit_loop)
-            {
-              /* Keep going up until we find a row that has a valid next */
-              if (gtk_tree_path_get_depth(tree_path) > 1)
-                {
-                  new_depth--;
-                  gtk_tree_path_up (tree_path);
-                }
-              else
-                {
-                 /*
-                  * If depth is 1 and gtk_tree_model_get_iter returns FALSE,
-                  * then we are at the last row, so just return.
-                  */ 
-                  if (orig != NULL)
-                    *count = -1;
-
-                  return;
-
-								}
-        }
-
-     /*
-      * This guarantees that we will stop when we hit the end of the
-      * children.
-      */
-      if (new_depth < 0)
-        return;
-
-      iterate_thru_children (tree_view, tree_model, tree_path,
-                            orig, count, new_depth);
-      return;
-				}
-		}
-
- /*
-  * If it gets here, then the path wasn't found.  Situations
-  * that would cause this would be if the path passed in is
-  * invalid or contained within the last row, but not visible
-  * because the last row is not expanded.  If NULL was passed
-  * in then a row count is desired, so only set count to -1
-  * if orig is not NULL.
-  */
-  if (orig != NULL)
-    *count = -1;
-
-  return;
-}
-	
 void
 row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
                 GtkTreePath *path, gpointer user_data)
@@ -174,6 +52,8 @@ row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 
 	model = gtk_tree_view_get_model (treeview);
 	gtk_tree_model_get (model, iter, DATE, &date, -1);
+    /* FIXME : if I'm not mistaken, this won't work for non-english
+       locales */
 	day = atoi (g_strrstr (date, " "));
 	
 	logview->curlog->expand[day-1] = gtk_tree_view_row_expanded (treeview, path);
@@ -209,7 +89,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
             indices = gtk_tree_path_get_indices (selected_path);
             if (logview->curlog->has_date) {
                 int row = 0;
-                
+                                
                 for (j = 0; j < indices[0]; j++) {
                     path = gtk_tree_path_new_from_indices (j, -1);
                     gtk_tree_model_get_iter (model, &iter, path);
