@@ -905,7 +905,7 @@ CreateMainWin (LogviewWindow *window)
 	 window->version_selector = gtk_combo_box_new_text ();
 	 g_signal_connect (G_OBJECT (window->version_selector), "changed",
 										 G_CALLBACK (logview_version_selector_changed), window);
-	 label = gtk_label_new (_("Version : "));
+	 label = gtk_label_new (_("Version: "));
 
 	 gtk_box_pack_end (GTK_BOX(window->version_bar), window->version_selector, FALSE, FALSE, 0);
 	 gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
