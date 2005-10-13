@@ -1187,9 +1187,12 @@ logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean 
 static void
 logview_calendar_set_state (LogviewWindow *logview)
 {
-	if (logview->curlog->has_date)
-		init_calendar_data (logview);
-    gtk_widget_set_sensitive (logview->calendar, logview->curlog->has_date);
+    if (logview->curlog) {
+        if (logview->curlog->has_date)
+            init_calendar_data (logview);
+        gtk_widget_set_sensitive (logview->calendar, logview->curlog->has_date);
+    } else
+        gtk_widget_set_sensitive (logview->calendar, FALSE);
 }
 
 static void

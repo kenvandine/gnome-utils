@@ -188,27 +188,26 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
 static GtkTreePath *
 calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 {
-  /* find the selected day in the current logfile */
-  gint day, month, year;
-  GtkTreePath *path;
-  gchar *path_string;
-
+    /* find the selected day in the current logfile */
+    gint day, month, year;
+    GtkTreePath *path;
+    gchar *path_string;
+    
 	if (window->curlog == NULL)
 		return NULL;
 
-  if (window->curlog->caldata->first_pass == TRUE) {
-    window->curlog->caldata->first_pass = FALSE;
-    return NULL;
-  }
+    if (window->curlog->caldata->first_pass == TRUE) {
+        window->curlog->caldata->first_pass = FALSE;
+        return NULL;
+    }
   
-  gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);
+    gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);    
+    path_string = g_hash_table_lookup (window->curlog->date_headers,
+                                       DATEHASH (month, day));
+    path = gtk_tree_path_new_from_string (path_string);
     
-  path_string = g_hash_table_lookup (window->curlog->date_headers,
-                                     DATEHASH (month, day));
-  path = gtk_tree_path_new_from_string (path_string);
-  if (path != NULL) {
-    gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
-  }
+    if (path != NULL)
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
 
 	return path;
 }

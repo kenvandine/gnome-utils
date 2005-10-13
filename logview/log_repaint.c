@@ -195,7 +195,7 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 	GtkTreeModel *model;
     GtkTreeIter iter;
 	GList *selected_paths, *i;
-    gint *indices, n, j;
+    gint *indices, j, day;
 	
     g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
@@ -209,16 +209,26 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
             indices = gtk_tree_path_get_indices (selected_path);
             if (logview->curlog->has_date) {
                 int row = 0;
+                
                 for (j = 0; j < indices[0]; j++) {
                     path = gtk_tree_path_new_from_indices (j, -1);
                     gtk_tree_model_get_iter (model, &iter, path);
-                    row = row + gtk_tree_model_iter_n_children (model, &iter) - 1;
+                    row += gtk_tree_model_iter_n_children (model, &iter) - 1;
                 }
-                row = row + indices[1];
+                if (gtk_tree_path_get_depth (selected_path) > 1)
+                    row += indices[1];
+
                 if (selected_last == -1 || row > selected_last)
                     selected_last = row;
                 if (selected_first == -1 || row < selected_first)
                     selected_first = row;
+                
+                if (logview->curlog->caldata) {
+                    day = logview->curlog->lines[row]->date;
+                    logview->curlog->caldata->first_pass = TRUE;
+                    gtk_calendar_select_day (GTK_CALENDAR (logview->calendar), day);
+                }
+
             } else {
                 if (selected_last == -1 || indices[0] > selected_last)
                     selected_last = indices[0];
