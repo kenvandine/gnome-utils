@@ -801,8 +801,9 @@ CloseLog (Log *log)
        g_free ((log->lines)[i]);
    }
 
-   for (i = 0; log->expand_paths[i]; ++i)
-       gtk_tree_path_free (log->expand_paths[i]);
+   for (i = 0; i < 32; i++)
+       if (log->expand_paths[i])
+           gtk_tree_path_free (log->expand_paths[i]);
 
    gtk_tree_path_free (log->current_path);
    g_hash_table_destroy (log->date_headers);
@@ -810,5 +811,4 @@ CloseLog (Log *log)
 
    g_free (log);
    return;
-
 }

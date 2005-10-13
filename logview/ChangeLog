@@ -1,5 +1,12 @@
 2005-10-13  Vincent Noel <vnoel@cox.net>
 
+	* logrtns.c: (CloseLog):
+	* logview.c: (loglist_selection_changed), (CreateMainWin),
+	(logview_calendar_set_state): Don't hide the calendar when the log
+	has no dates - it makes the widgets move around. Insensitize it instead.
+
+2005-10-13  Vincent Noel <vnoel@cox.net>
+
 	* log_repaint.c: (handle_selection_changed_cb):
 	* logrtns.c: (ParseLine), (CloseLog):
 	* logview.h: Don't use a fixed-size buffer for log strings. Cut

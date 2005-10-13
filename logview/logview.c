@@ -560,7 +560,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
     /* there is no selected log right now */
     logview->curlog = NULL;
     logview_menus_set_state (logview);
-    gtk_widget_hide (logview->calendar);
+    gtk_widget_set_sensitive (logview->calendar, FALSE);
     log_repaint (logview);
     return;
   }
@@ -950,7 +950,6 @@ CreateMainWin (LogviewWindow *window)
    gtk_widget_hide (window->find_bar);
    gtk_widget_hide (window->version_bar);
    gtk_widget_hide (window->progressbar);
-   gtk_widget_hide (window->calendar);
 }
 
 /* ----------------------------------------------------------------------
@@ -1188,13 +1187,9 @@ logview_menu_item_set_state (LogviewWindow *logviewwindow, char *path, gboolean 
 static void
 logview_calendar_set_state (LogviewWindow *logview)
 {
-	if (logview->curlog->has_date) {
+	if (logview->curlog->has_date)
 		init_calendar_data (logview);
-		if (logview->calendar_visible)
-			gtk_widget_show (logview->calendar);
-	} else {
-		gtk_widget_hide (logview->calendar);
-	}
+    gtk_widget_set_sensitive (logview->calendar, logview->curlog->has_date);
 }
 
 static void
