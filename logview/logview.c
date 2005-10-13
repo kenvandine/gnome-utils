@@ -185,11 +185,13 @@ GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
 ConfigData *cfg = NULL;
 static gchar *config_prefix = NULL;
 static gchar *sm_client_id = NULL;
+static int screen = 0;
 
 GOptionContext *context;
 GOptionEntry options[] = {
     { "sm-config-prefix", 0, 0, G_OPTION_ARG_STRING, &config_prefix, "", NULL},
     { "sm-client-id", 0, 0, G_OPTION_ARG_STRING, &sm_client_id, "", NULL},
+    { "screen", 0, 0, G_OPTION_ARG_INT, &screen, "", NULL},
 	{ NULL }
 };
 
@@ -262,8 +264,6 @@ save_session (GnomeClient *gnome_client, gint phase,
        }
    }
    
-   for (i=0; i<numlogs+1; i++)
-       g_print("Arg %d : %s\n", i, argv[i]);
    gnome_client_set_clone_command (gnome_client, numlogs+1, argv);
    gnome_client_set_restart_command (gnome_client, numlogs+1, argv);
 
@@ -427,10 +427,8 @@ main (int argc, char *argv[])
        logview_add_logs_from_names (logview, user_prefs->logs);
        loglist_select_log_from_name (logview, user_prefs->logfile);
    } else {
-	   for (i=1; i<argc; i++) {
-           if (!g_str_has_prefix (argv[i], "--") && strlen(argv[i])>5)
-               logview_add_log_from_name (logview, argv[i]);
-	   }
+	   for (i=1; i<argc; i++)
+           logview_add_log_from_name (logview, argv[i]);
    }
    restoration_complete = TRUE;
    gtk_widget_set_sensitive (logview->view, TRUE);

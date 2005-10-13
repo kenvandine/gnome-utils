@@ -89,7 +89,6 @@ struct _log
 	char *display_name;
 	CalendarData *caldata;
 	LogStats lstats;
-	gint current_line_no; /* indicates the line that is selected */
 	gint selected_line_first;
 	gint selected_line_last;
 	gint total_lines; /* no of lines in the file */

@@ -61,6 +61,35 @@ row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 	g_free (date);
 }
 
+static int
+tree_path_find_row (GtkTreeModel *model, GtkTreePath *path, gboolean has_date)
+{
+    int row = 0;
+    int j;
+    int *indices;
+    GtkTreeIter iter;
+    GtkTreePath *date_path;
+
+    g_return_val_if_fail (GTK_IS_TREE_MODEL (model), 0);
+    g_return_val_if_fail (path, 0);
+    
+    indices = gtk_tree_path_get_indices (path);
+    
+    if (has_date) {
+        for (j = 0; j < indices[0]; j++) {
+            date_path = gtk_tree_path_new_from_indices (j, -1);
+            gtk_tree_model_get_iter (model, &iter, date_path);
+            row += gtk_tree_model_iter_n_children (model, &iter) - 1;
+        }
+        if (gtk_tree_path_get_depth (path) > 1)
+            row += indices[1];
+        
+    } else
+        row = indices[0];
+
+    return (row);
+}
+
 /* ----------------------------------------------------------------------
    NAME:        handle_selection_changed_cb
    DESCRIPTION: User clicked on main window
@@ -71,59 +100,45 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
 	int selected_first = -1, selected_last = -1;
 	LogviewWindow *logview = data;
-    GtkTreePath *selected_path, *path;
+    GtkTreePath *selected_path;
+    GList *selected_paths, *path;
 	GtkTreeModel *model;
-    GtkTreeIter iter;
-	GList *selected_paths, *i;
-    gint *indices, j, day;
+    gint row;
+    Log *log;
 	
     g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (logview->curlog);
 
+    log = logview->curlog;
 	selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
-	if (selected_paths) {	
-        for (i = selected_paths; i != NULL; i = g_list_next (i)) {		    
-            selected_path = i->data;
-            indices = gtk_tree_path_get_indices (selected_path);
-            if (logview->curlog->has_date) {
-                int row = 0;
-                                
-                for (j = 0; j < indices[0]; j++) {
-                    path = gtk_tree_path_new_from_indices (j, -1);
-                    gtk_tree_model_get_iter (model, &iter, path);
-                    row += gtk_tree_model_iter_n_children (model, &iter) - 1;
-                }
-                if (gtk_tree_path_get_depth (selected_path) > 1)
-                    row += indices[1];
+    if (selected_paths == NULL)
+        return;
 
-                if (selected_last == -1 || row > selected_last)
-                    selected_last = row;
-                if (selected_first == -1 || row < selected_first)
-                    selected_first = row;
-                
-                if (logview->curlog->caldata) {
-                    day = logview->curlog->lines[row]->date;
-                    logview->curlog->caldata->first_pass = TRUE;
-                    gtk_calendar_select_day (GTK_CALENDAR (logview->calendar), day);
-                }
-
-            } else {
-                if (selected_last == -1 || indices[0] > selected_last)
-                    selected_last = indices[0];
-                if (selected_first == -1 || indices[0] < selected_first)
-                    selected_first = indices[0];
-            }
+    for (path = selected_paths; path != NULL; path = g_list_next (path)) {		    
+        
+        selected_path = path->data;
+        row = tree_path_find_row (model, selected_path, log->has_date);
+        
+        if (selected_last == -1 || row > selected_last)
+            selected_last = row;
+        if (selected_first == -1 || row < selected_first)
+            selected_first = row;
+        
+        if (log->caldata) {
+            gint day;
+            day = log->lines[row]->date;
+            log->caldata->first_pass = TRUE;
+            gtk_calendar_select_day (GTK_CALENDAR (logview->calendar), day);
         }
-
-        logview->curlog->current_line_no = selected_last;
-		logview->curlog->current_path = gtk_tree_path_copy (selected_path);
-		logview->curlog->selected_line_first = selected_first;
-		logview->curlog->selected_line_last = selected_last;
-		g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
-		g_list_free (selected_paths);
-	}
+    }
+    
+    log->current_path = gtk_tree_path_copy (selected_path);
+    log->selected_line_first = selected_first;
+    log->selected_line_last = selected_last;
+    g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
+    g_list_free (selected_paths);
 }
 
 static void
