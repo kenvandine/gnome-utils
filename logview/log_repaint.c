@@ -191,35 +191,35 @@ handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
 	int selected_first = -1, selected_last = -1;
 	LogviewWindow *logview = data;
-    GtkTreePath *selected_path;
+    GtkTreePath *selected_path, *path;
 	GtkTreeModel *model;
+    GtkTreeIter iter;
 	GList *selected_paths, *i;
-    gint *indices;
+    gint *indices, n, j;
 	
     g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (logview->curlog);
-
-    while (gtk_events_pending ())
-	  gtk_main_iteration ();
 
 	selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
 	if (selected_paths) {	
         for (i = selected_paths; i != NULL; i = g_list_next (i)) {		    
             selected_path = i->data;
+            indices = gtk_tree_path_get_indices (selected_path);
             if (logview->curlog->has_date) {
-                GtkTreePath *root_tree = gtk_tree_path_new_root ();
                 int row = 0;
-
-                iterate_thru_children (GTK_TREE_VIEW (logview->view), model,
-                                       root_tree, selected_path, &row, 0);
+                for (j = 0; j < indices[0]; j++) {
+                    path = gtk_tree_path_new_from_indices (j, -1);
+                    gtk_tree_model_get_iter (model, &iter, path);
+                    row = row + gtk_tree_model_iter_n_children (model, &iter) - 1;
+                }
+                row = row + indices[1];
                 if (selected_last == -1 || row > selected_last)
                     selected_last = row;
                 if (selected_first == -1 || row < selected_first)
                     selected_first = row;
             } else {
-                indices = gtk_tree_path_get_indices (selected_path);
                 if (selected_last == -1 || indices[0] > selected_last)
                     selected_last = indices[0];
                 if (selected_first == -1 || indices[0] < selected_first)
