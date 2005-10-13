@@ -1,5 +1,11 @@
 2005-10-13  Frederic Crozat  <fcrozat@mandriva.com>
 
+	* logrtns.c: (isLogFile): Only accept regular file as
+	logfile, prevent freeze when /dev/tty* is in syslog.conf.
+	Bug #318689.
+
+2005-10-13  Frederic Crozat  <fcrozat@mandriva.com>
+
 	* logrtns.c: (isLogFile): Don't try to close file which
 	failed to open.
 

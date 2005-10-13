@@ -367,10 +367,17 @@ isLogFile (char *filename, gboolean show_error)
    GnomeVFSHandle *handle;
    GnomeVFSResult result;
    GnomeVFSFileSize size;
+   GnomeVFSFileInfo info;
 
    /* Read first line and check that it is text */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
    if (result != GNOME_VFS_OK) {
+	   return FALSE;
+   }
+
+   result = gnome_vfs_get_file_info_from_handle (handle, &info, GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+   if (result != GNOME_VFS_OK || info.type != GNOME_VFS_FILE_TYPE_REGULAR) {
+	   gnome_vfs_close (handle);
 	   return FALSE;
    }
 
