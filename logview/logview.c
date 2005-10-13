@@ -280,9 +280,9 @@ logview_select_log (LogviewWindow *logview, Log *log)
 	logview->curlog = log;
 	logview_menus_set_state (logview);
 	logview_update_version_bar (logview);
+	logview_calendar_set_state (logview);
 	log_repaint (logview);
 	logview_save_prefs (logview); 
-	logview_calendar_set_state (logview);
     gtk_widget_grab_focus (logview->view);
 } 
 
@@ -560,7 +560,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
     /* there is no selected log right now */
     logview->curlog = NULL;
     logview_menus_set_state (logview);
-    gtk_widget_set_sensitive (logview->calendar, FALSE);
+    logview_calendar_set_state (logview);
     log_repaint (logview);
     return;
   }
