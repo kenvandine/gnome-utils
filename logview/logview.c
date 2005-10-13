@@ -1030,7 +1030,7 @@ LoadLogMenu (GtkAction *action, GtkWidget *parent_window)
    static GtkWidget *chooser = NULL;
    
    if (chooser == NULL) {
-	   chooser = gtk_file_chooser_dialog_new (_("Open new logfile"),
+	   chooser = gtk_file_chooser_dialog_new (_("Open Log"),
 						  GTK_WINDOW (parent_window),
 						  GTK_FILE_CHOOSER_ACTION_OPEN,
 						  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
