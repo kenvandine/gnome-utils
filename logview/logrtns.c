@@ -371,7 +371,6 @@ isLogFile (char *filename, gboolean show_error)
    /* Read first line and check that it is text */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
    if (result != GNOME_VFS_OK) {
-     gnome_vfs_close (handle);     
 	   return FALSE;
    }
 
