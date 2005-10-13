@@ -1,8 +1,14 @@
-2005-10-13  noel,,,  <vnoel@cox.net>
+2005-10-13  Vincent Noel  <vnoel@cox.net>
 
-	reviewed by: <delete if not using a buddy>
+	* logview.c: (save_session), (main), (logview_count_logs): *
+	misc.c: (ShowErrMessage): Correctly parse the command line option
+	when started from session manager. Correctly save the opened log
+	when saving the session. Fix part of bug #156507.
+
+2005-10-13  Vincent Noel  <vnoel@cox.net>
 
 	* logview.c: (logview_select_log), (loglist_selection_changed):
+	Make sure the calendar selection works at startup too.
 
 2005-10-13  Vincent Noel  <vnoel@cox.net>
 

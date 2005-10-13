@@ -43,7 +43,7 @@ static GObjectClass *parent_class;
 static GSList *logview_windows = NULL;
 static GConfClient *client = NULL;
 static UserPrefsStruct *user_prefs;
-static gboolean restoration_complete = FALSE;
+gboolean restoration_complete = FALSE;
 
 #define APP_NAME _("System Log Viewer")
 #define GCONF_MONOSPACE_FONT_NAME "/desktop/gnome/interface/monospace_font_name"
@@ -183,10 +183,13 @@ static const char *ui_description =
 	
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
 ConfigData *cfg = NULL;
-gchar *file_to_open;
+static gchar *config_prefix = NULL;
+static gchar *sm_client_id = NULL;
 
 GOptionContext *context;
 GOptionEntry options[] = {
+    { "sm-config-prefix", 0, 0, G_OPTION_ARG_STRING, &config_prefix, "", NULL},
+    { "sm-client-id", 0, 0, G_OPTION_ARG_STRING, &sm_client_id, "", NULL},
 	{ NULL }
 };
 
@@ -240,8 +243,10 @@ save_session (GnomeClient *gnome_client, gint phase,
               gpointer client_data)
 {
    gchar **argv;
-   gint numlogs, i=0;
+   gint numlogs, i=1;
    GSList *list;
+   GList *logs;
+   Log *log;
 
    numlogs = logview_count_logs ();
 
@@ -250,11 +255,15 @@ save_session (GnomeClient *gnome_client, gint phase,
 
    for (list = logview_windows; list != NULL; list = g_slist_next (list)) {
 	   LogviewWindow *w = list->data;
-	   if (w->curlog) {
-		   argv[i++] = g_strdup_printf ("%s", w->curlog->name);
-	   }
+       logs = w->logs;       
+       for (logs = w->logs; logs != NULL; logs = g_list_next (logs)) {
+           log = logs->data;
+		   argv[i++] = g_strdup_printf ("%s", log->name);
+       }
    }
    
+   for (i=0; i<numlogs+1; i++)
+       g_print("Arg %d : %s\n", i, argv[i]);
    gnome_client_set_clone_command (gnome_client, numlogs+1, argv);
    gnome_client_set_restart_command (gnome_client, numlogs+1, argv);
 
@@ -414,12 +423,13 @@ main (int argc, char *argv[])
    gtk_widget_show (GTK_WIDGET(logview));
    while (gtk_events_pending ())
        gtk_main_iteration ();
-   logview_add_logs_from_names (logview, user_prefs->logs);
-   loglist_select_log_from_name (logview, user_prefs->logfile);
-   if (argc > 1) {
+   if (argc == 1) {
+       logview_add_logs_from_names (logview, user_prefs->logs);
+       loglist_select_log_from_name (logview, user_prefs->logfile);
+   } else {
 	   for (i=1; i<argc; i++) {
-		   file_to_open = argv[i];
-           logview_add_log_from_name (logview, file_to_open);
+           if (!g_str_has_prefix (argv[i], "--") && strlen(argv[i])>5)
+               logview_add_log_from_name (logview, argv[i]);
 	   }
    }
    restoration_complete = TRUE;
@@ -435,6 +445,7 @@ main (int argc, char *argv[])
 					 G_CALLBACK (save_session), NULL);
    g_signal_connect (gnome_client, "die", G_CALLBACK (die), NULL);
 
+   save_session (gnome_client,0,0,0,0,0,NULL);
    /*  Loop application */
    gtk_main ();
 
@@ -1228,12 +1239,13 @@ static int
 logview_count_logs (void)
 {
 	GSList *list;
+    GList *logs;
 	LogviewWindow *window;
 	int numlogs = 0;
 	for (list = logview_windows; list != NULL; list = g_slist_next (list)) {
 		window = list->data;
-		if (window->curlog != NULL)
-			numlogs ++;
+        for (logs = window->logs; logs != NULL; logs = g_list_next (logs))
+            numlogs ++;
 	}
 	return numlogs;
 }

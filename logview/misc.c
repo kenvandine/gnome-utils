@@ -22,6 +22,7 @@
 
 static gboolean queue_err_messages = FALSE;
 static GList *msg_queue_main = NULL, *msg_queue_sec = NULL;
+extern gboolean restoration_complete;
 
 static void
 MakeErrorDialog (GtkWidget *window, const char *main, char *secondary)
@@ -48,11 +49,11 @@ MakeErrorDialog (GtkWidget *window, const char *main, char *secondary)
 void
 ShowErrMessage (GtkWidget *window, char *main, char *secondary)
 {
-	if (queue_err_messages) {
-		msg_queue_main = g_list_append (msg_queue_main, g_strdup (main));
-		msg_queue_sec = g_list_append (msg_queue_sec, g_strdup (secondary));
-	} else
-		MakeErrorDialog (window, main, secondary);
+    if (queue_err_messages) {
+        msg_queue_main = g_list_append (msg_queue_main, g_strdup (main));
+        msg_queue_sec = g_list_append (msg_queue_sec, g_strdup (secondary));
+    } else
+        MakeErrorDialog (window, main, secondary);
 }
 
 void
