@@ -58,7 +58,7 @@ typedef struct
   time_t startdate, enddate;
   time_t mtime;
   long numlines;
-  long size;
+  GnomeVFSFileSize size;
   DateMark *firstmark, *lastmark;
 }
 LogStats;

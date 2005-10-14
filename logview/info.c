@@ -92,8 +92,7 @@ RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
    if (!window->curlog)
 	   return;
    
-   tmp = g_strdup_printf (ngettext ("%ld byte", "%ld bytes", (long) window->curlog->lstats.size),
-			  (long) window->curlog->lstats.size);
+   tmp = gnome_vfs_format_file_size_for_display (window->curlog->lstats.size);
    size_tmp = g_strdup_printf (_("<b>Size</b>: %s"), tmp);
    size = LocaleToUTF8 (size_tmp);
    g_free (size_tmp);

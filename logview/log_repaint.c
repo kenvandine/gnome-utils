@@ -149,6 +149,7 @@ logview_update_statusbar (LogviewWindow *window)
    char *utf8;
    char *buffer;
    char *statusbar_text;
+   char *size_string;
    /* Translators: Date only format, %x should well do really */
    const char *time_fmt = _("%x"); /* an evil way to avoid warning */
 
@@ -159,6 +160,7 @@ logview_update_statusbar (LogviewWindow *window)
        return;
    }
 
+   size_string = gnome_vfs_format_file_size_for_display (window->curlog->lstats.size);
    if (window->curlog->curmark != NULL) {
 	   tdm = &(window->curlog)->curmark->fulldate;
 
@@ -169,15 +171,17 @@ logview_update_statusbar (LogviewWindow *window)
        } else
            utf8 = LocaleToUTF8 (status_text);
 
-       statusbar_text = g_strdup_printf (_("Last Modified: %s, %d lines"),
-                                         utf8, window->curlog->total_lines);
+       statusbar_text = g_strdup_printf (_("Last Modified: %s, %d lines (%s)"),
+                                         utf8, window->curlog->total_lines, size_string);
        g_free (utf8);
    } else
-       statusbar_text = g_strdup_printf (_("%d lines"), window->curlog->total_lines);
+       statusbar_text = g_strdup_printf (_("%d lines (%s)"), 
+                                         window->curlog->total_lines, size_string);
 
    if (statusbar_text) {
        gtk_statusbar_pop (GTK_STATUSBAR(window->statusbar), 0);
        gtk_statusbar_push (GTK_STATUSBAR(window->statusbar), 0, statusbar_text);
+       g_free (size_string);
        g_free (statusbar_text);
    }
 }
