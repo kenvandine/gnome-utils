@@ -37,7 +37,6 @@
 #include "misc.h"
 #include "logview-findbar.h"
 #include "userprefs.h"
-#include "configdata.h"
 
 static GObjectClass *parent_class;
 static GSList *logview_windows = NULL;
@@ -182,7 +181,6 @@ static const char *ui_description =
  */
 	
 GList *regexp_db = NULL, *descript_db = NULL, *actions_db = NULL;
-ConfigData *cfg = NULL;
 static gchar *config_prefix = NULL;
 static gchar *sm_client_id = NULL;
 static int screen = 0;
@@ -408,7 +406,6 @@ main (int argc, char *argv[])
    gnome_vfs_init ();
 
    gtk_window_set_default_icon_name ("logviewer");
-   cfg = CreateConfig();
    user_prefs = prefs_load (client);
    
    context = logview_init_options ();

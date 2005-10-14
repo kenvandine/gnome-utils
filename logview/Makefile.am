@@ -19,8 +19,6 @@ gnome_system_log_SOURCES = 	\
 	about.h			\
 	calendar.c		\
 	calendar.h		\
-	config.c		\
-	configdata.h		\
 	info.c			\
 	info.h			\
 	log_repaint.c		\
