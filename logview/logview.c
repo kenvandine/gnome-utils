@@ -100,7 +100,7 @@ static GtkActionEntry entries[] = {
 	{ "OpenLog", GTK_STOCK_OPEN, N_("_Open..."), "<control>O", N_("Open a log from file"), 
 	  G_CALLBACK (LoadLogMenu) },
 	{ "Properties", GTK_STOCK_PROPERTIES,  N_("_Properties"), "<control>P", N_("Show Log Properties"), 
-	  G_CALLBACK (LogInfo) },
+	  G_CALLBACK (loginfo_new) },
 	{ "CloseLog", GTK_STOCK_CLOSE, N_("Close"), "<control>W", N_("Close this log"), 
 	  G_CALLBACK (CloseLogMenu) },
 	{ "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 

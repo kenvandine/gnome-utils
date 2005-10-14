@@ -24,67 +24,8 @@
 #include "info.h"
 #include "misc.h"
 
-static void RepaintLogInfo (LogviewWindow *window, GtkWidget *label);
-static void QuitLogInfo (GtkWidget *widget, gpointer data);
-static void CloseLogInfo (GtkWidget *widget, int arg, gpointer data);
-
-/* ----------------------------------------------------------------------
-   NAME:          LogInfo
-   DESCRIPTION:   Display the statistics of the log.
-   ---------------------------------------------------------------------- */
-
-void
-LogInfo (GtkAction *action, GtkWidget *callback_data)
-{
-	static GtkWidget *label;
-	static GtkWidget *info_dialog;
-	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
-
-	if (window->curlog == NULL || window->loginfovisible)
-		return;
-	
-	if (info_dialog == NULL) {
-		info_dialog = gtk_dialog_new_with_buttons (_("Properties"),
-							  GTK_WINDOW (window),
-							  GTK_DIALOG_DESTROY_WITH_PARENT,
-							  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-							  NULL);
-		
-		g_signal_connect (G_OBJECT (info_dialog), "response",
-				  G_CALLBACK (CloseLogInfo),
-				  window);
-		g_signal_connect (GTK_OBJECT (info_dialog), "destroy",
-				  G_CALLBACK (QuitLogInfo),
-				  window);
-		g_signal_connect (GTK_OBJECT (info_dialog), "delete_event",
-				  G_CALLBACK (gtk_true),
-				  NULL);
-		
-		gtk_dialog_set_default_response (GTK_DIALOG (info_dialog),
-						 GTK_RESPONSE_CLOSE);
-		gtk_dialog_set_has_separator (GTK_DIALOG(info_dialog), FALSE);
-		gtk_container_set_border_width (GTK_CONTAINER (info_dialog), 10);
-		
-		label = gtk_label_new (NULL);
-		gtk_label_set_selectable (GTK_LABEL (label), TRUE);
-		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (info_dialog)->vbox), 
-				    label, TRUE, TRUE, 0);
-		gtk_window_set_resizable (GTK_WINDOW (info_dialog), FALSE);
-		
-	}
-
-	RepaintLogInfo (window, label);
-	gtk_widget_show_all (info_dialog);
-	window->loginfovisible = TRUE;
-}
-
-/* ----------------------------------------------------------------------
-   NAME:          RepaintLogInfo
-   DESCRIPTION:   Repaint the log info window.
-   ---------------------------------------------------------------------- */
-
 static void
-RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
+loginfo_repaint (LogviewWindow *window, GtkWidget *label)
 {
    char *utf8;
    gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp, *size_tmp;
@@ -115,7 +56,6 @@ RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
    g_free (tmp);
    
    info_string = g_strdup_printf ("%s\n%s%s%s%s", size, modified, start_date, last_date, num_lines);
-   
    g_free (size);
    g_free (modified);
    g_free (start_date);
@@ -123,17 +63,11 @@ RepaintLogInfo (LogviewWindow *window, GtkWidget *label)
    g_free (num_lines);
 
    gtk_label_set_markup (GTK_LABEL (label), info_string);
-
    g_free (info_string);
 }
 
-/* ----------------------------------------------------------------------
-   NAME:          CloseLogInfo
-   DESCRIPTION:   Callback called when the log info window is closed.
-   ---------------------------------------------------------------------- */
-
 static void
-CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
+loginfo_quit (GtkWidget *widget, gpointer data)
 {
    LogviewWindow *window = data;
    gtk_widget_hide (widget);
@@ -141,10 +75,52 @@ CloseLogInfo (GtkWidget *widget, int arg, gpointer data)
 }
 
 static void
-QuitLogInfo (GtkWidget *widget, gpointer data)
+loginfo_close (GtkWidget *widget, int arg, gpointer data)
 {
-   LogviewWindow *window = data;
-   gtk_widget_hide (widget);
-   window->loginfovisible = FALSE;
+   loginfo_quit (widget, data);
 }
 
+void
+loginfo_new (GtkAction *action, GtkWidget *callback_data)
+{
+	static GtkWidget *label;
+	static GtkWidget *info_dialog;
+	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
+
+	if (window->curlog == NULL || window->loginfovisible)
+		return;
+	
+	if (info_dialog == NULL) {
+		info_dialog = gtk_dialog_new_with_buttons (_("Properties"),
+							  GTK_WINDOW (window),
+							  GTK_DIALOG_DESTROY_WITH_PARENT,
+							  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+							  NULL);
+		
+		g_signal_connect (G_OBJECT (info_dialog), "response",
+				  G_CALLBACK (loginfo_close),
+				  window);
+		g_signal_connect (GTK_OBJECT (info_dialog), "destroy",
+				  G_CALLBACK (loginfo_quit),
+				  window);
+		g_signal_connect (GTK_OBJECT (info_dialog), "delete_event",
+				  G_CALLBACK (gtk_true),
+				  NULL);
+		
+		gtk_dialog_set_default_response (GTK_DIALOG (info_dialog),
+						 GTK_RESPONSE_CLOSE);
+		gtk_dialog_set_has_separator (GTK_DIALOG(info_dialog), FALSE);
+		gtk_container_set_border_width (GTK_CONTAINER (info_dialog), 10);
+		
+		label = gtk_label_new (NULL);
+		gtk_label_set_selectable (GTK_LABEL (label), TRUE);
+		gtk_box_pack_start (GTK_BOX (GTK_DIALOG (info_dialog)->vbox), 
+				    label, TRUE, TRUE, 0);
+		gtk_window_set_resizable (GTK_WINDOW (info_dialog), FALSE);
+		
+	}
+
+	loginfo_repaint (window, label);
+	gtk_widget_show_all (info_dialog);
+	window->loginfovisible = TRUE;
+}
