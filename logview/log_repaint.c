@@ -225,12 +225,12 @@ logview_update_version_bar (LogviewWindow *logview)
 	}
 }
 
-char *
+static char *
 logline_get_date (LogLine *line)
 {
    char buf[1024];
    char *utf8;
-   const GDate *date;
+   GDate *date;
 
    if (line->month >= 0 && line->month < 12) {
 
@@ -406,7 +406,7 @@ logview_create_model_no_date (LogviewWindow *window, Log *log)
     }
 }
 
-void
+static void
 logview_create_model (LogviewWindow *window, Log *log)
 {
     GtkTreeIter iter, child_iter;
