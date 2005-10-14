@@ -21,7 +21,7 @@
 #define __LOG_REPAINT_H__
 
 void log_repaint (LogviewWindow *window);
-void handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data);
+void selection_changed_cb (GtkTreeSelection *selection, gpointer data);
 void row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter, 
 		     GtkTreePath *path, gpointer user_data);
 void logview_update_version_bar (LogviewWindow *logview);

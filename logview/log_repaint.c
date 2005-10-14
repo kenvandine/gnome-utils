@@ -96,7 +96,7 @@ tree_path_find_row (GtkTreeModel *model, GtkTreePath *path, gboolean has_date)
    ---------------------------------------------------------------------- */
 
 void
-handle_selection_changed_cb (GtkTreeSelection *selection, gpointer data)
+selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
 	int selected_first = -1, selected_last = -1;
 	LogviewWindow *logview = data;
@@ -225,26 +225,25 @@ logview_update_version_bar (LogviewWindow *logview)
 	}
 }
 
-/* ----------------------------------------------------------------------
-   NAME:        GetDateHeader
-   DESCRIPTION: Gets the Date to display 
-   ---------------------------------------------------------------------- */
-
 char *
-GetDateHeader (LogLine *line)
+logline_get_date (LogLine *line)
 {
    char buf[1024];
    char *utf8;
+   const GDate *date;
 
    if (line->month >= 0 && line->month < 12) {
-       struct tm tm = {0};
 
-       tm.tm_mday = line->date;
-       tm.tm_year = 2000 /* bogus */;
-       tm.tm_mon = line->month;
+       date = g_date_new_dmy (line->date, line->month + 1, 2000);
+
+       if (!g_date_valid (date)) {
+           utf8 = g_strdup(_("Invalid date"));
+           return utf8;
+       }
+
        /* Translators: Make sure this is only Month and Day format, year
         * will be bogus here */
-       if (strftime (buf, sizeof (buf), _("%B %e"), &tm) <= 0) {
+       if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) == 0) {
            /* If we fail just use the US format */
            utf8 = g_strdup_printf ("%s %d", _(month[(int) line->month]), 
                                    line->date);
@@ -254,9 +253,10 @@ GetDateHeader (LogLine *line)
    } else {
        utf8 = g_strdup_printf ("?%d? %d", (int) line->month, line->date);
    }
+   
+   g_date_free (date);
 
    return utf8;
-
 }
 
 static void
@@ -276,7 +276,7 @@ model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
 {
     gchar *utf8;
     
-    utf8 = GetDateHeader (line);
+    utf8 = logline_get_date (line);
     gtk_tree_store_set (model, iter, DATE, utf8, -1);
     g_free (utf8);
 }
@@ -286,12 +286,9 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
 {
     struct tm date = {0};
     char *date_utf8, *hostname_utf8 = NULL, *process_utf8 = NULL, *message_utf8;
-    char tmp[4096];
+    char tmp[128];
     
     if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
-        date.tm_mon = line->month;
-        date.tm_year = 70 /* bogus */;
-        date.tm_mday = line->date;
         date.tm_hour = line->hour;
         date.tm_min = line->min;
         date.tm_sec = line->sec;
@@ -362,6 +359,7 @@ logview_show_model (LogviewWindow *window, Log *log)
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (window));
     g_return_if_fail (log);
+    g_return_if_fail (GTK_IS_TREE_MODEL (log->model));
 
     gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
     if (log->has_date) {
@@ -423,9 +421,6 @@ logview_create_model (LogviewWindow *window, Log *log)
 
     log->model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
                                                     G_TYPE_STRING, G_TYPE_STRING));    
-    while (gtk_events_pending ())
-        gtk_main_iteration ();
-
     /* Parse the whole thing to find dates
        and create toplevel lines for them. */
     
