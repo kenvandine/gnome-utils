@@ -235,7 +235,7 @@ OpenLogFile (char *filename, gboolean show_error)
    if (display_name)
 	   g_free (filename);
 
-   buffer_lines = g_strsplit (buffer, "\n", -1);
+   buffer_lines = g_strsplit_set (buffer, "\n\r", -1);
    g_free (buffer);
 
    /* count the lines */
@@ -444,9 +444,14 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
    /* create defaults */
    line->month = -1; line->date = -1;
    line->hour = -1; line->min = -1; line->sec = -1;
-   strncpy (message, buff, MAX_WIDTH);   
+   if (buff[0] == 0) {
+       line->message=NULL;
+       return;
+   }
+
+   strncpy (message, buff, MAX_WIDTH);
    len = MIN (MAX_WIDTH-1, strlen (buff));
-   message[len] = '\0';   
+   message[len] = '\0';  
 
    if (!has_date) {
        line->message = g_strdup (message);
@@ -780,10 +785,10 @@ CloseLog (Log *log)
    gint i;
 
    g_return_if_fail (log);
-
-	 /* Close archive logs if there's some */
-	 for (i = 0; i < log->versions; i++)
-		 CloseLog (log->older_logs[i]);
+   
+   /* Close archive logs if there's some */
+   for (i = 0; i < log->versions; i++)
+       CloseLog (log->older_logs[i]);
 
    /* Close file - this should not be needed */
    if (log->mon_file_handle != NULL) {
@@ -794,19 +799,23 @@ CloseLog (Log *log)
    g_object_unref (log->model);
 
    /* Free all used memory */
-   for (i = 0; i < log->total_lines; i++) {
+   for (i = 1; i < log->total_lines; i++) {
        g_free ((log->lines)[i] -> message);
-       g_free ((log->lines)[i] -> hostname);
-       g_free ((log->lines)[i] -> process);
-       g_free ((log->lines)[i]);
+       if (log->has_date) {
+           g_free ((log->lines)[i] -> hostname);
+           g_free ((log->lines)[i] -> process);
+       }
+       g_free ((log->lines)[i]);           
+   }
+   
+   if (log->has_date) {
+       for (i = 0; i < 32; i++)
+           if (log->expand_paths[i])
+               gtk_tree_path_free (log->expand_paths[i]);
+       g_hash_table_destroy (log->date_headers);
    }
 
-   for (i = 0; i < 32; i++)
-       if (log->expand_paths[i])
-           gtk_tree_path_free (log->expand_paths[i]);
-
    gtk_tree_path_free (log->current_path);
-   g_hash_table_destroy (log->date_headers);
    log->current_path = NULL;
 
    g_free (log);
