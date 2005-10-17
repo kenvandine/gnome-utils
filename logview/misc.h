@@ -25,6 +25,9 @@ void QueueErrMessages (gboolean do_queue);
 void ShowQueuedErrMessages (void);
 char *LocaleToUTF8 (const char *in);
 int IsLeapYear (int year);
+time_t string_get_date (char *line);
+int days_are_equal (time_t day1, time_t day2);
+int string_get_month (const char *str);
 
 #endif /* __LOG_MISC_H__ */
 

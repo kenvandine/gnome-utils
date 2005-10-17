@@ -20,26 +20,20 @@
 
 #include <glib/gi18n.h>
 #include <stdlib.h>
-#include "gtk/gtk.h"
+#include <gtk/gtk.h>
 #include "logview.h"
 #include "calendar.h"
 
 static GtkTreePath *calendar_day_selected (GtkWidget *widget, LogviewWindow *window);
 static void calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window);
-static void close_calendar (GtkWidget * widget, int arg, gpointer client_data);
 static DateMark* find_prev_mark (CalendarData*);
 static DateMark* find_next_mark (CalendarData*);
 static DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
 static DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
 static void calendar_month_changed (GtkWidget *widget, LogviewWindow *window);
 
-/* ----------------------------------------------------------------------
-   NAME:          CalendarMenu
-   DESCRIPTION:   Display the calendar.
-   ---------------------------------------------------------------------- */
-
-void
-CalendarMenu (LogviewWindow *window)
+GtkWidget *
+calendar_new (void)
 {
 	PangoFontDescription *fontdesc;
 	PangoContext *context;
@@ -47,19 +41,6 @@ CalendarMenu (LogviewWindow *window)
 	int size;
 	
 	calendar = (GtkCalendar *)gtk_calendar_new();
-	
-	g_signal_connect (G_OBJECT (calendar), "month_changed",
-										G_CALLBACK (calendar_month_changed),
-										window);
-	g_signal_connect (G_OBJECT (calendar), "day_selected",
-										G_CALLBACK (calendar_day_selected),
-										window);
-	g_signal_connect (G_OBJECT (calendar), "day_selected_double_click",
-										G_CALLBACK (calendar_day_selected_double_click),
-										window);
-	window->calendar = GTK_WIDGET (calendar);
-	window->calendar_visible = TRUE;
-
 	context = gtk_widget_get_pango_context (GTK_WIDGET(calendar));
 	fontdesc = pango_context_get_font_description (context);
 	size = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
@@ -67,6 +48,21 @@ CalendarMenu (LogviewWindow *window)
 	gtk_widget_modify_font (GTK_WIDGET (calendar), fontdesc);
 
 	gtk_widget_show (GTK_WIDGET (calendar));
+    return (GTK_WIDGET(calendar));
+}
+
+void 
+calendar_init (GtkCalendar *calendar, LogviewWindow *window)
+{
+	g_signal_connect (G_OBJECT (calendar), "month_changed",
+                      G_CALLBACK (calendar_month_changed),
+                      window);
+	g_signal_connect (G_OBJECT (calendar), "day_selected",
+                      G_CALLBACK (calendar_day_selected),
+                      window);
+	g_signal_connect (G_OBJECT (calendar), "day_selected_double_click",
+                      G_CALLBACK (calendar_day_selected_double_click),
+                      window);
 }
 
 /* ----------------------------------------------------------------------
@@ -80,7 +76,7 @@ read_marked_dates (CalendarData *data, LogviewWindow *window)
 {
   GtkCalendar *calendar;
   DateMark *mark;
-  gint day, month, year;
+  guint day, month, year;
 
   g_return_if_fail (data);
   calendar = GTK_CALENDAR (window->calendar);
@@ -156,7 +152,7 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
   GtkCalendar *calendar;
   CalendarData *data;
   DateMark *mark;
-  gint day, month, year;
+  guint day, month, year;
 
 	if (window->curlog == NULL)
 		return;
@@ -180,16 +176,10 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
 }
 
 
-/* ----------------------------------------------------------------------
-   NAME:          calendar_day_selected
-   DESCRIPTION:   User clicked on a calendar entry
-   ---------------------------------------------------------------------- */
-
 static GtkTreePath *
 calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 {
-    /* find the selected day in the current logfile */
-    gint day, month, year;
+    guint day, month, year;
     GtkTreePath *path;
     gchar *path_string;
     
@@ -204,18 +194,15 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
     gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);    
     path_string = g_hash_table_lookup (window->curlog->date_headers,
                                        DATEHASH (month, day));
-    path = gtk_tree_path_new_from_string (path_string);
+    if (path_string != NULL) {
+        path = gtk_tree_path_new_from_string (path_string);
     
-    if (path != NULL)
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
-
-	return path;
+        if (path != NULL)
+            gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
+        return path;
+    } else
+        return NULL;
 }
-
-/* ----------------------------------------------------------------------
-   NAME:          calendar_day_selected
-   DESCRIPTION:   User clicked on a calendar entry
-   ---------------------------------------------------------------------- */
 
 void
 calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window)
@@ -225,29 +212,6 @@ calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window)
 	if (path)
 		gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
 }
-
-/* ----------------------------------------------------------------------
-   NAME:          close_calendar
-   DESCRIPTION:   Callback called when the log info window is closed.
-   ---------------------------------------------------------------------- */
-
-void
-close_calendar (GtkWidget *widget, int arg, gpointer data)
-{
-   LogviewWindow *window = LOGVIEW_WINDOW (data);
-   if (window->calendar_visible) {
-	   GtkAction *action = gtk_ui_manager_get_action (window->ui_manager, "/LogviewMenu/ViewMenu/ShowCalendar");
-	   gtk_action_activate (action);
-   }
-   window->calendar_visible = FALSE;
-}
-
-
-/* ----------------------------------------------------------------------
-   NAME:        get_mark_from_month
-   DESCRIPTION: Move curmonthmark to current month if there is a log 
-                entry that month.
-   ---------------------------------------------------------------------- */
 
 static DateMark *
 get_mark_from_date (CalendarData *data, gint day, gint month, gint year)
@@ -266,12 +230,6 @@ get_mark_from_date (CalendarData *data, gint day, gint month, gint year)
 
   return mark;
 }
-
-/* ----------------------------------------------------------------------
-   NAME:        get_mark_from_month
-   DESCRIPTION: Move curmonthmark to current month if there is a log 
-                entry that month.
-   ---------------------------------------------------------------------- */
 
 static DateMark *
 get_mark_from_month (CalendarData *data, gint month, gint year)
@@ -308,11 +266,6 @@ get_mark_from_month (CalendarData *data, gint month, gint year)
    return NULL;
 }
 
-/* ----------------------------------------------------------------------
-   NAME:          find_prev_mark
-   DESCRIPTION:   Returns the previous mark with a different month.
-   ---------------------------------------------------------------------- */
-
 static DateMark *
 find_prev_mark (CalendarData *data)
 {
@@ -336,11 +289,6 @@ find_prev_mark (CalendarData *data)
 
    return mark;
 }
-
-/* ----------------------------------------------------------------------
-   NAME:          find_next_mark
-   DESCRIPTION:   Returns the next mark with a different month.
-   ---------------------------------------------------------------------- */
 
 static DateMark *
 find_next_mark (CalendarData *data)

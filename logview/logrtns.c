@@ -1,4 +1,3 @@
-
 /*  ----------------------------------------------------------------------
 
     Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
@@ -25,9 +24,6 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
-#ifdef HAVE_LOCALE_H
-#include <locale.h>
-#endif
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <string.h>
@@ -35,289 +31,15 @@
 #include "logview.h"
 #include "logrtns.h"
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
+#include "misc.h"
 
-/*
- * -------------------
- * Function prototypes 
- * -------------------
- */
-
-static int isSameDay (time_t day1, time_t day2);
-static void ReadLogStats (Log * log, gchar **buffer_lines);
-static gboolean file_exist (char *filename, gboolean show_error);
-static time_t GetDate (char *line);
-
-extern GList *regexp_db;
-extern GList *actions_db;
 const char *error_main = N_("One file or more could not be opened");
+const char *month[12] =
+{N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
+ N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
+ N_("November"), N_("December")};
 
-/*
- * -------------------
- * Module variables 
- * -------------------
- */
-
-const char *
-C_monthname[12] =
-{ "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December" };
-
-/* space separated list of locales to check, must be space separated, no
- * newlines */
-/* FIXME: This should be checked for at configure time or something to
- * that effect */
-char *all_locales = "af_ZA ar_SA bg_BG ca_ES cs_CZ da_DK de_AT de_BE de_CH de_DE de_LU el_GR en_AU en_CA en_DK en_GB en_IE en_US es_ES et_EE eu_ES fi_FI fo_FO fr_BE fr_CA fr_CH fr_FR fr_LU ga_IE gl_ES gv_GB hr_HR hu_HU in_ID is_IS it_CH it_IT iw_IL kl_GL kw_GB lt_LT lv_LV mk_MK nl_BE nl_NL no_NO pl_PL pt_BR pt_PT ro_RO ru_RU.KOI8-R ru_RU ru_UA sk_SK sl_SI sr_YU sv_FI sv_SE th_TH tr_TR uk_UA";
-
-static int
-get_month (const char *str)
-{
-	int i, j;
-	static char *monthname[12] = { 0 };
-	static GHashTable *locales_monthnames = NULL;
-	static char **locales = NULL;
-
-	for (i = 0; i < 12; i++) {
-		if (g_strncasecmp (str, C_monthname[i], 3) == 0) {
-			return i;
-		}
-	}
-
-	for (i = 0; i < 12; i++) {
-		if (monthname[i] == NULL) {
-			struct tm tm = {0};
-			char buf[256];
-
-			tm.tm_mday = 1;
-			tm.tm_year = 2000 /* bogus */;
-			tm.tm_mon = i;
-
-			/* Note: we don't want utf-8 here, we WANT the
-			 * current locale! */
-			if (strftime (buf, sizeof (buf), "%b", &tm) <= 0) {
-				/* eek, just use C locale cuz we're screwed */
-				monthname[i] = g_strndup (C_monthname[i], 3);
-			} else {
-				monthname[i] = g_strdup (buf);
-			}
-		}
-
-		if (g_ascii_strcasecmp (str, monthname[i]) == 0) {
-			return i;
-		}
-	}
-
-	if (locales == NULL)
-		locales = g_strsplit (all_locales, " ", 0);
-
-	if (locales_monthnames == NULL)
-		locales_monthnames = g_hash_table_new (g_str_hash, g_str_equal);
-
-	/* Try all known locales */
-	/* FIXME :
-	 * This part of the function is very slow and should not be called
-	 * on every line of a log, we should use it just once */
-
-	for (j = 0; locales != NULL && locales[j] != NULL; j++) {
-		for (i = 0; i < 12; i++) {
-			char *key = g_strdup_printf ("%s %d", locales[j], i);
-			char *name = g_hash_table_lookup (locales_monthnames, key);
-			if (name == NULL) {
-				char buf[256];
-				char *old_locale = g_strdup (setlocale (LC_TIME, NULL));
-				
-				if (setlocale (LC_TIME, locales[j]) == NULL) {
-					strcpy (buf, "");
-				} else {
-					struct tm tm = {0};
-
-					tm.tm_mday = 1;
-					tm.tm_year = 2000 /* bogus */;
-					tm.tm_mon = i;
-
-
-					if (strftime (buf, sizeof (buf), "%b",
-						      &tm) <= 0) {
-						strcpy (buf, "");
-					}
-				}
-
-				if (old_locale != NULL) {
-					setlocale (LC_TIME, old_locale);
-					g_free (old_locale);
-				}
-
-				name = g_strdup (buf);
-				g_hash_table_insert (locales_monthnames, g_strdup (key), name);
-			}
-			g_free (key);
-
-			if (name != NULL &&
-			    name[0] != '\0' &&
-			    g_ascii_strcasecmp (str, name) == 0) {
-				return i;
-			}
-		}
-	}
-
-	return 12;
-}
-
-static gboolean
-file_is_zipped (char *filename)
-{
-	char *mime_type;
-
-	mime_type = gnome_vfs_get_mime_type (filename);
-
-	if (strcmp (mime_type, "application/x-gzip")==0 ||
-	    strcmp (mime_type, "application/x-zip")==0 ||
-	    strcmp (mime_type, "application/zip")==0)
-		return TRUE;
-	else
-		return FALSE;
-}
-
-/* ----------------------------------------------------------------------
-   NAME:          OpenLogFile
-   DESCRIPTION:   Open a log file and read several pages.
-   ---------------------------------------------------------------------- */
-
-Log *
-OpenLogFile (char *filename, gboolean show_error)
-{
-   Log *tlog;
-   LogLine *line;
-   char *buffer;
-   char **buffer_lines;
-   char *display_name=NULL;
-   int i;
-   GError *error;
-   GnomeVFSResult result;
-   int size;
-   
-   if (file_exist (filename, show_error) == FALSE)
-	   return NULL;
-
-   if (file_is_zipped (filename)) {
-	   display_name = filename;
-	   filename = g_strdup_printf ("%s#gzip:", display_name);
-   }   
-
-   /* Check that the file is readable and is a logfile */
-   if (!isLogFile (filename, TRUE))
-       return NULL;
-
-   result = gnome_vfs_read_entire_file (filename, &size, &buffer);
-   if (result != GNOME_VFS_OK) {
-	   ShowErrMessage (NULL, error_main, _("Unable to open logfile!\n"));
-	   return NULL;
-   }
-
-   /* Alloc memory for log structure */
-   tlog = g_new0 (Log, 1);
-   if (tlog == NULL) {
-	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
-	   return NULL;
-   }
-   tlog->name = g_strdup (filename);
-   tlog->display_name = display_name;
-   tlog->has_date = TRUE;
-   if (display_name)
-	   g_free (filename);
-
-   buffer_lines = g_strsplit_set (buffer, "\n\r", -1);
-   g_free (buffer);
-
-   /* count the lines */
-   for (i=0; buffer_lines[i+1] != NULL; i++);
-   tlog->total_lines = i;
-   tlog->lines = g_new (LogLine*, tlog->total_lines);
-   tlog->displayed_lines = 0;
-   
-   for (i=0; buffer_lines[i+1]!=NULL; i++) {
-       (tlog->lines)[i] = g_new (LogLine, 1);
-       if ((tlog->lines)[i]==NULL) {
-           ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
-           return NULL;
-       }
-   }
-
-   for (i=0; buffer_lines[i+1] != NULL; i++) {
-	   ParseLine (buffer_lines[i], (tlog->lines)[i], tlog->has_date);
-       if ((tlog->lines)[i]->month == -1 && tlog->has_date)
-           tlog->has_date = FALSE;
-   }
-
-   /* Read log stats */
-   ReadLogStats (tlog, buffer_lines);
-   g_strfreev (buffer_lines);
-
-   /* initialize date headers hash table */
-   tlog->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
-                                               (GDestroyNotify) g_free);
-   tlog->first_time = TRUE;
-
-	 /* Check for older versions of the log */
-	 tlog->versions = 0;
-	 tlog->current_version = 0;
-	 tlog->parent_log = NULL;
-   tlog->mon_offset = size;
-	 for (i=1; i<5; i++) {
-		 gchar *older_name;
-		 older_name = g_strdup_printf ("%s.%d", filename, i);
-		 tlog->older_logs[i] = OpenLogFile (older_name, FALSE);
-     g_free (older_name);
-		 if (tlog->older_logs[i] != NULL) {
-			 tlog->older_logs[i]->parent_log = tlog;
-			 tlog->older_logs[i]->current_version = i;
-			 tlog->versions++;
-		 }
-		 else
-			 break;
-	 }
-
-   return tlog;
-}
-
-Log *log_add_lines (Log *log, gchar *buffer)
-{
-  char **buffer_lines;
-  int i, j, new_total_lines;
-  LogLine **new_lines;
-
-  buffer_lines = g_strsplit (buffer, "\n", -1);
-  
-  for (i=0; buffer_lines[i+1] != NULL; i++);
-  new_total_lines = log->total_lines + i;
-  new_lines = g_new (LogLine *, new_total_lines);
-  
-  for (i=0; i<new_total_lines; i++)
-    new_lines [i] = (log->lines)[i];
-  
-  for (i=0; buffer_lines[i+1]!=NULL; i++) {
-    j = log->total_lines + i;
-    new_lines [j] = g_new (LogLine, 1);
-    ParseLine (buffer_lines[i], new_lines[j], log->has_date);
-  }
-  g_strfreev (buffer_lines);
-  
-  /* Now store the new lines in the log */
-  g_free (log->lines);
-  log->total_lines = new_total_lines;
-  log->lines = new_lines;
-  
-  return log;
-}
+/* File checking */
 
 static gboolean
 file_exist (char *filename, gboolean show_error)
@@ -353,13 +75,23 @@ file_exist (char *filename, gboolean show_error)
    return TRUE;
 }
 
-/* ----------------------------------------------------------------------
-   NAME:          isLogFile
-   DESCRIPTION:   Check that the given file is indeed a logfile and 
-   that it is readable.
-   ---------------------------------------------------------------------- */
-int
-isLogFile (char *filename, gboolean show_error)
+static gboolean
+file_is_zipped (char *filename)
+{
+	char *mime_type;
+
+	mime_type = gnome_vfs_get_mime_type (filename);
+
+	if (strcmp (mime_type, "application/x-gzip")==0 ||
+	    strcmp (mime_type, "application/x-zip")==0 ||
+	    strcmp (mime_type, "application/zip")==0)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+gboolean
+file_is_log (char *filename, gboolean show_error)
 {
    char buff[1024];
    char **token;
@@ -399,39 +131,44 @@ isLogFile (char *filename, gboolean show_error)
    return TRUE;
 }
 
-/* the returned buffer needs to be freed at some point. */
+/* log line manipulations */
 
-gchar *ReadNewLines (Log *log)
+char *
+logline_get_date_string (LogLine *line)
 {
-	GnomeVFSResult result;
-	gchar *buffer;
-  GnomeVFSFileSize newsize, read;
-  GnomeVFSFileOffset size;
+   char buf[1024];
+   char *utf8;
+   GDate *date;
 
-	g_return_val_if_fail (log, NULL);
-  
-  result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_END, 0L);
-	result = gnome_vfs_tell (log->mon_file_handle, &newsize);
-  size = log->mon_offset;
+   if (line->month >= 0 && line->month < 12) {
 
-	if (newsize > log->mon_offset) {
-    buffer = g_malloc (newsize-size);
-    result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
-    result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);    
-		log->mon_offset = newsize;
-		return buffer;
-	}
-	return NULL;
+       date = g_date_new_dmy (line->date, line->month + 1, 2000);
+
+       if (!g_date_valid (date)) {
+           utf8 = g_strdup(_("Invalid date"));
+           return utf8;
+       }
+
+       /* Translators: Make sure this is only Month and Day format, year
+        * will be bogus here */
+       if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) == 0) {
+           /* If we fail just use the US format */
+           utf8 = g_strdup_printf ("%s %d", _(month[(int) line->month]), 
+                                   line->date);
+       } else {
+           utf8 = LocaleToUTF8 (buf);
+       }
+   } else {
+       utf8 = g_strdup_printf ("?%d? %d", (int) line->month, line->date);
+   }
+   
+   g_date_free (date);
+
+   return utf8;
 }
 
-/* ----------------------------------------------------------------------
-   NAME:        ParseLine
-   DESCRIPTION: Extract date and other info from the line. If any field 
-   seems to be missing fill the others with -1 and "".
-   ---------------------------------------------------------------------- */
-
-void
-ParseLine (char *buff, LogLine *line, gboolean has_date)
+static LogLine *
+logline_new_from_string (gchar *buff, gboolean has_date)
 {
    char *token;
    char scratch[1024];
@@ -440,13 +177,20 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
    char message[MAX_WIDTH];
    char hostname[MAX_HOSTNAME_WIDTH];
    char process[MAX_PROC_WIDTH];
+   LogLine *line;
+   
+   line = g_new (LogLine, 1);
+   if (line == NULL) {
+       ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+       return NULL;
+   }
 
    /* create defaults */
    line->month = -1; line->date = -1;
    line->hour = -1; line->min = -1; line->sec = -1;
    if (buff[0] == 0) {
-       line->message=NULL;
-       return;
+       line->message=NULL;       
+       return (line);
    }
 
    strncpy (message, buff, MAX_WIDTH);
@@ -455,7 +199,7 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
 
    if (!has_date) {
        line->message = g_strdup (message);
-       return;
+       return (line);
    }
 
    strcpy (hostname, "");
@@ -463,43 +207,43 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
 
    /* FIXME : stop using strtok, it's unrecommended. */
    token = strtok (message, " ");
-   if (token == NULL) return;
+   if (token == NULL) return (line);
 
-   i = get_month (token);
+   i = string_get_month (token);
    if (i == 12)
-       return;
+       return (line);
    line->month = i;	 
 
    token = strtok (NULL, " ");
    if (token != NULL)
        line->date = (char) atoi (token);
    else
-       return;
+       return (line);
 
    token = strtok (NULL, ":");
    if (token != NULL)
        line->hour = (char) atoi (token);
    else
-       return;
+       return (line);
 
    token = strtok (NULL, ":");
    if (token != NULL)
       line->min = (char) atoi (token);
    else
-       return;
+       return (line);
 
    token = strtok (NULL, " ");
    if (token != NULL)
        line->sec = (char) atoi (token);
    else
-       return;
+       return (line);
 
    token = strtok (NULL, " ");
    if (token != NULL) {
       strncpy (hostname, token, MAX_HOSTNAME_WIDTH);
       hostname[MAX_HOSTNAME_WIDTH-1] = '\0';
    } else
-       return;
+       return (line);
 
    token = strtok (NULL, ":\n");
    if (token != NULL)
@@ -530,10 +274,13 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
    line->message = g_strdup (message);
    line->hostname = g_strdup (hostname);
    line->process = g_strdup (process);
+   return (line);
 }
 
+/* log functions */
+
 /* ----------------------------------------------------------------------
-   NAME:          ReadLogStats
+   NAME:          log_read_stats
    DESCRIPTION:   Read the log and get some statistics from it. Read
    all dates which have a log entry to create calendar.
    All dates are given with respect to the 1/1/1970
@@ -543,7 +290,7 @@ ParseLine (char *buff, LogLine *line, gboolean has_date)
    ---------------------------------------------------------------------- */
 
 static void
-ReadLogStats (Log *log, gchar **buffer_lines)
+log_read_stats (Log *log, gchar **buffer_lines)
 {
    gchar *buffer;
    int offsetyear, lastyear, thisyear;
@@ -555,7 +302,6 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    GnomeVFSResult result;
    GnomeVFSFileInfo *info;
 
-   /* Clear struct.      */
    log->lstats.startdate = 0;
    log->lstats.enddate = 0;
    log->lstats.firstmark = NULL;
@@ -575,7 +321,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    curdate = -1;
    while ((curdate < 0) && (buffer_lines[nl]!=NULL))
    {
-	   curdate = GetDate (buffer_lines[nl]);	  
+	   curdate = string_get_date (buffer_lines[nl]);	  
 	   nl++;
    }
    log->lstats.startdate = curdate;
@@ -585,7 +331,7 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    offsetyear = 0;
    curmark = malloc (sizeof (DateMark));
    if (curmark == NULL) {
-	   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
+	   ShowErrMessage (NULL, error_main, _("Out of memory"));
 	   exit (0);
    }
    curmark->time = curdate;
@@ -600,16 +346,16 @@ ReadLogStats (Log *log, gchar **buffer_lines)
 
    i = 0;
    for (i=0; buffer_lines[i]!=NULL; i++) {
-	   newdate = GetDate (buffer_lines[i]);
+	   newdate = string_get_date (buffer_lines[i]);
 
 	   if (newdate < 0)
 		   continue;
-	   if (isSameDay (newdate, curdate) )
+	   if (days_are_equal (newdate, curdate))
 		   continue;
 	   
 	   curmark->next = malloc (sizeof (DateMark));
 	   if (curmark->next == NULL) {
-		   ShowErrMessage (NULL, error_main, _("ReadLogStats: out of memory"));
+		   ShowErrMessage (NULL, error_main, _("Out of memory"));
 		   exit (0);
 	   }
 
@@ -691,96 +437,158 @@ ReadLogStats (Log *log, gchar **buffer_lines)
    return;
 }
 
-
-
-/* ----------------------------------------------------------------------
-   NAME:          isSameDay
-   DESCRIPTION:   Determine if the given times are the same.
-   ---------------------------------------------------------------------- */
-
-static int
-isSameDay (time_t day1, time_t day2)
+Log *
+log_open (char *filename, gboolean show_error)
 {
-   struct tm d1, d2, *foo;
-
-   foo = localtime (&day1);
-   memcpy (&d1, foo, sizeof (struct tm));
-
-   foo = localtime (&day2);
-   memcpy (&d2, foo, sizeof (struct tm));
-
-   if (d1.tm_year != d2.tm_year)
-      return FALSE;
-   if (d1.tm_mon != d2.tm_mon)
-      return FALSE;
-   if (d1.tm_mday != d2.tm_mday)
-      return FALSE;
-
-   return TRUE;
-}
-
-
-/* ----------------------------------------------------------------------
-   NAME:          GetDate
-   DESCRIPTION:   Extract the date from the log line.
-   ---------------------------------------------------------------------- */
-
-static time_t
-GetDate (char *line)
-{
-   struct tm date;
-   char *token;
+   Log *tlog;
+   LogLine *line;
+   char *buffer;
+   char **buffer_lines;
+   char *display_name=NULL;
    int i;
-
-   token = strtok (line, " ");
-   if (!token)
-       return -1;
+   GError *error;
+   GnomeVFSResult result;
+   int size;
    
-   i = get_month (token);
+   if (file_exist (filename, show_error) == FALSE)
+	   return NULL;
 
-   if (i == 12)
-      return -1;
+   if (file_is_zipped (filename)) {
+	   display_name = filename;
+	   filename = g_strdup_printf ("%s#gzip:", display_name);
+   }   
 
-   date.tm_mon = i;
-   date.tm_year = 70;
+   /* Check that the file is readable and is a logfile */
+   if (!file_is_log (filename, TRUE))
+       return NULL;
 
-   token = strtok (NULL, " ");
-   if (token != NULL)
-      date.tm_mday = atoi (token);
-   else
-      return -1;
+   result = gnome_vfs_read_entire_file (filename, &size, &buffer);
+   if (result != GNOME_VFS_OK) {
+	   ShowErrMessage (NULL, error_main, _("Unable to open logfile!\n"));
+	   return NULL;
+   }
 
-   token = strtok (NULL, ":");
-   if (token != NULL)
-      date.tm_hour = atoi (token);
-   else
-      return -1;
+   /* Alloc memory for log structure */
+   tlog = g_new0 (Log, 1);
+   if (tlog == NULL) {
+	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+	   return NULL;
+   }
+   tlog->name = g_strdup (filename);
+   tlog->display_name = display_name;
+   tlog->has_date = TRUE;
+   if (display_name)
+	   g_free (filename);
 
-   token = strtok (NULL, ":");
-   if (token != NULL)
-      date.tm_min = atoi (token);
-   else
-      return -1;
+   buffer_lines = g_strsplit_set (buffer, "\n\r", -1);
+   g_free (buffer);
 
-   token = strtok (NULL, " ");
-   if (token != NULL)
-      date.tm_sec = atoi (token);
-   else
-      return -1;
+   /* count the lines */
+   for (i=0; buffer_lines[i+1] != NULL; i++);
+   tlog->total_lines = i;
+   tlog->lines = g_new (LogLine*, tlog->total_lines);
+   tlog->displayed_lines = 0;
+   
+   for (i=0; i < tlog->total_lines; i++) {
+	   (tlog->lines)[i] = logline_new_from_string (buffer_lines[i], tlog->has_date);
+       if ((tlog->lines)[i]->month == -1 && tlog->has_date)
+           tlog->has_date = FALSE;
+   }
 
-   date.tm_isdst = 0;
+   log_read_stats (tlog, buffer_lines);
+   g_strfreev (buffer_lines);
 
-   return mktime (&date);
+   /* initialize date headers hash table */
+   tlog->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
+                                               (GDestroyNotify) g_free);
+   tlog->first_time = TRUE;
+   
+   /* Check for older versions of the log */
+   tlog->versions = 0;
+   tlog->current_version = 0;
+   tlog->parent_log = NULL;
+   tlog->mon_offset = size;
+   for (i=1; i<5; i++) {
+       gchar *older_name;
+       older_name = g_strdup_printf ("%s.%d", filename, i);
+       tlog->older_logs[i] = log_open (older_name, FALSE);
+       g_free (older_name);
+       if (tlog->older_logs[i] != NULL) {
+           tlog->older_logs[i]->parent_log = tlog;
+           tlog->older_logs[i]->current_version = i;
+           tlog->versions++;
+       }
+       else
+           break;
+   }
 
+   return tlog;
 }
 
-/* ----------------------------------------------------------------------
-   NAME:          CloseLog
-   DESCRIPTION:   Close log and free all memory used
-   ---------------------------------------------------------------------- */
+static Log*
+log_add_lines (Log *log, gchar *buffer)
+{
+  char **buffer_lines;
+  int i, j, new_total_lines;
+  LogLine **new_lines;
+
+  g_return_if_fail (log != NULL);
+  g_return_if_fail (buffer != NULL);
+
+  buffer_lines = g_strsplit (buffer, "\n", -1);
+  
+  for (i=0; buffer_lines[i+1] != NULL; i++);
+  new_total_lines = log->total_lines + i;
+  new_lines = g_new (LogLine *, new_total_lines);
+  
+  for (i=0; i< log->total_lines; i++)
+    new_lines [i] = (log->lines)[i];
+  
+  for (i=0; buffer_lines[i+1]!=NULL; i++) {
+    j = log->total_lines + i;
+    new_lines [j] = logline_new_from_string (buffer_lines[i], log->has_date);
+  }
+  g_strfreev (buffer_lines);
+  
+  /* Now store the new lines in the log */
+  g_free (log->lines);
+  log->total_lines = new_total_lines;
+  log->lines = new_lines;
+  
+  return log;
+}
+
+/* log_read_new_lines */
+
+gboolean 
+log_read_new_lines (Log *log)
+{
+	GnomeVFSResult result;
+	gchar *buffer;
+    GnomeVFSFileSize newsize, read;
+    GnomeVFSFileOffset size;
+
+	g_return_val_if_fail (log!=NULL, FALSE);
+    
+    result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_END, 0L);
+	result = gnome_vfs_tell (log->mon_file_handle, &newsize);
+    size = log->mon_offset;
+    
+	if (newsize > log->mon_offset) {
+        buffer = g_malloc (newsize-size);
+        result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
+        result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);    
+        log->mon_offset = newsize;
+        
+        log_add_lines (log, buffer);
+        g_free (buffer);
+        return TRUE;
+	}
+	return FALSE;
+}
 
 void
-CloseLog (Log *log)
+log_close (Log *log)
 {
    gint i;
 
@@ -788,7 +596,7 @@ CloseLog (Log *log)
    
    /* Close archive logs if there's some */
    for (i = 0; i < log->versions; i++)
-       CloseLog (log->older_logs[i]);
+       log_close (log->older_logs[i]);
 
    /* Close file - this should not be needed */
    if (log->mon_file_handle != NULL) {

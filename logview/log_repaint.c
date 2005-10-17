@@ -26,11 +26,6 @@
 #include "log_repaint.h"
 #include "misc.h"
 
-char *month[12] =
-{N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
- N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
- N_("November"), N_("December")};
-
 enum {
    DATE = 0,
    HOSTNAME,
@@ -225,40 +220,6 @@ logview_update_version_bar (LogviewWindow *logview)
 	}
 }
 
-static char *
-logline_get_date (LogLine *line)
-{
-   char buf[1024];
-   char *utf8;
-   GDate *date;
-
-   if (line->month >= 0 && line->month < 12) {
-
-       date = g_date_new_dmy (line->date, line->month + 1, 2000);
-
-       if (!g_date_valid (date)) {
-           utf8 = g_strdup(_("Invalid date"));
-           return utf8;
-       }
-
-       /* Translators: Make sure this is only Month and Day format, year
-        * will be bogus here */
-       if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) == 0) {
-           /* If we fail just use the US format */
-           utf8 = g_strdup_printf ("%s %d", _(month[(int) line->month]), 
-                                   line->date);
-       } else {
-           utf8 = LocaleToUTF8 (buf);
-       }
-   } else {
-       utf8 = g_strdup_printf ("?%d? %d", (int) line->month, line->date);
-   }
-   
-   g_date_free (date);
-
-   return utf8;
-}
-
 static void
 tree_view_columns_set_visible (GtkWidget *view, gboolean visible)
 {
@@ -276,7 +237,7 @@ model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
 {
     gchar *utf8;
     
-    utf8 = logline_get_date (line);
+    utf8 = logline_get_date_string (line);
     gtk_tree_store_set (model, iter, DATE, utf8, -1);
     g_free (utf8);
 }
@@ -396,10 +357,10 @@ logview_create_model_no_date (LogviewWindow *window, Log *log)
         
     log->model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
                                                     G_TYPE_STRING, G_TYPE_STRING));
-    for (i=log->total_lines-1; i>0; i--) {
+    for (i=log->total_lines-1; i>=0; i--) {
         line = (log->lines)[i];
         gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &iter, NULL);
-        gtk_tree_store_set (GTK_TREE_STORE (log->model), &iter,
+        gtk_tree_store_set (GTK_TREE_STORE (log->model), &iter,                            
                             MESSAGE, line->message, -1);
         if (i == log->total_lines-1)
             log->current_path = gtk_tree_model_get_path (log->model, &iter);

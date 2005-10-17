@@ -1,5 +1,20 @@
 2005-10-17  Vincent Noel  <vnoel@cox.net>
 
+	* log_repaint.c (logview_create_model_no_date): Off-by-one error.
+	* logview.c (logview_copy): Don't crash when copying lines from a
+	log without dates.
+	* logview.c (logview_menus_set_state): Improve readability.
+	* logview.c (logview_init): Rename some stuff to make it consistent.
+	* logview.c (logview_destroy, save_session): We only have one
+	window now, so simplify.
+	* logrtns.c (logline_get_date): Moved this function to logrtns.c
+	* logrtns.h (struct _log): Move the log struct declaration in
+	logrtns.h instead of logview.h.
+	* calendar.c (calendar_day_selected): Fix a couple of warnings.
+	* calendar.c (calendar_close): Remove.
+
+2005-10-17  Vincent Noel  <vnoel@cox.net>
+
 	* logrtns.c (ParseLine): Handle zero-length lines better
 	(e.g. don't crash).
 

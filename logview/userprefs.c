@@ -97,7 +97,7 @@ prefs_create_defaults (UserPrefsStruct *prefs)
 	}
 	
 	for (i=0; i<7; i++) {
-		if (isLogFile (logfiles[i], FALSE))
+		if (file_is_log (logfiles[i], FALSE))
 			logs = g_slist_append (logs, g_strdup(logfiles[i]));
 	}
 
@@ -131,7 +131,7 @@ prefs_load (GConfClient *client)
 		prefs_create_defaults (prefs);
 
 	logfile = gconf_client_get_string (client, GCONF_LOGFILE, NULL);
-	if (logfile != NULL && strcmp (logfile, "") && isLogFile(logfile, FALSE)) {
+	if (logfile != NULL && strcmp (logfile, "") && file_is_log(logfile, FALSE)) {
 		prefs->logfile = g_strdup (logfile);
 		g_free (logfile);
 	}

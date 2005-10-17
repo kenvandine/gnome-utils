@@ -24,7 +24,7 @@
 #include <string.h>
 
 void
-AboutShowWindow (GtkWidget *widget, gpointer user_data)
+logview_about (GtkWidget *widget, GtkWidget *window)
 {
   /* Author needs some sort of dash over the 'e' in Cesar  - U-00E9 */
   static const gchar *author[] = { "Cesar Miquel <miquel@df.uba.ar>",
@@ -42,7 +42,7 @@ AboutShowWindow (GtkWidget *widget, gpointer user_data)
   gchar *documenters[] = {NULL};
   /* Translator credits */
   const gchar *translator_credits = _("translator-credits");
-  GtkWidget *window = user_data;
+  g_return_if_fail (GTK_IS_WINDOW (window));
 
   gtk_show_about_dialog (GTK_WINDOW (window),
 		"name",  _("System Log Viewer"),

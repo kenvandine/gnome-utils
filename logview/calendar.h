@@ -20,7 +20,8 @@
 #ifndef __LOG_CALENDAR_H__
 #define __LOG_CALENDAR_H__
 
-void CalendarMenu (LogviewWindow *window);
-CalendarData* init_calendar_data (LogviewWindow *window);
+GtkWidget *calendar_new (void);
+CalendarData* calendar_init_data (LogviewWindow *window);
+void calendar_init (GtkCalendar *calendar, LogviewWindow *window);
 
 #endif /* __LOG_CALENDAR_H__ */
