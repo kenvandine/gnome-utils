@@ -1,3 +1,8 @@
+2005-10-20  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: (file_is_log), (logline_new_from_string), (log_open):
+	Stop using strtok, use g_strsplit_set instead. Safer + net code win.
+
 2005-10-17  Vincent Noel  <vnoel@cox.net>
 
 	* log_repaint.c (logview_create_model_no_date): Off-by-one error.

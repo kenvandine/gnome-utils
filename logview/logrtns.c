@@ -38,6 +38,12 @@ const char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
  N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
  N_("November"), N_("December")};
+enum {
+    MONTH = 0, DAY,
+    HOUR, MIN, SEC,
+    HOSTNAME, PROCESS, MESSAGE
+};
+    
 
 /* File checking */
 
@@ -94,7 +100,6 @@ gboolean
 file_is_log (char *filename, gboolean show_error)
 {
    char buff[1024];
-   char **token;
    char *found_space;
    GnomeVFSHandle *handle;
    GnomeVFSResult result;
@@ -168,112 +173,70 @@ logline_get_date_string (LogLine *line)
 }
 
 static LogLine *
-logline_new_from_string (gchar *buff, gboolean has_date)
+logline_new_from_string (gchar *message, gboolean has_date)
 {
-   char *token;
-   char scratch[1024];
+   char **splits;
    int i;
-   int len;
-   char message[MAX_WIDTH];
-   char hostname[MAX_HOSTNAME_WIDTH];
-   char process[MAX_PROC_WIDTH];
    LogLine *line;
    
    line = g_new (LogLine, 1);
-   if (line == NULL) {
-       ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+   if (line == NULL)
        return NULL;
-   }
 
-   /* create defaults */
-   line->month = -1; line->date = -1;
-   line->hour = -1; line->min = -1; line->sec = -1;
-   if (buff[0] == 0) {
+   line->month = -1; 
+   if (message[0] == 0) {
        line->message=NULL;       
        return (line);
    }
-
-   strncpy (message, buff, MAX_WIDTH);
-   len = MIN (MAX_WIDTH-1, strlen (buff));
-   message[len] = '\0';  
 
    if (!has_date) {
        line->message = g_strdup (message);
        return (line);
    }
 
-   strcpy (hostname, "");
-   strcpy (process, "");
+   /* Seperation of a log line into 7 fields */
+   splits = g_strsplit_set (message, " :\n", 8);
 
-   /* FIXME : stop using strtok, it's unrecommended. */
-   token = strtok (message, " ");
-   if (token == NULL) return (line);
-
-   i = string_get_month (token);
-   if (i == 12)
-       return (line);
-   line->month = i;	 
-
-   token = strtok (NULL, " ");
-   if (token != NULL)
-       line->date = (char) atoi (token);
-   else
-       return (line);
-
-   token = strtok (NULL, ":");
-   if (token != NULL)
-       line->hour = (char) atoi (token);
-   else
-       return (line);
-
-   token = strtok (NULL, ":");
-   if (token != NULL)
-      line->min = (char) atoi (token);
-   else
-       return (line);
-
-   token = strtok (NULL, " ");
-   if (token != NULL)
-       line->sec = (char) atoi (token);
-   else
-       return (line);
-
-   token = strtok (NULL, " ");
-   if (token != NULL) {
-      strncpy (hostname, token, MAX_HOSTNAME_WIDTH);
-      hostname[MAX_HOSTNAME_WIDTH-1] = '\0';
-   } else
-       return (line);
-
-   token = strtok (NULL, ":\n");
-   if (token != NULL)
-       strncpy (scratch, token, 254);
-   else
-       strncpy (scratch, " ", 254);
-   scratch[254] = '\0';
-   token = strtok (NULL, "\n");
-
-   if (token == NULL)
-   {
-      strncpy (process, "", MAX_PROC_WIDTH);
-      i = 0;
-      while (scratch[i] == ' ')
-	 i++;
-      strncpy (message, &scratch[i], MAX_WIDTH);
-      message [MAX_WIDTH-1] = '\0';
-   } else
-   {
-      strncpy (process, scratch, MAX_PROC_WIDTH);
-      process [MAX_PROC_WIDTH-1] = '\0';
-      while (*token == ' ')
-	 token++;
-      strncpy (message, token, MAX_WIDTH);
-      message [MAX_WIDTH-1] = '\0';
+   i = 0;
+   while (splits[i]!=NULL) {
+       switch (i) {
+       case MONTH:
+           line->month = string_get_month (splits[i]);
+           if (line->month==12) {
+               line->month == -1;
+               line->message = g_strdup (message);
+           }
+           break;
+       case DAY:
+           line->date = (int) atoi (splits[i]);
+           break;
+       case HOUR:
+           line->hour = (int) atoi (splits[i]);
+           break;
+       case MIN:
+           line->min = (int) atoi (splits[i]);
+           break;
+       case SEC:
+           line->sec = (int) atoi (splits[i]);
+           break;
+       case HOSTNAME:
+           line->hostname = g_strdup (splits[i]);
+           break;
+       case PROCESS:
+           line->process = g_strdup (splits[i]);
+           break;
+       case MESSAGE:
+           line->message = g_strdup (splits[i]);
+           break;
+       default:
+           g_strfreev (splits);
+           g_return_val_if_reached (line);
+           break;
+       }
+       i++;
    }
-
-   line->message = g_strdup (message);
-   line->hostname = g_strdup (hostname);
-   line->process = g_strdup (process);
+   
+   g_strfreev (splits);
    return (line);
 }
 
@@ -440,11 +403,11 @@ log_read_stats (Log *log, gchar **buffer_lines)
 Log *
 log_open (char *filename, gboolean show_error)
 {
-   Log *tlog;
+   Log *log;
    LogLine *line;
    char *buffer;
    char **buffer_lines;
-   char *display_name=NULL;
+   char *display_name = NULL;
    int i;
    GError *error;
    GnomeVFSResult result;
@@ -458,7 +421,6 @@ log_open (char *filename, gboolean show_error)
 	   filename = g_strdup_printf ("%s#gzip:", display_name);
    }   
 
-   /* Check that the file is readable and is a logfile */
    if (!file_is_log (filename, TRUE))
        return NULL;
 
@@ -468,15 +430,14 @@ log_open (char *filename, gboolean show_error)
 	   return NULL;
    }
 
-   /* Alloc memory for log structure */
-   tlog = g_new0 (Log, 1);
-   if (tlog == NULL) {
+   log = g_new0 (Log, 1);
+   if (log == NULL) {
 	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 	   return NULL;
    }
-   tlog->name = g_strdup (filename);
-   tlog->display_name = display_name;
-   tlog->has_date = TRUE;
+   log->name = g_strdup (filename);
+   log->display_name = display_name;
+   log->has_date = TRUE;
    if (display_name)
 	   g_free (filename);
 
@@ -485,44 +446,51 @@ log_open (char *filename, gboolean show_error)
 
    /* count the lines */
    for (i=0; buffer_lines[i+1] != NULL; i++);
-   tlog->total_lines = i;
-   tlog->lines = g_new (LogLine*, tlog->total_lines);
-   tlog->displayed_lines = 0;
+   log->total_lines = i;
+   log->lines = g_new (LogLine*, log->total_lines);
+   log->displayed_lines = 0;
    
-   for (i=0; i < tlog->total_lines; i++) {
-	   (tlog->lines)[i] = logline_new_from_string (buffer_lines[i], tlog->has_date);
-       if ((tlog->lines)[i]->month == -1 && tlog->has_date)
-           tlog->has_date = FALSE;
-   }
+   for (i=0; i < log->total_lines; i++) {
 
-   log_read_stats (tlog, buffer_lines);
+	   (log->lines)[i] = logline_new_from_string (buffer_lines[i], log->has_date);
+
+       if ((log->lines)[i] == NULL) {
+           ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+           return;
+       }
+       if ((log->lines)[i]->month == -1 && log->has_date) {
+           log->has_date = FALSE;
+       }
+   }
+   
+   log_read_stats (log, buffer_lines);
    g_strfreev (buffer_lines);
 
    /* initialize date headers hash table */
-   tlog->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
+   log->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
                                                (GDestroyNotify) g_free);
-   tlog->first_time = TRUE;
+   log->first_time = TRUE;
    
    /* Check for older versions of the log */
-   tlog->versions = 0;
-   tlog->current_version = 0;
-   tlog->parent_log = NULL;
-   tlog->mon_offset = size;
+   log->versions = 0;
+   log->current_version = 0;
+   log->parent_log = NULL;
+   log->mon_offset = size;
    for (i=1; i<5; i++) {
        gchar *older_name;
        older_name = g_strdup_printf ("%s.%d", filename, i);
-       tlog->older_logs[i] = log_open (older_name, FALSE);
+       log->older_logs[i] = log_open (older_name, FALSE);
        g_free (older_name);
-       if (tlog->older_logs[i] != NULL) {
-           tlog->older_logs[i]->parent_log = tlog;
-           tlog->older_logs[i]->current_version = i;
-           tlog->versions++;
+       if (log->older_logs[i] != NULL) {
+           log->older_logs[i]->parent_log = log;
+           log->older_logs[i]->current_version = i;
+           log->versions++;
        }
        else
            break;
    }
 
-   return tlog;
+   return log;
 }
 
 static Log*
