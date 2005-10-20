@@ -161,21 +161,14 @@ IsLeapYear (int year)
 int
 days_are_equal (time_t day1, time_t day2)
 {
-   struct tm d1, d2, *foo;
+   GDate date1, date2;
 
-   foo = localtime (&day1);
-   memcpy (&d1, foo, sizeof (struct tm));
-
-   foo = localtime (&day2);
-   memcpy (&d2, foo, sizeof (struct tm));
-
-   if (d1.tm_year != d2.tm_year)
-      return FALSE;
-   if (d1.tm_mon != d2.tm_mon)
-      return FALSE;
-   if (d1.tm_mday != d2.tm_mday)
-      return FALSE;
-
+   g_date_set_time (&date1, day1);
+   g_date_set_time (&date2, day2);
+   if (g_date_compare (&date1, &date2)==0)
+       return TRUE;
+   else
+       return FALSE;
    return TRUE;
 }
 
@@ -273,51 +266,21 @@ string_get_month (const char *str)
 	return 12;
 }
 
-time_t
+GDate *
 string_get_date (char *line)
 {
-   struct tm date;
-   char *token;
-   int i;
+    gchar **split;
+    GDate *date;
+    int d, m;
+    
+    split = g_strsplit (line, " ", 3);
+    if (split[0] == NULL || split[1] == NULL)
+        return NULL;
+    
+    m = string_get_month (split[0]) + 1;    
+    d = atoi (split[1]);
 
-   token = strtok (line, " ");
-   if (!token)
-       return -1;
-   
-   i = string_get_month (token);
-
-   if (i == 12)
-      return -1;
-
-   date.tm_mon = i;
-   date.tm_year = 70;
-
-   token = strtok (NULL, " ");
-   if (token != NULL)
-      date.tm_mday = atoi (token);
-   else
-      return -1;
-
-   token = strtok (NULL, ":");
-   if (token != NULL)
-      date.tm_hour = atoi (token);
-   else
-      return -1;
-
-   token = strtok (NULL, ":");
-   if (token != NULL)
-      date.tm_min = atoi (token);
-   else
-      return -1;
-
-   token = strtok (NULL, " ");
-   if (token != NULL)
-      date.tm_sec = atoi (token);
-   else
-      return -1;
-
-   date.tm_isdst = 0;
-
-   return mktime (&date);
+    date = g_date_new_dmy (d, m, 70);    
+    return date;
 
 }

@@ -24,33 +24,31 @@
 #include <time.h>
 #include <libgnomevfs/gnome-vfs.h>
 
-struct __datemark
+typedef struct
 {
-  time_t time;		/* date           */
-  struct tm fulldate;
-  long offset;		/* offset in file */
-  char year;		/* to correct for logfiles with many years */
-  long ln;		/* Line # from begining of file */
-  struct __datemark *next, *prev;
-};
+    GDate *date;		/* date           */
+    /* fulldate is only used in the status bar : needs updating */
+    struct tm fulldate;
+    long first_line, last_line; /* First and last line in the log */
+    gboolean expand;
+    GtkTreePath *path;
+} Day;
 
-typedef struct __datemark DateMark;
+typedef struct 
+{
+    GtkWidget *calendar;
+    GList *days;
+    gboolean first_pass;
+} CalendarData;
 
 typedef struct
 {
-  time_t startdate, enddate;
-  time_t mtime;
-  long numlines;
-  GnomeVFSFileSize size;
-  DateMark *firstmark, *lastmark;
-}
-LogStats;
-
-typedef struct {
-  GtkWidget *calendar;
-  DateMark *curmonthmark;
-  gboolean first_pass;
-} CalendarData;
+    /* startdate and enddate are only used in info.c now
+       find another way to do this.*/
+    time_t startdate, enddate;
+    time_t mtime;
+    GnomeVFSFileSize size;
+} LogStats;
 
 typedef struct
 {
@@ -67,11 +65,12 @@ typedef struct
 typedef struct _log Log;
 struct _log
 {
-	DateMark *curmark;
+    GList *days;
+
 	char *name;
 	char *display_name;
 	CalendarData *caldata;
-	LogStats lstats;
+	LogStats *lstats;
 	gint selected_line_first;
 	gint selected_line_last;
 	gint total_lines; /* no of lines in the file */
@@ -80,15 +79,12 @@ struct _log
 	gboolean first_time;
 	gboolean has_date;
 	GtkTreePath *current_path;
-	GtkTreePath *expand_paths[33];
     GtkTreeModel *model;
-	gboolean expand[33];
 	int versions;
 	int current_version;
 	/* older_logs[0] should not be used */
 	Log *older_logs[5];
 	Log *parent_log;
-	GHashTable *date_headers; /* stores paths to date headers */
 	
 	/* Monitor info */
 	GnomeVFSFileOffset mon_offset;

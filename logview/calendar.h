@@ -20,6 +20,8 @@
 #ifndef __LOG_CALENDAR_H__
 #define __LOG_CALENDAR_H__
 
+#include "logrtns.h"
+
 GtkWidget *calendar_new (void);
 CalendarData* calendar_init_data (LogviewWindow *window);
 void calendar_init (GtkCalendar *calendar, LogviewWindow *window);

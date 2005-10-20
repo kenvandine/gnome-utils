@@ -30,7 +30,8 @@ enum {
    DATE = 0,
    HOSTNAME,
    PROCESS,
-   MESSAGE
+   MESSAGE,
+   DAY_POINTER
 };
 
 void
@@ -39,21 +40,11 @@ row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
 {
 	LogviewWindow *logview = user_data;
 	GtkTreeModel *model;
-	gchar *date;
-	int day;
-
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    g_return_if_fail (logview->curlog);
+	Day *day;
 
 	model = gtk_tree_view_get_model (treeview);
-	gtk_tree_model_get (model, iter, DATE, &date, -1);
-    /* FIXME : if I'm not mistaken, this won't work for non-english
-       locales */
-	day = atoi (g_strrstr (date, " "));
-	
-	logview->curlog->expand[day-1] = gtk_tree_view_row_expanded (treeview, path);
-
-	g_free (date);
+	gtk_tree_model_get (model, iter, DAY_POINTER, &day, -1);
+	day->expand = gtk_tree_view_row_expanded (treeview, day->path);
 }
 
 static int
@@ -85,11 +76,6 @@ tree_path_find_row (GtkTreeModel *model, GtkTreePath *path, gboolean has_date)
     return (row);
 }
 
-/* ----------------------------------------------------------------------
-   NAME:        handle_selection_changed_cb
-   DESCRIPTION: User clicked on main window
-   ---------------------------------------------------------------------- */
-
 void
 selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 {
@@ -109,11 +95,12 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 	selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
     if (selected_paths == NULL)
-        return;
+        return;    
 
     for (path = selected_paths; path != NULL; path = g_list_next (path)) {		    
         
         selected_path = path->data;
+        
         row = tree_path_find_row (model, selected_path, log->has_date);
         
         if (selected_last == -1 || row > selected_last)
@@ -122,10 +109,15 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
             selected_first = row;
         
         if (log->caldata) {
-            gint day;
-            day = log->lines[row]->date;
+            GtkTreeIter iter;
+            Day *day;
+
+            if (gtk_tree_path_get_depth (selected_path) > 1)
+                gtk_tree_path_up (selected_path);
+            gtk_tree_model_get_iter (model, &iter, selected_path);
+            gtk_tree_model_get (model, &iter, DAY_POINTER, &day, -1);
             log->caldata->first_pass = TRUE;
-            gtk_calendar_select_day (GTK_CALENDAR (logview->calendar), day);
+            gtk_calendar_select_day (GTK_CALENDAR (logview->calendar), g_date_get_day(day->date));
         }
     }
     
@@ -155,13 +147,14 @@ logview_update_statusbar (LogviewWindow *window)
        return;
    }
 
-   size_string = gnome_vfs_format_file_size_for_display (window->curlog->lstats.size);
-   if (window->curlog->curmark != NULL) {
+   size_string = gnome_vfs_format_file_size_for_display (window->curlog->lstats->size);
+   /* FIXME : this needs updating. */
+   /*   if (window->curlog->curmark != NULL) {
 	   tdm = &(window->curlog)->curmark->fulldate;
 
-       if (strftime (status_text, sizeof (status_text), time_fmt, tdm) <= 0) {
+       if (strftime (status_text, sizeof (status_text), time_fmt, tdm) <= 0) { */
    	       /* as a backup print in US style */
-  	       utf8 = g_strdup_printf ("%02d/%02d/%02d", tdm->tm_mday,
+   /*  	       utf8 = g_strdup_printf ("%02d/%02d/%02d", tdm->tm_mday,
                     tdm->tm_mon, tdm->tm_year % 100);
        } else
            utf8 = LocaleToUTF8 (status_text);
@@ -170,8 +163,10 @@ logview_update_statusbar (LogviewWindow *window)
                                          utf8, window->curlog->total_lines, size_string);
        g_free (utf8);
    } else
-       statusbar_text = g_strdup_printf (_("%d lines (%s)"), 
-                                         window->curlog->total_lines, size_string);
+   */
+
+   statusbar_text = g_strdup_printf (_("%d lines (%s)"), 
+       window->curlog->total_lines, size_string);
 
    if (statusbar_text) {
        gtk_statusbar_pop (GTK_STATUSBAR(window->statusbar), 0);
@@ -233,12 +228,12 @@ tree_view_columns_set_visible (GtkWidget *view, gboolean visible)
 }
 
 static void
-model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
+model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line, Day *day)
 {
     gchar *utf8;
     
     utf8 = logline_get_date_string (line);
-    gtk_tree_store_set (model, iter, DATE, utf8, -1);
+    gtk_tree_store_set (model, iter, DATE, utf8, DAY_POINTER, day, -1);
     g_free (utf8);
 }
 
@@ -285,22 +280,16 @@ logview_add_new_log_lines (LogviewWindow *window, Log *log)
 {
     GtkTreeIter iter, child_iter;
     GtkTreePath *path;
-    int i, last_day_row = -1;
+    Day *day;
+    int i;
     LogLine *line;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (window));
     g_return_if_fail (log);
     
-    /* Find the last expandable row (== day row) */
-    for (i=0; i<32; i++)
-        if (log->expand_paths[i] != NULL)
-            last_day_row = i;
-    
-    if (last_day_row == -1)
-        return;
-    
-    path = log->expand_paths[last_day_row];
-    gtk_tree_model_get_iter (log->model, &iter, log->expand_paths[last_day_row]);
+    /* Find the last expandable row */
+    day = g_list_last (log->days)->data;
+    gtk_tree_model_get_iter (log->model, &iter, day->path);
                 
     for (i=log->displayed_lines; i<log->total_lines; i++) {
         line = (log->lines)[i];
@@ -316,7 +305,8 @@ logview_add_new_log_lines (LogviewWindow *window, Log *log)
 static void
 logview_show_model (LogviewWindow *window, Log *log)
 {    
-    int i;
+    GList *days;
+    Day *day;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (window));
     g_return_if_fail (log);
@@ -324,10 +314,11 @@ logview_show_model (LogviewWindow *window, Log *log)
 
     gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
     if (log->has_date) {
-        for (i = 0; i<32; ++i) {
-            if (log->expand[i])
+        for (days=log->days; days != NULL; days = g_list_next(days)) {
+            day = days->data;
+            if (day->expand)
                 gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),
-                                          log->expand_paths[i], FALSE);
+                                          day->path, FALSE);
         }
     }
 }
@@ -355,8 +346,8 @@ logview_create_model_no_date (LogviewWindow *window, Log *log)
     g_return_if_fail (LOGVIEW_IS_WINDOW (window));
     g_return_if_fail (log);
         
-    log->model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
-                                                    G_TYPE_STRING, G_TYPE_STRING));
+    log->model = GTK_TREE_MODEL(gtk_tree_store_new (5, G_TYPE_STRING, G_TYPE_STRING,
+                                                    G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
     for (i=log->total_lines-1; i>=0; i--) {
         line = (log->lines)[i];
         gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &iter, NULL);
@@ -373,68 +364,46 @@ logview_create_model (LogviewWindow *window, Log *log)
     GtkTreeIter iter, child_iter;
     GtkTreePath *path;
     LogLine *line;
-    gint cm = -1, cd = -1;
-    gint day_rows [32];
-    int i, j;
+    GList *days;
+    Day *day;
+    int i;
+
+    gchar *path_string;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (window));
     g_return_if_fail (log->total_lines > 0);
 
-    log->model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_STRING,
-                                                    G_TYPE_STRING, G_TYPE_STRING));    
-    /* Parse the whole thing to find dates
-       and create toplevel lines for them. */
-    
-    for (i = 0; i<32; i++) {
-        day_rows[i] = -1;
-        log->expand_paths[i] = NULL;
-        log->expand[i] = FALSE;
-    }
-    
-    for (i = 0; i < log->total_lines; i++) {
-        line = (log->lines)[i];
+    log->model = GTK_TREE_MODEL(gtk_tree_store_new (5, G_TYPE_STRING, G_TYPE_STRING,
+                                                    G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
+
+    /* Cycle on the days in the log */
+    for (days = log->days; days != NULL; days = g_list_next (days)) {
+        day = days->data;
+        line = (log->lines)[day->first_line];
         
-        if ( (line->month != cm && line->month > 0) ||
-             (line->date != cd && line->date > 0) ) {
-            GtkTreePath *path;
-            gchar *path_string;
-            
-            cm = line->month;
-            cd = line->date;
-            
-            day_rows [cd-1] = i;
-            
-            gtk_tree_store_append (GTK_TREE_STORE (log->model), &iter, NULL);
-            model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, line);
-            path = gtk_tree_model_get_path (log->model, &iter);
-            log->expand_paths[cd-1] = gtk_tree_path_copy (path);
-            path_string = gtk_tree_path_to_string (path);
-            g_hash_table_insert (log->date_headers,
-                                 DATEHASH (cm, cd), path_string);
-            gtk_tree_path_free (path);
-            path = NULL;
-        }
-    }
-    log->expand [cd-1] = TRUE;
-    day_rows [cd] = log->total_lines-1;
-    
-    /* now add the log lines. */
-    
-    for (i = 0; i < 32; i++) {
-        if (log->expand_paths[i] != NULL) {
-            
-            gtk_tree_model_get_iter (log->model, &iter, log->expand_paths[i]);
-            
-            for (j = day_rows [i+1]; j >= day_rows [i]; j--) {                    
-                line = (log->lines)[j];
-                gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &child_iter, &iter);
-                model_fill_iter (GTK_TREE_STORE (log->model), &child_iter, line);
-                if (j == day_rows[i+1])
-                    log->current_path = gtk_tree_model_get_path (log->model, &child_iter);
-            }                
-        }
-    }
+        gtk_tree_store_append (GTK_TREE_STORE (log->model), &iter, NULL);
+        model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, line, day);
+        path = gtk_tree_model_get_path (log->model, &iter);
+        day->path = gtk_tree_path_copy (path);
+        gtk_tree_path_free (path);
+        path = NULL;
+
+        /* Now cycle on the lines for the studied day */
+        for (i = day->last_line-1; i >= day->first_line; i--) {
+            line = (log->lines)[i];
+            gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &child_iter, &iter);
+            model_fill_iter (GTK_TREE_STORE (log->model), &child_iter, line);
+        }                
         
+        if (days == g_list_last (days)) {
+            day->expand = TRUE;
+            log->current_path = gtk_tree_path_copy (day->path);
+        } else {
+            day->expand = FALSE;
+        }
+            
+    }
+
     log->displayed_lines = log->total_lines;
 }
 

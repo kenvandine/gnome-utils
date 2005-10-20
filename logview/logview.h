@@ -29,11 +29,6 @@
 #define MAX_PROC_WIDTH           60
 #define MAX_VERSIONS             5
 
-/* the following is a simple hashing function that will convert a
- * given date into an integer value that can be used as a key for
- * the date_headers hash table */
-#define DATEHASH(month, day)     GUINT_TO_POINTER (month * 31 + day)
-
 /* Function Prototypes */
 
 #define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())

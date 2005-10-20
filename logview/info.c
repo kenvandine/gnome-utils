@@ -33,21 +33,21 @@ loginfo_repaint (LogviewWindow *window, GtkWidget *label)
    if (!window->curlog)
 	   return;
    
-   tmp = gnome_vfs_format_file_size_for_display (window->curlog->lstats.size);
+   tmp = gnome_vfs_format_file_size_for_display (window->curlog->lstats->size);
    size_tmp = g_strdup_printf (_("<b>Size</b>: %s"), tmp);
    size = LocaleToUTF8 (size_tmp);
    g_free (size_tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf (_("<b>Modified</b>: %s"), ctime (&(window->curlog)->lstats.mtime));
+   tmp = g_strdup_printf (_("<b>Modified</b>: %s"), ctime (&(window->curlog->lstats->mtime)));
    modified = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("<b>Start Date</b>: %s"), ctime (&(window->curlog)->lstats.startdate));
+   tmp = g_strdup_printf(_("<b>Start Date</b>: %s"), ctime (&(window->curlog)->lstats->startdate));
    start_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("<b>Last Date</b>: %s"), ctime (&(window->curlog)->lstats.enddate));
+   tmp = g_strdup_printf(_("<b>Last Date</b>: %s"), ctime (&(window->curlog)->lstats->enddate));
    last_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    

@@ -242,162 +242,111 @@ logline_new_from_string (gchar *message, gboolean has_date)
 
 /* log functions */
 
-/* ----------------------------------------------------------------------
-   NAME:          log_read_stats
-   DESCRIPTION:   Read the log and get some statistics from it. Read
-   all dates which have a log entry to create calendar.
+gint 
+days_compare (Day *day1, Day *day2)
+{
+    return (g_date_compare (day1->date, day2->date));
+}
+
+/* log_read_dates
+   Read all dates which have a log entry to create calendar.
    All dates are given with respect to the 1/1/1970
    and are then corrected to the correct year once we
    reach the end.
-   buffer_lines must NOT be freed.
-   ---------------------------------------------------------------------- */
-
-static void
-log_read_stats (Log *log, gchar **buffer_lines)
+*/
+GList *
+log_read_dates (gchar **buffer_lines, time_t current)
 {
-   gchar *buffer;
-   int offsetyear, lastyear, thisyear;
-   int nl, i;
-   time_t curdate, newdate, correction;
-   DateMark *curmark;
-   struct stat filestat;
-   struct tm *tmptm, footm;
-   GnomeVFSResult result;
-   GnomeVFSFileInfo *info;
+   int offsetyear = 0, current_year;
+   GList *days = NULL, *days_copy;
+   GDate *date, *newdate;
+   struct tm *tmptm;
+   Day *day;
+   int i;
 
-   log->lstats.startdate = 0;
-   log->lstats.enddate = 0;
-   log->lstats.firstmark = NULL;
-   log->lstats.mtime = 0;
-   log->lstats.size = 0;
+   tmptm = localtime (&current);
+   current_year = tmptm->tm_year + 1900;
 
-   info = gnome_vfs_file_info_new ();
-   result = gnome_vfs_get_file_info (log->name, info, GNOME_VFS_FILE_INFO_DEFAULT);
-   log->lstats.mtime = info->mtime;
-   log->lstats.size = info->size;
-
-   /* Make sure we have at least a starting date. */
-	 if ((log->lines)[0]->month == -1)
-		 return;
-
-   nl = 0;
-   curdate = -1;
-   while ((curdate < 0) && (buffer_lines[nl]!=NULL))
-   {
-	   curdate = string_get_date (buffer_lines[nl]);	  
-	   nl++;
-   }
-   log->lstats.startdate = curdate;
+   for (i=0; buffer_lines[i]==NULL; i++);
 
    /* Start building the list */
 
-   offsetyear = 0;
-   curmark = malloc (sizeof (DateMark));
-   if (curmark == NULL) {
-	   ShowErrMessage (NULL, error_main, _("Out of memory"));
-	   exit (0);
-   }
-   curmark->time = curdate;
-   curmark->year = offsetyear;
-   curmark->next = NULL;
-   curmark->prev = NULL;
-   curmark->offset = info->size;
-   curmark->ln = nl;
-   log->lstats.firstmark = curmark;
+   date = string_get_date (buffer_lines[i]);
+   g_date_set_year (date, current_year);
+   day = g_new (Day, 1);
+   days = g_list_append (days, day);
+
+   day->date = date;
+   day->first_line = i;
 
    /* Count days appearing in the log */
 
-   i = 0;
-   for (i=0; buffer_lines[i]!=NULL; i++) {
+   for (i=day->first_line; buffer_lines[i] != NULL; i++) {
+
 	   newdate = string_get_date (buffer_lines[i]);
+       if (newdate == NULL)
+           continue;
 
-	   if (newdate < 0)
+       g_date_set_year (newdate, current_year + offsetyear);
+	   if (g_date_compare (newdate, date) == 0) {
+           g_free (newdate);
 		   continue;
-	   if (days_are_equal (newdate, curdate))
-		   continue;
-	   
-	   curmark->next = malloc (sizeof (DateMark));
-	   if (curmark->next == NULL) {
-		   ShowErrMessage (NULL, error_main, _("Out of memory"));
-		   exit (0);
-	   }
+       }
 
-	   curmark->next->prev = curmark;
-	   curmark = curmark->next;
-	   curmark->time = newdate;
-	   if (newdate < curdate)	/* The newdate is next year */
-		   offsetyear++;
-	   curmark->year = offsetyear;
-	   curmark->next = NULL;
-	   curmark->ln = nl;
-	   curdate = newdate;
+       day->last_line = i-1;
+
+       /* Append the day to the list */	
+	
+       if (g_date_compare (newdate, date) < 1) {
+		   offsetyear++; /* newdate is next year */
+           g_date_add_years (newdate, 1);
+       }
+
+       date = newdate;
+       day = g_new (Day, 1);
+       days = g_list_append (days, day);
+
+	   day->date = date;
+	   day->first_line = i;
    }
-   log->lstats.numlines = i;
-   log->lstats.enddate = curdate;
+   day->last_line = i-1;
+   days = g_list_first (days);
 
    /* Correct years now. We assume that the last date on the log
       is the date last accessed */
 
-   curdate = info->mtime;
-   tmptm = localtime (&curdate);
-   thisyear = tmptm->tm_year;
-   lastyear = offsetyear;
-   footm.tm_sec = footm.tm_mon = 0;
-   footm.tm_hour = footm.tm_min = 0;
-   footm.tm_isdst = 0;
-   footm.tm_mday = 1;
-   curmark = log->lstats.firstmark;
-
-   gnome_vfs_file_info_unref (info);
-
-   while (curmark != NULL) {
-	   footm.tm_year = (curmark->year - lastyear) + thisyear;
-	   correction = mktime (&footm);
-	   if (IsLeapYear (curmark->year - lastyear + thisyear))
-		   curmark->time += 24 * 60 * 60;		/*  Add one day */
-	   
-#if defined(__NetBSD__) || defined(__FreeBSD__)
-	   curmark->time += correction - tmptm->tm_gmtoff;
-#else
-	   curmark->time += correction - timezone;
-#endif
-	   
-	   memcpy (&curmark->fulldate, localtime (&curmark->time), sizeof (struct tm));
-	   
-	   if (curmark->next != NULL)
-		   curmark = curmark->next;
-	   else {
-		   log->lstats.lastmark = curmark;
-		   break;
-	   }
+   for (days_copy = days; days_copy != NULL; days_copy = g_list_next (days_copy)) {       
+       day = days_copy -> data;
+       g_date_subtract_years (day->date, offsetyear);
    }
    
-   log->curmark = log->lstats.lastmark;
+   /* Sort the days in chronological order */
+   days = g_list_sort (days, days_compare);
 
-   /* Correct start and end year in lstats. */
-   footm.tm_year = thisyear;
-   correction = mktime (&footm);
-   if (IsLeapYear (thisyear))
-	   log->lstats.enddate += 24 * 60 * 60;	/*  Add one day */
+   return (days);
+}
+
+/* ----------------------------------------------------------------------
+   NAME:          log_read_stats
+   DESCRIPTION:   Read the log and get some statistics from it. 
+   ---------------------------------------------------------------------- */
+
+static LogStats *
+log_read_stats (Log *log)
+{
+   GnomeVFSResult result;
+   GnomeVFSFileInfo *info;
+   LogStats *lstats;
+
+   lstats = g_new (LogStats, 1);
    
-#if defined(__NetBSD__) || defined(__FreeBSD__)
-   log->lstats.enddate += correction - tmptm->tm_gmtoff;
-#else
-   log->lstats.enddate += correction - timezone;
-#endif
-   
-   footm.tm_year = thisyear - lastyear;
-   correction = mktime (&footm);
-   if (IsLeapYear (thisyear - lastyear))
-	   log->lstats.startdate += 24 * 60 * 60;	/*  Add one day */
+   info = gnome_vfs_file_info_new ();
+   result = gnome_vfs_get_file_info (log->name, info, GNOME_VFS_FILE_INFO_DEFAULT);
+   lstats->mtime = info->mtime;
+   lstats->size = info->size;
+   gnome_vfs_file_info_unref (info);
 
-#if defined(__NetBSD__) || defined(__FreeBSD__)
-   log->lstats.startdate += correction - tmptm->tm_gmtoff;
-#else
-   log->lstats.startdate += correction - timezone;
-#endif
-
-   return;
+   return (lstats);
 }
 
 Log *
@@ -463,12 +412,16 @@ log_open (char *filename, gboolean show_error)
        }
    }
    
-   log_read_stats (log, buffer_lines);
+   log->lstats = log_read_stats (log);
+   if (log->lstats == NULL)
+       ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+
+   log->days = log_read_dates (buffer_lines, log->lstats->mtime);
+   if (log->days == NULL)
+       ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+
    g_strfreev (buffer_lines);
 
-   /* initialize date headers hash table */
-   log->date_headers = g_hash_table_new_full (NULL, NULL, NULL, 
-                                               (GDestroyNotify) g_free);
    log->first_time = TRUE;
    
    /* Check for older versions of the log */
@@ -584,12 +537,7 @@ log_close (Log *log)
        g_free ((log->lines)[i]);           
    }
    
-   if (log->has_date) {
-       for (i = 0; i < 32; i++)
-           if (log->expand_paths[i])
-               gtk_tree_path_free (log->expand_paths[i]);
-       g_hash_table_destroy (log->date_headers);
-   }
+   /* FIXME : we need to free the LogStats and Day structures */
 
    gtk_tree_path_free (log->current_path);
    log->current_path = NULL;

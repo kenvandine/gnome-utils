@@ -22,14 +22,9 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include "logview.h"
-#include "calendar.h"
 
 static GtkTreePath *calendar_day_selected (GtkWidget *widget, LogviewWindow *window);
 static void calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window);
-static DateMark* find_prev_mark (CalendarData*);
-static DateMark* find_next_mark (CalendarData*);
-static DateMark* get_mark_from_month (CalendarData *data, gint month, gint year);
-static DateMark *get_mark_from_date (CalendarData *, gint, gint, gint);
 static void calendar_month_changed (GtkWidget *widget, LogviewWindow *window);
 
 GtkWidget *
@@ -72,33 +67,30 @@ calendar_init (GtkCalendar *calendar, LogviewWindow *window)
    ---------------------------------------------------------------------- */
 
 void
-read_marked_dates (CalendarData *data, LogviewWindow *window)
+read_marked_dates (CalendarData *cdata, LogviewWindow *window)
 {
-  GtkCalendar *calendar;
-  DateMark *mark;
-  guint day, month, year;
+    GtkCalendar *calendar;
+    GList *days;
+    Day *day;
+    guint month, year;
+    
+    g_return_if_fail (cdata);
+    calendar = GTK_CALENDAR (window->calendar);
+    g_return_if_fail (GTK_IS_CALENDAR (calendar));
+    
+    gtk_calendar_clear_marks (calendar);
+    gtk_calendar_get_date (calendar, &year, &month, NULL);
 
-  g_return_if_fail (data);
-  calendar = GTK_CALENDAR (window->calendar);
-  g_return_if_fail (calendar);
-
-  gtk_calendar_clear_marks (calendar);
-  gtk_calendar_get_date (calendar, &year, &month, &day);
-  year -= 1900;
-
-  /* find the current month and year (if there is one)  */
-  mark = data->curmonthmark;
-
-  while (mark)
-    {
-      if (mark->fulldate.tm_mon != month || 
-					mark->fulldate.tm_year != year)
-				break;
-      gtk_calendar_mark_day (calendar, mark->fulldate.tm_mday);
-      mark = mark->next;
+    /* find the current month and year (if there is one)  */
+    days = cdata->days;
+    while (days != NULL) {
+        day = days->data;
+        if (month == g_date_get_month (day->date)-1)
+            gtk_calendar_mark_day (calendar, g_date_get_day (day->date));
+        days = g_list_next (days);
     }
-
-  return;
+    
+    return;
 }
 
         
@@ -110,35 +102,36 @@ read_marked_dates (CalendarData *data, LogviewWindow *window)
 CalendarData*
 init_calendar_data (LogviewWindow *window)
 {
-   CalendarData *data;
-
-	 if (window->curlog == NULL)
-		 return NULL;
-
-   data = window->curlog->caldata;
-   if (data == NULL)
-     data = (CalendarData*) malloc (sizeof (CalendarData));
-
-   if (data) {
-		 DateMark *mark;
-		 data->curmonthmark = window->curlog->lstats.firstmark;
-		 window->curlog->caldata = data;
-
-     data->first_pass = TRUE;
-		 
-		 mark = data->curmonthmark;
-		 if (mark) {
-			 gtk_calendar_select_month (GTK_CALENDAR(window->calendar), 
-																	mark->fulldate.tm_mon,
-																	mark->fulldate.tm_year + 1900);
-       gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
-                                mark->fulldate.tm_mday);
-		 }
-		 
-		 read_marked_dates (data, window);       
-	 }
-
-   return data;
+    CalendarData *data;
+    
+    if (window->curlog == NULL)
+        return NULL;
+    
+    data = window->curlog->caldata;
+    if (data == NULL)
+        data = (CalendarData*) g_new (CalendarData, 1);
+    
+    if (data) {
+        GList *days;
+        Day *day;
+        days = window->curlog->days;
+        data->days = days;
+        day = days->data;
+        window->curlog->caldata = data;
+        data->first_pass = TRUE;
+        
+        if (day) {
+            gtk_calendar_select_month (GTK_CALENDAR(window->calendar), 
+                                       g_date_get_month (day->date)-1,
+                                       g_date_get_year (day->date));
+            gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
+                                     g_date_get_day (day->date));
+        }
+        
+        read_marked_dates (data, window);
+    }
+    
+    return data;
 }
 
 /* ----------------------------------------------------------------------
@@ -151,8 +144,8 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
 {
   GtkCalendar *calendar;
   CalendarData *data;
-  DateMark *mark;
-  guint day, month, year;
+  Day *day;
+  guint iday, month, year;
 
 	if (window->curlog == NULL)
 		return;
@@ -163,23 +156,31 @@ calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
   data = window->curlog->caldata;
   g_return_if_fail (data);
 
-  /* Get current date */
-  gtk_calendar_get_date (calendar, &year, &month, &day);
-  /* This is Y2K compatible but internally we keep track of years
-     starting from 1900. This is because of Unix and not because 
-     I like it!! */
-  year -= 1900;
-  mark = get_mark_from_month (data, month, year);
-  if (mark)
-    data->curmonthmark = mark;
   read_marked_dates (data, window);
 }
 
+static Day *
+log_find_day (Log *log, int d, int m, int y)
+{
+    GDate *date;
+    GList *days;
+    Day *day, *found_day = NULL;
+    
+    date = g_date_new_dmy (d, m+1, y);
+    for (days = log->days; days!=NULL; days=g_list_next(days)) {
+        day = days->data;
+        if (g_date_compare (day->date, date) == 0) {
+            found_day = day;
+        }
+    }
+    return found_day;
+}
 
 static GtkTreePath *
 calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 {
     guint day, month, year;
+    Day *found_day;
     GtkTreePath *path;
     gchar *path_string;
     
@@ -192,13 +193,10 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
     }
   
     gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);    
-    path_string = g_hash_table_lookup (window->curlog->date_headers,
-                                       DATEHASH (month, day));
-    if (path_string != NULL) {
-        path = gtk_tree_path_new_from_string (path_string);
-    
-        if (path != NULL)
-            gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
+    found_day = log_find_day (window->curlog, day, month, year);
+    if (found_day != NULL) {
+        path = found_day->path;
+        gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
         return path;
     } else
         return NULL;
@@ -208,103 +206,7 @@ void
 calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window)
 {
 	GtkTreePath *path;
-  path = calendar_day_selected(widget, window);
+    path = calendar_day_selected(widget, window);
 	if (path)
 		gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
 }
-
-static DateMark *
-get_mark_from_date (CalendarData *data, gint day, gint month, gint year)
-{
-  DateMark *mark;
-
-  g_return_val_if_fail (data, NULL);
-  mark = get_mark_from_month (data, month, year);
-  
-  while (mark)
-    {
-      if (mark->fulldate.tm_mday == day)
-	return mark;
-      mark = mark->next;
-    }
-
-  return mark;
-}
-
-static DateMark *
-get_mark_from_month (CalendarData *data, gint month, gint year)
-{
-   DateMark *mark = data->curmonthmark;
-
-   if (mark == NULL)
-      return mark;
-
-   /* Are we on top of the mark: return if so      */
-   if (month == mark->fulldate.tm_mon &&
-       year == mark->fulldate.tm_year)
-      return mark;
-
-   /* Check if we are on the next or previous mark */
-   if (year > mark->fulldate.tm_year)
-      mark = find_next_mark (data);
-   else if (year < mark->fulldate.tm_year)
-      mark = find_prev_mark (data);
-   else if (year == mark->fulldate.tm_year) {
-      if (month > mark->fulldate.tm_mon)
-	 mark = find_next_mark (data);
-      else
-	 mark = find_prev_mark (data);
-   }
-
-   if (mark == NULL)
-      return NULL;
-
-   if (month == mark->fulldate.tm_mon && 
-       year == mark->fulldate.tm_year)
-     return mark;
-
-   return NULL;
-}
-
-static DateMark *
-find_prev_mark (CalendarData *data)
-{
-   DateMark *mark = data->curmonthmark;
-
-   if (mark->prev == NULL)
-      return NULL;
-   mark = mark->prev;
-   while (TRUE)
-   {
-      if (mark->prev == NULL)
-	 break;
-      mark = mark->prev;
-      if (mark->fulldate.tm_mon != mark->next->fulldate.tm_mon ||
-	  mark->fulldate.tm_year != mark->next->fulldate.tm_year)
-      {
-	 mark = mark->next;
-	 break;
-      }
-   }
-
-   return mark;
-}
-
-static DateMark *
-find_next_mark (CalendarData *data)
-{
-   DateMark *mark = data->curmonthmark;
-
-   while (TRUE)
-   {
-      if (mark->next == NULL)
-	 return NULL;
-      mark = mark->next;
-      if (mark->fulldate.tm_mon != mark->prev->fulldate.tm_mon ||
-	  mark->fulldate.tm_year != mark->prev->fulldate.tm_year)
-	 break;
-   }
-
-   return mark;
-}
-

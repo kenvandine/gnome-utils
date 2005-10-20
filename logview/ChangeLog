@@ -1,5 +1,34 @@
 2005-10-20  Vincent Noel  <vnoel@cox.net>
 
+	* calendar.c: (read_marked_dates), (init_calendar_data),
+	(calendar_month_changed), (log_find_day), (calendar_day_selected),
+	(calendar_day_selected_double_click): * calendar.h: * info.c:
+	(loginfo_repaint): * log_repaint.c: (row_toggled_cb),
+	(selection_changed_cb),
+	(logview_update_statusbar), (model_fill_date_iter),
+	(logview_add_new_log_lines), (logview_show_model),
+	(logview_create_model_no_date), (logview_create_model): *
+	logrtns.c: (days_compare), (log_read_dates), (log_read_stats),
+	(log_open), (log_close): * logrtns.h: * logview.h: * misc.c:
+	(days_are_equal), (string_get_date): * misc.h: Big change in dates
+	handling. Changed the DateMark structure in Day structure. Include
+	the line numbers, expansion state and tree path in the
+	structure. Don't parse the log lines twice to find the dates. Use
+	GDates all over the place.
+
+2005-10-20  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (read_marked_dates), (init_calendar_data),
+	(calendar_month_changed) : Remove those functions, they were not
+	used anymore.
+	* calendar.h:
+	* info.c: (loginfo_repaint):
+	* log_repaint.c: (logview_update_statusbar):
+	* logrtns.c: (log_read_stats), (log_open):
+	* logrtns.h: Simplify a lot the calendar code.
+
+2005-10-20  Vincent Noel  <vnoel@cox.net>
+
 	* logrtns.c: (file_is_log), (logline_new_from_string), (log_open):
 	Stop using strtok, use g_strsplit_set instead. Safer + net code win.
 
