@@ -273,15 +273,17 @@ string_get_date (char *line)
     GDate *date;
     int d, m;
     
-    split = g_strsplit (line, " ", 3);
+    split = g_strsplit_set (line, " ", 4);
     if (split[0] == NULL || split[1] == NULL)
         return NULL;
-    
-    m = string_get_month (split[0]) + 1;    
-    d = atoi (split[1]);
+
+    m = string_get_month (split[0]) + 1;
+    if (split[1]==NULL || g_str_equal (split[1], ""))
+        d = atoi (split[2]);
+    else
+        d = atoi (split[1]);
 
     g_strfreev (split);
     date = g_date_new_dmy (d, m, 70);
     return date;
-
 }

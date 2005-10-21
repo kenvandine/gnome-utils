@@ -370,14 +370,12 @@ logview_create_model (LogviewWindow *window, Log *log)
                                                     G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
 
     /* Cycle on the days in the log */
-    /* It's not worth it to do this with prepend instead of append */
+    /* It's not worth it to prepend instead of append */
 
     for (days = log->days; days != NULL; days = g_list_next (days)) {
         day = days->data;
         line = (log->lines)[day->first_line];
  
-        /* Peut-etre faire tourner une progressbar ici ? */
-       
         gtk_tree_store_append (GTK_TREE_STORE (log->model), &iter, NULL);
         model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, line, day);
         path = gtk_tree_model_get_path (log->model, &iter);
@@ -392,13 +390,11 @@ logview_create_model (LogviewWindow *window, Log *log)
             model_fill_iter (GTK_TREE_STORE (log->model), &child_iter, line);
         }                
         
-        if (days == g_list_last (days)) {
+        if (g_list_next (days) == NULL) {
             day->expand = TRUE;
             log->current_path = gtk_tree_path_copy (day->path);
-        } else {
-            day->expand = FALSE;
-        }
-            
+        } else
+            day->expand = FALSE;            
     }
 
     log->displayed_lines = log->total_lines;

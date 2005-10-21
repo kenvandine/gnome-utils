@@ -121,9 +121,9 @@ logline_get_date_string (LogLine *line)
 
    if (line->month >= 0 && line->month < 12) {
 
-       date = g_date_new_dmy (line->date, line->month + 1, 2000);
+       date = g_date_new_dmy (line->date, line->month + 1, 70);       
 
-       if (!g_date_valid (date)) {
+       if (date == NULL || !g_date_valid (date)) {
            utf8 = g_strdup(_("Invalid date"));
            return utf8;
        }
@@ -150,7 +150,7 @@ static LogLine *
 logline_new_from_string (gchar *message, gboolean has_date)
 {
    char **splits;
-   int i;
+   int i, field;
    LogLine *line;
    
    line = g_new (LogLine, 1);
@@ -168,12 +168,17 @@ logline_new_from_string (gchar *message, gboolean has_date)
        return (line);
    }
 
-   /* Seperation of a log line into 7 fields */
-   splits = g_strsplit_set (message, " :\n", 8);
+   /* Seperation of a log line into 8 fields */
+   /* Some of them can be empty */
+   splits = g_strsplit_set (message, " :\n", 9);
 
-   i = 0;
+   i = 0; field= 0;
    while (splits[i]!=NULL) {
-       switch (i) {
+
+       if (g_str_equal (splits[i], ""))
+           i++;
+
+       switch (field) {
        case MONTH:
            line->month = string_get_month (splits[i]);
            if (line->month==12) {
@@ -203,11 +208,10 @@ logline_new_from_string (gchar *message, gboolean has_date)
            line->message = g_strdup (splits[i]);
            break;
        default:
-           g_strfreev (splits);
-           g_return_val_if_reached (line);
            break;
        }
        i++;
+       field++;
    }
    
    g_strfreev (splits);
@@ -222,6 +226,39 @@ days_compare (Day *day1, Day *day2)
     return (g_date_compare (day1->date, day2->date));
 }
 
+gchar *
+string_get_date_string (gchar *line)
+{
+    gchar **split, *date_string;
+    gchar *month=NULL, *day=NULL;
+    int i=0;
+
+    split = g_strsplit (line, " ", 4);
+    while ((day == NULL || month == NULL) && split[i]!=NULL) {
+        if (g_str_equal (split[i], "")) {
+            i++;
+            continue;
+        }
+
+        if (month == NULL) {
+            month = split[i++];
+            continue;
+        }
+
+        if (day == NULL)
+            day = split[i];
+        i++;
+    }
+
+    if (i==3)
+        date_string = g_strconcat (month, "  ", day, NULL);
+    else
+        date_string = g_strconcat (month, " ", day, NULL);
+    g_strfreev (split);
+    return (date_string);
+}
+
+
 /* log_read_dates
    Read all dates which have a log entry to create calendar.
    All dates are given with respect to the 1/1/1970
@@ -235,7 +272,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
    GList *days = NULL, *days_copy;
    GDate *date, *newdate;
    struct tm *tmptm;
-   gchar **split, *date_string;
+   gchar *date_string;
    Day *day;
    int i;
 
@@ -250,16 +287,13 @@ log_read_dates (gchar **buffer_lines, time_t current)
    if ((date==NULL)|| !g_date_valid (date))
        return NULL;
 
-   split = g_strsplit (buffer_lines[i], " ", 3);
-   date_string = g_strconcat (split[0], " ", split[1], NULL);
-   g_strfreev (split);
-
    g_date_set_year (date, current_year);
    day = g_new (Day, 1);
    days = g_list_append (days, day);
 
    day->date = date;
    day->first_line = i;
+   date_string = string_get_date_string (buffer_lines[i]);
 
    /* Count days appearing in the log */
 
@@ -268,16 +302,14 @@ log_read_dates (gchar **buffer_lines, time_t current)
        if (g_str_has_prefix (buffer_lines[i], date_string))
            continue;
        g_free (date_string);
-       split = g_strsplit (buffer_lines[i], " ", 3);
-       date_string = g_strconcat (split[0], " ", split[1], NULL);
-       g_strfreev (split);
+       date_string = string_get_date_string (buffer_lines[i]);
 
        newdate = string_get_date (buffer_lines[i]);
        if (newdate == NULL)
            continue;
        
        day->last_line = i-1;
-
+       
        /* Append the day to the list */	
        g_date_set_year (newdate, current_year + offsetyear);	
        if (g_date_compare (newdate, date) < 1) {
@@ -542,20 +574,23 @@ log_close (Log *log)
    /* Free all used memory */
    for (i = 1; i < log->total_lines; i++) {
        g_free ((log->lines)[i] -> message);
-
+       
        if (log->days != NULL) {
            g_free ((log->lines)[i] -> hostname);
            g_free ((log->lines)[i] -> process);
-           for (days = log->days; days != NULL; days = g_list_next (days)) {
-               day = days->data;
-               g_date_free (day->date);
-               gtk_tree_path_free (day->path);
-               g_free (day);
-           }
-           g_list_free (log->days);
-
        }
        g_free ((log->lines)[i]);           
+   }
+
+   if (log->days != NULL) {
+       for (days = log->days; days != NULL; days = g_list_next (days)) {
+           day = days->data;
+           g_date_free (day->date);
+           gtk_tree_path_free (day->path);
+           g_free (day);
+       }
+       g_list_free (log->days);
+       log->days = NULL;
    }
    
    g_free (log->lstats);
