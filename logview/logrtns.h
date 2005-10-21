@@ -32,13 +32,6 @@ typedef struct
     GtkTreePath *path;
 } Day;
 
-typedef struct 
-{
-    GtkWidget *calendar;
-    GList *days;
-    gboolean first_pass;
-} CalendarData;
-
 typedef struct
 {
     time_t mtime;
@@ -50,8 +43,6 @@ typedef struct
     char *message;
     char *process;
     char *hostname;
-    signed char month;
-    signed char date;
     signed char hour;
     signed char min;
     signed char sec;
@@ -64,7 +55,6 @@ struct _log
 
 	char *name;
 	char *display_name;
-	CalendarData *caldata;
 	LogStats *lstats;
 	gint selected_line_first;
 	gint selected_line_last;
@@ -90,7 +80,6 @@ struct _log
 };
 
 gboolean file_is_log (char *filename, gboolean show_error);
-char *logline_get_date_string (LogLine *line);
 Log *log_open (char *filename, gboolean show_error);
 gboolean log_read_new_lines (Log *log);
 void log_close (Log * log);

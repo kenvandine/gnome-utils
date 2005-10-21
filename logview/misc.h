@@ -28,6 +28,7 @@ int IsLeapYear (int year);
 GDate *string_get_date (char *line);
 int days_are_equal (time_t day1, time_t day2);
 int string_get_month (const char *str);
+char *date_get_string (GDate *date);
 
 #endif /* __LOG_MISC_H__ */
 

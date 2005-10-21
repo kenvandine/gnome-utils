@@ -19,144 +19,58 @@
     ---------------------------------------------------------------------- */
 
 #include <glib/gi18n.h>
-#include <stdlib.h>
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include "logview.h"
+#include "calendar.h"
 
-static GtkTreePath *calendar_day_selected (GtkWidget *widget, LogviewWindow *window);
-static void calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window);
-static void calendar_month_changed (GtkWidget *widget, LogviewWindow *window);
+static GObjectClass *parent_class;
 
-GtkWidget *
-calendar_new (void)
+GType calendar_get_type (void);
+
+static void
+calendar_mark_dates (Calendar *calendar)
 {
-	PangoFontDescription *fontdesc;
-	PangoContext *context;
-	GtkCalendar *calendar;
-	int size;
-	
-	calendar = (GtkCalendar *)gtk_calendar_new();
-	context = gtk_widget_get_pango_context (GTK_WIDGET(calendar));
-	fontdesc = pango_context_get_font_description (context);
-	size = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
-	pango_font_description_set_size (fontdesc, (size-2)*PANGO_SCALE);
-	gtk_widget_modify_font (GTK_WIDGET (calendar), fontdesc);
-
-	gtk_widget_show (GTK_WIDGET (calendar));
-    return (GTK_WIDGET(calendar));
-}
-
-void 
-calendar_init (GtkCalendar *calendar, LogviewWindow *window)
-{
-	g_signal_connect (G_OBJECT (calendar), "month_changed",
-                      G_CALLBACK (calendar_month_changed),
-                      window);
-	g_signal_connect (G_OBJECT (calendar), "day_selected",
-                      G_CALLBACK (calendar_day_selected),
-                      window);
-	g_signal_connect (G_OBJECT (calendar), "day_selected_double_click",
-                      G_CALLBACK (calendar_day_selected_double_click),
-                      window);
-}
-
-/* ----------------------------------------------------------------------
-   NAME:          read_marked_dates
-   DESCRIPTION:   Reads all the marked dates for this month and marks 
-   		  them in the calendar widget.
-   ---------------------------------------------------------------------- */
-
-void
-read_marked_dates (CalendarData *cdata, LogviewWindow *window)
-{
-    GtkCalendar *calendar;
     GList *days;
     Day *day;
     guint month, year;
-    
-    g_return_if_fail (cdata);
-    calendar = GTK_CALENDAR (window->calendar);
-    g_return_if_fail (GTK_IS_CALENDAR (calendar));
-    
-    gtk_calendar_clear_marks (calendar);
-    gtk_calendar_get_date (calendar, &year, &month, NULL);
 
-    /* find the current month and year (if there is one)  */
-    days = cdata->days;
-    while (days != NULL) {
+    g_return_if_fail (IS_CALENDAR (calendar));
+    
+    gtk_calendar_clear_marks (GTK_CALENDAR (calendar));
+    gtk_calendar_get_date (GTK_CALENDAR (calendar), &year, &month, NULL);
+
+    for (days = calendar->days; days != NULL; days = g_list_next(days)) {
         day = days->data;
         if (month == g_date_get_month (day->date)-1)
-            gtk_calendar_mark_day (calendar, g_date_get_day (day->date));
-        days = g_list_next (days);
+            gtk_calendar_mark_day (GTK_CALENDAR(calendar), g_date_get_day (day->date));
     }
-    
-    return;
 }
 
         
-/* ----------------------------------------------------------------------
-   NAME:          init_calendar_data
-   DESCRIPTION:   Sets up calendar data asociated with this log.
-   ---------------------------------------------------------------------- */
+/* 
+   init_calendar_data
+   Sets up calendar data asociated with this log.
+*/
 
-CalendarData*
-init_calendar_data (LogviewWindow *window)
+void
+calendar_init_data (Calendar *calendar, Log *log)
 {
-    CalendarData *data;
-    
-    if (window->curlog == NULL)
-        return NULL;
-    
-    data = window->curlog->caldata;
-    if (data == NULL)
-        data = (CalendarData*) g_new (CalendarData, 1);
-    
-    if (data) {
-        GList *days;
-        Day *day;
-        days = window->curlog->days;
-        data->days = days;
-        day = days->data;
-        window->curlog->caldata = data;
-        data->first_pass = TRUE;
-        
-        if (day) {
-            gtk_calendar_select_month (GTK_CALENDAR(window->calendar), 
-                                       g_date_get_month (day->date)-1,
-                                       g_date_get_year (day->date));
-            gtk_calendar_select_day (GTK_CALENDAR(window->calendar), 
-                                     g_date_get_day (day->date));
-        }
-        
-        read_marked_dates (data, window);
-    }
-    
-    return data;
-}
+    g_return_if_fail (IS_CALENDAR (calendar));
 
-/* ----------------------------------------------------------------------
-   NAME:          calendar_month_changed
-   DESCRIPTION:   User changed the month in the calendar.
-   ---------------------------------------------------------------------- */
+    if (log == NULL)
+        return;
+    
+    calendar->days = log->days;
+    calendar->first_pass = TRUE;
+
+    calendar_mark_dates (calendar);
+}
 
 static void
-calendar_month_changed (GtkWidget *widget, LogviewWindow *window)
+calendar_month_changed (GtkWidget *widget, gpointer data)
 {
-  GtkCalendar *calendar;
-  CalendarData *data;
-  Day *day;
-  guint iday, month, year;
-
-	if (window->curlog == NULL)
-		return;
-
-  calendar = GTK_CALENDAR (window->calendar);
-  g_return_if_fail (calendar);
-
-  data = window->curlog->caldata;
-  g_return_if_fail (data);
-
-  read_marked_dates (data, window);
+  calendar_mark_dates (CALENDAR (widget));
 }
 
 static Day *
@@ -179,34 +93,116 @@ log_find_day (Log *log, int d, int m, int y)
 static GtkTreePath *
 calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 {
+    Calendar *calendar;
     guint day, month, year;
     Day *found_day;
     GtkTreePath *path;
     gchar *path_string;
-    
+
+    calendar = CALENDAR (widget);
+
 	if (window->curlog == NULL)
 		return NULL;
 
-    if (window->curlog->caldata->first_pass == TRUE) {
-        window->curlog->caldata->first_pass = FALSE;
+    if (calendar->first_pass == TRUE) {
+        calendar->first_pass = FALSE;
         return NULL;
     }
   
-    gtk_calendar_get_date (GTK_CALENDAR (window->calendar), &year, &month, &day);    
+    gtk_calendar_get_date (GTK_CALENDAR (calendar), &year, &month, &day);    
     found_day = log_find_day (window->curlog, day, month, year);
     if (found_day != NULL) {
         path = found_day->path;
-        gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
+        if ((gtk_tree_path_compare (path, window->curlog->current_path) != 0) &&
+            (!gtk_tree_path_is_descendant (window->curlog->current_path, path)))
+            gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
         return path;
     } else
         return NULL;
 }
 
 void
-calendar_day_selected_double_click (GtkWidget *widget, LogviewWindow *window)
+calendar_select_date (Calendar *calendar, GDate *date)
 {
-	GtkTreePath *path;
-    path = calendar_day_selected(widget, window);
-	if (path)
-		gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view), path, FALSE);
+    guint y, m, d;
+
+    gtk_calendar_get_date (GTK_CALENDAR (calendar), &y, &m, &d);
+    m++;
+
+    if (g_date_get_day (date) == d && g_date_get_month (date) == m &&
+        g_date_get_year (date) == y)
+        return;
+    calendar->first_pass = TRUE;
+
+    if (g_date_get_year (date) != y || g_date_get_month (date) != m)
+        gtk_calendar_select_month (GTK_CALENDAR (calendar), g_date_get_month(date)-1, 
+                                   g_date_get_year (date));
+    if (g_date_get_day (date) != d)
+        gtk_calendar_select_day (GTK_CALENDAR (calendar), g_date_get_day(date));
 }
+
+void
+calendar_connect (Calendar *calendar, LogviewWindow *window)
+{
+	g_signal_connect (G_OBJECT (calendar), "month_changed",
+                      G_CALLBACK (calendar_month_changed),
+                      window);
+	g_signal_connect (G_OBJECT (calendar), "day_selected",
+                      G_CALLBACK (calendar_day_selected),
+                      window);
+}
+
+static void 
+calendar_init (GtkCalendar *calendar)
+{
+    GtkWidget *widget = GTK_WIDGET (calendar);
+    PangoFontDescription *fontdesc;
+    PangoContext *context;
+    int size;
+    
+    context = gtk_widget_get_pango_context (GTK_WIDGET(widget));
+    fontdesc = pango_context_get_font_description (context);
+    size = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
+    pango_font_description_set_size (fontdesc, (size-2)*PANGO_SCALE);
+    gtk_widget_modify_font (GTK_WIDGET (widget), fontdesc);
+}
+
+static void
+calendar_class_init (CalendarClass *klass)
+{
+	GObjectClass *object_class = (GObjectClass *) klass;
+	parent_class = g_type_class_peek_parent (klass);
+}
+
+GType
+calendar_get_type (void)
+{
+	static GType object_type = 0;
+	
+	if (!object_type) {
+		static const GTypeInfo object_info = {
+			sizeof (CalendarClass),
+			NULL,		/* base_init */
+			NULL,		/* base_finalize */
+			(GClassInitFunc) calendar_class_init,
+			NULL,		/* class_finalize */
+			NULL,		/* class_data */
+			sizeof (Calendar),
+			0,              /* n_preallocs */
+			(GInstanceInitFunc) calendar_init
+		};
+
+		object_type = g_type_register_static (GTK_TYPE_CALENDAR, "Calendar", &object_info, 0);
+	}
+
+	return object_type;
+}
+
+GtkWidget *
+calendar_new (void)
+{
+    GtkWidget *widget;
+    widget = g_object_new (CALENDAR_TYPE, NULL);
+    return widget;
+}
+

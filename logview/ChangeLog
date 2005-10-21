@@ -1,3 +1,17 @@
+2005-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (calendar_mark_dates), (calendar_init_data),
+	(calendar_month_changed), (calendar_day_selected),
+	(calendar_select_date), (calendar_connect), (calendar_init),
+	(calendar_class_init), (calendar_get_type), (calendar_new):
+	* calendar.h:
+	* log_repaint.c: (selection_changed_cb):
+	* logrtns.h:
+	* logview.c: (logview_init), (logview_calendar_set_state): Make
+	the calendar a subclass of a GtkCalendar.
+	* logrtns.h (struct): There's actually no need to store the date
+	for every log line.
+
 2005-10-21  Vincent Noel <vnoel@cox.net>
 
 	* log_repaint.c: (logview_create_model):

@@ -822,7 +822,7 @@ logview_init (LogviewWindow *window)
    window->sidebar = gtk_vbox_new (FALSE, 0);
    
    window->calendar = calendar_new ();
-   calendar_init (GTK_CALENDAR (window->calendar), window);
+   calendar_connect (GTK_CALENDAR (window->calendar), window);
    window->calendar_visible = TRUE;
    gtk_box_pack_end (GTK_BOX (window->sidebar), GTK_WIDGET(window->calendar), FALSE, FALSE, 0);
    
@@ -1161,7 +1161,7 @@ logview_calendar_set_state (LogviewWindow *logview)
 
     if (logview->curlog) {
         if (logview->curlog->days != NULL)
-            init_calendar_data (logview);
+            calendar_init_data (logview->calendar, logview->curlog);
         gtk_widget_set_sensitive (logview->calendar, (logview->curlog->days != NULL));
     } else
         gtk_widget_set_sensitive (logview->calendar, FALSE);

@@ -29,6 +29,7 @@
 #endif
 
 #include <gtk/gtkmessagedialog.h>
+#include <glib/gi18n.h>
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
@@ -36,6 +37,10 @@
 static gboolean queue_err_messages = FALSE;
 static GList *msg_queue_main = NULL, *msg_queue_sec = NULL;
 extern gboolean restoration_complete;
+const char *month[12] =
+{N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
+ N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
+ N_("November"), N_("December")};
 const char *C_monthname[12] =
 { "January",
   "February",
@@ -286,4 +291,28 @@ string_get_date (char *line)
     g_strfreev (split);
     date = g_date_new_dmy (d, m, 70);
     return date;
+}
+
+char *
+date_get_string (GDate *date)
+{
+   char buf[512];
+   char *utf8;
+
+   if (date == NULL || !g_date_valid (date)) {
+       utf8 = g_strdup(_("Invalid date"));
+       return utf8;
+   }
+   
+   /* Translators: Make sure this is only Month and Day format, year
+    * will be bogus here */
+   if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) == 0) {
+       int m = g_date_get_month (date);
+       int d = g_date_get_day (date);
+       /* If we fail just use the US format */
+       utf8 = g_strdup_printf ("%s %d", _(month[(int) m-1]), d);
+   } else
+       utf8 = LocaleToUTF8 (buf);
+   
+   return utf8;
 }

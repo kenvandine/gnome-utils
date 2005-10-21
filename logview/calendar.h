@@ -22,8 +22,31 @@
 
 #include "logrtns.h"
 
+#define CALENDAR_TYPE		  (calendar_get_type ())
+#define CALENDAR(obj)		  (GTK_CHECK_CAST ((obj), CALENDAR_TYPE, Calendar))
+#define CALENDAR_CLASS(klass)	  (GTK_CHECK_CLASS_CAST ((klass), CALENDAR_TYPE, CalendarClass))
+#define IS_CALENDAR(obj)	  (GTK_CHECK_TYPE ((obj), CALENDAR_TYPE))
+#define IS_CALENDAR_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), CALENDAR_TYPE))
+#define CALENDAR_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), CALENDAR_TYPE, CalendarClass))
+
+typedef struct _Calendar Calendar;
+typedef struct _CalendarClass CalendarClass;
+
+struct _Calendar
+{	
+	GtkCalendar parent_instance;
+	GList *days;
+	gboolean first_pass;
+};
+
+struct _CalendarClass
+{
+	GtkCalendarClass parent_class;
+};
+
 GtkWidget *calendar_new (void);
-CalendarData* calendar_init_data (LogviewWindow *window);
-void calendar_init (GtkCalendar *calendar, LogviewWindow *window);
+void calendar_select_date (Calendar *calendar, GDate *date);
+void calendar_init_data (Calendar *calendar, Log *log);
+void calendar_connect (Calendar *calendar, LogviewWindow *window);
 
 #endif /* __LOG_CALENDAR_H__ */

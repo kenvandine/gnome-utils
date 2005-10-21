@@ -25,6 +25,7 @@
 #include "logrtns.h"
 #include "log_repaint.h"
 #include "misc.h"
+#include "calendar.h"
 
 enum {
    DATE = 0,
@@ -108,7 +109,7 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
         if (selected_first == -1 || row < selected_first)
             selected_first = row;
         
-        if (log->caldata) {
+        if (log->days) {
             GtkTreeIter iter;
             Day *day;
 
@@ -116,8 +117,7 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
                 gtk_tree_path_up (selected_path);
             gtk_tree_model_get_iter (model, &iter, selected_path);
             gtk_tree_model_get (model, &iter, DAY_POINTER, &day, -1);
-            log->caldata->first_pass = TRUE;
-            gtk_calendar_select_day (GTK_CALENDAR (logview->calendar), g_date_get_day(day->date));
+            calendar_select_date (CALENDAR (logview->calendar), day->date);
         }
     }
     
@@ -209,7 +209,7 @@ model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line, Day
 {
     gchar *utf8;
     
-    utf8 = logline_get_date_string (line);
+    utf8 = date_get_string (day->date);
     gtk_tree_store_set (model, iter, DATE, utf8, DAY_POINTER, day, -1);
     g_free (utf8);
 }
@@ -257,7 +257,8 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
         process_utf8 = LocaleToUTF8 (line->process);
         gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                             DATE, date_utf8, HOSTNAME, hostname_utf8,
-                            PROCESS, process_utf8, MESSAGE, message_utf8, -1);        
+                            PROCESS, process_utf8, MESSAGE, message_utf8,
+                            -1);        
     } else {
         gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                             MESSAGE, message_utf8, -1);        

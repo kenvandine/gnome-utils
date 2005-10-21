@@ -33,11 +33,7 @@
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include "misc.h"
 
-const char *error_main = N_("One file or more could not be opened");
-const char *month[12] =
-{N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
- N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
- N_("November"), N_("December")};
+char *error_main = N_("One file or more could not be opened");
 enum {
     MONTH = 0, DAY,
     HOUR, MIN, SEC,
@@ -112,39 +108,6 @@ file_is_log (char *filename, gboolean show_error)
 
 /* log line manipulations */
 
-char *
-logline_get_date_string (LogLine *line)
-{
-   char buf[1024];
-   char *utf8;
-   GDate *date;
-
-   if (line->month >= 0 && line->month < 12) {
-
-       date = g_date_new_dmy (line->date, line->month + 1, 70);       
-
-       if (date == NULL || !g_date_valid (date)) {
-           utf8 = g_strdup(_("Invalid date"));
-           return utf8;
-       }
-
-       /* Translators: Make sure this is only Month and Day format, year
-        * will be bogus here */
-       if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) == 0) {
-           /* If we fail just use the US format */
-           utf8 = g_strdup_printf ("%s %d", _(month[(int) line->month]), 
-                                   line->date);
-       } else {
-           utf8 = LocaleToUTF8 (buf);
-       }
-   } else {
-       utf8 = g_strdup_printf ("?%d? %d", (int) line->month, line->date);
-   }
-   
-   g_date_free (date);
-
-   return utf8;
-}
 
 static LogLine *
 logline_new_from_string (gchar *message, gboolean has_date)
@@ -157,7 +120,6 @@ logline_new_from_string (gchar *message, gboolean has_date)
    if (line == NULL)
        return NULL;
 
-   line->month = -1; 
    if (message[0] == 0) {
        line->message=NULL;       
        return (line);
@@ -180,14 +142,14 @@ logline_new_from_string (gchar *message, gboolean has_date)
 
        switch (field) {
        case MONTH:
-           line->month = string_get_month (splits[i]);
+           /*           line->month = string_get_month (splits[i]);
            if (line->month==12) {
                line->month == -1;
                line->message = g_strdup (message);
-           }
+               }*/
            break;
        case DAY:
-           line->date = (int) atoi (splits[i]);
+           /*           line->date = (int) atoi (splits[i]);*/
            break;
        case HOUR:
            line->hour = (int) atoi (splits[i]);
@@ -213,7 +175,7 @@ logline_new_from_string (gchar *message, gboolean has_date)
        i++;
        field++;
    }
-   
+
    g_strfreev (splits);
    return (line);
 }
@@ -221,8 +183,9 @@ logline_new_from_string (gchar *message, gboolean has_date)
 /* log functions */
 
 gint 
-days_compare (Day *day1, Day *day2)
+days_compare (gconstpointer a, gconstpointer b)
 {
+    const Day *day1 = a, *day2 = b;
     return (g_date_compare (day1->date, day2->date));
 }
 
@@ -407,7 +370,9 @@ log_open (char *filename, gboolean show_error)
    char **buffer_lines;
    char *display_name = NULL;
    LogStats *stats;
-   int i;
+   int i, j;
+   GList *days;
+   Day *day;
    GError *error;
    GnomeVFSResult result;
    int size;
@@ -457,11 +422,16 @@ log_open (char *filename, gboolean show_error)
 
    /* Parse the lines */
    log->lines = g_new (LogLine*, log->total_lines);
-   for (i=0; i < log->total_lines; i++) {
-	   (log->lines)[i] = logline_new_from_string (buffer_lines[i], has_dates);
-       if ((log->lines)[i] == NULL) {
-           ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
-           return;
+   j = 0;
+   for (days = log->days; days != NULL; days = g_list_next (days)) {
+       day = days->data;
+       for (i = day->first_line; i <= day->last_line; i++) {
+           (log->lines)[j] = logline_new_from_string (buffer_lines[i], has_dates);
+           if ((log->lines)[j] == NULL) {
+               ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+               return;
+           }
+           j++;
        }
    }
    g_strfreev (buffer_lines);
@@ -494,6 +464,7 @@ log_add_lines (Log *log, gchar *buffer)
   char **buffer_lines;
   int i, j, new_total_lines;
   LogLine **new_lines;
+  Day *day;
 
   g_return_if_fail (log != NULL);
   g_return_if_fail (buffer != NULL);
@@ -507,6 +478,8 @@ log_add_lines (Log *log, gchar *buffer)
   for (i=0; i< log->total_lines; i++)
     new_lines [i] = (log->lines)[i];
   
+  /* FIXME : we should be smarter than this for day changes */
+  day = g_list_last (log->days)->data;
   for (i=0; buffer_lines[i+1]!=NULL; i++) {
     j = log->total_lines + i;
     new_lines [j] = logline_new_from_string (buffer_lines[i], (log->days != NULL));
