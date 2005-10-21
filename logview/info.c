@@ -24,13 +24,21 @@
 #include "info.h"
 #include "misc.h"
 
+#define MAX_DAY_STRING 512
+
 static void
 loginfo_repaint (LogviewWindow *window, GtkWidget *label)
 {
    char *utf8;
+   Day *day;
+   gchar day_string[MAX_DAY_STRING];
+   Log *log;
    gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp, *size_tmp;
    
-   if (!window->curlog)
+   g_return_if_fail (LOGVIEW_IS_WINDOW (window));
+
+   log = window->curlog;
+   if (log==NULL)
 	   return;
    
    tmp = gnome_vfs_format_file_size_for_display (window->curlog->lstats->size);
@@ -43,11 +51,15 @@ loginfo_repaint (LogviewWindow *window, GtkWidget *label)
    modified = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("<b>Start Date</b>: %s"), ctime (&(window->curlog)->lstats->startdate));
+   day = g_list_first (log->days)->data;
+   g_date_strftime (day_string, MAX_DAY_STRING, ("%x"), day->date);
+   tmp = g_strdup_printf(_("<b>Start Date</b>: %s"), day_string);
    start_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   tmp = g_strdup_printf(_("<b>Last Date</b>: %s"), ctime (&(window->curlog)->lstats->enddate));
+   day = g_list_last (log->days)->data;
+   g_date_strftime (day_string, MAX_DAY_STRING, ("%x"), day->date);
+   tmp = g_strdup_printf(_("<b>Last Date</b>: %s"), day_string);
    last_date = LocaleToUTF8 (tmp);
    g_free (tmp);
    
@@ -55,7 +67,7 @@ loginfo_repaint (LogviewWindow *window, GtkWidget *label)
    num_lines = LocaleToUTF8 (tmp);
    g_free (tmp);
    
-   info_string = g_strdup_printf ("%s\n%s%s%s%s", size, modified, start_date, last_date, num_lines);
+   info_string = g_strdup_printf ("%s\n%s%s\n%s\n%s", size, modified, start_date, last_date, num_lines);
    g_free (size);
    g_free (modified);
    g_free (start_date);

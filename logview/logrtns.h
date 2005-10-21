@@ -26,7 +26,7 @@
 
 typedef struct
 {
-    GDate *date;		/* date           */
+    GDate *date;
     /* fulldate is only used in the status bar : needs updating */
     struct tm fulldate;
     long first_line, last_line; /* First and last line in the log */
@@ -45,7 +45,6 @@ typedef struct
 {
     /* startdate and enddate are only used in info.c now
        find another way to do this.*/
-    time_t startdate, enddate;
     time_t mtime;
     GnomeVFSFileSize size;
 } LogStats;
@@ -77,7 +76,6 @@ struct _log
     gint displayed_lines; /* no of lines displayed now */
 	LogLine **lines; /* actual lines */
 	gboolean first_time;
-	gboolean has_date;
 	GtkTreePath *current_path;
     GtkTreeModel *model;
 	int versions;
@@ -96,9 +94,7 @@ struct _log
 };
 
 gboolean file_is_log (char *filename, gboolean show_error);
-
 char *logline_get_date_string (LogLine *line);
-
 Log *log_open (char *filename, gboolean show_error);
 gboolean log_read_new_lines (Log *log);
 void log_close (Log * log);

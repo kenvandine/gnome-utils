@@ -261,6 +261,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
    GList *days = NULL, *days_copy;
    GDate *date, *newdate;
    struct tm *tmptm;
+   gchar **split, *date_string;
    Day *day;
    int i;
 
@@ -272,6 +273,13 @@ log_read_dates (gchar **buffer_lines, time_t current)
    /* Start building the list */
 
    date = string_get_date (buffer_lines[i]);
+   if (!g_date_valid (date))
+       return NULL;
+
+   split = g_strsplit (buffer_lines[i], " ", 3);
+   date_string = g_strconcat (split[0], " ", split[1], NULL);
+   g_strfreev (split);
+
    g_date_set_year (date, current_year);
    day = g_new (Day, 1);
    days = g_list_append (days, day);
@@ -283,20 +291,21 @@ log_read_dates (gchar **buffer_lines, time_t current)
 
    for (i=day->first_line; buffer_lines[i] != NULL; i++) {
 
-	   newdate = string_get_date (buffer_lines[i]);
+       if (g_str_has_prefix (buffer_lines[i], date_string))
+           continue;
+       g_free (date_string);
+       split = g_strsplit (buffer_lines[i], " ", 3);
+       date_string = g_strconcat (split[0], " ", split[1], NULL);
+       g_strfreev (split);
+
+       newdate = string_get_date (buffer_lines[i]);
        if (newdate == NULL)
            continue;
-
-       g_date_set_year (newdate, current_year + offsetyear);
-	   if (g_date_compare (newdate, date) == 0) {
-           g_free (newdate);
-		   continue;
-       }
-
+       
        day->last_line = i-1;
 
        /* Append the day to the list */	
-	
+       g_date_set_year (newdate, current_year + offsetyear);	
        if (g_date_compare (newdate, date) < 1) {
 		   offsetyear++; /* newdate is next year */
            g_date_add_years (newdate, 1);
@@ -311,6 +320,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
    }
    day->last_line = i-1;
    days = g_list_first (days);
+   g_free (date_string);
 
    /* Correct years now. We assume that the last date on the log
       is the date last accessed */
@@ -361,6 +371,7 @@ log_open (char *filename, gboolean show_error)
    GError *error;
    GnomeVFSResult result;
    int size;
+   gboolean has_dates;
    
    if (file_exist (filename, show_error) == FALSE)
 	   return NULL;
@@ -372,6 +383,8 @@ log_open (char *filename, gboolean show_error)
 
    if (!file_is_log (filename, TRUE))
        return NULL;
+
+   g_print("Opening\n");
 
    result = gnome_vfs_read_entire_file (filename, &size, &buffer);
    if (result != GNOME_VFS_OK) {
@@ -386,7 +399,6 @@ log_open (char *filename, gboolean show_error)
    }
    log->name = g_strdup (filename);
    log->display_name = display_name;
-   log->has_date = TRUE;
    if (display_name)
 	   g_free (filename);
 
@@ -398,25 +410,29 @@ log_open (char *filename, gboolean show_error)
    log->total_lines = i;
    log->lines = g_new (LogLine*, log->total_lines);
    log->displayed_lines = 0;
-   
+
+   /* Read stats */
+   log->lstats = log_read_stats (log);
+
+   /* Read the dates */
+   /* A log without dates will return NULL */
+   log->days = log_read_dates (buffer_lines, log->lstats->mtime);
+   has_dates = (log->days != NULL);
+
+   /* Parse the lines */
    for (i=0; i < log->total_lines; i++) {
 
-	   (log->lines)[i] = logline_new_from_string (buffer_lines[i], log->has_date);
+	   (log->lines)[i] = logline_new_from_string (buffer_lines[i], has_dates);
 
        if ((log->lines)[i] == NULL) {
            ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
            return;
        }
-       if ((log->lines)[i]->month == -1 && log->has_date) {
-           log->has_date = FALSE;
-       }
    }
    
-   log->lstats = log_read_stats (log);
    if (log->lstats == NULL)
        ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 
-   log->days = log_read_dates (buffer_lines, log->lstats->mtime);
    if (log->days == NULL)
        ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 
@@ -443,6 +459,8 @@ log_open (char *filename, gboolean show_error)
            break;
    }
 
+   g_print ("Opening ok\n");
+
    return log;
 }
 
@@ -467,7 +485,7 @@ log_add_lines (Log *log, gchar *buffer)
   
   for (i=0; buffer_lines[i+1]!=NULL; i++) {
     j = log->total_lines + i;
-    new_lines [j] = logline_new_from_string (buffer_lines[i], log->has_date);
+    new_lines [j] = logline_new_from_string (buffer_lines[i], (log->days != NULL));
   }
   g_strfreev (buffer_lines);
   
@@ -512,6 +530,8 @@ void
 log_close (Log *log)
 {
    gint i;
+   Day *day;
+   GList *days;
 
    g_return_if_fail (log);
    
@@ -530,15 +550,23 @@ log_close (Log *log)
    /* Free all used memory */
    for (i = 1; i < log->total_lines; i++) {
        g_free ((log->lines)[i] -> message);
-       if (log->has_date) {
+
+       if (log->days != NULL) {
            g_free ((log->lines)[i] -> hostname);
            g_free ((log->lines)[i] -> process);
+           for (days = log->days; days != NULL; days = g_list_next (days)) {
+               day = days->data;
+               g_date_free (day->date);
+               gtk_tree_path_free (day->path);
+               g_free (day);
+           }
+           g_list_free (log->days);
+
        }
        g_free ((log->lines)[i]);           
    }
    
-   /* FIXME : we need to free the LogStats and Day structures */
-
+   g_free (log->lstats);
    gtk_tree_path_free (log->current_path);
    log->current_path = NULL;
 

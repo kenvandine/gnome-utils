@@ -1122,7 +1122,7 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
     lines = g_new0(gchar *, (nline + 1));
     for (i=0; i<=nline; i++) {
         line = (log->lines)[l1 + i];
-        if (log->has_date)
+        if (log->days != NULL)
             lines[i] = g_strdup_printf ("%s %s %s", line->hostname, 
                                         line->process, line->message);
         else
@@ -1160,9 +1160,9 @@ logview_calendar_set_state (LogviewWindow *logview)
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
     if (logview->curlog) {
-        if (logview->curlog->has_date)
+        if (logview->curlog->days != NULL)
             init_calendar_data (logview);
-        gtk_widget_set_sensitive (logview->calendar, logview->curlog->has_date);
+        gtk_widget_set_sensitive (logview->calendar, (logview->curlog->days != NULL));
     } else
         gtk_widget_set_sensitive (logview->calendar, FALSE);
 }
@@ -1181,7 +1181,7 @@ logview_menus_set_state (LogviewWindow *logview)
         else
             logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/MonitorLogs", TRUE);
         
-        if (log->has_date)
+        if (log->days != NULL)
             logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", TRUE);
         else
             logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);

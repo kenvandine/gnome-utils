@@ -101,7 +101,7 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
         
         selected_path = path->data;
         
-        row = tree_path_find_row (model, selected_path, log->has_date);
+        row = tree_path_find_row (model, selected_path, (log->days != NULL));
         
         if (selected_last == -1 || row > selected_last)
             selected_last = row;
@@ -313,7 +313,7 @@ logview_show_model (LogviewWindow *window, Log *log)
     g_return_if_fail (GTK_IS_TREE_MODEL (log->model));
 
     gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
-    if (log->has_date) {
+    if (log->days != NULL) {
         for (days=log->days; days != NULL; days = g_list_next(days)) {
             day = days->data;
             if (day->expand)
@@ -425,14 +425,14 @@ log_repaint (LogviewWindow *window)
         else {
 
             if (log->model == NULL) {
-                if (log->has_date)
+                if (log->days != NULL)
                     logview_create_model (window, log);
                 else
                     logview_create_model_no_date (window, log);
             }
             
             logview_show_model (window, log);
-            tree_view_columns_set_visible (window->view, log->has_date);
+            tree_view_columns_set_visible (window->view, (log->days != NULL));
             log_scroll_and_focus_path (window, log, log->current_path);
         }
     } else

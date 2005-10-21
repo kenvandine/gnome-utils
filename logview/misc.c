@@ -280,7 +280,8 @@ string_get_date (char *line)
     m = string_get_month (split[0]) + 1;    
     d = atoi (split[1]);
 
-    date = g_date_new_dmy (d, m, 70);    
+    g_strfreev (split);
+    date = g_date_new_dmy (d, m, 70);
     return date;
 
 }

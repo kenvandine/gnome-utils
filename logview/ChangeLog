@@ -1,3 +1,12 @@
+2005-10-21  noel  <vnoel@cox.net>
+
+	* info.c (loginfo_repaint): Use the new day info.
+	* logrtns.h (struct LogStats): Remove enddate and stardate.
+	(struct _log): Remove has_dates.
+	* logrtns.c (log_close): Free the new Day stuff.
+	* logrtns.c (log_read_dates): Be faster when parsing the log lines
+	for dates.
+
 2005-10-20  Vincent Noel  <vnoel@cox.net>
 
 	* calendar.c: (read_marked_dates), (init_calendar_data),
