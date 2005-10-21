@@ -304,9 +304,8 @@ date_get_string (GDate *date)
        return utf8;
    }
    
-   /* Translators: Make sure this is only Month and Day format, year
-    * will be bogus here */
-   if (g_date_strftime (buf, sizeof (buf), _("%B %e"), date) == 0) {
+   /* Translators: Only date format, time will be bogus */
+   if (g_date_strftime (buf, sizeof (buf), _("%Ex"), date) == 0) {
        int m = g_date_get_month (date);
        int d = g_date_get_day (date);
        /* If we fail just use the US format */

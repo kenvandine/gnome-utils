@@ -109,25 +109,23 @@ file_is_log (char *filename, gboolean show_error)
 /* log line manipulations */
 
 
-static LogLine *
-logline_new_from_string (gchar *message, gboolean has_date)
+void
+logline_fill_from_string (LogLine *line, gchar *message, gboolean has_date)
 {
    char **splits;
    int i, field;
-   LogLine *line;
    
-   line = g_new (LogLine, 1);
    if (line == NULL)
-       return NULL;
+       return;
 
    if (message[0] == 0) {
        line->message=NULL;       
-       return (line);
+       return;
    }
 
    if (!has_date) {
        line->message = g_strdup (message);
-       return (line);
+       return;
    }
 
    /* Seperation of a log line into 8 fields */
@@ -141,16 +139,6 @@ logline_new_from_string (gchar *message, gboolean has_date)
            i++;
 
        switch (field) {
-       case MONTH:
-           /*           line->month = string_get_month (splits[i]);
-           if (line->month==12) {
-               line->month == -1;
-               line->message = g_strdup (message);
-               }*/
-           break;
-       case DAY:
-           /*           line->date = (int) atoi (splits[i]);*/
-           break;
        case HOUR:
            line->hour = (int) atoi (splits[i]);
            break;
@@ -177,7 +165,7 @@ logline_new_from_string (gchar *message, gboolean has_date)
    }
 
    g_strfreev (splits);
-   return (line);
+   return;
 }
 
 /* log functions */
@@ -365,7 +353,7 @@ Log *
 log_open (char *filename, gboolean show_error)
 {
    Log *log;
-   LogLine *line;
+   LogLine line;
    char *buffer;
    char **buffer_lines;
    char *display_name = NULL;
@@ -406,7 +394,7 @@ log_open (char *filename, gboolean show_error)
    if (display_name)
 	   g_free (filename);
 
-   buffer_lines = g_strsplit_set (buffer, "\n\r", -1);
+   buffer_lines = g_strsplit (buffer, "\n", -1);
    g_free (buffer);
 
    for (i=0; buffer_lines[i+1] != NULL; i++);
@@ -421,22 +409,18 @@ log_open (char *filename, gboolean show_error)
    has_dates = (log->days != NULL);
 
    /* Parse the lines */
-   log->lines = g_new (LogLine*, log->total_lines);
-   j = 0;
+   log->lines = g_array_sized_new (FALSE, FALSE, sizeof (LogLine), log->total_lines);
    if (!has_dates) {
        for (i = 0; i < log->total_lines; i++) {
-           (log->lines)[i] = logline_new_from_string (buffer_lines[i], has_dates);
+           logline_fill_from_string (&line, buffer_lines[i], has_dates);
+           log->lines = g_array_append_val (log->lines, line);
        }
    } else {
        for (days = log->days; days != NULL; days = g_list_next (days)) {
            day = days->data;
            for (i = day->first_line; i <= day->last_line; i++) {
-               (log->lines)[j] = logline_new_from_string (buffer_lines[i], has_dates);
-               if ((log->lines)[j] == NULL) {
-                   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
-                   return;
-               }
-               j++;
+               logline_fill_from_string (&line, buffer_lines[i], has_dates);
+               log->lines = g_array_append_val (log->lines, line);
            }
        }
    }
@@ -464,40 +448,26 @@ log_open (char *filename, gboolean show_error)
    return log;
 }
 
-static Log*
+static void
 log_add_lines (Log *log, gchar *buffer)
 {
   char **buffer_lines;
-  int i, j, new_total_lines;
-  LogLine **new_lines;
-  Day *day;
+  int i;
+  LogLine line;
 
   g_return_if_fail (log != NULL);
   g_return_if_fail (buffer != NULL);
 
   buffer_lines = g_strsplit (buffer, "\n", -1);
   
-  for (i=0; buffer_lines[i+1] != NULL; i++);
-  new_total_lines = log->total_lines + i;
-  new_lines = g_new (LogLine *, new_total_lines);
-  
-  for (i=0; i< log->total_lines; i++)
-    new_lines [i] = (log->lines)[i];
-  
-  /* FIXME : we should be smarter than this for day changes */
-  day = g_list_last (log->days)->data;
-  for (i=0; buffer_lines[i+1]!=NULL; i++) {
-    j = log->total_lines + i;
-    new_lines [j] = logline_new_from_string (buffer_lines[i], (log->days != NULL));
+  for (i=0; buffer_lines[i+1] != NULL; i++) {
+      logline_fill_from_string (&line, buffer_lines [i], (log->days != NULL));
+      log->lines = g_array_append_val (log->lines, line);
+      log->total_lines ++;
   }
   g_strfreev (buffer_lines);
-  
-  /* Now store the new lines in the log */
-  g_free (log->lines);
-  log->total_lines = new_total_lines;
-  log->lines = new_lines;
-  
-  return log;
+ 
+  return;
 }
 
 /* log_read_new_lines */
@@ -524,6 +494,7 @@ log_read_new_lines (Log *log)
         
         log_add_lines (log, buffer);
         g_free (buffer);
+
         return TRUE;
 	}
 	return FALSE;
@@ -535,6 +506,7 @@ log_close (Log *log)
    gint i;
    Day *day;
    GList *days;
+   LogLine *line;
 
    g_return_if_fail (log);
    
@@ -551,15 +523,16 @@ log_close (Log *log)
    g_object_unref (log->model);
 
    /* Free all used memory */
-   for (i = 1; i < log->total_lines; i++) {
-       g_free ((log->lines)[i] -> message);
+   for (i = 0; i < log->total_lines; i++) {
+       line = &g_array_index (log->lines, LogLine, i);
+       g_free (line -> message);
        
        if (log->days != NULL) {
-           g_free ((log->lines)[i] -> hostname);
-           g_free ((log->lines)[i] -> process);
+           g_free (line -> hostname);
+           g_free (line -> process);
        }
-       g_free ((log->lines)[i]);           
    }
+   g_array_free (log->lines, TRUE);
 
    if (log->days != NULL) {
        for (days = log->days; days != NULL; days = g_list_next (days)) {

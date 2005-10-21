@@ -226,6 +226,9 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
     char *hostname_utf8 = NULL, *process_utf8 = NULL, *message_utf8;
     char tmp[MAX_TIME_STRING];
 
+    if (line->message == NULL)
+        return;
+
     message_utf8 = LocaleToUTF8 (line->message);
     
     if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
@@ -286,9 +289,11 @@ logview_add_new_log_lines (LogviewWindow *window, Log *log)
     gtk_tree_model_get_iter (log->model, &iter, day->path);
                 
     for (i=log->displayed_lines; i<log->total_lines; i++) {
-        line = (log->lines)[i];
-        gtk_tree_store_append (GTK_TREE_STORE (log->model), &child_iter, &iter);
-        model_fill_iter (GTK_TREE_STORE (log->model), &child_iter, line);
+        line = &g_array_index (log->lines, LogLine, i);
+        if (line->message != NULL) {
+            gtk_tree_store_append (GTK_TREE_STORE (log->model), &child_iter, &iter);
+            model_fill_iter (GTK_TREE_STORE (log->model), &child_iter, line);
+        }
     }
     log->displayed_lines = log->total_lines;
 
@@ -343,7 +348,7 @@ logview_create_model_no_date (LogviewWindow *window, Log *log)
     log->model = GTK_TREE_MODEL(gtk_tree_store_new (5, G_TYPE_STRING, G_TYPE_STRING,
                                                     G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
     for (i=log->total_lines-1; i>=0; i--) {
-        line = (log->lines)[i];
+        line = &g_array_index (log->lines, LogLine, i);
         gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &iter, NULL);
         gtk_tree_store_set (GTK_TREE_STORE (log->model), &iter,                            
                             MESSAGE, line->message, -1);
@@ -375,7 +380,7 @@ logview_create_model (LogviewWindow *window, Log *log)
 
     for (days = log->days; days != NULL; days = g_list_next (days)) {
         day = days->data;
-        line = (log->lines)[day->first_line];
+        line = &g_array_index (log->lines, LogLine, day->first_line);
  
         gtk_tree_store_append (GTK_TREE_STORE (log->model), &iter, NULL);
         model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, line, day);
@@ -386,7 +391,7 @@ logview_create_model (LogviewWindow *window, Log *log)
 
         /* Now cycle on the lines for the studied day */
         for (i = day->last_line-1; i >= day->first_line; i--) {
-            line = (log->lines)[i];
+            line = &g_array_index (log->lines, LogLine, i);
             gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &child_iter, &iter);
             model_fill_iter (GTK_TREE_STORE (log->model), &child_iter, line);
         }                
@@ -409,7 +414,7 @@ log_repaint (LogviewWindow *window)
 
     logview_update_statusbar (window);
     logview_set_window_title (window);
-    
+
     if (window->curlog) {
         log = window->curlog;
 

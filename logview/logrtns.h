@@ -60,7 +60,7 @@ struct _log
 	gint selected_line_last;
 	gint total_lines; /* no of lines in the file */
     gint displayed_lines; /* no of lines displayed now */
-	LogLine **lines; /* actual lines */
+    GArray *lines;
 	gboolean first_time;
 	GtkTreePath *current_path;
     GtkTreeModel *model;

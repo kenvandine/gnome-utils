@@ -37,6 +37,7 @@
 #include "misc.h"
 #include "logview-findbar.h"
 #include "userprefs.h"
+#include "calendar.h"
 
 static GObjectClass *parent_class;
 static GConfClient *client = NULL;
@@ -265,6 +266,7 @@ logview_select_log (LogviewWindow *logview, Log *log)
 	logview_menus_set_state (logview);
 	logview_update_version_bar (logview);
 	logview_calendar_set_state (logview);
+    log->displayed_lines = 0;
 	log_repaint (logview);
 	logview_save_prefs (logview); 
     gtk_widget_grab_focus (logview->view);
@@ -822,7 +824,7 @@ logview_init (LogviewWindow *window)
    window->sidebar = gtk_vbox_new (FALSE, 0);
    
    window->calendar = calendar_new ();
-   calendar_connect (GTK_CALENDAR (window->calendar), window);
+   calendar_connect (CALENDAR (window->calendar), window);
    window->calendar_visible = TRUE;
    gtk_box_pack_end (GTK_BOX (window->sidebar), GTK_WIDGET(window->calendar), FALSE, FALSE, 0);
    
@@ -1121,7 +1123,7 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
     nline = l2 - l1 + 1;
     lines = g_new0(gchar *, (nline + 1));
     for (i=0; i<=nline; i++) {
-        line = (log->lines)[l1 + i];
+        line = &g_array_index (log->lines, LogLine, l1+i);
         if (log->days != NULL)
             lines[i] = g_strdup_printf ("%s %s %s", line->hostname, 
                                         line->process, line->message);
@@ -1161,7 +1163,7 @@ logview_calendar_set_state (LogviewWindow *logview)
 
     if (logview->curlog) {
         if (logview->curlog->days != NULL)
-            calendar_init_data (logview->calendar, logview->curlog);
+            calendar_init_data (CALENDAR (logview->calendar), logview->curlog);
         gtk_widget_set_sensitive (logview->calendar, (logview->curlog->days != NULL));
     } else
         gtk_widget_set_sensitive (logview->calendar, FALSE);
