@@ -423,15 +423,21 @@ log_open (char *filename, gboolean show_error)
    /* Parse the lines */
    log->lines = g_new (LogLine*, log->total_lines);
    j = 0;
-   for (days = log->days; days != NULL; days = g_list_next (days)) {
-       day = days->data;
-       for (i = day->first_line; i <= day->last_line; i++) {
-           (log->lines)[j] = logline_new_from_string (buffer_lines[i], has_dates);
-           if ((log->lines)[j] == NULL) {
-               ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
-               return;
+   if (!has_dates) {
+       for (i = 0; i < log->total_lines; i++) {
+           (log->lines)[i] = logline_new_from_string (buffer_lines[i], has_dates);
+       }
+   } else {
+       for (days = log->days; days != NULL; days = g_list_next (days)) {
+           day = days->data;
+           for (i = day->first_line; i <= day->last_line; i++) {
+               (log->lines)[j] = logline_new_from_string (buffer_lines[i], has_dates);
+               if ((log->lines)[j] == NULL) {
+                   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+                   return;
+               }
+               j++;
            }
-           j++;
        }
    }
    g_strfreev (buffer_lines);

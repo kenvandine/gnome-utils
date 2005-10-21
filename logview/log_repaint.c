@@ -339,7 +339,7 @@ logview_create_model_no_date (LogviewWindow *window, Log *log)
     
     g_return_if_fail (LOGVIEW_IS_WINDOW (window));
     g_return_if_fail (log);
-        
+
     log->model = GTK_TREE_MODEL(gtk_tree_store_new (5, G_TYPE_STRING, G_TYPE_STRING,
                                                     G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
     for (i=log->total_lines-1; i>=0; i--) {
