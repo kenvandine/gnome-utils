@@ -43,7 +43,8 @@ enum {
     HOUR, MIN, SEC,
     HOSTNAME, PROCESS, MESSAGE
 };
-    
+
+static LogStats *log_stats_new (char *filename, gboolean show_error);
 
 /* File checking */
 
@@ -99,41 +100,14 @@ file_is_zipped (char *filename)
 gboolean
 file_is_log (char *filename, gboolean show_error)
 {
-   char buff[1024];
-   char *found_space;
-   GnomeVFSHandle *handle;
-   GnomeVFSResult result;
-   GnomeVFSFileSize size;
-   GnomeVFSFileInfo info;
-
-   /* Read first line and check that it is text */
-   result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
-   if (result != GNOME_VFS_OK) {
-	   return FALSE;
-   }
-
-   result = gnome_vfs_get_file_info_from_handle (handle, &info, GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
-   if (result != GNOME_VFS_OK || info.type != GNOME_VFS_FILE_TYPE_REGULAR) {
-	   gnome_vfs_close (handle);
-	   return FALSE;
-   }
-
-   result = gnome_vfs_read (handle, buff, sizeof(buff), &size);
-   gnome_vfs_close (handle);
-   if (result != GNOME_VFS_OK)
-	   return FALSE;
-   
-   found_space = g_strstr_len (buff, 1024, " ");
-   if (found_space == NULL) {
-	   if (show_error) {
-		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-		   ShowErrMessage (NULL, error_main, buff);
-	   }
-	   return FALSE;
-   }
-   
-   /* It looks like a log file... */
-   return TRUE;
+    LogStats *stats;
+    stats = log_stats_new (filename, show_error);
+    if (stats==NULL)
+        return FALSE;
+    else {
+        g_free (stats);
+        return TRUE;
+    }
 }
 
 /* log line manipulations */
@@ -273,7 +247,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
    /* Start building the list */
 
    date = string_get_date (buffer_lines[i]);
-   if (!g_date_valid (date))
+   if ((date==NULL)|| !g_date_valid (date))
        return NULL;
 
    split = g_strsplit (buffer_lines[i], " ", 3);
@@ -336,22 +310,55 @@ log_read_dates (gchar **buffer_lines, time_t current)
    return (days);
 }
 
-/* ----------------------------------------------------------------------
-   NAME:          log_read_stats
-   DESCRIPTION:   Read the log and get some statistics from it. 
-   ---------------------------------------------------------------------- */
+/* 
+   log_stats_new
+   Read the log and get some statistics from it. 
+   Returns NULL if the file is not a log.
+*/
 
 static LogStats *
-log_read_stats (Log *log)
+log_stats_new (char *filename, gboolean show_error)
 {
    GnomeVFSResult result;
    GnomeVFSFileInfo *info;
+   GnomeVFSHandle *handle;
+   GnomeVFSFileSize size;
    LogStats *lstats;
+   char buff[1024];
+   char *found_space;
 
-   lstats = g_new (LogStats, 1);
-   
+   /* Read first line and check that it is text */
+   result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
+   if (result != GNOME_VFS_OK) {
+	   return NULL;
+   }
+
    info = gnome_vfs_file_info_new ();
-   result = gnome_vfs_get_file_info (log->name, info, GNOME_VFS_FILE_INFO_DEFAULT);
+   result = gnome_vfs_get_file_info_from_handle (handle, info, GNOME_VFS_FILE_INFO_FOLLOW_LINKS);
+   if (result != GNOME_VFS_OK || info->type != GNOME_VFS_FILE_TYPE_REGULAR) {
+       gnome_vfs_file_info_unref (info);
+	   gnome_vfs_close (handle);
+	   return NULL;
+   }
+
+   result = gnome_vfs_read (handle, buff, sizeof(buff), &size);
+   gnome_vfs_close (handle);
+   if (result != GNOME_VFS_OK) {
+       gnome_vfs_file_info_unref (info);
+	   return NULL;
+   }
+   
+   found_space = g_strstr_len (buff, 1024, " ");
+   if (found_space == NULL) {
+	   if (show_error) {
+		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
+		   ShowErrMessage (NULL, error_main, buff);
+	   }
+       gnome_vfs_file_info_unref (info);
+	   return NULL;
+   }
+   
+   lstats = g_new (LogStats, 1);   
    lstats->mtime = info->mtime;
    lstats->size = info->size;
    gnome_vfs_file_info_unref (info);
@@ -367,6 +374,7 @@ log_open (char *filename, gboolean show_error)
    char *buffer;
    char **buffer_lines;
    char *display_name = NULL;
+   LogStats *stats;
    int i;
    GError *error;
    GnomeVFSResult result;
@@ -381,10 +389,9 @@ log_open (char *filename, gboolean show_error)
 	   filename = g_strdup_printf ("%s#gzip:", display_name);
    }   
 
-   if (!file_is_log (filename, TRUE))
+   stats = log_stats_new (filename, show_error);
+   if (stats == NULL)
        return NULL;
-
-   g_print("Opening\n");
 
    result = gnome_vfs_read_entire_file (filename, &size, &buffer);
    if (result != GNOME_VFS_OK) {
@@ -392,7 +399,7 @@ log_open (char *filename, gboolean show_error)
 	   return NULL;
    }
 
-   log = g_new0 (Log, 1);
+   log = g_new0 (Log, 1);   
    if (log == NULL) {
 	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
 	   return NULL;
@@ -405,14 +412,11 @@ log_open (char *filename, gboolean show_error)
    buffer_lines = g_strsplit_set (buffer, "\n\r", -1);
    g_free (buffer);
 
-   /* count the lines */
    for (i=0; buffer_lines[i+1] != NULL; i++);
    log->total_lines = i;
-   log->lines = g_new (LogLine*, log->total_lines);
    log->displayed_lines = 0;
-
-   /* Read stats */
-   log->lstats = log_read_stats (log);
+   log->first_time = TRUE;
+   log->lstats = stats;
 
    /* Read the dates */
    /* A log without dates will return NULL */
@@ -420,26 +424,16 @@ log_open (char *filename, gboolean show_error)
    has_dates = (log->days != NULL);
 
    /* Parse the lines */
+   log->lines = g_new (LogLine*, log->total_lines);
    for (i=0; i < log->total_lines; i++) {
-
 	   (log->lines)[i] = logline_new_from_string (buffer_lines[i], has_dates);
-
        if ((log->lines)[i] == NULL) {
            ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
            return;
        }
    }
-   
-   if (log->lstats == NULL)
-       ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
-
-   if (log->days == NULL)
-       ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
-
    g_strfreev (buffer_lines);
 
-   log->first_time = TRUE;
-   
    /* Check for older versions of the log */
    log->versions = 0;
    log->current_version = 0;
@@ -458,8 +452,6 @@ log_open (char *filename, gboolean show_error)
        else
            break;
    }
-
-   g_print ("Opening ok\n");
 
    return log;
 }

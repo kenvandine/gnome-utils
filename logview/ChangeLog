@@ -1,4 +1,12 @@
-2005-10-21  noel  <vnoel@cox.net>
+2005-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (model_fill_iter): Calls to strftime are very
+	time-consuming, so cache the time values over several lines. Cut
+	rendering time in half.
+	* logrtns.c (log_stats_new): Combine log checking and stats
+	grabbing, so we don't get the GnomeVFSFileInfo twice.
+
+2005-10-21  Vincent Noel  <vnoel@cox.net>
 
 	* info.c (loginfo_repaint): Use the new day info.
 	* logrtns.h (struct LogStats): Remove enddate and stardate.

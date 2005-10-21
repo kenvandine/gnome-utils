@@ -131,14 +131,8 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 static void
 logview_update_statusbar (LogviewWindow *window)
 {
-   struct tm *tdm;
-   char status_text[255];
-   char *utf8;
-   char *buffer;
    char *statusbar_text;
    char *size_string;
-   /* Translators: Date only format, %x should well do really */
-   const char *time_fmt = _("%x"); /* an evil way to avoid warning */
 
    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
 
@@ -148,25 +142,8 @@ logview_update_statusbar (LogviewWindow *window)
    }
 
    size_string = gnome_vfs_format_file_size_for_display (window->curlog->lstats->size);
-   /* FIXME : this needs updating. */
-   /*   if (window->curlog->curmark != NULL) {
-	   tdm = &(window->curlog)->curmark->fulldate;
-
-       if (strftime (status_text, sizeof (status_text), time_fmt, tdm) <= 0) { */
-   	       /* as a backup print in US style */
-   /*  	       utf8 = g_strdup_printf ("%02d/%02d/%02d", tdm->tm_mday,
-                    tdm->tm_mon, tdm->tm_year % 100);
-       } else
-           utf8 = LocaleToUTF8 (status_text);
-
-       statusbar_text = g_strdup_printf (_("Last Modified: %s, %d lines (%s)"),
-                                         utf8, window->curlog->total_lines, size_string);
-       g_free (utf8);
-   } else
-   */
-
    statusbar_text = g_strdup_printf (_("%d lines (%s)"), 
-       window->curlog->total_lines, size_string);
+                                     window->curlog->total_lines, size_string);
 
    if (statusbar_text) {
        gtk_statusbar_pop (GTK_STATUSBAR(window->statusbar), 0);
@@ -237,39 +214,55 @@ model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line, Day
     g_free (utf8);
 }
 
+#define MAX_TIME_STRING 32
+
 static void
 model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
 {
     struct tm date = {0};
-    char *date_utf8, *hostname_utf8 = NULL, *process_utf8 = NULL, *message_utf8;
-    char tmp[128];
+    /* cached variables */
+    static int hour = 0, min = 0, sec = 0;
+    static char *date_utf8 = NULL;
+    char *hostname_utf8 = NULL, *process_utf8 = NULL, *message_utf8;
+    char tmp[MAX_TIME_STRING];
+
+    message_utf8 = LocaleToUTF8 (line->message);
     
     if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
-        date.tm_hour = line->hour;
-        date.tm_min = line->min;
-        date.tm_sec = line->sec;
-        date.tm_isdst = 0;
-        
-        /* Translators: should be only the time, date could be bogus */
-        if (strftime (tmp, sizeof (tmp), _("%X"), &date) <= 0) {
-            /* as a backup print in 24 hours style */
-            date_utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, 
-                                         line->min, line->sec);
-        } else {
-            date_utf8 = LocaleToUTF8 (tmp);
+        /* Calling strftime is very time-consuming, so cache date_utf8 */
+        /* The last date_utf8 will never be freed, but it's a trade-off */
+        if (line->hour != hour || line->min != min || line->sec != sec) {
+            g_free (date_utf8);
+            
+            hour = line->hour;
+            min = line->min;
+            sec = line->sec;
+
+            date.tm_hour = line->hour;
+            date.tm_min = line->min;
+            date.tm_sec = line->sec;
+            date.tm_isdst = 0;
+            
+            /* Translators: should be only the time, date could be bogus */
+            if (strftime (tmp, MAX_TIME_STRING, _("%X"), &date) <= 0) {
+                /* as a backup print in 24 hours style */
+                date_utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, 
+                                             line->min, line->sec);
+            } else {
+                date_utf8 = LocaleToUTF8 (tmp);
+            }
         }
+        
+        hostname_utf8 = LocaleToUTF8 (line->hostname);
+        process_utf8 = LocaleToUTF8 (line->process);
+        gtk_tree_store_set (GTK_TREE_STORE (model), iter,
+                            DATE, date_utf8, HOSTNAME, hostname_utf8,
+                            PROCESS, process_utf8, MESSAGE, message_utf8, -1);        
     } else {
-        date_utf8 = g_strdup (" ");
+        gtk_tree_store_set (GTK_TREE_STORE (model), iter,
+                            MESSAGE, message_utf8, -1);        
     }			 
     
-    hostname_utf8 = LocaleToUTF8 (line->hostname);
-    process_utf8 = LocaleToUTF8 (line->process);
-    message_utf8 = LocaleToUTF8 (line->message);
-    gtk_tree_store_set (GTK_TREE_STORE (model), iter,
-                        DATE, date_utf8, HOSTNAME, hostname_utf8,
-                        PROCESS, process_utf8,
-                        MESSAGE, message_utf8, -1);
-    g_free (date_utf8);
     g_free (message_utf8);
     g_free (hostname_utf8);
     g_free (process_utf8);
@@ -377,10 +370,14 @@ logview_create_model (LogviewWindow *window, Log *log)
                                                     G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
 
     /* Cycle on the days in the log */
+    /* It's not worth it to do this with prepend instead of append */
+
     for (days = log->days; days != NULL; days = g_list_next (days)) {
         day = days->data;
         line = (log->lines)[day->first_line];
-        
+ 
+        /* Peut-etre faire tourner une progressbar ici ? */
+       
         gtk_tree_store_append (GTK_TREE_STORE (log->model), &iter, NULL);
         model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, line, day);
         path = gtk_tree_model_get_path (log->model, &iter);

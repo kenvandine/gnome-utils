@@ -27,9 +27,7 @@
 typedef struct
 {
     GDate *date;
-    /* fulldate is only used in the status bar : needs updating */
-    struct tm fulldate;
-    long first_line, last_line; /* First and last line in the log */
+    long first_line, last_line; /* First and last line for this day in the log */
     gboolean expand;
     GtkTreePath *path;
 } Day;
@@ -43,8 +41,6 @@ typedef struct
 
 typedef struct
 {
-    /* startdate and enddate are only used in info.c now
-       find another way to do this.*/
     time_t mtime;
     GnomeVFSFileSize size;
 } LogStats;
