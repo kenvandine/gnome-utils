@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-08-08 10:26-0400\n"
-"PO-Revision-Date: 2005-07-19 16:29+0900\n"
+"POT-Creation-Date: 2005-10-29 14:13+0900\n"
+"PO-Revision-Date: 2005-10-29 14:09+0900\n"
 "Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
@@ -22,21 +22,21 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:1
-#: ../gdictsrc/gdict-applet.c:149
+#: ../gdictsrc/gdict-applet.c:150
 msgid "Dictionary Lookup"
 msgstr "辞書検索"
 
 #: ../gdictsrc/GNOME_GDictApplet.server.in.in.h:2
-#: ../gdictsrc/gdict-applet.c:27 ../gdictsrc/gnome-dictionary.desktop.in.h:2
+#: ../gdictsrc/gdict-applet.c:28 ../gdictsrc/gnome-dictionary.desktop.in.h:2
 msgid "Lookup words in an online dictionary"
 msgstr "オンライン辞書で単語を検索します"
 
-#: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:619
-#: ../logview/logview.c:129
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:595
+#: ../logview/logview.c:118
 msgid "_About"
 msgstr "情報(_A)"
 
-#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:99
+#: ../gdictsrc/GNOME_GDictApplet.xml.h:2 ../logview/logview.c:88
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
@@ -48,8 +48,8 @@ msgstr "選択したテキストの検索(_L)"
 msgid "_Preferences"
 msgstr "設定(_P)"
 
-#: ../gdictsrc/dict.c:676 ../gdictsrc/gdict-pref-dialog.c:700
-#: ../gdictsrc/gdict-pref-dialog.c:747
+#: ../gdictsrc/dict.c:676 ../gdictsrc/gdict-pref-dialog.c:697
+#: ../gdictsrc/gdict-pref-dialog.c:744
 msgid "Cannot connect to server"
 msgstr "サーバに接続できません"
 
@@ -66,7 +66,7 @@ msgstr ""
 "考: デフォルトのサーバは dict.org で、ポートは 2628 です)。"
 
 #. Translator credits
-#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:43
+#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:44
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <aihana@gnome.gr.jp>\n"
@@ -81,9 +81,9 @@ msgstr ""
 msgid "A client for the MIT dictionary server."
 msgstr "MIT 辞書サーバのクライアントです。"
 
-#: ../gdictsrc/gdict-about.c:45 ../gdictsrc/gdict-applet.c:351
+#: ../gdictsrc/gdict-about.c:45 ../gdictsrc/gdict-applet.c:352
 #: ../gdictsrc/gdict-defbox.c:101 ../gdictsrc/gdict-defbox.c:114
-#: ../gdictsrc/gdict-pref-dialog.c:499
+#: ../gdictsrc/gdict-pref-dialog.c:500
 #: ../gdictsrc/gnome-dictionary.desktop.in.h:1 ../gdictsrc/main.c:87
 msgid "Dictionary"
 msgstr "辞書"
@@ -116,157 +116,148 @@ msgstr "検索"
 msgid "_Search for:"
 msgstr "検索の対象(_S):"
 
-#: ../gdictsrc/gdict-app.c:500 ../gdictsrc/gdict-applet.c:299
-#: ../gdictsrc/gdict-pref-dialog.c:901
+#: ../gdictsrc/gdict-app.c:486 ../gdictsrc/gdict-applet.c:300
+#: ../gdictsrc/gdict-pref-dialog.c:898
 msgid "Could not display help"
 msgstr "ヘルプを表示できませんでした"
 
 #. Top
-#: ../gdictsrc/gdict-app.c:589
+#: ../gdictsrc/gdict-app.c:571
 msgid "_Dictionary"
 msgstr "辞書(_D)"
 
 #. Dictionary menu
-#: ../gdictsrc/gdict-app.c:595
+#: ../gdictsrc/gdict-app.c:577
 msgid "_Look Up Word"
 msgstr "単語の検索(_L)"
 
-#: ../gdictsrc/gdict-app.c:596
+#: ../gdictsrc/gdict-app.c:578
 msgid "Lookup word in dictionary"
 msgstr "辞書で単語を検索します"
 
-#: ../gdictsrc/gdict-app.c:597
+#: ../gdictsrc/gdict-app.c:579
 msgid "_Print"
 msgstr "印刷(_P)"
 
-#: ../gdictsrc/gdict-app.c:598
+#: ../gdictsrc/gdict-app.c:580
 msgid "Print the current definition"
 msgstr "この意味定義を印刷します"
 
-#: ../gdictsrc/gdict-app.c:599
+#: ../gdictsrc/gdict-app.c:581
 msgid "_Close"
 msgstr "閉じる(_C)"
 
-#: ../gdictsrc/gdict-app.c:600
+#: ../gdictsrc/gdict-app.c:582
 msgid "Close the application"
 msgstr "アプリケーションを閉じます"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:603 ../logview/logview.c:114
+#: ../gdictsrc/gdict-app.c:585 ../logview/logview.c:103
 msgid "_Find..."
 msgstr "検索(_F).."
 
-#: ../gdictsrc/gdict-app.c:604
+#: ../gdictsrc/gdict-app.c:586
 msgid "Find a word in the text"
 msgstr "テキストから単語を検索します"
 
-#: ../gdictsrc/gdict-app.c:605
+#: ../gdictsrc/gdict-app.c:587
 msgid "Find Ne_xt"
 msgstr "次の検索(_X)"
 
-#: ../gdictsrc/gdict-app.c:606
+#: ../gdictsrc/gdict-app.c:588
 msgid "Find next occurrence of the word"
 msgstr "単語が次に現れる場所を探します"
 
-#: ../gdictsrc/gdict-app.c:607
+#: ../gdictsrc/gdict-app.c:589
 msgid "P_references"
 msgstr "設定(_R)"
 
-#: ../gdictsrc/gdict-app.c:608
+#: ../gdictsrc/gdict-app.c:590
 msgid "Configure the application"
 msgstr "アプリケーションを設定します"
 
-#. View menu
-#: ../gdictsrc/gdict-app.c:611 ../logview/logview.c:117
-msgid "Bigger text size"
-msgstr "文字のサイズを大きくします"
-
-#: ../gdictsrc/gdict-app.c:613 ../logview/logview.c:119
-msgid "Smaller text size"
-msgstr "文字のサイズを小さくします"
-
 #. Help menu
-#: ../gdictsrc/gdict-app.c:617 ../logview/logview.c:127
+#: ../gdictsrc/gdict-app.c:593 ../logview/logview.c:116
 msgid "_Contents"
 msgstr "目次(_C)"
 
-#: ../gdictsrc/gdict-app.c:618
+#: ../gdictsrc/gdict-app.c:594
 msgid "View help for this application"
 msgstr "このアプリケーションのヘルプを表示します"
 
-#: ../gdictsrc/gdict-app.c:620
+#: ../gdictsrc/gdict-app.c:596
 msgid "About this application"
 msgstr "このアプリケーションの情報を表示します"
 
-#: ../gdictsrc/gdict-app.c:625
+#: ../gdictsrc/gdict-app.c:601
 msgid "Cu_t"
 msgstr "切り取り(_T)"
 
-#: ../gdictsrc/gdict-app.c:626
+#: ../gdictsrc/gdict-app.c:602
 msgid "Cut the selection"
 msgstr "選択範囲を切り取ります"
 
-#: ../gdictsrc/gdict-app.c:627
+#: ../gdictsrc/gdict-app.c:603
 msgid "_Copy"
 msgstr "コピー(_C)"
 
-#: ../gdictsrc/gdict-app.c:628 ../logview/logview.c:110
+#: ../gdictsrc/gdict-app.c:604 ../logview/logview.c:99
 msgid "Copy the selection"
 msgstr "選択範囲をコピーします"
 
-#: ../gdictsrc/gdict-app.c:629
+#: ../gdictsrc/gdict-app.c:605
 msgid "_Paste"
 msgstr "貼り付け(_P)"
 
-#: ../gdictsrc/gdict-app.c:630
+#: ../gdictsrc/gdict-app.c:606
 msgid "Paste clipboard"
 msgstr "クリップボードから貼り付けます"
 
-#: ../gdictsrc/gdict-app.c:631
+#: ../gdictsrc/gdict-app.c:607
 msgid "Select _All"
 msgstr "全て選択(_A)"
 
-#: ../gdictsrc/gdict-app.c:632
+#: ../gdictsrc/gdict-app.c:608
 msgid "Select everything"
 msgstr "全て選択します"
 
-#: ../gdictsrc/gdict-app.c:637
+#: ../gdictsrc/gdict-app.c:613
 msgid "_Spellings"
 msgstr "スペル(_S)"
 
-#: ../gdictsrc/gdict-app.c:638
+#: ../gdictsrc/gdict-app.c:614
 msgid "View alternate spellings"
 msgstr "他のスペルを表示します"
 
-#: ../gdictsrc/gdict-app.c:748
+#: ../gdictsrc/gdict-app.c:724
 msgid "_Look Up"
 msgstr "検索(_L)"
 
-#: ../gdictsrc/gdict-app.c:757
+#: ../gdictsrc/gdict-app.c:733
 msgid "In Dictionary"
 msgstr "辞書から"
 
-#: ../gdictsrc/gdict-app.c:758
+#: ../gdictsrc/gdict-app.c:734
 msgid "On a Web Site"
 msgstr "ウェブ・サイトから"
 
-#: ../gdictsrc/gdict-app.c:774
+#: ../gdictsrc/gdict-app.c:750
 msgid "Word"
 msgstr "単語"
 
-#: ../gdictsrc/gdict-app.c:775
+#: ../gdictsrc/gdict-app.c:751
 msgid "Word Entry"
 msgstr "単語のエントリ"
 
-#: ../gdictsrc/gdict-app.c:776
+#: ../gdictsrc/gdict-app.c:752
 msgid "Enter a Word or select one from the list below"
 msgstr "単語を入力するか、下の一覧から選択して下さい"
 
-#: ../gdictsrc/gdict-app.c:779
+#: ../gdictsrc/gdict-app.c:755
 msgid "Look Up for a Word"
 msgstr "単語の検索"
 
-#: ../gdictsrc/gdict-applet.c:155
+#: ../gdictsrc/gdict-applet.c:156
 msgid "Dictionary word entry"
 msgstr "辞書の単語のエントリ"
 
@@ -283,11 +274,11 @@ msgstr "一致するものは見つかりません"
 msgid "String not found"
 msgstr "文字が見つかりません"
 
-#: ../gdictsrc/gdict-defbox.c:618
+#: ../gdictsrc/gdict-defbox.c:590
 msgid "Definition preview"
 msgstr "定義のプレビュー"
 
-#: ../gdictsrc/gdict-defbox.c:947 ../gdictsrc/gdict-entry.c:132
+#: ../gdictsrc/gdict-defbox.c:919 ../gdictsrc/gdict-entry.c:132
 #: ../gdictsrc/gdict-speller.c:295
 msgid "Error invoking query"
 msgstr "問い合わせ中にエラー"
@@ -296,95 +287,95 @@ msgstr "問い合わせ中にエラー"
 msgid "Looking up entry..."
 msgstr "エントリの検索中..."
 
-#: ../gdictsrc/gdict-pref-dialog.c:267
+#: ../gdictsrc/gdict-pref-dialog.c:268
 msgid "De_fault Server"
 msgstr "デフォルトのサーバ(_F)"
 
-#: ../gdictsrc/gdict-pref-dialog.c:278
+#: ../gdictsrc/gdict-pref-dialog.c:279
 msgid "_Server:"
 msgstr "サーバ(_S):"
 
-#: ../gdictsrc/gdict-pref-dialog.c:286
+#: ../gdictsrc/gdict-pref-dialog.c:287
 msgid "Reset server to default"
 msgstr "サーバをデフォルトにリセット"
 
-#: ../gdictsrc/gdict-pref-dialog.c:288
+#: ../gdictsrc/gdict-pref-dialog.c:289
 msgid "_Port:"
 msgstr "ポート(_P):"
 
-#: ../gdictsrc/gdict-pref-dialog.c:298
+#: ../gdictsrc/gdict-pref-dialog.c:299
 msgid "Def_ault Port"
 msgstr "デフォルトのポート(_A)"
 
-#: ../gdictsrc/gdict-pref-dialog.c:313
+#: ../gdictsrc/gdict-pref-dialog.c:314
 msgid "Reset port to default"
 msgstr "ポートをデフォルトにリセット"
 
-#: ../gdictsrc/gdict-pref-dialog.c:314
+#: ../gdictsrc/gdict-pref-dialog.c:315
 msgid "Server"
 msgstr "サーバ"
 
-#: ../gdictsrc/gdict-pref-dialog.c:316
+#: ../gdictsrc/gdict-pref-dialog.c:317
 msgid "Server Entry"
 msgstr "サーバ・エントリ"
 
-#: ../gdictsrc/gdict-pref-dialog.c:316
+#: ../gdictsrc/gdict-pref-dialog.c:317
 msgid "Enter the Server Name"
 msgstr "サーバ名を入力して下さい"
 
-#: ../gdictsrc/gdict-pref-dialog.c:317
+#: ../gdictsrc/gdict-pref-dialog.c:318
 msgid "Port"
 msgstr "ポート"
 
-#: ../gdictsrc/gdict-pref-dialog.c:319
+#: ../gdictsrc/gdict-pref-dialog.c:320
 msgid "Port Entry"
 msgstr "ポート・エントリ"
 
-#: ../gdictsrc/gdict-pref-dialog.c:319
+#: ../gdictsrc/gdict-pref-dialog.c:320
 msgid "Enter the Port Number"
 msgstr "ポート番号を入力して下さい"
 
-#: ../gdictsrc/gdict-pref-dialog.c:322
+#: ../gdictsrc/gdict-pref-dialog.c:323
 msgid "_Database:"
 msgstr "データベース(_D):"
 
-#: ../gdictsrc/gdict-pref-dialog.c:332
+#: ../gdictsrc/gdict-pref-dialog.c:333
 msgid "Strat_egy:"
 msgstr "検索方法(_E):"
 
-#: ../gdictsrc/gdict-pref-dialog.c:342
+#: ../gdictsrc/gdict-pref-dialog.c:343
 msgid "F_ont:"
 msgstr "フォント(_O):"
 
-#: ../gdictsrc/gdict-pref-dialog.c:372
+#: ../gdictsrc/gdict-pref-dialog.c:373
 msgid "Web Site"
 msgstr "ウェブ・サイト"
 
-#: ../gdictsrc/gdict-pref-dialog.c:372
+#: ../gdictsrc/gdict-pref-dialog.c:373
 msgid "Search Address"
 msgstr "アドレス"
 
-#: ../gdictsrc/gdict-pref-dialog.c:491
+#: ../gdictsrc/gdict-pref-dialog.c:492
 msgid "Dictionary Preferences"
 msgstr "辞書の設定"
 
-#: ../gdictsrc/gdict-pref-dialog.c:503
+#: ../gdictsrc/gdict-pref-dialog.c:504
 msgid "Web Sites"
 msgstr "ウェブ・サイト"
 
-#: ../gdictsrc/gdict-pref-dialog.c:690
+#: ../gdictsrc/gdict-pref-dialog.c:687
 msgid "Search all databases"
 msgstr "全てのデーターベースを検索する"
 
-#: ../gdictsrc/gdict-pref-dialog.c:855
+#: ../gdictsrc/gdict-pref-dialog.c:852
 msgid "Database"
 msgstr "データベース"
 
-#: ../gdictsrc/gdict-pref-dialog.c:855
+#: ../gdictsrc/gdict-pref-dialog.c:852
 msgid "Database Name"
 msgstr "データベース名"
 
-#: ../gdictsrc/gdict-pref-dialog.c:872
+#: ../gdictsrc/gdict-pref-dialog.c:869
 msgid "Default Strategy"
 msgstr "デフォルトの検索方法"
 
@@ -495,58 +486,58 @@ msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
 "Linux ネイティブ・ファイルシステム (ext2) または DOS ファイルシステム (FAT)"
 
-#: ../gfloppy/src/badblocks.c:85
+#: ../gfloppy/src/badblocks.c:88
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "内部エラー: 適切な場所へシークできません。"
 
-#: ../gfloppy/src/badblocks.c:94
+#: ../gfloppy/src/badblocks.c:97
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "内部エラー: do_test におかしな値 (%ld) があります。\n"
 
 #. while (!i)
 #. ;
-#: ../gfloppy/src/badblocks.c:252
+#: ../gfloppy/src/badblocks.c:255
 msgid "Checking for bad blocks..."
 msgstr "不正なブロックの検証中..."
 
-#: ../gfloppy/src/badblocks.c:264
+#: ../gfloppy/src/badblocks.c:267
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "不正なブロックのチェックの際にデバイス %s をオープンできませんでした\n"
 
-#: ../gfloppy/src/badblocks.c:284 ../gfloppy/src/gfloppy.c:530
+#: ../gfloppy/src/badblocks.c:287 ../gfloppy/src/gfloppy.c:530
 msgid "Checking for bad blocks... Done"
 msgstr "不正なブロックの検証中... 完了"
 
-#: ../gfloppy/src/fdformat.c:43
+#: ../gfloppy/src/fdformat.c:46
 msgid "Formatting the disk..."
 msgstr "ディスクのフォーマット中..."
 
-#: ../gfloppy/src/fdformat.c:46
+#: ../gfloppy/src/fdformat.c:49
 msgid "I don't know what this is, but it's very wrong."
 msgstr "何がなんだかわかりませんが、とにかく悪いことが発生しました。"
 
-#: ../gfloppy/src/fdformat.c:54 ../gfloppy/src/fdformat.c:67
+#: ../gfloppy/src/fdformat.c:57 ../gfloppy/src/fdformat.c:70
 #, c-format
 msgid "Error formatting track #%d"
 msgstr "トラック #%d のフォーマット中にエラーが発生しました。"
 
-#: ../gfloppy/src/fdformat.c:76
+#: ../gfloppy/src/fdformat.c:79
 msgid "Error during completion of formatting"
 msgstr "フォーマット終了処理の際にエラーが発生しました。"
 
 #. XXXX - need to tell parent we're finished
-#: ../gfloppy/src/fdformat.c:80
+#: ../gfloppy/src/fdformat.c:83
 msgid "Formatting the disk... Done"
 msgstr "ディスクのフォーマット中... 完了"
 
 #. XXXX - tell parent we're starting verify stage
-#: ../gfloppy/src/fdformat.c:96
+#: ../gfloppy/src/fdformat.c:99
 msgid "Verifying the format..."
 msgstr "フォーマットの検証中..."
 
-#: ../gfloppy/src/fdformat.c:101 ../gfloppy/src/fdformat.c:186
+#: ../gfloppy/src/fdformat.c:104 ../gfloppy/src/fdformat.c:189
 msgid ""
 "Unable to write to the floppy.\n"
 "\n"
@@ -556,12 +547,12 @@ msgstr ""
 "\n"
 "書き込み禁止になっていないか確認して下さい。"
 
-#: ../gfloppy/src/fdformat.c:104 ../gfloppy/src/fdformat.c:189
+#: ../gfloppy/src/fdformat.c:107 ../gfloppy/src/fdformat.c:192
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
 msgstr "デバイス %s を開くことができません"
 
-#: ../gfloppy/src/fdformat.c:108 ../gfloppy/src/fdformat.c:193
+#: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -573,7 +564,7 @@ msgstr ""
 "ドライブの中にディスクが完全に挿入されているか\n"
 "確認して下さい。"
 
-#: ../gfloppy/src/fdformat.c:111
+#: ../gfloppy/src/fdformat.c:114
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -584,7 +575,7 @@ msgstr ""
 "\n"
 "エラーコード %s:%d"
 
-#: ../gfloppy/src/fdformat.c:134
+#: ../gfloppy/src/fdformat.c:137
 #, c-format
 msgid ""
 "Read Error:\n"
@@ -593,32 +584,32 @@ msgstr ""
 "読み込みエラー:\n"
 "シリンダ %dの読み込み時に問題が発生: %dを期待しましたが、%dを読み込みました。"
 
-#: ../gfloppy/src/fdformat.c:137
+#: ../gfloppy/src/fdformat.c:140
 #, c-format
 msgid "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
 "シリンダ %dの読み込み時に問題が発生: %dを期待しましたが %dを読み込みました。"
 
-#: ../gfloppy/src/fdformat.c:148
+#: ../gfloppy/src/fdformat.c:151
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
 msgstr "シリンダ %dに不正なデータがありますが、続行します..."
 
-#: ../gfloppy/src/fdformat.c:157
+#: ../gfloppy/src/fdformat.c:160
 #, c-format
 msgid "Error closing device %s"
 msgstr "デバイス %s を閉じる際にエラー"
 
-#: ../gfloppy/src/fdformat.c:164
+#: ../gfloppy/src/fdformat.c:167
 msgid "Verifying the format... Done"
 msgstr "フォーマットの検証中... 完了"
 
-#: ../gfloppy/src/fdformat.c:176
+#: ../gfloppy/src/fdformat.c:179
 #, c-format
 msgid "Unable to write to device %s"
 msgstr "デバイス %s に書き込むことができません。"
 
-#: ../gfloppy/src/fdformat.c:196
+#: ../gfloppy/src/fdformat.c:199
 #, c-format
 msgid ""
 "Generic error accessing floppy device %s.\n"
@@ -629,7 +620,7 @@ msgstr ""
 "\n"
 "エラーコード %s"
 
-#: ../gfloppy/src/fdformat.c:208
+#: ../gfloppy/src/fdformat.c:211
 msgid "Could not determine current floppy geometry."
 msgstr "このフロッピーのジオメトリ情報を取得することができませんでした。"
 
@@ -907,11 +898,11 @@ msgstr "(残り %d:%02d)"
 msgid "%ld of %ld"
 msgstr "%ld / %ld"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:85
+#: ../gnome-screenshot/gnome-panel-screenshot.c:86
 msgid "Error loading help"
 msgstr "ヘルプを読み込む際にエラー"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:86
+#: ../gnome-screenshot/gnome-panel-screenshot.c:87
 msgid "There was an error displaying the help pages for this dialog:"
 msgstr "このダイアログのヘルプを表示する際にエラーが発生しました:"
 
@@ -931,7 +922,7 @@ msgstr "Screenshot.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:154
+#: ../gnome-screenshot/gnome-panel-screenshot.c:152
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Screenshot-%s-%d.png"
@@ -939,28 +930,28 @@ msgstr "Screenshot-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:162
+#: ../gnome-screenshot/gnome-panel-screenshot.c:160
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Screenshot-%d.png"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:341
+#: ../gnome-screenshot/gnome-panel-screenshot.c:337
 msgid "Unable to take a screenshot of the current desktop."
 msgstr "お使いのデスクトップのスクリーンショットを撮れません。"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:414
+#: ../gnome-screenshot/gnome-panel-screenshot.c:438
 msgid "Grab a window instead of the entire screen"
 msgstr "画面全体ではなくウィンドウ単体を取得する"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:415
+#: ../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "Include the window border with the screenshot"
 msgstr "スクリーンショットにウィンドウの境界線を含める"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:416
+#: ../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "指定した時間を経過してからスクリーンショットを撮る [秒単位]"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:417
+#: ../gnome-screenshot/gnome-panel-screenshot.c:441
 msgid "Effect to add to the window border"
 msgstr "ウィンドウの画像効果を指定する"
 
@@ -990,10 +981,6 @@ msgid "Border Effect"
 msgstr "追加する画像効果"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:2
-msgid "Directory that the screenshooter last used to save in"
-msgstr "Gnome スクリーンショットが最後に保存したフォルダ"
-
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"black-line\"."
@@ -1001,25 +988,28 @@ msgstr ""
 "画像の境界の外側に追加する効果です。選択可能な値: \"shadow\"、\"none\"、"
 "\"black-line\""
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
 msgid "Include Border"
 msgstr "境界線を含める"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include the window manager border along with the screenshot"
 msgstr "スクリーンショットにウィンドウ・マネージャの境界線も含めます。"
 
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Screenshot directory"
+msgstr "スクリーンショットのフォルダ"
+
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
-msgid "Web directory"
-msgstr "ウェブのフォルダ"
+msgid "The directory the last screenshot was saved in."
+msgstr "最後にスクリーンショットを保存したフォルダです。"
 
 #: ../gnome-screenshot/screenshot-dialog.c:194
 msgid ""
 "Glade file for the screenshot program is missing.\n"
-"Please check your installation of gnome-panel"
+"Please check your installation of gnome-utils"
 msgstr ""
-"GNOME スクリーンショットのユーザ・インタフェース・ファイルが見つかりませ"
-"ん。\n"
+"スクリーンショット・プログラムの Glade ファイルが見つかりません。\n"
 "パッケージ 'gnome-utils' のインストールを確認して下さい。"
 
 #: ../gnome-screenshot/screenshot-dialog.c:213
@@ -1612,7 +1602,7 @@ msgstr[0] "%d 個のファイルが見つかりました"
 msgstr[1] "%d 個のファイルが見つかりました"
 
 #: ../gsearchtool/gsearchtool.c:824 ../gsearchtool/gsearchtool.c:1083
-#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2897
+#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2902
 msgid "Search for Files"
 msgstr "ファイルの検索"
 
@@ -1662,7 +1652,7 @@ msgstr "検索オプション \"%s\" の選択とセット"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "コマンドライン引数に不正なオプションが引き渡されました。"
 
-#: ../gsearchtool/gsearchtool.c:1612
+#: ../gsearchtool/gsearchtool.c:1617
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1670,7 +1660,7 @@ msgstr ""
 "\n"
 "...エラーが多すぎて表示でません..."
 
-#: ../gsearchtool/gsearchtool.c:1626
+#: ../gsearchtool/gsearchtool.c:1631
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -1678,11 +1668,11 @@ msgstr ""
 "この検索を実行した際にエラーが発生したので、検索結果が間違っているかもしれま"
 "せん。"
 
-#: ../gsearchtool/gsearchtool.c:1638 ../gsearchtool/gsearchtool.c:1682
+#: ../gsearchtool/gsearchtool.c:1643 ../gsearchtool/gsearchtool.c:1687
 msgid "Show more _details"
 msgstr "詳細を表示する(_D)"
 
-#: ../gsearchtool/gsearchtool.c:1668
+#: ../gsearchtool/gsearchtool.c:1673
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -1690,325 +1680,163 @@ msgstr ""
 "検索結果の期限が切れているか、または検索結果が間違っているかもしれません。"
 "クィック検索を無効にしてみますか？"
 
-#: ../gsearchtool/gsearchtool.c:1693
+#: ../gsearchtool/gsearchtool.c:1698
 msgid "Disable _Quick Search"
 msgstr "クイック検索を無効にする(_Q)"
 
-#: ../gsearchtool/gsearchtool.c:1720
+#: ../gsearchtool/gsearchtool.c:1725
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "子プロセス %d のグループ ID のセットに失敗しました: %s\n"
 
-#: ../gsearchtool/gsearchtool.c:1747
+#: ../gsearchtool/gsearchtool.c:1752
 msgid "Error parsing the search command."
 msgstr "検索コマンドを解析する際にエラーが発生しました。"
 
-#: ../gsearchtool/gsearchtool.c:1780
+#: ../gsearchtool/gsearchtool.c:1785
 msgid "Error running the search command."
 msgstr "検索コマンドを実行する際にエラーが発生しました。"
 
-#: ../gsearchtool/gsearchtool.c:1905
+#: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "検索条件 \"%s\" の値 (文) を入力して下さい"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1910
+#: ../gsearchtool/gsearchtool.c:1915
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" (単位: %s)"
 
-#: ../gsearchtool/gsearchtool.c:1912
+#: ../gsearchtool/gsearchtool.c:1917
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "検索条件 \"%2$s\" の %1$s の値を入力して下さい"
 
-#: ../gsearchtool/gsearchtool.c:1971
+#: ../gsearchtool/gsearchtool.c:1976
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" の削除"
 
-#: ../gsearchtool/gsearchtool.c:1972
+#: ../gsearchtool/gsearchtool.c:1977
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "削除する検索条件 \"%s\" をクリックして下さい"
 
-#: ../gsearchtool/gsearchtool.c:2065
+#: ../gsearchtool/gsearchtool.c:2070
 msgid "A_vailable options:"
 msgstr "適用する検索条件(_V):"
 
-#: ../gsearchtool/gsearchtool.c:2094
+#: ../gsearchtool/gsearchtool.c:2099
 msgid "Available options"
 msgstr "適用する検索条件"
 
-#: ../gsearchtool/gsearchtool.c:2095
+#: ../gsearchtool/gsearchtool.c:2100
 msgid "Select a search option from the drop-down list."
 msgstr "検索条件をメニューから選択して下さい"
 
-#: ../gsearchtool/gsearchtool.c:2107
+#: ../gsearchtool/gsearchtool.c:2112
 msgid "Add search option"
 msgstr "検索条件の追加"
 
-#: ../gsearchtool/gsearchtool.c:2108
+#: ../gsearchtool/gsearchtool.c:2113
 msgid "Click to add the selected available search option."
 msgstr "追加する検索条件を選択してクリックして下さい"
 
-#: ../gsearchtool/gsearchtool.c:2166
+#: ../gsearchtool/gsearchtool.c:2171
 msgid "S_earch results:"
 msgstr "検索結果(_E):"
 
-#: ../gsearchtool/gsearchtool.c:2202
+#: ../gsearchtool/gsearchtool.c:2207
 msgid "List View"
 msgstr "一覧表示"
 
-#: ../gsearchtool/gsearchtool.c:2262
+#: ../gsearchtool/gsearchtool.c:2267
 msgid "Name"
 msgstr "名前"
 
-#: ../gsearchtool/gsearchtool.c:2285
+#: ../gsearchtool/gsearchtool.c:2290
 msgid "Folder"
 msgstr "フォルダ"
 
-#: ../gsearchtool/gsearchtool.c:2296
+#: ../gsearchtool/gsearchtool.c:2301
 msgid "Size"
 msgstr "サイズ"
 
-#: ../gsearchtool/gsearchtool.c:2306
+#: ../gsearchtool/gsearchtool.c:2311
 msgid "Type"
 msgstr "種類"
 
-#: ../gsearchtool/gsearchtool.c:2316
+#: ../gsearchtool/gsearchtool.c:2321
 msgid "Date Modified"
 msgstr "変更日時"
 
-#: ../gsearchtool/gsearchtool.c:2686
+#: ../gsearchtool/gsearchtool.c:2691
 msgid "_Name contains:"
 msgstr "対象となる名前(_N):"
 
-#: ../gsearchtool/gsearchtool.c:2700 ../gsearchtool/gsearchtool.c:2701
+#: ../gsearchtool/gsearchtool.c:2705 ../gsearchtool/gsearchtool.c:2706
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "ファイル名、またはワイルドカード有り/無しでファイル名の一部を入力して下さい"
 
-#: ../gsearchtool/gsearchtool.c:2701
+#: ../gsearchtool/gsearchtool.c:2706
 msgid "Name contains"
 msgstr "対象となる名前"
 
-#: ../gsearchtool/gsearchtool.c:2707
+#: ../gsearchtool/gsearchtool.c:2712
 msgid "_Look in folder:"
 msgstr "対象となるフォルダ(_L):"
 
-#: ../gsearchtool/gsearchtool.c:2713
+#: ../gsearchtool/gsearchtool.c:2718
 msgid "Browse"
 msgstr "参照"
 
-#: ../gsearchtool/gsearchtool.c:2718
+#: ../gsearchtool/gsearchtool.c:2723
 msgid "Look in folder"
 msgstr "対象となるフォルダ"
 
-#: ../gsearchtool/gsearchtool.c:2718
+#: ../gsearchtool/gsearchtool.c:2723
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "検索を開始したいフォルダまたはデバイスを選択して下さい"
 
-#: ../gsearchtool/gsearchtool.c:2729
+#: ../gsearchtool/gsearchtool.c:2734
 msgid "Select more _options"
 msgstr "追加オプションの選択(_O)"
 
-#: ../gsearchtool/gsearchtool.c:2738
+#: ../gsearchtool/gsearchtool.c:2743
 msgid "Select more options"
 msgstr "もっとたくさんのオプションを選択します"
 
-#: ../gsearchtool/gsearchtool.c:2738
+#: ../gsearchtool/gsearchtool.c:2743
 msgid "Click to expand or collapse the list of available options."
 msgstr "クリックすると利用可能な検索オプションの一覧を展開または畳みます"
 
-#: ../gsearchtool/gsearchtool.c:2762
+#: ../gsearchtool/gsearchtool.c:2767
 msgid "Click to display the help manual."
 msgstr "クリックするとヘルプを表示します"
 
-#: ../gsearchtool/gsearchtool.c:2770
+#: ../gsearchtool/gsearchtool.c:2775
 msgid "Click to close \"Search for Files\"."
 msgstr "クリックすると \"ファイルの検索\" を閉じます"
 
-#: ../gsearchtool/gsearchtool.c:2796
+#: ../gsearchtool/gsearchtool.c:2801
 msgid "Click to perform a search."
 msgstr "クリックすると検索を実行します"
 
-#: ../gsearchtool/gsearchtool.c:2797
+#: ../gsearchtool/gsearchtool.c:2802
 msgid "Click to stop a search."
 msgstr "クリックすると検索を停止します"
 
-#: ../logview/about.c:47 ../logview/logview.c:49
+#: ../logview/about.c:48 ../logview/logview.c:47
 msgid "System Log Viewer"
 msgstr "システム・ログ・ビューア"
 
-#: ../logview/about.c:50
+#: ../logview/about.c:51
 msgid "A system log viewer for GNOME."
 msgstr "GNOME 向けのシステム・ログ・ビューアです。"
 
-#: ../logview/actions.c:85
-msgid "Action Database"
-msgstr "アクション・データベース"
-
-#: ../logview/actions.c:96
-msgid "Actions"
-msgstr "アクション"
-
-#: ../logview/actions.c:168
-msgid "_Add"
-msgstr "追加(_A)"
-
-#: ../logview/actions.c:173
-msgid "Add an action"
-msgstr "アクションの追加"
-
-#: ../logview/actions.c:175 ../logview/logview.c:97
-msgid "_Edit"
-msgstr "編集(_E)"
-
-#: ../logview/actions.c:180
-msgid "Edit an action"
-msgstr "アクションの編集"
-
-#: ../logview/actions.c:182
-msgid "_Remove"
-msgstr "削除(_R)"
-
-#: ../logview/actions.c:187
-msgid "Remove an action"
-msgstr "アクション削除"
-
-#: ../logview/actions.c:274
-#, c-format
-msgid "Cannot open action data base <%s>! Open failed."
-msgstr "アクション・データーベース <%s>を開けません！"
-
-#: ../logview/actions.c:309 ../logview/actions.c:322 ../logview/actions.c:333
-#: ../logview/actions.c:344 ../logview/actions.c:355 ../logview/actions.c:366
-msgid "Error parsing actions data base"
-msgstr "アクション・データベースのパースでエラー"
-
-#: ../logview/actions.c:400
-msgid "Can't write to actions database!"
-msgstr "アクション・データベースに書き込めません！"
-
-#: ../logview/actions.c:498
-#, c-format
-msgid "Error while executing specified action: %s"
-msgstr "指定したアクションを実行する際にエラーが発生しました: %s"
-
-#: ../logview/actions.c:521
-msgid "<empty>"
-msgstr "<空>"
-
-#: ../logview/actions.c:522
-msgid "log name regexp"
-msgstr "ログ名称の正規表現"
-
-#: ../logview/actions.c:523
-msgid "process regexp"
-msgstr "プロセスの正規表現:"
-
-#: ../logview/actions.c:524
-msgid "message regexp"
-msgstr "メッセージの正規表現"
-
-#: ../logview/actions.c:525
-msgid "action to execute when regexps are TRUE"
-msgstr "正規表現が真のときに実行するアクションです"
-
-#: ../logview/actions.c:526
-msgid "description"
-msgstr "説明"
-
-#: ../logview/actions.c:662
-msgid "Edit Action"
-msgstr "アクションの編集"
-
-#: ../logview/actions.c:698
-msgid "_Tag:"
-msgstr "タグ(_T):"
-
-#: ../logview/actions.c:707
-msgid "Tag that identifies the log file."
-msgstr "ログ・ファイルを識別するタグです"
-
-#: ../logview/actions.c:716
-msgid "_Log name:"
-msgstr "ログの名前(_L):"
-
-#: ../logview/actions.c:725
-msgid "Regular expression that will match the log name."
-msgstr "ログの名前に一致する正規表現です"
-
-#: ../logview/actions.c:735
-msgid "_Process:"
-msgstr "プロセス(_P):"
-
-#: ../logview/actions.c:744
-msgid "Regular expression that will match process part of message."
-msgstr "メッセージにあるプロセスの部分に一致する正規表現です"
-
-#: ../logview/actions.c:754
-msgid "_Message:"
-msgstr "メッセージ(_M):"
-
-#: ../logview/actions.c:763
-msgid "Regular expression that will match the message."
-msgstr "メッセージに一致する正規表現です"
-
-#: ../logview/actions.c:773
-msgid "_Action:"
-msgstr "アクション(_A):"
-
-#: ../logview/actions.c:782
-msgid ""
-"Action that will be executed if all previous regexps. are matched. This is "
-"executed by a system command: system (action)."
-msgstr ""
-"前の正規表現式が全て一致したら、アクションが実行されます。これはシステム・コ"
-"マンドが実行します: system (action)"
-
-#: ../logview/actions.c:792
-msgid "_Description:"
-msgstr "説明(_D):"
-
-#: ../logview/actions.c:801
-msgid "Description of this entry."
-msgstr "このエントリの説明です"
-
-#: ../logview/actions.c:825
-#, c-format
-msgid ""
-"tag: [%s]\n"
-"log_name: [%s]\n"
-"process: [%s]\n"
-"message: [%s]\n"
-"description: [%s]\n"
-"action: [%s]\n"
-msgstr ""
-"タグ: [%s]\n"
-"ログ名: [%s]\n"
-"プロセス: [%s]\n"
-"メッセージ: [%s]\n"
-"説明: [%s]\n"
-"アクション: [%s]\n"
-
-#: ../logview/desc_db.c:67
-#, c-format
-msgid "Cannot open regexp data base <%s>! Open failed."
-msgstr "正規表現データ・ベース <%s> をオープンできません！"
-
-#: ../logview/desc_db.c:177
-#, c-format
-msgid "Cannot open description data base <%s>! Open failed."
-msgstr "説明データ・ベース <%s> をオープンできません！"
-
-#. ----------------------------------------------------------------------
-#. NAME:
-#. DESCRIPTION:
-#. ----------------------------------------------------------------------
 #: ../logview/gnome-system-log.desktop.in.h:1
 msgid "System Log"
 msgstr "システム・ログ"
@@ -2017,135 +1845,55 @@ msgstr "システム・ログ"
 msgid "View the system log file"
 msgstr "システム・ログを表示します"
 
-#: ../logview/info.c:47
-msgid "Properties"
-msgstr "プロパティ"
-
-#: ../logview/info.c:95
-#, c-format
-msgid "%ld byte"
-msgid_plural "%ld bytes"
-msgstr[0] "%ld バイト"
-msgstr[1] "%ld バイト"
-
-#: ../logview/info.c:97
+#: ../logview/info.c:45
 #, c-format
 msgid "<b>Size</b>: %s"
 msgstr "<b>サイズ</b>: %s"
 
-#: ../logview/info.c:102
+#: ../logview/info.c:50
 #, c-format
 msgid "<b>Modified</b>: %s"
 msgstr "<b>変更日時</b>: %s"
 
-#: ../logview/info.c:106
+#: ../logview/info.c:56
 #, c-format
 msgid "<b>Start Date</b>: %s"
 msgstr "<b>開始日時</b>: %s"
 
-#: ../logview/info.c:110
+#: ../logview/info.c:62
 #, c-format
 msgid "<b>Last Date</b>: %s"
 msgstr "<b>最終日時</b>: %s"
 
-#: ../logview/info.c:114
+#: ../logview/info.c:66
 #, c-format
 msgid "<b>Number of Lines</b>: %ld"
 msgstr "<b>行数</b>: %ld"
 
-#: ../logview/log_repaint.c:36
-msgid "January"
-msgstr "1月"
+#: ../logview/info.c:106
+msgid "Properties"
+msgstr "プロパティ"
 
-#: ../logview/log_repaint.c:36
-msgid "February"
-msgstr "2月"
-
-#: ../logview/log_repaint.c:36
-msgid "March"
-msgstr "3月"
-
-#: ../logview/log_repaint.c:36
-msgid "April"
-msgstr "4月"
-
-#: ../logview/log_repaint.c:36
-msgid "May"
-msgstr "5月"
-
-#: ../logview/log_repaint.c:37
-msgid "June"
-msgstr "6月"
-
-#: ../logview/log_repaint.c:37
-msgid "July"
-msgstr "7月"
-
-#: ../logview/log_repaint.c:37
-msgid "August"
-msgstr "8月"
-
-#: ../logview/log_repaint.c:37
-msgid "September"
-msgstr "9月"
-
-#: ../logview/log_repaint.c:37
-msgid "October"
-msgstr "10月"
-
-#: ../logview/log_repaint.c:38
-msgid "November"
-msgstr "11月"
-
-#: ../logview/log_repaint.c:38
-msgid "December"
-msgstr "12月"
-
-#. Translators: Date only format, %x should well do really
-#: ../logview/log_repaint.c:256
+#: ../logview/log_repaint.c:145
 #, c-format
-msgid "%x"
-msgstr "%x"
+msgid "%d lines (%s)"
+msgstr "%d行 (%s)"
 
-#: ../logview/log_repaint.c:273
-#, c-format
-msgid "Last Modified: %s, %d lines"
-msgstr "最終変更日: %s (%d行)"
-
-#: ../logview/log_repaint.c:277
-#, c-format
-msgid "%d lines"
-msgstr "%d行"
-
-#: ../logview/log_repaint.c:308
+#: ../logview/log_repaint.c:178
 msgid "Current"
 msgstr "現在"
 
-#. Translators: Make sure this is only Month and Day format, year
-#. * will be bogus here
-#: ../logview/log_repaint.c:344
-msgid "%B %e"
-msgstr "%B%e日"
-
 #. Translators: should be only the time, date could be bogus
-#: ../logview/log_repaint.c:446
+#: ../logview/log_repaint.c:250
 #, c-format
 msgid "%X"
 msgstr "%X"
 
-#: ../logview/logrtns.c:51
+#: ../logview/logrtns.c:36
 msgid "One file or more could not be opened"
 msgstr "1個以上のファイルを開けませんでした"
 
-#: ../logview/logrtns.c:221
-msgid "Unable to open logfile!\n"
-msgstr "ログファイルを開けません！\n"
-
-#: ../logview/logrtns.c:228 ../logview/logrtns.c:248
-msgid "Not enough memory!\n"
-msgstr "メモリが足りません！\n"
-
-#: ../logview/logrtns.c:303
+#: ../logview/logrtns.c:61
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -2154,166 +1902,186 @@ msgstr ""
 "ユーザは %s を読むことはできません。root 権限でプログラムを起動するか、管理者"
 "に頼んでファイルのパーミッションを変更してもらって下さい。\n"
 
-#: ../logview/logrtns.c:308
+#: ../logview/logrtns.c:66
 #, c-format
 msgid "%s is too big."
 msgstr "%s は大きすぎます。"
 
-#: ../logview/logrtns.c:312
+#: ../logview/logrtns.c:70
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s を開けませんでした。"
 
-#: ../logview/logrtns.c:351
+#: ../logview/logrtns.c:337
 #, c-format
 msgid "%s not a log file."
 msgstr "%s はログファイルではありません。"
 
-#: ../logview/logrtns.c:556 ../logview/logrtns.c:580
-msgid "ReadLogStats: out of memory"
-msgstr "ログの読み込み: メモリ不足"
+#: ../logview/logrtns.c:383
+msgid "Unable to open logfile!\n"
+msgstr "ログファイルを開けません！\n"
 
-#: ../logview/logview-findbar.c:275
+#: ../logview/logrtns.c:389
+msgid "Not enough memory!\n"
+msgstr "メモリが足りません！\n"
+
+#: ../logview/logview-findbar.c:277
 msgid "Fin_d:"
 msgstr "検索(_D):"
 
-#: ../logview/logview-findbar.c:280
+#: ../logview/logview-findbar.c:282
 msgid "_Previous"
 msgstr "前へ(_P)"
 
-#: ../logview/logview-findbar.c:282
+#: ../logview/logview-findbar.c:284
 msgid "_Next"
 msgstr "次へ(_N)"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:85
 msgid "_Log"
 msgstr "ログ(_L)"
 
-#: ../logview/logview.c:98
+#: ../logview/logview.c:86
+msgid "_Edit"
+msgstr "編集(_E)"
+
+#: ../logview/logview.c:87
 msgid "_View"
 msgstr "表示(_V)"
 
-#: ../logview/logview.c:101
+#: ../logview/logview.c:90
 msgid "_Open..."
 msgstr "開く(_O).."
 
-#: ../logview/logview.c:101
+#: ../logview/logview.c:90
 msgid "Open a log from file"
 msgstr "ファイルからログを開きます"
 
-#: ../logview/logview.c:103
+#: ../logview/logview.c:92
 msgid "_Properties"
 msgstr "設定(_P)"
 
-#: ../logview/logview.c:103
+#: ../logview/logview.c:92
 msgid "Show Log Properties"
 msgstr "ログのプロパティを表示します"
 
-#: ../logview/logview.c:105
+#: ../logview/logview.c:94
 msgid "Close"
 msgstr "閉じる"
 
-#: ../logview/logview.c:105
+#: ../logview/logview.c:94
 msgid "Close this log"
 msgstr "このログを閉じます"
 
-#: ../logview/logview.c:107
+#: ../logview/logview.c:96
 msgid "_Quit"
 msgstr "終了(_Q)"
 
-#: ../logview/logview.c:107
+#: ../logview/logview.c:96
 msgid "Quit the log viewer"
 msgstr "ログ・ビューアを終了します"
 
-#: ../logview/logview.c:110
+#: ../logview/logview.c:99
 msgid "Copy"
 msgstr "コピー"
 
-#: ../logview/logview.c:112
+#: ../logview/logview.c:101
 msgid "Select All"
 msgstr "全て選択"
 
-#: ../logview/logview.c:112
+#: ../logview/logview.c:101
 msgid "Select the entire log"
 msgstr "ログ全体を選択します"
 
-#: ../logview/logview.c:114
+#: ../logview/logview.c:103
 msgid "Find pattern in logs"
 msgstr "ログの中をパターンで検索します"
 
-#: ../logview/logview.c:121
+#: ../logview/logview.c:106
+msgid "Bigger text size"
+msgstr "文字のサイズを大きくします"
+
+#: ../logview/logview.c:108
+msgid "Smaller text size"
+msgstr "文字のサイズを小さくします"
+
+#: ../logview/logview.c:110
 msgid "Normal text size"
 msgstr "標準の文字サイズにします"
 
-#: ../logview/logview.c:124
+#: ../logview/logview.c:113
 msgid "Collapse _All"
 msgstr "全て畳む(_A)"
 
-#: ../logview/logview.c:124
+#: ../logview/logview.c:113
 msgid "Collapse all the rows"
 msgstr "全ての行を畳みます"
 
-#: ../logview/logview.c:127
+#: ../logview/logview.c:116
 msgid "Open the help contents for the log viewer"
 msgstr "ログ・ビューアのヘルプの目次を開きます"
 
-#: ../logview/logview.c:129
+#: ../logview/logview.c:118
 msgid "Show the about dialog for the log viewer"
 msgstr "ログ・ビューアの情報ダイアログを表示します"
 
-#: ../logview/logview.c:135
+#: ../logview/logview.c:124
 msgid "Sidebar"
 msgstr "サイドバー"
 
-#: ../logview/logview.c:135
+#: ../logview/logview.c:124
 msgid "Show the sidebar"
 msgstr "サイドバーを表示します"
 
-#: ../logview/logview.c:137
+#: ../logview/logview.c:126
 msgid "_Monitor"
 msgstr "モニタ(_M)"
 
-#: ../logview/logview.c:137
+#: ../logview/logview.c:126
 msgid "Monitor Current Log"
 msgstr "現在表示しているログを監視します"
 
-#: ../logview/logview.c:139
+#: ../logview/logview.c:128
 msgid "Ca_lendar"
 msgstr "カレンダ(_L)"
 
-#: ../logview/logview.c:139
+#: ../logview/logview.c:128
 msgid "Show Calendar Log"
 msgstr "ログ用のカレンダを表示します"
 
-#: ../logview/logview.c:668
+#: ../logview/logview.c:382
+msgid "Log Viewer"
+msgstr "ログ・ビューア"
+
+#: ../logview/logview.c:788
 msgid "Date"
 msgstr "日付"
 
-#: ../logview/logview.c:668
+#: ../logview/logview.c:788
 msgid "Host Name"
 msgstr "ホスト名"
 
-#: ../logview/logview.c:669
+#: ../logview/logview.c:789
 msgid "Process"
 msgstr "プロセス"
 
-#: ../logview/logview.c:669
+#: ../logview/logview.c:789
 msgid "Message"
 msgstr "メッセージ"
 
-#: ../logview/logview.c:745
-msgid "Version : "
-msgstr "バージョン : "
+#: ../logview/logview.c:879
+msgid "Version: "
+msgstr "バージョン: "
 
-#: ../logview/logview.c:857
-msgid "Open new logfile"
-msgstr "新しいログファイルを開く..."
+#: ../logview/logview.c:980
+msgid "Open Log"
+msgstr "ファイルの選択"
 
-#: ../logview/logview.c:1214
+#: ../logview/logview.c:1221
 msgid "There was an error displaying help."
 msgstr "ヘルプを表示する際にエラーが発生しました。"
 
-#: ../logview/logview.c:1232
+#: ../logview/logview.c:1239
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (監視中) - %s"
@@ -2331,11 +2099,72 @@ msgstr ""
 "たは /var/log/message のどちらかで、ご利用のオペレーティング・システムに依存"
 "します。"
 
-#: ../logview/zoom.c:71
-msgid "Entry Detail"
-msgstr "エントリの詳細"
+#: ../logview/misc.c:41
+msgid "January"
+msgstr "1月"
 
-#. Translators: do not include year, it would be bogus
-#: ../logview/zoom.c:135
-msgid "%B %e %X"
-msgstr "%B%e日 %X"
+#: ../logview/misc.c:41
+msgid "February"
+msgstr "2月"
+
+#: ../logview/misc.c:41
+msgid "March"
+msgstr "3月"
+
+#: ../logview/misc.c:41
+msgid "April"
+msgstr "4月"
+
+#: ../logview/misc.c:41
+msgid "May"
+msgstr "5月"
+
+#: ../logview/misc.c:42
+msgid "June"
+msgstr "6月"
+
+#: ../logview/misc.c:42
+msgid "July"
+msgstr "7月"
+
+#: ../logview/misc.c:42
+msgid "August"
+msgstr "8月"
+
+#: ../logview/misc.c:42
+msgid "September"
+msgstr "9月"
+
+#: ../logview/misc.c:42
+msgid "October"
+msgstr "10月"
+
+#: ../logview/misc.c:43
+msgid "November"
+msgstr "11月"
+
+#: ../logview/misc.c:43
+msgid "December"
+msgstr "12月"
+
+#: ../logview/misc.c:303
+msgid "Invalid date"
+msgstr "日付が間違っています"
+
+#. Translators: Only date format, time will be bogus
+#: ../logview/misc.c:308
+#, c-format
+msgid "%Ex"
+msgstr "%Ex"
+
+#: ../logview/monitor.c:88
+msgid "This file cannot be monitored."
+msgstr "このファイルを監視できません"
+
+#: ../logview/monitor.c:91
+msgid "File monitoring is not supported on this file system.\n"
+msgstr "このファイル・システムではファイル監視をサポートしていません。\n"
+
+#: ../logview/monitor.c:93
+msgid "Gnome-VFS Error.\n"
+msgstr "Gnome-VFS のエラーです。\n"
