@@ -1,3 +1,15 @@
+2005-10-30  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	http://mail.gnome.org/archives/performance-list/2005-October/msg00000.html
+
+	* gsearchtool-spinner.c: (select_spinner_image),
+	(gsearch_spinner_expose), (extract_frame),
+	(gsearch_spinner_load_images):
+	* gsearchtool-support.c: (gsearchtool_gconf_handle_error):
+	* gsearchtool.c: (add_atk_namedesc), (add_atk_relation):
+	Replace g_return_* calls in static functions with a g_assert 
+	or a standard if statement.
+
 2005-10-14  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* help/C/gnome-search-tool-C.omf:  Fix bug 318876.  Change help 

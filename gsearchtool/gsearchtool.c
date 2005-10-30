@@ -1026,7 +1026,7 @@ add_atk_namedesc (GtkWidget * widget,
 {
 	AtkObject * atk_widget;
 
-	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_assert (GTK_IS_WIDGET (widget));
 
 	atk_widget = gtk_widget_get_accessible (widget);
 
@@ -1054,8 +1054,8 @@ add_atk_relation (GtkWidget * obj1,
 	AtkRelationSet * relation_set;
 	AtkRelation * relation;
 
-	g_return_if_fail (GTK_IS_WIDGET (obj1));
-	g_return_if_fail (GTK_IS_WIDGET (obj2));
+	g_assert (GTK_IS_WIDGET (obj1));
+	g_assert (GTK_IS_WIDGET (obj2));
 	
 	atk_obj1 = gtk_widget_get_accessible (obj1);
 			

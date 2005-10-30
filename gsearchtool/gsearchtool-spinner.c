@@ -227,7 +227,10 @@ select_spinner_image (GSearchSpinner * spinner)
 	}
 
 	element = g_list_nth (spinner->details->image_list, spinner->details->current_frame);
-	g_return_val_if_fail (element != NULL, NULL);
+
+	if (element == NULL) {
+		return NULL;
+	}
 
 	return g_object_ref (element->data);
 }
@@ -243,7 +246,7 @@ gsearch_spinner_expose (GtkWidget * widget, GdkEventExpose * event)
 	int x_offset, y_offset, width, height;
 	GdkRectangle pix_area, dest;
 
-	g_return_val_if_fail (GSEARCH_IS_SPINNER (widget), FALSE);
+	g_assert (GSEARCH_IS_SPINNER (widget));
 
 	spinner = GSEARCH_SPINNER (widget);
 
@@ -432,7 +435,9 @@ extract_frame (GSearchSpinner * spinner, GdkPixbuf * grid_pixbuf, int x, int y, 
 	pixbuf = gdk_pixbuf_new_subpixbuf (grid_pixbuf,
 					   x, y,
 					   size, size);
-	g_return_val_if_fail (pixbuf != NULL, NULL);
+	if (pixbuf == NULL) {
+		return NULL;
+	}
 
 	result = scale_to_real_size (spinner, pixbuf);
 	g_object_unref (pixbuf);
@@ -463,7 +468,10 @@ gsearch_spinner_load_images (GSearchSpinner * spinner)
 
 	size = gtk_icon_info_get_base_size (icon_info);
 	icon = gtk_icon_info_get_filename (icon_info);
-	g_return_if_fail (icon != NULL);
+
+	if (icon == NULL) {
+		return;
+	}
 
 	icon_pixbuf = gdk_pixbuf_new_from_file (icon, NULL);
 	grid_width = gdk_pixbuf_get_width (icon_pixbuf);
@@ -503,7 +511,10 @@ gsearch_spinner_load_images (GSearchSpinner * spinner)
 
 	size = gtk_icon_info_get_base_size (icon_info);
 	icon = gtk_icon_info_get_filename (icon_info);
-	g_return_if_fail (icon != NULL);
+
+	if (icon == NULL) {
+		return;
+	}
 
 	icon_pixbuf = gdk_pixbuf_new_from_file (icon, NULL);
 	spinner->details->quiescent_pixbuf = scale_to_real_size (spinner, icon_pixbuf);

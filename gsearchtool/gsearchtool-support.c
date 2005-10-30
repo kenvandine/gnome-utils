@@ -65,13 +65,13 @@
 static gboolean
 gsearchtool_gconf_handle_error (GError ** error)
 {
-	g_return_val_if_fail (error != NULL, FALSE);
-
-	if (*error != NULL) {
-		g_warning (_("GConf error:\n  %s"), (*error)->message);
-		g_error_free (*error);
-		*error = NULL;
-		return TRUE;
+	if (error != NULL) {
+		if (*error != NULL) {
+			g_warning (_("GConf error:\n  %s"), (*error)->message);
+			g_error_free (*error);
+			*error = NULL;
+			return TRUE;
+		}
 	}
 	return FALSE;
 }
