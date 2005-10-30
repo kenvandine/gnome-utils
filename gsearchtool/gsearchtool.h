@@ -89,6 +89,7 @@ struct _GSearchWindow {
 	GtkWidget             * progress_spinner;
 	GtkWidget             * find_button;
 	GtkWidget             * stop_button;
+	GtkWidget             * focus;
 
 	GtkWidget             * show_more_options_expander;
 	GtkWidget             * available_options_vbox;

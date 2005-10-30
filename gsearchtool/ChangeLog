@@ -1,5 +1,12 @@
 2005-10-30  Dennis Cranston  <dennis_cranston@yahoo.com>
 
+	* gsearchtool.c: (handle_search_command_stdout_io),
+	(spawn_search_command):  Fix bug 320161.  Restore widget 
+	focus after a search completes.
+	* gsearchtool.h: Add focus widget to GSearchWindow struct.
+
+2005-10-30  Dennis Cranston  <dennis_cranston@yahoo.com>
+
 	http://mail.gnome.org/archives/performance-list/2005-October/msg00000.html
 
 	* gsearchtool-spinner.c: (select_spinner_image),
