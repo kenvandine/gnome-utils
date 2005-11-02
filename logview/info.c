@@ -29,13 +29,13 @@
 static void
 loginfo_repaint (LogviewWindow *window, GtkWidget *label)
 {
+   gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp, *size_tmp;
+   gchar day_string[MAX_DAY_STRING];
    char *utf8;
    Day *day;
-   gchar day_string[MAX_DAY_STRING];
    Log *log;
-   gchar *info_string, *size, *modified, *start_date, *last_date, *num_lines, *tmp, *size_tmp;
    
-   g_return_if_fail (LOGVIEW_IS_WINDOW (window));
+   g_assert (LOGVIEW_IS_WINDOW (window));
 
    log = window->curlog;
    if (log==NULL)
@@ -43,28 +43,28 @@ loginfo_repaint (LogviewWindow *window, GtkWidget *label)
    
    tmp = gnome_vfs_format_file_size_for_display (window->curlog->lstats->size);
    size_tmp = g_strdup_printf (_("<b>Size</b>: %s"), tmp);
-   size = LocaleToUTF8 (size_tmp);
+   size = locale_to_utf8 (size_tmp);
    g_free (size_tmp);
    g_free (tmp);
    
    tmp = g_strdup_printf (_("<b>Modified</b>: %s"), ctime (&(window->curlog->lstats->mtime)));
-   modified = LocaleToUTF8 (tmp);
+   modified = locale_to_utf8 (tmp);
    g_free (tmp);
    
    day = g_list_first (log->days)->data;
    g_date_strftime (day_string, MAX_DAY_STRING, ("%x"), day->date);
    tmp = g_strdup_printf(_("<b>Start Date</b>: %s"), day_string);
-   start_date = LocaleToUTF8 (tmp);
+   start_date = locale_to_utf8 (tmp);
    g_free (tmp);
    
    day = g_list_last (log->days)->data;
    g_date_strftime (day_string, MAX_DAY_STRING, ("%x"), day->date);
    tmp = g_strdup_printf(_("<b>Last Date</b>: %s"), day_string);
-   last_date = LocaleToUTF8 (tmp);
+   last_date = locale_to_utf8 (tmp);
    g_free (tmp);
    
    tmp = g_strdup_printf(_("<b>Number of Lines</b>: %ld"), window->curlog->total_lines);
-   num_lines = LocaleToUTF8 (tmp);
+   num_lines = locale_to_utf8 (tmp);
    g_free (tmp);
    
    info_string = g_strdup_printf ("%s\n%s%s\n%s\n%s", size, modified, start_date, last_date, num_lines);
@@ -82,6 +82,9 @@ static void
 loginfo_quit (GtkWidget *widget, gpointer data)
 {
    LogviewWindow *window = data;
+
+   g_assert (LOGVIEW_IS_WINDOW (window));
+
    gtk_widget_hide (widget);
    window->loginfovisible = FALSE;
 }
@@ -93,11 +96,11 @@ loginfo_close (GtkWidget *widget, int arg, gpointer data)
 }
 
 void
-loginfo_new (GtkAction *action, GtkWidget *callback_data)
+loginfo_new (GtkAction *action, GtkWidget *widget)
 {
 	static GtkWidget *label;
 	static GtkWidget *info_dialog;
-	LogviewWindow *window = LOGVIEW_WINDOW(callback_data);
+	LogviewWindow *window = LOGVIEW_WINDOW(widget);
 
 	if (window->curlog == NULL || window->loginfovisible)
 		return;

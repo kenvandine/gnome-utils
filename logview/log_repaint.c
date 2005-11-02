@@ -57,8 +57,8 @@ tree_path_find_row (GtkTreeModel *model, GtkTreePath *path, gboolean has_date)
     GtkTreeIter iter;
     GtkTreePath *date_path;
 
-    g_return_val_if_fail (GTK_IS_TREE_MODEL (model), 0);
-    g_return_val_if_fail (path, 0);
+    g_assert (GTK_IS_TREE_MODEL (model));
+    g_assert (path);
     
     indices = gtk_tree_path_get_indices (path);
     
@@ -134,7 +134,7 @@ logview_update_statusbar (LogviewWindow *window)
    char *statusbar_text;
    char *size_string;
 
-   g_return_if_fail (LOGVIEW_IS_WINDOW (window));
+   g_assert (LOGVIEW_IS_WINDOW (window));
 
    if (window->curlog == NULL) { 
        gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar), 0);
@@ -195,8 +195,11 @@ logview_update_version_bar (LogviewWindow *logview)
 static void
 tree_view_columns_set_visible (GtkWidget *view, gboolean visible)
 {
-	int i;
 	GtkTreeViewColumn *column;
+	int i;
+
+    g_assert (GTK_IS_TREE_VIEW (view));
+
 	for (i=0; i<3; i++) {
 		column = gtk_tree_view_get_column (GTK_TREE_VIEW(view), i);
 		gtk_tree_view_column_set_visible (column, visible);
@@ -205,9 +208,11 @@ tree_view_columns_set_visible (GtkWidget *view, gboolean visible)
 }
 
 static void
-model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line, Day *day)
+model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, Day *day)
 {
     gchar *utf8;
+
+    g_assert (GTK_IS_TREE_STORE (model));
     
     utf8 = date_get_string (day->date);
     gtk_tree_store_set (model, iter, DATE, utf8, DAY_POINTER, day, -1);
@@ -226,10 +231,12 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
     char *hostname_utf8 = NULL, *process_utf8 = NULL, *message_utf8;
     char tmp[MAX_TIME_STRING];
 
+    g_assert (GTK_IS_TREE_STORE (model));
+
     if (line->message == NULL)
         return;
 
-    message_utf8 = LocaleToUTF8 (line->message);
+    message_utf8 = locale_to_utf8 (line->message);
     
     if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
         /* Calling strftime is very time-consuming, so cache date_utf8 */
@@ -252,12 +259,12 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
                 date_utf8 = g_strdup_printf ("%02d:%02d:%02d", line->hour, 
                                              line->min, line->sec);
             } else {
-                date_utf8 = LocaleToUTF8 (tmp);
+                date_utf8 = locale_to_utf8 (tmp);
             }
         }
         
-        hostname_utf8 = LocaleToUTF8 (line->hostname);
-        process_utf8 = LocaleToUTF8 (line->process);
+        hostname_utf8 = locale_to_utf8 (line->hostname);
+        process_utf8 = locale_to_utf8 (line->process);
         gtk_tree_store_set (GTK_TREE_STORE (model), iter,
                             DATE, date_utf8, HOSTNAME, hostname_utf8,
                             PROCESS, process_utf8, MESSAGE, message_utf8,
@@ -281,8 +288,8 @@ logview_add_new_log_lines (LogviewWindow *window, Log *log)
     int i;
     LogLine *line;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
-    g_return_if_fail (log);
+    g_assert (LOGVIEW_IS_WINDOW (window));
+    g_assert (log);
     
     /* Find the last expandable row */
     day = g_list_last (log->days)->data;
@@ -307,9 +314,9 @@ logview_show_model (LogviewWindow *window, Log *log)
     GList *days;
     Day *day;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
-    g_return_if_fail (log);
-    g_return_if_fail (GTK_IS_TREE_MODEL (log->model));
+    g_assert (LOGVIEW_IS_WINDOW (window));
+    g_assert (log);
+    g_assert (GTK_IS_TREE_MODEL (log->model));
 
     gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
     if (log->days != NULL) {
@@ -325,9 +332,9 @@ logview_show_model (LogviewWindow *window, Log *log)
 static void
 log_scroll_and_focus_path (LogviewWindow *window, Log *log, GtkTreePath *path)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
-    g_return_if_fail (log);
-    g_return_if_fail (path);
+    g_assert (LOGVIEW_IS_WINDOW (window));
+    g_assert (log);
+    g_assert (path);
 
     gtk_tree_view_set_cursor (GTK_TREE_VIEW (window->view), path, NULL, FALSE); 
     gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 
@@ -342,8 +349,8 @@ logview_create_model_no_date (LogviewWindow *window, Log *log)
     GtkTreePath *last_path;
     GtkTreeIter iter;
     
-    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
-    g_return_if_fail (log);
+    g_assert (LOGVIEW_IS_WINDOW (window));
+    g_assert (log);
 
     log->model = GTK_TREE_MODEL(gtk_tree_store_new (5, G_TYPE_STRING, G_TYPE_STRING,
                                                     G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
@@ -369,8 +376,8 @@ logview_create_model (LogviewWindow *window, Log *log)
 
     gchar *path_string;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
-    g_return_if_fail (log->total_lines > 0);
+    g_assert (LOGVIEW_IS_WINDOW (window));
+    g_assert (log->total_lines > 0);
 
     log->model = GTK_TREE_MODEL(gtk_tree_store_new (5, G_TYPE_STRING, G_TYPE_STRING,
                                                     G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
@@ -383,7 +390,7 @@ logview_create_model (LogviewWindow *window, Log *log)
         line = &g_array_index (log->lines, LogLine, day->first_line);
  
         gtk_tree_store_append (GTK_TREE_STORE (log->model), &iter, NULL);
-        model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, line, day);
+        model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, day);
         path = gtk_tree_model_get_path (log->model, &iter);
         day->path = gtk_tree_path_copy (path);
         gtk_tree_path_free (path);

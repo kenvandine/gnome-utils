@@ -49,7 +49,10 @@ file_exist (char *filename, gboolean show_error)
 {
    GnomeVFSHandle *handle;
    GnomeVFSResult result;
-   char buff[1024];
+   char *secondary = NULL;
+
+   if (filename == NULL)
+       return;
 
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
    if (result != GNOME_VFS_OK) {
@@ -57,19 +60,19 @@ file_exist (char *filename, gboolean show_error)
 		   switch (result) {
 		   case GNOME_VFS_ERROR_ACCESS_DENIED:
 		   case GNOME_VFS_ERROR_NOT_PERMITTED:
-			   g_snprintf (buff, sizeof (buff),
-				       _("%s is not user readable. "
+			   secondary = g_strdup_printf (_("%s is not user readable. "
 					 "Either run the program as root or ask the sysadmin to "
 					 "change the permissions on the file.\n"), filename);
 			   break;
 		   case GNOME_VFS_ERROR_TOO_BIG:
-			   g_snprintf (buff, sizeof (buff), _("%s is too big."), filename);
+			   secondary = g_strdup_printf (_("%s is too big."), filename);
 			   break;
 		   default:
-			   g_snprintf (buff, sizeof (buff),
-				       _("%s could not be opened."), filename);
+			   secondary = g_strdup_printf (_("%s could not be opened."), filename);
+               break;
 		   }
-		   ShowErrMessage (NULL, error_main, buff);
+		   error_dialog_show (NULL, error_main, secondary);
+           g_free (secondary);
 	   }
 	   return FALSE;
    }
@@ -82,6 +85,9 @@ static gboolean
 file_is_zipped (char *filename)
 {
 	char *mime_type;
+
+    if (filename == NULL)
+        return;
 
 	mime_type = gnome_vfs_get_mime_type (filename);
 
@@ -97,6 +103,10 @@ gboolean
 file_is_log (char *filename, gboolean show_error)
 {
     LogStats *stats;
+
+    if (filename == NULL)
+        return;
+
     stats = log_stats_new (filename, show_error);
     if (stats==NULL)
         return FALSE;
@@ -107,7 +117,6 @@ file_is_log (char *filename, gboolean show_error)
 }
 
 /* log line manipulations */
-
 
 void
 logline_fill_from_string (LogLine *line, gchar *message, gboolean has_date)
@@ -184,6 +193,9 @@ string_get_date_string (gchar *line)
     gchar *month=NULL, *day=NULL;
     int i=0;
 
+    if (line == NULL)
+        return;
+
     split = g_strsplit (line, " ", 4);
     while ((day == NULL || month == NULL) && split[i]!=NULL) {
         if (g_str_equal (split[i], "")) {
@@ -209,7 +221,6 @@ string_get_date_string (gchar *line)
     return (date_string);
 }
 
-
 /* log_read_dates
    Read all dates which have a log entry to create calendar.
    All dates are given with respect to the 1/1/1970
@@ -226,6 +237,9 @@ log_read_dates (gchar **buffer_lines, time_t current)
    gchar *date_string;
    Day *day;
    int i;
+
+   if (buffer_lines == NULL)
+       return NULL;
 
    tmptm = localtime (&current);
    current_year = tmptm->tm_year + 1900;
@@ -310,6 +324,9 @@ log_stats_new (char *filename, gboolean show_error)
    char buff[1024];
    char *found_space;
 
+   if (filename == NULL)
+       return NULL;
+
    /* Read first line and check that it is text */
    result = gnome_vfs_open (&handle, filename, GNOME_VFS_OPEN_READ);
    if (result != GNOME_VFS_OK) {
@@ -335,7 +352,7 @@ log_stats_new (char *filename, gboolean show_error)
    if (found_space == NULL) {
 	   if (show_error) {
 		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-		   ShowErrMessage (NULL, error_main, buff);
+		   error_dialog_show (NULL, error_main, buff);
 	   }
        gnome_vfs_file_info_unref (info);
 	   return NULL;
@@ -380,13 +397,13 @@ log_open (char *filename, gboolean show_error)
 
    result = gnome_vfs_read_entire_file (filename, &size, &buffer);
    if (result != GNOME_VFS_OK) {
-	   ShowErrMessage (NULL, error_main, _("Unable to open logfile!\n"));
+	   error_dialog_show (NULL, error_main, _("Unable to open logfile!\n"));
 	   return NULL;
    }
 
    log = g_new0 (Log, 1);   
    if (log == NULL) {
-	   ShowErrMessage (NULL, error_main, _("Not enough memory!\n"));
+	   error_dialog_show (NULL, error_main, _("Not enough memory!\n"));
 	   return NULL;
    }
    log->name = g_strdup (filename);
@@ -455,8 +472,8 @@ log_add_lines (Log *log, gchar *buffer)
   int i;
   LogLine line;
 
-  g_return_if_fail (log != NULL);
-  g_return_if_fail (buffer != NULL);
+  g_assert (log != NULL);
+  g_assert (buffer != NULL);
 
   buffer_lines = g_strsplit (buffer, "\n", -1);
   

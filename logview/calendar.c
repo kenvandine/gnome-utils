@@ -35,7 +35,7 @@ calendar_mark_dates (Calendar *calendar)
     Day *day;
     guint month, year;
 
-    g_return_if_fail (IS_CALENDAR (calendar));
+    g_assert (IS_CALENDAR (calendar));
     
     gtk_calendar_clear_marks (GTK_CALENDAR (calendar));
     gtk_calendar_get_date (GTK_CALENDAR (calendar), &year, &month, NULL);
@@ -70,7 +70,8 @@ calendar_init_data (Calendar *calendar, Log *log)
 static void
 calendar_month_changed (GtkWidget *widget, gpointer data)
 {
-  calendar_mark_dates (CALENDAR (widget));
+    g_assert (IS_CALENDAR (widget));
+    calendar_mark_dates (CALENDAR (widget));
 }
 
 static Day *
@@ -144,6 +145,9 @@ calendar_select_date (Calendar *calendar, GDate *date)
 void
 calendar_connect (Calendar *calendar, LogviewWindow *window)
 {
+    g_return_if_fail (IS_CALENDAR (calendar));
+    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
+
 	g_signal_connect (G_OBJECT (calendar), "month_changed",
                       G_CALLBACK (calendar_month_changed),
                       window);
@@ -159,6 +163,8 @@ calendar_init (GtkCalendar *calendar)
     PangoFontDescription *fontdesc;
     PangoContext *context;
     int size;
+
+    g_assert (IS_CALENDAR (calendar));
     
     context = gtk_widget_get_pango_context (GTK_WIDGET(widget));
     fontdesc = pango_context_get_font_description (context);
@@ -205,4 +211,3 @@ calendar_new (void)
     widget = g_object_new (CALENDAR_TYPE, NULL);
     return widget;
 }
-

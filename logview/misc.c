@@ -41,25 +41,9 @@ const char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
  N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
  N_("November"), N_("December")};
-const char *C_monthname[12] =
-{ "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December" };
-/* space separated list of locales to check, must be space separated, no newlines */
-/* FIXME: This should be checked for at configure time or something to that effect */
-char *all_locales = "af_ZA ar_SA bg_BG ca_ES cs_CZ da_DK de_AT de_BE de_CH de_DE de_LU el_GR en_AU en_CA en_DK en_GB en_IE en_US es_ES et_EE eu_ES fi_FI fo_FO fr_BE fr_CA fr_CH fr_FR fr_LU ga_IE gl_ES gv_GB hr_HR hu_HU in_ID is_IS it_CH it_IT iw_IL kl_GL kw_GB lt_LT lv_LV mk_MK nl_BE nl_NL no_NO pl_PL pt_BR pt_PT ro_RO ru_RU.KOI8-R ru_RU ru_UA sk_SK sl_SI sr_YU sv_FI sv_SE th_TH tr_TR uk_UA";
 
 static void
-MakeErrorDialog (GtkWidget *window, const char *main, char *secondary)
+error_dialog_run (GtkWidget *window, const char *main, char *secondary)
 {
 	GtkWidget *dialog;
 	dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
@@ -74,30 +58,24 @@ MakeErrorDialog (GtkWidget *window, const char *main, char *secondary)
 	gtk_widget_destroy (dialog);
 }
 
-/* ----------------------------------------------------------------------
-   NAME:        ShowErrMessage
-   DESCRIPTION: Print an error message. It will eventually open a 
-   window and display the message.
-   ---------------------------------------------------------------------- */
-
 void
-ShowErrMessage (GtkWidget *window, char *main, char *secondary)
+error_dialog_show (GtkWidget *window, char *main, char *secondary)
 {
     if (queue_err_messages) {
         msg_queue_main = g_list_append (msg_queue_main, g_strdup (main));
         msg_queue_sec = g_list_append (msg_queue_sec, g_strdup (secondary));
     } else
-        MakeErrorDialog (window, main, secondary);
+        error_dialog_run (window, main, secondary);
 }
 
 void
-QueueErrMessages (gboolean do_queue)
+error_dialog_queue (gboolean do_queue)
 {
 	queue_err_messages = do_queue;
 }
 
 void
-ShowQueuedErrMessages (void)
+error_dialog_show_queued (void)
 {
 	if (msg_queue_main != NULL) {
 		gboolean title_created = FALSE;
@@ -130,7 +108,7 @@ ShowQueuedErrMessages (void)
 		msg_queue_main = NULL;
 		msg_queue_sec = NULL;
 
-		MakeErrorDialog (NULL, gs->str, gs_sec->str);
+		error_dialog_run (NULL, gs->str, gs_sec->str);
 
 		g_string_free (gs, TRUE);
 		g_string_free (gs_sec, TRUE);
@@ -138,7 +116,7 @@ ShowQueuedErrMessages (void)
 }
 
 char *
-LocaleToUTF8 (const char *in)
+locale_to_utf8 (const char *in)
 {
 	/* FIXME: we could guess the language from the line how we guessed
 	 * the month and can we get this to utf8 correctly even if it's not in
@@ -154,141 +132,21 @@ LocaleToUTF8 (const char *in)
 	}
 }
 
-int
-IsLeapYear (int year)
-{
-   if ((1900 + year) % 4 == 0)
-      return TRUE;
-   else
-      return FALSE;
-}
-
-int
-days_are_equal (time_t day1, time_t day2)
-{
-   GDate date1, date2;
-
-   g_date_set_time (&date1, day1);
-   g_date_set_time (&date2, day2);
-   if (g_date_compare (&date1, &date2)==0)
-       return TRUE;
-   else
-       return FALSE;
-   return TRUE;
-}
-
-int
-string_get_month (const char *str)
-{
-	int i, j;
-	static char *monthname[12] = { 0 };
-	static GHashTable *locales_monthnames = NULL;
-	static char **locales = NULL;
-
-	for (i = 0; i < 12; i++) {
-		if (g_strncasecmp (str, C_monthname[i], 3) == 0) {
-			return i;
-		}
-	}
-
-	for (i = 0; i < 12; i++) {
-		if (monthname[i] == NULL) {
-			struct tm tm = {0};
-			char buf[256];
-
-			tm.tm_mday = 1;
-			tm.tm_year = 2000 /* bogus */;
-			tm.tm_mon = i;
-
-			/* Note: we don't want utf-8 here, we WANT the
-			 * current locale! */
-			if (strftime (buf, sizeof (buf), "%b", &tm) <= 0) {
-				/* eek, just use C locale cuz we're screwed */
-				monthname[i] = g_strndup (C_monthname[i], 3);
-			} else {
-				monthname[i] = g_strdup (buf);
-			}
-		}
-
-		if (g_ascii_strcasecmp (str, monthname[i]) == 0) {
-			return i;
-		}
-	}
-
-	if (locales == NULL)
-		locales = g_strsplit (all_locales, " ", 0);
-
-	if (locales_monthnames == NULL)
-		locales_monthnames = g_hash_table_new (g_str_hash, g_str_equal);
-
-	/* Try all known locales */
-	/* FIXME :
-	 * This part of the function is very slow and should not be called
-	 * on every line of a log, we should use it just once */
-
-	for (j = 0; locales != NULL && locales[j] != NULL; j++) {
-		for (i = 0; i < 12; i++) {
-			char *key = g_strdup_printf ("%s %d", locales[j], i);
-			char *name = g_hash_table_lookup (locales_monthnames, key);
-			if (name == NULL) {
-				char buf[256];
-				char *old_locale = g_strdup (setlocale (LC_TIME, NULL));
-				
-				if (setlocale (LC_TIME, locales[j]) == NULL) {
-					strcpy (buf, "");
-				} else {
-					struct tm tm = {0};
-
-					tm.tm_mday = 1;
-					tm.tm_year = 2000 /* bogus */;
-					tm.tm_mon = i;
-
-
-					if (strftime (buf, sizeof (buf), "%b",
-						      &tm) <= 0) {
-						strcpy (buf, "");
-					}
-				}
-
-				if (old_locale != NULL) {
-					setlocale (LC_TIME, old_locale);
-					g_free (old_locale);
-				}
-
-				name = g_strdup (buf);
-				g_hash_table_insert (locales_monthnames, g_strdup (key), name);
-			}
-			g_free (key);
-
-			if (name != NULL &&
-			    name[0] != '\0' &&
-			    g_ascii_strcasecmp (str, name) == 0) {
-				return i;
-			}
-		}
-	}
-
-	return 12;
-}
-
 GDate *
 string_get_date (char *line)
 {
-    gchar **split;
     GDate *date;
     int d, m;
+    struct tm tp;
+    char *cp;
     
-    split = g_strsplit_set (line, " ", 4);
-    if (split[0] == NULL || split[1] == NULL)
+    if (line == NULL | line[0] == 0)
         return NULL;
 
-    m = string_get_month (split[0]) + 1;
-    if (split[1]==NULL || g_str_equal (split[1], ""))
-        d = atoi (split[2]);
-    else
-        d = atoi (split[1]);
+    cp = strptime (line, "%b %d", &tp);
+    m = tp.tm_mon + 1;
+    d = tp.tm_mday;
 
-    g_strfreev (split);
     date = g_date_new_dmy (d, m, 70);
     return date;
 }
@@ -311,7 +169,7 @@ date_get_string (GDate *date)
        /* If we fail just use the US format */
        utf8 = g_strdup_printf ("%s %d", _(month[(int) m-1]), d);
    } else
-       utf8 = LocaleToUTF8 (buf);
+       utf8 = locale_to_utf8 (buf);
    
    return utf8;
 }

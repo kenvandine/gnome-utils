@@ -54,6 +54,7 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
   GtkTreePath *path;
   
   g_return_if_fail (log);
+
   if (log_read_new_lines (log)) {
       logview  = (LogviewWindow *) log->window;
       loglist_bold_log (logview, log);
@@ -70,7 +71,7 @@ monitor_start (Log *log)
 {
   GnomeVFSResult result;
   GnomeVFSFileSize size;
-  gchar *main, *second;
+  gchar *main = NULL, *second = NULL;
 	 
   g_return_if_fail (log);
 
@@ -85,14 +86,16 @@ monitor_start (Log *log)
                          log);
 
   if (result != GNOME_VFS_OK) {
-    g_sprintf (main, _("This file cannot be monitored."));
+    main = g_strdup (_("This file cannot be monitored."));
     switch (result) {
     case GNOME_VFS_ERROR_NOT_SUPPORTED :
-      g_sprintf(second, _("File monitoring is not supported on this file system.\n"));
+        second = g_strdup (_("File monitoring is not supported on this file system.\n"));
     default:
-      g_sprintf(second, _("Gnome-VFS Error.\n"));
+        second = g_strdup (_("Gnome-VFS Error.\n"));
     }
-    ShowErrMessage (NULL, main, second);
+    error_dialog_show (NULL, main, second);
+    g_free (main);
+    g_free (second);
     gnome_vfs_close (log->mon_file_handle);
     return;
   }

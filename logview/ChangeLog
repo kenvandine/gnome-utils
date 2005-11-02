@@ -1,3 +1,46 @@
+2005-11-02  Vincent Noel <vnoel@cox.net>
+
+        Use g_assert instead of g_return_if_fail in static
+	functions. Delete useless functions. Use system functions for dates.
+	
+	* calendar.c: (calendar_mark_dates), (calendar_month_changed),
+	(calendar_connect), (calendar_init), (calendar_new):
+	* info.c: (loginfo_repaint), (loginfo_quit), (loginfo_new):
+	* info.h:
+	* log_repaint.c: (tree_path_find_row), (logview_update_statusbar),
+	(tree_view_columns_set_visible), (model_fill_date_iter),
+	(model_fill_iter), (logview_add_new_log_lines),
+	(logview_show_model), (log_scroll_and_focus_path),
+	(logview_create_model_no_date), (logview_create_model):
+	* logrtns.c: (file_exist), (file_is_zipped), (file_is_log),
+	(string_get_date_string), (log_read_dates), (log_stats_new),
+	(log_open), (log_add_lines):
+	* logview-findbar.c: (logview_tree_model_find_match):
+	* logview.c: (logview_destroy), (save_session), (main),
+	(logview_find_log_from_name), (logname_remove_markup),
+	(loglist_selection_changed), (loglist_find_logname),
+	(loglist_select_log_from_name), (loglist_add_log),
+	(loglist_remove_selected_log), (loglist_create),
+	(logview_version_selector_changed), (logview_close_log),
+	(logview_file_selected_cb), (logview_open_log),
+	(logview_toggle_sidebar), (logview_toggle_calendar),
+	(logview_collapse_rows), (logview_toggle_monitor),
+	(logview_set_fontsize), (logview_bigger_text),
+	(logview_smaller_text), (logview_normal_text), (logview_search),
+	(logview_copy), (logview_select_all),
+	(logview_menu_item_set_state), (logview_calendar_set_state),
+	(logview_menus_set_state), (logview_count_logs), (logview_help),
+	(logview_set_window_title), (logview_window_finalize),
+	(logview_window_class_init), (window_size_changed_cb):
+	* misc.h:
+	* monitor.c: (monitor_callback), (monitor_start): Use g_assert
+	instead of g_return_if_fail in static functions.
+	
+	* misc.c: (error_dialog_run), (error_dialog_show),
+	(error_dialog_queue), (error_dialog_show_queued), (locale_to_utf8),
+	(string_get_date), (date_get_string): Use strptime instead of a
+	homegrown solution. It's more standard and faster.
+
 2005-10-21  Vincent Noel  <vnoel@cox.net>
 
 	* logrtns.c: Use GArrays, it simplifies a lot the memory handling

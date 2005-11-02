@@ -20,13 +20,12 @@
 #ifndef __LOG_MISC_H__
 #define __LOG_MISC_H__
 
-void ShowErrMessage (GtkWidget *window, char *main, char *secondary);
-void QueueErrMessages (gboolean do_queue);
-void ShowQueuedErrMessages (void);
-char *LocaleToUTF8 (const char *in);
-int IsLeapYear (int year);
+void error_dialog_show (GtkWidget *window, char *main, char *secondary);
+void error_dialog_queue (gboolean do_queue);
+void error_dialog_show_queued (void);
+
+char *locale_to_utf8 (const char *in);
 GDate *string_get_date (char *line);
-int days_are_equal (time_t day1, time_t day2);
 int string_get_month (const char *str);
 char *date_get_string (GDate *date);
 

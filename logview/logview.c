@@ -202,7 +202,7 @@ logview_save_prefs (LogviewWindow *logview)
 static void
 logview_destroy (GObject *object, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
     if (logview->curlog) {
         if (logview->curlog->monitored)
@@ -230,7 +230,7 @@ save_session (GnomeClient *gnome_client, gint phase,
    Log *log;
    int i;
 
-   g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+   g_assert (LOGVIEW_IS_WINDOW (logview));
    numlogs = logview_count_logs (logview);
 
    argv = g_malloc0 (sizeof (gchar *) * numlogs+1);
@@ -372,7 +372,7 @@ main (int argc, char *argv[])
    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
    textdomain(GETTEXT_PACKAGE);
 
-   QueueErrMessages (TRUE);
+   error_dialog_queue (TRUE);
 
    /*  Initialize gnome & gtk */
    program = gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
@@ -412,8 +412,8 @@ main (int argc, char *argv[])
    
    gnome_client = gnome_master_client ();
 
-   QueueErrMessages (FALSE);
-   ShowQueuedErrMessages ();
+   error_dialog_queue (FALSE);
+   error_dialog_show_queued ();
    
    g_signal_connect (gnome_client, "save_yourself",
 					 G_CALLBACK (save_session), logview);
@@ -459,7 +459,7 @@ logview_find_log_from_name (LogviewWindow *logview, gchar *name)
   GList *list;
   Log *log;
 
-  g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+  g_assert (LOGVIEW_IS_WINDOW (logview));
 
   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
     log = list->data;
@@ -475,7 +475,7 @@ logname_remove_markup (gchar *logname)
 {
     gchar *unmarkup;
 
-    g_return_if_fail (logname);
+    g_assert (logname);
 
     if (g_str_has_prefix (logname, "<b>")) {
         int n;
@@ -527,8 +527,8 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
   gchar *name, *unmarkup;
   Log *log;
 
-  g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-  g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+  g_assert (GTK_IS_TREE_SELECTION (selection));
 
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
     /* there is no selected log right now */
@@ -569,7 +569,8 @@ loglist_find_logname (LogviewWindow *logview, gchar *logname)
 	GtkTreePath *path = NULL;
 	gchar *name, *unmarkup;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+    g_assert (logname != NULL);
 
 	model =  gtk_tree_view_get_model (GTK_TREE_VIEW(logview->treeview));
 	if (!gtk_tree_model_get_iter_first (model, &iter))
@@ -619,6 +620,10 @@ static void
 loglist_select_log_from_name (LogviewWindow *logview, gchar *logname)
 {
 	GtkTreePath *path;
+    
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+    g_assert (logname != NULL);
+
 	path = loglist_find_logname (logview, logname);
 	if (path) {
 		GtkTreeSelection *selection;
@@ -632,6 +637,9 @@ loglist_add_log (LogviewWindow *logview, Log *log)
 {
 	GtkTreeIter iter;
 	GtkTreeModel *model;
+
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+    g_assert (log != NULL);
 
 	model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
     
@@ -652,6 +660,8 @@ loglist_remove_selected_log (LogviewWindow *logview)
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;
 	gchar *name, *unmarkup;
+
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->treeview));
 	gtk_tree_selection_get_selected (selection, &model, &iter);
@@ -686,6 +696,8 @@ loglist_create (LogviewWindow *window)
   GtkTreeSelection *selection;
   GtkCellRenderer *cell;
     
+  g_return_if_fail (LOGVIEW_IS_WINDOW (window));
+
   vbox = gtk_vbox_new(FALSE, 0);
   gtk_box_set_spacing (GTK_BOX (vbox), 3);
   
@@ -718,14 +730,14 @@ loglist_create (LogviewWindow *window)
   return vbox;
 }
 
-void
+static void
 logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_data)
 {
 	LogviewWindow *logview = user_data;
 	Log *log = logview->curlog;
 	int selected;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
 	selected = gtk_combo_box_get_active (version_selector);
 
@@ -926,8 +938,8 @@ logview_init (LogviewWindow *window)
 static void
 logview_close_log (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    g_return_if_fail (logview->curlog);
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+    g_assert (logview->curlog);
 
     if (logview->curlog->monitored) {
         GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs");
@@ -942,7 +954,8 @@ static void
 logview_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview)
 {
    char *f;
-   g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+   g_assert (LOGVIEW_IS_WINDOW (logview));
 
    gtk_widget_hide (GTK_WIDGET (chooser));
    if (response != GTK_RESPONSE_OK)
@@ -953,7 +966,7 @@ logview_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logv
    if (f != NULL) {
 	   /* Check if the log is not already opened */
 	   GList *list;
-		 Log *log, *tl;
+       Log *log, *tl;
 	   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
 		   log = list->data;
 		   if (g_ascii_strncasecmp (log->name, f, 255) == 0) {
@@ -974,7 +987,8 @@ static void
 logview_open_log (GtkAction *action, LogviewWindow *logview)
 {
    static GtkWidget *chooser = NULL;
-   g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+   g_assert (LOGVIEW_IS_WINDOW (logview));
    
    if (chooser == NULL) {
 	   chooser = gtk_file_chooser_dialog_new (_("Open Log"),
@@ -1000,7 +1014,7 @@ logview_open_log (GtkAction *action, LogviewWindow *logview)
 static void
 logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
 	if (logview->sidebar_visible)
 		gtk_widget_hide (logview->sidebar);
@@ -1012,7 +1026,7 @@ logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
 static void 
 logview_toggle_calendar (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
 	if (logview->calendar_visible)
 		gtk_widget_hide (logview->calendar);
@@ -1029,7 +1043,8 @@ logview_toggle_calendar (GtkAction *action, LogviewWindow *logview)
 static void 
 logview_collapse_rows (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+
     gtk_tree_view_collapse_all (GTK_TREE_VIEW (logview->view));
 }
 
@@ -1037,7 +1052,8 @@ static void
 logview_toggle_monitor (GtkAction *action, LogviewWindow *logview)
 {
     Log *log;
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
     log = logview->curlog;
     if ((log == NULL) || (log->display_name))
@@ -1058,6 +1074,8 @@ logview_set_fontsize (LogviewWindow *logview)
 	PangoFontDescription *fontdesc;
 	PangoContext *context;
 	
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+
 	context = gtk_widget_get_pango_context (logview->view);
 	fontdesc = pango_context_get_font_description (context);
 	pango_font_description_set_size (fontdesc, (logview->fontsize)*PANGO_SCALE);
@@ -1068,7 +1086,7 @@ logview_set_fontsize (LogviewWindow *logview)
 static void
 logview_bigger_text (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
 	logview->fontsize = MIN (logview->fontsize + 1, 24);
 	logview_set_fontsize (logview);
@@ -1077,7 +1095,7 @@ logview_bigger_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_smaller_text (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
 	logview->fontsize = MAX (logview->fontsize-1, 6);
 	logview_set_fontsize (logview);
@@ -1086,7 +1104,7 @@ logview_smaller_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_normal_text (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
 	logview->fontsize = logview->original_fontsize;
 	logview_set_fontsize (logview);
@@ -1095,7 +1113,7 @@ logview_normal_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_search (GtkAction *action, LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
     
 	gtk_widget_show (logview->find_bar);
 	gtk_widget_grab_focus (logview->find_entry);
@@ -1109,7 +1127,7 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
 	LogLine *line;
     Log *log;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
     log = logview->curlog;
     if (log == NULL)
@@ -1132,7 +1150,7 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
     }
     lines[nline] = NULL;
     text = g_strjoinv ("\n", lines);
-    gtk_clipboard_set_text (logview->clipboard, LocaleToUTF8(text), -1);
+    gtk_clipboard_set_text (logview->clipboard, locale_to_utf8(text), -1);
     g_free (text);
     g_strfreev (lines);
 }
@@ -1142,7 +1160,8 @@ logview_select_all (GtkAction *action, LogviewWindow *logview)
 {
 	GtkTreeSelection *selection;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->view));
 	gtk_tree_selection_select_all (selection);
 }
@@ -1151,7 +1170,9 @@ static void
 logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state)
 {
 	GtkAction *action;
-	g_return_if_fail (path);
+
+	g_assert (path);
+
 	action = gtk_ui_manager_get_action (logview->ui_manager, path);
 	gtk_action_set_sensitive (action, state);
 }
@@ -1159,7 +1180,7 @@ logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state)
 static void
 logview_calendar_set_state (LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
     if (logview->curlog) {
         if (logview->curlog->days != NULL)
@@ -1174,7 +1195,7 @@ logview_menus_set_state (LogviewWindow *logview)
 {
     Log *log;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
     log = logview->curlog;
 
     if (log) {
@@ -1206,6 +1227,9 @@ logview_count_logs (LogviewWindow *logview)
 {
     GList *logs;
 	int numlogs = 0;
+
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+
     for (logs = logview->logs; logs != NULL; logs = g_list_next (logs))
         numlogs ++;
 	return numlogs;
@@ -1214,11 +1238,11 @@ logview_count_logs (LogviewWindow *logview)
 static void
 logview_help (GtkAction *action, GtkWidget *parent_window)
 {
-        GError *error = NULL;                                                                                
-        gnome_help_display_desktop_on_screen (NULL, "gnome-system-log", "gnome-system-log", NULL,
-					      gtk_widget_get_screen (GTK_WIDGET(parent_window)), &error);
+    GError *error = NULL;                                                                                
+    gnome_help_display_desktop_on_screen (NULL, "gnome-system-log", "gnome-system-log", NULL,
+                                          gtk_widget_get_screen (GTK_WIDGET(parent_window)), &error);
 	if (error) {
-		ShowErrMessage (GTK_WIDGET(parent_window), _("There was an error displaying help."), error->message);
+		error_dialog_show (GTK_WIDGET(parent_window), _("There was an error displaying help."), error->message);
 		g_error_free (error);
 	}
 }
@@ -1228,6 +1252,8 @@ logview_set_window_title (LogviewWindow *window)
 {
 	gchar *window_title;
 	gchar *logname;
+
+    g_assert (LOGVIEW_IS_WINDOW (window));
 
 	if ((window->curlog != NULL) && (window->curlog->name != NULL)) {
 		if (window->curlog->display_name != NULL)
@@ -1249,10 +1275,10 @@ logview_set_window_title (LogviewWindow *window)
 static void
 logview_window_finalize (GObject *object)
 {
-        LogviewWindow *window = (LogviewWindow *) object;
+    LogviewWindow *window = (LogviewWindow *) object;
 
 	g_object_unref (window->ui_manager);
-        parent_class->finalize (object);
+    parent_class->finalize (object);
 }
 
 static void
@@ -1261,7 +1287,6 @@ logview_window_class_init (LogviewWindowClass *klass)
 	GObjectClass *object_class = (GObjectClass *) klass;
 
 	object_class->finalize = logview_window_finalize;
-
 	parent_class = g_type_class_peek_parent (klass);
 }
 
@@ -1294,7 +1319,8 @@ window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event,
 				 gpointer data)
 {
 	LogviewWindow *window = data;
-
+    
+    g_assert (LOGVIEW_IS_WINDOW (window));
 	prefs_store_size (GTK_WIDGET(window), user_prefs);
 	return FALSE;
 }

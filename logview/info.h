@@ -20,7 +20,7 @@
 #ifndef __LOG_INFO_H__
 #define __LOG_INFO_H__
 
-void loginfo_new (GtkAction *action, GtkWidget *callback_data);
+void loginfo_new (GtkAction *action, GtkWidget *widget);
 
 #endif /* __LOG_INFO_H__ */
 
