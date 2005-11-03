@@ -172,22 +172,3 @@ date_get_string (GDate *date)
    
    return utf8;
 }
-
-gchar *
-string_remove_bold_markup (gchar *string)
-{
-    gchar *unmarkup;
-
-    if (string == NULL)
-        return;
-
-    if (g_str_has_prefix (string, "<b>")) {
-        int n;
-        n = strlen (string);
-        unmarkup = g_strndup (string+3, n-7);
-    } else
-        unmarkup = g_strdup (string);
-    
-    return unmarkup;
-}
-

@@ -33,7 +33,7 @@ typedef struct _LogListClass LogListClass;
 struct _LogList
 {	
     GtkTreeView parent_instance;
-    GtkTreeStore *model;
+    GtkListStore *model;
     gpointer logview;
 };
 

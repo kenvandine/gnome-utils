@@ -1,5 +1,24 @@
 2005-11-03  Vincent Noel <vnoel@cox.net>
 
+	Remove a few now-useless functions. Cleanup.
+
+	* loglist.c: (loglist_find_log_from_name),
+	(loglist_select_log_from_name), (loglist_selection_changed):
+	* logrtns.c: (file_is_zipped):
+	* logview.c: (logview_get_active_log), (logview_get_loglist),
+	(logview_count_logs), (logview_select_log),
+	(logview_menus_set_state), (logview_set_window_title),
+	(logview_save_prefs), (logview_destroy), (logview_add_log),
+	(logview_close_log), (window_size_changed_cb), (logview_init),
+	(logview_window_new):
+	* logview.h:
+	* misc.c: (date_get_string):
+	* misc.h:
+
+	* logrtns.c (file_is_zipped): Small memory leak.
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
 	* Makefile.am:
 	* logview.c: (logview_destroy):
 	* logview.h:

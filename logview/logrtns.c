@@ -93,10 +93,13 @@ file_is_zipped (char *filename)
 
 	if (strcmp (mime_type, "application/x-gzip")==0 ||
 	    strcmp (mime_type, "application/x-zip")==0 ||
-	    strcmp (mime_type, "application/zip")==0)
+	    strcmp (mime_type, "application/zip")==0) {
+        g_free (mime_type);
 		return TRUE;
-	else
+    } else {
+        g_free (mime_type);
 		return FALSE;
+    }
 }
 
 gboolean
