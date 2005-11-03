@@ -24,7 +24,6 @@
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
 #include <libgnomeui/gnome-ui-init.h>
-#include <libgnomeui/gnome-client.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <glib/goption.h>
@@ -40,18 +39,17 @@
 #include "userprefs.h"
 #include "calendar.h"
 
-static GObjectClass *parent_class;
-static GConfClient *client = NULL;
-static UserPrefsStruct *user_prefs;
-gboolean restoration_complete = FALSE;
-
-#define APP_NAME _("System Log Viewer")
 #define GCONF_MONOSPACE_FONT_NAME "/desktop/gnome/interface/monospace_font_name"
+#define APP_NAME _("System Log Viewer")
+
+static GObjectClass *parent_class;
+extern UserPrefsStruct *user_prefs;
+extern GConfClient *client;
+extern gboolean restoration_complete;
 
 /* Function Prototypes */
 
 GType logview_window_get_type (void);
-static GtkWidget *logview_window_new (void);
 static void logview_init (LogviewWindow *window);
 static void logview_open_log (GtkAction *action, LogviewWindow *logview);
 static void logview_file_selected_cb (GtkWidget * chooser, gint response, LogviewWindow *logview);
@@ -66,12 +64,10 @@ static void logview_bigger_text (GtkAction *action, LogviewWindow *logview);
 static void logview_smaller_text (GtkAction *action, LogviewWindow *logview);
 static void logview_normal_text (GtkAction *action, LogviewWindow *logview);
 static void logview_calendar_set_state (LogviewWindow *logview);
-static void logview_menus_set_state (LogviewWindow *logview);
 static void logview_search (GtkAction *action, LogviewWindow *logview);
 static void logview_help (GtkAction *action, GtkWidget *parent_window);
 static void logview_copy (GtkAction *action, LogviewWindow *logview);
 static void logview_select_all (GtkAction *action, LogviewWindow *logview);
-static int logview_count_logs (LogviewWindow *logview);
 static Log *logview_find_log_from_name (LogviewWindow *logview, gchar *name);
 static void logview_destroy (GObject *object, LogviewWindow *logview);
 static gboolean window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
@@ -163,20 +159,6 @@ static const char *ui_description =
 	"	</menubar>"
 	"</ui>";
 
-/* Global variables */
-	
-static gchar *config_prefix = NULL;
-static gchar *sm_client_id = NULL;
-static int screen = 0;
-
-GOptionContext *context;
-GOptionEntry options[] = {
-    { "sm-config-prefix", 0, 0, G_OPTION_ARG_STRING, &config_prefix, "", NULL},
-    { "sm-client-id", 0, 0, G_OPTION_ARG_STRING, &sm_client_id, "", NULL},
-    { "screen", 0, 0, G_OPTION_ARG_INT, &screen, "", NULL},
-	{ NULL }
-};
-
 void
 logview_save_prefs (LogviewWindow *logview)
 {
@@ -202,9 +184,6 @@ logview_destroy (GObject *object, LogviewWindow *logview)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
 
-   if (restoration_complete == FALSE)
-       return;
-
     if (logview->curlog) {
         if (logview->curlog->monitored)
             monitor_stop (logview->curlog);
@@ -217,44 +196,6 @@ logview_destroy (GObject *object, LogviewWindow *logview)
     prefs_save (client, user_prefs);
     prefs_free_loglist (user_prefs);
     gtk_main_quit ();
-}
-
-static gint
-save_session (GnomeClient *gnome_client, gint phase,
-              GnomeRestartStyle save_style, gint shutdown,
-              GnomeInteractStyle interact_style, gint fast,
-              LogviewWindow *logview)
-{
-   gchar **argv;
-   gint numlogs;
-   GList *logs;
-   Log *log;
-   int i;
-
-   g_assert (LOGVIEW_IS_WINDOW (logview));
-   numlogs = logview_count_logs (logview);
-
-   argv = g_malloc0 (sizeof (gchar *) * numlogs+1);
-   argv[0] = g_get_prgname();
-
-   for (logs = logview->logs; logs != NULL; logs = g_list_next (logs)) {
-       log = logs->data;
-       argv[i++] = g_strdup_printf ("%s", log->name);
-   }
-   
-   gnome_client_set_clone_command (gnome_client, numlogs+1, argv);
-   gnome_client_set_restart_command (gnome_client, numlogs+1, argv);
-
-   g_free (argv);
-   return TRUE;
-
-}
-
-static gint
-die (GnomeClient *gnome_client, gpointer client_data)
-{
-    gtk_main_quit ();
-    return 0;
 }
 
 void
@@ -350,89 +291,8 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
     gtk_widget_hide (logview->progressbar);
 }
 
-GOptionContext *
-logview_init_options ()
-{
-	GOptionContext *context;
-	
-	context = g_option_context_new (" - Browse and monitor logs");
-	g_option_context_add_main_entries (context, options, NULL);
-	g_option_context_set_help_enabled (context, TRUE);
-	g_option_context_set_ignore_unknown_options (context, TRUE);
-	return context;
-}
-	
-/* ----------------------------------------------------------------------
-   NAME:          main
-   DESCRIPTION:   Program entry point.
-   ---------------------------------------------------------------------- */
 
-int
-main (int argc, char *argv[])
-{
-   GnomeClient *gnome_client;
-   GError *error;
-   GnomeProgram *program;
-   LogviewWindow *logview;
-   int i;
-
-   bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
-   bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-   textdomain(GETTEXT_PACKAGE);
-
-   error_dialog_queue (TRUE);
-
-   program = gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
-				 GNOME_PARAM_APP_DATADIR, DATADIR, 
-				 NULL);
-
-   g_set_application_name (_("Log Viewer"));
-   gconf_init (argc, argv, NULL);
-   client = gconf_client_get_default ();
-   gnome_vfs_init ();
-
-   gtk_window_set_default_icon_name ("logviewer");
-   user_prefs = prefs_load (client);
-   
-   context = logview_init_options ();
-   g_option_context_parse (context, &argc, &argv, &error);
-
-   /* Open regular logs and add each log passed as a parameter */
-
-   logview = LOGVIEW_WINDOW(logview_window_new ());
-   logview_menus_set_state (logview);
-   gtk_widget_set_sensitive (logview->view, FALSE);
-   gtk_widget_set_sensitive (logview->loglist, FALSE);
-   gtk_widget_show (GTK_WIDGET(logview));
-   while (gtk_events_pending ())
-       gtk_main_iteration ();
-   if (argc == 1) {
-       logview_add_logs_from_names (logview, user_prefs->logs);
-       loglist_select_log_from_name (LOG_LIST (logview->loglist), user_prefs->logfile);
-   } else {
-	   for (i=1; i<argc; i++)
-           logview_add_log_from_name (logview, argv[i]);
-   }
-   restoration_complete = TRUE;
-   gtk_widget_set_sensitive (logview->view, TRUE);
-   gtk_widget_set_sensitive (logview->loglist, TRUE);
-   
-   gnome_client = gnome_master_client ();
-
-   error_dialog_queue (FALSE);
-   error_dialog_show_queued ();
-   
-   g_signal_connect (gnome_client, "save_yourself",
-					 G_CALLBACK (save_session), logview);
-   g_signal_connect (gnome_client, "die", G_CALLBACK (die), NULL);
-
-   gtk_main ();
-
-   return 0;
-}
-
-
-static GtkWidget *
+GtkWidget *
 logview_window_new ()
 {
    LogviewWindow *logview;
@@ -948,7 +808,7 @@ logview_calendar_set_state (LogviewWindow *logview)
         gtk_widget_set_sensitive (logview->calendar, FALSE);
 }
 
-static void
+void
 logview_menus_set_state (LogviewWindow *logview)
 {
     Log *log;
@@ -980,7 +840,7 @@ logview_menus_set_state (LogviewWindow *logview)
     logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
 }
 
-static int
+int
 logview_count_logs (LogviewWindow *logview)
 {
     GList *logs;

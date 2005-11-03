@@ -1,6 +1,15 @@
 2005-11-03  Vincent Noel <vnoel@cox.net>
 
 	* Makefile.am:
+	* logview.c: (logview_destroy):
+	* logview.h:
+	* main.c: (logview_init_options), (save_session), (die), (main):
+	New. Factor the logview out in its own widget and module, seperate
+	from the main module.
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
+	* Makefile.am:
 	* loglist.c: (loglist_get_log_iter), (loglist_find_log_from_name),
 	(loglist_unbold_log), (loglist_bold_log),
 	(loglist_select_log_from_name), (loglist_remove_log),
