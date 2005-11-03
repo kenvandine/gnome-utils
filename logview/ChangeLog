@@ -1,5 +1,17 @@
 2005-11-03  Vincent Noel <vnoel@cox.net>
 
+	* info.c: (loginfo_show):
+	* log_repaint.c: (model_fill_iter):
+	* loglist.c: (loglist_find_log_from_name),
+	(loglist_select_log_from_name):
+	* logrtns.c: (logline_fill_from_string), (log_open):
+	* logview.c: (logview_copy):
+	* misc.c: (locale_to_utf8): Call locale_to_utf8 once when loading
+	instead of calling it repeatedly for every line (saves us 3
+	g_alloc/g_free * n log line)
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
 	* info.c: (loginfo_repaint), (loginfo_quit), (loginfo_close),
 	(loginfo_new), (loginfo_show):
 	* info.h:

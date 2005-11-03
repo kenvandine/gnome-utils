@@ -121,7 +121,8 @@ locale_to_utf8 (const char *in)
 	/* FIXME: we could guess the language from the line how we guessed
 	 * the month and can we get this to utf8 correctly even if it's not in
 	 * the current encoding */
-	char *out = g_locale_to_utf8 (in, -1, NULL, NULL, NULL);
+    char *out = g_locale_to_utf8 (in, -1, NULL, NULL, NULL);
+
 	if (out == NULL) {
 		if (g_utf8_validate (in, -1, NULL))
 			return g_strdup (in);

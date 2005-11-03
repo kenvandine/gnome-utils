@@ -227,7 +227,6 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
     /* cached variables */
     static int hour = 0, min = 0, sec = 0;
     static char *date_utf8 = NULL;
-    char *hostname_utf8 = NULL, *process_utf8 = NULL, *message_utf8;
     char tmp[MAX_TIME_STRING];
 
     g_assert (GTK_IS_TREE_STORE (model));
@@ -235,8 +234,6 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
     if (line->message == NULL)
         return;
 
-    message_utf8 = locale_to_utf8 (line->message);
-    
     if (line->hour >= 0 && line->min >= 0 && line->sec >= 0) {
         /* Calling strftime is very time-consuming, so cache date_utf8 */
         /* The last date_utf8 will never be freed, but it's a trade-off */
@@ -262,20 +259,15 @@ model_fill_iter (GtkTreeStore *model, GtkTreeIter *iter, LogLine *line)
             }
         }
         
-        hostname_utf8 = locale_to_utf8 (line->hostname);
-        process_utf8 = locale_to_utf8 (line->process);
         gtk_tree_store_set (GTK_TREE_STORE (model), iter,
-                            DATE, date_utf8, HOSTNAME, hostname_utf8,
-                            PROCESS, process_utf8, MESSAGE, message_utf8,
+                            DATE, date_utf8, HOSTNAME, line->hostname,
+                            PROCESS, line->process, MESSAGE, line->message,
                             -1);        
     } else {
         gtk_tree_store_set (GTK_TREE_STORE (model), iter,
-                            MESSAGE, message_utf8, -1);        
+                            MESSAGE, line->message, -1);        
     }			 
     
-    g_free (message_utf8);
-    g_free (hostname_utf8);
-    g_free (process_utf8);
 }
 
 static void

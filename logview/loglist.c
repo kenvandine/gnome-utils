@@ -67,15 +67,15 @@ loglist_find_log_from_name (LogList *list, gchar *name)
 	GtkTreeIter iter;
 	GtkTreeModel *model;
 	GtkTreePath *path = NULL;
-    Log *log;
-
-    g_assert (LOG_IS_LIST (list));
-    g_assert (name != NULL);
-
-    model = GTK_TREE_MODEL (list->model);
+	Log *log;
+	
+	g_assert (LOG_IS_LIST (list));
+	g_assert (name != NULL);
+	
+	model = GTK_TREE_MODEL (list->model);
 	if (!gtk_tree_model_get_iter_first (model, &iter))
 		return NULL;
-
+	
 	do {
 		gtk_tree_model_get (model, &iter, LOG_POINTER, &log, -1);
 		if (g_ascii_strncasecmp (name, log->name, 255) == 0) {
@@ -125,16 +125,18 @@ void
 loglist_select_log_from_name (LogList *list, gchar *name)
 {
 	GtkTreePath *path;
-    
-    g_return_if_fail (LOG_IS_LIST (list));
-    g_return_if_fail (name != NULL);
+       	
+	g_return_if_fail (LOG_IS_LIST (list));
+	g_return_if_fail (name != NULL);
 
+	g_print("in loglist_select_log_from_name\n");
+	
 	path = loglist_find_log_from_name (list, name);
 	if (path) {
 		GtkTreeSelection *selection;
 		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list));
 		gtk_tree_selection_select_path (selection, path);
-        gtk_tree_path_free (path);
+		gtk_tree_path_free (path);
 	}
 }
 

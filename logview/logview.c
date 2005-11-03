@@ -645,7 +645,7 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
     }
     lines[nline] = NULL;
     text = g_strjoinv ("\n", lines);
-    gtk_clipboard_set_text (logview->clipboard, locale_to_utf8(text), -1);
+    gtk_clipboard_set_text (logview->clipboard, text, -1);
     g_free (text);
     g_strfreev (lines);
 }

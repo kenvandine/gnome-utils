@@ -140,9 +140,9 @@ logline_fill_from_string (LogLine *line, gchar *message, gboolean has_date)
        return;
    }
 
-   /* Seperation of a log line into 8 fields */
+   /* Seperation of a log line into 9 fields */
    /* Some of them can be empty */
-   splits = g_strsplit_set (message, " :\n", 9);
+   splits = g_strsplit_set (message, " :", 9);
 
    i = 0; field= 0;
    while (splits[i]!=NULL) {
@@ -374,7 +374,7 @@ log_open (char *filename, gboolean show_error)
 {
    Log *log;
    LogLine line;
-   char *buffer;
+   char *buffer, *buffer2;
    char **buffer_lines;
    char *display_name = NULL;
    LogStats *stats;
@@ -414,8 +414,11 @@ log_open (char *filename, gboolean show_error)
    if (display_name)
 	   g_free (filename);
 
-   buffer_lines = g_strsplit (buffer, "\n", -1);
+   buffer2 = locale_to_utf8 (buffer);
    g_free (buffer);
+
+   buffer_lines = g_strsplit (buffer2, "\n", -1);
+   g_free (buffer2);
 
    for (i=0; buffer_lines[i+1] != NULL; i++);
    log->total_lines = i;

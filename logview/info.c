@@ -140,8 +140,6 @@ loginfo_show (GtkAction *action, GtkWidget *widget)
 {
 	LogviewWindow *window = LOGVIEW_WINDOW(widget);
 
-    g_print("in loginfo_show\n");
-
 	if (window->curlog == NULL)
 		return;
 	
