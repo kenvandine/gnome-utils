@@ -79,7 +79,7 @@ static GtkActionEntry entries[] = {
 	{ "OpenLog", GTK_STOCK_OPEN, N_("_Open..."), "<control>O", N_("Open a log from file"), 
 	  G_CALLBACK (logview_open_log) },
 	{ "Properties", GTK_STOCK_PROPERTIES,  N_("_Properties"), "<control>P", N_("Show Log Properties"), 
-	  G_CALLBACK (loginfo_new) },
+	  G_CALLBACK (loginfo_show) },
 	{ "CloseLog", GTK_STOCK_CLOSE, N_("Close"), "<control>W", N_("Close this log"), 
 	  G_CALLBACK (logview_close_log) },
 	{ "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 
@@ -926,7 +926,6 @@ logview_window_new ()
 
    logview->sidebar_visible = TRUE;
    logview->calendar_visible = TRUE;
-   logview->loginfovisible = FALSE;
    logview->logs = NULL;
    logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
 							     GDK_SELECTION_CLIPBOARD);

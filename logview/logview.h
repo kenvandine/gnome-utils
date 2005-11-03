@@ -24,12 +24,7 @@
 
 #include "logrtns.h"
 
-#define MAX_WIDTH                240
-#define MAX_HOSTNAME_WIDTH       257	/* Need authoritative answer on this value. */
-#define MAX_PROC_WIDTH           60
 #define MAX_VERSIONS             5
-
-/* Function Prototypes */
 
 #define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())
 #define LOGVIEW_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))
@@ -50,8 +45,6 @@ struct _LogviewWindow {
 
 	GtkWidget *calendar;
 	gboolean calendar_visible;
-
-	gboolean loginfovisible;
 
 	GtkWidget *find_bar;
 	GtkWidget *find_entry;

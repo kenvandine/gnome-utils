@@ -39,7 +39,6 @@ void
 row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
                 GtkTreePath *path, gpointer user_data)
 {
-	LogviewWindow *logview = user_data;
 	GtkTreeModel *model;
 	Day *day;
 

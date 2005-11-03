@@ -1,5 +1,18 @@
 2005-11-03  Vincent Noel <vnoel@cox.net>
 
+	* info.c: (loginfo_repaint), (loginfo_quit), (loginfo_close),
+	(loginfo_new), (loginfo_show):
+	* info.h:
+	* log_repaint.c: (row_toggled_cb):
+	* logview.c: (logview_window_new):
+	* logview.h:
+	* main.c: (main): Cleanups.
+
+	* info.c (loginfo_repaint): Don't crash when requesting properties
+	for a dateless log.
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
 	Remove a few now-useless functions. Cleanup.
 
 	* loglist.c: (loglist_find_log_from_name),

@@ -141,7 +141,7 @@ main (int argc, char *argv[])
        loglist_select_log_from_name (LOG_LIST (logview->loglist), user_prefs->logfile);
    } else {
 	   for (i=1; i<argc; i++)
-           logview_add_log_from_name (logview, argv[i]);
+		   logview_add_log_from_name (logview, argv[i]);
    }
    restoration_complete = TRUE;
    gtk_widget_set_sensitive (logview->view, TRUE);
@@ -153,7 +153,7 @@ main (int argc, char *argv[])
    error_dialog_show_queued ();
    
    g_signal_connect (gnome_client, "save_yourself",
-					 G_CALLBACK (save_session), logview);
+		     G_CALLBACK (save_session), logview);
    g_signal_connect (gnome_client, "die", G_CALLBACK (die), NULL);
 
    gtk_main ();
