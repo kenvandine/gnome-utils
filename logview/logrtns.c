@@ -517,6 +517,31 @@ log_read_new_lines (Log *log)
 	return FALSE;
 }
 
+/* 
+   log_unbold is called by a g_timeout
+   set in loglist_bold_log 
+*/
+
+gboolean
+log_unbold (gpointer data)
+{
+    LogviewWindow *logview;
+    LogList *list;
+    Log *log = data;
+
+    g_return_if_fail (log != NULL);
+
+    logview = log->window;
+
+    /* If the log to unbold is not displayed, still wait */
+    if (logview_get_active_log (logview) != log)
+        return TRUE;
+
+    list = logview_get_loglist (logview);
+    loglist_unbold_log (list, log);
+    return FALSE;
+}
+
 void
 log_close (Log *log)
 {

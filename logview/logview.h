@@ -60,7 +60,6 @@ struct _LogviewWindow {
 	gchar *find_string;
 
 	GtkWidget *loglist;
-	GtkWidget *treeview;
 	GtkWidget *sidebar; 
 	gboolean sidebar_visible;
 	GtkWidget *version_bar;
@@ -79,6 +78,11 @@ struct _LogviewWindowClass {
 	GtkWindowClass parent_class;
 };
 
+#include "loglist.h"
+
 void logview_set_window_title (LogviewWindow *window);
+void logview_select_log_from_name (LogviewWindow *logview, char *name);
+Log *logview_get_active_log (LogviewWindow *logview);
+LogList *logview_get_loglist (LogviewWindow *logview);
 
 #endif /* __LOGVIEW_H__ */

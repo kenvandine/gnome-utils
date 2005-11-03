@@ -29,6 +29,7 @@
 #include <glib/gi18n.h>
 #include <glib/goption.h>
 #include "logview.h"
+#include "loglist.h"
 #include "log_repaint.h"
 #include "logrtns.h"
 #include "info.h"
@@ -73,9 +74,6 @@ static void logview_select_all (GtkAction *action, LogviewWindow *logview);
 static int logview_count_logs (LogviewWindow *logview);
 static Log *logview_find_log_from_name (LogviewWindow *logview, gchar *name);
 static void logview_destroy (GObject *object, LogviewWindow *logview);
-static void loglist_add_log (LogviewWindow *window, Log *log);
-static GtkTreePath *loglist_find_logname (LogviewWindow *logview, gchar *logname);
-static void loglist_select_log_from_name (LogviewWindow *logview, gchar *logname);
 static gboolean window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
 				 gpointer data);
 
@@ -204,6 +202,9 @@ logview_destroy (GObject *object, LogviewWindow *logview)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
 
+   if (restoration_complete == FALSE)
+       return;
+
     if (logview->curlog) {
         if (logview->curlog->monitored)
             monitor_stop (logview->curlog);
@@ -273,13 +274,34 @@ logview_select_log (LogviewWindow *logview, Log *log)
 } 
 
 void
+logview_select_log_from_name (LogviewWindow *logview, char *name)
+{
+    Log *log;
+
+    log = logview_find_log_from_name (logview, name);
+    if (log == NULL) {
+        /* there is no selected log right now */
+        logview->curlog = NULL;
+        logview_menus_set_state (logview);
+        logview_calendar_set_state (logview);
+        log_repaint (logview);
+        return;
+    }
+    
+    if (log != logview->curlog) {
+        logview_select_log (logview, log);
+        gtk_widget_grab_focus (logview->view);
+    }
+}
+
+void
 logview_add_log (LogviewWindow *logview, Log *log)
 {
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (log);
 
     logview->logs = g_list_append (logview->logs, log);
-    loglist_add_log (logview, log);
+    loglist_add_log (LOG_LIST(logview->loglist), log);
     log->first_time = TRUE;
     log->window = logview;
     
@@ -321,25 +343,11 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
 				logview_add_log (logview, log);
                 gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (logview->progressbar),
                                                (float) i / (float) n );
-                while (gtk_events_pending ())
-                    gtk_main_iteration ();
 			}
 		}
 	}
     
     gtk_widget_hide (logview->progressbar);
-}
-
-void
-logview_remove_log (LogviewWindow *logview, Log *log)
-{
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    g_return_if_fail (log);
-
-	log_close (log);
-	logview->logs = g_list_remove (logview->logs, log);
-    log->window = NULL;
-    log = NULL;
 }
 
 GOptionContext *
@@ -374,7 +382,6 @@ main (int argc, char *argv[])
 
    error_dialog_queue (TRUE);
 
-   /*  Initialize gnome & gtk */
    program = gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
 				 GNOME_PARAM_APP_DATADIR, DATADIR, 
 				 NULL);
@@ -401,7 +408,7 @@ main (int argc, char *argv[])
        gtk_main_iteration ();
    if (argc == 1) {
        logview_add_logs_from_names (logview, user_prefs->logs);
-       loglist_select_log_from_name (logview, user_prefs->logfile);
+       loglist_select_log_from_name (LOG_LIST (logview->loglist), user_prefs->logfile);
    } else {
 	   for (i=1; i<argc; i++)
            logview_add_log_from_name (logview, argv[i]);
@@ -459,7 +466,8 @@ logview_find_log_from_name (LogviewWindow *logview, gchar *name)
   GList *list;
   Log *log;
 
-  g_assert (LOGVIEW_IS_WINDOW (logview));
+  if (logview == NULL || name == NULL)
+      return NULL;
 
   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
     log = list->data;
@@ -468,266 +476,6 @@ logview_find_log_from_name (LogviewWindow *logview, gchar *name)
     }
   }
   return NULL;
-}
-
-static gchar *
-logname_remove_markup (gchar *logname)
-{
-    gchar *unmarkup;
-
-    g_assert (logname);
-
-    if (g_str_has_prefix (logname, "<b>")) {
-        int n;
-        n = strlen (logname);
-        unmarkup = g_strndup (logname+3, n-7);
-    } else
-        unmarkup = g_strdup (logname);
-    
-    return unmarkup;
-}
-
-/* loglist functions
-   FIXME : These should be factored out in their own module presumably */
-
-/* loglist_unbold_log is called by a g_timeout */
-static gboolean
-loglist_unbold_log (gpointer data)
-{
-    GtkTreeIter iter;
-    GtkTreeModel *model;
-    GtkTreePath *path;
-    Log *log = data;
-    LogviewWindow *logview;
-
-    if (log == NULL)
-        return FALSE;
-
-    logview = log->window;
-    if (logview == NULL)
-        return FALSE;
-
-    /* If the log to unbold is not displayed, still wait */
-    if (logview->curlog != log)
-        return TRUE;
-
-    path = loglist_find_logname (logview, log->name);
-    model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
-    gtk_tree_model_get_iter (model, &iter, path);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, log->name, -1);
-    gtk_tree_path_free (path);
-    return FALSE;
-}    
-
-static void
-loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
-{
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  gchar *name, *unmarkup;
-  Log *log;
-
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-  g_assert (GTK_IS_TREE_SELECTION (selection));
-
-  if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
-    /* there is no selected log right now */
-    logview->curlog = NULL;
-    logview_menus_set_state (logview);
-    logview_calendar_set_state (logview);
-    log_repaint (logview);
-    return;
-  }
-  
-  gtk_tree_model_get (model, &iter, 0, &name, -1);
-  unmarkup = logname_remove_markup (name);
-  log = logview_find_log_from_name (logview, unmarkup);
-  g_return_if_fail (log);
-
-  while (gtk_events_pending ())
-      gtk_main_iteration ();
-
-  if ((log != logview->curlog) && 
-      gtk_tree_selection_iter_is_selected (selection, &iter)) {
-      logview_select_log (logview, log);
-      gtk_widget_grab_focus (logview->view);
-
-      /* add a timeout to unbold the log if bolded */
-      if (g_str_has_prefix (name, "<b>"))
-          g_timeout_add (5000, loglist_unbold_log, log);
-  }
-  
-  g_free (name);
-  g_free (unmarkup);
-}
-
-static GtkTreePath *
-loglist_find_logname (LogviewWindow *logview, gchar *logname)
-{
-	GtkTreeIter iter;
-	GtkTreeModel *model;
-	GtkTreePath *path = NULL;
-	gchar *name, *unmarkup;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-    g_assert (logname != NULL);
-
-	model =  gtk_tree_view_get_model (GTK_TREE_VIEW(logview->treeview));
-	if (!gtk_tree_model_get_iter_first (model, &iter))
-		return NULL;
-
-	do {
-		gtk_tree_model_get (model, &iter, 0, &name, -1);
-        unmarkup = logname_remove_markup (name);
-		if (g_ascii_strncasecmp (logname, unmarkup, 255) == 0) {
-			g_free (name);
-            g_free (unmarkup);
-			path = gtk_tree_model_get_path (model, &iter);
-			return path;
-		}
-		g_free (name);
-        g_free (unmarkup);
-	} while (gtk_tree_model_iter_next (model, &iter));
-
-	return NULL;
-}
-
-void
-loglist_bold_log (LogviewWindow *logview, Log *log)
-{
-    GtkTreeIter iter;
-    GtkTreeModel *model;
-    GtkTreePath *path;
-    gchar *markup;
-    
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-
-    path = loglist_find_logname (logview, log->name);
-    model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
-    gtk_tree_model_get_iter (model, &iter, path);
-    markup = g_markup_printf_escaped ("<b>%s</b>", log->name);
-    gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, markup, -1);
-    
-    g_free (markup);
-    gtk_tree_path_free (path);
-
-    /* if the log is currently shown, put up a timer to unbold it */
-    if (logview->curlog == log)
-        g_timeout_add (5000, loglist_unbold_log, log);
-}
-
-static void
-loglist_select_log_from_name (LogviewWindow *logview, gchar *logname)
-{
-	GtkTreePath *path;
-    
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-    g_assert (logname != NULL);
-
-	path = loglist_find_logname (logview, logname);
-	if (path) {
-		GtkTreeSelection *selection;
-		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->treeview));
-		gtk_tree_selection_select_path (selection, path);
-	}
-}
-
-static void 
-loglist_add_log (LogviewWindow *logview, Log *log)
-{
-	GtkTreeIter iter;
-	GtkTreeModel *model;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-    g_assert (log != NULL);
-
-	model = gtk_tree_view_get_model (GTK_TREE_VIEW (logview->treeview));
-    
-	gtk_list_store_append (GTK_LIST_STORE (model), &iter);
-	gtk_list_store_set (GTK_LIST_STORE (model), &iter, 0, log->name, -1);
-
-	if (restoration_complete) {
-		GtkTreeSelection *selection;
-		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->treeview));
-		gtk_tree_selection_select_iter (selection, &iter);
-	}
-}
-
-static void
-loglist_remove_selected_log (LogviewWindow *logview)
-{
-	GtkTreeModel *model;
-	GtkTreeIter iter;
-	GtkTreeSelection *selection;
-	gchar *name, *unmarkup;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->treeview));
-	gtk_tree_selection_get_selected (selection, &model, &iter);
-
-	gtk_tree_model_get (model, &iter, 0, &name, -1);
-    unmarkup = logname_remove_markup (name);
-	
-	if (unmarkup) {
-		Log *log;
-		
-		log = logview_find_log_from_name (logview, unmarkup);
-		logview_remove_log (logview, log);
-        logview->curlog = NULL;
-
-        if (gtk_list_store_remove (GTK_LIST_STORE (model), &iter))
-            gtk_tree_selection_select_iter (selection, &iter);
-	}
-
-    g_free (unmarkup);
-    g_free (name);
-}
-
-GtkWidget *
-loglist_create (LogviewWindow *window)
-{
-  GtkWidget *label;
-  GtkWidget *scrolled;
-  GtkWidget *vbox;
-  GtkWidget *treeview;
-  GtkListStore *model;
-  GtkTreeViewColumn *column;
-  GtkTreeSelection *selection;
-  GtkCellRenderer *cell;
-    
-  g_return_if_fail (LOGVIEW_IS_WINDOW (window));
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_box_set_spacing (GTK_BOX (vbox), 3);
-  
-  scrolled = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
-				  GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled),
-				       GTK_SHADOW_ETCHED_IN);
-  
-  model = gtk_list_store_new (1, G_TYPE_STRING);
-  treeview = gtk_tree_view_new_with_model (GTK_TREE_MODEL (model));
-  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (treeview), FALSE);
-  g_object_unref (G_OBJECT (model));
-  
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-  g_signal_connect (G_OBJECT (selection), "changed",
-		    G_CALLBACK (loglist_selection_changed), window);
-
-  cell = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new_with_attributes ("words", cell, "markup", 0, NULL);
-  
-  gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-  gtk_tree_view_set_search_column (GTK_TREE_VIEW (treeview), -1);
-  
-  gtk_container_add (GTK_CONTAINER (scrolled), treeview);
-  gtk_box_pack_start (GTK_BOX (vbox), scrolled, TRUE, TRUE, 0);
-
-  window->treeview = treeview;
-  gtk_widget_show (vbox);
-  return vbox;
 }
 
 static void
@@ -789,7 +537,6 @@ logview_init (LogviewWindow *window)
    GtkAccelGroup *accel_group;
    GError *error = NULL;
    GtkWidget *menubar;
-   GtkWidget *loglist;
    GtkWidget *hpaned;
    GtkWidget *label;
    GtkWidget *main_view;
@@ -840,10 +587,17 @@ logview_init (LogviewWindow *window)
    window->calendar_visible = TRUE;
    gtk_box_pack_end (GTK_BOX (window->sidebar), GTK_WIDGET(window->calendar), FALSE, FALSE, 0);
    
-   window->loglist = loglist_create (window);
-   gtk_box_pack_start (GTK_BOX (window->sidebar), window->loglist, TRUE, TRUE, 0);
-   
+   /* log list */
+   scrolled = gtk_scrolled_window_new (NULL, NULL);
+   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
+                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled),
+                                        GTK_SHADOW_ETCHED_IN);
+   window->loglist = loglist_new ();
+   gtk_container_add (GTK_CONTAINER (scrolled), window->loglist);
+   gtk_box_pack_start (GTK_BOX (window->sidebar), scrolled, TRUE, TRUE, 0);
    gtk_paned_pack1 (GTK_PANED (hpaned), window->sidebar, FALSE, FALSE);
+   loglist_connect (LOG_LIST(window->loglist), window);
 
    /* Second pane : log */
    main_view = gtk_vbox_new (FALSE, 0);
@@ -947,7 +701,11 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
     }
     
     gtk_widget_hide (logview->find_bar);
-    loglist_remove_selected_log (logview);
+
+    loglist_remove_log (LOG_LIST (logview->loglist), logview->curlog);
+    log_close (logview->curlog);
+    logview->logs = g_list_remove (logview->logs, logview->curlog);
+    logview->curlog = NULL;
 }
 
 static void
@@ -970,7 +728,7 @@ logview_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logv
 	   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
 		   log = list->data;
 		   if (g_ascii_strncasecmp (log->name, f, 255) == 0) {
-				 loglist_select_log_from_name (logview, log->name);
+				 loglist_select_log_from_name (LOG_LIST (logview->loglist), log->name);
 			   return;
 		   }
 	   }
@@ -1270,6 +1028,20 @@ logview_set_window_title (LogviewWindow *window)
 		window_title = g_strdup_printf (APP_NAME);
 	gtk_window_set_title (GTK_WINDOW (window), window_title);
 	g_free (window_title);
+}
+
+Log *
+logview_get_active_log (LogviewWindow *logview)
+{
+    g_return_val_if_fail (LOGVIEW_IS_WINDOW (logview), NULL);
+    return logview->curlog;
+}
+
+LogList *
+logview_get_loglist (LogviewWindow *logview)
+{
+    g_return_val_if_fail (LOGVIEW_IS_WINDOW (logview), NULL);
+    return LOG_LIST (logview->loglist);
 }
 
 static void

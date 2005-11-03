@@ -28,6 +28,7 @@ char *locale_to_utf8 (const char *in);
 GDate *string_get_date (char *line);
 int string_get_month (const char *str);
 char *date_get_string (GDate *date);
+gchar *string_remove_bold_markup (gchar *string);
 
 #endif /* __LOG_MISC_H__ */
 

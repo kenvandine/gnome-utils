@@ -136,18 +136,17 @@ GDate *
 string_get_date (char *line)
 {
     GDate *date;
-    int d, m;
     struct tm tp;
     char *cp;
     
-    if (line == NULL | line[0] == 0)
+    if (line == NULL || line[0] == 0)
         return NULL;
 
     cp = strptime (line, "%b %d", &tp);
-    m = tp.tm_mon + 1;
-    d = tp.tm_mday;
+    if (cp == NULL)
+        return NULL;
 
-    date = g_date_new_dmy (d, m, 70);
+    date = g_date_new_dmy (tp.tm_mday, tp.tm_mon+1, 70);
     return date;
 }
 
@@ -173,3 +172,22 @@ date_get_string (GDate *date)
    
    return utf8;
 }
+
+gchar *
+string_remove_bold_markup (gchar *string)
+{
+    gchar *unmarkup;
+
+    if (string == NULL)
+        return;
+
+    if (g_str_has_prefix (string, "<b>")) {
+        int n;
+        n = strlen (string);
+        unmarkup = g_strndup (string+3, n-7);
+    } else
+        unmarkup = g_strdup (string);
+    
+    return unmarkup;
+}
+
