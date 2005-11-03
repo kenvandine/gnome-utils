@@ -137,8 +137,7 @@ main (int argc, char *argv[])
    while (gtk_events_pending ())
        gtk_main_iteration ();
    if (argc == 1) {
-       logview_add_logs_from_names (logview, user_prefs->logs);
-       loglist_select_log_from_name (LOG_LIST (logview->loglist), user_prefs->logfile);
+       logview_add_logs_from_names (logview, user_prefs->logs, user_prefs->logfile);
    } else {
 	   for (i=1; i<argc; i++)
 		   logview_add_log_from_name (logview, argv[i]);

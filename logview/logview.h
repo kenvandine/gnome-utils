@@ -78,7 +78,7 @@ LogList *logview_get_loglist (LogviewWindow *logview);
 int logview_count_logs (LogviewWindow *logview);
 void logview_select_log (LogviewWindow *logview, Log *log);
 void logview_add_log_from_name (LogviewWindow *logview, gchar *file);
-void logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames);
+void logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *selected);
 void logview_menus_set_state (LogviewWindow *logview);
 void logview_set_window_title (LogviewWindow *window);
 GtkWidget *logview_window_new (void);

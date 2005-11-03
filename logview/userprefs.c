@@ -157,6 +157,7 @@ void
 prefs_save (GConfClient *client, UserPrefsStruct *prefs)
 {
   GSList *logs;
+
 	if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL) &&
 	    prefs->logfile != NULL) {
 		gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);

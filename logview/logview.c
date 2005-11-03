@@ -221,32 +221,29 @@ logview_add_log_from_name (LogviewWindow *logview, gchar *file)
 }
 
 void
-logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames)
+logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *selected)
 {
 	GSList *list;
-	Log *log;
+	Log *log, *curlog = NULL;
     int n, i=0;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (lognames);
 
     n = g_slist_length (list);
-
-    gtk_widget_show (logview->progressbar);
-
+    
 	for (list = lognames; list != NULL; list = g_slist_next (list)) {
         i++;
-		if (logview_find_log_from_name (logview, list->data) == NULL) {
-			log = log_open (list->data, FALSE);
-			if (log != NULL) {
-				logview_add_log (logview, log);
-                gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (logview->progressbar),
-                                               (float) i / (float) n );
-			}
-		}
-	}
-    
-    gtk_widget_hide (logview->progressbar);
+        log = log_open (list->data, FALSE);
+        if (log != NULL) {
+            logview_add_log (logview, log);
+            if (g_strncasecmp (log->name, selected, -1)==0)
+                curlog = log;
+        }
+    }
+        
+    if (curlog)
+        loglist_select_log (LOG_LIST (logview->loglist), curlog);
 }
 
 void
@@ -465,7 +462,7 @@ logview_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logv
 	   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
 		   log = list->data;
 		   if (g_ascii_strncasecmp (log->name, f, 255) == 0) {
-				 loglist_select_log_from_name (LOG_LIST (logview->loglist), log->name);
+				 loglist_select_log (LOG_LIST (logview->loglist), log);
 			   return;
 		   }
 	   }

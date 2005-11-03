@@ -45,7 +45,7 @@ struct _LogListClass
 GtkWidget *loglist_new (void);
 void loglist_connect (LogList *list, LogviewWindow *window);
 void loglist_add_log (LogList *list, Log *log);
-void loglist_select_log_from_name (LogList *list, gchar *name);
+void loglist_select_log (LogList *list, Log *log);
 void loglist_unbold_log (LogList *list, Log *log);
 void loglist_bold_log (LogList *list, Log *log);
 void loglist_remove_log (LogList *list, Log *log);
