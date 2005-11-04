@@ -21,7 +21,6 @@
 #include <config.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include "logview.h"
@@ -36,12 +35,9 @@
 #include "userprefs.h"
 #include "calendar.h"
 
-#define GCONF_MONOSPACE_FONT_NAME "/desktop/gnome/interface/monospace_font_name"
 #define APP_NAME _("System Log Viewer")
 
 static GObjectClass *parent_class;
-extern UserPrefsStruct *user_prefs;
-extern GConfClient *client;
 extern gboolean restoration_complete;
 
 /* Function Prototypes */
@@ -225,7 +221,7 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
 {
 	GSList *list;
 	Log *log, *curlog = NULL;
-    int n, i=0;
+    int n;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (lognames);
@@ -233,7 +229,6 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
     n = g_slist_length (list);
     
 	for (list = lognames; list != NULL; list = g_slist_next (list)) {
-        i++;
         log = log_open (list->data, FALSE);
         if (log != NULL) {
             logview_add_log (logview, log);
@@ -313,16 +308,18 @@ logview_save_prefs (LogviewWindow *logview)
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
-    prefs_free_loglist(user_prefs);
-    for (list = logview->logs; list != NULL; list = g_list_next (list)) {
-        log = list->data;
-        user_prefs->logs = g_slist_append (user_prefs->logs, log->name);
-	}
-    if (logview->curlog)
-        user_prefs->logfile = logview->curlog->name;
-	user_prefs->fontsize = logview->fontsize;
-	if (restoration_complete)
-		prefs_save (client, user_prefs);
+	if (restoration_complete) {
+        prefs_free_loglist();
+        for (list = g_list_first (logview->logs); list != NULL; list = g_list_next (list)) {
+            log = list->data;
+            prefs_store_log (log->name);
+        }
+        
+        if (logview->curlog)
+            prefs_store_active_log (logview->curlog->name);
+        prefs_store_fontsize (logview->fontsize);
+		prefs_save ();
+    }
 }
 
 static void
@@ -334,13 +331,13 @@ logview_destroy (GObject *object, LogviewWindow *logview)
         if (logview->curlog->monitored)
             monitor_stop (logview->curlog);
         if (!(logview->curlog->display_name))
-            user_prefs->logfile = logview->curlog->name;
+            prefs_store_active_log (logview->curlog->name);
         else
-            user_prefs->logfile = NULL;
+            prefs_store_active_log (NULL);
     }
 
-    prefs_save (client, user_prefs);
-    prefs_free_loglist (user_prefs);
+    prefs_save ();
+    prefs_free_loglist ();
     gtk_main_quit ();
 }
 
@@ -405,23 +402,6 @@ logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_d
 		logview_select_log (logview, new);
 	}
 }
-	
-static void
-logview_monospace_font_changed (GConfClient *client, guint id, 
-                                GConfEntry *entry, gpointer data)
-{
-  LogviewWindow *logview = data;
-  gchar *monospace_font_name;
-  PangoFontDescription *fontdesc;
-
-  monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
-  fontdesc = pango_font_description_from_string (monospace_font_name);
-  if (pango_font_description_get_family (fontdesc) != NULL)
-    gtk_widget_modify_font (GTK_WIDGET(logview->view), fontdesc);
-  g_free (fontdesc);
-  g_free (monospace_font_name);
-}
-
 
 static void
 logview_close_log (GtkAction *action, LogviewWindow *logview)
@@ -436,9 +416,9 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
     
     gtk_widget_hide (logview->find_bar);
 
-    loglist_remove_log (LOG_LIST (logview->loglist), logview->curlog);
-    log_close (logview->curlog);
     logview->logs = g_list_remove (logview->logs, logview->curlog);
+    log_close (logview->curlog);
+    loglist_remove_log (LOG_LIST (logview->loglist), logview->curlog);
     logview->curlog = NULL;
 }
 
@@ -495,9 +475,9 @@ logview_open_log (GtkAction *action, LogviewWindow *logview)
 			     G_CALLBACK (logview_file_selected_cb), logview);
 	   g_signal_connect (G_OBJECT (chooser), "destroy",
 			     G_CALLBACK (gtk_widget_destroyed), &chooser);
-	   if (user_prefs->logfile != NULL)
+	   if (prefs_get_active_log () != NULL)
 		   gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (chooser), 
-						  user_prefs->logfile);
+						  prefs_get_active_log ());
    }
 
    gtk_window_present (GTK_WINDOW (chooser));
@@ -701,7 +681,7 @@ window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event,
 	LogviewWindow *window = data;
     
     g_assert (LOGVIEW_IS_WINDOW (window));
-	prefs_store_size (GTK_WIDGET(window), user_prefs);
+	prefs_store_window_size (GTK_WIDGET(window));
 	return FALSE;
 }
 
@@ -731,14 +711,14 @@ logview_init (LogviewWindow *window)
    GtkWidget *label;
    GtkWidget *main_view;
    GtkWidget *scrolled;
-   PangoFontDescription *fontdesc;
    PangoContext *context;
+   PangoFontDescription *fontdesc;
    gchar *monospace_font_name;
    const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
                                     N_("Process"), N_("Message"), NULL };
    const gint column_widths[] = {150,100,200,400};
 
-   gtk_window_set_default_size (GTK_WINDOW (window), user_prefs->width, user_prefs->height);
+   gtk_window_set_default_size (GTK_WINDOW (window), prefs_get_width (), prefs_get_height ());
 
    vbox = gtk_vbox_new (FALSE, 0);
    gtk_container_add (GTK_CONTAINER (window), vbox);
@@ -806,14 +786,9 @@ logview_init (LogviewWindow *window)
    gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (window->view), TRUE);
 
    /* Use the desktop monospace font */
-   monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
-   fontdesc = pango_font_description_from_string (monospace_font_name);
-   if (pango_font_description_get_family (fontdesc) != NULL)
-     gtk_widget_modify_font (GTK_WIDGET(window->view), fontdesc);
+   monospace_font_name = prefs_get_monospace ();
+   widget_set_font (GTK_WIDGET (window->view), monospace_font_name);
    g_free (monospace_font_name);
-   g_free (fontdesc);
-   gconf_client_notify_add (client, GCONF_MONOSPACE_FONT_NAME, 
-                            logview_monospace_font_changed, window, NULL, NULL);
   
    for (i = 0; column_titles[i]; i++) {
         renderer = gtk_cell_renderer_text_new ();
@@ -929,8 +904,7 @@ logview_window_new ()
 
    /* FIXME : we need to listen to this key, not just read it. */
    gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
-                                    gconf_client_get_bool 
-                                    (client, "/desktop/gnome/interface/menus_have_tearoff", NULL));
+                                    prefs_get_have_tearoff ());
 
    g_signal_connect (GTK_OBJECT (window), "destroy",
                      G_CALLBACK (logview_destroy), logview);

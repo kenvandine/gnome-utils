@@ -20,7 +20,6 @@
 #include <config.h>
 #include <stdlib.h>
 #include <string.h>
-#include <gconf/gconf-client.h>
 #include <libgnomeui/gnome-client.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -31,8 +30,6 @@
 #include "misc.h"
 #include "userprefs.h"
 
-GConfClient *client = NULL;
-UserPrefsStruct *user_prefs;
 gboolean restoration_complete = FALSE;
 
 static gchar *config_prefix = NULL;
@@ -117,12 +114,10 @@ main (int argc, char *argv[])
 				 NULL);
 
    g_set_application_name (_("Log Viewer"));
-   gconf_init (argc, argv, NULL);
-   client = gconf_client_get_default ();
-   gnome_vfs_init ();
-
    gtk_window_set_default_icon_name ("logviewer");
-   user_prefs = prefs_load (client);
+
+   gnome_vfs_init ();
+   prefs_init (argc, argv);
    
    context = logview_init_options ();
    g_option_context_parse (context, &argc, &argv, &error);
@@ -130,6 +125,7 @@ main (int argc, char *argv[])
    /* Open regular logs and add each log passed as a parameter */
 
    logview = LOGVIEW_WINDOW(logview_window_new ());
+   prefs_connect (logview);
    logview_menus_set_state (logview);
    gtk_widget_set_sensitive (logview->view, FALSE);
    gtk_widget_set_sensitive (logview->loglist, FALSE);
@@ -137,7 +133,7 @@ main (int argc, char *argv[])
    while (gtk_events_pending ())
        gtk_main_iteration ();
    if (argc == 1) {
-       logview_add_logs_from_names (logview, user_prefs->logs, user_prefs->logfile);
+       logview_add_logs_from_names (logview, prefs_get_logs (), prefs_get_active_log ());
    } else {
 	   for (i=1; i<argc; i++)
 		   logview_add_log_from_name (logview, argv[i]);

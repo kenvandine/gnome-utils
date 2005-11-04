@@ -28,7 +28,7 @@
 #include <locale.h>
 #endif
 
-#include <gtk/gtkmessagedialog.h>
+#include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include <time.h>
 #include <string.h>
@@ -172,4 +172,14 @@ date_get_string (GDate *date)
        utf8 = locale_to_utf8 (buf);
    
    return utf8;
+}
+
+void widget_set_font (GtkWidget *widget, gchar *font_name)
+{
+   PangoFontDescription *fontdesc;
+
+   fontdesc = pango_font_description_from_string (font_name);
+   if (pango_font_description_get_family (fontdesc) != NULL)
+       gtk_widget_modify_font (widget, fontdesc);
+   g_free (fontdesc);
 }

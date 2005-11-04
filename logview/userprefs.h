@@ -25,12 +25,21 @@ typedef struct
 	gchar *logfile;
 	GSList *logs;
 	int width, height, fontsize;
-} UserPrefsStruct;
+} UserPrefs;
 
-void prefs_save (GConfClient *client, UserPrefsStruct *prefs);
-UserPrefsStruct *prefs_load (GConfClient *client);
-void prefs_free_loglist (UserPrefsStruct *prefs);
-void prefs_store_size (GtkWidget *window, UserPrefsStruct *prefs);
+gboolean prefs_get_have_tearoff (void);
+gchar *prefs_get_monospace (void);
+gchar *prefs_get_active_log (void);
+GSList *prefs_get_logs (void);
+int prefs_get_width (void);
+int prefs_get_height (void);
+void prefs_store_log (gchar *name);
+void prefs_store_active_log (gchar *name);
+void prefs_store_fontsize (int fontsize);
+void prefs_store_window_size (GtkWidget *window);
+void prefs_save (void);
+void prefs_free_loglist ();
+void prefs_init (int argc, char *argv[]);
 
 #endif /* __LOG_PREFS_H__ */
 
