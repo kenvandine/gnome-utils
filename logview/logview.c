@@ -85,7 +85,7 @@ static GtkActionEntry entries[] = {
 	  G_CALLBACK (logview_copy) },
 	{ "SelectAll", NULL, N_("Select All"), "<Control>A", N_("Select the entire log"),
 	  G_CALLBACK (logview_select_all) },
-	{ "Search", GTK_STOCK_FIND, N_("_Find..."), "<control>F", N_("Find pattern in logs"),
+	{ "Search", GTK_STOCK_FIND, N_("_Filter..."), "<control>F", N_("Filter log"),
 	  G_CALLBACK (logview_search) },
 
 	{"ViewZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<control>plus", N_("Bigger text size"),
@@ -801,27 +801,31 @@ logview_init (LogviewWindow *window)
    }
    gtk_tree_view_set_search_column (GTK_TREE_VIEW (window->view), 3);
 
-	 /* Version selector */
-	 window->version_bar = gtk_hbox_new (FALSE, 0);
-	 gtk_container_set_border_width (GTK_CONTAINER (window->version_bar), 3);
-	 window->version_selector = gtk_combo_box_new_text ();
-	 g_signal_connect (G_OBJECT (window->version_selector), "changed",
-										 G_CALLBACK (logview_version_selector_changed), window);
-	 label = gtk_label_new (_("Version: "));
+   window->find_bar = logview_findbar_new (window);
+   gtk_box_pack_end (GTK_BOX (main_view), window->find_bar, FALSE, FALSE, 0);
+   gtk_widget_show (window->find_bar);
 
-	 gtk_box_pack_end (GTK_BOX(window->version_bar), window->version_selector, FALSE, FALSE, 0);
-	 gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
-	 gtk_box_pack_end (GTK_BOX(main_view), window->version_bar, FALSE, FALSE, 0);
-
-	 /* Remember the original font size */
-	 context = gtk_widget_get_pango_context (window->view);
-	 fontdesc = pango_context_get_font_description (context);
-	 window->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
-	 window->fontsize = window->original_fontsize;
+   /* Version selector */
+   window->version_bar = gtk_hbox_new (FALSE, 0);
+   gtk_container_set_border_width (GTK_CONTAINER (window->version_bar), 3);
+   window->version_selector = gtk_combo_box_new_text ();
+   g_signal_connect (G_OBJECT (window->version_selector), "changed",
+                     G_CALLBACK (logview_version_selector_changed), window);
+   label = gtk_label_new (_("Version: "));
+   
+   gtk_box_pack_end (GTK_BOX(window->version_bar), window->version_selector, FALSE, FALSE, 0);
+   gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
+   gtk_box_pack_end (GTK_BOX(main_view), window->version_bar, FALSE, FALSE, 0);
+   
+   /* Remember the original font size */
+   context = gtk_widget_get_pango_context (window->view);
+   fontdesc = pango_context_get_font_description (context);
+   window->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
+   window->fontsize = window->original_fontsize;
 
    gtk_container_add (GTK_CONTAINER (scrolled), GTK_WIDGET (window->view));
    gtk_widget_show_all (scrolled);
-
+   
    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->view));
    gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
 
@@ -834,10 +838,6 @@ logview_init (LogviewWindow *window)
                      G_CALLBACK (row_toggled_cb), window);
    g_signal_connect (G_OBJECT (window), "configure_event",
                      G_CALLBACK (window_size_changed_cb), window);
-
-   window->find_bar = logview_findbar_new (window);
-   gtk_box_pack_start (GTK_BOX (vbox), window->find_bar, FALSE, FALSE, 0);
-   gtk_widget_show (window->find_bar);
 
    /* Status area at bottom */
    hbox = gtk_hbox_new (FALSE, 0);   

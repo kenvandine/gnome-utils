@@ -214,7 +214,8 @@ model_fill_date_iter (GtkTreeStore *model, GtkTreeIter *iter, Day *day)
     g_assert (GTK_IS_TREE_STORE (model));
     
     utf8 = date_get_string (day->date);
-    gtk_tree_store_set (model, iter, DATE, utf8, DAY_POINTER, day, -1);
+    gtk_tree_store_set (model, iter, DATE, utf8, DAY_POINTER, day, 
+                        HOSTNAME, NULL, PROCESS, NULL, MESSAGE, NULL, -1);
     g_free (utf8);
 }
 
