@@ -1578,6 +1578,9 @@ columns_changed_cb (GtkTreeView * treeview,
 	GSList * order;
 
 	order = gsearchtool_get_columns_order (treeview);
-	gsearchtool_gconf_set_list ("/apps/gnome-search-tool/columns_order", order, GCONF_VALUE_INT);
+
+	if (g_slist_length (order) == NUM_VISIBLE_COLUMNS) {
+		gsearchtool_gconf_set_list ("/apps/gnome-search-tool/columns_order", order, GCONF_VALUE_INT);
+	}
 	g_slist_free (order);
 }

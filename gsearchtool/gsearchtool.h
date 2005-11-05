@@ -47,6 +47,7 @@ extern "C" {
 #define MINIMUM_WINDOW_WIDTH   420
 #define MINIMUM_WINDOW_HEIGHT  310
 #define WINDOW_HEIGHT_STEP      35
+#define NUM_VISIBLE_COLUMNS      5
 
 typedef enum {
 	STOPPED,
