@@ -2162,14 +2162,28 @@ gsearch_equal_func (GtkTreeModel * model,
                     GtkTreeIter * iter,
                     gpointer search_data)
 {
+	gboolean results = TRUE;
 	gchar * name;
 
 	gtk_tree_model_get (model, iter, COLUMN_NAME, &name, -1);
 
-	if (name && strstr (name, key)) {
-		return FALSE;
+	if (name != NULL) {
+		gchar * casefold_key;
+		gchar * casefold_name;
+	
+		casefold_key = g_utf8_casefold (key, -1);
+		casefold_name = g_utf8_casefold (name, -1);
+
+		if ((casefold_key != NULL) &&
+		    (casefold_name != NULL) && 
+		    (strstr (casefold_name, casefold_key) != NULL)) {
+			results = FALSE;
+		}
+		g_free (casefold_key);
+		g_free (casefold_name);
+		g_free (name);
 	}
-	return TRUE;
+	return results;
 }
 
 static GtkWidget *
