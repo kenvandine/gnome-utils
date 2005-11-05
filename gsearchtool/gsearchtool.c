@@ -2157,10 +2157,10 @@ filename_cell_data_func (GtkTreeViewColumn * column,
 
 static gboolean
 gsearch_equal_func (GtkTreeModel * model,
-                   gint column,
-                   const gchar * key,
-                   GtkTreeIter * iter,
-                   gpointer search_data)
+                    gint column,
+                    const gchar * key,
+                    GtkTreeIter * iter,
+                    gpointer search_data)
 {
 	gchar * name;
 
@@ -2352,6 +2352,12 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_reorderable (column, TRUE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
 
+	gsearchtool_set_columns_order (gsearch->search_results_tree_view);
+
+	g_signal_connect (G_OBJECT (gsearch->search_results_tree_view),
+	                  "columns-changed", 
+	                  G_CALLBACK (columns_changed_cb), 
+	                  (gpointer) gsearch);
 	return vbox;
 }
 

@@ -1,5 +1,28 @@
 2005-11-05  Dennis Cranston  <dennis_cranston@yahoo.com>
 
+	* gnome-search-tool.schemas.in: Add a key for storing the 
+	order of the columns.
+	* gsearchtool-callbacks.c: (columns_changed_cb): Save changes
+	to the order of the columns.
+	* gsearchtool-callbacks.h: Add a columns_changed_cb prototype.
+	* gsearchtool-support.c: (gsearchtool_gconf_get_list),
+	(gsearchtool_gconf_set_list), (is_quick_search_excluded_path),
+	(is_second_scan_excluded_path),
+	(gsearchtool_button_new_with_stock_icon),
+	(gsearchtool_get_columns_order),
+	(gsearchtool_gtk_tree_view_get_column_with_sort_column_id),
+	(gsearchtool_set_columns_order): Add a GConfValueType parameter 
+	to the gsearchtool_gconf_get_list function.  Add new functions
+	gsearchtool_gconf_set_list, gsearchtool_get_colums_order,
+	gsearchtool_gtk_tree_view_get_column_with_sort_column_id,
+	gsearchtool_set_columns_order & gsearchtool_get_columns_order.
+	* gsearchtool-support.h:  Update and add function prototypes. 
+	* gsearchtool.c: (create_search_results_section): Restore 
+	the order of the columns.  Connect to the "columns-changed" 
+	signal.
+
+2005-11-05  Dennis Cranston  <dennis_cranston@yahoo.com>
+
 	* gsearchtool.c: (gsearch_equal_func),
 	(create_search_results_section):  Enable reordering of the 
 	treeview columns.  Enable substring matches when using the 

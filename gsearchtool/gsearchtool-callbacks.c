@@ -1570,3 +1570,14 @@ single_click_to_activate_key_changed_cb (GConfClient * client,
 	gsearch->is_search_results_single_click_to_activate = 
 		(strncmp (gconf_value_get_string (value), "single", 6) == 0) ? TRUE : FALSE;
 }
+
+void
+columns_changed_cb (GtkTreeView * treeview,
+                    gpointer user_data)
+{
+	GSList * order;
+
+	order = gsearchtool_get_columns_order (treeview);
+	gsearchtool_gconf_set_list ("/apps/gnome-search-tool/columns_order", order, GCONF_VALUE_INT);
+	g_slist_free (order);
+}

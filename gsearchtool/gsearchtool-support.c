@@ -122,7 +122,8 @@ gsearchtool_gconf_get_string (const gchar * key)
 }
 
 GSList * 
-gsearchtool_gconf_get_list (const gchar * key)
+gsearchtool_gconf_get_list (const gchar * key,
+                            GConfValueType list_type)
 {
 	GConfClient * client;
 	GError * error = NULL;
@@ -133,13 +134,31 @@ gsearchtool_gconf_get_list (const gchar * key)
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_val_if_fail (client != NULL, NULL);
 	
-	result = gconf_client_get_list (client, key, GCONF_VALUE_STRING, &error);
+	result = gconf_client_get_list (client, key, list_type, &error);
 	
 	if (gsearchtool_gconf_handle_error (&error)) {
 		result = NULL;
 	}
 	
 	return result;
+}
+
+void
+gsearchtool_gconf_set_list (const gchar * key,
+                            GSList * list,
+                            GConfValueType list_type)
+{
+	GConfClient * client;
+	GError * error = NULL;
+
+	g_return_if_fail (key != NULL);
+	
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_if_fail (client != NULL);
+	
+	gconf_client_set_list (client, key, list_type, list, &error);
+	
+	gsearchtool_gconf_handle_error (&error);
 }
 
 gint 
@@ -308,7 +327,8 @@ is_quick_search_excluded_path (const gchar * path)
 	g_free (dir);
 	
 	/* Check path against the Quick-Search-Excluded-Paths list. */
-	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_excluded_paths");
+	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_excluded_paths",
+	                                                GCONF_VALUE_STRING);
 
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
 	
@@ -385,7 +405,8 @@ is_second_scan_excluded_path (const gchar * path)
 	g_free (dir);
 	
 	/* Check path against the Quick-Search-Excluded-Paths list. */
-	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_second_scan_excluded_paths");
+	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_second_scan_excluded_paths",
+	                                                GCONF_VALUE_STRING);
 
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
 	
@@ -1384,4 +1405,74 @@ gsearchtool_button_new_with_stock_icon (const gchar * string,
 	gtk_widget_show_all (align);
 
 	return button;
+}
+
+GSList *
+gsearchtool_get_columns_order (GtkTreeView * treeview)
+{
+	GSList *order = NULL;
+	GList * columns;
+	GList * col;
+
+	columns = gtk_tree_view_get_columns (treeview);
+
+	for (col = columns; col; col = col->next) {
+		gint id;
+
+		id = gtk_tree_view_column_get_sort_column_id (col->data);
+		order = g_slist_prepend (order, GINT_TO_POINTER (id));
+	}
+	g_list_free (columns);
+
+	order = g_slist_reverse (order);
+	return order;
+}
+
+GtkTreeViewColumn *
+gsearchtool_gtk_tree_view_get_column_with_sort_column_id (GtkTreeView * treeview, 
+                                                          gint id)
+{
+	GtkTreeViewColumn * col = NULL;
+	GList * columns;
+	GList * it;
+
+	columns = gtk_tree_view_get_columns (treeview);
+
+	for (it = columns; it; it = it->next) {
+		if (gtk_tree_view_column_get_sort_column_id (it->data) == id) {
+			col = it->data;
+			break;
+		}
+	}
+	g_list_free (columns);
+	return col;
+}
+
+void
+gsearchtool_set_columns_order (GtkTreeView * treeview)
+{
+	GtkTreeViewColumn * last = NULL;
+	GSList * order;
+	GSList * it;
+
+	order = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/columns_order", GCONF_VALUE_INT);
+
+	for (it = order; it; it = it->next) {
+
+		GtkTreeViewColumn * cur;
+		gint id;
+
+		id = GPOINTER_TO_INT (it->data);
+
+		if (id >= 0 && id < NUM_COLUMNS) {
+
+			cur = gsearchtool_gtk_tree_view_get_column_with_sort_column_id (treeview, id);
+
+			if (cur && cur != last) {
+				gtk_tree_view_move_column_after (treeview, cur, last);
+				last = cur;
+			}
+		}
+	}
+	g_slist_free (order);
 }

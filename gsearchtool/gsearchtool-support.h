@@ -50,8 +50,12 @@ char *
 gsearchtool_gconf_get_string (const gchar * key);
 
 GSList * 
-gsearchtool_gconf_get_list (const gchar * key);
-
+gsearchtool_gconf_get_list (const gchar * key,
+                            GConfValueType list_type);
+void
+gsearchtool_gconf_set_list (const gchar * key,
+                            GSList * list,
+                            GConfValueType list_type);
 void
 gsearchtool_gconf_add_dir (const gchar * dir);
 
@@ -112,6 +116,11 @@ gsearchtool_get_unique_filename (const gchar * path,
 GtkWidget *
 gsearchtool_button_new_with_stock_icon (const gchar * string,
                                         const gchar * stock_id);
+GSList *
+gsearchtool_get_columns_order (GtkTreeView * treeview);
+
+void
+gsearchtool_set_columns_order (GtkTreeView * treeview);
 #ifdef __cplusplus
 }
 #endif

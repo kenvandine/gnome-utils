@@ -157,6 +157,10 @@ single_click_to_activate_key_changed_cb (GConfClient * client,
                                          guint cnxn_id,
                                          GConfEntry * entry,
                                          gpointer user_data);
+void
+columns_changed_cb (GtkTreeView * treeview, 
+                    gpointer user_data);
+
 #ifdef __cplusplus
 }
 #endif

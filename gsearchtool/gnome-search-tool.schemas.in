@@ -316,5 +316,20 @@ To change the gconftool target use the - -config-source=blah option to gconftool
         </long>
       </locale>
     </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/columns_order</applyto>
+      <key>/schemas/apps/gnome-search-tool/columns_order</key>
+      <owner>gnome-search-tool</owner>
+      <type>list</type>
+      <list_type>int</list_type>
+      <default>[0]</default>
+      <locale name="C">
+        <short>Search Result Columns Order</short>
+        <long>
+	  This key defines the order of the columns in the search
+	  results.  This key should not be modified by the user.
+        </long>
+      </locale>
+    </schema>
   </schemalist>
 </gconfschemafile>
