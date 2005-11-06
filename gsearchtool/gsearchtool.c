@@ -1511,8 +1511,11 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 			gtk_widget_set_sensitive (gsearch->search_results_save_results_as_item, TRUE);
 			gtk_widget_hide (gsearch->stop_button);
 			gtk_widget_show (gsearch->find_button); 
-			gtk_window_set_focus (GTK_WINDOW (gsearch->window), gsearch->focus);
 
+			if (gtk_window_get_focus (GTK_WINDOW (gsearch->window)) == NULL) {
+				gtk_window_set_focus (GTK_WINDOW (gsearch->window), gsearch->focus);
+			}
+			
 			/* Free the gchar fields of search_command structure. */
 			g_free (gsearch->command_details->name_contains_pattern_string);
 			g_free (gsearch->command_details->name_contains_regex_string);

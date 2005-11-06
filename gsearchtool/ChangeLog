@@ -1,5 +1,11 @@
 2005-11-05  Dennis Cranston  <dennis_cranston@yahoo.com>
 
+	* gsearchtool.c: (handle_search_command_stdout_io):
+	If the user has focused a widget after the start of a 
+	search then do not restore the focus.
+
+2005-11-05  Dennis Cranston  <dennis_cranston@yahoo.com>
+
 	* gsearchtool.h: Define NUM_VISIBLE_COLUMNS.
 	* gsearchtool-callbacks.c: (columns_changed_cb):  Do not
 	save order of columns if order length does not match
