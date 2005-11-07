@@ -47,6 +47,7 @@ GType logview_window_get_type (void);
 static void logview_save_prefs (LogviewWindow *logview);
 static void logview_add_log (LogviewWindow *logview, Log *log);
 static void logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state);
+static void logview_update_findbar_visibility (LogviewWindow *logview);
 
 static void logview_open_log (GtkAction *action, LogviewWindow *logview);
 static void logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview);
@@ -301,6 +302,16 @@ logview_set_window_title (LogviewWindow *window)
 }
 
 /* private functions */
+
+static void
+logview_update_findbar_visibility (LogviewWindow *logview)
+{
+	Log *log = logview->curlog;
+	if (log->filter != NULL)
+		gtk_widget_show (logview->find_bar);
+	else
+		gtk_widget_hide (logview->find_bar);
+}
 
 static void
 logview_save_prefs (LogviewWindow *logview)
@@ -590,7 +601,7 @@ logview_search (GtkAction *action, LogviewWindow *logview)
     g_assert (LOGVIEW_IS_WINDOW (logview));
     
 	gtk_widget_show (logview->find_bar);
-	gtk_widget_grab_focus (logview->find_entry);
+    logview_findbar_grab_focus (LOGVIEW_FINDBAR (logview->find_bar));
 }
 
 static void
@@ -803,8 +814,9 @@ logview_init (LogviewWindow *window)
    }
    gtk_tree_view_set_search_column (GTK_TREE_VIEW (window->view), 3);
 
-   window->find_bar = logview_findbar_new (window);
+   window->find_bar = logview_findbar_new ();
    gtk_box_pack_end (GTK_BOX (main_view), window->find_bar, FALSE, FALSE, 0);
+   logview_findbar_connect (LOGVIEW_FINDBAR (window->find_bar), window);
    gtk_widget_show (window->find_bar);
 
    /* Version selector */

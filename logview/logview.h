@@ -47,7 +47,6 @@ struct _LogviewWindow {
 	gboolean calendar_visible;
 
 	GtkWidget *find_bar;
-	GtkWidget *find_entry;
 
 	GtkWidget *loglist;
 	GtkWidget *sidebar; 

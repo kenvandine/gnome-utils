@@ -1,5 +1,16 @@
 2005-11-07  Vincent Noel <vnoel@cox.net>
 
+	* logview-findbar.c: (iter_is_visible), (logview_findbar_clear),
+	(logview_findbar_entry_changed_cb), (logview_findbar_grab_focus),
+	(logview_findbar_connect), (logview_findbar_init),
+	(logview_findbar_class_init), (logview_findbar_get_type),
+	(logview_findbar_new):
+	* logview-findbar.h:
+	* logview.c: (logview_update_findbar_visibility), (logview_search),
+	(logview_init): Make the findbar its own widget.
+
+2005-11-07  Vincent Noel <vnoel@cox.net>
+
 	* log_repaint.c: (logview_show_model):
 	* logrtns.c: (log_open):
 	* logrtns.h:

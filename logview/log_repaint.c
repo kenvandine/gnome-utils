@@ -311,7 +311,7 @@ logview_show_model (LogviewWindow *window, Log *log)
     g_assert (GTK_IS_TREE_MODEL (log->model));
 
     if (log->filter != NULL)
-        gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->filter);
+        gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), GTK_TREE_MODEL (log->filter));
     else
         gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
 

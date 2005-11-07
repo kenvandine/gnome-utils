@@ -20,8 +20,34 @@
 #ifndef __LOG_FINDBAR_H__
 #define __LOG_FINDBAR_H__
 
-void logview_update_findbar_visibility (LogviewWindow *window);
-GtkWidget *logview_findbar_new (LogviewWindow *window);
+#define LOGVIEW_FINDBAR_TYPE		  (logview_findbar_get_type ())
+#define LOGVIEW_FINDBAR(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBar))
+#define LOGVIEW_FINDBAR_CLASS(klass)	  (GTK_CHECK_CLASS_CAST ((klass), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
+#define LOGVIEW_IS_FINDBAR(obj)	          (GTK_CHECK_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
+#define LOGVIEW_IS_FINDBAR_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
+#define LOGVIEW_FINDBAR_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
+
+typedef struct _LogviewFindBar LogviewFindBar;
+typedef struct _LogviewFindBarClass LogviewFindBarClass;
+
+struct _LogviewFindBar
+{	
+	GtkHBox parent_instance;
+	GtkWidget *entry;
+	GtkWidget *clear_button;
+	gchar *search_string;
+	gpointer logview;
+};
+
+struct _LogviewFindBarClass
+{
+	GtkHBoxClass parent_class;
+};
+
+GtkWidget *logview_findbar_new (void);
+void logview_findbar_connect (LogviewFindBar *findbar, LogviewWindow *logview);
+void logview_findbar_update_visibility (LogviewFindBar *findbar, LogviewWindow *logview);
+void logview_findbar_grab_focus (LogviewFindBar *findbar);
 
 #endif /* __LOG_FINDBAR_H__ */
 

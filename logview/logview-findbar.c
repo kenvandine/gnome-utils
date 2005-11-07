@@ -21,14 +21,17 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 #include "logview.h"
+#include "logview-findbar.h"
 
-static gchar *search_string;
+static GObjectClass *parent_class;
+GType logview_findbar_get_type (void);
 
 static gboolean
 iter_is_visible (GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 {
 	gchar *fields[4];
 	gboolean found = FALSE;
+	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
 
 	gtk_tree_model_get (model, iter, 0, &(fields[0]), 1, &(fields[1]), 2, &(fields[2]),
 			    3, &(fields[3]), -1);
@@ -36,11 +39,11 @@ iter_is_visible (GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 		return TRUE;
 
 	if (fields[1] != NULL)
-		found = found || g_strrstr (fields[1], search_string);
+		found = found || g_strrstr (fields[1], findbar->search_string);
 	if (fields[2] != NULL)
-		found = found || g_strrstr (fields[2], search_string);
+		found = found || g_strrstr (fields[2], findbar->search_string);
 	if (fields[3] != NULL) {
-		found = found || g_strrstr (fields[3], search_string);
+		found = found || g_strrstr (fields[3], findbar->search_string);
 	}
 	return found;
 }
@@ -48,41 +51,47 @@ iter_is_visible (GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 static void
 logview_findbar_clear (GtkWidget *widget, gpointer data)
 {
-	LogviewWindow *logview = LOGVIEW_WINDOW (data);
+	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
+	LogviewWindow *logview = LOGVIEW_WINDOW (findbar->logview);
 	Log *log = logview->curlog;
-	if (log==NULL)
+
+	if (log==NULL || log->filter == NULL)
 		return;
 
-	g_object_unref (log->filter);
-	log->filter = NULL;
-	log_repaint (logview);
+	gtk_entry_set_text (GTK_ENTRY (findbar->entry), "");
 }
 	
 static void
 logview_findbar_entry_changed_cb (GtkEditable *editable,
 				  gpointer     data)
 {
-	LogviewWindow *logview = data;
+	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
+	LogviewWindow *logview = LOGVIEW_WINDOW (findbar->logview);
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 	Log *log = logview->curlog;
+	gchar *search_string;
 
 	if (log == NULL)
 		return;
 
-	search_string = gtk_entry_get_text (GTK_ENTRY (logview->find_entry));
-
-	if (strlen (search_string) < 3 && strlen (search_string) > 0) 
-		return;
+	search_string = gtk_entry_get_text (GTK_ENTRY (findbar->entry));
 
 	if (strlen (search_string) == 0 && log->filter != NULL) {
-		logview_findbar_clear (NULL, logview);
+		g_object_unref (log->filter);
+		log->filter = NULL;
+		log_repaint (logview);
 		return;
 	}
 
+	if (strlen (search_string) < 3) 
+		return;
+
+	findbar->search_string = search_string;
+
 	if (log->filter == NULL) {
 		log->filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (log->model, NULL));
-		gtk_tree_model_filter_set_visible_func (log->filter, iter_is_visible, search_string, NULL);
+		gtk_tree_model_filter_set_visible_func (log->filter, iter_is_visible, findbar, NULL);
 		gtk_tree_view_set_model (GTK_TREE_VIEW (logview->view), GTK_TREE_MODEL (log->filter));
 	} else {
 		gtk_tree_model_filter_refilter (log->filter);
@@ -92,42 +101,79 @@ logview_findbar_entry_changed_cb (GtkEditable *editable,
 }
 
 void
-logview_update_findbar_visibility (LogviewWindow *logview)
+logview_findbar_grab_focus (LogviewFindBar *findbar)
 {
-	Log *log = logview->curlog;
-	if (log->filter != NULL)
-		gtk_widget_show (logview->find_bar);
-	else
-		gtk_widget_hide (logview->find_bar);
+	g_return_if_fail (LOGVIEW_IS_FINDBAR (findbar));
+	gtk_widget_grab_focus (findbar->entry);
 }
 
-GtkWidget *
-logview_findbar_new (LogviewWindow *window)
+void
+logview_findbar_connect (LogviewFindBar *findbar, LogviewWindow *logview)
 {
-	GtkWidget *hbox;
+	findbar->logview = logview;
+
+	g_signal_connect (G_OBJECT (findbar->entry), "changed",
+			  G_CALLBACK (logview_findbar_entry_changed_cb), findbar);
+	g_signal_connect (G_OBJECT (findbar->clear_button), "clicked",
+			  G_CALLBACK (logview_findbar_clear), findbar);
+}
+
+static void 
+logview_findbar_init (LogviewFindBar *findbar)
+{
 	GtkWidget *label, *button;
 	
-	hbox = gtk_hbox_new (FALSE, 6);
-	gtk_container_set_border_width (GTK_CONTAINER (hbox), 3);
+	gtk_container_set_border_width (GTK_CONTAINER (findbar), 3);
 
 	label = gtk_label_new_with_mnemonic (_("_Filter:"));
 	
-	window->find_entry = gtk_entry_new ();
-	gtk_label_set_mnemonic_widget (GTK_LABEL (label), window->find_entry);
+	findbar->entry = gtk_entry_new ();
+	gtk_label_set_mnemonic_widget (GTK_LABEL (label), findbar->entry);
 	
-	button = gtk_button_new_with_mnemonic (_("_Clear"));
+	findbar->clear_button = gtk_button_new_with_mnemonic (_("_Clear"));
 	
-	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), window->find_entry, FALSE, FALSE, 0);
-	gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (findbar), label, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (findbar), findbar->entry, FALSE, FALSE, 0);
+	gtk_box_pack_start (GTK_BOX (findbar), findbar->clear_button, FALSE, FALSE, 0);
 
-	gtk_widget_show (hbox);
-	gtk_widget_show (window->find_entry);
+	findbar->search_string = NULL;
+}
 
-	g_signal_connect (G_OBJECT (window->find_entry), "changed",
-			  G_CALLBACK (logview_findbar_entry_changed_cb), window);
-	g_signal_connect (G_OBJECT (button), "clicked",
-			  G_CALLBACK (logview_findbar_clear), window);
+static void
+logview_findbar_class_init (LogviewFindBarClass *klass)
+{
+	GObjectClass *object_class = (GObjectClass *) klass;
+	parent_class = g_type_class_peek_parent (klass);
+}
 
-	return hbox;
+GType
+logview_findbar_get_type (void)
+{
+	static GType object_type = 0;
+	
+	if (!object_type) {
+		static const GTypeInfo object_info = {
+			sizeof (LogviewFindBarClass),
+			NULL,		/* base_init */
+			NULL,		/* base_finalize */
+			(GClassInitFunc) logview_findbar_class_init,
+			NULL,		/* class_finalize */
+			NULL,		/* class_data */
+			sizeof (LogviewFindBar),
+			0,              /* n_preallocs */
+			(GInstanceInitFunc) logview_findbar_init
+		};
+
+		object_type = g_type_register_static (GTK_TYPE_HBOX, "LogviewFindBar", &object_info, 0);
+	}
+
+	return object_type;
+}
+
+GtkWidget *
+logview_findbar_new (void)
+{
+    GtkWidget *widget;
+    widget = g_object_new (LOGVIEW_FINDBAR_TYPE, NULL);
+    return widget;
 }
