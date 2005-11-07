@@ -64,6 +64,7 @@ struct _log
 	gboolean first_time;
 	GtkTreePath *current_path;
     GtkTreeModel *model;
+    GtkTreeModelFilter *filter;
 	int versions;
 	int current_version;
 	/* older_logs[0] should not be used */

@@ -20,6 +20,7 @@
 #ifndef __LOG_FINDBAR_H__
 #define __LOG_FINDBAR_H__
 
+void logview_update_findbar_visibility (LogviewWindow *window);
 GtkWidget *logview_findbar_new (LogviewWindow *window);
 
 #endif /* __LOG_FINDBAR_H__ */

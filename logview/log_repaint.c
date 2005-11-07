@@ -310,7 +310,11 @@ logview_show_model (LogviewWindow *window, Log *log)
     g_assert (log);
     g_assert (GTK_IS_TREE_MODEL (log->model));
 
-    gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
+    if (log->filter != NULL)
+        gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->filter);
+    else
+        gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
+
     if (log->days != NULL) {
         for (days=log->days; days != NULL; days = g_list_next(days)) {
             day = days->data;

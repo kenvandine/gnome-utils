@@ -190,11 +190,13 @@ logview_select_log (LogviewWindow *logview, Log *log)
         logview_menus_set_state (logview);
         logview_calendar_set_state (logview);
         log_repaint (logview);
+        logview_update_findbar_visibility (logview);
         return;
     }
 
 	logview->curlog = log;
 	logview_menus_set_state (logview);
+    logview_update_findbar_visibility (logview);
 	logview_update_version_bar (logview);
 	logview_calendar_set_state (logview);
     log->displayed_lines = 0;

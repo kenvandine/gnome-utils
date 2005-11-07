@@ -425,6 +425,8 @@ log_open (char *filename, gboolean show_error)
    log->displayed_lines = 0;
    log->first_time = TRUE;
    log->lstats = stats;
+   log->model = NULL;
+   log->filter = NULL;
 
    /* Read the dates */
    /* A log without dates will return NULL */
