@@ -56,27 +56,44 @@ logview_findbar_clear (GtkWidget *widget, gpointer data)
 	Log *log = logview->curlog;
 
 	if (log==NULL || log->filter == NULL)
-		return;
+ 		return;
 
 	gtk_entry_set_text (GTK_ENTRY (findbar->entry), "");
 }
 	
+static  gboolean
+logview_findbar_entry_timeout (gpointer data)
+{
+	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
+	LogviewWindow *logview = LOGVIEW_WINDOW (findbar->logview);
+	Log *log = logview->curlog;
+
+	g_print ("Start filtering with %s\n", findbar->search_string);
+
+	if (log->filter == NULL) {
+		log->filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (log->model, NULL));
+		gtk_tree_model_filter_set_visible_func (log->filter, iter_is_visible, findbar, NULL);
+		gtk_tree_view_set_model (GTK_TREE_VIEW (logview->view), GTK_TREE_MODEL (log->filter));
+	} else {
+		gtk_tree_model_filter_refilter (log->filter);
+	}
+
+	gtk_tree_view_expand_all (GTK_TREE_VIEW (logview->view));
+	return FALSE;
+}
+	
+
 static void
 logview_findbar_entry_changed_cb (GtkEditable *editable,
 				  gpointer     data)
 {
 	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
 	LogviewWindow *logview = LOGVIEW_WINDOW (findbar->logview);
-	GtkTreeModel *model;
-	GtkTreeIter iter;
 	Log *log = logview->curlog;
-	gchar *search_string;
+	gchar *search_string;    
 
-	if (log == NULL)
-		return;
-
-	search_string = gtk_entry_get_text (GTK_ENTRY (findbar->entry));
-
+	search_string = g_strdup (gtk_entry_get_text (GTK_ENTRY (findbar->entry)));
+	
 	if (strlen (search_string) == 0 && log->filter != NULL) {
 		g_object_unref (log->filter);
 		log->filter = NULL;
@@ -89,15 +106,8 @@ logview_findbar_entry_changed_cb (GtkEditable *editable,
 
 	findbar->search_string = search_string;
 
-	if (log->filter == NULL) {
-		log->filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (log->model, NULL));
-		gtk_tree_model_filter_set_visible_func (log->filter, iter_is_visible, findbar, NULL);
-		gtk_tree_view_set_model (GTK_TREE_VIEW (logview->view), GTK_TREE_MODEL (log->filter));
-	} else {
-		gtk_tree_model_filter_refilter (log->filter);
-	}
-
-	gtk_tree_view_expand_all (GTK_TREE_VIEW (logview->view));
+	g_print("Adding timeout with search_string = %s\n", search_string);
+	g_timeout_add (500, (GSourceFunc) logview_findbar_entry_timeout, findbar);
 }
 
 void

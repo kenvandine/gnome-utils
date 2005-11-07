@@ -242,6 +242,7 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
         
     if (curlog)
         loglist_select_log (LOG_LIST (logview->loglist), curlog);
+
 }
 
 void
@@ -817,7 +818,6 @@ logview_init (LogviewWindow *window)
    window->find_bar = logview_findbar_new ();
    gtk_box_pack_end (GTK_BOX (main_view), window->find_bar, FALSE, FALSE, 0);
    logview_findbar_connect (LOGVIEW_FINDBAR (window->find_bar), window);
-   gtk_widget_show (window->find_bar);
 
    /* Version selector */
    window->version_bar = gtk_hbox_new (FALSE, 0);
@@ -857,15 +857,12 @@ logview_init (LogviewWindow *window)
    hbox = gtk_hbox_new (FALSE, 0);   
    window->statusbar = gtk_statusbar_new ();
    gtk_box_pack_start (GTK_BOX (hbox), window->statusbar, TRUE, TRUE, 0);
-   window->progressbar = gtk_progress_bar_new ();
-   gtk_box_pack_start (GTK_BOX (hbox), window->progressbar, FALSE, FALSE, 0);
 
    gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
    gtk_widget_show_all (vbox);
    gtk_widget_hide (window->find_bar);
    gtk_widget_hide (window->version_bar);
-   gtk_widget_hide (window->progressbar);
 }
 
 static void

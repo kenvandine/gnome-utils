@@ -53,7 +53,6 @@ struct _LogviewWindow {
 	gboolean sidebar_visible;
 	GtkWidget *version_bar;
 	GtkWidget *version_selector;
-    GtkWidget *progressbar;
     
     GList *logs;
 	Log *curlog;
