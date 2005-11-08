@@ -38,33 +38,25 @@ typedef struct
     GnomeVFSFileSize size;
 } LogStats;
 
-typedef struct
-{
-    char *message;
-    char *process;
-    char *hostname;
-    signed char hour;
-    signed char min;
-    signed char sec;
-} LogLine;
-
 typedef struct _log Log;
 struct _log
 {
-    GList *days;
-
 	char *name;
 	char *display_name;
 	LogStats *lstats;
+
+    GList *days;
+    gchar **lines;
 	gint selected_line_first;
 	gint selected_line_last;
 	gint total_lines; /* no of lines in the file */
     gint displayed_lines; /* no of lines displayed now */
-    GArray *lines;
+
 	gboolean first_time;
 	GtkTreePath *current_path;
     GtkTreeModel *model;
     GtkTreeModelFilter *filter;
+
 	int versions;
 	int current_version;
 	/* older_logs[0] should not be used */

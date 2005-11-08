@@ -194,7 +194,6 @@ logview_select_log (LogviewWindow *logview, Log *log)
         logview_update_findbar_visibility (logview);
         return;
     }
-
 	logview->curlog = log;
 	logview_menus_set_state (logview);
     logview_update_findbar_visibility (logview);
@@ -308,6 +307,11 @@ static void
 logview_update_findbar_visibility (LogviewWindow *logview)
 {
 	Log *log = logview->curlog;
+    if (log == NULL) {
+        gtk_widget_hide (logview->find_bar);
+        return;
+    }
+
 	if (log->filter != NULL)
 		gtk_widget_show (logview->find_bar);
 	else
@@ -421,7 +425,9 @@ static void
 logview_close_log (GtkAction *action, LogviewWindow *logview)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
-    g_assert (logview->curlog);
+
+    if (logview->curlog == NULL)
+        return;
 
     if (logview->curlog->monitored) {
         GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs");
@@ -610,7 +616,7 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
 {
 	gchar *text, **lines;
 	int nline, i, l1, l2;
-	LogLine *line;
+    gchar *line;
     Log *log;
 
     g_assert (LOGVIEW_IS_WINDOW (logview));
@@ -627,12 +633,8 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
     nline = l2 - l1 + 1;
     lines = g_new0(gchar *, (nline + 1));
     for (i=0; i<=nline; i++) {
-        line = &g_array_index (log->lines, LogLine, l1+i);
-        if (log->days != NULL)
-            lines[i] = g_strdup_printf ("%s %s %s", line->hostname, 
-                                        line->process, line->message);
-        else
-            lines[i] = g_strdup_printf ("%s", line->message);
+        line = log->lines[l1+i];
+        lines[i] = g_strdup (line);
     }
     lines[nline] = NULL;
     text = g_strjoinv ("\n", lines);
@@ -728,9 +730,6 @@ logview_init (LogviewWindow *window)
    PangoContext *context;
    PangoFontDescription *fontdesc;
    gchar *monospace_font_name;
-   const gchar *column_titles[] = { N_("Date"), N_("Host Name"),
-                                    N_("Process"), N_("Message"), NULL };
-   const gint column_widths[] = {150,100,200,400};
 
    gtk_window_set_default_size (GTK_WINDOW (window), prefs_get_width (), prefs_get_height ());
 
@@ -798,22 +797,17 @@ logview_init (LogviewWindow *window)
    window->view = gtk_tree_view_new ();
    gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), TRUE); 
    gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (window->view), TRUE);
+   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), FALSE);
 
    /* Use the desktop monospace font */
    monospace_font_name = prefs_get_monospace ();
    widget_set_font (GTK_WIDGET (window->view), monospace_font_name);
    g_free (monospace_font_name);
   
-   for (i = 0; column_titles[i]; i++) {
-        renderer = gtk_cell_renderer_text_new ();
-        column = gtk_tree_view_column_new_with_attributes (_(column_titles[i]),
-                    renderer, "text", i, NULL);
-        gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-        gtk_tree_view_column_set_fixed_width (column, column_widths[i]);
-        gtk_tree_view_column_set_resizable (column, TRUE);
-        gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
-   }
-   gtk_tree_view_set_search_column (GTK_TREE_VIEW (window->view), 3);
+   renderer = gtk_cell_renderer_text_new ();
+   column = gtk_tree_view_column_new_with_attributes (NULL,renderer, "text", 0, NULL);
+   gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+   gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
 
    window->find_bar = logview_findbar_new ();
    gtk_box_pack_end (GTK_BOX (main_view), window->find_bar, FALSE, FALSE, 0);

@@ -29,22 +29,17 @@ GType logview_findbar_get_type (void);
 static gboolean
 iter_is_visible (GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 {
-	gchar *fields[4];
+	gchar *message;
 	gboolean found = FALSE;
+	gpointer day;
 	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
 
-	gtk_tree_model_get (model, iter, 0, &(fields[0]), 1, &(fields[1]), 2, &(fields[2]),
-			    3, &(fields[3]), -1);
-	if (fields[0] != NULL && fields[1]==NULL)
+	gtk_tree_model_get (model, iter, 0, &message, 1, &day, -1);
+	if (day != NULL)
 		return TRUE;
 
-	if (fields[1] != NULL)
-		found = found || g_strrstr (fields[1], findbar->search_string);
-	if (fields[2] != NULL)
-		found = found || g_strrstr (fields[2], findbar->search_string);
-	if (fields[3] != NULL) {
-		found = found || g_strrstr (fields[3], findbar->search_string);
-	}
+	if (message != NULL)
+		found = g_strrstr (message, findbar->search_string);
 	return found;
 }
 
@@ -67,8 +62,6 @@ logview_findbar_entry_timeout (gpointer data)
 	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
 	LogviewWindow *logview = LOGVIEW_WINDOW (findbar->logview);
 	Log *log = logview->curlog;
-
-	g_print ("Start filtering with %s\n", findbar->search_string);
 
 	if (log->filter == NULL) {
 		log->filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (log->model, NULL));
@@ -106,7 +99,6 @@ logview_findbar_entry_changed_cb (GtkEditable *editable,
 
 	findbar->search_string = search_string;
 
-	g_print("Adding timeout with search_string = %s\n", search_string);
 	g_timeout_add (500, (GSourceFunc) logview_findbar_entry_timeout, findbar);
 }
 

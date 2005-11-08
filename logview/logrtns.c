@@ -34,11 +34,6 @@
 #include "misc.h"
 
 char *error_main = N_("One file or more could not be opened");
-enum {
-    MONTH = 0, DAY,
-    HOUR, MIN, SEC,
-    HOSTNAME, PROCESS, MESSAGE
-};
 
 static LogStats *log_stats_new (char *filename, gboolean show_error);
 
@@ -117,67 +112,6 @@ file_is_log (char *filename, gboolean show_error)
         g_free (stats);
         return TRUE;
     }
-}
-
-/* log line manipulations */
-
-void
-logline_fill_from_string (LogLine *line, gchar *message, gboolean has_date)
-{
-   char **splits;
-   int i, field;
-   
-   if (line == NULL)
-       return;
-
-   if (message[0] == 0) {
-       line->message=NULL;       
-       return;
-   }
-
-   if (!has_date) {
-       line->message = g_strdup (message);
-       return;
-   }
-
-   /* Seperation of a log line into 9 fields */
-   /* Some of them can be empty */
-   splits = g_strsplit_set (message, " :", 9);
-
-   i = 0; field= 0;
-   while (splits[i]!=NULL) {
-
-       if (g_str_equal (splits[i], ""))
-           i++;
-
-       switch (field) {
-       case HOUR:
-           line->hour = (int) atoi (splits[i]);
-           break;
-       case MIN:
-           line->min = (int) atoi (splits[i]);
-           break;
-       case SEC:
-           line->sec = (int) atoi (splits[i]);
-           break;
-       case HOSTNAME:
-           line->hostname = g_strdup (splits[i]);
-           break;
-       case PROCESS:
-           line->process = g_strdup (splits[i]);
-           break;
-       case MESSAGE:
-           line->message = g_strdup (splits[i]);
-           break;
-       default:
-           break;
-       }
-       i++;
-       field++;
-   }
-
-   g_strfreev (splits);
-   return;
 }
 
 /* log functions */
@@ -373,9 +307,7 @@ Log *
 log_open (char *filename, gboolean show_error)
 {
    Log *log;
-   LogLine line;
    char *buffer, *buffer2;
-   char **buffer_lines;
    char *display_name = NULL;
    LogStats *stats;
    int i, j;
@@ -384,7 +316,6 @@ log_open (char *filename, gboolean show_error)
    GError *error;
    GnomeVFSResult result;
    int size;
-   gboolean has_dates;
    
    if (file_exist (filename, show_error) == FALSE)
 	   return NULL;
@@ -417,39 +348,18 @@ log_open (char *filename, gboolean show_error)
    buffer2 = locale_to_utf8 (buffer);
    g_free (buffer);
 
-   buffer_lines = g_strsplit (buffer2, "\n", -1);
+   log->lines = g_strsplit (buffer2, "\n", -1);
    g_free (buffer2);
 
-   for (i=0; buffer_lines[i+1] != NULL; i++);
-   log->total_lines = i;
+   log->total_lines = g_strv_length (log->lines);
    log->displayed_lines = 0;
    log->first_time = TRUE;
    log->lstats = stats;
    log->model = NULL;
    log->filter = NULL;
 
-   /* Read the dates */
    /* A log without dates will return NULL */
-   log->days = log_read_dates (buffer_lines, log->lstats->mtime);
-   has_dates = (log->days != NULL);
-
-   /* Parse the lines */
-   log->lines = g_array_sized_new (FALSE, FALSE, sizeof (LogLine), log->total_lines);
-   if (!has_dates) {
-       for (i = 0; i < log->total_lines; i++) {
-           logline_fill_from_string (&line, buffer_lines[i], has_dates);
-           log->lines = g_array_append_val (log->lines, line);
-       }
-   } else {
-       for (days = log->days; days != NULL; days = g_list_next (days)) {
-           day = days->data;
-           for (i = day->first_line; i <= day->last_line; i++) {
-               logline_fill_from_string (&line, buffer_lines[i], has_dates);
-               log->lines = g_array_append_val (log->lines, line);
-           }
-       }
-   }
-   g_strfreev (buffer_lines);
+   log->days = log_read_dates (log->lines, log->lstats->mtime);
 
    /* Check for older versions of the log */
    log->versions = 0;
@@ -476,23 +386,20 @@ log_open (char *filename, gboolean show_error)
 static void
 log_add_lines (Log *log, gchar *buffer)
 {
-  char **buffer_lines;
-  int i;
-  LogLine line;
+  char *old_buffer, *new_buffer;
 
   g_assert (log != NULL);
   g_assert (buffer != NULL);
 
-  buffer_lines = g_strsplit (buffer, "\n", -1);
+  old_buffer = g_strjoinv ("\n", log->lines);
+  new_buffer = g_strconcat (old_buffer, buffer);
+  g_free (old_buffer);
   
-  for (i=0; buffer_lines[i+1] != NULL; i++) {
-      logline_fill_from_string (&line, buffer_lines [i], (log->days != NULL));
-      log->lines = g_array_append_val (log->lines, line);
-      log->total_lines ++;
-  }
-  g_strfreev (buffer_lines);
- 
-  return;
+  g_strfreev (log->lines);
+  log->lines = g_strsplit (new_buffer, "\n", -1);
+  g_free (new_buffer);
+
+  log->total_lines = g_strv_length (log->lines);
 }
 
 /* log_read_new_lines */
@@ -514,7 +421,8 @@ log_read_new_lines (Log *log)
 	if (newsize > log->mon_offset) {
         buffer = g_malloc (newsize-size);
         result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
-        result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);    
+        result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);
+        buffer [newsize-size-1] = NULL;
         log->mon_offset = newsize;
         
         log_add_lines (log, buffer);
@@ -556,7 +464,6 @@ log_close (Log *log)
    gint i;
    Day *day;
    GList *days;
-   LogLine *line;
 
    g_return_if_fail (log);
    
@@ -571,18 +478,7 @@ log_close (Log *log)
    }
 
    g_object_unref (log->model);
-
-   /* Free all used memory */
-   for (i = 0; i < log->total_lines; i++) {
-       line = &g_array_index (log->lines, LogLine, i);
-       g_free (line -> message);
-       
-       if (log->days != NULL) {
-           g_free (line -> hostname);
-           g_free (line -> process);
-       }
-   }
-   g_array_free (log->lines, TRUE);
+   g_strfreev (log->lines);
 
    if (log->days != NULL) {
        for (days = log->days; days != NULL; days = g_list_next (days)) {

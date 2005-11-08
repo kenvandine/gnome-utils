@@ -1,3 +1,20 @@
+2005-11-08  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (model_fill_date_iter),
+	(logview_add_new_log_lines), (logview_create_model_no_date),
+	(logview_create_model), (log_repaint):
+	* logrtns.c: (log_open), (log_add_lines), (log_read_new_lines),
+	(log_close):
+	* logrtns.h:
+	* logview-findbar.c: (iter_is_visible),
+	(logview_findbar_entry_timeout),
+	(logview_findbar_entry_changed_cb):
+	* logview.c: (logview_select_log),
+	(logview_update_findbar_visibility), (logview_close_log),
+	(logview_copy), (logview_init): Remove the column headers and just
+	display the line as it appears in the log. The functionality stays
+	the same, for a big code simplification and speedup.
+
 2005-11-07  Vincent Noel <vnoel@cox.net>
 
 	* logview-findbar.c: (iter_is_visible), (logview_findbar_clear),
