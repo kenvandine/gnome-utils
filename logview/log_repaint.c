@@ -325,7 +325,7 @@ logview_create_model (LogviewWindow *window, Log *log)
         path = NULL;
 
         /* Now cycle on the lines for the studied day */
-        for (i = day->last_line-1; i >= day->first_line; i--) {
+        for (i = day->last_line; i >= day->first_line; i--) {
             line = log->lines[i];
             gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &child_iter, &iter);
             gtk_tree_store_set (GTK_TREE_STORE (log->model), &child_iter,                            

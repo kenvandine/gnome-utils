@@ -160,8 +160,8 @@ loglist_add_log (LogList *list, Log *log)
 {
 	GtkTreeIter iter;
 
-    g_return_if_fail (LOG_IS_LIST (list));
-    g_return_if_fail (log != NULL);
+	g_return_if_fail (LOG_IS_LIST (list));
+	g_return_if_fail (log != NULL);
 
 	gtk_list_store_append (list->model, &iter);
 	gtk_list_store_set (list->model, &iter, 

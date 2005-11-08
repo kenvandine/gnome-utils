@@ -1,5 +1,27 @@
 2005-11-08  Vincent Noel  <vnoel@cox.net>
 
+	* log_repaint.c: (logview_create_model):
+	* loglist.c: (loglist_add_log):
+	* logrtns.c: (log_read_dates), (log_open):
+	* logview-findbar.c: (iter_is_visible), (logview_findbar_clear),
+	(logview_findbar_entry_timeout),
+	(logview_findbar_entry_changed_cb), (logview_findbar_grab_focus),
+	(logview_findbar_connect), (logview_findbar_init),
+	(logview_findbar_finalize), (logview_findbar_class_init):
+	* logview-findbar.h:
+	* logview.c: (logview_count_logs), (logview_add_logs_from_names),
+	(logview_add_log), (logview_init): If the locale is utf8, don't
+	convert to utf8. Create private structure for the filter bar. 
+
+2005-11-08  noel,,,  <vnoel@cox.net>
+
+	reviewed by: <delete if not using a buddy>
+
+	* log_repaint.c: (logview_create_model):
+	* logrtns.c: (log_read_dates):
+
+2005-11-08  Vincent Noel  <vnoel@cox.net>
+
 	* help/C/gnome-system-log.xml: Update the documentation.
 	
 	* logrtns.c: (log_read_dates), (log_open):

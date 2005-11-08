@@ -175,7 +175,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
    gchar *date_string;
    Day *day;
    gboolean done = FALSE;
-   int i, j, k, n, rangemin, rangemax;
+   int i, n, rangemin, rangemax;
 
    if (buffer_lines == NULL)
        return NULL;
@@ -273,8 +273,6 @@ log_read_dates (gchar **buffer_lines, time_t current)
    
    /* Sort the days in chronological order */
    days = g_list_sort (days, days_compare);
-
-   return;
 
    return (days);
 }
@@ -381,8 +379,12 @@ log_open (char *filename, gboolean show_error)
    if (display_name)
 	   g_free (filename);
 
-   buffer2 = locale_to_utf8 (buffer);
-   g_free (buffer);
+   if (g_get_charset (NULL)) {
+       buffer2 = buffer;
+   } else {
+       buffer2 = locale_to_utf8 (buffer);
+       g_free (buffer);
+   }
 
    log->lines = g_strsplit (buffer2, "\n", -1);
    g_free (buffer2);

@@ -168,14 +168,8 @@ logview_get_loglist (LogviewWindow *logview)
 int
 logview_count_logs (LogviewWindow *logview)
 {
-    GList *logs;
-	int numlogs = 0;
-
     g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    for (logs = logview->logs; logs != NULL; logs = g_list_next (logs))
-        numlogs ++;
-	return numlogs;
+    return g_list_length (logview->logs);
 }
 
 void
@@ -221,13 +215,10 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
 {
 	GSList *list;
 	Log *log, *curlog = NULL;
-    int n;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (lognames);
 
-    n = g_slist_length (list);
-    
 	for (list = lognames; list != NULL; list = g_slist_next (list)) {
         log = log_open (list->data, FALSE);
         if (log != NULL) {
@@ -239,7 +230,6 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
         
     if (curlog)
         loglist_select_log (LOG_LIST (logview->loglist), curlog);
-
 }
 
 void
@@ -364,7 +354,6 @@ logview_add_log (LogviewWindow *logview, Log *log)
 
     logview->logs = g_list_append (logview->logs, log);
     loglist_add_log (LOG_LIST(logview->loglist), log);
-    log->first_time = TRUE;
     log->window = logview;
     
     monitor_start (log);
@@ -813,7 +802,7 @@ logview_init (LogviewWindow *window)
    g_free (monospace_font_name);
   
    renderer = gtk_cell_renderer_text_new ();
-   column = gtk_tree_view_column_new_with_attributes (NULL,renderer, "text", 0, NULL);
+   column = gtk_tree_view_column_new_with_attributes (NULL, renderer, "text", 0, NULL);
    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
    gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
 
