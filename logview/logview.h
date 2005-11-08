@@ -44,13 +44,9 @@ struct _LogviewWindow {
 	GtkUIManager *ui_manager;
 
 	GtkWidget *calendar;
-	gboolean calendar_visible;
-
 	GtkWidget *find_bar;
-
 	GtkWidget *loglist;
 	GtkWidget *sidebar; 
-	gboolean sidebar_visible;
 	GtkWidget *version_bar;
 	GtkWidget *version_selector;
     

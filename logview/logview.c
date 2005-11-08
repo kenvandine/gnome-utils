@@ -51,6 +51,7 @@ static void logview_update_findbar_visibility (LogviewWindow *logview);
 
 static void logview_open_log (GtkAction *action, LogviewWindow *logview);
 static void logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview);
+static void logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview);
 static void logview_toggle_calendar (GtkAction *action, LogviewWindow *logview);
 static void logview_collapse_rows (GtkAction *action, LogviewWindow *logview);
 static void logview_toggle_monitor (GtkAction *action, LogviewWindow *logview);
@@ -107,7 +108,9 @@ static GtkActionEntry entries[] = {
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
-	{ "ShowSidebar", NULL, N_("Sidebar"), NULL, N_("Show the sidebar"), 
+    { "ShowStatusBar", NULL, N_("Statusbar"), NULL, N_("Show Status Bar"),
+      G_CALLBACK (logview_toggle_statusbar), TRUE },
+	{ "ShowSidebar", NULL, N_("Side _Pane"), "F9", N_("Show Side Pane"), 
 		G_CALLBACK (logview_toggle_sidebar), TRUE },
 	{ "MonitorLogs", NULL, N_("_Monitor"), "<control>M", N_("Monitor Current Log"),
 	  G_CALLBACK (logview_toggle_monitor), TRUE },
@@ -129,25 +132,25 @@ static const char *ui_description =
 	"			<menuitem action='Quit'/>"
 	"		</menu>"
 	"		<menu action='EditMenu'>"
-	"                       <menuitem action='Copy'/>"
-	"                       <menuitem action='SelectAll'/>"
-	"                       <separator/>"
-	"			<menuitem action='Search'/>"
+	"       <menuitem action='Copy'/>"
+	"       <menuitem action='SelectAll'/>"
 	"		</menu>"	
 	"		<menu action='ViewMenu'>"
-  "     <menuitem action='ShowSidebar'/>"
-	"			<menuitem action='ShowCalendar'/>"
-	"                       <separator/>"
-	"			<menuitem action='CollapseAll'/>"
-  "                       <separator/>"
-  "     <menuitem action='ViewZoomIn'/>"
-  "     <menuitem action='ViewZoomOut'/>"
-  "     <menuitem action='ViewZoom100'/>"
-	"		</menu>"
-	"		<menu action='HelpMenu'>"
-	"			<menuitem action='HelpContents'/>"
-	"			<menuitem action='AboutAction'/>"
-	"		</menu>"
+    "     <menuitem action='ShowStatusBar'/>"
+    "     <menuitem action='ShowSidebar'/>"
+	"	  <menuitem action='ShowCalendar'/>"
+	"     <separator/>"
+	"	  <menuitem action='Search'/>"
+	"	  <menuitem action='CollapseAll'/>"
+    "     <separator/>"
+    "     <menuitem action='ViewZoomIn'/>"
+    "     <menuitem action='ViewZoomOut'/>"
+    "     <menuitem action='ViewZoom100'/>"
+	"	  </menu>"
+	"	  <menu action='HelpMenu'>"
+	"		<menuitem action='HelpContents'/>"
+	"		<menuitem action='AboutAction'/>"
+	"	  </menu>"
 	"	</menubar>"
 	"</ui>";
 
@@ -271,7 +274,7 @@ logview_menus_set_state (LogviewWindow *logview)
     logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/Properties", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", (log != NULL));
-    logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Search", (log != NULL));
+    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
 }
@@ -504,15 +507,25 @@ logview_open_log (GtkAction *action, LogviewWindow *logview)
 }
 
 static void
+logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview)
+{
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+
+    if (GTK_WIDGET_VISIBLE (logview->statusbar))
+        gtk_widget_hide (logview->statusbar);
+    else
+        gtk_widget_show (logview->statusbar);
+}
+
+static void
 logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
 
-	if (logview->sidebar_visible)
+	if (GTK_WIDGET_VISIBLE (logview->sidebar))
 		gtk_widget_hide (logview->sidebar);
 	else
 		gtk_widget_show (logview->sidebar);
-	logview->sidebar_visible = !(logview->sidebar_visible);
 }
 
 static void 
@@ -520,16 +533,15 @@ logview_toggle_calendar (GtkAction *action, LogviewWindow *logview)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
 
-	if (logview->calendar_visible)
+	if (GTK_WIDGET_VISIBLE (logview->calendar))
 		gtk_widget_hide (logview->calendar);
 	else {
 		gtk_widget_show (logview->calendar);
-		if (!logview->sidebar_visible) {
+		if (!GTK_WIDGET_VISIBLE (logview->sidebar)) {
 			GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/ViewMenu/ShowSidebar");
 			gtk_action_activate (action);
 		}
 	}
-	logview->calendar_visible = !(logview->calendar_visible);
 }
 
 static void 
@@ -767,7 +779,6 @@ logview_init (LogviewWindow *window)
    
    window->calendar = calendar_new ();
    calendar_connect (CALENDAR (window->calendar), window);
-   window->calendar_visible = TRUE;
    gtk_box_pack_end (GTK_BOX (window->sidebar), GTK_WIDGET(window->calendar), FALSE, FALSE, 0);
    
    /* log list */
@@ -901,8 +912,6 @@ logview_window_new ()
    window = g_object_new (LOGVIEW_TYPE_WINDOW, NULL);
    logview = LOGVIEW_WINDOW (window);
 
-   logview->sidebar_visible = TRUE;
-   logview->calendar_visible = TRUE;
    logview->logs = NULL;
    logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
 							     GDK_SELECTION_CLIPBOARD);

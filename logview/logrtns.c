@@ -422,7 +422,7 @@ log_read_new_lines (Log *log)
         buffer = g_malloc (newsize-size);
         result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
         result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);
-        buffer [newsize-size-1] = NULL;
+        buffer [newsize-size-1] = 0;
         log->mon_offset = newsize;
         
         log_add_lines (log, buffer);

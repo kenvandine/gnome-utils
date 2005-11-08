@@ -1,5 +1,15 @@
 2005-11-08  Vincent Noel <vnoel@cox.net>
 
+	* logrtns.c: (log_read_new_lines):
+	* logview.c: (logview_toggle_statusbar), (logview_toggle_sidebar),
+	(logview_toggle_calendar), (logview_init), (logview_window_new):
+	* logview.h: Simplify - we don't need calendar_visible or
+	sidepane_visible, GTK_WIDGET_VISIBLE is enough. Add an option to
+	show/hide the status bar. Align the menu item descriptions with evince.
+	Move the "filter" item to the "View" menu.
+
+2005-11-08  Vincent Noel <vnoel@cox.net>
+
 	* log_repaint.c: (model_fill_date_iter),
 	(logview_add_new_log_lines), (logview_create_model_no_date),
 	(logview_create_model), (log_repaint):
