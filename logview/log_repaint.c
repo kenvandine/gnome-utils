@@ -125,26 +125,31 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 }
 
 static void
-logview_update_statusbar (LogviewWindow *window)
+logview_update_statusbar (LogviewWindow *logview)
 {
    char *statusbar_text;
-   char *size_string;
+   char *size, *modified;
+   Log *log;
 
-   g_assert (LOGVIEW_IS_WINDOW (window));
+   g_assert (LOGVIEW_IS_WINDOW (logview));
 
-   if (window->curlog == NULL) { 
-       gtk_statusbar_pop (GTK_STATUSBAR (window->statusbar), 0);
+   log = logview->curlog;
+
+   if (log == NULL) { 
+       gtk_statusbar_pop (GTK_STATUSBAR (logview->statusbar), 0);
        return;
    }
 
-   size_string = gnome_vfs_format_file_size_for_display (window->curlog->lstats->size);
-   statusbar_text = g_strdup_printf (_("%d lines (%s)"), 
-                                     window->curlog->total_lines, size_string);
+   modified = g_strdup_printf (_("last update : %s"), ctime (&(log->lstats->mtime)));   
+   size = gnome_vfs_format_file_size_for_display (log->lstats->size);
+   statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
+                                     log->total_lines, size, modified);
 
    if (statusbar_text) {
-       gtk_statusbar_pop (GTK_STATUSBAR(window->statusbar), 0);
-       gtk_statusbar_push (GTK_STATUSBAR(window->statusbar), 0, statusbar_text);
-       g_free (size_string);
+       gtk_statusbar_pop (GTK_STATUSBAR(logview->statusbar), 0);
+       gtk_statusbar_push (GTK_STATUSBAR(logview->statusbar), 0, statusbar_text);
+       g_free (size);
+       g_free (modified);
        g_free (statusbar_text);
    }
 }

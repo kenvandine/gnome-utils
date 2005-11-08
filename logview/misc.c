@@ -138,13 +138,13 @@ string_get_date (char *line)
 {
     GDate *date;
     struct tm tp;
-    char *cp;
+    int cp;
     
     if (line == NULL || line[0] == 0)
         return NULL;
 
     cp = strptime (line, "%b %d", &tp);
-    if (cp == NULL)
+    if (cp == 0)
         return NULL;
 
     date = g_date_new_dmy (tp.tm_mday, tp.tm_mon+1, 70);
@@ -163,7 +163,7 @@ date_get_string (GDate *date)
    }
    
    /* Translators: Only date format, time will be bogus */
-   if (g_date_strftime (buf, sizeof (buf), _("%Ex"), date) == 0) {
+   if (g_date_strftime (buf, sizeof (buf), _("%x"), date) == 0) {
        int m = g_date_get_month (date);
        int d = g_date_get_day (date);
        /* If we fail just use the US format */

@@ -27,7 +27,6 @@
 #include "loglist.h"
 #include "log_repaint.h"
 #include "logrtns.h"
-#include "info.h"
 #include "monitor.h"
 #include "about.h"
 #include "misc.h"
@@ -76,8 +75,6 @@ static GtkActionEntry entries[] = {
 
 	{ "OpenLog", GTK_STOCK_OPEN, N_("_Open..."), "<control>O", N_("Open a log from file"), 
 	  G_CALLBACK (logview_open_log) },
-	{ "Properties", GTK_STOCK_PROPERTIES,  N_("_Properties"), "<control>P", N_("Show Log Properties"), 
-	  G_CALLBACK (loginfo_show) },
 	{ "CloseLog", GTK_STOCK_CLOSE, N_("Close"), "<control>W", N_("Close this log"), 
 	  G_CALLBACK (logview_close_log) },
 	{ "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 
@@ -125,8 +122,6 @@ static const char *ui_description =
 	"			<menuitem action='OpenLog'/>"
 	"			<separator/>"
 	"			<menuitem action='MonitorLogs'/>"
-	"			<separator/>"
-	"			<menuitem action='Properties'/>"
 	"			<separator/>"
 	"			<menuitem action='CloseLog'/>"
 	"			<menuitem action='Quit'/>"
@@ -271,7 +266,6 @@ logview_menus_set_state (LogviewWindow *logview)
         logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
     }
     
-    logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/Properties", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
