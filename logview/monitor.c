@@ -48,12 +48,10 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
                   const gchar *info_uri, GnomeVFSMonitorEventType event_type,
                   gpointer data)
 {
-  GnomeVFSResult result;
   LogviewWindow *logview;
   Log *log = data;
-  GtkTreePath *path;
   
-  g_return_if_fail (log);
+  g_assert (log);
 
   if (log_read_new_lines (log)) {
       logview  = (LogviewWindow *) log->window;

@@ -32,6 +32,7 @@
 #include "logrtns.h"
 #include <libgnomevfs/gnome-vfs-mime-utils.h>
 #include "misc.h"
+#include "math.h"
 
 char *error_main = N_("One file or more could not be opened");
 
@@ -173,10 +174,13 @@ log_read_dates (gchar **buffer_lines, time_t current)
    struct tm *tmptm;
    gchar *date_string;
    Day *day;
-   int i;
+   gboolean done = FALSE;
+   int i, j, k, n, rangemin, rangemax;
 
    if (buffer_lines == NULL)
        return NULL;
+
+   n = g_strv_length (buffer_lines);
 
    tmptm = localtime (&current);
    current_year = tmptm->tm_year + 1900;
@@ -184,6 +188,8 @@ log_read_dates (gchar **buffer_lines, time_t current)
    for (i=0; buffer_lines[i]==NULL; i++);
 
    /* Start building the list */
+   /* Scanning each line to see if the date changed is too slow, so we proceed
+      in a recursive fashion */
 
    date = string_get_date (buffer_lines[i]);
    if ((date==NULL)|| !g_date_valid (date))
@@ -195,40 +201,67 @@ log_read_dates (gchar **buffer_lines, time_t current)
 
    day->date = date;
    day->first_line = i;
+   day->last_line = -1;
    date_string = string_get_date_string (buffer_lines[i]);
 
-   /* Count days appearing in the log */
+   rangemin = 0;
+   rangemax = n-1;
 
-   for (i=day->first_line; buffer_lines[i] != NULL; i++) {
-
-       if (g_str_has_prefix (buffer_lines[i], date_string))
-           continue;
-       g_free (date_string);
-       date_string = string_get_date_string (buffer_lines[i]);
-
-       newdate = string_get_date (buffer_lines[i]);
-       if (newdate == NULL)
-           continue;
+   while (!done) {
        
-       day->last_line = i-1;
-       
-       /* Append the day to the list */	
-       g_date_set_year (newdate, current_year + offsetyear);	
-       if (g_date_compare (newdate, date) < 1) {
-		   offsetyear++; /* newdate is next year */
-           g_date_add_years (newdate, 1);
+       i = n-1;
+       while (day->last_line < 0) {
+
+           if (g_str_has_prefix (buffer_lines[i], date_string)) {
+               if (i == (n-1)) {
+                   day->last_line = i;
+                   done = TRUE;
+                   break;
+               } else {
+                   if (!g_str_has_prefix (buffer_lines[i+1], date_string)) {
+                       day->last_line = i;
+                       break;
+                   } else {
+                       rangemin = i;
+                       i = floor ( ((float) i + (float) rangemax)/2.);
+                   }
+               }
+           } else {
+               rangemax = i;
+               i = floor (((float) rangemin + (float) i)/2.);               
+           }
+
        }
+       
+       g_free (date_string);
 
-       date = newdate;
-       day = g_new (Day, 1);
-       days = g_list_append (days, day);
+       if (!done) {
+           i++;
+           date_string = string_get_date_string (buffer_lines[i]);
+           if (date_string == NULL)
+               continue;
+           newdate = string_get_date (buffer_lines[i]);
+           if (newdate == NULL)
+               continue;      
 
-	   day->date = date;
-	   day->first_line = i;
+           /* Append a day to the list */	
+           g_date_set_year (newdate, current_year + offsetyear);	
+           if (g_date_compare (newdate, date) < 1) {
+               offsetyear++; /* newdate is next year */
+               g_date_add_years (newdate, 1);
+           }
+           
+           date = newdate;
+           day = g_new (Day, 1);
+           days = g_list_append (days, day);
+           
+           day->date = date;
+           day->first_line = i;
+           day->last_line = -1;
+           rangemin = i;
+           rangemax = n;
+       }
    }
-   day->last_line = i-1;
-   days = g_list_first (days);
-   g_free (date_string);
 
    /* Correct years now. We assume that the last date on the log
       is the date last accessed */
@@ -240,6 +273,8 @@ log_read_dates (gchar **buffer_lines, time_t current)
    
    /* Sort the days in chronological order */
    days = g_list_sort (days, days_compare);
+
+   return;
 
    return (days);
 }
@@ -315,7 +350,7 @@ log_open (char *filename, gboolean show_error)
    Day *day;
    GError *error;
    GnomeVFSResult result;
-   int size;
+   ulong size;
    
    if (file_exist (filename, show_error) == FALSE)
 	   return NULL;
@@ -330,6 +365,7 @@ log_open (char *filename, gboolean show_error)
        return NULL;
 
    result = gnome_vfs_read_entire_file (filename, &size, &buffer);
+   buffer[size-1] = 0;
    if (result != GNOME_VFS_OK) {
 	   error_dialog_show (NULL, error_main, _("Unable to open logfile!\n"));
 	   return NULL;

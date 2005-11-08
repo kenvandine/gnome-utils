@@ -1,3 +1,13 @@
+2005-11-08  Vincent Noel  <vnoel@cox.net>
+
+	* help/C/gnome-system-log.xml: Update the documentation.
+	
+	* logrtns.c: (log_read_dates), (log_open):
+	* logview.c: (logview_close_log):
+	* monitor.c: (monitor_callback): Optimize the log parsing. This is
+	only noticeable with huge, huge logs, but it's a nice boost in
+	this case.
+
 2005-11-08  Vincent Noel <vnoel@cox.net>
 
 	* Makefile.am:

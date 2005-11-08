@@ -421,6 +421,7 @@ logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_d
 static void
 logview_close_log (GtkAction *action, LogviewWindow *logview)
 {
+    Log *log;
     g_assert (LOGVIEW_IS_WINDOW (logview));
 
     if (logview->curlog == NULL)
@@ -433,10 +434,12 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
     
     gtk_widget_hide (logview->find_bar);
 
-    logview->logs = g_list_remove (logview->logs, logview->curlog);
-    log_close (logview->curlog);
-    loglist_remove_log (LOG_LIST (logview->loglist), logview->curlog);
+    log = logview->curlog;
     logview->curlog = NULL;
+
+    logview->logs = g_list_remove (logview->logs, log);
+    log_close (log);
+    loglist_remove_log (LOG_LIST (logview->loglist), log);
 }
 
 static void
