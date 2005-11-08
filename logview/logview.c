@@ -46,6 +46,7 @@ GType logview_window_get_type (void);
 static void logview_save_prefs (LogviewWindow *logview);
 static void logview_add_log (LogviewWindow *logview, Log *log);
 static void logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state);
+static void logview_menu_item_toggle_set_active (LogviewWindow *logview, char *path, gboolean state);
 static void logview_update_findbar_visibility (LogviewWindow *logview);
 
 static void logview_open_log (GtkAction *action, LogviewWindow *logview);
@@ -236,26 +237,20 @@ void
 logview_menus_set_state (LogviewWindow *logview)
 {
     Log *log;
+    gboolean calendar_active = FALSE, monitor_active = FALSE;
+    GtkWidget *widget;
 
     g_assert (LOGVIEW_IS_WINDOW (logview));
     log = logview->curlog;
 
     if (log) {
-        if (log->display_name)
-            logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
-        else
-            logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/MonitorLogs", TRUE);
-        
-        if (log->days != NULL)
-            logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", TRUE);
-        else
-            logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
-        
-    } else {
-        logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/MonitorLogs", FALSE);
-        logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", FALSE);
+        monitor_active = (log->display_name == NULL);
+        calendar_active = (log->days != NULL);
+        logview_menu_item_toggle_set_active (logview, "/LogviewMenu/FileMenu/MonitorLogs", logview->curlog->monitored);
     }
     
+    logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/MonitorLogs", monitor_active);
+    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
     logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
@@ -353,10 +348,9 @@ logview_add_log (LogviewWindow *logview, Log *log)
     g_return_if_fail (log);
 
     logview->logs = g_list_append (logview->logs, log);
-    loglist_add_log (LOG_LIST(logview->loglist), log);
-    log->window = logview;
-    
     monitor_start (log);
+    loglist_add_log (LOG_LIST(logview->loglist), log);
+    log->window = logview;    
 }
 
 
@@ -549,6 +543,14 @@ logview_toggle_monitor (GtkAction *action, LogviewWindow *logview)
     if ((log == NULL) || (log->display_name))
         return;
 
+    if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)) &&
+        (log->monitored))
+        return;
+
+    if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action))==FALSE &&
+        (!log->monitored))
+        return;
+
     if (log->monitored)
         monitor_stop (log);
     else
@@ -650,6 +652,17 @@ logview_select_all (GtkAction *action, LogviewWindow *logview)
 
 	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->view));
 	gtk_tree_selection_select_all (selection);
+}
+
+static void
+logview_menu_item_toggle_set_active (LogviewWindow *logview, char *path, gboolean state)
+{
+    GtkToggleAction *action;
+    
+    g_assert (path);
+    
+    action = GTK_TOGGLE_ACTION (gtk_ui_manager_get_action (logview->ui_manager, path));
+    gtk_toggle_action_set_active (action, state);
 }
 
 static void
