@@ -379,14 +379,13 @@ log_open (char *filename, gboolean show_error)
    if (display_name)
 	   g_free (filename);
 
-   if (g_get_charset (NULL)) {
-       buffer2 = buffer;
-   } else {
+   if (g_get_charset (NULL) == FALSE) {
        buffer2 = locale_to_utf8 (buffer);
        g_free (buffer);
+       buffer = buffer2;
    }
 
-   log->lines = g_strsplit (buffer2, "\n", -1);
+   log->lines = g_strsplit (buffer, "\n", -1);
    g_free (buffer2);
 
    log->total_lines = g_strv_length (log->lines);

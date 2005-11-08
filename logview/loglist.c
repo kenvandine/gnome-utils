@@ -214,6 +214,7 @@ loglist_init (LogList *list)
 {
     GtkListStore *model;
     GtkTreeViewColumn *column;
+    GtkTreeSelection *selection;
     GtkCellRenderer *cell;
 
     model = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_POINTER);
@@ -222,6 +223,9 @@ loglist_init (LogList *list)
     list->model = model;
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list), FALSE);
     g_object_unref (G_OBJECT (model));
+
+    selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list));
+    gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
     
     cell = gtk_cell_renderer_text_new ();
     column = gtk_tree_view_column_new_with_attributes ("words", cell, "markup", 0, NULL);

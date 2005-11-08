@@ -1,5 +1,10 @@
 2005-11-08  Vincent Noel  <vnoel@cox.net>
 
+	* loglist.c: (loglist_init):
+	* logrtns.c: (log_open): Cleanup after myself.
+
+2005-11-08  Vincent Noel  <vnoel@cox.net>
+
 	* log_repaint.c: (logview_create_model):
 	* loglist.c: (loglist_add_log):
 	* logrtns.c: (log_read_dates), (log_open):
@@ -11,14 +16,7 @@
 	* logview-findbar.h:
 	* logview.c: (logview_count_logs), (logview_add_logs_from_names),
 	(logview_add_log), (logview_init): If the locale is utf8, don't
-	convert to utf8. Create private structure for the filter bar. 
-
-2005-11-08  noel,,,  <vnoel@cox.net>
-
-	reviewed by: <delete if not using a buddy>
-
-	* log_repaint.c: (logview_create_model):
-	* logrtns.c: (log_read_dates):
+	convert to utf8. Create private structure for the filter bar. Cleanups.
 
 2005-11-08  Vincent Noel  <vnoel@cox.net>
 
