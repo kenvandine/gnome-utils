@@ -81,12 +81,15 @@ prefs_create_defaults (UserPrefs *p)
 {
 	int i;
 	gchar *logfiles[] = {"/var/adm/messages",
-                       "/var/log/messages",
-                       "/var/log/sys.log",
-                       "/var/log/secure",
-                       "/var/log/maillog",
-                       "/var/log/cron",
-                       "/var/log/XFree86.0.log"};
+                         "/var/log/messages",
+                         "/var/log/sys.log",
+                         "/var/log/secure",
+                         "/var/log/maillog",
+                         "/var/log/cron",
+                         "/var/log/Xorg.0.log",
+                         "/var/log/XFree86.0.log",
+                         "/var/log/auth.log",
+                         "/var/log/cups/error_log"};
 	struct stat filestat;
 	GSList *logs = NULL;
 	GnomeVFSResult result;
