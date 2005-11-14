@@ -178,24 +178,18 @@ logview_select_log (LogviewWindow *logview, Log *log)
 {
 	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     
-    if (log == NULL) {
-        /* there is no selected log right now */
-        logview->curlog = NULL;
-        logview_menus_set_state (logview);
-        logview_calendar_set_state (logview);
-        log_repaint (logview);
-        logview_update_findbar_visibility (logview);
-        return;
-    }
 	logview->curlog = log;
 	logview_menus_set_state (logview);
-    logview_update_findbar_visibility (logview);
-	logview_update_version_bar (logview);
 	logview_calendar_set_state (logview);
-    log->displayed_lines = 0;
 	log_repaint (logview);
+    logview_update_findbar_visibility (logview);
+
+	logview_update_version_bar (logview);
 	logview_save_prefs (logview); 
     gtk_widget_grab_focus (logview->view);
+
+    if (log)
+        log->displayed_lines = 0;
 } 
 
 void
@@ -218,7 +212,9 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
 	Log *log, *curlog = NULL;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    g_return_if_fail (lognames);
+
+    if (lognames == NULL)
+        return;
 
 	for (list = lognames; list != NULL; list = g_slist_next (list)) {
         log = log_open (list->data, FALSE);

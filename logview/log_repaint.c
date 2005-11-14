@@ -162,6 +162,10 @@ logview_update_version_bar (LogviewWindow *logview)
 	gchar *label;
 
 	log = logview->curlog;
+    if (log == NULL) {
+        gtk_widget_hide (logview->version_bar);
+        return;
+    }
 
 	if (log->versions > 0 || log->parent_log != NULL) {
 		Log *recent;

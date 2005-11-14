@@ -122,13 +122,14 @@ prefs_load (GConfClient *client)
 	UserPrefs *p;
 	GSList *list;
 	gboolean found;
+    GError *err;
 
     g_assert (client != NULL);
 
 	p = g_new0 (UserPrefs, 1);
 
-	p->logs = gconf_client_get_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, NULL);
-	if (p->logs == NULL)
+	p->logs = gconf_client_get_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, &err);
+	if (err != NULL)
 		prefs_create_defaults (p);
 
 	logfile = gconf_client_get_string (client, GCONF_LOGFILE, NULL);
@@ -238,19 +239,18 @@ prefs_save (void)
 {
   GSList *logs;
 
-	if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL) &&
-	    prefs->logfile != NULL) {
+    if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL))
 		gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);
-	}
+
+    if (gconf_client_key_is_writable (client, GCONF_LOGFILES, NULL))
+        gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);
+
 	if (prefs->width > 0 && prefs->height > 0) {
 		if (gconf_client_key_is_writable (client, GCONF_WIDTH_KEY, NULL))
 			gconf_client_set_int (client, GCONF_WIDTH_KEY, prefs->width, NULL);
 		if (gconf_client_key_is_writable (client, GCONF_HEIGHT_KEY, NULL))
 			gconf_client_set_int (client, GCONF_HEIGHT_KEY, prefs->height, NULL);
 	}
-	if (prefs->logs != NULL)
-		if (gconf_client_key_is_writable (client, GCONF_LOGFILES, NULL))
-			gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);
 
 	if (prefs->fontsize > 0)
 		if (gconf_client_key_is_writable (client, GCONF_FONTSIZE_KEY, NULL))
