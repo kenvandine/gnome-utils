@@ -62,6 +62,7 @@ logview_findbar_clear (GtkWidget *widget, gpointer data)
  		return;
 
 	gtk_entry_set_text (GTK_ENTRY (findbar->priv->entry), "");
+	gtk_widget_hide (GTK_WIDGET (findbar));
 }
 	
 static  gboolean

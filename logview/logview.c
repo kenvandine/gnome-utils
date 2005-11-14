@@ -76,14 +76,14 @@ static GtkActionEntry entries[] = {
 
 	{ "OpenLog", GTK_STOCK_OPEN, N_("_Open..."), "<control>O", N_("Open a log from file"), 
 	  G_CALLBACK (logview_open_log) },
-	{ "CloseLog", GTK_STOCK_CLOSE, N_("Close"), "<control>W", N_("Close this log"), 
+	{ "CloseLog", GTK_STOCK_CLOSE, N_("_Close"), "<control>W", N_("Close this log"), 
 	  G_CALLBACK (logview_close_log) },
 	{ "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 
 	  G_CALLBACK (gtk_main_quit) },
 
-	{ "Copy", GTK_STOCK_COPY, N_("Copy"), "<control>C", N_("Copy the selection"),
+	{ "Copy", GTK_STOCK_COPY, N_("_Copy"), "<control>C", N_("Copy the selection"),
 	  G_CALLBACK (logview_copy) },
-	{ "SelectAll", NULL, N_("Select All"), "<Control>A", N_("Select the entire log"),
+	{ "SelectAll", NULL, N_("Select _All"), "<Control>A", N_("Select the entire log"),
 	  G_CALLBACK (logview_select_all) },
 	{ "Search", GTK_STOCK_FIND, N_("_Filter..."), "<control>F", N_("Filter log"),
 	  G_CALLBACK (logview_search) },
@@ -106,7 +106,7 @@ static GtkActionEntry entries[] = {
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
-    { "ShowStatusBar", NULL, N_("Statusbar"), NULL, N_("Show Status Bar"),
+    { "ShowStatusBar", NULL, N_("_Statusbar"), NULL, N_("Show Status Bar"),
       G_CALLBACK (logview_toggle_statusbar), TRUE },
 	{ "ShowSidebar", NULL, N_("Side _Pane"), "F9", N_("Show Side Pane"), 
 		G_CALLBACK (logview_toggle_sidebar), TRUE },

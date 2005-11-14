@@ -140,8 +140,8 @@ logview_update_statusbar (LogviewWindow *logview)
        return;
    }
 
-   modified = g_strdup_printf (_("last update : %s"), ctime (&(log->lstats->mtime)));   
-   size = gnome_vfs_format_file_size_for_display (log->lstats->size);
+   modified = g_strdup_printf (_("last update : %s"), ctime (&(log->stats->file_time)));   
+   size = gnome_vfs_format_file_size_for_display (log->stats->file_size);
    statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
                                      log->total_lines, size, modified);
 

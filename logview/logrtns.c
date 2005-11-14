@@ -86,6 +86,8 @@ file_is_zipped (char *filename)
         return;
 
 	mime_type = gnome_vfs_get_mime_type (filename);
+    if (mime_type == NULL)
+        return FALSE;
 
 	if (strcmp (mime_type, "application/x-gzip")==0 ||
 	    strcmp (mime_type, "application/x-zip")==0 ||
@@ -290,7 +292,7 @@ log_stats_new (char *filename, gboolean show_error)
    GnomeVFSFileInfo *info;
    GnomeVFSHandle *handle;
    GnomeVFSFileSize size;
-   LogStats *lstats;
+   LogStats *stats;
    char buff[1024];
    char *found_space;
 
@@ -320,83 +322,85 @@ log_stats_new (char *filename, gboolean show_error)
    
    found_space = g_strstr_len (buff, 1024, " ");
    if (found_space == NULL) {
-	   if (show_error) {
-		   g_snprintf (buff, sizeof (buff), _("%s not a log file."), filename);
-		   error_dialog_show (NULL, error_main, buff);
-	   }
        gnome_vfs_file_info_unref (info);
 	   return NULL;
    }
    
-   lstats = g_new (LogStats, 1);   
-   lstats->mtime = info->mtime;
-   lstats->size = info->size;
+   stats = g_new (LogStats, 1);   
+   stats->file_time = info->mtime;
+   stats->file_size = info->size;
    gnome_vfs_file_info_unref (info);
 
-   return (lstats);
+   return (stats);
 }
 
 Log *
 log_open (char *filename, gboolean show_error)
 {
-   Log *log;
-   char *buffer, *buffer2;
-   char *display_name = NULL;
-   LogStats *stats;
-   int i, j;
-   GList *days;
-   Day *day;
-   GError *error;
+   char *buffer, *zipped_name= NULL, *error_message;
    GnomeVFSResult result;
-   ulong size;
+   LogStats *stats;
+   gboolean opened = TRUE;
+   int i, size;
+   GList *days;
+   Log *log;
    
-   if (file_exist (filename, show_error) == FALSE)
-	   return NULL;
-
-   if (file_is_zipped (filename)) {
-	   display_name = filename;
-	   filename = g_strdup_printf ("%s#gzip:", display_name);
-   }   
-
    stats = log_stats_new (filename, show_error);
-   if (stats == NULL)
-       return NULL;
-
-   result = gnome_vfs_read_entire_file (filename, &size, &buffer);
-   buffer[size-1] = 0;
-   if (result != GNOME_VFS_OK) {
-	   error_dialog_show (NULL, error_main, _("Unable to open logfile!\n"));
-	   return NULL;
+   if (stats == NULL) {
+       if (file_is_zipped (filename)) {    
+           zipped_name = g_strdup_printf ("%s#gzip:", filename);
+           stats = log_stats_new (filename, show_error);
+           if (stats == NULL) {
+               opened = FALSE;
+           }
+       } else
+           opened = FALSE;
+   }
+   
+   if (opened == FALSE) {
+       error_message = g_strdup_printf (_("%s is not a log file."), filename);
+       goto error;
    }
 
    log = g_new0 (Log, 1);   
    if (log == NULL) {
-	   error_dialog_show (NULL, error_main, _("Not enough memory!\n"));
-	   return NULL;
+       error_message = g_strdup (_("Not enough memory."));
+       goto error;
    }
-   log->name = g_strdup (filename);
-   log->display_name = display_name;
-   if (display_name)
-	   g_free (filename);
+
+   if (!zipped_name) {
+       log->name = g_strdup (filename);
+   } else {
+       log->name = zipped_name;
+       log->display_name = g_strdup (filename);
+   }
+
+   result = gnome_vfs_read_entire_file (log->name, &size, &buffer);
+   buffer[size-1] = 0;
+   if (result != GNOME_VFS_OK) {
+       error_message = g_strdup_printf (_("%s cannot be opened."), log->name);
+       goto error;
+   }
 
    if (g_get_charset (NULL) == FALSE) {
+       char *buffer2;
        buffer2 = locale_to_utf8 (buffer);
        g_free (buffer);
        buffer = buffer2;
    }
 
    log->lines = g_strsplit (buffer, "\n", -1);
-   g_free (buffer2);
+   g_free (buffer);   
 
    log->total_lines = g_strv_length (log->lines);
    log->displayed_lines = 0;
    log->first_time = TRUE;
-   log->lstats = stats;
+   log->stats = stats;
    log->model = NULL;
    log->filter = NULL;
 
    /* A log without dates will return NULL */
-   log->days = log_read_dates (log->lines, log->lstats->mtime);
+   log->days = log_read_dates (log->lines, log->stats->file_time);
 
    /* Check for older versions of the log */
    log->versions = 0;
@@ -405,7 +409,7 @@ log_open (char *filename, gboolean show_error)
    log->mon_offset = size;
    for (i=1; i<5; i++) {
        gchar *older_name;
-       older_name = g_strdup_printf ("%s.%d", filename, i);
+       older_name = g_strdup_printf ("%s.%d", log->name, i);
        log->older_logs[i] = log_open (older_name, FALSE);
        g_free (older_name);
        if (log->older_logs[i] != NULL) {
@@ -418,6 +422,17 @@ log_open (char *filename, gboolean show_error)
    }
 
    return log;
+
+   /* Error catching */
+
+ error:
+
+   if (error_message && show_error) {
+       error_dialog_show (NULL, error_main, error_message);
+       g_free (error_message);
+   }
+   return NULL;
+   
 }
 
 static void
@@ -528,7 +543,7 @@ log_close (Log *log)
        log->days = NULL;
    }
    
-   g_free (log->lstats);
+   g_free (log->stats);
    gtk_tree_path_free (log->current_path);
    log->current_path = NULL;
 

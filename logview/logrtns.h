@@ -34,8 +34,8 @@ typedef struct
 
 typedef struct
 {
-    time_t mtime;
-    GnomeVFSFileSize size;
+    time_t file_time;
+    GnomeVFSFileSize file_size;
 } LogStats;
 
 typedef struct _log Log;
@@ -43,7 +43,7 @@ struct _log
 {
 	char *name;
 	char *display_name;
-	LogStats *lstats;
+	LogStats *stats;
 
     GList *days;
     gchar **lines;

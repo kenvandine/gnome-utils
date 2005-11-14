@@ -25,8 +25,13 @@
 #include "calendar.h"
 
 static GObjectClass *parent_class;
-
 GType calendar_get_type (void);
+
+struct CalendarPriv
+{
+    GList *days;
+	gboolean first_pass;
+};
 
 static void
 calendar_mark_dates (Calendar *calendar)
@@ -40,7 +45,7 @@ calendar_mark_dates (Calendar *calendar)
     gtk_calendar_clear_marks (GTK_CALENDAR (calendar));
     gtk_calendar_get_date (GTK_CALENDAR (calendar), &year, &month, NULL);
 
-    for (days = calendar->days; days != NULL; days = g_list_next(days)) {
+    for (days = calendar->priv->days; days != NULL; days = g_list_next(days)) {
         day = days->data;
         if (month == g_date_get_month (day->date)-1)
             gtk_calendar_mark_day (GTK_CALENDAR(calendar), g_date_get_day (day->date));
@@ -61,8 +66,8 @@ calendar_init_data (Calendar *calendar, Log *log)
     if (log == NULL)
         return;
     
-    calendar->days = log->days;
-    calendar->first_pass = TRUE;
+    calendar->priv->days = log->days;
+    calendar->priv->first_pass = TRUE;
 
     calendar_mark_dates (calendar);
 }
@@ -91,23 +96,22 @@ log_find_day (Log *log, int d, int m, int y)
     return found_day;
 }
 
-static GtkTreePath *
+static void
 calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 {
     Calendar *calendar;
     guint day, month, year;
     Day *found_day;
     GtkTreePath *path;
-    gchar *path_string;
 
     calendar = CALENDAR (widget);
 
 	if (window->curlog == NULL)
-		return NULL;
+		return;
 
-    if (calendar->first_pass == TRUE) {
-        calendar->first_pass = FALSE;
-        return NULL;
+    if (calendar->priv->first_pass == TRUE) {
+        calendar->priv->first_pass = FALSE;
+        return;
     }
   
     gtk_calendar_get_date (GTK_CALENDAR (calendar), &year, &month, &day);    
@@ -117,9 +121,7 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
         if ((gtk_tree_path_compare (path, window->curlog->current_path) != 0) &&
             (!gtk_tree_path_is_descendant (window->curlog->current_path, path)))
             gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
-        return path;
-    } else
-        return NULL;
+    }
 }
 
 void
@@ -133,7 +135,7 @@ calendar_select_date (Calendar *calendar, GDate *date)
     if (g_date_get_day (date) == d && g_date_get_month (date) == m &&
         g_date_get_year (date) == y)
         return;
-    calendar->first_pass = TRUE;
+    calendar->priv->first_pass = TRUE;
 
     if (g_date_get_year (date) != y || g_date_get_month (date) != m)
         gtk_calendar_select_month (GTK_CALENDAR (calendar), g_date_get_month(date)-1, 
@@ -157,14 +159,16 @@ calendar_connect (Calendar *calendar, LogviewWindow *window)
 }
 
 static void 
-calendar_init (GtkCalendar *calendar)
+calendar_init (GtkCalendar *widget)
 {
-    GtkWidget *widget = GTK_WIDGET (calendar);
+    Calendar *calendar = CALENDAR (widget);
     PangoFontDescription *fontdesc;
     PangoContext *context;
     int size;
 
     g_assert (IS_CALENDAR (calendar));
+
+    calendar->priv = g_new0 (CalendarPriv, 1);
     
     context = gtk_widget_get_pango_context (GTK_WIDGET(widget));
     fontdesc = pango_context_get_font_description (context);
@@ -174,9 +178,17 @@ calendar_init (GtkCalendar *calendar)
 }
 
 static void
+calendar_class_finalize (GObject *object)
+{
+    Calendar *calendar = CALENDAR (object);
+    g_free (calendar->priv);
+}
+
+static void
 calendar_class_init (CalendarClass *klass)
 {
 	GObjectClass *object_class = (GObjectClass *) klass;
+    object_class->finalize = calendar_class_finalize;
 	parent_class = g_type_class_peek_parent (klass);
 }
 

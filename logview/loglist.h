@@ -27,27 +27,24 @@
 #define LOG_IS_LIST_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), LOG_LIST_TYPE))
 #define LOG_LIST_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), LOG_LIST_TYPE, LogListClass))
 
-typedef struct _LogList LogList;
-typedef struct _LogListClass LogListClass;
-
-struct _LogList
+typedef struct LogListPriv LogListPriv;
+typedef struct LogList
 {	
     GtkTreeView parent_instance;
-    GtkListStore *model;
-    gpointer logview;
-};
+    LogListPriv *priv;
+}LogList;
 
-struct _LogListClass
+typedef struct LogListClass
 {
 	GtkTreeViewClass parent_class;
-};
+}LogListClass;
 
 GtkWidget *loglist_new (void);
 void loglist_connect (LogList *list, LogviewWindow *window);
 void loglist_add_log (LogList *list, Log *log);
-void loglist_select_log (LogList *list, Log *log);
-void loglist_unbold_log (LogList *list, Log *log);
-void loglist_bold_log (LogList *list, Log *log);
 void loglist_remove_log (LogList *list, Log *log);
+void loglist_select_log (LogList *list, Log *log);
+void loglist_bold_log (LogList *list, Log *log);
+void loglist_unbold_log (LogList *list, Log *log);
 
 #endif /* __LOG_LIST_H__ */
