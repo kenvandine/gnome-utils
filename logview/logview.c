@@ -248,7 +248,7 @@ logview_menus_set_state (LogviewWindow *logview)
     logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/MonitorLogs", monitor_active);
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
     logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
-    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", (log != NULL));
+    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", calendar_active);
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
