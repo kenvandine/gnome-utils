@@ -144,8 +144,12 @@ string_get_date (char *line)
         return NULL;
 
     cp = strptime (line, "%b %d", &tp);
-    if (cp == 0)
-        return NULL;
+    if (cp == 0) {
+        cp = strptime (line, "%F", &tp);
+        if (cp == 0) {
+            return NULL;
+        }
+    }
 
     date = g_date_new_dmy (tp.tm_mday, tp.tm_mon+1, 70);
     return date;

@@ -145,6 +145,10 @@ string_get_date_string (gchar *line)
 
         if (month == NULL) {
             month = split[i++];
+            /* If the first field begins by a number, the date
+               is given in yyyy-mm-dd format */
+            if (!g_ascii_isalpha (month[0]))
+                break;
             continue;
         }
 
