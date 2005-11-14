@@ -815,10 +815,6 @@ logview_init (LogviewWindow *window)
    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
    gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
 
-   window->find_bar = logview_findbar_new ();
-   gtk_box_pack_end (GTK_BOX (main_view), window->find_bar, FALSE, FALSE, 0);
-   logview_findbar_connect (LOGVIEW_FINDBAR (window->find_bar), window);
-
    /* Version selector */
    window->version_bar = gtk_hbox_new (FALSE, 0);
    gtk_container_set_border_width (GTK_CONTAINER (window->version_bar), 3);
@@ -831,6 +827,10 @@ logview_init (LogviewWindow *window)
    gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
    gtk_box_pack_end (GTK_BOX(main_view), window->version_bar, FALSE, FALSE, 0);
    
+   window->find_bar = logview_findbar_new ();
+   gtk_box_pack_end (GTK_BOX (main_view), window->find_bar, FALSE, FALSE, 0);
+   logview_findbar_connect (LOGVIEW_FINDBAR (window->find_bar), window);
+
    /* Remember the original font size */
    context = gtk_widget_get_pango_context (window->view);
    fontdesc = pango_context_get_font_description (context);
