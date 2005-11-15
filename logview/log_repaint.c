@@ -170,7 +170,7 @@ logview_update_version_bar (LogviewWindow *logview)
 	if (log->versions > 0 || log->parent_log != NULL) {
 		Log *recent;
 
-		gtk_widget_show (logview->version_bar);
+		gtk_widget_show_all (logview->version_bar);
 
 		if (log->current_version > 0)
 			recent = log->parent_log;
