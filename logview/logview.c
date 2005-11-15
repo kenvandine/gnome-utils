@@ -910,8 +910,6 @@ logview_window_new ()
    logview->logs = NULL;
    logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
 							     GDK_SELECTION_CLIPBOARD);
-
-   /* FIXME : we need to listen to this key, not just read it. */
    gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
                                     prefs_get_have_tearoff ());
 

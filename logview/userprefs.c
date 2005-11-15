@@ -162,7 +162,7 @@ static void
 prefs_monospace_font_changed (GConfClient *client, guint id, 
                                 GConfEntry *entry, gpointer data)
 {
-    GtkWidget *view = data;
+  GtkWidget *view = GTK_WIDGET (data);
     gchar *monospace_font_name;
     PangoFontDescription *fontdesc;
 
@@ -171,6 +171,17 @@ prefs_monospace_font_changed (GConfClient *client, guint id,
     monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
     widget_set_font (view, monospace_font_name);
     g_free (monospace_font_name);
+}
+
+static void
+prefs_menus_have_tearoff_changed (GConfClient *client, guint id,
+				  GConfEntry *entry, gpointer data)
+{
+  LogviewWindow *logview = LOGVIEW_WINDOW (data);
+    
+  g_assert (client != NULL);      
+  gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
+				   prefs_get_have_tearoff ());
 }
 
 gchar *
@@ -282,6 +293,8 @@ prefs_connect (LogviewWindow *logview)
 
     gconf_client_notify_add (client, GCONF_MONOSPACE_FONT_NAME, 
                              prefs_monospace_font_changed, logview->view, NULL, NULL);
+    gconf_client_notify_add (client, GCONF_MENUS_HAVE_TEAROFF,
+			     prefs_menus_have_tearoff_changed, logview, NULL, NULL);
 }
 
 void
