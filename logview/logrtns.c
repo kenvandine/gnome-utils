@@ -567,3 +567,16 @@ log_extract_filename (Log *log)
 
   return filename;
 }
+
+gchar *
+log_extract_dirname (Log *log)
+{
+  GnomeVFSURI *uri;
+  gchar *dirname;
+
+  uri = gnome_vfs_uri_new (log->name);
+  dirname = gnome_vfs_uri_extract_dirname (uri);
+  gnome_vfs_uri_unref (uri);
+
+  return dirname;
+}

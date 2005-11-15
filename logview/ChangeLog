@@ -1,5 +1,14 @@
 2005-11-15  Vincent Noel <vincent.noel@gmail.com>
 
+	* loglist.c: (loglist_find_directory), (loglist_add_directory),
+	(loglist_add_log):
+	* logrtns.c: (log_extract_dirname):
+	* logrtns.h:
+	* userprefs.c: (prefs_store_active_log), (prefs_save): Some
+	refactoring to make it easier to read.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
 	* logview.c: (logview_save_prefs), (logview_destroy):
 	* userprefs.c: (prefs_store_active_log), (prefs_save): Make sure
 	that the active log is correctly saved when an archive is displayed.

@@ -240,7 +240,6 @@ prefs_store_active_log (gchar *name)
 {
     /* name can be NULL if no active log */
     prefs->logfile = name;
-	g_print("storing %s\n", name);
 }
 
 void
@@ -254,7 +253,6 @@ prefs_save (void)
 {
   GSList *logs;
 
-  g_print("saving prefs\n");
     if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL))
 		gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);
 

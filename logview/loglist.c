@@ -37,12 +37,11 @@ enum {
 };
 
 static GtkTreePath *
-loglist_find_directory (LogList *list, GnomeVFSURI *uri)
+loglist_find_directory (LogList *list, gchar *dir)
 {
 	GtkTreeIter iter;
 	GtkTreeModel *model;
 	GtkTreePath *path = NULL;
-	GnomeVFSURI *iteruri;
 	gchar *iterdir;
 	
 	g_assert (LOG_IS_LIST (list));
@@ -54,16 +53,13 @@ loglist_find_directory (LogList *list, GnomeVFSURI *uri)
 	do {
 		gtk_tree_model_get (model, &iter, LOG_NAME, &iterdir, -1);
 		if (iterdir) {
-			iteruri = gnome_vfs_uri_new (iterdir);
-			if (gnome_vfs_uri_equal (uri, iteruri)) {
+			if (g_ascii_strncasecmp (iterdir, dir, -1) == 0) {
 				path = gtk_tree_model_get_path (model, &iter);
-				gnome_vfs_uri_unref (iteruri);
-				return path;
+				break;
 			}
-			gnome_vfs_uri_unref (iteruri);
 		}
 	} while (gtk_tree_model_iter_next (model, &iter));
-	return NULL;
+	return path;
 }
 
 
@@ -196,52 +192,42 @@ loglist_remove_log (LogList *list, Log *log)
     }
 }
 
+void
+loglist_add_directory (LogList *list, gchar *dirname, GtkTreeIter *iter)
+{
+	gtk_tree_store_append (list->priv->model, iter, NULL);
+	gtk_tree_store_set (list->priv->model, iter,
+			    LOG_NAME, dirname, LOG_POINTER, NULL, -1);
+}
+
 void 
 loglist_add_log (LogList *list, Log *log)
 {
 	GtkTreeIter iter, child_iter;
 	GtkTreePath *path;
-	gchar *dir, *file;
-	GnomeVFSURI *uri, *dir_uri;
+	gchar *filename, *dirname;
 
 	g_return_if_fail (LOG_IS_LIST (list));
 	g_return_if_fail (log != NULL);
 
-	uri = gnome_vfs_uri_new (log->name);
-	dir_uri = gnome_vfs_uri_get_parent (uri);
-
-	path = loglist_find_directory (list, dir_uri);
-	gnome_vfs_uri_unref (dir_uri);
-
+	dirname = log_extract_dirname (log);
+	path = loglist_find_directory (list, dirname);
 	if (path) {
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (list->priv->model), &iter, path);
 		gtk_tree_path_free (path);
-	} else {
-		dir = gnome_vfs_uri_extract_dirname (uri);
-	
-		gtk_tree_store_append (list->priv->model, &iter, NULL);
-		gtk_tree_store_set (list->priv->model, &iter,
-				    LOG_NAME, dir, LOG_POINTER, NULL, -1);
-		
-		g_free (dir);
-	}
+	} else
+		loglist_add_directory (list, dirname, &iter);
 
-	file = gnome_vfs_uri_extract_short_name (uri);
+	filename = log_extract_filename (log);
 	gtk_tree_store_append (list->priv->model, &child_iter, &iter);
 	gtk_tree_store_set (list->priv->model, &child_iter, 
-                        LOG_NAME, file, LOG_POINTER, log, -1);
-	g_free (file);
+                        LOG_NAME, filename, LOG_POINTER, log, -1);
 
-	if (GTK_WIDGET_VISIBLE (GTK_WIDGET (list))) {
-		GtkTreeSelection *selection;
-		GtkTreePath *path;
-		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list));
-		path = gtk_tree_model_get_path (GTK_TREE_MODEL (list->priv->model), &child_iter);
-		gtk_tree_view_expand_to_path (GTK_TREE_VIEW (list), path);
-		gtk_tree_selection_select_iter (selection, &child_iter);
-	}
+	if (GTK_WIDGET_VISIBLE (GTK_WIDGET (list)))
+		loglist_select_log (list, log);
 
-	gnome_vfs_uri_unref (uri);
+	g_free (dirname);
+	g_free (filename);
 }
 
 static void

@@ -78,5 +78,6 @@ gboolean log_read_new_lines (Log *log);
 gboolean log_unbold (gpointer data);
 void log_close (Log * log);
 gchar *log_extract_filename (Log *log);
+gchar *log_extract_dirname (Log *log);
 
 #endif /* __LOGRTNS_H__ */
