@@ -215,21 +215,22 @@ logview_add_log_from_name (LogviewWindow *logview, gchar *file)
 void
 logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *selected)
 {
-	GSList *list;
-	Log *log, *curlog = NULL;
-
+    GSList *list;
+    Log *log, *curlog = NULL;
+    GdkCursor *cursor;
+	
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
     if (lognames == NULL)
         return;
 
-	for (list = lognames; list != NULL; list = g_slist_next (list)) {
-        log = log_open (list->data, FALSE);
-        if (log != NULL) {
-            logview_add_log (logview, log);
-            if (g_strncasecmp (log->name, selected, -1)==0)
-                curlog = log;
-        }
+    for (list = lognames; list != NULL; list = g_slist_next (list)) {
+      log = log_open (list->data, FALSE);
+      if (log != NULL) {
+	logview_add_log (logview, log);
+	if (g_strncasecmp (log->name, selected, -1)==0)
+	  curlog = log;
+      }
     }
         
     if (curlog)

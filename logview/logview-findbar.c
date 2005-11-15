@@ -70,16 +70,28 @@ logview_findbar_entry_timeout (gpointer data)
 	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
 	LogviewWindow *logview = LOGVIEW_WINDOW (findbar->priv->logview);
 	Log *log = logview->curlog;
+	GdkCursor *cursor;
 
+	cursor = gdk_cursor_new (GDK_WATCH);
+	gdk_window_set_cursor (GTK_WIDGET (logview)->window, cursor);
+	gdk_cursor_unref (cursor);
+	gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
+	
 	if (log->filter == NULL) {
+
 		log->filter = GTK_TREE_MODEL_FILTER (gtk_tree_model_filter_new (log->model, NULL));
 		gtk_tree_model_filter_set_visible_func (log->filter, iter_is_visible, findbar, NULL);
 		gtk_tree_view_set_model (GTK_TREE_VIEW (logview->view), GTK_TREE_MODEL (log->filter));
+
 	} else {
 		gtk_tree_model_filter_refilter (log->filter);
 	}
 
 	gtk_tree_view_expand_all (GTK_TREE_VIEW (logview->view));
+
+	gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);
+	gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
+
 	return FALSE;
 }
 	

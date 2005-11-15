@@ -102,6 +102,7 @@ main (int argc, char *argv[])
    GnomeProgram *program;
    LogviewWindow *logview;
    int i;
+   GdkCursor *cursor;
 
    bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
@@ -130,6 +131,12 @@ main (int argc, char *argv[])
    gtk_widget_set_sensitive (logview->view, FALSE);
    gtk_widget_set_sensitive (logview->loglist, FALSE);
    gtk_widget_show (GTK_WIDGET(logview));
+
+   cursor = gdk_cursor_new (GDK_WATCH);
+   gdk_window_set_cursor (GTK_WIDGET (logview)->window, cursor);
+   gdk_cursor_unref (cursor);
+   gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
+
    while (gtk_events_pending ())
        gtk_main_iteration ();
    if (argc == 1) {
@@ -139,6 +146,10 @@ main (int argc, char *argv[])
 		   logview_add_log_from_name (logview, argv[i]);
    }
    restoration_complete = TRUE;
+
+   gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);    
+   gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
+
    gtk_widget_set_sensitive (logview->view, TRUE);
    gtk_widget_set_sensitive (logview->loglist, TRUE);
    

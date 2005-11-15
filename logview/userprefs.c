@@ -175,7 +175,7 @@ prefs_monospace_font_changed (GConfClient *client, guint id,
 
 static void
 prefs_menus_have_tearoff_changed (GConfClient *client, guint id,
-				  GConfEntry *entry, gpointer data)
+								  GConfEntry *entry, gpointer data)
 {
   LogviewWindow *logview = LOGVIEW_WINDOW (data);
     
@@ -291,9 +291,11 @@ prefs_connect (LogviewWindow *logview)
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
     gconf_client_notify_add (client, GCONF_MONOSPACE_FONT_NAME, 
-                             prefs_monospace_font_changed, logview->view, NULL, NULL);
+                             (GConfClientNotifyFunc) prefs_monospace_font_changed,
+							 logview->view, NULL, NULL);
     gconf_client_notify_add (client, GCONF_MENUS_HAVE_TEAROFF,
-			     prefs_menus_have_tearoff_changed, logview, NULL, NULL);
+							 (GConfClientNotifyFunc) prefs_menus_have_tearoff_changed,
+							 logview, NULL, NULL);
 }
 
 void
