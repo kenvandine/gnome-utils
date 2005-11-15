@@ -338,10 +338,14 @@ logview_save_prefs (LogviewWindow *logview)
             prefs_store_log (log->name);
         }
         
-        if (logview->curlog)
-            prefs_store_active_log (logview->curlog->name);
+        if (logview->curlog) {
+	  if (logview->curlog->parent_log)
+            prefs_store_active_log (logview->curlog->parent_log->name);
+	  else
+	    prefs_store_active_log (logview->curlog->name);
+	}
         prefs_store_fontsize (logview->fontsize);
-		prefs_save ();
+	prefs_save ();
     }
 }
 
@@ -353,13 +357,9 @@ logview_destroy (GObject *object, LogviewWindow *logview)
     if (logview->curlog) {
         if (logview->curlog->monitored)
             monitor_stop (logview->curlog);
-        if (!(logview->curlog->display_name))
-            prefs_store_active_log (logview->curlog->name);
-        else
-            prefs_store_active_log (NULL);
     }
 
-    prefs_save ();
+    logview_save_prefs (logview);
     prefs_free_loglist ();
     gtk_main_quit ();
 }

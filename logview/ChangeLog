@@ -1,5 +1,11 @@
 2005-11-15  Vincent Noel <vincent.noel@gmail.com>
 
+	* logview.c: (logview_save_prefs), (logview_destroy):
+	* userprefs.c: (prefs_store_active_log), (prefs_save): Make sure
+	that the active log is correctly saved when an archive is displayed.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
 	* log_repaint.c: (logview_create_model):
 	* loglist.c: (loglist_find_directory), (loglist_find_log),
 	(loglist_unbold_log), (loglist_bold_log), (loglist_select_log),
