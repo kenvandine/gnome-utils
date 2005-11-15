@@ -23,8 +23,6 @@
 #include "loglist.h"
 #include "logrtns.h"
 
-extern gboolean restoration_complete;
-
 struct LogListPriv {
     GtkListStore *model;
 };
@@ -159,7 +157,7 @@ loglist_add_log (LogList *list, Log *log)
 	gtk_list_store_set (list->priv->model, &iter, 
                         LOG_NAME, log->name, LOG_POINTER, log, -1);
 
-	if (restoration_complete) {
+	if (GTK_WIDGET_VISIBLE (GTK_WIDGET (list))) {
 		GtkTreeSelection *selection;
 		selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list));
 		gtk_tree_selection_select_iter (selection, &iter);

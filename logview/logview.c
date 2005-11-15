@@ -42,7 +42,6 @@ enum {
 };
 
 static GObjectClass *parent_class;
-extern gboolean restoration_complete;
 
 /* Function Prototypes */
 
@@ -312,7 +311,7 @@ logview_save_prefs (LogviewWindow *logview)
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
-	if (restoration_complete) {
+    if (GTK_WIDGET_VISIBLE (GTK_WIDGET (logview->loglist))) {
         prefs_free_loglist();
         for (list = g_list_first (logview->logs); list != NULL; list = g_list_next (list)) {
             log = list->data;

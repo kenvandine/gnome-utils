@@ -36,7 +36,6 @@
 
 static gboolean queue_err_messages = FALSE;
 static GList *msg_queue_main = NULL, *msg_queue_sec = NULL;
-extern gboolean restoration_complete;
 const char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
  N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),

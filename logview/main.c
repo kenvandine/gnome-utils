@@ -30,8 +30,6 @@
 #include "misc.h"
 #include "userprefs.h"
 
-gboolean restoration_complete = FALSE;
-
 static gchar *config_prefix = NULL;
 static gchar *sm_client_id = NULL;
 static int screen = 0;
@@ -143,7 +141,6 @@ main (int argc, char *argv[])
 	   for (i=1; i<argc; i++)
 		   logview_add_log_from_name (logview, argv[i]);
    }
-   restoration_complete = TRUE;
 
    gtk_widget_show (logview->calendar);
    gtk_widget_show (logview->loglist);
