@@ -286,6 +286,18 @@ logview_set_window_title (LogviewWindow *window)
 	g_free (window_title);
 }
 
+void
+logview_show_main_content (LogviewWindow *logview)
+{
+  g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+  gtk_widget_show (logview->calendar);
+  gtk_widget_show (logview->loglist);
+  gtk_widget_show (logview->sidebar);
+  gtk_widget_show (logview->view);
+  gtk_widget_show (logview->hpaned);
+  gtk_widget_show (logview->statusbar);
+}
+
 /* private functions */
 
 static void

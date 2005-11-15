@@ -142,16 +142,11 @@ main (int argc, char *argv[])
 		   logview_add_log_from_name (logview, argv[i]);
    }
 
-   gtk_widget_show (logview->calendar);
-   gtk_widget_show (logview->loglist);
-   gtk_widget_show (logview->sidebar);
-   gtk_widget_show (logview->view);
-   gtk_widget_show (logview->hpaned);
-   gtk_widget_show (logview->statusbar);
-
    gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);    
    gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
    
+   logview_show_main_content (logview);
+
    gnome_client = gnome_master_client ();
 
    error_dialog_queue (FALSE);
