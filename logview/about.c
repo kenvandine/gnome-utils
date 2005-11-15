@@ -37,9 +37,12 @@ logview_about (GtkWidget *widget, GtkWidget *window)
 				   "Jan Arne Petersen  <jpetersen@uni-bonn.de>",
 				   "Jason Long  <jlong@messiah.edu>",
 				   "Kjartan Maraas  <kmaraas@gnome.org>",
-				   "Vincent Noel  <vnoel@cox.net>",
+				   "Vincent Noel  <vincent.noel@gmail.com>",
 				   NULL};
-  gchar *documenters[] = {NULL};
+  gchar *documenters[] = { "Sun GNOME Documentation Team <gdocteam@sun.com>",
+			   "Vincent Noel <vincent.noel@gmail.com>",
+			   "Judith Samson <judith@samsonsource.com>",
+			   NULL};
   /* Translator credits */
   const gchar *translator_credits = _("translator-credits");
   g_return_if_fail (GTK_IS_WINDOW (window));
