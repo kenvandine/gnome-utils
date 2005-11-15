@@ -37,17 +37,16 @@ GType logview_findbar_get_type (void);
 static gboolean
 iter_is_visible (GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 {
-	gchar *message;
-	gboolean found = FALSE;
-	gpointer day;
 	LogviewFindBar *findbar = LOGVIEW_FINDBAR (data);
+	gboolean found = FALSE;
+	gchar *message;
+	gpointer day;
 
 	gtk_tree_model_get (model, iter, 0, &message, 1, &day, -1);
-	if (day != NULL)
+	if (day)
 		return TRUE;
-
-	if (message != NULL)
-		found = (g_strrstr (message, findbar->priv->search_string) != NULL);
+	if (message)
+		found = (g_strstr_len (message, -1, findbar->priv->search_string) != NULL);
 	return found;
 }
 
@@ -158,6 +157,7 @@ logview_findbar_finalize (GObject *object)
 	LogviewFindBar *findbar = LOGVIEW_FINDBAR (object);
 
 	g_free (findbar->priv);
+	parent_class->finalize (object);
 }
 
 static void

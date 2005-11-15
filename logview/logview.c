@@ -720,7 +720,7 @@ logview_window_finalize (GObject *object)
 {
     LogviewWindow *window = (LogviewWindow *) object;
 
-	g_object_unref (window->ui_manager);
+    g_object_unref (window->ui_manager);
     parent_class->finalize (object);
 }
 

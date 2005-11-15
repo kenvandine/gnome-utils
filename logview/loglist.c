@@ -232,6 +232,7 @@ loglist_finalize (GObject *object)
 {
 	LogList *list = LOG_LIST (object);
 	g_free (list->priv);
+	parent_class->finalize (object);
 }
 
 static void

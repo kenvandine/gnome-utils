@@ -180,6 +180,7 @@ calendar_class_finalize (GObject *object)
 {
     Calendar *calendar = CALENDAR (object);
     g_free (calendar->priv);
+	parent_class->finalize (object);
 }
 
 static void

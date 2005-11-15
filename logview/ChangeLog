@@ -1,5 +1,12 @@
 2005-11-15  Vincent Noel <vincent.noel@gmail.com>
 
+	* calendar.c: (calendar_class_finalize):
+	* loglist.c: (loglist_finalize):
+	* logview-findbar.c: (iter_is_visible), (logview_findbar_finalize):
+	* logview.c: (logview_window_finalize): Finalize the GObjects.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
 	* userprefs.c (prefs_create_defaults): Actually parse all the
 	default logs.
 
