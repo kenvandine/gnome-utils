@@ -36,6 +36,11 @@
 
 #define APP_NAME _("System Log Viewer")
 
+enum {
+  PROP_0,
+  PROP_DAYS,
+};
+
 static GObjectClass *parent_class;
 extern gboolean restoration_complete;
 
@@ -65,6 +70,8 @@ static void logview_help (GtkAction *action, GtkWidget *parent_window);
 static void logview_copy (GtkAction *action, LogviewWindow *logview);
 static void logview_select_all (GtkAction *action, LogviewWindow *logview);
 static Log *logview_find_log_from_name (LogviewWindow *logview, gchar *name);
+
+static void logview_window_get_property	(GObject *object, guint param_id, GValue *value, GParamSpec *pspec);
 
 /* Menus */
 
@@ -679,7 +686,7 @@ logview_calendar_set_state (LogviewWindow *logview)
 
     if (logview->curlog) {
         if (logview->curlog->days != NULL)
-            calendar_init_data (CALENDAR (logview->calendar), logview->curlog);
+            calendar_init_data (CALENDAR (logview->calendar), logview);
         gtk_widget_set_sensitive (logview->calendar, (logview->curlog->days != NULL));
     } else
         gtk_widget_set_sensitive (logview->calendar, FALSE);
@@ -866,12 +873,34 @@ logview_init (LogviewWindow *window)
 }
 
 static void
+logview_window_get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec)
+{
+  LogviewWindow *logview = LOGVIEW_WINDOW (object);
+  
+  switch (param_id) {
+  case PROP_DAYS:
+    g_value_set_pointer (value, logview->curlog->days);
+    break;
+  default:
+    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
+    break;
+  }
+}
+
+static void
 logview_window_class_init (LogviewWindowClass *klass)
 {
 	GObjectClass *object_class = (GObjectClass *) klass;
 
 	object_class->finalize = logview_window_finalize;
+	object_class->get_property = logview_window_get_property;
 	parent_class = g_type_class_peek_parent (klass);
+
+	g_object_class_install_property (object_class, PROP_DAYS,
+					 g_param_spec_pointer ("days",
+					 _("Days"),
+					 _("Pointer towards a GSList of days for the current log."),
+					 (G_PARAM_READABLE)));
 }
 
 GType

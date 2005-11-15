@@ -47,7 +47,7 @@ typedef struct CalendarClass
 
 GtkWidget *calendar_new (void);
 void calendar_select_date (Calendar *calendar, GDate *date);
-void calendar_init_data (Calendar *calendar, Log *log);
+void calendar_init_data (Calendar *calendar, LogviewWindow *logview);
 void calendar_connect (Calendar *calendar, LogviewWindow *window);
 
 G_END_DECLS

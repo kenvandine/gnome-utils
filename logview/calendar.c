@@ -59,14 +59,12 @@ calendar_mark_dates (Calendar *calendar)
 */
 
 void
-calendar_init_data (Calendar *calendar, Log *log)
+calendar_init_data (Calendar *calendar, LogviewWindow *logview)
 {
     g_return_if_fail (IS_CALENDAR (calendar));
+	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
-    if (log == NULL)
-        return;
-    
-    calendar->priv->days = log->days;
+	g_object_get (G_OBJECT (logview), "days", &(calendar->priv->days), NULL);
     calendar->priv->first_pass = TRUE;
 
     calendar_mark_dates (calendar);
