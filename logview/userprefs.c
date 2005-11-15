@@ -106,7 +106,7 @@ prefs_create_defaults (UserPrefs *p)
 		logs = parse_syslog ("/etc/syslog.conf");
 	}
 	
-	for (i=0; i<7; i++) {
+	for (i=0; i<10; i++) {
 		if (file_is_log (logfiles[i], FALSE))
 			logs = g_slist_append (logs, g_strdup(logfiles[i]));
 	}
