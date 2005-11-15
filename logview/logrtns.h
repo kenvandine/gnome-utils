@@ -77,5 +77,6 @@ Log *log_open (char *filename, gboolean show_error);
 gboolean log_read_new_lines (Log *log);
 gboolean log_unbold (gpointer data);
 void log_close (Log * log);
+gchar *log_extract_filename (Log *log);
 
 #endif /* __LOGRTNS_H__ */

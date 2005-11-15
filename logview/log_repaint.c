@@ -303,6 +303,7 @@ logview_create_model (LogviewWindow *window, Log *log)
 {
     GtkTreeIter iter, child_iter;
     GtkTreePath *path;
+	GdkCursor *cursor;
     gchar *line;
     GList *days;
     Day *day;
@@ -311,6 +312,13 @@ logview_create_model (LogviewWindow *window, Log *log)
 
     g_assert (LOGVIEW_IS_WINDOW (window));
     g_assert (log->total_lines > 0);
+
+	if (GTK_WIDGET_VISIBLE (window->view)) {
+	  cursor = gdk_cursor_new (GDK_WATCH);
+	  gdk_window_set_cursor (GTK_WIDGET (window)->window, cursor);
+	  gdk_cursor_unref (cursor);
+	  gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (window)));
+	}
 
     log->model = GTK_TREE_MODEL(gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_POINTER));
 
@@ -344,6 +352,11 @@ logview_create_model (LogviewWindow *window, Log *log)
     }
 
     log->displayed_lines = log->total_lines;
+
+	if (GTK_WIDGET_VISIBLE (window->view)) {
+	  gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);    
+	  gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (window)));   
+	}
 }
 
 void

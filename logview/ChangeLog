@@ -1,5 +1,18 @@
 2005-11-15  Vincent Noel <vincent.noel@gmail.com>
 
+	* log_repaint.c: (logview_create_model):
+	* loglist.c: (loglist_find_directory), (loglist_find_log),
+	(loglist_unbold_log), (loglist_bold_log), (loglist_select_log),
+	(loglist_remove_log), (loglist_add_log), (loglist_init):
+	* logrtns.c: (log_extract_filename):
+	* logrtns.h:
+	* logview.c: (logview_add_log_from_name),
+	(logview_add_logs_from_names), (logview_file_selected_cb):
+	* main.c: (main): Add a tree view in the side bar to group logs by
+	directory.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
 	* log_repaint.c (logview_update_version_bar): Make sure to show the version bar.
 	* logview.c (logview_search): Make sure to show the filter bar.
 

@@ -206,9 +206,9 @@ logview_add_log_from_name (LogviewWindow *logview, gchar *file)
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (file);
 
-	log = log_open (file, TRUE);
-	if (log != NULL)
-		  logview_add_log (logview, log);
+    log = log_open (file, TRUE);
+    if (log != NULL)
+      logview_add_log (logview, log);
 }
 
 void
@@ -223,6 +223,11 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
     if (lognames == NULL)
         return;
 
+    cursor = gdk_cursor_new (GDK_WATCH);
+    gdk_window_set_cursor (GTK_WIDGET (logview)->window, cursor);
+    gdk_cursor_unref (cursor);
+    gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
+
     for (list = lognames; list != NULL; list = g_slist_next (list)) {
       log = log_open (list->data, FALSE);
       if (log != NULL) {
@@ -234,6 +239,9 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
         
     if (curlog)
         loglist_select_log (LOG_LIST (logview->loglist), curlog);
+
+    gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);    
+    gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
 }
 
 void
@@ -460,8 +468,8 @@ logview_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logv
 	   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
 		   log = list->data;
 		   if (g_ascii_strncasecmp (log->name, f, 255) == 0) {
-				 loglist_select_log (LOG_LIST (logview->loglist), log);
-			   return;
+		     loglist_select_log (LOG_LIST (logview->loglist), log);
+		     return;
 		   }
 	   }
 

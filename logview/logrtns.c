@@ -554,3 +554,16 @@ log_close (Log *log)
    g_free (log);
    return;
 }
+
+gchar *
+log_extract_filename (Log *log)
+{
+  GnomeVFSURI *uri;
+  gchar *filename;
+
+  uri = gnome_vfs_uri_new (log->name);
+  filename = gnome_vfs_uri_extract_short_name (uri);
+  gnome_vfs_uri_unref (uri);
+
+  return filename;
+}
