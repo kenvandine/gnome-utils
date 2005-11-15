@@ -828,7 +828,7 @@ logview_init (LogviewWindow *window)
 
    /* Main Tree View */
    window->view = gtk_tree_view_new ();
-   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), TRUE); 
+   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), FALSE); 
    gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (window->view), TRUE);
    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), FALSE);
 
