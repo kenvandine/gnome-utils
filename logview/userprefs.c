@@ -181,7 +181,7 @@ prefs_menus_have_tearoff_changed (GConfClient *client, guint id,
     
   g_assert (client != NULL);      
   gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
-				   prefs_get_have_tearoff ());
+								   prefs_get_have_tearoff ());
 }
 
 gchar *
@@ -277,9 +277,8 @@ prefs_store_window_size (GtkWidget *window)
 	int width, height;
 
     g_return_if_fail (GTK_IS_WINDOW (window));
-
+      
 	gtk_window_get_size (GTK_WINDOW(window), &width, &height);
-	/* FIXME : we should check the state of the window, maximized or not */
 	if (width > 0 && height > 0) {
 		prefs->width = width;
 		prefs->height = height;
