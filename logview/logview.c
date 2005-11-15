@@ -240,6 +240,8 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
     if (curlog)
         loglist_select_log (LOG_LIST (logview->loglist), curlog);
 
+    gtk_tree_view_expand_all (GTK_TREE_VIEW (logview->loglist));
+
     gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);    
     gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
 }
@@ -828,9 +830,7 @@ logview_init (LogviewWindow *window)
 
    /* Main Tree View */
    window->view = gtk_tree_view_new ();
-   gtk_tree_view_set_rules_hint (GTK_TREE_VIEW (window->view), FALSE); 
    gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (window->view), TRUE);
-   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), FALSE);
 
    /* Use the desktop monospace font */
    monospace_font_name = prefs_get_monospace ();
