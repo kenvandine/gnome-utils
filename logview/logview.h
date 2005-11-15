@@ -49,6 +49,7 @@ struct _LogviewWindow {
 	GtkWidget *sidebar; 
 	GtkWidget *version_bar;
 	GtkWidget *version_selector;
+    GtkWidget *hpaned;
     
     GList *logs;
 	Log *curlog;

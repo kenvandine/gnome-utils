@@ -728,7 +728,7 @@ logview_window_finalize (GObject *object)
 static void
 logview_init (LogviewWindow *window)
 {
-   GtkWidget *vbox, *hbox;
+   GtkWidget *vbox;
    GtkTreeStore *tree_store;
    GtkTreeSelection *selection;
    GtkTreeViewColumn *column;
@@ -741,7 +741,7 @@ logview_init (LogviewWindow *window)
    GtkWidget *hpaned;
    GtkWidget *label;
    GtkWidget *main_view;
-   GtkWidget *scrolled;
+   GtkWidget *loglist_scrolled, *scrolled;
    PangoContext *context;
    PangoFontDescription *fontdesc;
    gchar *monospace_font_name;
@@ -785,14 +785,14 @@ logview_init (LogviewWindow *window)
    gtk_box_pack_end (GTK_BOX (window->sidebar), GTK_WIDGET(window->calendar), FALSE, FALSE, 0);
    
    /* log list */
-   scrolled = gtk_scrolled_window_new (NULL, NULL);
-   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
+   loglist_scrolled = gtk_scrolled_window_new (NULL, NULL);
+   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (loglist_scrolled),
                                    GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled),
+   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (loglist_scrolled),
                                         GTK_SHADOW_ETCHED_IN);
    window->loglist = loglist_new ();
-   gtk_container_add (GTK_CONTAINER (scrolled), window->loglist);
-   gtk_box_pack_start (GTK_BOX (window->sidebar), scrolled, TRUE, TRUE, 0);
+   gtk_container_add (GTK_CONTAINER (loglist_scrolled), window->loglist);
+   gtk_box_pack_start (GTK_BOX (window->sidebar), loglist_scrolled, TRUE, TRUE, 0);
    gtk_paned_pack1 (GTK_PANED (hpaned), window->sidebar, FALSE, FALSE);
    loglist_connect (LOG_LIST(window->loglist), window);
 
@@ -862,15 +862,14 @@ logview_init (LogviewWindow *window)
                      G_CALLBACK (window_size_changed_cb), window);
 
    /* Status area at bottom */
-   hbox = gtk_hbox_new (FALSE, 0);   
    window->statusbar = gtk_statusbar_new ();
-   gtk_box_pack_start (GTK_BOX (hbox), window->statusbar, TRUE, TRUE, 0);
+   gtk_box_pack_start (GTK_BOX (vbox), window->statusbar, FALSE, FALSE, 0);
 
-   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
-
-   gtk_widget_show_all (vbox);
-   gtk_widget_hide (window->find_bar);
-   gtk_widget_hide (window->version_bar);
+   gtk_widget_show (menubar);
+   gtk_widget_show (loglist_scrolled);
+   gtk_widget_show (main_view);
+   gtk_widget_show (vbox);
+   window->hpaned = hpaned;
 }
 
 static void
