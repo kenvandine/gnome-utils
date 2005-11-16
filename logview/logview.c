@@ -41,6 +41,13 @@ enum {
   PROP_DAYS,
 };
 
+enum {
+  LOG_LINE_TEXT = 0,
+  LOG_LINE_POINTER,
+  LOG_LINE_WEIGHT,
+  LOG_LINE_WEIGHT_SET
+};
+
 static GObjectClass *parent_class;
 
 /* Function Prototypes */
@@ -838,9 +845,12 @@ logview_init (LogviewWindow *window)
    renderer = gtk_cell_renderer_text_new ();
    column = gtk_tree_view_column_new ();
    gtk_tree_view_column_pack_start (column, renderer, TRUE);
-   gtk_tree_view_column_set_attributes (column, renderer, "text", 0, NULL);
+   gtk_tree_view_column_set_attributes (column, renderer, 
+                                        "text", LOG_LINE_TEXT, 
+                                        "weight", LOG_LINE_WEIGHT,
+                                        "weight-set", LOG_LINE_WEIGHT_SET,
+                                        NULL);
    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-
    gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
 
    /* Version selector */
