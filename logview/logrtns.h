@@ -52,6 +52,13 @@ struct _log
 	gint total_lines; /* no of lines in the file */
     gint displayed_lines; /* no of lines displayed now */
 
+
+	/* Monitor info */
+	GnomeVFSFileSize mon_offset;
+	GnomeVFSMonitorHandle *mon_handle;
+    GnomeVFSHandle *mon_file_handle;
+	gboolean monitored;
+
 	gboolean first_time;
 	GtkTreePath *current_path;
     GtkTreeModel *model;
@@ -63,12 +70,6 @@ struct _log
 	Log *older_logs[5];
 	Log *parent_log;
 	
-	/* Monitor info */
-	GnomeVFSFileOffset mon_offset;
-	GnomeVFSMonitorHandle *mon_handle;
-    GnomeVFSHandle *mon_file_handle;
-	gboolean monitored;
-
     gpointer window;
 };
 

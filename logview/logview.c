@@ -182,20 +182,17 @@ logview_count_logs (LogviewWindow *logview)
 void
 logview_select_log (LogviewWindow *logview, Log *log)
 {
-	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    
-	logview->curlog = log;
-	logview_menus_set_state (logview);
-	logview_calendar_set_state (logview);
-	log_repaint (logview);
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+  
+    logview->curlog = log;
+    logview_menus_set_state (logview);
+    logview_calendar_set_state (logview);
+    log_repaint (logview);
     logview_update_findbar_visibility (logview);
-
-	logview_update_version_bar (logview);
-	logview_save_prefs (logview); 
+    
+    logview_update_version_bar (logview);
+    logview_save_prefs (logview); 
     gtk_widget_grab_focus (logview->view);
-
-    if (log)
-        log->displayed_lines = 0;
 } 
 
 void

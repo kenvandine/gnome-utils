@@ -402,6 +402,7 @@ log_open (char *filename, gboolean show_error)
    log->stats = stats;
    log->model = NULL;
    log->filter = NULL;
+   log->mon_offset = 0;
 
    /* A log without dates will return NULL */
    log->days = log_read_dates (log->lines, log->stats->file_time);
@@ -410,7 +411,6 @@ log_open (char *filename, gboolean show_error)
    log->versions = 0;
    log->current_version = 0;
    log->parent_log = NULL;
-   log->mon_offset = size;
    for (i=1; i<5; i++) {
        gchar *older_name;
        older_name = g_strdup_printf ("%s.%d", log->name, i);
@@ -448,7 +448,7 @@ log_add_lines (Log *log, gchar *buffer)
   g_assert (buffer != NULL);
 
   old_buffer = g_strjoinv ("\n", log->lines);
-  new_buffer = g_strconcat (old_buffer, buffer);
+  new_buffer = g_strconcat (old_buffer, "\n", buffer, NULL);
   g_free (old_buffer);
   
   g_strfreev (log->lines);
@@ -463,30 +463,29 @@ log_add_lines (Log *log, gchar *buffer)
 gboolean 
 log_read_new_lines (Log *log)
 {
-	GnomeVFSResult result;
-	gchar *buffer;
+    GnomeVFSResult result;
+    gchar *buffer;
     GnomeVFSFileSize newsize, read;
     GnomeVFSFileOffset size;
-
-	g_return_val_if_fail (log!=NULL, FALSE);
+    
+    g_return_val_if_fail (log!=NULL, FALSE);
     
     result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_END, 0L);
-	result = gnome_vfs_tell (log->mon_file_handle, &newsize);
+    result = gnome_vfs_tell (log->mon_file_handle, &newsize);
     size = log->mon_offset;
     
-	if (newsize > log->mon_offset) {
-        buffer = g_malloc (newsize-size);
-        result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
-        result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);
-        buffer [newsize-size-1] = 0;
-        log->mon_offset = newsize;
-        
-        log_add_lines (log, buffer);
-        g_free (buffer);
-
-        return TRUE;
-	}
-	return FALSE;
+    if (newsize > log->mon_offset) {
+      buffer = g_malloc (newsize-size);
+      result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
+      result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);
+      buffer [newsize-size-1] = 0;
+      log->mon_offset = newsize;      
+      log_add_lines (log, buffer);
+      g_free (buffer);
+      
+      return TRUE;
+    }
+    return FALSE;
 }
 
 /* 

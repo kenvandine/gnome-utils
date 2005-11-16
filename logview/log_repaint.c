@@ -185,12 +185,12 @@ logview_update_version_bar (LogviewWindow *logview)
 		for (i=0; i<(recent->versions); i++) {
 			label = g_strdup_printf ("Archive %d", i+1);
 			gtk_combo_box_append_text (GTK_COMBO_BOX (logview->version_selector),
-																 label);
+                                                   label);
 			g_free (label);
 		}
-
+                
 		gtk_combo_box_set_active (GTK_COMBO_BOX (logview->version_selector), 
-															log->current_version);
+                                          log->current_version);
 
 	} else {
 		gtk_widget_hide (logview->version_bar);
@@ -236,7 +236,7 @@ logview_add_new_log_lines (LogviewWindow *window, Log *log)
     log->displayed_lines = log->total_lines;
 
     path = gtk_tree_model_get_path (GTK_TREE_MODEL (log->model), &child_iter);
-    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, TRUE, 1, 1);
+    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, FALSE, 1, 0.5);
 }
     
 static void
@@ -372,8 +372,9 @@ log_repaint (LogviewWindow *window)
         log = window->curlog;
 
         if ((log->displayed_lines > 0) &&
-            (log->displayed_lines != log->total_lines))
-            logview_add_new_log_lines (window, log);
+            (log->displayed_lines != log->total_lines)) {
+          logview_add_new_log_lines (window, log);
+        }
         else {
 
             if (log->model == NULL) {
