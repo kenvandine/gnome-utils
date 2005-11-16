@@ -367,7 +367,11 @@ logview_destroy (GObject *object, LogviewWindow *logview)
 
     logview_save_prefs (logview);
     prefs_free_loglist ();
-    gtk_main_quit ();
+
+    if (gtk_main_level() > 0)
+      gtk_main_quit ();
+    else
+      exit (0);
 }
 
 static void

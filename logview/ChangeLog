@@ -1,5 +1,12 @@
 2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
 
+	* log_repaint.c (logview_show_busy_cursor): New. Only show the busy
+	  cursor after a short delay.
+	  (logview_create_model): Try not to make the cursor flicker.
+
+	* logview.c (logview_destroy): Don't call gtk_main_quit if we're not
+	  in the gtk main loop yet.
+
 	* log_repaint.c: (logview_unbold_rows),
 	(logview_scroll_and_focus_path), (log_repaint): When switching to
 	a log with new lines, scroll down to the new lines and show them in

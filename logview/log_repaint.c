@@ -40,6 +40,7 @@ typedef struct LogBoldRows
   GtkTreePath *last;
 }LogBoldRows;
 static GList *bold_rows_list = NULL;
+static gboolean busy_cursor = FALSE;
 
 void
 row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
@@ -348,7 +349,7 @@ logview_scroll_and_focus_path (LogviewWindow *logview, GtkTreePath *path)
 }
 
 static void
-log_fill_model_no_date (Log *log)
+log_fill_model_no_date (Log *log, GtkTreeModel *model)
 {
     int i;
     gchar *line;
@@ -359,16 +360,16 @@ log_fill_model_no_date (Log *log)
 
     for (i=log->total_lines-1; i>=0; i--) {
         line = log->lines[i];
-        gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &iter, NULL);
-        gtk_tree_store_set (GTK_TREE_STORE (log->model), &iter,                            
+        gtk_tree_store_prepend (GTK_TREE_STORE (model), &iter, NULL);
+        gtk_tree_store_set (GTK_TREE_STORE (model), &iter,                            
                             MESSAGE, line, DAY_POINTER, NULL, -1);
         if (i == log->total_lines-1)
-            log->current_path = gtk_tree_model_get_path (log->model, &iter);
+            log->current_path = gtk_tree_model_get_path (model, &iter);
     }
 }
 
 static void
-log_fill_model_date (Log *log)
+log_fill_model_date (Log *log, GtkTreeModel *model)
 {
     GtkTreeIter iter, child_iter;
     GtkTreePath *path;
@@ -387,9 +388,9 @@ log_fill_model_date (Log *log)
         day = days->data;
         line = log->lines[day->first_line];
  
-        gtk_tree_store_append (GTK_TREE_STORE (log->model), &iter, NULL);
-        model_fill_date_iter (GTK_TREE_STORE (log->model), &iter, day);
-        path = gtk_tree_model_get_path (log->model, &iter);
+        gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
+        model_fill_date_iter (GTK_TREE_STORE (model), &iter, day);
+        path = gtk_tree_model_get_path (model, &iter);
         day->path = gtk_tree_path_copy (path);
         gtk_tree_path_free (path);
         path = NULL;
@@ -397,8 +398,8 @@ log_fill_model_date (Log *log)
         /* Now cycle on the lines for the studied day */
         for (i = day->last_line; i >= day->first_line; i--) {
             line = log->lines[i];
-            gtk_tree_store_prepend (GTK_TREE_STORE (log->model), &child_iter, &iter);
-            gtk_tree_store_set (GTK_TREE_STORE (log->model), &child_iter,                            
+            gtk_tree_store_prepend (GTK_TREE_STORE (model), &child_iter, &iter);
+            gtk_tree_store_set (GTK_TREE_STORE (model), &child_iter,                            
                                 MESSAGE, line, DAY_POINTER, NULL, -1);
         }                
         
@@ -406,39 +407,53 @@ log_fill_model_date (Log *log)
             day->expand = TRUE;
             log->current_path = gtk_tree_path_copy (day->path);
         } else
-            day->expand = FALSE;            
+            day->expand = FALSE; 
+        
+        while (gtk_events_pending ())
+          gtk_main_iteration ();
     }
 
     log->displayed_lines = log->total_lines;
 
 }
 
-static void
-logview_create_model (LogviewWindow *logview, Log *log)
+static gboolean
+logview_show_busy_cursor (LogviewWindow *logview)
 {
   GdkCursor *cursor;
-
-  g_assert (log != NULL);
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
-  if (GTK_WIDGET_VISIBLE (logview->view)) {
+  if (GTK_WIDGET_VISIBLE (logview->view) && logview->curlog->model == NULL) {
     cursor = gdk_cursor_new (GDK_WATCH);
     gdk_window_set_cursor (GTK_WIDGET (logview)->window, cursor);
     gdk_cursor_unref (cursor);
     gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
+    busy_cursor = TRUE;
   }
+  return (FALSE);
+}  
 
-  log->model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_POINTER,
+static void
+logview_create_model (LogviewWindow *logview, Log *log)
+{
+  GtkTreeModel *model;
+
+  g_assert (log != NULL);
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  g_timeout_add (200, (GSourceFunc) logview_show_busy_cursor, logview);
+  model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_POINTER,
                                                   G_TYPE_INT, G_TYPE_BOOLEAN));
   if (log->days != NULL)
-    log_fill_model_date (log);
+    log_fill_model_date (log, model);
   else
-    log_fill_model_no_date (log);
+    log_fill_model_no_date (log, model);
   
-  if (GTK_WIDGET_VISIBLE (logview->view)) {
+  log->model = model;
+  if (busy_cursor) {
     gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);    
     gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
+    busy_cursor = FALSE;
   }
+  
 
 }  
 
