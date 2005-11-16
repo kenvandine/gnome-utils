@@ -114,9 +114,11 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
 	
     g_return_if_fail (GTK_IS_TREE_SELECTION (selection));
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    g_return_if_fail (logview->curlog);
 
     log = logview->curlog;
+    if (log == NULL)
+      return;
+
 	selected_paths = gtk_tree_selection_get_selected_rows (selection, &model);
 
     if (selected_paths == NULL)
@@ -330,25 +332,28 @@ log_add_new_log_lines (Log *log)
 }
     
 static void
-logview_scroll_and_focus_path (LogviewWindow *logview, GtkTreePath *path)
+logview_scroll_and_focus_path (LogviewWindow *logview, Log *log)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
+    
+    if (log == NULL)
+      return;
 
-    if (path != NULL)
-      gtk_tree_view_set_cursor (GTK_TREE_VIEW (logview->view), path, NULL, FALSE); 
+    if (log->current_path != NULL)
+      gtk_tree_view_set_cursor (GTK_TREE_VIEW (logview->view), log->current_path, NULL, FALSE); 
 
-    if (logview->curlog->bold_rows_list != NULL) {
+    if (log->bold_rows_list != NULL) {
       TreePathRange *bold_rows;
-      bold_rows = g_list_last (logview->curlog->bold_rows_list)->data;      
+      bold_rows = g_list_last (log->bold_rows_list)->data;      
       
       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (logview->view),
                                     bold_rows->last,
                                     NULL, TRUE, 1.0, 1);   
     } else {
 
-      if (logview->curlog->visible_range.first != NULL) {
+      if (log->visible_range.first != NULL) {
       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (logview->view),
-                                    logview->curlog->visible_range.first,
+                                    log->visible_range.first,
                                     NULL, TRUE, 0.0, 1);   
       }
     }
@@ -493,5 +498,5 @@ logview_repaint (LogviewWindow *logview)
     if (gtk_tree_view_get_model (GTK_TREE_VIEW (logview->view)) != log->model)
       logview_set_log_model (logview, log);
 
-    logview_scroll_and_focus_path (logview, log->current_path);
+    logview_scroll_and_focus_path (logview, log);
 }
