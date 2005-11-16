@@ -443,24 +443,24 @@ log_repaint (LogviewWindow *logview)
     Log *log;
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     
+    log = logview->curlog;
+
     logview_update_statusbar (logview);
     logview_set_window_title (logview);
-
-    if (logview->curlog == NULL) {
+      
+    if (log == NULL) {
       gtk_tree_view_set_model (GTK_TREE_VIEW (logview->view), NULL);
       return;
     }
 
-    log = logview->curlog;
-      
-    if ( (log->displayed_lines > 0) &&
-         (gtk_tree_view_get_model (GTK_TREE_VIEW (logview->view)) == log->model) )
-      {
-        logview_add_new_log_lines (logview, log);
-      } else {
-      if (log->model == NULL)
-        logview_create_model (logview, log);  
+    if (log->model == NULL)
+      logview_create_model (logview, log);
+
+    if (log->displayed_lines < log->total_lines)
+      logview_add_new_log_lines (logview, log);
+
+    if (gtk_tree_view_get_model (GTK_TREE_VIEW (logview->view)) != log->model)
       logview_show_model (logview, log);
-      logview_scroll_and_focus_path (logview, log->current_path);
-    }
+
+    logview_scroll_and_focus_path (logview, log->current_path);
 }
