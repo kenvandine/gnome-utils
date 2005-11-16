@@ -146,9 +146,7 @@ main (int argc, char *argv[])
    g_signal_connect (gnome_client, "save_yourself",
 		     G_CALLBACK (save_session), logview);
    g_signal_connect (gnome_client, "die", G_CALLBACK (die), NULL);
-
    gtk_main ();
-
    return 0;
 }
 

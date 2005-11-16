@@ -227,11 +227,6 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
     if (lognames == NULL)
         return;
 
-    cursor = gdk_cursor_new (GDK_WATCH);
-    gdk_window_set_cursor (GTK_WIDGET (logview)->window, cursor);
-    gdk_cursor_unref (cursor);
-    gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
-
     for (list = lognames; list != NULL; list = g_slist_next (list)) {
       log = log_open (list->data, FALSE);
       if (log != NULL) {
@@ -245,9 +240,6 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
         loglist_select_log (LOG_LIST (logview->loglist), curlog);
 
     gtk_tree_view_expand_all (GTK_TREE_VIEW (logview->loglist));
-
-    gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);    
-    gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
 }
 
 void
