@@ -256,7 +256,7 @@ logview_unbold_rows (Log *log)
 static void
 logview_add_new_log_lines (LogviewWindow *window, Log *log)
 {
-    GtkTreeIter iter, child_iter;
+  GtkTreeIter iter, child_iter, *iter_ptr;
     GtkTreePath *path;
     LogBoldRows *bold_rows;
     Day *day;
@@ -267,13 +267,18 @@ logview_add_new_log_lines (LogviewWindow *window, Log *log)
     g_assert (log);
     
     /* Find the last expandable row */
-    day = g_list_last (log->days)->data;
-    gtk_tree_model_get_iter (log->model, &iter, day->path);
+    if (log->days) {
+      day = g_list_last (log->days)->data;
+      gtk_tree_model_get_iter (log->model, &iter, day->path);
+      iter_ptr = &iter;
+    } else {
+      iter_ptr = NULL;
+    }  
                 
     for (i=log->displayed_lines; i<log->total_lines; i++) {
         line = log->lines[i];
         if (line != NULL) {
-            gtk_tree_store_append (GTK_TREE_STORE (log->model), &child_iter, &iter);
+            gtk_tree_store_append (GTK_TREE_STORE (log->model), &child_iter, iter_ptr);
             gtk_tree_store_set (GTK_TREE_STORE (log->model), &child_iter,
                                 MESSAGE, line, 
                                 DAY_POINTER, NULL,
@@ -456,7 +461,7 @@ log_repaint (LogviewWindow *logview)
     if (log->model == NULL)
       logview_create_model (logview, log);
 
-    if (log->displayed_lines < log->total_lines)
+    if ((log->displayed_lines < log->total_lines) && (log->displayed_lines != 0))
       logview_add_new_log_lines (logview, log);
 
     if (gtk_tree_view_get_model (GTK_TREE_VIEW (logview->view)) != log->model)
