@@ -137,7 +137,7 @@ string_get_date_string (gchar *line)
         return;
 
     split = g_strsplit (line, " ", 4);
-    while ((day == NULL || month == NULL) && split[i]!=NULL) {
+    while ((day == NULL || month == NULL) && split[i]!=NULL && i<4) {
         if (g_str_equal (split[i], "")) {
             i++;
             continue;
@@ -242,19 +242,28 @@ log_read_dates (gchar **buffer_lines, time_t current)
        g_free (date_string);
 
        if (!done) {
+         /* We need to find the first line now that has a date
+            Logs can have some messages without dates ... */
+         newdate = NULL;
+         while (newdate == NULL && !done) {
            i++;
            date_string = string_get_date_string (buffer_lines[i]);
            if (date_string == NULL)
-               continue;
+             continue;
            newdate = string_get_date (buffer_lines[i]);
-           if (newdate == NULL)
-               continue;      
+           
+           if (newdate == NULL && i==n)
+             done = TRUE;
+         }
 
-           /* Append a day to the list */	
+         day->last_line = i-1;
+
+         /* Append a day to the list */	
+         if (newdate) {
            g_date_set_year (newdate, current_year + offsetyear);	
            if (g_date_compare (newdate, date) < 1) {
-               offsetyear++; /* newdate is next year */
-               g_date_add_years (newdate, 1);
+             offsetyear++; /* newdate is next year */
+             g_date_add_years (newdate, 1);
            }
            
            date = newdate;
@@ -266,6 +275,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
            day->last_line = -1;
            rangemin = i;
            rangemax = n;
+         }
        }
    }
 
