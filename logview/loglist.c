@@ -33,7 +33,9 @@ GType loglist_get_type (void);
 
 enum {
 	LOG_NAME = 0,
-	LOG_POINTER
+	LOG_POINTER,
+	LOG_WEIGHT,
+	LOG_WEIGHT_SET
 };
 
 static GtkTreePath *
@@ -111,37 +113,34 @@ loglist_get_log_iter (LogList *list, Log *log, GtkTreeIter *logiter)
 void
 loglist_unbold_log (LogList *list, Log *log)
 {
+    GtkTreeModel *model;
     GtkTreeIter iter;
-    GtkTreeModel *model = GTK_TREE_MODEL (list->priv->model);
-    gchar *filename;
 
     g_return_if_fail (LOG_IS_LIST (list));
     g_return_if_fail (log != NULL);
 
+    model = GTK_TREE_MODEL (list->priv->model);
+
     loglist_get_log_iter (list, log, &iter);
-    filename = log_extract_filename (log);
-    gtk_tree_store_set (GTK_TREE_STORE (model), &iter, LOG_NAME, filename, -1);
-    g_free (filename);
+    gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+			LOG_WEIGHT_SET, FALSE, -1);
 }
 
 void
 loglist_bold_log (LogList *list, Log *log)
 {
-    GtkTreeIter iter;
     GtkTreeModel *model;
-    gchar *markup, *filename;
+    GtkTreeIter iter;
     
     g_return_if_fail (LOG_IS_LIST (list));
     g_return_if_fail (log != NULL);
 
-    loglist_get_log_iter (list, log, &iter);
     model = GTK_TREE_MODEL (list->priv->model);
 
-    filename = log_extract_filename (log);
-    markup = g_markup_printf_escaped ("<b>%s</b>", filename);
-    g_free (filename);
-    gtk_tree_store_set (GTK_TREE_STORE (model), &iter, LOG_NAME, markup, -1);
-    g_free (markup);
+    loglist_get_log_iter (list, log, &iter);
+    gtk_tree_store_set (GTK_TREE_STORE (model), &iter, 
+			LOG_WEIGHT, PANGO_WEIGHT_BOLD,
+			LOG_WEIGHT_SET, TRUE, -1);
 
     /* if the log is currently shown, put up a timer to unbold it */
     if (logview_get_active_log (log->window) == log)
@@ -235,6 +234,7 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
+  gboolean bold;
   gchar *name;
   Log *log;
 
@@ -246,9 +246,12 @@ loglist_selection_changed (GtkTreeSelection *selection, LogviewWindow *logview)
       return;
   }
 
-  gtk_tree_model_get (model, &iter, LOG_NAME, &name, LOG_POINTER, &log, -1);
-  logview_select_log (logview, log);      
-  if (g_str_has_prefix (name, "<b>") && g_str_has_suffix (name, "</b>"))
+  gtk_tree_model_get (model, &iter, 
+		      LOG_NAME, &name, 
+		      LOG_POINTER, &log, 
+		      LOG_WEIGHT_SET, &bold, -1);
+  logview_select_log (logview, log);
+  if (bold)
       g_timeout_add (5000, log_unbold, log);
 }
 
@@ -275,7 +278,7 @@ loglist_init (LogList *list)
 
     list->priv = g_new0 (LogListPriv, 1);
 
-    model = gtk_tree_store_new (2, G_TYPE_STRING, G_TYPE_POINTER);
+    model = gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_INT, G_TYPE_BOOLEAN);
     gtk_tree_view_set_model (GTK_TREE_VIEW (list), GTK_TREE_MODEL (model));
     list->priv->model = model;
     gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list), FALSE);
@@ -285,8 +288,14 @@ loglist_init (LogList *list)
     gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
     
     cell = gtk_cell_renderer_text_new ();
-    column = gtk_tree_view_column_new_with_attributes ("words", cell, "markup", 0, NULL);
-    
+    column = gtk_tree_view_column_new ();
+    gtk_tree_view_column_pack_start (column, cell, TRUE);
+    gtk_tree_view_column_set_attributes (column, cell,
+					 "text", LOG_NAME,
+					 "weight-set", LOG_WEIGHT_SET,
+					 "weight", LOG_WEIGHT,
+					 NULL);
+
     gtk_tree_view_append_column (GTK_TREE_VIEW (list), column);
     gtk_tree_view_set_search_column (GTK_TREE_VIEW (list), -1);
 }

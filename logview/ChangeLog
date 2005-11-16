@@ -1,3 +1,10 @@
+2005-11-16  Vincent Noel <vincent.noel@gmail.com>
+
+	* loglist.c: (loglist_unbold_log), (loglist_bold_log),
+	(loglist_selection_changed), (loglist_init): Bold log names the
+	"correct" way, by connecting a GtkTreeViewColumn attributes to the
+	"weight" attribute of the GtkCellRenderer.
+
 2005-11-15  Vincent Noel <vincent.noel@gmail.com>
 
 	* logview.c (logview_add_logs_from_names): Expand all rows in the
