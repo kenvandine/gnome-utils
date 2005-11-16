@@ -831,6 +831,7 @@ logview_init (LogviewWindow *window)
    /* Main Tree View */
    window->view = gtk_tree_view_new ();
    gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (window->view), TRUE);
+   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), FALSE);
 
    /* Use the desktop monospace font */
    monospace_font_name = prefs_get_monospace ();
@@ -838,8 +839,11 @@ logview_init (LogviewWindow *window)
    g_free (monospace_font_name);
   
    renderer = gtk_cell_renderer_text_new ();
-   column = gtk_tree_view_column_new_with_attributes (NULL, renderer, "text", 0, NULL);
+   column = gtk_tree_view_column_new ();
+   gtk_tree_view_column_pack_start (column, renderer, TRUE);
+   gtk_tree_view_column_set_attributes (column, renderer, "text", 0, NULL);
    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+
    gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
 
    /* Version selector */
