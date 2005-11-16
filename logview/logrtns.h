@@ -38,11 +38,11 @@ typedef struct
     GnomeVFSFileSize file_size;
 } LogStats;
 
-typedef struct LogBoldRows
+typedef struct TreePathRange
 {
   GtkTreePath *first;
   GtkTreePath *last;
-}LogBoldRows;
+}TreePathRange;
 
 typedef struct _log Log;
 struct _log
@@ -70,6 +70,7 @@ struct _log
     GtkTreeModel *model;
     GtkTreeModelFilter *filter;
     GList *bold_rows_list;
+    TreePathRange visible_range;
 
 	int versions;
 	int current_version;

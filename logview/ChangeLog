@@ -1,5 +1,16 @@
 2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
 
+	* log_repaint.c: (selection_changed_cb), (logview_unbold_rows),
+	(log_add_new_log_lines), (logview_scroll_and_focus_path):
+	* logrtns.c: (log_close):
+	* logrtns.h:
+	* logview.c: (logview_store_visible_range), (logview_select_log),
+	(logview_add_logs_from_names): Store the visible treeview range
+	for each opened log, so we can scroll back the exact same position
+	when switching logs.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
+
 	* logrtns.c (log_read_dates): Don't barf on multi-lines log
 	messages than don't include dates. Bug reported by John Rice
 

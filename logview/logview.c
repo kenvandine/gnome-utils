@@ -186,11 +186,30 @@ logview_count_logs (LogviewWindow *logview)
     return g_list_length (logview->logs);
 }
 
+static void
+logview_store_visible_range (LogviewWindow *logview)
+{
+  Log *log = logview->curlog;
+  if (log == NULL)
+    return;
+
+  if (log->visible_range.first)
+    gtk_tree_path_free (log->visible_range.first);
+  if (log->visible_range.last)
+    gtk_tree_path_free (log->visible_range.last);
+
+  gtk_tree_view_get_visible_range (GTK_TREE_VIEW (logview->view),
+                                   & (log->visible_range.first),
+                                   & (log->visible_range.last));
+}
+
 void
 logview_select_log (LogviewWindow *logview, Log *log)
 {
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
   
+    logview_store_visible_range (logview);
+
     logview->curlog = log;
     logview_menus_set_state (logview);
     logview_calendar_set_state (logview);
@@ -220,7 +239,6 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
 {
     GSList *list;
     Log *log, *curlog = NULL;
-    GdkCursor *cursor;
 	
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 

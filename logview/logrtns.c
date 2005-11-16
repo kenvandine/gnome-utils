@@ -558,8 +558,13 @@ log_close (Log *log)
    }
    
    g_free (log->stats);
-   gtk_tree_path_free (log->current_path);
-   log->current_path = NULL;
+
+   if (log->current_path)
+     gtk_tree_path_free (log->current_path);
+   if (log->visible_range.first)
+     gtk_tree_path_free (log->visible_range.first);
+   if (log->visible_range.last)
+     gtk_tree_path_free (log->visible_range.last);
 
    g_free (log);
    return;

@@ -122,8 +122,8 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
     if (selected_paths == NULL)
         return;    
 
-    for (path = selected_paths; path != NULL; path = g_list_next (path)) {		    
-        
+    for (path = selected_paths; path != NULL; path = g_list_next (path)) {		            
+
         selected_path = path->data;
         
         row = tree_path_find_row (model, selected_path, (log->days != NULL));
@@ -134,18 +134,22 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
             selected_first = row;
         
         if (log->days) {
+            GtkTreePath *day_path;
             GtkTreeIter iter;
             Day *day;
 
-            if (gtk_tree_path_get_depth (selected_path) > 1)
-                gtk_tree_path_up (selected_path);
-            gtk_tree_model_get_iter (model, &iter, selected_path);
+            day_path = gtk_tree_path_copy (selected_path);
+            if (gtk_tree_path_get_depth (day_path) > 1)
+                gtk_tree_path_up (day_path);
+            gtk_tree_model_get_iter (model, &iter, day_path);
             gtk_tree_model_get (model, &iter, DAY_POINTER, &day, -1);
             calendar_select_date (CALENDAR (logview->calendar), day->date);
+            gtk_tree_path_free (day_path);
         }
     }
     
     log->current_path = gtk_tree_path_copy (selected_path);
+
     log->selected_line_first = selected_first;
     log->selected_line_last = selected_last;
     g_list_foreach (selected_paths, (GFunc) gtk_tree_path_free, NULL);
@@ -241,7 +245,7 @@ static gboolean
 logview_unbold_rows (Log *log)
 {
   LogviewWindow *logview;
-  LogBoldRows *bold_rows;
+  TreePathRange *bold_rows;
   GtkTreeIter iter;
   GtkTreePath *path;
 
@@ -279,7 +283,7 @@ log_add_new_log_lines (Log *log)
 {
     GtkTreeIter iter, child_iter, *iter_ptr;
     GtkTreePath *path;
-    LogBoldRows *bold_rows;
+    TreePathRange *bold_rows;
     Day *day;
     int i;
     gchar *line;
@@ -312,7 +316,7 @@ log_add_new_log_lines (Log *log)
         /* Remember the first and last bold lines in the model to
            unset them later */
         if (i==log->displayed_lines) {
-          bold_rows = g_new0 (LogBoldRows, 1);
+          bold_rows = g_new0 (TreePathRange, 1);
           bold_rows->first = gtk_tree_model_get_path (log->model, &child_iter);
         }
         if (i == log->total_lines-1) {
@@ -333,14 +337,22 @@ logview_scroll_and_focus_path (LogviewWindow *logview, GtkTreePath *path)
     if (path != NULL)
       gtk_tree_view_set_cursor (GTK_TREE_VIEW (logview->view), path, NULL, FALSE); 
 
-    if (path == NULL || logview->curlog->bold_rows_list != NULL) {
-      LogBoldRows *rows;
-      rows = g_list_first (logview->curlog->bold_rows_list)->data;
-      path = rows->first;
+    if (logview->curlog->bold_rows_list != NULL) {
+      TreePathRange *bold_rows;
+      bold_rows = g_list_last (logview->curlog->bold_rows_list)->data;      
+      
+      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (logview->view),
+                                    bold_rows->last,
+                                    NULL, TRUE, 1.0, 1);   
+    } else {
+
+      if (logview->curlog->visible_range.first != NULL) {
+      gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (logview->view),
+                                    logview->curlog->visible_range.first,
+                                    NULL, TRUE, 0.0, 1);   
+      }
     }
 
-    gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (logview->view), path, NULL, TRUE, 
-                                  0., 1);
 }
 
 static void
