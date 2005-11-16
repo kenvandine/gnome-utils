@@ -53,15 +53,11 @@ monitor_callback (GnomeVFSMonitorHandle *handle, const gchar *monitor_uri,
   
   g_assert (log);
 
-  if (log_read_new_lines (log)) {
-      logview  = (LogviewWindow *) log->window;
-      loglist_bold_log (LOG_LIST (logview->loglist), log);
-      if (logview->curlog == log) {
-          log_repaint (logview);
-      }
-  }
-
-  return;
+  logview  = LOGVIEW_WINDOW (log->window);
+  loglist_bold_log (LOG_LIST (logview->loglist), log);
+  log->needs_refresh = TRUE;
+  if (logview->curlog == log)
+    logview_repaint (logview);
 }
 
 void

@@ -58,12 +58,12 @@ struct _log
 	gint total_lines; /* no of lines in the file */
     gint displayed_lines; /* no of lines displayed now */
 
-
 	/* Monitor info */
 	GnomeVFSFileSize mon_offset;
 	GnomeVFSMonitorHandle *mon_handle;
     GnomeVFSHandle *mon_file_handle;
 	gboolean monitored;
+    gboolean needs_refresh;
 
 	gboolean first_time;
 	GtkTreePath *current_path;

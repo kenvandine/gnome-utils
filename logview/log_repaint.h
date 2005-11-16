@@ -20,7 +20,7 @@
 #ifndef __LOG_REPAINT_H__
 #define __LOG_REPAINT_H__
 
-void log_repaint (LogviewWindow *window);
+void logview_repaint (LogviewWindow *window);
 void selection_changed_cb (GtkTreeSelection *selection, gpointer data);
 void row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter, 
 		     GtkTreePath *path, gpointer user_data);

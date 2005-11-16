@@ -110,7 +110,7 @@ logview_findbar_entry_changed_cb (GtkEditable *editable,
 	if (strlen (search_string) == 0 && log->filter != NULL) {
 		g_object_unref (log->filter);
 		log->filter = NULL;
-		log_repaint (logview);
+		logview_repaint (logview);
 		return;
 	}
 

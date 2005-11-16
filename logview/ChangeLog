@@ -2,7 +2,10 @@
 
 	* log_repaint.c: (logview_unbold_rows),
 	(logview_add_new_log_lines), (logview_scroll_and_focus_path),
-	(log_fill_model_date):
+	(log_fill_model_date, logview_scroll_and_focus_path): Finally handle correctly
+        the adding of new lines to a log, be it selected or not. Don't select
+	the new lines, just scroll to them.
+
 	* logrtns.c: (log_open):
 	* logrtns.h: cleanups and fixes for potential sync problems.
 
