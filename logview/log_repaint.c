@@ -34,12 +34,6 @@ enum {
    LOG_LINE_WEIGHT_SET
 };
 
-typedef struct LogBoldRows
-{
-  GtkTreePath *first;
-  GtkTreePath *last;
-}LogBoldRows;
-static GList *bold_rows_list = NULL;
 static gboolean busy_cursor = FALSE;
 
 void
@@ -227,11 +221,13 @@ logview_unbold_rows (Log *log)
   GtkTreeIter iter;
   GtkTreePath *path;
 
-  if (bold_rows_list == NULL)
+  g_assert (log);
+
+  if (log->bold_rows_list == NULL)
     return FALSE;
 
-  bold_rows = g_list_first (bold_rows_list)->data;
-  g_return_val_if_fail (bold_rows != NULL, FALSE);
+  bold_rows = g_list_first (log->bold_rows_list)->data;
+  g_assert (bold_rows != NULL);
 
   logview = log->window;
   if (logview->curlog != log)
@@ -248,7 +244,7 @@ logview_unbold_rows (Log *log)
   
   gtk_tree_path_free (bold_rows->first);
   gtk_tree_path_free (bold_rows->last);
-  bold_rows_list = g_list_remove (bold_rows_list, bold_rows);
+  log->bold_rows_list = g_list_remove (log->bold_rows_list, bold_rows);
   g_free (bold_rows);
 
   return FALSE;
@@ -298,7 +294,7 @@ logview_add_new_log_lines (LogviewWindow *window, Log *log)
         }
     }
     log->displayed_lines = log->total_lines;
-    bold_rows_list = g_list_append (bold_rows_list, bold_rows);
+    log->bold_rows_list = g_list_append (log->bold_rows_list, bold_rows);
 
     path = gtk_tree_model_get_path (GTK_TREE_MODEL (log->model), &child_iter);
     gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (window->view), path, NULL, FALSE, 1, 0.5);
@@ -337,9 +333,9 @@ logview_scroll_and_focus_path (LogviewWindow *logview, GtkTreePath *path)
     g_assert (LOGVIEW_IS_WINDOW (logview));
     g_assert (path);
 
-    if (bold_rows_list != NULL) {
+    if (logview->curlog->bold_rows_list != NULL) {
       LogBoldRows *rows;
-      rows = g_list_first (bold_rows_list)->data;
+      rows = g_list_first (logview->curlog->bold_rows_list)->data;
       path = rows->first;
     }
 
@@ -372,7 +368,6 @@ static void
 log_fill_model_date (Log *log, GtkTreeModel *model)
 {
     GtkTreeIter iter, child_iter;
-    GtkTreePath *path;
     gchar *line;
     GList *days;
     Day *day;
@@ -390,10 +385,7 @@ log_fill_model_date (Log *log, GtkTreeModel *model)
  
         gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
         model_fill_date_iter (GTK_TREE_STORE (model), &iter, day);
-        path = gtk_tree_model_get_path (model, &iter);
-        day->path = gtk_tree_path_copy (path);
-        gtk_tree_path_free (path);
-        path = NULL;
+        day->path = gtk_tree_model_get_path (model, &iter);
 
         /* Now cycle on the lines for the studied day */
         for (i = day->last_line; i >= day->first_line; i--) {

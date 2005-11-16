@@ -403,6 +403,7 @@ log_open (char *filename, gboolean show_error)
    log->model = NULL;
    log->filter = NULL;
    log->mon_offset = 0;
+   log->bold_rows_list = NULL;
 
    /* A log without dates will return NULL */
    log->days = log_read_dates (log->lines, log->stats->file_time);
