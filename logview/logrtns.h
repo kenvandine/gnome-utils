@@ -66,11 +66,11 @@ struct _log
     gboolean needs_refresh;
 
 	gboolean first_time;
-	GtkTreePath *current_path;
     GtkTreeModel *model;
     GtkTreeModelFilter *filter;
     GList *bold_rows_list;
-    TreePathRange visible_range;
+	TreePathRange selected_range;
+    GtkTreePath *visible_first;
 
 	int versions;
 	int current_version;

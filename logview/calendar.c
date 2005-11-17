@@ -116,8 +116,8 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
     found_day = log_find_day (window->curlog, day, month, year);
     if (found_day != NULL) {
         path = found_day->path;
-        if ((gtk_tree_path_compare (path, window->curlog->current_path) != 0) &&
-            (!gtk_tree_path_is_descendant (window->curlog->current_path, path)))
+        if ((gtk_tree_path_compare (path, window->curlog->selected_range.first) != 0) &&
+            (!gtk_tree_path_is_descendant (window->curlog->selected_range.first, path)))
             gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
     }
 }

@@ -1,5 +1,30 @@
 2005-11-17  Vincent Noel  <vincent.noel@gmail.com>
 
+	* calendar.c: (calendar_day_selected):
+	* log_repaint.c: (selection_changed_cb), (logview_unbold_rows),
+	(log_add_new_log_lines), (logview_scroll_and_focus_path),
+	(log_fill_model_no_date), (log_fill_model_with_date):
+	* logrtns.c: (log_close):
+	* logrtns.h:
+	* logview.c: (logview_store_visible_range): The previous
+	workaround did not always work, so include a better fix.
+
+2005-11-17  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (calendar_day_selected):
+	* log_repaint.c: (selection_changed_cb), (logview_unbold_rows),
+	(log_add_new_log_lines), (logview_scroll_and_focus_path),
+	(log_fill_model_no_date), (log_fill_model_with_date),
+	(logview_repaint):
+	* logrtns.c: (log_close):
+	* logrtns.h:
+	* logview.c: (logview_store_visible_range): Some refactoring. Work
+	around a weird bug, where scrolling to bold lines when switching to
+	another log would result in the last row of the model being shown
+	in the middle of the treeview, this making the visible range invalid.
+
+2005-11-17  Vincent Noel  <vincent.noel@gmail.com>
+
 	* log_repaint.c (logview_scroll_and_focus_path): 
 	Use gtk_tree_selection_select_path instead of
 	gtk_tree_view_set_cursor to set the selection. Avoid obvious flicker

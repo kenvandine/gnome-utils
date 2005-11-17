@@ -189,18 +189,17 @@ logview_count_logs (LogviewWindow *logview)
 static void
 logview_store_visible_range (LogviewWindow *logview)
 {
+  GtkTreePath *first, *last;
   Log *log = logview->curlog;
   if (log == NULL)
     return;
 
-  if (log->visible_range.first)
-    gtk_tree_path_free (log->visible_range.first);
-  if (log->visible_range.last)
-    gtk_tree_path_free (log->visible_range.last);
+  if (log->visible_first)
+    gtk_tree_path_free (log->visible_first);
 
-  gtk_tree_view_get_visible_range (GTK_TREE_VIEW (logview->view),
-                                   & (log->visible_range.first),
-                                   & (log->visible_range.last));
+  if (gtk_tree_view_get_visible_range (GTK_TREE_VIEW (logview->view),
+                                       &first, NULL))
+    log->visible_first = first;
 }
 
 void

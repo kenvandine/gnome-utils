@@ -559,12 +559,12 @@ log_close (Log *log)
    
    g_free (log->stats);
 
-   if (log->current_path)
-     gtk_tree_path_free (log->current_path);
-   if (log->visible_range.first)
-     gtk_tree_path_free (log->visible_range.first);
-   if (log->visible_range.last)
-     gtk_tree_path_free (log->visible_range.last);
+   if (log->selected_range.first)
+     gtk_tree_path_free (log->selected_range.first);
+   if (log->selected_range.last)
+     gtk_tree_path_free (log->selected_range.last);
+   if (log->visible_first)
+     gtk_tree_path_free (log->visible_first);
 
    g_free (log);
    return;
