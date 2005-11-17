@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-27 13:55+0200\n"
-"PO-Revision-Date: 2005-10-27 22:16+0800\n"
+"POT-Creation-Date: 2005-11-17 06:40+0100\n"
+"PO-Revision-Date: 2005-11-17 18:13+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "Lookup words in an online dictionary"
 msgstr "在在线字典中查阅单词"
 
 #: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:595
-#: ../logview/logview.c:118
+#: ../logview/logview.c:116
 msgid "_About"
 msgstr "关于(_A)"
 
@@ -63,7 +63,7 @@ msgstr ""
 "2628 可以作为参考"
 
 #. Translator credits
-#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:44
+#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Wang Li <charlesw1234@163.com>\n"
@@ -135,7 +135,7 @@ msgstr "打印(_P)"
 msgid "Print the current definition"
 msgstr "打印当前定义"
 
-#: ../gdictsrc/gdict-app.c:581
+#: ../gdictsrc/gdict-app.c:581 ../logview/logview.c:92
 msgid "_Close"
 msgstr "关闭(_C)"
 
@@ -144,7 +144,7 @@ msgid "Close the application"
 msgstr "关闭应用程序"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:585 ../logview/logview.c:103
+#: ../gdictsrc/gdict-app.c:585
 msgid "_Find..."
 msgstr "查找(_F)..."
 
@@ -169,7 +169,7 @@ msgid "Configure the application"
 msgstr "配置应用程序"
 
 #. Help menu
-#: ../gdictsrc/gdict-app.c:593 ../logview/logview.c:116
+#: ../gdictsrc/gdict-app.c:593 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "目录(_C)"
 
@@ -189,11 +189,11 @@ msgstr "剪切(_T)"
 msgid "Cut the selection"
 msgstr "剪切选中内容"
 
-#: ../gdictsrc/gdict-app.c:603
+#: ../gdictsrc/gdict-app.c:603 ../logview/logview.c:97
 msgid "_Copy"
 msgstr "复制(_C)"
 
-#: ../gdictsrc/gdict-app.c:604 ../logview/logview.c:99
+#: ../gdictsrc/gdict-app.c:604 ../logview/logview.c:97
 msgid "Copy the selection"
 msgstr "复制选中内容"
 
@@ -205,7 +205,7 @@ msgstr "粘贴(_P)"
 msgid "Paste clipboard"
 msgstr "粘贴剪贴板上的内容"
 
-#: ../gdictsrc/gdict-app.c:607
+#: ../gdictsrc/gdict-app.c:607 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "全选(_A)"
 
@@ -1067,95 +1067,106 @@ msgstr "快速搜索排除的路径"
 msgid "Quick Search Second Scan Excluded Paths"
 msgstr "快速搜索第二次扫描排除的路径"
 
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:5
+msgid "Search Result Columns Order"
+msgstr "搜索结果列顺序"
+
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:7
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:8
 msgid "Select the search option \"Contains the text\""
 msgstr "选择搜索选项“包含文字”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:10
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:11
 msgid "Select the search option \"Date modified less than\""
 msgstr "选择搜索选项“修改日期少于”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:13
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:14
 msgid "Select the search option \"Date modified more than\""
 msgstr "选择搜索选项“修改日期多于”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:16
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:17
 msgid "Select the search option \"File is empty\""
 msgstr "选择搜索选项“文件为空”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:19
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:20
 msgid "Select the search option \"Follow symbolic links\""
 msgstr "选择搜索选项“跟随符号连接”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:22
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:23
 msgid "Select the search option \"Include other filesystems\""
 msgstr "选择搜索选项“包括其它文件系统”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:25
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:26
 msgid "Select the search option \"Name does not contain\""
 msgstr "选择搜索选项“名称不包含”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:28
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:29
 msgid "Select the search option \"Name matches regular expression\""
 msgstr "选择搜索选项“名称匹配正则表达式”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:31
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:32
 msgid "Select the search option \"Owned by group\""
 msgstr "选择搜索选项“文件所属组”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:34
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:35
 msgid "Select the search option \"Owned by user\""
 msgstr "选择搜索选项“文件所属用户”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:37
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:38
 msgid "Select the search option \"Owner is unrecognized\""
 msgstr "选择搜索选项“未知的所属用户”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:40
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:41
 msgid "Select the search option \"Show hidden files and folders\""
 msgstr "选择搜索选项“显示隐藏文件和文件夹”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:43
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:44
 msgid "Select the search option \"Size at least\""
 msgstr "选择搜索选项“大小最少为”"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:46
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:47
 msgid "Select the search option \"Size at most\""
 msgstr "搜索选项“大小最多为”"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:47
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid "Show Additional Options"
 msgstr "选择额外选项"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:48
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:49
+msgid ""
+"This key defines the order of the columns in the search results. This key "
+"should not be modified by the user."
+msgstr ""
+"此键定义了搜索结果中各列的顺序。此键不应该由用户自行修改。"
+
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
@@ -1164,7 +1175,7 @@ msgstr ""
 "此键定义了执行快速搜索时被排除的路径。支持通配符“*”和“?”。默认值为 /mnt/*、/"
 "media/*、/dev/*、/tmp/*、/proc/* 和 /var/*。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:49
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -1176,67 +1187,67 @@ msgstr ""
 "索文件。第二遍扫描的目的是查找没有加入索引的文件。支持通配符“*”和“?”。默认值"
 "为 /。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:50
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“包含文字”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:51
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“修改日期早于”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:52
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“修改日期晚于”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:53
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key determines if the \"File is empty\" search option is selected when "
 "the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“文件为空”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:54
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“跟随符号链接”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:55
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“包含其它文件夹系统”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:56
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“名称不包含”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:57
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“名称匹配正则表达式”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:58
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“由组所有”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:59
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:61
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“由用户所有”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:60
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:62
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
@@ -1244,37 +1255,37 @@ msgstr "此键决定了搜索工具启动时是否选中“属主无法识别”
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:63
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
 msgstr "此键决定了搜索工具启动时是否展开“选择更多选项”节。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:64
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“显示隐藏文件和文件夹”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:65
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“大小至少为”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:66
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
 msgstr "此键决定了搜索工具启动时是否选中“大小至多为”搜索选项。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:67
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:69
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
 msgstr "此键决定了是否禁止搜索工具在执行快速搜索后使用 find 命令。"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:68
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:70
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
@@ -1390,7 +1401,7 @@ msgstr "您选择的文档名是文件夹。"
 msgid "You may not have write permissions to the document."
 msgstr "您可能没有对文档的写权限。"
 
-#: ../gsearchtool/gsearchtool-support.c:71
+#: ../gsearchtool/gsearchtool-support.c:70
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -1404,24 +1415,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:601
+#: ../gsearchtool/gsearchtool-support.c:622
 msgid "today at %-I:%M %p"
 msgstr "今天 %H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:603
+#: ../gsearchtool/gsearchtool-support.c:624
 msgid "yesterday at %-I:%M %p"
 msgstr "昨天 %H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:605
-#: ../gsearchtool/gsearchtool-support.c:607
+#: ../gsearchtool/gsearchtool-support.c:626
+#: ../gsearchtool/gsearchtool-support.c:628
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%Y年%-m月%-d日 %H:%M:%S"
 
-#: ../gsearchtool/gsearchtool-support.c:786
+#: ../gsearchtool/gsearchtool-support.c:807
 msgid "link (broken)"
 msgstr "链接(已断开)"
 
-#: ../gsearchtool/gsearchtool-support.c:790
+#: ../gsearchtool/gsearchtool-support.c:811
 #, c-format
 msgid "link to %s"
 msgstr "链接到 %s"
@@ -1540,7 +1551,7 @@ msgid_plural "%d files found"
 msgstr[0] "找到了 %d 个文件"
 
 #: ../gsearchtool/gsearchtool.c:824 ../gsearchtool/gsearchtool.c:1083
-#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2902
+#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2951
 msgid "Search for Files"
 msgstr "搜索文件"
 
@@ -1586,7 +1597,7 @@ msgstr "选择并设置“%s”搜索选项"
 msgid "Invalid option passed to sortby command line argument."
 msgstr "传递给命令行参数 sortby 的选项无效。"
 
-#: ../gsearchtool/gsearchtool.c:1617
+#: ../gsearchtool/gsearchtool.c:1621
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1594,175 +1605,175 @@ msgstr ""
 "\n"
 "... 错误太多无法完全显示 ..."
 
-#: ../gsearchtool/gsearchtool.c:1631
+#: ../gsearchtool/gsearchtool.c:1635
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "搜索结果可能无效，因为在执行本次搜索时发生了错误。"
 
-#: ../gsearchtool/gsearchtool.c:1643 ../gsearchtool/gsearchtool.c:1687
+#: ../gsearchtool/gsearchtool.c:1647 ../gsearchtool/gsearchtool.c:1691
 msgid "Show more _details"
 msgstr "显示更多细节(_D)"
 
-#: ../gsearchtool/gsearchtool.c:1673
+#: ../gsearchtool/gsearchtool.c:1677
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
 msgstr "搜索结果可能过期或无效。您是否想要禁用快速搜索特性？"
 
-#: ../gsearchtool/gsearchtool.c:1698
+#: ../gsearchtool/gsearchtool.c:1702
 msgid "Disable _Quick Search"
 msgstr "禁用快速搜索(_Q)"
 
-#: ../gsearchtool/gsearchtool.c:1725
+#: ../gsearchtool/gsearchtool.c:1729
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "设定子 %d 的组 ID 失败：%s。\n"
 
-#: ../gsearchtool/gsearchtool.c:1752
+#: ../gsearchtool/gsearchtool.c:1756
 msgid "Error parsing the search command."
 msgstr "处理搜索命令时出错。"
 
-#: ../gsearchtool/gsearchtool.c:1785
+#: ../gsearchtool/gsearchtool.c:1789
 msgid "Error running the search command."
 msgstr "运行搜索命令时出错。"
 
-#: ../gsearchtool/gsearchtool.c:1910
+#: ../gsearchtool/gsearchtool.c:1915
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "输入“%s”搜索选项的文本值。"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1915
+#: ../gsearchtool/gsearchtool.c:1920
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "“%s”，以%s计"
 
-#: ../gsearchtool/gsearchtool.c:1917
+#: ../gsearchtool/gsearchtool.c:1922
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "输入以 %s 计的“%s”搜索选项值。"
 
-#: ../gsearchtool/gsearchtool.c:1976
+#: ../gsearchtool/gsearchtool.c:1981
 #, c-format
 msgid "Remove \"%s\""
 msgstr "删除“%s”"
 
-#: ../gsearchtool/gsearchtool.c:1977
+#: ../gsearchtool/gsearchtool.c:1982
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "单击可删除“%s”搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2070
+#: ../gsearchtool/gsearchtool.c:2075
 msgid "A_vailable options:"
 msgstr "可用选项(_V)："
 
-#: ../gsearchtool/gsearchtool.c:2099
+#: ../gsearchtool/gsearchtool.c:2104
 msgid "Available options"
 msgstr "可用选项"
 
-#: ../gsearchtool/gsearchtool.c:2100
+#: ../gsearchtool/gsearchtool.c:2105
 msgid "Select a search option from the drop-down list."
 msgstr "从下拉列表中选择搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2112
+#: ../gsearchtool/gsearchtool.c:2117
 msgid "Add search option"
 msgstr "添加搜索选项"
 
-#: ../gsearchtool/gsearchtool.c:2113
+#: ../gsearchtool/gsearchtool.c:2118
 msgid "Click to add the selected available search option."
 msgstr "单击可添加选中的可用搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2171
+#: ../gsearchtool/gsearchtool.c:2207
 msgid "S_earch results:"
 msgstr "搜索结果(_E)："
 
-#: ../gsearchtool/gsearchtool.c:2207
+#: ../gsearchtool/gsearchtool.c:2245
 msgid "List View"
 msgstr "列表视图"
 
-#: ../gsearchtool/gsearchtool.c:2267
+#: ../gsearchtool/gsearchtool.c:2305
 msgid "Name"
 msgstr "名称"
 
-#: ../gsearchtool/gsearchtool.c:2290
+#: ../gsearchtool/gsearchtool.c:2329
 msgid "Folder"
 msgstr "文件夹"
 
-#: ../gsearchtool/gsearchtool.c:2301
+#: ../gsearchtool/gsearchtool.c:2341
 msgid "Size"
 msgstr "大小"
 
-#: ../gsearchtool/gsearchtool.c:2311
+#: ../gsearchtool/gsearchtool.c:2352
 msgid "Type"
 msgstr "类型"
 
-#: ../gsearchtool/gsearchtool.c:2321
+#: ../gsearchtool/gsearchtool.c:2363
 msgid "Date Modified"
 msgstr "修改时间"
 
-#: ../gsearchtool/gsearchtool.c:2691
+#: ../gsearchtool/gsearchtool.c:2740
 msgid "_Name contains:"
 msgstr "名称包含(_N)："
 
-#: ../gsearchtool/gsearchtool.c:2705 ../gsearchtool/gsearchtool.c:2706
+#: ../gsearchtool/gsearchtool.c:2754 ../gsearchtool/gsearchtool.c:2755
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "输入文件名或部分文件名，可以使用通配符。"
 
-#: ../gsearchtool/gsearchtool.c:2706
+#: ../gsearchtool/gsearchtool.c:2755
 msgid "Name contains"
 msgstr "名称包含"
 
-#: ../gsearchtool/gsearchtool.c:2712
+#: ../gsearchtool/gsearchtool.c:2761
 msgid "_Look in folder:"
 msgstr "搜索文件夹(_L)："
 
-#: ../gsearchtool/gsearchtool.c:2718
+#: ../gsearchtool/gsearchtool.c:2767
 msgid "Browse"
 msgstr "浏览"
 
-#: ../gsearchtool/gsearchtool.c:2723
+#: ../gsearchtool/gsearchtool.c:2772
 msgid "Look in folder"
 msgstr "搜索文件夹"
 
-#: ../gsearchtool/gsearchtool.c:2723
+#: ../gsearchtool/gsearchtool.c:2772
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "选择您想要开始搜索的文件夹或设备。"
 
-#: ../gsearchtool/gsearchtool.c:2734
+#: ../gsearchtool/gsearchtool.c:2783
 msgid "Select more _options"
 msgstr "选择更多选项(_O)"
 
-#: ../gsearchtool/gsearchtool.c:2743
+#: ../gsearchtool/gsearchtool.c:2792
 msgid "Select more options"
 msgstr "选择更多选项"
 
-#: ../gsearchtool/gsearchtool.c:2743
+#: ../gsearchtool/gsearchtool.c:2792
 msgid "Click to expand or collapse the list of available options."
 msgstr "单击可展开或折叠可用选项列表。"
 
-#: ../gsearchtool/gsearchtool.c:2767
+#: ../gsearchtool/gsearchtool.c:2816
 msgid "Click to display the help manual."
 msgstr "单击可显示帮助手册。"
 
-#: ../gsearchtool/gsearchtool.c:2775
+#: ../gsearchtool/gsearchtool.c:2824
 msgid "Click to close \"Search for Files\"."
 msgstr "单击可关闭“搜索文件”。"
 
-#: ../gsearchtool/gsearchtool.c:2801
+#: ../gsearchtool/gsearchtool.c:2850
 msgid "Click to perform a search."
 msgstr "单击可执行搜索。"
 
-#: ../gsearchtool/gsearchtool.c:2802
+#: ../gsearchtool/gsearchtool.c:2851
 msgid "Click to stop a search."
 msgstr "单击可停止搜索。"
 
-#: ../logview/about.c:48 ../logview/logview.c:47
+#: ../logview/about.c:51 ../logview/logview.c:37
 msgid "System Log Viewer"
 msgstr "系统日志查看器"
 
-#: ../logview/about.c:51
+#: ../logview/about.c:54
 msgid "A system log viewer for GNOME."
 msgstr "GNOME 系统日志查看器。"
 
@@ -1774,55 +1785,25 @@ msgstr "系统日志"
 msgid "View the system log file"
 msgstr "查看系统日志文件"
 
-#: ../logview/info.c:45
+#: ../logview/log_repaint.c:177
+#,  c-format
+msgid "last update : %s"
+msgstr "上次更新：%s"
+
+#: ../logview/log_repaint.c:179
 #, c-format
-msgid "<b>Size</b>: %s"
-msgstr "<b>大小</b>：%s"
+msgid "%d lines (%s) - %s"
+msgstr "%d 行(%s) - %s"
 
-#: ../logview/info.c:50
-#, c-format
-msgid "<b>Modified</b>: %s"
-msgstr "<b>修改日期</b>：%s"
-
-#: ../logview/info.c:56
-#, c-format
-msgid "<b>Start Date</b>: %s"
-msgstr "<b>开始日期</b>：%s"
-
-#: ../logview/info.c:62
-#, c-format
-msgid "<b>Last Date</b>: %s"
-msgstr "<b>持续日期</b>：%s"
-
-#: ../logview/info.c:66
-#, c-format
-msgid "<b>Number of Lines</b>: %ld"
-msgstr "<b>行数</b>：%ld"
-
-#: ../logview/info.c:106
-msgid "Properties"
-msgstr "属性"
-
-#: ../logview/log_repaint.c:145
-#, c-format
-msgid "%d lines (%s)"
-msgstr "%d 行(%s)"
-
-#: ../logview/log_repaint.c:178
+#: ../logview/log_repaint.c:217
 msgid "Current"
 msgstr "当前"
 
-#. Translators: should be only the time, date could be bogus
-#: ../logview/log_repaint.c:250
-#, c-format
-msgid "%X"
-msgstr "%X"
-
-#: ../logview/logrtns.c:36
+#: ../logview/logrtns.c:37
 msgid "One file or more could not be opened"
 msgstr "无法打开一个或更多文件"
 
-#: ../logview/logrtns.c:61
+#: ../logview/logrtns.c:59
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1831,40 +1812,37 @@ msgstr ""
 "用户不能读取 %s。要么以 root 身份运行程序，要么要求系统管理员改变文件的许可"
 "权。\n"
 
-#: ../logview/logrtns.c:66
+#: ../logview/logrtns.c:64
 #, c-format
 msgid "%s is too big."
 msgstr "%s 太大。"
 
-#: ../logview/logrtns.c:70
+#: ../logview/logrtns.c:67
 #, c-format
 msgid "%s could not be opened."
 msgstr "无法打开 %s。"
 
-#: ../logview/logrtns.c:337
+#: ../logview/logrtns.c:375
 #, c-format
-msgid "%s not a log file."
+msgid "%s is not a log file."
 msgstr "%s 不是日志文件。"
 
-#: ../logview/logrtns.c:383
-msgid "Unable to open logfile!\n"
-msgstr "无法打开日志文件！\n"
+#: ../logview/logrtns.c:381
+msgid "Not enough memory."
+msgstr "内存不足。"
 
-#: ../logview/logrtns.c:389
-msgid "Not enough memory!\n"
-msgstr "内存不足！\n"
+#: ../logview/logrtns.c:395
+#, c-format
+msgid "%s cannot be opened."
+msgstr "无法打开 %s。"
 
-#: ../logview/logview-findbar.c:277
-msgid "Fin_d:"
-msgstr "查找(_D)："
+#: ../logview/logview-findbar.c:152
+msgid "_Filter:"
+msgstr "过滤器(_F)："
 
-#: ../logview/logview-findbar.c:282
-msgid "_Previous"
-msgstr "上一个(_P)"
-
-#: ../logview/logview-findbar.c:284
-msgid "_Next"
-msgstr "下一个(_N)"
+#: ../logview/logview-findbar.c:157
+msgid "_Clear"
+msgstr "清除(_C)"
 
 #: ../logview/logview.c:85
 msgid "_Log"
@@ -1887,79 +1865,71 @@ msgid "Open a log from file"
 msgstr "从文件打开日志"
 
 #: ../logview/logview.c:92
-msgid "_Properties"
-msgstr "属性(_P)"
-
-#: ../logview/logview.c:92
-msgid "Show Log Properties"
-msgstr "显示日志属性"
-
-#: ../logview/logview.c:94
-msgid "Close"
-msgstr "关闭"
-
-#: ../logview/logview.c:94
 msgid "Close this log"
 msgstr "关闭此日志"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:94
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:94
 msgid "Quit the log viewer"
 msgstr "退出日志查看器"
 
 #: ../logview/logview.c:99
-msgid "Copy"
-msgstr "复制"
-
-#: ../logview/logview.c:101
-msgid "Select All"
-msgstr "全选"
-
-#: ../logview/logview.c:101
 msgid "Select the entire log"
 msgstr "选中整个日志"
 
-#: ../logview/logview.c:103
-msgid "Find pattern in logs"
-msgstr "在日志中查找模式"
+#: ../logview/logview.c:101
+msgid "_Filter..."
+msgstr "过滤器(_F)..."
 
-#: ../logview/logview.c:106
+#: ../logview/logview.c:101
+msgid "Filter log"
+msgstr "过滤器日志"
+
+#: ../logview/logview.c:104
 msgid "Bigger text size"
 msgstr "较大的文本大小"
 
-#: ../logview/logview.c:108
+#: ../logview/logview.c:106
 msgid "Smaller text size"
 msgstr "较小的文本大小"
 
-#: ../logview/logview.c:110
+#: ../logview/logview.c:108
 msgid "Normal text size"
 msgstr "普通文本大小"
 
-#: ../logview/logview.c:113
+#: ../logview/logview.c:111
 msgid "Collapse _All"
 msgstr "全部折叠(_A)"
 
-#: ../logview/logview.c:113
+#: ../logview/logview.c:111
 msgid "Collapse all the rows"
 msgstr "折叠所有的行"
 
-#: ../logview/logview.c:116
+#: ../logview/logview.c:114
 msgid "Open the help contents for the log viewer"
 msgstr "打开日志查看器的帮助目录"
 
-#: ../logview/logview.c:118
+#: ../logview/logview.c:116
 msgid "Show the about dialog for the log viewer"
 msgstr "显示日志查看器的关于对话框"
 
-#: ../logview/logview.c:124
-msgid "Sidebar"
-msgstr "侧边栏"
+#: ../logview/logview.c:122
+msgid "_Statusbar"
+msgstr "状态栏(_S)"
+
+#: ../logview/logview.c:122
+msgid "Show Status Bar"
+msgstr "显示状态栏"
 
 #: ../logview/logview.c:124
-msgid "Show the sidebar"
+msgid "Side _Pane"
+msgstr "侧边栏(_P)"
+
+#: ../logview/logview.c:124
+msgid "Show Side Pane"
 msgstr "显示侧边栏"
 
 #: ../logview/logview.c:126
@@ -1978,42 +1948,30 @@ msgstr "日历(_L)"
 msgid "Show Calendar Log"
 msgstr "显示日历日志"
 
-#: ../logview/logview.c:382
-msgid "Log Viewer"
-msgstr "日志查看器"
-
-#: ../logview/logview.c:788
-msgid "Date"
-msgstr "日期"
-
-#: ../logview/logview.c:788
-msgid "Host Name"
-msgstr "主机名"
-
-#: ../logview/logview.c:789
-msgid "Process"
-msgstr "进程"
-
-#: ../logview/logview.c:789
-msgid "Message"
-msgstr "消息"
-
-#: ../logview/logview.c:879
-msgid "Version: "
-msgstr "版本："
-
-#: ../logview/logview.c:980
-msgid "Open Log"
-msgstr "打开日志"
-
-#: ../logview/logview.c:1221
-msgid "There was an error displaying help."
-msgstr "显示帮助时出错。"
-
-#: ../logview/logview.c:1239
+#: ../logview/logview.c:303
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (已监视) - %s"
+
+#: ../logview/logview.c:512
+msgid "Open Log"
+msgstr "打开日志"
+
+#: ../logview/logview.c:742
+msgid "There was an error displaying help."
+msgstr "显示帮助时出错。"
+
+#: ../logview/logview.c:876
+msgid "Version: "
+msgstr "版本："
+
+#: ../logview/logview.c:945
+msgid "Days"
+msgstr "天数"
+
+#: ../logview/logview.c:946
+msgid "Pointer towards a GSList of days for the current log."
+msgstr "指向当前日志天数 GSList 的指针。"
 
 #: ../logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -2027,67 +1985,77 @@ msgstr ""
 "指定在程序启动时打开的日志文件。根据您的操作系统不同，默认是 /var/adm/"
 "messages 或者 /var/log/messages。"
 
-#: ../logview/misc.c:41
+#: ../logview/main.c:114
+msgid "Log Viewer"
+msgstr "日志查看器"
+
+#: ../logview/misc.c:40
 msgid "January"
 msgstr "一月"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "February"
 msgstr "二月"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "March"
 msgstr "三月"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "April"
 msgstr "四月"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "May"
 msgstr "五月"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "June"
 msgstr "六月"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "July"
 msgstr "七月"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "August"
 msgstr "八月"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "September"
 msgstr "九月"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "October"
 msgstr "十月"
 
-#: ../logview/misc.c:43
+#: ../logview/misc.c:42
 msgid "November"
 msgstr "十一月"
 
-#: ../logview/misc.c:43
+#: ../logview/misc.c:42
 msgid "December"
 msgstr "十二月"
 
-#: ../logview/misc.c:303
+#: ../logview/misc.c:162
 msgid "Invalid date"
 msgstr "无效的日期"
 
-#: ../logview/monitor.c:88
+#. Translators: Only date format, time will be bogus
+#: ../logview/misc.c:167
+#, c-format
+msgid "%x"
+msgstr "%x"
+
+#: ../logview/monitor.c:83
 msgid "This file cannot be monitored."
 msgstr "此文件无法被监视。"
 
-#: ../logview/monitor.c:91
+#: ../logview/monitor.c:86
 msgid "File monitoring is not supported on this file system.\n"
 msgstr "不支持对此文件系统进行监视。\n"
 
-#: ../logview/monitor.c:93
+#: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS 错误。\n"
 
