@@ -339,8 +339,11 @@ logview_scroll_and_focus_path (LogviewWindow *logview, Log *log)
     if (log == NULL)
       return;
 
-    if (log->current_path != NULL)
-      gtk_tree_view_set_cursor (GTK_TREE_VIEW (logview->view), log->current_path, NULL, FALSE); 
+    if (log->current_path != NULL) {
+      GtkTreeSelection *selection;
+      selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->view));
+      gtk_tree_selection_select_path (selection, log->current_path);
+    }
 
     if (log->bold_rows_list != NULL) {
       TreePathRange *bold_rows;
@@ -357,7 +360,6 @@ logview_scroll_and_focus_path (LogviewWindow *logview, Log *log)
                                     NULL, TRUE, 0.0, 1);   
       }
     }
-
 }
 
 static void
