@@ -133,10 +133,13 @@ string_get_date_string (gchar *line)
     gchar *month=NULL, *day=NULL;
     int i=0;
 
-    if (line == NULL)
+    if (line == NULL || line[0] == 0)
         return;
 
     split = g_strsplit (line, " ", 4);
+    if (split == NULL)
+        return;
+
     while ((day == NULL || month == NULL) && split[i]!=NULL && i<4) {
         if (g_str_equal (split[i], "")) {
             i++;
@@ -208,6 +211,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
    day->date = date;
    day->first_line = i;
    day->last_line = -1;
+   g_print("%d/%d\n", i, n);
    date_string = string_get_date_string (buffer_lines[i]);
 
    rangemin = 0;
@@ -247,12 +251,13 @@ log_read_dates (gchar **buffer_lines, time_t current)
          newdate = NULL;
          while (newdate == NULL && !done) {
            i++;
+           g_print("i = %d/%d\n", i, n);
            date_string = string_get_date_string (buffer_lines[i]);
            if (date_string == NULL)
              continue;
            newdate = string_get_date (buffer_lines[i]);
            
-           if (newdate == NULL && i==n)
+           if (newdate == NULL && i==n-1)
              done = TRUE;
          }
 
