@@ -211,7 +211,6 @@ log_read_dates (gchar **buffer_lines, time_t current)
    day->date = date;
    day->first_line = i;
    day->last_line = -1;
-   g_print("%d/%d\n", i, n);
    date_string = string_get_date_string (buffer_lines[i]);
 
    rangemin = 0;
@@ -251,7 +250,6 @@ log_read_dates (gchar **buffer_lines, time_t current)
          newdate = NULL;
          while (newdate == NULL && !done) {
            i++;
-           g_print("i = %d/%d\n", i, n);
            date_string = string_get_date_string (buffer_lines[i]);
            if (date_string == NULL)
              continue;

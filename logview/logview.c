@@ -248,7 +248,7 @@ logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *se
       log = log_open (list->data, FALSE);
       if (log != NULL) {
 	logview_add_log (logview, log);
-	if (g_strncasecmp (log->name, selected, -1)==0)
+	if (selected!=NULL && g_strncasecmp (log->name, selected, -1)==0)
 	  curlog = log;
       }
     }

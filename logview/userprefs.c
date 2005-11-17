@@ -139,12 +139,12 @@ prefs_load (GConfClient *client)
 	if (logfile != NULL && strcmp (logfile, "") && file_is_log(logfile, FALSE)) {
 		p->logfile = g_strdup (logfile);
 		g_free (logfile);
-	}
-
-	found = FALSE;
-	for (list = p->logs; list!=NULL; list = g_slist_next (list)) {
-		if (g_ascii_strncasecmp (list->data, p->logfile, 255) == 0)
-			found = TRUE;
+	
+		found = FALSE;
+		for (list = p->logs; list!=NULL; list = g_slist_next (list)) {
+		  if (g_ascii_strncasecmp (list->data, p->logfile, 255) == 0)
+		    found = TRUE;
+		}
 	}
 
 	width = gconf_client_get_int (client, GCONF_WIDTH_KEY, NULL);
@@ -253,8 +253,9 @@ prefs_save (void)
 {
   GSList *logs;
 
-    if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL))
-		gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);
+    if (prefs->logfile)
+        if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL))
+	    gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);
 
     if (gconf_client_key_is_writable (client, GCONF_LOGFILES, NULL))
         gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);
