@@ -123,6 +123,11 @@ main (int argc, char *argv[])
    /* Open regular logs and add each log passed as a parameter */
 
    logview = LOGVIEW_WINDOW(logview_window_new ());
+   if (logview == NULL) {
+	   error_dialog_show (NULL, _("Unable to create user interface."), NULL);
+	   exit (0);
+   }
+   
    prefs_connect (logview);
    logview_menus_set_state (logview);
    gtk_widget_show (GTK_WIDGET (logview));

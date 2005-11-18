@@ -285,28 +285,36 @@ logview_menus_set_state (LogviewWindow *logview)
 }
 
 void
-logview_set_window_title (LogviewWindow *window)
+logview_set_window_title (LogviewWindow *logview)
 {
-	gchar *window_title;
-	gchar *logname;
+    gchar *window_title;
+    gchar *logname;
+    Log *log;
 
-    g_assert (LOGVIEW_IS_WINDOW (window));
+    g_assert (LOGVIEW_IS_WINDOW (logview));
 
-	if ((window->curlog != NULL) && (window->curlog->name != NULL)) {
-		if (window->curlog->display_name != NULL)
-			logname = window->curlog->display_name;
-		else
-			logname = window->curlog->name;
-		
-		if (window->curlog->monitored) 
-			window_title = g_strdup_printf (_("%s (monitored) - %s"), logname, APP_NAME);
-		else
-			window_title = g_strdup_printf ("%s - %s", logname, APP_NAME);
-	}
-	else
-		window_title = g_strdup_printf (APP_NAME);
-	gtk_window_set_title (GTK_WINDOW (window), window_title);
-	g_free (window_title);
+    log = logview->curlog;
+    if (log == NULL)
+      return;
+
+    if (log->name != NULL) {
+
+      if (log->display_name != NULL)
+	logname = log->display_name;
+      else
+	logname = log->name;
+      
+      if (log->monitored) 
+	window_title = g_strdup_printf (_("%s (monitored) - %s"), logname, APP_NAME);
+      else
+	window_title = g_strdup_printf ("%s - %s", logname, APP_NAME);
+
+    }
+    else
+      window_title = g_strdup_printf (APP_NAME);
+
+    gtk_window_set_title (GTK_WINDOW (logview), window_title);
+    g_free (window_title);
 }
 
 void
@@ -747,24 +755,24 @@ static gboolean
 window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
 				 gpointer data)
 {
-	LogviewWindow *window = data;
+    LogviewWindow *logview = LOGVIEW_WINDOW (data);
     
-    g_assert (LOGVIEW_IS_WINDOW (window));
-	prefs_store_window_size (GTK_WIDGET(window));
-	return FALSE;
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+    prefs_store_window_size (GTK_WIDGET(logview));
+    return FALSE;
 }
 
 static void
 logview_window_finalize (GObject *object)
 {
-    LogviewWindow *window = (LogviewWindow *) object;
+    LogviewWindow *logview = LOGVIEW_WINDOW(object);
 
-    g_object_unref (window->ui_manager);
+    g_object_unref (logview->ui_manager);
     parent_class->finalize (object);
 }
 
 static void
-logview_init (LogviewWindow *window)
+logview_init (LogviewWindow *logview)
 {
    GtkWidget *vbox;
    GtkTreeStore *tree_store;
@@ -784,31 +792,30 @@ logview_init (LogviewWindow *window)
    PangoFontDescription *fontdesc;
    gchar *monospace_font_name;
 
-   gtk_window_set_default_size (GTK_WINDOW (window), prefs_get_width (), prefs_get_height ());
+   gtk_window_set_default_size (GTK_WINDOW (logview), prefs_get_width (), prefs_get_height ());
 
    vbox = gtk_vbox_new (FALSE, 0);
-   gtk_container_add (GTK_CONTAINER (window), vbox);
+   gtk_container_add (GTK_CONTAINER (logview), vbox);
 
    /* Create menus */
    action_group = gtk_action_group_new ("LogviewMenuActions");
    gtk_action_group_set_translation_domain (action_group, NULL);
-   gtk_action_group_add_actions (action_group, entries, G_N_ELEMENTS (entries), window);
-   gtk_action_group_add_toggle_actions(action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), window);
+   gtk_action_group_add_actions (action_group, entries, G_N_ELEMENTS (entries), logview);
+   gtk_action_group_add_toggle_actions(action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), logview);
 
-   window->ui_manager = gtk_ui_manager_new ();
+   logview->ui_manager = gtk_ui_manager_new ();
 
-   gtk_ui_manager_insert_action_group (window->ui_manager, action_group, 0);
+   gtk_ui_manager_insert_action_group (logview->ui_manager, action_group, 0);
    
-   accel_group = gtk_ui_manager_get_accel_group (window->ui_manager);
-   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
+   accel_group = gtk_ui_manager_get_accel_group (logview->ui_manager);
+   gtk_window_add_accel_group (GTK_WINDOW (logview), accel_group);
    
-   if (!gtk_ui_manager_add_ui_from_string (window->ui_manager, ui_description, -1, &error)) {
-	   g_message ("Building menus failed: %s", error->message);
-	   g_error_free (error);
-	   exit (1);
+   if (!gtk_ui_manager_add_ui_from_string (logview->ui_manager, ui_description, -1, &error)) {
+     logview->ui_manager = NULL;
+     return;
    }
    
-   menubar = gtk_ui_manager_get_widget (window->ui_manager, "/LogviewMenu");
+   menubar = gtk_ui_manager_get_widget (logview->ui_manager, "/LogviewMenu");
    gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
 
    /* panes */
@@ -816,11 +823,11 @@ logview_init (LogviewWindow *window)
    gtk_box_pack_start (GTK_BOX (vbox), hpaned, TRUE, TRUE, 0);
 
    /* First pane : sidebar (list of logs + calendar) */
-   window->sidebar = gtk_vbox_new (FALSE, 0);
+   logview->sidebar = gtk_vbox_new (FALSE, 0);
    
-   window->calendar = calendar_new ();
-   calendar_connect (CALENDAR (window->calendar), window);
-   gtk_box_pack_end (GTK_BOX (window->sidebar), GTK_WIDGET(window->calendar), FALSE, FALSE, 0);
+   logview->calendar = calendar_new ();
+   calendar_connect (CALENDAR (logview->calendar), logview);
+   gtk_box_pack_end (GTK_BOX (logview->sidebar), GTK_WIDGET(logview->calendar), FALSE, FALSE, 0);
    
    /* log list */
    loglist_scrolled = gtk_scrolled_window_new (NULL, NULL);
@@ -828,11 +835,11 @@ logview_init (LogviewWindow *window)
                                    GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (loglist_scrolled),
                                         GTK_SHADOW_ETCHED_IN);
-   window->loglist = loglist_new ();
-   gtk_container_add (GTK_CONTAINER (loglist_scrolled), window->loglist);
-   gtk_box_pack_start (GTK_BOX (window->sidebar), loglist_scrolled, TRUE, TRUE, 0);
-   gtk_paned_pack1 (GTK_PANED (hpaned), window->sidebar, FALSE, FALSE);
-   loglist_connect (LOG_LIST(window->loglist), window);
+   logview->loglist = loglist_new ();
+   gtk_container_add (GTK_CONTAINER (loglist_scrolled), logview->loglist);
+   gtk_box_pack_start (GTK_BOX (logview->sidebar), loglist_scrolled, TRUE, TRUE, 0);
+   gtk_paned_pack1 (GTK_PANED (hpaned), logview->sidebar, FALSE, FALSE);
+   loglist_connect (LOG_LIST(logview->loglist), logview);
 
    /* Second pane : log */
    main_view = gtk_vbox_new (FALSE, 0);
@@ -846,13 +853,13 @@ logview_init (LogviewWindow *window)
    gtk_box_pack_start (GTK_BOX(main_view), scrolled, TRUE, TRUE, 0);
 
    /* Main Tree View */
-   window->view = gtk_tree_view_new ();
-   gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (window->view), TRUE);
-   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (window->view), FALSE);
+   logview->view = gtk_tree_view_new ();
+   gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (logview->view), TRUE);
+   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (logview->view), FALSE);
 
    /* Use the desktop monospace font */
    monospace_font_name = prefs_get_monospace ();
-   widget_set_font (GTK_WIDGET (window->view), monospace_font_name);
+   widget_set_font (GTK_WIDGET (logview->view), monospace_font_name);
    g_free (monospace_font_name);
   
    renderer = gtk_cell_renderer_text_new ();
@@ -864,55 +871,55 @@ logview_init (LogviewWindow *window)
                                         "weight-set", LOG_LINE_WEIGHT_SET,
                                         NULL);
    gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-   gtk_tree_view_append_column (GTK_TREE_VIEW (window->view), column);
+   gtk_tree_view_append_column (GTK_TREE_VIEW (logview->view), column);
 
    /* Version selector */
-   window->version_bar = gtk_hbox_new (FALSE, 0);
-   gtk_container_set_border_width (GTK_CONTAINER (window->version_bar), 3);
-   window->version_selector = gtk_combo_box_new_text ();
-   g_signal_connect (G_OBJECT (window->version_selector), "changed",
-                     G_CALLBACK (logview_version_selector_changed), window);
+   logview->version_bar = gtk_hbox_new (FALSE, 0);
+   gtk_container_set_border_width (GTK_CONTAINER (logview->version_bar), 3);
+   logview->version_selector = gtk_combo_box_new_text ();
+   g_signal_connect (G_OBJECT (logview->version_selector), "changed",
+                     G_CALLBACK (logview_version_selector_changed), logview);
    label = gtk_label_new (_("Version: "));
    
-   gtk_box_pack_end (GTK_BOX(window->version_bar), window->version_selector, FALSE, FALSE, 0);
-   gtk_box_pack_end (GTK_BOX(window->version_bar), label, FALSE, FALSE, 0);
-   gtk_box_pack_end (GTK_BOX(main_view), window->version_bar, FALSE, FALSE, 0);
+   gtk_box_pack_end (GTK_BOX(logview->version_bar), logview->version_selector, FALSE, FALSE, 0);
+   gtk_box_pack_end (GTK_BOX(logview->version_bar), label, FALSE, FALSE, 0);
+   gtk_box_pack_end (GTK_BOX(main_view), logview->version_bar, FALSE, FALSE, 0);
    
-   window->find_bar = logview_findbar_new ();
-   gtk_box_pack_end (GTK_BOX (main_view), window->find_bar, FALSE, FALSE, 0);
-   logview_findbar_connect (LOGVIEW_FINDBAR (window->find_bar), window);
+   logview->find_bar = logview_findbar_new ();
+   gtk_box_pack_end (GTK_BOX (main_view), logview->find_bar, FALSE, FALSE, 0);
+   logview_findbar_connect (LOGVIEW_FINDBAR (logview->find_bar), logview);
 
    /* Remember the original font size */
-   context = gtk_widget_get_pango_context (window->view);
+   context = gtk_widget_get_pango_context (logview->view);
    fontdesc = pango_context_get_font_description (context);
-   window->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
-   window->fontsize = window->original_fontsize;
+   logview->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
+   logview->fontsize = logview->original_fontsize;
 
-   gtk_container_add (GTK_CONTAINER (scrolled), GTK_WIDGET (window->view));
+   gtk_container_add (GTK_CONTAINER (scrolled), GTK_WIDGET (logview->view));
    gtk_widget_show_all (scrolled);
    
-   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (window->view));
+   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->view));
    gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
 
    /* Add signal handlers */
    g_signal_connect (G_OBJECT (selection), "changed",
-                     G_CALLBACK (selection_changed_cb), window);
-   g_signal_connect (G_OBJECT (window->view), "row-expanded",
-                     G_CALLBACK (row_toggled_cb), window);
-   g_signal_connect (G_OBJECT (window->view), "row-collapsed",
-                     G_CALLBACK (row_toggled_cb), window);
-   g_signal_connect (G_OBJECT (window), "configure_event",
-                     G_CALLBACK (window_size_changed_cb), window);
+                     G_CALLBACK (selection_changed_cb), logview);
+   g_signal_connect (G_OBJECT (logview->view), "row-expanded",
+                     G_CALLBACK (row_toggled_cb), logview);
+   g_signal_connect (G_OBJECT (logview->view), "row-collapsed",
+                     G_CALLBACK (row_toggled_cb), logview);
+   g_signal_connect (G_OBJECT (logview), "configure_event",
+                     G_CALLBACK (window_size_changed_cb), logview);
 
    /* Status area at bottom */
-   window->statusbar = gtk_statusbar_new ();
-   gtk_box_pack_start (GTK_BOX (vbox), window->statusbar, FALSE, FALSE, 0);
+   logview->statusbar = gtk_statusbar_new ();
+   gtk_box_pack_start (GTK_BOX (vbox), logview->statusbar, FALSE, FALSE, 0);
 
    gtk_widget_show (menubar);
    gtk_widget_show (loglist_scrolled);
    gtk_widget_show (main_view);
    gtk_widget_show (vbox);
-   window->hpaned = hpaned;
+   logview->hpaned = hpaned;
 }
 
 static void
@@ -978,6 +985,8 @@ logview_window_new ()
 
    window = g_object_new (LOGVIEW_TYPE_WINDOW, NULL);
    logview = LOGVIEW_WINDOW (window);
+   if (logview->ui_manager == NULL)
+     return NULL;
 
    logview->logs = NULL;
    logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),

@@ -27,8 +27,8 @@
 #include <sys/stat.h>
 #include "logview.h"
 
-#define LOG_CANVAS_H             400
-#define LOG_CANVAS_W             600
+#define LOGVIEW_DEFAULT_HEIGHT 400
+#define LOGVIEW_DEFAULT_WIDTH 600
 
 #define GCONF_WIDTH_KEY  "/apps/gnome-system-log/width"
 #define GCONF_HEIGHT_KEY "/apps/gnome-system-log/height"
@@ -151,8 +151,8 @@ prefs_load (GConfClient *client)
 	height = gconf_client_get_int (client, GCONF_HEIGHT_KEY, NULL);
 	fontsize = gconf_client_get_int (client, GCONF_FONTSIZE_KEY, NULL);
 
-	p->width = (width == 0 ? LOG_CANVAS_W : width);
-	p->height = (height == 0 ? LOG_CANVAS_H : height);
+	p->width = (width == 0 ? LOGVIEW_DEFAULT_WIDTH : width);
+	p->height = (height == 0 ? LOGVIEW_DEFAULT_HEIGHT : height);
 	p->fontsize = fontsize;
 
 	return p;

@@ -95,7 +95,7 @@ log_find_day (Log *log, int d, int m, int y)
 }
 
 static void
-calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
+calendar_day_selected (GtkWidget *widget, LogviewWindow *logview)
 {
     Calendar *calendar;
     guint day, month, year;
@@ -104,8 +104,8 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
 
     calendar = CALENDAR (widget);
 
-	if (window->curlog == NULL)
-		return;
+    if (logview->curlog == NULL)
+      return;
 
     if (calendar->priv->first_pass == TRUE) {
         calendar->priv->first_pass = FALSE;
@@ -113,12 +113,12 @@ calendar_day_selected (GtkWidget *widget, LogviewWindow *window)
     }
   
     gtk_calendar_get_date (GTK_CALENDAR (calendar), &year, &month, &day);    
-    found_day = log_find_day (window->curlog, day, month, year);
+    found_day = log_find_day (logview->curlog, day, month, year);
     if (found_day != NULL) {
         path = found_day->path;
-        if ((gtk_tree_path_compare (path, window->curlog->selected_range.first) != 0) &&
-            (!gtk_tree_path_is_descendant (window->curlog->selected_range.first, path)))
-            gtk_tree_view_set_cursor (GTK_TREE_VIEW(window->view), path, NULL, FALSE);
+        if ((gtk_tree_path_compare (path, logview->curlog->selected_range.first) != 0) &&
+            (!gtk_tree_path_is_descendant (logview->curlog->selected_range.first, path)))
+            gtk_tree_view_set_cursor (GTK_TREE_VIEW(logview->view), path, NULL, FALSE);
     }
 }
 
@@ -143,17 +143,17 @@ calendar_select_date (Calendar *calendar, GDate *date)
 }
 
 void
-calendar_connect (Calendar *calendar, LogviewWindow *window)
+calendar_connect (Calendar *calendar, LogviewWindow *logview)
 {
     g_return_if_fail (IS_CALENDAR (calendar));
-    g_return_if_fail (LOGVIEW_IS_WINDOW (window));
+    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
-	g_signal_connect (G_OBJECT (calendar), "month_changed",
+    g_signal_connect (G_OBJECT (calendar), "month_changed",
                       G_CALLBACK (calendar_month_changed),
-                      window);
-	g_signal_connect (G_OBJECT (calendar), "day_selected",
+                      logview);
+    g_signal_connect (G_OBJECT (calendar), "day_selected",
                       G_CALLBACK (calendar_day_selected),
-                      window);
+                      logview);
 }
 
 static void 
