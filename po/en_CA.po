@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-08 12:28-0500\n"
+"POT-Creation-Date: 2005-11-17 21:27-0500\n"
 "PO-Revision-Date: 2005-07-18 12:11-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -27,11 +27,11 @@ msgid "Lookup words in an online dictionary"
 msgstr "Lookup words in an online dictionary"
 
 #: gdictsrc/GNOME_GDictApplet.xml.h:1 gdictsrc/gdict-app.c:595
-#: logview/logview.c:105
+#: logview/logview.c:116
 msgid "_About"
 msgstr "_About"
 
-#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:75
+#: gdictsrc/GNOME_GDictApplet.xml.h:2 logview/logview.c:88
 msgid "_Help"
 msgstr "_Help"
 
@@ -61,7 +61,7 @@ msgstr ""
 "correct. For reference the default server is dict.org and the port 2628"
 
 #. Translator credits
-#: gdictsrc/gdict-about.c:40 logview/about.c:44
+#: gdictsrc/gdict-about.c:40 logview/about.c:47
 msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
@@ -131,7 +131,7 @@ msgstr "_Print"
 msgid "Print the current definition"
 msgstr "Print the current definition"
 
-#: gdictsrc/gdict-app.c:581
+#: gdictsrc/gdict-app.c:581 logview/logview.c:92
 msgid "_Close"
 msgstr "_Close"
 
@@ -165,7 +165,7 @@ msgid "Configure the application"
 msgstr "Configure the application"
 
 #. Help menu
-#: gdictsrc/gdict-app.c:593 logview/logview.c:103
+#: gdictsrc/gdict-app.c:593 logview/logview.c:114
 msgid "_Contents"
 msgstr "_Contents"
 
@@ -185,11 +185,11 @@ msgstr "Cu_t"
 msgid "Cut the selection"
 msgstr "Cut the selection"
 
-#: gdictsrc/gdict-app.c:603
+#: gdictsrc/gdict-app.c:603 logview/logview.c:97
 msgid "_Copy"
 msgstr "_Copy"
 
-#: gdictsrc/gdict-app.c:604 logview/logview.c:86
+#: gdictsrc/gdict-app.c:604 logview/logview.c:97
 msgid "Copy the selection"
 msgstr "Copy the selection"
 
@@ -201,7 +201,7 @@ msgstr "_Paste"
 msgid "Paste clipboard"
 msgstr "Paste clipboard"
 
-#: gdictsrc/gdict-app.c:607
+#: gdictsrc/gdict-app.c:607 logview/logview.c:99
 msgid "Select _All"
 msgstr "Select _All"
 
@@ -1822,11 +1822,11 @@ msgstr "Click to perform a search."
 msgid "Click to stop a search."
 msgstr "Click to stop a search."
 
-#: logview/about.c:48 logview/logview.c:38
+#: logview/about.c:51 logview/logview.c:37
 msgid "System Log Viewer"
 msgstr "System Log Viewer"
 
-#: logview/about.c:51
+#: logview/about.c:54
 msgid "A system log viewer for GNOME."
 msgstr "A system log viewer for GNOME."
 
@@ -1838,49 +1838,25 @@ msgstr "System Log"
 msgid "View the system log file"
 msgstr "View the system log file"
 
-#: logview/info.c:48
+#: logview/log_repaint.c:179
 #, c-format
-msgid "<b>Size</b>: %s"
-msgstr "<b>Size</b>: %s"
+msgid "last update : %s"
+msgstr "last update : %s"
 
-#: logview/info.c:53
+#: logview/log_repaint.c:181
 #, c-format
-msgid "<b>Modified</b>: %s"
-msgstr "<b>Modified</b>: %s"
+msgid "%d lines (%s) - %s"
+msgstr "%d lines (%s) - %s"
 
-#: logview/info.c:57
-#, c-format
-msgid "<b>Number of Lines</b>: %ld"
-msgstr "<b>Number of Lines</b>: %ld"
-
-#: logview/info.c:64
-#, c-format
-msgid "<b>Start Date</b>: %s"
-msgstr "<b>Start Date</b>: %s"
-
-#: logview/info.c:70
-#, c-format
-msgid "<b>Last Date</b>: %s"
-msgstr "<b>Last Date</b>: %s"
-
-#: logview/info.c:108
-msgid "Properties"
-msgstr "Properties"
-
-#: logview/log_repaint.c:141
-#, c-format
-msgid "%d lines (%s)"
-msgstr "%d lines (%s)"
-
-#: logview/log_repaint.c:174
+#: logview/log_repaint.c:219
 msgid "Current"
 msgstr "Current"
 
-#: logview/logrtns.c:36
+#: logview/logrtns.c:37
 msgid "One file or more could not be opened"
 msgstr "One or more files could not be opened"
 
-#: logview/logrtns.c:58
+#: logview/logrtns.c:59
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1889,177 +1865,166 @@ msgstr ""
 "%s is not user-readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file.\n"
 
-#: logview/logrtns.c:63
+#: logview/logrtns.c:64
 #, c-format
 msgid "%s is too big."
 msgstr "%s is too big."
 
-#: logview/logrtns.c:66
+#: logview/logrtns.c:67
 #, c-format
 msgid "%s could not be opened."
 msgstr "%s could not be opened."
 
-#: logview/logrtns.c:291
+#: logview/logrtns.c:378
 #, c-format
-msgid "%s not a log file."
-msgstr "%s not a log file."
+msgid "%s is not a log file."
+msgstr "%s is not a log file."
 
-#: logview/logrtns.c:334
-msgid "Unable to open logfile!\n"
-msgstr "Unable to open logfile!\n"
+#: logview/logrtns.c:384
+msgid "Not enough memory."
+msgstr "Not enough memory."
 
-#: logview/logrtns.c:340
-msgid "Not enough memory!\n"
-msgstr "Not enough memory!\n"
+#: logview/logrtns.c:398
+#, c-format
+msgid "%s cannot be opened."
+msgstr "%s cannot be opened."
 
-#: logview/logview-findbar.c:130
+#: logview/logview-findbar.c:152
 msgid "_Filter:"
 msgstr "_Filter:"
 
-#: logview/logview-findbar.c:135
+#: logview/logview-findbar.c:157
 msgid "_Clear"
 msgstr "_Clear"
 
-#: logview/logview.c:72
+#: logview/logview.c:85
 msgid "_Log"
 msgstr "_Log"
 
-#: logview/logview.c:73
+#: logview/logview.c:86
 msgid "_Edit"
 msgstr "_Edit"
 
-#: logview/logview.c:74
+#: logview/logview.c:87
 msgid "_View"
 msgstr "_View"
 
-#: logview/logview.c:77
+#: logview/logview.c:90
 msgid "_Open..."
 msgstr "_Open..."
 
-#: logview/logview.c:77
+#: logview/logview.c:90
 msgid "Open a log from file"
 msgstr "Open a log from file"
 
-#: logview/logview.c:79
-msgid "_Properties"
-msgstr "_Properties"
-
-#: logview/logview.c:79
-msgid "Show Log Properties"
-msgstr "Show Log Properties"
-
-#: logview/logview.c:81
-msgid "Close"
-msgstr "Close"
-
-#: logview/logview.c:81
+#: logview/logview.c:92
 msgid "Close this log"
 msgstr "Close this log"
 
-#: logview/logview.c:83
+#: logview/logview.c:94
 msgid "_Quit"
 msgstr "_Quit"
 
-#: logview/logview.c:83
+#: logview/logview.c:94
 msgid "Quit the log viewer"
 msgstr "Quit the log viewer"
 
-#: logview/logview.c:86
-msgid "Copy"
-msgstr "Copy"
-
-#: logview/logview.c:88
-msgid "Select All"
-msgstr "Select All"
-
-#: logview/logview.c:88
+#: logview/logview.c:99
 msgid "Select the entire log"
 msgstr "Select the entire log"
 
-#: logview/logview.c:90
+#: logview/logview.c:101
 msgid "_Filter..."
 msgstr "_Filter..."
 
-#: logview/logview.c:90
+#: logview/logview.c:101
 msgid "Filter log"
 msgstr "Filter log"
 
-#: logview/logview.c:93
+#: logview/logview.c:104
 msgid "Bigger text size"
 msgstr "Bigger text size"
 
-#: logview/logview.c:95
+#: logview/logview.c:106
 msgid "Smaller text size"
 msgstr "Smaller text size"
 
-#: logview/logview.c:97
+#: logview/logview.c:108
 msgid "Normal text size"
 msgstr "Normal text size"
 
-#: logview/logview.c:100
+#: logview/logview.c:111
 msgid "Collapse _All"
 msgstr "Collapse _All"
 
-#: logview/logview.c:100
+#: logview/logview.c:111
 msgid "Collapse all the rows"
 msgstr "Collapse all the rows"
 
-#: logview/logview.c:103
+#: logview/logview.c:114
 msgid "Open the help contents for the log viewer"
 msgstr "Open the help contents for the log viewer"
 
-#: logview/logview.c:105
+#: logview/logview.c:116
 msgid "Show the about dialog for the log viewer"
 msgstr "Show the \"About\" dialogue for the log viewer"
 
-#: logview/logview.c:111
-msgid "Statusbar"
-msgstr "Status Bar"
+#: logview/logview.c:122
+msgid "_Statusbar"
+msgstr "_Statusbar"
 
-#: logview/logview.c:111
+#: logview/logview.c:122
 msgid "Show Status Bar"
 msgstr "Show Status Bar"
 
-#: logview/logview.c:113
+#: logview/logview.c:124
 msgid "Side _Pane"
 msgstr "Side _Pane"
 
-#: logview/logview.c:113
+#: logview/logview.c:124
 msgid "Show Side Pane"
 msgstr "Show Side Pane"
 
-#: logview/logview.c:115
+#: logview/logview.c:126
 msgid "_Monitor"
 msgstr "_Monitor"
 
-#: logview/logview.c:115
+#: logview/logview.c:126
 msgid "Monitor Current Log"
 msgstr "Monitor Current Log"
 
-#: logview/logview.c:117
+#: logview/logview.c:128
 msgid "Ca_lendar"
 msgstr "Ca_lendar"
 
-#: logview/logview.c:117
+#: logview/logview.c:128
 msgid "Show Calendar Log"
 msgstr "Show Calendar Log"
 
-#: logview/logview.c:297
+#: logview/logview.c:302
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (monitored) - %s"
 
-#: logview/logview.c:489
+#: logview/logview.c:511
 msgid "Open Log"
 msgstr "Open Log"
 
-#: logview/logview.c:700
+#: logview/logview.c:741
 msgid "There was an error displaying help."
 msgstr "There was an error displaying help."
 
-#: logview/logview.c:833
+#: logview/logview.c:875
 msgid "Version: "
 msgstr "Version: "
+
+#: logview/logview.c:944
+msgid "Days"
+msgstr "Days"
+
+#: logview/logview.c:945
+msgid "Pointer towards a GSList of days for the current log."
+msgstr "Pointer towards a GSList of days for the current log."
 
 #: logview/logview.schemas.in.h:1
 msgid "Log file to open up on startup"
@@ -2073,76 +2038,76 @@ msgstr ""
 "Specifies the log file to open up at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 
-#: logview/main.c:116
+#: logview/main.c:114
 msgid "Log Viewer"
 msgstr "Log Viewer"
 
-#: logview/misc.c:41
+#: logview/misc.c:40
 msgid "January"
 msgstr "January"
 
-#: logview/misc.c:41
+#: logview/misc.c:40
 msgid "February"
 msgstr "February"
 
-#: logview/misc.c:41
+#: logview/misc.c:40
 msgid "March"
 msgstr "March"
 
-#: logview/misc.c:41
+#: logview/misc.c:40
 msgid "April"
 msgstr "April"
 
-#: logview/misc.c:41
+#: logview/misc.c:40
 msgid "May"
 msgstr "May"
 
-#: logview/misc.c:42
+#: logview/misc.c:41
 msgid "June"
 msgstr "June"
 
-#: logview/misc.c:42
+#: logview/misc.c:41
 msgid "July"
 msgstr "July"
 
-#: logview/misc.c:42
+#: logview/misc.c:41
 msgid "August"
 msgstr "August"
 
-#: logview/misc.c:42
+#: logview/misc.c:41
 msgid "September"
 msgstr "September"
 
-#: logview/misc.c:42
+#: logview/misc.c:41
 msgid "October"
 msgstr "October"
 
-#: logview/misc.c:43
+#: logview/misc.c:42
 msgid "November"
 msgstr "November"
 
-#: logview/misc.c:43
+#: logview/misc.c:42
 msgid "December"
 msgstr "December"
 
-#: logview/misc.c:161
+#: logview/misc.c:162
 msgid "Invalid date"
 msgstr "Invalid date"
 
 #. Translators: Only date format, time will be bogus
-#: logview/misc.c:166
+#: logview/misc.c:167
 #, c-format
-msgid "%Ex"
-msgstr "%Ex"
+msgid "%x"
+msgstr "%x"
 
-#: logview/monitor.c:89
+#: logview/monitor.c:83
 msgid "This file cannot be monitored."
 msgstr "This file cannot be monitored."
 
-#: logview/monitor.c:92
+#: logview/monitor.c:86
 msgid "File monitoring is not supported on this file system.\n"
 msgstr "File monitoring is not supported on this file system.\n"
 
-#: logview/monitor.c:94
+#: logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS Error.\n"
