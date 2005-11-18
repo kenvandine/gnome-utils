@@ -62,7 +62,7 @@ save_session (GnomeClient *gnome_client, gint phase,
 {
    gchar **argv;
    gint numlogs;
-   GList *logs;
+   GSList *logs;
    Log *log;
    int i;
 
@@ -72,7 +72,7 @@ save_session (GnomeClient *gnome_client, gint phase,
    argv = g_malloc0 (sizeof (gchar *) * numlogs+1);
    argv[0] = g_get_prgname();
 
-   for (logs = logview->logs; logs != NULL; logs = g_list_next (logs)) {
+   for (logs = logview->logs; logs != NULL; logs = g_slist_next (logs)) {
        log = logs->data;
        argv[i++] = g_strdup_printf ("%s", log->name);
    }

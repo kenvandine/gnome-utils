@@ -51,7 +51,7 @@ struct _log
 	char *display_name;
 	LogStats *stats;
 
-    GList *days;
+    GSList *days;
     gchar **lines;
 	gint selected_line_first;
 	gint selected_line_last;

@@ -299,7 +299,7 @@ log_add_new_log_lines (Log *log)
 
     /* Find the last expandable row */
     if (log->days) {
-      day = g_list_last (log->days)->data;
+      day = g_slist_last (log->days)->data;
       gtk_tree_model_get_iter (log->model, &iter, day->path);
       iter_ptr = &iter;
     } else {
@@ -402,7 +402,7 @@ static void
 log_fill_model_with_date (Log *log, GtkTreeModel *model)
 {
     GtkTreeIter iter;
-    GList *days;
+    GSList *days;
     Day *day;
     int i;
 
@@ -411,7 +411,7 @@ log_fill_model_with_date (Log *log, GtkTreeModel *model)
     /* Cycle on the days in the log */
     /* It's not worth it to prepend instead of append */
 
-    for (days = log->days; days != NULL; days = g_list_next (days)) {
+    for (days = log->days; days != NULL; days = g_slist_next (days)) {
         day = days->data;
  
         gtk_tree_store_append (GTK_TREE_STORE (model), &iter, NULL);
@@ -451,7 +451,7 @@ log_create_model (Log *log)
 static void
 logview_set_log_model (LogviewWindow *window, Log *log)
 {    
-    GList *days;
+    GSList *days;
     Day *day;
 
     g_assert (LOGVIEW_IS_WINDOW (window));
@@ -464,7 +464,7 @@ logview_set_log_model (LogviewWindow *window, Log *log)
         gtk_tree_view_set_model (GTK_TREE_VIEW (window->view), log->model);
 
     if (log->days != NULL) {
-        for (days=log->days; days != NULL; days = g_list_next(days)) {
+        for (days=log->days; days != NULL; days = g_slist_next(days)) {
             day = days->data;
             if (day->expand)
                 gtk_tree_view_expand_row (GTK_TREE_VIEW (window->view),

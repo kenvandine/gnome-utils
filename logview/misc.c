@@ -35,7 +35,7 @@
 #include <stdlib.h>
 
 static gboolean queue_err_messages = FALSE;
-static GList *msg_queue_main = NULL, *msg_queue_sec = NULL;
+static GSList *msg_queue_main = NULL, *msg_queue_sec = NULL;
 const char *month[12] =
 {N_("January"), N_("February"), N_("March"), N_("April"), N_("May"),
  N_("June"), N_("July"), N_("August"), N_("September"), N_("October"),
@@ -61,8 +61,8 @@ void
 error_dialog_show (GtkWidget *window, char *main, char *secondary)
 {
     if (queue_err_messages) {
-        msg_queue_main = g_list_append (msg_queue_main, g_strdup (main));
-        msg_queue_sec = g_list_append (msg_queue_sec, g_strdup (secondary));
+        msg_queue_main = g_slist_append (msg_queue_main, g_strdup (main));
+        msg_queue_sec = g_slist_append (msg_queue_sec, g_strdup (secondary));
     } else
         error_dialog_run (window, main, secondary);
 }
@@ -78,11 +78,11 @@ error_dialog_show_queued (void)
 {
 	if (msg_queue_main != NULL) {
 		gboolean title_created = FALSE;
-		GList *li, *li_sec;
+		GSList *li, *li_sec;
 		GString *gs = g_string_new (NULL);
 		GString *gs_sec = g_string_new (NULL);
 
-		for (li = msg_queue_main, li_sec=msg_queue_sec; li != NULL; li = li->next) {
+		for (li = msg_queue_main, li_sec=msg_queue_sec; li != NULL; li = g_slist_next (li)) {
 			char *msg = li->data;
 			char *sec = li_sec->data;
 
@@ -102,8 +102,8 @@ error_dialog_show_queued (void)
 			g_free (sec);
 			li_sec = li_sec->next;
 		}
-		g_list_free (msg_queue_main);
-		g_list_free (msg_queue_sec);
+		g_slist_free (msg_queue_main);
+		g_slist_free (msg_queue_sec);
 		msg_queue_main = NULL;
 		msg_queue_sec = NULL;
 

@@ -29,14 +29,14 @@ GType calendar_get_type (void);
 
 struct CalendarPriv
 {
-    GList *days;
-	gboolean first_pass;
+    GSList *days;
+    gboolean first_pass;
 };
 
 static void
 calendar_mark_dates (Calendar *calendar)
 {
-    GList *days;
+    GSList *days;
     Day *day;
     guint month, year;
 
@@ -45,7 +45,7 @@ calendar_mark_dates (Calendar *calendar)
     gtk_calendar_clear_marks (GTK_CALENDAR (calendar));
     gtk_calendar_get_date (GTK_CALENDAR (calendar), &year, &month, NULL);
 
-    for (days = calendar->priv->days; days != NULL; days = g_list_next(days)) {
+    for (days = calendar->priv->days; days != NULL; days = g_slist_next(days)) {
         day = days->data;
         if (month == g_date_get_month (day->date)-1)
             gtk_calendar_mark_day (GTK_CALENDAR(calendar), g_date_get_day (day->date));
@@ -81,11 +81,11 @@ static Day *
 log_find_day (Log *log, int d, int m, int y)
 {
     GDate *date;
-    GList *days;
+    GSList *days;
     Day *day, *found_day = NULL;
     
     date = g_date_new_dmy (d, m+1, y);
-    for (days = log->days; days!=NULL; days=g_list_next(days)) {
+    for (days = log->days; days!=NULL; days=g_slist_next(days)) {
         day = days->data;
         if (g_date_compare (day->date, date) == 0) {
             found_day = day;

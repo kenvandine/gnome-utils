@@ -174,11 +174,11 @@ string_get_date_string (gchar *line)
    and are then corrected to the correct year once we
    reach the end.
 */
-GList *
+GSList *
 log_read_dates (gchar **buffer_lines, time_t current)
 {
    int offsetyear = 0, current_year;
-   GList *days = NULL, *days_copy;
+   GSList *days = NULL, *days_copy;
    GDate *date, *newdate;
    struct tm *tmptm;
    gchar *date_string;
@@ -206,7 +206,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
 
    g_date_set_year (date, current_year);
    day = g_new (Day, 1);
-   days = g_list_append (days, day);
+   days = g_slist_append (days, day);
 
    day->date = date;
    day->first_line = i;
@@ -271,7 +271,7 @@ log_read_dates (gchar **buffer_lines, time_t current)
            
            date = newdate;
            day = g_new (Day, 1);
-           days = g_list_append (days, day);
+           days = g_slist_append (days, day);
            
            day->date = date;
            day->first_line = i;
@@ -285,13 +285,13 @@ log_read_dates (gchar **buffer_lines, time_t current)
    /* Correct years now. We assume that the last date on the log
       is the date last accessed */
 
-   for (days_copy = days; days_copy != NULL; days_copy = g_list_next (days_copy)) {       
+   for (days_copy = days; days_copy != NULL; days_copy = g_slist_next (days_copy)) {       
        day = days_copy -> data;
        g_date_subtract_years (day->date, offsetyear);
    }
    
    /* Sort the days in chronological order */
-   days = g_list_sort (days, days_compare);
+   days = g_slist_sort (days, days_compare);
 
    return (days);
 }
@@ -532,7 +532,7 @@ log_close (Log *log)
 {
    gint i;
    Day *day;
-   GList *days;
+   GSList *days;
 
    g_return_if_fail (log);
    
@@ -550,13 +550,13 @@ log_close (Log *log)
    g_strfreev (log->lines);
 
    if (log->days != NULL) {
-       for (days = log->days; days != NULL; days = g_list_next (days)) {
+       for (days = log->days; days != NULL; days = g_slist_next (days)) {
            day = days->data;
            g_date_free (day->date);
            gtk_tree_path_free (day->path);
            g_free (day);
        }
-       g_list_free (log->days);
+       g_slist_free (log->days);
        log->days = NULL;
    }
    

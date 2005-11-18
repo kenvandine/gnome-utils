@@ -1,5 +1,21 @@
 2005-11-18  Vincent Noel  <vincent.noel@gmail.com>
 
+	* calendar.c: (calendar_mark_dates), (log_find_day):
+	* calendar.h:
+	* log_repaint.c: (log_add_new_log_lines),
+	(log_fill_model_with_date), (logview_set_log_model):
+	* logrtns.c: (log_read_dates), (log_close):
+	* logrtns.h:
+	* logview.c: (logview_count_logs), (logview_save_prefs),
+	(logview_add_log), (logview_find_log_from_name),
+	(logview_close_log), (logview_file_selected_cb):
+	* logview.h:
+	* main.c: (save_session):
+	* misc.c: (error_dialog_show), (error_dialog_show_queued): Convert
+	a few double-linked lists in linked lists.
+
+2005-11-18  Vincent Noel  <vincent.noel@gmail.com>
+
 	* logview.c: (logview_set_window_title), (window_size_changed_cb),
 	(logview_window_finalize), (logview_init), (logview_window_new):
 	* main.c: (main):

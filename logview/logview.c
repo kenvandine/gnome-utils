@@ -183,7 +183,7 @@ int
 logview_count_logs (LogviewWindow *logview)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
-    return g_list_length (logview->logs);
+    return g_slist_length (logview->logs);
 }
 
 static void
@@ -349,14 +349,14 @@ logview_update_findbar_visibility (LogviewWindow *logview)
 static void
 logview_save_prefs (LogviewWindow *logview)
 {
-    GList *list;
+    GSList *list;
     Log *log;
 
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
     if (GTK_WIDGET_VISIBLE (GTK_WIDGET (logview->loglist))) {
         prefs_free_loglist();
-        for (list = g_list_first (logview->logs); list != NULL; list = g_list_next (list)) {
+        for (list = logview->logs; list != NULL; list = g_slist_next (list)) {
             log = list->data;
             prefs_store_log (log->name);
         }
@@ -397,7 +397,7 @@ logview_add_log (LogviewWindow *logview, Log *log)
     g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
     g_return_if_fail (log);
 
-    logview->logs = g_list_append (logview->logs, log);
+    logview->logs = g_slist_append (logview->logs, log);
     monitor_start (log);
     loglist_add_log (LOG_LIST(logview->loglist), log);
     log->window = logview;    
@@ -407,13 +407,13 @@ logview_add_log (LogviewWindow *logview, Log *log)
 static Log *
 logview_find_log_from_name (LogviewWindow *logview, gchar *name)
 {
-  GList *list;
+  GSList *list;
   Log *log;
 
   if (logview == NULL || name == NULL)
       return NULL;
 
-  for (list = logview->logs; list != NULL; list = g_list_next (list)) {
+  for (list = logview->logs; list != NULL; list = g_slist_next (list)) {
     log = list->data;
     if (g_ascii_strncasecmp (log->name, name, 255) == 0) {
       return log;
@@ -470,7 +470,7 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
     log = logview->curlog;
     logview->curlog = NULL;
 
-    logview->logs = g_list_remove (logview->logs, log);
+    logview->logs = g_slist_remove (logview->logs, log);
     log_close (log);
     loglist_remove_log (LOG_LIST (logview->loglist), log);
 }
@@ -489,10 +489,10 @@ logview_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logv
    f = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
 
    if (f != NULL) {
-	   /* Check if the log is not already opened */
-	   GList *list;
+       /* Check if the log is not already opened */
+       GSList *list;
        Log *log, *tl;
-	   for (list = logview->logs; list != NULL; list = g_list_next (list)) {
+	   for (list = logview->logs; list != NULL; list = g_slist_next (list)) {
 		   log = list->data;
 		   if (g_ascii_strncasecmp (log->name, f, 255) == 0) {
 		     loglist_select_log (LOG_LIST (logview->loglist), log);
