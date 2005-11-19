@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-18 00:11+0100\n"
-"PO-Revision-Date: 2005-11-18 00:18+0100\n"
+"POT-Creation-Date: 2005-11-19 14:26+0100\n"
+"PO-Revision-Date: 2005-11-19 14:32+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -2035,47 +2035,85 @@ msgstr "Ca_lendario"
 msgid "Show Calendar Log"
 msgstr "Muestra el calendario del registro"
 
-#: ../logview/logview.c:302
+#: ../logview/logview.c:308
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (monitorizado) - %s"
 
-#: ../logview/logview.c:511
+#: ../logview/logview.c:519
 msgid "Open Log"
 msgstr "Abre el registro"
 
-#: ../logview/logview.c:741
+#: ../logview/logview.c:749
 msgid "There was an error displaying help."
 msgstr "Hubo un error al mostrar la ayuda."
 
-#: ../logview/logview.c:875
+#: ../logview/logview.c:882
 msgid "Version: "
 msgstr "Versión:"
 
-#: ../logview/logview.c:944
+#: ../logview/logview.c:951
 msgid "Days"
 msgstr "días"
 
-#: ../logview/logview.c:945
+#: ../logview/logview.c:952
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "Puntero hacia una GSLista de días para el registro actual."
 
 #: ../logview/logview.schemas.in.h:1
+msgid "Height of the main window in pixels"
+msgstr "Altura de la ventana principal en píxeles"
+
+#: ../logview/logview.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "Archivo de registro de actividad que abrir al iniciar"
 
-#: ../logview/logview.schemas.in.h:2
+#: ../logview/logview.schemas.in.h:3
+msgid "Log files to open up on startup"
+msgstr "Archivos de registro que abrir al iniciar"
+
+#: ../logview/logview.schemas.in.h:4
+msgid "Size of the font used to display the log"
+msgstr "Tamaño de la tipografía usada para mostrar el archivo de registro"
+
+#: ../logview/logview.schemas.in.h:5
 msgid ""
-"Specifies the log file to open up at startup. The default is either /var/adm/"
+"Specifies a list of log files to open up at startup. When this key is "
+"created, a default list is created by reading /etc/syslog.conf."
+msgstr "Especifica una lista de archivos de registro que abrir al inicio. Cuando esta clave se crea, se añade una lista predeterminada leyendo /etc/syslog.conf."
+
+#: ../logview/logview.schemas.in.h:6
+msgid "Specifies the height of the log viewer main window in pixels."
+msgstr "Especifica la altura en píxeles de la ventana principal del visor de archivos de registro "
+
+#: ../logview/logview.schemas.in.h:7
+msgid ""
+"Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
-msgstr ""
-"Indica el archivo registro de actividad a abrir durante el inicio. Los "
-"predeterminados son «/var/adm/messages» o «/var/log/messages», dependiendo "
-"de su sistema operativo."
+msgstr "Especifica el archivo registro de actividad mostrado al inicio. Los predeterminados son «/var/adm/messages» o «/var/log/messages», dependiendo de su sistema operativo."
+
+#: ../logview/logview.schemas.in.h:8
+msgid ""
+"Specifies the size of the fixed-width font used to display the log in the "
+"main tree view. The default is taken from the default gnome terminal font "
+"size."
+msgstr "Especifica el tamaño de la tipografía de anchura fija usada para mostrar el registro de actividad en la vista del árbol principal. Los predeterminado es tomar el tamaño de la tipografía de terminal de Gnome."
+
+#: ../logview/logview.schemas.in.h:9
+msgid "Specifies the wifth of the log viewer main window in pixels."
+msgstr "Especifica la anchura de la ventana principal del visor de registros en píxeles."
+
+#: ../logview/logview.schemas.in.h:10
+msgid "Width of the main window in pixels"
+msgstr "Anchura de la ventana principal en píxeles"
 
 #: ../logview/main.c:114
 msgid "Log Viewer"
 msgstr "Visor de registros de actividad"
+
+#: ../logview/main.c:127
+msgid "Unable to create user interface."
+msgstr "Imposible crear la interfaz de usuario."
 
 #: ../logview/misc.c:40
 msgid "January"
