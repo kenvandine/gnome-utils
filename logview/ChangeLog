@@ -1,5 +1,10 @@
 2005-11-23  Vincent Noel  <vincent.noel@gmail.com>
 
+	* logrtns.c: (log_add_lines), (log_read_new_lines): Apparently you
+	  can't compare a GnomeVFSFileSize with a GnomeVFSFileOffset.
+
+2005-11-23  Vincent Noel  <vincent.noel@gmail.com>
+
 	* logrtns.c: (log_stats_reload), (log_read_new_lines): Update the
 	line count and last modification date when a log is updated.
 

@@ -461,6 +461,7 @@ log_add_lines (Log *log, gchar *buffer)
   g_assert (log != NULL);
   g_assert (buffer != NULL);
 
+  g_print("Adding lines : \n%s\n", buffer);
   old_buffer = g_strjoinv ("\n", log->lines);
   new_buffer = g_strconcat (old_buffer, "\n", buffer, NULL);
   g_free (old_buffer);
@@ -485,19 +486,29 @@ log_read_new_lines (Log *log)
 {
     GnomeVFSResult result;
     gchar *buffer;
-    GnomeVFSFileSize newsize, read;
-    GnomeVFSFileOffset size;
+    GnomeVFSFileSize newfilesize, read;
+    int size, newsize;
     
     g_return_val_if_fail (log!=NULL, FALSE);
     
     result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_END, 0L);
-    result = gnome_vfs_tell (log->mon_file_handle, &newsize);
-    size = log->mon_offset;
+    result = gnome_vfs_tell (log->mon_file_handle, &newfilesize);
+    size = (int) log->mon_offset;
+    newsize = (int) newfilesize;
     
-    if (newsize > log->mon_offset) {
-      buffer = g_malloc (newsize-size);
+    if (newsize > size) {
+      buffer = g_malloc (newsize - size);
+      if (!buffer)
+	return FALSE;
+
       result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_START, size);
+      if (result != GNOME_VFS_OK)
+	return FALSE;
+
       result = gnome_vfs_read (log->mon_file_handle, buffer, newsize-size, &read);
+      if (result != GNOME_VFS_OK)
+	return FALSE;
+
       buffer [newsize-size-1] = 0;
       log->mon_offset = newsize;      
       log_add_lines (log, buffer);
