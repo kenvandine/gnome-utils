@@ -461,7 +461,6 @@ log_add_lines (Log *log, gchar *buffer)
   g_assert (log != NULL);
   g_assert (buffer != NULL);
 
-  g_print("Adding lines : \n%s\n", buffer);
   old_buffer = g_strjoinv ("\n", log->lines);
   new_buffer = g_strconcat (old_buffer, "\n", buffer, NULL);
   g_free (old_buffer);
