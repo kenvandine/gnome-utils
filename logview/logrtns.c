@@ -472,6 +472,12 @@ log_add_lines (Log *log, gchar *buffer)
   log->total_lines = g_strv_length (log->lines);
 }
 
+void log_stats_reload (Log *log)
+{
+  g_free (log->stats);
+  log->stats = log_stats_new (log->name, TRUE);
+}
+
 /* log_read_new_lines */
 
 gboolean 
@@ -497,6 +503,7 @@ log_read_new_lines (Log *log)
       log_add_lines (log, buffer);
       g_free (buffer);
       
+      log_stats_reload (log);
       return TRUE;
     }
     return FALSE;
