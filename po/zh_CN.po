@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-17 06:40+0100\n"
-"PO-Revision-Date: 2005-11-17 18:13+0800\n"
+"POT-Creation-Date: 2005-11-26 06:43+0100\n"
+"PO-Revision-Date: 2005-11-26 15:28+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -1163,8 +1163,7 @@ msgstr "选择额外选项"
 msgid ""
 "This key defines the order of the columns in the search results. This key "
 "should not be modified by the user."
-msgstr ""
-"此键定义了搜索结果中各列的顺序。此键不应该由用户自行修改。"
+msgstr "此键定义了搜索结果中各列的顺序。此键不应该由用户自行修改。"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
@@ -1785,17 +1784,17 @@ msgstr "系统日志"
 msgid "View the system log file"
 msgstr "查看系统日志文件"
 
-#: ../logview/log_repaint.c:177
-#,  c-format
+#: ../logview/log_repaint.c:179
+#, c-format
 msgid "last update : %s"
 msgstr "上次更新：%s"
 
-#: ../logview/log_repaint.c:179
+#: ../logview/log_repaint.c:181
 #, c-format
 msgid "%d lines (%s) - %s"
 msgstr "%d 行(%s) - %s"
 
-#: ../logview/log_repaint.c:217
+#: ../logview/log_repaint.c:219
 msgid "Current"
 msgstr "当前"
 
@@ -1822,16 +1821,16 @@ msgstr "%s 太大。"
 msgid "%s could not be opened."
 msgstr "无法打开 %s。"
 
-#: ../logview/logrtns.c:375
+#: ../logview/logrtns.c:378
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s 不是日志文件。"
 
-#: ../logview/logrtns.c:381
+#: ../logview/logrtns.c:384
 msgid "Not enough memory."
 msgstr "内存不足。"
 
-#: ../logview/logrtns.c:395
+#: ../logview/logrtns.c:398
 #, c-format
 msgid "%s cannot be opened."
 msgstr "无法打开 %s。"
@@ -1948,46 +1947,90 @@ msgstr "日历(_L)"
 msgid "Show Calendar Log"
 msgstr "显示日历日志"
 
-#: ../logview/logview.c:303
+#: ../logview/logview.c:308
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (已监视) - %s"
 
-#: ../logview/logview.c:512
+#: ../logview/logview.c:519
 msgid "Open Log"
 msgstr "打开日志"
 
-#: ../logview/logview.c:742
+#: ../logview/logview.c:749
 msgid "There was an error displaying help."
 msgstr "显示帮助时出错。"
 
-#: ../logview/logview.c:876
+#: ../logview/logview.c:882
 msgid "Version: "
 msgstr "版本："
 
-#: ../logview/logview.c:945
+#: ../logview/logview.c:951
 msgid "Days"
 msgstr "天数"
 
-#: ../logview/logview.c:946
+#: ../logview/logview.c:952
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "指向当前日志天数 GSList 的指针。"
 
 #: ../logview/logview.schemas.in.h:1
+msgid "Height of the main window in pixels"
+msgstr "主窗口的高度，以像素计"
+
+#: ../logview/logview.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "启动时打开的日志文件"
 
-#: ../logview/logview.schemas.in.h:2
+#: ../logview/logview.schemas.in.h:3
+msgid "Log files to open up on startup"
+msgstr "启动时打开的日志文件"
+
+#: ../logview/logview.schemas.in.h:4
+msgid "Size of the font used to display the log"
+msgstr "用于显示日志的字体大小"
+
+#: ../logview/logview.schemas.in.h:5
 msgid ""
-"Specifies the log file to open up at startup. The default is either /var/adm/"
+"Specifies a list of log files to open up at startup. When this key is "
+"created, a default list is created by reading /etc/syslog.conf."
+msgstr ""
+"指定在程序启动时要打开的日志文件。创建此键后，默认列表将会通过读取 "
+"/etc/syslog.conf 创建。"
+
+#: ../logview/logview.schemas.in.h:6
+msgid "Specifies the height of the log viewer main window in pixels."
+msgstr "指定日志查看器主窗口的高度，以像素计。"
+
+#: ../logview/logview.schemas.in.h:7
+msgid ""
+"Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"指定在程序启动时打开的日志文件。根据您的操作系统不同，默认是 /var/adm/"
+"指定在程序启动时显示的日志文件。根据您的操作系统不同，默认是 /var/adm/"
 "messages 或者 /var/log/messages。"
+
+#: ../logview/logview.schemas.in.h:8
+msgid ""
+"Specifies the size of the fixed-width font used to display the log in the "
+"main tree view. The default is taken from the default gnome terminal font "
+"size."
+msgstr ""
+"指定用于在主树视图中显示日志的等宽字体大小。默认值来自于 GNOME 终端字体大小。"
+
+#: ../logview/logview.schemas.in.h:9
+msgid "Specifies the wifth of the log viewer main window in pixels."
+msgstr "指定日志查看器主窗口的宽度，以像素计。"
+
+#: ../logview/logview.schemas.in.h:10
+msgid "Width of the main window in pixels"
+msgstr "主窗口的宽度，以像素计"
 
 #: ../logview/main.c:114
 msgid "Log Viewer"
 msgstr "日志查看器"
+
+#: ../logview/main.c:127
+msgid "Unable to create user interface."
+msgstr "无法创建用户界面。"
 
 #: ../logview/misc.c:40
 msgid "January"
@@ -2058,4 +2101,3 @@ msgstr "不支持对此文件系统进行监视。\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS 错误。\n"
-
