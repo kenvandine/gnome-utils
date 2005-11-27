@@ -1426,7 +1426,9 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 								add_file_to_search_results (string->str, gsearch->search_results_list_store, &gsearch->search_results_iter, gsearch);
 							}
 						}
-						else if ((is_path_hidden (string->str) == FALSE) && (!g_str_has_suffix (string->str, "~"))) {
+						else if ((is_path_hidden (string->str) == FALSE || 
+						          is_path_hidden (gsearch->command_details->look_in_folder_string) == TRUE) && 
+						          (!g_str_has_suffix (string->str, "~"))) {
 							if (gsearch->command_details->is_command_regex_matching_enabled == FALSE) {
 								add_file_to_search_results (string->str, gsearch->search_results_list_store, &gsearch->search_results_iter, gsearch);
 							} 
