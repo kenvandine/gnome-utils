@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-02 14:24+0100\n"
-"PO-Revision-Date: 2005-11-02 23:21+0100\n"
+"POT-Creation-Date: 2005-12-02 14:52+0100\n"
+"PO-Revision-Date: 2005-12-02 20:13+0100\n"
 "Last-Translator: Miloslav Trmac <mitr@volny.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgid "Lookup words in an online dictionary"
 msgstr "Vyhledávání slov v on-line slovníku"
 
 #: ../gdictsrc/GNOME_GDictApplet.xml.h:1 ../gdictsrc/gdict-app.c:595
-#: ../logview/logview.c:118
+#: ../logview/logview.c:116
 msgid "_About"
 msgstr "O _aplikaci"
 
@@ -65,7 +65,7 @@ msgstr ""
 "Pro vaši informaci, implicitní server je dict.org a port 2628"
 
 #. Translator credits
-#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:44
+#: ../gdictsrc/gdict-about.c:40 ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "David Šauer <davids@penguin.cz>\n"
@@ -139,7 +139,7 @@ msgstr "Vy_tisknout"
 msgid "Print the current definition"
 msgstr "Vytisknout aktuální definici"
 
-#: ../gdictsrc/gdict-app.c:581
+#: ../gdictsrc/gdict-app.c:581 ../logview/logview.c:92
 msgid "_Close"
 msgstr "_Zavřít"
 
@@ -148,7 +148,7 @@ msgid "Close the application"
 msgstr "Zavřít aplikaci"
 
 #. Edit menu, see below for cut, paste etc.
-#: ../gdictsrc/gdict-app.c:585 ../logview/logview.c:103
+#: ../gdictsrc/gdict-app.c:585
 msgid "_Find..."
 msgstr "_Hledat..."
 
@@ -173,7 +173,7 @@ msgid "Configure the application"
 msgstr "Nastavit aplikaci"
 
 #. Help menu
-#: ../gdictsrc/gdict-app.c:593 ../logview/logview.c:116
+#: ../gdictsrc/gdict-app.c:593 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Obsah"
 
@@ -193,11 +193,11 @@ msgstr "_Vyjmout"
 msgid "Cut the selection"
 msgstr "Vyjmout výběr"
 
-#: ../gdictsrc/gdict-app.c:603
+#: ../gdictsrc/gdict-app.c:603 ../logview/logview.c:97
 msgid "_Copy"
 msgstr "_Kopírovat"
 
-#: ../gdictsrc/gdict-app.c:604 ../logview/logview.c:99
+#: ../gdictsrc/gdict-app.c:604 ../logview/logview.c:97
 msgid "Copy the selection"
 msgstr "Kopírovat výběr"
 
@@ -209,7 +209,7 @@ msgstr "V_ložit"
 msgid "Paste clipboard"
 msgstr "Vložit schránku"
 
-#: ../gdictsrc/gdict-app.c:607
+#: ../gdictsrc/gdict-app.c:607 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Vybrat vš_e"
 
@@ -1090,95 +1090,105 @@ msgstr "Cesty vyjmuté z rychlého hledání"
 msgid "Quick Search Second Scan Excluded Paths"
 msgstr "Cesty vyjmuté z druhého průchodu rychlého hledání"
 
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:5
+msgid "Search Result Columns Order"
+msgstr "Pořadí sloupců výsledků hledání"
+
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:7
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:8
 msgid "Select the search option \"Contains the text\""
 msgstr "Zvolit možnost hledání \"Obsahuje text\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:10
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:11
 msgid "Select the search option \"Date modified less than\""
 msgstr "Zvolit možnost hledání \"Datum úpravy méně než\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:13
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:14
 msgid "Select the search option \"Date modified more than\""
 msgstr "Zvolit možnost hledání \"Datum úpravy více než\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:16
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:17
 msgid "Select the search option \"File is empty\""
 msgstr "Zvolit možnost hledání \"Soubor je prázdný\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:19
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:20
 msgid "Select the search option \"Follow symbolic links\""
 msgstr "Zvolit možnost hledání \"Sledovat symbolické odkazy\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:22
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:23
 msgid "Select the search option \"Include other filesystems\""
 msgstr "Zvolit možnost hledání \"Zahrnout jiné systémy souborů\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:25
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:26
 msgid "Select the search option \"Name does not contain\""
 msgstr "Zvolit možnost hledání \"Název neobsahuje\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:28
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:29
 msgid "Select the search option \"Name matches regular expression\""
 msgstr "Zvolit možnost hledání \"Název odpovídá regulárnímu výrazu\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:31
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:32
 msgid "Select the search option \"Owned by group\""
 msgstr "Zvolit možnost hledání \"Vlastněno skupinou\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:34
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:35
 msgid "Select the search option \"Owned by user\""
 msgstr "Zvolit možnost hledání \"Vlastněno uživatelem\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:37
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:38
 msgid "Select the search option \"Owner is unrecognized\""
 msgstr "Zvolit možnost hledání \"Vlastníka nelze rozpoznat\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:40
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:41
 msgid "Select the search option \"Show hidden files and folders\""
 msgstr "Zvolit možnost hledání \"Zobrazovat skryté soubory a složky\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:43
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:44
 msgid "Select the search option \"Size at least\""
 msgstr "Zvolit možnost hledání \"Velikost alespoň\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:46
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:47
 msgid "Select the search option \"Size at most\""
 msgstr "Zvolit možnost hledání \"Velikost nejvíce\""
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:47
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid "Show Additional Options"
 msgstr "Zvolit Zobrazit více možností"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:48
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:49
+msgid ""
+"This key defines the order of the columns in the search results. This key "
+"should not be modified by the user."
+msgstr "Tento klíč definuje pořadí sloupců ve výsledcích hledání. Tento klíč by neměl být měněn uživatelem."
+
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:50
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
@@ -1188,7 +1198,7 @@ msgstr ""
 "Jsou podporovány zástupné znaky '*' a '?'. Implicitní hodnoty jsou /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/* a /var/*."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:49
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -1201,7 +1211,7 @@ msgstr ""
 "druhého průchodu je najít cesty, které nebyly indexovány. Jsou podporovány "
 "zástupné znaky '*' a '?'. Implicitní hodnota je /."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:50
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
@@ -1209,7 +1219,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Obsahuje text\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:51
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
@@ -1217,7 +1227,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Datum úpravy méně než\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:52
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
@@ -1225,7 +1235,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Datum úpravy více než\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:53
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key determines if the \"File is empty\" search option is selected when "
 "the search tool is started."
@@ -1233,7 +1243,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Soubor je prázdný\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:54
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
@@ -1241,7 +1251,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Sledovat symbolické odkazy\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:55
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
@@ -1249,7 +1259,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Zahrnout jiné systémy souborů\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:56
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
@@ -1257,7 +1267,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Název neobsahuje\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:57
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
@@ -1265,7 +1275,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Název odpovídá regulárnímu výrazu\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:58
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
@@ -1273,7 +1283,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Vlastněno skupinou\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:59
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:61
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
@@ -1281,7 +1291,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Vlastněno uživatelem\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:60
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:62
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
@@ -1291,7 +1301,7 @@ msgstr ""
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:63
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
@@ -1299,7 +1309,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání rozbalen oddíl "
 "\"Vybrat další možnosti\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:64
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
@@ -1307,7 +1317,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Zobrazovat skryté soubory a složky\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:65
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
@@ -1315,7 +1325,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Velikost alespoň\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:66
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
@@ -1323,7 +1333,7 @@ msgstr ""
 "Tento klíč určuje, jestli je při spuštění nástroje hledání zvolena možnost "
 "hledání \"Velikost nejvíce\"."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:67
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:69
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
@@ -1331,7 +1341,7 @@ msgstr ""
 "Tento klíč určuje, jestli nástroj hledání zakazuje použití příkazu find pro "
 "provedení rychlého hledání."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:68
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:70
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
@@ -1469,24 +1479,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:601
+#: ../gsearchtool/gsearchtool-support.c:622
 msgid "today at %-I:%M %p"
 msgstr "dnes v %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:603
+#: ../gsearchtool/gsearchtool-support.c:624
 msgid "yesterday at %-I:%M %p"
 msgstr "včera v %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:605
-#: ../gsearchtool/gsearchtool-support.c:607
+#: ../gsearchtool/gsearchtool-support.c:626
+#: ../gsearchtool/gsearchtool-support.c:628
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A %-d. %B %Y v %-H:%M:%S"
 
-#: ../gsearchtool/gsearchtool-support.c:786
+#: ../gsearchtool/gsearchtool-support.c:807
 msgid "link (broken)"
 msgstr "odkaz (chybný)"
 
-#: ../gsearchtool/gsearchtool-support.c:790
+#: ../gsearchtool/gsearchtool-support.c:811
 #, c-format
 msgid "link to %s"
 msgstr "odkaz na %s"
@@ -1609,7 +1619,7 @@ msgstr[1] "Nalezeny %d soubory"
 msgstr[2] "Nalezeno %d souborů"
 
 #: ../gsearchtool/gsearchtool.c:824 ../gsearchtool/gsearchtool.c:1083
-#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2904
+#: ../gsearchtool/gsearchtool.c:1169 ../gsearchtool/gsearchtool.c:2953
 msgid "Search for Files"
 msgstr "Hledat soubory"
 
@@ -1656,7 +1666,7 @@ msgstr "Zvolit a nastavit možnost hledání \"%s\""
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Parametru příkazové řádky sortby byla předána neplatná volba."
 
-#: ../gsearchtool/gsearchtool.c:1618
+#: ../gsearchtool/gsearchtool.c:1623
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -1664,17 +1674,17 @@ msgstr ""
 "\n"
 "... Příliš mnoho chyb k zobrazení ..."
 
-#: ../gsearchtool/gsearchtool.c:1632
+#: ../gsearchtool/gsearchtool.c:1637
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "Výsledky hledání možná nejsou platné. Při hledání došlo k chybám."
 
-#: ../gsearchtool/gsearchtool.c:1644 ../gsearchtool/gsearchtool.c:1688
+#: ../gsearchtool/gsearchtool.c:1649 ../gsearchtool/gsearchtool.c:1693
 msgid "Show more _details"
 msgstr "Zobrazit více _podrobností"
 
-#: ../gsearchtool/gsearchtool.c:1674
+#: ../gsearchtool/gsearchtool.c:1679
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -1682,161 +1692,161 @@ msgstr ""
 "Výsledky hledání jsou možná zastaralé nebo neplatné. Chcete zakázat funkci "
 "rychlého hledání?"
 
-#: ../gsearchtool/gsearchtool.c:1699
+#: ../gsearchtool/gsearchtool.c:1704
 msgid "Disable _Quick Search"
 msgstr "Zakázat _rychlé hledání"
 
-#: ../gsearchtool/gsearchtool.c:1726
+#: ../gsearchtool/gsearchtool.c:1731
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Nemohu nastavit id skupiny procesů potomka %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1753
+#: ../gsearchtool/gsearchtool.c:1758
 msgid "Error parsing the search command."
 msgstr "Chyba při zpracovávání příkazu hledání."
 
-#: ../gsearchtool/gsearchtool.c:1786
+#: ../gsearchtool/gsearchtool.c:1791
 msgid "Error running the search command."
 msgstr "Chyba při spouštění příkazu hledání."
 
-#: ../gsearchtool/gsearchtool.c:1912
+#: ../gsearchtool/gsearchtool.c:1917
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Zadejte textovou hodnotu možnosti hledání \"%s\"."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1917
+#: ../gsearchtool/gsearchtool.c:1922
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\", jednotky %s"
 
-#: ../gsearchtool/gsearchtool.c:1919
+#: ../gsearchtool/gsearchtool.c:1924
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Zadejte hodnotu v %s pro možnost hledání \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:1978
+#: ../gsearchtool/gsearchtool.c:1983
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Odstranit \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:1979
+#: ../gsearchtool/gsearchtool.c:1984
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Kliknutím odstraňte možnost hledání \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:2072
+#: ../gsearchtool/gsearchtool.c:2077
 msgid "A_vailable options:"
 msgstr "Dostupné _volby:"
 
-#: ../gsearchtool/gsearchtool.c:2101
+#: ../gsearchtool/gsearchtool.c:2106
 msgid "Available options"
 msgstr "Dostupné možnosti"
 
-#: ../gsearchtool/gsearchtool.c:2102
+#: ../gsearchtool/gsearchtool.c:2107
 msgid "Select a search option from the drop-down list."
 msgstr "Vyberte možnost hledání z rozbalovacího seznamu."
 
-#: ../gsearchtool/gsearchtool.c:2114
+#: ../gsearchtool/gsearchtool.c:2119
 msgid "Add search option"
 msgstr "Přidat možnost hledání"
 
-#: ../gsearchtool/gsearchtool.c:2115
+#: ../gsearchtool/gsearchtool.c:2120
 msgid "Click to add the selected available search option."
 msgstr "Kliknutím přidáte vybranou možnost hledání"
 
-#: ../gsearchtool/gsearchtool.c:2173
+#: ../gsearchtool/gsearchtool.c:2209
 msgid "S_earch results:"
 msgstr "Výsl_edky hledání:"
 
-#: ../gsearchtool/gsearchtool.c:2209
+#: ../gsearchtool/gsearchtool.c:2247
 msgid "List View"
 msgstr "Seznamový pohled"
 
-#: ../gsearchtool/gsearchtool.c:2269
+#: ../gsearchtool/gsearchtool.c:2307
 msgid "Name"
 msgstr "Název"
 
-#: ../gsearchtool/gsearchtool.c:2292
+#: ../gsearchtool/gsearchtool.c:2331
 msgid "Folder"
 msgstr "Adresář"
 
-#: ../gsearchtool/gsearchtool.c:2303
+#: ../gsearchtool/gsearchtool.c:2343
 msgid "Size"
 msgstr "Velikost"
 
-#: ../gsearchtool/gsearchtool.c:2313
+#: ../gsearchtool/gsearchtool.c:2354
 msgid "Type"
 msgstr "Typ"
 
-#: ../gsearchtool/gsearchtool.c:2323
+#: ../gsearchtool/gsearchtool.c:2365
 msgid "Date Modified"
 msgstr "Datum změny"
 
-#: ../gsearchtool/gsearchtool.c:2693
+#: ../gsearchtool/gsearchtool.c:2742
 msgid "_Name contains:"
 msgstr "_Název obsahuje:"
 
-#: ../gsearchtool/gsearchtool.c:2707 ../gsearchtool/gsearchtool.c:2708
+#: ../gsearchtool/gsearchtool.c:2756 ../gsearchtool/gsearchtool.c:2757
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "Zadejte název souboru nebo část názvu souboru, se zástupnými znaky nebo nez "
 "nich."
 
-#: ../gsearchtool/gsearchtool.c:2708
+#: ../gsearchtool/gsearchtool.c:2757
 msgid "Name contains"
 msgstr "Název obsahuje"
 
-#: ../gsearchtool/gsearchtool.c:2714
+#: ../gsearchtool/gsearchtool.c:2763
 msgid "_Look in folder:"
 msgstr "Hledat v _adresáři:"
 
-#: ../gsearchtool/gsearchtool.c:2720
+#: ../gsearchtool/gsearchtool.c:2769
 msgid "Browse"
 msgstr "Probírat"
 
-#: ../gsearchtool/gsearchtool.c:2725
+#: ../gsearchtool/gsearchtool.c:2774
 msgid "Look in folder"
 msgstr "Hledat v adresáři"
 
-#: ../gsearchtool/gsearchtool.c:2725
+#: ../gsearchtool/gsearchtool.c:2774
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Zvolte adresář nebo zařízení, kde chcete začít hledat."
 
-#: ../gsearchtool/gsearchtool.c:2736
+#: ../gsearchtool/gsearchtool.c:2785
 msgid "Select more _options"
 msgstr "Vybrat další _možnosti"
 
-#: ../gsearchtool/gsearchtool.c:2745
+#: ../gsearchtool/gsearchtool.c:2794
 msgid "Select more options"
 msgstr "Vybrat další možnosti"
 
-#: ../gsearchtool/gsearchtool.c:2745
+#: ../gsearchtool/gsearchtool.c:2794
 msgid "Click to expand or collapse the list of available options."
 msgstr "Kliknutím rozbalte nebo sbalte seznam dostupných možností."
 
-#: ../gsearchtool/gsearchtool.c:2769
+#: ../gsearchtool/gsearchtool.c:2818
 msgid "Click to display the help manual."
 msgstr "Kliknutím zobrazte příručku."
 
-#: ../gsearchtool/gsearchtool.c:2777
+#: ../gsearchtool/gsearchtool.c:2826
 msgid "Click to close \"Search for Files\"."
 msgstr "Kliknutím zavřete \"Hledat soubory\"."
 
-#: ../gsearchtool/gsearchtool.c:2803
+#: ../gsearchtool/gsearchtool.c:2852
 msgid "Click to perform a search."
 msgstr "Kliknutím začněte hledat."
 
-#: ../gsearchtool/gsearchtool.c:2804
+#: ../gsearchtool/gsearchtool.c:2853
 msgid "Click to stop a search."
 msgstr "Kliknutím zastavte hledání."
 
-#: ../logview/about.c:48 ../logview/logview.c:47
+#: ../logview/about.c:51 ../logview/logview.c:37
 msgid "System Log Viewer"
 msgstr "Prohlížeč systémových záznamů"
 
-#: ../logview/about.c:51
+#: ../logview/about.c:54
 msgid "A system log viewer for GNOME."
 msgstr "Prohlížeč systémových záznamů pro GNOME."
 
@@ -1848,55 +1858,25 @@ msgstr "Systémový soubor záznamů"
 msgid "View the system log file"
 msgstr "Prohlížet systémový soubor záznamů"
 
-#: ../logview/info.c:45
+#: ../logview/log_repaint.c:179
 #, c-format
-msgid "<b>Size</b>: %s"
-msgstr "<b>Velikost</b>: %s"
+msgid "last update : %s"
+msgstr "poslední aktualizace: %s"
 
-#: ../logview/info.c:50
+#: ../logview/log_repaint.c:181
 #, c-format
-msgid "<b>Modified</b>: %s"
-msgstr "<b>Změněn</b>: %s"
+msgid "%d lines (%s) - %s"
+msgstr "%d řádků (%s) - %s"
 
-#: ../logview/info.c:56
-#, c-format
-msgid "<b>Start Date</b>: %s"
-msgstr "<b>Počáteční datum</b>: %s"
-
-#: ../logview/info.c:62
-#, c-format
-msgid "<b>Last Date</b>: %s"
-msgstr "<b>Konečné datum</b>: %s"
-
-#: ../logview/info.c:66
-#, c-format
-msgid "<b>Number of Lines</b>: %ld"
-msgstr "<b>Počet řádků</b>: %ld"
-
-#: ../logview/info.c:106
-msgid "Properties"
-msgstr "Vlastnosti"
-
-#: ../logview/log_repaint.c:145
-#, c-format
-msgid "%d lines (%s)"
-msgstr "%d řádků (%s)"
-
-#: ../logview/log_repaint.c:178
+#: ../logview/log_repaint.c:219
 msgid "Current"
 msgstr "Aktuální"
 
-#. Translators: should be only the time, date could be bogus
-#: ../logview/log_repaint.c:250
-#, c-format
-msgid "%X"
-msgstr "%X"
-
-#: ../logview/logrtns.c:36
+#: ../logview/logrtns.c:37
 msgid "One file or more could not be opened"
 msgstr "Jeden nebo více souborů nelze otevřít"
 
-#: ../logview/logrtns.c:61
+#: ../logview/logrtns.c:59
 #, c-format
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
@@ -1905,40 +1885,37 @@ msgstr ""
 "%s není pro uživatele čitelný. Buď tento program spusťte jako root, nebo "
 "požádejte správce systému, aby změnil přístupová práva k tomuto souboru.\n"
 
-#: ../logview/logrtns.c:66
+#: ../logview/logrtns.c:64
 #, c-format
 msgid "%s is too big."
 msgstr "%s je příliš velký."
 
-#: ../logview/logrtns.c:70
+#: ../logview/logrtns.c:67
 #, c-format
 msgid "%s could not be opened."
 msgstr "Nemohu otevřít %s."
 
-#: ../logview/logrtns.c:337
+#: ../logview/logrtns.c:378
 #, c-format
-msgid "%s not a log file."
-msgstr "Soubor %s není souborem záznamů."
+msgid "%s is not a log file."
+msgstr "%s není soubor záznamů."
 
-#: ../logview/logrtns.c:383
-msgid "Unable to open logfile!\n"
-msgstr "Nemohu otevřít soubor záznamů!\n"
+#: ../logview/logrtns.c:384
+msgid "Not enough memory."
+msgstr "Nedostatek paměti."
 
-#: ../logview/logrtns.c:389
-msgid "Not enough memory!\n"
-msgstr "Nedostatek paměti!\n"
+#: ../logview/logrtns.c:398
+#, c-format
+msgid "%s cannot be opened."
+msgstr "Nemohu otevřít %s."
 
-#: ../logview/logview-findbar.c:277
-msgid "Fin_d:"
-msgstr "_Hledat:"
+#: ../logview/logview-findbar.c:152
+msgid "_Filter:"
+msgstr "_Filtr:"
 
-#: ../logview/logview-findbar.c:282
-msgid "_Previous"
-msgstr "_Předchozí"
-
-#: ../logview/logview-findbar.c:284
-msgid "_Next"
-msgstr "_Následující"
+#: ../logview/logview-findbar.c:157
+msgid "_Clear"
+msgstr "_Vymazat"
 
 #: ../logview/logview.c:85
 msgid "_Log"
@@ -1961,79 +1938,71 @@ msgid "Open a log from file"
 msgstr "Otevřít záznam ze souboru"
 
 #: ../logview/logview.c:92
-msgid "_Properties"
-msgstr "_Vlastnosti"
-
-#: ../logview/logview.c:92
-msgid "Show Log Properties"
-msgstr "Zobrazit vlastnosti záznamu"
-
-#: ../logview/logview.c:94
-msgid "Close"
-msgstr "Zavřít"
-
-#: ../logview/logview.c:94
 msgid "Close this log"
 msgstr "Zavřít tento záznam"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:94
 msgid "_Quit"
 msgstr "U_končit"
 
-#: ../logview/logview.c:96
+#: ../logview/logview.c:94
 msgid "Quit the log viewer"
 msgstr "Ukončit prohlížeč záznamů"
 
 #: ../logview/logview.c:99
-msgid "Copy"
-msgstr "Kopírovat"
-
-#: ../logview/logview.c:101
-msgid "Select All"
-msgstr "Vybrat vše"
-
-#: ../logview/logview.c:101
 msgid "Select the entire log"
 msgstr "Vybrat celý záznam"
 
-#: ../logview/logview.c:103
-msgid "Find pattern in logs"
-msgstr "Hledat v záznamech vzorek"
+#: ../logview/logview.c:101
+msgid "_Filter..."
+msgstr "_Filtr..."
 
-#: ../logview/logview.c:106
+#: ../logview/logview.c:101
+msgid "Filter log"
+msgstr "Filtrovat záznam"
+
+#: ../logview/logview.c:104
 msgid "Bigger text size"
 msgstr "Větší velikost textu"
 
-#: ../logview/logview.c:108
+#: ../logview/logview.c:106
 msgid "Smaller text size"
 msgstr "Menší velikost textu"
 
-#: ../logview/logview.c:110
+#: ../logview/logview.c:108
 msgid "Normal text size"
 msgstr "Normální velikost textu"
 
-#: ../logview/logview.c:113
+#: ../logview/logview.c:111
 msgid "Collapse _All"
 msgstr "S_balit vše"
 
-#: ../logview/logview.c:113
+#: ../logview/logview.c:111
 msgid "Collapse all the rows"
 msgstr "Sbalí všechny řádky"
 
-#: ../logview/logview.c:116
+#: ../logview/logview.c:114
 msgid "Open the help contents for the log viewer"
 msgstr "Otevřít obsah nápovědy prohlížeče záznamů"
 
-#: ../logview/logview.c:118
+#: ../logview/logview.c:116
 msgid "Show the about dialog for the log viewer"
 msgstr "Zobrazit dialog o prohlížeči záznamů"
 
-#: ../logview/logview.c:124
-msgid "Sidebar"
-msgstr "Boční panel"
+#: ../logview/logview.c:122
+msgid "_Statusbar"
+msgstr "_Stavová lišta"
+
+#: ../logview/logview.c:122
+msgid "Show Status Bar"
+msgstr "Zobrazovat stavovou lištu"
 
 #: ../logview/logview.c:124
-msgid "Show the sidebar"
+msgid "Side _Pane"
+msgstr "_Boční panel"
+
+#: ../logview/logview.c:124
+msgid "Show Side Pane"
 msgstr "Zobrazovat boční panel"
 
 #: ../logview/logview.c:126
@@ -2052,121 +2021,209 @@ msgstr "_Kalendář"
 msgid "Show Calendar Log"
 msgstr "Zobrazit záznamy z kalendáře"
 
-#: ../logview/logview.c:382
-msgid "Log Viewer"
-msgstr "Prohlížeč záznamů"
-
-#: ../logview/logview.c:788
-msgid "Date"
-msgstr "Datum"
-
-#: ../logview/logview.c:788
-msgid "Host Name"
-msgstr "Název počítače"
-
-#: ../logview/logview.c:789
-msgid "Process"
-msgstr "Proces"
-
-#: ../logview/logview.c:789
-msgid "Message"
-msgstr "Zpráva"
-
-#: ../logview/logview.c:879
-msgid "Version: "
-msgstr "Verze: "
-
-#: ../logview/logview.c:980
-msgid "Open Log"
-msgstr "Otevřít záznam"
-
-#: ../logview/logview.c:1221
-msgid "There was an error displaying help."
-msgstr "Při zobrazování nápovědy došlo k chybě."
-
-#: ../logview/logview.c:1239
+#: ../logview/logview.c:308
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (sledován) - %s"
 
+#: ../logview/logview.c:519
+msgid "Open Log"
+msgstr "Otevřít záznam"
+
+#: ../logview/logview.c:749
+msgid "There was an error displaying help."
+msgstr "Při zobrazování nápovědy došlo k chybě."
+
+#: ../logview/logview.c:882
+msgid "Version: "
+msgstr "Verze: "
+
+#: ../logview/logview.c:951
+msgid "Days"
+msgstr "Dní"
+
+#: ../logview/logview.c:952
+msgid "Pointer towards a GSList of days for the current log."
+msgstr "Ukazatel na GSList dní v aktuálním záznamu."
+
 #: ../logview/logview.schemas.in.h:1
+msgid "Height of the main window in pixels"
+msgstr "Výška hlavního okna v pixelech"
+
+#: ../logview/logview.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "Soubor se záznamy, který otevřít při startu"
 
-#: ../logview/logview.schemas.in.h:2
-msgid ""
-"Specifies the log file to open up at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your operating system."
-msgstr ""
-"Udává soubor se záznamy, který otevřít při startu. Implicitní je buď /var/"
-"adm/messages nebo /var/log/messages, podle vašeho operačního systému."
+#: ../logview/logview.schemas.in.h:3
+msgid "Log files to open up on startup"
+msgstr "Soubory se záznamy, které otevřít při startu"
 
-#: ../logview/misc.c:41
+#: ../logview/logview.schemas.in.h:4
+msgid "Size of the font used to display the log"
+msgstr "Velikost písma používaného pro zobrazování záznamu"
+
+#: ../logview/logview.schemas.in.h:5
+msgid ""
+"Specifies a list of log files to open up at startup. When this key is "
+"created, a default list is created by reading /etc/syslog.conf."
+msgstr "Určuje seznam souborů se záznamy, které otevřít při startu. Když je tento klíč vytvářen, je vytvořen implicitní seznam čtením /etc/syslog.conf."
+
+#: ../logview/logview.schemas.in.h:6
+msgid "Specifies the height of the log viewer main window in pixels."
+msgstr "Určuje výšku hlavního okna prohlížeče záznamů v pixelech."
+
+#: ../logview/logview.schemas.in.h:7
+msgid ""
+"Specifies the log file displayed at startup. The default is either /var/adm/"
+"messages or /var/log/messages, depending on your operating system."
+msgstr "Určuje soubor se záznamy zobrazovaný při startu. Implicitní je buď /var/adm/messages nebo /var/log/messages, podle vašeho operačního systému."
+
+#: ../logview/logview.schemas.in.h:8
+msgid ""
+"Specifies the size of the fixed-width font used to display the log in the "
+"main tree view. The default is taken from the default gnome terminal font "
+"size."
+msgstr "Určuje velikost neproporcionálního písma používaného pro zobrazování záznamů v hlavním stromovém pohledu. Implicitní hodnota je převzata z implicitní velikosti písma terminálu gnome."
+
+#: ../logview/logview.schemas.in.h:9
+msgid "Specifies the wifth of the log viewer main window in pixels."
+msgstr "Určuje šířku hlavního okna prohlížeče záznamů v pixelech."
+
+#: ../logview/logview.schemas.in.h:10
+msgid "Width of the main window in pixels"
+msgstr "Šířka hlavního okna v pixelech"
+
+#: ../logview/main.c:114
+msgid "Log Viewer"
+msgstr "Prohlížeč záznamů"
+
+#: ../logview/main.c:127
+msgid "Unable to create user interface."
+msgstr "Nemohu vytvořit uživatelské rozhraní."
+
+#: ../logview/misc.c:40
 msgid "January"
 msgstr "Leden"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "February"
 msgstr "Únor"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "March"
 msgstr "Březen"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "April"
 msgstr "Duben"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:40
 msgid "May"
 msgstr "Květen"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "June"
 msgstr "Červen"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "July"
 msgstr "Červenec"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "August"
 msgstr "Srpen"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "September"
 msgstr "Září"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:41
 msgid "October"
 msgstr "Říjen"
 
-#: ../logview/misc.c:43
+#: ../logview/misc.c:42
 msgid "November"
 msgstr "Listopad"
 
-#: ../logview/misc.c:43
+#: ../logview/misc.c:42
 msgid "December"
 msgstr "Prosinec"
 
-#: ../logview/misc.c:303
+#: ../logview/misc.c:162
 msgid "Invalid date"
 msgstr "Neplatné datum"
 
 #. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:308
+#: ../logview/misc.c:167
 #, c-format
-msgid "%Ex"
-msgstr "%Ex"
+msgid "%x"
+msgstr "%x"
 
-#: ../logview/monitor.c:88
+#: ../logview/monitor.c:83
 msgid "This file cannot be monitored."
 msgstr "Tento soubor nelze sledovat."
 
-#: ../logview/monitor.c:91
+#: ../logview/monitor.c:86
 msgid "File monitoring is not supported on this file system.\n"
 msgstr "Sledování souborů není v tomto systému souborů podporováno.\n"
 
-#: ../logview/monitor.c:93
+#: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Chyba Gnome-VFS.\n"
+
+#~ msgid "<b>Size</b>: %s"
+#~ msgstr "<b>Velikost</b>: %s"
+
+#~ msgid "<b>Modified</b>: %s"
+#~ msgstr "<b>Změněn</b>: %s"
+
+#~ msgid "<b>Start Date</b>: %s"
+#~ msgstr "<b>Počáteční datum</b>: %s"
+
+#~ msgid "<b>Number of Lines</b>: %ld"
+#~ msgstr "<b>Počet řádků</b>: %ld"
+
+#~ msgid "Properties"
+#~ msgstr "Vlastnosti"
+
+#~ msgid "Unable to open logfile!\n"
+#~ msgstr "Nemohu otevřít soubor záznamů!\n"
+
+#~ msgid "Fin_d:"
+#~ msgstr "_Hledat:"
+
+#~ msgid "_Previous"
+#~ msgstr "_Předchozí"
+
+#~ msgid "_Next"
+#~ msgstr "_Následující"
+
+#~ msgid "_Properties"
+#~ msgstr "_Vlastnosti"
+
+#~ msgid "Show Log Properties"
+#~ msgstr "Zobrazit vlastnosti záznamu"
+
+#~ msgid "Close"
+#~ msgstr "Zavřít"
+
+#~ msgid "Copy"
+#~ msgstr "Kopírovat"
+
+#~ msgid "Select All"
+#~ msgstr "Vybrat vše"
+
+#~ msgid "Sidebar"
+#~ msgstr "Boční panel"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Host Name"
+#~ msgstr "Název počítače"
+
+#~ msgid "Process"
+#~ msgstr "Proces"
+
+#~ msgid "Message"
+#~ msgstr "Zpráva"
