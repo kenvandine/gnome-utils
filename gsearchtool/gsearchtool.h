@@ -67,6 +67,7 @@ typedef enum {
 	COLUMN_TYPE,
 	COLUMN_READABLE_DATE,
 	COLUMN_DATE,
+	COLUMN_MONITOR,
 	COLUMN_NO_FILES_FOUND,
 	NUM_COLUMNS
 } GSearchResultColumns;
@@ -75,6 +76,7 @@ typedef struct _GSearchWindow GSearchWindow;
 typedef struct _GSearchWindowClass GSearchWindowClass;
 typedef struct _GSearchCommandDetails GSearchCommandDetails;
 typedef struct _GSearchConstraint GSearchConstraint;
+typedef struct _GSearchMonitor GSearchMonitor;
 
 struct _GSearchWindow {
 	GtkWindow               parent_instance;
@@ -153,6 +155,12 @@ struct _GSearchWindowClass {
 	GtkWindowClass parent_class;
 };
 
+struct _GSearchMonitor {
+	GSearchWindow         * gsearch;
+	GtkTreeRowReference   * reference;
+	GnomeVFSMonitorHandle * handle;
+};
+
 GType 
 gsearch_window_get_type (void);
 
@@ -191,6 +199,12 @@ get_desktop_item_name (GSearchWindow * gsearch);
 
 void
 update_search_counts (GSearchWindow * gsearch);
+
+gboolean
+tree_model_iter_free_monitor (GtkTreeModel * model,
+                              GtkTreePath * path,
+                              GtkTreeIter * iter,
+                              gpointer data);
 
 #ifdef __cplusplus
 }

@@ -582,6 +582,33 @@ open_folder_cb (GtkAction * action,
 	g_list_free (list);
 }
 
+void
+file_changed_cb (GnomeVFSMonitorHandle * handle,
+                 const gchar * monitor_uri,
+                 const gchar * info_uri,
+                 GnomeVFSMonitorEventType event_type,
+                 gpointer data)
+{
+	GSearchMonitor * monitor = data;
+	GSearchWindow * gsearch = monitor->gsearch;
+	GtkTreeModel * model;
+	GtkTreePath * path;
+	GtkTreeIter iter;
+	
+	switch (event_type) {
+	case GNOME_VFS_MONITOR_EVENT_DELETED:
+		path = gtk_tree_row_reference_get_path (monitor->reference);
+		model = gtk_tree_row_reference_get_model (monitor->reference);
+		gtk_tree_model_get_iter (model, &iter, path);
+		tree_model_iter_free_monitor (model, NULL, &iter, NULL);
+		gtk_list_store_remove (GTK_LIST_STORE (model), &iter);
+		update_search_counts (gsearch);
+		break;
+	default:
+		break;
+	}	    	
+}
+
 static void
 display_dialog_could_not_move_to_trash (GtkWidget * window, 
                                         const gchar * file,
@@ -778,6 +805,8 @@ move_to_trash_cb (GtkAction * action,
 			gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (gsearch->search_results_selection), &iter);
 
 			if (result == GNOME_VFS_OK) {
+				tree_model_iter_free_monitor (GTK_TREE_MODEL (gsearch->search_results_list_store),
+							      NULL, &iter, NULL);
 				gtk_list_store_remove (GTK_LIST_STORE (gsearch->search_results_list_store), &iter);
 			}
 			else {
@@ -810,6 +839,8 @@ move_to_trash_cb (GtkAction * action,
 				}
 
 				if (result == GNOME_VFS_OK) {
+					tree_model_iter_free_monitor (GTK_TREE_MODEL (gsearch->search_results_list_store),
+								      NULL, &iter, NULL);
 					gtk_list_store_remove (GTK_LIST_STORE (gsearch->search_results_list_store), &iter);
 				}
 				else {

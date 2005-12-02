@@ -1,3 +1,15 @@
+2005-12-02  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c: (file_changed_cb), (move_to_trash_cb):
+	* gsearchtool-callbacks.h:
+	* gsearchtool.c: (tree_model_iter_free_monitor),
+	(add_file_to_search_results), (spawn_search_command),
+	(create_search_results_section):
+	* gsearchtool.h: Monitor files in the result list.  Update the list
+	when a file is removed.  Fixes bug 322763, "gnome-search-tool does
+	not monitor fiels for removal".  Based on patch provided by Vincent 
+	Noel.
+
 2005-11-26  Dennis Cranston <dennis_cranston@yahoo.com>
 
 	* gsearchtool.c: (handle_search_command_stdout_io):

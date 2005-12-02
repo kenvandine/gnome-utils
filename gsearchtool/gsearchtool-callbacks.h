@@ -82,6 +82,12 @@ void
 open_folder_cb (GtkAction * action,
                 gpointer data);
 void
+file_changed_cb (GnomeVFSMonitorHandle * handle,
+                 const gchar * monitor_uri,
+                 const gchar * info_uri,
+                 GnomeVFSMonitorEventType event_type,
+                 gpointer data);
+void
 move_to_trash_cb (GtkAction * action,
                   gpointer data);
 void

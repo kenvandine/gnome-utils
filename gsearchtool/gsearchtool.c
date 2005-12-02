@@ -656,7 +656,12 @@ add_file_to_search_results (const gchar * file,
 			    GSearchWindow * gsearch)
 {					
 	GdkPixbuf * pixbuf;
+	GSearchMonitor * monitor;
 	GnomeVFSFileInfo * vfs_file_info;
+	GnomeVFSMonitorHandle * handle;
+	GnomeVFSResult result;
+	GtkTreePath *path;
+	GtkTreeRowReference *reference;
 	gchar * description;
 	gchar * readable_size;
 	gchar * readable_date;
@@ -673,8 +678,8 @@ add_file_to_search_results (const gchar * file,
 		return;
 	}
 	
-       if ((g_file_test (file, G_FILE_TEST_EXISTS) != TRUE) && 
-           (g_file_test (file, G_FILE_TEST_IS_SYMLINK) != TRUE)) {
+	if ((g_file_test (file, G_FILE_TEST_EXISTS) != TRUE) && 
+	    (g_file_test (file, G_FILE_TEST_IS_SYMLINK) != TRUE)) {
 		return;
 	}
 	
@@ -738,6 +743,27 @@ add_file_to_search_results (const gchar * file,
 			    COLUMN_DATE, (-1) * (gdouble) vfs_file_info->mtime,
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
+
+	monitor = g_new0 (GSearchMonitor, 1);
+	if (monitor) {
+		path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), iter);		
+		reference = gtk_tree_row_reference_new (GTK_TREE_MODEL (store), path);
+		gtk_tree_path_free (path);
+		
+		result = gnome_vfs_monitor_add (&handle, file, GNOME_VFS_MONITOR_FILE, 
+						(GnomeVFSMonitorCallback) file_changed_cb, monitor);
+		if (result == GNOME_VFS_OK) {
+			monitor->gsearch = gsearch;
+			monitor->reference = reference;
+			monitor->handle = handle;
+			gtk_list_store_set (GTK_LIST_STORE (store), iter,
+			                    COLUMN_MONITOR, monitor, -1);
+		} 
+		else {
+			gtk_tree_row_reference_free (reference);
+			g_free (monitor);
+		}
+	}
 
 	gnome_vfs_file_info_unref (vfs_file_info);
 	g_free (base_name);
@@ -850,6 +876,25 @@ intermediate_file_count_update (GSearchWindow * gsearch)
 		gtk_label_set_text (GTK_LABEL (gsearch->files_found_label), string);
 		g_free (string);
 	}
+}
+
+gboolean 
+tree_model_iter_free_monitor (GtkTreeModel * model,
+                              GtkTreePath * path,
+                              GtkTreeIter * iter,
+                              gpointer data)
+{
+	GSearchMonitor * monitor;
+
+	g_return_val_if_fail (GTK_IS_TREE_MODEL (model), FALSE);
+
+	gtk_tree_model_get (model, iter, COLUMN_MONITOR, &monitor, -1);
+	if (monitor) {
+		gnome_vfs_monitor_cancel (monitor->handle);
+		gtk_tree_row_reference_free (monitor->reference);
+		g_free (monitor);
+	}
+	return FALSE;
 }
 
 static GtkTreeModel *
@@ -1831,7 +1876,9 @@ spawn_search_command (GSearchWindow * gsearch,
 		gtk_widget_set_sensitive (gsearch->show_more_options_expander, FALSE);
 		gtk_widget_set_sensitive (gsearch->name_and_folder_table, FALSE);
 
-		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (gsearch->search_results_tree_view), 0, 0);	
+		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (gsearch->search_results_tree_view), 0, 0);
+		gtk_tree_model_foreach (GTK_TREE_MODEL (gsearch->search_results_list_store), 
+					(GtkTreeModelForeachFunc) tree_model_iter_free_monitor, gsearch);
 		gtk_list_store_clear (GTK_LIST_STORE (gsearch->search_results_list_store));
 	}
 	
@@ -2233,6 +2280,7 @@ create_search_results_section (GSearchWindow * gsearch)
 					      G_TYPE_STRING,
 					      G_TYPE_STRING,
 					      G_TYPE_DOUBLE,
+					      G_TYPE_POINTER,
 					      G_TYPE_BOOLEAN);
 	
 	gsearch->search_results_tree_view = GTK_TREE_VIEW (gtk_tree_view_new_with_model (GTK_TREE_MODEL (gsearch->search_results_list_store)));
