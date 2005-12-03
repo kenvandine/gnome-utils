@@ -1463,15 +1463,12 @@ save_results_cb (GtkWidget * chooser,
 
 	if ((fp = fopen (gsearch->save_results_as_default_filename, "w")) != NULL) {
 
-		if (gtk_tree_model_get_iter_root (GTK_TREE_MODEL (store), &iter)) {
+		gint index;
 
-			gint n_children;
-			gint index;
+		for (index = 0; index < gtk_tree_model_iter_n_children (GTK_TREE_MODEL (store), NULL); index++)
+		{
+			if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (store), &iter, NULL, index) == TRUE) {
 
-			n_children = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (store), NULL);
-
-			for (index = 0; index < n_children; index++)
-			{
 				gchar * utf8_path;
 				gchar * utf8_name;
 				gchar * utf8_file;
@@ -1479,7 +1476,6 @@ save_results_cb (GtkWidget * chooser,
 
 				gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, COLUMN_PATH, &utf8_path, -1);
 				gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, COLUMN_NAME, &utf8_name, -1);
-				gtk_tree_model_iter_next (GTK_TREE_MODEL (store), &iter);
 
 				utf8_file = g_build_filename (utf8_path, utf8_name, NULL);			    
 				locale_file = g_filename_from_utf8 (utf8_file, -1, NULL, NULL, NULL);
