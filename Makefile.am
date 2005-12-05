@@ -40,6 +40,7 @@ DIST_SUBDIRS = \
 DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
 
 EXTRA_DIST = \
+	m4 \
 	gnome-utils.spec.in \
 	gnome-utils.spec \
 	omf.make \
