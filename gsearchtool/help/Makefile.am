@@ -1,2 +1,8 @@
-SUBDIRS = C ja es fr it sv ko uk zh_CN zh_HK zh_TW
+include $(top_srcdir)/gnome-doc-utils.make
+dist-hook: doc-dist-hook
 
+DOC_MODULE = gnome-search-tool
+DOC_ENTITIES = legal.xml
+DOC_INCLUDES = 
+
+DOC_LINGUAS =

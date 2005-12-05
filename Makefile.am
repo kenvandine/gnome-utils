@@ -37,16 +37,20 @@ DIST_SUBDIRS = \
 	$(always_built_SUBDIRS)	\
 	gfloppy
 
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
+
 EXTRA_DIST = \
 	gnome-utils.spec.in \
 	gnome-utils.spec \
 	omf.make \
 	xmldocs.make \
+	gnome-doc-utils.make \
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in
 
 DISTCLEANFILES =                \
+	gnome-doc-utils.make	\
 	intltool-extract        \
 	intltool-merge          \
 	intltool-update

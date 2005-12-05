@@ -1,3 +1,8 @@
-## Process this file with automake to procude Makefile.in
+include $(top_srcdir)/gnome-doc-utils.make
+dist-hook: doc-dist-hook
 
-SUBDIRS = C ja de es fr it sv ko uk zh_CN zh_TW
+DOC_MODULE = gnome-system-log
+DOC_ENTITIES = legal.xml
+DOC_INCLUDES = 
+
+DOC_LINGUAS =

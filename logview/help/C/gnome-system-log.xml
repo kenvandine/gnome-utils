@@ -20,7 +20,9 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>&app; Manual V&manrevision;</title>       
+    <title>&app; Manual V&manrevision;</title>
+
+    <abstract role="description"><para>System Log Viewer</para></abstract>
 
     <copyright> 
       <year>2003</year> 
@@ -62,6 +64,14 @@
 	  	<address> <email>judith@samsonsource.com</email> </address> 
 		</affiliation> 
    </author> 
+
+   <author role="maintainer">
+   	<firstname>Vincent</firstname>
+	<surname>Noel</surname>
+	<affiliation>
+	  <address><email>vincent.noel@gmail.com</email></address>
+	</affiliation>
+   </author>
       
 <!-- This is appropriate place for other contributors: translators,
       maintainers,  etc. Commented out by default.
@@ -181,10 +191,9 @@
       to continuously monitor crucial logs.
       </para>
 
-      <para>
-      <warning><application>&app;</application> is useful only to those who have
-      access to the system log files, which generally requires root access.
-      </warning></para>
+      <warning><para><application>&app;</application> is useful only to those
+      who have access to the system log files, which generally requires root
+      access.</para></warning>
 
   </sect1>
 
@@ -260,7 +269,7 @@
         application window. The log selected in this list is displayed in the
         main area of the application window. To display another log
         already opened in <application>&app;</application>, select it in the
-        log list.</para>.
+        log list.</para>
 
         <para>Note that <application>&app;</application> also lets you open
     zipped logs (whole filenames end in ".gz").</para>

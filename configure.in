@@ -1,10 +1,15 @@
-AC_INIT(gsearchtool)
+AC_INIT([gnome-utils], [2.13.3],
+        [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils])
 AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE(gnome-utils, 2.13.3)
+AM_INIT_AUTOMAKE
+
+AC_CONFIG_MACRO_DIR([m4])
+GNOME_COMMON_INIT
 
 AM_MAINTAINER_MODE
+GNOME_MAINTAINER_MODE_DEFINES
 
-AC_PROG_INTLTOOL([0.29])
+AC_PROG_INTLTOOL([0.31])
 
 AC_ISC_POSIX
 AC_PROG_CXX
@@ -16,7 +21,7 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
-GNOME_COMPILE_WARNINGS
+GNOME_COMPILE_WARNINGS(yes)
 
 AC_PATH_XTRA
 
@@ -53,13 +58,9 @@ AC_SUBST(LIBGLADE_LIBS)
 dnl *****************************************
 dnl gdict needs libgnomeprint and libgnomeprintui
 dnl *****************************************
-PKG_CHECK_MODULES(LIBGNOMEPRINT,libgnomeprint-2.2 >= $LIBGNOMEPRINT_REQUIRED \
-				libgnomeprintui-2.2 >= $LIBGNOMEPRINTUI_REQUIRED)
+PKG_CHECK_MODULES(LIBGNOMEPRINT, libgnomeprintui-2.2 >= $LIBGNOMEPRINTUI_REQUIRED)
 AC_SUBST(LIBGNOMEPRINT_CFLAGS)
 AC_SUBST(LIBGNOMEPRINT_LIBS)
-echo $GNOME_PRINT_CFLAGS				  
-dnl CFLAGS="$CFLAGS $GNOME_PRINT_CFLAGS"
-dnl AC_SUBST(GNOME_PRINT_CFLAGS)
 
 dnl *****************************************
 dnl screenshot modules
@@ -377,6 +378,10 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
 AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps")
 
+dnl gnome-doc-utils stuff
+
+GNOME_DOC_INIT
+
 AC_OUTPUT([
 Makefile
 gnome-utils.spec
@@ -384,31 +389,9 @@ po/Makefile.in
 logview/Makefile
 logview/gnome-system-log-security
 logview/help/Makefile
-logview/help/C/Makefile
-logview/help/de/Makefile
-logview/help/es/Makefile
-logview/help/fr/Makefile
-logview/help/it/Makefile
-logview/help/sv/Makefile
-logview/help/ja/Makefile
-logview/help/ko/Makefile
-logview/help/uk/Makefile
-logview/help/zh_CN/Makefile
-logview/help/zh_TW/Makefile
 gsearchtool/Makefile
 gsearchtool/data/Makefile
 gsearchtool/help/Makefile
-gsearchtool/help/C/Makefile
-gsearchtool/help/es/Makefile
-gsearchtool/help/fr/Makefile
-gsearchtool/help/it/Makefile
-gsearchtool/help/sv/Makefile
-gsearchtool/help/ja/Makefile
-gsearchtool/help/ko/Makefile
-gsearchtool/help/uk/Makefile
-gsearchtool/help/zh_CN/Makefile
-gsearchtool/help/zh_HK/Makefile
-gsearchtool/help/zh_TW/Makefile
 gdictsrc/Makefile
 gdictsrc/help/Makefile
 gdictsrc/help/C/Makefile
@@ -416,11 +399,6 @@ gdictsrc/help/ja/Makefile
 gdictsrc/help/uk/Makefile
 gfloppy/Makefile
 gfloppy/doc/Makefile
-gfloppy/doc/C/Makefile
-gfloppy/doc/ja/Makefile
-gfloppy/doc/nl/Makefile
-gfloppy/doc/uk/Makefile
-gfloppy/src/Makefile
 gnome-screenshot/Makefile
 ])
 
