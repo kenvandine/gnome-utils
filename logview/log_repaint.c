@@ -360,7 +360,7 @@ logview_scroll_and_focus_path (LogviewWindow *logview, Log *log)
       gtk_tree_view_scroll_to_cell (GTK_TREE_VIEW (logview->view),
                                     log->visible_first,
                                     NULL, TRUE, 0.0, 1);   
-      }
+      } 
     }    
 }
 
@@ -378,9 +378,13 @@ log_fill_model_no_date (Log *log, GtkTreeModel *model)
         gtk_tree_store_prepend (GTK_TREE_STORE (model), &iter, NULL);
         gtk_tree_store_set (GTK_TREE_STORE (model), &iter,                            
                             MESSAGE, line, DAY_POINTER, NULL, -1);
-        if (i == log->total_lines-1) {
-            log->selected_range.first = gtk_tree_model_get_path (model, &iter);
-            log->selected_range.last = gtk_tree_path_copy (log->selected_range.first);
+        if (i == (log->total_lines-1)) {
+  	    GtkTreePath *path;
+	    path = gtk_tree_model_get_path (model, &iter);
+            log->selected_range.first = gtk_tree_path_copy (path);
+            log->selected_range.last = gtk_tree_path_copy (path);
+	    log->visible_first = gtk_tree_path_copy (path);
+	    gtk_tree_path_free (path);
         }
     }
 }
@@ -419,7 +423,7 @@ log_fill_model_with_date (Log *log, GtkTreeModel *model)
         day->path = gtk_tree_model_get_path (model, &iter);
         
         log_fill_day_iter (log, model, day, &iter);
-        day->expand = TRUE; 
+        day->expand = FALSE; 
         
         while (gtk_events_pending ())
           gtk_main_iteration ();
@@ -428,9 +432,9 @@ log_fill_model_with_date (Log *log, GtkTreeModel *model)
     day->expand = TRUE;
     log->selected_range.first = gtk_tree_path_copy (day->path);
     log->selected_range.last = gtk_tree_path_copy (day->path);
+    log->visible_first = gtk_tree_path_copy (day->path);
 
     log->displayed_lines = log->total_lines;
-
 }
 
 static void
