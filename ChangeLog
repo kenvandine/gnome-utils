@@ -1,3 +1,9 @@
+2005-12-14  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
+
+	* gnome-screenshot/screenshot-utils.c: (screenshot_get_pixbuf): Don't
+	use an alpha channel if the source doesn't have any. This makes nautilus
+	display the screenshot thumbnail with a shadowed border again.
+
 2005-12-12  Vincent Noel  <vincent.noel@gmail.com>
 
 	* configure.in: Post-release version bump.
