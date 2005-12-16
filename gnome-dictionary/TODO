@@ -1,0 +1,37 @@
+[Gdict]
+
+* Great UI rework: port the old UI to the new infrastructure
+  [+] Gdict::Entry
+  [+] Gdict::Defbox
+    [ ] common pattern recognition for definition sections
+    [ ] colors for sections (with theme support)
+  [ ] Gdict::Speller
+
+* UI additions
+  [ ] Gdict::DatabaseChooser (combo with all the databases available on
+      a GdictContext);
+  [ ] Gdict::StrategyChooser (combo with all the strategies available on
+      a GdictContext);
+  [x] add a "find bottom pane" to Gdict::Defbox;
+
+* Add preferences support
+  [x] Implement the .desktop file prototype for selecting the preferred
+      source for dictionary data;
+  [x] Remove GConf stuff from the preferences: only applications should
+      depend on GConf;
+
+[GNOME Dictionary]
+
+* UI updates
+  [x] Create a new HIG-compliant preferences dialog using Glade, and
+      share it with the applet;
+  [+] Source add dialog
+  [+] Source info dialog
+  [+] Source remove
+
+[GNOME Dictionary Applet]
+
+* UI updates
+  [x] Use GtkAlignedWindow as the container for the Gdict::Defbox;
+
+$ Last updated: 2005-12-15 19:37 (+0100) ebassi $

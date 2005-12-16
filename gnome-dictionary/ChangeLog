@@ -1,0 +1,244 @@
+2005-12-15  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-applet.h, src/gdict-applet.c: create the dictionary applet.
+
+	* src/gdict-app.c: do not leak the GOptionContext.
+
+	* libgdict/gdict-client-context.c (gdict_client_context_parse_line):
+	add more debug messages; do not tokenize the line, but walk it.
+
+	* libgdict/gdict-client-context.c (get_status_code): make the
+	status code check more robust (too many false positives).
+
+	* libgdict/gdict-defbox.c: make the error checking a bit more robust.
+
+	* data/gnome-dictionary.schemas.in: mark the following keys as
+	obsolete and deprecated:
+
+		- server
+		- port
+		- smart
+	
+	and add the following keys:
+
+		- source-name
+		- print-font
+	
+	* data/default.desktop.in: don't mark the Name key as translatable.
+
+	* libgdict/gdict-source-loader.h, libgdict/gdict-source-loader.c: add
+	gdict_source_loader_remove_source() and gdict_source_loader_update();
+	the former removes a dictionary source file and the latter forces an
+	update of the sources list.
+
+	* src/gdict-print.h, src/gdict-print.c: remove the print-related
+	stuff from gdict-window in order to use them inside the applet.
+
+	* src/gdict-pref-dialog.c, src/gdict-pref-dialog.h: create the
+	GdictPrefDialog widget; this dialog will be used to handle the
+	preferences for both the application and the applet.  You can
+	change the active dictionary source and the print font; missing
+	bits: add a new source (create a new GdictSource and dump it
+	into a tmpfile inside .gnome2/gnome-dictionary) and remove a
+	source (the code is already in place, but compiled out until the
+	add source stuff is in).
+
+	* data/gnome-dictionary-preferences.glade: create the UI for
+	the preferences dialog.
+
+	* libgdict/gdict-source.h, libgdict/gdict-source.c: add the
+	"database" and "strategy" properties to GdictSource, and relative
+	accessor functions; these properties set the default database and
+	strategy used for a dictionary source; implement the API for
+	creating a dictionary source: the output is in form of a string,
+	it'll be up to the caller to create an actual file; make the Name
+	key not localizable: it's the unique identifier for the source, and
+	the user should only see the content of the Description key.
+
+	* src/gdict-window.c: add a footer line when printing, and fix the
+	page counting; add the help link; add GConf support.
+
+2005-12-10  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-client-context.c (gdict_client_context_parse_line):
+	avoid emission of spurious "lookup-end" signals; rework the server
+	error response parsing.
+
+	* libgdict/gdict-defbox.c: grab focus on the find entry when showing
+	the find pane; add a progress dialog for showing the state of the
+	definition lookup.
+
+	* data/gnome-dictionary-ui.xml, src/gdict-window.h, src/gdict-window.c:
+	add support for a <control>L accelerator, used to highlight the "Find"
+	entry; add a mnemonic for the "Find" entry; add a status bar; link the
+	GdictContext signals; various bug fixes.
+
+2005-12-09  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-source.h: add gdict_source_peek_context() and
+	gdict_source_steal_context().
+
+	* libgdict/gdict-source.c (gdict_source_get_context): create a new
+	context each time; the old behaviour has been shifted to the
+	gdict_source_peek_context() function.
+
+	* src/gdict-window.h, src/gdict-window.c: add the "created" signal,
+	which is fired each time a new GdictWindow has been created by another
+	GdictWindow.
+
+	* src/gdict-window.c (gdict_window_cmd_file_new): create a new
+	GdictWindow instance, and fire the "created" signal.
+
+	* src/gdict-app.c: use the GdictWindow::created signal to add the newly
+	created window to the windows list, like we use the GtkWidget::destroy
+	signal to remove GdictWindow instances from the list.
+
+2005-12-09  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* help/C/gnome-dictionary.xml: fix manual stub, so that make check
+	passes.
+
+2005-12-09  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-window.h, src/gdict-window.c: move GdictWindow into its own
+	file; add printing support (still experimental).
+
+	* src/gdict-app.h, src/gdict-app.c: remove GdictWindow
+
+	* .cvsignore, data/.cvsignore, src/.cvsignore: add cvs ignore files.
+
+	* libgdict/gdict-defbox.c: clear content on error.
+
+2005-12-07  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* README: add a visible warning on the experimental nature of this
+	branch; add some build tips.
+
+	* TODO: update list.
+
+2005-12-07  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* data/Makefile.am: add gnome-dictionary-ui.xml, the GtkUIManager
+	definitions of the menu bar and accelerators.
+
+	* docs/source-configuration.txt: add Database and Strategy keys.
+
+	* libgdict/gdict-client-context.c: add "total" property support for
+	GdictDefinition.
+
+	* libgdict/gdict-context-private.h,
+	libgdict/gdict-context.c,
+	libgdict/gdict-context.h: add "total" property, and change
+	GdictDefintion ctor (we don't need a word).
+
+	* libgdict/gdict-defbox.h, libgdict/gdict-defbox.h: add
+	gdict_defbox_new_with_context() ctor; add new API to wrap around
+	GtkTextView/GtkTextBuffer.
+
+	* libgdict/gdict-source.c, libgdict/gdict-source-loader.c: fix bugs
+	inside the GdictSource and GdictSourceLoader.
+
+	* libgdict/gdict-source.h: add gdict_source_load_from_data().
+
+	* libgdict/gdict-utils.c: remove title from the error dialog, as per
+	HIG; fix a stupid bug in get_toplevel_window().
+
+	* src/Makefile.am: remove the applet data, since we don't have any code
+	for it, yet.
+
+	* src/gdict-app.h, src/gdict-app.c: begin Dictionary UI; GdictWindow is
+	a GtkWindow subclass; GdictApp is a singleton object, holding all the
+	windows.
+
+	* src/gdict-about.h, src/gdict-about.c: add a simple wrapper around
+	GtkAboutDialog.
+
+	* src/main.c: main application launcher.
+
+2005-11-29  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-defbox.c: fix forward/backward searching.
+
+2005-11-29  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/Makefile.am: add LIBGLADE_* macros to the application and
+	applet CFLAGS
+
+	* libgdict/gdict-utils.[ch]: add gdict_show_error_dialog() and the
+	gdict_show_gerror_dialog() functions for showing error message dialogs.
+
+	* libgdict/gdict-defbox.[ch]: begin re-implementation of the
+	GdictDefbox widget.  This widget is used to show the definitions
+	retrieved by a GdictContext implementation.
+
+	* libgdict/test-defbox.c: test case for GdictDefbox.
+
+2005-11-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* data/default-dictionary.desktop.in: remove translatable mark to
+	the Name key: this is the default, and should always be accessed using
+	the "Default" name.
+
+	* libgdict/Makefile.am: fix CLEANFILES and DISTCLEANFILES.
+
+	* libgdict/gdict-source.c, libgdict/gdict-source-loader.c: fix stupid
+	bugs.
+
+	* libgdict/test-source.c: add test suite for GdictSource and
+	GdictSourceLoader.
+
+	* libgdict/Makefile.am: add test-source.c
+
+	* libgdict/.cvsignore: add test-source.
+
+	* libgdict/gdict-preferences.[ch]: remove these files.
+
+2005-11-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/.cvsignore: add .cvsignore
+
+	* libgdict/test-defbox.c: add (empty) test suite for GdictDefbox.
+
+	* libgdict/test-entry.c: add test suite for GdictEntry.
+
+	* libgdict/gdict-source-loader.[hc]: add GdictSourceLoader, an object
+	for loading all the dictionary source files.
+
+	* libgdict/gdict-source.[hc]: add GdictSource, an object for loading
+	the right GdictContext based on .desktop files.
+
+	* libgdict/Makefile.am: add new files to the build.
+
+	* data/default-dictionary.desktop.in: default dictionary source for
+	dict.org.
+
+	* data/Makefile.am: add default-dictionary.desktop.in and i18n rule for
+	translation support.
+
+	* libgdict/gdict-version.h.in: add versioning to libgdict
+	
+	* libgdict/gdict.h: include gdict-version.h
+
+	* TODO: update list
+
+2005-11-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-client-context.c
+	(gdict_client_context_real_connected),
+	(gdict_client_context_force_disconnect),
+	(gdict_client_context_lookup_server): fix comments
+
+	* libgdict/gdict-client-context.c
+	(gdict_client_context_parse_line): fix the "lookup-end" signal
+	emission.
+
+	* libgdict/test-client.c: add callbacks for the lookup-start and
+	lookup-end signals
+
+2005-11-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	Initial import of gnome-dictionary.
+
+	* libgdict/*: the GdictContext interface and GdictClientContext class
+	are basically done; GdictClientContext implements a RFC2229-compliant
+	client for a dictionary server using the dictionary protocol.
