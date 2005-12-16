@@ -44,7 +44,6 @@ EXTRA_DIST = \
 	omf.make \
 	xmldocs.make \
 	gnome-doc-utils.make \
-	gtk-doc.make
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in
