@@ -1,0 +1,979 @@
+<MACRO>
+<NAME>GDICT_TYPE_CLIENT_CONTEXT</NAME>
+#define GDICT_TYPE_CLIENT_CONTEXT		(gdict_client_context_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_CLIENT_CONTEXT</NAME>
+#define GDICT_CLIENT_CONTEXT(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_CLIENT_CONTEXT, GdictClientContext))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_CLIENT_CONTEXT</NAME>
+#define GDICT_IS_CLIENT_CONTEXT(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_CLIENT_CONTEXT))
+</MACRO>
+<MACRO>
+<NAME>GDICT_CLIENT_CONTEXT_CLASS</NAME>
+#define GDICT_CLIENT_CONTEXT_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDICT_TYPE_CLIENT_CONTEXT, GdictClientContextClass))
+</MACRO>
+<MACRO>
+<NAME>GDICT_CLIENT_CONTEXT_GET_CLASS</NAME>
+#define GDICT_CLIENT_CONTEXT_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDICT_TYPE_CLIENT_CONTEXT, GdictClientContextClass))
+</MACRO>
+<STRUCT>
+<NAME>GdictClientContext</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictClientContextClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictClientContextPrivate</NAME>
+</STRUCT>
+<MACRO>
+<NAME>GDICT_CLIENT_CONTEXT_ERROR</NAME>
+#define GDICT_CLIENT_CONTEXT_ERROR	(gdict_client_context_error_quark ())
+</MACRO>
+<ENUM>
+<NAME>GdictClientContextError</NAME>
+typedef enum {
+  GDICT_CLIENT_CONTEXT_ERROR_SOCKET,
+  GDICT_CLIENT_CONTEXT_ERROR_LOOKUP,
+  GDICT_CLIENT_CONTEXT_ERROR_NO_CONNECTION,
+  GDICT_CLIENT_CONTEXT_ERROR_SERVER_DOWN
+} GdictClientContextError;
+</ENUM>
+<FUNCTION>
+<NAME>gdict_client_context_error_quark</NAME>
+<RETURNS>GQuark </RETURNS>
+void
+</FUNCTION>
+<STRUCT>
+<NAME>GdictClientContext</NAME>
+struct _GdictClientContext
+{
+  /*< private >*/
+  GObject parent_instance;
+  
+  GdictClientContextPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>GdictClientContextClass</NAME>
+struct _GdictClientContextClass
+{
+  GObjectClass parent_class;
+  
+  /* signals monitoring the lifetime of the connection with
+   * the dictionary server
+   */
+  void (*connected)    (GdictClientContext *context);
+  void (*disconnected) (GdictClientContext *context);
+  
+  /* padding for future expansion */
+  void (*_gdict_client_1) (void);
+  void (*_gdict_client_2) (void);
+  void (*_gdict_client_3) (void);
+  void (*_gdict_client_4) (void);
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gdict_client_context_get_type</NAME>
+<RETURNS>GType                 </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_client_context_new</NAME>
+<RETURNS>GdictContext *</RETURNS>
+const gchar        *hostname,gint                port
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_client_context_set_hostname</NAME>
+<RETURNS>void                  </RETURNS>
+GdictClientContext *context,const gchar        *hostname
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_client_context_get_hostname</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictClientContext *context
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_client_context_set_port</NAME>
+<RETURNS>void                  </RETURNS>
+GdictClientContext *context,gint                port
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_client_context_get_port</NAME>
+<RETURNS>guint                 </RETURNS>
+GdictClientContext *context
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_client_context_set_client</NAME>
+<RETURNS>void                  </RETURNS>
+GdictClientContext *context,const gchar        *client
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_client_context_get_client</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictClientContext *context
+</FUNCTION>
+<MACRO>
+<NAME>GDICT_TYPE_DATABASE</NAME>
+#define GDICT_TYPE_DATABASE	      (gdict_database_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_TYPE_STRATEGY</NAME>
+#define GDICT_TYPE_STRATEGY	      (gdict_strategy_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_TYPE_MATCH</NAME>
+#define GDICT_TYPE_MATCH              (gdict_match_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_TYPE_DEFINITION</NAME>
+#define GDICT_TYPE_DEFINITION         (gdict_definition_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_TYPE_CONTEXT</NAME>
+#define GDICT_TYPE_CONTEXT	      (gdict_context_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_CONTEXT</NAME>
+#define GDICT_CONTEXT(obj)	      (G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_CONTEXT, GdictContext))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_CONTEXT</NAME>
+#define GDICT_IS_CONTEXT(obj)	      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_CONTEXT))
+</MACRO>
+<MACRO>
+<NAME>GDICT_CONTEXT_GET_IFACE</NAME>
+#define GDICT_CONTEXT_GET_IFACE(inst) (G_TYPE_INSTANCE_GET_INTERFACE ((inst), GDICT_TYPE_CONTEXT, GdictContextIface))
+</MACRO>
+<STRUCT>
+<NAME>GdictDatabase</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictStrategy</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictMatch</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictDefinition</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictContext</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictContextIface</NAME>
+</STRUCT>
+<MACRO>
+<NAME>GDICT_CONTEXT_ERROR</NAME>
+#define GDICT_CONTEXT_ERROR	(gdict_context_error_quark ())
+</MACRO>
+<ENUM>
+<NAME>GdictContextError</NAME>
+typedef enum {
+  GDICT_CONTEXT_ERROR_PARSE,
+  GDICT_CONTEXT_ERROR_NOT_IMPLEMENTED,
+  GDICT_CONTEXT_ERROR_INVALID_DATABASE,
+  GDICT_CONTEXT_ERROR_INVALID_STRATEGY,
+  GDICT_CONTEXT_ERROR_INVALID_COMMAND,
+  GDICT_CONTEXT_ERROR_NO_MATCH,
+  GDICT_CONTEXT_ERROR_NO_DATABASES,
+  GDICT_CONTEXT_ERROR_NO_STRATEGIES
+} GdictContextError;
+</ENUM>
+<FUNCTION>
+<NAME>gdict_context_error_quark</NAME>
+<RETURNS>GQuark </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_database_get_type</NAME>
+<RETURNS>GType                 </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_database_ref</NAME>
+<RETURNS>GdictDatabase *</RETURNS>
+GdictDatabase   *db
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_database_unref</NAME>
+<RETURNS>void                  </RETURNS>
+GdictDatabase   *db
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_database_get_name</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictDatabase   *db
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_database_get_full_name</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictDatabase   *db
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_strategy_get_type</NAME>
+<RETURNS>GType                 </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_strategy_ref</NAME>
+<RETURNS>GdictStrategy *</RETURNS>
+GdictStrategy   *strat
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_strategy_unref</NAME>
+<RETURNS>void                  </RETURNS>
+GdictStrategy   *strat
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_strategy_get_name</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictStrategy   *strat
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_strategy_get_description</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictStrategy   *strat
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_match_get_type</NAME>
+<RETURNS>GType                 </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_match_ref</NAME>
+<RETURNS>GdictMatch *</RETURNS>
+GdictMatch      *match
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_match_unref</NAME>
+<RETURNS>void                  </RETURNS>
+GdictMatch      *match
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_match_get_word</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictMatch      *match
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_match_get_database</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictMatch      *match
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_definition_get_type</NAME>
+<RETURNS>GType                 </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_definition_ref</NAME>
+<RETURNS>GdictDefinition *</RETURNS>
+GdictDefinition *def
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_definition_unref</NAME>
+<RETURNS>void                  </RETURNS>
+GdictDefinition *def
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_definition_get_total</NAME>
+<RETURNS>gint                  </RETURNS>
+GdictDefinition *def
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_definition_get_word</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictDefinition *def
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_definition_get_database</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictDefinition *def
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_definition_get_text</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictDefinition *def
+</FUNCTION>
+<STRUCT>
+<NAME>GdictContextIface</NAME>
+struct _GdictContextIface
+{
+  GTypeInterface base_iface;
+  
+  /* methods, not signals */
+  gboolean (*get_databases)  (GdictContext  *context,
+  			      GError       **error);
+  gboolean (*get_strategies) (GdictContext  *context,
+  			      GError       **error);
+  gboolean (*match_word)     (GdictContext  *context,
+  			      const gchar   *database,
+  			      const gchar   *strategy,
+  			      const gchar   *word,
+  			      GError       **error);
+  gboolean (*define_word)    (GdictContext  *context,
+  			      const gchar   *database,
+  			      const gchar   *word,
+  			      GError       **error);  
+  
+  /* signals */
+  void (*lookup_start)     (GdictContext    *context);
+  void (*lookup_end)       (GdictContext    *context);
+  
+  void (*database_found)   (GdictContext    *context,
+  			    GdictDatabase   *database);
+  void (*strategy_found)   (GdictContext    *context,
+  			    GdictStrategy   *strategy);
+  void (*match_found)      (GdictContext    *context,
+  			    GdictMatch      *match);
+  void (*definition_found) (GdictContext    *context,
+  			    GdictDefinition *definition);
+  
+  /* fired each time there's an error; the GError is owned
+   * by the context, and should never be modified or freed
+   */
+  void (*error)            (GdictContext    *context,
+  			    const GError    *error);
+
+  /* padding for future expansion */
+  void (*_gdict_context_1) (void);
+  void (*_gdict_context_2) (void);
+  void (*_gdict_context_3) (void);
+  void (*_gdict_context_4) (void);
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gdict_context_get_type</NAME>
+<RETURNS>GType    </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_context_set_local_only</NAME>
+<RETURNS>void     </RETURNS>
+GdictContext  *context,gboolean       local_only
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_context_get_local_only</NAME>
+<RETURNS>gboolean </RETURNS>
+GdictContext  *context
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_context_lookup_databases</NAME>
+<RETURNS>gboolean </RETURNS>
+GdictContext  *context,GError       **error
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_context_lookup_strategies</NAME>
+<RETURNS>gboolean </RETURNS>
+GdictContext  *context,GError       **error
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_context_match_word</NAME>
+<RETURNS>gboolean </RETURNS>
+GdictContext  *context,const gchar   *database,const gchar   *strategy,const gchar   *word,GError       **error
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_context_define_word</NAME>
+<RETURNS>gboolean </RETURNS>
+GdictContext  *context,const gchar   *database,const gchar   *word,GError       **error
+</FUNCTION>
+<MACRO>
+<NAME>GDICT_TYPE_DEFBOX</NAME>
+#define GDICT_TYPE_DEFBOX		(gdict_defbox_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_DEFBOX</NAME>
+#define GDICT_DEFBOX(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_DEFBOX, GdictDefbox))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_DEFBOX</NAME>
+#define GDICT_IS_DEFBOX(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_DEFBOX))
+</MACRO>
+<MACRO>
+<NAME>GDICT_DEFBOX_CLASS</NAME>
+#define GDICT_DEFBOX_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDICT_TYPE_DEFBOX, GdictDefboxClass))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_DEFBOX_CLASS</NAME>
+#define GDICT_IS_DEFBOX_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GDICT_TYPE_DEFBOX))
+</MACRO>
+<MACRO>
+<NAME>GDICT_DEFBOX_GET_CLASS</NAME>
+#define GDICT_DEFBOX_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDICT_TYPE_DEFBOX, GdictDefboxClass))
+</MACRO>
+<STRUCT>
+<NAME>GdictDefbox</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictDefboxClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictDefboxPrivate</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictDefbox</NAME>
+struct _GdictDefbox
+{
+  /*< private >*/
+  GtkVBox parent_instance;
+  
+  GdictDefboxPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>GdictDefboxClass</NAME>
+struct _GdictDefboxClass
+{
+  GtkVBoxClass parent_class;
+  
+  /* these are all RUN_ACTION signals for key bindings */
+  void (*show_find)     (GdictDefbox *defbox);
+  void (*hide_find)     (GdictDefbox *defbox);
+  void (*find_previous) (GdictDefbox *defbox);
+  void (*find_next)     (GdictDefbox *defbox);
+  
+  /* padding for future expansion */
+  void (*_gdict_defbox_1) (void);
+  void (*_gdict_defbox_2) (void);
+  void (*_gdict_defbox_3) (void);
+  void (*_gdict_defbox_4) (void);
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gdict_defbox_get_type</NAME>
+<RETURNS>GType         </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_new</NAME>
+<RETURNS>GtkWidget *</RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_new_with_context</NAME>
+<RETURNS>GtkWidget *</RETURNS>
+GdictContext *context
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_set_context</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox,GdictContext *context
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_get_context</NAME>
+<RETURNS>GdictContext *</RETURNS>
+GdictDefbox  *defbox
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_get_text</NAME>
+<RETURNS>gchar *</RETURNS>
+GdictDefbox  *defbox,gsize        *length
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_select_all</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_copy_to_clipboard</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox,GtkClipboard *clipboard
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_clear</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_lookup</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox,const gchar  *word
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_count_definitions</NAME>
+<RETURNS>gint          </RETURNS>
+GdictDefbox  *defbox
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_jump_to_definition</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox,gint          number
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_set_show_find</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox,gboolean      show_find
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_get_show_find</NAME>
+<RETURNS>gboolean      </RETURNS>
+GdictDefbox  *defbox
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_find_next</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_defbox_find_previous</NAME>
+<RETURNS>void          </RETURNS>
+GdictDefbox  *defbox
+</FUNCTION>
+<MACRO>
+<NAME>GDICT_TYPE_ENTRY</NAME>
+#define GDICT_TYPE_ENTRY		(gdict_entry_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_ENTRY</NAME>
+#define GDICT_ENTRY(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_ENTRY, GdictEntry))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_ENTRY</NAME>
+#define GDICT_IS_ENTRY(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_ENTRY))
+</MACRO>
+<MACRO>
+<NAME>GDICT_ENTRY_CLASS</NAME>
+#define GDICT_ENTRY_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDICT_TYPE_ENTRY, GdictEntryClass))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_ENTRY_CLASS</NAME>
+#define GDICT_IS_ENTRY_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GDICT_TYPE_ENTRY))
+</MACRO>
+<MACRO>
+<NAME>GDICT_ENTRY_GET_CLASS</NAME>
+#define GDICT_ENTRY_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDICT_TYPE_ENTRY, GdictEntryClass))
+</MACRO>
+<STRUCT>
+<NAME>GdictEntry</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictEntryClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictEntryPrivate</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictEntry</NAME>
+struct _GdictEntry
+{
+  /*< private >*/
+  GtkEntry parent_instance;
+  
+  GdictEntryPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>GdictEntryClass</NAME>
+struct _GdictEntryClass
+{
+  GtkEntryClass parent_class;
+  
+  /* padding for future expansion */
+  void (*_gdict_entry_1) (void);
+  void (*_gdict_entry_2) (void);
+  void (*_gdict_entry_3) (void);
+  void (*_gdict_entry_4) (void);
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gdict_entry_get_type</NAME>
+<RETURNS>GType         </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_entry_new</NAME>
+<RETURNS>GtkWidget *</RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_entry_new_with_context</NAME>
+<RETURNS>GtkWidget *</RETURNS>
+GdictContext *context
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_entry_set_context</NAME>
+<RETURNS>void          </RETURNS>
+GdictEntry   *entry,GdictContext *context
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_entry_get_context</NAME>
+<RETURNS>GdictContext *</RETURNS>
+GdictEntry   *entry
+</FUNCTION>
+<MACRO>
+<NAME>GDICT_TYPE_SOURCE_LOADER</NAME>
+#define GDICT_TYPE_SOURCE_LOADER	    (gdict_source_loader_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_SOURCE_LOADER</NAME>
+#define GDICT_SOURCE_LOADER(obj)	    (G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_SOURCE_LOADER, GdictSourceLoader))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_SOURCE_LOADER</NAME>
+#define GDICT_IS_SOURCE_LOADER(obj)	    (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_SOURCE_LOADER))
+</MACRO>
+<MACRO>
+<NAME>GDICT_SOURCE_LOADER_CLASS</NAME>
+#define GDICT_SOURCE_LOADER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GDICT_TYPE_SOURCE_LOADER, GdictSourceLoaderClass))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_SOURCE_LOADER_CLASS</NAME>
+#define GDICT_IS_SOURCE_LOADER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GDICT_TYPE_SOURCE_LOADER))
+</MACRO>
+<MACRO>
+<NAME>GDICT_SOURCE_LOADER_GET_CLASS</NAME>
+#define GDICT_SOURCE_LOADER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GDICT_TYPE_SOURCE_LOADER, GdictSourceLoaderClass))
+</MACRO>
+<STRUCT>
+<NAME>GdictSourceLoader</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictSourceLoaderClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictSourceLoaderPrivate</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictSourceLoader</NAME>
+struct _GdictSourceLoader
+{
+  /*< private >*/
+  GObject parent_instance;
+  
+  GdictSourceLoaderPrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>GdictSourceLoaderClass</NAME>
+struct _GdictSourceLoaderClass
+{
+  GObjectClass parent_class;
+  
+  void (*source_loaded) (GdictSourceLoader *loader,
+  			 GdictSource       *source);
+  
+  /* padding for future expansion */
+  void (*_gdict_source_1) (void);
+  void (*_gdict_source_2) (void);
+  void (*_gdict_source_3) (void);
+  void (*_gdict_source_4) (void);
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gdict_source_loader_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_new</NAME>
+<RETURNS>GdictSourceLoader *</RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_update</NAME>
+<RETURNS>void                   </RETURNS>
+GdictSourceLoader *loader
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_add_search_path</NAME>
+<RETURNS>void                   </RETURNS>
+GdictSourceLoader *loader,const gchar       *path
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_get_paths</NAME>
+<RETURNS>G_CONST_RETURN GSList *</RETURNS>
+GdictSourceLoader *loader
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_get_names</NAME>
+<RETURNS>gchar **</RETURNS>
+GdictSourceLoader *loader,gsize             *length
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_get_sources</NAME>
+<RETURNS>G_CONST_RETURN GSList *</RETURNS>
+GdictSourceLoader *loader
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_get_source</NAME>
+<RETURNS>GdictSource *</RETURNS>
+GdictSourceLoader *loader,const gchar       *name
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_loader_remove_source</NAME>
+<RETURNS>gboolean               </RETURNS>
+GdictSourceLoader *loader,const gchar       *name
+</FUNCTION>
+<MACRO>
+<NAME>GDICT_TYPE_SOURCE</NAME>
+#define GDICT_TYPE_SOURCE		(gdict_source_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GDICT_SOURCE</NAME>
+#define GDICT_SOURCE(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_SOURCE, GdictSource))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_SOURCE</NAME>
+#define GDICT_IS_SOURCE(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_SOURCE))
+</MACRO>
+<MACRO>
+<NAME>GDICT_SOURCE_CLASS</NAME>
+#define GDICT_SOURCE_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDICT_TYPE_SOURCE, GdictSourceClass))
+</MACRO>
+<MACRO>
+<NAME>GDICT_IS_SOURCE_CLASS</NAME>
+#define GDICT_IS_SOURCE_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GDICT_TYPE_SOURCE))
+</MACRO>
+<MACRO>
+<NAME>GDICT_SOURCE_GET_CLASS</NAME>
+#define GDICT_SOURCE_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDICT_TYPE_SOURCE, GdictSourceClass))
+</MACRO>
+<STRUCT>
+<NAME>GdictSource</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictSourceClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GdictSourcePrivate</NAME>
+</STRUCT>
+<ENUM>
+<NAME>GdictSourceTransport</NAME>
+typedef enum
+{
+  GDICT_SOURCE_TRANSPORT_DICTD,
+  
+  GDICT_SOURCE_TRANSPORT_INVALID /* only for debug */
+} GdictSourceTransport;
+</ENUM>
+<MACRO>
+<NAME>GDICT_SOURCE_ERROR</NAME>
+#define GDICT_SOURCE_ERROR	(gdict_source_error_quark ())
+</MACRO>
+<ENUM>
+<NAME>GdictSourceError</NAME>
+typedef enum
+{
+  GDICT_SOURCE_ERROR_PARSE,
+  GDICT_SOURCE_ERROR_INVALID_NAME,
+  GDICT_SOURCE_ERROR_INVALID_TRANSPORT,
+  GDICT_SOURCE_ERROR_INVALID_BAD_PARAMETER
+} GdictSourceError;
+</ENUM>
+<FUNCTION>
+<NAME>gdict_source_error_quark</NAME>
+<RETURNS>GQuark </RETURNS>
+void
+</FUNCTION>
+<STRUCT>
+<NAME>GdictSource</NAME>
+struct _GdictSource
+{
+  /*< private >*/
+  GObject parent_instance;
+  
+  GdictSourcePrivate *priv;
+};
+</STRUCT>
+<STRUCT>
+<NAME>GdictSourceClass</NAME>
+struct _GdictSourceClass
+{
+  /*< private >*/
+  GObjectClass parent_class;
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gdict_source_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_new</NAME>
+<RETURNS>GdictSource *</RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_load_from_file</NAME>
+<RETURNS>gboolean              </RETURNS>
+GdictSource           *source,const gchar           *filename,GError               **error
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_load_from_data</NAME>
+<RETURNS>gboolean              </RETURNS>
+GdictSource           *source,const gchar           *data,gsize                  length,GError               **error
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_to_data</NAME>
+<RETURNS>gchar *</RETURNS>
+GdictSource           *source,gsize                 *length,GError               **error
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_set_name</NAME>
+<RETURNS>void                  </RETURNS>
+GdictSource           *source,const gchar           *name
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_get_name</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictSource           *source
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_set_description</NAME>
+<RETURNS>void                  </RETURNS>
+GdictSource           *source,const gchar           *description
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_get_description</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictSource           *source
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_set_database</NAME>
+<RETURNS>void                  </RETURNS>
+GdictSource           *source,const gchar           *database
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_get_database</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictSource           *source
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_set_strategy</NAME>
+<RETURNS>void                  </RETURNS>
+GdictSource           *source,const gchar           *strategy
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_get_strategy</NAME>
+<RETURNS>G_CONST_RETURN gchar *</RETURNS>
+GdictSource           *source
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_set_transport</NAME>
+<RETURNS>void                  </RETURNS>
+GdictSource           *source,GdictSourceTransport   transport,const gchar           *first_transport_property,...
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_set_transportv</NAME>
+<RETURNS>void                  </RETURNS>
+GdictSource           *source,GdictSourceTransport   transport,const gchar           *first_transport_property,va_list                var_args
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_get_transport</NAME>
+<RETURNS>GdictSourceTransport  </RETURNS>
+GdictSource           *source
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_get_context</NAME>
+<RETURNS>GdictContext *</RETURNS>
+GdictSource           *source
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_source_peek_context</NAME>
+<RETURNS>GdictContext *</RETURNS>
+GdictSource           *source
+</FUNCTION>
+<MACRO>
+<NAME>GDICT_DEFAULT_DATABASE</NAME>
+#define GDICT_DEFAULT_DATABASE	"*"
+</MACRO>
+<MACRO>
+<NAME>GDICT_DEFAULT_STRATEGY</NAME>
+#define GDICT_DEFAULT_STRATEGY	"."
+</MACRO>
+<ENUM>
+<NAME>GdictContextProp</NAME>
+typedef enum {
+  GDICT_CONTEXT_PROP_FIRST      = 0x1000,
+  GDICT_CONTEXT_PROP_LOCAL_ONLY = GDICT_CONTEXT_PROP_FIRST,
+  GDICT_CONTEXT_PROP_LAST
+} GdictContextProp;
+</ENUM>
+<ENUM>
+<NAME>GdictStatusCode</NAME>
+typedef enum {
+  GDICT_STATUS_INVALID                   = 0,
+    
+  GDICT_STATUS_N_DATABASES_PRESENT       = 110,
+  GDICT_STATUS_N_STRATEGIES_PRESENT      = 111,
+  GDICT_STATUS_DATABASE_INFO             = 112,
+  GDICT_STATUS_HELP_TEXT                 = 113,
+  GDICT_STATUS_SERVER_INFO               = 114,
+  GDICT_STATUS_CHALLENGE                 = 130,
+  GDICT_STATUS_N_DEFINITIONS_RETRIEVED   = 150,
+  GDICT_STATUS_WORD_DB_NAME              = 151,
+  GDICT_STATUS_N_MATCHES_FOUND           = 152,
+  GDICT_STATUS_CONNECT                   = 220,
+  GDICT_STATUS_QUIT                      = 221,
+  GDICT_STATUS_AUTH_OK                   = 230,
+  GDICT_STATUS_OK                        = 250,
+  GDICT_STATUS_SEND_RESPONSE             = 330,
+  /* Connect response codes */
+  GDICT_STATUS_SERVER_DOWN               = 420,
+  GDICT_STATUS_SHUTDOWN                  = 421,
+  /* Error codes */
+  GDICT_STATUS_BAD_COMMAND               = 500,
+  GDICT_STATUS_BAD_PARAMETERS            = 501,
+  GDICT_STATUS_COMMAND_NOT_IMPLEMENTED   = 502,
+  GDICT_STATUS_PARAMETER_NOT_IMPLEMENTED = 503,
+  GDICT_STATUS_NO_ACCESS                 = 530,
+  GDICT_STATUS_USE_SHOW_INFO             = 531,
+  GDICT_STATUS_UNKNOWN_MECHANISM         = 532,
+  GDICT_STATUS_BAD_DATABASE              = 550,
+  GDICT_STATUS_BAD_STRATEGY              = 551,
+  GDICT_STATUS_NO_MATCH                  = 552,
+  GDICT_STATUS_NO_DATABASES_PRESENT      = 554,
+  GDICT_STATUS_NO_STRATEGIES_PRESENT     = 555
+} GdictStatusCode;
+</ENUM>
+<MACRO>
+<NAME>GDICT_IS_VALID_STATUS_CODE</NAME>
+#define GDICT_IS_VALID_STATUS_CODE(x)	(((x) > GDICT_STATUS_INVALID) && \
+                                         ((x) <= GDICT_STATUS_NO_STRATEGIES_PRESENT))
+</MACRO>
+<FUNCTION>
+<NAME>gdict_debug</NAME>
+<RETURNS>void </RETURNS>
+const gchar *fmt, ...
+</FUNCTION>
+<MACRO>
+<NAME>gdict_debug</NAME>
+#define gdict_debug(...)
+</MACRO>
+<FUNCTION>
+<NAME>gdict_has_ipv6</NAME>
+<RETURNS>gboolean </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_show_error_dialog</NAME>
+<RETURNS>void </RETURNS>
+GtkWidget   *widget,const gchar *title,const gchar *detail
+</FUNCTION>
+<FUNCTION>
+<NAME>gdict_show_gerror_dialog</NAME>
+<RETURNS>void </RETURNS>
+GtkWidget   *widget,const gchar *title,GError      *error
+</FUNCTION>
+<MACRO>
+<NAME>GDICT_MAJOR_VERSION</NAME>
+#define GDICT_MAJOR_VERSION	0
+</MACRO>
+<MACRO>
+<NAME>GDICT_MINOR_VERSION</NAME>
+#define GDICT_MINOR_VERSION	1
+</MACRO>
+<MACRO>
+<NAME>GDICT_MICRO_VERSION</NAME>
+#define GDICT_MICRO_VERSION	0
+</MACRO>
+<MACRO>
+<NAME>GDICT_CHECK_VERSION</NAME>
+#define GDICT_CHECK_VERSION(major,minor,micro)	(((major) >= GDICT_MAJOR_VERSION) || \
+						 (((major) == GDICT_MAJOR_VERSION) && \
+						  ((minor) >= GDICT_MINOR_VERSION)) || \
+						 (((major) == GDICT_MAJOR_VERSION) && \
+						  ((minor) == GDICT_MINOR_VERSION) && \
+						  ((micro) >= GDICT_MICRO_VERSION)))
+</MACRO>

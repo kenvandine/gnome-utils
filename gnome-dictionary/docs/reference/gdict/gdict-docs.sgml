@@ -1,0 +1,95 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY GdictContext SYSTEM "xml/gdict-context.xml">
+<!ENTITY GdictClientContext SYSTEM "xml/gdict-client-context.xml">
+<!ENTITY GdictSource SYSTEM "xml/gdict-source.xml">
+<!ENTITY GdictSourceLoader SYSTEM "xml/gdict-source-loader.xml">
+<!ENTITY GdictEntry SYSTEM "xml/gdict-entry.xml">
+<!ENTITY GdictDefbox SYSTEM "xml/gdict-defbox.xml">
+]>
+
+<book id="libgdict">
+  <bookinfo>
+    <title>GNOME Dictionary Library Reference Manual</title>
+    <authorgroup>
+      <author>
+        <firstname>Emmanuele</firstname>
+        <surname>Bassi</surname>
+        <affiliation>
+          <address>
+            <email>ebassi@gmail.com</email>
+          </address>
+        </affiliation>
+      </author>
+    </authorgroup>
+    
+    <copyright>
+      <year>2005</year>
+      <holder>Emmanuele Bassi</holder>
+    </copyright>
+    
+    <abstract>
+      <para>This manual documents the Dictionary library for GNOME 2.x</para>
+    </abstract>
+  
+  </bookinfo>
+  
+  <chapter id="introduction">
+    <title>Introduction</title>
+    
+    <para>...</para>
+    
+  </chapter>
+  
+  <chapter id="gdict">
+    <title>The GNOME Dictionary Library</title>
+    
+    <sect1 id="context">
+      <title>Dictionary Context</title>
+
+      <para>...</para>
+
+      &GdictContext;
+
+      <sect2 id="context-types">
+        <title>Context Implementations</title>
+
+	<para>...</para>
+
+	&GdictClientContext;
+      
+      </sect2>
+      
+    </sect1>
+    
+    <sect1 id="sources">
+      <title>Dictionary Source</title>
+
+      <para>...</para>
+
+      &GdictSource;
+      
+    </sect1>
+
+    <sect1 id="sources-loader">
+      <title>Dictionary Sources Loader</title>
+
+      <para>...</para>
+
+      &GdictSourceLoader;
+
+    </sect1>
+  </chapter>
+
+  <chapter id="gdictui">
+    <title>The GNOME Dictionary Library Widgets</title>
+    
+    <para>...</para>
+
+    &GdictEntry;
+    &GdictDefbox;
+    
+  </chapter>
+  
+</book>
