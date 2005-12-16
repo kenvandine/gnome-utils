@@ -1,3 +1,28 @@
+2005-12-16  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	Merged the new gnome-dictionary from the 'new-dictionary' branch; along
+	with gnome-dictionary comes libgdict, a general purpose library for
+	accessing dictionary sources.
+	
+	A gnome-dictionary
+	A gnome-dictionary/data
+	A gnome-dictionary/doc
+	A gnome-dictionary/help
+	A gnome-dictionary/libgdict
+	A gnome-dictionary/src
+
+	* Makefile.am (always_build_SUBDIRS): remove gdictsrc and add
+	gnome-dictionary.
+
+	* configure.in: add glue for building gnome-dictionary and libgdict;
+	remove gdictsrc.
+
+	* POTFILES.in: add files in gnome-dictionary and remove gdictsrc.
+
+	* Makefile.am (DISTCHECK_CONFIGURE_FLAGS): libgdict uses gtk-doc for
+	its documentation; in order to pass dist we must use --enable-gtk-doc
+	when running configure.
+
 2005-12-14  Jeroen Zwartepoorte  <jeroen.zwartepoorte@gmail.com>
 
 	* gnome-screenshot/screenshot-utils.c: (screenshot_get_pixbuf): Don't

@@ -20,10 +20,26 @@ AC_PROG_YACC
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
+AC_LIBTOOL_WIN32_DLL
+AM_PROG_LIBTOOL
+AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
+AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 
 GNOME_COMPILE_WARNINGS(yes)
 
 AC_PATH_XTRA
+
+# Before making a release, the LT_VERSION string should be modified.
+# The string is of the form C:R:A.
+# - If interfaces have been changed or added, but binary compatibility has
+#   been preserved, change to C+1:0:A+1
+# - If binary compatibility has been broken (eg removed or changed interfaces)
+#   change to C+1:0:0
+# - If the interface is the same as the previous version, change to C:R+1:A
+
+LIBGDICT_LT_VERSION=1:0:0
+AC_SUBST(LIBGDICT_LT_VERSION)
+
 
 dnl *****************************************
 dnl pkg-config check time
@@ -56,11 +72,25 @@ AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
 
 dnl *****************************************
-dnl gdict needs libgnomeprint and libgnomeprintui
+dnl gnome-dictionary needs libgnomeprint and libgnomeprintui
 dnl *****************************************
 PKG_CHECK_MODULES(LIBGNOMEPRINT, libgnomeprintui-2.2 >= $LIBGNOMEPRINTUI_REQUIRED)
 AC_SUBST(LIBGNOMEPRINT_CFLAGS)
 AC_SUBST(LIBGNOMEPRINT_LIBS)
+
+dnl *****************************************
+dnl libgdict requires just gtk+
+dnl *****************************************
+PKG_CHECK_MODULES(LIBGDICT, gtk+-2.0 >= $GTK_REQUIRED)
+AC_SUBST(LIBGDICT_CFLAGS)
+AC_SUBST(LIBGDICT_LIBS)
+
+GDICT_MAJOR_VERSION=0
+GDICT_MINOR_VERSION=1
+GDICT_MICRO_VERSION=0
+AC_SUBST(GDICT_MAJOR_VERSION)
+AC_SUBST(GDICT_MINOR_VERSION)
+AC_SUBST(GDICT_MICRO_VERSION)
 
 dnl *****************************************
 dnl screenshot modules
@@ -378,6 +408,10 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
 
 AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps")
 
+dnl gtk-doc stuff
+
+GTK_DOC_CHECK([1.0])
+
 dnl gnome-doc-utils stuff
 
 GNOME_DOC_INIT
@@ -392,11 +426,17 @@ logview/help/Makefile
 gsearchtool/Makefile
 gsearchtool/data/Makefile
 gsearchtool/help/Makefile
-gdictsrc/Makefile
-gdictsrc/help/Makefile
-gdictsrc/help/C/Makefile
-gdictsrc/help/ja/Makefile
-gdictsrc/help/uk/Makefile
+gnome-dictionary/Makefile
+gnome-dictionary/libgdict/Makefile
+gnome-dictionary/libgdict/gdict-version.h
+gnome-dictionary/libgdict/gdict-1.0.pc
+gnome-dictionary/libgdict/gdict-1.0-uninstalled.pc
+gnome-dictionary/data/Makefile
+gnome-dictionary/docs/Makefile
+gnome-dictionary/docs/reference/Makefile
+gnome-dictionary/docs/reference/gdict/Makefile
+gnome-dictionary/help/Makefile
+gnome-dictionary/src/Makefile
 gfloppy/Makefile
 gfloppy/doc/Makefile
 gfloppy/src/Makefile
@@ -445,6 +485,9 @@ if test "x$build_gfloppy" = "xtrue"; then
 else
 	echo "Build gfloppy                     : NO"
 fi
+
+dnl <= libgdict =>
+echo "Gdict version                     : "$GDICT_MAJOR_VERSION"."$GDICT_MINOR_VERSION"."$GDICT_MICRO_VERSION
 
 echo ""
 dnl <= End of configuration summary =>

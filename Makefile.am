@@ -22,11 +22,11 @@ if BUILD_GFLOPPY
 gfloppy = gfloppy
 endif
 
-always_built_SUBDIRS = \
-	po 		\
-	logview 	\
-	gsearchtool	\
-	gdictsrc	\
+always_built_SUBDIRS =   \
+	po 		 \
+	logview 	 \
+	gsearchtool	 \
+	gnome-dictionary \
 	gnome-screenshot
 
 SUBDIRS = \
@@ -37,8 +37,6 @@ DIST_SUBDIRS = \
 	$(always_built_SUBDIRS)	\
 	gfloppy
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper
-
 EXTRA_DIST = \
 	m4 \
 	gnome-utils.spec.in \
@@ -46,12 +44,18 @@ EXTRA_DIST = \
 	omf.make \
 	xmldocs.make \
 	gnome-doc-utils.make \
+	gtk-doc.make
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in
 
 DISTCLEANFILES =                \
+	gtk-doc.make		\
 	gnome-doc-utils.make	\
 	intltool-extract        \
 	intltool-merge          \
 	intltool-update
+
+DISTCHECK_CONFIGURE_FLAGS = \
+	--disable-scrollkeeper \
+	--enable-gtk-doc
