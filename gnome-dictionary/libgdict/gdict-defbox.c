@@ -138,14 +138,11 @@ gdict_defbox_finalize (GObject *object)
       g_signal_handler_disconnect (priv->context, priv->start_id);
       g_signal_handler_disconnect (priv->context, priv->end_id);
       g_signal_handler_disconnect (priv->context, priv->define_id);
-      g_signal_handler_disconnect (priv->context, priv->error_id);
-      
-      priv->start_id = 0;
-      priv->end_id = 0;
-      priv->define_id = 0;
-      priv->error_id = 0;
     }
   
+  if (priv->error_id)
+    g_signal_handler_disconnect (priv->context, priv->error_id);
+      
   if (priv->context)
     g_object_unref (priv->context);
   
@@ -183,6 +180,34 @@ set_gdict_context (GdictDefbox  *defbox,
   
   g_assert (GDICT_IS_DEFBOX (defbox));
   
+  priv = defbox->priv;
+  if (priv->context)
+    {
+      if (priv->start_id)
+        {
+          gdict_debug ("Removing old context handlers\n");
+          
+          g_signal_handler_disconnect (priv->context, priv->start_id);
+          g_signal_handler_disconnect (priv->context, priv->define_id);
+          g_signal_handler_disconnect (priv->context, priv->end_id);
+          
+          priv->start_id = 0;
+          priv->end_id = 0;
+          priv->define_id = 0;
+        }
+      
+      if (priv->error_id)
+        {
+          g_signal_handler_disconnect (priv->context, priv->error_id);
+
+          priv->error_id = 0;
+        }
+
+      gdict_debug ("Removing old context\n");
+      
+      g_object_unref (G_OBJECT (priv->context));
+    }
+
   if (!context)
     return;
 
@@ -192,25 +217,8 @@ set_gdict_context (GdictDefbox  *defbox,
       		 g_type_name (G_OBJECT_TYPE (context)));
       return;
     }
-  
-  priv = defbox->priv;
-  if (priv->context)
-    {
-      if (priv->start_id)
-        {
-          g_signal_handler_disconnect (priv->context, priv->start_id);
-          g_signal_handler_disconnect (priv->context, priv->define_id);
-          g_signal_handler_disconnect (priv->context, priv->end_id);
-          g_signal_handler_disconnect (priv->context, priv->error_id);
-          
-          priv->start_id = 0;
-          priv->end_id = 0;
-          priv->define_id = 0;
-          priv->error_id = 0;
-        }
-      
-      g_object_unref (G_OBJECT (priv->context));
-    }
+
+  gdict_debug ("Setting new context\n");
     
   priv->context = context;
   g_object_ref (G_OBJECT (priv->context));
@@ -296,7 +304,7 @@ gdict_defbox_find_backward (GdictDefbox *defbox,
       				    &match_start,
       				    0.0,
       				    TRUE,
-      				    0.5, 0.5);
+      				    0.0, 0.0);
       gtk_text_buffer_place_cursor (priv->buffer, &match_end);
       gtk_text_buffer_move_mark (priv->buffer,
       				 gtk_text_buffer_get_mark (priv->buffer, "selection_bound"),
@@ -363,7 +371,7 @@ gdict_defbox_find_forward (GdictDefbox *defbox,
       				    &match_start,
       				    0.0,
       				    TRUE,
-      				    0.5, 0.5);
+      				    0.0, 0.0);
       gtk_text_buffer_place_cursor (priv->buffer, &match_end);
       gtk_text_buffer_move_mark (priv->buffer,
       				 gtk_text_buffer_get_mark (priv->buffer, "selection_bound"),
@@ -384,17 +392,25 @@ find_next_clicked_cb (GtkWidget *widget,
   GdictDefbox *defbox = GDICT_DEFBOX (user_data);
   GdictDefboxPrivate *priv = defbox->priv;
   const gchar *text;
-  gboolean res;
+  gboolean found;
   
-  gtk_label_set_text (GTK_LABEL (priv->find_label), "");
+  gtk_widget_hide (priv->find_label);
   
   text = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
   if (!text)
     return;
   
-  res = gdict_defbox_find_forward (defbox, text);
-  if (!res)
-    gtk_label_set_text (GTK_LABEL (priv->find_label), _("Not found"));
+  found = gdict_defbox_find_forward (defbox, text);
+  if (!found)
+    {
+      gchar *str;
+      
+      str = g_strconcat ("  <i>", _("Not found"), "</i>", NULL);
+      gtk_label_set_markup (GTK_LABEL (priv->find_label), str);
+      gtk_widget_show (priv->find_label);
+      
+      g_free (str);
+    }
 }
 
 static void
@@ -406,7 +422,7 @@ find_entry_changed_cb (GtkWidget *widget,
   const gchar *text;
   gboolean found;
 
-  gtk_label_set_text (GTK_LABEL (priv->find_label), "");
+  gtk_widget_hide (priv->find_label);
   
   text = gtk_entry_get_text (GTK_ENTRY (widget));
   if (strlen (text) == 0)
@@ -414,7 +430,15 @@ find_entry_changed_cb (GtkWidget *widget,
 
   found = gdict_defbox_find_forward (defbox, text);
   if (!found)
-    gtk_label_set_text (GTK_LABEL (priv->find_label), _("Not found"));
+    {
+      gchar *str;
+      
+      str = g_strconcat ("  <i>", _("Not found"), "</i>", NULL);
+      gtk_label_set_markup (GTK_LABEL (priv->find_label), str);
+      gtk_widget_show (priv->find_label);
+      
+      g_free (str);
+    }
 }
 
 static void
@@ -423,41 +447,53 @@ create_find_pane (GdictDefbox *defbox)
   GdictDefboxPrivate *priv;
   GtkWidget *label;
   GtkWidget *sep;
+  GtkWidget *hbox, *hbox2;
  
-  priv = defbox->priv;  
+  priv = defbox->priv;
   
-  priv->find_pane = gtk_hbox_new (FALSE, 6);
-  gtk_container_set_border_width (GTK_CONTAINER (priv->find_pane), 1);
+  priv->find_pane = gtk_hbox_new (FALSE, 12);
+  gtk_container_set_border_width (GTK_CONTAINER (priv->find_pane), 0);
   
-  label = gtk_label_new (_("Find:"));
+  label = gtk_label_new_with_mnemonic (_("F_ind:"));
   gtk_box_pack_start (GTK_BOX (priv->find_pane), label, FALSE, FALSE, 0);
+
+  hbox = gtk_hbox_new (FALSE, 6);
+  gtk_box_pack_start (GTK_BOX (priv->find_pane), hbox, TRUE, TRUE, 0);
+  gtk_widget_show (hbox);
   
   priv->find_entry = gtk_entry_new ();
   g_signal_connect (priv->find_entry, "changed",
   		    G_CALLBACK (find_entry_changed_cb), defbox);
-  gtk_box_pack_start (GTK_BOX (priv->find_pane), priv->find_entry, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->find_entry, FALSE, FALSE, 0);
+  gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->find_entry);
   
   sep = gtk_vseparator_new ();
-  gtk_box_pack_start (GTK_BOX (priv->find_pane), sep, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), sep, FALSE, FALSE, 0);
   
-  priv->find_prev = gtk_button_new_with_mnemonic (_("Find _Prev"));
+  hbox2 = gtk_hbox_new (FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), hbox2, FALSE, FALSE, 0);
+  gtk_widget_show (hbox2);
+  
+  priv->find_prev = gtk_button_new_with_mnemonic (_("_Previous"));
   gtk_button_set_image (GTK_BUTTON (priv->find_prev),
   			gtk_image_new_from_stock (GTK_STOCK_GO_BACK,
   						  GTK_ICON_SIZE_MENU));
   g_signal_connect (priv->find_prev, "clicked",
   		    G_CALLBACK (find_prev_clicked_cb), defbox);
-  gtk_box_pack_start (GTK_BOX (priv->find_pane), priv->find_prev, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox2), priv->find_prev, FALSE, FALSE, 0);
 
-  priv->find_next = gtk_button_new_with_mnemonic (_("Find _Next"));
+  priv->find_next = gtk_button_new_with_mnemonic (_("_Next"));
   gtk_button_set_image (GTK_BUTTON (priv->find_next),
   			gtk_image_new_from_stock (GTK_STOCK_GO_FORWARD,
   						  GTK_ICON_SIZE_MENU));
   g_signal_connect (priv->find_next, "clicked",
   		    G_CALLBACK (find_next_clicked_cb), defbox);
-  gtk_box_pack_start (GTK_BOX (priv->find_pane), priv->find_next, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox2), priv->find_next, FALSE, FALSE, 0);
   
   priv->find_label = gtk_label_new (NULL);
-  gtk_box_pack_end (GTK_BOX (priv->find_pane), priv->find_label, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (priv->find_label), TRUE);
+  gtk_box_pack_end (GTK_BOX (hbox2), priv->find_label, FALSE, FALSE, 0);
+  gtk_widget_hide (priv->find_label);
 }
 
 static void
@@ -708,7 +744,7 @@ gdict_defbox_init (GdictDefbox *defbox)
 {
   GdictDefboxPrivate *priv;
   
-  gtk_box_set_spacing (GTK_BOX (defbox), 0);
+  gtk_box_set_spacing (GTK_BOX (defbox), 6);
   
   priv = GDICT_DEFBOX_GET_PRIVATE (defbox);
   defbox->priv = priv;
@@ -782,7 +818,7 @@ gdict_defbox_set_context (GdictDefbox  *defbox,
 			  GdictContext *context)
 {
   g_return_if_fail (GDICT_IS_DEFBOX (defbox));
-  g_return_if_fail (GDICT_IS_CONTEXT (context));
+  g_return_if_fail (context == NULL || GDICT_IS_CONTEXT (context));
   
   g_object_set (defbox, "context", context, NULL);
 }

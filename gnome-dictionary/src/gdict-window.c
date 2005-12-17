@@ -55,9 +55,10 @@ enum
   PROP_0,
   
   PROP_SOURCE_LOADER,
-  PROP_WINDOW_ID,
+  PROP_SOURCE_NAME,
   PROP_PRINT_FONT,
-  PROP_WORD
+  PROP_WORD,
+  PROP_WINDOW_ID
 };
 
 enum
@@ -135,11 +136,225 @@ gdict_window_finalize (GObject *object)
   
   g_object_unref (window->action_group);
 
-  g_free (window->source_name);  
+  g_free (window->source_name);
   g_free (window->print_font);
   g_free (window->word);
   
   G_OBJECT_CLASS (gdict_window_parent_class)->finalize (object);
+}
+
+static void
+gdict_window_lookup_start_cb (GdictContext *context,
+			      GdictWindow  *window)
+{
+  gchar *message;
+
+  if (!window->word)
+    return;
+
+  message = g_strdup_printf (_("Searching for '%s'..."), window->word);
+  
+  if (window->status)
+    gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
+
+  g_free (message);
+}
+
+static void
+gdict_window_lookup_end_cb (GdictContext *context,
+			    GdictWindow  *window)
+{
+  gchar *message;
+  gint count;
+
+  count = gdict_defbox_count_definitions (GDICT_DEFBOX (window->defbox));
+
+  if (count == -1)
+    window->max_definition = -1;
+  else
+    window->max_definition = count;
+
+  if (count == -1)
+    message = g_strdup (_("No definitions found"));
+  else if (count == 1)
+    message = g_strdup (_("A definition found"));
+  else
+    message = g_strdup_printf (_("%d definitions found"), count);
+
+  if (window->status)
+    gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
+
+  g_free (message);
+}
+
+static void
+gdict_window_error_cb (GdictContext *context,
+		       const GError *error,
+		       GdictWindow  *window)
+{
+  if (window->word)
+    g_free (window->word);
+
+  gtk_statusbar_push (GTK_STATUSBAR (window->status), 0,
+		      _("No definitions found"));
+}
+
+static void
+gdict_window_set_database (GdictWindow *window,
+			   const gchar *database)
+{
+
+}
+
+static void
+gdict_window_set_strategy (GdictWindow *window,
+			   const gchar *strategy)
+{
+
+}
+
+static GdictContext *
+get_context_from_loader (GdictWindow *window)
+{
+  GdictSource *source;
+  GdictContext *retval;
+
+  if (!window->source_name)
+    window->source_name = g_strdup (GDICT_DEFAULT_SOURCE_NAME);
+
+  source = gdict_source_loader_get_source (window->loader,
+		  			   window->source_name);
+  if (!source)
+    {
+      gchar *detail;
+      
+      detail = g_strdup_printf (_("No dictionary source available with name '%s'"),
+      				window->source_name);
+
+      show_error_dialog (GTK_WINDOW (window),
+                         _("Unable to find dictionary source"),
+                         NULL);
+      
+      g_free (detail);
+
+      return NULL;
+    }
+  
+  gdict_window_set_database (window, gdict_source_get_database (source));
+  gdict_window_set_strategy (window, gdict_source_get_strategy (source));
+  
+  retval = gdict_source_get_context (source);
+  if (!retval)
+    {
+      gchar *detail;
+      
+      detail = g_strdup_printf (_("No context available for source '%s'"),
+      				gdict_source_get_description (source));
+      				
+      show_error_dialog (GTK_WINDOW (window),
+                         _("Unable to create a context"),
+                         detail);
+      
+      g_free (detail);
+      g_object_unref (source);
+      
+      return NULL;
+    }
+  
+  g_object_unref (source);
+  
+  return retval;
+}
+
+static void
+gdict_window_set_print_font (GdictWindow *window,
+			     const gchar *print_font)
+{
+  if (!print_font)
+    print_font = gconf_client_get_string (window->client,
+    					  GDICT_GCONF_PRINT_FONT_KEY,
+    					  NULL);
+  
+  if (!print_font)
+    print_font = GDICT_DEFAULT_PRINT_FONT;
+  
+  if (window->print_font)
+    g_free (window->print_font);
+  
+  window->print_font = g_strdup (print_font);
+}
+
+static void
+gdict_window_set_word (GdictWindow *window,
+		       const gchar *word)
+{
+  if (window->word)
+    g_free (window->word);
+  
+  window->word = g_strdup (word);
+}
+
+static void
+gdict_window_set_context (GdictWindow  *window,
+			  GdictContext *context)
+{
+  if (window->context)
+    {
+      g_signal_handler_disconnect (window->context, window->lookup_start_id);
+      g_signal_handler_disconnect (window->context, window->lookup_end_id);
+      g_signal_handler_disconnect (window->context, window->error_id);
+      
+      window->lookup_start_id = 0;
+      window->lookup_end_id = 0;
+      window->error_id = 0;
+      
+      g_object_unref (window->context);
+      window->context = NULL;
+    }
+
+  if (window->defbox)
+    gdict_defbox_set_context (GDICT_DEFBOX (window->defbox), context);
+
+  if (!context)
+    return;
+  
+  /* attach our callbacks */
+  window->lookup_start_id = g_signal_connect (context, "lookup-start",
+		  			      G_CALLBACK (gdict_window_lookup_start_cb),
+					      window);
+  window->lookup_end_id   = g_signal_connect (context, "lookup-end",
+		  			      G_CALLBACK (gdict_window_lookup_end_cb),
+					      window);
+  window->error_id        = g_signal_connect (context, "error",
+		  			      G_CALLBACK (gdict_window_error_cb),
+					      window);
+  
+  window->context = context;
+}
+
+static void
+gdict_window_set_source_name (GdictWindow *window,
+			      const gchar *source_name)
+{
+  GdictContext *context;
+  
+  /* some sanity checks first */
+  if (!source_name)
+    source_name = gconf_client_get_string (window->client,
+      					   GDICT_GCONF_SOURCE_KEY,
+      					   NULL);
+  
+  if (!source_name)
+    source_name = GDICT_DEFAULT_SOURCE_NAME;
+  
+  if (window->source_name)
+    g_free (window->source_name);
+  
+  window->source_name = g_strdup (source_name);
+  
+  context = get_context_from_loader (window);
+  
+  gdict_window_set_context (window, context);
 }
 
 static void
@@ -157,6 +372,15 @@ gdict_window_set_property (GObject      *object,
         g_object_unref (window->loader);
       window->loader = g_value_get_object (value);
       g_object_ref (window->loader);
+      break;
+    case PROP_SOURCE_NAME:
+      gdict_window_set_source_name (window, g_value_get_string (value));
+      break;
+    case PROP_WORD:
+      gdict_window_set_word (window, g_value_get_string (value));
+      break;
+    case PROP_PRINT_FONT:
+      gdict_window_set_print_font (window, g_value_get_string (value));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -177,6 +401,15 @@ gdict_window_get_property (GObject    *object,
     case PROP_SOURCE_LOADER:
       g_value_set_object (value, window->loader);
       break;
+    case PROP_SOURCE_NAME:
+      g_value_set_string (value, window->source_name);
+      break;
+    case PROP_WORD:
+      g_value_set_string (value, window->word);
+      break;
+    case PROP_PRINT_FONT:
+      g_value_set_string (value, window->print_font);
+      break;
     case PROP_WINDOW_ID:
       g_value_set_uint (value, window->window_id);
       break;
@@ -192,7 +425,7 @@ gdict_window_cmd_file_new (GtkAction   *action,
 {
   GtkWidget *new_window;
   
-  new_window = gdict_window_new (window->loader);
+  new_window = gdict_window_new (window->loader, NULL, NULL);
   gtk_widget_show (new_window);
   
   g_signal_emit (window, gdict_window_signals[CREATED], 0, new_window);
@@ -327,7 +560,7 @@ gdict_window_cmd_edit_preferences (GtkAction   *action,
   GtkWidget *pref_dialog;
   
   pref_dialog = gdict_pref_dialog_new (GTK_WINDOW (window),
-  				       _("Preferences"),
+  				       _("Dictionary Preferences"),
   				       window->loader);
   
   gtk_dialog_run (GTK_DIALOG (pref_dialog));
@@ -471,7 +704,7 @@ static const GtkActionEntry entries[] =
     G_CALLBACK (gdict_window_cmd_edit_find_next) },
   { "EditFindPrevious", NULL, N_("Find Pre_vious"), "<control><shift>G", NULL,
     G_CALLBACK (gdict_window_cmd_edit_find_previous) },
-  { "EditPreferences", NULL, N_("_Preferences"), NULL, NULL,
+  { "EditPreferences", GTK_STOCK_PREFERENCES, N_("_Preferences"), NULL, NULL,
     G_CALLBACK (gdict_window_cmd_edit_preferences) },
 
   /* Go menu */
@@ -497,100 +730,6 @@ static const GtkActionEntry entries[] =
 };
 
 static void
-gdict_window_lookup_start_cb (GdictContext *context,
-			      GdictWindow  *window)
-{
-  gchar *message;
-
-  if (!window->word)
-    return;
-
-  message = g_strdup_printf (_("Searching for '%s'..."), window->word);
-  
-  if (window->status)
-    gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
-
-  g_free (message);
-}
-
-static void
-gdict_window_lookup_end_cb (GdictContext *context,
-			    GdictWindow  *window)
-{
-  gchar *message;
-  gint count;
-
-  count = gdict_defbox_count_definitions (GDICT_DEFBOX (window->defbox));
-
-  if (count == -1)
-    window->max_definition = -1;
-  else
-    window->max_definition = count;
-
-  if (count == -1)
-    message = g_strdup (_("No definitions found"));
-  else if (count == 1)
-    message = g_strdup (_("A definition found"));
-  else
-    message = g_strdup_printf (_("%d definitions found"), count);
-
-  if (window->status)
-    gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
-
-  g_free (message);
-}
-
-static void
-gdict_window_error_cb (GdictContext *context,
-		       const GError *error,
-		       GdictWindow  *window)
-{
-  if (window->word)
-    g_free (window->word);
-
-  gtk_statusbar_push (GTK_STATUSBAR (window->status), 0,
-		      _("No definitions found"));
-}
-
-static GdictContext *
-get_context_from_loader (GdictWindow *window)
-{
-  GdictSource *source;
-  GdictContext *retval;
-
-  if (!window->source_name)
-    window->source_name = g_strdup (GDICT_DEFAULT_SOURCE_NAME);
-
-  source = gdict_source_loader_get_source (window->loader,
-		  			   window->source_name);
-  if (!source)
-    {
-      show_error_dialog (GTK_WINDOW (window),
-                         _("Unable to find a dictionary source"),
-                         NULL);
-
-      return NULL;
-    }
-  
-  retval = gdict_source_get_context (source);
-
-  /* attach our callbacks */
-  window->lookup_start_id = g_signal_connect (retval, "lookup-start",
-		  			      G_CALLBACK (gdict_window_lookup_start_cb),
-					      window);
-  window->lookup_end_id = g_signal_connect (retval, "lookup-end",
-		  			    G_CALLBACK (gdict_window_lookup_end_cb),
-					    window);
-  window->error_id = g_signal_connect (retval, "error",
-		  		       G_CALLBACK (gdict_window_error_cb),
-				       window);
-  
-  g_object_unref (source);
-  
-  return retval;
-}
-
-static void
 gdict_window_gconf_notify_cb (GConfClient *client,
 			      guint        cnxn_id,
 			      GConfEntry  *entry,
@@ -600,32 +739,17 @@ gdict_window_gconf_notify_cb (GConfClient *client,
 
   if (strcmp (entry->key, GDICT_GCONF_PRINT_FONT_KEY) == 0)
     {
-      g_free (window->print_font);
-
       if (entry->value && (entry->value->type == GCONF_VALUE_STRING))
-        window->print_font = g_strdup (gconf_value_get_string (entry->value));
+        gdict_window_set_print_font (window, gconf_value_get_string (entry->value));
       else
-        window->print_font = g_strdup (GDICT_DEFAULT_PRINT_FONT);
+        gdict_window_set_print_font (window, GDICT_DEFAULT_PRINT_FONT);
     }
   else if (strcmp (entry->key, GDICT_GCONF_SOURCE_KEY) == 0)
     {
-      if (window->context)
-        {
-          g_signal_handler_disconnect (window->context, window->lookup_start_id);
-	  g_signal_handler_disconnect (window->context, window->lookup_end_id);
-	  g_signal_handler_disconnect (window->context, window->error_id);
-
-	  g_object_unref (window->context);
-	}
-
-      g_free (window->source_name);
-      
       if (entry->value && (entry->value->type == GCONF_VALUE_STRING))
-        window->source_name = g_strdup (gconf_value_get_string (entry->value));
+        gdict_window_set_source_name (window, gconf_value_get_string (entry->value));
       else
-        window->source_name = g_strdup (GDICT_DEFAULT_SOURCE_NAME);
-
-      window->context = get_context_from_loader (window);
+        gdict_window_set_source_name (window, GDICT_DEFAULT_SOURCE_NAME);
     }
 }
 
@@ -638,14 +762,14 @@ entry_activate_cb (GtkWidget   *widget,
   
   g_assert (GDICT_IS_WINDOW (window));
   
+  if (!window->context)
+    return;
+  
   word = gtk_entry_get_text (GTK_ENTRY (widget));
   if (!word)
     return;
   
-  if (window->word)
-    g_free (window->word);
-  
-  window->word = g_strdup (word);
+  gdict_window_set_word (window, word);
   
   title = g_strdup_printf (_("Dictionary - %s"), window->word);
   gtk_window_set_title (GTK_WINDOW (window), title);
@@ -674,8 +798,6 @@ gdict_window_drag_data_received_cb (GtkWidget        *widget,
   if (text)
     {
       gchar *title;
-      
-      g_message ("(in %s) text := '%s'\n", G_STRFUNC, text);
       
       gtk_entry_set_text (GTK_ENTRY (window->entry), text);
 
@@ -709,6 +831,7 @@ gdict_window_constructor (GType                  type,
   GObject *object;
   GdictWindow *window;
   GtkWidget *hbox;
+  GtkWidget *vbox;
   GtkWidget *label;
   GtkActionGroup *action_group;
   GtkAccelGroup *accel_group;
@@ -717,7 +840,6 @@ gdict_window_constructor (GType                  type,
   object = G_OBJECT_CLASS (gdict_window_parent_class)->constructor (type,
   						   n_construct_properties,
   						   construct_params);
-  
   window = GDICT_WINDOW (object);
   
   gtk_widget_push_composite_child ();
@@ -727,7 +849,7 @@ gdict_window_constructor (GType                  type,
   			       GDICT_WINDOW_MIN_WIDTH,
   			       GDICT_WINDOW_MIN_HEIGHT);
  
-  window->main_box = gtk_vbox_new (FALSE, 12);
+  window->main_box = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (window), window->main_box);
   gtk_widget_show (window->main_box);
   
@@ -761,23 +883,29 @@ gdict_window_constructor (GType                  type,
       gtk_widget_show (window->menubar);
     }
   
-  hbox = gtk_hbox_new (FALSE, 6);
-  gtk_box_pack_start (GTK_BOX (window->main_box), hbox, FALSE, FALSE, 0);
+  vbox = gtk_vbox_new (FALSE, 6);
+  gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
+  gtk_container_add (GTK_CONTAINER (window->main_box), vbox);
+  gtk_widget_show (vbox);
+  
+  hbox = gtk_hbox_new (FALSE, 12);
+  gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
   
-  label = gtk_label_new_with_mnemonic (_("F_ind:"));
+  label = gtk_label_new_with_mnemonic (_("Look _up:"));
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
   
   window->entry = gtk_entry_new ();
+  if (window->word)
+    gtk_entry_set_text (GTK_ENTRY (window->entry), window->word);
+  
   g_signal_connect (window->entry, "activate", G_CALLBACK (entry_activate_cb), window);
   gtk_box_pack_start (GTK_BOX (hbox), window->entry, TRUE, TRUE, 0);
   gtk_widget_show (window->entry);
 
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), window->entry);
 
-  window->context = get_context_from_loader (window);
-  
   window->defbox = gdict_defbox_new ();
   if (window->context)
     gdict_defbox_set_context (GDICT_DEFBOX (window->defbox), window->context);
@@ -789,7 +917,7 @@ gdict_window_constructor (GType                  type,
   g_signal_connect (window->defbox, "drag-data-received",
   		    G_CALLBACK (gdict_window_drag_data_received_cb),
   		    window);
-  gtk_box_pack_start (GTK_BOX (window->main_box), window->defbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (vbox), window->defbox, TRUE, TRUE, 0);
   gtk_widget_show_all (window->defbox);
 
   window->status = gtk_statusbar_new ();
@@ -815,10 +943,31 @@ gdict_window_class_init (GdictWindowClass *klass)
   g_object_class_install_property (gobject_class,
   				   PROP_SOURCE_LOADER,
   				   g_param_spec_object ("source-loader",
-  							_("Source Loader"),
-  							_("The GdictSourceLoader to be used to load dictionary sources"),
+  							"Source Loader",
+  							"The GdictSourceLoader to be used to load dictionary sources",
   							GDICT_TYPE_SOURCE_LOADER,
   							(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)));
+  g_object_class_install_property (gobject_class,
+		  		   PROP_SOURCE_NAME,
+				   g_param_spec_string ("source-name",
+					   		"Source Name",
+							"The name of the GdictSource to be used",
+							GDICT_DEFAULT_SOURCE_NAME,
+							(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
+  g_object_class_install_property (gobject_class,
+  				   PROP_PRINT_FONT,
+  				   g_param_spec_string ("print-font",
+  				   			"Print Font",
+  				   			"The font name to be used when printing",
+  				   			GDICT_DEFAULT_PRINT_FONT,
+  				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
+  g_object_class_install_property (gobject_class,
+		  		   PROP_WORD,
+				   g_param_spec_string ("word",
+					   		"Word",
+							"The word to search",
+							NULL,
+							(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
   g_object_class_install_property (gobject_class,
   				   PROP_WINDOW_ID,
   				   g_param_spec_uint ("window-id",
@@ -843,10 +992,8 @@ gdict_window_class_init (GdictWindowClass *klass)
 static void
 gdict_window_init (GdictWindow *window)
 {
-  window->word = NULL;
-  
-  window->context = NULL;
   window->loader = NULL;
+  window->context = NULL;
   
   window->client = gconf_client_get_default ();
   gconf_client_add_dir (window->client,
@@ -860,22 +1007,23 @@ gdict_window_init (GdictWindow *window)
   					       NULL,
   					       NULL);
   
-  window->print_font = gconf_client_get_string (window->client,
-		  				GDICT_GCONF_PRINT_FONT_KEY,
-						NULL);
-  window->source_name = gconf_client_get_string (window->client,
-		  				 GDICT_GCONF_SOURCE_KEY,
-						 NULL);
-  
+  window->word = NULL;
+  window->source_name = NULL;
+  window->print_font = NULL;
+      
   window->window_id = (gulong) time (NULL);
 }
 
 GtkWidget *
-gdict_window_new (GdictSourceLoader *loader)
+gdict_window_new (GdictSourceLoader *loader,
+		  const gchar       *source_name,
+		  const gchar       *word)
 {
   g_return_val_if_fail (GDICT_IS_SOURCE_LOADER (loader), NULL);
   
   return g_object_new (GDICT_TYPE_WINDOW,
                        "source-loader", loader,
+		       "source-name", source_name,
+		       "word", word,
                        NULL);
 }

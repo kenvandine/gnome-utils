@@ -64,6 +64,8 @@ struct _GdictWindow
   guint lookup_end_id;
   guint error_id;
   
+  gchar *database;
+  gchar *strategy;
   gchar *print_font;
   
   GConfClient *client;
@@ -81,6 +83,8 @@ struct _GdictWindowClass
 };
 
 GType      gdict_window_get_type (void) G_GNUC_CONST;
-GtkWidget *gdict_window_new      (GdictSourceLoader *loader);
+GtkWidget *gdict_window_new      (GdictSourceLoader *loader,
+				  const gchar       *source_name,
+				  const gchar       *word);
 
 #endif /* __GDICT_WINDOW_H__ */

@@ -50,6 +50,11 @@ struct _GdictApp
   GnomeClient *client;
   
   GConfClient *gconf_client;
+
+  gchar *word;
+  gchar *source_name;
+  gboolean no_window;
+  gboolean list_sources;
   
   GdictSourceLoader *loader;
 

@@ -890,6 +890,21 @@ gdict_client_context_real_connected (GdictClientContext *context)
   gdict_client_context_run_command (context, cmd, NULL);
 }
 
+static void
+clear_command_queue (GdictClientContext *context)
+{
+  GdictClientContextPrivate *priv = context->priv;
+
+  g_queue_foreach (priv->commands_queue,
+                   (GFunc) gdict_command_free,
+                   NULL);
+  
+  g_queue_free (priv->commands_queue);
+  
+  /* renew */
+  priv->commands_queue = g_queue_new ();
+}
+
 /* force a disconnection from the server */
 static void
 gdict_client_context_force_disconnect (GdictClientContext *context)
@@ -909,11 +924,8 @@ gdict_client_context_force_disconnect (GdictClientContext *context)
           
       priv->channel = NULL;
     }
-
-  /* clear the commands queue */
-  g_queue_foreach (priv->commands_queue,
-                   (GFunc) gdict_command_free,
-                   NULL);
+  
+  clear_command_queue (context);
 }
 
 static void
@@ -1617,13 +1629,25 @@ gdict_client_context_io_watch_cb (GIOChannel         *channel,
    */
   if (!priv->channel)
     {
-      g_warning ("No channel\n");
+      g_warning ("No channel available\n");
+
       return FALSE;
     }
   
   if (condition & G_IO_ERR)
     {
-      g_warning ("Error while watching the connection\n");
+      GError *err = NULL;
+
+      g_set_error (&err, GDICT_CLIENT_CONTEXT_ERROR,
+                   GDICT_CLIENT_CONTEXT_ERROR_SOCKET,
+                   _("Connection failed to the dictionary server at %s:%d"),
+                   priv->hostname,
+                   priv->port);
+      
+      g_signal_emit_by_name (context, "error", err);
+              
+      g_error_free (err);
+
       return FALSE;
     }
   
@@ -1651,8 +1675,16 @@ gdict_client_context_io_watch_cb (GIOChannel         *channel,
         {
           if (read_err)
             {
-              g_warning ("Error while reading from channel: %s",
-                         read_err->message);
+              GError *err = NULL;
+              
+              g_set_error (&err, GDICT_CLIENT_CONTEXT_ERROR,
+                           GDICT_CLIENT_CONTEXT_ERROR_SOCKET,
+                           _("Error while reading reply from server:\n%s"),
+                           read_err->message);
+              
+              g_signal_emit_by_name (context, "error", err);
+              
+              g_error_free (err);
               g_error_free (read_err);
             }
           

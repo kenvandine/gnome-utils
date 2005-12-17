@@ -142,7 +142,8 @@ gdict_source_get_property (GObject    *object,
 			   GValue     *value,
 			   GParamSpec *pspec)
 {
-  GdictSourcePrivate *priv = GDICT_SOURCE_GET_PRIVATE (object);
+  GdictSource *source = GDICT_SOURCE (object);
+  GdictSourcePrivate *priv = source->priv;
   
   switch (prop_id)
     {
@@ -165,7 +166,7 @@ gdict_source_get_property (GObject    *object,
       g_value_set_enum (value, priv->transport);
       break;
     case PROP_CONTEXT:
-      g_value_set_object (value, priv->context);
+      g_value_set_object (value, gdict_source_peek_context (source));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -402,7 +403,8 @@ gdict_source_create_context (GdictSource           *source,
 
   g_assert (context != NULL);
   
-  priv->transport = transport;
+  if (priv->transport != transport)
+    priv->transport = transport;
 
   return context;
 }

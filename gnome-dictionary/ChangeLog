@@ -1,3 +1,39 @@
+2005-12-17  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	A bunch UI fixes from Dennis Cranston, and a bunch of fixes triggered
+	by a down of dict.org.
+
+	* libgdict/gdict-defbox.c, src/gdict-window.c: fix lifetime of the
+	GdictContext and related signal handlers.
+
+	* libgdict/gdict-client-context.c (gdict_client_context_finalize),
+	(clear_command_queue): fix a double free bug issued when finalizing a
+	ClientContext with a non-empty queue (patch by Paolo Borelli).
+
+	* libgdict/gdict-client-context.c: emit "error" when unable to connect
+	to the dictionary server.
+
+	* libgdict/gdict-defbox.c:  UI fixes for the find widgets (patch by
+	Dennis Cranston).
+
+	* src/gdict-window.c:  UI fixes.  Fix widget spacing.  Change 
+	"find" back to "look up" to avoid confusion caused by its 
+	double use (patch by Dennis Cranston).
+
+	* libgdict/gdict-source.c: fix the "context" propery;
+
+	* src/gdict-window.c: add "source-name" and "word" constructor
+	properties, so that a window might be created with a pre-defined
+	source and word to look up.
+
+	* libgdict/gdict-app.c (gdict_create_window),
+	(gdict_window_created_cb), (gdict_window_destroy_cb): fix multiple
+	registration of callbacks and remove the loop on the windows list for
+	good (based on a patch by Paolo Borelli).
+
+	* src/gdict-app.c: begin command line arguments support, and attach
+	a GOptionContext to gnome_program_init().
+
 2005-12-15  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-applet.h, src/gdict-applet.c: create the dictionary applet.

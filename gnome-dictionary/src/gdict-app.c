@@ -69,6 +69,12 @@ gdict_app_finalize (GObject *object)
   		   (GFunc) gtk_widget_destroy,
   		   NULL);
   g_slist_free (app->windows);
+
+  if (app->word)
+    g_free (app->word);
+  
+  if (app->source_name)
+    g_free (app->source_name);
   
   G_OBJECT_CLASS (gdict_app_parent_class)->finalize (object);
 }
@@ -109,22 +115,14 @@ gdict_window_destroy_cb (GtkWidget *widget,
   GSList *l;
   
   g_assert (GDICT_IS_APP (app));
+
+  app->windows = g_slist_remove (app->windows, widget);
   
-  for (l = app->windows; l != NULL; l = l->next)
-    {
-      GdictWindow *w = GDICT_WINDOW (l->data);
-      
-      if (w->window_id == window->window_id)
-        {
-          app->windows = g_slist_remove_link (app->windows, l);
-          g_slist_free (l);
-
-          break;
-        }
-    }
-
-  if (g_slist_length (app->windows) == 0)
-    gtk_main_quit ();
+  if (GDICT_WINDOW (widget) == app->current_window)
+    app->current_window = app->windows ? app->windows->data : NULL;
+  
+  if (app->windows == NULL)
+    gtk_main_quit ();  
 }
 
 static void
@@ -133,6 +131,15 @@ gdict_window_created_cb (GdictWindow *parent,
 			 gpointer     user_data)
 {
   GdictApp *app = GDICT_APP (user_data);
+  
+  /* this might seem convoluted - but it's necessary, since I don't want
+   * GdictWindow to know about the GdictApp singleton.  every time a new
+   * window is created by a GdictWindow, it will register its "child window"
+   * here; the lifetime handlers will check every child window created and
+   * destroyed, and will add/remove it to the windows list accordingly
+   */
+  g_signal_connect (new_window, "created",
+  		    G_CALLBACK (gdict_window_created_cb), app);
   
   g_signal_connect (new_window, "destroy",
   		    G_CALLBACK (gdict_window_destroy_cb), app);
@@ -146,18 +153,25 @@ gdict_create_window (GdictApp *app)
 {
   GtkWidget *window;
   
-  window = gdict_window_new (singleton->loader);
-  GDICT_WINDOW (window)->client = app->gconf_client;
+  window = gdict_window_new (singleton->loader,
+		  	     singleton->source_name,
+			     singleton->word);
   
   g_signal_connect (window, "created",
   		    G_CALLBACK (gdict_window_created_cb), app);
   g_signal_connect (window, "destroy",
-                    G_CALLBACK (gdict_window_destroy_cb), app);
+  		    G_CALLBACK (gdict_window_destroy_cb), app);
   
-  app->current_window = GDICT_WINDOW (window);
   app->windows = g_slist_prepend (app->windows, window);
-
+  app->current_window = GDICT_WINDOW (window);
+  
   gtk_widget_show (window);
+}
+
+static void
+gdict_look_up_word_and_quit (GdictApp *app)
+{
+  g_message ("(in %s) no-op", G_STRFUNC);
 }
 
 void
@@ -166,24 +180,59 @@ gdict_init (int *argc, char ***argv)
   GdictApp *app;
   GError *error, *gconf_error;
   GOptionContext *context;
+  GOptionGroup *group;
   gchar *loader_path;
+  gchar *word = NULL;
+  gchar *source_name = NULL;
+  gboolean no_window = FALSE;
+  gboolean list_sources = FALSE;
 
+  const GOptionEntry gdict_app_goptions[] =
+  {
+    { "look-up", 0, 0, G_OPTION_ARG_STRING, &word,
+       N_("Word to look up"), N_("word") },
+    { "source", 's', 0, G_OPTION_ARG_STRING, &source_name,
+       N_("Dictionary source to use"), N_("source") },
+    { "list-sources", 'l', 0, G_OPTION_ARG_NONE, &list_sources,
+       N_("Show available dictionary sources"), NULL },
+    { "no-window", 'n', 0, G_OPTION_ARG_NONE, &no_window,
+       N_("Print result to the console"), NULL },
+    { NULL },
+  };
+  
+  /* we must have GLib's type system up and running in order to create the
+   * singleton object for gnome-dictionary; thus, we can't rely on
+   * gnome_program_init() calling g_type_init() for us.
+   */
   g_type_init ();
 
   g_assert (singleton == NULL);  
   
   singleton = GDICT_APP (g_object_new (GDICT_TYPE_APP, NULL));
   g_assert (GDICT_IS_APP (singleton));
+
+  /* create the new option context */
+  context = g_option_context_new (_(" - Look up words on dictionaries"));
+  
+  /* gnome dictionary option group */
+  group = g_option_group_new ("gnome-dictionary",
+		  	      _("Dictionary and spelling tool"),
+			      _("Show Dictionary options"),
+			      NULL, NULL);
+  g_option_group_add_entries (group, gdict_app_goptions);
+  g_option_context_add_group (context, group);
   
   singleton->program = gnome_program_init ("gnome-dictionary",
 					   VERSION,
 					   LIBGNOMEUI_MODULE,
 					   *argc, *argv,
 					   GNOME_PARAM_APP_DATADIR, DATADIR,
+					   GNOME_PARAM_GOPTION_CONTEXT, context,
 					   NULL);
   g_set_application_name (_("Dictionary"));
   gtk_window_set_default_icon_name ("gdict");
   
+  /* session management */
   singleton->client = gnome_master_client ();
   if (singleton->client)
     {
@@ -205,7 +254,8 @@ gdict_init (int *argc, char ***argv)
       g_error_free (gconf_error);
       singleton->gconf_client;
     }
-  
+
+  /* add user's path for fetching dictionary sources */  
   singleton->loader = gdict_source_loader_new ();
   loader_path = g_build_filename (g_get_home_dir (),
                                   ".gnome2",
@@ -213,12 +263,18 @@ gdict_init (int *argc, char ***argv)
                                   NULL);
   gdict_source_loader_add_search_path (singleton->loader, loader_path);
   g_free (loader_path);
+
+  if (word)
+    singleton->word = g_strdup (word);
   
-  context = g_option_context_new (_(" - Dictionary and spelling tool"));
-  g_option_context_set_ignore_unknown_options (context, TRUE);
-  
-  error = NULL;
-  g_option_context_parse (context, argc, argv, &error);
+  if (source_name)
+    singleton->source_name = g_strdup (source_name);
+
+  if (no_window)
+    singleton->list_sources = TRUE;
+
+  if (list_sources)
+    singleton->no_window = TRUE;
 
   g_option_context_free (context);
 }
@@ -234,7 +290,10 @@ gdict_main (void)
       return;
     }
   
-  gdict_create_window (singleton);
+  if (!singleton->no_window)
+    gdict_create_window (singleton);
+  else
+    gdict_look_up_word_and_quit (singleton);
   
   gtk_main ();
 }
