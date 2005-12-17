@@ -139,6 +139,8 @@ gdict_window_finalize (GObject *object)
   g_free (window->source_name);
   g_free (window->print_font);
   g_free (window->word);
+  g_free (window->database);
+  g_free (window->strategy);
   
   G_OBJECT_CLASS (gdict_window_parent_class)->finalize (object);
 }
@@ -203,14 +205,31 @@ static void
 gdict_window_set_database (GdictWindow *window,
 			   const gchar *database)
 {
+  if (window->database)
+    g_free (window->database);
 
+  if (!database)
+    database = gconf_client_get_string (window->client,
+		    			GDICT_GCONF_DATABASE_KEY,
+					NULL);
+  
+  if (!database)
+    database = GDICT_DEFAULT_DATABASE;
+
+  window->database = g_strdup (database);
+
+  if (window->defbox)
+    gdict_defbox_set_database (GDICT_DEFBOX (window->defbox), database);
 }
 
 static void
 gdict_window_set_strategy (GdictWindow *window,
 			   const gchar *strategy)
 {
+  if (window->strategy)
+    g_free (window->strategy);
 
+  window->strategy = g_strdup (strategy);
 }
 
 static GdictContext *
@@ -751,6 +770,13 @@ gdict_window_gconf_notify_cb (GConfClient *client,
       else
         gdict_window_set_source_name (window, GDICT_DEFAULT_SOURCE_NAME);
     }
+  else if (strcmp (entry->key, GDICT_GCONF_DATABASE_KEY) == 0)
+    {
+      if (entry->value && (entry->value->type == GCONF_VALUE_STRING))
+        gdict_window_set_database (window, gconf_value_get_string (entry->value));
+      else
+        gdict_window_set_database (window, GDICT_DEFAULT_DATABASE);
+    }
 }
 
 static void
@@ -1010,6 +1036,9 @@ gdict_window_init (GdictWindow *window)
   window->word = NULL;
   window->source_name = NULL;
   window->print_font = NULL;
+
+  window->database = NULL;
+  window->strategy = NULL;
       
   window->window_id = (gulong) time (NULL);
 }

@@ -647,6 +647,13 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
   widget_class->show_all = gdict_defbox_show_all;
   widget_class->style_set = gdict_defbox_style_set;
   
+  /**
+   * GdictDefbox:context
+   *
+   * The #GdictContext object used to get the word definition.
+   *
+   * Since: 1.0
+   */
   g_object_class_install_property (gobject_class,
   				   PROP_CONTEXT,
   				   g_param_spec_object ("context",
@@ -654,6 +661,21 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
   				   			_("The GdictContext object used to get the word definition"),
   				   			GDICT_TYPE_CONTEXT,
   				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
+  /**
+   * GdictDefbox:database
+   *
+   * The database used by the #GdictDefbox bound to this object to get the word
+   * definition.
+   *
+   * Since: 1.0
+   */
+  g_object_class_install_property (gobject_class,
+		  		   PROP_DATABASE,
+				   g_param_spec_string ("database",
+					   		_("Database"),
+							_("The database used to query the GdictContext"),
+							GDICT_DEFAULT_DATABASE,
+							(G_PARAM_READABLE | G_PARAM_WRITABLE)));
   
   gtk_widget_class_install_style_property (widget_class,
   					   g_param_spec_boxed ("emphasis-color",
@@ -845,6 +867,48 @@ gdict_defbox_get_context (GdictDefbox *defbox)
     g_object_unref (context);
   
   return context;
+}
+
+/**
+ * gdict_defbox_set_database:
+ * @defbox: a #GdictDefbox
+ * @database: a database
+ *
+ * Sets @database as the database used by the #GdictContext bound to @defbox to
+ * query for word definitions.
+ *
+ * Since: 1.0
+ */
+void
+gdict_defbox_set_database (GdictDefbox *defbox,
+			   const gchar *database)
+{
+  g_return_if_fail (GDICT_IS_DEFBOX (defbox));
+
+  g_object_set (G_OBJECT (defbox), "database", database, NULL);
+}
+
+/**
+ * gdict_defbox_get_database:
+ * @defbox: a #GdictDefbox
+ *
+ * Gets the database used by @defbox.  See gdict_defbox_set_database().
+ *
+ * Return value: the name of a database.  The string is owned by the
+ * #GdictDefbox and should not be modified or freed.
+ *
+ * Since: 1.0
+ */
+G_CONST_RETURN gchar *
+gdict_defbox_get_database (GdictDefbox *defbox)
+{
+  gchar *database;
+  
+  g_return_val_if_fail (GDICT_IS_DEFBOX (defbox), NULL);
+
+  g_object_get (G_OBJECT (defbox), "database", &database, NULL);
+
+  return database;
 }
 
 /**

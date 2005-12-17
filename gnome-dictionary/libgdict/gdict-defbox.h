@@ -61,32 +61,35 @@ struct _GdictDefboxClass
   void (*_gdict_defbox_4) (void);
 };
 
-GType         gdict_defbox_get_type           (void) G_GNUC_CONST;
+GType                 gdict_defbox_get_type           (void) G_GNUC_CONST;
 
-GtkWidget *   gdict_defbox_new                (void);
-GtkWidget *   gdict_defbox_new_with_context   (GdictContext *context);
-void          gdict_defbox_set_context        (GdictDefbox  *defbox,
-					       GdictContext *context);
-GdictContext *gdict_defbox_get_context        (GdictDefbox  *defbox);
+GtkWidget *           gdict_defbox_new                (void);
+GtkWidget *           gdict_defbox_new_with_context   (GdictContext *context);
+void                  gdict_defbox_set_context        (GdictDefbox  *defbox,
+						       GdictContext *context);
+GdictContext *        gdict_defbox_get_context        (GdictDefbox  *defbox);
+void                  gdict_defbox_set_database       (GdictDefbox  *defbox,
+						       const gchar  *database);
+G_CONST_RETURN gchar *gdict_defbox_get_database       (GdictDefbox  *defbox);
 
-gchar *       gdict_defbox_get_text           (GdictDefbox  *defbox,
-					       gsize        *length) G_GNUC_MALLOC;
-void          gdict_defbox_select_all         (GdictDefbox  *defbox);
-void          gdict_defbox_copy_to_clipboard  (GdictDefbox  *defbox,
-					       GtkClipboard *clipboard);
-void          gdict_defbox_clear              (GdictDefbox  *defbox);
-void          gdict_defbox_lookup             (GdictDefbox  *defbox,
-					       const gchar  *word);
+gchar *               gdict_defbox_get_text           (GdictDefbox  *defbox,
+						       gsize        *length) G_GNUC_MALLOC;
+void                  gdict_defbox_select_all         (GdictDefbox  *defbox);
+void                  gdict_defbox_copy_to_clipboard  (GdictDefbox  *defbox,
+						       GtkClipboard *clipboard);
+void                  gdict_defbox_clear              (GdictDefbox  *defbox);
+void                  gdict_defbox_lookup             (GdictDefbox  *defbox,
+						       const gchar  *word);
 					       
-gint          gdict_defbox_count_definitions  (GdictDefbox  *defbox);
-void          gdict_defbox_jump_to_definition (GdictDefbox  *defbox,
-					       gint          number);
+gint                  gdict_defbox_count_definitions  (GdictDefbox  *defbox);
+void                  gdict_defbox_jump_to_definition (GdictDefbox  *defbox,
+						       gint          number);
 					       
-void          gdict_defbox_set_show_find      (GdictDefbox  *defbox,
-					       gboolean      show_find);
-gboolean      gdict_defbox_get_show_find      (GdictDefbox  *defbox);
-void          gdict_defbox_find_next          (GdictDefbox  *defbox);
-void          gdict_defbox_find_previous      (GdictDefbox  *defbox);
+void                  gdict_defbox_set_show_find      (GdictDefbox  *defbox,
+						       gboolean      show_find);
+gboolean              gdict_defbox_get_show_find      (GdictDefbox  *defbox);
+void                  gdict_defbox_find_next          (GdictDefbox  *defbox);
+void                  gdict_defbox_find_previous      (GdictDefbox  *defbox);
 
 G_END_DECLS
 
