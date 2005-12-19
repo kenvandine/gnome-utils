@@ -22,7 +22,7 @@
                 <item value="IDL:Bonobo/Control:1.0"/>
                 <item value="IDL:Bonobo/Unknown:1.0"/>
         </oaf_attribute>
-        <oaf_attribute name="name" type="string" _value="Dictionary Lookup"/>
+        <oaf_attribute name="name" type="string" _value="Dictionary Look up"/>
         <oaf_attribute name="description" type="string" _value="Look up words in a dictionary"/>
 	<oaf_attribute name="panel:category" type="string" value="Accessories"/>
         <oaf_attribute name="panel:icon" type="string" value="gdict"/>
@@ -31,6 +31,24 @@
 	<oaf_attribute name="bugzilla:component" type="string" value="gdict"/>
 	<oaf_attribute name="bugzilla:other_binaries" type="string" value="gnome-dictionary-applet"/>
 
+  </oaf_server>
+
+  <oaf_server iid="OAFIID:GNOME_GDictApplet"
+              type="factory"
+              location="OAFIID:GNOME_DictionaryApplet_Factory">
+
+        <oaf_attribute name="repo_ids" type="stringv">
+                <item value="IDL:GNOME/Vertigo/PanelAppletShell:1.0"/>
+                <item value="IDL:Bonobo/Control:1.0"/>
+                <item value="IDL:Bonobo/Unknown:1.0"/>
+        </oaf_attribute>
+        <oaf_attribute name="name" type="string" _value="Dictionary Look up"/>
+        <oaf_attribute name="description" type="string" _value="Look up words in a dictionary"/>
+        <oaf_attribute name="panel:icon" type="string" value="gdict"/>
+        <oaf_attribute name="bugzilla:bugzilla" type="string" value="GNOME"/>
+        <oaf_attribute name="bugzilla:product" type="string" value="gnome-utils"/>
+        <oaf_attribute name="bugzilla:component" type="string" value="gdict"/>
+        <oaf_attribute name="bugzilla:other_binaries" type="string" value="gnome-dictionary-applet"/>
   </oaf_server>
 
 </oaf_info>

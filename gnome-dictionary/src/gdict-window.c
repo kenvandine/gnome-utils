@@ -47,6 +47,9 @@
 #include "gdict-about.h"
 #include "gdict-window.h"
 
+#define GDICT_WINDOW_COLUMNS      50
+#define GDICT_WINDOW_ROWS         30
+
 #define GDICT_WINDOW_MIN_WIDTH	  400
 #define GDICT_WINDOW_MIN_HEIGHT	  330
 
@@ -849,6 +852,30 @@ gdict_window_drag_data_received_cb (GtkWidget        *widget,
     gtk_drag_finish (context, FALSE, FALSE, time_);
 }
 
+static void
+gdict_window_style_set (GtkWidget *widget,
+			GtkStyle  *old_style)
+{
+  PangoContext *pango_context;
+  PangoFontDescription *font_desc;
+  gint font_size, width, height;
+
+  if (GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set)
+    GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set (widget, old_style);
+  
+  
+  pango_context = gtk_widget_get_pango_context (widget);
+  font_desc = pango_context_get_font_description (pango_context);
+  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+  
+  width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
+  height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
+  
+  gtk_window_set_default_size (GTK_WINDOW (widget),
+  			       width,
+  			       height);
+}
+
 static GObject *
 gdict_window_constructor (GType                  type,
 			  guint                  n_construct_properties,
@@ -856,6 +883,9 @@ gdict_window_constructor (GType                  type,
 {
   GObject *object;
   GdictWindow *window;
+  PangoContext *pango_context;
+  PangoFontDescription *font_desc;
+  gint font_size, width, height;
   GtkWidget *hbox;
   GtkWidget *vbox;
   GtkWidget *label;
@@ -869,11 +899,18 @@ gdict_window_constructor (GType                  type,
   window = GDICT_WINDOW (object);
   
   gtk_widget_push_composite_child ();
+
+  pango_context = gtk_widget_get_pango_context (GTK_WIDGET (window));
+  font_desc = pango_context_get_font_description (pango_context);
+  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+  
+  width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
+  height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
   
   gtk_window_set_title (GTK_WINDOW (window), _("Dictionary"));
   gtk_window_set_default_size (GTK_WINDOW (window),
-  			       GDICT_WINDOW_MIN_WIDTH,
-  			       GDICT_WINDOW_MIN_HEIGHT);
+  			       width,
+  			       height);
  
   window->main_box = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (window), window->main_box);
@@ -960,11 +997,14 @@ static void
 gdict_window_class_init (GdictWindowClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   gobject_class->finalize = gdict_window_finalize;
   gobject_class->set_property = gdict_window_set_property;
   gobject_class->get_property = gdict_window_get_property;
   gobject_class->constructor = gdict_window_constructor;
+
+  widget_class->style_set = gdict_window_style_set;
   
   g_object_class_install_property (gobject_class,
   				   PROP_SOURCE_LOADER,

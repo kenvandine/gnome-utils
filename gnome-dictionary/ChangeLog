@@ -1,5 +1,38 @@
 2005-12-19  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* data/GNOME_DictionaryApplet.server.in.in: add the old GDict applet
+	OAFIID to the .server file, for backward compatibility.
+
+	* data/GNOME_DictionaryApplet.xml: add the "Save" verb.
+
+	* data/gnome-dictionary-preferences.glade: remove the _ char from the
+	notebook tab labels.
+
+	* libgdict/gdict-defbox.c (gdict_defbox_find_forward),
+	(find_next_clicked_cb), (find_entry_changed_cb): add support for
+	find-as-you-type search.
+
+	* libgdict/gdict-defbox.c (gdict_defbox_default_constructor): remove
+	word wrapping from the TextView widget.
+
+	* libgdict/gdict-defbox.c (lookup_end_cb): explicitely move the cursor
+	to the beginning of the definition text.
+
+	* src/gdict-applet.c: implement the popup menu callbacks; support the
+	"database" and "strategy" options; add a "Save" button to the
+	definition window; add ATK names and descriptions to the applet
+	widgets; add a gdict_applet_queue_draw() for drawing the applet inside
+	an idle loop; remove debug code; handle the definition window and menu
+	items visibility depending on what the query results are; port
+	preferences setting functions from GdictWindow.
+
+	* src/gdict-window.c (gdict_window_style_set),
+	(gdict_window_constructor), (gdict_window_init): make the default size
+	of the window depend on the display font size, in order to show the
+	pre-formatted text coming from a dictionary server.
+
+2005-12-19  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* data/gnome-dictionary-preferences.glade: use "Source" and "Print" as
 	notebook tab label strings, and mark them translatable.
 

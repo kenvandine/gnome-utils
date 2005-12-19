@@ -348,7 +348,8 @@ find_prev_clicked_cb (GtkWidget *widget,
 
 static gboolean
 gdict_defbox_find_forward (GdictDefbox *defbox,
-			   const gchar *text)
+			   const gchar *text,
+			   gboolean     is_typing)
 {
   GdictDefboxPrivate *priv = defbox->priv;
   GtkTextIter start_iter, end_iter;
@@ -360,13 +361,26 @@ gdict_defbox_find_forward (GdictDefbox *defbox,
   g_assert (GTK_IS_TEXT_BUFFER (priv->buffer));
   
   gtk_text_buffer_get_bounds (priv->buffer, &start_iter, &end_iter);
-  
-  /* if there already has been another result, begin from there */
-  last_search = gtk_text_buffer_get_mark (priv->buffer, "last-search-next");
-  if (last_search)
-    gtk_text_buffer_get_iter_at_mark (priv->buffer, &iter, last_search);
+
+  if (!is_typing)
+    {
+      /* if there already has been another result, begin from there */
+      last_search = gtk_text_buffer_get_mark (priv->buffer, "last-search-next");
+
+      if (last_search)
+        gtk_text_buffer_get_iter_at_mark (priv->buffer, &iter, last_search);
+      else
+	iter = start_iter;
+    }
   else
-    iter = start_iter;
+    {
+      last_search = gtk_text_buffer_get_mark (priv->buffer, "last-search-prev");
+
+      if (last_search)
+	gtk_text_buffer_get_iter_at_mark (priv->buffer, &iter, last_search);
+      else
+	iter = start_iter;
+    }
   
   res = gtk_text_iter_forward_search (&iter, text,
   				      GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY,
@@ -408,7 +422,7 @@ find_next_clicked_cb (GtkWidget *widget,
   if (!text)
     return;
   
-  found = gdict_defbox_find_forward (defbox, text);
+  found = gdict_defbox_find_forward (defbox, text, FALSE);
   if (!found)
     {
       gchar *str;
@@ -427,16 +441,16 @@ find_entry_changed_cb (GtkWidget *widget,
 {
   GdictDefbox *defbox = GDICT_DEFBOX (user_data);
   GdictDefboxPrivate *priv = defbox->priv;
-  const gchar *text;
+  gchar *text;
   gboolean found;
 
   gtk_widget_hide (priv->find_label);
   
-  text = gtk_entry_get_text (GTK_ENTRY (widget));
-  if (strlen (text) == 0)
+  text = gtk_editable_get_chars (GTK_EDITABLE (widget), 0, -1);
+  if (!text)
     return;
 
-  found = gdict_defbox_find_forward (defbox, text);
+  found = gdict_defbox_find_forward (defbox, text, TRUE);
   if (!found)
     {
       gchar *str;
@@ -447,6 +461,8 @@ find_entry_changed_cb (GtkWidget *widget,
       
       g_free (str);
     }
+
+  g_free (text);
 }
 
 static void
@@ -567,8 +583,6 @@ gdict_defbox_default_constructor (GType                  type,
   priv->text_view = gtk_text_view_new_with_buffer (priv->buffer);
   gtk_text_view_set_editable (GTK_TEXT_VIEW (priv->text_view), FALSE);
   gtk_text_view_set_left_margin (GTK_TEXT_VIEW (priv->text_view), 4);
-  gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (priv->text_view),
-  			       GTK_WRAP_WORD);
   gtk_container_add (GTK_CONTAINER (sw), priv->text_view);
   gtk_widget_show (priv->text_view);
   
@@ -1076,7 +1090,14 @@ lookup_end_cb (GdictContext *context,
 {
   GdictDefbox *defbox = GDICT_DEFBOX (user_data);
   GdictDefboxPrivate *priv = defbox->priv;
+  GtkTextBuffer *buffer;
+  GtkTextIter start;
   GdkWindow *window;
+  
+  /* explicitely move the cursor to the beginning */
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->text_view));
+  gtk_text_buffer_get_start_iter (buffer, &start);
+  gtk_text_buffer_place_cursor (buffer, &start);
   
   if (priv->progress_dialog)
     {
