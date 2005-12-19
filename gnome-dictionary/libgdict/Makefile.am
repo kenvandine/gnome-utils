@@ -68,9 +68,7 @@ gdict_built_files = 		\
 	gdict-marshal.h		\
 	gdict-marshal.c
 
-stamp_files =				\
-	stamp-gdict-enum-types.h	\
-	stamp-gdict-marshal.h
+stamp_files = stamp-gdict-enum-types.h stamp-gdict-marshal.h
 
 gen_sources = xgen-gmh xgen-gmc xgen-geth xgen-getc
 CLEANFILES = $(gen_sources)
@@ -125,7 +123,7 @@ stamp-gdict-enum-types.h: $(libgdict_enum_headers) Makefile
 	$(libgdict_enum_headers) >> xgen-geth \
 	&& (cmp xgen-geth gdict-enum-types.h || cp xgen-geth gdict-enum-types.h) \
 	&& rm -f xgen-geth \
-	&& echo timestamp $(@F)
+	&& echo timestamp > $(@F)
 
 gdict-enum-types.c: $(libgdict_enum_headers) Makefile
 	$(GLIB_MKENUMS) \
