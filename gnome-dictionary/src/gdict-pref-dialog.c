@@ -259,11 +259,15 @@ source_add_clicked_cb (GtkWidget       *widget,
   
   add_dialog = gtk_dialog_new ();
   gtk_dialog_add_button (GTK_DIALOG (add_dialog),
+  			 GTK_STOCK_CANCEL,
+  			 GTK_RESPONSE_CANCEL);
+  gtk_dialog_add_button (GTK_DIALOG (add_dialog),
   			 GTK_STOCK_ADD,
   			 GTK_RESPONSE_APPLY);
-  gtk_dialog_add_button (GTK_DIALOG (add_dialog),
-  			 GTK_STOCK_CANCEL,
-  			 GTK_RESPONSE_CANCEL);	 
+  gtk_window_set_title (GTK_WINDOW (add_dialog), _("Add Source")); 
+  gtk_container_set_border_width (GTK_CONTAINER (add_dialog), 5);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (add_dialog)->vbox), 2);
+  gtk_dialog_set_has_separator (GTK_DIALOG (add_dialog), FALSE);
   
   vbox = glade_xml_get_widget (xml, "source_add_root");
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (add_dialog)->vbox), vbox);
@@ -474,6 +478,8 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
 {
   gchar *font;
   
+  gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
   
   /* add buttons */

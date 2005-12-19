@@ -325,17 +325,25 @@ find_prev_clicked_cb (GtkWidget *widget,
   GdictDefbox *defbox = GDICT_DEFBOX (user_data);
   GdictDefboxPrivate *priv = defbox->priv;
   const gchar *text;
-  gboolean res;
+  gboolean found;
 
-  gtk_label_set_text (GTK_LABEL (priv->find_label), "");
+  gtk_widget_hide (priv->find_label);
   
   text = gtk_entry_get_text (GTK_ENTRY (priv->find_entry));
   if (!text)
     return;
   
-  res = gdict_defbox_find_backward (defbox, text);
-  if (!res)
-    gtk_label_set_text (GTK_LABEL (priv->find_label), _("Not found"));
+  found = gdict_defbox_find_backward (defbox, text);
+  if (!found)
+    {
+      gchar *str;
+      
+      str = g_strconcat ("  <i>", _("Not found"), "</i>", NULL);
+      gtk_label_set_markup (GTK_LABEL (priv->find_label), str);
+      gtk_widget_show (priv->find_label);
+      
+      g_free (str);
+    }
 }
 
 static gboolean
@@ -447,31 +455,32 @@ create_find_pane (GdictDefbox *defbox)
   GdictDefboxPrivate *priv;
   GtkWidget *label;
   GtkWidget *sep;
-  GtkWidget *hbox, *hbox2;
+  GtkWidget *hbox1, *hbox2;
  
   priv = defbox->priv;
   
-  priv->find_pane = gtk_hbox_new (FALSE, 12);
+  priv->find_pane = gtk_hbox_new (FALSE, 6);
   gtk_container_set_border_width (GTK_CONTAINER (priv->find_pane), 0);
   
+  hbox1 = gtk_hbox_new (FALSE, 6);
+  gtk_box_pack_start (GTK_BOX (priv->find_pane), hbox1, TRUE, TRUE, 0);
+  gtk_widget_show (hbox1);
+ 
   label = gtk_label_new_with_mnemonic (_("F_ind:"));
-  gtk_box_pack_start (GTK_BOX (priv->find_pane), label, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox1), label, FALSE, FALSE, 0);
 
-  hbox = gtk_hbox_new (FALSE, 6);
-  gtk_box_pack_start (GTK_BOX (priv->find_pane), hbox, TRUE, TRUE, 0);
-  gtk_widget_show (hbox);
-  
   priv->find_entry = gtk_entry_new ();
   g_signal_connect (priv->find_entry, "changed",
   		    G_CALLBACK (find_entry_changed_cb), defbox);
-  gtk_box_pack_start (GTK_BOX (hbox), priv->find_entry, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox1), priv->find_entry, TRUE, TRUE, 0);
   gtk_label_set_mnemonic_widget (GTK_LABEL (label), priv->find_entry);
   
   sep = gtk_vseparator_new ();
-  gtk_box_pack_start (GTK_BOX (hbox), sep, FALSE, FALSE, 0);
-  
-  hbox2 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (hbox), hbox2, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->find_pane), sep, FALSE, FALSE, 0);
+  gtk_widget_show (sep);
+
+  hbox2 = gtk_hbox_new (FALSE, 6);
+  gtk_box_pack_start (GTK_BOX (priv->find_pane), hbox2, TRUE, TRUE, 0);
   gtk_widget_show (hbox2);
   
   priv->find_prev = gtk_button_new_with_mnemonic (_("_Previous"));
