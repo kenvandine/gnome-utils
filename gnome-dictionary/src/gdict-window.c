@@ -33,7 +33,7 @@
 #include <glib/goption.h>
 #include <glib/gi18n.h>
 #include <libgnome/libgnome.h>
-#include <libgnome/gnome-help.h>
+#include <libgnomeui/gnome-help.h>
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprint/gnome-print-job.h>
 #include <libgnomeprint/gnome-print-pango.h>
@@ -619,7 +619,6 @@ static void
 gdict_window_cmd_go_next_def (GtkAction   *action,
 			      GdictWindow *window)
 {
-  gint max;
   g_assert (GDICT_IS_WINDOW (window));
   
   if (window->max_definition == -1)

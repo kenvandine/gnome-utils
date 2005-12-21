@@ -28,7 +28,8 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
-#include <libgnome/gnome-help.h>
+#include <libgnomeui/gnome-authentication-manager.h>
+#include <libgnomeui/gnome-help.h>
 #include <libgnomeprint/gnome-print.h>
 #include <libgnomeprint/gnome-print-job.h>
 #include <libgnomeprint/gnome-print-pango.h>
@@ -317,8 +318,6 @@ gdict_applet_button_press_event_cb (GtkWidget      *widget,
 				    GdkEventButton *event,
 				    GdictApplet    *applet)
 {
-  GdictAppletPrivate *priv = applet->priv;
-  
   if (event->button == 1)
     {
       gdict_applet_toggle_window (applet); 
@@ -460,7 +459,6 @@ static void
 gdict_applet_lookup_end_cb (GdictContext *context,
 			    GdictApplet  *applet)
 {
-  GdictAppletPrivate *priv = applet->priv;
   BonoboUIComponent *popup_component;
   
   /* enable menu items */
@@ -709,6 +707,9 @@ gdict_applet_set_strategy (GdictApplet *applet,
 		    			GDICT_GCONF_STRATEGY_KEY,
 					NULL);
 
+  if (!strategy)
+    strategy = GDICT_DEFAULT_STRATEGY;
+
   priv->strategy = g_strdup (strategy);
 }
 
@@ -887,6 +888,20 @@ gdict_applet_gconf_notify_cb (GConfClient *client,
       else
         gdict_applet_set_source_name (applet, GDICT_DEFAULT_SOURCE_NAME);
     }
+  else if (strcmp (entry->key, GDICT_GCONF_DATABASE_KEY) == 0)
+    {
+      if (entry->value && (entry->value->type == GCONF_VALUE_STRING))
+        gdict_applet_set_database (applet, gconf_value_get_string (entry->value));
+      else
+        gdict_applet_set_database (applet, GDICT_DEFAULT_DATABASE);
+    }
+  else if (strcmp (entry->key, GDICT_GCONF_STRATEGY_KEY) == 0)
+    {
+      if (entry->value && (entry->value->type == GCONF_VALUE_STRING))
+        gdict_applet_set_strategy (applet, gconf_value_get_string (entry->value));
+      else
+        gdict_applet_set_strategy (applet, GDICT_DEFAULT_STRATEGY);
+    }
 }
 
 static void
@@ -963,6 +978,11 @@ gdict_applet_init (GdictApplet *applet)
   			GDICT_GCONF_DIR,
   			GCONF_CLIENT_PRELOAD_ONELEVEL,
   			NULL);
+  gconf_client_notify_add (priv->gconf_client,
+		  	   GDICT_GCONF_DIR,
+			   (GConfClientNotifyFunc) gdict_applet_gconf_notify_cb,
+			   applet, NULL,
+			   NULL);
   
   if (!priv->loader)
     priv->loader = gdict_source_loader_new ();

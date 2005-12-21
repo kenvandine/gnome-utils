@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <libintl.h>
 
 #include "gdict-app.h"
 

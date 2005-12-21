@@ -211,8 +211,6 @@ gtk_aligned_window_map (GtkWidget *widget)
 static void
 gtk_aligned_window_finalize (GObject *object)
 {
-  GtkAlignedWindow *window = GTK_ALIGNED_WINDOW (object);
-  
   G_OBJECT_CLASS (gtk_aligned_window_parent_class)->finalize (object);
 }
 
@@ -300,7 +298,7 @@ gtk_aligned_window_set_widget (GtkAlignedWindow *aligned_window,
 GtkWidget *
 gtk_aligned_window_get_widget (GtkAlignedWindow *aligned_window)
 {
-  g_return_if_fail (GTK_IS_ALIGNED_WINDOW (aligned_window));
+  g_return_val_if_fail (GTK_IS_ALIGNED_WINDOW (aligned_window), NULL);
   
   return aligned_window->priv->align_widget;
 }

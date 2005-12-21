@@ -1,3 +1,25 @@
+2005-12-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-window.c: fix a bunch of compiler warnings (patch by
+	Kjartan Maraas, closes	bug #324552).
+
+	* src/gtkalignedwindow.c (gtk_aligned_window_finalize),
+	(gdict_aligned_window_get_widget): ditto.
+
+	* src/main.c: include libintl.h.
+	
+	* src/gdict-applet.c (gdict_applet_init),
+	(gdict_applet_gconf_notify_cb): hook up the notification callback and
+	monitor the database and strategy keys.
+
+	* src/gdict-app.c (gdict_window_destroy_cb), (gdict_init),
+	(gdict_main): fix compiler warnings (patch by Kjartan Maraas, closes
+	bug #324552).
+
+	* src/gdict-about.c: use "Look up" instead of "Lookup".
+
+	* README: remove the warnings.
+
 2005-12-19  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/Makefile.am: fix stamp_files build

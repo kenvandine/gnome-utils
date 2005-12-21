@@ -112,13 +112,12 @@ gdict_window_destroy_cb (GtkWidget *widget,
 {
   GdictWindow *window = GDICT_WINDOW (widget);
   GdictApp *app = GDICT_APP (user_data);
-  GSList *l;
   
   g_assert (GDICT_IS_APP (app));
 
-  app->windows = g_slist_remove (app->windows, widget);
+  app->windows = g_slist_remove (app->windows, window);
   
-  if (GDICT_WINDOW (widget) == app->current_window)
+  if (window == app->current_window)
     app->current_window = app->windows ? app->windows->data : NULL;
   
   if (app->windows == NULL)
@@ -177,8 +176,7 @@ gdict_look_up_word_and_quit (GdictApp *app)
 void
 gdict_init (int *argc, char ***argv)
 {
-  GdictApp *app;
-  GError *error, *gconf_error;
+  GError *gconf_error;
   GOptionContext *context;
   GOptionGroup *group;
   gchar *loader_path;
@@ -252,7 +250,7 @@ gdict_init (int *argc, char ***argv)
       g_warning ("Unable to access GConf: %s\n", gconf_error->message);
       
       g_error_free (gconf_error);
-      singleton->gconf_client;
+      g_object_unref (singleton->gconf_client);
     }
 
   /* add user's path for fetching dictionary sources */  
@@ -282,8 +280,6 @@ gdict_init (int *argc, char ***argv)
 void
 gdict_main (void)
 {
-  GtkWidget *window;
-  
   if (!singleton)
     {
       g_warning ("You must initialize GdictApp using gdict_app_init()\n");

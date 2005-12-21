@@ -1,17 +1,4 @@
-This is the development branch of the new GNOME Dictionary.
-
-The old code resides in gnome-utils/gdictsrc, and should be considered
-deprecated as soon as this code reaches HEAD.
-
-WARNING: This code is *EXPERIMENTAL* and could break at any given time.
-Since the dictionary source configuration system needs to load files from
-DATADIR/gdict-1.0, you must install those files using "make install".  You
-should really use a new prefix, in order to avoid tainting your system; as a
-reference, here's my ./autogen.sh command line:
-
-	$ ./autogen.sh --prefix=/opt/gnome2 \
-	> --disable-gtk-doc \
-	> --disable-schemas-install
+GNOME Dictionary - Look up words in dictionary sources.
 
 +++
 
@@ -35,7 +22,4 @@ libgdict/
 src/
 	contains the application and the applet sources.
 
-CAVEAT: This code is still in a state of flux; please, mail me before working
-or committing to this branch.
-
-2005-12-07 21:59 (+0100) ebassi <ebassi (AT) gmail (DOT) com>
+2005-12-19 20:24 (+0100) ebassi <ebassi (AT) gmail (DOT) com>
