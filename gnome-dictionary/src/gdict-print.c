@@ -243,7 +243,7 @@ show_print_preview (GtkWindow     *parent,
 {
   GtkWidget *preview;
   
-  preview = gnome_print_job_preview_new (job, _("Print Preview"));
+  preview = gnome_print_job_preview_new (job, (const guchar *) _("Print Preview"));
   gtk_window_set_transient_for (GTK_WINDOW (preview), parent);
   
   gtk_widget_show (preview);
@@ -297,7 +297,7 @@ gdict_show_print_dialog (GtkWindow   *parent,
   
   job = gnome_print_job_new (NULL);
   
-  print_dialog = gnome_print_dialog_new (job, title, 0);
+  print_dialog = gnome_print_dialog_new (job, (const guchar *) title, 0);
   gtk_window_set_transient_for (GTK_WINDOW (print_dialog),
   				parent);
  
