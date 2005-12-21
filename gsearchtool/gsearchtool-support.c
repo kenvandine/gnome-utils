@@ -30,6 +30,7 @@
 #endif
 
 #include <glib/gi18n.h>
+#include <glib/gdate.h>
 #include <regex.h>
 #include <gdk/gdkx.h>
 #include <libart_lgpl/art_rgb.h>
@@ -623,7 +624,7 @@ get_readable_date (const gchar * format_string,
 			       file_time->tm_year + 1900);
 	
 	today = g_date_new ();
-	g_date_set_time (today, time (NULL));
+	g_date_set_time_t (today, time (NULL));
 
 	file_date_age = g_date_get_julian (today) - g_date_get_julian (file_date);
 	 
