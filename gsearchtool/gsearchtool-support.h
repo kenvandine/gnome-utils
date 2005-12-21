@@ -46,6 +46,9 @@ gsearchtool_gconf_set_boolean (const gchar * key,
 gint 
 gsearchtool_gconf_get_int (const gchar * key);
 
+void
+gsearchtool_gconf_set_int (const gchar * key,
+                           const gint value);
 char *
 gsearchtool_gconf_get_string (const gchar * key);
 
@@ -121,6 +124,11 @@ gsearchtool_get_columns_order (GtkTreeView * treeview);
 
 void
 gsearchtool_set_columns_order (GtkTreeView * treeview);
+
+void
+gsearchtool_get_stored_window_geometry (gint * width,
+                                        gint * height);
+
 #ifdef __cplusplus
 }
 #endif

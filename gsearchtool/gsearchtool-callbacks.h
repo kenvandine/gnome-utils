@@ -166,6 +166,10 @@ single_click_to_activate_key_changed_cb (GConfClient * client,
 void
 columns_changed_cb (GtkTreeView * treeview, 
                     gpointer user_data);
+gboolean
+window_state_event_cb (GtkWidget * widget, 
+                       GdkEventWindowState * event, 
+                       gpointer data);
 
 #ifdef __cplusplus
 }

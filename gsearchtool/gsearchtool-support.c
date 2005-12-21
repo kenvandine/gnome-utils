@@ -182,6 +182,23 @@ gsearchtool_gconf_get_int (const gchar * key)
 	return result;
 }
 
+void
+gsearchtool_gconf_set_int (const gchar * key,
+                           const gint value)
+{
+	GConfClient * client;
+	GError * error = NULL;
+	
+	g_return_if_fail (key != NULL);
+	
+	client = gsearchtool_gconf_client_get_global ();
+	g_return_if_fail (client != NULL);
+	
+	gconf_client_set_int (client, key, value, &error);
+	
+	gsearchtool_gconf_handle_error (&error);
+}
+
 gboolean 
 gsearchtool_gconf_get_boolean (const gchar * key)
 {
@@ -1475,4 +1492,30 @@ gsearchtool_set_columns_order (GtkTreeView * treeview)
 		}
 	}
 	g_slist_free (order);
+}
+
+void
+gsearchtool_get_stored_window_geometry (gint * width,
+                                        gint * height)
+{
+	gint saved_width;
+	gint saved_height;
+
+	if (width == NULL || height == NULL) {
+		return;
+	}
+
+	saved_width = gsearchtool_gconf_get_int ("/apps/gnome-search-tool/default_window_width");
+	saved_height = gsearchtool_gconf_get_int ("/apps/gnome-search-tool/default_window_height");
+
+	if (saved_width == -1) {
+		saved_width = DEFAULT_WINDOW_WIDTH;
+	}
+
+	if (saved_height == -1) {
+		saved_height = DEFAULT_WINDOW_HEIGHT;
+	}
+
+	*width = MAX (saved_width, MINIMUM_WINDOW_WIDTH);
+	*height = MAX (saved_height, MINIMUM_WINDOW_HEIGHT);
 }

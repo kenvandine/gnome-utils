@@ -2721,6 +2721,17 @@ gsearchtool_ui_manager (GSearchWindow * gsearch)
 	                                                                          "/PopupMenu/SaveResultsAs");
 }
 
+static void
+gsearch_window_size_allocate (GtkWidget * widget,
+                              GtkAllocation * allocation,
+                              GSearchWindow * gsearch)
+{
+	if (gsearch->is_window_maximized == FALSE) {
+		gsearch->window_width = allocation->width;
+		gsearch->window_height = allocation->height;
+	}
+}
+
 static GtkWidget *
 gsearch_app_create (GSearchWindow * gsearch)
 {
@@ -2736,6 +2747,10 @@ gsearch_app_create (GSearchWindow * gsearch)
 	GdkPixbuf * pixbuf;
 	
 	gsearch->window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	gsearch->is_window_maximized = gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/default_window_maximized");
+	g_signal_connect (G_OBJECT (gsearch->window), "size-allocate",
+			  G_CALLBACK (gsearch_window_size_allocate),
+			  gsearch);
 	gsearch->command_details = g_new0 (GSearchCommandDetails, 1);
 	gsearch->window_geometry.min_height = MINIMUM_WINDOW_HEIGHT;
 	gsearch->window_geometry.min_width  = MINIMUM_WINDOW_WIDTH;
@@ -2744,6 +2759,16 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_window_set_geometry_hints (GTK_WINDOW (gsearch->window), GTK_WIDGET (gsearch->window),
 				       &gsearch->window_geometry, GDK_HINT_MIN_SIZE);
 	
+	gsearchtool_get_stored_window_geometry (&gsearch->window_width,
+	                                        &gsearch->window_height);
+	gtk_window_set_default_size (GTK_WINDOW (gsearch->window),
+	                             gsearch->window_width,
+	                             gsearch->window_height);
+
+	if (gsearch->is_window_maximized == TRUE) {
+		gtk_window_maximize (GTK_WINDOW (gsearch->window));
+	}
+
 	container = gtk_vbox_new (FALSE, 6);
 	gtk_container_add (GTK_CONTAINER (gsearch->window), container);	
 	gtk_container_set_border_width (GTK_CONTAINER (container), 12);
@@ -2869,7 +2894,7 @@ gsearch_app_create (GSearchWindow * gsearch)
 	button = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
 	GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
 	g_signal_connect (G_OBJECT (button), "clicked",
-			  G_CALLBACK (click_close_cb), (gpointer) gsearch->command_details);
+			  G_CALLBACK (click_close_cb), (gpointer) gsearch);
   	if (gsearch->is_window_accessible) {
 		add_atk_namedesc (GTK_WIDGET (button), NULL, _("Click to close \"Search for Files\"."));
 	}
@@ -3012,9 +3037,12 @@ main (int argc,
 
 	g_signal_connect (G_OBJECT (gsearch->window), "delete_event",
 	                            G_CALLBACK (quit_cb),
-	                            (gpointer) gsearch->command_details);
+	                            (gpointer) gsearch);
 	g_signal_connect (G_OBJECT (gsearch->window), "key_press_event",
 	                            G_CALLBACK (key_press_cb), 
+	                            (gpointer) gsearch);
+	g_signal_connect (G_OBJECT (gsearch->window), "window_state_event",
+	                            G_CALLBACK (window_state_event_cb), 
 	                            (gpointer) gsearch);
 
 	if ((client = gnome_master_client ()) != NULL) {
@@ -3023,7 +3051,7 @@ main (int argc,
 		                  (gpointer) gsearch);
 		g_signal_connect (client, "die",
 		                  G_CALLBACK (die_cb),
-		                  (gpointer) gsearch->command_details);
+		                  (gpointer) gsearch);
 	}
 
 	gtk_widget_show (gsearch->window);

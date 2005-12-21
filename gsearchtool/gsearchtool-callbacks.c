@@ -55,8 +55,24 @@ extern pid_t getpgid (pid_t);
 gboolean row_selected_by_button_press_event;
 
 static void
-quit_application (GSearchCommandDetails * command_details)
+store_window_state_and_geometry (GSearchWindow *gsearch)
 {
+	gsearch->window_width = MAX (gsearch->window_width, MINIMUM_WINDOW_WIDTH);
+	gsearch->window_height = MAX (gsearch->window_height, MINIMUM_WINDOW_HEIGHT);
+		
+	gsearchtool_gconf_set_int ("/apps/gnome-search-tool/default_window_width",
+	                           gsearch->window_width);
+	gsearchtool_gconf_set_int ("/apps/gnome-search-tool/default_window_height",
+		                   gsearch->window_height);
+	gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/default_window_maximized",
+	                               gsearch->is_window_maximized);
+}
+
+static void
+quit_application (GSearchWindow * gsearch)
+{
+	GSearchCommandDetails * command_details = gsearch->command_details;
+	
 	if (command_details->command_status == RUNNING) {
 #ifdef HAVE_GETPGID
 		pid_t pgid;
@@ -76,6 +92,7 @@ quit_application (GSearchCommandDetails * command_details)
 #endif
 		wait (NULL);
 	}
+	store_window_state_and_geometry (gsearch);
 	gtk_main_quit ();
 }
 
@@ -83,7 +100,7 @@ void
 die_cb (GnomeClient * client,
 	gpointer data)
 {
-	quit_application ((GSearchCommandDetails *) data);
+	quit_application ((GSearchWindow *) data);
 }
 
 void
@@ -91,14 +108,14 @@ quit_cb (GtkWidget * widget,
          GdkEvent * event,
 	 gpointer data)
 {
-	quit_application ((GSearchCommandDetails *) data);
+	quit_application ((GSearchWindow *) data);
 }
 
 void
 click_close_cb (GtkWidget * widget,
                 gpointer data)
 {
-	quit_application ((GSearchCommandDetails *) data);
+	quit_application ((GSearchWindow *) data);
 }
 
 void
@@ -1610,4 +1627,20 @@ columns_changed_cb (GtkTreeView * treeview,
 		gsearchtool_gconf_set_list ("/apps/gnome-search-tool/columns_order", order, GCONF_VALUE_INT);
 	}
 	g_slist_free (order);
+}
+
+gboolean
+window_state_event_cb (GtkWidget * widget, 
+                       GdkEventWindowState * event, 
+                       gpointer data)
+{
+	GSearchWindow * gsearch = data;
+	
+	if (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) {
+		gsearch->is_window_maximized = TRUE;
+	}
+	else {
+		gsearch->is_window_maximized = FALSE;
+	}
+	return FALSE;
 }

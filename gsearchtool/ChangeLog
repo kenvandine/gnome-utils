@@ -1,3 +1,21 @@
+2005-12-20  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* gnome-search-tool.schemas.in:  Add new keys.
+	* gsearchtool-callbacks.c: (store_window_state_and_geometry),
+	(quit_application), (die_cb), (quit_cb), (click_close_cb),
+	(columns_changed_cb), (window_state_event_cb):
+	* gsearchtool-callbacks.h:  Add window_state_event_cb().
+	* gsearchtool-support.c: (gsearchtool_gconf_set_int),
+	(gsearchtool_set_columns_order),
+	(gsearchtool_get_stored_window_geometry):
+	* gsearchtool-support.h:  Add gsearchtool_gconf_set_int() 
+	and gsearchtool_get_stored_window_geometry().
+	* gsearchtool.c: (gsearch_window_size_allocate),
+	(gsearch_app_create), (main):  Restore window size and state.
+	* gsearchtool.h:  Add window width, height, and state.
+	
+	Fix bug #324097, save window size and state.
+	
 2005-12-02  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* gsearchtool-callbacks.c: (save_results_cb):  Make this

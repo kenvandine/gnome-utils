@@ -46,6 +46,8 @@ extern "C" {
 #define GNOME_SEARCH_TOOL_ICON "gnome-searchtool"
 #define MINIMUM_WINDOW_WIDTH   420
 #define MINIMUM_WINDOW_HEIGHT  310
+#define DEFAULT_WINDOW_WIDTH   554
+#define DEFAULT_WINDOW_HEIGHT  350
 #define WINDOW_HEIGHT_STEP      35
 #define NUM_VISIBLE_COLUMNS      5
 
@@ -84,6 +86,9 @@ struct _GSearchWindow {
 	GtkWidget             * window;
 	GtkUIManager          * window_ui_manager;
 	GdkGeometry             window_geometry;
+	gint                    window_width;
+	gint                    window_height;
+	gboolean                is_window_maximized;
 	gboolean                is_window_accessible;
 	
 	GtkWidget             * name_contains_entry;

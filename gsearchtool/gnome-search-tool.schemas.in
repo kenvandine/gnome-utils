@@ -331,5 +331,49 @@ To change the gconftool target use the - -config-source=blah option to gconftool
         </long>
       </locale>
     </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/default_window_width</applyto>
+      <key>/schemas/apps/gnome-search-tool/default_window_width</key>
+      <owner>gnome-search-tool</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Default Window Width</short>
+	<long>
+	  This key defines the window width, and it's used to remember the
+	  size of the search tool between sessions.  Setting it to -1 will
+	  make the search tool use the default width.
+	</long>
+      </locale>
+    </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/default_window_height</applyto>
+      <key>/schemas/apps/gnome-search-tool/default_window_height</key>
+      <owner>gnome-search-tool</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>Default Window Height</short>
+	<long>
+	  This key defines the window height, and it's used to remember the
+	  size of the search tool between sessions.  Setting it to -1 will
+	  make the search tool use the default height.
+	</long>
+      </locale>
+    </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/default_window_maximized</applyto>
+      <key>/schemas/apps/gnome-search-tool/default_window_maximized</key>
+      <owner>gnome-search-tool</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Default Window Maximized</short>
+	<long>
+	  This key determines if the search tool window starts in a maximized
+	  state.
+	</long>
+      </locale>
+    </schema>
   </schemalist>
 </gconfschemafile>
