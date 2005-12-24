@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <sys/stat.h>
 
 #include <gtk/gtk.h>
 #include <glib/goption.h>
@@ -90,8 +91,24 @@ gdict_app_class_init (GdictAppClass *klass)
 static void
 gdict_app_init (GdictApp *app)
 {
+  gchar *data_dir;
+  
   app->windows = NULL;
   app->current_window = NULL;
+  
+  /* create the data directory inside $HOME, if it doesn't exist yet */
+  data_dir = g_build_filename (g_get_home_dir (),
+  			       ".gnome2",
+  			       "gnome-dictionary",
+  			       NULL);
+  
+  if (g_mkdir (data_dir, 0600) == -1)
+    {
+      if (errno != EEXIST)
+        g_warning ("Unable to create the data directory '%s'");
+    }
+  
+  g_free (data_dir);
 }
 
 static gboolean

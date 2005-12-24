@@ -959,9 +959,23 @@ static void
 gdict_applet_init (GdictApplet *applet)
 {
   GdictAppletPrivate *priv;
-  gchar *loader_path;
+  gchar *loader_path, *data_dir;
   BonoboUIComponent *popup_component;
+
+  /* create the data directory inside $HOME, if it doesn't exist yet */
+  data_dir = g_build_filename (g_get_home_dir (),
+  			       ".gnome2",
+  			       "gnome-dictionary",
+  			       NULL);
+
+  if (g_mkdir (data_dir, 0600) == -1)
+    {
+      if (errno != EEXIST)
+        g_warning ("Unable to create the data directory '%s'");
+    }
   
+  g_free (data_dir);
+
   gtk_window_set_default_icon_name ("gdict");
 
   panel_applet_set_flags (PANEL_APPLET (applet),

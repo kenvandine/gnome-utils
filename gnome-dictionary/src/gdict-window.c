@@ -663,7 +663,7 @@ gdict_window_cmd_help_contents (GtkAction   *action,
   if (err)
     {
       show_error_dialog (GTK_WINDOW (window),
-      			 _("There was an error displaying help"),
+      			 _("There was an error while displaying help"),
       			 err->message);
       g_error_free (err);
     }

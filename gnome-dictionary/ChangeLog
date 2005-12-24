@@ -1,6 +1,33 @@
-2005-12-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+2005-12-25  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	The "Maybe this Christmas" release.  This release marks the end of the
+	big UI and feature changes: from now on, it's fixes time until the next
+	development cycle.  Merry Christmas everyone.
 
 	* src/gdict-print.c: fix compiler warnings about parameter signedness.
+
+	* data/gnome-dictionary-preferences.glade: update the source add dialog
+	with a new UI.
+
+	* docs/reference/gdict/gdict-decl-list.txt: add
+	gdict_defbox_set_database() and gdict_defbox_get_database() to the
+	declarations list.
+
+	* src/gdict-about.c: use "Look up".
+
+	* src/gdict-app.c (gdict_app_init): create the data directory inside
+	$HOME/.gnome2 when creating the application singleton.
+
+	* src/gdict-applet.c (gdict_applet_init): ditto.
+
+	* src/gdict-pref-dialog.c: add the source add dialog, and enable the
+	source remove code: now the user can create new dictionary sources
+	without having to actually drop a file inside the data directory.  The
+	code is still a bit flaky, but this closes all the UI/feature work for
+	the release.
+
+	* src/gdict-window.c (gdict_window_cmd_help_contents): fix error
+	message.
 
 2005-12-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 

@@ -48,7 +48,7 @@ gdict_show_about_dialog (GtkWidget *parent)
 
   const gchar *translator_credits = _("translator-credits");
   const gchar *copyright = "Copyright \xc2\xa9 2005 Emmanuele Bassi";
-  const gchar *comments = _("Lookup words on dictionaries");
+  const gchar *comments = _("Look up words on dictionaries");
   
   const gchar *license =
     "This program is free software; you can redistribute it and/or "
