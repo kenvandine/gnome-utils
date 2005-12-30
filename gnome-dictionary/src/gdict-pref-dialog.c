@@ -391,8 +391,10 @@ font_button_font_set_cb (GtkWidget       *font_button,
   const gchar *font;
   
   font = gtk_font_button_get_font_name (GTK_FONT_BUTTON (font_button));
+  if (!font || font[0] == '\0')
+    return;
   
-  if (strcmp (dialog->print_font, font) != 0)
+  if (dialog->print_font && (strcmp (dialog->print_font, font) != 0))
     {
       g_free (dialog->print_font);
       dialog->print_font = g_strdup (font);
