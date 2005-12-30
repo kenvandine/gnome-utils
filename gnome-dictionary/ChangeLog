@@ -1,5 +1,11 @@
 2005-12-30  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* libgdict/gdict-client-context.c
+	(gdict_client_context_lookup_server): make the hostname lookup cache
+	expire after five minutes; this should tentatively solve bug #169915.
+
+2005-12-30  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	Re-sync with my development trunk: add the new source dialog code; fix
 	a slew of typos and a serious crasher; more UI fixes.
 

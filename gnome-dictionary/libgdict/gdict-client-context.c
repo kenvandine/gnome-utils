@@ -118,6 +118,9 @@ typedef struct
 #define GDICT_DEFAULT_HOSTNAME	"dict.org"
 #define GDICT_DEFAULT_PORT	2628
 
+/* make the hostname lookup expire every five minutes */
+#define HOSTNAME_LOOKUP_EXPIRE 	300
+
 enum
 {
   PROP_0,
@@ -148,6 +151,8 @@ struct _GdictClientContextPrivate
   struct sockaddr_in sockaddr;
 #endif
   struct hostent *hostinfo;
+
+  time_t last_lookup;
 
   gchar *hostname;
   gint port;
@@ -368,6 +373,8 @@ gdict_client_context_init (GdictClientContext *context)
 #ifdef ENABLE_IPV6
   priv->host6info = NULL;
 #endif
+
+  priv->last_lookup = (time_t) -1;
 
   priv->is_connecting = FALSE;
   priv->local_only = FALSE;
@@ -966,6 +973,8 @@ gdict_client_context_lookup_server (GdictClientContext  *context,
                                     GError             **error) 
 {
   GdictClientContextPrivate *priv;
+  gboolean is_expired = FALSE;
+  time_t now;
   
   g_assert (GDICT_IS_CLIENT_CONTEXT (context));
   
@@ -974,17 +983,24 @@ gdict_client_context_lookup_server (GdictClientContext  *context,
   /* we need the hostname, at this point */
   g_assert (priv->hostname != NULL);
 
-  gdict_debug ("Looking up hostname '%s'\n", priv->hostname);
-
+  time (&now);
+  if (now >= (priv->last_lookup + HOSTNAME_LOOKUP_EXPIRE))
+    is_expired = TRUE;
+  
   /* we already have resolved the hostname */
 #ifdef ENABLE_IPV6
-  if (priv->host6info)
+  if (priv->host6info && !is_expired)
     return TRUE;
 #endif
 
-  if (priv->hostinfo)
+  if (priv->hostinfo && !is_expired)
     return TRUE;
 
+  /* clear any previously acquired lookup data */
+  gdict_client_context_clear_hostinfo (context);
+  
+  gdict_debug ("Looking up hostname '%s'\n", priv->hostname);
+  
 #ifdef ENABLE_IPV6
   if (gdict_has_ipv6 ())
     {
@@ -1025,6 +1041,8 @@ gdict_client_context_lookup_server (GdictClientContext  *context,
 	      priv->sockaddr.ss_family = res->ai_family;
 	      
 	      gdict_debug ("Hostname '%s' found (using IPv6)\n", priv->hostname);
+	      
+	      priv->last_lookup = time (NULL);
 
 	      return TRUE;
 	    }
@@ -1057,6 +1075,8 @@ gdict_client_context_lookup_server (GdictClientContext  *context,
                   priv->hostinfo->h_length);
           
           gdict_debug ("Hostname '%s' found (using IPv4)\n", priv->hostname);
+
+	  priv->last_lookup = time (NULL);
           
           return TRUE;
         }
