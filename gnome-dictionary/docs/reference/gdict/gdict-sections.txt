@@ -4,12 +4,7 @@
 <FILE>gdict-context</FILE>
 <TITLE>GdictContext</TITLE>
 GdictContext
-GdictContextIface
 GdictContextError
-GdictDatabase
-GdictStrategy
-GdictMatch
-GdictDefinition
 
 <SUBSECTION>
 gdict_context_get_local_only
@@ -20,24 +15,28 @@ gdict_context_define_word
 gdict_context_match_word
 
 <SUBSECTION>
+GdictDatabase
 gdict_database_ref
 gdict_database_unref
 gdict_database_get_name
 gdict_database_get_full_name
 
 <SUBSECTION>
+GdictStrategy
 gdict_strategy_ref
 gdict_strategy_unref
 gdict_strategy_get_name
 gdict_strategy_get_description
 
 <SUBSECTION>
+GdictMatch
 gdict_match_ref
 gdict_match_unref
 gdict_match_get_word
 gdict_match_get_database
 
 <SUBSECTION>
+GdictDefinition
 gdict_definition_ref
 gdict_definition_unref
 gdict_definition_get_total
@@ -57,6 +56,7 @@ GDICT_TYPE_MATCH
 GDICT_TYPE_DEFINITION
 
 <SUBSECTION Private>
+GdictContextIface
 gdict_context_get_type
 gdict_context_error_quark
 gdict_database_get_type
