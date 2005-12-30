@@ -1010,8 +1010,12 @@ create_progress_dialog (GdictDefbox *defbox)
 		                get_toplevel_window (GTK_WIDGET (defbox)));
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
   gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER_ON_PARENT);
+  gtk_window_set_title (GTK_WINDOW (dialog), _("Progress"));
+  gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+  gtk_window_set_skip_taskbar_hint (GTK_WINDOW (dialog), TRUE);
+  gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
   
-  vbox = gtk_vbox_new (FALSE, 12);
+  vbox = gtk_vbox_new (FALSE, 6);
   gtk_container_add (GTK_CONTAINER (dialog), vbox);
   gtk_widget_show (vbox);
 

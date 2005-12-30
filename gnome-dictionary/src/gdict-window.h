@@ -23,6 +23,7 @@
 #ifndef __GDICT_WINDOW_H__
 #define __GDICT_WINDOW_H__
 
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
@@ -70,6 +71,8 @@ struct _GdictWindow
   
   GConfClient *client;
   guint notify_id;
+
+  GdkPixbuf *icon;
   
   gulong window_id;
 };

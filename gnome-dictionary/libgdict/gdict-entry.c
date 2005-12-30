@@ -117,7 +117,7 @@ gdict_entry_class_init (GdictEntryClass *klass)
   				   PROP_DATABASE,
   				   g_param_spec_string ("database",
   				   			_("Database"),
-  				   			_("The database to be used for generating the completion list"),
+  				   			_("The database to be used to generate the completion list"),
   				   			NULL,
   				   			(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
@@ -132,7 +132,7 @@ gdict_entry_class_init (GdictEntryClass *klass)
 		  		   PROP_STRATEGY,
 				   g_param_spec_string ("strategy",
 					   		_("Strategy"),
-							_("The matchin strategy to be used for generating the completion list"),
+							_("The matching strategy to be used to generate the completion list"),
 							NULL,
 							(G_PARAM_READABLE | G_PARAM_WRITABLE)));
   

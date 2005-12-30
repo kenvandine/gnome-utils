@@ -139,6 +139,9 @@ gdict_window_finalize (GObject *object)
   
   g_object_unref (window->action_group);
 
+  if (window->icon)
+    g_object_unref (window->icon);
+
   g_free (window->source_name);
   g_free (window->print_font);
   g_free (window->word);
@@ -152,16 +155,21 @@ static void
 gdict_window_lookup_start_cb (GdictContext *context,
 			      GdictWindow  *window)
 {
+  static GdkCursor *busy_cursor = NULL;
   gchar *message;
 
   if (!window->word)
     return;
+
+  if (busy_cursor == NULL)
+    busy_cursor = gdk_cursor_new (GDK_WATCH);
 
   message = g_strdup_printf (_("Searching for '%s'..."), window->word);
   
   if (window->status)
     gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
 
+  gdk_window_set_cursor (GTK_WIDGET (window)->window, busy_cursor);
   g_free (message);
 }
 
@@ -189,6 +197,7 @@ gdict_window_lookup_end_cb (GdictContext *context,
   if (window->status)
     gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
 
+  gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
   g_free (message);
 }
 
@@ -197,9 +206,6 @@ gdict_window_error_cb (GdictContext *context,
 		       const GError *error,
 		       GdictWindow  *window)
 {
-  if (window->word)
-    g_free (window->word);
-
   gtk_statusbar_push (GTK_STATUSBAR (window->status), 0,
 		      _("No definitions found"));
 }
@@ -310,9 +316,8 @@ static void
 gdict_window_set_word (GdictWindow *window,
 		       const gchar *word)
 {
-  if (window->word)
-    g_free (window->word);
-  
+  g_free (window->word);
+
   window->word = g_strdup (word);
 }
 
@@ -794,12 +799,12 @@ entry_activate_cb (GtkWidget   *widget,
     return;
   
   word = gtk_entry_get_text (GTK_ENTRY (widget));
-  if (!word)
+  if (!word || *word == '\0')
     return;
-  
+
   gdict_window_set_word (window, word);
   
-  title = g_strdup_printf (_("Dictionary - %s"), window->word);
+  title = g_strdup_printf (_("%s - Dictionary"), window->word);
   gtk_window_set_title (GTK_WINDOW (window), title);
   g_free (title);
   
@@ -829,12 +834,9 @@ gdict_window_drag_data_received_cb (GtkWidget        *widget,
       
       gtk_entry_set_text (GTK_ENTRY (window->entry), text);
 
-      if (window->word)
-        g_free (window->word);
+      gdict_window_set_word (window, text);
       
-      window->word = g_strdup (text);
-      
-      title = g_strdup_printf (_("Dictionary - %s"), window->word);
+      title = g_strdup_printf (_("%s - Dictionary"), window->word);
       gtk_window_set_title (GTK_WINDOW (window), title);
       g_free (title);
       
@@ -1036,8 +1038,8 @@ gdict_window_class_init (GdictWindowClass *klass)
   g_object_class_install_property (gobject_class,
   				   PROP_WINDOW_ID,
   				   g_param_spec_uint ("window-id",
-  				   		      _("Window ID"),
-  				   		      _("The unique identificator for this window"),
+  				   		      "Window ID",
+  				   		      "The unique identifier for this window",
   				   		      0,
   				   		      G_MAXUINT,
   				   		      0,
@@ -1057,6 +1059,10 @@ gdict_window_class_init (GdictWindowClass *klass)
 static void
 gdict_window_init (GdictWindow *window)
 {
+  gchar *icon_file;
+  GdkPixbuf *icon;
+  GError *icon_error;
+  
   window->loader = NULL;
   window->context = NULL;
   
@@ -1078,7 +1084,29 @@ gdict_window_init (GdictWindow *window)
 
   window->database = NULL;
   window->strategy = NULL;
-      
+
+  icon_file = g_build_filename (DATADIR,
+		  		"pixmaps",
+				"gnome-dictionary.png",
+				NULL);
+  icon_error = NULL;
+  icon = gdk_pixbuf_new_from_file (icon_file, &icon_error);
+  if (icon_error)
+    {
+      show_error_dialog (GTK_WINDOW (window),
+		         _("Unable to load the application icon"),
+		         icon_error->message);
+
+      g_error_free (icon_error);
+    }
+  else
+    {
+      gtk_window_set_default_icon (icon);
+      window->icon = icon;
+    }
+
+  g_free (icon_file);
+  
   window->window_id = (gulong) time (NULL);
 }
 

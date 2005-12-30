@@ -43,14 +43,13 @@ G_BEGIN_DECLS
 #define GDICT_GCONF_SOURCE_KEY 		GDICT_GCONF_DIR "/source-name"
 
 
-typedef struct _GdictPrefDialog      GdictPrefDialog;
-typedef struct _GdictPrefDialogClass GdictPrefDialogClass;
+typedef struct _GdictPrefDialog        GdictPrefDialog;
+typedef struct _GdictPrefDialogClass   GdictPrefDialogClass;
 
-GType      gdict_pref_dialog_get_type (void) G_GNUC_CONST;
-
-GtkWidget *gdict_pref_dialog_new      (GtkWindow         *parent,
-				       const gchar       *title,
-				       GdictSourceLoader *loader);
+GType      gdict_pref_dialog_get_type   (void) G_GNUC_CONST;
+GtkWidget *gdict_pref_dialog_new        (GtkWindow         *parent,
+				         const gchar       *title,
+				         GdictSourceLoader *loader);
 
 G_END_DECLS
 

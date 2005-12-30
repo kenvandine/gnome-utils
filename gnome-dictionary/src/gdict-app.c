@@ -227,7 +227,7 @@ gdict_init (int *argc, char ***argv)
   g_assert (GDICT_IS_APP (singleton));
 
   /* create the new option context */
-  context = g_option_context_new (_(" - Look up words on dictionaries"));
+  context = g_option_context_new (_(" - Look up words in dictionaries"));
   
   /* gnome dictionary option group */
   group = g_option_group_new ("gnome-dictionary",
@@ -245,7 +245,6 @@ gdict_init (int *argc, char ***argv)
 					   GNOME_PARAM_GOPTION_CONTEXT, context,
 					   NULL);
   g_set_application_name (_("Dictionary"));
-  gtk_window_set_default_icon_name ("gdict");
   
   /* session management */
   singleton->client = gnome_master_client ();

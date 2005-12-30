@@ -497,7 +497,8 @@ _gdict_strategy_new (const gchar *name)
  *
  * Increases the reference count of @strat by one.
  *
- * Return value: @strat with its reference count increased
+ * Return value: the #GdictStrategy object  with its reference count
+ *   increased
  *
  * Since: 1.0
  */
@@ -513,6 +514,15 @@ gdict_strategy_ref (GdictStrategy   *strat)
   return strat;
 }
 
+/**
+ * gdict_strategy_unref:
+ * @strat: a #GdictStrategy
+ *
+ * Decreases the reference count of @strat by one.  If the reference count
+ * reaches zero, the #GdictStrategy object is freed.
+ *
+ * Since: 1.0
+ */
 void
 gdict_strategy_unref (GdictStrategy *strat)
 {
@@ -623,6 +633,7 @@ gdict_match_get_database (GdictMatch *match)
 
 GDICT_DEFINE_BOXED_TYPE (GdictDefinition, gdict_definition);
 
+/* GdictDefinition constructor */
 GdictDefinition *
 _gdict_definition_new (gint total)
 {
@@ -639,6 +650,17 @@ _gdict_definition_new (gint total)
   return def;
 }
 
+/**
+ * gdict_definition_ref:
+ * @def: a #GdictDefinition
+ *
+ * Increases the reference count of @def by one.
+ *
+ * Return value: the #GdictDefinition object with its reference count
+ *   increased.
+ * 
+ * Since: 1.0
+ */
 GdictDefinition *
 gdict_definition_ref (GdictDefinition *def)
 {
@@ -651,6 +673,15 @@ gdict_definition_ref (GdictDefinition *def)
   return def;
 }
 
+/**
+ * gdict_definition_unref:
+ * @def: a #GdictDefinition
+ *
+ * Decreases the reference count of @def by one.  If the reference count
+ * reaches zero, the #GdictDefinition object is freed.
+ *
+ * Since: 1.0
+ */
 void
 gdict_definition_unref (GdictDefinition *def)
 {
@@ -669,6 +700,17 @@ gdict_definition_unref (GdictDefinition *def)
     }
 }
 
+/**
+ * gdict_definition_get_total:
+ * @def: a #GdictDefinition
+ *
+ * Retrieves the total number of definitions that were found on a
+ * dictionary.
+ *
+ * Return value: the number of definitions.
+ *
+ * Since: 1.0
+ */
 gint
 gdict_definition_get_total (GdictDefinition *def)
 {
@@ -677,6 +719,18 @@ gdict_definition_get_total (GdictDefinition *def)
   return def->total;
 }
 
+/**
+ * gdict_definition_get_word:
+ * @def: a #GdictDefinition
+ *
+ * Retrieves the word used by the dictionary database to store
+ * the definition.
+ *
+ * Return value: a word.  The returned string is owned by the
+ *   #GdictDefinition object and should not be modified or freed.
+ *
+ * Since: 1.0
+ */
 G_CONST_RETURN gchar *
 gdict_definition_get_word (GdictDefinition *def)
 {
@@ -685,6 +739,19 @@ gdict_definition_get_word (GdictDefinition *def)
   return def->word;
 }
 
+/**
+ * gdict_definition_get_database:
+ * @def: a #GdictDefinition
+ *
+ * Retrieves the full name of the dictionary database where the
+ * definition is stored.
+ *
+ * Return value: the full name of a database.  The returned string
+ *   is owned by the #GdictDefinition object and should not be
+ *   modified or freed.
+ *
+ * Since: 1.0
+ */
 G_CONST_RETURN gchar *
 gdict_definition_get_database (GdictDefinition *def)
 {
@@ -693,6 +760,18 @@ gdict_definition_get_database (GdictDefinition *def)
   return def->database_full;
 }
 
+/**
+ * gdict_definition_get_text:
+ * @def: a #GdictDefinition
+ *
+ * Retrieves the text of the definition.
+ *
+ * Return value: the text of the definition.  The returned string
+ *   is owned by the #GdictDefinition object, and should not be
+ *   modified or freed.
+ *
+ * Since: 1.0
+ */
 G_CONST_RETURN gchar *
 gdict_definition_get_text (GdictDefinition *def)
 {

@@ -2,6 +2,9 @@ NULL =
 
 man_MANS = gnome-dictionary.1
 
+appicondir = $(datadir)/pixmaps
+appicon_DATA = gnome-dictionary.png
+
 gdictappdir = $(datadir)/applications
 gdictapp_in_files = gnome-dictionary.desktop.in
 gdictapp_DATA = $(gdictapp_in_files:.desktop.in=.desktop)
@@ -39,6 +42,7 @@ schema_DATA = $(schemas_in_file:.schemas.in=.schemas)
 
 EXTRA_DIST = \
 	GNOME_DictionaryApplet.server.in.in 	\
+	$(appicon_DATA) 			\
 	$(dictsource_in_files)			\
 	$(gdictapp_in_files) 			\
 	$(gdictapp_DATA) 			\

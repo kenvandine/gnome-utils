@@ -40,7 +40,17 @@
 
 #include "gdict.h"
 
+#include "gdict-source-dialog.h"
 #include "gdict-pref-dialog.h"
+
+#define GDICT_PREFERENCES_GLADE 	PKGDATADIR "/gnome-dictionary-preferences.glade"
+
+#define DEFAULT_MIN_WIDTH 	220
+#define DEFAULT_MIN_HEIGHT 	330
+
+/*******************
+ * GdictPrefDialog *
+ *******************/
 
 enum
 {
@@ -50,9 +60,6 @@ enum
   
   SOURCES_N_COLUMNS
 };
-
-
-#define GDICT_PREFERENCES_GLADE 	PKGDATADIR "/gnome-dictionary-preferences.glade"
 
 struct _GdictPrefDialog
 {
@@ -92,7 +99,6 @@ enum
 {
   PROP_0,
 
-  PROP_ACTIVE_SOURCE,
   PROP_SOURCE_LOADER
 };
 
@@ -257,265 +263,21 @@ build_sources_view (GdictPrefDialog *dialog)
 }
 
 static void
-source_transport_combo_changed_cb (GtkComboBox *combo,
-				   GtkWidget   *dialog)
-{
-  GladeXML *xml;
-  GtkWidget *add_button;
-  gchar *transport;
-  
-  g_assert (GTK_IS_DIALOG (dialog));
-  
-  xml = g_object_get_data (G_OBJECT (dialog), "glade-xml");
-  g_assert (xml != NULL);
-  
-  transport = gtk_combo_box_get_active_text (combo);
-  if (!transport)
-    return;
-
-  add_button = g_object_get_data (G_OBJECT (dialog), "add-button");
-  g_assert (add_button != NULL);
-  
-  /* Translators: this is the same string used in the file
-   * gnome-dictionary-preferences.glade for the transport_combo
-   * widget items.
-   */
-  if (strcmp (transport, _("Dictionary Server")) == 0)
-    {
-      gtk_widget_show (glade_xml_get_widget (xml, "hostname_label"));
-      gtk_widget_show (glade_xml_get_widget (xml, "hostname_entry"));
-      gtk_widget_show (glade_xml_get_widget (xml, "port_label"));
-      gtk_widget_show (glade_xml_get_widget (xml, "port_entry"));
-      
-      gtk_widget_set_sensitive (add_button, TRUE);
-      
-      g_object_set_data (G_OBJECT (dialog), "transport",
-      			 GINT_TO_POINTER (GDICT_SOURCE_TRANSPORT_DICTD));
-    }
-  else
-    {
-      gtk_widget_hide (glade_xml_get_widget (xml, "hostname_label"));
-      gtk_widget_hide (glade_xml_get_widget (xml, "hostname_entry"));
-      gtk_widget_hide (glade_xml_get_widget (xml, "port_label"));
-      gtk_widget_hide (glade_xml_get_widget (xml, "port_entry"));
-
-      gtk_widget_set_sensitive (add_button, TRUE);
-
-      g_object_set_data (G_OBJECT (dialog), "transport",
-      			 GINT_TO_POINTER (GDICT_SOURCE_TRANSPORT_INVALID));
-    }
-}
-
-static void
-source_add_dialog_response_cb (GtkDialog       *add_dialog,
-			       gint             response,
-			       GdictPrefDialog *dialog)
-{
-  switch (response)
-    {
-    case GTK_RESPONSE_ACCEPT:
-      {
-      GladeXML *xml;
-      GtkWidget *widget;
-      GdictSource *source;
-      gchar *name;
-      gchar *text;
-      GdictSourceTransport transport;
-      gchar *host, *port;
-      gchar *data;
-      gsize length;
-      GError *error;
-      gchar *filename;
-      
-      xml = g_object_get_data (G_OBJECT (add_dialog), "glade-xml");
-      g_assert (xml != NULL);
-      
-      source = gdict_source_new ();
-      
-      /* use the timestamp and the pid to get a unique name */
-      name = g_strdup_printf ("source-%lu-%u",
-      			      (gulong) time (NULL),
-      			      (guint) getpid ());
-      gdict_source_set_name (source, name);
-      g_free (name);
-      
-      widget = glade_xml_get_widget (xml, "description_entry");
-      text = gtk_editable_get_chars (GTK_EDITABLE (widget), 0, -1);
-      gdict_source_set_description (source, text);
-      g_free (text);
-      
-      widget = glade_xml_get_widget (xml, "database_combo");
-      text = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
-      gdict_source_set_database (source, text);
-      g_free (text);
-
-      widget = glade_xml_get_widget (xml, "strategy_combo");
-      text = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
-      gdict_source_set_strategy (source, text);
-      g_free (text);
-      
-      /* get the selected transport id */
-      transport = GPOINTER_TO_INT (g_object_get_data (G_OBJECT (add_dialog), "transport"));
-      switch (transport)
-        {
-        case GDICT_SOURCE_TRANSPORT_DICTD:
-          widget = glade_xml_get_widget (xml, "hostname_entry");
-          host = gtk_editable_get_chars (GTK_EDITABLE (widget), 0, -1);
-          
-          widget = glade_xml_get_widget (xml, "port_entry");
-          port = gtk_editable_get_chars (GTK_EDITABLE (widget), 0, -1);
-          
-          gdict_source_set_transport (source, GDICT_SOURCE_TRANSPORT_DICTD,
-          			      "hostname", host,
-          			      "port", atoi (port),
-          			      NULL);
-          
-          g_free (host);
-          g_free (port);
-          break;
-        case GDICT_SOURCE_TRANSPORT_INVALID:
-        default:
-          g_warning ("Invalid transport");
-          return;
-        }
-      
-      error = NULL;
-      data = gdict_source_to_data (source, &length, &error);
-      if (error)
-        {
-          g_warning ("Unable to dump GdictSource: %s", error->message);
-          
-          g_error_free (error);
-          g_object_unref (source);
-          
-          return;
-        }
-      
-      name = g_strdup_printf ("%s.desktop", gdict_source_get_name (source));
-      filename = g_build_filename (g_get_home_dir (),
-      				   ".gnome2",
-      				   "gnome-dictionary",
-      				   name,
-      				   NULL);
-      g_free (name);
-      
-      g_file_set_contents (filename, data, length, &error);
-      if (error)
-        {
-          g_warning ("Unable to dump GdictSource '%s' into '%s': %s",
-                     gdict_source_get_description (source),
-                     filename,
-                     error->message);
-          
-          g_error_free (error);
-          g_free (filename);
-          g_free (data);
-          g_object_unref (source);
-          
-          return;
-        }
-        
-      g_free (filename);
-      g_free (data);
-      
-      g_object_unref (source);
-      }
-      break;
-    case GTK_RESPONSE_HELP:
-      {
-      GError *err = NULL;
-      
-      gnome_help_display_desktop_on_screen (NULL,
-      					    "gnome-dictionary",
-      					    "gnome-dictionary",
-      					    "gnome-dictionary-add-source",
-      					    gtk_widget_get_screen (GTK_WIDGET (dialog)),
-      					    &err);
-      if (err)
-        {
-          GtkWidget *error_dialog;
-          gchar *message;
-          
-          error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog),
-      						 GTK_DIALOG_DESTROY_WITH_PARENT,
-      						 GTK_MESSAGE_ERROR,
-      						 GTK_BUTTONS_OK,
-      						 "%s", _("There was an error while displaying help"));
-          gtk_window_set_title (GTK_WINDOW (error_dialog), "");
-          
-          gtk_dialog_run (GTK_DIALOG (error_dialog));
-          
-          gtk_widget_destroy (error_dialog);
-          
-          g_error_free (err);
-        }
-      }
-      break;
-    case GTK_RESPONSE_CANCEL:
-    default:
-      break;
-    }
-}
-
-static void
 source_add_clicked_cb (GtkWidget       *widget,
 		       GdictPrefDialog *dialog)
 {
-  GtkWidget *add_dialog, *button;
-  GladeXML *xml;
+  GtkWidget *add_dialog;
   
-  add_dialog = gtk_dialog_new ();
+  add_dialog = gdict_source_dialog_new (GTK_WINDOW (dialog),
+  					_("Add Dictionary Source"),
+  					GDICT_SOURCE_DIALOG_CREATE,
+  					dialog->loader,
+  					NULL);
 
-  /* set dialog properties */
-  gtk_window_set_title (GTK_WINDOW (add_dialog), _("Add Dictionary Source"));
-  gtk_window_set_transient_for (GTK_WINDOW (add_dialog), GTK_WINDOW (dialog));
-  gtk_window_set_destroy_with_parent (GTK_WINDOW (add_dialog), TRUE);
-  gtk_window_set_resizable (GTK_WINDOW (add_dialog), FALSE);
-  
-  gtk_container_set_border_width (GTK_CONTAINER (add_dialog), 5);
-  
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (add_dialog)->vbox), 2);
-  
-  gtk_dialog_set_has_separator (GTK_DIALOG (add_dialog), FALSE);
-  
-  /* add buttons, and keep the "add" button around */
-  gtk_dialog_add_button (GTK_DIALOG (add_dialog),
-  			 "gtk-help",
-  			 GTK_RESPONSE_HELP);
-  gtk_dialog_add_button (GTK_DIALOG (add_dialog),
-  			 "gtk-cancel",
-  			 GTK_RESPONSE_CANCEL);
-  button = gtk_dialog_add_button (GTK_DIALOG (add_dialog),
-  				  "gtk-add",
-  				  GTK_RESPONSE_ACCEPT);
-  gtk_widget_set_sensitive (button, FALSE);
-  g_object_set_data (G_OBJECT (add_dialog), "add-button", button);
-  
-  xml = glade_xml_new (GDICT_PREFERENCES_GLADE,
-  		       "source_add_root",
-  		       NULL);
-  g_assert (xml != NULL);
-  g_object_set_data (G_OBJECT (add_dialog), "glade-xml", xml);
-  
-  /* the main widget */
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (add_dialog)->vbox),
-                     glade_xml_get_widget (xml, "source_add_root"));
-  
-  /* show the transport-specific widgets when the transport changes */
-  g_signal_connect (glade_xml_get_widget (xml, "transport_combo"),
-  		    "changed",
-  		    G_CALLBACK (source_transport_combo_changed_cb),
-  		    add_dialog);
-  
-  g_signal_connect (add_dialog, "response",
-  		    G_CALLBACK (source_add_dialog_response_cb),
-  		    dialog);
-  
   gtk_dialog_run (GTK_DIALOG (add_dialog));
 
   gtk_widget_destroy (add_dialog);
-  g_object_unref (xml);
-  
+
   update_sources_view (dialog);
 }
 
@@ -716,10 +478,6 @@ gdict_pref_dialog_set_property (GObject      *object,
   
   switch (prop_id)
     {
-    case PROP_ACTIVE_SOURCE:
-      g_free (dialog->active_source);
-      dialog->active_source = g_strdup (g_value_get_string (value));
-      break;
     case PROP_SOURCE_LOADER:
       set_source_loader (dialog, g_value_get_object (value));
       break;
@@ -738,9 +496,6 @@ gdict_pref_dialog_get_property (GObject    *object,
   
   switch (prop_id)
     {
-    case PROP_ACTIVE_SOURCE:
-      g_value_set_object (value, dialog->active_source);
-      break;
     case PROP_SOURCE_LOADER:
       g_value_set_object (value, dialog->loader);
       break;
@@ -759,26 +514,23 @@ gdict_pref_dialog_class_init (GdictPrefDialogClass *klass)
   gobject_class->finalize = gdict_pref_dialog_finalize;
   
   g_object_class_install_property (gobject_class,
-		  		   PROP_ACTIVE_SOURCE,
-				   g_param_spec_string ("active-source",
-					   		_("Active Source"),
-							_("The name of the active source"),
-							NULL,
-							(G_PARAM_READABLE | G_PARAM_WRITABLE)));
-  g_object_class_install_property (gobject_class,
   				   PROP_SOURCE_LOADER,
   				   g_param_spec_object ("source-loader",
-  				   			_("Source Loader"),
-  				   			_("The GdictSourceLoader used by the application"),
+  				   			"Source Loader",
+  				   			"The GdictSourceLoader used by the application",
   				   			GDICT_TYPE_SOURCE_LOADER,
-  				   			(G_PARAM_READABLE | G_PARAM_WRITABLE)));
+  				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)));
 }
 
 static void
 gdict_pref_dialog_init (GdictPrefDialog *dialog)
 {
   gchar *font;
-  
+
+  gtk_window_set_default_size (GTK_WINDOW (dialog),
+  			       DEFAULT_MIN_WIDTH,
+  			       DEFAULT_MIN_HEIGHT);
+    
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
   gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
@@ -840,7 +592,7 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   dialog->sources_remove = glade_xml_get_widget (dialog->xml, "remove_button");
   gtk_tooltips_set_tip (dialog->tips,
   			dialog->sources_remove,
-  			_("Remove the curretly selected dictionary source"),
+  			_("Remove the currently selected dictionary source"),
   			NULL);
   g_signal_connect (dialog->sources_remove, "clicked",
   		    G_CALLBACK (source_remove_clicked_cb), dialog);
@@ -879,7 +631,8 @@ gdict_pref_dialog_new (GtkWindow         *parent,
   			 "title", title,
   			 NULL);
 
-  gtk_window_set_transient_for (GTK_WINDOW (retval), parent);
+  if (parent)
+    gtk_window_set_transient_for (GTK_WINDOW (retval), parent);
   
   return retval;
 }

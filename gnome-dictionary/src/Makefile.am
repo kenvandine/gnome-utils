@@ -23,6 +23,8 @@ gnome_dictionary_SOURCES = \
 	gdict-pref-dialog.h	\
 	gdict-print.c 		\
 	gdict-print.h 		\
+	gdict-source-dialog.c 	\
+	gdict-source-dialog.h 	\
 	gdict-window.c 		\
 	gdict-window.h 		\
 	main.c			\
@@ -58,6 +60,8 @@ gnome_dictionary_applet_SOURCES = \
 	gdict-pref-dialog.h	\
 	gdict-print.c 		\
 	gdict-print.h 		\
+	gdict-source-dialog.c 	\
+	gdict-source-dialog.h 	\
 	$(NULL)
 gnome_dictionary_applet_CFLAGS = \
 	-I$(top_srcdir)/gnome-dictionary/libgdict \

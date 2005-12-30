@@ -1,3 +1,65 @@
+2005-12-30  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	Re-sync with my development trunk: add the new source dialog code; fix
+	a slew of typos and a serious crasher; more UI fixes.
+
+	A data/gnome-dictionary.png
+	A src/gdict-source-dialog.h
+	A src/gdict-source-dialog.c
+
+	* libgdict/gdict-entry.c,
+	src/gdict-pref-dialog.c,
+	src/gdict-about.c,
+	src/gdict-app.c,
+	src/gdict-applet.c: fix some typos.
+
+	* src/gdict-window.c (gdict_window_class_init): we don't need
+	translatable properties, here.
+
+	* src/Makefile.am: add gdict-source-dialog.[ch] to the build.
+
+	* src/gdict-pref-dialog.c,
+	src/gdict-source-dialog.h,
+	src/gdict-source-dialog.c: move out the
+	source dialog into its own file; make it flexible enough to allow
+	further expansion when sources view and editing will be added.
+
+	* src/gdict-about.c: add support for the new icon.
+
+	* libgdict/gdict-context.c: add documentation
+
+	* data/gnome-dictionary.1: update the man page.
+
+	* data/gnome-dictionary-preferences.glade: update the UI for the
+	source dialog.
+
+	* src/gdict-about.c,
+	src/gdict-app.c,
+	src/gdict-applet.c,
+	src/gdict-window.c,
+	src/gdict-window.h: add support for the new icon.
+	
+	* data/gnome-dictionary.desktop.in: add the new icon
+	
+	* data/gnome-dictionary.png: new icon for the dictionary.
+
+	* data/Makefile.am: add the appicon target
+
+	* libgdict/gdict-defbox.c (create_progress_dialog): UI fixes (patch
+	from Dennis Cranston, closes bug #324860).
+	
+	* src/gdict-window.c (gdict_window_lookup_start_cb), 
+	(gdict_window_lookup_end_cb), (entry_activate_cb), 
+	(gdict_window_drag_data_received_cb):  Fix a couple regressions:
+	1) change window title format to "word - App Name" per HIG.
+	2) display a busy cursor while looking up words (patch from Dennis
+	Cranston, closes bug #324860).
+
+	* src/gdict-window.c (gdict_window_error_cb), (gdict_window_set_word),
+	(entry_activate_cb), (gdict_window_drag_data_received_cb): fix a
+	double-free bug triggered by a failed look up (patch from Paolo
+	Borelli, closes bug #325238).
+
 2005-12-25  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	The "Maybe this Christmas" release.  This release marks the end of the

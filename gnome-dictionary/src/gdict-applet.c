@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include <glib/gi18n.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <libgnomeui/gnome-authentication-manager.h>
@@ -85,6 +86,8 @@ struct _GdictAppletPrivate
   GtkWidget *defbox;
 
   guint idle_draw_id;
+
+  GdkPixbuf *icon;
 
   guint is_window_showing : 1;
 };
@@ -390,7 +393,7 @@ gdict_applet_draw (GdictApplet *applet)
   priv->entry = gtk_entry_new ();
   set_atk_name_description (priv->entry,
 		  	    _("Dictionary entry"),
-			    _("Look up a word on a dictionary"));
+			    _("Look up words in dictionaries"));
   gtk_entry_set_editable (GTK_ENTRY (priv->entry), TRUE);
   gtk_entry_set_width_chars (GTK_ENTRY (priv->entry), 12);
   g_signal_connect (priv->entry, "activate",
@@ -415,11 +418,24 @@ gdict_applet_draw (GdictApplet *applet)
   gtk_box_pack_start (GTK_BOX (box), event, FALSE, FALSE, 0);
   gtk_widget_show (event);
   
-  priv->image = gtk_image_new ();
-  gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
-  gtk_image_set_from_icon_name (GTK_IMAGE (priv->image), "gdict", -1);
-  gtk_container_add (GTK_CONTAINER (event), priv->image);
-  gtk_widget_show (priv->image);
+  if (priv->icon)
+    {
+      priv->image = gtk_image_new ();
+      
+      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
+      gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), priv->icon);
+      gtk_container_add (GTK_CONTAINER (event), priv->image);
+      gtk_widget_show (priv->image);
+    }
+  else
+    {
+      priv->image = gtk_image_new ();
+
+      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
+      gtk_image_set_from_stock (GTK_IMAGE (priv->image), GTK_STOCK_MISSING_IMAGE, -1);
+      gtk_container_add (GTK_CONTAINER (event), priv->image);
+      gtk_widget_show (priv->image);
+    }
   
   priv->box = box;
   
@@ -930,6 +946,9 @@ gdict_applet_finalize (GObject *object)
   
   if (priv->tooltips)
     g_object_unref (priv->tooltips);
+
+  if (priv->icon)
+    g_object_unref (priv->icon);
   
   g_free (priv->source_name);
   g_free (priv->print_font);
@@ -959,8 +978,10 @@ static void
 gdict_applet_init (GdictApplet *applet)
 {
   GdictAppletPrivate *priv;
-  gchar *loader_path, *data_dir;
+  gchar *loader_path, *data_dir, *icon_file;
   BonoboUIComponent *popup_component;
+  GdkPixbuf *icon;
+  GError *icon_error;
 
   /* create the data directory inside $HOME, if it doesn't exist yet */
   data_dir = g_build_filename (g_get_home_dir (),
@@ -975,9 +996,27 @@ gdict_applet_init (GdictApplet *applet)
     }
   
   g_free (data_dir);
+  icon_file = g_build_filename (DATADIR,
+		  		"pixmaps",
+				"gnome-dictionary.png",
+				NULL);
+  icon_error = NULL;
+  icon = gdk_pixbuf_new_from_file (icon_file, &icon_error);
+  if (icon_error)
+    {
+      g_warning (_("Unable to load the application icon: %s"),
+		 icon_error->message);
 
-  gtk_window_set_default_icon_name ("gdict");
+      g_error_free (icon_error);
+    }
+  else
+    {
+      gtk_window_set_default_icon (icon);
+      priv->icon = icon;
+    }
 
+  g_free (icon_file);
+  
   panel_applet_set_flags (PANEL_APPLET (applet),
 			  PANEL_APPLET_EXPAND_MINOR);
   
