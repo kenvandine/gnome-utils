@@ -1,10 +1,15 @@
 .\" gnome-dictionary.1 - a online dictionary client
+.\" Copyright 2005  Emmanuele Bassi
 .\" Copyright 2001  Jochen Voss
 .TH gnome-dictionary 1 "Jan 2 2005" "gnome-utils 2.13.4"
 .SH NAME
 gnome-dictionary \- Look up words on dictionaries
 .SH SYNOPSIS
-.B gnome-dictionary
+.nf
+.BI gnome-dictionary
+.br
+.BI gnome-dictionary " [options]"
+.fi
 .sp
 or select
 .B Dictionary
@@ -19,6 +24,26 @@ For full documentation see the
 .B GNOME Dictionary
 online help.
 
+.SH OPTIONS
+.TP
+.BI \-\-look\-up " word"
+Looks up the specified word using the pre-defined dictionary source.
+.TP
+.BI \-s " source\fR or " \-\-source " source"
+Uses the specified source for looking up words.  This does not affect the
+global settings.
+.TP
+.BR \-l " or " \-\-list\-sources
+Lists all the sources available.
+.TP
+.BR \-n " or " \-\-no\-window
+Using this switch with the \-\-look\-up will print the defintions found
+on the console without launching the GUI.
+.TP
+.B \-\-help
+Display help information.
+.SH CONFIGURATION
+All the configuration is handled using GConf.
 .SH AUTHOR
 .B GNOME Dictionary
 was originally written by Spiros Papadimitriou (<spapadim+@cs.cmu.edu>), Mike
