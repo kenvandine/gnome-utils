@@ -474,6 +474,9 @@ gdict_source_dialog_constructor (GType                  type,
       						     GTK_RESPONSE_CLOSE);
       break;
     case GDICT_SOURCE_DIALOG_CREATE:
+      dialog->cancel_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
+      						     GTK_STOCK_CANCEL,
+      						     GTK_RESPONSE_CANCEL);
       dialog->add_button    = gtk_dialog_add_button (GTK_DIALOG (dialog),
       						     GTK_STOCK_ADD,
       						     GTK_RESPONSE_ACCEPT);
@@ -481,10 +484,6 @@ gdict_source_dialog_constructor (GType                  type,
        * since it's the only setting that makes a source usable.
        */
       gtk_widget_set_sensitive (dialog->add_button, FALSE);
-      
-      dialog->cancel_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-      						     GTK_STOCK_CANCEL,
-      						     GTK_RESPONSE_CANCEL);
       break;
     case GDICT_SOURCE_DIALOG_EDIT:
       break;
