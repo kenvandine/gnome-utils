@@ -393,17 +393,17 @@ font_button_font_set_cb (GtkWidget       *font_button,
   font = gtk_font_button_get_font_name (GTK_FONT_BUTTON (font_button));
   if (!font || font[0] == '\0')
     return;
+
+  if (dialog->print_font && (strcmp (dialog->print_font, font) == 0))
+    return;
   
-  if (dialog->print_font && (strcmp (dialog->print_font, font) != 0))
-    {
-      g_free (dialog->print_font);
-      dialog->print_font = g_strdup (font);
+  g_free (dialog->print_font);
+  dialog->print_font = g_strdup (font);
       
-      gconf_client_set_string (dialog->gconf_client,
-  			       GDICT_GCONF_PRINT_FONT_KEY,
-  			       dialog->print_font,
-  			       NULL);
-    }
+  gconf_client_set_string (dialog->gconf_client,
+  			   GDICT_GCONF_PRINT_FONT_KEY,
+  			   dialog->print_font,
+  			   NULL);
 }
 
 static void
@@ -441,6 +441,9 @@ gdict_pref_dialog_gconf_notify_cb (GConfClient *client,
           g_free (dialog->print_font);
           dialog->print_font = g_strdup (GDICT_DEFAULT_PRINT_FONT);
         }
+
+      gtk_font_button_set_font_name (GTK_FONT_BUTTON (dialog->font_button),
+		      		     dialog->print_font);
     }
 }
 
