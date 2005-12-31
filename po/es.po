@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-30 18:38+0100\n"
-"PO-Revision-Date: 2005-12-30 18:42+0100\n"
+"POT-Creation-Date: 2005-12-31 13:40+0100\n"
+"PO-Revision-Date: 2005-12-31 13:41+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -575,8 +575,9 @@ msgid ""
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
 "present in a dictionary source should be searched"
 msgstr ""
-"El nombre de la base de datos individual predeterminada o la meta-base de datos para "
-"utilizar en una fuente de diccionario. («!») especifica debería buscar en todas las bases de datos en un servidor dado"
+"El nombre de la base de datos individual predeterminada o la meta-base de "
+"datos para utilizar en una fuente de diccionario. («!») especifica debería "
+"buscar en todas las bases de datos en un servidor dado"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid ""
@@ -610,59 +611,64 @@ msgid "Use smart lookup (Deprecated)"
 msgstr "Usar búsqueda inteligente (Obsoleto)"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
-msgid "<b>Data_base:</b>"
-msgstr "<b>_Base de datos:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:2
-msgid "<b>_Description:</b>"
-msgstr "<b>_Descripción:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-msgid "<b>_Hostname:</b>"
-msgstr "<b>_Host:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:4
-msgid "<b>_Port:</b>"
-msgstr "<b>_Puerto:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-msgid "<b>_Strategy:</b>"
-msgstr "<b>_Estrategia:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:6
-msgid "<b>_Transport:</b>"
-msgstr "<b>_Transporte:</b>"
+msgid "Data_base:"
+msgstr "Base de datos:"
 
 #. Transport methods
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:8
+#. Translators: this is the same string used in the file
+#. * gnome-dictionary-preferences.glade for the transport_combo
+#. * widget items.
+#.
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
+#: ../gnome-dictionary/src/gdict-source-dialog.c:146
 msgid "Dictionary Server"
 msgstr "Servidor de diccionario"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:9
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:4
+msgid "H_ostname:"
+msgstr "Nombre del _host:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:167
 #: ../gnome-dictionary/src/gdict-window.c:524
 msgid "Print"
 msgstr "Imprimir"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:6
 msgid "Source"
 msgstr "Fuente"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:7
 msgid "Source Name"
 msgstr "Nombre de la fuente"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
-msgid "_Advanced Settings"
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:8
+msgid "_Advanced settings"
 msgstr "Configuración _avanzada"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:9
+msgid "_Description:"
+msgstr "_Descripción:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
+msgid "_Port:"
+msgstr "_Puerto:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
 msgid "_Print font:"
 msgstr "Tipografía de _impresión:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
 msgid "_Select a dictionary source for looking up words:"
 msgstr "_Seleccione una fuente de diccionarios para buscar palabras:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
+msgid "_Strategy:"
+msgstr "_Estrategia:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
+msgid "_Transport:"
+msgstr "_Transporte:"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:270
 msgid "Client Name"
@@ -1198,6 +1204,19 @@ msgstr "%s (página %d)"
 msgid "Print Preview"
 msgstr "Vista previa de impresión"
 
+#: ../gnome-dictionary/src/gdict-source-dialog.c:276
+msgid "Unable to create a source file"
+msgstr "Imposible crear un archivo de fuentes"
+
+#: ../gnome-dictionary/src/gdict-source-dialog.c:295
+msgid "Unable to save source file"
+msgstr "Imposible guardar el archivo de fuentes"
+
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:671
+msgid "There was an error while displaying help"
+msgstr "Hubo un error al mostrar la ayuda"
+
 #: ../gnome-dictionary/src/gdict-window.c:167
 #, c-format
 msgid "Searching for '%s'..."
@@ -1220,10 +1239,6 @@ msgstr "Se han encontrado %d definiciones"
 #: ../gnome-dictionary/src/gdict-window.c:590
 msgid "Dictionary Preferences"
 msgstr "Preferencias del diccionario"
-
-#: ../gnome-dictionary/src/gdict-window.c:671
-msgid "There was an error while displaying help"
-msgstr "Hubo un error al mostrar la ayuda"
 
 #: ../gnome-dictionary/src/gdict-window.c:706
 msgid "_File"
@@ -2669,26 +2684,26 @@ msgstr ""
 msgid "Gnome-VFS Error.\n"
 msgstr "Error de Gnome-VFS.\n"
 
+#~ msgid "<b>Data_base:</b>"
+#~ msgstr "<b>_Base de datos:</b>"
+
+#~ msgid "<b>_Description:</b>"
+#~ msgstr "<b>_Descripción:</b>"
+
+#~ msgid "<b>_Hostname:</b>"
+#~ msgstr "<b>_Host:</b>"
+
+#~ msgid "<b>_Port:</b>"
+#~ msgstr "<b>_Puerto:</b>"
+
+#~ msgid "<b>_Strategy:</b>"
+#~ msgstr "<b>_Estrategia:</b>"
+
+#~ msgid "<b>_Transport:</b>"
+#~ msgstr "<b>_Transporte:</b>"
+
 #~ msgid "<b>Name:</b>"
 #~ msgstr "<b>Nombre:</b>"
-
-#~ msgid "Data_base:"
-#~ msgstr "Base de datos:"
-
-#~ msgid "H_ostname:"
-#~ msgstr "Nombre del _host:"
-
-#~ msgid "St_rategy:"
-#~ msgstr "_Estrategia:"
-
-#~ msgid "_Description:"
-#~ msgstr "_Descripción:"
-
-#~ msgid "_Port:"
-#~ msgstr "_Puerto:"
-
-#~ msgid "_Transport:"
-#~ msgstr "_Transporte:"
 
 #~ msgid "database"
 #~ msgstr "Base de datos"
