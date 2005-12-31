@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
 <!ENTITY app "Dictionary">
+<!ENTITY applet "Dictionary Applet">
 <!ENTITY appversion "2.14.0">
-<!ENTITY date "December 2005">
+<!ENTITY date "January 2005">
 <!ENTITY legal SYSTEM "legal.xml">
 <!ENTITY manrevision "1.0.0">
 ]>
@@ -24,7 +25,7 @@
 
     <abstract role="description">
       <para>
-        Dictionary enables you to lookup definitions and correct spellings
+        Dictionary enables you to look up definitions and correct spellings
         of words.
       </para>
     </abstract>
@@ -37,7 +38,7 @@
 <!-- translators: uncomment this:
 
   <copyright>
-   <year>2004</year>
+   <year>2006</year>
    <holder>ME-THE-TRANSLATOR (Latin translation)</holder>
   </copyright>
 
@@ -102,12 +103,307 @@
 
 <!-- ============= Document Body ============================= -->
 <!-- ============= Introduction ============================== -->
-
-  <sect1 id="gdict-introduction"> 
+  <sect1 id="gnome-dictionary-introduction"> 
     <title>Introduction</title>
 
-    <para>...</para>
+    <para>The <application>&app;</application> application enables you to
+    search words and terms on a dictionary source.</para>
     
   </sect1>
+
+<!-- ============= Getting Started =========================== -->  
+  <sect1 id="gnome-dictionary-getting-started">
+    <title>Getting Started</title>
+    
+<!-- ============= To Start Dictionary ======================= -->
+    <sect2 id="gnome-dictionary-start-application">
+      <title>To Start &app;</title>
+      
+      <para>You can start <application>&app;</application> in the following
+      ways:</para>
+      
+      <variablelist>
+        	<varlistentry>
+        	  <term><guimenu>Applications</guimenu> menu</term>
+        	  <listitem>
+        	    <para>Choose <menuchoice><guisubmenu>Accessories</guisubmenu>
+        	      <guimenuitem>Dictionary</guimenuitem></menuchoice>.
+        	    </para>
+        	  </listitem>
+        	</varlistentry>
+    	<varlistentry>
+    	  <term>Command line</term>
+    	  <listitem>
+    	    <para>Execute the following command: <command>gnome-dictionary</command></para>
+    	  </listitem>
+    	</varlistentry>
+      </variablelist>
+      
+      <para>Once started, the <application>&app;</application> window is
+      displayed:</para>
+      
+      <figure id="gnome-dictionary-fig">
+        <title>&app; Window</title>
+        <screenshot> 
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-dictionary-application.png" format="PNG"/>
+            </imageobject>
+            <textobject><phrase>Shows &app; main window.</phrase></textobject> 
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+    </sect2>
+
+  </sect1>
   
+<!-- ============= Usage ===================================== -->
+  <sect1 id="gnome-dictionary-usage">
+    <title>Usage</title>
+    
+    <sect2 id="gnome-dictionary-lookup">
+      <title>Looking up a word</title>
+      
+      <para>To look up a word, type it into the <guilabel>entry field</guilabel>
+      and press <keycap>Enter</keycap>.</para>
+    
+      <para>If some definition for the word is found, it will appear inside
+      the main window area:</para>
+
+      <figure id="gnome-dictionary-lookup-fig">
+        <title>&app; Window</title>
+        <screenshot> 
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-dictionary-lookup.png" format="PNG"/>
+            </imageobject>
+            <textobject><phrase>Shows a definition inside the &app; main window.</phrase></textobject> 
+          </mediaobject>
+        </screenshot>
+      </figure>
+      
+      <para>Otherwise, an error dialog will appear, with a message explaining the
+      nature of the error.</para>
+    
+    </sect2>
+    
+    <sect2 id="gnome-dictionary-save">
+      <title>Save look up results</title>
+      
+      <para>To save the results of a look up, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Save a Copy</guimenuitem></menuchoice>. Enter a name for the file in the <guilabel>Save a Copy</guilabel> dialog, then click <guibutton>Save</guibutton>.</para>
+    
+    </sect2>
+    
+    <sect2 id="gnome-dictionary-print">
+      <title>Print look up results</title>
+      
+      <para>To print the results of a look up, choose <menuchoice><guimenu>File</guimenu><guimenuitem>Print</guimenuitem></menuchoice>.</para>
+
+      <para>Inside the <guilabel>Print</guilabel> dialog you can select the
+      printer to use, the paper format, the number of copies.</para>
+
+      <para>To see a preview of what will be printed, click
+      <guibutton>Preview</guibutton>.</para>
+
+      <para>To print, click <guibutton>Print</guibutton>.</para>
+    
+    </sect2>
+    
+    <sect2 id="gnome-dictionary-find">
+      <title>Find Text</title>
+
+      <figure id="gnome-dictionary-find-fig">
+        <title>&app; Window</title>
+        <screenshot> 
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-dictionary-find.png" format="PNG"/>
+            </imageobject>
+            <textobject><phrase>Shows the &app; Find pane inside the main window.</phrase></textobject> 
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      
+      <para>To find text inside the results of a look up, perform the following
+      steps:</para>
+      
+      <orderedlist>
+        <listitem><para>Choose <menuchoice> <guimenu>Edit</guimenu> <guimenuitem>Find</guimenuitem> </menuchoice>
+        to display the <guilabel>Find</guilabel> pane.</para></listitem>
+        <listitem><para>Type the text you want to find inside the <guilabel>Search</guilabel>
+        entry.</para></listitem>
+        <listitem><para>To find the next occurrence of the text, click <guibutton>Find Next</guibutton>.
+        To find the previous occurrence of the text, click
+        <guibutton>Find Previous</guibutton>.</para></listitem>
+      </orderedlist>
+    
+    </sect2>
+      
+  </sect1>
+
+<!-- ============= Preferences =============================== -->
+  <sect1 id="gnome-dictionary-preferences">
+    <title>Preferences</title>
+    
+    <para>To change the <application>&app;</application> application
+    preferences, choose <menuchoice><guimenu>Edit</guimenu><guimenuitem>Preferences</guimenuitem></menuchoice>.</para>
+
+<!-- ============= Source Tab ================================ -->
+    <sect2 id="gnome-dictionary-source-tab">
+      <title>Dictionary Sources</title>
+
+      <figure id="gnome-dictionary-sources-fig">
+        <title>&app; Window</title>
+        <screenshot> 
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-dictionary-sources.png" format="PNG"/>
+            </imageobject>
+            <textobject><phrase>Shows the Source tab of the Preferences dialog.</phrase></textobject> 
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>To change the dictionary source used to look up words, select
+      the desired source from the list.</para>
+    </sect2>
+    
+<!-- ============= Add Source ================================ -->
+    <sect2 id="gnome-dictionary-add-source">
+      <title>Adding a new source</title>
+
+      <figure id="gnome-dictionary-add-source-fig">
+        <title>&app; Window</title>
+        <screenshot> 
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-dictionary-add-source.png" format="PNG"/>
+            </imageobject>
+            <textobject><phrase>Shows the Add Source dialog.</phrase></textobject> 
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>To add a new dictionary source, perform the following steps:</para>
+
+      <orderedlist>
+        <listitem><para></para></listitem>
+      </orderedlist>
+    </sect2>
+
+<!-- ============= Remove Source ============================= -->
+    <sect2 id="gnome-dictionary-remove-source">
+      <title>Removing a source</title>
+      
+      <para>To remove a dictionary source, perform the following steps:</para>
+
+      <orderedlist>
+        <listitem><para></para></listitem>
+      </orderedlist>
+      
+    </sect2>
+    
+<!-- ============= Print Tab ================================= -->
+    <sect2 id="gnome-dictionary-print-tab">
+      <title>Print Options</title>
+
+      <figure id="gnome-dictionary-print-fig">
+        <title>&app; Window</title>
+        <screenshot> 
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-dictionary-print.png" format="PNG"/>
+            </imageobject>
+            <textobject><phrase>Shows the Print tab inside the Preferences dialog.</phrase></textobject> 
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>...</para>
+    </sect2>
+    
+  </sect1>
+
+<!-- ============= Dictionary Applet ======================== -->
+  <sect1 id="gnome-dictionary-applet">
+  <title>The &applet;</title>
+  
+  <para>The <application>&app;</application> application comes with a
+  panel applet, the <application>&applet;</application>.  You can add
+  the <application>&applet;</application> applet to a panel and look
+  up words in dictionaries.</para>
+
+  <figure id="gnome-dictionary-applet-fig">
+    <title>&applet; Window</title>
+    <screenshot> 
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/gnome-dictionary-applet.png" format="PNG"/>
+        </imageobject>
+        <textobject><phrase>Shows &applet;.</phrase></textobject> 
+      </mediaobject>
+    </screenshot>
+  </figure>
+
+
+<!-- ============= Dictionary Applet Start ================== -->
+    <sect2 id="gnome-dictionary-applet-start">
+      <title>To Start &applet;</title>
+    
+      <para>To add <application>&applet;</application> to a panel, right-click
+      on the panel, then choose <guimenuitem>Add to Panel</guimenuitem>.
+      Select &applet; in the <application>Add to the panel</application>
+      dialog, then click <guibutton>OK</guibutton>.</para>
+      
+    </sect2>
+
+<!-- ============= Dictionary Applet Start ================== -->
+    <sect2 id="gnome-dictionary-applet-usage">
+      <title>Using the &applet;</title>
+      
+      <para>To look up a word, type it into the <guilabel>entry field</guilabel>,
+      and press <keycap>Enter</keycap> or right-click on the dictionary icon
+      and then choose <guimenuitem>Look up</guimenuitem>.
+      </para>
+      
+      <para>If some definition for the word was found, a window will appear,
+      with the text of the definitions:</para>
+
+      <figure id="gnome-dictionary-applet-window-fig">
+        <title>&applet; Window</title>
+        <screenshot> 
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/gnome-dictionary-applet-window.png" format="PNG"/>
+            </imageobject>
+            <textobject><phrase>Shows &applet; main window.</phrase></textobject> 
+          </mediaobject>
+        </screenshot>
+      </figure>
+      
+      <para>Click <guibutton>Save</guibutton> to save the definitions to a
+      text file.  Click <guibutton>Print</guibutton> to print the definitions.
+      Click <guibutton>Clear</guibutton> to clear the definitions.</para>
+      
+      <para>You can make the window disappear by left-clicking on the dictionary
+      icon.</para>
+
+    </sect2>
+    
+    <sect2 id="gnome-dictionary-applet-preferences">
+      <title>Preferences</title>
+      
+      <para>To configure the <application>&applet;</application>, right-click on
+      the dictionary icon, then choose <guimenuitem>Preferences</guimenuitem>.</para>
+      
+      <para>The <guilabel>Preferences</guilabel> dialog is the same used by
+      the <application>&app;</application> application, so refer to
+      <xref linkend="gnome-dictionary-preferences"/></para>
+      
+    </sect2>
+    
+  </sect1>
+
 </article>
