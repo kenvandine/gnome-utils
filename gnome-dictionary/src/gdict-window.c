@@ -662,7 +662,7 @@ gdict_window_cmd_help_contents (GtkAction   *action,
   gnome_help_display_desktop_on_screen (NULL,
   					"gnome-dictionary",
   					"gnome-dictionary",
-  					"gnome-dictionary-application",
+					NULL,
   					gtk_widget_get_screen (GTK_WIDGET (window)),
   					&err);
   if (err)
