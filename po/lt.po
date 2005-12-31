@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-29 14:52+0200\n"
-"PO-Revision-Date: 2005-12-29 17:25+0200\n"
+"POT-Creation-Date: 2005-12-31 14:07+0200\n"
+"PO-Revision-Date: 2005-12-31 14:12+0200\n"
 "Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
 "MIME-Version: 1.0\n"
@@ -468,7 +468,7 @@ msgid "Look up words in a dictionary"
 msgstr "Ieškoti žodyne žodžių"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:1
-#: ../gnome-dictionary/src/gdict-window.c:744 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:749 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Apie"
 
@@ -478,7 +478,7 @@ msgid "_Clear"
 msgstr "Išval_yti"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:704 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:709 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_Pagalba"
 
@@ -487,7 +487,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Ieškoti pažymėto teksto"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:728
+#: ../gnome-dictionary/src/gdict-window.c:733
 msgid "_Preferences"
 msgstr "_Nustatymai"
 
@@ -500,9 +500,9 @@ msgid "_Save"
 msgstr "Iš_saugoti"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
-#: ../gnome-dictionary/src/gdict-about.c:70
+#: ../gnome-dictionary/src/gdict-about.c:98
 #: ../gnome-dictionary/src/gdict-app.c:247
-#: ../gnome-dictionary/src/gdict-window.c:909
+#: ../gnome-dictionary/src/gdict-window.c:911
 msgid "Dictionary"
 msgstr "Žodynas"
 
@@ -557,12 +557,12 @@ msgstr "Šriftas naudojamas spausdinant apibrėžimą."
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid ""
 "The name of the default individual database or meta-database to use on a "
-"dictionary source. An exclamation mark (\"!\") means that all the database "
-"present on a source should be searched"
+"dictionary source. An exclamation mark (\"!\") means that all the databases "
+"present in a dictionary source should be searched"
 msgstr ""
 "Numatytosios žodyno šaltinyje naudojamos individualios duomenų bazės ar "
-"metaduomenų bazės pavadinimas. Šauktukas „!“ reiškia, kad turėtų būti "
-"ieškoma visose esančiose duomenų bazėse"
+"metaduomenų bazės pavadinimas. Šauktukas („!“) reiškia, kad turėtų būti "
+"ieškoma visose žodyno šaltinyje esančiose duomenų bazėse"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid ""
@@ -595,34 +595,6 @@ msgid "Use smart lookup (Deprecated)"
 msgstr "Naudoti gudrią paiešką (nebenaudojama)"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
-msgid "<b>Database:</b>"
-msgstr "<b>Duomenų bazė:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:2
-msgid "<b>Description:</b>"
-msgstr "<b>Aprašymas:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-msgid "<b>Hostname:</b>"
-msgstr "<b>Kompiuterio vardas:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:4
-msgid "<b>Name:</b>"
-msgstr "<b>Pavadinimas:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-msgid "<b>Port:</b>"
-msgstr "<b>Prievadas:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:6
-msgid "<b>Strategy:</b>"
-msgstr "<b>Strategija:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:7
-msgid "<b>Transport:</b>"
-msgstr "<b>Transportas:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:8
 msgid "Data_base:"
 msgstr "Duomenų _bazė:"
 
@@ -631,138 +603,110 @@ msgstr "Duomenų _bazė:"
 #. * gnome-dictionary-preferences.glade for the transport_combo
 #. * widget items.
 #.
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:283
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
+#: ../gnome-dictionary/src/gdict-source-dialog.c:146
 msgid "Dictionary Server"
 msgstr "Žodyno serveris"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:4
 msgid "H_ostname:"
 msgstr "Kompiuteri_o vardas:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
-#: ../gnome-dictionary/src/gdict-applet.c:164
-#: ../gnome-dictionary/src/gdict-window.c:519
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
+#: ../gnome-dictionary/src/gdict-applet.c:167
+#: ../gnome-dictionary/src/gdict-window.c:524
 msgid "Print"
 msgstr "Spausdinti"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:6
 msgid "Source"
 msgstr "Šaltinis"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:7
 msgid "Source Name"
 msgstr "Šaltinio pavadinimas"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:15
-msgid "St_rategy:"
-msgstr "St_rategija:"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:16
-msgid "_Advanced Settings"
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:8
+msgid "_Advanced settings"
 msgstr "_Sudėtingesni nustatymai"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:17
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:9
 msgid "_Description:"
 msgstr "_Aprašymas:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:18
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Prievadas:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:19
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
 msgid "_Print font:"
 msgstr "S_pausdinimo šriftas:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:20
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
 msgid "_Select a dictionary source for looking up words:"
 msgstr "_Pasirinkti žodyno šaltinį naudojamą ieškant žodžių:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:21
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
+msgid "_Strategy:"
+msgstr "_Strategija:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
 msgid "_Transport:"
 msgstr "_Transportas:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:22
-msgid "database"
-msgstr "duomenų bazė"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:23
-msgid "description"
-msgstr "aprašymas"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:24
-msgid "hostname"
-msgstr "kompiuterio vardas"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:25
-msgid "name"
-msgstr "pavadinimas"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:26
-msgid "port"
-msgstr "prievadas"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:27
-msgid "strategy"
-msgstr "strategija"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:28
-msgid "transport"
-msgstr "transportas"
-
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:265
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
 msgid "Client Name"
 msgstr "Kliento vardas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:266
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
 msgid "The name of the client of the context object"
 msgstr "Konteksto objekto kliento vardas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:279
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "Hostname"
 msgstr "Kompiuterio vardas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:280
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
 msgid "The hostname of the dictionary server to connect to"
 msgstr "Žodyno serverio, prie kurio jungtis, vardas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:293
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
 msgid "Port"
 msgstr "Prievadas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:294
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
 msgid "The port of the dictionary server to connect to"
 msgstr "Žodyno serverio, prie kurio jungtis, prievadas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:309
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
 msgid "Status"
 msgstr "Būsena"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:310
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
 msgid "The status code as returned by the dictionary server"
 msgstr "Žodyno serverio grąžintas būsenos kodas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:755
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:762
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Nėra ryšio su žodyno serveriu „%s:%d“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1008
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1024
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "Nepavyko rasti kompiuterio „%s“: nerasta tinkamų resursų"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1036
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Nepavyko rasti kompiuterio „%s“: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1067
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Nepavyko rasti kompiuterio „%s“: kompiuteris nerastas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -771,7 +715,7 @@ msgstr ""
 "Nepavyko prisijungti prie žodyno serverio „%s:%d“. Serveris grąžino kodą %d "
 "(serveris neveikia)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1138
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -780,47 +724,47 @@ msgstr ""
 "Nepavyko apdoroti žodyno serverio atsako\n"
 ": „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1167
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "„%s“ apibrėžimų nerasta"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1182
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Netinkama duomenų bazė „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1197
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Netinkama strategija „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1212
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Bloga komanda „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1227
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Blogi parametrai komandai „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1242
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Žodyno serveryje „%s“ nerasta duomenų bazių"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1257
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Žodyno serveryje „%s“ nerasta strategijų"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1643
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1663
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Nepavyko prisijungti prie žodyno serverio %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1682
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1702
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -829,21 +773,21 @@ msgstr ""
 "Klaida skaitant serverio atsaką:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1753
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1773
 msgid "No hostname defined for the dictionary server"
 msgstr "Nenurodyta žodyno serverio kompiuterio vardas"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1789
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1804
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1809
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1824
 msgid "Unable to create socket"
 msgstr "Nepavyko sukurti lizdo"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1830
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1850
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Nepavyko nustatyti kanalo kaip ne blokuojamo: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1845
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Nepavyko prisijungti prie žodyno serverio „%s:%d“"
@@ -926,29 +870,33 @@ msgstr "Šaltinio spalva"
 msgid "Color of the dictionary source"
 msgstr "Žodyno šaltinio spalva"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1046
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1013
+msgid "Progress"
+msgstr "Pažanga"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1050
 #, c-format
 msgid "Definition for '%s' (%d/%d)"
 msgstr "„%s“ apibrėžimas (%d/%d)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1248
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1252
 msgid "Error while looking up definition"
 msgstr "Klaida ieškant apibrėžimo"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1292
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1296
 #, c-format
 msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
 msgstr "Bandoma ieškoti „%s“, bet GdictContext neapibrėžtas. Nutraukiama."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1300
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Another search is in progress"
 msgstr "Šiuo metu vykdoma kita paieška"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1301
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1305
 msgid "Please wait until the current search ends."
 msgstr "Palaukite kol ši paieška bus baigta."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1332
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1336
 msgid "Error while retrieving the definition"
 msgstr "Klaida gaunant apibrėžimą"
 
@@ -957,8 +905,8 @@ msgid "The GdictContext object bound to this entry"
 msgstr "GdictContext objektas susietas su šiuo įrašu"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
-msgid "The database to be used for generating the completion list"
-msgstr "Duomenų bazė naudojama užbaigimo sąrašo generavimui"
+msgid "The database to be used to generate the completion list"
+msgstr "Duomenų bazė naudotina užbaigimo sąrašo generavimui"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:134
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
@@ -966,8 +914,8 @@ msgid "Strategy"
 msgstr "Strategija"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
-msgid "The matchin strategy to be used for generating the completion list"
-msgstr "Atitikimo strategija naudojama užbaigimo sąrašo generavimui"
+msgid "The matching strategy to be used to generate the completion list"
+msgstr "Atitikimo strategija naudotina užbaigimo sąrašo generavimui"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:218
 msgid "Filename"
@@ -1064,7 +1012,7 @@ msgid "Dictionary sources found"
 msgstr "Rasti žodyno šaltiniai"
 
 #. Translator credits
-#: ../gnome-dictionary/src/gdict-about.c:49 ../logview/about.c:47
+#: ../gnome-dictionary/src/gdict-about.c:59 ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Paskutinysis vertėjas:\n"
@@ -1075,9 +1023,15 @@ msgstr ""
 "Mantas Kriaučiūnas <mantas@akl.lt>,\n"
 "Gediminas Paulauskas <menesis@chatsubo.lt>"
 
-#: ../gnome-dictionary/src/gdict-about.c:51
-msgid "Look up words on dictionaries"
+#: ../gnome-dictionary/src/gdict-about.c:61
+#: ../gnome-dictionary/src/gdict-applet.c:396
+msgid "Look up words in dictionaries"
 msgstr "Ieškoti žodynuose žodžių"
+
+#: ../gnome-dictionary/src/gdict-about.c:87
+#, c-format
+msgid "Unable to open the application icon: %s"
+msgstr "Nepavyko atverti programos piktogramos: %s"
 
 #: ../gnome-dictionary/src/gdict-app.c:208
 msgid "Word to look up"
@@ -1105,8 +1059,8 @@ msgstr "Spausdinti rezultatus konsolėje"
 
 #. create the new option context
 #: ../gnome-dictionary/src/gdict-app.c:230
-msgid " - Look up words on dictionaries"
-msgstr " - Ieškoti žodyne žodžių"
+msgid " - Look up words in dictionaries"
+msgstr " - Ieškoti žodynuose žodžių"
 
 #: ../gnome-dictionary/src/gdict-app.c:234
 msgid "Dictionary and spelling tool"
@@ -1116,133 +1070,113 @@ msgstr "Žodynas ir rašybos tikrinimo įrankis"
 msgid "Show Dictionary options"
 msgstr "Rodyti žodyno nustatymus"
 
-#: ../gnome-dictionary/src/gdict-applet.c:175
-#: ../gnome-dictionary/src/gdict-window.c:464
+#: ../gnome-dictionary/src/gdict-applet.c:178
+#: ../gnome-dictionary/src/gdict-window.c:469
 msgid "Save a Copy"
 msgstr "Išsaugoti kopiją"
 
-#: ../gnome-dictionary/src/gdict-applet.c:185
-#: ../gnome-dictionary/src/gdict-window.c:474
+#: ../gnome-dictionary/src/gdict-applet.c:188
+#: ../gnome-dictionary/src/gdict-window.c:479
 msgid "Untitled document"
 msgstr "Bevardis dokumentas"
 
-#: ../gnome-dictionary/src/gdict-applet.c:206
-#: ../gnome-dictionary/src/gdict-window.c:495
+#: ../gnome-dictionary/src/gdict-applet.c:209
+#: ../gnome-dictionary/src/gdict-window.c:500
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Klaida rašant į „%s“"
 
-#: ../gnome-dictionary/src/gdict-applet.c:270
+#: ../gnome-dictionary/src/gdict-applet.c:273
 msgid "Clear definition"
 msgstr "Išvalyti apibrėžimą"
 
-#: ../gnome-dictionary/src/gdict-applet.c:271
+#: ../gnome-dictionary/src/gdict-applet.c:274
 msgid "Clear the text of the definition"
 msgstr "Išvalyti apibrėžimo tekstą"
 
-#: ../gnome-dictionary/src/gdict-applet.c:278
+#: ../gnome-dictionary/src/gdict-applet.c:281
 msgid "Print definition"
 msgstr "Spausdinti apibrėžimą"
 
-#: ../gnome-dictionary/src/gdict-applet.c:279
+#: ../gnome-dictionary/src/gdict-applet.c:282
 msgid "Print the text of the definition"
 msgstr "Spausdinti apibrėžimo tekstą"
 
-#: ../gnome-dictionary/src/gdict-applet.c:286
+#: ../gnome-dictionary/src/gdict-applet.c:289
 msgid "Save definition"
 msgstr "Išsaugoti apibrėžimą"
 
-#: ../gnome-dictionary/src/gdict-applet.c:287
+#: ../gnome-dictionary/src/gdict-applet.c:290
 msgid "Save the text of the definition to a file"
 msgstr "Išsaugoti apibrėžimo tekstą į bylą"
 
-#: ../gnome-dictionary/src/gdict-applet.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:395
 msgid "Dictionary entry"
 msgstr "Žodyno įrašas"
 
-#: ../gnome-dictionary/src/gdict-applet.c:393
-msgid "Look up a word on a dictionary"
-msgstr "Ieškoti žodžio žodyne"
-
-#: ../gnome-dictionary/src/gdict-applet.c:570
+#: ../gnome-dictionary/src/gdict-applet.c:586
 msgid "Preferences"
 msgstr "Nustatymai"
 
-#: ../gnome-dictionary/src/gdict-applet.c:602
+#: ../gnome-dictionary/src/gdict-applet.c:618
 msgid "There was an error displaying help"
 msgstr "Rodant žinyną įvyko klaida"
 
-#: ../gnome-dictionary/src/gdict-applet.c:732
-#: ../gnome-dictionary/src/gdict-window.c:253
+#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-window.c:259
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Žodyno šaltinis pavadinimu „%s“ neprieinamas"
 
-#: ../gnome-dictionary/src/gdict-applet.c:736
-#: ../gnome-dictionary/src/gdict-window.c:257
+#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-window.c:263
 msgid "Unable to find dictionary source"
 msgstr "Nepavyko rasti žodyno šaltinio"
 
-#: ../gnome-dictionary/src/gdict-applet.c:752
-#: ../gnome-dictionary/src/gdict-window.c:273
+#: ../gnome-dictionary/src/gdict-applet.c:768
+#: ../gnome-dictionary/src/gdict-window.c:279
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Šaltiniui „%s“ kontekstas neprieinamas"
 
-#: ../gnome-dictionary/src/gdict-applet.c:756
-#: ../gnome-dictionary/src/gdict-window.c:277
+#: ../gnome-dictionary/src/gdict-applet.c:772
+#: ../gnome-dictionary/src/gdict-window.c:283
 msgid "Unable to create a context"
 msgstr "Nepavyko sukurti konteksto"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:443
-#: ../gnome-dictionary/src/gdict-window.c:666
-msgid "There was an error while displaying help"
-msgstr "Rodant žinyną įvyko klaida"
+#: ../gnome-dictionary/src/gdict-applet.c:1007
+#, c-format
+msgid "Unable to load the application icon: %s"
+msgstr "Nepavyko įkelti programos piktogramos: %s"
 
-#. set dialog properties
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:470
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:272
 msgid "Add Dictionary Source"
 msgstr "Pridėti žodyno šaltinį"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:556
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:318
 #, c-format
 msgid "Remove '%s'"
 msgstr "Pašalinti „%s“"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:558
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:320
 msgid "This will permanently remove the dictionary source from the list"
-msgstr "Atlikus šį veiksmą žodyno šaltinis iš sąrašo bus pašalintas negrįžtamai"
+msgstr ""
+"Atlikus šį veiksmą žodyno šaltinis iš sąrašo bus pašalintas negrįžtamai"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:588
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:350
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Nepavyko pašalinti šaltinio „%s“"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:764
-msgid "Active Source"
-msgstr "Aktyvus šaltinis"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:765
-msgid "The name of the active source"
-msgstr "Aktyvaus šaltinio pavadinimas"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:771
-msgid "Source Loader"
-msgstr "Šaltinio įkėliklis"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:772
-msgid "The GdictSourceLoader used by the application"
-msgstr "GdictSourceLoader naudojamas šios programos"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:835
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:592
 msgid "Add a new dictionary source"
 msgstr "Pridėti naują žodyno šaltinį"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:843
-msgid "Remove the curretly selected dictionary source"
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:600
+msgid "Remove the currently selected dictionary source"
 msgstr "Pašalinti dabar pasirinktą žodyno šaltinį"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:858
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:615
 msgid "Set the font used for printing the definitions"
 msgstr "Nustatyti šriftą naudojama spausdinant apibrėžimus"
 
@@ -1255,133 +1189,142 @@ msgstr "%s (%d puslapis)"
 msgid "Print Preview"
 msgstr "Spaudinio peržiūra"
 
-#: ../gnome-dictionary/src/gdict-window.c:160
+#: ../gnome-dictionary/src/gdict-source-dialog.c:276
+msgid "Unable to create a source file"
+msgstr "Nepavyko sukurti šaltinio bylos"
+
+#: ../gnome-dictionary/src/gdict-source-dialog.c:295
+msgid "Unable to save source file"
+msgstr "Nepavyko išsaugoti šaltinio bylos"
+
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:671
+msgid "There was an error while displaying help"
+msgstr "Rodant žinyną įvyko klaida"
+
+#: ../gnome-dictionary/src/gdict-window.c:167
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Ieškoma „%s“..."
 
-#: ../gnome-dictionary/src/gdict-window.c:183
-#: ../gnome-dictionary/src/gdict-window.c:204
+#: ../gnome-dictionary/src/gdict-window.c:191
+#: ../gnome-dictionary/src/gdict-window.c:210
 msgid "No definitions found"
 msgstr "Apibrėžimų nerasta"
 
-#: ../gnome-dictionary/src/gdict-window.c:185
+#: ../gnome-dictionary/src/gdict-window.c:193
 msgid "A definition found"
 msgstr "Rastas apibrėžimas"
 
-#: ../gnome-dictionary/src/gdict-window.c:187
+#: ../gnome-dictionary/src/gdict-window.c:195
 #, c-format
 msgid "%d definitions found"
 msgstr "rasti %d apibrėžimai"
 
-#: ../gnome-dictionary/src/gdict-window.c:585
+#: ../gnome-dictionary/src/gdict-window.c:590
 msgid "Dictionary Preferences"
 msgstr "Žodyno nustatymai"
 
-#: ../gnome-dictionary/src/gdict-window.c:701
+#: ../gnome-dictionary/src/gdict-window.c:706
 msgid "_File"
 msgstr "_Byla"
 
-#: ../gnome-dictionary/src/gdict-window.c:702 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:707 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../gnome-dictionary/src/gdict-window.c:703
+#: ../gnome-dictionary/src/gdict-window.c:708
 msgid "_Go"
 msgstr "_Eiti"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:707
+#: ../gnome-dictionary/src/gdict-window.c:712
 msgid "_New"
 msgstr "_Nauja"
 
-#: ../gnome-dictionary/src/gdict-window.c:708
+#: ../gnome-dictionary/src/gdict-window.c:713
 msgid "New look up"
 msgstr "Nauja paieška"
 
-#: ../gnome-dictionary/src/gdict-window.c:709
+#: ../gnome-dictionary/src/gdict-window.c:714
 msgid "_Save a Copy..."
 msgstr "Iš_saugoti kopiją..."
 
-#: ../gnome-dictionary/src/gdict-window.c:711
+#: ../gnome-dictionary/src/gdict-window.c:716
 msgid "_Print..."
 msgstr "S_pausdinti..."
 
-#: ../gnome-dictionary/src/gdict-window.c:712
+#: ../gnome-dictionary/src/gdict-window.c:717
 msgid "Print this document"
 msgstr "Spausdinti šį dokumentą"
 
-#: ../gnome-dictionary/src/gdict-window.c:719 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:724 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Pažymėti _viską"
 
-#: ../gnome-dictionary/src/gdict-window.c:722
+#: ../gnome-dictionary/src/gdict-window.c:727
 msgid "Find a word or phrase in the document"
 msgstr "Dokumente rasti žodį ar frazę"
 
-#: ../gnome-dictionary/src/gdict-window.c:724
+#: ../gnome-dictionary/src/gdict-window.c:729
 msgid "Find Ne_xt"
 msgstr "Rasti se_kantį"
 
-#: ../gnome-dictionary/src/gdict-window.c:726
+#: ../gnome-dictionary/src/gdict-window.c:731
 msgid "Find Pre_vious"
 msgstr "Rasti _ankstesnį"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:732
+#: ../gnome-dictionary/src/gdict-window.c:737
 msgid "_Previous Definition"
 msgstr "_Ankstesnis apibrėžimas"
 
-#: ../gnome-dictionary/src/gdict-window.c:733
+#: ../gnome-dictionary/src/gdict-window.c:738
 msgid "Go to the previous definition"
 msgstr "Eiti į ankstesnį apibrėžimą"
 
-#: ../gnome-dictionary/src/gdict-window.c:734
+#: ../gnome-dictionary/src/gdict-window.c:739
 msgid "_Next Definition"
 msgstr "_Sekantis apibrėžimas"
 
-#: ../gnome-dictionary/src/gdict-window.c:735
+#: ../gnome-dictionary/src/gdict-window.c:740
 msgid "Go to the next definition"
 msgstr "Eiti į sekantį apibrėžimą"
 
-#: ../gnome-dictionary/src/gdict-window.c:736
+#: ../gnome-dictionary/src/gdict-window.c:741
 msgid "_First Definition"
 msgstr "_Pirmas apibrėžimas"
 
-#: ../gnome-dictionary/src/gdict-window.c:737
+#: ../gnome-dictionary/src/gdict-window.c:742
 msgid "Go to the first definition"
 msgstr "Eiti į pirmąjį apibrėžimą"
 
-#: ../gnome-dictionary/src/gdict-window.c:738
+#: ../gnome-dictionary/src/gdict-window.c:743
 msgid "_Last Definition"
 msgstr "Pas_kutinis apibrėžimas"
 
-#: ../gnome-dictionary/src/gdict-window.c:739
+#: ../gnome-dictionary/src/gdict-window.c:744
 msgid "Go to the last definition"
 msgstr "Eiti į paskutinį apibrėžimą"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:742 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:747 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
-#: ../gnome-dictionary/src/gdict-window.c:837
+#: ../gnome-dictionary/src/gdict-window.c:807
+#: ../gnome-dictionary/src/gdict-window.c:839
 #, c-format
-msgid "Dictionary - %s"
-msgstr "Žodynas - %s"
+msgid "%s - Dictionary"
+msgstr "%s - Žodynas"
 
-#: ../gnome-dictionary/src/gdict-window.c:957
+#: ../gnome-dictionary/src/gdict-window.c:959
 msgid "Look _up:"
 msgstr "_Ieškoti:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1039
-msgid "Window ID"
-msgstr "Lango ID"
-
-#: ../gnome-dictionary/src/gdict-window.c:1040
-msgid "The unique identificator for this window"
-msgstr "Unikalus šio lango identifikatorius"
+#: ../gnome-dictionary/src/gdict-window.c:1097
+msgid "Unable to load the application icon"
+msgstr "Nepavyko įkelti programos piktogramos"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -1722,8 +1665,8 @@ msgid ""
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
 msgstr ""
-"Šiame rakte nurodomi keliai, kuriuos paieškos įrankis, greitos paieškos metu, "
-"išskirs iš antro skanavimo. Antras skanavimas bylų paieškai naudoja "
+"Šiame rakte nurodomi keliai, kuriuos paieškos įrankis, greitos paieškos "
+"metu, išskirs iš antro skanavimo. Antras skanavimas bylų paieškai naudoja "
 "„find“komandą. Antro skanavimo paskirtis yra surasti bylas, kurios nebuvo "
 "suindeksuotos. Žymės „*“ ir „?“ yra palaikomos. Įprasta reikšmė yra /."
 
@@ -2720,6 +2663,72 @@ msgstr "Bylų, esančių šioje bylų sistemoje, stebėti negalima.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS klaida.\n"
+
+#~ msgid "<b>Database:</b>"
+#~ msgstr "<b>Duomenų bazė:</b>"
+
+#~ msgid "<b>Description:</b>"
+#~ msgstr "<b>Aprašymas:</b>"
+
+#~ msgid "<b>Hostname:</b>"
+#~ msgstr "<b>Kompiuterio vardas:</b>"
+
+#~ msgid "<b>Name:</b>"
+#~ msgstr "<b>Pavadinimas:</b>"
+
+#~ msgid "<b>Port:</b>"
+#~ msgstr "<b>Prievadas:</b>"
+
+#~ msgid "<b>Strategy:</b>"
+#~ msgstr "<b>Strategija:</b>"
+
+#~ msgid "<b>Transport:</b>"
+#~ msgstr "<b>Transportas:</b>"
+
+#~ msgid "database"
+#~ msgstr "duomenų bazė"
+
+#~ msgid "description"
+#~ msgstr "aprašymas"
+
+#~ msgid "hostname"
+#~ msgstr "kompiuterio vardas"
+
+#~ msgid "name"
+#~ msgstr "pavadinimas"
+
+#~ msgid "port"
+#~ msgstr "prievadas"
+
+#~ msgid "strategy"
+#~ msgstr "strategija"
+
+#~ msgid "transport"
+#~ msgstr "transportas"
+
+#~ msgid "Look up a word on a dictionary"
+#~ msgstr "Ieškoti žodžio žodyne"
+
+#~ msgid "Active Source"
+#~ msgstr "Aktyvus šaltinis"
+
+#~ msgid "The name of the active source"
+#~ msgstr "Aktyvaus šaltinio pavadinimas"
+
+#~ msgid "Source Loader"
+#~ msgstr "Šaltinio įkėliklis"
+
+#~ msgid "The GdictSourceLoader used by the application"
+#~ msgstr "GdictSourceLoader naudojamas šios programos"
+
+#~ msgid "Dictionary - %s"
+#~ msgstr "Žodynas - %s"
+
+#~ msgid "Window ID"
+#~ msgstr "Lango ID"
+
+#~ msgid "The unique identificator for this window"
+#~ msgstr "Unikalus šio lango identifikatorius"
 
 #~ msgid "Active"
 #~ msgstr "Aktyvus"
