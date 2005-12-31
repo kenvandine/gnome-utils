@@ -448,6 +448,52 @@ gdict_pref_dialog_gconf_notify_cb (GConfClient *client,
 }
 
 static void
+response_cb (GtkDialog *dialog,
+	     gint       response_id,
+	     gpointer   user_data)
+{
+  GError *err = NULL;
+  
+  switch (response_id)
+    {
+    case GTK_RESPONSE_HELP:
+      gnome_help_display_desktop_on_screen (NULL,
+      					    "gnome-dictionary",
+      					    "gnome-dictionary",
+      					    "gnome-dictionary-preferences",
+      					    gtk_widget_get_screen (GTK_WIDGET (dialog)),
+      					    &err);
+      if (err)
+	{
+          GtkWidget *error_dialog;
+	  gchar *message;
+
+	  message = g_strdup_printf (_("There was an error while displaying help"));
+	  error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog),
+      					         GTK_DIALOG_DESTROY_WITH_PARENT,
+      					         GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_OK,
+						 "%s", message);
+	  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
+			  			    "%s", err->message);
+	  gtk_window_set_title (GTK_WINDOW (error_dialog), "");
+	  
+	  gtk_dialog_run (GTK_DIALOG (error_dialog));
+      
+          gtk_widget_destroy (error_dialog);
+	  g_error_free (err);
+        }
+      
+      /* we don't want the dialog to close itself */
+      g_signal_stop_emission_by_name (dialog, "response");
+      break;
+    case GTK_RESPONSE_ACCEPT:
+    default:
+      break;
+    }
+}
+
+static void
 gdict_pref_dialog_finalize (GObject *object)
 {
   GdictPrefDialog *dialog = GDICT_PREF_DIALOG (object);
@@ -619,6 +665,14 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   g_free (font);
   
   gtk_widget_show_all (dialog->notebook);
+
+  /* we want to intercept the response signal before any other
+   * callbacks might be attached by the users of the
+   * GdictPrefDialog widget.
+   */
+  g_signal_connect (dialog, "response",
+		    G_CALLBACK (response_cb),
+		    NULL);
 }
 
 GtkWidget *

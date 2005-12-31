@@ -1,5 +1,17 @@
 2005-12-31  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* data/GNOME_DictionaryApplet.server.in.in: update Bugzilla product to
+	"gdict-applet", to disambiguate the applet from the main application;
+	update the icon name to the new icon.
+
+	* src/gdict-applet.c: fix the applet and make it work again.
+
+	* src/gdict-pref-dialog.c (response_cb),
+	(gdict_pref_dialog_init): intercept the HELP response code and show
+	the help without closing the dialog.
+
+2005-12-31  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* data/gnome-dictionary-preferences.glade:  HIG fixes for
 	the add source dialog.  Do not use bold labels.  Use left
 	alignment for labels.  Fix the 'H' key mnemonic conflict.  

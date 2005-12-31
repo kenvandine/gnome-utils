@@ -152,9 +152,13 @@ clear_cb (GtkWidget   *widget,
 	  GdictApplet *applet)
 {
   GdictAppletPrivate *priv = applet->priv;
+
+  gtk_entry_set_text (GTK_ENTRY (priv->entry), "");
+
+  if (!priv->defbox)
+    return;
   
-  if (priv->defbox)
-    gdict_defbox_clear (GDICT_DEFBOX (priv->defbox));
+  gdict_defbox_clear (GDICT_DEFBOX (priv->defbox));
 }
 
 static void
@@ -162,6 +166,9 @@ print_cb (GtkWidget   *widget,
 	  GdictApplet *applet)
 {
   GdictAppletPrivate *priv = applet->priv;
+
+  if (!priv->defbox)
+    return;
   
   gdict_show_print_dialog (GTK_WINDOW (priv->window),
   			   _("Print"),
@@ -174,6 +181,9 @@ save_cb (GtkWidget   *widget,
 {
   GdictAppletPrivate *priv = applet->priv;
   GtkWidget *dialog;
+
+  if (!priv->defbox)
+    return;
   
   dialog = gtk_file_chooser_dialog_new (_("Save a Copy"),
   					GTK_WINDOW (priv->window),
@@ -246,7 +256,7 @@ gdict_applet_build_window (GdictApplet *applet)
   
   frame = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-  gtk_widget_set_size_request (frame, 330, 200);
+  gtk_widget_set_size_request (frame, 400, 220);
   gtk_container_add (GTK_CONTAINER (window), frame);
   gtk_widget_show (frame);
   
@@ -420,15 +430,26 @@ gdict_applet_draw (GdictApplet *applet)
   
   if (priv->icon)
     {
-      priv->image = gtk_image_new ();
+      GdkPixbuf *scaled;
       
+      priv->image = gtk_image_new ();
       gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
-      gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), priv->icon);
+
+      scaled = gdk_pixbuf_scale_simple (priv->icon,
+		      			priv->size - 1 , priv->size - 1,
+					GDK_INTERP_BILINEAR);
+      
+      gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), scaled);
+      g_object_unref (scaled);
+      
       gtk_container_add (GTK_CONTAINER (event), priv->image);
+      
       gtk_widget_show (priv->image);
     }
   else
     {
+      g_warning ("No icon defined");
+
       priv->image = gtk_image_new ();
 
       gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
@@ -672,18 +693,35 @@ gdict_applet_size_allocate (GtkWidget    *widget,
   GdictApplet *applet = GDICT_APPLET (widget);
   GdictAppletPrivate *priv = applet->priv;
   guint new_size;
-  
+ 
   if (priv->orient == GTK_ORIENTATION_HORIZONTAL)
     new_size = allocation->height;
   else
     new_size = allocation->width;
   
   if (priv->size != new_size)
-    priv->size = new_size;
-  
-  gtk_image_set_pixel_size (GTK_IMAGE (priv->image), new_size);
-  
-  GTK_WIDGET_CLASS (gdict_applet_parent_class)->size_allocate (widget, allocation);
+    {
+      priv->size = new_size;
+
+      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
+
+      /* re-scale the icon, if it was found */
+      if (priv->icon)
+        {
+          GdkPixbuf *scaled;
+
+	  scaled = gdk_pixbuf_scale_simple (priv->icon,
+			  		    priv->size - 1, priv->size - 1,
+					    GDK_INTERP_BILINEAR);
+	  
+	  gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), scaled);
+	  g_object_unref (scaled);
+	}
+     }
+
+  if (GTK_WIDGET_CLASS (gdict_applet_parent_class)->size_allocate)
+    GTK_WIDGET_CLASS (gdict_applet_parent_class)->size_allocate (widget,
+		    						 allocation);
 }
 
 static void
@@ -983,6 +1021,9 @@ gdict_applet_init (GdictApplet *applet)
   GdkPixbuf *icon;
   GError *icon_error;
 
+  priv = GDICT_APPLET_GET_PRIVATE (applet);
+  applet->priv = priv;
+      
   /* create the data directory inside $HOME, if it doesn't exist yet */
   data_dir = g_build_filename (g_get_home_dir (),
   			       ".gnome2",
@@ -996,6 +1037,7 @@ gdict_applet_init (GdictApplet *applet)
     }
   
   g_free (data_dir);
+  
   icon_file = g_build_filename (DATADIR,
 		  		"pixmaps",
 				"gnome-dictionary.png",
@@ -1008,6 +1050,7 @@ gdict_applet_init (GdictApplet *applet)
 		 icon_error->message);
 
       g_error_free (icon_error);
+      priv->icon = NULL;
     }
   else
     {
@@ -1019,9 +1062,6 @@ gdict_applet_init (GdictApplet *applet)
   
   panel_applet_set_flags (PANEL_APPLET (applet),
 			  PANEL_APPLET_EXPAND_MINOR);
-  
-  priv = GDICT_APPLET_GET_PRIVATE (applet);
-  applet->priv = priv;
   
   /* get the default gconf client */
   if (!priv->gconf_client)
