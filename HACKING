@@ -3,10 +3,8 @@ GNOME Utilities HACKING -
 Please send patches to any of the people listed in the MAINTAINERS file
 or, alternatively, attach them to a bugzilla.gnome.org report.
 
-gnome-2-6 branch,
-gnome-2-4 branch,
-gnome-2-2 branch,
-gnome-2-0 branch -
+gnome-2-12 branch,
+gnome-2-10 branch -
 
 These branches are in deep code freeze. Please do not commit even the most
 simple bug fixes to it without emailing the release team
@@ -17,3 +15,10 @@ gnome-utils-1-4 branch -
 
 This branch is now obsolete stable. No bugs will be fixed on this branch
 anymore, and no more new releases will be made.
+
+Patches should be sent using the unified diff format; no normal, no ed style,
+just use:
+
+	cvs diff -Nup > some-patch.diff
+
+on a modified source tree.
