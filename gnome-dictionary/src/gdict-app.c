@@ -71,6 +71,9 @@ gdict_app_finalize (GObject *object)
   		   NULL);
   g_slist_free (app->windows);
 
+  if (app->database)
+    g_free (app->database);
+
   if (app->word)
     g_free (app->word);
   
@@ -156,9 +159,12 @@ gdict_window_created_cb (GdictWindow *parent,
    */
   g_signal_connect (new_window, "created",
   		    G_CALLBACK (gdict_window_created_cb), app);
-  
   g_signal_connect (new_window, "destroy",
   		    G_CALLBACK (gdict_window_destroy_cb), app);
+
+  if (GTK_WINDOW (parent)->group)
+    gtk_window_group_add_window (GTK_WINDOW (parent)->group,
+		    		 GTK_WINDOW (new_window));
   
   app->windows = g_slist_prepend (app->windows, new_window);
   app->current_window = new_window;
@@ -185,9 +191,96 @@ gdict_create_window (GdictApp *app)
 }
 
 static void
+lookup_start_cb (GdictContext *context,
+		 gpointer      user_data)
+{
+  GdictApp *app = GDICT_APP (user_data);
+
+  g_print (_("Definitions for \"%s\":\n\n"), app->word);
+}
+
+static void
+definition_found_cb (GdictContext    *context,
+		     GdictDefinition *definition,
+		     gpointer         user_data)
+{
+  /* Translators: source name first, then definition */
+  g_print (_("From %s:\n%s\n"),
+	   gdict_definition_get_database (definition),
+	   gdict_definition_get_text (definition));
+}
+
+static void
+error_cb (GdictContext *context,
+          const GError *error,
+	  gpointer      user_data)
+{
+  g_print (_("Error: %s\n"), error->message);
+}
+
+static void
 gdict_look_up_word_and_quit (GdictApp *app)
 {
-  g_message ("(in %s) no-op", G_STRFUNC);
+  GdictSource *source;
+  GdictContext *context;
+  GError *err;
+  
+  if (!app->word)
+    {
+      g_print (_("See gnome-dictionary --help for usage\n"));
+
+      gdict_cleanup ();
+      exit (1);
+    }
+
+  if (app->source_name)
+    source = gdict_source_loader_get_source (app->loader, app->source_name);
+  else
+    source = gdict_source_loader_get_source (app->loader, GDICT_DEFAULT_SOURCE_NAME);
+
+  if (!source)
+    {
+      g_warning (_("Unable to find a suitable dictionary source"));
+
+      gdict_cleanup ();
+      exit (1);
+    }
+
+  /* we'll just use this one context, so we can destroy it along with
+   * the source that contains it
+   */
+  context = gdict_source_peek_context (source);
+  g_assert (GDICT_IS_CONTEXT (context));
+
+  g_signal_connect (context, "lookup-start",
+		    G_CALLBACK (lookup_start_cb), app);
+  g_signal_connect (context, "definition-found",
+		    G_CALLBACK (definition_found_cb), app);
+  g_signal_connect (context, "lookup-end",
+		    G_CALLBACK (gtk_main_quit), NULL);
+  g_signal_connect (context, "error",
+		    G_CALLBACK (error_cb), app);
+
+  err = NULL;
+  gdict_context_define_word (context,
+		  	     app->database,
+		  	     app->word,
+			     &err);
+  if (err)
+    {
+      g_warning (_("Error while looking up the definition of \"%s\":\n%s"),
+		 app->word,
+		 err->message);
+
+      g_error_free (err);
+    }
+
+  gtk_main ();
+
+  g_object_unref (source);
+
+  gdict_cleanup ();
+  exit (0);
 }
 
 void
@@ -198,6 +291,7 @@ gdict_init (int *argc, char ***argv)
   GOptionGroup *group;
   gchar *loader_path;
   gchar *word = NULL;
+  gchar *database = NULL;
   gchar *source_name = NULL;
   gboolean no_window = FALSE;
   gboolean list_sources = FALSE;
@@ -212,6 +306,8 @@ gdict_init (int *argc, char ***argv)
        N_("Show available dictionary sources"), NULL },
     { "no-window", 'n', 0, G_OPTION_ARG_NONE, &no_window,
        N_("Print result to the console"), NULL },
+    { "database", 'd', 0, G_OPTION_ARG_STRING, &database,
+       N_("Database to use"), NULL },
     { NULL },
   };
   
@@ -280,15 +376,18 @@ gdict_init (int *argc, char ***argv)
 
   if (word)
     singleton->word = g_strdup (word);
+
+  if (database)
+    singleton->database = g_strdup (database);
   
   if (source_name)
     singleton->source_name = g_strdup (source_name);
 
   if (no_window)
-    singleton->list_sources = TRUE;
+    singleton->no_window = TRUE;
 
   if (list_sources)
-    singleton->no_window = TRUE;
+    singleton->list_sources = TRUE;
 
   g_option_context_free (context);
 }
@@ -298,7 +397,7 @@ gdict_main (void)
 {
   if (!singleton)
     {
-      g_warning ("You must initialize GdictApp using gdict_app_init()\n");
+      g_warning ("You must initialize GdictApp using gdict_init()\n");
       return;
     }
   
@@ -315,7 +414,7 @@ gdict_cleanup (void)
 {
   if (!singleton)
     {
-      g_warning ("You must initialize GdictApp using gdict_app_init()\n");
+      g_warning ("You must initialize GdictApp using gdict_init()\n");
       return;
     }
 

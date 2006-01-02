@@ -51,6 +51,7 @@ struct _GdictApp
   
   GConfClient *gconf_client;
 
+  gchar *database;
   gchar *word;
   gchar *source_name;
   gboolean no_window;
