@@ -1,3 +1,11 @@
+2005-01-02  Emmanuele Bassi  <ebassi@cvs.gnome.org> 
+
+	* src/gdict-app.c: (gdict_app_init): Set execute bit (0700).
+	* src/gdict-applet.c: (gdict_applet_init):  Set execute bit (0700).
+	* src/gdict-pref-dialog.c: (source_remove_clicked_cb): UI fix
+	for remove source confirmation dialog (patch by Dennis Cranston, fixes
+	bug #325455).
+
 2005-12-31  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-window.c (gdict_window_help_contents_cmd): remove the help

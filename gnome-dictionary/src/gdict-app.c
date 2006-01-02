@@ -102,7 +102,7 @@ gdict_app_init (GdictApp *app)
   			       "gnome-dictionary",
   			       NULL);
   
-  if (g_mkdir (data_dir, 0600) == -1)
+  if (g_mkdir (data_dir, 0700) == -1)
     {
       if (errno != EEXIST)
         g_warning ("Unable to create the data directory '%s'");

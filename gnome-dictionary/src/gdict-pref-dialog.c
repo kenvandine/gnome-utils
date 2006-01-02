@@ -315,17 +315,17 @@ source_remove_clicked_cb (GtkWidget       *widget,
       					       GTK_DIALOG_DESTROY_WITH_PARENT,
       					       GTK_MESSAGE_WARNING,
       					       GTK_BUTTONS_NONE,
-      					       _("Remove '%s'"), description);
+      					       _("Remove \"%s\"?"), description);
       gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (confirm_dialog),
       						_("This will permanently remove the "
-      						  "dictionary source from the list"));
+      						  "dictionary source from the list."));
       
-      gtk_dialog_add_button (GTK_DIALOG (confirm_dialog),
-      			     GTK_STOCK_REMOVE,
-      			     GTK_RESPONSE_OK);
       gtk_dialog_add_button (GTK_DIALOG (confirm_dialog),
       			     GTK_STOCK_CANCEL,
       			     GTK_RESPONSE_CANCEL);
+      gtk_dialog_add_button (GTK_DIALOG (confirm_dialog),
+      			     GTK_STOCK_REMOVE,
+      			     GTK_RESPONSE_OK);
       
       gtk_window_set_title (GTK_WINDOW (confirm_dialog), "");
       
