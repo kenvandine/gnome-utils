@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-31 13:40+0100\n"
-"PO-Revision-Date: 2005-12-31 13:41+0100\n"
+"POT-Creation-Date: 2006-01-02 17:44+0100\n"
+"PO-Revision-Date: 2006-01-02 17:46+0100\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,8 @@ msgstr ""
 
 #: ../gfloppy/src/gfloppy.c:239
 msgid "Error while filling the bad blocks list file."
-msgstr "Ocurrió un error al rellenar el archivo con la lista de bloques dañados."
+msgstr ""
+"Ocurrió un error al rellenar el archivo con la lista de bloques dañados."
 
 #: ../gfloppy/src/gfloppy.c:302
 #, c-format
@@ -516,7 +517,7 @@ msgstr "_Guardar"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:343
 #: ../gnome-dictionary/src/gdict-window.c:911
 msgid "Dictionary"
 msgstr "Diccionario"
@@ -593,7 +594,8 @@ msgid "The name of the dictionary source used"
 msgstr "El nombre de la fuente de diccionarios a usar"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
-msgid "The name of the dictionary source used to retrieve the definitions of words."
+msgid ""
+"The name of the dictionary source used to retrieve the definitions of words."
 msgstr ""
 "El nombre de la fuente de diccionarios usada para obtener las definiciones "
 "de las palabras."
@@ -629,7 +631,7 @@ msgid "H_ostname:"
 msgstr "Nombre del _host:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:167
+#: ../gnome-dictionary/src/gdict-applet.c:174
 #: ../gnome-dictionary/src/gdict-window.c:524
 msgid "Print"
 msgstr "Imprimir"
@@ -770,7 +772,8 @@ msgstr "Comandos erróneos para el comando «%s»"
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
-msgstr "No se encontró ninguna base de datos en el servidor de diccionario en «%s»"
+msgstr ""
+"No se encontró ninguna base de datos en el servidor de diccionario en «%s»"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
 #, c-format
@@ -904,7 +907,8 @@ msgstr "Error al buscar la definición"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1296
 #, c-format
 msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
-msgstr "Se intentó buscar «%s» pero no hay un GdictContext definido. Se aborta."
+msgstr ""
+"Se intentó buscar «%s» pero no hay un GdictContext definido. Se aborta."
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Another search is in progress"
@@ -1004,7 +1008,8 @@ msgstr ""
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:541
 #, c-format
-msgid "Unable to get the '%s' key inside the dictionary source definition file: %s"
+msgid ""
+"Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr ""
 "Imposible obtener la clave «%s» dentro del archivo de definición de fuentes "
 "de diccionario %s "
@@ -1040,7 +1045,7 @@ msgid "translator-credits"
 msgstr "Francisco Javier F. Serrador <serrador@cvs.gnome.org>"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:396
+#: ../gnome-dictionary/src/gdict-applet.c:406
 msgid "Look up words in dictionaries"
 msgstr "Busque palabras en diccionarios"
 
@@ -1049,118 +1054,161 @@ msgstr "Busque palabras en diccionarios"
 msgid "Unable to open the application icon: %s"
 msgstr "Imposible abrir el icono del a aplicación: %s"
 
+#: ../gnome-dictionary/src/gdict-app.c:199
+#, c-format
+msgid ""
+"Definitions for \"%s\":\n"
+"\n"
+msgstr "Definiciones para «%s»:\n\n"
+
+#. Translators: source name first, then definition
 #: ../gnome-dictionary/src/gdict-app.c:208
+#, c-format
+msgid ""
+"From %s:\n"
+"%s\n"
+msgstr ""
+"De %s:\n"
+"%s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:218
+#, c-format
+msgid "Error: %s\n"
+msgstr "Error: %s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:230
+msgid "See gnome-dictionary --help for usage\n"
+msgstr "Vea gnome-diccionary --help para el uso\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:243
+msgid "Unable to find a suitable dictionary source"
+msgstr "No es posible encontrar una fuente del diccionario apropiada"
+
+#: ../gnome-dictionary/src/gdict-app.c:271
+#, c-format
+msgid ""
+"Error while looking up the definition of \"%s\":\n"
+"%s"
+msgstr ""
+"Error al buscar la definición de «%s»:\n"
+"%s"
+
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "Word to look up"
 msgstr "Palabra que buscar"
 
-#: ../gnome-dictionary/src/gdict-app.c:208
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "word"
 msgstr "palabra"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "Dictionary source to use"
 msgstr "Fuente de diccionarios que usar"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "source"
 msgstr "fuente"
 
-#: ../gnome-dictionary/src/gdict-app.c:212
+#: ../gnome-dictionary/src/gdict-app.c:306
 msgid "Show available dictionary sources"
 msgstr "Mostrar fuentes de diccionarios disponibles"
 
-#: ../gnome-dictionary/src/gdict-app.c:214
+#: ../gnome-dictionary/src/gdict-app.c:308
 msgid "Print result to the console"
 msgstr "Imprimir el resultado en la consola"
 
+#: ../gnome-dictionary/src/gdict-app.c:310
+msgid "Database to use"
+msgstr "Base de datos a usar"
+
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:230
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid " - Look up words in dictionaries"
 msgstr " - Busque palabras en diccionarios"
 
-#: ../gnome-dictionary/src/gdict-app.c:234
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Dictionary and spelling tool"
 msgstr "Herramienta de diccionario y ortografía"
 
-#: ../gnome-dictionary/src/gdict-app.c:235
+#: ../gnome-dictionary/src/gdict-app.c:331
 msgid "Show Dictionary options"
 msgstr "Mostrar opciones del diccionario"
 
-#: ../gnome-dictionary/src/gdict-applet.c:178
+#: ../gnome-dictionary/src/gdict-applet.c:188
 #: ../gnome-dictionary/src/gdict-window.c:469
 msgid "Save a Copy"
 msgstr "Guardar una copia"
 
-#: ../gnome-dictionary/src/gdict-applet.c:188
+#: ../gnome-dictionary/src/gdict-applet.c:198
 #: ../gnome-dictionary/src/gdict-window.c:479
 msgid "Untitled document"
 msgstr "Documento sin título"
 
-#: ../gnome-dictionary/src/gdict-applet.c:209
+#: ../gnome-dictionary/src/gdict-applet.c:219
 #: ../gnome-dictionary/src/gdict-window.c:500
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Ocurrió un error al escribir en «%s»"
 
-#: ../gnome-dictionary/src/gdict-applet.c:273
+#: ../gnome-dictionary/src/gdict-applet.c:283
 msgid "Clear definition"
 msgstr "Vaciar definición"
 
-#: ../gnome-dictionary/src/gdict-applet.c:274
+#: ../gnome-dictionary/src/gdict-applet.c:284
 msgid "Clear the text of the definition"
 msgstr "Vacía el texto de la definición"
 
-#: ../gnome-dictionary/src/gdict-applet.c:281
+#: ../gnome-dictionary/src/gdict-applet.c:291
 msgid "Print definition"
 msgstr "Imprimir definición"
 
-#: ../gnome-dictionary/src/gdict-applet.c:282
+#: ../gnome-dictionary/src/gdict-applet.c:292
 msgid "Print the text of the definition"
 msgstr "Imprime el texto de la definición"
 
-#: ../gnome-dictionary/src/gdict-applet.c:289
+#: ../gnome-dictionary/src/gdict-applet.c:299
 msgid "Save definition"
 msgstr "Guardar definición"
 
-#: ../gnome-dictionary/src/gdict-applet.c:290
+#: ../gnome-dictionary/src/gdict-applet.c:300
 msgid "Save the text of the definition to a file"
 msgstr "Guarda el texto de la definición a un archivo"
 
-#: ../gnome-dictionary/src/gdict-applet.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:405
 msgid "Dictionary entry"
 msgstr "Entrada de diccionario"
 
-#: ../gnome-dictionary/src/gdict-applet.c:586
+#: ../gnome-dictionary/src/gdict-applet.c:607
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../gnome-dictionary/src/gdict-applet.c:618
+#: ../gnome-dictionary/src/gdict-applet.c:639
 msgid "There was an error displaying help"
 msgstr "Hubo un error al mostrar la ayuda"
 
-#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-applet.c:786
 #: ../gnome-dictionary/src/gdict-window.c:259
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "No hay ninguna fuente de diccionario con el nombre «%s»"
 
-#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-applet.c:790
 #: ../gnome-dictionary/src/gdict-window.c:263
 msgid "Unable to find dictionary source"
 msgstr "No es posible encontrar la fuente del diccionario"
 
-#: ../gnome-dictionary/src/gdict-applet.c:768
+#: ../gnome-dictionary/src/gdict-applet.c:806
 #: ../gnome-dictionary/src/gdict-window.c:279
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "No hay conexto disponible para la fuente «%s»"
 
-#: ../gnome-dictionary/src/gdict-applet.c:772
+#: ../gnome-dictionary/src/gdict-applet.c:810
 #: ../gnome-dictionary/src/gdict-window.c:283
 msgid "Unable to create a context"
 msgstr "Imposible crear un contexto"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1007
+#: ../gnome-dictionary/src/gdict-applet.c:1049
 #, c-format
 msgid "Unable to load the application icon: %s"
 msgstr "Imposible cargar el icono de la aplicación:%s"
@@ -1171,27 +1219,33 @@ msgstr "Añadir una fuente de diccionario"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:318
 #, c-format
-msgid "Remove '%s'"
-msgstr "Quitar «%s»"
+msgid "Remove \"%s\"?"
+msgstr "¿Desea quitar «%s»?"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:320
-msgid "This will permanently remove the dictionary source from the list"
-msgstr "Esto quitará permanentemente la fuente de diccionarios de la lista"
+msgid "This will permanently remove the dictionary source from the list."
+msgstr "Esto quitará permanentemente la fuente de diccionarios de la lista."
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:350
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "No se puede quitar la fuente «%s»"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:592
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:671
+msgid "There was an error while displaying help"
+msgstr "Hubo un error al mostrar la ayuda"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:638
 msgid "Add a new dictionary source"
 msgstr "Añadir una fuente de diccionarios nueva"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:600
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:646
 msgid "Remove the currently selected dictionary source"
 msgstr "Quitar la fuente de diccionarios actualmente seleccionada"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:615
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:661
 msgid "Set the font used for printing the definitions"
 msgstr "Establece la tipografía usada para imprimir las definiciones"
 
@@ -1211,11 +1265,6 @@ msgstr "Imposible crear un archivo de fuentes"
 #: ../gnome-dictionary/src/gdict-source-dialog.c:295
 msgid "Unable to save source file"
 msgstr "Imposible guardar el archivo de fuentes"
-
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:671
-msgid "There was an error while displaying help"
-msgstr "Hubo un error al mostrar la ayuda"
 
 #: ../gnome-dictionary/src/gdict-window.c:167
 #, c-format
@@ -1456,7 +1505,8 @@ msgstr "Incluir borde"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include the window manager border along with the screenshot"
-msgstr "Incluir el borde del gestor de ventanas junto con la captura de pantalla"
+msgstr ""
+"Incluir el borde del gestor de ventanas junto con la captura de pantalla"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
 msgid "Screenshot directory"
@@ -1847,7 +1897,8 @@ msgstr ""
 "comando «locate» al realizar búsquedas simples de nombres de archivo."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:76
-msgid "This key determines if the search tool window starts in a maximized state."
+msgid ""
+"This key determines if the search tool window starts in a maximized state."
 msgstr ""
 "Esta clave determina si ventana de la herramienta de búsqueda se inicia en "
 "estado maximizado."
@@ -2287,7 +2338,8 @@ msgstr "El _nombre contiene:"
 
 #: ../gsearchtool/gsearchtool.c:2829 ../gsearchtool/gsearchtool.c:2830
 msgid "Enter a filename or partial filename with or without wildcards."
-msgstr "Introduzca un nombre de archivo o un nombre parcial con o sin comodines."
+msgstr ""
+"Introduzca un nombre de archivo o un nombre parcial con o sin comodines."
 
 #: ../gsearchtool/gsearchtool.c:2830
 msgid "Name contains"
@@ -2307,7 +2359,8 @@ msgstr "Buscar en la carpeta"
 
 #: ../gsearchtool/gsearchtool.c:2847
 msgid "Select the folder or device from which you want to begin the search."
-msgstr "Seleccione la carpeta o dispositivo desde donde quiere iniciar la búsqueda."
+msgstr ""
+"Seleccione la carpeta o dispositivo desde donde quiere iniciar la búsqueda."
 
 #: ../gsearchtool/gsearchtool.c:2858
 msgid "Select more _options"
@@ -2486,7 +2539,8 @@ msgstr "Abre el índice de la ayuda para el visor de registros de actividad"
 
 #: ../logview/logview.c:116
 msgid "Show the about dialog for the log viewer"
-msgstr "Muestra el diálogo «Acerca de» para el visor de registros de actividades"
+msgstr ""
+"Muestra el diálogo «Acerca de» para el visor de registros de actividades"
 
 #: ../logview/logview.c:122
 msgid "_Statusbar"
@@ -2683,6 +2737,9 @@ msgstr ""
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Error de Gnome-VFS.\n"
+
+#~ msgid "Remove '%s'"
+#~ msgstr "Quitar «%s»"
 
 #~ msgid "<b>Data_base:</b>"
 #~ msgstr "<b>_Base de datos:</b>"
@@ -2909,9 +2966,6 @@ msgstr "Error de Gnome-VFS.\n"
 #~ msgid "Search all databases"
 #~ msgstr "Buscar en todas las bases de datos"
 
-#~ msgid "Database Name"
-#~ msgstr "Nombre de la base de datos"
-
 #~ msgid "Default Strategy"
 #~ msgstr "Estrategia predeterminada"
 
@@ -2972,4 +3026,3 @@ msgstr "Error de Gnome-VFS.\n"
 
 #~ msgid "Message"
 #~ msgstr "Mensaje"
-
