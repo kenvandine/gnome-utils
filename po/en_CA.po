@@ -1,14 +1,14 @@
 # English/Canada translation of gnome-utils.
-# Copyright (C) 2004-2005 Adam Weinberger and the GNOME Foundation
+# Copyright (C) 2004-2006 Adam Weinberger and the GNOME Foundation
 # This file is distributed under the same licence as the gnome-utils package.
-# Adam Weinberger <adamw@gnome.org>, 2004, 2005.
+# Adam Weinberger <adamw@gnome.org>, 2004, 2005, 2006.
 # 
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-30 17:40-0500\n"
+"POT-Creation-Date: 2006-01-02 22:07-0500\n"
 "PO-Revision-Date: 2005-07-18 12:11-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -496,7 +496,7 @@ msgstr "_Save"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:343
 #: ../gnome-dictionary/src/gdict-window.c:911
 msgid "Dictionary"
 msgstr "Dictionary"
@@ -590,64 +590,64 @@ msgid "Use smart lookup (Deprecated)"
 msgstr "Use smart lookup (Deprecated)"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
-msgid "<b>Data_base:</b>"
-msgstr "<b>Data_base:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:2
-msgid "<b>_Description:</b>"
-msgstr "<b>_Description:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-msgid "<b>_Hostname:</b>"
-msgstr "<b>_Hostname:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:4
-msgid "<b>_Port:</b>"
-msgstr "<b>_Port:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-msgid "<b>_Strategy:</b>"
-msgstr "<b>_Strategy:</b>"
-
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:6
-msgid "<b>_Transport:</b>"
-msgstr "<b>_Transport:</b>"
+msgid "Data_base:"
+msgstr "Data_base:"
 
 #. Transport methods
 #. Translators: this is the same string used in the file
 #. * gnome-dictionary-preferences.glade for the transport_combo
 #. * widget items.
 #.
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:8
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
 #: ../gnome-dictionary/src/gdict-source-dialog.c:146
 msgid "Dictionary Server"
 msgstr "Dictionary Server"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:9
-#: ../gnome-dictionary/src/gdict-applet.c:167
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:4
+msgid "H_ostname:"
+msgstr "H_ostname:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
+#: ../gnome-dictionary/src/gdict-applet.c:174
 #: ../gnome-dictionary/src/gdict-window.c:524
 msgid "Print"
 msgstr "Print"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:6
 msgid "Source"
 msgstr "Source"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:7
 msgid "Source Name"
 msgstr "Source Name"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
-msgid "_Advanced Settings"
-msgstr "_Advanced Settings"
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:8
+msgid "_Advanced settings"
+msgstr "_Advanced settings"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:9
+msgid "_Description:"
+msgstr "_Description:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
+msgid "_Port:"
+msgstr "_Port:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
 msgid "_Print font:"
 msgstr "_Print font:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
 msgid "_Select a dictionary source for looking up words:"
 msgstr "_Select a dictionary source for looking up words:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
+msgid "_Strategy:"
+msgstr "_Strategy:"
+
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
+msgid "_Transport:"
+msgstr "_Transport:"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:270
 msgid "Client Name"
@@ -1013,7 +1013,7 @@ msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:396
+#: ../gnome-dictionary/src/gdict-applet.c:406
 msgid "Look up words in dictionaries"
 msgstr "Look up words in dictionaries"
 
@@ -1022,118 +1022,163 @@ msgstr "Look up words in dictionaries"
 msgid "Unable to open the application icon: %s"
 msgstr "Unable to open the application icon: %s"
 
+#: ../gnome-dictionary/src/gdict-app.c:199
+#, c-format
+msgid ""
+"Definitions for \"%s\":\n"
+"\n"
+msgstr ""
+"Definitions for \"%s\":\n"
+"\n"
+
+#. Translators: source name first, then definition
 #: ../gnome-dictionary/src/gdict-app.c:208
+#, c-format
+msgid ""
+"From %s:\n"
+"%s\n"
+msgstr ""
+"From %s:\n"
+"%s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:218
+#, c-format
+msgid "Error: %s\n"
+msgstr "Error: %s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:230
+msgid "See gnome-dictionary --help for usage\n"
+msgstr "See gnome-dictionary --help for usage\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:243
+msgid "Unable to find a suitable dictionary source"
+msgstr "Unable to find a suitable dictionary source"
+
+#: ../gnome-dictionary/src/gdict-app.c:271
+#, c-format
+msgid ""
+"Error while looking up the definition of \"%s\":\n"
+"%s"
+msgstr ""
+"Error while looking up the definition of \"%s\":\n"
+"%s"
+
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "Word to look up"
 msgstr "Word to look up"
 
-#: ../gnome-dictionary/src/gdict-app.c:208
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "word"
 msgstr "word"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "Dictionary source to use"
 msgstr "Dictionary source to use"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "source"
 msgstr "source"
 
-#: ../gnome-dictionary/src/gdict-app.c:212
+#: ../gnome-dictionary/src/gdict-app.c:306
 msgid "Show available dictionary sources"
 msgstr "Show available dictionary sources"
 
-#: ../gnome-dictionary/src/gdict-app.c:214
+#: ../gnome-dictionary/src/gdict-app.c:308
 msgid "Print result to the console"
 msgstr "Print result to the console"
 
+#: ../gnome-dictionary/src/gdict-app.c:310
+msgid "Database to use"
+msgstr "Database to use"
+
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:230
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid " - Look up words in dictionaries"
 msgstr " - Look up words in dictionaries"
 
-#: ../gnome-dictionary/src/gdict-app.c:234
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Dictionary and spelling tool"
 msgstr "Dictionary and spelling tool"
 
-#: ../gnome-dictionary/src/gdict-app.c:235
+#: ../gnome-dictionary/src/gdict-app.c:331
 msgid "Show Dictionary options"
 msgstr "Show Dictionary options"
 
-#: ../gnome-dictionary/src/gdict-applet.c:178
+#: ../gnome-dictionary/src/gdict-applet.c:188
 #: ../gnome-dictionary/src/gdict-window.c:469
 msgid "Save a Copy"
 msgstr "Save a Copy"
 
-#: ../gnome-dictionary/src/gdict-applet.c:188
+#: ../gnome-dictionary/src/gdict-applet.c:198
 #: ../gnome-dictionary/src/gdict-window.c:479
 msgid "Untitled document"
 msgstr "Untitled document"
 
-#: ../gnome-dictionary/src/gdict-applet.c:209
+#: ../gnome-dictionary/src/gdict-applet.c:219
 #: ../gnome-dictionary/src/gdict-window.c:500
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Error while writing to '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:273
+#: ../gnome-dictionary/src/gdict-applet.c:283
 msgid "Clear definition"
 msgstr "Clear definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:274
+#: ../gnome-dictionary/src/gdict-applet.c:284
 msgid "Clear the text of the definition"
 msgstr "Clear the text of the definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:281
+#: ../gnome-dictionary/src/gdict-applet.c:291
 msgid "Print definition"
 msgstr "Print definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:282
+#: ../gnome-dictionary/src/gdict-applet.c:292
 msgid "Print the text of the definition"
 msgstr "Print the text of the definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:289
+#: ../gnome-dictionary/src/gdict-applet.c:299
 msgid "Save definition"
 msgstr "Save definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:290
+#: ../gnome-dictionary/src/gdict-applet.c:300
 msgid "Save the text of the definition to a file"
 msgstr "Save the text of the definition to a file"
 
-#: ../gnome-dictionary/src/gdict-applet.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:405
 msgid "Dictionary entry"
 msgstr "Dictionary entry"
 
-#: ../gnome-dictionary/src/gdict-applet.c:586
+#: ../gnome-dictionary/src/gdict-applet.c:607
 msgid "Preferences"
 msgstr "Preferences"
 
-#: ../gnome-dictionary/src/gdict-applet.c:618
+#: ../gnome-dictionary/src/gdict-applet.c:639
 msgid "There was an error displaying help"
 msgstr "There was an error displaying help"
 
-#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-applet.c:786
 #: ../gnome-dictionary/src/gdict-window.c:259
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "No dictionary source available with name '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-applet.c:790
 #: ../gnome-dictionary/src/gdict-window.c:263
 msgid "Unable to find dictionary source"
 msgstr "Unable to find dictionary source"
 
-#: ../gnome-dictionary/src/gdict-applet.c:768
+#: ../gnome-dictionary/src/gdict-applet.c:806
 #: ../gnome-dictionary/src/gdict-window.c:279
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "No context available for source '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:772
+#: ../gnome-dictionary/src/gdict-applet.c:810
 #: ../gnome-dictionary/src/gdict-window.c:283
 msgid "Unable to create a context"
 msgstr "Unable to create a context"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1007
+#: ../gnome-dictionary/src/gdict-applet.c:1049
 #, c-format
 msgid "Unable to load the application icon: %s"
 msgstr "Unable to load the application icon: %s"
@@ -1144,27 +1189,33 @@ msgstr "Add Dictionary Source"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:318
 #, c-format
-msgid "Remove '%s'"
-msgstr "Remove '%s'"
+msgid "Remove \"%s\"?"
+msgstr "Remove \"%s\"?"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:320
-msgid "This will permanently remove the dictionary source from the list"
-msgstr "This will permanently remove the dictionary source from the list"
+msgid "This will permanently remove the dictionary source from the list."
+msgstr "This will permanently remove the dictionary source from the list."
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:350
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Unable to remove source '%s'"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:592
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:671
+msgid "There was an error while displaying help"
+msgstr "There was an error while displaying help"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:638
 msgid "Add a new dictionary source"
 msgstr "Add a new dictionary source"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:600
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:646
 msgid "Remove the currently selected dictionary source"
 msgstr "Remove the currently selected dictionary source"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:615
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:661
 msgid "Set the font used for printing the definitions"
 msgstr "Set the font used for printing the definitions"
 
@@ -1184,11 +1235,6 @@ msgstr "Unable to create a source file"
 #: ../gnome-dictionary/src/gdict-source-dialog.c:295
 msgid "Unable to save source file"
 msgstr "Unable to save source file"
-
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:671
-msgid "There was an error while displaying help"
-msgstr "There was an error while displaying help"
 
 #: ../gnome-dictionary/src/gdict-window.c:167
 #, c-format
