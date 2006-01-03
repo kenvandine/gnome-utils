@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-02 06:42+0100\n"
-"PO-Revision-Date: 2006-01-02 14:34+0530\n"
+"POT-Creation-Date: 2006-01-02 22:54+0100\n"
+"PO-Revision-Date: 2006-01-03 10:25+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -499,7 +500,7 @@ msgstr "સંગ્રહો (_S)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:343
 #: ../gnome-dictionary/src/gdict-window.c:911
 msgid "Dictionary"
 msgstr "શબ્દકોષ"
@@ -555,7 +556,9 @@ msgid ""
 "The name of the default individual database or meta-database to use on a "
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
 "present in a dictionary source should be searched"
-msgstr "શબ્દકોષ સ્રોત પર મૂળભૂત રીતે વાપરવાના વ્યક્તિગત ડેટાબેઝ અથવા મેટા-ડેટાબેઝનું નામ. અવતરણ ચિહ્ન (\"!\") એટલે કે સ્રોત પર હાજર બધા ડેટાબેઝની શોધ થવી જોઈએ"
+msgstr ""
+"શબ્દકોષ સ્રોત પર મૂળભૂત રીતે વાપરવાના વ્યક્તિગત ડેટાબેઝ અથવા મેટા-ડેટાબેઝનું નામ. અવતરણ "
+"ચિહ્ન (\"!\") એટલે કે સ્રોત પર હાજર બધા ડેટાબેઝની શોધ થવી જોઈએ"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid ""
@@ -1018,40 +1021,85 @@ msgstr "શબ્દકોષોમાં શબ્દો જુઓ"
 msgid "Unable to open the application icon: %s"
 msgstr "કાર્યક્રમ ચિહ્ન ખોલવામાં અસમર્થ: %s"
 
+#: ../gnome-dictionary/src/gdict-app.c:199
+#, c-format
+msgid ""
+"Definitions for \"%s\":\n"
+"\n"
+msgstr ""
+"\"%s\" માટે વ્યાખ્યાઓ:\n"
+"\n"
+
+#. Translators: source name first, then definition
 #: ../gnome-dictionary/src/gdict-app.c:208
+#, c-format
+msgid ""
+"From %s:\n"
+"%s\n"
+msgstr ""
+"%s તરફથી:\n"
+"%s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:218
+#, c-format
+msgid "Error: %s\n"
+msgstr "ભૂલ: %s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:230
+msgid "See gnome-dictionary --help for usage\n"
+msgstr "વપરાશ માટે gnome-dictionary --help જુઓ\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:243
+msgid "Unable to find a suitable dictionary source"
+msgstr "વ્યાપક શબ્દકોષ સ્રોત શોધવામાં અસમર્થ"
+
+#: ../gnome-dictionary/src/gdict-app.c:271
+#, c-format
+msgid ""
+"Error while looking up the definition of \"%s\":\n"
+"%s"
+msgstr ""
+"\"%s\" ની વ્યાખ્યા જોતી વખતે ભૂલ:\n"
+"%s"
+
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "Word to look up"
 msgstr "જોવા માટેનો શબ્દ"
 
-#: ../gnome-dictionary/src/gdict-app.c:208
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "word"
 msgstr "શબ્દ"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "Dictionary source to use"
 msgstr "વાપરવા માટેનો શબ્દકોષ સ્રોત"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "source"
 msgstr "સ્રોત"
 
-#: ../gnome-dictionary/src/gdict-app.c:212
+#: ../gnome-dictionary/src/gdict-app.c:306
 msgid "Show available dictionary sources"
 msgstr "ઉપલબ્ધ શબ્દકોષ સ્રોતો બતાવો"
 
-#: ../gnome-dictionary/src/gdict-app.c:214
+#: ../gnome-dictionary/src/gdict-app.c:308
 msgid "Print result to the console"
 msgstr "પરિણામને કન્સોલમાં છાપો"
 
+#: ../gnome-dictionary/src/gdict-app.c:310
+msgid "Database to use"
+msgstr "વાપરવા માટેનો ડેટાબેઝ"
+
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:230
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid " - Look up words in dictionaries"
 msgstr " - શબ્દો શબ્દોકોષોમાં જુઓ"
 
-#: ../gnome-dictionary/src/gdict-app.c:234
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Dictionary and spelling tool"
 msgstr "શબ્દકોષ અને જોડણી સાધન"
 
-#: ../gnome-dictionary/src/gdict-app.c:235
+#: ../gnome-dictionary/src/gdict-app.c:331
 msgid "Show Dictionary options"
 msgstr "શબ્દકોષ વિકલ્પો બતાવો"
 
