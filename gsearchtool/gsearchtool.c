@@ -744,7 +744,7 @@ add_file_to_search_results (const gchar * file,
 			    COLUMN_NO_FILES_FOUND, FALSE,
 			    -1);
 
-	monitor = g_new0 (GSearchMonitor, 1);
+	monitor = g_slice_new0 (GSearchMonitor);
 	if (monitor) {
 		path = gtk_tree_model_get_path (GTK_TREE_MODEL (store), iter);		
 		reference = gtk_tree_row_reference_new (GTK_TREE_MODEL (store), path);
@@ -761,7 +761,7 @@ add_file_to_search_results (const gchar * file,
 		} 
 		else {
 			gtk_tree_row_reference_free (reference);
-			g_free (monitor);
+			g_slice_free (GSearchMonitor, monitor);
 		}
 	}
 
@@ -892,7 +892,7 @@ tree_model_iter_free_monitor (GtkTreeModel * model,
 	if (monitor) {
 		gnome_vfs_monitor_cancel (monitor->handle);
 		gtk_tree_row_reference_free (monitor->reference);
-		g_free (monitor);
+		g_slice_free (GSearchMonitor, monitor);
 	}
 	return FALSE;
 }
@@ -2043,7 +2043,7 @@ add_constraint (GSearchWindow * gsearch,
                 gchar * value,
                 gboolean show_constraint)
 {
-	GSearchConstraint * constraint = g_new (GSearchConstraint,1);
+	GSearchConstraint * constraint = g_slice_new (GSearchConstraint);
 	GtkWidget * widget;
 
 	if (show_constraint) {
@@ -2751,7 +2751,7 @@ gsearch_app_create (GSearchWindow * gsearch)
 	g_signal_connect (G_OBJECT (gsearch->window), "size-allocate",
 			  G_CALLBACK (gsearch_window_size_allocate),
 			  gsearch);
-	gsearch->command_details = g_new0 (GSearchCommandDetails, 1);
+	gsearch->command_details = g_slice_new0 (GSearchCommandDetails);
 	gsearch->window_geometry.min_height = MINIMUM_WINDOW_HEIGHT;
 	gsearch->window_geometry.min_width  = MINIMUM_WINDOW_WIDTH;
 	

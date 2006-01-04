@@ -269,7 +269,7 @@ remove_constraint_cb (GtkWidget * widget,
 
 	set_constraint_selected_state (gsearch, constraint->constraint_id, FALSE);
 	set_constraint_gconf_boolean (constraint->constraint_id, FALSE);
-	g_free (constraint);
+	g_slice_free (GSearchConstraint, constraint);
 	g_list_free (list);
 }
 

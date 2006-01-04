@@ -1,3 +1,11 @@
+2006-01-04  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c: (remove_constraint_cb):
+	* gsearchtool.c: (add_file_to_search_results),
+	(tree_model_iter_free_monitor), (add_constraint),
+	(gsearch_app_create):  Convert many g_new*() calls to use 
+	the faster g_slice*() functions.
+
 2005-12-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* gsearchtool-support.c (get_readable_date): use g_date_set_time_t and
