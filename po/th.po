@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-02 16:51+0700\n"
-"PO-Revision-Date: 2006-01-02 16:55+0700\n"
+"POT-Creation-Date: 2006-01-07 12:21+0700\n"
+"PO-Revision-Date: 2006-01-07 12:26+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -504,7 +504,7 @@ msgstr "_บันทึก"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:343
 #: ../gnome-dictionary/src/gdict-window.c:911
 msgid "Dictionary"
 msgstr "พจนานุกรม"
@@ -1029,40 +1029,85 @@ msgstr "ค้นหาคำในพจนานุกรมต่างๆ"
 msgid "Unable to open the application icon: %s"
 msgstr "ไม่สามารถเปิดไอคอนของโปรแกรมได้: %s"
 
+#: ../gnome-dictionary/src/gdict-app.c:199
+#, c-format
+msgid ""
+"Definitions for \"%s\":\n"
+"\n"
+msgstr ""
+"ความหมายของคำว่า \"%s\":\n"
+"\n"
+
+#. Translators: source name first, then definition
 #: ../gnome-dictionary/src/gdict-app.c:208
+#, c-format
+msgid ""
+"From %s:\n"
+"%s\n"
+msgstr ""
+"จาก %s:\n"
+"%s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:218
+#, c-format
+msgid "Error: %s\n"
+msgstr "ผิดพลาด: %s\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:230
+msgid "See gnome-dictionary --help for usage\n"
+msgstr "เรียก gnome-dictionary --help เพื่อดูวิธีเรียกใช้\n"
+
+#: ../gnome-dictionary/src/gdict-app.c:243
+msgid "Unable to find a suitable dictionary source"
+msgstr "ไม่พบแหล่งพจนานุกรมที่เหมาะสม"
+
+#: ../gnome-dictionary/src/gdict-app.c:271
+#, c-format
+msgid ""
+"Error while looking up the definition of \"%s\":\n"
+"%s"
+msgstr ""
+"เกิดข้อผิดพลาดขณะค้นความหมายของคำว่า \"%s\":\n"
+"%s"
+
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "Word to look up"
 msgstr "คำที่จะค้นหา"
 
-#: ../gnome-dictionary/src/gdict-app.c:208
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "word"
 msgstr "คำ"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "Dictionary source to use"
 msgstr "แหล่งพจนานุกรมที่จะใช้"
 
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:304
 msgid "source"
 msgstr "แหล่ง"
 
-#: ../gnome-dictionary/src/gdict-app.c:212
+#: ../gnome-dictionary/src/gdict-app.c:306
 msgid "Show available dictionary sources"
 msgstr "แสดงแหล่งพจนานุกรมทั้งหมดที่มี"
 
-#: ../gnome-dictionary/src/gdict-app.c:214
+#: ../gnome-dictionary/src/gdict-app.c:308
 msgid "Print result to the console"
 msgstr "แสดงผลลัพธ์ออกทางคอนโซล"
 
+#: ../gnome-dictionary/src/gdict-app.c:310
+msgid "Database to use"
+msgstr "ฐานข้อมูลที่จะใช้"
+
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:230
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid " - Look up words in dictionaries"
 msgstr " - ค้นหาคำในพจนานุกรมต่างๆ"
 
-#: ../gnome-dictionary/src/gdict-app.c:234
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Dictionary and spelling tool"
 msgstr "เครื่องมือค้นพจนานุกรมและตรวจตัวสะกด"
 
-#: ../gnome-dictionary/src/gdict-app.c:235
+#: ../gnome-dictionary/src/gdict-app.c:331
 msgid "Show Dictionary options"
 msgstr "แสดงตัวเลือกต่างๆ ของพจนานุกรม"
 
@@ -2687,9 +2732,6 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 #~ msgid "Default"
 #~ msgstr "ปริยาย"
 
-#~ msgid "Unable to find a dictionary source"
-#~ msgstr "หาแหล่งพจนานุกรมไม่พบ"
-
 #~ msgid "Find:"
 #~ msgstr "หา:"
 
@@ -2844,9 +2886,6 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 
 #~ msgid "Search all databases"
 #~ msgstr "ค้นหาจากทุกฐานข้อมูล"
-
-#~ msgid "Database Name"
-#~ msgstr "ชื่อฐานข้อมูล"
 
 #~ msgid "Default Strategy"
 #~ msgstr "กลวิธีปริยาย"
@@ -3190,9 +3229,6 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 
 #~ msgid "Too many open logs. Close one and try again"
 #~ msgstr "เปิดแฟ้มบันทึกปฏิบัติการมากเกินไป โปรดปิดสักอันแล้วลองใหม่"
-
-#~ msgid "Error: [%s]\n"
-#~ msgstr "ผิดพลาด: [%s]\n"
 
 #~ msgid "Monitor Options"
 #~ msgstr "ตัวเลือกการติดตาม"
