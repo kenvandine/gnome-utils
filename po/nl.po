@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-05 14:39+0100\n"
-"PO-Revision-Date: 2006-01-05 17:52+0100\n"
+"POT-Creation-Date: 2006-01-08 14:44+0100\n"
+"PO-Revision-Date: 2006-01-09 08:31+0100\n"
 "Last-Translator: Daniel van Eeden <daniel_e@dds.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -80,21 +80,21 @@ msgstr "Interne Fout: Kan de juiste locatie niet vinden."
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Interene Fout: Vreemde waarde (%ld) in do_test\n"
 
+# beschadigde/foutieve/onbetrouwbare
 #. while (!i)
 #. ;
 #: ../gfloppy/src/badblocks.c:255
 msgid "Checking for bad blocks..."
-msgstr "Bezig met het controleren op foutieve blokken..."
+msgstr "Bezig met het controleren op onbetrouwbare blokken..."
 
 #: ../gfloppy/src/badblocks.c:267
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr ""
-"Openen van apparaat %s voor het controleren op foutieve blokken is mislukt\n"
+msgstr "Openen van apparaat %s voor het controleren op onbetrouwbare blokken is mislukt\n"
 
 #: ../gfloppy/src/badblocks.c:287 ../gfloppy/src/gfloppy.c:531
 msgid "Checking for bad blocks... Done"
-msgstr "Controleren op foute blokken...Klaar"
+msgstr "Controleren op onbetrouwbare blokken...Klaar"
 
 # moet overeenkomen met de ...Done versie
 # disk hier vertaald met diskette (het gaat om gfloppy)
@@ -187,7 +187,7 @@ msgstr "Fout bij het lezen van cylinder %d, verwachtte %d, las %d"
 #: ../gfloppy/src/fdformat.c:151
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
-msgstr "Slechte gegegevens in cyl %d. Vervolgen..."
+msgstr "Foutieve gegegevens in cyl %d. Vervolgen..."
 
 #: ../gfloppy/src/fdformat.c:160
 #, c-format
@@ -249,8 +249,7 @@ msgid ""
 "\n"
 "%s (%d)"
 msgstr ""
-"Het hulpprogramma voor aanmaken van het bestandssysteem (%s) meldde de "
-"volgende fouten:\n"
+"Het programma voor aanmaken van het bestandssysteem (%s) meldde de volgende fouten:\n"
 "\n"
 "%s (%d)"
 
@@ -270,8 +269,7 @@ msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
 msgstr ""
-"Het hulpprogramma voor het controleren op onbetrouwbare blokken (mbadblocks) "
-"meldde de volgende fouten:\n"
+"Het programma voor het controleren op onbetrouwbare blokken (mbadblocks) meldde de volgende fouten:\n"
 "%s."
 
 #: ../gfloppy/src/gfloppy.c:439
@@ -294,7 +292,7 @@ msgstr "Bezig met aanmaken van bestandssysteem op diskette... Klaar"
 
 #: ../gfloppy/src/gfloppy.c:522
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "Bezig met controleren op slechte blokken... (dit kan enige tijd duren)"
+msgstr "Bezig met controleren op onbetrouwbare blokken... (dit kan enige tijd duren)"
 
 #: ../gfloppy/src/gfloppy.c:527
 msgid "Error while checking the bad blocks."
@@ -554,14 +552,11 @@ msgid "Port used to connect to server (Deprecated)"
 msgstr "Poort voor het verbinden met woordenboekserver (afgeraden)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:3
-#, fuzzy
 msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE. This key is "
 "deprecated and no longer in use."
-msgstr ""
-"Slim zoeken gebruiken. Deze sleutel is afhankelijk van het feit om het "
-"woordenboek deze optie ondersteunt. De standaardinstelling is WAAR"
+msgstr "Geef aan of 'slim zoeken' moet worden gebruikt. Deze sleutelwaarde is afhankelijk van de woordenboekserver die deze mogelijkheid wel of niet kan ondersteunen. De standaardinstelling is WAAR. Deze sleutel wordt afgeraden en is niet langer in gebruik."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:4
 msgid "The default database to use"
@@ -572,14 +567,11 @@ msgid "The default search strategy to use"
 msgstr "De standaard zoekstrategie die gevolgd wordt"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
-#, fuzzy
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers. This key is deprecated and "
 "no longer in use."
-msgstr ""
-"De woordenboekserver waarmee moet worden verbonden. De standaardserver is "
-"dict.org. Zie http://www.dict.org voor informatie over andere servers"
+msgstr "De woordenboekserver waarmee moet worden verbonden. De standaardserver is dict.org. Zie http://www.dict.org voor informatie over andere servers. Deze sleutel wordt afgeraden en is niet langer in gebruik."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
 msgid "The font to be used when printing"
@@ -590,43 +582,36 @@ msgid "The font to be used when printing a definition."
 msgstr "Het lettertype dat gebruikt wordt bij het afdrukken van een definitie."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
-#, fuzzy
 msgid ""
 "The name of the default individual database or meta-database to use on a "
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
 "present in a dictionary source should be searched"
-msgstr ""
-"De naam van de individuele database die moet worden gebruikt in de "
-"woordenboekserver. ! geeft aan dat gnome-woordenboek moet zoeken in alle "
-"databases van een gegeven server"
+msgstr "De naam van de database of meta-database die standaard moet worden gebruikt bij een woordenboekbron. Een uitroepteken \"!\" betekent dat alle beschikbare woordenboeken op de woordenboekbron moeten worden doorzocht"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
-msgstr ""
+msgstr "De naam van de standaard zoekstrategie die gebruikt wordt op een woordenboekbron, indien beschikbaar. De standaardstrategie is 'exact', dat wil zeggen: de woorden moeten exact overeenkomen."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
-#, fuzzy
 msgid "The name of the dictionary source used"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "De naam van de gebruikte woordenboekbron"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
 "The name of the dictionary source used to retrieve the definitions of words."
-msgstr ""
+msgstr "de naam van de woordenboekbron die gebruikt wordt voor het ophalen van de definitie van woorden."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
-#, fuzzy
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
-msgstr "Het poortnummer waarmee moet worden verbonden. Standaard is 2628."
+msgstr "Het poortnummer waarmee moet worden verbonden. De standaardpoort is 2628. Deze sleutel wordt afgeraden en is niet langer in gebruik."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
-#, fuzzy
 msgid "Use smart lookup (Deprecated)"
-msgstr "Slim zoeken gebruiken"
+msgstr "Slim zoeken gebruiken (afgeraden)"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -678,7 +663,7 @@ msgstr "_Afdruklettertype:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
 msgid "_Select a dictionary source for looking up words:"
-msgstr ""
+msgstr "_Selecteer een woordenboekbron voor het opzoeken van woorden:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
 msgid "_Strategy:"
@@ -690,49 +675,48 @@ msgstr "_Transport:"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:270
 msgid "Client Name"
-msgstr ""
+msgstr "Clientnaam"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:271
 msgid "The name of the client of the context object"
-msgstr ""
+msgstr "De naam van de client van het contextobject"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "Hostname"
 msgstr "Hostnaam"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:285
-#, fuzzy
 msgid "The hostname of the dictionary server to connect to"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "De hostnaam van de woordenboekserver waarmee wordt verbonden"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:298
 msgid "Port"
 msgstr "Poort"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:299
-#, fuzzy
 msgid "The port of the dictionary server to connect to"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "De poort van de woordenboekserver waarmee wordt verbonden"
 
 # toestand
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:314
 msgid "Status"
 msgstr "Status"
 
+# terggegeven/doorgegeven
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:315
-#, fuzzy
 msgid "The status code as returned by the dictionary server"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "De statuscode die door de woordenboekserver wordt doorgegeven"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:762
-#, fuzzy, c-format
+#, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
-msgstr "Een client voor MIT-woordenboekserver."
+msgstr "Geen verbinding met de woordenboekserver op '%s:%d'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1024
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
-msgstr "Zoekopdracht mislukt voor hostnaam '%s': geen geschikte bronnen gevonden"
+msgstr ""
+"Zoekopdracht mislukt voor hostnaam '%s': geen geschikte bronnen gevonden"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
 #, c-format
@@ -749,14 +733,16 @@ msgstr "Zoekopdracht mislukt voor host '%s': host niet gevonden"
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
-msgstr ""
+msgstr "Kon niet verbinden met de woordenboekserver op '%s:%d'. De server antwoordde met code %d (server down)"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
 ": '%s'"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr ""
+"Kon het antwoord van de woordenboekserver niet verwerken\n"
+": '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
 #, c-format
@@ -784,9 +770,9 @@ msgid "Bad parameters for command '%s'"
 msgstr "Foutieve parameters voor opdracht '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
-#, fuzzy, c-format
+#, c-format
 msgid "No databases found on dictionary server at '%s'"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "Geen database gevonden op woordenboekserver op '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
 #, c-format
@@ -794,9 +780,9 @@ msgid "No strategies found on dictionary server at '%s'"
 msgstr "Geen strategieën gevonden op woordenboekserver '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1663
-#, fuzzy, c-format
+#, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
-msgstr "Een client voor MIT-woordenboekserver."
+msgstr "Verbinding mislukt voor de woordenboekserver op %s:%d"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1702
 #, c-format
@@ -808,25 +794,24 @@ msgstr ""
 "%s"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1773
-#, fuzzy
 msgid "No hostname defined for the dictionary server"
-msgstr "Een client voor MIT-woordenboekserver."
+msgstr "Geen hostnaam opgegeven voor de woordenboekserver"
 
+# ontvanger?/socket/contactdoos
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1809
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1824
-#, fuzzy
 msgid "Unable to create socket"
-msgstr "Het aanmaken van de gebruikersinterface is mislukt."
+msgstr "Kon geen 'socket' aanmaken"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1850
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
-msgstr ""
+msgstr "Kon het kanaal niet instellen als non-blocking: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "Kon geen verbinding maken met de woordenboekserver op '%s:%d'"
 
 #: ../gnome-dictionary/libgdict/gdict-context.c:196
 msgid "Local Only"
@@ -834,7 +819,7 @@ msgstr "Alleen lokaal"
 
 #: ../gnome-dictionary/libgdict/gdict-context.c:197
 msgid "Whether the context uses only local dictionaries or not"
-msgstr ""
+msgstr "Of de context alleen lokale woordenboeken gebruikt"
 
 # Geen overeenkomsten gevonden/niet gevonden
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:341
@@ -863,7 +848,7 @@ msgstr "Context"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:684
 msgid "The GdictContext object used to get the word definition"
-msgstr ""
+msgstr "Het GdictContext-object dat gebruikt wordt om de definitie van het woord te krijgen"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:698
 #: ../gnome-dictionary/libgdict/gdict-entry.c:119
@@ -924,7 +909,7 @@ msgstr "Fout bij het opzoeken van de definitie"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1296
 #, c-format
 msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
-msgstr ""
+msgstr "Poging om '%s' op te zoeken maar er is geen GdictContext gedefinieerd. Afgebroken."
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Another search is in progress"
@@ -944,7 +929,8 @@ msgstr "Het GdictContext-object dat met dit item is verbonden"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
 msgid "The database to be used to generate the completion list"
-msgstr "De database die wordt gebruikt voor het genereren van de aanvullingslijst"
+msgstr ""
+"De database die wordt gebruikt voor het genereren van de aanvullingslijst"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:134
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
@@ -953,7 +939,7 @@ msgstr "Strategie"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
 msgid "The matching strategy to be used to generate the completion list"
-msgstr ""
+msgstr "De zoekstrategie die gebruikt wordt om de aanvullingslijst te genereren"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:218
 msgid "Filename"
@@ -998,7 +984,7 @@ msgstr "Het transportmechanisme dat wordt gebruikt door deze woordenboekbron"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:304
 msgid "The GdictContext bound to this source"
-msgstr ""
+msgstr "De GdictContext die aan deze bron is verbonden"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:399
 #, c-format
@@ -1008,30 +994,31 @@ msgstr "Ongeldig transporttype '%d'"
 #: ../gnome-dictionary/libgdict/gdict-source.c:427
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
-msgstr ""
+msgstr "Geen '%s'-groep gevonden binnen de woordenboekbron definitie"
 
+# wat een techno-babble!
 #: ../gnome-dictionary/libgdict/gdict-source.c:443
 #: ../gnome-dictionary/libgdict/gdict-source.c:467
 #: ../gnome-dictionary/libgdict/gdict-source.c:491
 #: ../gnome-dictionary/libgdict/gdict-source.c:516
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
-msgstr ""
+msgstr "Kon de '%s'-sleutel niet verkrijgen binnen de woordenboekbron definitie: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:541
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
-msgstr ""
+msgstr "Kon de '%s'-sleutel niet verkrijgen binnen het woordenboekbron definitiebestand: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:727
 msgid "Dictionary source does not have name"
-msgstr ""
+msgstr "Woordenboekbron heeft geen naam"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:736
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
-msgstr ""
+msgstr "Woordenboekbron '%s' heeft een ongeldig transport '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:162
 msgid "Paths"
@@ -1069,23 +1056,26 @@ msgstr ""
 "\n"
 "Zie voor meer informatie http://nl.gnome.org"
 
+# enkelvoud van woordenboek staat beter, meestal doorzoek
+# je maar 1 woordenboek tegelijk
 #: ../gnome-dictionary/src/gdict-about.c:61
 #: ../gnome-dictionary/src/gdict-applet.c:406
-#, fuzzy
 msgid "Look up words in dictionaries"
-msgstr "Woord opzoeken in het woordenboek"
+msgstr "Woorden opzoeken in een woordenboek"
 
 #: ../gnome-dictionary/src/gdict-about.c:87
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to open the application icon: %s"
-msgstr "Toepassing sluiten"
+msgstr "Kon het pictogram voor de toepassing niet openen: %s"
 
 #: ../gnome-dictionary/src/gdict-app.c:199
 #, c-format
 msgid ""
 "Definitions for \"%s\":\n"
 "\n"
-msgstr "Definities voor \"%s\":\n\n"
+msgstr ""
+"Definities voor \"%s\":\n"
+"\n"
 
 #. Translators: source name first, then definition
 #: ../gnome-dictionary/src/gdict-app.c:208
@@ -1107,9 +1097,8 @@ msgid "See gnome-dictionary --help for usage\n"
 msgstr "Zie gnome-dictionary --help voor gebruik\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:243
-#, fuzzy
 msgid "Unable to find a suitable dictionary source"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "Kon geen geschikte woordenboekbron vinden"
 
 #: ../gnome-dictionary/src/gdict-app.c:271
 #, c-format
@@ -1176,9 +1165,9 @@ msgstr "Naamloos document"
 
 #: ../gnome-dictionary/src/gdict-applet.c:219
 #: ../gnome-dictionary/src/gdict-window.c:500
-#, fuzzy, c-format
+#, c-format
 msgid "Error while writing to '%s'"
-msgstr "Er is een fout opgetreden bij het uitvoeren van de (%s) opdracht: %s"
+msgstr "Er is een fout opgetreden bij het schrijven naar '%s'"
 
 #: ../gnome-dictionary/src/gdict-applet.c:283
 msgid "Clear definition"
@@ -1224,9 +1213,8 @@ msgstr "Geen woordenboekbron beschikbaar met de naam '%s'"
 
 #: ../gnome-dictionary/src/gdict-applet.c:790
 #: ../gnome-dictionary/src/gdict-window.c:263
-#, fuzzy
 msgid "Unable to find dictionary source"
-msgstr "De database die wordt gebruikt in de woordenboekserver."
+msgstr "Kon geen woordenboekbron vinden"
 
 #: ../gnome-dictionary/src/gdict-applet.c:806
 #: ../gnome-dictionary/src/gdict-window.c:279
@@ -1240,11 +1228,9 @@ msgid "Unable to create a context"
 msgstr "Kon geen context aanmaken"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1049
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to load the application icon: %s"
-msgstr ""
-"Kan tijdelijke map niet leegmaken:\n"
-"%s"
+msgstr "Kon het pictogram voor de toepassing niet laden: %s"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:272
 msgid "Add Dictionary Source"
@@ -1279,10 +1265,10 @@ msgstr "Een nieuwe woordenboekbron toevoegen"
 msgid "Remove the currently selected dictionary source"
 msgstr "Verwijder de geselecteerde woordenboekbron"
 
+# stel in/geef
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:661
-#, fuzzy
 msgid "Set the font used for printing the definitions"
-msgstr "Grootte van het lettertype voor logweergave"
+msgstr "Geef het lettertype voor het afdrukken van de definities"
 
 #: ../gnome-dictionary/src/gdict-print.c:187
 #, c-format
@@ -1362,9 +1348,8 @@ msgid "Select _All"
 msgstr "_Alles selecteren"
 
 #: ../gnome-dictionary/src/gdict-window.c:727
-#, fuzzy
 msgid "Find a word or phrase in the document"
-msgstr "Woord in de tekst zoeken"
+msgstr "Zoek een woord of frase in het document"
 
 #: ../gnome-dictionary/src/gdict-window.c:729
 msgid "Find Ne_xt"
@@ -1424,9 +1409,8 @@ msgid "Look _up:"
 msgstr "_Opzoeken:"
 
 #: ../gnome-dictionary/src/gdict-window.c:1097
-#, fuzzy
 msgid "Unable to load the application icon"
-msgstr "Toepassing sluiten"
+msgstr "Kon het pictogram voor de toepassing nit laden"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -1790,14 +1774,14 @@ msgid ""
 "This key defines the window height, and it's used to remember the size of "
 "the search tool between sessions. Setting it to -1 will make the search tool "
 "use the default height."
-msgstr ""
+msgstr "Deze sleutel stelt de hoogte in van het venster. Het wordt gebruikt om de afmeting van het zoekvenster te onthouden. Met de waarde -1 zal het zoekvenster de standaardhoogte krijgen."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key defines the window width, and it's used to remember the size of the "
 "search tool between sessions. Setting it to -1 will make the search tool use "
 "the default width."
-msgstr ""
+msgstr "Deze sleutel stelt de breedte in van het venster. Het wordt gebruikt om de afmeting van het zoekvenster te onthouden. Met de waarde -1 zal het zoekvenster de standaardbreedte krijgen."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
@@ -1938,12 +1922,9 @@ msgstr ""
 "'locate' weigert na het uitvoeren van eenvoudige bestandsnaam-zoekopdrachten."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:76
-#, fuzzy
 msgid ""
 "This key determines if the search tool window starts in a maximized state."
-msgstr ""
-"Deze sleutel bepaalt of het zoekprogramma het gebruik van de opdracht 'find' "
-"weigert na het uitvoeren van een snelzoekactie."
+msgstr "Deze sleutel bepaalt of het venster van zoekprogramma bij het starten gemaximaliseerd is."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:186
 msgid "Could not open help document."
@@ -2673,14 +2654,10 @@ msgid "Size of the font used to display the log"
 msgstr "Grootte van het lettertype voor logweergave"
 
 #: ../logview/logview.schemas.in.h:5
-#, fuzzy
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
-msgstr ""
-"Specificeert een lijst met logbestanden welke bij het opstarten geopend "
-"dienen te worden. Wanneer deze sleutel wordt aangemaakt wordt een "
-"standaardlijst aangemaakt met behulp van /etc/syslog.conf"
+msgstr "Geeft een lijst met logbestanden die bij het opstarten worden geopend. Er wordt een standaardlijst aangemaakt met de gegevens in /etc/syslog.conf."
 
 #: ../logview/logview.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
@@ -2696,19 +2673,15 @@ msgstr ""
 "besturingssysteem."
 
 #: ../logview/logview.schemas.in.h:8
-#, fuzzy
 msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
-msgstr ""
-"Specificeert de grootte van het vaste-breedte lettertype voor het "
-"logvenster. De standaard wordt gekopieerd van het standaard gnome terminal "
-"lettertype."
+msgstr "Geeft de grootte van het vaste-breedte lettertype voor de tekst van het logboek in het hoofdvenster. De standaard is gelijk aan het standaard lettertype van een terminalvenster."
 
+# beeldpunten/pixels
 #: ../logview/logview.schemas.in.h:9
-#, fuzzy
 msgid "Specifies the width of the log viewer main window in pixels."
-msgstr "Specificeert de breedte van het log venster in pixels."
+msgstr "Geeft de breedte van het logboek-venster in pixels."
 
 #: ../logview/logview.schemas.in.h:10
 msgid "Width of the main window in pixels"
