@@ -552,18 +552,17 @@ gdict_applet_lookup_end_cb (GdictContext *context,
   
   /* enable menu items */
   popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
+  if (!BONOBO_IS_UI_COMPONENT (popup_component))
+    return;
+
   bonobo_ui_component_set_prop (popup_component,
 		  		"/commands/Clear",
 				"sensitive", "1",
 				NULL);
-
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
   bonobo_ui_component_set_prop (popup_component,
 		  		"/commands/Print",
 				"sensitive", "1",
 				NULL);
-
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
   bonobo_ui_component_set_prop (popup_component,
 		  		"/commands/Save",
 				"sensitive", "1",
@@ -578,28 +577,27 @@ gdict_applet_error_cb (GdictContext *context,
   GdictAppletPrivate *priv = applet->priv;
   BonoboUIComponent *popup_component;
 
+  /* force window hide */
+  gtk_widget_hide (priv->window);
+  priv->is_window_showing = FALSE;
+  
   /* disable menu items */
   popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
+  if (!BONOBO_IS_UI_COMPONENT (popup_component))
+    return;
+
   bonobo_ui_component_set_prop (popup_component,
 		  		"/commands/Clear",
 				"sensitive", "0",
 				NULL);
-
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
   bonobo_ui_component_set_prop (popup_component,
 		  		"/commands/Print",
 				"sensitive", "0",
 				NULL);
-
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
   bonobo_ui_component_set_prop (popup_component,
 		  		"/commands/Save",
 				"sensitive", "0",
 				NULL);
-  
-  /* force window hide */
-  gtk_widget_hide (priv->window);
-  priv->is_window_showing = FALSE;
 }
 
 static void
@@ -1169,22 +1167,22 @@ gdict_applet_init (GdictApplet *applet)
 
   /* disable menu items */
   popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Clear",
-				"sensitive", "0",
-				NULL);
 
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Print",
-				"sensitive", "0",
-				NULL);
-
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Save",
-				"sensitive", "0",
-				NULL);
+  if (BONOBO_IS_UI_COMPONENT (popup_component))
+    {
+      bonobo_ui_component_set_prop (popup_component,
+		      		    "/commands/Clear",
+				    "sensitive", "0",
+				    NULL);
+      bonobo_ui_component_set_prop (popup_component,
+		      		    "/commands/Print",
+				    "sensitive", "0",
+				    NULL);
+      bonobo_ui_component_set_prop (popup_component,
+		      		    "/commands/Save",
+				    "sensitive", "0",
+				    NULL);
+   }
 
   /* force first draw */
   gdict_applet_draw (applet);

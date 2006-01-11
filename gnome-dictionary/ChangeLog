@@ -1,5 +1,14 @@
 2006-01-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* data/GNOME_DictionaryApplet.xml: change the mnemonic for the "Clear"
+	verb.
+
+	* src/gdict-applet.c (gdict_applet_lookup_end_cb),
+	(gdict_applet_error_cb), (gdict_applet_init): check before changing the
+	menu items' sensivity; this should fix the crasher in bug #326004.
+
+2006-01-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* data/gnome-dictionary.schemas.in: add the new window state keys:
 		default-window-height
 		default-window-width
