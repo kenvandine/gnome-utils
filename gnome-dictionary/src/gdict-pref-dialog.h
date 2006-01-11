@@ -36,12 +36,14 @@ G_BEGIN_DECLS
 #define GDICT_DEFAULT_PRINT_FONT 	"Serif 10"
 #define GDICT_DEFAULT_SOURCE_NAME 	"Default"
 
-#define GDICT_GCONF_DIR	  		"/apps/gnome-dictionary"
-#define GDICT_GCONF_DATABASE_KEY 	GDICT_GCONF_DIR "/database"
-#define GDICT_GCONF_STRATEGY_KEY 	GDICT_GCONF_DIR "/strategy"
-#define GDICT_GCONF_PRINT_FONT_KEY 	GDICT_GCONF_DIR "/print-font"
-#define GDICT_GCONF_SOURCE_KEY 		GDICT_GCONF_DIR "/source-name"
-
+#define GDICT_GCONF_DIR				"/apps/gnome-dictionary"
+#define GDICT_GCONF_DATABASE_KEY 		GDICT_GCONF_DIR "/database"
+#define GDICT_GCONF_STRATEGY_KEY 		GDICT_GCONF_DIR "/strategy"
+#define GDICT_GCONF_PRINT_FONT_KEY 		GDICT_GCONF_DIR "/print-font"
+#define GDICT_GCONF_SOURCE_KEY 			GDICT_GCONF_DIR "/source-name"
+#define GDICT_GCONF_WINDOW_WIDTH_KEY 		GDICT_GCONF_DIR "/default-window-width"
+#define GDICT_GCONF_WINDOW_HEIGHT_KEY 		GDICT_GCONF_DIR "/default-window-height"
+#define GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY 	GDICT_GCONF_DIR "/window-is-maximized"
 
 typedef struct _GdictPrefDialog        GdictPrefDialog;
 typedef struct _GdictPrefDialogClass   GdictPrefDialogClass;

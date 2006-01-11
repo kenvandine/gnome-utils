@@ -80,6 +80,7 @@ struct _GdictAppletPrivate
   GdictSourceLoader *loader;
 
   GtkWidget *box;
+  GtkWidget *toggle;
   GtkWidget *image;
   GtkWidget *entry;
   GtkWidget *window;
@@ -88,6 +89,9 @@ struct _GdictAppletPrivate
   guint idle_draw_id;
 
   GdkPixbuf *icon;
+
+  gint window_width;
+  gint window_height;
 
   guint is_window_showing : 1;
 };
@@ -244,6 +248,9 @@ gdict_applet_build_window (GdictApplet *applet)
   GtkWidget *clear;
   GtkWidget *print;
   GtkWidget *save;
+  PangoContext *pango_context;
+  PangoFontDescription *font_desc;
+  gint width, height, font_size;
 
   if (!priv->entry)
     {
@@ -252,11 +259,18 @@ gdict_applet_build_window (GdictApplet *applet)
       return;
     }
   
-  window = gtk_aligned_window_new (priv->entry);
+  window = gtk_aligned_window_new (priv->toggle);
+
+  pango_context = gtk_widget_get_pango_context (window);
+  font_desc = pango_context_get_font_description (pango_context);
+  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+
+  width = MAX (50 * font_size, 400);
+  height = MAX (20 * font_size, 220);
   
   frame = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-  gtk_widget_set_size_request (frame, 400, 220);
+  gtk_widget_set_size_request (frame, width, height);
   gtk_container_add (GTK_CONTAINER (window), frame);
   gtk_widget_show (frame);
   
@@ -327,17 +341,24 @@ gdict_applet_toggle_window (GdictApplet *applet)
 }
 
 static gboolean
-gdict_applet_button_press_event_cb (GtkWidget      *widget,
-				    GdkEventButton *event,
-				    GdictApplet    *applet)
+gdict_applet_icon_toggled_cb (GtkWidget   *widget,
+			      GdictApplet *applet)
 {
-  if (event->button == 1)
+  GdictAppletPrivate *priv = applet->priv;
+
+  if (!priv->window)
+    gdict_applet_build_window (applet);
+  
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)))
     {
-      gdict_applet_toggle_window (applet); 
-      return TRUE;
+      gtk_widget_show (priv->window);
+      priv->is_window_showing = TRUE;
     }
   else
-    return FALSE;
+    {
+      gtk_widget_hide (priv->window);
+      priv->is_window_showing = FALSE;
+    }
 }
 
 static void
@@ -361,6 +382,19 @@ gdict_applet_entry_activate_cb (GtkWidget   *widget,
 }
 
 static gboolean
+gdict_applet_icon_button_press_event_cb (GtkWidget      *widget,
+					 GdkEventButton *event,
+					 GdictApplet    *applet)
+{
+  GdictAppletPrivate *priv = applet->priv;
+  
+  if (event->button != 1)
+    g_signal_stop_emission_by_name(priv->toggle, "button-press-event");
+
+  return FALSE;
+}
+
+static gboolean
 gdict_applet_entry_button_press_event_cb (GtkWidget      *widget,
 					  GdkEventButton *event,
 					  GdictApplet    *applet)
@@ -375,7 +409,8 @@ gdict_applet_draw (GdictApplet *applet)
 {
   GdictAppletPrivate *priv = applet->priv;
   GtkWidget *box;
-  GtkWidget *event;
+  GtkWidget *hbox;
+  GtkWidget *label;
   gchar *text = NULL;
 
   if (priv->entry)
@@ -399,7 +434,59 @@ gdict_applet_draw (GdictApplet *applet)
   
   gtk_container_add (GTK_CONTAINER (applet), box);
   gtk_widget_show (box);
-  
+
+  /* toggle button */
+  priv->toggle = gtk_toggle_button_new ();
+  gtk_button_set_relief (GTK_BUTTON (priv->toggle),
+		  	 GTK_RELIEF_NONE);
+  g_signal_connect (priv->toggle, "toggled",
+		    G_CALLBACK (gdict_applet_icon_toggled_cb),
+		    applet);
+  g_signal_connect (priv->toggle, "button-press-event",
+		    G_CALLBACK (gdict_applet_icon_button_press_event_cb),
+		    applet);
+  gtk_box_pack_start (GTK_BOX (box), priv->toggle, FALSE, FALSE, 0);
+  gtk_widget_show (priv->toggle);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (priv->toggle), hbox);
+  gtk_widget_show (hbox);
+
+  if (priv->icon)
+    {
+      GdkPixbuf *scaled;
+      
+      priv->image = gtk_image_new ();
+      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size - 10);
+
+      scaled = gdk_pixbuf_scale_simple (priv->icon,
+		      			priv->size - 5,
+					priv->size - 5,
+					GDK_INTERP_BILINEAR);
+      
+      gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), scaled);
+      g_object_unref (scaled);
+      
+      gtk_box_pack_start (GTK_BOX (hbox), priv->image, FALSE, FALSE, 0);
+      
+      gtk_widget_show (priv->image);
+    }
+  else
+    {
+      g_warning ("No icon defined");
+
+      priv->image = gtk_image_new ();
+
+      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size - 10);
+      gtk_image_set_from_stock (GTK_IMAGE (priv->image),
+				GTK_STOCK_MISSING_IMAGE,
+				-1);
+      
+      gtk_box_pack_start (GTK_BOX (hbox), priv->image, FALSE, FALSE, 0);
+      gtk_widget_show (priv->image);
+    }
+
+  /* entry */
   priv->entry = gtk_entry_new ();
   set_atk_name_description (priv->entry,
 		  	    _("Dictionary entry"),
@@ -412,7 +499,7 @@ gdict_applet_draw (GdictApplet *applet)
   g_signal_connect (priv->entry, "button-press-event",
 		    G_CALLBACK (gdict_applet_entry_button_press_event_cb),
 		    applet);
-  gtk_box_pack_start (GTK_BOX (box), priv->entry, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (box), priv->entry, FALSE, FALSE, 0);
   gtk_widget_show (priv->entry);
 
   if (text)
@@ -420,42 +507,6 @@ gdict_applet_draw (GdictApplet *applet)
       gtk_entry_set_text (GTK_ENTRY (priv->entry), text);
 
       g_free (text);
-    }
-  
-  event = gtk_event_box_new ();
-  g_signal_connect (event, "button-press-event",
-  		    G_CALLBACK (gdict_applet_button_press_event_cb), applet);
-  gtk_box_pack_start (GTK_BOX (box), event, FALSE, FALSE, 0);
-  gtk_widget_show (event);
-  
-  if (priv->icon)
-    {
-      GdkPixbuf *scaled;
-      
-      priv->image = gtk_image_new ();
-      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
-
-      scaled = gdk_pixbuf_scale_simple (priv->icon,
-		      			priv->size - 1 , priv->size - 1,
-					GDK_INTERP_BILINEAR);
-      
-      gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), scaled);
-      g_object_unref (scaled);
-      
-      gtk_container_add (GTK_CONTAINER (event), priv->image);
-      
-      gtk_widget_show (priv->image);
-    }
-  else
-    {
-      g_warning ("No icon defined");
-
-      priv->image = gtk_image_new ();
-
-      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
-      gtk_image_set_from_stock (GTK_IMAGE (priv->image), GTK_STOCK_MISSING_IMAGE, -1);
-      gtk_container_add (GTK_CONTAINER (event), priv->image);
-      gtk_widget_show (priv->image);
     }
   
   priv->box = box;
@@ -486,8 +537,9 @@ gdict_applet_lookup_start_cb (GdictContext *context,
 
   if (!priv->is_window_showing)
     {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->toggle), TRUE);
+      
       gtk_widget_show (priv->window);
-
       priv->is_window_showing = TRUE;
     }
 }
@@ -544,7 +596,7 @@ gdict_applet_error_cb (GdictContext *context,
 		  		"/commands/Save",
 				"sensitive", "0",
 				NULL);
-
+  
   /* force window hide */
   gtk_widget_hide (priv->window);
   priv->is_window_showing = FALSE;
@@ -703,7 +755,7 @@ gdict_applet_size_allocate (GtkWidget    *widget,
     {
       priv->size = new_size;
 
-      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size);
+      gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size - 10);
 
       /* re-scale the icon, if it was found */
       if (priv->icon)
@@ -711,7 +763,8 @@ gdict_applet_size_allocate (GtkWidget    *widget,
           GdkPixbuf *scaled;
 
 	  scaled = gdk_pixbuf_scale_simple (priv->icon,
-			  		    priv->size - 1, priv->size - 1,
+			  		    priv->size - 5,
+					    priv->size - 5,
 					    GDK_INTERP_BILINEAR);
 	  
 	  gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), scaled);
@@ -1143,8 +1196,10 @@ gdict_applet_init (GdictApplet *applet)
 static const BonoboUIVerb gdict_applet_menu_verbs[] =
 {
   BONOBO_UI_UNSAFE_VERB ("LookUp", gdict_applet_cmd_lookup),
+  
   BONOBO_UI_UNSAFE_VERB ("Clear", gdict_applet_cmd_clear),
   BONOBO_UI_UNSAFE_VERB ("Print", gdict_applet_cmd_print),
+  
   BONOBO_UI_UNSAFE_VERB ("Preferences", gdict_applet_cmd_preferences),
   BONOBO_UI_UNSAFE_VERB ("Help", gdict_applet_cmd_help),
   BONOBO_UI_UNSAFE_VERB ("About", gdict_applet_cmd_about),

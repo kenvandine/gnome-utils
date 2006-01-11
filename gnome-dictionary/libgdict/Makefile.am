@@ -98,13 +98,13 @@ gdict-marshal.c: gdict-marshal.list $(GLIB_GENMARSHAL) Makefile
 	&& rm -f xgen-gmc
 
 libgdict_enum_headers = \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-context.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-client-context.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-defbox.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-entry.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source-loader.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-utils.h \
+	gdict-context.h \
+	gdict-client-context.h \
+	gdict-defbox.h \
+	gdict-entry.h \
+	gdict-source.h \
+	gdict-source-loader.h \
+	gdict-utils.h \
 	$(NULL)
 
 gdict-enum-types.h: stamp-gdict-enum-types.h

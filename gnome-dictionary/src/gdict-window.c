@@ -47,7 +47,7 @@
 #include "gdict-about.h"
 #include "gdict-window.h"
 
-#define GDICT_WINDOW_COLUMNS      50
+#define GDICT_WINDOW_COLUMNS      52
 #define GDICT_WINDOW_ROWS         30
 
 #define GDICT_WINDOW_MIN_WIDTH	  400
@@ -118,9 +118,12 @@ static void
 gdict_window_finalize (GObject *object)
 {
   GdictWindow *window = GDICT_WINDOW (object);
+
+  if (window->notify_id)
+    gconf_client_notify_remove (window->gconf_client, window->notify_id);
   
-  if (window->client)
-    g_object_unref (window->client);
+  if (window->gconf_client)
+    g_object_unref (window->gconf_client);
   
   if (window->context)
     {
@@ -218,7 +221,7 @@ gdict_window_set_database (GdictWindow *window,
     g_free (window->database);
 
   if (!database)
-    database = gconf_client_get_string (window->client,
+    database = gconf_client_get_string (window->gconf_client,
 		    			GDICT_GCONF_DATABASE_KEY,
 					NULL);
   
@@ -299,7 +302,7 @@ gdict_window_set_print_font (GdictWindow *window,
 			     const gchar *print_font)
 {
   if (!print_font)
-    print_font = gconf_client_get_string (window->client,
+    print_font = gconf_client_get_string (window->gconf_client,
     					  GDICT_GCONF_PRINT_FONT_KEY,
     					  NULL);
   
@@ -317,8 +320,10 @@ gdict_window_set_word (GdictWindow *window,
 		       const gchar *word)
 {
   g_free (window->word);
+  window->word = NULL;
 
-  window->word = g_strdup (word);
+  if (word && word[0] != '\0')
+    window->word = g_strdup (word);
 }
 
 static void
@@ -367,7 +372,7 @@ gdict_window_set_source_name (GdictWindow *window,
   
   /* some sanity checks first */
   if (!source_name)
-    source_name = gconf_client_get_string (window->client,
+    source_name = gconf_client_get_string (window->gconf_client,
       					   GDICT_GCONF_SOURCE_KEY,
       					   NULL);
   
@@ -452,6 +457,22 @@ gdict_window_cmd_file_new (GtkAction   *action,
 {
   GtkWidget *new_window;
   
+  /* store the default size of the window and its state, so that
+   * it's picked up by the newly created window
+   */
+  gconf_client_set_int (window->gconf_client,
+		        GDICT_GCONF_WINDOW_WIDTH_KEY,
+		  	window->default_width,
+			NULL);
+  gconf_client_set_int (window->gconf_client,
+		  	GDICT_GCONF_WINDOW_HEIGHT_KEY,
+			window->default_height,
+			NULL);
+  gconf_client_set_bool (window->gconf_client,
+		  	 GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
+			 window->is_maximized,
+			 NULL);
+ 
   new_window = gdict_window_new (window->loader, NULL, NULL);
   gtk_widget_show (new_window);
   
@@ -523,6 +544,7 @@ gdict_window_cmd_file_print (GtkAction   *action,
   gdict_show_print_dialog (GTK_WINDOW (window),
   			   _("Print"),
   			   GDICT_DEFBOX (window->defbox));
+
 }
 
 static void
@@ -530,8 +552,27 @@ gdict_window_cmd_file_close_window (GtkAction   *action,
 				    GdictWindow *window)
 {
   g_assert (GDICT_IS_WINDOW (window));
+
+  /* store the default size of the window and its state */
+  gconf_client_set_int (window->gconf_client,
+		        GDICT_GCONF_WINDOW_WIDTH_KEY,
+		  	window->default_width,
+			NULL);
+  gconf_client_set_int (window->gconf_client,
+		  	GDICT_GCONF_WINDOW_HEIGHT_KEY,
+			window->default_height,
+			NULL);
+  gconf_client_set_bool (window->gconf_client,
+		  	 GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
+			 window->is_maximized,
+			 NULL);
   
-  gtk_widget_destroy (GTK_WIDGET (window));
+  /* if this was called from the uimanager, destroy the widget;
+   * otherwise, if it was called from the delete_event, it will
+   * destroy the widget itself.
+   */
+  if (action)
+    gtk_widget_destroy (GTK_WIDGET (window));
 }
 
 static void
@@ -755,13 +796,40 @@ static const GtkActionEntry entries[] =
   { "Slash", GTK_STOCK_FIND, NULL, "slash", NULL, G_CALLBACK (gdict_window_cmd_edit_find) },
 };
 
+static gboolean
+gdict_window_delete_event_cb (GtkWidget *widget,
+			      GdkEvent  *event,
+			      gpointer   user_data)
+{
+  gdict_window_cmd_file_close_window (NULL, GDICT_WINDOW (widget));
+
+  return FALSE;
+}
+
+static gboolean
+gdict_window_state_event_cb (GtkWidget           *widget,
+			     GdkEventWindowState *event,
+			     gpointer             user_data)
+{
+  GdictWindow *window = GDICT_WINDOW (widget);
+  
+  if (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED)
+    window->is_maximized = TRUE;
+  else
+    window->is_maximized = FALSE;
+  
+  return FALSE;
+}
+
 static void
 gdict_window_gconf_notify_cb (GConfClient *client,
 			      guint        cnxn_id,
 			      GConfEntry  *entry,
 			      gpointer     user_data)
 {
-  GdictWindow *window = GDICT_WINDOW (user_data);
+  GdictWindow *window;
+
+  window = GDICT_WINDOW (user_data);
 
   if (strcmp (entry->key, GDICT_GCONF_PRINT_FONT_KEY) == 0)
     {
@@ -854,27 +922,72 @@ gdict_window_drag_data_received_cb (GtkWidget        *widget,
 }
 
 static void
+gdict_window_size_allocate (GtkWidget     *widget,
+			    GtkAllocation *allocation)
+{
+  GdictWindow *window = GDICT_WINDOW (widget);
+
+  if (!window->is_maximized)
+    {
+      window->default_width = allocation->width;
+      window->default_height = allocation->height;
+    }
+
+  if (GTK_WIDGET_CLASS (gdict_window_parent_class)->size_allocate)
+    GTK_WIDGET_CLASS (gdict_window_parent_class)->size_allocate (widget,
+		    						 allocation);
+}
+
+static void
 gdict_window_style_set (GtkWidget *widget,
 			GtkStyle  *old_style)
 {
-  PangoContext *pango_context;
-  PangoFontDescription *font_desc;
-  gint font_size, width, height;
+  GdictWindow *window;
+  gint width, height;
+  gboolean is_maximized;
 
   if (GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set)
     GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set (widget, old_style);
+ 
+  window = GDICT_WINDOW (widget);
+
+  width = gconf_client_get_int (window->gconf_client,
+		  		GDICT_GCONF_WINDOW_WIDTH_KEY,
+				NULL);
+  height = gconf_client_get_int (window->gconf_client,
+		  		 GDICT_GCONF_WINDOW_HEIGHT_KEY,
+				 NULL);
+  is_maximized = gconf_client_get_bool (window->gconf_client,
+		  			GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
+					NULL);
   
-  
-  pango_context = gtk_widget_get_pango_context (widget);
-  font_desc = pango_context_get_font_description (pango_context);
-  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
-  
-  width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
-  height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
+  /* the user wants gnome-dictionary to resize itself, so we
+   * compute the minimum safe geometry needed for displaying
+   * the text returned by a dictionary server, which is based
+   * on the font size and the ANSI terminal.  this is dumb,
+   * I know, but dictionary servers return pre-formatted text
+   * and we can't reformat it ourselves.
+   */
+  if (width == -1 || height == -1)
+    {
+      PangoContext *pango_context;
+      PangoFontDescription *font_desc;
+      gint font_size;
+      
+      pango_context = gtk_widget_get_pango_context (widget);
+      font_desc = pango_context_get_font_description (pango_context);
+      font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+
+      width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
+      height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
+    }
   
   gtk_window_set_default_size (GTK_WINDOW (widget),
   			       width,
   			       height);
+
+  if (is_maximized)
+    gtk_window_maximize (GTK_WINDOW (widget));
 }
 
 static GObject *
@@ -884,9 +997,8 @@ gdict_window_constructor (GType                  type,
 {
   GObject *object;
   GdictWindow *window;
-  PangoContext *pango_context;
-  PangoFontDescription *font_desc;
-  gint font_size, width, height;
+  gint width, height;
+  gboolean is_maximized;
   GtkWidget *hbox;
   GtkWidget *vbox;
   GtkWidget *label;
@@ -901,17 +1013,45 @@ gdict_window_constructor (GType                  type,
   
   gtk_widget_push_composite_child ();
 
-  pango_context = gtk_widget_get_pango_context (GTK_WIDGET (window));
-  font_desc = pango_context_get_font_description (pango_context);
-  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+  /* retrieve the window state from gconf */
+  is_maximized = gconf_client_get_bool (window->gconf_client,
+		  			GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
+					NULL);
+
+  width = gconf_client_get_int (window->gconf_client,
+		  		GDICT_GCONF_WINDOW_WIDTH_KEY,
+				NULL);
+  height = gconf_client_get_int (window->gconf_client,
+		  		 GDICT_GCONF_WINDOW_HEIGHT_KEY,
+				 NULL);
+  if (width == -1 || height == -1)
+    {
+      PangoContext *pango_context;
+      PangoFontDescription *font_desc;
+      gint font_size;
   
-  width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
-  height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
+      pango_context = gtk_widget_get_pango_context (GTK_WIDGET (window));
+      font_desc = pango_context_get_font_description (pango_context);
+
+      font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+
+      width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
+      height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
+    }
+  else
+    {
+      window->default_width = width;
+      window->default_height = height;
+    }
+
+  window->is_maximized = is_maximized;
   
   gtk_window_set_title (GTK_WINDOW (window), _("Dictionary"));
   gtk_window_set_default_size (GTK_WINDOW (window),
   			       width,
   			       height);
+  if (is_maximized)
+    gtk_window_maximize (GTK_WINDOW (window));
  
   window->main_box = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (window), window->main_box);
@@ -988,7 +1128,14 @@ gdict_window_constructor (GType                  type,
   gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (window->status), TRUE);
   gtk_box_pack_end (GTK_BOX (window->main_box), window->status, FALSE, FALSE, 0);
   gtk_widget_show (window->status);
-  
+
+  g_signal_connect (window, "delete-event",
+		    G_CALLBACK (gdict_window_delete_event_cb),
+		    NULL);
+  g_signal_connect (window, "window-state-event",
+		    G_CALLBACK (gdict_window_state_event_cb),
+		    NULL);
+
   gtk_widget_pop_composite_child ();
   
   return object;
@@ -1006,6 +1153,7 @@ gdict_window_class_init (GdictWindowClass *klass)
   gobject_class->constructor = gdict_window_constructor;
 
   widget_class->style_set = gdict_window_style_set;
+  widget_class->size_allocate = gdict_window_size_allocate;
   
   g_object_class_install_property (gobject_class,
   				   PROP_SOURCE_LOADER,
@@ -1066,12 +1214,12 @@ gdict_window_init (GdictWindow *window)
   window->loader = NULL;
   window->context = NULL;
   
-  window->client = gconf_client_get_default ();
-  gconf_client_add_dir (window->client,
+  window->gconf_client = gconf_client_get_default ();
+  gconf_client_add_dir (window->gconf_client,
   			GDICT_GCONF_DIR,
   			GCONF_CLIENT_PRELOAD_NONE,
   			NULL);
-  window->notify_id = gconf_client_notify_add (window->client,
+  window->notify_id = gconf_client_notify_add (window->gconf_client,
   					       GDICT_GCONF_DIR,
   					       gdict_window_gconf_notify_cb,
   					       window,
@@ -1106,6 +1254,10 @@ gdict_window_init (GdictWindow *window)
     }
 
   g_free (icon_file);
+
+  window->default_width = -1;
+  window->default_height = -1;
+  window->is_maximized = FALSE;
   
   window->window_id = (gulong) time (NULL);
 }

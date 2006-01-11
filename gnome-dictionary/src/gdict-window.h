@@ -69,10 +69,14 @@ struct _GdictWindow
   gchar *strategy;
   gchar *print_font;
   
-  GConfClient *client;
+  GConfClient *gconf_client;
   guint notify_id;
 
   GdkPixbuf *icon;
+
+  gint default_width;
+  gint default_height;
+  guint is_maximized : 1;
   
   gulong window_id;
 };

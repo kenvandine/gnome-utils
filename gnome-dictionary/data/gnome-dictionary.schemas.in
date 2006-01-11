@@ -93,6 +93,52 @@
 	definitions of words.</long>
       </locale>
     </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-dictionary/default-window-width</key>
+      <applyto>/apps/gnome-dictionary/default-window-width</applyto>
+      <owner>gnome-dictionary</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>The default width of the application window</short>
+	<long>This key defines the window width and it's used to remember
+	the size of the dictionary window across sessions.  Setting it
+	to -1 will make the dictionary window use a width based on the
+	font size.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-dictionary/default-window-height</key>
+      <applyto>/apps/gnome-dictionary/default-window-height</applyto>
+      <owner>gnome-dictionary</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>The default height of the application window</short>
+	<long>This key defines the window height and it's used to remember
+	the size of the dictionary window across sessions.  Setting it
+	to -1 will make the dictionary window use an height based on the
+	font size.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-dictionary/window-is-maximized</key>
+      <applyto>/apps/gnome-dictionary/window-is-maximized</applyto>
+      <owner>gnome-dictionary</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Whether the application window should be maximized</short>
+        <long>This key defines whether the window should be maximized and it's
+	used to remember the state of the dictionary window across sessions.
+	Setting it to TRUE will make the window always appear as
+	maximized.</long>
+      </locale>
+    </schema>
+
     
   </schemalist>
   

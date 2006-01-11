@@ -1,3 +1,47 @@
+2006-01-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* data/gnome-dictionary.schemas.in: add the new window state keys:
+		default-window-height
+		default-window-width
+		window-is-maximized
+	these keys will store the window state across sessions.
+
+	* libgdict/Makefile.am: fix a bug that prevented the right inclusion
+	of the headers inside the auto-generated gdict-enum-types.h header
+	file.
+
+	* src/gdict-applet.c (gdict_applet_build_window): create the window
+	showing the defbox using width and height calculated from the font
+	size.
+
+	* src/gdict-applet.c (gdict_applet_icon_toggled_cb),
+	(gdict_applet_button_press_event_cb),
+	(gdict_applet_icon_button_press_event_cb), (gdict_applet_draw),
+	(gdict_applet_lookup_start_cb), (gdict_applet_size_allocate): use a
+	ToggleButton instead of a plain Image for the dictionary icon; this
+	should make the window toggling a bit more discoverable.  Also, moved
+	back the icon before the entry: the window should use it as the
+	"attach" widget, as it resizes its height with the panel, while the
+	entry does not.
+
+	* src/gdict-pref-dialog.h: add the new GConf keys
+
+	* src/gdict-window.c (gdict_window_finalize: remove the GConf
+	notification listener before destroying the window.
+
+	* src/gdict-window.c (gdict_window_cmd_file_new),
+	(gdict_window_cmd_file_close_window), (gdict_window_delete_event_cb),
+	(gdict_window_state_event_cb), (gdict_window_gconf_notify_cb),
+	(gdict_window_size_allocate), (gdict_window_style_set),
+	(gdict_window_constructor), (gdict_window_class_init),
+	(gdict_window_init): make the window "recall" its size and state
+	through sessions using the newly added GConf keys; fallback to the
+	font-based size allocation on user request or if no value was
+	found (based on the similar code used by Dennis Cranston in
+	gsearchtool, closes bug #325887).
+
+	* src/gdict-window.h: add new window state variables.
+
 2005-01-02  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-app.h:
