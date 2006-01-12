@@ -98,13 +98,13 @@ gdict-marshal.c: gdict-marshal.list $(GLIB_GENMARSHAL) Makefile
 	&& rm -f xgen-gmc
 
 libgdict_enum_headers = \
-	gdict-context.h \
-	gdict-client-context.h \
-	gdict-defbox.h \
-	gdict-entry.h \
-	gdict-source.h \
-	gdict-source-loader.h \
-	gdict-utils.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-context.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-client-context.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-defbox.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-entry.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source-loader.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-utils.h \
 	$(NULL)
 
 gdict-enum-types.h: stamp-gdict-enum-types.h
@@ -117,7 +117,6 @@ stamp-gdict-enum-types.h: $(libgdict_enum_headers) Makefile
 		--ftail "G_END_DECLS\n\n" \
 		--ftail "#endif\n" \
 		--fprod "/* --- @filename@ --- */\n" \
-		--fprod "#include \"@filename@\"\n" \
 		--eprod "#define GDICT_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 		--eprod "GType @enum_name@_get_type (void);\n\n" \
 	$(libgdict_enum_headers) >> xgen-geth \
@@ -130,6 +129,7 @@ gdict-enum-types.c: $(libgdict_enum_headers) Makefile
 		--fhead "#include <glib-object.h>\n" \
 		--fhead "#include \"gdict-enum-types.h\"\n" \
 		--fprod "\n/* enumerations from \"@filename@\" */" \
+		--fprod "\n#include \"@filename@\"" \
 		--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
 		--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
 		--vtail "  { 0, NULL, NULL }\n};\n\n" \
