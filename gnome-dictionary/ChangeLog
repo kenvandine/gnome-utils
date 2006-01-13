@@ -1,3 +1,19 @@
+2006-01-13  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-applet.c (gdict_applet_set_menu_sensitive),
+	(gdict_applet_lookup_start_cb), (gdict_applet_lookup_end_cb),
+	(gdict_applet_error_cb), (gdict_applet_init): add a function
+	to make the menu items sensitive.
+
+	* src/gdict-applet.c (gdict_applet_style_set): re-compute the
+	definition window size request depending on the font size at every
+	style change.
+
+	* src/gdict-applet.c (gdict_applet_draw), (gdict_applet_init),
+	(gdict_applet_build_window): remove the warnings (they wouldn't be
+	displayed anyway) and use error dialogs; mark new strings as
+	translatable; add tooltips for the applet widgets.
+
 2006-01-12  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/Makefile.am: fixed the enum generation.

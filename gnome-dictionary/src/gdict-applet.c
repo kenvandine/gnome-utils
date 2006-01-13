@@ -238,6 +238,30 @@ save_cb (GtkWidget   *widget,
 }
 
 static void
+gdict_applet_set_menu_items_sensitive (GdictApplet *applet,
+				       gboolean     is_sensitive)
+{
+  BonoboUIComponent *popup_component;
+  
+  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
+  if (!BONOBO_IS_UI_COMPONENT (popup_component))
+    return;
+
+  bonobo_ui_component_set_prop (popup_component,
+		  		"/commands/Clear",
+				"sensitive", (is_sensitive ? "1" : "0"),
+				NULL);
+  bonobo_ui_component_set_prop (popup_component,
+		  		"/commands/Print",
+				"sensitive", (is_sensitive ? "1" : "0"),
+				NULL);
+  bonobo_ui_component_set_prop (popup_component,
+		  		"/commands/Save",
+				"sensitive", (is_sensitive ? "1" : "0"),
+				NULL);
+}
+
+static void
 gdict_applet_build_window (GdictApplet *applet)
 {
   GdictAppletPrivate *priv = applet->priv;
@@ -261,12 +285,16 @@ gdict_applet_build_window (GdictApplet *applet)
   
   window = gtk_aligned_window_new (priv->toggle);
 
+  /* compute the minimum size of the window pane depending on the
+   * size of the system font used to render the text.  this will
+   * be updated if the style changes
+   */
   pango_context = gtk_widget_get_pango_context (window);
   font_desc = pango_context_get_font_description (pango_context);
   font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
 
-  width = MAX (50 * font_size, 400);
-  height = MAX (20 * font_size, 220);
+  width = MAX (52 * font_size, 330);
+  height = MAX (24 * font_size, 220);
   
   frame = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
@@ -293,25 +321,43 @@ gdict_applet_build_window (GdictApplet *applet)
   gtk_widget_show (bbox);
   
   clear = gtk_button_new_from_stock (GTK_STOCK_CLEAR);
+
+  gtk_tooltips_set_tip (priv->tooltips,
+		  	clear,
+		  	_("Clear the definitions found"),
+			NULL);
   set_atk_name_description (clear,
 		  	    _("Clear definition"),
 			    _("Clear the text of the definition"));
+  
   g_signal_connect (clear, "clicked", G_CALLBACK (clear_cb), applet);
   gtk_box_pack_start (GTK_BOX (bbox), clear, FALSE, FALSE, 0);
   gtk_widget_show (clear);
 
   print = gtk_button_new_from_stock (GTK_STOCK_PRINT);
+
+  gtk_tooltips_set_tip (priv->tooltips,
+		  	print,
+			_("Print the definitions found"),
+			NULL);
   set_atk_name_description (print,
 		  	    _("Print definition"),
 			    _("Print the text of the definition"));
+  
   g_signal_connect (print, "clicked", G_CALLBACK (print_cb), applet);
   gtk_box_pack_start (GTK_BOX (bbox), print, FALSE, FALSE, 0);
   gtk_widget_show (print);
 
   save = gtk_button_new_from_stock (GTK_STOCK_SAVE);
+  
+  gtk_tooltips_set_tip (priv->tooltips,
+		  	save,
+			_("Save the definitions found"),
+			NULL);
   set_atk_name_description (save,
 		  	    _("Save definition"),
 			    _("Save the text of the definition to a file"));
+  
   g_signal_connect (save, "clicked", G_CALLBACK (save_cb), applet);
   gtk_box_pack_start (GTK_BOX (bbox), save, FALSE, FALSE, 0);
   gtk_widget_show (save);
@@ -388,6 +434,9 @@ gdict_applet_icon_button_press_event_cb (GtkWidget      *widget,
 {
   GdictAppletPrivate *priv = applet->priv;
   
+  /* we don't want to block the applet's popup menu unless the
+   * user is toggling the button
+   */
   if (event->button != 1)
     g_signal_stop_emission_by_name(priv->toggle, "button-press-event");
 
@@ -437,6 +486,15 @@ gdict_applet_draw (GdictApplet *applet)
 
   /* toggle button */
   priv->toggle = gtk_toggle_button_new ();
+  
+  set_atk_name_description (priv->toggle,
+			    _("Toggle dictionary window"),
+		  	    _("Show or hide the definition window"));
+  gtk_tooltips_set_tip (priv->tooltips,
+		  	priv->toggle,
+		  	_("Click to view the dictionary window"),
+			NULL);
+  
   gtk_button_set_relief (GTK_BUTTON (priv->toggle),
 		  	 GTK_RELIEF_NONE);
   g_signal_connect (priv->toggle, "toggled",
@@ -449,6 +507,7 @@ gdict_applet_draw (GdictApplet *applet)
   gtk_widget_show (priv->toggle);
 
   hbox = gtk_hbox_new (FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (hbox), 0);
   gtk_container_add (GTK_CONTAINER (priv->toggle), hbox);
   gtk_widget_show (hbox);
 
@@ -473,8 +532,6 @@ gdict_applet_draw (GdictApplet *applet)
     }
   else
     {
-      g_warning ("No icon defined");
-
       priv->image = gtk_image_new ();
 
       gtk_image_set_pixel_size (GTK_IMAGE (priv->image), priv->size - 10);
@@ -488,9 +545,15 @@ gdict_applet_draw (GdictApplet *applet)
 
   /* entry */
   priv->entry = gtk_entry_new ();
+  
   set_atk_name_description (priv->entry,
 		  	    _("Dictionary entry"),
 			    _("Look up words in dictionaries"));
+  gtk_tooltips_set_tip (priv->tooltips,
+		  	priv->entry,
+			_("Type the word you want to look up"),
+			NULL);
+  
   gtk_entry_set_editable (GTK_ENTRY (priv->entry), TRUE);
   gtk_entry_set_width_chars (GTK_ENTRY (priv->entry), 12);
   g_signal_connect (priv->entry, "activate",
@@ -542,31 +605,15 @@ gdict_applet_lookup_start_cb (GdictContext *context,
       gtk_widget_show (priv->window);
       priv->is_window_showing = TRUE;
     }
+
+  gdict_applet_set_menu_items_sensitive (applet, FALSE);
 }
 
 static void
 gdict_applet_lookup_end_cb (GdictContext *context,
 			    GdictApplet  *applet)
 {
-  BonoboUIComponent *popup_component;
-  
-  /* enable menu items */
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
-  if (!BONOBO_IS_UI_COMPONENT (popup_component))
-    return;
-
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Clear",
-				"sensitive", "1",
-				NULL);
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Print",
-				"sensitive", "1",
-				NULL);
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Save",
-				"sensitive", "1",
-				NULL);
+  gdict_applet_set_menu_items_sensitive (applet, TRUE);
 }
 
 static void
@@ -575,29 +622,13 @@ gdict_applet_error_cb (GdictContext *context,
 		       GdictApplet  *applet)
 {
   GdictAppletPrivate *priv = applet->priv;
-  BonoboUIComponent *popup_component;
 
   /* force window hide */
   gtk_widget_hide (priv->window);
   priv->is_window_showing = FALSE;
   
   /* disable menu items */
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
-  if (!BONOBO_IS_UI_COMPONENT (popup_component))
-    return;
-
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Clear",
-				"sensitive", "0",
-				NULL);
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Print",
-				"sensitive", "0",
-				NULL);
-  bonobo_ui_component_set_prop (popup_component,
-		  		"/commands/Save",
-				"sensitive", "0",
-				NULL);
+  gdict_applet_set_menu_items_sensitive (applet, FALSE);
 }
 
 static void
@@ -686,7 +717,7 @@ gdict_applet_cmd_help (BonoboUIComponent *component,
   if (err)
     {
       show_error_dialog (NULL,
-      			 _("There was an error displaying help"),
+      			 _("There was an error while displaying help"),
       			 err->message);
       g_error_free (err);
     }
@@ -773,6 +804,41 @@ gdict_applet_size_allocate (GtkWidget    *widget,
   if (GTK_WIDGET_CLASS (gdict_applet_parent_class)->size_allocate)
     GTK_WIDGET_CLASS (gdict_applet_parent_class)->size_allocate (widget,
 		    						 allocation);
+}
+
+static void
+gdict_applet_style_set (GtkWidget *widget,
+			GtkStyle  *old_style)
+{
+  GdictApplet *applet;
+  GdictAppletPrivate *priv;
+  PangoContext *pango_context;
+  PangoFontDescription *font_desc;
+  gint font_size, width, height;
+  GtkWidget *frame;
+  
+  if (GTK_WIDGET_CLASS (gdict_applet_parent_class)->style_set)
+    GTK_WIDGET_CLASS (gdict_applet_parent_class)->style_set (widget,
+		    					     old_style);
+
+  applet = GDICT_APPLET (widget);
+  priv = applet->priv;
+
+  if (!priv->window)
+    return;
+
+  frame = GTK_BIN (priv->window)->child;
+  if (!frame)
+    return;
+
+  pango_context = gtk_widget_get_pango_context (priv->window);
+  font_desc = pango_context_get_font_description (pango_context);
+  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+
+  width = MAX (52 * font_size, 330);
+  height = MAX (24 * font_size, 220);
+
+  gtk_widget_set_size_request (frame, width, height);
 }
 
 static void
@@ -1056,6 +1122,7 @@ gdict_applet_class_init (GdictAppletClass *klass)
   gobject_class->finalize = gdict_applet_finalize;
   
   widget_class->size_allocate = gdict_applet_size_allocate;
+  widget_class->style_set = gdict_applet_style_set;
   
   applet_class->change_background = gdict_applet_change_background;
   applet_class->change_orient = gdict_applet_change_orient;
@@ -1067,8 +1134,7 @@ static void
 gdict_applet_init (GdictApplet *applet)
 {
   GdictAppletPrivate *priv;
-  gchar *loader_path, *data_dir, *icon_file;
-  BonoboUIComponent *popup_component;
+  gchar *data_dir, *icon_file;
   GdkPixbuf *icon;
   GError *icon_error;
 
@@ -1084,10 +1150,10 @@ gdict_applet_init (GdictApplet *applet)
   if (g_mkdir (data_dir, 0700) == -1)
     {
       if (errno != EEXIST)
-        g_warning ("Unable to create the data directory '%s'");
+	show_error_dialog (NULL,
+			   _("Unable to create the data directory '%s'"),
+			   NULL);
     }
-  
-  g_free (data_dir);
   
   icon_file = g_build_filename (DATADIR,
 		  		"pixmaps",
@@ -1097,8 +1163,9 @@ gdict_applet_init (GdictApplet *applet)
   icon = gdk_pixbuf_new_from_file (icon_file, &icon_error);
   if (icon_error)
     {
-      g_warning (_("Unable to load the application icon: %s"),
-		 icon_error->message);
+      show_error_dialog (NULL,
+			 _("Unable to load the applet icon"),
+			 icon_error->message);
 
       g_error_free (icon_error);
       priv->icon = NULL;
@@ -1131,12 +1198,10 @@ gdict_applet_init (GdictApplet *applet)
   if (!priv->loader)
     priv->loader = gdict_source_loader_new ();
 
-  loader_path = g_build_filename (g_get_home_dir (),
-                                  ".gnome2",
-                                  "gnome-dictionary",
-                                  NULL);
-  gdict_source_loader_add_search_path (priv->loader, loader_path);
-  g_free (loader_path);
+  /* add our data dir inside $HOME to the loader's search paths */
+  gdict_source_loader_add_search_path (priv->loader, data_dir);
+
+  g_free (data_dir);
 
 #ifndef GDICT_APPLET_STAND_ALONE
   priv->size = panel_applet_get_size (PANEL_APPLET (applet));
@@ -1165,24 +1230,8 @@ gdict_applet_init (GdictApplet *applet)
   g_object_ref (priv->tooltips);
   gtk_object_sink (GTK_OBJECT (priv->tooltips));
 
-  /* disable menu items */
-  popup_component = panel_applet_get_popup_component (PANEL_APPLET (applet));
-
-  if (BONOBO_IS_UI_COMPONENT (popup_component))
-    {
-      bonobo_ui_component_set_prop (popup_component,
-		      		    "/commands/Clear",
-				    "sensitive", "0",
-				    NULL);
-      bonobo_ui_component_set_prop (popup_component,
-		      		    "/commands/Print",
-				    "sensitive", "0",
-				    NULL);
-      bonobo_ui_component_set_prop (popup_component,
-		      		    "/commands/Save",
-				    "sensitive", "0",
-				    NULL);
-   }
+  /* make the menu item insensitive */
+  gdict_applet_set_menu_items_sensitive (applet, FALSE);
 
   /* force first draw */
   gdict_applet_draw (applet);
