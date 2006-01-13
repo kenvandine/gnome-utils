@@ -1,5 +1,12 @@
 2006-01-13  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-applet.c (gdict_applet_init), (gdict_applet_factory):
+	move the menu items sensitivity set inside the applet's factory; this
+	should close bug #326004 which was triggered if there was a delay
+	in the creation of the bonobo ui control.
+
+2006-01-13  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-applet.c (gdict_applet_set_menu_sensitive),
 	(gdict_applet_lookup_start_cb), (gdict_applet_lookup_end_cb),
 	(gdict_applet_error_cb), (gdict_applet_init): add a function

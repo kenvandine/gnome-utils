@@ -1230,9 +1230,6 @@ gdict_applet_init (GdictApplet *applet)
   g_object_ref (priv->tooltips);
   gtk_object_sink (GTK_OBJECT (priv->tooltips));
 
-  /* make the menu item insensitive */
-  gdict_applet_set_menu_items_sensitive (applet, FALSE);
-
   /* force first draw */
   gdict_applet_draw (applet);
 
@@ -1272,6 +1269,9 @@ gdict_applet_factory (PanelApplet *applet,
 					 applet);
 
       gtk_widget_show (GTK_WIDGET (applet));
+
+      /* set the menu items insensitive */
+      gdict_applet_set_menu_items_sensitive (GDICT_APPLET (applet), FALSE);
       
       retval = TRUE;
     }
