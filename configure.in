@@ -45,6 +45,7 @@ dnl *****************************************
 dnl pkg-config check time
 dnl *****************************************
 
+GLIB_REQUIRED=2.9.1
 GTK_REQUIRED=2.6.0
 LIBGNOME_DESKTOP_REQUIRED=2.9.91
 LIBGNOME_REQUIRED=2.5.0
@@ -60,7 +61,7 @@ dnl *****************************************
 dnl libgnome, libgnomeui needed for all utils
 dnl *****************************************
 
-PKG_CHECK_MODULES(GNOME_UTILS, gtk+-2.0 >= $GTK_REQUIRED libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+PKG_CHECK_MODULES(GNOME_UTILS, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
 
@@ -81,7 +82,7 @@ AC_SUBST(LIBGNOMEPRINT_LIBS)
 dnl *****************************************
 dnl libgdict requires just gtk+
 dnl *****************************************
-PKG_CHECK_MODULES(LIBGDICT, gtk+-2.0 >= $GTK_REQUIRED)
+PKG_CHECK_MODULES(LIBGDICT, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(LIBGDICT_CFLAGS)
 AC_SUBST(LIBGDICT_LIBS)
 
