@@ -12,7 +12,11 @@ gdictapp_DATA = $(gdictapp_in_files:.desktop.in=.desktop)
 
 # dictionary sources definitions
 dictsourcedir = $(datadir)/gdict-1.0/sources
-dictsource_in_files = default.desktop.in
+dictsource_in_files = \
+	default.desktop.in \
+	french.desktop.in \
+	spanish.desktop.in \
+	$(NULL)
 dictsource_DATA = $(dictsource_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
