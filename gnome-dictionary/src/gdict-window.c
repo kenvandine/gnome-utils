@@ -209,6 +209,8 @@ gdict_window_error_cb (GdictContext *context,
 		       const GError *error,
 		       GdictWindow  *window)
 {
+  gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+
   gtk_statusbar_push (GTK_STATUSBAR (window->status), 0,
 		      _("No definitions found"));
 }
