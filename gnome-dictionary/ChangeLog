@@ -1,3 +1,23 @@
+2006-01-16  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-context.c,
+	libgdict/gdict-client-context.c,
+	libgdict/gdict-defbox.c: use the g_slice_* functions for faster
+	allocations.
+
+2006-01-15  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	A data/french.desktop.in
+	A data/spanish.desktop.in
+
+	* data/french.desktop.in: add a source definition file for a
+	French-based dictionary source.
+
+	* data/spanish.desktop.in: add a source definition file for a
+	Spanish-based dictionay source.
+
+	* data/Makefile.am: add the two new dictionary sources.
+
 2006-01-13  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-applet.c (gdict_applet_init), (gdict_applet_factory):
