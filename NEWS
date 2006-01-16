@@ -1,5 +1,49 @@
 ===================================================================
-GNOME Utilities 2.13.4 (January 2nd 2006)
+GNOME Utilities 2.13.5 (January 16th 2006) - "Optimized for Size"
+
+    * This release of gnome-utils requires GLib >= 2.9.1 in order
+      use GLib's new slab allocator called GSlice.  This will make
+      our own allocations faster and with less overhead.
+      
+GNOME Search Tool
+
+    * Use the new and faster g_slice_* functions.
+
+GNOME Dictionary
+
+    * Fix bug #324006 - fix a critical warning in bonobo after login
+    * Fix bug #325014 - new dictionary supports word as command line
+      argument
+    * Fix bug #325887 - dictionary remembers the last used window size
+      and state
+    * Fix bug #327156 - fix a spelling error in the GConf schema
+    * Use the new and faster g_slice_* functions
+    * Added two new dictionary sources, one for French-based and one for
+      Spanish-based dictionaries
+
+GNOME Floppy
+
+    * Zip
+
+GNOME Screenshot
+
+    * Fix bug 161030 - Should provide a .desktop file
+
+GNOME Log Viewer
+
+    * Zip
+
+Translations updates:
+
+    bg [Rostislav Raykov], ca [Josep Puigdemont], el [Kostas Papadimas],
+    en_CA [Adam Weinberger], es [Francisco Javier F. Serrador],
+    fi [Ilkka Tuohela], gl [Ignacio Casal Quinteiro], gu [Ankit Patel],
+    ja [Takeshi AIHANA], lt [Žygimantas Beručka], nb [Kjartan Maraas],
+    nl [Daniel van Eeden], no [Kjartan Maraas], sr [Слободан Д. Средојевић],
+    th [Theppitak Karoonboonyanan], vi [Clytie Siddall]
+
+===================================================================
+GNOME Utilities 2.13.4 (January 2nd 2006) - "Ubiquitous X-Ray"
 
     * Merged the "new-dictionary" branch, containing the new Dictionary
       application and applet [Emmanuele]
