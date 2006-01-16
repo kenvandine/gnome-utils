@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-02 22:07-0500\n"
+"POT-Creation-Date: 2006-01-15 23:28-0500\n"
 "PO-Revision-Date: 2005-07-18 12:11-0500\n"
 "Last-Translator: Adam Weinberger <adamw@gnome.org>\n"
 "Language-Team: Canadian English <adamw@gnome.org>\n"
@@ -463,17 +463,16 @@ msgid "Look up words in a dictionary"
 msgstr "Look up words in a dictionary"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:1
-#: ../gnome-dictionary/src/gdict-window.c:749 ../logview/logview.c:116
+msgid "Cl_ear"
+msgstr "Cl_ear"
+
+#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
+#: ../gnome-dictionary/src/gdict-window.c:792 ../logview/logview.c:116
 msgid "_About"
 msgstr "_About"
 
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "_Clear"
-
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:709 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:752 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_Help"
 
@@ -482,7 +481,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Look Up Selected Text"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:733
+#: ../gnome-dictionary/src/gdict-window.c:776
 msgid "_Preferences"
 msgstr "_Preferences"
 
@@ -497,7 +496,7 @@ msgstr "_Save"
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
 #: ../gnome-dictionary/src/gdict-app.c:343
-#: ../gnome-dictionary/src/gdict-window.c:911
+#: ../gnome-dictionary/src/gdict-window.c:1051
 msgid "Dictionary"
 msgstr "Dictionary"
 
@@ -528,10 +527,18 @@ msgid "The default database to use"
 msgstr "The default database to use"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:5
+msgid "The default height of the application window"
+msgstr "The default height of the application window"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
 msgid "The default search strategy to use"
 msgstr "The default search strategy to use"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+msgid "The default width of the application window"
+msgstr "The default width of the application window"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers. This key is deprecated and "
@@ -541,15 +548,15 @@ msgstr ""
 "http://www.dict.org for details on other servers. This key is deprecated and "
 "no longer in use."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid "The font to be used when printing"
 msgstr "The font to be used when printing"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid "The font to be used when printing a definition."
 msgstr "The font to be used when printing a definition."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
 msgid ""
 "The name of the default individual database or meta-database to use on a "
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
@@ -559,7 +566,7 @@ msgstr ""
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
 "present in a dictionary source should be searched"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
@@ -567,27 +574,61 @@ msgstr ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact'; that is, match exact words."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
 msgid "The name of the dictionary source used"
 msgstr "The name of the dictionary source used"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
-msgid ""
-"The name of the dictionary source used to retrieve the definitions of words."
-msgstr ""
-"The name of the dictionary source used to retrieve the definitions of words."
-
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
-msgid ""
-"The port number to connect to. The default port is 2628. This key is "
-"deprecated and no longer in use."
-msgstr ""
-"The port number to connect to. The default port is 2628. This key is "
-"deprecated and no longer in use."
-
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
+msgid ""
+"The name of the dictionary source used to retrieve the definitions of words."
+msgstr ""
+"The name of the dictionary source used to retrieve the definitions of words."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
+msgid ""
+"The port number to connect to. The default port is 2628. This key is "
+"deprecated and no longer in use."
+msgstr ""
+"The port number to connect to. The default port is 2628. This key is "
+"deprecated and no longer in use."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+msgid ""
+"This key defines the window height and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use an height based on the font size."
+msgstr ""
+"This key defines the window height and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a height based on the font size."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid ""
+"This key defines the window width and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a width based on the font size."
+msgstr ""
+"This key defines the window width and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a width based on the font size."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines whether the window should be maximized and it's used to "
+"remember the state of the dictionary window across sessions. Setting it to "
+"TRUE will make the window always appear as maximized."
+msgstr ""
+"This key defines whether the window should be maximized and it's used to "
+"remember the state of the dictionary window across sessions. Setting it to "
+"TRUE will make the window always appear as maximized."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid "Use smart lookup (Deprecated)"
 msgstr "Use smart lookup (Deprecated)"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+msgid "Whether the application window should be maximized"
+msgstr "Whether the application window should be maximized"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -608,8 +649,8 @@ msgid "H_ostname:"
 msgstr "H_ostname:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:174
-#: ../gnome-dictionary/src/gdict-window.c:524
+#: ../gnome-dictionary/src/gdict-applet.c:178
+#: ../gnome-dictionary/src/gdict-window.c:547
 msgid "Print"
 msgstr "Print"
 
@@ -681,27 +722,27 @@ msgstr "Status"
 msgid "The status code as returned by the dictionary server"
 msgstr "The status code as returned by the dictionary server"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:762
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "No connection to the dictionary server at '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1024
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "Lookup failed for hostname '%s': no suitable resources found"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Lookup failed for host '%s': %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Lookup failed for host '%s': host not found"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -710,7 +751,7 @@ msgstr ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -719,47 +760,47 @@ msgstr ""
 "Unable to parse the dictionary server reply\n"
 ": '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "No definitions found for '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Invalid database '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Invalid strategy '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Bad command '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Bad parameters for command '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "No databases found on dictionary server at '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "No strategies found on dictionary server at '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1663
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1664
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Connection failed to the dictionary server at %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1702
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1703
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -768,21 +809,21 @@ msgstr ""
 "Error while reading reply from server:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1773
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1774
 msgid "No hostname defined for the dictionary server"
 msgstr "No hostname defined for the dictionary server"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1809
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1824
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1810
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1825
 msgid "Unable to create socket"
 msgstr "Unable to create socket"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1850
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Unable to set the channel as non-blocking: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1866
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Unable to connect to the dictionary server at '%s:%d'"
@@ -1013,7 +1054,7 @@ msgid "translator-credits"
 msgstr "Adam Weinberger <adamw@gnome.org>"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Look up words in dictionaries"
 msgstr "Look up words in dictionaries"
 
@@ -1104,84 +1145,119 @@ msgstr "Dictionary and spelling tool"
 msgid "Show Dictionary options"
 msgstr "Show Dictionary options"
 
-#: ../gnome-dictionary/src/gdict-applet.c:188
-#: ../gnome-dictionary/src/gdict-window.c:469
+#: ../gnome-dictionary/src/gdict-applet.c:192
+#: ../gnome-dictionary/src/gdict-window.c:492
 msgid "Save a Copy"
 msgstr "Save a Copy"
 
-#: ../gnome-dictionary/src/gdict-applet.c:198
-#: ../gnome-dictionary/src/gdict-window.c:479
+#: ../gnome-dictionary/src/gdict-applet.c:202
+#: ../gnome-dictionary/src/gdict-window.c:502
 msgid "Untitled document"
 msgstr "Untitled document"
 
-#: ../gnome-dictionary/src/gdict-applet.c:219
-#: ../gnome-dictionary/src/gdict-window.c:500
+#: ../gnome-dictionary/src/gdict-applet.c:223
+#: ../gnome-dictionary/src/gdict-window.c:523
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Error while writing to '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:283
+#: ../gnome-dictionary/src/gdict-applet.c:327
+msgid "Clear the definitions found"
+msgstr "Clear the definitions found"
+
+#: ../gnome-dictionary/src/gdict-applet.c:330
 msgid "Clear definition"
 msgstr "Clear definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:284
+#: ../gnome-dictionary/src/gdict-applet.c:331
 msgid "Clear the text of the definition"
 msgstr "Clear the text of the definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:291
+#: ../gnome-dictionary/src/gdict-applet.c:341
+msgid "Print the definitions found"
+msgstr "Print the definitions found"
+
+#: ../gnome-dictionary/src/gdict-applet.c:344
 msgid "Print definition"
 msgstr "Print definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:292
+#: ../gnome-dictionary/src/gdict-applet.c:345
 msgid "Print the text of the definition"
 msgstr "Print the text of the definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:299
+#: ../gnome-dictionary/src/gdict-applet.c:355
+msgid "Save the definitions found"
+msgstr "Save the definitions found"
+
+#: ../gnome-dictionary/src/gdict-applet.c:358
 msgid "Save definition"
 msgstr "Save definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:300
+#: ../gnome-dictionary/src/gdict-applet.c:359
 msgid "Save the text of the definition to a file"
 msgstr "Save the text of the definition to a file"
 
-#: ../gnome-dictionary/src/gdict-applet.c:405
+#: ../gnome-dictionary/src/gdict-applet.c:491
+msgid "Toggle dictionary window"
+msgstr "Toggle dictionary window"
+
+#: ../gnome-dictionary/src/gdict-applet.c:492
+msgid "Show or hide the definition window"
+msgstr "Show or hide the definition window"
+
+#: ../gnome-dictionary/src/gdict-applet.c:495
+msgid "Click to view the dictionary window"
+msgstr "Click to view the dictionary window"
+
+#: ../gnome-dictionary/src/gdict-applet.c:550
 msgid "Dictionary entry"
 msgstr "Dictionary entry"
 
-#: ../gnome-dictionary/src/gdict-applet.c:607
+#: ../gnome-dictionary/src/gdict-applet.c:554
+msgid "Type the word you want to look up"
+msgstr "Type the word you want to look up"
+
+#: ../gnome-dictionary/src/gdict-applet.c:688
 msgid "Preferences"
 msgstr "Preferences"
 
-#: ../gnome-dictionary/src/gdict-applet.c:639
-msgid "There was an error displaying help"
-msgstr "There was an error displaying help"
+#: ../gnome-dictionary/src/gdict-applet.c:720
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:714
+msgid "There was an error while displaying help"
+msgstr "There was an error while displaying help"
 
-#: ../gnome-dictionary/src/gdict-applet.c:786
-#: ../gnome-dictionary/src/gdict-window.c:259
+#: ../gnome-dictionary/src/gdict-applet.c:903
+#: ../gnome-dictionary/src/gdict-window.c:264
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "No dictionary source available with name '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:790
-#: ../gnome-dictionary/src/gdict-window.c:263
+#: ../gnome-dictionary/src/gdict-applet.c:907
+#: ../gnome-dictionary/src/gdict-window.c:268
 msgid "Unable to find dictionary source"
 msgstr "Unable to find dictionary source"
 
-#: ../gnome-dictionary/src/gdict-applet.c:806
-#: ../gnome-dictionary/src/gdict-window.c:279
+#: ../gnome-dictionary/src/gdict-applet.c:923
+#: ../gnome-dictionary/src/gdict-window.c:284
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "No context available for source '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:810
-#: ../gnome-dictionary/src/gdict-window.c:283
+#: ../gnome-dictionary/src/gdict-applet.c:927
+#: ../gnome-dictionary/src/gdict-window.c:288
 msgid "Unable to create a context"
 msgstr "Unable to create a context"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1049
+#: ../gnome-dictionary/src/gdict-applet.c:1154
 #, c-format
-msgid "Unable to load the application icon: %s"
-msgstr "Unable to load the application icon: %s"
+msgid "Unable to create the data directory '%s'"
+msgstr "Unable to create the data directory '%s'"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1167
+msgid "Unable to load the applet icon"
+msgstr "Unable to load the applet icon"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:272
 msgid "Add Dictionary Source"
@@ -1200,12 +1276,6 @@ msgstr "This will permanently remove the dictionary source from the list."
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Unable to remove source '%s'"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:671
-msgid "There was an error while displaying help"
-msgstr "There was an error while displaying help"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:638
 msgid "Add a new dictionary source"
@@ -1236,127 +1306,127 @@ msgstr "Unable to create a source file"
 msgid "Unable to save source file"
 msgstr "Unable to save source file"
 
-#: ../gnome-dictionary/src/gdict-window.c:167
+#: ../gnome-dictionary/src/gdict-window.c:170
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Searching for '%s'..."
 
-#: ../gnome-dictionary/src/gdict-window.c:191
-#: ../gnome-dictionary/src/gdict-window.c:210
+#: ../gnome-dictionary/src/gdict-window.c:194
+#: ../gnome-dictionary/src/gdict-window.c:215
 msgid "No definitions found"
 msgstr "No definitions found"
 
-#: ../gnome-dictionary/src/gdict-window.c:193
+#: ../gnome-dictionary/src/gdict-window.c:196
 msgid "A definition found"
 msgstr "A definition found"
 
-#: ../gnome-dictionary/src/gdict-window.c:195
+#: ../gnome-dictionary/src/gdict-window.c:198
 #, c-format
 msgid "%d definitions found"
 msgstr "%d definitions found"
 
-#: ../gnome-dictionary/src/gdict-window.c:590
+#: ../gnome-dictionary/src/gdict-window.c:633
 msgid "Dictionary Preferences"
 msgstr "Dictionary Preferences"
 
-#: ../gnome-dictionary/src/gdict-window.c:706
+#: ../gnome-dictionary/src/gdict-window.c:749
 msgid "_File"
 msgstr "_File"
 
-#: ../gnome-dictionary/src/gdict-window.c:707 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:750 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Edit"
 
-#: ../gnome-dictionary/src/gdict-window.c:708
+#: ../gnome-dictionary/src/gdict-window.c:751
 msgid "_Go"
 msgstr "_Go"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:712
+#: ../gnome-dictionary/src/gdict-window.c:755
 msgid "_New"
 msgstr "_New"
 
-#: ../gnome-dictionary/src/gdict-window.c:713
+#: ../gnome-dictionary/src/gdict-window.c:756
 msgid "New look up"
 msgstr "New lookup"
 
-#: ../gnome-dictionary/src/gdict-window.c:714
+#: ../gnome-dictionary/src/gdict-window.c:757
 msgid "_Save a Copy..."
 msgstr "_Save a Copy..."
 
-#: ../gnome-dictionary/src/gdict-window.c:716
+#: ../gnome-dictionary/src/gdict-window.c:759
 msgid "_Print..."
 msgstr "_Print..."
 
-#: ../gnome-dictionary/src/gdict-window.c:717
+#: ../gnome-dictionary/src/gdict-window.c:760
 msgid "Print this document"
 msgstr "Print this document"
 
-#: ../gnome-dictionary/src/gdict-window.c:724 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:767 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Select _All"
 
-#: ../gnome-dictionary/src/gdict-window.c:727
+#: ../gnome-dictionary/src/gdict-window.c:770
 msgid "Find a word or phrase in the document"
 msgstr "Find a word or phrase in the document"
 
-#: ../gnome-dictionary/src/gdict-window.c:729
+#: ../gnome-dictionary/src/gdict-window.c:772
 msgid "Find Ne_xt"
 msgstr "Find Ne_xt"
 
-#: ../gnome-dictionary/src/gdict-window.c:731
+#: ../gnome-dictionary/src/gdict-window.c:774
 msgid "Find Pre_vious"
 msgstr "Find Pre_vious"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:737
+#: ../gnome-dictionary/src/gdict-window.c:780
 msgid "_Previous Definition"
 msgstr "_Previous Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:738
+#: ../gnome-dictionary/src/gdict-window.c:781
 msgid "Go to the previous definition"
 msgstr "Go to the previous definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:739
+#: ../gnome-dictionary/src/gdict-window.c:782
 msgid "_Next Definition"
 msgstr "_Next Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:740
+#: ../gnome-dictionary/src/gdict-window.c:783
 msgid "Go to the next definition"
 msgstr "Go to the next definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:741
+#: ../gnome-dictionary/src/gdict-window.c:784
 msgid "_First Definition"
 msgstr "_First Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-window.c:785
 msgid "Go to the first definition"
 msgstr "Go to the first definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:743
+#: ../gnome-dictionary/src/gdict-window.c:786
 msgid "_Last Definition"
 msgstr "_Last Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:744
+#: ../gnome-dictionary/src/gdict-window.c:787
 msgid "Go to the last definition"
 msgstr "Go to the last definition"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:747 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:790 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Contents"
 
-#: ../gnome-dictionary/src/gdict-window.c:807
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-window.c:877
+#: ../gnome-dictionary/src/gdict-window.c:909
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Dictionary"
 
-#: ../gnome-dictionary/src/gdict-window.c:959
+#: ../gnome-dictionary/src/gdict-window.c:1101
 msgid "Look _up:"
 msgstr "Look _up:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1097
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "Unable to load the application icon"
 msgstr "Unable to load the application icon"
 
@@ -2422,6 +2492,10 @@ msgstr "%s cannot be opened."
 #: ../logview/logview-findbar.c:152
 msgid "_Filter:"
 msgstr "_Filter:"
+
+#: ../logview/logview-findbar.c:157
+msgid "_Clear"
+msgstr "_Clear"
 
 #: ../logview/logview.c:85
 msgid "_Log"
