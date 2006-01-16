@@ -1,0 +1,307 @@
+<!-- ##### SECTION Title ##### -->
+GdictContext
+
+<!-- ##### SECTION Short_Description ##### -->
+Abstract interface for dictionary transports.
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+#GdictContext is an abstract interface used to uniformly access dictionary
+transport objects.  Each implementation of #GdictContext must provide functions
+for accessing the list of databases available on a dictionary source and the
+available matching strategies; a function for retrieving all words matching to
+a string, inside one (or more) of those databases and using one of those
+strategies; a function for querying one (or more) of those databases for a
+definition of a word.
+</para>
+
+<para>
+Implementations of the #GdictContext interface should query their dictionary
+sources asynchronously; methods of the #GdictContext interface should return
+immediately, and each time a new database, strategy, match or definition
+is found, a signal should be fired by those implementations.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+#GdictClientContext, #GdictSource
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT GdictContext ##### -->
+<para>
+The #GdictClientContext struct contains private data only.
+</para>
+
+<!-- ##### ENUM GdictContextError ##### -->
+<para>
+These identify the various errors that can occur while calling #GdictContext
+functions.  Implementations should use these general error codes, but might
+provide other errors.
+</para>
+
+@GDICT_CONTEXT_ERROR_PARSE: Indicates that an error occurred while parsing the
+dictionary source.
+@GDICT_CONTEXT_ERROR_NOT_IMPLEMENTED: Indicates that a command is not
+implemented by a dictionary source.
+@GDICT_CONTEXT_ERROR_INVALID_DATABASE: Indicates that the requested database is
+either invalid or was not found on the dictionary source.
+@GDICT_CONTEXT_ERROR_INVALID_STRATEGY: Indicates that the requested strategy is
+either invalid or was not found on the dictionary source.
+@GDICT_CONTEXT_ERROR_INVALID_COMMAND: Indicates that the requested command is
+not recognized by the dictionary source.
+@GDICT_CONTEXT_ERROR_NO_MATCH: Indicates that no matches were found for the
+word used in a query.
+@GDICT_CONTEXT_ERROR_NO_DATABASES: Indicates that no databases were found on
+the dictionary source.
+@GDICT_CONTEXT_ERROR_NO_STRATEGIES: Indicates that no strategies were found on
+the dictionary source.
+
+<!-- ##### FUNCTION gdict_context_get_local_only ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_set_local_only ##### -->
+<para>
+
+</para>
+
+@context: 
+@local_only: 
+
+
+<!-- ##### FUNCTION gdict_context_lookup_databases ##### -->
+<para>
+
+</para>
+
+@context: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_lookup_strategies ##### -->
+<para>
+
+</para>
+
+@context: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_define_word ##### -->
+<para>
+
+</para>
+
+@context: 
+@database: 
+@word: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_match_word ##### -->
+<para>
+
+</para>
+
+@context: 
+@database: 
+@strategy: 
+@word: 
+@error: 
+@Returns: 
+
+
+<!-- ##### STRUCT GdictDatabase ##### -->
+<para>
+A #GdictDatabase represents a database inside a dictionary source.
+</para>
+
+
+<!-- ##### FUNCTION gdict_database_ref ##### -->
+<para>
+
+</para>
+
+@db: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_database_unref ##### -->
+<para>
+
+</para>
+
+@db: 
+
+
+<!-- ##### FUNCTION gdict_database_get_name ##### -->
+<para>
+
+</para>
+
+@db: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_database_get_full_name ##### -->
+<para>
+
+</para>
+
+@db: 
+@Returns: 
+
+
+<!-- ##### STRUCT GdictStrategy ##### -->
+<para>
+A #GdictStrategy represents a matching strategy inside a dictionary source.
+</para>
+
+
+<!-- ##### FUNCTION gdict_strategy_ref ##### -->
+<para>
+
+</para>
+
+@strat: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_strategy_unref ##### -->
+<para>
+
+</para>
+
+@strat: 
+
+
+<!-- ##### FUNCTION gdict_strategy_get_name ##### -->
+<para>
+
+</para>
+
+@strat: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_strategy_get_description ##### -->
+<para>
+
+</para>
+
+@strat: 
+@Returns: 
+
+
+<!-- ##### STRUCT GdictMatch ##### -->
+<para>
+A #GdictMatch represents a single match for a word inside a dictionary source.
+</para>
+
+
+<!-- ##### FUNCTION gdict_match_ref ##### -->
+<para>
+
+</para>
+
+@match: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_match_unref ##### -->
+<para>
+
+</para>
+
+@match: 
+
+
+<!-- ##### FUNCTION gdict_match_get_word ##### -->
+<para>
+
+</para>
+
+@match: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_match_get_database ##### -->
+<para>
+
+</para>
+
+@match: 
+@Returns: 
+
+
+<!-- ##### STRUCT GdictDefinition ##### -->
+<para>
+A #GdictDefinition represents a single definition for a word inside a
+dictionary source.
+</para>
+
+
+<!-- ##### FUNCTION gdict_definition_ref ##### -->
+<para>
+
+</para>
+
+@def: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_definition_unref ##### -->
+<para>
+
+</para>
+
+@def: 
+
+
+<!-- ##### FUNCTION gdict_definition_get_total ##### -->
+<para>
+
+</para>
+
+@def: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_definition_get_word ##### -->
+<para>
+
+</para>
+
+@def: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_definition_get_database ##### -->
+<para>
+
+</para>
+
+@def: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_definition_get_text ##### -->
+<para>
+
+</para>
+
+@def: 
+@Returns: 
+
+
