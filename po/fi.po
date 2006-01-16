@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-06 14:46+0200\n"
-"PO-Revision-Date: 2006-01-06 14:52+0200\n"
+"POT-Creation-Date: 2006-01-16 20:42+0200\n"
+"PO-Revision-Date: 2006-01-16 20:52+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -469,17 +469,16 @@ msgid "Look up words in a dictionary"
 msgstr "Etsi sanoja sanakirjasta"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:1
-#: ../gnome-dictionary/src/gdict-window.c:749 ../logview/logview.c:116
+msgid "Cl_ear"
+msgstr "_Tyhjennä"
+
+#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
+#: ../gnome-dictionary/src/gdict-window.c:792 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Tietoja"
 
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "_Tyhjennä"
-
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:709 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:752 ../logview/logview.c:88
 msgid "_Help"
 msgstr "O_hje"
 
@@ -488,7 +487,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Etsi valittu teksti..."
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:733
+#: ../gnome-dictionary/src/gdict-window.c:776
 msgid "_Preferences"
 msgstr "_Asetukset"
 
@@ -503,7 +502,7 @@ msgstr "_Tallenna"
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
 #: ../gnome-dictionary/src/gdict-app.c:343
-#: ../gnome-dictionary/src/gdict-window.c:911
+#: ../gnome-dictionary/src/gdict-window.c:1051
 msgid "Dictionary"
 msgstr "Sanakirja"
 
@@ -534,10 +533,18 @@ msgid "The default database to use"
 msgstr "Käytettävä oletustietokanta"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:5
+msgid "The default height of the application window"
+msgstr "Sovellusikkunan oletuskorkeus"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
 msgid "The default search strategy to use"
 msgstr "Käytettävä oletushakustrategia"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+msgid "The default width of the application window"
+msgstr "Sovellusikkunan oletusleveys"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers. This key is deprecated and "
@@ -547,15 +554,15 @@ msgstr ""
 "muista palvelimista osoitteesta http://www.dict.org. Tämä avain on "
 "vanhentunut eikä ole enää käytössä."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid "The font to be used when printing"
 msgstr "Tulostettaessa käytettävä kirjasin"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid "The font to be used when printing a definition."
 msgstr "Määritelmää tulostettaessa käytettävä kirjasin."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
 msgid ""
 "The name of the default individual database or meta-database to use on a "
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
@@ -565,7 +572,7 @@ msgstr ""
 "tietokantakokoelman nimi. Huutomerkki \"!\" määrittelee, että etsitään "
 "kaikista lähteessä olevista tietokannoista"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
@@ -573,16 +580,16 @@ msgstr ""
 "Haketavan oletusasetus uusilla sanakirjalähteillä, jos se on käytettävissä. "
 "Hakutavan oletus on 'exact', jolla tarkoitetaan kokonaisten sanojen hakua."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
 msgid "The name of the dictionary source used"
 msgstr "Käytettävän sanakirjan lähteen nimi"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
 msgid ""
 "The name of the dictionary source used to retrieve the definitions of words."
 msgstr "Sanojen määritelmien hakuun käytetyn sanakirjan lähteen nimi"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
@@ -590,9 +597,43 @@ msgstr ""
 "Portti, johon otetaan yhteyttä. Oletusportti on 2628. Tämä avain on "
 "vanhentunut eikä ole enää käytössä"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+msgid ""
+"This key defines the window height and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a height based on the font size."
+msgstr ""
+"Tämä avain määrittelee ikkunan korkeuden, ja sitä käytetään muistamaan "
+"sanakirjaikkunan koko istuntojen välillä. Jos arvoksi asetetaann -1, "
+"valitaan sanakirjaikkunan koko kirjasimen kokoon perustuen."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid ""
+"This key defines the window width and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a width based on the font size."
+msgstr ""
+"Tämä avain määrittelee ikkunan leveyden, ja sitä käytetään muistamaan "
+"sanakirjaikkunan koko istuntojen välillä. Jos arvoksi asetetaann -1, "
+"valitaan sanakirjaikkunan koko kirjasimen kokoon perustuen."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines whether the window should be maximized and it's used to "
+"remember the state of the dictionary window across sessions. Setting it to "
+"TRUE will make the window always appear as maximized."
+msgstr ""
+"Tämä avain määrittelee, tulisiko ikkunan olla suurennettu, ja sitä "
+"käytetään muistamaan sanakirjaikkunan tila istuntojen välillä. Jos "
+"arvoksi asetetaann TRUE, näytetään sanakirjaikkuna aina suurennettuna."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid "Use smart lookup (Deprecated)"
 msgstr "Käytä älykästä hakua (vanhentunut)"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+msgid "Whether the application window should be maximized"
+msgstr "Onko ohjelman ikkuna suurennettu"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -613,8 +654,8 @@ msgid "H_ostname:"
 msgstr "Palvelin:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:174
-#: ../gnome-dictionary/src/gdict-window.c:524
+#: ../gnome-dictionary/src/gdict-applet.c:178
+#: ../gnome-dictionary/src/gdict-window.c:547
 msgid "Print"
 msgstr "Tulosta"
 
@@ -654,6 +695,14 @@ msgstr "Haku_tapa:"
 msgid "_Transport:"
 msgstr "_Siirtoyhteys:"
 
+#: ../gnome-dictionary/data/french.desktop.in.h:1
+msgid "French Dictionaries from Wikipedia"
+msgstr "Ranskankielinen sanakirja Wikipediasta"
+
+#: ../gnome-dictionary/data/spanish.desktop.in.h:1
+msgid "Spanish Dictionaries"
+msgstr "Espanjankieliset sanakirjat"
+
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:270
 msgid "Client Name"
 msgstr "Asiakkaan nimi"
@@ -686,29 +735,29 @@ msgstr "Tila"
 msgid "The status code as returned by the dictionary server"
 msgstr "Sanakirjapalvelimen palauttama tilakoodi"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:762
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Ei yhteyttä sanakirjapalvelimeen osoitteessa \"%s:%d\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1024
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr ""
 "Palvelimen \"%s\" osoitteen selvitys epäonnistui: tarvittavia resursseja ei "
 "löytynyt"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Palvelimen \"%s\" etsintä epäonnistui: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Palvelimen \"%s\" etsintä epäonnistui: palvelinta ei löydy"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -717,7 +766,7 @@ msgstr ""
 "Sanakirjapalvelimeen osoitteessa \"%s:%d\" ei saatu yhteyttä. Palvelin "
 "palautti tilakoodin %d (palvelin pois käytöstä)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -726,47 +775,47 @@ msgstr ""
 "Sanakirjapalvelimen antamaa vastausta ei voi tulkita\n"
 ": \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "Sanalle \"%s\" ei löytynyt määritelmiä"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Virheellinen tietokanta \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Virheellinen hakutapa \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Virheellinen komento \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Virheellisiä parametreja komennolle \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Sanakirjapalvelimelta \"%s\" ei löytynyt tietokantoja"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Hakutapoja ei löytynyt sanakirjapalvelimella \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1663
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1664
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Yhteydenotto sanakirjanpalvelimeen osoitteessea \"%s:%d\" epäonnistui"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1702
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1703
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -775,21 +824,21 @@ msgstr ""
 "Virhe luettaessa vastausta palvelimelta:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1773
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1774
 msgid "No hostname defined for the dictionary server"
 msgstr "Sanakirjapalvelimelle ei annettu isäntänimeä"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1809
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1824
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1810
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1825
 msgid "Unable to create socket"
 msgstr "Pistoketta ei voi luoda"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1850
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Kanavaa ei voi asettaa non-blocking-tilaan: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1866
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Sanakirjapalvelimeen osoitteessa \"%s:%d\" ei saatu yhteyttä"
@@ -1028,7 +1077,7 @@ msgstr ""
 "http://gnome.fi/"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Look up words in dictionaries"
 msgstr "Etsi sanoja sanakirjoista"
 
@@ -1119,84 +1168,119 @@ msgstr "Sanakirja- ja oikolukutyökalu"
 msgid "Show Dictionary options"
 msgstr "Näytä sanakirjan vaihtoehdot"
 
-#: ../gnome-dictionary/src/gdict-applet.c:188
-#: ../gnome-dictionary/src/gdict-window.c:469
+#: ../gnome-dictionary/src/gdict-applet.c:192
+#: ../gnome-dictionary/src/gdict-window.c:492
 msgid "Save a Copy"
 msgstr "Tallenna kopio"
 
-#: ../gnome-dictionary/src/gdict-applet.c:198
-#: ../gnome-dictionary/src/gdict-window.c:479
+#: ../gnome-dictionary/src/gdict-applet.c:202
+#: ../gnome-dictionary/src/gdict-window.c:502
 msgid "Untitled document"
 msgstr "Nimeämätön asiakirja"
 
-#: ../gnome-dictionary/src/gdict-applet.c:219
-#: ../gnome-dictionary/src/gdict-window.c:500
+#: ../gnome-dictionary/src/gdict-applet.c:223
+#: ../gnome-dictionary/src/gdict-window.c:523
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Virhe kirjoitettaessa tiedostoon \"%s\""
 
-#: ../gnome-dictionary/src/gdict-applet.c:283
+#: ../gnome-dictionary/src/gdict-applet.c:327
+msgid "Clear the definitions found"
+msgstr "Tyhjennä löytyneet määritelmät"
+
+#: ../gnome-dictionary/src/gdict-applet.c:330
 msgid "Clear definition"
 msgstr "Tyhjennä määritelmä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:284
+#: ../gnome-dictionary/src/gdict-applet.c:331
 msgid "Clear the text of the definition"
 msgstr "Tyhjennä määritelmän teksti"
 
-#: ../gnome-dictionary/src/gdict-applet.c:291
+#: ../gnome-dictionary/src/gdict-applet.c:341
+msgid "Print the definitions found"
+msgstr "Tulosta löytyneet määritelmät"
+
+#: ../gnome-dictionary/src/gdict-applet.c:344
 msgid "Print definition"
 msgstr "Tulosta määritelmä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:292
+#: ../gnome-dictionary/src/gdict-applet.c:345
 msgid "Print the text of the definition"
 msgstr "Tulosta määritelmän teksti"
 
-#: ../gnome-dictionary/src/gdict-applet.c:299
+#: ../gnome-dictionary/src/gdict-applet.c:355
+msgid "Save the definitions found"
+msgstr "Tallenna löytyneet määritelmät"
+
+#: ../gnome-dictionary/src/gdict-applet.c:358
 msgid "Save definition"
 msgstr "Tallenna määritelmä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:300
+#: ../gnome-dictionary/src/gdict-applet.c:359
 msgid "Save the text of the definition to a file"
 msgstr "Tallenna määritelmän teksti tiedostoon"
 
-#: ../gnome-dictionary/src/gdict-applet.c:405
+#: ../gnome-dictionary/src/gdict-applet.c:491
+msgid "Toggle dictionary window"
+msgstr "Vaihtele sanakirjaikkunan näyttämistä"
+
+#: ../gnome-dictionary/src/gdict-applet.c:492
+msgid "Show or hide the definition window"
+msgstr "Piilota tai näytä määritelmäikkuna"
+
+#: ../gnome-dictionary/src/gdict-applet.c:495
+msgid "Click to view the dictionary window"
+msgstr "Napsauta näyttääksesi sanakirjaikkuna"
+
+#: ../gnome-dictionary/src/gdict-applet.c:550
 msgid "Dictionary entry"
 msgstr "Sanakirjan kohta"
 
-#: ../gnome-dictionary/src/gdict-applet.c:607
+#: ../gnome-dictionary/src/gdict-applet.c:554
+msgid "Type the word you want to look up"
+msgstr "Kirjoita sanat, joita haluat hakea"
+
+#: ../gnome-dictionary/src/gdict-applet.c:688
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: ../gnome-dictionary/src/gdict-applet.c:639
-msgid "There was an error displaying help"
+#: ../gnome-dictionary/src/gdict-applet.c:720
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:714
+msgid "There was an error while displaying help"
 msgstr "Ohjetta näytettäessä tapahtui virhe"
 
-#: ../gnome-dictionary/src/gdict-applet.c:786
-#: ../gnome-dictionary/src/gdict-window.c:259
+#: ../gnome-dictionary/src/gdict-applet.c:903
+#: ../gnome-dictionary/src/gdict-window.c:264
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Nimellä \"%s\" ei löydy sanakirjan lähdettä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:790
-#: ../gnome-dictionary/src/gdict-window.c:263
+#: ../gnome-dictionary/src/gdict-applet.c:907
+#: ../gnome-dictionary/src/gdict-window.c:268
 msgid "Unable to find dictionary source"
 msgstr "Sanakirjan lähdettä ei löydy"
 
-#: ../gnome-dictionary/src/gdict-applet.c:806
-#: ../gnome-dictionary/src/gdict-window.c:279
+#: ../gnome-dictionary/src/gdict-applet.c:923
+#: ../gnome-dictionary/src/gdict-window.c:284
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Lähteelle \"%s\" ei löydy kontekstia"
 
-#: ../gnome-dictionary/src/gdict-applet.c:810
-#: ../gnome-dictionary/src/gdict-window.c:283
+#: ../gnome-dictionary/src/gdict-applet.c:927
+#: ../gnome-dictionary/src/gdict-window.c:288
 msgid "Unable to create a context"
 msgstr "Kontekstia ei voi luoda"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1049
+#: ../gnome-dictionary/src/gdict-applet.c:1154
 #, c-format
-msgid "Unable to load the application icon: %s"
-msgstr "Sovelluksen kuvaketta ei voi ladata: %s"
+msgid "Unable to create the data directory '%s'"
+msgstr "Hakemistoa \"%s\" ei voi luoda"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1167
+msgid "Unable to load the applet icon"
+msgstr "Sovelman kuvaketta ei voitu ladata"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:272
 msgid "Add Dictionary Source"
@@ -1215,12 +1299,6 @@ msgstr "Tämä poistaa sanakirjan lähteen pysyvästi listalta."
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Lähdettä \"%s\" ei voi poistaa"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:671
-msgid "There was an error while displaying help"
-msgstr "Ohjetta näytettäessä tapahtui virhe"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:638
 msgid "Add a new dictionary source"
@@ -1251,127 +1329,127 @@ msgstr "Lähdetiedosto ei voi luoda"
 msgid "Unable to save source file"
 msgstr "Lähdetiedostoa ei voi tallentaa"
 
-#: ../gnome-dictionary/src/gdict-window.c:167
+#: ../gnome-dictionary/src/gdict-window.c:170
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Etsitään sanaa \"%s\"..."
 
-#: ../gnome-dictionary/src/gdict-window.c:191
-#: ../gnome-dictionary/src/gdict-window.c:210
+#: ../gnome-dictionary/src/gdict-window.c:194
+#: ../gnome-dictionary/src/gdict-window.c:215
 msgid "No definitions found"
 msgstr "Määritelmiä ei löytynyt"
 
-#: ../gnome-dictionary/src/gdict-window.c:193
+#: ../gnome-dictionary/src/gdict-window.c:196
 msgid "A definition found"
 msgstr "Määritelmä löytyi"
 
-#: ../gnome-dictionary/src/gdict-window.c:195
+#: ../gnome-dictionary/src/gdict-window.c:198
 #, c-format
 msgid "%d definitions found"
 msgstr "%d määritelmää löytyi"
 
-#: ../gnome-dictionary/src/gdict-window.c:590
+#: ../gnome-dictionary/src/gdict-window.c:633
 msgid "Dictionary Preferences"
 msgstr "Sanakirjan asetukset"
 
-#: ../gnome-dictionary/src/gdict-window.c:706
+#: ../gnome-dictionary/src/gdict-window.c:749
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../gnome-dictionary/src/gdict-window.c:707 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:750 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../gnome-dictionary/src/gdict-window.c:708
+#: ../gnome-dictionary/src/gdict-window.c:751
 msgid "_Go"
 msgstr "_Siirry"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:712
+#: ../gnome-dictionary/src/gdict-window.c:755
 msgid "_New"
 msgstr "_Uusi"
 
-#: ../gnome-dictionary/src/gdict-window.c:713
+#: ../gnome-dictionary/src/gdict-window.c:756
 msgid "New look up"
 msgstr "Uusi haku"
 
-#: ../gnome-dictionary/src/gdict-window.c:714
+#: ../gnome-dictionary/src/gdict-window.c:757
 msgid "_Save a Copy..."
 msgstr "Tallenna _kopio..."
 
-#: ../gnome-dictionary/src/gdict-window.c:716
+#: ../gnome-dictionary/src/gdict-window.c:759
 msgid "_Print..."
 msgstr "T_ulosta..."
 
-#: ../gnome-dictionary/src/gdict-window.c:717
+#: ../gnome-dictionary/src/gdict-window.c:760
 msgid "Print this document"
 msgstr "Tulosta tämä asiakirja"
 
-#: ../gnome-dictionary/src/gdict-window.c:724 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:767 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Valitse k_aikki"
 
-#: ../gnome-dictionary/src/gdict-window.c:727
+#: ../gnome-dictionary/src/gdict-window.c:770
 msgid "Find a word or phrase in the document"
 msgstr "Etsii sanaa tai lausetta tekstistä"
 
-#: ../gnome-dictionary/src/gdict-window.c:729
+#: ../gnome-dictionary/src/gdict-window.c:772
 msgid "Find Ne_xt"
 msgstr "Etsi _seuraava"
 
-#: ../gnome-dictionary/src/gdict-window.c:731
+#: ../gnome-dictionary/src/gdict-window.c:774
 msgid "Find Pre_vious"
 msgstr "Etsi _edellinen"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:737
+#: ../gnome-dictionary/src/gdict-window.c:780
 msgid "_Previous Definition"
 msgstr "_Edellinen määritelmä"
 
-#: ../gnome-dictionary/src/gdict-window.c:738
+#: ../gnome-dictionary/src/gdict-window.c:781
 msgid "Go to the previous definition"
 msgstr "Siirry edelliseen määritelmään"
 
-#: ../gnome-dictionary/src/gdict-window.c:739
+#: ../gnome-dictionary/src/gdict-window.c:782
 msgid "_Next Definition"
 msgstr "_Seuraava määritelmä"
 
-#: ../gnome-dictionary/src/gdict-window.c:740
+#: ../gnome-dictionary/src/gdict-window.c:783
 msgid "Go to the next definition"
 msgstr "Siirry seuraavaan määritelmään"
 
-#: ../gnome-dictionary/src/gdict-window.c:741
+#: ../gnome-dictionary/src/gdict-window.c:784
 msgid "_First Definition"
 msgstr "_Ensimmäinen määritelmä"
 
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-window.c:785
 msgid "Go to the first definition"
 msgstr "Siirry ensimmäiseen määritelmään"
 
-#: ../gnome-dictionary/src/gdict-window.c:743
+#: ../gnome-dictionary/src/gdict-window.c:786
 msgid "_Last Definition"
 msgstr "_Viimeinen määritelmä"
 
-#: ../gnome-dictionary/src/gdict-window.c:744
+#: ../gnome-dictionary/src/gdict-window.c:787
 msgid "Go to the last definition"
 msgstr "Siirry viimeiseen määritelmään"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:747 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:790 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Sisältö"
 
-#: ../gnome-dictionary/src/gdict-window.c:807
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-window.c:877
+#: ../gnome-dictionary/src/gdict-window.c:909
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - sanakirja"
 
-#: ../gnome-dictionary/src/gdict-window.c:959
+#: ../gnome-dictionary/src/gdict-window.c:1101
 msgid "Look _up:"
 msgstr "_Etsi sanaa:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1097
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "Unable to load the application icon"
 msgstr "Sovelluksen kuvaketta ei voitu ladata"
 
@@ -1463,6 +1541,14 @@ msgstr "<b>Esikatselu</b>"
 #: ../gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
 msgstr "Tallenna kuvakaappaus"
+
+#: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
+msgid "Take Screenshot"
+msgstr "Ota kuvakaappaus"
+
+#: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
+msgid "Take a screenshot of your desktop"
+msgstr "Ota kuvankaappaus työpöydästä"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
@@ -2437,6 +2523,10 @@ msgstr "Tiedostoa %s ei voi avata."
 msgid "_Filter:"
 msgstr "_Suodatin:"
 
+#: ../logview/logview-findbar.c:157
+msgid "_Clear"
+msgstr "_Tyhjennä"
+
 #: ../logview/logview.c:85
 msgid "_Log"
 msgstr "_Loki"
@@ -2705,6 +2795,12 @@ msgstr "Tämä tiedostojärjestelmä ei tue tiedostojen tarkkailua.\n"
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS:n virhe.\n"
 
+#~ msgid "There was an error displaying help"
+#~ msgstr "Ohjetta näytettäessä tapahtui virhe"
+
+#~ msgid "Unable to load the application icon: %s"
+#~ msgstr "Sovelluksen kuvaketta ei voi ladata: %s"
+
 #~ msgid "Remove '%s'"
 #~ msgstr "Poista \"%s\""
 
@@ -2862,9 +2958,6 @@ msgstr "Gnome-VFS:n virhe.\n"
 
 #~ msgid "View alternate spellings"
 #~ msgstr "Näytä kirjoitustavat"
-
-#~ msgid "In Dictionary"
-#~ msgstr "Sanakirjassa"
 
 #~ msgid "On a Web Site"
 #~ msgstr "WWW-sivulla"
