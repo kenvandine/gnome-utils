@@ -110,7 +110,7 @@ definition_new (void)
 {
   Definition *def;
   
-  def = g_new0 (Definition, 1);
+  def = g_slice_new (Definition);
   def->definition = NULL;
   def->begin = -1;
   
@@ -124,7 +124,7 @@ definition_free (Definition *def)
     return;
   
   gdict_definition_unref (def->definition);
-  g_free (def);
+  g_slice_free (Definition, def);
 }
 
 static void

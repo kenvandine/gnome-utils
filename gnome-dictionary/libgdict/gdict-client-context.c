@@ -643,7 +643,8 @@ gdict_command_new (GdictCommandType cmd_type)
   
   g_assert (IS_VALID_CMD (cmd_type));
   
-  retval = g_new0 (GdictCommand, 1);
+  retval = g_slice_new0 (GdictCommand);
+  
   retval->cmd_type = cmd_type;
   retval->state = S_START;
   
@@ -685,7 +686,7 @@ gdict_command_free (GdictCommand *cmd)
   if (cmd->data_destroy)
     cmd->data_destroy (cmd->data);
   
-  g_free (cmd);
+  g_slice_free (GdictCommand, cmd);
 }
 
 /* push @command into the head of the commands queue; the command queue is

@@ -373,7 +373,7 @@ _gdict_database_new (const gchar *name)
   
   g_return_val_if_fail (name != NULL, NULL);
   
-  retval = g_new0 (GdictDatabase, 1);
+  retval = g_slice_new (GdictDatabase);
   retval->name = g_strdup (name);
   retval->full_name = NULL;
   retval->ref_count = 1;
@@ -425,7 +425,7 @@ gdict_database_unref (GdictDatabase *db)
       g_free (db->name);
       g_free (db->full_name);
       
-      g_free (db);
+      g_slice_free (GdictDatabase, db);
     }
 }
 
@@ -483,7 +483,7 @@ _gdict_strategy_new (const gchar *name)
   
   g_return_val_if_fail (name != NULL, NULL);
   
-  strat = g_new0 (GdictStrategy, 1);
+  strat = g_slice_new (GdictStrategy);
   strat->name = g_strdup (name);
   strat->description = NULL;
   strat->ref_count = 1;
@@ -536,10 +536,20 @@ gdict_strategy_unref (GdictStrategy *strat)
       g_free (strat->name);
       g_free (strat->description);
       
-      g_free (strat);
+      g_slice_free (GdictStrategy, strat);
     }
 }
 
+/**
+ * gdict_strategy_get_name:
+ * @strat: a #GdictStrategy
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since: 1.0
+ */
 G_CONST_RETURN gchar *
 gdict_strategy_get_name (GdictStrategy *strat)
 {
@@ -548,6 +558,16 @@ gdict_strategy_get_name (GdictStrategy *strat)
   return strat->name;
 }
 
+/**
+ * gdict_strategy_get_description:
+ * @strat: a #GdictStrategy
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since: 1.0
+ */
 G_CONST_RETURN gchar *
 gdict_strategy_get_description (GdictStrategy *strat)
 {
@@ -571,7 +591,7 @@ _gdict_match_new (const gchar *word)
   
   g_return_val_if_fail (word != NULL, NULL);
   
-  match = g_new0 (GdictMatch, 1);
+  match = g_slice_new (GdictMatch);
   match->word = g_strdup (word);
   match->database = NULL;
   match->ref_count = 1;
@@ -579,6 +599,16 @@ _gdict_match_new (const gchar *word)
   return match;
 }
 
+/**
+ * gdict_match_ref:
+ * @match: a #GdictMatch
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since: 1.0
+ */
 GdictMatch *
 gdict_match_ref (GdictMatch *match)
 {
@@ -591,6 +621,14 @@ gdict_match_ref (GdictMatch *match)
   return match;
 }
 
+/**
+ * gdict_match_unref:
+ * @match: a #GdictMatch
+ *
+ * FIXME
+ *
+ * Since: 1.0
+ */
 void
 gdict_match_unref (GdictMatch *match)
 {
@@ -605,10 +643,20 @@ gdict_match_unref (GdictMatch *match)
       g_free (match->word);
       g_free (match->database);
       
-      g_free (match);
+      g_slice_free (GdictMatch, match);
     }
 }
 
+/**
+ * gdict_match_get_word:
+ * @match: a #GdictMatch
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since: 1.0
+ */
 G_CONST_RETURN gchar *
 gdict_match_get_word (GdictMatch *match)
 {
@@ -617,6 +665,16 @@ gdict_match_get_word (GdictMatch *match)
   return match->word;
 }
 
+/**
+ * gdict_match_get_database:
+ * @match: a #GdictMatch
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since: 1.0
+ */
 G_CONST_RETURN gchar *
 gdict_match_get_database (GdictMatch *match)
 {
@@ -639,7 +697,7 @@ _gdict_definition_new (gint total)
 {
   GdictDefinition *def;
   
-  def = g_new0 (GdictDefinition, 1);
+  def = g_slice_new (GdictDefinition);
   
   def->total = total;
   def->word = NULL;
@@ -696,7 +754,7 @@ gdict_definition_unref (GdictDefinition *def)
       g_free (def->database_name);
       g_free (def->database_full);
       
-      g_free (def);
+      g_slice_free (GdictDefinition, def);
     }
 }
 
