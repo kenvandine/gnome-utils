@@ -289,8 +289,36 @@
       <para>To add a new dictionary source, perform the following steps:</para>
 
       <orderedlist>
-        <listitem><para></para></listitem>
+        <listitem><para>Click on the <guibutton>Add</guibutton> button</para></listitem>
+	<listitem><para>Edit the name of the new source inside the <guilabel>Description</guilabel> entry</para></listitem>
+	<listitem><para>Change the transport type of the new source using the <guilabel>Transport</guilabel> combo box</para></listitem>
+	<listitem><para>Edit the attributes of the new source</para></listitem>
+	<listitem><para>Click <guibutton>Add</guibutton></para></listitem>
       </orderedlist>
+
+      <para>Different source transport types uses different attributes.  This
+      is the list of available attributes per transport type:</para>
+
+      <informaltable frame="all">
+        <tgroup col="2" colsep="1" rowsep="1">
+	  <thead>
+	    <row valign="top">
+	      <entry><para>Transport</para></entry>
+	      <entry><para>Attributes</para></entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row valign="top">
+	      <entry><para>Dictionary Server</para></entry>
+	      <entry>
+	        <para>Hostname: the hostname of the dictionary server</para>
+		<para>Port: the port of the dictionary server</para>
+              </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    
     </sect2>
 
 <!-- ============= Remove Source ============================= -->
@@ -300,8 +328,14 @@
       <para>To remove a dictionary source, perform the following steps:</para>
 
       <orderedlist>
-        <listitem><para></para></listitem>
+        <listitem><para>Select the source you wish to remove</para></listitem>
+	<listitem><para>Click the <guibutton>Remove</guibutton> button</listitem>
       </orderedlist>
+
+      <warning><para>If you remove a dictionary source it will be permanently
+      deleted from the list of available sources.  Also, as some sources might
+      be defined system-wide you may actually not be able to remove
+      them unless you have the right ownership privileges.</para></warning>
       
     </sect2>
     
@@ -321,7 +355,15 @@
         </screenshot>
       </figure>
 
-      <para>...</para>
+      <para>If you want to change the font name and size used when printing,
+      perform the following steps:</para>
+
+      <orderedlist>
+        <listitem><para>Click on the <guilabel>Print Font</guilabel> button</para></listitem>
+	<listitem><para>Select the font and size you wish to use</para></listitem>
+	<listitem><para>Click <guibutton>Ok</guibutton></para></listitem>
+      </orderedlist>
+	
     </sect2>
     
   </sect1>
