@@ -86,12 +86,28 @@ PKG_CHECK_MODULES(LIBGDICT, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED
 AC_SUBST(LIBGDICT_CFLAGS)
 AC_SUBST(LIBGDICT_LIBS)
 
-GDICT_MAJOR_VERSION=0
-GDICT_MINOR_VERSION=2
-GDICT_MICRO_VERSION=0
+# For each cycle:
+# 	first release: increment major += 1, minor = micro = 0;
+# 	each release before API freeze: minor += 1;
+# 	each release after API freeze: micro += 1;
+# Even if this library is not part of the developers platform, we
+# follow the same rules: no ABI breakage (unless unavoidable) and
+# no API breakage past the API freeze.
+m4_define([gdict_major_version], [0])
+m4_define([gdict_minor_version], [2])
+m4_define([gdict_micro_version], [1])
+m4_define([gdict_version],
+	  [gdict_major_version().gdict_minor_version().gdict_micro_version()])
+
+GDICT_MAJOR_VERSION=gdict_major_version()
+GDICT_MINOR_VERSION=gdict_minor_version()
+GDICT_MICRO_VERSION=gdict_micro_version()
+GDICT_VERSION=gdict_version()
+
 AC_SUBST(GDICT_MAJOR_VERSION)
 AC_SUBST(GDICT_MINOR_VERSION)
 AC_SUBST(GDICT_MICRO_VERSION)
+AC_SUBST(GDICT_VERSION)
 
 dnl *****************************************
 dnl screenshot modules
@@ -488,7 +504,7 @@ else
 fi
 
 dnl <= libgdict =>
-echo "Gdict version                     : "$GDICT_MAJOR_VERSION"."$GDICT_MINOR_VERSION"."$GDICT_MICRO_VERSION
+echo "Gdict version                     : "$GDICT_VERSION
 
 echo ""
 dnl <= End of configuration summary =>

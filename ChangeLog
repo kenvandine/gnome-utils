@@ -1,3 +1,16 @@
+2006-01-17  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-1.0.pc.in: fix version macro
+
+	* configure.in: fix libgdict version generation macros, and add
+	a versioning scheme:
+	  - first release of a new cycle: major += 1, minor = micro = 0;
+	  - for each release before API freeze: minor += 1;
+	  - for each release past API freeze: micro += 1;
+	even if libgdict is not part of the developers platform, the
+	same rules apply: no ABI breakage (unless unavoidable) and
+	no API breakage past the API freeze date.
+
 2006-01-16  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* configure.in: post release bump to 2.13.6
