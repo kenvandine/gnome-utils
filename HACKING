@@ -3,15 +3,17 @@ GNOME Utilities HACKING -
 Please send patches to any of the people listed in the MAINTAINERS file
 or, alternatively, attach them to a bugzilla.gnome.org report.
 
-gnome-2-12 branch,
-gnome-2-10 branch -
+* Branches
+
+	gnome-2-12
+	gnome-2-10
 
 These branches are in deep code freeze. Please do not commit even the most
 simple bug fixes to it without emailing the release team
 release-team@gnome.org and MAINTAINERS, getting a confirmation of commit 
 from 2 release team members.
 
-gnome-utils-1-4 branch -
+	gnome-utils-1-4
 
 This branch is now obsolete stable. No bugs will be fixed on this branch
 anymore, and no more new releases will be made.
@@ -22,3 +24,30 @@ just use:
 	cvs diff -Nup > some-patch.diff
 
 on a modified source tree.
+
+* Special notice for libgdict
+
+Even though libgdict is not inside the Developers Platform, the same rules
+(even if a bit more lax) apply to it:
+
+	- no ABI breaking, unless is absolutely unavoidable;
+	- no ABI/API breaking after ABI/API freeze;
+	- every API change must be *fully* documented;
+
+If you intend to change the API for libgdict, contact Emmanuele Bassi (see
+the MAINTAINERS file) and kindly provide a rationale for the API change,
+with a use case and (possibly, a test case).  In case of a patch (see above
+for the diff format), kindly provide:
+
+	- documentation (in gtk-doc form);
+	- a test case;
+
+The versioning scheme for libgdict should follow this ruleset:
+
+	if release is the first of a new development cycle:
+  		major += 1;
+		minor = micro = 0;
+	else if release is before API freeze:
+		minor += 1;
+	else if release is after API freeze:
+		micro += 1;
