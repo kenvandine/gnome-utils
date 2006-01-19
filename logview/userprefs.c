@@ -307,10 +307,10 @@ prefs_connect (LogviewWindow *logview)
 }
 
 void
-prefs_init (int argc, char *argv[])
+prefs_init (void)
 {
-    gconf_init (argc, argv, NULL);
     client = gconf_client_get_default ();
+    
     prefs = prefs_load (client);
 }
 

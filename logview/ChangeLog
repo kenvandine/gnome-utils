@@ -1,5 +1,12 @@
 2006-01-19  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* userprefs.h
+	* userprefs.c (prefs_init)
+	* main.c: Remove call to the deprecated gconf_init,
+	and change the prefs_init signature.
+
+2006-01-19  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* userprefs.c (prefs_load): Initialize GError before using it (fix
 	bug #327614).  Plus, clean up the code.
 

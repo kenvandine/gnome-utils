@@ -115,7 +115,7 @@ main (int argc, char *argv[])
    gtk_window_set_default_icon_name ("logviewer");
 
    gnome_vfs_init ();
-   prefs_init (argc, argv);
+   prefs_init ();
    
    context = logview_init_options ();
    g_option_context_parse (context, &argc, &argv, &error);
