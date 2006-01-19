@@ -120,30 +120,37 @@ prefs_create_defaults (UserPrefs *p)
 static UserPrefs *
 prefs_load (GConfClient *client)
 {
-	gchar *logfile = NULL;
+	gchar *logfile;
 	int width, height, fontsize;
 	UserPrefs *p;
-	GSList *list;
-	gboolean found;
-    GError *err;
+	GError *err;
 
-    g_assert (client != NULL);
+	g_assert (client != NULL);
 
 	p = g_new0 (UserPrefs, 1);
 
-	p->logs = gconf_client_get_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, &err);
-	if (err != NULL)
+	err = NULL;
+	p->logs = gconf_client_get_list (client,
+					 GCONF_LOGFILES,
+					 GCONF_VALUE_STRING,
+					 &err);
+	if (err)
 		prefs_create_defaults (p);
-
+	
+	logfile = NULL;
 	logfile = gconf_client_get_string (client, GCONF_LOGFILE, NULL);
-	if (logfile != NULL && strcmp (logfile, "") && file_is_log(logfile, FALSE)) {
+	if (logfile && logfile[0] != '\0' && file_is_log (logfile, FALSE)) {
+		gboolean found;
+		GSList *iter;
+		
 		p->logfile = g_strdup (logfile);
 		g_free (logfile);
 	
-		found = FALSE;
-		for (list = p->logs; list!=NULL; list = g_slist_next (list)) {
-		  if (g_ascii_strncasecmp (list->data, p->logfile, 255) == 0)
-		    found = TRUE;
+		for (found = FALSE, iter = p->logs;
+		     iter != NULL;
+		     iter = g_slist_next (iter)) {
+			if (g_ascii_strncasecmp (iter->data, p->logfile, 255) == 0)
+				found = TRUE;
 		}
 	}
 
