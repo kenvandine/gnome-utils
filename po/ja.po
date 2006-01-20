@@ -7,14 +7,15 @@
 # Sun G11n <gnome_int_l10n@ireland.sun.com>, 2002.
 # Takeshi AIHANA <aihana@gnome.gr.jp>, 2003-2006.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
+# Satoru SATOH <ss@gnome.gr.jp>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-09 15:23+0900\n"
-"PO-Revision-Date: 2006-01-09 15:22+0900\n"
-"Last-Translator: Takeshi AIHANA <aihana@gnome.gr.jp>\n"
+"POT-Creation-Date: 2006-01-20 13:19+0900\n"
+"PO-Revision-Date: 2006-01-20 15:22+0900\n"
+"Last-Translator: Satoru SATOH <ss@gnome.gr.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -468,17 +469,16 @@ msgid "Look up words in a dictionary"
 msgstr "辞書から単語を検索します"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:1
-#: ../gnome-dictionary/src/gdict-window.c:749 ../logview/logview.c:116
+msgid "Cl_ear"
+msgstr "クリア(_E)"
+
+#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
+#: ../gnome-dictionary/src/gdict-window.c:792 ../logview/logview.c:116
 msgid "_About"
 msgstr "情報(_A)"
 
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "クリア(_C)"
-
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:709 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:752 ../logview/logview.c:88
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
@@ -487,7 +487,7 @@ msgid "_Look Up Selected Text"
 msgstr "選択したテキストの検索(_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:733
+#: ../gnome-dictionary/src/gdict-window.c:776
 msgid "_Preferences"
 msgstr "設定(_P)"
 
@@ -502,7 +502,7 @@ msgstr "サーバ(_S)"
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
 #: ../gnome-dictionary/src/gdict-app.c:343
-#: ../gnome-dictionary/src/gdict-window.c:911
+#: ../gnome-dictionary/src/gdict-window.c:1051
 msgid "Dictionary"
 msgstr "辞書"
 
@@ -533,10 +533,18 @@ msgid "The default database to use"
 msgstr "デフォルトで使用するデータベース"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:5
+msgid "The default height of the application window"
+msgstr "アプリケーションのウィンドウのデフォルトの高さ"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
 msgid "The default search strategy to use"
 msgstr "デフォルトで使用する検索ルール"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+msgid "The default width of the application window"
+msgstr "アプリケーションのウィンドウのデフォルトの幅"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers. This key is deprecated and "
@@ -546,15 +554,15 @@ msgstr ""
 "て詳細は http://www.dict.org/ を参照して下さい。【このキーは廃止になったの"
 "で、もう使用しません】"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid "The font to be used when printing"
 msgstr "印刷時に使用するフォント"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid "The font to be used when printing a definition."
 msgstr "印刷時に使用するフォントの定義です。"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
 msgid ""
 "The name of the default individual database or meta-database to use on a "
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
@@ -564,7 +572,7 @@ msgstr ""
 "ベースの名前です。感嘆符 (\"!\") にすると、辞書ソースにある全てのデータベース"
 "を検索対象にします。"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
@@ -572,16 +580,16 @@ msgstr ""
 "辞書サーバで使用するデフォルトの検索ルールです。デフォルトのルールは 'exact' "
 "で、単語全体にマッチするものを検索します。"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
 msgid "The name of the dictionary source used"
 msgstr "使用する辞書サーバの名前"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
 msgid ""
 "The name of the dictionary source used to retrieve the definitions of words."
 msgstr "単語の意味を取得する際に使用する辞書サーバの名前です。"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
@@ -589,9 +597,43 @@ msgstr ""
 "接続するポート番号です。デフォルトのポート番号は 2628 です。【このキーは廃止"
 "になったので、もう使用しません】"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+msgid ""
+"This key defines the window height and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a height based on the font size."
+msgstr ""
+"このキーはウィンドウの高さを定義し、複数のセッションで辞書ウィンドウの大きさ"
+"を保存しておく際に使用します。-1 にするとフォントサイズに基づいた高さを使用し"
+"ます。"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid ""
+"This key defines the window width and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a width based on the font size."
+msgstr ""
+"このキーはウィンドウの幅を定義し、複数のセッションで辞書ウィンドウの大きさを"
+"保存しておく際に使用します。-1 にするとフォントサイズに基づいた幅を使用しま"
+"す。"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines whether the window should be maximized and it's used to "
+"remember the state of the dictionary window across sessions. Setting it to "
+"TRUE will make the window always appear as maximized."
+msgstr ""
+"このキーはウィンドウを最大化するべきかどうかを定義し、複数のセッションで辞書"
+"ウィンドウの状態を保存しておく際に使用します。TRUE にするとウィンドウは常に最"
+"大化された状態で現れます。"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid "Use smart lookup (Deprecated)"
 msgstr "スマート検索を有効にする【廃止】"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+msgid "Whether the application window should be maximized"
+msgstr "アプリケーションウィンドウを最大化するべきかどうか"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -612,8 +654,8 @@ msgid "H_ostname:"
 msgstr "ホスト名(_O):"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:174
-#: ../gnome-dictionary/src/gdict-window.c:524
+#: ../gnome-dictionary/src/gdict-applet.c:178
+#: ../gnome-dictionary/src/gdict-window.c:547
 msgid "Print"
 msgstr "印刷"
 
@@ -653,6 +695,14 @@ msgstr "検索ルール(_S):"
 msgid "_Transport:"
 msgstr "変換方法(_T):"
 
+#: ../gnome-dictionary/data/french.desktop.in.h:1
+msgid "French Dictionaries from Wikipedia"
+msgstr "Wikipedia からのフランス語の辞書"
+
+#: ../gnome-dictionary/data/spanish.desktop.in.h:1
+msgid "Spanish Dictionaries"
+msgstr "スペイン語の辞書"
+
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:270
 msgid "Client Name"
 msgstr "クライアント名"
@@ -685,28 +735,28 @@ msgstr "ステータス"
 msgid "The status code as returned by the dictionary server"
 msgstr "辞書サーバが返したステータス・コードです"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:762
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "'%s:%d' に接続している辞書サーバはありません"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1024
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr ""
 "ホスト名 '%s' の検索に失敗しました: 適当なリソースが見つかりませんでした"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "ホスト '%s' の検索に失敗しました: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "ホスト '%s' の検索に失敗しました: ホストが見つかりませんでした"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -715,7 +765,7 @@ msgstr ""
 "'%s:%d' にある辞書サーバに接続できません。そのサーバがコード %d (サーバがダウ"
 "ン) を返してきました"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -724,47 +774,47 @@ msgstr ""
 "辞書サーバの応答を解析できません\n"
 ": '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "'%s' の意味が見つかりませんでした"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "データベース '%s' が間違っています"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "検索ルール '%s' が間違っています"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
 #, c-format
 msgid "Bad command '%s'"
 msgstr "コマンド '%s' が間違っています"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "コマンド '%s' の引数が間違っています"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "'%s' にある辞書サーバーにデータベースがありませんでした"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "'%s' にある辞書サーバに検索ルールがありませんでした"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1663
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1664
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "'%s:%d' にある辞書サーバに接続できませんでした"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1702
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1703
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -773,21 +823,21 @@ msgstr ""
 "サーバからの応答を解析する際にエラーが発生しました:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1773
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1774
 msgid "No hostname defined for the dictionary server"
 msgstr "辞書サーバのホスト名が定義されていません"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1809
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1824
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1810
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1825
 msgid "Unable to create socket"
 msgstr "socket(2) を生成できません"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1850
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "チャンネルにブロック不可の属性を設定できません: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1866
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "'%s:%d' にある辞書サーバに接続できません"
@@ -1025,7 +1075,7 @@ msgstr ""
 "日本GNOMEユーザー会 http://www.gnome.gr.jp"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Look up words in dictionaries"
 msgstr "辞書から単語を検索します"
 
@@ -1116,84 +1166,119 @@ msgstr "辞書とスペル・チェックのツール"
 msgid "Show Dictionary options"
 msgstr "辞書のオプションを表示する"
 
-#: ../gnome-dictionary/src/gdict-applet.c:188
-#: ../gnome-dictionary/src/gdict-window.c:469
+#: ../gnome-dictionary/src/gdict-applet.c:192
+#: ../gnome-dictionary/src/gdict-window.c:492
 msgid "Save a Copy"
 msgstr "検索結果の保存"
 
-#: ../gnome-dictionary/src/gdict-applet.c:198
-#: ../gnome-dictionary/src/gdict-window.c:479
+#: ../gnome-dictionary/src/gdict-applet.c:202
+#: ../gnome-dictionary/src/gdict-window.c:502
 msgid "Untitled document"
 msgstr "編集中のドキュメント"
 
-#: ../gnome-dictionary/src/gdict-applet.c:219
-#: ../gnome-dictionary/src/gdict-window.c:500
+#: ../gnome-dictionary/src/gdict-applet.c:223
+#: ../gnome-dictionary/src/gdict-window.c:523
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "'%s' へ書き込む際にエラーが発生しました"
 
-#: ../gnome-dictionary/src/gdict-applet.c:283
+#: ../gnome-dictionary/src/gdict-applet.c:327
+msgid "Clear the definitions found"
+msgstr "みつかった意味をクリア"
+
+#: ../gnome-dictionary/src/gdict-applet.c:330
 msgid "Clear definition"
 msgstr "意味のクリア"
 
-#: ../gnome-dictionary/src/gdict-applet.c:284
+#: ../gnome-dictionary/src/gdict-applet.c:331
 msgid "Clear the text of the definition"
 msgstr "意味をクリアします"
 
-#: ../gnome-dictionary/src/gdict-applet.c:291
+#: ../gnome-dictionary/src/gdict-applet.c:341
+msgid "Print the definitions found"
+msgstr "みつかった意味を表示"
+
+#: ../gnome-dictionary/src/gdict-applet.c:344
 msgid "Print definition"
 msgstr "意味の印刷"
 
-#: ../gnome-dictionary/src/gdict-applet.c:292
+#: ../gnome-dictionary/src/gdict-applet.c:345
 msgid "Print the text of the definition"
 msgstr "意味を印刷します"
 
-#: ../gnome-dictionary/src/gdict-applet.c:299
+#: ../gnome-dictionary/src/gdict-applet.c:355
+msgid "Save the definitions found"
+msgstr "みつかった意味を保存"
+
+#: ../gnome-dictionary/src/gdict-applet.c:358
 msgid "Save definition"
 msgstr "意味の保存"
 
-#: ../gnome-dictionary/src/gdict-applet.c:300
+#: ../gnome-dictionary/src/gdict-applet.c:359
 msgid "Save the text of the definition to a file"
 msgstr "意味をファイルに保存します"
 
-#: ../gnome-dictionary/src/gdict-applet.c:405
+#: ../gnome-dictionary/src/gdict-applet.c:491
+msgid "Toggle dictionary window"
+msgstr "辞書ウィンドウを切り替え"
+
+#: ../gnome-dictionary/src/gdict-applet.c:492
+msgid "Show or hide the definition window"
+msgstr "意味ウィンドウを表示/隠す"
+
+#: ../gnome-dictionary/src/gdict-applet.c:495
+msgid "Click to view the dictionary window"
+msgstr "クリックして辞書ウィンドウを表示"
+
+#: ../gnome-dictionary/src/gdict-applet.c:550
 msgid "Dictionary entry"
 msgstr "辞書のエントリ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:607
+#: ../gnome-dictionary/src/gdict-applet.c:554
+msgid "Type the word you want to look up"
+msgstr "検索する語句を入力"
+
+#: ../gnome-dictionary/src/gdict-applet.c:688
 msgid "Preferences"
 msgstr "設定"
 
-#: ../gnome-dictionary/src/gdict-applet.c:639
-msgid "There was an error displaying help"
+#: ../gnome-dictionary/src/gdict-applet.c:720
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:714
+msgid "There was an error while displaying help"
 msgstr "ヘルプを表示する際にエラーが発生しました"
 
-#: ../gnome-dictionary/src/gdict-applet.c:786
-#: ../gnome-dictionary/src/gdict-window.c:259
+#: ../gnome-dictionary/src/gdict-applet.c:903
+#: ../gnome-dictionary/src/gdict-window.c:264
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "'%s' という名前で利用できる辞書ソースはありません"
 
-#: ../gnome-dictionary/src/gdict-applet.c:790
-#: ../gnome-dictionary/src/gdict-window.c:263
+#: ../gnome-dictionary/src/gdict-applet.c:907
+#: ../gnome-dictionary/src/gdict-window.c:268
 msgid "Unable to find dictionary source"
 msgstr "辞書ソースが見つかりません"
 
-#: ../gnome-dictionary/src/gdict-applet.c:806
-#: ../gnome-dictionary/src/gdict-window.c:279
+#: ../gnome-dictionary/src/gdict-applet.c:923
+#: ../gnome-dictionary/src/gdict-window.c:284
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "'%s' というソースで利用できるコンテキストはありません"
 
-#: ../gnome-dictionary/src/gdict-applet.c:810
-#: ../gnome-dictionary/src/gdict-window.c:283
+#: ../gnome-dictionary/src/gdict-applet.c:927
+#: ../gnome-dictionary/src/gdict-window.c:288
 msgid "Unable to create a context"
 msgstr "コンテキストを生成できません"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1049
+#: ../gnome-dictionary/src/gdict-applet.c:1154
 #, c-format
-msgid "Unable to load the application icon: %s"
-msgstr "アプリケーションのアイコンを読み込めません: %s"
+msgid "Unable to create the data directory '%s'"
+msgstr "データディレクトリを作成できません: '%s'"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1167
+msgid "Unable to load the applet icon"
+msgstr "アプレットのアイコンを読み込めません"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:272
 msgid "Add Dictionary Source"
@@ -1212,12 +1297,6 @@ msgstr "一覧から辞書ソースを完全に削除します。"
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "ソース '%s' を削除できません"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:671
-msgid "There was an error while displaying help"
-msgstr "ヘルプを表示する際にエラーが発生しました"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:638
 msgid "Add a new dictionary source"
@@ -1248,127 +1327,127 @@ msgstr "ソース・ファイルを生成できません"
 msgid "Unable to save source file"
 msgstr "ソース・ファイルを保存できません"
 
-#: ../gnome-dictionary/src/gdict-window.c:167
+#: ../gnome-dictionary/src/gdict-window.c:170
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "'%s' の検索中..."
 
-#: ../gnome-dictionary/src/gdict-window.c:191
-#: ../gnome-dictionary/src/gdict-window.c:210
+#: ../gnome-dictionary/src/gdict-window.c:194
+#: ../gnome-dictionary/src/gdict-window.c:215
 msgid "No definitions found"
 msgstr "意味が見つかりませんでした"
 
-#: ../gnome-dictionary/src/gdict-window.c:193
+#: ../gnome-dictionary/src/gdict-window.c:196
 msgid "A definition found"
 msgstr "意味が見つかりました"
 
-#: ../gnome-dictionary/src/gdict-window.c:195
+#: ../gnome-dictionary/src/gdict-window.c:198
 #, c-format
 msgid "%d definitions found"
 msgstr "%d 個の意味が見つかりました"
 
-#: ../gnome-dictionary/src/gdict-window.c:590
+#: ../gnome-dictionary/src/gdict-window.c:633
 msgid "Dictionary Preferences"
 msgstr "辞書の設定"
 
-#: ../gnome-dictionary/src/gdict-window.c:706
+#: ../gnome-dictionary/src/gdict-window.c:749
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:707 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:750 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../gnome-dictionary/src/gdict-window.c:708
+#: ../gnome-dictionary/src/gdict-window.c:751
 msgid "_Go"
 msgstr "ジャンプ(_G)"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:712
+#: ../gnome-dictionary/src/gdict-window.c:755
 msgid "_New"
 msgstr "新規(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:713
+#: ../gnome-dictionary/src/gdict-window.c:756
 msgid "New look up"
 msgstr "新しい検索"
 
-#: ../gnome-dictionary/src/gdict-window.c:714
+#: ../gnome-dictionary/src/gdict-window.c:757
 msgid "_Save a Copy..."
 msgstr "検索結果の保存(_S)..."
 
-#: ../gnome-dictionary/src/gdict-window.c:716
+#: ../gnome-dictionary/src/gdict-window.c:759
 msgid "_Print..."
 msgstr "印刷(_P)..."
 
-#: ../gnome-dictionary/src/gdict-window.c:717
+#: ../gnome-dictionary/src/gdict-window.c:760
 msgid "Print this document"
 msgstr "このドキュメントを印刷します"
 
-#: ../gnome-dictionary/src/gdict-window.c:724 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:767 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "全て選択(_A)"
 
-#: ../gnome-dictionary/src/gdict-window.c:727
+#: ../gnome-dictionary/src/gdict-window.c:770
 msgid "Find a word or phrase in the document"
 msgstr "ドキュメントから単語または語句を検索します"
 
-#: ../gnome-dictionary/src/gdict-window.c:729
+#: ../gnome-dictionary/src/gdict-window.c:772
 msgid "Find Ne_xt"
 msgstr "後方検索(_X)"
 
-#: ../gnome-dictionary/src/gdict-window.c:731
+#: ../gnome-dictionary/src/gdict-window.c:774
 msgid "Find Pre_vious"
 msgstr "前方検索(_V)"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:737
+#: ../gnome-dictionary/src/gdict-window.c:780
 msgid "_Previous Definition"
 msgstr "前の意味へ(_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:738
+#: ../gnome-dictionary/src/gdict-window.c:781
 msgid "Go to the previous definition"
 msgstr "前の意味にジャンプします"
 
-#: ../gnome-dictionary/src/gdict-window.c:739
+#: ../gnome-dictionary/src/gdict-window.c:782
 msgid "_Next Definition"
 msgstr "次の意味へ(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:740
+#: ../gnome-dictionary/src/gdict-window.c:783
 msgid "Go to the next definition"
 msgstr "次の意味へジャンプします"
 
-#: ../gnome-dictionary/src/gdict-window.c:741
+#: ../gnome-dictionary/src/gdict-window.c:784
 msgid "_First Definition"
 msgstr "先頭の意味へ(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-window.c:785
 msgid "Go to the first definition"
 msgstr "先頭の意味へジャンプします"
 
-#: ../gnome-dictionary/src/gdict-window.c:743
+#: ../gnome-dictionary/src/gdict-window.c:786
 msgid "_Last Definition"
 msgstr "最後の意味へ(_L)"
 
-#: ../gnome-dictionary/src/gdict-window.c:744
+#: ../gnome-dictionary/src/gdict-window.c:787
 msgid "Go to the last definition"
 msgstr "最後の意味へジャンプします"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:747 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:790 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "目次(_C)"
 
-#: ../gnome-dictionary/src/gdict-window.c:807
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-window.c:877
+#: ../gnome-dictionary/src/gdict-window.c:909
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - 辞書"
 
-#: ../gnome-dictionary/src/gdict-window.c:959
+#: ../gnome-dictionary/src/gdict-window.c:1101
 msgid "Look _up:"
 msgstr "検索(_U):"
 
-#: ../gnome-dictionary/src/gdict-window.c:1097
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "Unable to load the application icon"
 msgstr "アプリケーションのアイコンを読み込めません"
 
@@ -1460,6 +1539,14 @@ msgstr "<b>プレビュー</b>"
 #: ../gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
 msgstr "スクリーンショットの保存"
+
+#: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
+msgid "Take Screenshot"
+msgstr "スクリーンショットを撮る"
+
+#: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
+msgid "Take a screenshot of your desktop"
+msgstr "あなたのデスクトップのスクリーンショットを撮ります"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
@@ -2436,6 +2523,10 @@ msgstr "%s を開けません。"
 msgid "_Filter:"
 msgstr "フィルタ(_F):"
 
+#: ../logview/logview-findbar.c:157
+msgid "_Clear"
+msgstr "クリア(_C)"
+
 #: ../logview/logview.c:85
 msgid "_Log"
 msgstr "ログ(_L)"
@@ -2704,3 +2795,9 @@ msgstr "このファイル・システムではファイル監視をサポート
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS のエラーです。\n"
+
+#~ msgid "There was an error displaying help"
+#~ msgstr "ヘルプを表示する際にエラーが発生しました"
+
+#~ msgid "Unable to load the application icon: %s"
+#~ msgstr "アプリケーションのアイコンを読み込めません: %s"
