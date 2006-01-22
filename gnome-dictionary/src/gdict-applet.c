@@ -84,6 +84,7 @@ struct _GdictAppletPrivate
   GtkWidget *image;
   GtkWidget *entry;
   GtkWidget *window;
+  GtkWidget *frame;
   GtkWidget *defbox;
 
   guint idle_draw_id;
@@ -95,6 +96,11 @@ struct _GdictAppletPrivate
 
   guint is_window_showing : 1;
 };
+
+#define WINDOW_MIN_WIDTH 	300
+#define WINDOW_MIN_HEIGHT 	200
+#define WINDOW_NUM_COLUMNS 	56
+#define WINDOW_NUM_ROWS  	23
 
 G_DEFINE_TYPE (GdictApplet, gdict_applet, PANEL_TYPE_APPLET);
 
@@ -152,6 +158,51 @@ set_atk_name_description (GtkWidget  *widget,
 }
 
 static void
+set_window_default_size (GdictApplet *applet)
+{
+  GdictAppletPrivate *priv = applet->priv;
+  GtkWidget *widget;
+  gint width, height;
+  gint font_size;
+  GdkScreen *screen;
+  gint monitor_num;
+  GtkRequisition req;
+  GdkRectangle monitor;
+
+  if (!priv->window)
+    return;
+  
+  widget = priv->window;
+
+  /* Size based on the font size */
+  font_size = pango_font_description_get_size (widget->style->font_desc);
+  font_size = PANGO_PIXELS (font_size);
+
+  width = font_size * WINDOW_NUM_COLUMNS;
+  height = font_size * WINDOW_NUM_ROWS;
+
+  /* Use at least the requisition size of the window... */
+  gtk_widget_size_request (widget, &req);
+  width = MAX (width, req.width);
+  height = MAX (height, req.height);
+
+  /* ... but make it no larger than the monitor */
+  screen = gtk_widget_get_screen (widget);
+  monitor_num = gdk_screen_get_monitor_at_window (screen, widget->window);
+
+  gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
+
+  width = MIN (width, monitor.width * 3 / 4);
+  height = MIN (height, monitor.height * 3 / 4);
+
+  g_print ("(in %s) window size: <%d, %d>\n", G_STRFUNC, width, height);
+
+  /* Set size */
+  gtk_widget_set_size_request (priv->frame, width, height);
+
+}
+
+static void
 clear_cb (GtkWidget   *widget,
 	  GdictApplet *applet)
 {
@@ -197,7 +248,7 @@ save_cb (GtkWidget   *widget,
   					NULL);
   gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
   
-  /* default to user's home */
+  /* default to user's $HOME */
   gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), g_get_home_dir ());
   gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), _("Untitled document"));
   
@@ -269,12 +320,7 @@ gdict_applet_build_window (GdictApplet *applet)
   GtkWidget *frame;
   GtkWidget *vbox;
   GtkWidget *bbox;
-  GtkWidget *clear;
-  GtkWidget *print;
-  GtkWidget *save;
-  PangoContext *pango_context;
-  PangoFontDescription *font_desc;
-  gint width, height, font_size;
+  GtkWidget *button;
 
   if (!priv->entry)
     {
@@ -285,22 +331,11 @@ gdict_applet_build_window (GdictApplet *applet)
   
   window = gtk_aligned_window_new (priv->toggle);
 
-  /* compute the minimum size of the window pane depending on the
-   * size of the system font used to render the text.  this will
-   * be updated if the style changes
-   */
-  pango_context = gtk_widget_get_pango_context (window);
-  font_desc = pango_context_get_font_description (pango_context);
-  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
-
-  width = MAX (52 * font_size, 330);
-  height = MAX (24 * font_size, 220);
-  
   frame = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);
-  gtk_widget_set_size_request (frame, width, height);
   gtk_container_add (GTK_CONTAINER (window), frame);
   gtk_widget_show (frame);
+  priv->frame = frame;
   
   vbox = gtk_vbox_new (FALSE, 12);
   gtk_container_set_border_width (GTK_CONTAINER (vbox), 6);
@@ -320,47 +355,49 @@ gdict_applet_build_window (GdictApplet *applet)
   gtk_box_pack_end (GTK_BOX (vbox), bbox, FALSE, FALSE, 0);
   gtk_widget_show (bbox);
   
-  clear = gtk_button_new_from_stock (GTK_STOCK_CLEAR);
+  button = gtk_button_new_from_stock (GTK_STOCK_CLEAR);
 
   gtk_tooltips_set_tip (priv->tooltips,
-		  	clear,
+		  	button,
 		  	_("Clear the definitions found"),
 			NULL);
-  set_atk_name_description (clear,
+  set_atk_name_description (button,
 		  	    _("Clear definition"),
 			    _("Clear the text of the definition"));
   
-  g_signal_connect (clear, "clicked", G_CALLBACK (clear_cb), applet);
-  gtk_box_pack_start (GTK_BOX (bbox), clear, FALSE, FALSE, 0);
-  gtk_widget_show (clear);
+  g_signal_connect (button, "clicked", G_CALLBACK (clear_cb), applet);
+  gtk_box_pack_start (GTK_BOX (bbox), button, FALSE, FALSE, 0);
+  gtk_widget_show (button);
 
-  print = gtk_button_new_from_stock (GTK_STOCK_PRINT);
+  button = gtk_button_new_from_stock (GTK_STOCK_PRINT);
 
   gtk_tooltips_set_tip (priv->tooltips,
-		  	print,
+		  	button,
 			_("Print the definitions found"),
 			NULL);
-  set_atk_name_description (print,
+  set_atk_name_description (button,
 		  	    _("Print definition"),
 			    _("Print the text of the definition"));
   
-  g_signal_connect (print, "clicked", G_CALLBACK (print_cb), applet);
-  gtk_box_pack_start (GTK_BOX (bbox), print, FALSE, FALSE, 0);
-  gtk_widget_show (print);
+  g_signal_connect (button, "clicked", G_CALLBACK (print_cb), applet);
+  gtk_box_pack_start (GTK_BOX (bbox), button, FALSE, FALSE, 0);
+  gtk_widget_show (button);
 
-  save = gtk_button_new_from_stock (GTK_STOCK_SAVE);
+  button = gtk_button_new_from_stock (GTK_STOCK_SAVE);
   
   gtk_tooltips_set_tip (priv->tooltips,
-		  	save,
+		  	button,
 			_("Save the definitions found"),
 			NULL);
-  set_atk_name_description (save,
+  set_atk_name_description (button,
 		  	    _("Save definition"),
 			    _("Save the text of the definition to a file"));
   
-  g_signal_connect (save, "clicked", G_CALLBACK (save_cb), applet);
-  gtk_box_pack_start (GTK_BOX (bbox), save, FALSE, FALSE, 0);
-  gtk_widget_show (save);
+  g_signal_connect (button, "clicked", G_CALLBACK (save_cb), applet);
+  gtk_box_pack_start (GTK_BOX (bbox), button, FALSE, FALSE, 0);
+  gtk_widget_show (button);
+  
+  set_window_default_size (applet);
   
   priv->window = window;
   priv->is_window_showing = FALSE;
@@ -810,35 +847,11 @@ static void
 gdict_applet_style_set (GtkWidget *widget,
 			GtkStyle  *old_style)
 {
-  GdictApplet *applet;
-  GdictAppletPrivate *priv;
-  PangoContext *pango_context;
-  PangoFontDescription *font_desc;
-  gint font_size, width, height;
-  GtkWidget *frame;
-  
   if (GTK_WIDGET_CLASS (gdict_applet_parent_class)->style_set)
     GTK_WIDGET_CLASS (gdict_applet_parent_class)->style_set (widget,
 		    					     old_style);
 
-  applet = GDICT_APPLET (widget);
-  priv = applet->priv;
-
-  if (!priv->window)
-    return;
-
-  frame = GTK_BIN (priv->window)->child;
-  if (!frame)
-    return;
-
-  pango_context = gtk_widget_get_pango_context (priv->window);
-  font_desc = pango_context_get_font_description (pango_context);
-  font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
-
-  width = MAX (52 * font_size, 330);
-  height = MAX (24 * font_size, 220);
-
-  gtk_widget_set_size_request (frame, width, height);
+  set_window_default_size (GDICT_APPLET (widget));
 }
 
 static void
@@ -1141,12 +1154,12 @@ gdict_applet_init (GdictApplet *applet)
   priv = GDICT_APPLET_GET_PRIVATE (applet);
   applet->priv = priv;
       
-  /* create the data directory inside $HOME, if it doesn't exist yet */
   data_dir = g_build_filename (g_get_home_dir (),
   			       ".gnome2",
   			       "gnome-dictionary",
   			       NULL);
 
+  /* create the data directory inside $HOME, if it doesn't exist yet */
   if (g_mkdir (data_dir, 0700) == -1)
     {
       if (errno != EEXIST)

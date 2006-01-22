@@ -1,3 +1,12 @@
+2006-01-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-applet.c (set_window_default_size),
+	(gdict_applet_build_window), (gdict_applet_style_set): re-work the
+	size calculation of the applet's window: now it should be multi-head
+	aware (I don't have the hardware, so I really can't test it) and it
+	has an upper bound limited to the monitor size.  Also, it should be
+	a little bit wider by default.
+
 2006-01-16  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* data/gnome-dictionary.schemas.in: fix a typo in the
