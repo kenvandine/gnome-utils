@@ -47,8 +47,8 @@
 #include "gdict-about.h"
 #include "gdict-window.h"
 
-#define GDICT_WINDOW_COLUMNS      52
-#define GDICT_WINDOW_ROWS         30
+#define GDICT_WINDOW_COLUMNS      56
+#define GDICT_WINDOW_ROWS         33
 
 #define GDICT_WINDOW_MIN_WIDTH	  400
 #define GDICT_WINDOW_MIN_HEIGHT	  330
@@ -941,18 +941,22 @@ gdict_window_size_allocate (GtkWidget     *widget,
 }
 
 static void
-gdict_window_style_set (GtkWidget *widget,
-			GtkStyle  *old_style)
+set_window_default_size (GdictWindow *window)
 {
-  GdictWindow *window;
-  gint width, height;
+  GtkWidget *widget;
   gboolean is_maximized;
+  gint width, height;
+  gint font_size;
+  GdkScreen *screen;
+  gint monitor_num;
+  GtkRequisition req;
+  GdkRectangle monitor;
 
-  if (GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set)
-    GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set (widget, old_style);
- 
-  window = GDICT_WINDOW (widget);
+  g_assert (GDICT_IS_WINDOW (window));
 
+  widget = GTK_WIDGET (window);
+  
+  /* recover the state from GConf */
   width = gconf_client_get_int (window->gconf_client,
 		  		GDICT_GCONF_WINDOW_WIDTH_KEY,
 				NULL);
@@ -963,8 +967,8 @@ gdict_window_style_set (GtkWidget *widget,
 		  			GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
 					NULL);
   
-  /* the user wants gnome-dictionary to resize itself, so we
-   * compute the minimum safe geometry needed for displaying
+  /* XXX - the user wants gnome-dictionary to resize itself, so
+   * we compute the minimum safe geometry needed for displaying
    * the text returned by a dictionary server, which is based
    * on the font size and the ANSI terminal.  this is dumb,
    * I know, but dictionary servers return pre-formatted text
@@ -972,24 +976,48 @@ gdict_window_style_set (GtkWidget *widget,
    */
   if (width == -1 || height == -1)
     {
-      PangoContext *pango_context;
-      PangoFontDescription *font_desc;
-      gint font_size;
-      
-      pango_context = gtk_widget_get_pango_context (widget);
-      font_desc = pango_context_get_font_description (pango_context);
-      font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
+      /* Size based on the font size */
+      font_size = pango_font_description_get_size (widget->style->font_desc);
+      font_size = PANGO_PIXELS (font_size);
 
-      width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
-      height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
+      width = font_size * GDICT_WINDOW_COLUMNS;
+      height = font_size * GDICT_WINDOW_ROWS;
+
+      /* Use at least the requisition size of the window... */
+      gtk_widget_size_request (widget, &req);
+      width = MAX (width, req.width);
+      height = MAX (height, req.height);
+
+      /* ... but make it no larger than the monitor */
+      screen = gtk_widget_get_screen (widget);
+      monitor_num = gdk_screen_get_monitor_at_window (screen, widget->window);
+
+      gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
+      width = MIN (width, monitor.width * 3 / 4);
+      height = MIN (height, monitor.height * 3 / 4);
     }
+
+  g_print ("(in %s) window size: <%d, %d>\n", G_STRFUNC, width, height);
   
+  /* Set default size */
   gtk_window_set_default_size (GTK_WINDOW (widget),
   			       width,
   			       height);
 
   if (is_maximized)
     gtk_window_maximize (GTK_WINDOW (widget));
+}
+
+static void
+gdict_window_style_set (GtkWidget *widget,
+			GtkStyle  *old_style)
+{
+  GdictWindow *window;
+
+  if (GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set)
+    GTK_WIDGET_CLASS (gdict_window_parent_class)->style_set (widget, old_style);
+
+  set_window_default_size (GDICT_WINDOW (widget));
 }
 
 static GObject *
@@ -1026,6 +1054,7 @@ gdict_window_constructor (GType                  type,
   height = gconf_client_get_int (window->gconf_client,
 		  		 GDICT_GCONF_WINDOW_HEIGHT_KEY,
 				 NULL);
+  
   if (width == -1 || height == -1)
     {
       PangoContext *pango_context;
