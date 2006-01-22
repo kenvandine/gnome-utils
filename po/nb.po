@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-06 20:43+0100\n"
-"PO-Revision-Date: 2006-01-06 20:54+0100\n"
+"POT-Creation-Date: 2006-01-22 21:13+0100\n"
+"PO-Revision-Date: 2006-01-22 21:20+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -464,17 +464,16 @@ msgid "Look up words in a dictionary"
 msgstr "Slå opp ord i en ordbok"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:1
-#: ../gnome-dictionary/src/gdict-window.c:749 ../logview/logview.c:119
+msgid "Cl_ear"
+msgstr "_Tøm"
+
+#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
+#: ../gnome-dictionary/src/gdict-window.c:792 ../logview/logview.c:119
 msgid "_About"
 msgstr "_Om"
 
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../logview/logview-findbar.c:160
-msgid "_Clear"
-msgstr "_Tøm"
-
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:709 ../logview/logview.c:91
+#: ../gnome-dictionary/src/gdict-window.c:752 ../logview/logview.c:91
 msgid "_Help"
 msgstr "_Hjelp"
 
@@ -483,7 +482,7 @@ msgid "_Look Up Selected Text"
 msgstr "S_lå opp valgt tekst"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:733
+#: ../gnome-dictionary/src/gdict-window.c:776
 msgid "_Preferences"
 msgstr "_Brukervalg"
 
@@ -498,7 +497,7 @@ msgstr "_Lagre"
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
 #: ../gnome-dictionary/src/gdict-app.c:344
-#: ../gnome-dictionary/src/gdict-window.c:911
+#: ../gnome-dictionary/src/gdict-window.c:1080
 msgid "Dictionary"
 msgstr "Ordbok"
 
@@ -529,10 +528,18 @@ msgid "The default database to use"
 msgstr "Forvalgt database som skal brukes"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:5
+msgid "The default height of the application window"
+msgstr "Forvalgt høyde på programvinduet"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
 msgid "The default search strategy to use"
 msgstr "Forvalgt søkestrategi som skal brukes"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+msgid "The default width of the application window"
+msgstr "Forvalgt bredde på programvinduet"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
 #, fuzzy
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
@@ -542,15 +549,15 @@ msgstr ""
 "Ordboktjener som skal brukes. Forvalgt tjener er dict.org. Se http://www."
 "dict.org for detaljer om andre tjenere"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid "The font to be used when printing"
 msgstr "Skrift som skal brukes ved utskrift"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid "The font to be used when printing a definition."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
 #, fuzzy
 msgid ""
 "The name of the default individual database or meta-database to use on a "
@@ -560,33 +567,58 @@ msgstr ""
 "Navn på individuell database som skal brukes i ordboktjeneren. ! "
 "spesifiserer at programmet skal søke i alle databaser på en gitt tjener."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
 #, fuzzy
 msgid "The name of the dictionary source used"
 msgstr "Database som skal brukes på ordboktjeneren."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
 msgid ""
 "The name of the dictionary source used to retrieve the definitions of words."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
 #, fuzzy
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
 msgstr "Portnummer for tilkoblingen. Forvalgt port er 2628."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+msgid ""
+"This key defines the window height and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a height based on the font size."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid ""
+"This key defines the window width and it's used to remember the size of the "
+"dictionary window across sessions. Setting it to -1 will make the dictionary "
+"window use a width based on the font size."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines whether the window should be maximized and it's used to "
+"remember the state of the dictionary window across sessions. Setting it to "
+"TRUE will make the window always appear as maximized."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 #, fuzzy
 msgid "Use smart lookup (Deprecated)"
 msgstr "Bruk smart oppslag"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+msgid "Whether the application window should be maximized"
+msgstr ""
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -607,8 +639,8 @@ msgid "H_ostname:"
 msgstr "V_ertsnavn:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:175
-#: ../gnome-dictionary/src/gdict-window.c:524
+#: ../gnome-dictionary/src/gdict-applet.c:230
+#: ../gnome-dictionary/src/gdict-window.c:547
 msgid "Print"
 msgstr "Skriv ut"
 
@@ -638,7 +670,7 @@ msgstr "S_krift for utskrift:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
 msgid "_Select a dictionary source for looking up words:"
-msgstr ""
+msgstr "_Velg en ordbokkilde for oppslag av ord:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
 msgid "_Strategy:"
@@ -648,13 +680,21 @@ msgstr "_Strategi:"
 msgid "_Transport:"
 msgstr "_Transport:"
 
+#: ../gnome-dictionary/data/french.desktop.in.h:1
+msgid "French Dictionaries from Wikipedia"
+msgstr "Franske ordbøker fra Wikipedia"
+
+#: ../gnome-dictionary/data/spanish.desktop.in.h:1
+msgid "Spanish Dictionaries"
+msgstr "Spanske ordbøker"
+
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:270
 msgid "Client Name"
-msgstr ""
+msgstr "Navn på klient"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:271
 msgid "The name of the client of the context object"
-msgstr ""
+msgstr "Navn på klienten til kontekstobjektet"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "Hostname"
@@ -680,34 +720,36 @@ msgstr "Status"
 msgid "The status code as returned by the dictionary server"
 msgstr "Statuskode som returneres av ordboktjeneren."
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:762
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Ingen tilkobling til ordboktjener på «%s:%d»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1024
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "Oppslag feilet for vertsnavn «%s»: ingen passende ressurser ble funnet"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Oppslag feilet for vert «%s» : %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Oppslag feilet for vert «%s»: vert ikke funnet"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
-msgstr "Kan ikke koble til ordboktjener på «%s:%d». Tjeneren svarte med kode %d (tjener nede)"
+msgstr ""
+"Kan ikke koble til ordboktjener på «%s:%d». Tjeneren svarte med kode %d "
+"(tjener nede)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -716,47 +758,47 @@ msgstr ""
 "Forstår ikke svar fra ordboktjener:\n"
 " «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "Ingen definisjoner funnet for «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Ugyldig database «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Ugyldig strategi «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Ugyldig kommando «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Ugyldige parametere for kommando «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Ingen databaser funnet på ordboktjener «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Ingen strategier funnet på ordboktjener «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1663
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1664
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Tilkobling feilet for ordboktjener «%s:%d»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1702
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1703
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -765,21 +807,21 @@ msgstr ""
 "Feil under lesing av svar fra tjener:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1773
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1774
 msgid "No hostname defined for the dictionary server"
 msgstr "Ingen vertsnavn definert for ordboktjener"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1809
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1824
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1810
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1825
 msgid "Unable to create socket"
 msgstr "Kunne ikke opprette plugg"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1850
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Kunne ikke sette kanal som ikke-blokkerende: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1866
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Kan ikke koble til ordboktjener «%s:%d»"
@@ -932,26 +974,23 @@ msgstr "Beskrivelse"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "The description of this dictionary source"
-msgstr ""
+msgstr "Beskrivelse av denne ordbokkilden"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:261
-#, fuzzy
 msgid "The default database of this dictonary source"
-msgstr "Database som skal brukes på ordboktjeneren."
+msgstr "Forvalgt database for denne ordbokkilden"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:275
-#, fuzzy
 msgid "The default strategy of this dictonary source"
-msgstr "Database som skal brukes på ordboktjeneren."
+msgstr "Forvalgt strategi for denne ordbokkilden"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:288
 msgid "Transport"
 msgstr "Transport"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:289
-#, fuzzy
 msgid "The transport mechanism used by this dictionary source"
-msgstr "Database som skal brukes på ordboktjeneren."
+msgstr "Transportmekanisme som brukes av denne ordbokkilden"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:304
 msgid "The GdictContext bound to this source"
@@ -1012,7 +1051,7 @@ msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:407
+#: ../gnome-dictionary/src/gdict-applet.c:589
 msgid "Look up words in dictionaries"
 msgstr "Slå opp ord i ordbøker"
 
@@ -1026,7 +1065,9 @@ msgstr "Kan ikke åpne ikon for programmet: %s"
 msgid ""
 "Definitions for \"%s\":\n"
 "\n"
-msgstr "Definisjoner for «%s»:\n\n"
+msgstr ""
+"Definisjoner for «%s»:\n"
+"\n"
 
 #. Translators: source name first, then definition
 #: ../gnome-dictionary/src/gdict-app.c:209
@@ -1048,16 +1089,17 @@ msgid "See gnome-dictionary --help for usage\n"
 msgstr "Se gnome-dictionary --help for bruk\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:244
-#, fuzzy
 msgid "Unable to find a suitable dictionary source"
-msgstr "Database som skal brukes på ordboktjeneren."
+msgstr "Kan ikke finne en passende ordbokkilde"
 
 #: ../gnome-dictionary/src/gdict-app.c:272
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
 "%s"
-msgstr "Skriv ut denne definisjonen"
+msgstr ""
+"Feil under oppslag av definisjon for «%s»:\n"
+"%s"
 
 #: ../gnome-dictionary/src/gdict-app.c:303
 msgid "Word to look up"
@@ -1100,95 +1142,133 @@ msgstr "Ordbok og staveverktøy"
 msgid "Show Dictionary options"
 msgstr "Vis alternativer for ordbok"
 
-#: ../gnome-dictionary/src/gdict-applet.c:189
-#: ../gnome-dictionary/src/gdict-window.c:469
+#: ../gnome-dictionary/src/gdict-applet.c:244
+#: ../gnome-dictionary/src/gdict-window.c:492
 msgid "Save a Copy"
 msgstr "Lagre en kopi"
 
-#: ../gnome-dictionary/src/gdict-applet.c:199
-#: ../gnome-dictionary/src/gdict-window.c:479
+#: ../gnome-dictionary/src/gdict-applet.c:254
+#: ../gnome-dictionary/src/gdict-window.c:502
 msgid "Untitled document"
 msgstr "Dokument uten tittel"
 
-#: ../gnome-dictionary/src/gdict-applet.c:220
-#: ../gnome-dictionary/src/gdict-window.c:500
+#: ../gnome-dictionary/src/gdict-applet.c:275
+#: ../gnome-dictionary/src/gdict-window.c:523
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Feil ved skriving til «%s»"
 
-#: ../gnome-dictionary/src/gdict-applet.c:284
+#: ../gnome-dictionary/src/gdict-applet.c:363
+msgid "Clear the definitions found"
+msgstr "Tøm definisjoner som er funnet"
+
+#: ../gnome-dictionary/src/gdict-applet.c:366
 msgid "Clear definition"
 msgstr "Tøm definisjon"
 
-#: ../gnome-dictionary/src/gdict-applet.c:285
+#: ../gnome-dictionary/src/gdict-applet.c:367
 #, fuzzy
 msgid "Clear the text of the definition"
 msgstr "Skriv ut denne definisjonen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:292
+#: ../gnome-dictionary/src/gdict-applet.c:377
+msgid "Print the definitions found"
+msgstr "Skriv ut definisjoner som er funnet"
+
+#: ../gnome-dictionary/src/gdict-applet.c:380
 msgid "Print definition"
 msgstr "Skriv ut definisjon"
 
-#: ../gnome-dictionary/src/gdict-applet.c:293
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-applet.c:381
 msgid "Print the text of the definition"
-msgstr "Skriv ut denne definisjonen"
+msgstr "Skriv ut teksten for denne definisjonen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:300
+#: ../gnome-dictionary/src/gdict-applet.c:391
+msgid "Save the definitions found"
+msgstr "Lagre definisjoner som er funnet"
+
+#: ../gnome-dictionary/src/gdict-applet.c:394
 msgid "Save definition"
 msgstr "Lagre definisjon"
 
-#: ../gnome-dictionary/src/gdict-applet.c:301
+#: ../gnome-dictionary/src/gdict-applet.c:395
 msgid "Save the text of the definition to a file"
 msgstr ""
 
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:529
+#, fuzzy
+msgid "Toggle dictionary window"
+msgstr "Farge for ord i ordboken"
+
+#: ../gnome-dictionary/src/gdict-applet.c:530
+#, fuzzy
+msgid "Show or hide the definition window"
+msgstr "Gå til den siste definisjonen"
+
+#: ../gnome-dictionary/src/gdict-applet.c:533
+#, fuzzy
+msgid "Click to view the dictionary window"
+msgstr "Farge for ord i ordboken"
+
+#: ../gnome-dictionary/src/gdict-applet.c:588
 msgid "Dictionary entry"
 msgstr "Oppføring i ordbok"
 
-#: ../gnome-dictionary/src/gdict-applet.c:610
+#: ../gnome-dictionary/src/gdict-applet.c:592
+msgid "Type the word you want to look up"
+msgstr "Skriv ordet du ønsker å slå opp"
+
+#: ../gnome-dictionary/src/gdict-applet.c:728
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: ../gnome-dictionary/src/gdict-applet.c:642
-msgid "There was an error displaying help"
-msgstr "Det oppsto en feil under visning av hjelp"
+#: ../gnome-dictionary/src/gdict-applet.c:760
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:470
+#: ../gnome-dictionary/src/gdict-source-dialog.c:324
+#: ../gnome-dictionary/src/gdict-window.c:714
+#, fuzzy
+msgid "There was an error while displaying help"
+msgstr "Det oppsto en feil under visning av hjelp."
 
-#: ../gnome-dictionary/src/gdict-applet.c:789
-#: ../gnome-dictionary/src/gdict-window.c:259
+#: ../gnome-dictionary/src/gdict-applet.c:919
+#: ../gnome-dictionary/src/gdict-window.c:264
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr ""
 
-#: ../gnome-dictionary/src/gdict-applet.c:793
-#: ../gnome-dictionary/src/gdict-window.c:263
+#: ../gnome-dictionary/src/gdict-applet.c:923
+#: ../gnome-dictionary/src/gdict-window.c:268
 #, fuzzy
 msgid "Unable to find dictionary source"
 msgstr "Database som skal brukes på ordboktjeneren."
 
-#: ../gnome-dictionary/src/gdict-applet.c:809
-#: ../gnome-dictionary/src/gdict-window.c:279
+#: ../gnome-dictionary/src/gdict-applet.c:939
+#: ../gnome-dictionary/src/gdict-window.c:284
 #, c-format
 msgid "No context available for source '%s'"
 msgstr ""
 
-#: ../gnome-dictionary/src/gdict-applet.c:813
-#: ../gnome-dictionary/src/gdict-window.c:283
+#: ../gnome-dictionary/src/gdict-applet.c:943
+#: ../gnome-dictionary/src/gdict-window.c:288
 #, fuzzy
 msgid "Unable to create a context"
 msgstr "Kunne ikke opprette brukergrensesnitt."
 
-#: ../gnome-dictionary/src/gdict-applet.c:1053
+#: ../gnome-dictionary/src/gdict-applet.c:1171
 #, fuzzy, c-format
-msgid "Unable to load the application icon: %s"
+msgid "Unable to create the data directory '%s'"
 msgstr ""
 "Kan ikke tømme midlertidig mappe:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:272
+#: ../gnome-dictionary/src/gdict-applet.c:1184
 #, fuzzy
+msgid "Unable to load the applet icon"
+msgstr "Lukk programmet"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:272
 msgid "Add Dictionary Source"
-msgstr "Oppslag i ordbok"
+msgstr "Legg til ordbokkilde"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:317
 #, c-format
@@ -1201,21 +1281,13 @@ msgid "This will permanently remove the dictionary source from the list."
 msgstr "Database som skal brukes på ordboktjeneren."
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:349
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to remove source '%s'"
-msgstr "Kunne ikke skrive til enhet %s"
-
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:470
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:671
-#, fuzzy
-msgid "There was an error while displaying help"
-msgstr "Det oppsto en feil under visning av hjelp."
+msgstr "Kan ikke fjerne kilde «%s»"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:637
-#, fuzzy
 msgid "Add a new dictionary source"
-msgstr "En klient for MIT ordboktjener."
+msgstr "Legg til ny ordbokkilde"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:645
 #, fuzzy
@@ -1223,9 +1295,8 @@ msgid "Remove the currently selected dictionary source"
 msgstr "Database som skal brukes på ordboktjeneren."
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:660
-#, fuzzy
 msgid "Set the font used for printing the definitions"
-msgstr "Skriv ut denne definisjonen"
+msgstr ""
 
 #: ../gnome-dictionary/src/gdict-print.c:187
 #, c-format
@@ -1246,131 +1317,129 @@ msgstr "Kunne ikke opprette plugg"
 msgid "Unable to save source file"
 msgstr "Kunne ikke skrive til enhet %s"
 
-#: ../gnome-dictionary/src/gdict-window.c:167
+#: ../gnome-dictionary/src/gdict-window.c:170
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Søker etter «%s»..."
 
-#: ../gnome-dictionary/src/gdict-window.c:191
-#: ../gnome-dictionary/src/gdict-window.c:210
+#: ../gnome-dictionary/src/gdict-window.c:194
+#: ../gnome-dictionary/src/gdict-window.c:215
 msgid "No definitions found"
 msgstr "Ingen definisjoner ble funnet"
 
-#: ../gnome-dictionary/src/gdict-window.c:193
+#: ../gnome-dictionary/src/gdict-window.c:196
 msgid "A definition found"
 msgstr "En definisjon ble funnet"
 
-#: ../gnome-dictionary/src/gdict-window.c:195
+#: ../gnome-dictionary/src/gdict-window.c:198
 #, c-format
 msgid "%d definitions found"
 msgstr "%d definisjoner ble funnet"
 
-#: ../gnome-dictionary/src/gdict-window.c:590
+#: ../gnome-dictionary/src/gdict-window.c:633
 msgid "Dictionary Preferences"
 msgstr "Brukervalg for ordbok"
 
-#: ../gnome-dictionary/src/gdict-window.c:706
+#: ../gnome-dictionary/src/gdict-window.c:749
 msgid "_File"
 msgstr "_Fil"
 
-#: ../gnome-dictionary/src/gdict-window.c:707 ../logview/logview.c:89
+#: ../gnome-dictionary/src/gdict-window.c:750 ../logview/logview.c:89
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../gnome-dictionary/src/gdict-window.c:708
+#: ../gnome-dictionary/src/gdict-window.c:751
 msgid "_Go"
 msgstr "_Slå opp"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:712
+#: ../gnome-dictionary/src/gdict-window.c:755
 msgid "_New"
 msgstr "_Ny"
 
-#: ../gnome-dictionary/src/gdict-window.c:713
+#: ../gnome-dictionary/src/gdict-window.c:756
 msgid "New look up"
 msgstr "Nytt oppslag"
 
-#: ../gnome-dictionary/src/gdict-window.c:714
+#: ../gnome-dictionary/src/gdict-window.c:757
 msgid "_Save a Copy..."
 msgstr "_Lagre en kopi..."
 
-#: ../gnome-dictionary/src/gdict-window.c:716
+#: ../gnome-dictionary/src/gdict-window.c:759
 msgid "_Print..."
 msgstr "S_kriv ut..."
 
-#: ../gnome-dictionary/src/gdict-window.c:717
+#: ../gnome-dictionary/src/gdict-window.c:760
 msgid "Print this document"
 msgstr "Skriv ut dette dokumentet"
 
-#: ../gnome-dictionary/src/gdict-window.c:724 ../logview/logview.c:102
+#: ../gnome-dictionary/src/gdict-window.c:767 ../logview/logview.c:102
 msgid "Select _All"
 msgstr "Velg _alt"
 
-#: ../gnome-dictionary/src/gdict-window.c:727
+#: ../gnome-dictionary/src/gdict-window.c:770
 msgid "Find a word or phrase in the document"
 msgstr "Finn et ord eller en frase i dokumentet"
 
-#: ../gnome-dictionary/src/gdict-window.c:729
+#: ../gnome-dictionary/src/gdict-window.c:772
 msgid "Find Ne_xt"
 msgstr "Finn ne_ste"
 
-#: ../gnome-dictionary/src/gdict-window.c:731
+#: ../gnome-dictionary/src/gdict-window.c:774
 msgid "Find Pre_vious"
 msgstr "Finn fo_rrige"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:737
+#: ../gnome-dictionary/src/gdict-window.c:780
 msgid "_Previous Definition"
 msgstr "_Forrige definisjon"
 
-#: ../gnome-dictionary/src/gdict-window.c:738
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-window.c:781
 msgid "Go to the previous definition"
-msgstr "Skriv ut denne definisjonen"
+msgstr "Gå til forrige definisjon"
 
-#: ../gnome-dictionary/src/gdict-window.c:739
+#: ../gnome-dictionary/src/gdict-window.c:782
 msgid "_Next Definition"
 msgstr "_Neste definisjon"
 
-#: ../gnome-dictionary/src/gdict-window.c:740
+#: ../gnome-dictionary/src/gdict-window.c:783
 msgid "Go to the next definition"
 msgstr "Gå til neste definisjon"
 
-#: ../gnome-dictionary/src/gdict-window.c:741
+#: ../gnome-dictionary/src/gdict-window.c:784
 msgid "_First Definition"
 msgstr "_Første definisjon"
 
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-window.c:785
 msgid "Go to the first definition"
 msgstr "Gå til den første definisjonen"
 
-#: ../gnome-dictionary/src/gdict-window.c:743
+#: ../gnome-dictionary/src/gdict-window.c:786
 msgid "_Last Definition"
 msgstr "_Siste definisjon"
 
-#: ../gnome-dictionary/src/gdict-window.c:744
+#: ../gnome-dictionary/src/gdict-window.c:787
 msgid "Go to the last definition"
 msgstr "Gå til den siste definisjonen"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:747 ../logview/logview.c:117
+#: ../gnome-dictionary/src/gdict-window.c:790 ../logview/logview.c:117
 msgid "_Contents"
 msgstr "_Innhold"
 
-#: ../gnome-dictionary/src/gdict-window.c:807
-#: ../gnome-dictionary/src/gdict-window.c:839
-#, fuzzy, c-format
+#: ../gnome-dictionary/src/gdict-window.c:877
+#: ../gnome-dictionary/src/gdict-window.c:909
+#, c-format
 msgid "%s - Dictionary"
-msgstr "Ordbok"
+msgstr "%s - Ordbok"
 
-#: ../gnome-dictionary/src/gdict-window.c:959
+#: ../gnome-dictionary/src/gdict-window.c:1130
 msgid "Look _up:"
 msgstr "Slå _opp:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1097
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-window.c:1276
 msgid "Unable to load the application icon"
-msgstr "Lukk programmet"
+msgstr "Kan ikke laste ikon for programmet"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -1460,6 +1529,14 @@ msgstr "<b>Forhåndsvisning</b>"
 #: ../gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
 msgstr "Lagre skjermdump"
+
+#: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
+msgid "Take Screenshot"
+msgstr "Ta skjermdump"
+
+#: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
+msgid "Take a screenshot of your desktop"
+msgstr "Ta et skjermdump av skrivebordet"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
@@ -2413,6 +2490,10 @@ msgstr "%s kan ikke åpnes."
 msgid "_Filter:"
 msgstr "_Filter:"
 
+#: ../logview/logview-findbar.c:160
+msgid "_Clear"
+msgstr "_Tøm"
+
 #: ../logview/logview.c:88
 msgid "_Log"
 msgstr "_Logg"
@@ -2600,7 +2681,7 @@ msgstr ""
 
 #: ../logview/logview.schemas.in.h:10
 msgid "Width of the main window in pixels"
-msgstr ""
+msgstr "Bredde på hovedvinduet i piksler"
 
 #: ../logview/main.c:117
 msgid "Log Viewer"
@@ -2679,237 +2760,3 @@ msgstr "Filovervåking er ikke støttet på dette filsystemet.\n"
 #: ../logview/monitor.c:90
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS-feil.\n"
-
-#~ msgid "<b>Database:</b>"
-#~ msgstr "<b>Database:</b>"
-
-#~ msgid "<b>Description:</b>"
-#~ msgstr "<b>Beskrivelse:</b>"
-
-#~ msgid "<b>Hostname:</b>"
-#~ msgstr "<b>Vertsnavn:</b>"
-
-#~ msgid "<b>Name:</b>"
-#~ msgstr "<b>Navn:</b>"
-
-#~ msgid "<b>Port:</b>"
-#~ msgstr "<b>Port:</b>"
-
-#~ msgid "<b>Strategy:</b>"
-#~ msgstr "<b>Strategi:</b>"
-
-#~ msgid "<b>Transport:</b>"
-#~ msgstr "<b>Transport:</b>"
-
-#~ msgid "database"
-#~ msgstr "database"
-
-#~ msgid "description"
-#~ msgstr "beskrivelse"
-
-#~ msgid "hostname"
-#~ msgstr "vertsnavn"
-
-#~ msgid "name"
-#~ msgstr "navn"
-
-#~ msgid "port"
-#~ msgstr "port"
-
-#~ msgid "strategy"
-#~ msgstr "strategi"
-
-#~ msgid "transport"
-#~ msgstr "transport"
-
-#, fuzzy
-#~ msgid "Look up a word on a dictionary"
-#~ msgstr "Slå opp ord i ordbok"
-
-#~ msgid "Active"
-#~ msgstr "Aktiv"
-
-#~ msgid "Add Source"
-#~ msgstr "Legg til kilde"
-
-#~ msgid "Active Source"
-#~ msgstr "Aktiv kilde"
-
-#, fuzzy
-#~ msgid "Default"
-#~ msgstr "Forv_algt port"
-
-#~ msgid "Dictionary - %s"
-#~ msgstr "Ordbok - %s"
-
-#~ msgid "Cannot connect to server"
-#~ msgstr "Kan ikke koble til tjener"
-
-#~ msgid "Server Error"
-#~ msgstr "Feil på tjener"
-
-#~ msgid ""
-#~ "A serious error occurred. Please check that your server and port are "
-#~ "correct. For reference the default server is dict.org and the port 2628"
-#~ msgstr ""
-#~ "En alvorlig feil oppsto. Vennligst sjekk at tjener og port er korrekt. "
-#~ "Forvalgt tjener er dict.org og porten er 2628"
-
-#~ msgid "Connection error"
-#~ msgstr "Feil med tilkobling"
-
-#~ msgid "Unable to perform requested operation."
-#~ msgstr "Kunne ikke utføre etterspurt operasjon."
-
-#~ msgid ""
-#~ "Either the server you are using is not available \n"
-#~ "or you are not connected to the Internet."
-#~ msgstr ""
-#~ "Enten er tjeneren du bruker er utilgjengelig \n"
-#~ "eller så er du ikke koblet til internett."
-
-#~ msgid "_Search for:"
-#~ msgstr "_Søk etter:"
-
-#~ msgid "Could not display help"
-#~ msgstr "Kunne ikke vise hjelp"
-
-#~ msgid "_Dictionary"
-#~ msgstr "Or_dbok"
-
-#~ msgid "_Look Up Word"
-#~ msgstr "S_lå opp ord..."
-
-#~ msgid "_Find..."
-#~ msgstr "_Finn..."
-
-#~ msgid "Find next occurrence of the word"
-#~ msgstr "Finn neste instans av ordet"
-
-#~ msgid "P_references"
-#~ msgstr "B_rukervalg"
-
-#~ msgid "Configure the application"
-#~ msgstr "Konfigurer programmet"
-
-#~ msgid "View help for this application"
-#~ msgstr "Vis hjelp for dette programmet"
-
-#~ msgid "About this application"
-#~ msgstr "_Om dette programmet"
-
-#~ msgid "Cu_t"
-#~ msgstr "K_lipp ut"
-
-#~ msgid "Cut the selection"
-#~ msgstr "Klipp ut utvalget"
-
-#~ msgid "_Paste"
-#~ msgstr "L_im inn"
-
-#~ msgid "Paste clipboard"
-#~ msgstr "Lim inn fra utklippstavlen"
-
-#~ msgid "Select everything"
-#~ msgstr "Velg alt"
-
-#~ msgid "_Spellings"
-#~ msgstr "_Staving"
-
-#~ msgid "View alternate spellings"
-#~ msgstr "Vis alternativ staving"
-
-#~ msgid "In Dictionary"
-#~ msgstr "I ordbok"
-
-#~ msgid "On a Web Site"
-#~ msgstr "På et nettsted"
-
-#~ msgid "Enter a Word or select one from the list below"
-#~ msgstr "Skriv inn et ord eller velg et fra listen under"
-
-#~ msgid "Look Up for a Word"
-#~ msgstr "Slå opp et ord"
-
-#~ msgid "Looking up word..."
-#~ msgstr "Slår opp ord..."
-
-#~ msgid "String not found"
-#~ msgstr "Streng ikke funnet"
-
-#~ msgid "Error invoking query"
-#~ msgstr "Feil under utføring av spørring"
-
-#~ msgid "Looking up entry..."
-#~ msgstr "Slår opp oppføring..."
-
-#~ msgid "De_fault Server"
-#~ msgstr "For_valgt tjener"
-
-#~ msgid "Reset server to default"
-#~ msgstr "Sett tjener til forvalgt verdi"
-
-#~ msgid "Reset port to default"
-#~ msgstr "Sett port til forvalgt verdi"
-
-#~ msgid "Server"
-#~ msgstr "Tjener"
-
-#~ msgid "Server Entry"
-#~ msgstr "Tjeneroppføring"
-
-#~ msgid "Enter the Server Name"
-#~ msgstr "Skriv inn navn på tjeneren"
-
-#~ msgid "Port Entry"
-#~ msgstr "Portoppføring"
-
-#~ msgid "Enter the Port Number"
-#~ msgstr "Skriv inn portnummeret"
-
-#~ msgid "F_ont:"
-#~ msgstr "Skr_ift:"
-
-#~ msgid "Web Site"
-#~ msgstr "Nettsted"
-
-#~ msgid "Search Address"
-#~ msgstr "Søkeadresser"
-
-#~ msgid "Web Sites"
-#~ msgstr "Nettsteder"
-
-#~ msgid "Search all databases"
-#~ msgstr "Søk i alle databaser"
-
-#~ msgid "Default Strategy"
-#~ msgstr "Forvalgt strategi"
-
-#~ msgid "Spellings"
-#~ msgstr "Staving"
-
-#~ msgid "Spell-checking..."
-#~ msgstr "Stavekontroll..."
-
-#~ msgid ""
-#~ "The search strategy to use. This is dependant on the search strategy that "
-#~ "the dictionary server supports. The default strategy is 'lev' - Match "
-#~ "words within Levenshtein distance one"
-#~ msgstr ""
-#~ "Søkestrategi som skal brukes. Dette er avhengig av søkestrategien som "
-#~ "støttes av ordboktjeneren. Forvalgt strategi er «lev» - Finn ord innen "
-#~ "Levenshtein avstandén"
-
-#~ msgid ""
-#~ "%s is not user readable. Either run the program as root or ask the "
-#~ "sysadmin to change the permissions on the file.\n"
-#~ msgstr ""
-#~ "%s er ikke lesbar for bruker. Er sannsynlig skrivebeskyttet. Kjør enten "
-#~ "programmet som root eller spør systemadministratoren om å endre "
-#~ "rettighetene til filen.\n"
-
-#~ msgid "%s is too big."
-#~ msgstr "%s er for stor."
-
-#~ msgid "%s could not be opened."
-#~ msgstr "%s kunne ikke åpnes."
