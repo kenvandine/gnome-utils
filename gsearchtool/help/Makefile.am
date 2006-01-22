@@ -5,4 +5,4 @@ DOC_MODULE = gnome-search-tool
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES = 
 
-DOC_LINGUAS =
+DOC_LINGUAS = es
