@@ -997,8 +997,6 @@ set_window_default_size (GdictWindow *window)
       height = MIN (height, monitor.height * 3 / 4);
     }
 
-  g_print ("(in %s) window size: <%d, %d>\n", G_STRFUNC, width, height);
-  
   /* Set default size */
   gtk_window_set_default_size (GTK_WINDOW (widget),
   			       width,
