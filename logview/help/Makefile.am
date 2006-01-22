@@ -5,4 +5,4 @@ DOC_MODULE = gnome-system-log
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES = 
 
-DOC_LINGUAS =
+DOC_LINGUAS = es
