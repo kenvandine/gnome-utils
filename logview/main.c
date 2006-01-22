@@ -92,7 +92,10 @@ save_session_cb (GnomeClient        *gnome_client,
 	g_assert (LOGVIEW_IS_WINDOW (logview));
 	numlogs = logview_count_logs (logview);
 
-	argv = (gchar **) g_new0 (gchar **, numlogs + 2);
+	/* we must allocate enough space for the program name, the logs name
+	 * and a NULL pointer to end the list
+	 */
+	argv = g_new0 (gchar *, numlogs + 2);
 	argv[0] = g_get_prgname();
 
 	for (logs = logview->logs; logs != NULL; logs = logs->next) {
