@@ -17,140 +17,187 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#ifdef HAVE_CONFIG_H
 #include <config.h>
+#endif
+
 #include <stdlib.h>
 #include <string.h>
+
 #include <libgnomeui/gnome-client.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
+
 #include <glib/gi18n.h>
 #include <glib/goption.h>
+
 #include <gtk/gtk.h>
+
 #include "logview.h"
 #include "misc.h"
 #include "userprefs.h"
 
-static gchar *config_prefix = NULL;
-static gchar *sm_client_id = NULL;
-static int screen = 0;
+static gboolean show_version = FALSE;
 
-GOptionContext *context;
-GOptionEntry options[] = {
-    { "sm-config-prefix", 0, 0, G_OPTION_ARG_STRING, &config_prefix, "", NULL},
-    { "sm-client-id", 0, 0, G_OPTION_ARG_STRING, &sm_client_id, "", NULL},
-    { "screen", 0, 0, G_OPTION_ARG_INT, &screen, "", NULL},
-	{ NULL }
-};
-
-GOptionContext *
+static GOptionContext *
 logview_init_options ()
 {
 	GOptionContext *context;
+	GOptionGroup *group;
 	
-	context = g_option_context_new (" - Browse and monitor logs");
-	g_option_context_add_main_entries (context, options, NULL);
-	g_option_context_set_help_enabled (context, TRUE);
+	const GOptionEntry entries[] = {
+		{ "version", 'V', 0, G_OPTION_ARG_NONE, &show_version, N_("Show the application's version"), NULL },
+		{ NULL },
+	};
+	
+	group = g_option_group_new ("gnome-system-log",
+				    _("System Log Viewer"),
+				    _("Show System Log Viewer options"),
+				    NULL, NULL);
+	g_option_group_add_entries (group, entries);
+	
+	context = g_option_context_new (_(" - Browse and monitor logs"));
+	g_option_context_add_group (context, group);
 	g_option_context_set_ignore_unknown_options (context, TRUE);
+	
 	return context;
 }
-	
-static gint
-save_session (GnomeClient *gnome_client, gint phase,
-              GnomeRestartStyle save_style, gint shutdown,
-              GnomeInteractStyle interact_style, gint fast,
-              LogviewWindow *logview)
+
+static void
+logview_show_version_and_quit (void)
 {
-   gchar **argv;
-   gint numlogs;
-   GSList *logs;
-   Log *log;
-   int i;
+	g_print ("%s - Version %s\n"
+		 "Copyright (C) 2004-2006 Vincent Noel and others\n",
+		 g_get_application_name (),
+		 VERSION);
 
-   g_assert (LOGVIEW_IS_WINDOW (logview));
-   numlogs = logview_count_logs (logview);
-
-   argv = g_malloc0 (sizeof (gchar *) * numlogs+1);
-   argv[0] = g_get_prgname();
-
-   for (logs = logview->logs; logs != NULL; logs = g_slist_next (logs)) {
-       log = logs->data;
-       argv[i++] = g_strdup_printf ("%s", log->name);
-   }
-   
-   gnome_client_set_clone_command (gnome_client, numlogs+1, argv);
-   gnome_client_set_restart_command (gnome_client, numlogs+1, argv);
-
-   g_free (argv);
-   return TRUE;
-
+	exit (0);
 }
 
 static gint
-die (GnomeClient *gnome_client, gpointer client_data)
+save_session_cb (GnomeClient        *gnome_client,
+		 gint                phase,
+		 GnomeRestartStyle   save_style,
+		 gint                shutdown,
+		 GnomeInteractStyle  interact_style,
+		 gint                fast,
+		 LogviewWindow      *logview)
+{
+	gchar **argv;
+	gint numlogs;
+	GSList *logs;
+	Log *log;
+	gint i;
+
+	g_assert (LOGVIEW_IS_WINDOW (logview));
+	numlogs = logview_count_logs (logview);
+
+	argv = (gchar **) g_new0 (gchar **, numlogs + 2);
+	argv[0] = g_get_prgname();
+
+	for (logs = logview->logs; logs != NULL; logs = logs->next) {
+		Log *log = (Log *) logs->data;
+
+		g_assert (log != NULL);
+
+		argv[i++] = g_strdup (log->name);
+	}
+	argv[i] = NULL;
+
+	gnome_client_set_clone_command (gnome_client, numlogs + 1, argv);
+	gnome_client_set_restart_command (gnome_client, numlogs + 1, argv);
+
+	g_strfreev (argv);
+
+	return TRUE;
+}
+
+static gint
+die_cb (GnomeClient *gnome_client,
+	gpointer     client_data)
 {
     gtk_main_quit ();
+    
     return 0;
 }
 
 int
 main (int argc, char *argv[])
 {
-   GnomeClient *gnome_client;
-   GError *error;
-   GnomeProgram *program;
-   LogviewWindow *logview;
-   int i;
+	GnomeClient *gnome_client;
+	GError *error;
+	GnomeProgram *program;
+	GOptionContext *context;
+	LogviewWindow *logview;
 
-   bindtextdomain(GETTEXT_PACKAGE, GNOMELOCALEDIR);
-   bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-   textdomain(GETTEXT_PACKAGE);
+	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
+	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+	textdomain (GETTEXT_PACKAGE);
 
-   error_dialog_queue (TRUE);
+	error_dialog_queue (TRUE);
+	
+	gnome_vfs_init ();
+	prefs_init ();
+	context = logview_init_options ();
+	
+	program = gnome_program_init ("gnome-system-log", VERSION,
+				      LIBGNOMEUI_MODULE,
+				      argc, argv,
+				      GNOME_PARAM_APP_DATADIR, DATADIR,
+				      GNOME_PARAM_GOPTION_CONTEXT, context,
+				      NULL);
+	
+	g_set_application_name (_("Log Viewer"));
 
-   program = gnome_program_init ("gnome-system-log",VERSION, LIBGNOMEUI_MODULE, argc, argv,
-				 GNOME_PARAM_APP_DATADIR, DATADIR, 
-				 NULL);
+	if (show_version)
+		logview_show_version_and_quit ();
+	
+	/* Open regular logs and add each log passed as a parameter */
+	logview = LOGVIEW_WINDOW (logview_window_new ());
+	if (!logview) {
+		error_dialog_show (NULL,
+				   _("Unable to create user interface."),
+				   NULL);
+		
+		exit (0);
+	}
 
-   g_set_application_name (_("Log Viewer"));
-   gtk_window_set_default_icon_name ("logviewer");
+	gtk_window_set_default_icon_name ("logviewer");
+	
+	prefs_connect (logview);
+	logview_menus_set_state (logview);
+	
+	gtk_widget_show (GTK_WIDGET (logview));
 
-   gnome_vfs_init ();
-   prefs_init ();
+	while (gtk_events_pending ())
+		gtk_main_iteration ();
+
+	if (argc == 1) {
+		logview_add_logs_from_names (logview,
+					     prefs_get_logs (),
+					     prefs_get_active_log ());
+	} else {
+		gint i;
+		
+		for (i = 1; i < argc; i++)
+			logview_add_log_from_name (logview, argv[i]);
+	}
+
+	logview_show_main_content (logview);
+
+	/* show the eventual error dialogs */
+	error_dialog_queue (FALSE);
+	error_dialog_show_queued ();
+
+	gnome_client = gnome_master_client ();
+	if (gnome_client) {
+		g_signal_connect (gnome_client, "save_yourself",
+				  G_CALLBACK (save_session_cb), logview);
+		g_signal_connect (gnome_client, "die",
+				  G_CALLBACK (die_cb), NULL);
+	}
+
+	gtk_main ();
    
-   context = logview_init_options ();
-   g_option_context_parse (context, &argc, &argv, &error);
-
-   /* Open regular logs and add each log passed as a parameter */
-
-   logview = LOGVIEW_WINDOW(logview_window_new ());
-   if (logview == NULL) {
-	   error_dialog_show (NULL, _("Unable to create user interface."), NULL);
-	   exit (0);
-   }
-   
-   prefs_connect (logview);
-   logview_menus_set_state (logview);
-   gtk_widget_show (GTK_WIDGET (logview));
-
-   while (gtk_events_pending ())
-       gtk_main_iteration ();
-   if (argc == 1) {
-       logview_add_logs_from_names (logview, prefs_get_logs (), prefs_get_active_log ());
-   } else {
-	   for (i=1; i<argc; i++)
-		   logview_add_log_from_name (logview, argv[i]);
-   }
-
-   logview_show_main_content (logview);
-
-   gnome_client = gnome_master_client ();
-
-   error_dialog_queue (FALSE);
-   error_dialog_show_queued ();
-   
-   g_signal_connect (gnome_client, "save_yourself",
-		     G_CALLBACK (save_session), logview);
-   g_signal_connect (gnome_client, "die", G_CALLBACK (die), NULL);
-   gtk_main ();
-   return 0;
+	return EXIT_SUCCESS;
 }
