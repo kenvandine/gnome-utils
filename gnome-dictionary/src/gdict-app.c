@@ -108,7 +108,9 @@ gdict_app_init (GdictApp *app)
   if (g_mkdir (data_dir, 0700) == -1)
     {
       if (errno != EEXIST)
-        g_warning ("Unable to create the data directory '%s'");
+        g_warning ("Unable to create the data directory '%s': %s",
+		   data_dir,
+		   strerror (errno));
     }
   
   g_free (data_dir);

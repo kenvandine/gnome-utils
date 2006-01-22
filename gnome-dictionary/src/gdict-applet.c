@@ -1163,9 +1163,17 @@ gdict_applet_init (GdictApplet *applet)
   if (g_mkdir (data_dir, 0700) == -1)
     {
       if (errno != EEXIST)
-	show_error_dialog (NULL,
-			   _("Unable to create the data directory '%s'"),
-			   NULL);
+        {
+	  gchar *message;
+
+	  message = g_strdup_printf (_("Unable to create the data directory '%s'"),
+				     data_dir);
+	  
+          show_error_dialog (NULL,
+			     message,
+			     strerror (errno));
+
+	  g_free (message);
     }
   
   icon_file = g_build_filename (DATADIR,
