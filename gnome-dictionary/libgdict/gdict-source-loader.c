@@ -426,10 +426,10 @@ gdict_source_loader_get_names (GdictSourceLoader *loader,
   
   g_return_val_if_fail (GDICT_IS_SOURCE_LOADER (loader), NULL);
   
-  names = (gchar **) g_new0 (gchar **, g_slist_length (loader->priv->sources) + 1);
-  
   if (loader->priv->paths_dirty)
     gdict_source_loader_update_sources (loader);
+  
+  names = g_new0 (gchar *, g_slist_length (loader->priv->sources) + 1);
   
   i = 0;
   for (l = loader->priv->sources; l != NULL; l = l->next)

@@ -1174,6 +1174,7 @@ gdict_applet_init (GdictApplet *applet)
 			     strerror (errno));
 
 	  g_free (message);
+	}
     }
   
   icon_file = g_build_filename (DATADIR,
