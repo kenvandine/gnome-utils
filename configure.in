@@ -1,4 +1,4 @@
-AC_INIT([gnome-utils], [2.13.6],
+AC_INIT([gnome-utils], [2.13.90],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils])
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE
@@ -37,7 +37,7 @@ AC_PATH_XTRA
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LIBGDICT_LT_VERSION=1:1:0
+LIBGDICT_LT_VERSION=1:2:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
 
@@ -225,7 +225,7 @@ if test $have_ipv6 = yes; then
   fi
 
   if test $have_getaddrinfo = yes; then
-    AC_DEFINE(ENABLE_IPV6)
+    AC_DEFINE([ENABLE_IPV6], [1], [Define whether IPv6 support is enabled])
   fi
 fi
 
@@ -340,7 +340,8 @@ dnl gfloppy checks
 dnl ********************
 
 build_gfloppy=true
-AC_CHECK_HEADER(linux/fd.h, AC_DEFINE(HAVE_LINUX_FD_H),
+AC_CHECK_HEADER(linux/fd.h,
+		AC_DEFINE([HAVE_LINUX_FD_H], [1], [Define whether we have linux/fd.h]),
 		build_gfloppy=false
                 AC_MSG_WARN([*** gfloppy will not be built.]))
 # Check for the ext2fs library
@@ -411,19 +412,18 @@ dnl *******************************
 dnl Internationalization
 dnl ******************************* 
 
-ALL_LINGUAS="am ar az be bg bn bs ca cs cy da de el en_CA en_GB es et eu fa fi fr ga gl gu he hi hr hu id it ja ko ku lt lv mk ml mn ms nb ne nl nn no pa pl pt pt_BR ro ru rw sk sl sq sr sr@Latn sv ta th tr uk vi wa xh zh_CN zh_TW"
 GETTEXT_PACKAGE=gnome-utils-2.0
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], "$GETTEXT_PACKAGE", [Define the gettext
+package to use])
 AC_SUBST(GETTEXT_PACKAGE)
 AM_GLIB_GNU_GETTEXT
+
+ALL_LINGUAS="am ar az be bg bn bs ca cs cy da de el en_CA en_GB es et eu fa fi fr ga gl gu he hi hr hu id it ja ko ku lt lv mk ml mn ms nb ne nl nn no pa pl pt pt_BR ro ru rw sk sl sq sr sr@Latn sv ta th tr uk vi wa xh zh_CN zh_TW"
 
 # AM_GLIB_GNU_GETTEXT above substs $DATADIRNAME
 # this is the directory where the *.{mo,gmo} files are installed
 gnomeutilslocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(gnomeutilslocaledir)
-
-AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE")
-
-AC_DEFINE_UNQUOTED(GNOME_ICONDIR, "${prefix}/share/pixmaps")
 
 dnl gtk-doc stuff
 

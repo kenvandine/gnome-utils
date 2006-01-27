@@ -1,3 +1,14 @@
+2006-01-27  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	D acconfig.h
+
+	* acconfig.h: remove the template file, since we can use configure.in
+	to define templates, and no one was using the templates inside
+	acconfig.h anymore.
+
+	* configure.in: pre-beta version bump to 2.13.90; use the template
+	argument inside AC_DEFINE in order to drop acconfig.h.
+
 2006-01-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* gnome-dictionary/data/gnome-dictionary.desktop.in:
