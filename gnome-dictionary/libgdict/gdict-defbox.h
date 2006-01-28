@@ -1,6 +1,6 @@
 /* gdict-defbox.h - display widget for dictionary definitions
  *
- * Copyright (C) 2005  Emmanuele Bassi <ebassi@gmail.com>
+ * Copyright (C) 2005-2006  Emmanuele Bassi <ebassi@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -90,6 +90,9 @@ void                  gdict_defbox_set_show_find      (GdictDefbox  *defbox,
 gboolean              gdict_defbox_get_show_find      (GdictDefbox  *defbox);
 void                  gdict_defbox_find_next          (GdictDefbox  *defbox);
 void                  gdict_defbox_find_previous      (GdictDefbox  *defbox);
+void                  gdict_defbox_set_font_name      (GdictDefbox  *defbox,
+						       const gchar  *font_name);
+G_CONST_RETURN gchar *gdict_defbox_get_font_name      (GdictDefbox  *defbox);
 
 G_END_DECLS
 

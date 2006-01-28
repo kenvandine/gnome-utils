@@ -33,6 +33,7 @@ G_BEGIN_DECLS
 #define GDICT_PREF_DIALOG(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_PREF_DIALOG, GdictPrefDialog))
 #define GDICT_IS_PREF_DIALOG(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_PREF_DIALOG))
 
+#define GDICT_DEFAULT_DEFBOX_FONT 	"Sans 10"
 #define GDICT_DEFAULT_PRINT_FONT 	"Serif 10"
 #define GDICT_DEFAULT_SOURCE_NAME 	"Default"
 
@@ -44,6 +45,8 @@ G_BEGIN_DECLS
 #define GDICT_GCONF_WINDOW_WIDTH_KEY 		GDICT_GCONF_DIR "/default-window-width"
 #define GDICT_GCONF_WINDOW_HEIGHT_KEY 		GDICT_GCONF_DIR "/default-window-height"
 #define GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY 	GDICT_GCONF_DIR "/window-is-maximized"
+
+#define DOCUMENT_FONT_KEY 			"/desktop/gnome/interface/document_font_name"
 
 typedef struct _GdictPrefDialog        GdictPrefDialog;
 typedef struct _GdictPrefDialogClass   GdictPrefDialogClass;

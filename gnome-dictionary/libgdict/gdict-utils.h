@@ -28,6 +28,8 @@ G_BEGIN_DECLS
 #define GDICT_DEFAULT_DATABASE	"*"
 #define GDICT_DEFAULT_STRATEGY	"."
 
+#define GDICT_DEFAULT_FONT_NAME "Sans 10"
+
 /* properties shared between GdictContext implementations */
 typedef enum {
   GDICT_CONTEXT_PROP_FIRST      = 0x1000,

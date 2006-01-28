@@ -65,11 +65,13 @@ struct _GdictAppletPrivate
   
   GConfClient *gconf_client;
   guint notify_id;
+  guint font_notify_id;
 
   gchar *database;
   gchar *strategy;
   gchar *source_name;  
   gchar *print_font;
+  gchar *defbox_font;
 
   gchar *word;  
   GdictContext *context;
@@ -161,7 +163,7 @@ static void
 set_window_default_size (GdictApplet *applet)
 {
   GdictAppletPrivate *priv = applet->priv;
-  GtkWidget *widget;
+  GtkWidget *widget, *defbox;
   gint width, height;
   gint font_size;
   GdkScreen *screen;
@@ -173,9 +175,10 @@ set_window_default_size (GdictApplet *applet)
     return;
   
   widget = priv->window;
+  defbox = priv->defbox;
 
   /* Size based on the font size */
-  font_size = pango_font_description_get_size (widget->style->font_desc);
+  font_size = pango_font_description_get_size (defbox->style->font_desc);
   font_size = PANGO_PIXELS (font_size);
 
   width = font_size * WINDOW_NUM_COLUMNS;
@@ -194,8 +197,6 @@ set_window_default_size (GdictApplet *applet)
 
   width = MIN (width, monitor.width * 3 / 4);
   height = MIN (height, monitor.height * 3 / 4);
-
-  g_print ("(in %s) window size: <%d, %d>\n", G_STRFUNC, width, height);
 
   /* Set size */
   gtk_widget_set_size_request (priv->frame, width, height);
@@ -972,6 +973,32 @@ gdict_applet_set_print_font (GdictApplet *applet,
 }
 
 static void
+gdict_applet_set_defbox_font (GdictApplet *applet,
+			      const gchar *defbox_font)
+{
+  GdictAppletPrivate *priv = applet->priv;
+  
+  if (!defbox_font)
+    defbox_font = gconf_client_get_string (priv->gconf_client,
+		    			   DOCUMENT_FONT_KEY,
+					   NULL);
+
+  if (!defbox_font)
+    defbox_font = GDICT_DEFAULT_DEFBOX_FONT;
+
+  if (priv->defbox_font)
+    g_free (priv->defbox_font);
+
+  priv->defbox_font = g_strdup (defbox_font);
+
+  if (!priv->defbox)
+    return;
+
+  gdict_defbox_set_font_name (GDICT_DEFBOX (priv->defbox),
+			      priv->defbox_font);
+}
+
+static void
 gdict_applet_set_word (GdictApplet *applet,
 		       const gchar *word)
 {
@@ -1086,6 +1113,13 @@ gdict_applet_gconf_notify_cb (GConfClient *client,
       else
         gdict_applet_set_strategy (applet, GDICT_DEFAULT_STRATEGY);
     }
+  else if (strcmp (entry->key, DOCUMENT_FONT_KEY) == 0)
+    {
+      if (entry->value && (entry->value->type == GCONF_VALUE_STRING))
+        gdict_applet_set_defbox_font (applet, gconf_value_get_string (entry->value));
+      else
+        gdict_applet_set_defbox_font (applet, GDICT_DEFAULT_DEFBOX_FONT);
+    }
 }
 
 static void
@@ -1093,6 +1127,12 @@ gdict_applet_finalize (GObject *object)
 {
   GdictApplet *applet = GDICT_APPLET (object);
   GdictAppletPrivate *priv = applet->priv;
+
+  if (priv->notify_id)
+    gconf_client_notify_remove (priv->gconf_client, priv->notify_id);
+
+  if (priv->font_notify_id)
+    gconf_client_notify_remove (priv->gconf_client, priv->font_notify_id);
   
   if (priv->gconf_client)
     g_object_unref (priv->gconf_client);
@@ -1120,6 +1160,7 @@ gdict_applet_finalize (GObject *object)
   
   g_free (priv->source_name);
   g_free (priv->print_font);
+  g_free (priv->defbox_font);
   g_free (priv->word);
   
   G_OBJECT_CLASS (gdict_applet_parent_class)->finalize (object);
@@ -1149,7 +1190,7 @@ gdict_applet_init (GdictApplet *applet)
   GdictAppletPrivate *priv;
   gchar *data_dir, *icon_file;
   GdkPixbuf *icon;
-  GError *icon_error;
+  GError *icon_error, *gconf_error;
 
   priv = GDICT_APPLET_GET_PRIVATE (applet);
   applet->priv = priv;
@@ -1207,15 +1248,50 @@ gdict_applet_init (GdictApplet *applet)
   if (!priv->gconf_client)
     priv->gconf_client = gconf_client_get_default ();
   
+  gconf_error = NULL;
   gconf_client_add_dir (priv->gconf_client,
   			GDICT_GCONF_DIR,
   			GCONF_CLIENT_PRELOAD_ONELEVEL,
-  			NULL);
-  gconf_client_notify_add (priv->gconf_client,
-		  	   GDICT_GCONF_DIR,
-			   (GConfClientNotifyFunc) gdict_applet_gconf_notify_cb,
-			   applet, NULL,
-			   NULL);
+  			&gconf_error);
+  if (gconf_error)
+    {
+      show_error_dialog (NULL,
+		         _("Unable to connect to GConf"),
+			 gconf_error->message);
+      
+      g_error_free (gconf_error);
+      gconf_error = NULL;
+    }
+  
+  priv->notify_id = gconf_client_notify_add (priv->gconf_client,
+		  			     GDICT_GCONF_DIR,
+					     gdict_applet_gconf_notify_cb,
+					     applet, NULL,
+					     &gconf_error);
+  if (gconf_error)
+    {
+      show_error_dialog (NULL,
+		         _("Unable to get notification for preferences"),
+			 gconf_error->message);
+
+      g_error_free (gconf_error);
+      gconf_error = NULL;
+    }
+  
+  priv->font_notify_id =  gconf_client_notify_add (priv->gconf_client,
+		  				   DOCUMENT_FONT_KEY,
+						   gdict_applet_gconf_notify_cb,
+						   applet, NULL,
+						   &gconf_error);
+  if (gconf_error)
+    {
+      show_error_dialog (NULL,
+			 _("Unable to get notification for the document font"),
+			 gconf_error->message);
+
+      g_error_free (gconf_error);
+      gconf_error = NULL;
+    }
   
   if (!priv->loader)
     priv->loader = gdict_source_loader_new ();
@@ -1255,7 +1331,10 @@ gdict_applet_init (GdictApplet *applet)
   /* force first draw */
   gdict_applet_draw (applet);
 
+  /* force retrieval of the configuration from GConf */
   gdict_applet_set_source_name (applet, NULL);
+  gdict_applet_set_defbox_font (applet, NULL);
+  gdict_applet_set_print_font (applet, NULL);
 }
 
 #ifndef GDICT_APPLET_STAND_ALONE

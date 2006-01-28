@@ -60,6 +60,7 @@ enum
   PROP_SOURCE_LOADER,
   PROP_SOURCE_NAME,
   PROP_PRINT_FONT,
+  PROP_DEFBOX_FONT,
   PROP_WORD,
   PROP_WINDOW_ID
 };
@@ -121,6 +122,9 @@ gdict_window_finalize (GObject *object)
 
   if (window->notify_id)
     gconf_client_notify_remove (window->gconf_client, window->notify_id);
+
+  if (window->font_notify_id)
+    gconf_client_notify_remove (window->gconf_client, window->font_notify_id);
   
   if (window->gconf_client)
     g_object_unref (window->gconf_client);
@@ -147,6 +151,7 @@ gdict_window_finalize (GObject *object)
 
   g_free (window->source_name);
   g_free (window->print_font);
+  g_free (window->defbox_font);
   g_free (window->word);
   g_free (window->database);
   g_free (window->strategy);
@@ -300,6 +305,30 @@ get_context_from_loader (GdictWindow *window)
 }
 
 static void
+gdict_window_set_defbox_font (GdictWindow *window,
+			      const gchar *defbox_font)
+{
+  if (!defbox_font)
+    defbox_font = gconf_client_get_string (window->gconf_client,
+		    			   DOCUMENT_FONT_KEY,
+					   NULL);
+
+  if (!defbox_font)
+    defbox_font = GDICT_DEFAULT_DEFBOX_FONT;
+
+  if (window->defbox_font)
+    g_free (window->defbox_font);
+
+  window->defbox_font = g_strdup (defbox_font);
+
+  if (!window->defbox)
+    return;
+
+  gdict_defbox_set_font_name (GDICT_DEFBOX (window->defbox),
+		  	      window->defbox_font);
+}
+
+static void
 gdict_window_set_print_font (GdictWindow *window,
 			     const gchar *print_font)
 {
@@ -416,6 +445,9 @@ gdict_window_set_property (GObject      *object,
     case PROP_PRINT_FONT:
       gdict_window_set_print_font (window, g_value_get_string (value));
       break;
+    case PROP_DEFBOX_FONT:
+      gdict_window_set_defbox_font (window, g_value_get_string (value));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -443,6 +475,9 @@ gdict_window_get_property (GObject    *object,
       break;
     case PROP_PRINT_FONT:
       g_value_set_string (value, window->print_font);
+      break;
+    case PROP_DEFBOX_FONT:
+      g_value_set_string (value, window->defbox_font);
       break;
     case PROP_WINDOW_ID:
       g_value_set_uint (value, window->window_id);
@@ -546,7 +581,6 @@ gdict_window_cmd_file_print (GtkAction   *action,
   gdict_show_print_dialog (GTK_WINDOW (window),
   			   _("Print"),
   			   GDICT_DEFBOX (window->defbox));
-
 }
 
 static void
@@ -854,6 +888,13 @@ gdict_window_gconf_notify_cb (GConfClient *client,
       else
         gdict_window_set_database (window, GDICT_DEFAULT_DATABASE);
     }
+  else if (strcmp (entry->key, DOCUMENT_FONT_KEY) == 0)
+    {
+      if (entry->value && (entry->value->type == GCONF_VALUE_STRING))
+        gdict_window_set_defbox_font (window, gconf_value_get_string (entry->value));
+      else
+        gdict_window_set_defbox_font (window, GDICT_DEFAULT_DEFBOX_FONT);
+    }
 }
 
 static void
@@ -977,7 +1018,9 @@ set_window_default_size (GdictWindow *window)
   if (width == -1 || height == -1)
     {
       /* Size based on the font size */
-      font_size = pango_font_description_get_size (widget->style->font_desc);
+      GtkWidget *defbox = window->defbox;
+      
+      font_size = pango_font_description_get_size (defbox->style->font_desc);
       font_size = PANGO_PIXELS (font_size);
 
       width = font_size * GDICT_WINDOW_COLUMNS;
@@ -1032,6 +1075,8 @@ gdict_window_constructor (GType                  type,
   GtkWidget *label;
   GtkActionGroup *action_group;
   GtkAccelGroup *accel_group;
+  PangoFontDescription *font_desc;
+  gchar *font_name;
   GError *error;
   
   object = G_OBJECT_CLASS (gdict_window_parent_class)->constructor (type,
@@ -1040,47 +1085,6 @@ gdict_window_constructor (GType                  type,
   window = GDICT_WINDOW (object);
   
   gtk_widget_push_composite_child ();
-
-  /* retrieve the window state from gconf */
-  is_maximized = gconf_client_get_bool (window->gconf_client,
-		  			GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
-					NULL);
-
-  width = gconf_client_get_int (window->gconf_client,
-		  		GDICT_GCONF_WINDOW_WIDTH_KEY,
-				NULL);
-  height = gconf_client_get_int (window->gconf_client,
-		  		 GDICT_GCONF_WINDOW_HEIGHT_KEY,
-				 NULL);
-  
-  if (width == -1 || height == -1)
-    {
-      PangoContext *pango_context;
-      PangoFontDescription *font_desc;
-      gint font_size;
-  
-      pango_context = gtk_widget_get_pango_context (GTK_WIDGET (window));
-      font_desc = pango_context_get_font_description (pango_context);
-
-      font_size = pango_font_description_get_size (font_desc) / PANGO_SCALE;
-
-      width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
-      height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
-    }
-  else
-    {
-      window->default_width = width;
-      window->default_height = height;
-    }
-
-  window->is_maximized = is_maximized;
-  
-  gtk_window_set_title (GTK_WINDOW (window), _("Dictionary"));
-  gtk_window_set_default_size (GTK_WINDOW (window),
-  			       width,
-  			       height);
-  if (is_maximized)
-    gtk_window_maximize (GTK_WINDOW (window));
  
   window->main_box = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (window), window->main_box);
@@ -1158,6 +1162,58 @@ gdict_window_constructor (GType                  type,
   gtk_box_pack_end (GTK_BOX (window->main_box), window->status, FALSE, FALSE, 0);
   gtk_widget_show (window->status);
 
+  /* retrieve the font size from gconf */
+  font_name = gconf_client_get_string (window->gconf_client,
+		  		       DOCUMENT_FONT_KEY,
+				       NULL);
+  if (!font_name)
+    font_name = GDICT_DEFAULT_DEFBOX_FONT;
+  
+  gdict_window_set_defbox_font (window, font_name);
+  font_desc = pango_font_description_from_string (font_name);
+  
+  /* retrieve the window state from gconf */
+  is_maximized = gconf_client_get_bool (window->gconf_client,
+		  			GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
+					NULL);
+
+  width = gconf_client_get_int (window->gconf_client,
+		  		GDICT_GCONF_WINDOW_WIDTH_KEY,
+				NULL);
+  height = gconf_client_get_int (window->gconf_client,
+		  		 GDICT_GCONF_WINDOW_HEIGHT_KEY,
+				 NULL);
+  
+  /* if the (width, height) tuple is not defined, use the font to
+   * calculate the right window geometry
+   */
+  if (width == -1 || height == -1)
+    {
+      gint font_size;
+  
+      font_size = pango_font_description_get_size (font_desc);
+      font_size = PANGO_PIXELS (font_size);
+
+      width = MAX (GDICT_WINDOW_COLUMNS * font_size, GDICT_WINDOW_MIN_WIDTH);
+      height = MAX (GDICT_WINDOW_ROWS * font_size, GDICT_WINDOW_MIN_HEIGHT);
+    }
+  else
+    {
+      window->default_width = width;
+      window->default_height = height;
+    }
+
+  pango_font_description_free (font_desc);
+  
+  window->is_maximized = is_maximized;
+  
+  gtk_window_set_title (GTK_WINDOW (window), _("Dictionary"));
+  gtk_window_set_default_size (GTK_WINDOW (window),
+  			       width,
+  			       height);
+  if (is_maximized)
+    gtk_window_maximize (GTK_WINDOW (window));
+  
   g_signal_connect (window, "delete-event",
 		    G_CALLBACK (gdict_window_delete_event_cb),
 		    NULL);
@@ -1206,6 +1262,13 @@ gdict_window_class_init (GdictWindowClass *klass)
   				   			GDICT_DEFAULT_PRINT_FONT,
   				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
   g_object_class_install_property (gobject_class,
+		  		   PROP_DEFBOX_FONT,
+				   g_param_spec_string ("defbox-font",
+					   		"Defbox Font",
+							"The font name to be used by the defbox widget",
+							GDICT_DEFAULT_DEFBOX_FONT,
+							(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
+  g_object_class_install_property (gobject_class,
 		  		   PROP_WORD,
 				   g_param_spec_string ("word",
 					   		"Word",
@@ -1238,26 +1301,64 @@ gdict_window_init (GdictWindow *window)
 {
   gchar *icon_file;
   GdkPixbuf *icon;
-  GError *icon_error;
+  GError *icon_error, *gconf_error;
   
   window->loader = NULL;
   window->context = NULL;
-  
+
   window->gconf_client = gconf_client_get_default ();
+
+  gconf_error = NULL;
   gconf_client_add_dir (window->gconf_client,
   			GDICT_GCONF_DIR,
   			GCONF_CLIENT_PRELOAD_NONE,
-  			NULL);
+  			&gconf_error);
+  if (gconf_error)
+    {
+      show_error_dialog (NULL,
+		         _("Unable to connect to GConf"),
+		         gconf_error->message);
+
+      g_error_free (gconf_error);
+      gconf_error = NULL;
+    }
+
   window->notify_id = gconf_client_notify_add (window->gconf_client,
   					       GDICT_GCONF_DIR,
   					       gdict_window_gconf_notify_cb,
   					       window,
   					       NULL,
-  					       NULL);
+  					       &gconf_error);
+  if (gconf_error)
+    {
+      show_error_dialog (NULL,
+		         _("Unable to get notification for preferences"),
+		         gconf_error->message);
+
+      g_error_free (gconf_error);
+      gconf_error = NULL;
+    }
+
+  window->font_notify_id = gconf_client_notify_add (window->gconf_client,
+		  				    DOCUMENT_FONT_KEY,
+						    gdict_window_gconf_notify_cb,
+						    window,
+						    NULL,
+						    &gconf_error);
+  if (gconf_error)
+    {
+      show_error_dialog (NULL,
+		         _("Unable to get notification for the document font"),
+		         gconf_error->message);
+
+      g_error_free (gconf_error);
+      gconf_error = NULL;
+    }
   
   window->word = NULL;
   window->source_name = NULL;
   window->print_font = NULL;
+  window->defbox_font = NULL;
 
   window->database = NULL;
   window->strategy = NULL;
@@ -1270,7 +1371,7 @@ gdict_window_init (GdictWindow *window)
   icon = gdk_pixbuf_new_from_file (icon_file, &icon_error);
   if (icon_error)
     {
-      show_error_dialog (GTK_WINDOW (window),
+      show_error_dialog (NULL,
 		         _("Unable to load the application icon"),
 		         icon_error->message);
 

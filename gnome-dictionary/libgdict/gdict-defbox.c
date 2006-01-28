@@ -1,6 +1,6 @@
 /* gdict-defbox.c - display widget for dictionary definitions
  *
- * Copyright (C) 2005  Emmanuele Bassi <ebassi@gmail.com>
+ * Copyright (C) 2005-2006  Emmanuele Bassi <ebassi@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -68,6 +68,7 @@ struct _GdictDefboxPrivate
   
   gchar *word;
   gchar *database;
+  gchar *font_name;
   
   guint show_find : 1;
   guint is_searching : 1;
@@ -87,6 +88,7 @@ enum
   PROP_CONTEXT,
   PROP_WORD,
   PROP_DATABASE,
+  PROP_FONT_NAME,
   PROP_COUNT
 };
 
@@ -151,6 +153,9 @@ gdict_defbox_finalize (GObject *object)
   
   if (priv->word)
     g_free (priv->word);
+
+  if (priv->font_name)
+    g_free (priv->font_name);
   
   if (priv->definitions)
     {
@@ -242,6 +247,9 @@ gdict_defbox_set_property (GObject      *object,
       g_free (priv->database);
       priv->database = g_strdup (g_value_get_string (value));
       break;
+    case PROP_FONT_NAME:
+      gdict_defbox_set_font_name (defbox, g_value_get_string (value));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -264,6 +272,9 @@ gdict_defbox_get_property (GObject    *object,
       break;
     case PROP_DATABASE:
       g_value_set_string (value, priv->database);
+      break;
+    case PROP_FONT_NAME:
+      g_value_set_string (value, priv->font_name);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -675,7 +686,7 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
    *
    * The #GdictContext object used to get the word definition.
    *
-   * Since: 1.0
+   * Since: 0.1
    */
   g_object_class_install_property (gobject_class,
   				   PROP_CONTEXT,
@@ -690,7 +701,7 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
    * The database used by the #GdictDefbox bound to this object to get the word
    * definition.
    *
-   * Since: 1.0
+   * Since: 0.1 
    */
   g_object_class_install_property (gobject_class,
 		  		   PROP_DATABASE,
@@ -698,6 +709,21 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
 					   		_("Database"),
 							_("The database used to query the GdictContext"),
 							GDICT_DEFAULT_DATABASE,
+							(G_PARAM_READABLE | G_PARAM_WRITABLE)));
+  /**
+   * GdictDefbox:font-name
+   *
+   * The name of the font used by the #GdictDefbox to display the definitions.
+   * use the same string you use for pango_font_description_from_string().
+   *
+   * Since: 0.3
+   */
+  g_object_class_install_property (gobject_class,
+		  		   PROP_FONT_NAME,
+				   g_param_spec_string ("font-name",
+					   		_("Font Name"),
+							_("The font to be used by the defbox"),
+							GDICT_DEFAULT_FONT_NAME,
 							(G_PARAM_READABLE | G_PARAM_WRITABLE)));
   
   gtk_widget_class_install_style_property (widget_class,
@@ -796,6 +822,7 @@ gdict_defbox_init (GdictDefbox *defbox)
   
   priv->context = NULL;
   priv->database = g_strdup (GDICT_DEFAULT_DATABASE);
+  priv->font_name = g_strdup (GDICT_DEFAULT_FONT_NAME);
   priv->word = NULL;
   
   priv->definitions = NULL;
@@ -815,11 +842,12 @@ gdict_defbox_init (GdictDefbox *defbox)
  *
  * Creates a new #GdictDefbox widget.  Use this widget to search for
  * a word using a #GdictContext, and to show the resulting definition(s).
- * You must set a #GdictContext for this widget using gdict_defbox_set_context().
+ * You must set a #GdictContext for this widget using
+ * gdict_defbox_set_context().
  *
  * Return value: a new #GdictDefbox widget.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 GtkWidget *
 gdict_defbox_new (void)
@@ -836,7 +864,7 @@ gdict_defbox_new (void)
  *
  * Return value: a new #GdictDefbox widget.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 GtkWidget *
 gdict_defbox_new_with_context (GdictContext *context)
@@ -856,7 +884,7 @@ gdict_defbox_new_with_context (GdictContext *context)
  * Sets @context as the #GdictContext to be used by @defbox in order
  * to retrieve the definitions of a word.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_set_context (GdictDefbox  *defbox,
@@ -876,7 +904,7 @@ gdict_defbox_set_context (GdictDefbox  *defbox,
  *
  * Return value: a #GdictContext.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 GdictContext *
 gdict_defbox_get_context (GdictDefbox *defbox)
@@ -900,7 +928,7 @@ gdict_defbox_get_context (GdictDefbox *defbox)
  * Sets @database as the database used by the #GdictContext bound to @defbox to
  * query for word definitions.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_set_database (GdictDefbox *defbox,
@@ -920,7 +948,7 @@ gdict_defbox_set_database (GdictDefbox *defbox,
  * Return value: the name of a database.  The string is owned by the
  * #GdictDefbox and should not be modified or freed.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 G_CONST_RETURN gchar *
 gdict_defbox_get_database (GdictDefbox *defbox)
@@ -941,7 +969,7 @@ gdict_defbox_get_database (GdictDefbox *defbox)
  *
  * Whether @defbox should show the find pane.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_set_show_find (GdictDefbox *defbox,
@@ -970,11 +998,11 @@ gdict_defbox_set_show_find (GdictDefbox *defbox,
  * gdict_defbox_get_show_find:
  * @defbox: a #GdictDefbox
  *
- * FIXME
+ * Gets whether the find pane should be visible or not.
  *
- * Return value: FIXME
+ * Return value: %TRUE if the find pane is visible.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 gboolean
 gdict_defbox_get_show_find (GdictDefbox *defbox)
@@ -1059,7 +1087,7 @@ update_progress_dialog (GdictDefbox     *defbox,
   fraction = ((gdouble) current / (gdouble) total);
   progress = g_object_get_data (G_OBJECT (priv->progress_dialog), "progress-bar");
   gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progress),
-		  		 MIN (fraction, 1.0));
+		  		 MIN (fraction, 0.1));
 }
 
 static void
@@ -1278,7 +1306,7 @@ error_cb (GdictContext *context,
  * Searches @word inside the dictionary sources using the #GdictContext
  * provided when creating @defbox or set using gdict_defbox_set_context().
  *
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_lookup (GdictDefbox *defbox,
@@ -1343,7 +1371,7 @@ gdict_defbox_lookup (GdictDefbox *defbox,
  *
  * Clears the buffer of @defbox
  *
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_clear (GdictDefbox *defbox)
@@ -1376,7 +1404,7 @@ gdict_defbox_clear (GdictDefbox *defbox)
  * 
  * Emits the "find-next" signal.
  * 
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_find_next (GdictDefbox *defbox)
@@ -1392,7 +1420,7 @@ gdict_defbox_find_next (GdictDefbox *defbox)
  * 
  * Emits the "find-previous" signal.
  * 
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_find_previous (GdictDefbox *defbox)
@@ -1408,7 +1436,7 @@ gdict_defbox_find_previous (GdictDefbox *defbox)
  *
  * Selects all the text displayed by @defbox
  * 
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_select_all (GdictDefbox *defbox)
@@ -1433,7 +1461,7 @@ gdict_defbox_select_all (GdictDefbox *defbox)
  *
  * Copies the selected text inside @defbox into @clipboard.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_copy_to_clipboard (GdictDefbox  *defbox,
@@ -1459,7 +1487,7 @@ gdict_defbox_copy_to_clipboard (GdictDefbox  *defbox,
  *
  * Return value: the number of definitions.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 gint
 gdict_defbox_count_definitions (GdictDefbox *defbox)
@@ -1483,7 +1511,7 @@ gdict_defbox_count_definitions (GdictDefbox *defbox)
  * Scrolls to the definition identified by @number.  If @number is -1,
  * jumps to the last definition.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 void
 gdict_defbox_jump_to_definition (GdictDefbox *defbox,
@@ -1528,7 +1556,7 @@ gdict_defbox_jump_to_definition (GdictDefbox *defbox,
  * Return value: a newly allocated string containing the text displayed by
  *   @defbox.
  *
- * Since: 1.0
+ * Since: 0.1
  */
 gchar *
 gdict_defbox_get_text (GdictDefbox *defbox,
@@ -1552,4 +1580,63 @@ gdict_defbox_get_text (GdictDefbox *defbox,
     *length = strlen (retval);
   
   return retval;
+}
+
+/**
+ * gdict_defbox_set_font_name:
+ * @defbox: a #GdictDefbox
+ * @font_name: a font description, or %NULL
+ *
+ * Sets @font_name as the font for @defbox. It calls internally
+ * pango_font_description_from_string() and gtk_widget_modify_font().
+ * 
+ * Passing %NULL for @font_name will reset any previously set font.
+ *
+ * Since: 0.3.0
+ */
+void
+gdict_defbox_set_font_name (GdictDefbox *defbox,
+			    const gchar *font_name)
+{
+  GdictDefboxPrivate *priv;
+  PangoFontDescription *font_desc;
+
+  g_return_if_fail (GDICT_IS_DEFBOX (defbox));
+
+  priv = defbox->priv;
+
+  if (font_name)
+    {
+      font_desc = pango_font_description_from_string (font_name);
+      g_return_if_fail (font_desc != NULL);
+    }
+  else
+    font_desc = NULL;
+
+  gtk_widget_modify_font (priv->text_view, font_desc);
+
+  if (font_desc)
+    pango_font_description_free (font_desc);
+
+  g_free (priv->font_name);
+  priv->font_name = g_strdup (font_name);
+}
+
+/**
+ * gdict_defbox_get_font_name:
+ * @defbox: a #GdictDefbox
+ *
+ * Retrieves the font currently used by @defbox.
+ *
+ * Return value: a font name.  The returned string is owned by @defbox and
+ *   should not be modified or freed.
+ *
+ * Since: 0.3
+ */
+G_CONST_RETURN gchar *
+gdict_defbox_get_font_name (GdictDefbox *defbox)
+{
+  g_return_val_if_fail (GDICT_IS_DEFBOX (defbox), NULL);
+
+  return defbox->priv->font_name;
 }

@@ -1,3 +1,43 @@
+2006-01-28  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	Add support for the document_font_name key into the Dictionary
+	application and applet.  This setting is desktop-wide, and should be
+	honoured by every application showing arbitrarily long text to the
+	user.
+
+	* libgdict/gdict-defbox.[ch] (gdict_defbox_set_font_name),
+	(gdict_defbox_get_font_name): add a "font-name" property and its
+	accessors; this property modifies the font of the defbox, since we
+	cannot simply do gtk_widget_modify_font on the defbox itself.
+
+	* src/gdict-pref-dialog.h: add
+	
+	  /desktop/gnome/interface/document_font_name
+	  
+	to the list of recognized keys; also add a default font for the
+	Defbox ("Sans 10").
+
+	* src/gdict-window.h:
+	* src/gdict-window.c (gdict_window_finalize),
+	(gdict_window_set_defbox_font), (gdict_window_set_property),
+	(gdict_window_get_property), (gdict_window_gconf_notify_cb),
+	(set_window_default_size), (gdict_window_constructor),
+	(gdict_window_class_init), (gdict_window_init): use the font size
+	inside the "document_font_name" GConf key for the defbox; add a
+	"defbox-font" property to GdictWindow; use the font of the GdictDefbox
+	widget to calculate the window geometry, now that the window and the
+	defbox widgets might have two different font descriptions; get
+	notification from eventual errors while connecting to GConf.
+
+	* src/gdict-applet.c (gdict_applet_set_defbox_font),
+	(gdict_applet_gconf_notify_cb), (gdict_applet_finalize),
+	(gdict_applet_init), (set_default_size): use the font size inside
+	the "document_font_name" GConf key for the defbox; use the font of
+	the GdictDefbox widget to calculate the window geometry, now that
+	the window and the defbox widgets might have two different font
+	descriptions; get notification from eventual errors while connecting to
+	GConf.
+
 2006-01-23  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-applet.c (gdict_applet_init): fix stupid typo.

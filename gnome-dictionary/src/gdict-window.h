@@ -68,9 +68,11 @@ struct _GdictWindow
   gchar *database;
   gchar *strategy;
   gchar *print_font;
+  gchar *defbox_font;
   
   GConfClient *gconf_client;
   guint notify_id;
+  guint font_notify_id;
 
   GdkPixbuf *icon;
 
