@@ -1,9 +1,9 @@
 ===================================================================
-GNOME Utilities 2.13.90 (January 29th 2006) - ""
+GNOME Utilities 2.13.90 (January 29th 2006) - "Gnomaean Taxonomy"
 
     * Fix the version for libgdict, and add a versioning scheme for
       this library; even if not part of the Platform, it will follow
-      the API/ABI freeze.
+      the API/ABI freeze from now on.
     * Remove the need for the template file for configure.in
     * Fix the categories for the .desktop files used to build the
       menus.
@@ -17,6 +17,9 @@ GNOME Dictionary
     * Reworked the size calculation for the window of the application
       and the applet: now, you should not need to resize it.
     * Code clean ups.
+    * Support for the Document Font desktop setting.
+    * Slight API addition inside libgdict: GdictDefbox now has a
+      "font-name" property and its accessor functions.
 
 GNOME Floppy
 
@@ -28,7 +31,7 @@ GNOME Screenshot
 
 GNOME Log Viewer
 
-    * Begin some needed code clean ups.
+    * Begin some code clean ups.
     * Fix bug 327614 - avoid crashing when loading preferences.
     * Fix command line argument parsing, and add a "--version" switch
       to show the version.
