@@ -28,7 +28,7 @@ logview_about (GtkWidget *widget, GtkWidget *window)
 {
   /* Author needs some sort of dash over the 'e' in Cesar  - U-00E9 */
   static const gchar *author[] = { "Cesar Miquel <miquel@df.uba.ar>",
-				   "Glynn Foster <fherrera@onirica.com>",
+				   "Glynn Foster <glynn.foster@sun.com>",
 				   "Fernando Herrera  <fherrera@onirica.com>",
 				   "Shakti Sen  <shprasad@novell.com>",
 				   "Julio M Merino Vidal <jmmv@menta.net>",
