@@ -175,12 +175,19 @@ date_get_string (GDate *date)
    return utf8;
 }
 
-void widget_set_font (GtkWidget *widget, gchar *font_name)
+void
+widget_set_font (GtkWidget   *widget,
+		 const gchar *font_name)
 {
-   PangoFontDescription *fontdesc;
+	PangoFontDescription *font_desc;
 
-   fontdesc = pango_font_description_from_string (font_name);
-   if (pango_font_description_get_family (fontdesc) != NULL)
-       gtk_widget_modify_font (widget, fontdesc);
-   g_free (fontdesc);
+	g_return_if_fail (GTK_IS_WIDGET (widget));
+
+	font_desc = pango_font_description_from_string (font_name);
+	if (font_desc) {
+		gtk_widget_modify_font (widget, font_desc);
+		pango_font_description_free (font_desc);
+	}
+	else
+		gtk_widget_modify_font (widget, NULL);
 }
