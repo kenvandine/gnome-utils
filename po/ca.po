@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.11.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-29 02:05+0100\n"
-"PO-Revision-Date: 2006-01-29 02:07+0100\n"
+"POT-Creation-Date: 2006-02-04 16:22+0100\n"
+"PO-Revision-Date: 2006-02-04 16:24+0100\n"
 "Last-Translator: Josep Puigdemont <josep.puigdemont@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -507,7 +507,7 @@ msgstr "De_sa"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-app.c:363
 #: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "Dictionary"
 msgstr "Diccionari"
@@ -1102,7 +1102,21 @@ msgstr "Cerca paraules a diccionaris"
 msgid "Unable to open the application icon: %s"
 msgstr "No s'ha pogut obrir la icona de l'aplicació: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:201
+#: ../gnome-dictionary/src/gdict-app.c:116
+#, c-format
+msgid ""
+"Unable to create the data directory '%s': there already is a file with the "
+"same name.  You should move the file and re-run gnome-dictionary."
+msgstr "No s'ha pogut crear el directori de dades «%s»: ja hi ha un fitxer amb aquest mateix nom. Hauríeu de moure el fitxer i executar de nou el gnome-dictionary."
+
+#. Translators: the first is the file name, the second is
+#. * the error message
+#: ../gnome-dictionary/src/gdict-app.c:128
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "No s'ha pogut crear el directori de dades «%s»: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:219
 #, c-format
 msgid ""
 "Definitions for \"%s\":\n"
@@ -1112,7 +1126,7 @@ msgstr ""
 "\n"
 
 #. Translators: source name first, then definition
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:228
 #, c-format
 msgid ""
 "From %s:\n"
@@ -1121,20 +1135,20 @@ msgstr ""
 "De %s:\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:220
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid "Error: %s\n"
 msgstr "Error: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:232
+#: ../gnome-dictionary/src/gdict-app.c:250
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Vegeu gnome-dictionary --help per a l'ús\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:245
+#: ../gnome-dictionary/src/gdict-app.c:263
 msgid "Unable to find a suitable dictionary source"
 msgstr "No s'ha pogut trobar cap diccionari font adequat"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:291
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1143,44 +1157,44 @@ msgstr ""
 "S'ha produït un error en cercar la definició de «%s»:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "Word to look up"
 msgstr "Paraula a cercar"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "word"
 msgstr "paraula"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "Dictionary source to use"
 msgstr "Diccionaris font a utilitzar"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "source"
 msgstr "font"
 
-#: ../gnome-dictionary/src/gdict-app.c:308
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid "Show available dictionary sources"
 msgstr "Mostra els diccionaris font disponibls"
 
-#: ../gnome-dictionary/src/gdict-app.c:310
+#: ../gnome-dictionary/src/gdict-app.c:328
 msgid "Print result to the console"
 msgstr "Escriu els resultats a la consola"
 
-#: ../gnome-dictionary/src/gdict-app.c:312
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Database to use"
 msgstr "Base de dades a utilitzar"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:328
+#: ../gnome-dictionary/src/gdict-app.c:346
 msgid " - Look up words in dictionaries"
 msgstr " - Cerca paraules a diccionaris"
 
-#: ../gnome-dictionary/src/gdict-app.c:332
+#: ../gnome-dictionary/src/gdict-app.c:350
 msgid "Dictionary and spelling tool"
 msgstr "Diccionari i eina de correcció ortogràfica"
 
-#: ../gnome-dictionary/src/gdict-app.c:333
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Show Dictionary options"
 msgstr "Mostra opcions del diccionari"
 
@@ -1289,26 +1303,37 @@ msgstr "No hi ha cap context disponibles per a la font «%s»"
 msgid "Unable to create a context"
 msgstr "No s'ha pogut crear el context"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1210
+#: ../gnome-dictionary/src/gdict-applet.c:1212
+#: ../gnome-dictionary/src/gdict-applet.c:1229
 #, c-format
 msgid "Unable to create the data directory '%s'"
 msgstr "No s'ha pogut netejar el directori de dades «%s»"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1230
+#: ../gnome-dictionary/src/gdict-applet.c:1213
+msgid ""
+"There is a file with the same name in the path.\n"
+"You should move the file and re-run the\n"
+"Dictionary applet"
+msgstr ""
+"Hi ha un fitxer amb el mateix nom.\n"
+"Hauríeu de moure el fitxer i executar de nou\n"
+"la miniaplicació Cerca al diccionari"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1249
 msgid "Unable to load the applet icon"
 msgstr "No s'ha pogut carregar la icona de la miniaplicació"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1259
+#: ../gnome-dictionary/src/gdict-applet.c:1278
 #: ../gnome-dictionary/src/gdict-window.c:1319
 msgid "Unable to connect to GConf"
 msgstr "No s'ha pogut connectar al GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1274
+#: ../gnome-dictionary/src/gdict-applet.c:1293
 #: ../gnome-dictionary/src/gdict-window.c:1335
 msgid "Unable to get notification for preferences"
 msgstr "No s'ha pogut obtenir la notificació per a les preferències"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1289
+#: ../gnome-dictionary/src/gdict-applet.c:1308
 #: ../gnome-dictionary/src/gdict-window.c:1351
 msgid "Unable to get notification for the document font"
 msgstr ""
@@ -2691,15 +2716,15 @@ msgstr "Obre un fitxer de registre"
 msgid "There was an error displaying help."
 msgstr "S'ha produït un error en mostrar l'ajuda."
 
-#: ../logview/logview.c:882
+#: ../logview/logview.c:884
 msgid "Version: "
 msgstr "Versió: "
 
-#: ../logview/logview.c:951
+#: ../logview/logview.c:953
 msgid "Days"
 msgstr "Dies"
 
-#: ../logview/logview.c:952
+#: ../logview/logview.c:954
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "Punter a una llista GSList de dies del registre actual."
 
