@@ -1,18 +1,17 @@
 # Thai translation for gnome-utils.
-# Copyright (C) 2004 Free Software Foundation, Inc.
+# Copyright (C) 2004-2006 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-utils package.
 # Khunti Yeesoon <sc445138@bucc3.buu.ac.th>, 2003.
 # Paisa Seeluangsawat <paisa@users.sf.net>, 2004.
 # Supranee Thirawatthanasuk <supranee@opentle.org>, 2004.
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005.
-#
+# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2005-2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-28 12:34+0700\n"
-"PO-Revision-Date: 2006-01-28 12:48+0700\n"
+"POT-Creation-Date: 2006-02-04 09:14+0700\n"
+"PO-Revision-Date: 2006-02-04 09:21+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -60,27 +59,27 @@ msgstr ""
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr "ext2 สำหรับระบบแฟ้มของลินุกซ์ fat สำหรับระบบแฟ้มของดอส"
 
-#: ../gfloppy/src/badblocks.c:88
+#: ../gfloppy/src/badblocks.c:89
 msgid "Internal Error: Unable to seek to the correct location."
 msgstr "เกิดข้อผิดพลาดภายใน: ไม่สามารถค้นหาตำแหน่งที่ถูกต้อง"
 
-#: ../gfloppy/src/badblocks.c:97
+#: ../gfloppy/src/badblocks.c:98
 #, c-format
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "เกิดข้อผิดพลาดภายใน: do_test มีค่าที่แปลกๆ (%ld)\n"
 
 #. while (!i)
 #. ;
-#: ../gfloppy/src/badblocks.c:255
+#: ../gfloppy/src/badblocks.c:256
 msgid "Checking for bad blocks..."
 msgstr "กำลังตรวจหาบล็อกเสีย..."
 
-#: ../gfloppy/src/badblocks.c:267
+#: ../gfloppy/src/badblocks.c:268
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr "ไม่สามารถเปิดใช้อุปกรณ์ %s เพื่อตรวจหาบล็อกเสีย\n"
 
-#: ../gfloppy/src/badblocks.c:287 ../gfloppy/src/gfloppy.c:531
+#: ../gfloppy/src/badblocks.c:288 ../gfloppy/src/gfloppy.c:531
 msgid "Checking for bad blocks... Done"
 msgstr "กำลังตรวจหาบล็อกเสีย...เสร็จเรียบร้อย"
 
@@ -503,7 +502,7 @@ msgstr "_บันทึก"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-app.c:363
 #: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "Dictionary"
 msgstr "พจนานุกรม"
@@ -1083,7 +1082,23 @@ msgstr "ค้นหาคำในพจนานุกรมต่างๆ"
 msgid "Unable to open the application icon: %s"
 msgstr "ไม่สามารถเปิดไอคอนของโปรแกรมได้: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:201
+#: ../gnome-dictionary/src/gdict-app.c:116
+#, c-format
+msgid ""
+"Unable to create the data directory '%s': there already is a file with the "
+"same name.  You should move the file and re-run gnome-dictionary."
+msgstr ""
+"ไม่สามารถสร้างโฟลเดอร์ข้อมูล '%s': มีแฟ้มชื่อเดียวกันอยู่ก่อนแล้ว "
+"กรุณาย้ายแฟ้มดังกล่าวออกไป แล้วเรียก gnome-dictionary ใหม่"
+
+#. Translators: the first is the file name, the second is
+#. * the error message
+#: ../gnome-dictionary/src/gdict-app.c:128
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "ไม่สามารถสร้างโฟลเดอร์ข้อมูล '%s': %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:219
 #, c-format
 msgid ""
 "Definitions for \"%s\":\n"
@@ -1093,7 +1108,7 @@ msgstr ""
 "\n"
 
 #. Translators: source name first, then definition
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:228
 #, c-format
 msgid ""
 "From %s:\n"
@@ -1102,20 +1117,20 @@ msgstr ""
 "จาก %s:\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:220
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid "Error: %s\n"
 msgstr "ผิดพลาด: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:232
+#: ../gnome-dictionary/src/gdict-app.c:250
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "เรียก gnome-dictionary --help เพื่อดูวิธีเรียกใช้\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:245
+#: ../gnome-dictionary/src/gdict-app.c:263
 msgid "Unable to find a suitable dictionary source"
 msgstr "ไม่พบแหล่งพจนานุกรมที่เหมาะสม"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:291
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1124,44 +1139,44 @@ msgstr ""
 "เกิดข้อผิดพลาดขณะค้นความหมายของคำว่า \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "Word to look up"
 msgstr "คำที่จะค้นหา"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "word"
 msgstr "คำ"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "Dictionary source to use"
 msgstr "แหล่งพจนานุกรมที่จะใช้"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "source"
 msgstr "แหล่ง"
 
-#: ../gnome-dictionary/src/gdict-app.c:308
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid "Show available dictionary sources"
 msgstr "แสดงแหล่งพจนานุกรมทั้งหมดที่มี"
 
-#: ../gnome-dictionary/src/gdict-app.c:310
+#: ../gnome-dictionary/src/gdict-app.c:328
 msgid "Print result to the console"
 msgstr "แสดงผลลัพธ์ออกทางคอนโซล"
 
-#: ../gnome-dictionary/src/gdict-app.c:312
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Database to use"
 msgstr "ฐานข้อมูลที่จะใช้"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:328
+#: ../gnome-dictionary/src/gdict-app.c:346
 msgid " - Look up words in dictionaries"
 msgstr " - ค้นหาคำในพจนานุกรมต่างๆ"
 
-#: ../gnome-dictionary/src/gdict-app.c:332
+#: ../gnome-dictionary/src/gdict-app.c:350
 msgid "Dictionary and spelling tool"
 msgstr "เครื่องมือค้นพจนานุกรมและตรวจตัวสะกด"
 
-#: ../gnome-dictionary/src/gdict-app.c:333
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Show Dictionary options"
 msgstr "แสดงตัวเลือกต่างๆ ของพจนานุกรม"
 
@@ -1270,26 +1285,37 @@ msgstr "ไม่มี context สำหรับแหล่ง '%s' ให้
 msgid "Unable to create a context"
 msgstr "ไม่สามารถสร้าง context ได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1210
+#: ../gnome-dictionary/src/gdict-applet.c:1212
+#: ../gnome-dictionary/src/gdict-applet.c:1229
 #, c-format
 msgid "Unable to create the data directory '%s'"
 msgstr "ไม่สามารถสร้างโฟลเดอร์ข้อมูล '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1230
+#: ../gnome-dictionary/src/gdict-applet.c:1213
+msgid ""
+"There is a file with the same name in the path.\n"
+"You should move the file and re-run the\n"
+"Dictionary applet"
+msgstr ""
+"มีแฟ้มชื่อเดียวกันอยู่ในพาธดังกล่าว\n"
+"กรุณาย้ายแฟ้มดังกล่าวออกไป\n"
+"แล้วเรียกแอพเพล็ตพจนานุกรมใหม่"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1249
 msgid "Unable to load the applet icon"
 msgstr "ไม่สามารถโหลดไอคอนของแอพเพล็ตได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1259
+#: ../gnome-dictionary/src/gdict-applet.c:1278
 #: ../gnome-dictionary/src/gdict-window.c:1319
 msgid "Unable to connect to GConf"
 msgstr "ไม่สามารถเชื่อมต่อไปยัง GConf ได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1274
+#: ../gnome-dictionary/src/gdict-applet.c:1293
 #: ../gnome-dictionary/src/gdict-window.c:1335
 msgid "Unable to get notification for preferences"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1289
+#: ../gnome-dictionary/src/gdict-applet.c:1308
 #: ../gnome-dictionary/src/gdict-window.c:1351
 msgid "Unable to get notification for the document font"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งแบบอักษรเอกสารได้"
@@ -2622,15 +2648,15 @@ msgstr "เปิดบันทึกปฏิบัติการ"
 msgid "There was an error displaying help."
 msgstr "เกิดข้อผิดพลาดขณะแสดงคำแนะนำ"
 
-#: ../logview/logview.c:882
+#: ../logview/logview.c:884
 msgid "Version: "
 msgstr "รุ่น: "
 
-#: ../logview/logview.c:951
+#: ../logview/logview.c:953
 msgid "Days"
 msgstr "รายการวัน"
 
-#: ../logview/logview.c:952
+#: ../logview/logview.c:954
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "พอยน์เตอร์ไปยัง GSList ของวันต่างๆ ในบันทึกปฏิบัติการปัจจุบัน"
 
