@@ -107,10 +107,28 @@ gdict_app_init (GdictApp *app)
   
   if (g_mkdir (data_dir, 0700) == -1)
     {
+      /* this is weird, but sometimes there's a "gnome-dictionary" file
+       * inside $HOME/.gnome2; see bug #329126.
+       */
+      if ((errno == EEXIST) &&
+	  (g_file_test (data_dir, G_FILE_TEST_IS_REGULAR)))
+        {
+          g_warning (_("Unable to create the data directory '%s': "
+		       "there already is a file with the same name.  You "
+		       "should move the file and re-run gnome-dictionary."),
+		     data_dir);
+
+	  exit (1);
+	}
+      
       if (errno != EEXIST)
-        g_warning ("Unable to create the data directory '%s': %s",
-		   data_dir,
-		   strerror (errno));
+        {
+          /* Translators: the first is the file name, the second is
+	   * the error message */
+          g_warning (_("Unable to create the data directory '%s': %s"),
+		     data_dir,
+		     strerror (errno));
+	}
     }
   
   g_free (data_dir);
@@ -351,6 +369,9 @@ gdict_init (int *argc, char ***argv)
       g_signal_connect (singleton->client, "save-yourself",
                         G_CALLBACK (save_yourself_cb),
                         NULL);
+      g_signal_connect (singleton->client, "die",
+		        G_CALLBACK (die_cb),
+			NULL);
     }
   
   gconf_error = NULL;

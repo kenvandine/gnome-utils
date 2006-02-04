@@ -1,3 +1,13 @@
+2006-02-04  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-app.c (gdict_app_init): check whether there is a file
+	with the same name of the data directory under $HOME/.gnome2, and
+	warn the user to move it away; the file seems to be a left-over
+	from older versions of Gnome (early 2.0, probably), so it
+	shouldn't bother us that much (closes bug #329126).
+
+	* src/gdict-applet.c (gdict_applet_init): ditto.
+
 2006-01-28  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	Add support for the document_font_name key into the Dictionary

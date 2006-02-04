@@ -1203,6 +1203,25 @@ gdict_applet_init (GdictApplet *applet)
   /* create the data directory inside $HOME, if it doesn't exist yet */
   if (g_mkdir (data_dir, 0700) == -1)
     {
+      /* this is weird, but sometimes there's a "gnome-dictionary" file
+       * inside $HOME/.gnome2; see bug #329126.
+       */
+      if ((errno == EEXIST) &&
+	  (g_file_test (data_dir, G_FILE_TEST_IS_REGULAR)))
+	{
+          gchar *message = g_strdup_printf (_("Unable to create the data directory '%s'"), data_dir);
+	  gchar *detail = g_strdup_printf (_("There is a file with the same name in the path.\n"
+			  		     "You should move the file and re-run the\n"
+					     "Dictionary applet"));
+
+	  show_error_dialog (NULL,
+			     message,
+			     detail);
+
+	  g_free (message);
+	  g_free (detail);
+	}
+
       if (errno != EEXIST)
         {
 	  gchar *message;
