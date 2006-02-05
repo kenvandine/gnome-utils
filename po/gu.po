@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-29 23:27+0100\n"
-"PO-Revision-Date: 2006-01-30 15:46+0530\n"
+"POT-Creation-Date: 2006-02-05 07:16+0100\n"
+"PO-Revision-Date: 2006-02-05 13:40+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -502,7 +503,7 @@ msgstr "સંગ્રહો (_S)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-app.c:363
 #: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "Dictionary"
 msgstr "શબ્દકોષ"
@@ -1081,7 +1082,21 @@ msgstr "શબ્દકોષોમાં શબ્દો જુઓ"
 msgid "Unable to open the application icon: %s"
 msgstr "કાર્યક્રમ ચિહ્ન ખોલવામાં અસમર્થ: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:201
+#: ../gnome-dictionary/src/gdict-app.c:116
+#, c-format
+msgid ""
+"Unable to create the data directory '%s': there already is a file with the "
+"same name.  You should move the file and re-run gnome-dictionary."
+msgstr "માહિતી ડિરેક્ટરી '%s' બનાવવામાં અસમર્થ: ત્યાં આ જ નામવાળી ફાઈલ પહેલાથી જ હાજર છે.  તમારે ફાઈલને ખસેડવી જોઈએ અને જીનોમ-શબ્દકોષ પુનઃચલાવવો જોઈએ."
+
+#. Translators: the first is the file name, the second is
+#. * the error message
+#: ../gnome-dictionary/src/gdict-app.c:128
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "માહિતી ડિરેક્ટરી '%s' બનાવવામાં અસમર્થ: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:219
 #, c-format
 msgid ""
 "Definitions for \"%s\":\n"
@@ -1091,7 +1106,7 @@ msgstr ""
 "\n"
 
 #. Translators: source name first, then definition
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:228
 #, c-format
 msgid ""
 "From %s:\n"
@@ -1100,20 +1115,20 @@ msgstr ""
 "%s તરફથી:\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:220
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid "Error: %s\n"
 msgstr "ભૂલ: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:232
+#: ../gnome-dictionary/src/gdict-app.c:250
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "વપરાશ માટે gnome-dictionary --help જુઓ\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:245
+#: ../gnome-dictionary/src/gdict-app.c:263
 msgid "Unable to find a suitable dictionary source"
 msgstr "વ્યાપક શબ્દકોષ સ્રોત શોધવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:291
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1122,44 +1137,44 @@ msgstr ""
 "\"%s\" ની વ્યાખ્યા જોતી વખતે ભૂલ:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "Word to look up"
 msgstr "જોવા માટેનો શબ્દ"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "word"
 msgstr "શબ્દ"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "Dictionary source to use"
 msgstr "વાપરવા માટેનો શબ્દકોષ સ્રોત"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "source"
 msgstr "સ્રોત"
 
-#: ../gnome-dictionary/src/gdict-app.c:308
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid "Show available dictionary sources"
 msgstr "ઉપલબ્ધ શબ્દકોષ સ્રોતો બતાવો"
 
-#: ../gnome-dictionary/src/gdict-app.c:310
+#: ../gnome-dictionary/src/gdict-app.c:328
 msgid "Print result to the console"
 msgstr "પરિણામને કન્સોલમાં છાપો"
 
-#: ../gnome-dictionary/src/gdict-app.c:312
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Database to use"
 msgstr "વાપરવા માટેનો ડેટાબેઝ"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:328
+#: ../gnome-dictionary/src/gdict-app.c:346
 msgid " - Look up words in dictionaries"
 msgstr " - શબ્દો શબ્દોકોષોમાં જુઓ"
 
-#: ../gnome-dictionary/src/gdict-app.c:332
+#: ../gnome-dictionary/src/gdict-app.c:350
 msgid "Dictionary and spelling tool"
 msgstr "શબ્દકોષ અને જોડણી સાધન"
 
-#: ../gnome-dictionary/src/gdict-app.c:333
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Show Dictionary options"
 msgstr "શબ્દકોષ વિકલ્પો બતાવો"
 
@@ -1268,26 +1283,37 @@ msgstr "કોઈ સંદર્ભ '%s' સ્રોત માટે ઉપલ
 msgid "Unable to create a context"
 msgstr "સંદર્ભ બનાવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1210
+#: ../gnome-dictionary/src/gdict-applet.c:1212
+#: ../gnome-dictionary/src/gdict-applet.c:1229
 #, c-format
 msgid "Unable to create the data directory '%s'"
 msgstr "માહિતી ડિરેક્ટરી '%s' બનાવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1230
+#: ../gnome-dictionary/src/gdict-applet.c:1213
+msgid ""
+"There is a file with the same name in the path.\n"
+"You should move the file and re-run the\n"
+"Dictionary applet"
+msgstr ""
+"પાથમાં આ જ નામવાળી ફાઈલ ત્યાં પહેલાથી જ હાજર છે.\n"
+"તમારે ફાઈલને ખસેડવી જોઈએ અને શબ્દકોષ એપ્લેટને\n"
+"પુનઃચલાવવી જોઈએ"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1249
 msgid "Unable to load the applet icon"
 msgstr "એપ્લેટ ચિહ્ન લાવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1259
+#: ../gnome-dictionary/src/gdict-applet.c:1278
 #: ../gnome-dictionary/src/gdict-window.c:1319
 msgid "Unable to connect to GConf"
 msgstr "GConf સાથે જોડવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1274
+#: ../gnome-dictionary/src/gdict-applet.c:1293
 #: ../gnome-dictionary/src/gdict-window.c:1335
 msgid "Unable to get notification for preferences"
 msgstr "પસંદગીઓ માટે સૂચન મેળવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1289
+#: ../gnome-dictionary/src/gdict-applet.c:1308
 #: ../gnome-dictionary/src/gdict-window.c:1351
 msgid "Unable to get notification for the document font"
 msgstr "દસ્તાવેજ ફોન્ટ માટે સૂચન મેળવવામાં અસમર્થ"
@@ -2656,15 +2682,15 @@ msgstr "લોગ ખોલો"
 msgid "There was an error displaying help."
 msgstr "મદદ પ્રદર્શિત કરવામાં ભૂલ હતી."
 
-#: ../logview/logview.c:882
+#: ../logview/logview.c:884
 msgid "Version: "
 msgstr "આવૃત્તિ: "
 
-#: ../logview/logview.c:951
+#: ../logview/logview.c:953
 msgid "Days"
 msgstr "દિવસો"
 
-#: ../logview/logview.c:952
+#: ../logview/logview.c:954
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "વર્તમાન લોગ માટે દિવસોના GSList તરફનો નિર્દેશક."
 
