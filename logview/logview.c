@@ -860,9 +860,8 @@ logview_init (LogviewWindow *logview)
    /* Use the desktop monospace font */
    monospace_font_name = prefs_get_monospace ();
    if (!monospace_font_name)
-     monospace_font_name = g_strdup ("Monospace 10");
+     monospace_font_name = "Monospace 10";
    widget_set_font (GTK_WIDGET (logview->view), monospace_font_name);
-   g_free (monospace_font_name);
   
    renderer = gtk_cell_renderer_text_new ();
    column = gtk_tree_view_column_new ();
