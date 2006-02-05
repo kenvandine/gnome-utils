@@ -1128,6 +1128,9 @@ gdict_applet_finalize (GObject *object)
   GdictApplet *applet = GDICT_APPLET (object);
   GdictAppletPrivate *priv = applet->priv;
 
+  if (priv->idle_draw_id)
+    g_source_remove (priv->idle_draw_id);
+
   if (priv->notify_id)
     gconf_client_notify_remove (priv->gconf_client, priv->notify_id);
 
