@@ -1,5 +1,20 @@
 2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-app.h
+	* src/gdict-app.c (gdict_app_finalize), (gdict_window_created_cb),
+	(lookup_start_cb), (definition_found_cb), (lookup_end_cb),
+	(gdict_look_up_word_and_quit), (gdict_init): support looking up
+	multiple words from the console using the --look-up <word> command
+	line switch more than once; this also works with the --no-window
+	switch, for console-only output.
+
+	* src/gdict-window.c (gdict_window_new): fill the look up entry if 
+	a word is passed to the GdictWindow constructor.
+
+	* src/gdict-about.c: update copyright date.
+
+2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-window.c (gdict_window_set_word), (entry_activate_cb),
 	(gdict_window_drag_data_received_cb), (gdict_window_new): if a word is
 	passed to the GdictWindow constructor it'll be search automatically,

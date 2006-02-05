@@ -1400,7 +1400,11 @@ gdict_window_new (GdictSourceLoader *loader,
 			 NULL);
 
   if (word && word[0] != '\0')
-    gdict_window_set_word (GDICT_WINDOW (retval), word);
+    {
+      gtk_entry_set_text (GTK_ENTRY (GDICT_WINDOW (retval)->entry), word);
+      
+      gdict_window_set_word (GDICT_WINDOW (retval), word);
+    }
 
   return retval;
 }

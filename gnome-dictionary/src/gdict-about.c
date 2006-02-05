@@ -57,7 +57,7 @@ gdict_show_about_dialog (GtkWidget *parent)
   };
 
   const gchar *translator_credits = _("translator-credits");
-  const gchar *copyright = "Copyright \xc2\xa9 2005 Emmanuele Bassi";
+  const gchar *copyright = "Copyright \xc2\xa9 2005-2006 Emmanuele Bassi";
   const gchar *comments = _("Look up words in dictionaries");
   
   const gchar *license =

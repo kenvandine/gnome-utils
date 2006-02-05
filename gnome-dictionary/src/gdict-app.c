@@ -71,12 +71,14 @@ gdict_app_finalize (GObject *object)
   		   NULL);
   g_slist_free (app->windows);
 
+  g_list_foreach (app->words,
+		  (GFunc) g_free,
+		  NULL);
+  g_list_free (app->words);
+
   if (app->database)
     g_free (app->database);
 
-  if (app->word)
-    g_free (app->word);
-  
   if (app->source_name)
     g_free (app->source_name);
   
@@ -193,30 +195,47 @@ gdict_window_created_cb (GdictWindow *parent,
 static void
 gdict_create_window (GdictApp *app)
 {
-  GtkWidget *window;
-  
-  window = gdict_window_new (singleton->loader,
-		  	     singleton->source_name,
-			     singleton->word);
-  
-  g_signal_connect (window, "created",
-  		    G_CALLBACK (gdict_window_created_cb), app);
-  g_signal_connect (window, "destroy",
-  		    G_CALLBACK (gdict_window_destroy_cb), app);
-  
-  app->windows = g_slist_prepend (app->windows, window);
-  app->current_window = GDICT_WINDOW (window);
-  
-  gtk_widget_show (window);
-}
+  GList *l;
 
-static void
-lookup_start_cb (GdictContext *context,
-		 gpointer      user_data)
-{
-  GdictApp *app = GDICT_APP (user_data);
+  if (!singleton->words)
+    {
+      GtkWidget *window;
 
-  g_print (_("Definitions for \"%s\":\n\n"), app->word);
+      window = gdict_window_new (singleton->loader,
+				 singleton->source_name,
+				 NULL);
+      g_signal_connect (window, "created",
+		        G_CALLBACK (gdict_window_created_cb), app);
+      g_signal_connect (window, "destroy",
+		        G_CALLBACK (gdict_window_destroy_cb), app);
+  
+     app->windows = g_slist_prepend (app->windows, window);
+     app->current_window = GDICT_WINDOW (window);
+  
+     gtk_widget_show (window);
+
+     return;
+   }
+      
+  for (l = singleton->words; l != NULL; l = l->next)
+    {
+      gchar *word = (gchar *) l->data;
+      GtkWidget *window;
+
+      window = gdict_window_new (singleton->loader,
+		      		 singleton->source_name,
+				 word);
+      
+      g_signal_connect (window, "created",
+		        G_CALLBACK (gdict_window_created_cb), app);
+      g_signal_connect (window, "destroy",
+		        G_CALLBACK (gdict_window_destroy_cb), app);
+  
+      app->windows = g_slist_prepend (app->windows, window);
+      app->current_window = GDICT_WINDOW (window);
+  
+      gtk_widget_show (window);
+    }
 }
 
 static void
@@ -224,8 +243,14 @@ definition_found_cb (GdictContext    *context,
 		     GdictDefinition *definition,
 		     gpointer         user_data)
 {
-  /* Translators: source name first, then definition */
-  g_print (_("From %s:\n%s\n"),
+  /* Translators: the first is the word found, the second is the
+   * database name and the last is the definition's text; please
+   * keep the new lines. */
+  g_print (_("Definition for '%s'\n"
+	     "  From '%s':\n"
+	     "\n"
+	     "%s\n"),
+           gdict_definition_get_word (definition),
 	   gdict_definition_get_database (definition),
 	   gdict_definition_get_text (definition));
 }
@@ -236,6 +261,20 @@ error_cb (GdictContext *context,
 	  gpointer      user_data)
 {
   g_print (_("Error: %s\n"), error->message);
+
+  gtk_main_quit ();
+}
+
+static void
+lookup_end_cb (GdictContext *context,
+	       gpointer      user_data)
+{
+  GdictApp *app = GDICT_APP (user_data);
+
+  app->remaining_words -= 1;
+
+  if (app->remaining_words == 0)
+    gtk_main_quit ();
 }
 
 static void
@@ -243,9 +282,9 @@ gdict_look_up_word_and_quit (GdictApp *app)
 {
   GdictSource *source;
   GdictContext *context;
-  GError *err;
+  GList *l;
   
-  if (!app->word)
+  if (!app->words)
     {
       g_print (_("See gnome-dictionary --help for usage\n"));
 
@@ -272,27 +311,34 @@ gdict_look_up_word_and_quit (GdictApp *app)
   context = gdict_source_peek_context (source);
   g_assert (GDICT_IS_CONTEXT (context));
 
-  g_signal_connect (context, "lookup-start",
-		    G_CALLBACK (lookup_start_cb), app);
   g_signal_connect (context, "definition-found",
 		    G_CALLBACK (definition_found_cb), app);
-  g_signal_connect (context, "lookup-end",
-		    G_CALLBACK (gtk_main_quit), NULL);
   g_signal_connect (context, "error",
 		    G_CALLBACK (error_cb), app);
+  g_signal_connect (context, "lookup-end",
+		    G_CALLBACK (lookup_end_cb), app);
 
-  err = NULL;
-  gdict_context_define_word (context,
-		  	     app->database,
-		  	     app->word,
-			     &err);
-  if (err)
+  app->remaining_words = 0;
+  for (l = app->words; l != NULL; l = l->next)
     {
-      g_warning (_("Error while looking up the definition of \"%s\":\n%s"),
-		 app->word,
-		 err->message);
+      gchar *word = (gchar *) l->data;
+      GError *err = NULL;
 
-      g_error_free (err);
+      app->remaining_words += 1;
+
+      gdict_context_define_word (context,
+		      		 app->database,
+				 word,
+				 &err);
+
+      if (err)
+	{
+          g_warning (_("Error while looking up the definition of \"%s\":\n%s"),
+		     word,
+		     err->message);
+
+	  g_error_free (err);
+	}
     }
 
   gtk_main ();
@@ -310,7 +356,7 @@ gdict_init (int *argc, char ***argv)
   GOptionContext *context;
   GOptionGroup *group;
   gchar *loader_path;
-  gchar *word = NULL;
+  gchar **words = NULL;
   gchar *database = NULL;
   gchar *source_name = NULL;
   gboolean no_window = FALSE;
@@ -318,8 +364,8 @@ gdict_init (int *argc, char ***argv)
 
   const GOptionEntry gdict_app_goptions[] =
   {
-    { "look-up", 0, 0, G_OPTION_ARG_STRING, &word,
-       N_("Word to look up"), N_("word") },
+    { "look-up", 0, 0, G_OPTION_ARG_STRING_ARRAY, &words,
+       N_("Words to look up"), N_("word") },
     { "source", 's', 0, G_OPTION_ARG_STRING, &source_name,
        N_("Dictionary source to use"), N_("source") },
     { "list-sources", 'l', 0, G_OPTION_ARG_NONE, &list_sources,
@@ -394,8 +440,14 @@ gdict_init (int *argc, char ***argv)
   gdict_source_loader_add_search_path (singleton->loader, loader_path);
   g_free (loader_path);
 
-  if (word)
-    singleton->word = g_strdup (word);
+  if (words)
+    {
+      gsize i;
+      gsize length = g_strv_length (words);
+
+      for (i = 0; i < length; i++)
+	singleton->words = g_list_prepend (singleton->words, g_strdup (words[i]));
+    }
 
   if (database)
     singleton->database = g_strdup (database);
