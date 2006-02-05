@@ -19,14 +19,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-29 23:23+0100\n"
-"PO-Revision-Date: 2006-01-29 23:25+0100\n"
+"POT-Creation-Date: 2006-02-05 13:06+0100\n"
+"PO-Revision-Date: 2006-02-05 13:08+0100\n"
 "Last-Translator: Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Language-Team: Galego <trasno@ceu.fi.udc.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.1\n"
+"X-Generator: KBabel 1.11.2\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
@@ -516,7 +516,7 @@ msgstr "_Gardar"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-app.c:363
 #: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "Dictionary"
 msgstr "Diccionario"
@@ -1105,7 +1105,21 @@ msgstr "Procure palabras en diccionarios"
 msgid "Unable to open the application icon: %s"
 msgstr "Imposible abrir a icona da aplicación: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:201
+#: ../gnome-dictionary/src/gdict-app.c:116
+#, c-format
+msgid ""
+"Unable to create the data directory '%s': there already is a file with the "
+"same name.  You should move the file and re-run gnome-dictionary."
+msgstr "Non se puido crear o directorio de datos '%s': xa hai un ficheiro con ese mesmo nome. Debería mover o ficheiro e volver a executar gnome-dictionary."
+
+#. Translators: the first is the file name, the second is
+#. * the error message
+#: ../gnome-dictionary/src/gdict-app.c:128
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "Imposible crear o directorio de datos '%s': %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:219
 #, c-format
 msgid ""
 "Definitions for \"%s\":\n"
@@ -1115,7 +1129,7 @@ msgstr ""
 "\n"
 
 #. Translators: source name first, then definition
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:228
 #, c-format
 msgid ""
 "From %s:\n"
@@ -1124,20 +1138,20 @@ msgstr ""
 "De %s:\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:220
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid "Error: %s\n"
 msgstr "Erro: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:232
+#: ../gnome-dictionary/src/gdict-app.c:250
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Vexa gnome-dictionary --help para o uso\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:245
+#: ../gnome-dictionary/src/gdict-app.c:263
 msgid "Unable to find a suitable dictionary source"
 msgstr "Imposible atopar unha fonte de diccionario apropiada"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:291
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1146,44 +1160,44 @@ msgstr ""
 "Erro ao procurar a definición de \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "Word to look up"
 msgstr "Palabra a procurar"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "word"
 msgstr "palabra"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "Dictionary source to use"
 msgstr "Fonte de diccionario a usar"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "source"
 msgstr "fonte"
 
-#: ../gnome-dictionary/src/gdict-app.c:308
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid "Show available dictionary sources"
 msgstr "Amosar fontes de diccionarios dispoñibles"
 
-#: ../gnome-dictionary/src/gdict-app.c:310
+#: ../gnome-dictionary/src/gdict-app.c:328
 msgid "Print result to the console"
 msgstr "Imprimir o resultado na consola"
 
-#: ../gnome-dictionary/src/gdict-app.c:312
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Database to use"
 msgstr "Base de datos a empregar"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:328
+#: ../gnome-dictionary/src/gdict-app.c:346
 msgid " - Look up words in dictionaries"
 msgstr " - Procure palabras en diccionarios"
 
-#: ../gnome-dictionary/src/gdict-app.c:332
+#: ../gnome-dictionary/src/gdict-app.c:350
 msgid "Dictionary and spelling tool"
 msgstr "Ferramenta de diccionario e ortografía"
 
-#: ../gnome-dictionary/src/gdict-app.c:333
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Show Dictionary options"
 msgstr "Amosar opcións do diccionario"
 
@@ -1292,26 +1306,37 @@ msgstr "Non hai contexto dispoñible para a fonte '%s'"
 msgid "Unable to create a context"
 msgstr "Imposible crear un contexto"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1210
+#: ../gnome-dictionary/src/gdict-applet.c:1212
+#: ../gnome-dictionary/src/gdict-applet.c:1229
 #, c-format
 msgid "Unable to create the data directory '%s'"
 msgstr "Imposible crear o directorio de datos '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1230
+#: ../gnome-dictionary/src/gdict-applet.c:1213
+msgid ""
+"There is a file with the same name in the path.\n"
+"You should move the file and re-run the\n"
+"Dictionary applet"
+msgstr ""
+"Hai un ficheiro co mesmo nome na ruta.\n"
+"Debería mover o ficheiro e volver a executar\n"
+"o applet de Diccionario"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1249
 msgid "Unable to load the applet icon"
 msgstr "Imposible cargar a icona do applet"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1259
+#: ../gnome-dictionary/src/gdict-applet.c:1278
 #: ../gnome-dictionary/src/gdict-window.c:1319
 msgid "Unable to connect to GConf"
 msgstr "Imposible conectarse a GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1274
+#: ../gnome-dictionary/src/gdict-applet.c:1293
 #: ../gnome-dictionary/src/gdict-window.c:1335
 msgid "Unable to get notification for preferences"
 msgstr "Non se puido obter notificación para as preferencias"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1289
+#: ../gnome-dictionary/src/gdict-applet.c:1308
 #: ../gnome-dictionary/src/gdict-window.c:1351
 msgid "Unable to get notification for the document font"
 msgstr "Non se puido obter notificación para a fonte do documento"
@@ -2685,15 +2710,15 @@ msgstr "Abrir rexistro"
 msgid "There was an error displaying help."
 msgstr "Houbo un erro mostrando a axuda."
 
-#: ../logview/logview.c:882
+#: ../logview/logview.c:884
 msgid "Version: "
 msgstr "Versión:"
 
-#: ../logview/logview.c:951
+#: ../logview/logview.c:953
 msgid "Days"
 msgstr "Días"
 
-#: ../logview/logview.c:952
+#: ../logview/logview.c:954
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "Punteiro hacia unha GSList de días para o rexistro actual."
 
