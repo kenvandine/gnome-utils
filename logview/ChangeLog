@@ -1,3 +1,17 @@
+2006-02-06  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	Codebase clean up patch (based on a patch by Paolo Borelli).
+
+	* logview.h:
+	* logview.c (logview_set_font), (logview_copy), (logview_init),
+	(logview_window_new): add logview_set_font() for setting the font of
+	the logview window; clean up the code.
+
+	* misc.c (widget_set_font): remove this function, as logview_set_font()
+	as been added.
+
+	* userprefs.c: massive code clean ups.
+
 2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* logview.c: revert the previous commit: the free is needed (thanks

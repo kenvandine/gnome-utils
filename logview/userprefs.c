@@ -1,23 +1,27 @@
-/*  ----------------------------------------------------------------------
+/* userprefs.c - logview user preferences handling
+ *
+ * Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
+ * Copyright (C) 2004  Vincent Noel
+ * Copyright (C) 2006  Emmanuele Bassi
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
 
-    Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-    ---------------------------------------------------------------------- */
-
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #include <string.h>
 #include <gtk/gtk.h>
@@ -30,15 +34,19 @@
 #define LOGVIEW_DEFAULT_HEIGHT 400
 #define LOGVIEW_DEFAULT_WIDTH 600
 
-#define GCONF_WIDTH_KEY  "/apps/gnome-system-log/width"
-#define GCONF_HEIGHT_KEY "/apps/gnome-system-log/height"
-#define GCONF_LOGFILE "/apps/gnome-system-log/logfile"
-#define GCONF_LOGFILES "/apps/gnome-system-log/logfiles"
-#define GCONF_FONTSIZE_KEY "/apps/gnome-system-log/fontsize"
-#define GCONF_MONOSPACE_FONT_NAME "/desktop/gnome/interface/monospace_font_name"
-#define GCONF_MENUS_HAVE_TEAROFF "/desktop/gnome/interface/menus_have_tearoff"
+/* logview settings */
+#define GCONF_DIR 		"/apps/gnome-system-log"
+#define GCONF_WIDTH_KEY 	GCONF_DIR "/width"
+#define GCONF_HEIGHT_KEY 	GCONF_DIR "/height"
+#define GCONF_LOGFILE 		GCONF_DIR "/logfile"
+#define GCONF_LOGFILES 		GCONF_DIR "/logfiles"
+#define GCONF_FONTSIZE_KEY 	GCONF_DIR "/fontsize"
 
-static GConfClient *client = NULL;
+/* desktop-wide settings */
+#define GCONF_MONOSPACE_FONT_NAME "/desktop/gnome/interface/monospace_font_name"
+#define GCONF_MENUS_HAVE_TEAROFF  "/desktop/gnome/interface/menus_have_tearoff"
+
+static GConfClient *gconf_client = NULL;
 static UserPrefs *prefs;
 
 static GSList*
@@ -95,7 +103,7 @@ prefs_create_defaults (UserPrefs *p)
 	GnomeVFSResult result;
 	GnomeVFSHandle *handle;
 
-    g_assert (p != NULL);
+	g_assert (p != NULL);
 	
 	/* For first time running, try parsing various logfiles */
 	/* Try to parse syslog.conf to get logfile names */
@@ -118,19 +126,19 @@ prefs_create_defaults (UserPrefs *p)
 }
 
 static UserPrefs *
-prefs_load (GConfClient *client)
+prefs_load (void)
 {
 	gchar *logfile;
 	int width, height, fontsize;
 	UserPrefs *p;
 	GError *err;
 
-	g_assert (client != NULL);
+	g_assert (gconf_client != NULL);
 
 	p = g_new0 (UserPrefs, 1);
 
 	err = NULL;
-	p->logs = gconf_client_get_list (client,
+	p->logs = gconf_client_get_list (gconf_client,
 					 GCONF_LOGFILES,
 					 GCONF_VALUE_STRING,
 					 &err);
@@ -138,7 +146,7 @@ prefs_load (GConfClient *client)
 		prefs_create_defaults (p);
 	
 	logfile = NULL;
-	logfile = gconf_client_get_string (client, GCONF_LOGFILE, NULL);
+	logfile = gconf_client_get_string (gconf_client, GCONF_LOGFILE, NULL);
 	if (logfile && logfile[0] != '\0' && file_is_log (logfile, FALSE)) {
 		gboolean found;
 		GSList *iter;
@@ -154,9 +162,9 @@ prefs_load (GConfClient *client)
 		}
 	}
 
-	width = gconf_client_get_int (client, GCONF_WIDTH_KEY, NULL);
-	height = gconf_client_get_int (client, GCONF_HEIGHT_KEY, NULL);
-	fontsize = gconf_client_get_int (client, GCONF_FONTSIZE_KEY, NULL);
+	width = gconf_client_get_int (gconf_client, GCONF_WIDTH_KEY, NULL);
+	height = gconf_client_get_int (gconf_client, GCONF_HEIGHT_KEY, NULL);
+	fontsize = gconf_client_get_int (gconf_client, GCONF_FONTSIZE_KEY, NULL);
 
 	p->width = (width == 0 ? LOGVIEW_DEFAULT_WIDTH : width);
 	p->height = (height == 0 ? LOGVIEW_DEFAULT_HEIGHT : height);
@@ -166,65 +174,72 @@ prefs_load (GConfClient *client)
 }
 
 static void
-prefs_monospace_font_changed (GConfClient *client, guint id, 
-                                GConfEntry *entry, gpointer data)
+prefs_monospace_font_changed (GConfClient *client,
+                              guint id,
+                              GConfEntry *entry,
+                              gpointer data)
 {
-  GtkWidget *view = GTK_WIDGET (data);
-    gchar *monospace_font_name;
-    PangoFontDescription *fontdesc;
+	LogviewWindow *logview = LOGVIEW_WINDOW (data);
 
-    g_assert (client != NULL);
-    
-    monospace_font_name = gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL);
-    widget_set_font (view, monospace_font_name);
-    g_free (monospace_font_name);
+	if (entry->value && (entry->value->type == GCONF_VALUE_STRING)) {
+		const gchar *monospace_font_name;
+
+		monospace_font_name = gconf_value_get_string (entry->value);
+		logview_set_font (logview, monospace_font_name);
+	}
 }
 
 static void
-prefs_menus_have_tearoff_changed (GConfClient *client, guint id,
-								  GConfEntry *entry, gpointer data)
+prefs_menus_have_tearoff_changed (GConfClient *client,
+                                  guint id,
+                                  GConfEntry *entry,
+                                  gpointer data)
 {
-  LogviewWindow *logview = LOGVIEW_WINDOW (data);
-    
-  g_assert (client != NULL);      
-  gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
-								   prefs_get_have_tearoff ());
+	LogviewWindow *logview = LOGVIEW_WINDOW (data);
+
+	if (entry->value && (entry->value->type == GCONF_VALUE_BOOL)) {
+		gboolean add_tearoffs;
+
+		add_tearoffs = gconf_value_get_bool (entry->value);
+		gtk_ui_manager_set_add_tearoffs (logview->ui_manager,
+						 add_tearoffs);
+	}
 }
 
 gchar *
 prefs_get_monospace (void)
 {
-    return (gconf_client_get_string (client, GCONF_MONOSPACE_FONT_NAME, NULL));
+	return (gconf_client_get_string (gconf_client, GCONF_MONOSPACE_FONT_NAME, NULL));
 }
 
 gboolean
 prefs_get_have_tearoff (void)
 {
-    return (gconf_client_get_bool (client, GCONF_MENUS_HAVE_TEAROFF, NULL));
+	return (gconf_client_get_bool (gconf_client, GCONF_MENUS_HAVE_TEAROFF, NULL));
 }
 
 GSList *
 prefs_get_logs (void)
 {
-    return prefs->logs;
+	return prefs->logs;
 }
 
 gchar *
 prefs_get_active_log (void) 
 {
-    return prefs->logfile;
+	return prefs->logfile;
 }
 
 int
 prefs_get_width (void)
 {
-    return prefs->width;
+	return prefs->width;
 }
 
 int
 prefs_get_height (void)
 {
-    return prefs->height;
+	return prefs->height;
 }
 
 void
@@ -237,54 +252,74 @@ prefs_free_loglist ()
 void
 prefs_store_log (gchar *name)
 {
-    if (name == NULL)
-        return;
-    prefs->logs = g_slist_append (prefs->logs, name);
+	if (name && name[0] != '\0')
+		prefs->logs = g_slist_append (prefs->logs, name);
 }
 
 void
 prefs_store_active_log (gchar *name)
 {
-    /* name can be NULL if no active log */
-    prefs->logfile = name;
+	/* name can be NULL if no active log */
+	prefs->logfile = name;
 }
 
 void
 prefs_store_fontsize (int fontsize)
 {
-    prefs->fontsize = fontsize;
+	prefs->fontsize = fontsize;
 }
 
 void
 prefs_save (void)
 {
-  GSList *logs;
+	GSList *logs;
 
-    if (prefs->logfile)
-        if (gconf_client_key_is_writable (client, GCONF_LOGFILE, NULL))
-	    gconf_client_set_string (client, GCONF_LOGFILE, prefs->logfile, NULL);
+	g_assert (gconf_client != NULL);
 
-    if (gconf_client_key_is_writable (client, GCONF_LOGFILES, NULL))
-        gconf_client_set_list (client, GCONF_LOGFILES, GCONF_VALUE_STRING, prefs->logs, NULL);
-
-	if (prefs->width > 0 && prefs->height > 0) {
-		if (gconf_client_key_is_writable (client, GCONF_WIDTH_KEY, NULL))
-			gconf_client_set_int (client, GCONF_WIDTH_KEY, prefs->width, NULL);
-		if (gconf_client_key_is_writable (client, GCONF_HEIGHT_KEY, NULL))
-			gconf_client_set_int (client, GCONF_HEIGHT_KEY, prefs->height, NULL);
+	if (prefs->logfile) {
+		if (gconf_client_key_is_writable (gconf_client, GCONF_LOGFILE, NULL))
+			gconf_client_set_string (gconf_client,
+						 GCONF_LOGFILE,
+						 prefs->logfile,
+						 NULL);
 	}
 
-	if (prefs->fontsize > 0)
-		if (gconf_client_key_is_writable (client, GCONF_FONTSIZE_KEY, NULL))
-			gconf_client_set_int (client, GCONF_FONTSIZE_KEY, prefs->fontsize, NULL);
+	if (gconf_client_key_is_writable (gconf_client, GCONF_LOGFILES, NULL))
+		gconf_client_set_list (gconf_client,
+				       GCONF_LOGFILES,
+				       GCONF_VALUE_STRING,
+				       prefs->logs,
+				       NULL);
+
+	if (prefs->width > 0 && prefs->height > 0) {
+		if (gconf_client_key_is_writable (gconf_client, GCONF_WIDTH_KEY, NULL))
+			gconf_client_set_int (gconf_client,
+					      GCONF_WIDTH_KEY,
+					      prefs->width,
+					      NULL);
+		
+		if (gconf_client_key_is_writable (gconf_client, GCONF_HEIGHT_KEY, NULL))
+			gconf_client_set_int (gconf_client,
+					      GCONF_HEIGHT_KEY,
+					      prefs->height,
+					      NULL);
+	}
+
+	if (prefs->fontsize > 0) {
+		if (gconf_client_key_is_writable (gconf_client, GCONF_FONTSIZE_KEY, NULL))
+			gconf_client_set_int (gconf_client,
+					      GCONF_FONTSIZE_KEY,
+					      prefs->fontsize,
+					      NULL);
+	}
 }
 
 void
 prefs_store_window_size (GtkWidget *window)
 {
-	int width, height;
+	gint width, height;
 
-    g_return_if_fail (GTK_IS_WINDOW (window));
+	g_return_if_fail (GTK_IS_WINDOW (window));
       
 	gtk_window_get_size (GTK_WINDOW(window), &width, &height);
 	if (width > 0 && height > 0) {
@@ -296,21 +331,28 @@ prefs_store_window_size (GtkWidget *window)
 void 
 prefs_connect (LogviewWindow *logview)
 {
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
 
-    gconf_client_notify_add (client, GCONF_MONOSPACE_FONT_NAME, 
-                             (GConfClientNotifyFunc) prefs_monospace_font_changed,
-							 logview->view, NULL, NULL);
-    gconf_client_notify_add (client, GCONF_MENUS_HAVE_TEAROFF,
-							 (GConfClientNotifyFunc) prefs_menus_have_tearoff_changed,
-							 logview, NULL, NULL);
+	g_assert (gconf_client != NULL);
+
+	gconf_client_notify_add (gconf_client,
+				 GCONF_MONOSPACE_FONT_NAME,
+				 (GConfClientNotifyFunc) prefs_monospace_font_changed,
+				 logview, NULL,
+				 NULL);
+	gconf_client_notify_add (gconf_client,
+				 GCONF_MENUS_HAVE_TEAROFF,
+				 (GConfClientNotifyFunc) prefs_menus_have_tearoff_changed,
+				 logview, NULL,
+				 NULL);
 }
 
 void
 prefs_init (void)
 {
-    client = gconf_client_get_default ();
-    
-    prefs = prefs_load (client);
-}
+	if (!gconf_client) {
+		gconf_client = gconf_client_get_default ();
 
+		prefs = prefs_load ();
+	}
+}

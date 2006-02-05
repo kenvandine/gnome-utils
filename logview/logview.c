@@ -610,6 +610,26 @@ logview_toggle_monitor (GtkAction *action, LogviewWindow *logview)
     logview_menus_set_state (logview);
 }
 
+#define DEFAULT_LOGVIEW_FONT "Monospace 10"
+
+void
+logview_set_font (LogviewWindow *logview,
+                  const gchar   *fontname)
+{
+	PangoFontDescription *font_desc;
+
+	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+	if (fontname == NULL)
+		fontname = DEFAULT_LOGVIEW_FONT;
+
+	font_desc = pango_font_description_from_string (fontname);
+	if (font_desc) {
+		gtk_widget_modify_font (logview->view, font_desc);
+		pango_font_description_free (font_desc);
+	}
+}
+
 static void
 logview_set_fontsize (LogviewWindow *logview)
 {
@@ -668,6 +688,7 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
 	int nline, i, l1, l2;
     gchar *line;
     Log *log;
+    GtkClipboard *clipboard;
 
     g_assert (LOGVIEW_IS_WINDOW (logview));
 
@@ -688,7 +709,11 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
     }
     lines[nline] = NULL;
     text = g_strjoinv ("\n", lines);
-    gtk_clipboard_set_text (logview->clipboard, text, -1);
+
+    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (logview->view),
+                                          GDK_SELECTION_CLIPBOARD);
+    gtk_clipboard_set_text (clipboard, text, -1);
+
     g_free (text);
     g_strfreev (lines);
 }
@@ -859,11 +884,9 @@ logview_init (LogviewWindow *logview)
 
    /* Use the desktop monospace font */
    monospace_font_name = prefs_get_monospace ();
-   if (!monospace_font_name)
-     monospace_font_name = g_strdup ("Monospace 10");
-   widget_set_font (GTK_WIDGET (logview->view), monospace_font_name);
+   logview_set_font (logview, monospace_font_name);
    g_free (monospace_font_name);
-  
+
    renderer = gtk_cell_renderer_text_new ();
    column = gtk_tree_view_column_new ();
    gtk_tree_view_column_pack_start (column, renderer, TRUE);
@@ -991,8 +1014,7 @@ logview_window_new ()
      return NULL;
 
    logview->logs = NULL;
-   logview->clipboard = gtk_clipboard_get_for_display (gtk_widget_get_display (window),
-							     GDK_SELECTION_CLIPBOARD);
+
    gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
                                     prefs_get_have_tearoff ());
 
