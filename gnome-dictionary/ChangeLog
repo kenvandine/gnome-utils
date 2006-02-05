@@ -1,5 +1,12 @@
 2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-window.c (gdict_window_set_word), (entry_activate_cb),
+	(gdict_window_drag_data_received_cb), (gdict_window_new): if a word is
+	passed to the GdictWindow constructor it'll be search automatically,
+	instead of requiring the user to confirm by pressing enter.
+
+2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-applet.c (gdict_applet_finalize): really commit the removal
 	of the idle loop.
 

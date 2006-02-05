@@ -350,11 +350,23 @@ static void
 gdict_window_set_word (GdictWindow *window,
 		       const gchar *word)
 {
+  gchar *title;
+  
   g_free (window->word);
   window->word = NULL;
 
   if (word && word[0] != '\0')
     window->word = g_strdup (word);
+
+  title = g_strdup_printf (_("%s - Dictionary"), window->word);
+  gtk_window_set_title (GTK_WINDOW (window), title);
+  g_free (title);
+  
+  window->max_definition = -1;
+  window->last_definition = 0;
+  
+  if (window->defbox)
+    gdict_defbox_lookup (GDICT_DEFBOX (window->defbox), window->word);
 }
 
 static void
@@ -914,15 +926,6 @@ entry_activate_cb (GtkWidget   *widget,
     return;
 
   gdict_window_set_word (window, word);
-  
-  title = g_strdup_printf (_("%s - Dictionary"), window->word);
-  gtk_window_set_title (GTK_WINDOW (window), title);
-  g_free (title);
-  
-  window->max_definition = -1;
-  window->last_definition = 0;
-  
-  gdict_defbox_lookup (GDICT_DEFBOX (window->defbox), window->word);
 }
 
 static void
@@ -946,19 +949,9 @@ gdict_window_drag_data_received_cb (GtkWidget        *widget,
       gtk_entry_set_text (GTK_ENTRY (window->entry), text);
 
       gdict_window_set_word (window, text);
-      
-      title = g_strdup_printf (_("%s - Dictionary"), window->word);
-      gtk_window_set_title (GTK_WINDOW (window), title);
-      g_free (title);
-      
-      window->max_definition = -1;
-      window->last_definition = 0;
-
-      gdict_defbox_lookup (GDICT_DEFBOX (window->defbox), window->word);
-
-      gtk_drag_finish (context, TRUE, FALSE, time_);
-      
       g_free (text);
+      
+      gtk_drag_finish (context, TRUE, FALSE, time_);
     }
   else
     gtk_drag_finish (context, FALSE, FALSE, time_);
@@ -1397,11 +1390,17 @@ gdict_window_new (GdictSourceLoader *loader,
 		  const gchar       *source_name,
 		  const gchar       *word)
 {
+  GtkWidget *retval;
+  
   g_return_val_if_fail (GDICT_IS_SOURCE_LOADER (loader), NULL);
   
-  return g_object_new (GDICT_TYPE_WINDOW,
-                       "source-loader", loader,
-		       "source-name", source_name,
-		       "word", word,
-                       NULL);
+  retval = g_object_new (GDICT_TYPE_WINDOW,
+                         "source-loader", loader,
+			 "source-name", source_name,
+			 NULL);
+
+  if (word && word[0] != '\0')
+    gdict_window_set_word (GDICT_WINDOW (retval), word);
+
+  return retval;
 }
