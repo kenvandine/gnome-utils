@@ -1,5 +1,19 @@
 2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gtkalignedwindow.c (gtk_aligned_window_class_init),
+	(gtk_aligned_window_realize), (gtk_aligned_window_map),
+	(gtk_aligned_window_show), (gtk_aligned_window_position): make the
+	window align on realization and re-align every show request; also,
+	set the gravity for the window manager to pick up.
+
+2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-applet.c (gdict_applet_finalize): force the removal of
+	the idle loop, in case the finalization function is called when the
+	idle loop is still running.
+
+2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-app.c (gdict_app_init): remove callback to the "die"
 	signal (closes bug #329911).
 

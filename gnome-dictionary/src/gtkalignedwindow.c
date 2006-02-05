@@ -1,6 +1,6 @@
 /* gtkalignedwidget.c - Popup window aligned to a widget
  *
- * Copyright (c) 2005  Emmanuele Bassi <ebassi@gmail.com>
+ * Copyright (c) 2005-2006  Emmanuele Bassi <ebassi@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public License as
@@ -58,7 +58,8 @@ static void gtk_aligned_window_set_property (GObject      *object,
 					     const GValue *value,
 					     GParamSpec   *pspec);
 
-static void     gtk_aligned_window_map              (GtkWidget        *widget);
+static void     gtk_aligned_window_realize          (GtkWidget        *widget);
+static void     gtk_aligned_window_show             (GtkWidget        *widget);
 
 static gboolean gtk_aligned_window_motion_notify_cb (GtkWidget        *widget,
 						     GdkEventMotion   *event,
@@ -81,7 +82,8 @@ gtk_aligned_window_class_init (GtkAlignedWindowClass *klass)
   gobject_class->get_property = gtk_aligned_window_get_property;
   gobject_class->finalize = gtk_aligned_window_finalize;
   
-  widget_class->map = gtk_aligned_window_map;
+  widget_class->realize = gtk_aligned_window_realize;
+  widget_class->show = gtk_aligned_window_show;
   
   g_object_class_install_property (gobject_class, PROP_ALIGN_WIDGET,
   				   g_param_spec_object ("align-widget",
@@ -153,21 +155,24 @@ gtk_aligned_window_set_property (GObject      *object,
 }
 
 static void
-gtk_aligned_window_map (GtkWidget *widget)
+gtk_aligned_window_position (GtkAlignedWindow *window)
 {
-  GtkAlignedWindow *window = GTK_ALIGNED_WINDOW (widget);
-  GtkAlignedWindowPrivate *priv = window->priv;
+  GtkAlignedWindowPrivate *priv;
   GtkWidget *align_widget;
   gint our_width, our_height;
   gint entry_x, entry_y, entry_width, entry_height;
   gint x, y;
-  
-  GTK_WIDGET_CLASS (gtk_aligned_window_parent_class)->map (widget);
-  
+  GdkGravity gravity = GDK_GRAVITY_NORTH_WEST;
+
+  g_assert (GTK_IS_ALIGNED_WINDOW (window));
+  priv = window->priv;
+
   if (!priv->align_widget)
     return;
 
   align_widget = priv->align_widget;
+
+  gdk_flush ();
   
   gdk_window_get_geometry (GTK_WIDGET (window)->window,
   			   NULL,
@@ -198,14 +203,42 @@ gtk_aligned_window_map (GtkWidget *widget)
   if (entry_x + our_width < gdk_screen_width ())
     x = entry_x + 1;
   else
-    x = entry_x + entry_width - our_width - 1;
+    {
+      x = entry_x + entry_width - our_width - 1;
+      
+      gravity = GDK_GRAVITY_NORTH_EAST;
+    }
   
   if (entry_y + entry_height + our_height < gdk_screen_height ())
     y = entry_y + entry_height - 1;
   else
-    y = entry_y - our_height + 1;
+    {
+      y = entry_y - our_height + 1;
+      
+      if (gravity == GDK_GRAVITY_NORTH_EAST)
+	gravity = GDK_GRAVITY_SOUTH_EAST;
+      else
+	gravity = GDK_GRAVITY_SOUTH_WEST;
+    }
   
+  gtk_window_set_gravity (GTK_WINDOW (window), gravity);
   gtk_window_move (GTK_WINDOW (window), x, y);
+}
+
+static void
+gtk_aligned_window_realize (GtkWidget *widget)
+{
+  GTK_WIDGET_CLASS (gtk_aligned_window_parent_class)->realize (widget);
+
+  gtk_aligned_window_position (GTK_ALIGNED_WINDOW (widget));
+}
+
+static void
+gtk_aligned_window_show (GtkWidget *widget)
+{
+  gtk_aligned_window_position (GTK_ALIGNED_WINDOW (widget));
+  
+  GTK_WIDGET_CLASS (gtk_aligned_window_parent_class)->show (widget);
 }
 
 static void
@@ -219,8 +252,20 @@ gtk_aligned_window_motion_notify_cb (GtkWidget        *widget,
 				     GdkEventMotion   *event,
 				     GtkAlignedWindow *aligned_window)
 {
-  gtk_widget_queue_draw (GTK_WIDGET (aligned_window));
-    
+  GtkAllocation alloc;
+  GdkRectangle rect;
+
+  alloc = GTK_WIDGET (aligned_window)->allocation;
+  
+  rect.x = 0;
+  rect.y = 0;
+  rect.width = alloc.width;
+  rect.height = alloc.height;
+
+  gdk_window_invalidate_rect (GTK_WIDGET (aligned_window)->window,
+		  	      &rect,
+			      FALSE);
+  
   return FALSE;
 }
 
