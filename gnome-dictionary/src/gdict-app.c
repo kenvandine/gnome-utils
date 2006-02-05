@@ -369,9 +369,6 @@ gdict_init (int *argc, char ***argv)
       g_signal_connect (singleton->client, "save-yourself",
                         G_CALLBACK (save_yourself_cb),
                         NULL);
-      g_signal_connect (singleton->client, "die",
-		        G_CALLBACK (die_cb),
-			NULL);
     }
   
   gconf_error = NULL;
