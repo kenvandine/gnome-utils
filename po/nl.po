@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-29 23:27+0100\n"
-"PO-Revision-Date: 2006-01-30 01:01+0100\n"
+"POT-Creation-Date: 2006-02-04 23:11+0100\n"
+"PO-Revision-Date: 2006-02-05 01:46+0100\n"
 "Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -538,7 +538,7 @@ msgstr "Op_slaan:"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-app.c:363
 #: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "Dictionary"
 msgstr "Woordenboek"
@@ -1160,7 +1160,21 @@ msgstr "Woorden opzoeken in een woordenboek"
 msgid "Unable to open the application icon: %s"
 msgstr "Kon het pictogram voor de toepassing niet openen: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:201
+#: ../gnome-dictionary/src/gdict-app.c:116
+#, c-format
+msgid ""
+"Unable to create the data directory '%s': there already is a file with the "
+"same name.  You should move the file and re-run gnome-dictionary."
+msgstr "Kon dat data-map '%s' niet aanmaken: er bestaat al een bestand met dezelfde naam.  U moet dit bestand verplaatsen en gnome-dictionary opnieuw opstarten."
+
+#. Translators: the first is the file name, the second is
+#. * the error message
+#: ../gnome-dictionary/src/gdict-app.c:128
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "Kan de data-map '%s' niet aanmaken: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:219
 #, c-format
 msgid ""
 "Definitions for \"%s\":\n"
@@ -1170,7 +1184,7 @@ msgstr ""
 "\n"
 
 #. Translators: source name first, then definition
-#: ../gnome-dictionary/src/gdict-app.c:210
+#: ../gnome-dictionary/src/gdict-app.c:228
 #, c-format
 msgid ""
 "From %s:\n"
@@ -1179,20 +1193,20 @@ msgstr ""
 "Uit %s:\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:220
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid "Error: %s\n"
 msgstr "Fout: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:232
+#: ../gnome-dictionary/src/gdict-app.c:250
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Zie gnome-dictionary --help voor gebruik\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:245
+#: ../gnome-dictionary/src/gdict-app.c:263
 msgid "Unable to find a suitable dictionary source"
 msgstr "Kon geen geschikte woordenboekbron vinden"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:291
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1201,47 +1215,47 @@ msgstr ""
 "Fout bij het opzoeken van de definitie van \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "Word to look up"
 msgstr "Het op te zoeken woord"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:322
 msgid "word"
 msgstr "woord"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "Dictionary source to use"
 msgstr "Te gebruiken woordenboekbron"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:324
 msgid "source"
 msgstr "bron"
 
-#: ../gnome-dictionary/src/gdict-app.c:308
+#: ../gnome-dictionary/src/gdict-app.c:326
 msgid "Show available dictionary sources"
 msgstr "Beschikbare woordenboekbronnen tonen"
 
-#: ../gnome-dictionary/src/gdict-app.c:310
+#: ../gnome-dictionary/src/gdict-app.c:328
 msgid "Print result to the console"
 msgstr "Resultaat tonen in de console"
 
-#: ../gnome-dictionary/src/gdict-app.c:312
+#: ../gnome-dictionary/src/gdict-app.c:330
 msgid "Database to use"
 msgstr "Te gebruiken database"
 
 # in woordenboeken/ in een woordenboek
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:328
+#: ../gnome-dictionary/src/gdict-app.c:346
 msgid " - Look up words in dictionaries"
 msgstr "- woorden opzoeken in een woordenboek"
 
 # spellingscontrole/programma
-#: ../gnome-dictionary/src/gdict-app.c:332
+#: ../gnome-dictionary/src/gdict-app.c:350
 msgid "Dictionary and spelling tool"
 msgstr "Woordenboek en spellingsprogramma"
 
 #
-#: ../gnome-dictionary/src/gdict-app.c:333
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Show Dictionary options"
 msgstr "Woordenboekopties tonen"
 
@@ -1352,28 +1366,39 @@ msgstr "Geen context beschikbaar voor bron '%s'"
 msgid "Unable to create a context"
 msgstr "Kon geen context aanmaken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1210
+#: ../gnome-dictionary/src/gdict-applet.c:1212
+#: ../gnome-dictionary/src/gdict-applet.c:1229
 #, c-format
 msgid "Unable to create the data directory '%s'"
 msgstr "Kan de data-map niet aanmaken '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1230
+#: ../gnome-dictionary/src/gdict-applet.c:1213
+msgid ""
+"There is a file with the same name in the path.\n"
+"You should move the file and re-run the\n"
+"Dictionary applet"
+msgstr ""
+"Er is een bestand met dezelfde naam in het pad.\n"
+"U moet het bestand verplaatsen en het\n"
+"woordenboek-applet opnieuw opstarten"
+
+#: ../gnome-dictionary/src/gdict-applet.c:1249
 msgid "Unable to load the applet icon"
 msgstr "Kon het pictogram voor de toepassing niet laden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1259
+#: ../gnome-dictionary/src/gdict-applet.c:1278
 #: ../gnome-dictionary/src/gdict-window.c:1319
 msgid "Unable to connect to GConf"
 msgstr "Kon geen verbinding maken met GConf"
 
 # hint/mededelingen/indicatie/
-#: ../gnome-dictionary/src/gdict-applet.c:1274
+#: ../gnome-dictionary/src/gdict-applet.c:1293
 #: ../gnome-dictionary/src/gdict-window.c:1335
 msgid "Unable to get notification for preferences"
 msgstr "Kon geen mededelingen verkrijgen voor de voorkeuren"
 
 # hint/mededelingen/indicatie/
-#: ../gnome-dictionary/src/gdict-applet.c:1289
+#: ../gnome-dictionary/src/gdict-applet.c:1308
 #: ../gnome-dictionary/src/gdict-window.c:1351
 msgid "Unable to get notification for the document font"
 msgstr "Kon geen mededelingen verkrijgen voor het document-lettertype"
@@ -2785,15 +2810,15 @@ msgstr "_Openen log"
 msgid "There was an error displaying help."
 msgstr "Er is een fout opgetreden bij het weergeven van de hulp."
 
-#: ../logview/logview.c:882
+#: ../logview/logview.c:884
 msgid "Version: "
 msgstr "Versie: "
 
-#: ../logview/logview.c:951
+#: ../logview/logview.c:953
 msgid "Days"
 msgstr "Dagen"
 
-#: ../logview/logview.c:952
+#: ../logview/logview.c:954
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "Verwijzing naar een GSList van dagen voor de huidige log."
 
