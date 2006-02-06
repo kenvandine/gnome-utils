@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-05 07:16+0100\n"
-"PO-Revision-Date: 2006-02-05 13:40+0530\n"
+"POT-Creation-Date: 2006-02-05 23:25+0100\n"
+"PO-Revision-Date: 2006-02-06 08:02+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -475,12 +476,12 @@ msgid "Cl_ear"
 msgstr "સાફ કરો (_e)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:826 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:838 ../logview/logview.c:116
 msgid "_About"
 msgstr "વિશે (_A)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:786 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:798 ../logview/logview.c:88
 msgid "_Help"
 msgstr "મદદ (_H)"
 
@@ -489,7 +490,7 @@ msgid "_Look Up Selected Text"
 msgstr "પસંદ કરેલ લખાણને જુઓ... (_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:810
+#: ../gnome-dictionary/src/gdict-window.c:822
 msgid "_Preferences"
 msgstr "પસંદગીઓ (_P)"
 
@@ -503,8 +504,8 @@ msgstr "સંગ્રહો (_S)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:363
-#: ../gnome-dictionary/src/gdict-window.c:1210
+#: ../gnome-dictionary/src/gdict-app.c:409
+#: ../gnome-dictionary/src/gdict-window.c:1203
 msgid "Dictionary"
 msgstr "શબ્દકોષ"
 
@@ -653,7 +654,7 @@ msgstr "યજમાનનામ (_o):"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:230
-#: ../gnome-dictionary/src/gdict-window.c:582
+#: ../gnome-dictionary/src/gdict-window.c:594
 msgid "Print"
 msgstr "છાપો"
 
@@ -1082,53 +1083,52 @@ msgstr "શબ્દકોષોમાં શબ્દો જુઓ"
 msgid "Unable to open the application icon: %s"
 msgstr "કાર્યક્રમ ચિહ્ન ખોલવામાં અસમર્થ: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:116
+#: ../gnome-dictionary/src/gdict-app.c:118
 #, c-format
 msgid ""
 "Unable to create the data directory '%s': there already is a file with the "
 "same name.  You should move the file and re-run gnome-dictionary."
-msgstr "માહિતી ડિરેક્ટરી '%s' બનાવવામાં અસમર્થ: ત્યાં આ જ નામવાળી ફાઈલ પહેલાથી જ હાજર છે.  તમારે ફાઈલને ખસેડવી જોઈએ અને જીનોમ-શબ્દકોષ પુનઃચલાવવો જોઈએ."
+msgstr ""
+"માહિતી ડિરેક્ટરી '%s' બનાવવામાં અસમર્થ: ત્યાં આ જ નામવાળી ફાઈલ પહેલાથી જ હાજર છે.  "
+"તમારે ફાઈલને ખસેડવી જોઈએ અને જીનોમ-શબ્દકોષ પુનઃચલાવવો જોઈએ."
 
 #. Translators: the first is the file name, the second is
 #. * the error message
-#: ../gnome-dictionary/src/gdict-app.c:128
+#: ../gnome-dictionary/src/gdict-app.c:130
 #, c-format
 msgid "Unable to create the data directory '%s': %s"
 msgstr "માહિતી ડિરેક્ટરી '%s' બનાવવામાં અસમર્થ: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:219
+#. Translators: the first is the word found, the second is the
+#. * database name and the last is the definition's text; please
+#. * keep the new lines.
+#: ../gnome-dictionary/src/gdict-app.c:249
 #, c-format
 msgid ""
-"Definitions for \"%s\":\n"
+"Definition for '%s'\n"
+"  From '%s':\n"
 "\n"
-msgstr ""
-"\"%s\" માટે વ્યાખ્યાઓ:\n"
-"\n"
-
-#. Translators: source name first, then definition
-#: ../gnome-dictionary/src/gdict-app.c:228
-#, c-format
-msgid ""
-"From %s:\n"
 "%s\n"
 msgstr ""
-"%s તરફથી:\n"
+"'%s' માટેની વ્યાખ્યા\n"
+"  '%s' માંથી:\n"
+"\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:238
+#: ../gnome-dictionary/src/gdict-app.c:263
 #, c-format
 msgid "Error: %s\n"
 msgstr "ભૂલ: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:250
+#: ../gnome-dictionary/src/gdict-app.c:289
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "વપરાશ માટે gnome-dictionary --help જુઓ\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:263
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "Unable to find a suitable dictionary source"
 msgstr "વ્યાપક શબ્દકોષ સ્રોત શોધવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-app.c:291
+#: ../gnome-dictionary/src/gdict-app.c:336
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1137,59 +1137,59 @@ msgstr ""
 "\"%s\" ની વ્યાખ્યા જોતી વખતે ભૂલ:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:322
-msgid "Word to look up"
-msgstr "જોવા માટેનો શબ્દ"
+#: ../gnome-dictionary/src/gdict-app.c:368
+msgid "Words to look up"
+msgstr "જોવા માટેના શબ્દો"
 
-#: ../gnome-dictionary/src/gdict-app.c:322
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "word"
 msgstr "શબ્દ"
 
-#: ../gnome-dictionary/src/gdict-app.c:324
+#: ../gnome-dictionary/src/gdict-app.c:370
 msgid "Dictionary source to use"
 msgstr "વાપરવા માટેનો શબ્દકોષ સ્રોત"
 
-#: ../gnome-dictionary/src/gdict-app.c:324
+#: ../gnome-dictionary/src/gdict-app.c:370
 msgid "source"
 msgstr "સ્રોત"
 
-#: ../gnome-dictionary/src/gdict-app.c:326
+#: ../gnome-dictionary/src/gdict-app.c:372
 msgid "Show available dictionary sources"
 msgstr "ઉપલબ્ધ શબ્દકોષ સ્રોતો બતાવો"
 
-#: ../gnome-dictionary/src/gdict-app.c:328
+#: ../gnome-dictionary/src/gdict-app.c:374
 msgid "Print result to the console"
 msgstr "પરિણામને કન્સોલમાં છાપો"
 
-#: ../gnome-dictionary/src/gdict-app.c:330
+#: ../gnome-dictionary/src/gdict-app.c:376
 msgid "Database to use"
 msgstr "વાપરવા માટેનો ડેટાબેઝ"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:346
+#: ../gnome-dictionary/src/gdict-app.c:392
 msgid " - Look up words in dictionaries"
 msgstr " - શબ્દો શબ્દોકોષોમાં જુઓ"
 
-#: ../gnome-dictionary/src/gdict-app.c:350
+#: ../gnome-dictionary/src/gdict-app.c:396
 msgid "Dictionary and spelling tool"
 msgstr "શબ્દકોષ અને જોડણી સાધન"
 
-#: ../gnome-dictionary/src/gdict-app.c:351
+#: ../gnome-dictionary/src/gdict-app.c:397
 msgid "Show Dictionary options"
 msgstr "શબ્દકોષ વિકલ્પો બતાવો"
 
 #: ../gnome-dictionary/src/gdict-applet.c:244
-#: ../gnome-dictionary/src/gdict-window.c:527
+#: ../gnome-dictionary/src/gdict-window.c:539
 msgid "Save a Copy"
 msgstr "નકલ સંગ્રહો"
 
 #: ../gnome-dictionary/src/gdict-applet.c:254
-#: ../gnome-dictionary/src/gdict-window.c:537
+#: ../gnome-dictionary/src/gdict-window.c:549
 msgid "Untitled document"
 msgstr "શીર્ષકવિહીન દસ્તાવેજ"
 
 #: ../gnome-dictionary/src/gdict-applet.c:275
-#: ../gnome-dictionary/src/gdict-window.c:558
+#: ../gnome-dictionary/src/gdict-window.c:570
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "'%s' માં લખતી વખતે ભૂલ"
@@ -1257,7 +1257,7 @@ msgstr "પસંદગીઓ"
 #: ../gnome-dictionary/src/gdict-applet.c:758
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:748
+#: ../gnome-dictionary/src/gdict-window.c:760
 msgid "There was an error while displaying help"
 msgstr "મદદ દર્શાવતી વખતે ત્યાં ભૂલ હતી"
 
@@ -1283,13 +1283,13 @@ msgstr "કોઈ સંદર્ભ '%s' સ્રોત માટે ઉપલ
 msgid "Unable to create a context"
 msgstr "સંદર્ભ બનાવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1212
-#: ../gnome-dictionary/src/gdict-applet.c:1229
+#: ../gnome-dictionary/src/gdict-applet.c:1215
+#: ../gnome-dictionary/src/gdict-applet.c:1232
 #, c-format
 msgid "Unable to create the data directory '%s'"
 msgstr "માહિતી ડિરેક્ટરી '%s' બનાવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1213
+#: ../gnome-dictionary/src/gdict-applet.c:1216
 msgid ""
 "There is a file with the same name in the path.\n"
 "You should move the file and re-run the\n"
@@ -1299,22 +1299,22 @@ msgstr ""
 "તમારે ફાઈલને ખસેડવી જોઈએ અને શબ્દકોષ એપ્લેટને\n"
 "પુનઃચલાવવી જોઈએ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1249
+#: ../gnome-dictionary/src/gdict-applet.c:1252
 msgid "Unable to load the applet icon"
 msgstr "એપ્લેટ ચિહ્ન લાવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1278
-#: ../gnome-dictionary/src/gdict-window.c:1319
+#: ../gnome-dictionary/src/gdict-applet.c:1281
+#: ../gnome-dictionary/src/gdict-window.c:1312
 msgid "Unable to connect to GConf"
 msgstr "GConf સાથે જોડવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1293
-#: ../gnome-dictionary/src/gdict-window.c:1335
+#: ../gnome-dictionary/src/gdict-applet.c:1296
+#: ../gnome-dictionary/src/gdict-window.c:1328
 msgid "Unable to get notification for preferences"
 msgstr "પસંદગીઓ માટે સૂચન મેળવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1308
-#: ../gnome-dictionary/src/gdict-window.c:1351
+#: ../gnome-dictionary/src/gdict-applet.c:1311
+#: ../gnome-dictionary/src/gdict-window.c:1344
 msgid "Unable to get notification for the document font"
 msgstr "દસ્તાવેજ ફોન્ટ માટે સૂચન મેળવવામાં અસમર્થ"
 
@@ -1384,108 +1384,107 @@ msgstr "વ્યાખ્યા મળી"
 msgid "%d definitions found"
 msgstr "%d વ્યાખ્યાઓ મળી"
 
-#: ../gnome-dictionary/src/gdict-window.c:667
-msgid "Dictionary Preferences"
-msgstr "શબ્દકોષની પસંદગી"
-
-#: ../gnome-dictionary/src/gdict-window.c:783
-msgid "_File"
-msgstr "ફાઈલ (_F)"
-
-#: ../gnome-dictionary/src/gdict-window.c:784 ../logview/logview.c:86
-msgid "_Edit"
-msgstr "ફેરફાર કરો (_E)"
-
-#: ../gnome-dictionary/src/gdict-window.c:785
-msgid "_Go"
-msgstr "જાઓ (_G)"
-
-#. File menu
-#: ../gnome-dictionary/src/gdict-window.c:789
-msgid "_New"
-msgstr "નવું (_N)"
-
-#: ../gnome-dictionary/src/gdict-window.c:790
-msgid "New look up"
-msgstr "નવો દેખાવ"
-
-#: ../gnome-dictionary/src/gdict-window.c:791
-msgid "_Save a Copy..."
-msgstr "નકલ સંગ્રહો (_S)..."
-
-#: ../gnome-dictionary/src/gdict-window.c:793
-msgid "_Print..."
-msgstr "છાપો (_P)..."
-
-#: ../gnome-dictionary/src/gdict-window.c:794
-msgid "Print this document"
-msgstr "આ દસ્તાવેજ છાપો"
-
-#: ../gnome-dictionary/src/gdict-window.c:801 ../logview/logview.c:99
-msgid "Select _All"
-msgstr "બધું પસંદ કરો (_A)"
-
-#: ../gnome-dictionary/src/gdict-window.c:804
-msgid "Find a word or phrase in the document"
-msgstr "દસ્તાવેજમાં શબ્દ અથવા મહાવરો શોધો"
-
-#: ../gnome-dictionary/src/gdict-window.c:806
-msgid "Find Ne_xt"
-msgstr "આગળ શોધો (_x)"
-
-#: ../gnome-dictionary/src/gdict-window.c:808
-msgid "Find Pre_vious"
-msgstr "પહેલાંનું શોધો (_v)"
-
-#. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:814
-msgid "_Previous Definition"
-msgstr "પહેલાંની વ્યાખ્યા (_P)"
-
-#: ../gnome-dictionary/src/gdict-window.c:815
-msgid "Go to the previous definition"
-msgstr "પહેલાંની વ્યાખ્યા પર જાઓ"
-
-#: ../gnome-dictionary/src/gdict-window.c:816
-msgid "_Next Definition"
-msgstr "આગળની વ્યાખ્યા (_N)"
-
-#: ../gnome-dictionary/src/gdict-window.c:817
-msgid "Go to the next definition"
-msgstr "આગળની વ્યાખ્યા પર જાઓ"
-
-#: ../gnome-dictionary/src/gdict-window.c:818
-msgid "_First Definition"
-msgstr "પ્રથમ વ્યાખ્યા (_F)"
-
-#: ../gnome-dictionary/src/gdict-window.c:819
-msgid "Go to the first definition"
-msgstr "પ્રથમ વ્યાખ્યા પર જાઓ"
-
-#: ../gnome-dictionary/src/gdict-window.c:820
-msgid "_Last Definition"
-msgstr "અંતિમ વ્યાખ્યા (_L)"
-
-#: ../gnome-dictionary/src/gdict-window.c:821
-msgid "Go to the last definition"
-msgstr "અંતિમ વ્યાખ્યા પર જાઓ"
-
-#. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:824 ../logview/logview.c:114
-msgid "_Contents"
-msgstr "સમાવિષ્ટો (_C)"
-
-#: ../gnome-dictionary/src/gdict-window.c:918
-#: ../gnome-dictionary/src/gdict-window.c:950
+#: ../gnome-dictionary/src/gdict-window.c:361
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - શબ્દકોષ"
 
-#: ../gnome-dictionary/src/gdict-window.c:1132
+#: ../gnome-dictionary/src/gdict-window.c:679
+msgid "Dictionary Preferences"
+msgstr "શબ્દકોષની પસંદગી"
+
+#: ../gnome-dictionary/src/gdict-window.c:795
+msgid "_File"
+msgstr "ફાઈલ (_F)"
+
+#: ../gnome-dictionary/src/gdict-window.c:796 ../logview/logview.c:86
+msgid "_Edit"
+msgstr "ફેરફાર કરો (_E)"
+
+#: ../gnome-dictionary/src/gdict-window.c:797
+msgid "_Go"
+msgstr "જાઓ (_G)"
+
+#. File menu
+#: ../gnome-dictionary/src/gdict-window.c:801
+msgid "_New"
+msgstr "નવું (_N)"
+
+#: ../gnome-dictionary/src/gdict-window.c:802
+msgid "New look up"
+msgstr "નવો દેખાવ"
+
+#: ../gnome-dictionary/src/gdict-window.c:803
+msgid "_Save a Copy..."
+msgstr "નકલ સંગ્રહો (_S)..."
+
+#: ../gnome-dictionary/src/gdict-window.c:805
+msgid "_Print..."
+msgstr "છાપો (_P)..."
+
+#: ../gnome-dictionary/src/gdict-window.c:806
+msgid "Print this document"
+msgstr "આ દસ્તાવેજ છાપો"
+
+#: ../gnome-dictionary/src/gdict-window.c:813 ../logview/logview.c:99
+msgid "Select _All"
+msgstr "બધું પસંદ કરો (_A)"
+
+#: ../gnome-dictionary/src/gdict-window.c:816
+msgid "Find a word or phrase in the document"
+msgstr "દસ્તાવેજમાં શબ્દ અથવા મહાવરો શોધો"
+
+#: ../gnome-dictionary/src/gdict-window.c:818
+msgid "Find Ne_xt"
+msgstr "આગળ શોધો (_x)"
+
+#: ../gnome-dictionary/src/gdict-window.c:820
+msgid "Find Pre_vious"
+msgstr "પહેલાંનું શોધો (_v)"
+
+#. Go menu
+#: ../gnome-dictionary/src/gdict-window.c:826
+msgid "_Previous Definition"
+msgstr "પહેલાંની વ્યાખ્યા (_P)"
+
+#: ../gnome-dictionary/src/gdict-window.c:827
+msgid "Go to the previous definition"
+msgstr "પહેલાંની વ્યાખ્યા પર જાઓ"
+
+#: ../gnome-dictionary/src/gdict-window.c:828
+msgid "_Next Definition"
+msgstr "આગળની વ્યાખ્યા (_N)"
+
+#: ../gnome-dictionary/src/gdict-window.c:829
+msgid "Go to the next definition"
+msgstr "આગળની વ્યાખ્યા પર જાઓ"
+
+#: ../gnome-dictionary/src/gdict-window.c:830
+msgid "_First Definition"
+msgstr "પ્રથમ વ્યાખ્યા (_F)"
+
+#: ../gnome-dictionary/src/gdict-window.c:831
+msgid "Go to the first definition"
+msgstr "પ્રથમ વ્યાખ્યા પર જાઓ"
+
+#: ../gnome-dictionary/src/gdict-window.c:832
+msgid "_Last Definition"
+msgstr "અંતિમ વ્યાખ્યા (_L)"
+
+#: ../gnome-dictionary/src/gdict-window.c:833
+msgid "Go to the last definition"
+msgstr "અંતિમ વ્યાખ્યા પર જાઓ"
+
+#. Help menu
+#: ../gnome-dictionary/src/gdict-window.c:836 ../logview/logview.c:114
+msgid "_Contents"
+msgstr "સમાવિષ્ટો (_C)"
+
+#: ../gnome-dictionary/src/gdict-window.c:1125
 msgid "Look _up:"
 msgstr "જુઓ (_u):"
 
-#: ../gnome-dictionary/src/gdict-window.c:1375
+#: ../gnome-dictionary/src/gdict-window.c:1368
 msgid "Unable to load the application icon"
 msgstr "કાર્યક્રમ ચિહ્ન લાવવામાં અસમર્થ"
 
@@ -1526,6 +1525,7 @@ msgstr "ફોટો-%s.png"
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-panel-screenshot.c:116
+#: ../gnome-screenshot/screenshot-save.c:164
 msgid "Screenshot.png"
 msgstr "ફોટો.png"
 
@@ -1651,7 +1651,7 @@ msgstr ""
 "બાળ સંગ્રહ પ્રક્રિયા અનિચ્છનીય રીત ઉત્સુક થઈ ગઈ.  અમે ફોટાનો ડિસ્કમાં સંગ્રહ કરવામાં "
 "અસમર્થ છીએ."
 
-#: ../gnome-screenshot/screenshot-save.c:189
+#: ../gnome-screenshot/screenshot-save.c:191
 msgid "Unknown error saving screenshot to disk"
 msgstr "ફોટાનો ડિસ્કમાં સંગ્રહ કરતી વખતે અજ્ઞાત ભૂલ"
 
@@ -2682,15 +2682,15 @@ msgstr "લોગ ખોલો"
 msgid "There was an error displaying help."
 msgstr "મદદ પ્રદર્શિત કરવામાં ભૂલ હતી."
 
-#: ../logview/logview.c:884
+#: ../logview/logview.c:883
 msgid "Version: "
 msgstr "આવૃત્તિ: "
 
-#: ../logview/logview.c:953
+#: ../logview/logview.c:952
 msgid "Days"
 msgstr "દિવસો"
 
-#: ../logview/logview.c:954
+#: ../logview/logview.c:953
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "વર્તમાન લોગ માટે દિવસોના GSList તરફનો નિર્દેશક."
 
