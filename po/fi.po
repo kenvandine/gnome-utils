@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-31 23:23+0200\n"
+"POT-Creation-Date: 2006-02-07 07:08+0200\n"
 "PO-Revision-Date: 2006-01-31 23:25+0200\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
@@ -473,12 +473,12 @@ msgid "Cl_ear"
 msgstr "_Tyhjennä"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:826 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:838 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Tietoja"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:786 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:798 ../logview/logview.c:88
 msgid "_Help"
 msgstr "O_hje"
 
@@ -487,7 +487,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Etsi valittu teksti..."
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:810
+#: ../gnome-dictionary/src/gdict-window.c:822
 msgid "_Preferences"
 msgstr "_Asetukset"
 
@@ -501,8 +501,8 @@ msgstr "_Tallenna"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:345
-#: ../gnome-dictionary/src/gdict-window.c:1210
+#: ../gnome-dictionary/src/gdict-app.c:409
+#: ../gnome-dictionary/src/gdict-window.c:1203
 msgid "Dictionary"
 msgstr "Sanakirja"
 
@@ -655,7 +655,7 @@ msgstr "Palvelin:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:230
-#: ../gnome-dictionary/src/gdict-window.c:582
+#: ../gnome-dictionary/src/gdict-window.c:594
 msgid "Print"
 msgstr "Tulosta"
 
@@ -1094,39 +1094,52 @@ msgstr "Etsi sanoja sanakirjoista"
 msgid "Unable to open the application icon: %s"
 msgstr "Sovelluksen kuvaketta ei voi avata: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:201
+#: ../gnome-dictionary/src/gdict-app.c:118
 #, c-format
 msgid ""
-"Definitions for \"%s\":\n"
-"\n"
+"Unable to create the data directory '%s': there already is a file with the "
+"same name.  You should move the file and re-run gnome-dictionary."
 msgstr ""
-"Määritelmät sanalle \"%s\":\n"
-"\n"
+"Hakemistoa \"%s\" tiedoille ei voi luoda: samanniminen tiedosto on jo "
+"olemassa. Poista tämä tiedosto ja käynnistä gnome-dictionary uudestaan."
 
-#. Translators: source name first, then definition
-#: ../gnome-dictionary/src/gdict-app.c:210
+#. Translators: the first is the file name, the second is
+#. * the error message
+#: ../gnome-dictionary/src/gdict-app.c:130
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "Hakemistoa \"%s\" ei voi luoda: %s"
+
+#. Translators: the first is the word found, the second is the
+#. * database name and the last is the definition's text; please
+#. * keep the new lines.
+#: ../gnome-dictionary/src/gdict-app.c:249
 #, c-format
 msgid ""
-"From %s:\n"
+"Definition for '%s'\n"
+"  From '%s':\n"
+"\n"
 "%s\n"
 msgstr ""
-"Lähteestä %s:\n"
+"Sanan \"%s\" määritelmä\n"
+"  lähteestä \"%s\":\n"
+"\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:220
+#: ../gnome-dictionary/src/gdict-app.c:263
 #, c-format
 msgid "Error: %s\n"
 msgstr "Virhe: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:232
+#: ../gnome-dictionary/src/gdict-app.c:289
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Lisätietoja saa komennolla gnome-dictionary --help\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:245
+#: ../gnome-dictionary/src/gdict-app.c:302
 msgid "Unable to find a suitable dictionary source"
 msgstr "Sopivaa sanakirjan lähdettä ei löydy"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:336
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1135,59 +1148,59 @@ msgstr ""
 "Virhe etsittäessä sanan \"%s\" määritelmää:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
-msgid "Word to look up"
-msgstr "Etsittävä sana"
+#: ../gnome-dictionary/src/gdict-app.c:368
+msgid "Words to look up"
+msgstr "Etsittävät sanat"
 
-#: ../gnome-dictionary/src/gdict-app.c:304
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "word"
 msgstr "sana"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:370
 msgid "Dictionary source to use"
 msgstr "Käytettävä sanakirjan lähde"
 
-#: ../gnome-dictionary/src/gdict-app.c:306
+#: ../gnome-dictionary/src/gdict-app.c:370
 msgid "source"
 msgstr "lähde"
 
-#: ../gnome-dictionary/src/gdict-app.c:308
+#: ../gnome-dictionary/src/gdict-app.c:372
 msgid "Show available dictionary sources"
 msgstr "Näytä käytettävissä olevat sanakirjojen lähteet"
 
-#: ../gnome-dictionary/src/gdict-app.c:310
+#: ../gnome-dictionary/src/gdict-app.c:374
 msgid "Print result to the console"
 msgstr "Näytä tulos pääteikkunassa"
 
-#: ../gnome-dictionary/src/gdict-app.c:312
+#: ../gnome-dictionary/src/gdict-app.c:376
 msgid "Database to use"
 msgstr "Käytettävä tietokanta"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:328
+#: ../gnome-dictionary/src/gdict-app.c:392
 msgid " - Look up words in dictionaries"
 msgstr " - etsi sanoja sanakirjoista"
 
-#: ../gnome-dictionary/src/gdict-app.c:332
+#: ../gnome-dictionary/src/gdict-app.c:396
 msgid "Dictionary and spelling tool"
 msgstr "Sanakirja- ja oikolukutyökalu"
 
-#: ../gnome-dictionary/src/gdict-app.c:333
+#: ../gnome-dictionary/src/gdict-app.c:397
 msgid "Show Dictionary options"
 msgstr "Näytä sanakirjan vaihtoehdot"
 
 #: ../gnome-dictionary/src/gdict-applet.c:244
-#: ../gnome-dictionary/src/gdict-window.c:527
+#: ../gnome-dictionary/src/gdict-window.c:539
 msgid "Save a Copy"
 msgstr "Tallenna kopio"
 
 #: ../gnome-dictionary/src/gdict-applet.c:254
-#: ../gnome-dictionary/src/gdict-window.c:537
+#: ../gnome-dictionary/src/gdict-window.c:549
 msgid "Untitled document"
 msgstr "Nimeämätön asiakirja"
 
 #: ../gnome-dictionary/src/gdict-applet.c:275
-#: ../gnome-dictionary/src/gdict-window.c:558
+#: ../gnome-dictionary/src/gdict-window.c:570
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Virhe kirjoitettaessa tiedostoon \"%s\""
@@ -1255,7 +1268,7 @@ msgstr "Asetukset"
 #: ../gnome-dictionary/src/gdict-applet.c:758
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:748
+#: ../gnome-dictionary/src/gdict-window.c:760
 msgid "There was an error while displaying help"
 msgstr "Ohjetta näytettäessä tapahtui virhe"
 
@@ -1281,27 +1294,38 @@ msgstr "Lähteelle \"%s\" ei löydy kontekstia"
 msgid "Unable to create a context"
 msgstr "Kontekstia ei voi luoda"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1210
+#: ../gnome-dictionary/src/gdict-applet.c:1215
+#: ../gnome-dictionary/src/gdict-applet.c:1232
 #, c-format
 msgid "Unable to create the data directory '%s'"
 msgstr "Hakemistoa \"%s\" ei voi luoda"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1230
+#: ../gnome-dictionary/src/gdict-applet.c:1216
+msgid ""
+"There is a file with the same name in the path.\n"
+"You should move the file and re-run the\n"
+"Dictionary applet"
+msgstr ""
+"Polulla on jo saman niminen tiedosto.\n"
+"Poista tai nimeä uudelleen tämä tiedosto ja\n"
+"käynnistä sanakirjasovelma uudestaan."
+
+#: ../gnome-dictionary/src/gdict-applet.c:1252
 msgid "Unable to load the applet icon"
 msgstr "Sovelman kuvaketta ei voitu ladata"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1259
-#: ../gnome-dictionary/src/gdict-window.c:1319
+#: ../gnome-dictionary/src/gdict-applet.c:1281
+#: ../gnome-dictionary/src/gdict-window.c:1312
 msgid "Unable to connect to GConf"
 msgstr "GConfiin ei saatu yhteyttä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1274
-#: ../gnome-dictionary/src/gdict-window.c:1335
+#: ../gnome-dictionary/src/gdict-applet.c:1296
+#: ../gnome-dictionary/src/gdict-window.c:1328
 msgid "Unable to get notification for preferences"
 msgstr "Huomautusta asetuksista ei saada"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1289
-#: ../gnome-dictionary/src/gdict-window.c:1351
+#: ../gnome-dictionary/src/gdict-applet.c:1311
+#: ../gnome-dictionary/src/gdict-window.c:1344
 msgid "Unable to get notification for the document font"
 msgstr "Huomautusta asiakirjan kirjasimesta ei saada"
 
@@ -1371,108 +1395,107 @@ msgstr "Määritelmä löytyi"
 msgid "%d definitions found"
 msgstr "%d määritelmää löytyi"
 
-#: ../gnome-dictionary/src/gdict-window.c:667
-msgid "Dictionary Preferences"
-msgstr "Sanakirjan asetukset"
-
-#: ../gnome-dictionary/src/gdict-window.c:783
-msgid "_File"
-msgstr "_Tiedosto"
-
-#: ../gnome-dictionary/src/gdict-window.c:784 ../logview/logview.c:86
-msgid "_Edit"
-msgstr "_Muokkaa"
-
-#: ../gnome-dictionary/src/gdict-window.c:785
-msgid "_Go"
-msgstr "_Siirry"
-
-#. File menu
-#: ../gnome-dictionary/src/gdict-window.c:789
-msgid "_New"
-msgstr "_Uusi"
-
-#: ../gnome-dictionary/src/gdict-window.c:790
-msgid "New look up"
-msgstr "Uusi haku"
-
-#: ../gnome-dictionary/src/gdict-window.c:791
-msgid "_Save a Copy..."
-msgstr "Tallenna _kopio..."
-
-#: ../gnome-dictionary/src/gdict-window.c:793
-msgid "_Print..."
-msgstr "T_ulosta..."
-
-#: ../gnome-dictionary/src/gdict-window.c:794
-msgid "Print this document"
-msgstr "Tulosta tämä asiakirja"
-
-#: ../gnome-dictionary/src/gdict-window.c:801 ../logview/logview.c:99
-msgid "Select _All"
-msgstr "Valitse k_aikki"
-
-#: ../gnome-dictionary/src/gdict-window.c:804
-msgid "Find a word or phrase in the document"
-msgstr "Etsii sanaa tai lausetta tekstistä"
-
-#: ../gnome-dictionary/src/gdict-window.c:806
-msgid "Find Ne_xt"
-msgstr "Etsi _seuraava"
-
-#: ../gnome-dictionary/src/gdict-window.c:808
-msgid "Find Pre_vious"
-msgstr "Etsi _edellinen"
-
-#. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:814
-msgid "_Previous Definition"
-msgstr "_Edellinen määritelmä"
-
-#: ../gnome-dictionary/src/gdict-window.c:815
-msgid "Go to the previous definition"
-msgstr "Siirry edelliseen määritelmään"
-
-#: ../gnome-dictionary/src/gdict-window.c:816
-msgid "_Next Definition"
-msgstr "_Seuraava määritelmä"
-
-#: ../gnome-dictionary/src/gdict-window.c:817
-msgid "Go to the next definition"
-msgstr "Siirry seuraavaan määritelmään"
-
-#: ../gnome-dictionary/src/gdict-window.c:818
-msgid "_First Definition"
-msgstr "_Ensimmäinen määritelmä"
-
-#: ../gnome-dictionary/src/gdict-window.c:819
-msgid "Go to the first definition"
-msgstr "Siirry ensimmäiseen määritelmään"
-
-#: ../gnome-dictionary/src/gdict-window.c:820
-msgid "_Last Definition"
-msgstr "_Viimeinen määritelmä"
-
-#: ../gnome-dictionary/src/gdict-window.c:821
-msgid "Go to the last definition"
-msgstr "Siirry viimeiseen määritelmään"
-
-#. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:824 ../logview/logview.c:114
-msgid "_Contents"
-msgstr "_Sisältö"
-
-#: ../gnome-dictionary/src/gdict-window.c:918
-#: ../gnome-dictionary/src/gdict-window.c:950
+#: ../gnome-dictionary/src/gdict-window.c:361
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - sanakirja"
 
-#: ../gnome-dictionary/src/gdict-window.c:1132
+#: ../gnome-dictionary/src/gdict-window.c:679
+msgid "Dictionary Preferences"
+msgstr "Sanakirjan asetukset"
+
+#: ../gnome-dictionary/src/gdict-window.c:795
+msgid "_File"
+msgstr "_Tiedosto"
+
+#: ../gnome-dictionary/src/gdict-window.c:796 ../logview/logview.c:86
+msgid "_Edit"
+msgstr "_Muokkaa"
+
+#: ../gnome-dictionary/src/gdict-window.c:797
+msgid "_Go"
+msgstr "_Siirry"
+
+#. File menu
+#: ../gnome-dictionary/src/gdict-window.c:801
+msgid "_New"
+msgstr "_Uusi"
+
+#: ../gnome-dictionary/src/gdict-window.c:802
+msgid "New look up"
+msgstr "Uusi haku"
+
+#: ../gnome-dictionary/src/gdict-window.c:803
+msgid "_Save a Copy..."
+msgstr "Tallenna _kopio..."
+
+#: ../gnome-dictionary/src/gdict-window.c:805
+msgid "_Print..."
+msgstr "T_ulosta..."
+
+#: ../gnome-dictionary/src/gdict-window.c:806
+msgid "Print this document"
+msgstr "Tulosta tämä asiakirja"
+
+#: ../gnome-dictionary/src/gdict-window.c:813 ../logview/logview.c:99
+msgid "Select _All"
+msgstr "Valitse k_aikki"
+
+#: ../gnome-dictionary/src/gdict-window.c:816
+msgid "Find a word or phrase in the document"
+msgstr "Etsii sanaa tai lausetta tekstistä"
+
+#: ../gnome-dictionary/src/gdict-window.c:818
+msgid "Find Ne_xt"
+msgstr "Etsi _seuraava"
+
+#: ../gnome-dictionary/src/gdict-window.c:820
+msgid "Find Pre_vious"
+msgstr "Etsi _edellinen"
+
+#. Go menu
+#: ../gnome-dictionary/src/gdict-window.c:826
+msgid "_Previous Definition"
+msgstr "_Edellinen määritelmä"
+
+#: ../gnome-dictionary/src/gdict-window.c:827
+msgid "Go to the previous definition"
+msgstr "Siirry edelliseen määritelmään"
+
+#: ../gnome-dictionary/src/gdict-window.c:828
+msgid "_Next Definition"
+msgstr "_Seuraava määritelmä"
+
+#: ../gnome-dictionary/src/gdict-window.c:829
+msgid "Go to the next definition"
+msgstr "Siirry seuraavaan määritelmään"
+
+#: ../gnome-dictionary/src/gdict-window.c:830
+msgid "_First Definition"
+msgstr "_Ensimmäinen määritelmä"
+
+#: ../gnome-dictionary/src/gdict-window.c:831
+msgid "Go to the first definition"
+msgstr "Siirry ensimmäiseen määritelmään"
+
+#: ../gnome-dictionary/src/gdict-window.c:832
+msgid "_Last Definition"
+msgstr "_Viimeinen määritelmä"
+
+#: ../gnome-dictionary/src/gdict-window.c:833
+msgid "Go to the last definition"
+msgstr "Siirry viimeiseen määritelmään"
+
+#. Help menu
+#: ../gnome-dictionary/src/gdict-window.c:836 ../logview/logview.c:114
+msgid "_Contents"
+msgstr "_Sisältö"
+
+#: ../gnome-dictionary/src/gdict-window.c:1125
 msgid "Look _up:"
 msgstr "_Etsi sanaa:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1375
+#: ../gnome-dictionary/src/gdict-window.c:1368
 msgid "Unable to load the application icon"
 msgstr "Sovelluksen kuvaketta ei voitu ladata"
 
@@ -1513,6 +1536,7 @@ msgstr "Kuvakaappaus-%s.png"
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-panel-screenshot.c:116
+#: ../gnome-screenshot/screenshot-save.c:164
 msgid "Screenshot.png"
 msgstr "Kuvakaappaus.png"
 
@@ -1638,7 +1662,7 @@ msgstr ""
 "Tallentava lapsiprosessi sulkeutui odottamatta. Ruudusta otettua kuvaa ei "
 "voi kirjoittaa levylle."
 
-#: ../gnome-screenshot/screenshot-save.c:189
+#: ../gnome-screenshot/screenshot-save.c:191
 msgid "Unknown error saving screenshot to disk"
 msgstr "Tuntematon virhe kuvan kirjoittamisessa levylle"
 
@@ -2671,19 +2695,19 @@ msgstr "%s (tarkkailtu) - %s"
 msgid "Open Log"
 msgstr "Avaa loki"
 
-#: ../logview/logview.c:749
+#: ../logview/logview.c:774
 msgid "There was an error displaying help."
 msgstr "Ohjeen näyttämisessä tapahtui virhe."
 
-#: ../logview/logview.c:882
+#: ../logview/logview.c:907
 msgid "Version: "
 msgstr "Versio: "
 
-#: ../logview/logview.c:951
+#: ../logview/logview.c:976
 msgid "Days"
 msgstr "päivää"
 
-#: ../logview/logview.c:952
+#: ../logview/logview.c:977
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "Osoitin GSList-rajenteeseen päivistä valitussa lokissa."
 
@@ -2829,6 +2853,20 @@ msgstr "Tämä tiedostojärjestelmä ei tue tiedostojen tarkkailua.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS:n virhe.\n"
+
+#~ msgid ""
+#~ "Definitions for \"%s\":\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Määritelmät sanalle \"%s\":\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "From %s:\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Lähteestä %s:\n"
+#~ "%s\n"
 
 #~ msgid "There was an error displaying help"
 #~ msgstr "Ohjetta näytettäessä tapahtui virhe"
