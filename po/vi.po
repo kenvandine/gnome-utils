@@ -8,8 +8,8 @@ msgid ""
 ""
 msgstr "Project-Id-Version: Gnome-utils 2.12 Gnome HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-05 23:25+0100\n"
-"PO-Revision-Date: 2006-02-06 15:02+1030\n"
+"POT-Creation-Date: 2006-02-09 08:27+0100\n"
+"PO-Revision-Date: 2006-02-10 16:53+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1057,7 +1057,7 @@ msgstr "Không thể mở biểu tượng ứng dụng: %s"
 msgid ""
 "Unable to create the data directory '%s': there already is a file with the "
 "same name.  You should move the file and re-run gnome-dictionary."
-msgstr "Không thể tạo thư mục dữ liệu « %s »: một tập tin cùng tên đã có. Bạn nên chuyển tập tin đó, rồi chạy lại trình Từ điển Gnome."
+msgstr "Không thể tạo thư mục dữ liệu « %s »: một tập tin cùng tên đã có. Bạn nên di chuyển tập tin đó rồi chạy lại trình Từ điển Gnome (gnome-dictionary)."
 
 #.Translators: the first is the file name, the second is
 #.* the error message
@@ -1252,16 +1252,16 @@ msgstr "Không thể tạo ngữ cảnh"
 #:../gnome-dictionary/src/gdict-applet.c:1232
 #,c-format
 msgid "Unable to create the data directory '%s'"
-msgstr "Không thể tạo thư mục dữ liệu « %s »"
+msgstr "Không thể tạo hư mục dữ liệu « %s »"
 
 #:../gnome-dictionary/src/gdict-applet.c:1216
 msgid ""
 "There is a file with the same name in the path.\n"
 "You should move the file and re-run the\n"
 "Dictionary applet"
-msgstr "Trong đường dẫn cọ một tập tin cùng tên đã có.\n"
-"Bạn nên chuyển tập tin đó,\n"
-"rồi chạy lại tiểu dụng Từ điển."
+msgstr "Một tập tin cùng tên đã có trong đường dẫn này.\n"
+"Bạn nên di chuyển tập tin đó rồi chạy lại tiểu dụng\n"
+"Từ điển Gnome (gnome-dictionary)."
 
 #:../gnome-dictionary/src/gdict-applet.c:1252
 msgid "Unable to load the applet icon"
@@ -1513,21 +1513,41 @@ msgstr "Hình-chụp-%d.png"
 msgid "Unable to take a screenshot of the current desktop."
 msgstr "Không thể chụp hình của màn hình nền hiện có."
 
-#:../gnome-screenshot/gnome-panel-screenshot.c:438
+#:../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "Grab a window instead of the entire screen"
 msgstr "Lấy một cửa sổ riêng thay thế toàn bộ màn hình"
 
-#:../gnome-screenshot/gnome-panel-screenshot.c:439
+#:../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "Include the window border with the screenshot"
 msgstr "Gồm viền cửa sổ khi chụp hình màn hình."
 
-#:../gnome-screenshot/gnome-panel-screenshot.c:440
+#:../gnome-screenshot/gnome-panel-screenshot.c:441
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Chụp hình màn hình sau thời gian đã ghi rõ [theo giây]."
 
 #:../gnome-screenshot/gnome-panel-screenshot.c:441
-msgid "Effect to add to the window border"
-msgstr "Tác dụng cần thêm vào viền cửa sổ"
+msgid "seconds"
+msgstr "giây"
+
+#:../gnome-screenshot/gnome-panel-screenshot.c:442
+msgid "Effect to add to the border"
+msgstr "Hiệu ứng cần thêm vào viền"
+
+#:../gnome-screenshot/gnome-panel-screenshot.c:442
+msgid "effect"
+msgstr "hiệu ứng"
+
+#:../gnome-screenshot/gnome-panel-screenshot.c:452
+msgid "Options for Screenshot"
+msgstr "Tùy chọn Chụp Màn hình"
+
+#:../gnome-screenshot/gnome-panel-screenshot.c:453
+msgid "Show Screenshot options"
+msgstr "Hiện tùy chọn Chụp Màn hình"
+
+#:../gnome-screenshot/gnome-panel-screenshot.c:457
+msgid "Take a picture of the screen"
+msgstr "Chụp ảnh của màn hình"
 
 #:../gnome-screenshot/gnome-panel-screenshot.glade.h:2
 msgid "<b>Options</b>"
@@ -2615,19 +2635,19 @@ msgstr "%s (đã theo dõi) — %s"
 msgid "Open Log"
 msgstr "Mở bản ghi"
 
-#:../logview/logview.c:749
+#:../logview/logview.c:774
 msgid "There was an error displaying help."
 msgstr "Gặp lỗi khi hiển thị trợ giúp."
 
-#:../logview/logview.c:883
+#:../logview/logview.c:907
 msgid "Version: "
 msgstr "Phiên bản: "
 
-#:../logview/logview.c:952
+#:../logview/logview.c:976
 msgid "Days"
 msgstr "Ngày"
 
-#:../logview/logview.c:953
+#:../logview/logview.c:977
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "Con trỏ đến danh sách kiểu GSList của các ngày trên bản ghi hiện thời."
 
