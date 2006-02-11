@@ -1288,6 +1288,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
       priv->command->state = S_FINISH;
       break;
     default:
+      gdict_debug ("non error code: %d\n", priv->status_code);
       break;
     }
 
@@ -1334,6 +1335,11 @@ gdict_client_context_parse_line (GdictClientContext *context,
       return TRUE;
     }
 
+  gdict_debug ("check command %d ('%s')[state:%d]\n",
+	       priv->command->cmd_type,
+	       dict_command_strings[priv->command->cmd_type],
+	       priv->command->state);
+
   /* check command type */
   switch (priv->command->cmd_type)
     {
@@ -1353,6 +1359,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           
           gdict_debug ("server replied: %d databases found\n", atoi (p));
           
+	  gdict_debug ("emitting lookup-start\n");
           g_signal_emit_by_name (context, "lookup-start");
         }
       else if (0 == strcmp (buffer, "."))
@@ -1387,6 +1394,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           db = _gdict_database_new (name);
           db->full_name = g_strdup (full);
           
+	  gdict_debug ("emitting database-found\n");
           g_signal_emit_by_name (context, "database-found", db);
           
           gdict_database_unref (db);
@@ -1405,6 +1413,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           
           gdict_debug ("server replied: %d strategies found\n", atoi (p));
           
+	  gdict_debug ("emitting lookup-start\n");
           g_signal_emit_by_name (context, "lookup-start");
         }
       else if (0 == strcmp (buffer, "."))
@@ -1436,6 +1445,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           strat = _gdict_strategy_new (name);
           strat->description = g_strdup (desc);
           
+	  gdict_debug ("emitting strategy-found\n");
           g_signal_emit_by_name (context, "strategy-found", strat);
           
           gdict_strategy_unref (strat);
@@ -1460,6 +1470,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           priv->command->data = def;
           priv->command->data_destroy = (GDestroyNotify) gdict_definition_unref;
 
+	  gdict_debug ("emitting lookup-start\n");
           g_signal_emit_by_name (context, "lookup-start");
         }
       else if (priv->status_code == GDICT_STATUS_WORD_DB_NAME)
@@ -1506,7 +1517,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           
           def = (GdictDefinition *) priv->command->data;
 
-	  gdict_debug ("{ word = '%s', db_name = '%s', db_full = '%s' }",
+	  gdict_debug ("{ word .= '%s', db_name .= '%s', db_full .= '%s' }\n",
 		       word,
 		       db_name,
 		       db_full);
@@ -1534,6 +1545,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
 	  /* store the numer of definitions */
 	  num = def->total;
           
+	  gdict_debug ("emitting definition-found\n");
           g_signal_emit_by_name (context, "definition-found", def);
           
           gdict_definition_unref (def);
@@ -1550,8 +1562,9 @@ gdict_client_context_parse_line (GdictClientContext *context,
           if (!priv->command->buffer)
             priv->command->buffer = g_string_new (NULL);
           
-          /* TODO - collapse '..' to '.' */
+	  gdict_debug ("appending line:\n %s\n", buffer);
           
+          /* TODO - collapse '..' to '.' */
           g_string_append_printf (priv->command->buffer, "%s\n", buffer);
         }
       break;
@@ -1568,6 +1581,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           
           gdict_debug ("server replied: %d matches found\n", atoi (p));
 
+	  gdict_debug ("emitting lookup-start\n");
           g_signal_emit_by_name (context, "lookup-start");
         }
       else if (0 == strcmp (buffer, "."))
@@ -1599,6 +1613,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           match = _gdict_match_new (word);
           match->database = g_strdup (db_name);
           
+	  gdict_debug ("emitting match-found\n");
           g_signal_emit_by_name (context, "match-found", match);
           
           gdict_match_unref (match);
@@ -1727,6 +1742,8 @@ gdict_client_context_io_watch_cb (GIOChannel         *channel,
           
           gdict_debug ("new status = '%d'\n", priv->status_code);
         }
+      else
+        priv->status_code = GDICT_STATUS_INVALID;
       
       /* notify changes only for valid status codes */
       if (priv->status_code != GDICT_STATUS_INVALID)
