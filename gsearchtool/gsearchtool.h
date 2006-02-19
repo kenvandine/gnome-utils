@@ -124,6 +124,7 @@ struct _GSearchWindow {
 	gint		        show_thumbnails_file_size_limit;
 	gboolean		show_thumbnails;
 	gboolean                is_search_results_single_click_to_activate;
+	gboolean		is_locate_database_check_finished;
 	gboolean		is_locate_database_available;
 
 	gchar                 * save_results_as_default_filename;

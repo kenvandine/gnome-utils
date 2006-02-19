@@ -1,3 +1,12 @@
+2006-02-19  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* gsearchtool.c: (handle_locate_command_stdout_io),
+	(setup_case_insensitive_arguments), (start_animation),
+	(stop_animation), (build_search_command),
+	(handle_search_command_stdout_io), (spawn_search_command):
+	* gsearchtool.h:  Convert calls to "locate" to be asynchronous.
+	Fixes bug #330176.
+
 2006-01-21  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* gnome-search-tool.desktop.in:  Add GTK category to the

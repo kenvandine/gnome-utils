@@ -37,6 +37,7 @@
 #include <string.h>
 #include <signal.h>
 #include <unistd.h>
+#include <sys/wait.h>
 #include <glib/gi18n.h>
 #include <gdk/gdkcursor.h> 
 #include <libgnomevfs/gnome-vfs-mime.h>
@@ -197,12 +198,81 @@ static const char * GSearchUiDescription =
 
 static gchar * find_command_default_name_argument;
 static gchar * locate_command_default_options;
+pid_t locate_database_check_command_pid;
+
+static gboolean
+handle_locate_command_stdout_io (GIOChannel * ioc, 
+                                 GIOCondition condition, 
+                                 gpointer data) 
+{
+	GSearchWindow * gsearch = data;
+	gboolean broken_pipe = FALSE;
+	
+	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
+	
+		GError * error = NULL;
+		GString * string;
+		
+		string = g_string_new (NULL);
+
+		while (ioc->is_readable != TRUE);
+
+		do {
+			gint status;
+			
+			do {
+				status = g_io_channel_read_line_string (ioc, string, NULL, &error);
+				
+				if (status == G_IO_STATUS_EOF) {
+					broken_pipe = TRUE;
+				}
+				else if (status == G_IO_STATUS_AGAIN) {
+					if (gtk_events_pending ()) {
+						while (gtk_events_pending ()) {
+							gtk_main_iteration ();
+						}
+					}
+				}
+				else if (string->len > 0) {
+					if (string->str[0] == '/') {
+						gsearch->is_locate_database_available = TRUE;
+					}
+					broken_pipe = TRUE;
+					break;
+				}
+			
+			} while (status == G_IO_STATUS_AGAIN && broken_pipe == FALSE);
+			
+			if (broken_pipe == TRUE) {
+				break;
+			}
+			
+			if (status != G_IO_STATUS_NORMAL) {
+				if (error != NULL) {
+					g_warning ("handle_locate_command_stdout_io(): %s", error->message);
+					g_error_free (error);
+				}
+			}
+			
+		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
+		
+		g_string_free (string, TRUE);
+		kill (locate_database_check_command_pid, SIGKILL);
+		wait (NULL);
+	}
+
+	if (condition != G_IO_IN || broken_pipe == TRUE) {
+		gsearch->is_locate_database_check_finished = TRUE;
+		g_io_channel_shutdown (ioc, TRUE, NULL);
+		return FALSE;
+	}
+	return TRUE;
+}
 
 static void
 setup_case_insensitive_arguments (GSearchWindow * gsearch)
 {
 	static gboolean case_insensitive_arguments_initialized = FALSE;
-	gchar * cmd_stdout;
 	gchar * cmd_stderr;
 	gchar * grep_cmd;
 	gchar * locate;
@@ -241,38 +311,88 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
 	locate = g_find_program_in_path ("locate");
 
 	if (locate != NULL) {
+		GIOChannel * ioc_stdout;
+		gchar ** argv  = NULL;
+		gchar *command = NULL;
+		gint child_stdout;
+
 		/* check locate command for -i argument compatibility */
-		g_spawn_command_line_sync ("locate -i [/]", &cmd_stdout, &cmd_stderr, NULL, NULL);
+		command = g_strconcat (locate, " -i /", NULL);
+		g_shell_parse_argv (command, NULL, &argv, NULL);
+		g_free (command);
+				
+		gsearch->is_locate_database_check_finished = FALSE;
+		gsearch->is_locate_database_available = FALSE;
 
-		if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
-			locate_command_default_options = g_strdup ("-i");
+		/* run locate command asynchronously because on some systems it can be slow */
+		if (g_spawn_async_with_pipes (g_get_home_dir (), argv, NULL, 
+				       G_SPAWN_SEARCH_PATH, NULL, NULL, 
+				       &locate_database_check_command_pid, NULL, &child_stdout, 
+				       NULL, NULL)) {
 
-			/* check locate found the root directory */
-			if ((cmd_stdout != NULL) && (strncmp (cmd_stdout, "/", 1) == 0)) {
-				gsearch->is_locate_database_available = TRUE;
-			}
-			else {
-				g_warning (_("A locate database has probably not been created."));
-				gsearch->is_locate_database_available = FALSE;	
-			}
-			g_free (cmd_stdout);
-			g_free (cmd_stderr);
+			ioc_stdout = g_io_channel_unix_new (child_stdout);
+			g_io_channel_set_encoding (ioc_stdout, NULL, NULL);
+			g_io_channel_set_flags (ioc_stdout, G_IO_FLAG_NONBLOCK, NULL);
+			g_io_add_watch (ioc_stdout, G_IO_IN | G_IO_HUP,
+					handle_locate_command_stdout_io, gsearch);	
+			g_io_channel_unref (ioc_stdout);
 		}
 		else {
+			gsearch->is_locate_database_check_finished = TRUE;
+		}
+		
+		g_strfreev (argv);
+			
+		while (gsearch->is_locate_database_check_finished == FALSE) { 
+			if (gtk_events_pending ()) {
+				while (gtk_events_pending ()) {
+					gtk_main_iteration ();
+				}
+			}
+		} 
+		
+		if (gsearch->is_locate_database_available == TRUE) {
+			locate_command_default_options = g_strdup ("-i");
+		}
+		else {
+			/* run locate again to check if it can find anything */
+			command = g_strconcat (locate, " /", NULL);
+			g_shell_parse_argv (command, NULL, &argv, NULL);
+			g_free (command);
+		
+			gsearch->is_locate_database_check_finished = FALSE;
 			locate_command_default_options = g_strdup ("");
-			g_free (cmd_stdout);
-			g_free (cmd_stderr);
 
-			/* run locate again to check if it can find the root directory */
-			g_spawn_command_line_sync ("locate [/]", &cmd_stdout, &cmd_stderr, NULL, NULL);
-			if ((cmd_stdout != NULL) && (strncmp (cmd_stdout, "/", 1) == 0)) {
-				gsearch->is_locate_database_available = TRUE;
+			/* run locate command asynchronously because on some systems it can be slow */
+			if (g_spawn_async_with_pipes (g_get_home_dir (), argv, NULL, 
+					       G_SPAWN_SEARCH_PATH, NULL, NULL, 
+					       &locate_database_check_command_pid, NULL, &child_stdout, 
+					       NULL, NULL)) {
+
+				ioc_stdout = g_io_channel_unix_new (child_stdout);
+				g_io_channel_set_encoding (ioc_stdout, NULL, NULL);
+				g_io_channel_set_flags (ioc_stdout, G_IO_FLAG_NONBLOCK, NULL);
+				g_io_add_watch (ioc_stdout, G_IO_IN | G_IO_HUP,
+						handle_locate_command_stdout_io, gsearch);	
+				g_io_channel_unref (ioc_stdout);
 			}
 			else {
-				g_warning (_("A locate database has probably not been created."));
-				gsearch->is_locate_database_available = FALSE;
+				gsearch->is_locate_database_check_finished = TRUE;
 			}
-			g_free (cmd_stdout);
+		
+			g_strfreev (argv);
+
+			while (gsearch->is_locate_database_check_finished == FALSE) { 
+				if (gtk_events_pending ()) {
+					while (gtk_events_pending ()) {
+						gtk_main_iteration (); 
+					}
+				}
+			}
+			
+			if (gsearch->is_locate_database_available == FALSE) {
+				g_warning (_("A locate database has probably not been created."));
+			}
 		}
 	}
 	else {
@@ -390,6 +510,57 @@ display_dialog_character_set_conversion_error (GtkWidget * window,
 	gtk_widget_show (dialog);
 }
 
+static void
+start_animation (GSearchWindow * gsearch, gboolean first_pass)
+{
+	if (first_pass == TRUE) {
+	
+		gchar *title = NULL;
+	
+		title = g_strconcat (_("Searching..."), " - ", _("Search for Files"), NULL);
+		gtk_window_set_title (GTK_WINDOW (gsearch->window), title);
+	
+		gtk_label_set_text (GTK_LABEL (gsearch->files_found_label), "");
+		if (gsearchtool_gconf_get_boolean ("/desktop/gnome/interface/enable_animations")) {
+			gsearch_spinner_start (GSEARCH_SPINNER (gsearch->progress_spinner));
+		}
+		g_free (title);
+		
+		gsearch->focus = gtk_window_get_focus (GTK_WINDOW (gsearch->window));
+		
+		gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->stop_button);
+		gtk_widget_show (gsearch->stop_button);
+		gtk_widget_set_sensitive (gsearch->stop_button, TRUE);
+		gtk_widget_hide (gsearch->find_button);
+		gtk_widget_set_sensitive (gsearch->find_button, FALSE);
+		gtk_widget_set_sensitive (gsearch->search_results_save_results_as_item, FALSE);
+		gtk_widget_set_sensitive (gsearch->search_results_vbox, TRUE);
+		gtk_widget_set_sensitive (GTK_WIDGET (gsearch->search_results_tree_view), TRUE);
+		gtk_widget_set_sensitive (gsearch->available_options_vbox, FALSE);
+		gtk_widget_set_sensitive (gsearch->show_more_options_expander, FALSE);
+		gtk_widget_set_sensitive (gsearch->name_and_folder_table, FALSE);
+	}
+} 
+
+static void
+stop_animation (GSearchWindow * gsearch)
+{
+	gsearch_spinner_stop (GSEARCH_SPINNER (gsearch->progress_spinner));
+
+	gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->find_button);
+	gtk_widget_set_sensitive (gsearch->available_options_vbox, TRUE);
+	gtk_widget_set_sensitive (gsearch->show_more_options_expander, TRUE);
+	gtk_widget_set_sensitive (gsearch->name_and_folder_table, TRUE);
+	gtk_widget_set_sensitive (gsearch->find_button, TRUE);
+	gtk_widget_set_sensitive (gsearch->search_results_save_results_as_item, TRUE);
+	gtk_widget_hide (gsearch->stop_button);
+	gtk_widget_show (gsearch->find_button); 
+
+	if (gtk_window_get_focus (GTK_WINDOW (gsearch->window)) == NULL) {
+		gtk_window_set_focus (GTK_WINDOW (gsearch->window), gsearch->focus);
+	}
+} 
+
 gchar *
 build_search_command (GSearchWindow * gsearch,
                       gboolean first_pass)
@@ -403,6 +574,7 @@ build_search_command (GSearchWindow * gsearch,
 	gchar * look_in_folder_utf8;
 	gchar * look_in_folder_locale;
 
+	start_animation (gsearch, first_pass);
 	setup_case_insensitive_arguments (gsearch);
 	
 	file_is_named_utf8 = g_strdup ((gchar *) gtk_entry_get_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry)))));
@@ -416,6 +588,7 @@ build_search_command (GSearchWindow * gsearch,
 
 		locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, &error);
 		if (locale == NULL) {
+			stop_animation (gsearch);
 			display_dialog_character_set_conversion_error (gsearch->window, file_is_named_utf8, error);
 			g_free (file_is_named_utf8);
 			g_error_free (error);
@@ -436,6 +609,7 @@ build_search_command (GSearchWindow * gsearch,
 
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8, -1, NULL, NULL, &error);
 	if (file_is_named_locale == NULL) {
+		stop_animation (gsearch);
 		display_dialog_character_set_conversion_error (gsearch->window, file_is_named_utf8, error);
 		g_free (file_is_named_utf8);
 		g_error_free (error);
@@ -447,6 +621,7 @@ build_search_command (GSearchWindow * gsearch,
 	if (look_in_folder_utf8 != NULL) {
 		look_in_folder_locale = g_locale_from_utf8 (look_in_folder_utf8, -1, NULL, NULL, &error);
 		if (look_in_folder_locale == NULL) {
+			stop_animation (gsearch);
 			display_dialog_character_set_conversion_error (gsearch->window, look_in_folder_utf8, error);
 			g_free (look_in_folder_utf8);
 			g_error_free (error);
@@ -1205,30 +1380,6 @@ get_desktop_item_name (GSearchWindow * gsearch)
 }
 
 static void
-start_animation (GSearchWindow * gsearch)
-{
-	if (gsearch->command_details->is_command_first_pass == TRUE) {
-	
-		gchar *title = NULL;
-	
-		title = g_strconcat (_("Searching..."), " - ", _("Search for Files"), NULL);
-		gtk_window_set_title (GTK_WINDOW (gsearch->window), title);
-	
-		gtk_label_set_text (GTK_LABEL (gsearch->files_found_label), "");
-		if (gsearchtool_gconf_get_boolean ("/desktop/gnome/interface/enable_animations")) {
-			gsearch_spinner_start (GSEARCH_SPINNER (gsearch->progress_spinner));
-		}
-		g_free (title);
-	}
-} 
-
-static void
-stop_animation (GSearchWindow * gsearch)
-{
-	gsearch_spinner_stop (GSEARCH_SPINNER (gsearch->progress_spinner));
-} 
-
-static void
 gsearch_setup_goption_descriptions (void) 
 {
 	gint i = 0;
@@ -1549,19 +1700,6 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 
 			update_search_counts (gsearch); 
 			stop_animation (gsearch);
-
-			gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->find_button);
-			gtk_widget_set_sensitive (gsearch->available_options_vbox, TRUE);
-			gtk_widget_set_sensitive (gsearch->show_more_options_expander, TRUE);
-			gtk_widget_set_sensitive (gsearch->name_and_folder_table, TRUE);
-			gtk_widget_set_sensitive (gsearch->find_button, TRUE);
-			gtk_widget_set_sensitive (gsearch->search_results_save_results_as_item, TRUE);
-			gtk_widget_hide (gsearch->stop_button);
-			gtk_widget_show (gsearch->find_button); 
-
-			if (gtk_window_get_focus (GTK_WINDOW (gsearch->window)) == NULL) {
-				gtk_window_set_focus (GTK_WINDOW (gsearch->window), gsearch->focus);
-			}
 			
 			/* Free the gchar fields of search_command structure. */
 			g_free (gsearch->command_details->name_contains_pattern_string);
@@ -1789,8 +1927,6 @@ spawn_search_command (GSearchWindow * gsearch,
 	gint child_stdout;
 	gint child_stderr;
 	
-	start_animation (gsearch);
-	
 	if (!g_shell_parse_argv (command, NULL, &argv, &error)) {
 		GtkWidget * dialog;
 
@@ -1862,19 +1998,6 @@ spawn_search_command (GSearchWindow * gsearch,
 	
 		/* Get value of nautilus date_format key */
 		gsearch->search_results_date_format_string = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/date_format");
-		gsearch->focus = gtk_window_get_focus (GTK_WINDOW (gsearch->window));
-		
-		gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->stop_button);
-		gtk_widget_show (gsearch->stop_button);
-		gtk_widget_set_sensitive (gsearch->stop_button, TRUE);
-		gtk_widget_hide (gsearch->find_button);
-		gtk_widget_set_sensitive (gsearch->find_button, FALSE);
-		gtk_widget_set_sensitive (gsearch->search_results_save_results_as_item, FALSE);
-		gtk_widget_set_sensitive (gsearch->search_results_vbox, TRUE);
-		gtk_widget_set_sensitive (GTK_WIDGET (gsearch->search_results_tree_view), TRUE);
-		gtk_widget_set_sensitive (gsearch->available_options_vbox, FALSE);
-		gtk_widget_set_sensitive (gsearch->show_more_options_expander, FALSE);
-		gtk_widget_set_sensitive (gsearch->name_and_folder_table, FALSE);
 
 		gtk_tree_view_scroll_to_point (GTK_TREE_VIEW (gsearch->search_results_tree_view), 0, 0);
 		gtk_tree_model_foreach (GTK_TREE_MODEL (gsearch->search_results_list_store), 
