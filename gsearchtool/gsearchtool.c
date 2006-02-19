@@ -233,12 +233,9 @@ handle_locate_command_stdout_io (GIOChannel * ioc,
 						}
 					}
 				}
-				else if (string->len > 0) {
-					if (string->str[0] == '/') {
-						gsearch->is_locate_database_available = TRUE;
-					}
+				else if ((string->len != 0) && (strncmp (string->str, "/", 1) == 0)) {
+					gsearch->is_locate_database_available = TRUE;
 					broken_pipe = TRUE;
-					break;
 				}
 			
 			} while (status == G_IO_STATUS_AGAIN && broken_pipe == FALSE);
