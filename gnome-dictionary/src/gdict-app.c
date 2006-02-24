@@ -96,44 +96,8 @@ gdict_app_class_init (GdictAppClass *klass)
 static void
 gdict_app_init (GdictApp *app)
 {
-  gchar *data_dir;
-  
   app->windows = NULL;
   app->current_window = NULL;
-  
-  /* create the data directory inside $HOME, if it doesn't exist yet */
-  data_dir = g_build_filename (g_get_home_dir (),
-  			       ".gnome2",
-  			       "gnome-dictionary",
-  			       NULL);
-  
-  if (g_mkdir (data_dir, 0700) == -1)
-    {
-      /* this is weird, but sometimes there's a "gnome-dictionary" file
-       * inside $HOME/.gnome2; see bug #329126.
-       */
-      if ((errno == EEXIST) &&
-	  (g_file_test (data_dir, G_FILE_TEST_IS_REGULAR)))
-        {
-          g_warning (_("Unable to create the data directory '%s': "
-		       "there already is a file with the same name.  You "
-		       "should move the file and re-run gnome-dictionary."),
-		     data_dir);
-
-	  exit (1);
-	}
-      
-      if (errno != EEXIST)
-        {
-          /* Translators: the first is the file name, the second is
-	   * the error message */
-          g_warning (_("Unable to create the data directory '%s': %s"),
-		     data_dir,
-		     strerror (errno));
-	}
-    }
-  
-  g_free (data_dir);
 }
 
 static gboolean
@@ -349,6 +313,167 @@ gdict_look_up_word_and_quit (GdictApp *app)
   exit (0);
 }
 
+/* create the data directory inside $HOME, if it doesn't exist yet */
+static gboolean
+gdict_app_create_data_dir ()
+{
+  gchar *data_dir;
+  
+  data_dir = g_build_filename (g_get_home_dir (),
+  			       ".gnome2",
+  			       "gnome-dictionary",
+  			       NULL);
+  
+  if (g_mkdir (data_dir, 0700) == -1)
+    {
+      /* this is weird, but sometimes there's a "gnome-dictionary" file
+       * inside $HOME/.gnome2; see bug #329126.
+       */
+      if ((errno == EEXIST) &&
+	  (g_file_test (data_dir, G_FILE_TEST_IS_REGULAR)))
+        {
+	  gchar *message;
+	  gchar *detail;
+	  GtkWidget *dialog;
+	  gint response;
+
+	  message = g_strdup_printf (_("Unable to create Dictionary data directory '%s'"), data_dir);
+	  detail = g_strdup(_("There already is a file with the same name.\n"
+			      "\n"
+			      "If you did not create the file yourself, you can safely remove it. "
+			      "If you want to move the file and check its contents later, you can make a copy. "
+			      "If you are not sure, you should close this dialog, check the contents "
+			      "of the file and then remove it manually before launching Dictionary again."));
+
+	  dialog = gtk_message_dialog_new (NULL,
+			  		   GTK_DIALOG_MODAL,
+					   GTK_MESSAGE_ERROR,
+					   GTK_BUTTONS_NONE,
+					   "%s", message);
+	  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
+			  			    "%s", detail);
+	  gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+			  	  _("Remove the file"), 1,
+				  _("Make a copy"), 2,
+				  GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+				  NULL);
+	  
+	  response = gtk_dialog_run (GTK_DIALOG (dialog));
+	  switch (response)
+            {
+            case 1:
+              /* the user pressed "delete" */
+              if (g_unlink (data_dir) == -1)
+	        {
+                  GtkWidget *error_dialog;
+
+		  error_dialog = gtk_message_dialog_new (NULL,
+							 GTK_DIALOG_MODAL,
+							 GTK_MESSAGE_ERROR,
+							 GTK_BUTTONS_CLOSE,
+							 _("Unable to remove file '%s': %s"),
+							 data_dir,
+							 g_strerror (errno));
+		  
+		  gtk_dialog_run (GTK_DIALOG (dialog));
+		  
+		  gtk_widget_destroy (dialog);
+		  g_free (data_dir);
+		  
+                  return FALSE;
+                }
+	      break;
+	    case 2:
+	      {
+              gchar *backup = g_strdup_printf ("%s.pre-2-14", data_dir);
+	      
+	      /* the user pressed rename */
+	      if (g_rename (data_dir, backup) == -1)
+	        {
+                  GtkWidget *error_dialog;
+
+		  error_dialog = gtk_message_dialog_new (NULL,
+							 GTK_DIALOG_MODAL,
+							 GTK_MESSAGE_ERROR,
+							 GTK_BUTTONS_CLOSE,
+							 _("Unable to rename file '%s' to '%s': %s"),
+							 data_dir,
+							 backup,
+							 g_strerror (errno));
+		  
+		  gtk_dialog_run (GTK_DIALOG (dialog));
+		  
+		  gtk_widget_destroy (dialog);
+		  g_free (backup);
+		  g_free (data_dir);
+		  
+                  return FALSE;
+                }
+
+	      g_free (backup);
+	      }
+	      break;
+            default:
+              /* the user closed the dialog */
+              g_free (data_dir);
+
+	      return FALSE;
+	    }
+	  
+          if (g_mkdir (data_dir, 0700) == -1)
+            {
+              GtkWidget *error_dialog;
+	      
+	      error_dialog = gtk_message_dialog_new (NULL,
+						     GTK_DIALOG_MODAL,
+						     GTK_MESSAGE_ERROR,
+						     GTK_BUTTONS_CLOSE,
+						     _("Unable to create the data directory '%s': %s"),
+						     data_dir,
+						     g_strerror (errno));
+	      
+	      gtk_dialog_run (GTK_DIALOG (error_dialog));
+	      
+	      gtk_widget_destroy (error_dialog);
+              g_free (data_dir);
+
+	      return FALSE;
+            }
+
+	  gtk_widget_destroy (dialog);
+	  g_free (detail);
+	  g_free (message);
+
+	  goto success;
+	}
+      
+      if (errno != EEXIST)
+        {
+          GtkWidget *error_dialog;
+
+	  error_dialog = gtk_message_dialog_new (NULL,
+						 GTK_DIALOG_MODAL,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 _("Unable to create the data directory '%s': %s"),
+						 data_dir,
+						 g_strerror (errno));
+	  
+	  gtk_dialog_run (GTK_DIALOG (error_dialog));
+	  
+	  gtk_widget_destroy (error_dialog);
+	  g_free (data_dir);
+
+	  return FALSE;
+	}
+    }
+
+success:
+  g_free (data_dir);
+
+  return TRUE;
+}
+
 void
 gdict_init (int *argc, char ***argv)
 {
@@ -387,7 +512,7 @@ gdict_init (int *argc, char ***argv)
   
   singleton = GDICT_APP (g_object_new (GDICT_TYPE_APP, NULL));
   g_assert (GDICT_IS_APP (singleton));
-
+  
   /* create the new option context */
   context = g_option_context_new (_(" - Look up words in dictionaries"));
   
@@ -407,6 +532,14 @@ gdict_init (int *argc, char ***argv)
 					   GNOME_PARAM_GOPTION_CONTEXT, context,
 					   NULL);
   g_set_application_name (_("Dictionary"));
+  
+  if (!gdict_app_create_data_dir ())
+    {
+      g_option_context_free (context);
+      gdict_cleanup ();
+
+      exit (1);
+    }
   
   /* session management */
   singleton->client = gnome_master_client ();

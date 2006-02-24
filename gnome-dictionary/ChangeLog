@@ -1,5 +1,15 @@
 2006-02-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-app.c (gdict_app_init), (gdict_app_create_data_dir),
+	(gdict_init): ask the user what to do if a file with the same name
+	of the dictionary data dir is found; the file usually is a remnant
+	of the time when the old dictionary used bonobo, and it hasn't been
+	used in a while. the user has the option to remove the file, make
+	a backup copy of it, or quit dictionary and manually handle the
+	name clash (closes bug #331031).
+
+2006-02-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-window.c (gdict_window_lookup_end_cb): use ngettext to
 	use the correct localized plural form (patch by Gabor Kelemen,
 	closes bug #332383).
