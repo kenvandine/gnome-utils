@@ -3103,12 +3103,12 @@ gsearchtool_setup_gconf_notifications (GSearchWindow * gsearch)
 	
 	/* Get value of nautilus click behavior (single or double click to activate items) */
 	click_to_activate_pref = gsearchtool_gconf_get_string ("/apps/nautilus/preferences/click_policy");
-	if (!click_to_activate_pref) {
+	
+	if (click_to_activate_pref == NULL) {
 		gsearch->is_search_results_single_click_to_activate = FALSE;
-
 		return;
 	}
-	
+
 	gsearch->is_search_results_single_click_to_activate = 
 		(strncmp (click_to_activate_pref, "single", 6) == 0) ? TRUE : FALSE;	
 
