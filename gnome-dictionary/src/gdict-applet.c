@@ -1202,43 +1202,13 @@ gdict_applet_init (GdictApplet *applet)
   			       ".gnome2",
   			       "gnome-dictionary",
   			       NULL);
+  if (!priv->loader)
+    priv->loader = gdict_source_loader_new ();
 
-  /* create the data directory inside $HOME, if it doesn't exist yet */
-  if (g_mkdir (data_dir, 0700) == -1)
-    {
-      /* this is weird, but sometimes there's a "gnome-dictionary" file
-       * inside $HOME/.gnome2; see bug #329126.
-       */
-      if ((errno == EEXIST) &&
-	  (g_file_test (data_dir, G_FILE_TEST_IS_REGULAR)))
-	{
-          gchar *message = g_strdup_printf (_("Unable to create the data directory '%s'"), data_dir);
-	  gchar *detail = g_strdup_printf (_("There is a file with the same name in the path.\n"
-			  		     "You should move the file and re-run the\n"
-					     "Dictionary applet"));
+  /* add our data dir inside $HOME to the loader's search paths */
+  gdict_source_loader_add_search_path (priv->loader, data_dir);
 
-	  show_error_dialog (NULL,
-			     message,
-			     detail);
-
-	  g_free (message);
-	  g_free (detail);
-	}
-
-      if (errno != EEXIST)
-        {
-	  gchar *message;
-
-	  message = g_strdup_printf (_("Unable to create the data directory '%s'"),
-				     data_dir);
-	  
-          show_error_dialog (NULL,
-			     message,
-			     strerror (errno));
-
-	  g_free (message);
-	}
-    }
+  g_free (data_dir);
   
   icon_file = g_build_filename (DATADIR,
 		  		"pixmaps",
@@ -1315,14 +1285,6 @@ gdict_applet_init (GdictApplet *applet)
       gconf_error = NULL;
     }
   
-  if (!priv->loader)
-    priv->loader = gdict_source_loader_new ();
-
-  /* add our data dir inside $HOME to the loader's search paths */
-  gdict_source_loader_add_search_path (priv->loader, data_dir);
-
-  g_free (data_dir);
-
 #ifndef GDICT_APPLET_STAND_ALONE
   priv->size = panel_applet_get_size (PANEL_APPLET (applet));
 
@@ -1403,6 +1365,101 @@ gdict_applet_factory (PanelApplet *applet,
 }
 #endif /* !GDICT_APPLET_STAND_ALONE */
 
+/* create the data directory inside $HOME, if it doesn't exist yet */
+static gboolean
+gdict_applet_create_data_dir ()
+{
+  gchar *data_dir_name;
+  
+  data_dir_name = g_build_filename (g_get_home_dir (),
+  				    ".gnome2",
+  				    "gnome-dictionary",
+  				    NULL);
+  
+  if (g_mkdir (data_dir_name, 0700) == -1)
+    {
+      /* this is weird, but sometimes there's a "gnome-dictionary" file
+       * inside $HOME/.gnome2; see bug #329126.
+       */
+      if ((errno == EEXIST) &&
+          (g_file_test (data_dir_name, G_FILE_TEST_IS_REGULAR)))
+        {
+          gchar *backup = g_strdup_printf ("%s.pre-2-14", data_dir_name);
+	      
+	  if (g_rename (data_dir_name, backup) == -1)
+	    {
+              GtkWidget *error_dialog;
+
+	      error_dialog = gtk_message_dialog_new (NULL,
+                                                     GTK_DIALOG_MODAL,
+						     GTK_MESSAGE_ERROR,
+						     GTK_BUTTONS_CLOSE,
+						     _("Unable to rename file '%s' to '%s': %s"),
+						     data_dir_name,
+						     backup,
+						     g_strerror (errno));
+	      
+	      gtk_dialog_run (GTK_DIALOG (error_dialog));
+	      
+	      gtk_widget_destroy (error_dialog);
+	      g_free (backup);
+	      g_free (data_dir_name);
+
+	      return FALSE;
+            }
+
+	  g_free (backup);
+	  
+          if (g_mkdir (data_dir_name, 0700) == -1)
+            {
+              GtkWidget *error_dialog;
+	      
+	      error_dialog = gtk_message_dialog_new (NULL,
+						     GTK_DIALOG_MODAL,
+						     GTK_MESSAGE_ERROR,
+						     GTK_BUTTONS_CLOSE,
+						     _("Unable to create the data directory '%s': %s"),
+						     data_dir_name,
+						     g_strerror (errno));
+	      
+	      gtk_dialog_run (GTK_DIALOG (error_dialog));
+	      
+	      gtk_widget_destroy (error_dialog);
+              g_free (data_dir_name);
+
+	      return FALSE;
+            }
+
+	  goto success;
+	}
+      
+      if (errno != EEXIST)
+        {
+          GtkWidget *error_dialog;
+
+	  error_dialog = gtk_message_dialog_new (NULL,
+						 GTK_DIALOG_MODAL,
+						 GTK_MESSAGE_ERROR,
+						 GTK_BUTTONS_CLOSE,
+						 _("Unable to create the data directory '%s': %s"),
+						 data_dir_name,
+						 g_strerror (errno));
+	  
+	  gtk_dialog_run (GTK_DIALOG (error_dialog));
+	  
+	  gtk_widget_destroy (error_dialog);
+	  g_free (data_dir_name);
+
+	  return FALSE;
+	}
+    }
+
+success:
+  g_free (data_dir_name);
+
+  return TRUE;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -1425,6 +1482,9 @@ main (int argc, char *argv[])
 		      GNOME_CLIENT_PARAM_SM_CONNECT, FALSE,
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
 		      NULL);
+
+  if (!gdict_applet_create_data_dir ())
+    return EXIT_FAILURE;
 
   return panel_applet_factory_main ("OAFIID:GNOME_DictionaryApplet_Factory",
 		                    GDICT_TYPE_APPLET,
