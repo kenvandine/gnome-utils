@@ -253,9 +253,8 @@ handle_locate_command_stdout_io (GIOChannel * ioc,
 			
 		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
 		
+		waitpid (locate_database_check_command_pid, NULL, 0);
 		g_string_free (string, TRUE);
-		kill (locate_database_check_command_pid, SIGKILL);
-		wait (NULL);
 	}
 
 	if (condition != G_IO_IN || broken_pipe == TRUE) {
