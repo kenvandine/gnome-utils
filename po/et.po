@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-02-06 08:15+0100\n"
-"PO-Revision-Date: 2006-02-28 09:44+0200\n"
+"PO-Revision-Date: 2006-02-28 13:36+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -752,36 +752,38 @@ msgid ""
 msgstr ""
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
 ": '%s'"
-msgstr "Sõnaraamatu serveris kasutatav andmebaas."
+msgstr ""
+"Sõnaraamatuserveri vastust pole võimalik analüüsida\n"
+": '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
 #, c-format
 msgid "No definitions found for '%s'"
-msgstr ""
+msgstr "'%s' definitsioone ei leitud"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid database '%s'"
-msgstr "Vigane kuupäev"
+msgstr "Vigane andmebaas '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid strategy '%s'"
-msgstr "Vigane kuupäev"
+msgstr "Vigane strateegia '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
 #, c-format
 msgid "Bad command '%s'"
-msgstr ""
+msgstr "Vigane käsk '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
 #, c-format
 msgid "Bad parameters for command '%s'"
-msgstr ""
+msgstr "Vigased parameetrid käsule '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
 #, fuzzy, c-format
@@ -835,14 +837,12 @@ msgstr ""
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:352
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:441
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:469
-#, fuzzy
 msgid "Not found"
-msgstr "Ühtegi vastavust ei leitud"
+msgstr "Ei leitud"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:500
-#, fuzzy
 msgid "F_ind:"
-msgstr "_Otsing"
+msgstr "_Otsing:"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:513
 msgid "_Previous"
@@ -923,9 +923,8 @@ msgid "Definition for '%s' (%d/%d)"
 msgstr ""
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1280
-#, fuzzy
 msgid "Error while looking up definition"
-msgstr "Viga määratud tegevuse käivitamisel: %s"
+msgstr "Viga definitsiooni otsimisel"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
 #, c-format
@@ -941,9 +940,8 @@ msgid "Please wait until the current search ends."
 msgstr ""
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1364
-#, fuzzy
 msgid "Error while retrieving the definition"
-msgstr "Trükib käesoleva kirjelduse"
+msgstr "Viga definitsiooni vastuvõtmisel"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
 msgid "The GdictContext object bound to this entry"
