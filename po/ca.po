@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.11.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-08 00:58+0100\n"
-"PO-Revision-Date: 2006-02-08 00:59+0100\n"
+"POT-Creation-Date: 2006-03-01 01:18+0100\n"
+"PO-Revision-Date: 2006-03-01 01:19+0100\n"
 "Last-Translator: Josep Puigdemont <josep.puigdemont@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -479,12 +479,12 @@ msgid "Cl_ear"
 msgstr "_Neteja"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:838 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:839 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Quant a"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:798 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:799 ../logview/logview.c:88
 msgid "_Help"
 msgstr "A_juda"
 
@@ -493,7 +493,7 @@ msgid "_Look Up Selected Text"
 msgstr "Consu_lta el text seleccionat"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:822
+#: ../gnome-dictionary/src/gdict-window.c:823
 msgid "_Preferences"
 msgstr "_Preferències"
 
@@ -507,8 +507,8 @@ msgstr "De_sa"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:409
-#: ../gnome-dictionary/src/gdict-window.c:1203
+#: ../gnome-dictionary/src/gdict-app.c:468
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Dictionary"
 msgstr "Diccionari"
 
@@ -664,7 +664,7 @@ msgstr "_Ordinador:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:230
-#: ../gnome-dictionary/src/gdict-window.c:594
+#: ../gnome-dictionary/src/gdict-window.c:595
 msgid "Print"
 msgstr "Imprimeix"
 
@@ -818,12 +818,12 @@ msgstr "No s'ha trobat cap base de dades al servidor de diccionari «%s»"
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "No s'ha trobat cap estratègia al servidor de diccionari «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1664
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1679
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Ha fallat la connexió al servidor de diccionari a %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1703
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1718
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -832,21 +832,21 @@ msgstr ""
 "S'ha produït un error en llegir la resposta del servidor:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1774
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1791
 msgid "No hostname defined for the dictionary server"
 msgstr "No s'ha definit cap nom d'ordinador per al servidor de diccionari"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1810
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1825
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1827
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1842
 msgid "Unable to create socket"
 msgstr "No s'ha pogut crear el sòcol"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "No s'ha pogut establir el canal a no blocant: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1866
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1883
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "No s'ha pogut connectar al servidor de diccionari «%s:%d»"
@@ -996,7 +996,7 @@ msgid "The filename used by this dictionary source"
 msgstr "Nom de fitxer utilitzat per aquest diccionari font"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:232
-#: ../gsearchtool/gsearchtool.c:2355
+#: ../gsearchtool/gsearchtool.c:2474
 msgid "Name"
 msgstr "Nom"
 
@@ -1102,27 +1102,10 @@ msgstr "Cerca paraules a diccionaris"
 msgid "Unable to open the application icon: %s"
 msgstr "No s'ha pogut obrir la icona de l'aplicació: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:118
-#, c-format
-msgid ""
-"Unable to create the data directory '%s': there already is a file with the "
-"same name.  You should move the file and re-run gnome-dictionary."
-msgstr ""
-"No s'ha pogut crear el directori de dades «%s»: ja hi ha un fitxer amb "
-"aquest mateix nom. Hauríeu de moure el fitxer i executar de nou el gnome-"
-"dictionary."
-
-#. Translators: the first is the file name, the second is
-#. * the error message
-#: ../gnome-dictionary/src/gdict-app.c:130
-#, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr "No s'ha pogut crear el directori de dades «%s»: %s"
-
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:249
+#: ../gnome-dictionary/src/gdict-app.c:213
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1135,20 +1118,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:263
+#: ../gnome-dictionary/src/gdict-app.c:227
 #, c-format
 msgid "Error: %s\n"
 msgstr "Error: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:289
+#: ../gnome-dictionary/src/gdict-app.c:253
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Vegeu gnome-dictionary --help per a l'ús\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:302
+#: ../gnome-dictionary/src/gdict-app.c:266
 msgid "Unable to find a suitable dictionary source"
 msgstr "No s'ha pogut trobar cap diccionari font adequat"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:300
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1157,59 +1140,73 @@ msgstr ""
 "S'ha produït un error en cercar la definició de «%s»:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-applet.c:1397
+#, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "No s'ha pogut canviar el nom del fitxer «%s» a «%s»: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:1421
+#: ../gnome-dictionary/src/gdict-applet.c:1444
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "No s'ha pogut crear el directori de dades «%s»: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:427
 msgid "Words to look up"
 msgstr "Paraules a cercar"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:427
 msgid "word"
 msgstr "paraula"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:429
 msgid "Dictionary source to use"
 msgstr "Diccionaris font a utilitzar"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:429
 msgid "source"
 msgstr "font"
 
-#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:431
 msgid "Show available dictionary sources"
 msgstr "Mostra els diccionaris font disponibls"
 
-#: ../gnome-dictionary/src/gdict-app.c:374
+#: ../gnome-dictionary/src/gdict-app.c:433
 msgid "Print result to the console"
 msgstr "Escriu els resultats a la consola"
 
-#: ../gnome-dictionary/src/gdict-app.c:376
+#: ../gnome-dictionary/src/gdict-app.c:435
 msgid "Database to use"
 msgstr "Base de dades a utilitzar"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-app.c:451
 msgid " - Look up words in dictionaries"
 msgstr " - Cerca paraules a diccionaris"
 
-#: ../gnome-dictionary/src/gdict-app.c:396
+#: ../gnome-dictionary/src/gdict-app.c:455
 msgid "Dictionary and spelling tool"
 msgstr "Diccionari i eina de correcció ortogràfica"
 
-#: ../gnome-dictionary/src/gdict-app.c:397
+#: ../gnome-dictionary/src/gdict-app.c:456
 msgid "Show Dictionary options"
 msgstr "Mostra opcions del diccionari"
 
 #: ../gnome-dictionary/src/gdict-applet.c:244
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-window.c:540
 msgid "Save a Copy"
 msgstr "Desa una còpia"
 
 #: ../gnome-dictionary/src/gdict-applet.c:254
-#: ../gnome-dictionary/src/gdict-window.c:549
+#: ../gnome-dictionary/src/gdict-window.c:550
 msgid "Untitled document"
 msgstr "Document sense títol"
 
 #: ../gnome-dictionary/src/gdict-applet.c:275
-#: ../gnome-dictionary/src/gdict-window.c:570
+#: ../gnome-dictionary/src/gdict-window.c:571
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "S'ha produït un error en escriure a «%s»"
@@ -1277,64 +1274,48 @@ msgstr "Preferències"
 #: ../gnome-dictionary/src/gdict-applet.c:758
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:760
+#: ../gnome-dictionary/src/gdict-window.c:761
 msgid "There was an error while displaying help"
 msgstr "S'ha produït un error en mostrar l'ajuda"
 
 #: ../gnome-dictionary/src/gdict-applet.c:917
-#: ../gnome-dictionary/src/gdict-window.c:269
+#: ../gnome-dictionary/src/gdict-window.c:270
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "No hi ha cap diccionari font amb el nom «%s»"
 
 #: ../gnome-dictionary/src/gdict-applet.c:921
-#: ../gnome-dictionary/src/gdict-window.c:273
+#: ../gnome-dictionary/src/gdict-window.c:274
 msgid "Unable to find dictionary source"
 msgstr "No s'ha pogut trobar el diccionari font"
 
 #: ../gnome-dictionary/src/gdict-applet.c:937
-#: ../gnome-dictionary/src/gdict-window.c:289
+#: ../gnome-dictionary/src/gdict-window.c:290
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "No hi ha cap context disponibles per a la font «%s»"
 
 #: ../gnome-dictionary/src/gdict-applet.c:941
-#: ../gnome-dictionary/src/gdict-window.c:293
+#: ../gnome-dictionary/src/gdict-window.c:294
 msgid "Unable to create a context"
 msgstr "No s'ha pogut crear el context"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1215
-#: ../gnome-dictionary/src/gdict-applet.c:1232
-#, c-format
-msgid "Unable to create the data directory '%s'"
-msgstr "No s'ha pogut netejar el directori de dades «%s»"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1216
-msgid ""
-"There is a file with the same name in the path.\n"
-"You should move the file and re-run the\n"
-"Dictionary applet"
-msgstr ""
-"Hi ha un fitxer amb el mateix nom.\n"
-"Hauríeu de moure el fitxer i executar de nou\n"
-"la miniaplicació Cerca al diccionari"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1252
+#: ../gnome-dictionary/src/gdict-applet.c:1222
 msgid "Unable to load the applet icon"
 msgstr "No s'ha pogut carregar la icona de la miniaplicació"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1281
-#: ../gnome-dictionary/src/gdict-window.c:1312
+#: ../gnome-dictionary/src/gdict-applet.c:1251
+#: ../gnome-dictionary/src/gdict-window.c:1313
 msgid "Unable to connect to GConf"
 msgstr "No s'ha pogut connectar al GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1296
-#: ../gnome-dictionary/src/gdict-window.c:1328
+#: ../gnome-dictionary/src/gdict-applet.c:1266
+#: ../gnome-dictionary/src/gdict-window.c:1329
 msgid "Unable to get notification for preferences"
 msgstr "No s'ha pogut obtenir la notificació per a les preferències"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1311
-#: ../gnome-dictionary/src/gdict-window.c:1344
+#: ../gnome-dictionary/src/gdict-applet.c:1281
+#: ../gnome-dictionary/src/gdict-window.c:1345
 msgid "Unable to get notification for the document font"
 msgstr ""
 "No s'ha pogut obtenir la notificació per al tipus de lletra del document"
@@ -1367,7 +1348,7 @@ msgstr "Suprimeix el diccionari font seleccionat"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:661
 msgid "Set the font used for printing the definitions"
-msgstr "Estableix el tipus de lletra a utilitzar per imprimir les definicions"
+msgstr "Estableix el tipus de lletra utilitzat en imprimir les definicions"
 
 #: ../gnome-dictionary/src/gdict-print.c:187
 #, c-format
@@ -1392,120 +1373,118 @@ msgid "Searching for '%s'..."
 msgstr "S'està cercant «%s»..."
 
 #: ../gnome-dictionary/src/gdict-window.c:199
-#: ../gnome-dictionary/src/gdict-window.c:220
+#: ../gnome-dictionary/src/gdict-window.c:221
 msgid "No definitions found"
 msgstr "No s'ha trobat cap definició"
 
 #: ../gnome-dictionary/src/gdict-window.c:201
-msgid "A definition found"
-msgstr "S'ha trobat una definició"
-
-#: ../gnome-dictionary/src/gdict-window.c:203
 #, c-format
-msgid "%d definitions found"
-msgstr "S'han trobat %d definicions"
+msgid "A definition found"
+msgid_plural "%d definitions found"
+msgstr[0] "S'ha trobat una definició"
+msgstr[1] "S'han trobat %d definicions"
 
-#: ../gnome-dictionary/src/gdict-window.c:361
+#: ../gnome-dictionary/src/gdict-window.c:362
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Diccionari"
 
-#: ../gnome-dictionary/src/gdict-window.c:679
+#: ../gnome-dictionary/src/gdict-window.c:680
 msgid "Dictionary Preferences"
 msgstr "Preferències del diccionari"
 
-#: ../gnome-dictionary/src/gdict-window.c:795
+#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "_File"
 msgstr "_Filtre"
 
-#: ../gnome-dictionary/src/gdict-window.c:796 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:797 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../gnome-dictionary/src/gdict-window.c:797
+#: ../gnome-dictionary/src/gdict-window.c:798
 msgid "_Go"
 msgstr "_Vés"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:801
+#: ../gnome-dictionary/src/gdict-window.c:802
 msgid "_New"
 msgstr "_Nou"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:803
 msgid "New look up"
 msgstr "Nova cerca"
 
-#: ../gnome-dictionary/src/gdict-window.c:803
+#: ../gnome-dictionary/src/gdict-window.c:804
 msgid "_Save a Copy..."
 msgstr "_Desa una còpia..."
 
-#: ../gnome-dictionary/src/gdict-window.c:805
+#: ../gnome-dictionary/src/gdict-window.c:806
 msgid "_Print..."
 msgstr "Im_primeix..."
 
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:807
 msgid "Print this document"
 msgstr "Imprimeix aquest document"
 
-#: ../gnome-dictionary/src/gdict-window.c:813 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:814 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "_Selecciona-ho tot"
 
-#: ../gnome-dictionary/src/gdict-window.c:816
+#: ../gnome-dictionary/src/gdict-window.c:817
 msgid "Find a word or phrase in the document"
 msgstr "Cerca una paraula o frase al document"
 
-#: ../gnome-dictionary/src/gdict-window.c:818
+#: ../gnome-dictionary/src/gdict-window.c:819
 msgid "Find Ne_xt"
 msgstr "Cerca la se_güent"
 
-#: ../gnome-dictionary/src/gdict-window.c:820
+#: ../gnome-dictionary/src/gdict-window.c:821
 msgid "Find Pre_vious"
 msgstr "Cerca l'an_terior"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:826
+#: ../gnome-dictionary/src/gdict-window.c:827
 msgid "_Previous Definition"
 msgstr "Definició _anterior"
 
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:828
 msgid "Go to the previous definition"
 msgstr "Vés a la definició anterior"
 
-#: ../gnome-dictionary/src/gdict-window.c:828
+#: ../gnome-dictionary/src/gdict-window.c:829
 msgid "_Next Definition"
 msgstr "Definició _següent"
 
-#: ../gnome-dictionary/src/gdict-window.c:829
+#: ../gnome-dictionary/src/gdict-window.c:830
 msgid "Go to the next definition"
 msgstr "Vés a la definició següent"
 
-#: ../gnome-dictionary/src/gdict-window.c:830
+#: ../gnome-dictionary/src/gdict-window.c:831
 msgid "_First Definition"
 msgstr "_Primera definició"
 
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:832
 msgid "Go to the first definition"
 msgstr "Vés a la primera definició"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "_Last Definition"
 msgstr "Ú_ltima definició"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:834
 msgid "Go to the last definition"
 msgstr "Vés a l'última definició"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:836 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:837 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Continguts"
 
-#: ../gnome-dictionary/src/gdict-window.c:1125
+#: ../gnome-dictionary/src/gdict-window.c:1126
 msgid "Look _up:"
 msgstr "_Cerca:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1368
+#: ../gnome-dictionary/src/gdict-window.c:1369
 msgid "Unable to load the application icon"
 msgstr "No s'ha pogut carregar la icona de l'aplicació"
 
@@ -1664,7 +1643,7 @@ msgstr "Directori on desar les captures de pantalla"
 msgid "The directory the last screenshot was saved in."
 msgstr "El darrer directori on es va desar la darrera captura de pantalla."
 
-#: ../gnome-screenshot/screenshot-dialog.c:195
+#: ../gnome-screenshot/screenshot-dialog.c:197
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -1672,7 +1651,7 @@ msgstr ""
 "Manca el fitxer Glade per a la captura de pantalles.\n"
 "Comproveu la instal·lació del gnome-utils"
 
-#: ../gnome-screenshot/screenshot-dialog.c:214
+#: ../gnome-screenshot/screenshot-dialog.c:216
 msgid "Select a directory"
 msgstr "Seleccioneu un directori"
 
@@ -2199,169 +2178,169 @@ msgstr "enllaç (trencat)"
 msgid "link to %s"
 msgstr "enllaç a %s"
 
-#: ../gsearchtool/gsearchtool.c:81
+#: ../gsearchtool/gsearchtool.c:82
 msgid "Contains the _text"
 msgstr "Conté el _text"
 
-#: ../gsearchtool/gsearchtool.c:83
+#: ../gsearchtool/gsearchtool.c:84
 msgid "_Date modified less than"
 msgstr "La _data de modificació és menys de"
 
-#: ../gsearchtool/gsearchtool.c:83 ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:84 ../gsearchtool/gsearchtool.c:85
 msgid "days"
 msgstr "dies"
 
-#: ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:85
 msgid "Date modified more than"
 msgstr "La data de modificació és més de"
 
-#: ../gsearchtool/gsearchtool.c:86
+#: ../gsearchtool/gsearchtool.c:87
 msgid "S_ize at least"
 msgstr "La _mida és almenys"
 
-#: ../gsearchtool/gsearchtool.c:86 ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:87 ../gsearchtool/gsearchtool.c:88
 msgid "kilobytes"
 msgstr "kilobytes"
 
-#: ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:88
 msgid "Si_ze at most"
 msgstr "La mida és com a mol_t"
 
-#: ../gsearchtool/gsearchtool.c:88
+#: ../gsearchtool/gsearchtool.c:89
 msgid "File is empty"
 msgstr "El fitxer està buit"
 
-#: ../gsearchtool/gsearchtool.c:90
+#: ../gsearchtool/gsearchtool.c:91
 msgid "Owned by _user"
 msgstr "Pr_opietari del fitxer"
 
-#: ../gsearchtool/gsearchtool.c:91
+#: ../gsearchtool/gsearchtool.c:92
 msgid "Owned by _group"
 msgstr "_Grup del fitxer"
 
-#: ../gsearchtool/gsearchtool.c:92
+#: ../gsearchtool/gsearchtool.c:93
 msgid "Owner is unrecognized"
 msgstr "No es reconeix el propietari"
 
-#: ../gsearchtool/gsearchtool.c:94
+#: ../gsearchtool/gsearchtool.c:95
 msgid "Na_me does not contain"
 msgstr "El no_m no conté"
 
-#: ../gsearchtool/gsearchtool.c:95
+#: ../gsearchtool/gsearchtool.c:96
 msgid "Name matches regular e_xpression"
 msgstr "El nom coincideix amb una e_xpressió regular"
 
-#: ../gsearchtool/gsearchtool.c:97
+#: ../gsearchtool/gsearchtool.c:98
 msgid "Show hidden and backup files"
 msgstr "Mostra els fitxers ocults i de còpia de seguretat"
 
-#: ../gsearchtool/gsearchtool.c:98
+#: ../gsearchtool/gsearchtool.c:99
 msgid "Follow symbolic links"
 msgstr "Segueix enllaços simbòlics"
 
-#: ../gsearchtool/gsearchtool.c:99
+#: ../gsearchtool/gsearchtool.c:100
 msgid "Include other filesystems"
 msgstr "Inclou altres sistemes de fitxers"
 
-#: ../gsearchtool/gsearchtool.c:180
+#: ../gsearchtool/gsearchtool.c:181
 msgid "_Open"
 msgstr "_Obre"
 
-#: ../gsearchtool/gsearchtool.c:181
+#: ../gsearchtool/gsearchtool.c:182
 msgid "O_pen Folder"
 msgstr "O_bre carpeta"
 
-#: ../gsearchtool/gsearchtool.c:182
+#: ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Mo_u a la paperera"
 
-#: ../gsearchtool/gsearchtool.c:183
+#: ../gsearchtool/gsearchtool.c:184
 msgid "_Save Results As..."
 msgstr "De_sa els resultats com..."
 
-#: ../gsearchtool/gsearchtool.c:255 ../gsearchtool/gsearchtool.c:272
+#: ../gsearchtool/gsearchtool.c:390
 msgid "A locate database has probably not been created."
 msgstr "Possiblement no s'hagi creat cap base de dades locate."
 
-#: ../gsearchtool/gsearchtool.c:376
+#: ../gsearchtool/gsearchtool.c:492
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Ha fallat la conversió del conjunt de caràcters per a «%s»"
 
-#: ../gsearchtool/gsearchtool.c:796 ../gsearchtool/gsearchtool.c:825
+#: ../gsearchtool/gsearchtool.c:516
+msgid "Searching..."
+msgstr "S'està cercant..."
+
+#: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3150
+msgid "Search for Files"
+msgstr "Cerca fitxers"
+
+#: ../gsearchtool/gsearchtool.c:967 ../gsearchtool/gsearchtool.c:996
 msgid "No files found"
 msgstr "No s'ha trobat cap fitxer"
 
-#: ../gsearchtool/gsearchtool.c:818
+#: ../gsearchtool/gsearchtool.c:989
 msgid "(stopped)"
 msgstr "(parat)"
 
-#: ../gsearchtool/gsearchtool.c:824
+#: ../gsearchtool/gsearchtool.c:995
 msgid "No Files Found"
 msgstr "No s'ha trobat cap fitxer"
 
-#: ../gsearchtool/gsearchtool.c:829
+#: ../gsearchtool/gsearchtool.c:1000
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "S'ha trobat %d fitxer"
 msgstr[1] "S'han trobat %d fitxers"
 
-#: ../gsearchtool/gsearchtool.c:833 ../gsearchtool/gsearchtool.c:871
+#: ../gsearchtool/gsearchtool.c:1004 ../gsearchtool/gsearchtool.c:1042
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "S'ha trobat %d fitxer"
 msgstr[1] "S'han trobat %d fitxers"
 
-#: ../gsearchtool/gsearchtool.c:850 ../gsearchtool/gsearchtool.c:1128
-#: ../gsearchtool/gsearchtool.c:1214 ../gsearchtool/gsearchtool.c:3026
-msgid "Search for Files"
-msgstr "Cerca fitxers"
-
-#: ../gsearchtool/gsearchtool.c:962
+#: ../gsearchtool/gsearchtool.c:1133
 msgid "Entry changed called for a non entry option!"
 msgstr "S'ha demanat un canvi per a una entrada sense opcions!"
 
-#: ../gsearchtool/gsearchtool.c:1214
-msgid "Searching..."
-msgstr "S'està cercant..."
-
-#: ../gsearchtool/gsearchtool.c:1237
+#: ../gsearchtool/gsearchtool.c:1384
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Estableix el text de l'opció de recerca «el nom conté»"
 
-#: ../gsearchtool/gsearchtool.c:1238
+#: ../gsearchtool/gsearchtool.c:1385
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Estableix el text de l'opció de recerca «cerca a la carpeta»"
 
-#: ../gsearchtool/gsearchtool.c:1239
+#: ../gsearchtool/gsearchtool.c:1386
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "Ordena els fitxers per: nom, carpeta, mida, tipus o data"
 
-#: ../gsearchtool/gsearchtool.c:1240
+#: ../gsearchtool/gsearchtool.c:1387
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Estableix l'ordre del resultat a descendent, per defecte és ascendent"
 
-#: ../gsearchtool/gsearchtool.c:1241
+#: ../gsearchtool/gsearchtool.c:1388
 msgid "Automatically start a search"
 msgstr "Comença una recerca automàticament"
 
-#: ../gsearchtool/gsearchtool.c:1247
+#: ../gsearchtool/gsearchtool.c:1394
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Selecciona l'opció de recerca «%s»"
 
-#: ../gsearchtool/gsearchtool.c:1250
+#: ../gsearchtool/gsearchtool.c:1397
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Selecciona i estableix l'opció de recerca «%s»"
 
-#: ../gsearchtool/gsearchtool.c:1357
+#: ../gsearchtool/gsearchtool.c:1504
 msgid "Invalid option passed to sortby command line argument."
 msgstr "S'ha passat una opció no vàlida a la línia d'ordres de sortby."
 
-#: ../gsearchtool/gsearchtool.c:1668
+#: ../gsearchtool/gsearchtool.c:1802
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2369,7 +2348,7 @@ msgstr ""
 "\n"
 "... Hi ha massa errors per mostrar ..."
 
-#: ../gsearchtool/gsearchtool.c:1682
+#: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -2377,11 +2356,11 @@ msgstr ""
 "El resultat de la recerca pot ser invàlid. S'han produït errors en fer la "
 "cerca."
 
-#: ../gsearchtool/gsearchtool.c:1694 ../gsearchtool/gsearchtool.c:1738
+#: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
 msgstr "Mostra més _detalls"
 
-#: ../gsearchtool/gsearchtool.c:1724
+#: ../gsearchtool/gsearchtool.c:1858
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2389,149 +2368,149 @@ msgstr ""
 "Els resultats de les recerces pot estar desactualitzat o ser invàlid. Voleu "
 "inhabilitar la funcionalitat de recerca ràpida?"
 
-#: ../gsearchtool/gsearchtool.c:1749
+#: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
 msgstr "Inhabilita la recerca _ràpida"
 
-#: ../gsearchtool/gsearchtool.c:1776
+#: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "No es pot establir el grup per al procés fill %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1803
+#: ../gsearchtool/gsearchtool.c:1935
 msgid "Error parsing the search command."
 msgstr "S'ha produït un error en analitzar l'ordre de cerca."
 
-#: ../gsearchtool/gsearchtool.c:1836
+#: ../gsearchtool/gsearchtool.c:1968
 msgid "Error running the search command."
 msgstr "S'ha produït un error en executar l'ordre de recerca."
 
-#: ../gsearchtool/gsearchtool.c:1964
+#: ../gsearchtool/gsearchtool.c:2083
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Entreu un valor de text per a l'opció de recerca «%s»"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1969
+#: ../gsearchtool/gsearchtool.c:2088
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "«%s» a %s"
 
-#: ../gsearchtool/gsearchtool.c:1971
+#: ../gsearchtool/gsearchtool.c:2090
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Entreu el valor de %s per a l'opció de recerca «%s»."
 
-#: ../gsearchtool/gsearchtool.c:2030
+#: ../gsearchtool/gsearchtool.c:2149
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Suprimeix «%s»"
 
-#: ../gsearchtool/gsearchtool.c:2031
+#: ../gsearchtool/gsearchtool.c:2150
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Feu clic per suprimier l'opció de recerca «%s»"
 
-#: ../gsearchtool/gsearchtool.c:2124
+#: ../gsearchtool/gsearchtool.c:2243
 msgid "A_vailable options:"
 msgstr "Opcions _disponibles:"
 
-#: ../gsearchtool/gsearchtool.c:2153
+#: ../gsearchtool/gsearchtool.c:2272
 msgid "Available options"
 msgstr "Opcions disponibles"
 
-#: ../gsearchtool/gsearchtool.c:2154
+#: ../gsearchtool/gsearchtool.c:2273
 msgid "Select a search option from the drop-down list."
 msgstr "Seleccioneu una opció de recerca de la llista desplegable."
 
-#: ../gsearchtool/gsearchtool.c:2166
+#: ../gsearchtool/gsearchtool.c:2285
 msgid "Add search option"
 msgstr "Afegeix una opció de recerca"
 
-#: ../gsearchtool/gsearchtool.c:2167
+#: ../gsearchtool/gsearchtool.c:2286
 msgid "Click to add the selected available search option."
 msgstr "Feu clic per afegir l'opció de recerca disponible seleccionada."
 
-#: ../gsearchtool/gsearchtool.c:2256
+#: ../gsearchtool/gsearchtool.c:2375
 msgid "S_earch results:"
 msgstr "Resultats de la c_erca:"
 
-#: ../gsearchtool/gsearchtool.c:2295
+#: ../gsearchtool/gsearchtool.c:2414
 msgid "List View"
 msgstr "Visualitza com una llista"
 
-#: ../gsearchtool/gsearchtool.c:2379
+#: ../gsearchtool/gsearchtool.c:2498
 msgid "Folder"
 msgstr "Carpeta"
 
-#: ../gsearchtool/gsearchtool.c:2391
+#: ../gsearchtool/gsearchtool.c:2510
 msgid "Size"
 msgstr "Mida"
 
-#: ../gsearchtool/gsearchtool.c:2402
+#: ../gsearchtool/gsearchtool.c:2521
 msgid "Type"
 msgstr "Tipus"
 
-#: ../gsearchtool/gsearchtool.c:2413
+#: ../gsearchtool/gsearchtool.c:2532
 msgid "Date Modified"
 msgstr "Data de modificació"
 
-#: ../gsearchtool/gsearchtool.c:2815
+#: ../gsearchtool/gsearchtool.c:2934
 msgid "_Name contains:"
 msgstr "El _nom conté:"
 
-#: ../gsearchtool/gsearchtool.c:2829 ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2948 ../gsearchtool/gsearchtool.c:2949
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Entreu el nom sencer o parcialdel fixter amb o sense comodins."
 
-#: ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2949
 msgid "Name contains"
 msgstr "El nom conté"
 
-#: ../gsearchtool/gsearchtool.c:2836
+#: ../gsearchtool/gsearchtool.c:2955
 msgid "_Look in folder:"
 msgstr "_Cerca a la carpeta:"
 
-#: ../gsearchtool/gsearchtool.c:2842
+#: ../gsearchtool/gsearchtool.c:2961
 msgid "Browse"
 msgstr "Navega"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Look in folder"
 msgstr "Cerca a la carpeta"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Select the folder or device from which you want to begin the search."
 msgstr ""
 "Seleccioneu el directori o dispositiu des del que vulgueu iniciar la recerca."
 
-#: ../gsearchtool/gsearchtool.c:2858
+#: ../gsearchtool/gsearchtool.c:2977
 msgid "Select more _options"
 msgstr "Seleccioneu més _opcions"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Select more options"
 msgstr "Seleccioneu més opcions"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Click to expand or collapse the list of available options."
 msgstr ""
 "Feu clic per expandir o reduir la llista d'opcions de recerca disponibles."
 
-#: ../gsearchtool/gsearchtool.c:2891
+#: ../gsearchtool/gsearchtool.c:3010
 msgid "Click to display the help manual."
 msgstr "Feu clic per mostrar el manual d'ajuda."
 
-#: ../gsearchtool/gsearchtool.c:2899
+#: ../gsearchtool/gsearchtool.c:3018
 msgid "Click to close \"Search for Files\"."
 msgstr "Feu clic per tancar «Cerca fitxers»."
 
-#: ../gsearchtool/gsearchtool.c:2925
+#: ../gsearchtool/gsearchtool.c:3044
 msgid "Click to perform a search."
 msgstr "Feu clic per realitzar una recerca."
 
-#: ../gsearchtool/gsearchtool.c:2926
+#: ../gsearchtool/gsearchtool.c:3045
 msgid "Click to stop a search."
 msgstr "Feu clic per aturar la recerca."
 
@@ -2894,6 +2873,29 @@ msgstr "Aquest sistema de fitxers no permet la monitorització.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "S'ha produït un error del GNOME-VFS.\n"
+
+#~ msgid ""
+#~ "Unable to create the data directory '%s': there already is a file with "
+#~ "the same name.  You should move the file and re-run gnome-dictionary."
+#~ msgstr ""
+#~ "No s'ha pogut crear el directori de dades «%s»: ja hi ha un fitxer amb "
+#~ "aquest mateix nom. Hauríeu de moure el fitxer i executar de nou el gnome-"
+#~ "dictionary."
+
+#~ msgid "Unable to create the data directory '%s'"
+#~ msgstr "No s'ha pogut netejar el directori de dades «%s»"
+
+#~ msgid ""
+#~ "There is a file with the same name in the path.\n"
+#~ "You should move the file and re-run the\n"
+#~ "Dictionary applet"
+#~ msgstr ""
+#~ "Hi ha un fitxer amb el mateix nom.\n"
+#~ "Hauríeu de moure el fitxer i executar de nou\n"
+#~ "la miniaplicació Cerca al diccionari"
+
+#~ msgid "%d definitions found"
+#~ msgstr "S'han trobat %d definicions"
 
 #~ msgid ""
 #~ "Definitions for \"%s\":\n"
