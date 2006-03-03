@@ -990,6 +990,9 @@ set_window_default_size (GdictWindow *window)
   g_assert (GDICT_IS_WINDOW (window));
 
   widget = GTK_WIDGET (window);
+
+  /* make sure that the widget is realized */
+  gtk_widget_realize (widget);
   
   /* recover the state from GConf */
   width = gconf_client_get_int (window->gconf_client,

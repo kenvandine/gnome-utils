@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include <glib/gi18n.h>
+#include <gdk/gdkkeysyms.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
@@ -313,6 +314,23 @@ gdict_applet_set_menu_items_sensitive (GdictApplet *applet,
 				NULL);
 }
 
+static gboolean
+window_key_press_event_cb (GtkWidget   *widget,
+			   GdkEventKey *event,
+			   gpointer     user_data)
+{
+  if (event->keyval == GDK_Escape)
+    {
+      GdictApplet *applet = GDICT_APPLET (user_data);
+
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (applet->priv->toggle), FALSE);
+
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
 static void
 gdict_applet_build_window (GdictApplet *applet)
 {
@@ -331,6 +349,9 @@ gdict_applet_build_window (GdictApplet *applet)
     }
   
   window = gtk_aligned_window_new (priv->toggle);
+  g_signal_connect (window, "key-press-event",
+		    G_CALLBACK (window_key_press_event_cb),
+		    applet);
 
   frame = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_IN);

@@ -1,3 +1,12 @@
+2006-03-03  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-applet.c (gdict_applet_build_window),
+	(window_key_press_event_cb): allow using Esc to close the definition
+	window of the applet.
+
+	* src/gdict-window.c (set_default_size): ensure that the window is
+	realized since we are going to use its GdkWindow.
+
 2006-02-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/.cvsignore:
