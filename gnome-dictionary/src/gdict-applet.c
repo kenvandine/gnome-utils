@@ -1307,6 +1307,9 @@ gdict_applet_init (GdictApplet *applet)
     }
   
 #ifndef GDICT_APPLET_STAND_ALONE
+  panel_applet_set_background_widget (PANEL_APPLET (applet),
+		  		      GTK_WIDGET (applet));
+
   priv->size = panel_applet_get_size (PANEL_APPLET (applet));
 
   switch (panel_applet_get_orient (PANEL_APPLET (applet)))
