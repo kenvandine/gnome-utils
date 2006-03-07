@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-12 19:23+0200\n"
-"PO-Revision-Date: 2006-02-12 19:21+0200\n"
+"POT-Creation-Date: 2006-03-07 11:12+0200\n"
+"PO-Revision-Date: 2006-03-07 11:12+0200\n"
 "Last-Translator: Rostislav Raykov <zbrox@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgstr "Проблем при четене а цилиндър %d, очаква�
 #: ../gfloppy/src/fdformat.c:151
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
-msgstr "Лоши данни в цил %d.  Продължаване... "
+msgstr "Лоши данни в цил. %d.  Продължаване... "
 
 #: ../gfloppy/src/fdformat.c:160
 #, c-format
@@ -299,11 +299,11 @@ msgstr "DOS (FAT)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:5
 msgid "Double Density 3.5\" (720KB)"
-msgstr "Двойна плътност 3.5\" (720КБ)"
+msgstr "Двойна плътност 3.5\" (720KB)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:6
 msgid "Double Density 5.25\" (360KB)"
-msgstr "Двойна плътност 5.25\" (360КБ)"
+msgstr "Двойна плътност 5.25\" (360KB)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:7
 msgid "File system _type:"
@@ -327,11 +327,11 @@ msgstr "Режим на форматиране"
 
 #: ../gfloppy/src/gfloppy2.glade.h:13
 msgid "High Density 3.5\" (1.44MB)"
-msgstr "Висока плътност 3.5\" (1.44МБ)"
+msgstr "Висока плътност 3.5\" (1,44MB)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:14
 msgid "High Density 5.25\" (1.2MB)"
-msgstr "Висока плътност 5.25\" (1.2МБ)"
+msgstr "Висока плътност 5.25\" (1,2MB)"
 
 #: ../gfloppy/src/gfloppy2.glade.h:15
 msgid "Linux Native (ext2)"
@@ -462,7 +462,7 @@ msgstr "Развитие на форматирането"
 
 #: ../gnome-dictionary/data/default.desktop.in.h:1
 msgid "Default Dictionary Server"
-msgstr "Стандартен сървър за речника"
+msgstr "Стандартен речников сървър"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.server.in.in.h:1
 msgid "Dictionary Look up"
@@ -477,12 +477,12 @@ msgid "Cl_ear"
 msgstr "_Изчистване"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:838 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:839 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Относно"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:798 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:799 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_Помощ"
 
@@ -491,7 +491,7 @@ msgid "_Look Up Selected Text"
 msgstr "Търс_ене в избрания текст"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:822
+#: ../gnome-dictionary/src/gdict-window.c:823
 msgid "_Preferences"
 msgstr "_Настройки"
 
@@ -505,8 +505,8 @@ msgstr "_Запазване"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:409
-#: ../gnome-dictionary/src/gdict-window.c:1203
+#: ../gnome-dictionary/src/gdict-app.c:468
+#: ../gnome-dictionary/src/gdict-window.c:1207
 msgid "Dictionary"
 msgstr "Речник"
 
@@ -516,11 +516,11 @@ msgstr "Търсене на думи в Интернет речник"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:1
 msgid "Dictionary server (Deprecated)"
-msgstr "Сървър на речник"
+msgstr "Речников сървър (да не се използва)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:2
 msgid "Port used to connect to server (Deprecated)"
-msgstr "Порт за свързване към сървър"
+msgstr "Порт за свързване към сървър (да не се използва)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:3
 msgid ""
@@ -529,8 +529,8 @@ msgid ""
 "deprecated and no longer in use."
 msgstr ""
 "Задаване дали да се използва интелигентно търсене. Тази настройка зависи от "
-"това дали съвъра за речника поддържа тази опция. По подразбиране е TRUE "
-"(Вярно). Този ключ е остарял и вече не се използва."
+"това дали речниковия съвър поддържа тази опция. По подразбиране е TRUE "
+"(истина). Този ключ е остарял и вече не се използва."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:4
 msgid "The default database to use"
@@ -554,7 +554,7 @@ msgid ""
 "http://www.dict.org for details on other servers. This key is deprecated and "
 "no longer in use."
 msgstr ""
-"Сървър за речника, към който да се свързва. Сървърът по подразбиране е dict."
+"Речников сървър, към който да се свързва. Сървърът по подразбиране е dict."
 "org. Може да видите http://www.dict.org за повече подробности за други "
 "сървъри. Този ключ е вече остарял и не се използва."
 
@@ -581,6 +581,8 @@ msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
 msgstr ""
+"Името на стандартната стратегия за търсене в източника на речник. По "
+"подразбиране е „exact“ - точно и пълно съвпадение на думите."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
 msgid "The name of the dictionary source used"
@@ -590,6 +592,8 @@ msgstr "Името на използваният източник за речн�
 msgid ""
 "The name of the dictionary source used to retrieve the definitions of words."
 msgstr ""
+"Името на източника на речник, който да се използва за получаване на "
+"дефинициите на думи"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
 msgid ""
@@ -605,6 +609,9 @@ msgid ""
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a height based on the font size."
 msgstr ""
+"Този ключ съдържа височината на прозореца на речника и се използва за "
+"предаването й между сесиите. За да използвате стандартната височина - "
+"задайте го да е „-1“."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
 msgid ""
@@ -612,6 +619,9 @@ msgid ""
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a width based on the font size."
 msgstr ""
+"Този ключ съдържа широчината на прозореца на речника и се използва за "
+"предаването й между сесиите. За да използвате широчина според шрифта - "
+"задайте го да е „-1“."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
 msgid ""
@@ -619,18 +629,21 @@ msgid ""
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
 msgstr ""
+"Този ключ съдържа настройката на състоянието дали прозорецът на речника да е "
+"максимизиран и се използва за предаването му между сесиите. За да стартира "
+"речникът винаги като максимизиран - задайте го да е истина."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid "Use smart lookup (Deprecated)"
-msgstr "Използване на _интелигентно търсене"
+msgstr "Използване на интелигентно търсене (да не се използва)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid "Whether the application window should be maximized"
-msgstr ""
+msgstr "Дали прозорецът на програмата да е максимизиран"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
-msgstr "Баз_за от данни:"
+msgstr "Ба_за от данни:"
 
 #. Transport methods
 #. Translators: this is the same string used in the file
@@ -640,15 +653,15 @@ msgstr "Баз_за от данни:"
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
 #: ../gnome-dictionary/src/gdict-source-dialog.c:146
 msgid "Dictionary Server"
-msgstr "Сървър на речника"
+msgstr "Речников сървър"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:4
 msgid "H_ostname:"
 msgstr "_Име на хост:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:230
-#: ../gnome-dictionary/src/gdict-window.c:594
+#: ../gnome-dictionary/src/gdict-applet.c:231
+#: ../gnome-dictionary/src/gdict-window.c:595
 msgid "Print"
 msgstr "Печат"
 
@@ -702,7 +715,7 @@ msgstr "Име на клиент"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:271
 msgid "The name of the client of the context object"
-msgstr ""
+msgstr "Името на клиента на контекстния обект"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "Hostname"
@@ -736,17 +749,17 @@ msgstr "Няма връзка към речниковия сървър при �
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
-msgstr ""
+msgstr "Хостът с име „%s“ не може да бъде открит: няма подходящи ресурси"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
 #, c-format
 msgid "Lookup failed for host '%s': %s"
-msgstr ""
+msgstr "Хостът с име „%s“ не може да бъде открит: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
-msgstr ""
+msgstr "Хостът с име „%s“ не може да бъде открит: хостът не е открит"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
 #, c-format
@@ -754,6 +767,8 @@ msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
 msgstr ""
+"Неуспех при свързване с речниковия сървър при „%s:%d“. Сървърът върна "
+"отговор с код %d - сървърът е изключен."
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
 #, c-format
@@ -761,6 +776,8 @@ msgid ""
 "Unable to parse the dictionary server reply\n"
 ": '%s'"
 msgstr ""
+"Отговорът от речниковия сървър не може да бъде анализиран\n"
+": „%s“"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
 #, c-format
@@ -790,12 +807,12 @@ msgstr "Невалидни параметри за командата „%s“."
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
-msgstr "Няма открита база от данни на сървъра за речник при „%s“."
+msgstr "Няма открита база от данни на речниковия сървър при „%s“."
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
-msgstr ""
+msgstr "На речниковия сървър на „%s“ не бяха открити стратегии"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1679
 #, c-format
@@ -808,25 +825,27 @@ msgid ""
 "Error while reading reply from server:\n"
 "%s"
 msgstr ""
+"Грешка при получаването на отговора от сървъра:\n"
+"%s"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1791
 msgid "No hostname defined for the dictionary server"
-msgstr "Няма хост за сървъра за речник"
+msgstr "Няма хост за речниковия сървър"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1827
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1842
 msgid "Unable to create socket"
-msgstr ""
+msgstr "Не може да се създаде гнездо"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
-msgstr ""
+msgstr "Каналът не може да се зададе да е без блокиране: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1883
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
-msgstr "Неуспех при свързване със сървъра за речник при '%s:%d'"
+msgstr "Неуспех при свързване с речниковия сървър при „%s:%d“"
 
 #: ../gnome-dictionary/libgdict/gdict-context.c:196
 msgid "Local Only"
@@ -834,7 +853,7 @@ msgstr "Само локални"
 
 #: ../gnome-dictionary/libgdict/gdict-context.c:197
 msgid "Whether the context uses only local dictionaries or not"
-msgstr ""
+msgstr "Дали контекстът ще ползва само локални речници или не"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:352
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:441
@@ -863,6 +882,7 @@ msgstr "Контекст"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:695
 msgid "The GdictContext object used to get the word definition"
 msgstr ""
+"Обектът GdictContext, който се използва за получаване на дефиницията на дума"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:709
 #: ../gnome-dictionary/libgdict/gdict-entry.c:119
@@ -931,6 +951,8 @@ msgstr "Грешка при търсене на определение"
 #, c-format
 msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
 msgstr ""
+"Опит за намирането на „%s“, но не е дефиниран обект GdictContext. Опитът се "
+"спира."
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1332
 msgid "Another search is in progress"
@@ -946,7 +968,7 @@ msgstr "Грешка при извличане на информацията"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
 msgid "The GdictContext object bound to this entry"
-msgstr ""
+msgstr "Обектът GdictContext, който е свързан с този запис"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
 msgid "The database to be used to generate the completion list"
@@ -961,6 +983,7 @@ msgstr "Стратегия"
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
 msgid "The matching strategy to be used to generate the completion list"
 msgstr ""
+"Стратегията за напасване, която да се използва за откриване на съвпадения"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:218
 msgid "Filename"
@@ -971,7 +994,7 @@ msgid "The filename used by this dictionary source"
 msgstr "Файловото име, което да се използва от източника на речник"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:232
-#: ../gsearchtool/gsearchtool.c:2355
+#: ../gsearchtool/gsearchtool.c:2474
 msgid "Name"
 msgstr "Име"
 
@@ -1005,7 +1028,7 @@ msgstr "Транспортният механизъм, който този из�
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:304
 msgid "The GdictContext bound to this source"
-msgstr ""
+msgstr "Обектът GdictContext, който е свързан с този ресурс"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:399
 #, c-format
@@ -1015,7 +1038,7 @@ msgstr "Невалиден вид транспорт „%d“"
 #: ../gnome-dictionary/libgdict/gdict-source.c:427
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
-msgstr ""
+msgstr "В дефиницията от речника не е открита групата „%s“"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:443
 #: ../gnome-dictionary/libgdict/gdict-source.c:467
@@ -1023,22 +1046,24 @@ msgstr ""
 #: ../gnome-dictionary/libgdict/gdict-source.c:516
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
-msgstr ""
+msgstr "Ключът „%s“ не може да се открие в дефиницията от речника: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:541
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr ""
+"Ключът „%s“ не може да се открие в във файла с дефиниции на източници на "
+"речници: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:727
 msgid "Dictionary source does not have name"
-msgstr "Източника на речник няма име."
+msgstr "Източникът на речник няма име."
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:736
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
-msgstr ""
+msgstr "Източникът на речник „%s“ използва невалиден транспорт „%s“"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:162
 msgid "Paths"
@@ -1046,7 +1071,7 @@ msgstr "Пътища"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
 msgid "Search paths used by this object"
-msgstr ""
+msgstr "Пътищата за търсене използвани от този обект"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:175
 msgid "Sources"
@@ -1070,7 +1095,7 @@ msgstr ""
 "Докладвайте за грешки на http://gnome.cult.bg/bugs"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:589
+#: ../gnome-dictionary/src/gdict-applet.c:610
 msgid "Look up words in dictionaries"
 msgstr "Търсене за думи в речници"
 
@@ -1079,24 +1104,10 @@ msgstr "Търсене за думи в речници"
 msgid "Unable to open the application icon: %s"
 msgstr "Неуспех при отваряне на иконата на програмата: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:118
-#, c-format
-msgid ""
-"Unable to create the data directory '%s': there already is a file with the "
-"same name.  You should move the file and re-run gnome-dictionary."
-msgstr ""
-
-#. Translators: the first is the file name, the second is
-#. * the error message
-#: ../gnome-dictionary/src/gdict-app.c:130
-#, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr "Неуспех при създаване на папката с данни „%s“: %s"
-
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:249
+#: ../gnome-dictionary/src/gdict-app.c:213
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1109,203 +1120,206 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:263
+#: ../gnome-dictionary/src/gdict-app.c:227
 #, c-format
 msgid "Error: %s\n"
 msgstr "Грешка: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:289
+#: ../gnome-dictionary/src/gdict-app.c:253
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "За помощ по употребата, вижте gnome-dictionary --help\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:302
+#: ../gnome-dictionary/src/gdict-app.c:266
 msgid "Unable to find a suitable dictionary source"
 msgstr "Неуспех при откриване на подходящ източник на речник"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:300
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
 "%s"
 msgstr ""
+"Грешка при търсенето на дефиницията на „%s“:\n"
+"%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-applet.c:1421
+#, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "Неуспех при преименуване на файла „%s“ към „%s“: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:1445
+#: ../gnome-dictionary/src/gdict-applet.c:1468
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "Неуспех при създаване на папката с данни „%s“: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:427
 msgid "Words to look up"
 msgstr "Думи за търсене"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:427
 msgid "word"
 msgstr "дума"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:429
 msgid "Dictionary source to use"
 msgstr "Източник на речник, който да се използва"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:429
 msgid "source"
 msgstr "източник"
 
-#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:431
 msgid "Show available dictionary sources"
 msgstr "Показване на наличните източници за дневници"
 
-#: ../gnome-dictionary/src/gdict-app.c:374
+#: ../gnome-dictionary/src/gdict-app.c:433
 msgid "Print result to the console"
 msgstr "Изписване на резултат в конзолата"
 
-#: ../gnome-dictionary/src/gdict-app.c:376
+#: ../gnome-dictionary/src/gdict-app.c:435
 msgid "Database to use"
 msgstr "Базата данни, която да се използва"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-app.c:451
 msgid " - Look up words in dictionaries"
 msgstr " - Търсене на думи в речници"
 
-#: ../gnome-dictionary/src/gdict-app.c:396
+#: ../gnome-dictionary/src/gdict-app.c:455
 msgid "Dictionary and spelling tool"
 msgstr "Речник и проверка на правописа"
 
-#: ../gnome-dictionary/src/gdict-app.c:397
+#: ../gnome-dictionary/src/gdict-app.c:456
 msgid "Show Dictionary options"
 msgstr "Показване на опциите на речника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:244
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:245
+#: ../gnome-dictionary/src/gdict-window.c:540
 msgid "Save a Copy"
 msgstr "Запазване на копие"
 
-#: ../gnome-dictionary/src/gdict-applet.c:254
-#: ../gnome-dictionary/src/gdict-window.c:549
+#: ../gnome-dictionary/src/gdict-applet.c:255
+#: ../gnome-dictionary/src/gdict-window.c:550
 msgid "Untitled document"
 msgstr "Неозаглавен документ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:275
-#: ../gnome-dictionary/src/gdict-window.c:570
+#: ../gnome-dictionary/src/gdict-applet.c:276
+#: ../gnome-dictionary/src/gdict-window.c:571
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Грешка при запис към %s."
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Clear the definitions found"
 msgstr "Изчистване на откритите определения"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:387
 msgid "Clear definition"
 msgstr "Изчистване на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:367
+#: ../gnome-dictionary/src/gdict-applet.c:388
 msgid "Clear the text of the definition"
 msgstr "Изчистване на текста на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:377
+#: ../gnome-dictionary/src/gdict-applet.c:398
 msgid "Print the definitions found"
 msgstr "Печат на откритите определения"
 
-#: ../gnome-dictionary/src/gdict-applet.c:380
+#: ../gnome-dictionary/src/gdict-applet.c:401
 msgid "Print definition"
 msgstr "Печат на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:381
+#: ../gnome-dictionary/src/gdict-applet.c:402
 msgid "Print the text of the definition"
 msgstr "Печат на текста на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:391
+#: ../gnome-dictionary/src/gdict-applet.c:412
 msgid "Save the definitions found"
 msgstr "Запазване на откритите определения"
 
-#: ../gnome-dictionary/src/gdict-applet.c:394
+#: ../gnome-dictionary/src/gdict-applet.c:415
 msgid "Save definition"
 msgstr "Запазване на определение"
 
-#: ../gnome-dictionary/src/gdict-applet.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:416
 msgid "Save the text of the definition to a file"
-msgstr ""
+msgstr "Запазване на текста от дефиницията във файл"
 
-#: ../gnome-dictionary/src/gdict-applet.c:529
+#: ../gnome-dictionary/src/gdict-applet.c:550
 msgid "Toggle dictionary window"
 msgstr "Показване/скриване на речника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:530
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Show or hide the definition window"
 msgstr "Показване или скриване на прозореца с дефиниция"
 
-#: ../gnome-dictionary/src/gdict-applet.c:533
+#: ../gnome-dictionary/src/gdict-applet.c:554
 msgid "Click to view the dictionary window"
 msgstr "Натискане за показване на прозореца на речника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:588
+#: ../gnome-dictionary/src/gdict-applet.c:609
 msgid "Dictionary entry"
 msgstr "Дума в речника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:592
+#: ../gnome-dictionary/src/gdict-applet.c:613
 msgid "Type the word you want to look up"
 msgstr "Напишете думата, която търсите"
 
-#: ../gnome-dictionary/src/gdict-applet.c:726
+#: ../gnome-dictionary/src/gdict-applet.c:747
 msgid "Preferences"
 msgstr "Настройки"
 
-#: ../gnome-dictionary/src/gdict-applet.c:758
+#: ../gnome-dictionary/src/gdict-applet.c:779
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:760
+#: ../gnome-dictionary/src/gdict-window.c:761
 msgid "There was an error while displaying help"
 msgstr "Получи се грешка при показването на помощта."
 
-#: ../gnome-dictionary/src/gdict-applet.c:917
-#: ../gnome-dictionary/src/gdict-window.c:269
+#: ../gnome-dictionary/src/gdict-applet.c:938
+#: ../gnome-dictionary/src/gdict-window.c:270
 #, c-format
 msgid "No dictionary source available with name '%s'"
-msgstr ""
+msgstr "Липсва източник на речник с име „%s“"
 
-#: ../gnome-dictionary/src/gdict-applet.c:921
-#: ../gnome-dictionary/src/gdict-window.c:273
+#: ../gnome-dictionary/src/gdict-applet.c:942
+#: ../gnome-dictionary/src/gdict-window.c:274
 msgid "Unable to find dictionary source"
 msgstr "Неуспех при откриване на източник на речник"
 
-#: ../gnome-dictionary/src/gdict-applet.c:937
-#: ../gnome-dictionary/src/gdict-window.c:289
+#: ../gnome-dictionary/src/gdict-applet.c:958
+#: ../gnome-dictionary/src/gdict-window.c:290
 #, c-format
 msgid "No context available for source '%s'"
-msgstr ""
+msgstr "Липсва контекст за източника „%s“"
 
-#: ../gnome-dictionary/src/gdict-applet.c:941
-#: ../gnome-dictionary/src/gdict-window.c:293
+#: ../gnome-dictionary/src/gdict-applet.c:962
+#: ../gnome-dictionary/src/gdict-window.c:294
 msgid "Unable to create a context"
 msgstr "Неуспех при създаването на контекст"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1215
-#: ../gnome-dictionary/src/gdict-applet.c:1232
-#, c-format
-msgid "Unable to create the data directory '%s'"
-msgstr "Неуспех при създаване на папката с данни „%s“."
-
-#: ../gnome-dictionary/src/gdict-applet.c:1216
-msgid ""
-"There is a file with the same name in the path.\n"
-"You should move the file and re-run the\n"
-"Dictionary applet"
-msgstr ""
-
-#: ../gnome-dictionary/src/gdict-applet.c:1252
+#: ../gnome-dictionary/src/gdict-applet.c:1243
 msgid "Unable to load the applet icon"
 msgstr "Неуспех при зареждане на иконата на аплета."
 
-#: ../gnome-dictionary/src/gdict-applet.c:1281
-#: ../gnome-dictionary/src/gdict-window.c:1312
+#: ../gnome-dictionary/src/gdict-applet.c:1272
+#: ../gnome-dictionary/src/gdict-window.c:1316
 msgid "Unable to connect to GConf"
 msgstr "Неуспех при свързването с GConf."
 
-#: ../gnome-dictionary/src/gdict-applet.c:1296
-#: ../gnome-dictionary/src/gdict-window.c:1328
+#: ../gnome-dictionary/src/gdict-applet.c:1287
+#: ../gnome-dictionary/src/gdict-window.c:1332
 msgid "Unable to get notification for preferences"
-msgstr ""
+msgstr "Неуспех при получаването на уведомяване за настройките"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1311
-#: ../gnome-dictionary/src/gdict-window.c:1344
+#: ../gnome-dictionary/src/gdict-applet.c:1302
+#: ../gnome-dictionary/src/gdict-window.c:1348
 msgid "Unable to get notification for the document font"
-msgstr ""
+msgstr "Неуспех при получаване на уведомяване за шрифта на документа"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:272
 msgid "Add Dictionary Source"
@@ -1360,126 +1374,124 @@ msgid "Searching for '%s'..."
 msgstr "Търсене за %s..."
 
 #: ../gnome-dictionary/src/gdict-window.c:199
-#: ../gnome-dictionary/src/gdict-window.c:220
+#: ../gnome-dictionary/src/gdict-window.c:221
 msgid "No definitions found"
 msgstr "Не са намерени определения"
 
 #: ../gnome-dictionary/src/gdict-window.c:201
-msgid "A definition found"
-msgstr "Открито е определение"
-
-#: ../gnome-dictionary/src/gdict-window.c:203
 #, c-format
-msgid "%d definitions found"
-msgstr "Открити са %d определения"
+msgid "A definition found"
+msgid_plural "%d definitions found"
+msgstr[0] "Открито е определение"
+msgstr[1] "Открити са %d определения"
 
-#: ../gnome-dictionary/src/gdict-window.c:361
+#: ../gnome-dictionary/src/gdict-window.c:362
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Речник"
 
-#: ../gnome-dictionary/src/gdict-window.c:679
+#: ../gnome-dictionary/src/gdict-window.c:680
 msgid "Dictionary Preferences"
 msgstr "Настройки на речника"
 
-#: ../gnome-dictionary/src/gdict-window.c:795
+#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "_File"
 msgstr "_Файл"
 
-#: ../gnome-dictionary/src/gdict-window.c:796 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:797 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Редактиране"
 
-#: ../gnome-dictionary/src/gdict-window.c:797
+#: ../gnome-dictionary/src/gdict-window.c:798
 msgid "_Go"
 msgstr "_Отиване"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:801
+#: ../gnome-dictionary/src/gdict-window.c:802
 msgid "_New"
 msgstr "_Нов"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:803
 msgid "New look up"
 msgstr "Ново търсене"
 
-#: ../gnome-dictionary/src/gdict-window.c:803
+#: ../gnome-dictionary/src/gdict-window.c:804
 msgid "_Save a Copy..."
 msgstr "_Запазване на копие..."
 
-#: ../gnome-dictionary/src/gdict-window.c:805
+#: ../gnome-dictionary/src/gdict-window.c:806
 msgid "_Print..."
 msgstr "_Печат..."
 
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:807
 msgid "Print this document"
 msgstr "Разпечатване на този документ"
 
-#: ../gnome-dictionary/src/gdict-window.c:813 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:814 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Избор на _всички"
 
-#: ../gnome-dictionary/src/gdict-window.c:816
+#: ../gnome-dictionary/src/gdict-window.c:817
 msgid "Find a word or phrase in the document"
 msgstr "Откриване на дума или фраза в документа"
 
-#: ../gnome-dictionary/src/gdict-window.c:818
+#: ../gnome-dictionary/src/gdict-window.c:819
 msgid "Find Ne_xt"
 msgstr "_Следващо търсене"
 
-#: ../gnome-dictionary/src/gdict-window.c:820
+#: ../gnome-dictionary/src/gdict-window.c:821
 msgid "Find Pre_vious"
 msgstr "Намиране на _предишно"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:826
+#: ../gnome-dictionary/src/gdict-window.c:827
 msgid "_Previous Definition"
 msgstr "П_редишно определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:828
 msgid "Go to the previous definition"
 msgstr "Предишно определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:828
+#: ../gnome-dictionary/src/gdict-window.c:829
 msgid "_Next Definition"
 msgstr "_Следващо определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:829
+#: ../gnome-dictionary/src/gdict-window.c:830
 msgid "Go to the next definition"
 msgstr "Следващо определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:830
+#: ../gnome-dictionary/src/gdict-window.c:831
 msgid "_First Definition"
 msgstr "_Първо определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:832
 msgid "Go to the first definition"
 msgstr "Първото определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "_Last Definition"
 msgstr "_Последно определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:834
 msgid "Go to the last definition"
 msgstr "Последното определение"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:836 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:837 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Ръководство"
 
-#: ../gnome-dictionary/src/gdict-window.c:1125
+#: ../gnome-dictionary/src/gdict-window.c:1129
 msgid "Look _up:"
 msgstr "_Търсене:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1368
+#: ../gnome-dictionary/src/gdict-window.c:1372
 msgid "Unable to load the application icon"
 msgstr "Неуспех при зареждане на иконата на програмата"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
-msgstr " (невалиден уникод)"
+msgstr " (невалиден Уникод)"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:471
 #, c-format
@@ -1631,7 +1643,7 @@ msgstr "Папка за снимките на екрана"
 msgid "The directory the last screenshot was saved in."
 msgstr "Папката, в която последно са записвани снимките на екрана."
 
-#: ../gnome-screenshot/screenshot-dialog.c:195
+#: ../gnome-screenshot/screenshot-dialog.c:197
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -1639,7 +1651,7 @@ msgstr ""
 "Липсва файлът на Glade за програмата за снимки на екрана.\n"
 "Проверете инсталацията на gnome-utils"
 
-#: ../gnome-screenshot/screenshot-dialog.c:214
+#: ../gnome-screenshot/screenshot-dialog.c:216
 msgid "Select a directory"
 msgstr "Избор на папка"
 
@@ -1670,7 +1682,7 @@ msgstr "Прозорец без име"
 
 #: ../gnome-screenshot/screenshot-xfer.c:103
 msgid "Preparing to copy"
-msgstr "Подготване за копиране"
+msgstr "Подготвяне за копиране"
 
 #: ../gnome-screenshot/screenshot-xfer.c:181
 msgid "File already exists"
@@ -1858,6 +1870,9 @@ msgid ""
 "the search tool between sessions. Setting it to -1 will make the search tool "
 "use the default height."
 msgstr ""
+"Този ключ съдържа височината на прозореца на инструмента за търсене и се "
+"използва за предаването й между сесиите. За да използвате стандартната "
+"височина - задайте го да е „-1“."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
@@ -1865,6 +1880,9 @@ msgid ""
 "search tool between sessions. Setting it to -1 will make the search tool use "
 "the default width."
 msgstr ""
+"Този ключ съдържа широчината на прозореца на инструмента за търсене и се "
+"използва за предаването й между сесиите. За да използвате стандартната "
+"широчина - задайте го да е „-1“."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
@@ -2040,7 +2058,7 @@ msgstr "Папката „%s“ не може да бъде отворена."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:403
 msgid "The nautilus file manager is not running."
-msgstr "Файловия маниджър Nautilus на е стартиран."
+msgstr "Файловият мениджър Nautilus на е стартиран."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:470
 #: ../gsearchtool/gsearchtool-callbacks.c:811
@@ -2158,169 +2176,169 @@ msgstr "връзка (прекъсната)"
 msgid "link to %s"
 msgstr "връзка до %s"
 
-#: ../gsearchtool/gsearchtool.c:81
+#: ../gsearchtool/gsearchtool.c:82
 msgid "Contains the _text"
 msgstr "Съдържа _текста"
 
-#: ../gsearchtool/gsearchtool.c:83
+#: ../gsearchtool/gsearchtool.c:84
 msgid "_Date modified less than"
 msgstr "_Датата на промяна е по-малко от (дни)"
 
-#: ../gsearchtool/gsearchtool.c:83 ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:84 ../gsearchtool/gsearchtool.c:85
 msgid "days"
 msgstr "дни"
 
-#: ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:85
 msgid "Date modified more than"
 msgstr "Датата на промяна е повече от (дни)"
 
-#: ../gsearchtool/gsearchtool.c:86
+#: ../gsearchtool/gsearchtool.c:87
 msgid "S_ize at least"
 msgstr "_Размерът е поне"
 
-#: ../gsearchtool/gsearchtool.c:86 ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:87 ../gsearchtool/gsearchtool.c:88
 msgid "kilobytes"
 msgstr "килобайта"
 
-#: ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:88
 msgid "Si_ze at most"
 msgstr "Ра_змерът е най-много"
 
-#: ../gsearchtool/gsearchtool.c:88
+#: ../gsearchtool/gsearchtool.c:89
 msgid "File is empty"
 msgstr "Файлът е празен"
 
-#: ../gsearchtool/gsearchtool.c:90
+#: ../gsearchtool/gsearchtool.c:91
 msgid "Owned by _user"
 msgstr "Собственост е на _потребителя"
 
-#: ../gsearchtool/gsearchtool.c:91
+#: ../gsearchtool/gsearchtool.c:92
 msgid "Owned by _group"
 msgstr "Собственост е на _групата"
 
-#: ../gsearchtool/gsearchtool.c:92
+#: ../gsearchtool/gsearchtool.c:93
 msgid "Owner is unrecognized"
 msgstr "Собственикът не е разпознат"
 
-#: ../gsearchtool/gsearchtool.c:94
+#: ../gsearchtool/gsearchtool.c:95
 msgid "Na_me does not contain"
 msgstr "И_мето не съдържа"
 
-#: ../gsearchtool/gsearchtool.c:95
+#: ../gsearchtool/gsearchtool.c:96
 msgid "Name matches regular e_xpression"
 msgstr "Съвпада с регул_ярните изрази на името"
 
-#: ../gsearchtool/gsearchtool.c:97
+#: ../gsearchtool/gsearchtool.c:98
 msgid "Show hidden and backup files"
 msgstr "Показват се скритите файлове и резервните копия"
 
-#: ../gsearchtool/gsearchtool.c:98
+#: ../gsearchtool/gsearchtool.c:99
 msgid "Follow symbolic links"
 msgstr "Следват се символните връзки"
 
-#: ../gsearchtool/gsearchtool.c:99
+#: ../gsearchtool/gsearchtool.c:100
 msgid "Include other filesystems"
 msgstr "Включени са и други файлови системи."
 
-#: ../gsearchtool/gsearchtool.c:180
+#: ../gsearchtool/gsearchtool.c:181
 msgid "_Open"
 msgstr "_Отваряне"
 
-#: ../gsearchtool/gsearchtool.c:181
+#: ../gsearchtool/gsearchtool.c:182
 msgid "O_pen Folder"
 msgstr "Отва_ряне на папка"
 
-#: ../gsearchtool/gsearchtool.c:182
+#: ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "П_реместване в кошчето"
 
-#: ../gsearchtool/gsearchtool.c:183
+#: ../gsearchtool/gsearchtool.c:184
 msgid "_Save Results As..."
 msgstr "Запазване на _резултата като..."
 
-#: ../gsearchtool/gsearchtool.c:255 ../gsearchtool/gsearchtool.c:272
+#: ../gsearchtool/gsearchtool.c:390
 msgid "A locate database has probably not been created."
 msgstr "Вероятно не е създадена база от данни за местоположения."
 
-#: ../gsearchtool/gsearchtool.c:376
+#: ../gsearchtool/gsearchtool.c:492
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Неуспешно преобразуване на набора символи за „%s“"
 
-#: ../gsearchtool/gsearchtool.c:796 ../gsearchtool/gsearchtool.c:825
+#: ../gsearchtool/gsearchtool.c:516
+msgid "Searching..."
+msgstr "Търсене..."
+
+#: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3150
+msgid "Search for Files"
+msgstr "Търсене за файлове"
+
+#: ../gsearchtool/gsearchtool.c:967 ../gsearchtool/gsearchtool.c:996
 msgid "No files found"
 msgstr "Не са намерени файлове"
 
-#: ../gsearchtool/gsearchtool.c:818
+#: ../gsearchtool/gsearchtool.c:989
 msgid "(stopped)"
 msgstr "(спрян)"
 
-#: ../gsearchtool/gsearchtool.c:824
+#: ../gsearchtool/gsearchtool.c:995
 msgid "No Files Found"
 msgstr "Не са намерени файлове"
 
-#: ../gsearchtool/gsearchtool.c:829
+#: ../gsearchtool/gsearchtool.c:1000
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d файл е намерен"
 msgstr[1] "%d файла са намерени"
 
-#: ../gsearchtool/gsearchtool.c:833 ../gsearchtool/gsearchtool.c:871
+#: ../gsearchtool/gsearchtool.c:1004 ../gsearchtool/gsearchtool.c:1042
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d файл е намерен"
 msgstr[1] "%d файла са намерени"
 
-#: ../gsearchtool/gsearchtool.c:850 ../gsearchtool/gsearchtool.c:1128
-#: ../gsearchtool/gsearchtool.c:1214 ../gsearchtool/gsearchtool.c:3026
-msgid "Search for Files"
-msgstr "Търсене за файлове"
-
-#: ../gsearchtool/gsearchtool.c:962
+#: ../gsearchtool/gsearchtool.c:1133
 msgid "Entry changed called for a non entry option!"
 msgstr "Извиканото значение за записа не е опция за записа!"
 
-#: ../gsearchtool/gsearchtool.c:1214
-msgid "Searching..."
-msgstr "Търсене..."
-
-#: ../gsearchtool/gsearchtool.c:1237
+#: ../gsearchtool/gsearchtool.c:1384
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Задаване на текст за „Името съдържа“"
 
-#: ../gsearchtool/gsearchtool.c:1238
+#: ../gsearchtool/gsearchtool.c:1385
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Задаване на текст за „Гледане в папка“"
 
-#: ../gsearchtool/gsearchtool.c:1239
+#: ../gsearchtool/gsearchtool.c:1386
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "Подрежда файловете по: име, папка, размер, тип, или дата"
 
-#: ../gsearchtool/gsearchtool.c:1240
+#: ../gsearchtool/gsearchtool.c:1387
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Задаване на намаляващ ред на сортирането, по подразбиране е възходящ"
 
-#: ../gsearchtool/gsearchtool.c:1241
+#: ../gsearchtool/gsearchtool.c:1388
 msgid "Automatically start a search"
 msgstr "Автоматично стартиране на търсенето"
 
-#: ../gsearchtool/gsearchtool.c:1247
+#: ../gsearchtool/gsearchtool.c:1394
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Избиране на „%s“ като опция за търсене"
 
-#: ../gsearchtool/gsearchtool.c:1250
+#: ../gsearchtool/gsearchtool.c:1397
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Избиране и задаване опцията за търсене „%s“"
 
-#: ../gsearchtool/gsearchtool.c:1357
+#: ../gsearchtool/gsearchtool.c:1504
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Невалидна опция, зададена в командата за подреждане"
 
-#: ../gsearchtool/gsearchtool.c:1668
+#: ../gsearchtool/gsearchtool.c:1802
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2328,19 +2346,19 @@ msgstr ""
 "\n"
 "... Твърде много грешки за показване ..."
 
-#: ../gsearchtool/gsearchtool.c:1682
+#: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr ""
-"Резултатите от търсенето може да са невярни. Имаше грешки при изпълнението "
+"Резултатите от търсенето може да са неверни. Имаше грешки при изпълнението "
 "на това търсене."
 
-#: ../gsearchtool/gsearchtool.c:1694 ../gsearchtool/gsearchtool.c:1738
+#: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
 msgstr "Показване на повече _подробности"
 
-#: ../gsearchtool/gsearchtool.c:1724
+#: ../gsearchtool/gsearchtool.c:1858
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2348,149 +2366,149 @@ msgstr ""
 "Резултатите от търсенето може да са остарели или неверни. Искате ли да "
 "спрете възможността за бързо търсене?"
 
-#: ../gsearchtool/gsearchtool.c:1749
+#: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
 msgstr "Спиране на _бързо търсене"
 
-#: ../gsearchtool/gsearchtool.c:1776
+#: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr ""
 "Неуспех при задаването на идентификатор на група на дъщерен процес %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1803
+#: ../gsearchtool/gsearchtool.c:1935
 msgid "Error parsing the search command."
 msgstr "Грешка при изпълнението на командата за търсене"
 
-#: ../gsearchtool/gsearchtool.c:1836
+#: ../gsearchtool/gsearchtool.c:1968
 msgid "Error running the search command."
 msgstr "Грешка при изпълнение на командата за търсене."
 
-#: ../gsearchtool/gsearchtool.c:1964
+#: ../gsearchtool/gsearchtool.c:2083
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Задаване не текстова стойност на опцията за търсене „%s“."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1969
+#: ../gsearchtool/gsearchtool.c:2088
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "„%s“ в %s"
 
-#: ../gsearchtool/gsearchtool.c:1971
+#: ../gsearchtool/gsearchtool.c:2090
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Задаване на стойност в %s за опцията за търсене „%s“."
 
-#: ../gsearchtool/gsearchtool.c:2030
+#: ../gsearchtool/gsearchtool.c:2149
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Премахване на „%s“"
 
-#: ../gsearchtool/gsearchtool.c:2031
+#: ../gsearchtool/gsearchtool.c:2150
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Натиснете, за да премахнете опцията за търсене „%s“."
 
-#: ../gsearchtool/gsearchtool.c:2124
+#: ../gsearchtool/gsearchtool.c:2243
 msgid "A_vailable options:"
 msgstr "Възмо_жни опции:"
 
-#: ../gsearchtool/gsearchtool.c:2153
+#: ../gsearchtool/gsearchtool.c:2272
 msgid "Available options"
 msgstr "Налични опции"
 
-#: ../gsearchtool/gsearchtool.c:2154
+#: ../gsearchtool/gsearchtool.c:2273
 msgid "Select a search option from the drop-down list."
 msgstr "Избор на опция за търсене от падащото меню."
 
-#: ../gsearchtool/gsearchtool.c:2166
+#: ../gsearchtool/gsearchtool.c:2285
 msgid "Add search option"
 msgstr "Добавяне на опция за търсене"
 
-#: ../gsearchtool/gsearchtool.c:2167
+#: ../gsearchtool/gsearchtool.c:2286
 msgid "Click to add the selected available search option."
 msgstr "Натискане за избиране на избраната налична опция за търсене."
 
-#: ../gsearchtool/gsearchtool.c:2256
+#: ../gsearchtool/gsearchtool.c:2375
 msgid "S_earch results:"
 msgstr "_Резултати от търсенето:"
 
-#: ../gsearchtool/gsearchtool.c:2295
+#: ../gsearchtool/gsearchtool.c:2414
 msgid "List View"
 msgstr "Списъчен изглед"
 
-#: ../gsearchtool/gsearchtool.c:2379
+#: ../gsearchtool/gsearchtool.c:2498
 msgid "Folder"
 msgstr "Папка"
 
-#: ../gsearchtool/gsearchtool.c:2391
+#: ../gsearchtool/gsearchtool.c:2510
 msgid "Size"
 msgstr "Размер"
 
-#: ../gsearchtool/gsearchtool.c:2402
+#: ../gsearchtool/gsearchtool.c:2521
 msgid "Type"
 msgstr "Тип"
 
-#: ../gsearchtool/gsearchtool.c:2413
+#: ../gsearchtool/gsearchtool.c:2532
 msgid "Date Modified"
 msgstr "Дата на промяна"
 
-#: ../gsearchtool/gsearchtool.c:2815
+#: ../gsearchtool/gsearchtool.c:2934
 msgid "_Name contains:"
 msgstr "_Името съдържа:"
 
-#: ../gsearchtool/gsearchtool.c:2829 ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2948 ../gsearchtool/gsearchtool.c:2949
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Въведете цяло или непълно име с или без шаблонни символи."
 
-#: ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2949
 msgid "Name contains"
 msgstr "Името съдържа"
 
-#: ../gsearchtool/gsearchtool.c:2836
+#: ../gsearchtool/gsearchtool.c:2955
 msgid "_Look in folder:"
 msgstr "_Търсене в папка:"
 
-#: ../gsearchtool/gsearchtool.c:2842
+#: ../gsearchtool/gsearchtool.c:2961
 msgid "Browse"
 msgstr "Разглеждане"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Look in folder"
 msgstr "Търсене в папка"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Select the folder or device from which you want to begin the search."
 msgstr ""
 "Избор на папката или устройството, от което желаете да започне търсенето."
 
-#: ../gsearchtool/gsearchtool.c:2858
+#: ../gsearchtool/gsearchtool.c:2977
 msgid "Select more _options"
 msgstr "Избор на още _опции"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Select more options"
 msgstr "Избор на още опции"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Click to expand or collapse the list of available options."
 msgstr "Разширяване или свиване на списъка с наличните опции."
 
-#: ../gsearchtool/gsearchtool.c:2891
+#: ../gsearchtool/gsearchtool.c:3010
 msgid "Click to display the help manual."
 msgstr "Натиснете, за да видите ръководството"
 
-#: ../gsearchtool/gsearchtool.c:2899
+#: ../gsearchtool/gsearchtool.c:3018
 msgid "Click to close \"Search for Files\"."
 msgstr "Натиснете, за да затворите „Търсене на файлове“."
 
-#: ../gsearchtool/gsearchtool.c:2925
+#: ../gsearchtool/gsearchtool.c:3044
 msgid "Click to perform a search."
 msgstr "Натиснете, за да проведете на търсенето."
 
-#: ../gsearchtool/gsearchtool.c:2926
+#: ../gsearchtool/gsearchtool.c:3045
 msgid "Click to stop a search."
 msgstr "Натиснете за спирането на търсенето."
 
@@ -2729,7 +2747,7 @@ msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
 msgstr ""
-"Списъкът с дневници, които да се отворят при стартирането на прогармата. При "
+"Списъкът с дневници, които да се отворят при стартирането на програмата. При "
 "създаването на този ключ в него по подразбиране се пренася списъка от /etc/"
 "syslog.conf."
 
@@ -2750,7 +2768,7 @@ msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
 msgstr ""
-"Размерът на равноширокия шрифт за показване на дневниците в основия "
+"Размерът на равноширокия шрифт за показване на дневниците в основния "
 "дървовиден изглед. По подразбиране се взема този на терминала gnome-terminal."
 
 #: ../logview/logview.schemas.in.h:9
@@ -2773,7 +2791,7 @@ msgstr "Настройки на прегледа на системни днев�
 
 #: ../logview/main.c:59
 msgid " - Browse and monitor logs"
-msgstr ""
+msgstr " - преглед и следене на дневниците"
 
 #: ../logview/main.c:153
 msgid "Log Viewer"
