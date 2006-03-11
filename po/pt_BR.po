@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-21 23:09+0100\n"
-"PO-Revision-Date: 2006-02-22 13:32-0300\n"
+"POT-Creation-Date: 2006-03-11 14:03-0300\n"
+"PO-Revision-Date: 2006-03-11 15:41-0300\n"
 "Last-Translator: Raphael Higino <raphaelh@uai.com.br>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
@@ -474,12 +474,12 @@ msgid "Cl_ear"
 msgstr "_Limpar"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:838 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:839 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Sobre"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:798 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:799 ../logview/logview.c:88
 msgid "_Help"
 msgstr "Aj_uda"
 
@@ -488,7 +488,7 @@ msgid "_Look Up Selected Text"
 msgstr "Procurar o texto se_lecionado"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:822
+#: ../gnome-dictionary/src/gdict-window.c:823
 msgid "_Preferences"
 msgstr "_Preferências"
 
@@ -502,8 +502,8 @@ msgstr "_Salvar"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:409
-#: ../gnome-dictionary/src/gdict-window.c:1203
+#: ../gnome-dictionary/src/gdict-app.c:468
+#: ../gnome-dictionary/src/gdict-window.c:1207
 msgid "Dictionary"
 msgstr "Dicionário"
 
@@ -656,8 +656,8 @@ msgid "H_ostname:"
 msgstr "Nome da máquina:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:230
-#: ../gnome-dictionary/src/gdict-window.c:594
+#: ../gnome-dictionary/src/gdict-applet.c:231
+#: ../gnome-dictionary/src/gdict-window.c:595
 msgid "Print"
 msgstr "Imprimir"
 
@@ -986,7 +986,7 @@ msgid "The filename used by this dictionary source"
 msgstr "O nome do arquivo usado por essa fonte de dicionário"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:232
-#: ../gsearchtool/gsearchtool.c:2475
+#: ../gsearchtool/gsearchtool.c:2474
 msgid "Name"
 msgstr "Nome"
 
@@ -1089,7 +1089,7 @@ msgstr ""
 "Guilherme de S. Pastore <gpastore@colband.com.br>"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:589
+#: ../gnome-dictionary/src/gdict-applet.c:610
 msgid "Look up words in dictionaries"
 msgstr "Consultar palavras em dicionários"
 
@@ -1098,24 +1098,10 @@ msgstr "Consultar palavras em dicionários"
 msgid "Unable to open the application icon: %s"
 msgstr "Impossível abrir o ícone da aplicação: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:118
-#, c-format
-msgid ""
-"Unable to create the data directory '%s': there already is a file with the "
-"same name.  You should move the file and re-run gnome-dictionary."
-msgstr "Impossível criar o diretório de dados '%s': já existe um arquivo com o mesmo nome. Você deveria mover o arquivo e executar gnome-dictionary novamente."
-
-#. Translators: the first is the file name, the second is
-#. * the error message
-#: ../gnome-dictionary/src/gdict-app.c:130
-#, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr "Impossível criar o diretório de dados '%s': %s"
-
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:249
+#: ../gnome-dictionary/src/gdict-app.c:213
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1128,20 +1114,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:263
+#: ../gnome-dictionary/src/gdict-app.c:227
 #, c-format
 msgid "Error: %s\n"
 msgstr "Erro: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:289
+#: ../gnome-dictionary/src/gdict-app.c:253
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Veja gnome-dictionary --help para uso\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:302
+#: ../gnome-dictionary/src/gdict-app.c:266
 msgid "Unable to find a suitable dictionary source"
 msgstr "Impossível encontrar uma fonte de dicionário apropriada"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:300
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1150,184 +1136,182 @@ msgstr ""
 "Erro ao consultar a definição de \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-applet.c:1421
+#, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "Impossível renomear o arquivo '%s' para '%s': %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:1445
+#: ../gnome-dictionary/src/gdict-applet.c:1468
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "Impossível criar o diretório de dados '%s': %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:427
 msgid "Words to look up"
 msgstr "Palavras para consultar"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:427
 msgid "word"
 msgstr "palavra"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:429
 msgid "Dictionary source to use"
 msgstr "Fonte de dicionário para usar"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:429
 msgid "source"
 msgstr "fonte"
 
-#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:431
 msgid "Show available dictionary sources"
 msgstr "Mostrar fontes de dicionário disponíveis"
 
-#: ../gnome-dictionary/src/gdict-app.c:374
+#: ../gnome-dictionary/src/gdict-app.c:433
 msgid "Print result to the console"
 msgstr "Imprimir resultado no console"
 
-#: ../gnome-dictionary/src/gdict-app.c:376
+#: ../gnome-dictionary/src/gdict-app.c:435
 msgid "Database to use"
 msgstr "Banco de dados para usar"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-app.c:451
 msgid " - Look up words in dictionaries"
 msgstr " - Consultar palavras em dicionários"
 
-#: ../gnome-dictionary/src/gdict-app.c:396
+#: ../gnome-dictionary/src/gdict-app.c:455
 msgid "Dictionary and spelling tool"
 msgstr "Ferramenta de dicionário e ortografia"
 
-#: ../gnome-dictionary/src/gdict-app.c:397
+#: ../gnome-dictionary/src/gdict-app.c:456
 msgid "Show Dictionary options"
 msgstr "Mostra opções de dicionário"
 
-#: ../gnome-dictionary/src/gdict-applet.c:244
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:245
+#: ../gnome-dictionary/src/gdict-window.c:540
 msgid "Save a Copy"
 msgstr "Salvar uma cópia"
 
-#: ../gnome-dictionary/src/gdict-applet.c:254
-#: ../gnome-dictionary/src/gdict-window.c:549
+#: ../gnome-dictionary/src/gdict-applet.c:255
+#: ../gnome-dictionary/src/gdict-window.c:550
 msgid "Untitled document"
 msgstr "Documento sem título"
 
-#: ../gnome-dictionary/src/gdict-applet.c:275
-#: ../gnome-dictionary/src/gdict-window.c:570
+#: ../gnome-dictionary/src/gdict-applet.c:276
+#: ../gnome-dictionary/src/gdict-window.c:571
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Erro ao gravar em '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Clear the definitions found"
 msgstr "Limpa as definições encontradas"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:387
 msgid "Clear definition"
 msgstr "Limpar definição"
 
-#: ../gnome-dictionary/src/gdict-applet.c:367
+#: ../gnome-dictionary/src/gdict-applet.c:388
 msgid "Clear the text of the definition"
 msgstr "Limpa o texto da definição"
 
-#: ../gnome-dictionary/src/gdict-applet.c:377
+#: ../gnome-dictionary/src/gdict-applet.c:398
 msgid "Print the definitions found"
 msgstr "Imprime as definições encontradas"
 
-#: ../gnome-dictionary/src/gdict-applet.c:380
+#: ../gnome-dictionary/src/gdict-applet.c:401
 msgid "Print definition"
 msgstr "Imprimir definição"
 
-#: ../gnome-dictionary/src/gdict-applet.c:381
+#: ../gnome-dictionary/src/gdict-applet.c:402
 msgid "Print the text of the definition"
 msgstr "Imprime o texto da definição"
 
-#: ../gnome-dictionary/src/gdict-applet.c:391
+#: ../gnome-dictionary/src/gdict-applet.c:412
 msgid "Save the definitions found"
 msgstr "Salva as definições encontradas"
 
-#: ../gnome-dictionary/src/gdict-applet.c:394
+#: ../gnome-dictionary/src/gdict-applet.c:415
 msgid "Save definition"
 msgstr "Salvar definição"
 
-#: ../gnome-dictionary/src/gdict-applet.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:416
 msgid "Save the text of the definition to a file"
 msgstr "Salva o texto da definição em um arquivo"
 
-#: ../gnome-dictionary/src/gdict-applet.c:529
+#: ../gnome-dictionary/src/gdict-applet.c:550
 msgid "Toggle dictionary window"
 msgstr "Alternar janela do dicionário"
 
-#: ../gnome-dictionary/src/gdict-applet.c:530
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Show or hide the definition window"
 msgstr "Mostra ou oculta a janela de definição"
 
-#: ../gnome-dictionary/src/gdict-applet.c:533
+#: ../gnome-dictionary/src/gdict-applet.c:554
 msgid "Click to view the dictionary window"
 msgstr "Clique para ver a janela do dicionário"
 
-#: ../gnome-dictionary/src/gdict-applet.c:588
+#: ../gnome-dictionary/src/gdict-applet.c:609
 msgid "Dictionary entry"
 msgstr "Entrada de dicionário"
 
-#: ../gnome-dictionary/src/gdict-applet.c:592
+#: ../gnome-dictionary/src/gdict-applet.c:613
 msgid "Type the word you want to look up"
 msgstr "Digite a palavra que você gostaria de consultar"
 
-#: ../gnome-dictionary/src/gdict-applet.c:726
+#: ../gnome-dictionary/src/gdict-applet.c:747
 msgid "Preferences"
 msgstr "Preferências"
 
-#: ../gnome-dictionary/src/gdict-applet.c:758
+#: ../gnome-dictionary/src/gdict-applet.c:779
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:760
+#: ../gnome-dictionary/src/gdict-window.c:761
 msgid "There was an error while displaying help"
 msgstr "Ocorreu um erro ao mostrar a ajuda"
 
-#: ../gnome-dictionary/src/gdict-applet.c:917
-#: ../gnome-dictionary/src/gdict-window.c:269
+#: ../gnome-dictionary/src/gdict-applet.c:938
+#: ../gnome-dictionary/src/gdict-window.c:270
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Nenhuma fonte de dicionário disponível com o nome '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:921
-#: ../gnome-dictionary/src/gdict-window.c:273
+#: ../gnome-dictionary/src/gdict-applet.c:942
+#: ../gnome-dictionary/src/gdict-window.c:274
 msgid "Unable to find dictionary source"
 msgstr "Impossível encontrar a fonte de dicionário"
 
-#: ../gnome-dictionary/src/gdict-applet.c:937
-#: ../gnome-dictionary/src/gdict-window.c:289
+#: ../gnome-dictionary/src/gdict-applet.c:958
+#: ../gnome-dictionary/src/gdict-window.c:290
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Nenhum contexto disponível para a fonte '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:941
-#: ../gnome-dictionary/src/gdict-window.c:293
+#: ../gnome-dictionary/src/gdict-applet.c:962
+#: ../gnome-dictionary/src/gdict-window.c:294
 msgid "Unable to create a context"
 msgstr "Impossível criar um contexto"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1215
-#: ../gnome-dictionary/src/gdict-applet.c:1232
-#, c-format
-msgid "Unable to create the data directory '%s'"
-msgstr "Impossível criar o diretório de dados '%s'"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1216
-msgid ""
-"There is a file with the same name in the path.\n"
-"You should move the file and re-run the\n"
-"Dictionary applet"
-msgstr ""
-"Há um arquivo com o mesmo nome nessa pasta.\n"
-"Você deveria mover o arquivo e executar\n"
-"o mini-aplicativo Dicionário novamente"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1252
+#: ../gnome-dictionary/src/gdict-applet.c:1243
 msgid "Unable to load the applet icon"
 msgstr "Impossível carregar o ícone do mini-aplicativo"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1281
-#: ../gnome-dictionary/src/gdict-window.c:1312
+#: ../gnome-dictionary/src/gdict-applet.c:1272
+#: ../gnome-dictionary/src/gdict-window.c:1316
 msgid "Unable to connect to GConf"
 msgstr "Impossível conectar ao GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1296
-#: ../gnome-dictionary/src/gdict-window.c:1328
+#: ../gnome-dictionary/src/gdict-applet.c:1287
+#: ../gnome-dictionary/src/gdict-window.c:1332
 msgid "Unable to get notification for preferences"
 msgstr "Impossível obter notificação para preferências"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1311
-#: ../gnome-dictionary/src/gdict-window.c:1344
+#: ../gnome-dictionary/src/gdict-applet.c:1302
+#: ../gnome-dictionary/src/gdict-window.c:1348
 msgid "Unable to get notification for the document font"
 msgstr "Impossível obter notificação para a fonte do documento"
 
@@ -1384,120 +1368,118 @@ msgid "Searching for '%s'..."
 msgstr "Procurando '%s'..."
 
 #: ../gnome-dictionary/src/gdict-window.c:199
-#: ../gnome-dictionary/src/gdict-window.c:220
+#: ../gnome-dictionary/src/gdict-window.c:221
 msgid "No definitions found"
 msgstr "Nenhuma definição encontrada"
 
 #: ../gnome-dictionary/src/gdict-window.c:201
-msgid "A definition found"
-msgstr "Uma definição encontrada"
-
-#: ../gnome-dictionary/src/gdict-window.c:203
 #, c-format
-msgid "%d definitions found"
-msgstr "%d definições encontradas"
+msgid "A definition found"
+msgid_plural "%d definitions found"
+msgstr[0] "Uma definição encontrada"
+msgstr[1] "%d definições encontradas"
 
-#: ../gnome-dictionary/src/gdict-window.c:361
+#: ../gnome-dictionary/src/gdict-window.c:362
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Dicionário"
 
-#: ../gnome-dictionary/src/gdict-window.c:679
+#: ../gnome-dictionary/src/gdict-window.c:680
 msgid "Dictionary Preferences"
 msgstr "Preferências do Dicionário"
 
-#: ../gnome-dictionary/src/gdict-window.c:795
+#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "_File"
 msgstr "_Arquivo"
 
-#: ../gnome-dictionary/src/gdict-window.c:796 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:797 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../gnome-dictionary/src/gdict-window.c:797
+#: ../gnome-dictionary/src/gdict-window.c:798
 msgid "_Go"
 msgstr "_Ir"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:801
+#: ../gnome-dictionary/src/gdict-window.c:802
 msgid "_New"
 msgstr "_Novo"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:803
 msgid "New look up"
 msgstr "Nova consulta"
 
-#: ../gnome-dictionary/src/gdict-window.c:803
+#: ../gnome-dictionary/src/gdict-window.c:804
 msgid "_Save a Copy..."
 msgstr "_Salvar uma cópia..."
 
-#: ../gnome-dictionary/src/gdict-window.c:805
+#: ../gnome-dictionary/src/gdict-window.c:806
 msgid "_Print..."
 msgstr "Im_primir..."
 
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:807
 msgid "Print this document"
 msgstr "Imprime esse documento"
 
-#: ../gnome-dictionary/src/gdict-window.c:813 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:814 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Selecionar _Tudo"
 
-#: ../gnome-dictionary/src/gdict-window.c:816
+#: ../gnome-dictionary/src/gdict-window.c:817
 msgid "Find a word or phrase in the document"
 msgstr "Encontra uma palavra ou frase no documento"
 
-#: ../gnome-dictionary/src/gdict-window.c:818
+#: ../gnome-dictionary/src/gdict-window.c:819
 msgid "Find Ne_xt"
 msgstr "Procurar _Próxima"
 
-#: ../gnome-dictionary/src/gdict-window.c:820
+#: ../gnome-dictionary/src/gdict-window.c:821
 msgid "Find Pre_vious"
 msgstr "Procurar _Anterior"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:826
+#: ../gnome-dictionary/src/gdict-window.c:827
 msgid "_Previous Definition"
 msgstr "Definição _Anterior"
 
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:828
 msgid "Go to the previous definition"
 msgstr "Vai para a definição anterior"
 
-#: ../gnome-dictionary/src/gdict-window.c:828
+#: ../gnome-dictionary/src/gdict-window.c:829
 msgid "_Next Definition"
 msgstr "_Próxima Definição"
 
-#: ../gnome-dictionary/src/gdict-window.c:829
+#: ../gnome-dictionary/src/gdict-window.c:830
 msgid "Go to the next definition"
 msgstr "Vai para a próxima definição"
 
-#: ../gnome-dictionary/src/gdict-window.c:830
+#: ../gnome-dictionary/src/gdict-window.c:831
 msgid "_First Definition"
 msgstr "Primeira _Definição"
 
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:832
 msgid "Go to the first definition"
 msgstr "Vai para a primeira definição"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "_Last Definition"
 msgstr "Ú_ltima Definição"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:834
 msgid "Go to the last definition"
 msgstr "Vai para a última definição"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:836 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:837 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Conteúdo"
 
-#: ../gnome-dictionary/src/gdict-window.c:1125
+#: ../gnome-dictionary/src/gdict-window.c:1129
 msgid "Look _up:"
 msgstr "_Consultar:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1368
+#: ../gnome-dictionary/src/gdict-window.c:1372
 msgid "Unable to load the application icon"
 msgstr "Impossível carregar o ícone da aplicação"
 
@@ -1655,7 +1637,7 @@ msgstr "Diretório de captura de tela"
 msgid "The directory the last screenshot was saved in."
 msgstr "Diretório em que a última captura de tela foi salva"
 
-#: ../gnome-screenshot/screenshot-dialog.c:195
+#: ../gnome-screenshot/screenshot-dialog.c:197
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -1663,7 +1645,7 @@ msgstr ""
 "O arquivo do Glade para o programa de captura de tela está faltando.\n"
 "Por favor, verifique sua instalação do gnome-utils."
 
-#: ../gnome-screenshot/screenshot-dialog.c:214
+#: ../gnome-screenshot/screenshot-dialog.c:216
 msgid "Select a directory"
 msgstr "Selecione um diretório"
 
@@ -2272,90 +2254,90 @@ msgstr "Mo_ver para Lixeira"
 msgid "_Save Results As..."
 msgstr "_Salvar Resultados Como..."
 
-#: ../gsearchtool/gsearchtool.c:391
+#: ../gsearchtool/gsearchtool.c:390
 msgid "A locate database has probably not been created."
 msgstr "Um banco de dados local provavelmente não foi criado."
 
-#: ../gsearchtool/gsearchtool.c:493
+#: ../gsearchtool/gsearchtool.c:492
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "A conversão do conjunto de caracteres falhou para \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:517
+#: ../gsearchtool/gsearchtool.c:516
 msgid "Searching..."
 msgstr "Procurando..."
 
-#: ../gsearchtool/gsearchtool.c:517 ../gsearchtool/gsearchtool.c:1022
-#: ../gsearchtool/gsearchtool.c:1300 ../gsearchtool/gsearchtool.c:3146
+#: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3150
 msgid "Search for Files"
 msgstr "Procurar Arquivos"
 
-#: ../gsearchtool/gsearchtool.c:968 ../gsearchtool/gsearchtool.c:997
+#: ../gsearchtool/gsearchtool.c:967 ../gsearchtool/gsearchtool.c:996
 msgid "No files found"
 msgstr "Nenhum arquivo encontrado"
 
-#: ../gsearchtool/gsearchtool.c:990
+#: ../gsearchtool/gsearchtool.c:989
 msgid "(stopped)"
 msgstr "(parado)"
 
-#: ../gsearchtool/gsearchtool.c:996
+#: ../gsearchtool/gsearchtool.c:995
 msgid "No Files Found"
 msgstr "Nenhum Arquivo Encontrado"
 
-#: ../gsearchtool/gsearchtool.c:1001
+#: ../gsearchtool/gsearchtool.c:1000
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d Arquivo Encontrado"
 msgstr[1] "%d Arquivos Encontrados"
 
-#: ../gsearchtool/gsearchtool.c:1005 ../gsearchtool/gsearchtool.c:1043
+#: ../gsearchtool/gsearchtool.c:1004 ../gsearchtool/gsearchtool.c:1042
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d arquivo encontrado"
 msgstr[1] "%d arquivos encontrados"
 
-#: ../gsearchtool/gsearchtool.c:1134
+#: ../gsearchtool/gsearchtool.c:1133
 msgid "Entry changed called for a non entry option!"
 msgstr "Entrada alterada chamada para uma opção de não-entrada!"
 
-#: ../gsearchtool/gsearchtool.c:1385
+#: ../gsearchtool/gsearchtool.c:1384
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Define o texto da opção de procura \"Nome contém\""
 
-#: ../gsearchtool/gsearchtool.c:1386
+#: ../gsearchtool/gsearchtool.c:1385
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Define o texto da opção de procura \"Procurar na pasta\""
 
-#: ../gsearchtool/gsearchtool.c:1387
+#: ../gsearchtool/gsearchtool.c:1386
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Organizar arquivos por um dos seguintes: nome, pasta, tamanho, tipo ou data"
 
-#: ../gsearchtool/gsearchtool.c:1388
+#: ../gsearchtool/gsearchtool.c:1387
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Definir ordem de organização como descendente, o padrão é ascendente"
 
-#: ../gsearchtool/gsearchtool.c:1389
+#: ../gsearchtool/gsearchtool.c:1388
 msgid "Automatically start a search"
 msgstr "Iniciar uma busca automaticamente"
 
-#: ../gsearchtool/gsearchtool.c:1395
+#: ../gsearchtool/gsearchtool.c:1394
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Seleciona a opção de procura \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:1398
+#: ../gsearchtool/gsearchtool.c:1397
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Seleciona e define a opção de procura \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:1505
+#: ../gsearchtool/gsearchtool.c:1504
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Opção inválida passada para o argumento sortby da linha de comando."
 
-#: ../gsearchtool/gsearchtool.c:1803
+#: ../gsearchtool/gsearchtool.c:1802
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2363,7 +2345,7 @@ msgstr ""
 "\n"
 "... Muitos erros para serem mostrados ..."
 
-#: ../gsearchtool/gsearchtool.c:1817
+#: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -2371,11 +2353,11 @@ msgstr ""
 "O resultado da busca pode ser inválido. Ocorreram erros durante a execução "
 "da busca."
 
-#: ../gsearchtool/gsearchtool.c:1829 ../gsearchtool/gsearchtool.c:1873
+#: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
 msgstr "Mostrar mais _detalhes"
 
-#: ../gsearchtool/gsearchtool.c:1859
+#: ../gsearchtool/gsearchtool.c:1858
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2383,153 +2365,153 @@ msgstr ""
 "O resultado da busca pode ser inválido ou estar desatualizado. Você deseja "
 "desabilitar a busca rápida?"
 
-#: ../gsearchtool/gsearchtool.c:1884
+#: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
 msgstr "Desabilitar _Busca Rápida"
 
-#: ../gsearchtool/gsearchtool.c:1911
+#: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Falha ao definir o id do grupo de processo para o filho %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1936
+#: ../gsearchtool/gsearchtool.c:1935
 msgid "Error parsing the search command."
 msgstr "Erro ao analisar o comando de busca."
 
-#: ../gsearchtool/gsearchtool.c:1969
+#: ../gsearchtool/gsearchtool.c:1968
 msgid "Error running the search command."
 msgstr "Erro ao executar o comando de busca."
 
-#: ../gsearchtool/gsearchtool.c:2084
+#: ../gsearchtool/gsearchtool.c:2083
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Entre um valor de texto para a opção de procuta \"%s\"."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:2089
+#: ../gsearchtool/gsearchtool.c:2088
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" em %s"
 
-#: ../gsearchtool/gsearchtool.c:2091
+#: ../gsearchtool/gsearchtool.c:2090
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Entre um valor em %s para a opção de procura \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:2150
+#: ../gsearchtool/gsearchtool.c:2149
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Remover \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:2151
+#: ../gsearchtool/gsearchtool.c:2150
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Clique para remover a opção \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:2244
+#: ../gsearchtool/gsearchtool.c:2243
 msgid "A_vailable options:"
 msgstr "Opções disponí_veis:"
 
-#: ../gsearchtool/gsearchtool.c:2273
+#: ../gsearchtool/gsearchtool.c:2272
 msgid "Available options"
 msgstr "Opções disponíveis"
 
-#: ../gsearchtool/gsearchtool.c:2274
+#: ../gsearchtool/gsearchtool.c:2273
 msgid "Select a search option from the drop-down list."
 msgstr "Selecione uma opção de pesquisa a partir da lista do menu."
 
-#: ../gsearchtool/gsearchtool.c:2286
+#: ../gsearchtool/gsearchtool.c:2285
 msgid "Add search option"
 msgstr "Adicionar uma opção de procura"
 
-#: ../gsearchtool/gsearchtool.c:2287
+#: ../gsearchtool/gsearchtool.c:2286
 msgid "Click to add the selected available search option."
 msgstr "Clique para adicionar a opção de procura disponível selecionada."
 
-#: ../gsearchtool/gsearchtool.c:2376
+#: ../gsearchtool/gsearchtool.c:2375
 msgid "S_earch results:"
 msgstr "R_esultados da pesquisa:"
 
-#: ../gsearchtool/gsearchtool.c:2415
+#: ../gsearchtool/gsearchtool.c:2414
 msgid "List View"
 msgstr "Relaciona a Janela"
 
-#: ../gsearchtool/gsearchtool.c:2499
+#: ../gsearchtool/gsearchtool.c:2498
 msgid "Folder"
 msgstr "Pasta"
 
-#: ../gsearchtool/gsearchtool.c:2511
+#: ../gsearchtool/gsearchtool.c:2510
 msgid "Size"
 msgstr "Tamanho"
 
-#: ../gsearchtool/gsearchtool.c:2522
+#: ../gsearchtool/gsearchtool.c:2521
 msgid "Type"
 msgstr "Tipo"
 
-#: ../gsearchtool/gsearchtool.c:2533
+#: ../gsearchtool/gsearchtool.c:2532
 msgid "Date Modified"
 msgstr "Última Modificação"
 
 # Na interface em pt_BR, existe o botão '_Navegar...'
-#: ../gsearchtool/gsearchtool.c:2935
+#: ../gsearchtool/gsearchtool.c:2934
 msgid "_Name contains:"
 msgstr "No_me contém:"
 
-#: ../gsearchtool/gsearchtool.c:2949 ../gsearchtool/gsearchtool.c:2950
+#: ../gsearchtool/gsearchtool.c:2948 ../gsearchtool/gsearchtool.c:2949
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "Entre um nome de arquivo ou nome de aquivo parcial com ou sem caracteres "
 "curingas."
 
 # Na interface em pt_BR, existe o botão '_Navegar...'
-#: ../gsearchtool/gsearchtool.c:2950
+#: ../gsearchtool/gsearchtool.c:2949
 msgid "Name contains"
 msgstr "Nome contém"
 
-#: ../gsearchtool/gsearchtool.c:2956
+#: ../gsearchtool/gsearchtool.c:2955
 msgid "_Look in folder:"
 msgstr "Proc_urar na pasta:"
 
-#: ../gsearchtool/gsearchtool.c:2962
+#: ../gsearchtool/gsearchtool.c:2961
 msgid "Browse"
 msgstr "Navegar"
 
-#: ../gsearchtool/gsearchtool.c:2967
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Look in folder"
 msgstr "Procurar na pasta"
 
-#: ../gsearchtool/gsearchtool.c:2967
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Select the folder or device from which you want to begin the search."
 msgstr ""
 "Selecione a pasta ou dispositivo a partir do qual você deseja iniciar a "
 "pesquisa."
 
-#: ../gsearchtool/gsearchtool.c:2978
+#: ../gsearchtool/gsearchtool.c:2977
 msgid "Select more _options"
 msgstr "Selecionar mais _opções"
 
-#: ../gsearchtool/gsearchtool.c:2987
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Select more options"
 msgstr "Selecionar mais opções"
 
-#: ../gsearchtool/gsearchtool.c:2987
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Click to expand or collapse the list of available options."
 msgstr "Clique para expandir ou colapsar a lista de opções disponíveis."
 
-#: ../gsearchtool/gsearchtool.c:3011
+#: ../gsearchtool/gsearchtool.c:3010
 msgid "Click to display the help manual."
 msgstr "Clique para mostrar o manual de ajuda."
 
-#: ../gsearchtool/gsearchtool.c:3019
+#: ../gsearchtool/gsearchtool.c:3018
 msgid "Click to close \"Search for Files\"."
 msgstr "Clique para fechar \"Procurar por Arquivos\""
 
-#: ../gsearchtool/gsearchtool.c:3045
+#: ../gsearchtool/gsearchtool.c:3044
 msgid "Click to perform a search."
 msgstr "Clique para realizar uma pesquisa"
 
-#: ../gsearchtool/gsearchtool.c:3046
+#: ../gsearchtool/gsearchtool.c:3045
 msgid "Click to stop a search."
 msgstr "Clique para interromper uma pesquisa."
 
@@ -2889,6 +2871,29 @@ msgstr "Monitoramento de arquivos não é suportado neste sistema de arquivos.\n
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Erro do Gnome-VFS.\n"
+
+#~ msgid ""
+#~ "Unable to create the data directory '%s': there already is a file with "
+#~ "the same name.  You should move the file and re-run gnome-dictionary."
+#~ msgstr ""
+#~ "Impossível criar o diretório de dados '%s': já existe um arquivo com o "
+#~ "mesmo nome. Você deveria mover o arquivo e executar gnome-dictionary "
+#~ "novamente."
+
+#~ msgid "Unable to create the data directory '%s'"
+#~ msgstr "Impossível criar o diretório de dados '%s'"
+
+#~ msgid ""
+#~ "There is a file with the same name in the path.\n"
+#~ "You should move the file and re-run the\n"
+#~ "Dictionary applet"
+#~ msgstr ""
+#~ "Há um arquivo com o mesmo nome nessa pasta.\n"
+#~ "Você deveria mover o arquivo e executar\n"
+#~ "o mini-aplicativo Dicionário novamente"
+
+#~ msgid "%d definitions found"
+#~ msgstr "%d definições encontradas"
 
 #~ msgid ""
 #~ "Definitions for \"%s\":\n"
