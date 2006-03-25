@@ -487,10 +487,10 @@ compare_regex (const gchar * regex,
 		return TRUE;
 	}
 	
-	regcomp (&regexec_pattern, regex, REG_NOSUB);
-	
-	if (regexec (&regexec_pattern, string, 0, 0, 0) != REG_NOMATCH) {
-		return TRUE;
+	if (!regcomp (&regexec_pattern, regex, REG_NOSUB)) {
+		if (regexec (&regexec_pattern, string, 0, 0, 0) != REG_NOMATCH) {
+			return TRUE;
+		}
 	}
 	return FALSE;
 }
