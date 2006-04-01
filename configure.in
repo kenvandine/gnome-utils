@@ -142,12 +142,6 @@ fi
 AC_SUBST(HAL_CFLAGS)
 AC_SUBST(HAL_LIBS)
 
-dnl *****************************
-dnl popt is needed for most utils
-dnl *****************************
-
-AC_CHECK_LIB(popt, poptHelpOptions,, AC_MSG_ERROR([popt is required to build gnome-utils. You can download the latest version from ftp://people.redhat.com/sopwith/popt/]))
-
 dnl *********************************************
 dnl gnome-vfs/mime-data is need for gsearchtool
 dnl *********************************************
