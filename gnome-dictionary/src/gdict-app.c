@@ -81,6 +81,9 @@ gdict_app_finalize (GObject *object)
 
   if (app->source_name)
     g_free (app->source_name);
+
+  if (app->program)
+    g_object_unref (G_OBJECT (app->program));
   
   G_OBJECT_CLASS (gdict_app_parent_class)->finalize (object);
 }
