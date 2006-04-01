@@ -1,5 +1,11 @@
 2006-04-01  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-app.c: Use g_option_context_set_main_group() to
+	show the application's options using the --help command line
+	switch (closes #335730).
+
+2006-04-01  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-app.c (gdict_app_finalize): Unref the GnomeProgram
 	object to avoid leakage (closes bug #335745).
 
