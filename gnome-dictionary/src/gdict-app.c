@@ -530,8 +530,6 @@ gdict_init (int *argc, char ***argv)
 
   if (list_sources)
     singleton->list_sources = TRUE;
-
-  g_option_context_free (context);
 }
 
 void
