@@ -208,7 +208,7 @@ handle_locate_command_stdout_io (GIOChannel * ioc,
 	GSearchWindow * gsearch = data;
 	gboolean broken_pipe = FALSE;
 	
-	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
+	if (condition & G_IO_IN) { 
 	
 		GError * error = NULL;
 		GString * string;
@@ -251,13 +251,13 @@ handle_locate_command_stdout_io (GIOChannel * ioc,
 				}
 			}
 			
-		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
+		} while (g_io_channel_get_buffer_condition (ioc) & G_IO_IN);
 		
 		waitpid (locate_database_check_command_pid, NULL, 0);
 		g_string_free (string, TRUE);
 	}
 
-	if (condition != G_IO_IN || broken_pipe == TRUE) {
+	if (!(condition & G_IO_IN) || broken_pipe == TRUE) {
 		gsearch->is_locate_database_check_finished = TRUE;
 		g_io_channel_shutdown (ioc, TRUE, NULL);
 		return FALSE;
@@ -1529,7 +1529,7 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 	GSearchWindow * gsearch = data;
 	gboolean broken_pipe = FALSE;
 
-	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
+	if (condition & G_IO_IN) {
 	
 		GError * error = NULL;
 		GTimer * timer;
@@ -1658,13 +1658,13 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 				g_timer_reset (timer);
 			}
 			
-		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
+		} while (g_io_channel_get_buffer_condition (ioc) & G_IO_IN);
 		
 		g_string_free (string, TRUE);
 		g_timer_destroy (timer);
 	}
 
-	if (condition != G_IO_IN || broken_pipe == TRUE) { 
+	if (!(condition & G_IO_IN) || broken_pipe == TRUE) { 
 
 		g_io_channel_shutdown (ioc, TRUE, NULL);
 		
@@ -1722,7 +1722,7 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 	static gboolean truncate_error_msgs = FALSE;
 	gboolean broken_pipe = FALSE;
 	
-	if ((condition == G_IO_IN) || (condition == G_IO_IN + G_IO_HUP)) { 
+	if (condition & G_IO_IN) { 
 	
 		GString * string;
 		GError * error = NULL;
@@ -1783,13 +1783,13 @@ handle_search_command_stderr_io (GIOChannel * ioc,
 				}
 			}
 		
-		} while (g_io_channel_get_buffer_condition (ioc) == G_IO_IN);
+		} while (g_io_channel_get_buffer_condition (ioc) & G_IO_IN);
 		
 		g_string_free (string, TRUE);
 		g_free (utf8);
 	}
 	
-	if (condition != G_IO_IN || broken_pipe == TRUE) { 
+	if (!(condition & G_IO_IN) || broken_pipe == TRUE) { 
 	
 		if (error_msgs != NULL) {
 
