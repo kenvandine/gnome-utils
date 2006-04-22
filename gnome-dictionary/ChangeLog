@@ -1,5 +1,11 @@
 2006-04-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-window.c (gdict_window_set_word): Avoid a coredump
+	on Solaris when window->word is NULL (closes #339357, based on
+	a patch by Brian Cameron).
+
+2006-04-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* libgdict/gdict-client-context.c (get_status_code): Implement
 	the status whitelisting: check the possible new status against
 	the expected status codes before changing status; this should

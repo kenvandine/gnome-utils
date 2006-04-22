@@ -359,7 +359,11 @@ gdict_window_set_word (GdictWindow *window,
   if (word && word[0] != '\0')
     window->word = g_strdup (word);
 
-  title = g_strdup_printf (_("%s - Dictionary"), window->word);
+  if (window->word)
+    title = g_strdup_printf (_("%s - Dictionary"), window->word);
+  else
+    title = g_strdup (_("Dictionary"));
+  
   gtk_window_set_title (GTK_WINDOW (window), title);
   g_free (title);
   
