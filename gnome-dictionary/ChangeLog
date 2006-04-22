@@ -1,3 +1,11 @@
+2006-04-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-client-context.c (get_status_code): Implement
+	the status whitelisting: check the possible new status against
+	the expected status codes before changing status; this should
+	prevent moby-thes to screw up with the state machine we use
+	to parse the status line (closes bug #330782 and dupes).
+
 2006-04-17  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* data/Makefile.am: remove the french.desktop.in file from the

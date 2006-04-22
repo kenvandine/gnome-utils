@@ -1629,10 +1629,11 @@ gdict_client_context_parse_line (GdictClientContext *context,
 
 /* retrieve the status code from the server response line */
 static gint
-get_status_code (const gchar *line)
+get_status_code (const gchar *line,
+		 gint         old_status)
 {
   gchar *status;
-  gint retval;
+  gint possible_status, retval;
   
   if (strlen (line) < 3)
     return 0;
@@ -1643,12 +1644,37 @@ get_status_code (const gchar *line)
     return 0;
   
   status = g_strndup (line, 3);
-  retval = atoi (status);
+  possible_status = atoi (status);
   g_free (status);
+
+  /* status whitelisting: sometimes, a database *cough* moby-thes *cough*
+   * might return a number as first word; we do a small check here for
+   * invalid status codes based on the previously set status; we don't check
+   * the whole line, as we need only to be sure that the status code is
+   * consistent with what we expect.
+   */
+  switch (old_status)
+    {
+    case GDICT_STATUS_WORD_DB_NAME:
+    case GDICT_STATUS_N_MATCHES_FOUND:
+      if (possible_status == GDICT_STATUS_OK)
+	retval = possible_status;
+      else
+        retval = 0;
+      break;
+    case GDICT_STATUS_N_DEFINITIONS_RETRIEVED:
+      if (possible_status == GDICT_STATUS_WORD_DB_NAME)
+	retval = possible_status;
+      else
+	retval = 0;
+      break;
+    default:
+      retval = possible_status;
+      break;
+    }
   
   return retval;
 }  
-  
 
 static gboolean
 gdict_client_context_io_watch_cb (GIOChannel         *channel,
@@ -1735,7 +1761,7 @@ gdict_client_context_io_watch_cb (GIOChannel         *channel,
       /* truncate the line terminator before parsing */
       line[term] = '\0';
       
-      status_code = get_status_code (line);
+      status_code = get_status_code (line, priv->status_code);
       if ((status_code == 0) || (GDICT_IS_VALID_STATUS_CODE (status_code)))
         {
           priv->status_code = status_code;
