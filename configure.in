@@ -57,6 +57,7 @@ LIBPANEL_APPLET_REQUIRED=2.13.4
 LIBGNOMEPRINT_REQUIRED=2.8.0
 LIBGNOMEPRINTUI_REQUIRED=2.8.0
 LIBGTOP_REQUIRED=2.12.0
+GNOMECANVAS_REQUIRED=2.10.2
 
 dnl *****************************************
 dnl libgnome, libgnomeui needed for all utils
@@ -172,7 +173,7 @@ fi
 AM_GCONF_SOURCE_2
 
 dnl *******************************
-dnl Applet checks
+dnl Gdict applet checks
 dnl *******************************
 
 PKG_CHECK_MODULES(APPLET, libpanelapplet-2.0 >= $LIBPANEL_APPLET_REQUIRED)
@@ -180,12 +181,16 @@ AC_SUBST(APPLET_LIBS)
 AC_SUBST(APPLET_CFLAGS)
 
 dnl *******************************
-dnl GTop
+dnl Baobab checks
 dnl *******************************
 
-PKG_CHECK_MODULES(GTOP, libgtop-2.0 >= $LIBGTOP_REQUIRED)
-AC_SUBST(GTOP_CFLAGS)
-AC_SUBST(GTOP_LIBS)
+PKG_CHECK_MODULES(LIBGTOP, libgtop-2.0 >= $LIBGTOP_REQUIRED)
+AC_SUBST(LIBGTOP_CFLAGS)
+AC_SUBST(LIBGTOP_LIBS)
+
+PKG_CHECK_MODULES(GNOMECANVAS, libgnomecanvas-2.0 >= $GNOMECANVAS_REQUIRED)
+AC_SUBST(GNOMECANVAS_CFLAGS)
+AC_SUBST(GNOMECANVAS_LIBS)
 
 dnl ***************************************************************
 dnl Other miscellaneous checks 
@@ -436,6 +441,11 @@ AC_OUTPUT([
 Makefile
 gnome-utils.spec
 po/Makefile.in
+baobab/Makefile
+baobab/data/Makefile
+baobab/pixmaps/Makefile
+baobab/src/Makefile
+baobab/help/Makefile
 logview/Makefile
 logview/gnome-system-log-security
 logview/help/Makefile

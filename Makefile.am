@@ -27,7 +27,8 @@ always_built_SUBDIRS =   \
 	logview 	 \
 	gsearchtool	 \
 	gnome-dictionary \
-	gnome-screenshot
+	gnome-screenshot \
+	baobab
 
 SUBDIRS = \
 	$(always_built_SUBDIRS)	\
