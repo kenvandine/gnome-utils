@@ -5,27 +5,629 @@
 # Lapo Calamandrei <lapo@it.gnome.org>, 2003.
 # Luca Ferretti <elle.uca@infinito.it>, 2004.
 # Andrea Zagli <azagli@inwind.it>, 2005-2006.
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-05 18:35+0100\n"
-"PO-Revision-Date: 2006-03-05 10:01+0100\n"
-"Last-Translator: Andrea Zagli <azagli@inwind.it>\n"
+"POT-Creation-Date: 2006-04-25 16:07+0200\n"
+"PO-Revision-Date: 2006-04-25 16:07+0100\n"
+"Last-Translator: Fabio Marzocca <thesaltydog@gmail.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../baobab/data/baobab.desktop.in.in.h:1
+msgid "A graphical tool to analyse disk usage"
+msgstr "Un tool grafico per l'analisi dello spazio su disco"
+
+#: ../baobab/data/baobab.desktop.in.in.h:2
+msgid "Baobab - Disk Usage Analyser"
+msgstr "Baobab - Analisi Occupazione Disco"
+
+#: ../baobab/data/baobab.glade.h:1
+msgid "<b>File Size</b>"
+msgstr "<b>Dimensione</b>"
+
+#: ../baobab/data/baobab.glade.h:2
+msgid "<b>Modification Date</b>"
+msgstr "<b>Data di modifica:</b>"
+
+#: ../baobab/data/baobab.glade.h:3
+msgid "<b>Search Options</b>"
+msgstr "<b>Opzioni di ricerca:</b>"
+
+#: ../baobab/data/baobab.glade.h:4
+msgid "A_dvanced Options"
+msgstr "Opzioni _avanzate"
+
+#: ../baobab/data/baobab.glade.h:5
+msgid "A_ny"
+msgstr "_Qualunque"
+
+#: ../baobab/data/baobab.glade.h:6
+msgid "Allocated _space"
+msgstr "Spazio _allocato"
+
+#: ../baobab/data/baobab.glade.h:7
+msgid "An_y"
+msgstr "_Qualunque"
+
+#: ../baobab/data/baobab.glade.h:8
+msgid "Directory Tree"
+msgstr "Albero delle directory"
+
+#: ../baobab/data/baobab.glade.h:9
+msgid "Disk Usage Analyser"
+msgstr "Analisi Occupazione Disco"
+
+#: ../baobab/data/baobab.glade.h:10
+msgid "Disk Usage Analyser Preferences"
+msgstr "Preferenze di Baobab"
+
+#: ../baobab/data/baobab.glade.h:11
+msgid "Exact _match"
+msgstr "Corrispondenza esatta"
+
+#: ../baobab/data/baobab.glade.h:12
+msgid "File Search"
+msgstr "Ricerca file"
+
+#: ../baobab/data/baobab.glade.h:13
+msgid "Filesystem"
+msgstr "Filesystem"
+
+#: ../baobab/data/baobab.glade.h:14 ../gsearchtool/gsearchtool.c:2498
+msgid "Folder"
+msgstr "Cartella"
+
+#: ../baobab/data/baobab.glade.h:15
+msgid "Last m_onth"
+msgstr "_Mese scorso:"
+
+#: ../baobab/data/baobab.glade.h:16
+msgid "Last wee_k"
+msgstr "_Settimana scorsa"
+
+#: ../baobab/data/baobab.glade.h:17
+msgid "Medi_um (< 1 MB)"
+msgstr "Me_dio (< 1 MB)"
+
+#: ../baobab/data/baobab.glade.h:18
+msgid "Scan Selected F_older..."
+msgstr "Scansione di una _cartella specifica"
+
+#: ../baobab/data/baobab.glade.h:19
+msgid "Scan _Filesystem"
+msgstr "Scansione di tutto il filesystem"
+
+#: ../baobab/data/baobab.glade.h:20
+msgid "Scan _Remote Folder..."
+msgstr "Scansione cartella _remota..."
+
+#: ../baobab/data/baobab.glade.h:21
+msgid "Scan a remote folder"
+msgstr "Scansione di una cartella remota"
+
+#: ../baobab/data/baobab.glade.h:22
+msgid "Scan a selected folder"
+msgstr "Scansione di una cartella specifica"
+
+#: ../baobab/data/baobab.glade.h:23
+msgid "Scan the whole filesystem"
+msgstr "Scansione di tutto il filesystem"
+
+#: ../baobab/data/baobab.glade.h:24
+msgid "Se_arch in selected folder:"
+msgstr "Cerca nella cartella selezionata:"
+
+#: ../baobab/data/baobab.glade.h:25
+msgid "Search"
+msgstr "Cerca"
+
+#: ../baobab/data/baobab.glade.h:26
+msgid "Search for File"
+msgstr "Cerca file"
+
+#: ../baobab/data/baobab.glade.h:27
+msgid "Search for a file"
+msgstr "Cerca un file"
+
+#: ../baobab/data/baobab.glade.h:28
+msgid "Search the _whole filesystem"
+msgstr "Ricerca in tutto il filesystem"
+
+#: ../baobab/data/baobab.glade.h:29
+msgid "Select _devices to be included during system scan:"
+msgstr "Seleziona i _dispositivi da includere durante la scansione di sistema"
+
+#: ../baobab/data/baobab.glade.h:30
+msgid "Show allocated disk usage instead of apparent size"
+msgstr "Visualizza lo spazio allocato su disco anzichè la dimensione apparente"
+
+#: ../baobab/data/baobab.glade.h:31
+msgid "Sma_ll (< 100 kB)"
+msgstr "_Piccolo (<100 kB)"
+
+#: ../baobab/data/baobab.glade.h:32
+msgid "Sort"
+msgstr "Ordina"
+
+#: ../baobab/data/baobab.glade.h:33
+msgid "Sort by name"
+msgstr "Ordina per nome "
+
+#: ../baobab/data/baobab.glade.h:34
+msgid "Sort by size"
+msgstr "Ordina per dimensione"
+
+#: ../baobab/data/baobab.glade.h:35
+msgid "Stop"
+msgstr "Stop"
+
+#: ../baobab/data/baobab.glade.h:36
+msgid "Stop scanning"
+msgstr "Interrompi la scansione"
+
+#: ../baobab/data/baobab.glade.h:37
+msgid "Take a snapshot"
+msgstr "Cattura schermata"
+
+#: ../baobab/data/baobab.glade.h:39
+#, no-c-format
+msgid "Zoom 100%"
+msgstr "Zoom 100%"
+
+#: ../baobab/data/baobab.glade.h:40
+msgid "Zoom in"
+msgstr "Zoom avanti"
+
+#: ../baobab/data/baobab.glade.h:41
+msgid "Zoom out"
+msgstr "Zoom indietro"
+
+#: ../baobab/data/baobab.glade.h:42
+msgid "_Analyser"
+msgstr "_Analizza"
+
+#: ../baobab/data/baobab.glade.h:43
+msgid "_Browse..."
+msgstr "S_foglia"
+
+#: ../baobab/data/baobab.glade.h:44
+msgid "_Date"
+msgstr "_Data"
+
+#: ../baobab/data/baobab.glade.h:45
+msgid "_Depth level:"
+msgstr "_Livello di profondità:"
+
+#: ../baobab/data/baobab.glade.h:46 ../gnome-dictionary/src/gdict-window.c:801
+#: ../logview/logview.c:86
+msgid "_Edit"
+msgstr "_Modifica"
+
+#: ../baobab/data/baobab.glade.h:47
+msgid "_Enable auto-detect monitoring of home directory"
+msgstr "Abilita il monitoraggio _automatico della home directory"
+
+#: ../baobab/data/baobab.glade.h:48
+msgid "_Extended search"
+msgstr "Ricerca _estesa"
+
+#: ../baobab/data/baobab.glade.h:49
+msgid "_Find..."
+msgstr "_Trova..."
+
+#: ../baobab/data/baobab.glade.h:50
+msgid "_Graphical Usage Map"
+msgstr "Mappa _grafica"
+
+#: ../baobab/data/baobab.glade.h:51
+#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
+#: ../gnome-dictionary/src/gdict-window.c:803 ../logview/logview.c:88
+msgid "_Help"
+msgstr "A_iuto"
+
+#: ../baobab/data/baobab.glade.h:52
+msgid "_Name"
+msgstr "_Nome"
+
+#: ../baobab/data/baobab.glade.h:53
+msgid "_Search for file:"
+msgstr "_Cerca  file"
+
+#: ../baobab/data/baobab.glade.h:54
+msgid "_Size"
+msgstr "_Dimensione"
+
+#: ../baobab/data/baobab.glade.h:55
+msgid "_Sort By"
+msgstr "_Ordina per"
+
+#: ../baobab/data/baobab.glade.h:56 ../logview/logview.c:122
+msgid "_Statusbar"
+msgstr "Barra di s_tato"
+
+#: ../baobab/data/baobab.glade.h:57
+msgid "_Toolbar"
+msgstr "Barra degli s_trumenti"
+
+#: ../baobab/data/baobab.glade.h:58
+msgid "_Total folders:"
+msgstr "Cartelle _totali:"
+
+#: ../baobab/data/baobab.glade.h:59
+msgid "_Type"
+msgstr "_Tipo"
+
+#: ../baobab/data/baobab.glade.h:60 ../logview/logview.c:87
+msgid "_View"
+msgstr "_Visualizza"
+
+#: ../baobab/data/baobab.schemas.in.h:1
+msgid "A list of partitions to be excluded from scanning."
+msgstr "Una lista di partizioni da escludere dalla scansione"
+
+#: ../baobab/data/baobab.schemas.in.h:2
+msgid "Enable monitoring of home directory"
+msgstr "Abilita il monitoraggio della home directory"
+
+#: ../baobab/data/baobab.schemas.in.h:3
+msgid "Exluded partitions"
+msgstr "Partizioni escluse"
+
+#: ../baobab/data/baobab.schemas.in.h:4
+msgid "Status Bar is Visible"
+msgstr "La barra di stato è visibile"
+
+#: ../baobab/data/baobab.schemas.in.h:5
+msgid "Toolbar is Visible"
+msgstr "La barra degli strumenti è visibile"
+
+#: ../baobab/data/baobab.schemas.in.h:6
+msgid "Whether any change to the home directory should be monitored."
+msgstr "Se ogni modifica della home directory deve essere monitorizzata"
+
+#: ../baobab/data/baobab.schemas.in.h:7
+msgid "Whether the status bar at the bottom of main window should be visible."
+msgstr "Se la barra di stato in fondo alla finestra deve essere visibile"
+
+#: ../baobab/data/baobab.schemas.in.h:8
+msgid "Whether the toolbar should be visible in main window."
+msgstr "Se la barra degli strumenti della finestra deve essere visibile"
+
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:219
+#: ../baobab/src/callbacks.c:440
+msgid "Calculating percentage bars..."
+msgstr "Sto calcolando le barre di percentuale..."
+
+#: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
+#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:227
+#: ../baobab/src/callbacks.c:444
+msgid "Ready"
+msgstr "Pronto"
+
+#: ../baobab/src/baobab.c:253
+msgid "Unknown"
+msgstr "Sconosciuto"
+
+#: ../baobab/src/baobab.c:277
+msgid "Full path:"
+msgstr "Percorso:"
+
+#: ../baobab/src/baobab.c:278
+msgid "Last Modification:"
+msgstr "Ultima modifica:"
+
+#: ../baobab/src/baobab.c:279
+msgid "Owner:"
+msgstr "Proprietario:"
+
+#: ../baobab/src/baobab.c:280
+msgid "Allocated bytes:"
+msgstr "Byte allocati:"
+
+#: ../baobab/src/baobab.c:451
+msgid "scanning..."
+msgstr "scansione in corso..."
+
+#: ../baobab/src/baobab.c:481
+msgid "<i>Total filesystem usage:</i>"
+msgstr "<i>Spazio in uso nel filesystem:</i>"
+
+#: ../baobab/src/baobab.c:534
+msgid "contains hardlinks for:"
+msgstr "contiene hardlink per:"
+
+#: ../baobab/src/baobab.c:543
+#, c-format
+msgid "% 5d object"
+msgid_plural "% 5d objects"
+msgstr[0] "% 5d oggetto"
+msgstr[1] "% 5d oggetti"
+
+#: ../baobab/src/baobab.c:605
+msgid "Invalid UTF-8 characters"
+msgstr "Caratteri UTF-8 non validi"
+
+#: ../baobab/src/baobab.c:782
+msgid ""
+"Cannot initialize GNOME VFS monitoring\n"
+"Some real-time auto-detect function will not be available!"
+msgstr ""
+"Non posso inizializzare GNOME VFS\n"
+"Alcune funzioni di auto-rilevamento in tempo reale non saranno disponibili!"
+
+#: ../baobab/src/baobab-graphwin.c:156
+msgid "Cannot create pixbuf image!"
+msgstr "Non riesco a creare l'immagine pixbuf!"
+
+#: ../baobab/src/baobab-graphwin.c:162
+msgid "Save the screenshot"
+msgstr "Salva la schermata"
+
+#: ../baobab/src/baobab-graphwin.c:186
+msgid "Image type:"
+msgstr "Tipo di immagine:"
+
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
+msgid "Unlimited"
+msgstr "Illimitato"
+
+#: ../baobab/src/baobab-graphwin.c:276
+msgid "Cannot allocate memory for graphical window!"
+msgstr "Non posso allocare memoria per la finestra grafica!"
+
+#. Main treemap window
+#: ../baobab/src/baobab-graphwin.c:304
+msgid "Graphical map for folder:"
+msgstr "Mappa grafica per la cartella:"
+
+#: ../baobab/src/baobab-prefs.c:146
+msgid "Scan"
+msgstr "Scansione"
+
+#: ../baobab/src/baobab-prefs.c:153
+msgid "Device"
+msgstr "Dispositivo"
+
+#: ../baobab/src/baobab-prefs.c:161
+msgid "Mount point"
+msgstr "Punto di mount"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:125
+#, c-format
+msgid "\"%s\" is not a valid location."
+msgstr "La stringa \"%s\" non è un nome di indirizzo valido."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:134
+msgid "Please check the spelling and try again."
+msgstr "Verificare se corretto e riprovare."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:160
+msgid "You must enter a name for the server."
+msgstr "E' necessario fornire un nome per il server."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:163
+msgid "Please enter a name and try again."
+msgstr "Inserire un nome e riprovare."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:301
+#, c-format
+msgid "%s on %s"
+msgstr "%s su %s"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:400
+msgid "_Location (URI):"
+msgstr "_Indirizzo(URI):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:447
+msgid "_Server:"
+msgstr "_Server:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:466
+msgid "Optional information:"
+msgstr "Informazioni opzionali:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:478
+msgid "_Share:"
+msgstr "_Condivisione"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:499
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
+msgid "_Port:"
+msgstr "_Porta:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:519
+msgid "_Folder:"
+msgstr "_Cartella"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:539
+msgid "_User Name:"
+msgstr "Nome _utente:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:560
+msgid "_Domain Name:"
+msgstr "Nome  del _dominio:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:620
+msgid "Connect to a Remote Folder"
+msgstr "Connetti ad una cartella remota"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:637
+msgid "Service _type:"
+msgstr "_Tipo di servizio:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:646
+msgid "SSH"
+msgstr "SSH"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:648
+msgid "Public FTP"
+msgstr "FTP pubblico"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:650
+msgid "FTP (with login)"
+msgstr "FTP (con login)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:652
+msgid "Windows share"
+msgstr "Condivisione Windows"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:654
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:656
+msgid "Secure WebDAV (HTTPS)"
+msgstr "WebDAV  sicuro (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:658
+msgid "Custom Location"
+msgstr "Indirizzo personalizzato"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:714
+msgid "C_onnect"
+msgstr "C_onnetti"
+
+#: ../baobab/src/baobab-treeview.c:83
+msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
+msgstr "<i>Usa il menu Modifica->Cerca o il tasto cerca sulla barra.<i>"
+
+#: ../baobab/src/baobab-utils.c:100
+msgid "Select a Folder"
+msgstr "Seleziona una cartella"
+
+#. add extra widget
+#: ../baobab/src/baobab-utils.c:112
+msgid "Show hidden folders"
+msgstr "Mostra cartelle nascoste"
+
+#: ../baobab/src/baobab-utils.c:192
+msgid "Scanning..."
+msgstr "Scansione in corso..."
+
+#: ../baobab/src/baobab-utils.c:348 ../baobab/src/baobab-utils.c:352
+#, c-format
+msgid "%s is not a valid folder"
+msgstr "%s non è una cartella valida!"
+
+#: ../baobab/src/baobab-utils.c:379
+msgid "Folder graphical map"
+msgstr "Mappa grafica della cartella"
+
+#: ../baobab/src/baobab-utils.c:383
+msgid "List all files in folder"
+msgstr "Elenca tutti i file nella cartella"
+
+#: ../baobab/src/baobab-utils.c:483
+msgid "Please provide a file name to search for!"
+msgstr "Inserire un nome file per la ricerca!"
+
+#: ../baobab/src/baobab-utils.c:663
+msgid "Total filesystem capacity:"
+msgstr "Capacità totale filesystem"
+
+#: ../baobab/src/baobab-utils.c:663
+msgid "used:"
+msgstr "usati"
+
+#: ../baobab/src/baobab-utils.c:664
+msgid "available:"
+msgstr "disponibili:"
+
+#: ../baobab/src/baobab-utils.c:702
+msgid "Found:"
+msgstr "Trovati:"
+
+#: ../baobab/src/baobab-utils.c:703
+msgid "file"
+msgstr "file"
+
+#: ../baobab/src/baobab-utils.c:703
+msgid "files"
+msgstr "file"
+
+#: ../baobab/src/baobab-utils.c:704
+msgid "for total:"
+msgstr "per totali:"
+
+#: ../baobab/src/baobab-utils.c:734 ../gsearchtool/gsearchtool-callbacks.c:485
+msgid "There is no installed viewer capable of displaying the document."
+msgstr "Non è installato alcun visualizzatore per il documento."
+
+#: ../baobab/src/baobab-utils.c:796
+msgid "Cannot find the Trash on this system!"
+msgstr "Non riesco a trovare il Cestino su questo sistema!"
+
+#: ../baobab/src/baobab-utils.c:803 ../baobab/src/callbacks.c:276
+#: ../gsearchtool/gsearchtool-callbacks.c:470
+#: ../gsearchtool/gsearchtool-callbacks.c:811
+msgid "The document does not exist."
+msgstr "Il documento non esiste."
+
+#: ../baobab/src/baobab-utils.c:815
+#, c-format
+msgid "Moving <b>%s</b> to trash failed: %s."
+msgstr "Spostamento di <b>%s</b> nel Cestino fallito: %s."
+
+#: ../baobab/src/baobab-utils.c:829
+#, c-format
+msgid "Do you want to delete <b>%s</b> permanently?"
+msgstr "Vuoi eliminare <b>%s</b> permanentemente?"
+
+#: ../baobab/src/baobab-utils.c:841
+#, c-format
+msgid "Deleting <b>%s</b> failed: %s."
+msgstr "Eliminazione di <b>%s</b> fallita: %s."
+
+#: ../baobab/src/baobab-utils.c:870
+msgid ""
+"The content of your home directory has changed.\n"
+"Do you want to rescan the last tree to update the folder branch details?"
+msgstr ""
+"Il contenuto della tua home directory è stato modificato.\n"
+"Vuoi effettuare una nuova scansione dell'ultimo albero per aggiornare i "
+"dettagli?"
+
+#: ../baobab/src/baobab-utils.c:891
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "Non trovo il file immagine: %s"
+
+#: ../baobab/src/callbacks.c:75
+msgid "Baobab"
+msgstr "Baobab"
+
+#: ../baobab/src/callbacks.c:76
+msgid "A graphical tool to analyse disk usage."
+msgstr "Un tool grafico per l'analisi dello spazio su disco"
+
+#. Translator credits
+#: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:59
+#: ../logview/about.c:47
+msgid "translator-credits"
+msgstr ""
+"Traduzione mantenuta da:\n"
+"  Andrea Zagli <azagli@inwind.it>\n"
+"Con il contributo di:\n"
+"  Alessio Frusciante <algol@firenze.linux.it>\n"
+"  Lapo Calamandrei <lapo@it.gnome.org>\n"
+"  Luca Ferretti <elle.uca@infinito.it>\n"
+"  ... e tutti i revisori del Translation Project."
+
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Formattazione floppy"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
-msgid "Format Floppy Disks"
+#, fuzzy
+msgid "Format floppy disks"
 msgstr "Formatta i dischi floppy"
 
 #: ../gfloppy/gfloppy.schemas.in.h:1
@@ -214,7 +816,7 @@ msgid "Error while filling the bad blocks list file."
 msgstr ""
 "Errore durante il riempimento del file della lista dei blocchi danneggiati."
 
-# 
+#
 #: ../gfloppy/src/gfloppy.c:302
 #, c-format
 msgid "Error while spawning the (%s) command: %s."
@@ -429,13 +1031,18 @@ msgstr "Nome del volume non corretto"
 msgid "The volume name can't contain any blank space."
 msgstr "Il nome del volume non può contenere spazi."
 
-#: ../gfloppy/src/main.c:576
+#: ../gfloppy/src/main.c:575
 msgid "The device to format"
 msgstr "Il device da formattare"
 
-#: ../gfloppy/src/main.c:577
+#: ../gfloppy/src/main.c:575
 msgid "DEVICE"
 msgstr "DEVICE"
+
+#: ../gfloppy/src/main.c:583
+#, fuzzy
+msgid "- Floppy Formatter"
+msgstr "Formattazione floppy"
 
 #: ../gfloppy/src/progress.c:126
 #, c-format
@@ -481,21 +1088,16 @@ msgid "Cl_ear"
 msgstr "_Pulisci"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:839 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:843 ../logview/logview.c:116
 msgid "_About"
 msgstr "I_nformazioni"
-
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:799 ../logview/logview.c:88
-msgid "_Help"
-msgstr "A_iuto"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:4
 msgid "_Look Up Selected Text"
 msgstr "_Cerca testo selezionato"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:823
+#: ../gnome-dictionary/src/gdict-window.c:827
 msgid "_Preferences"
 msgstr "Preferen_ze"
 
@@ -509,8 +1111,9 @@ msgstr "_Salva"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:468
-#: ../gnome-dictionary/src/gdict-window.c:1207
+#: ../gnome-dictionary/src/gdict-app.c:471
+#: ../gnome-dictionary/src/gdict-window.c:365
+#: ../gnome-dictionary/src/gdict-window.c:1211
 msgid "Dictionary"
 msgstr "Dizionario"
 
@@ -670,7 +1273,7 @@ msgstr "Nome h_ost:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:231
-#: ../gnome-dictionary/src/gdict-window.c:595
+#: ../gnome-dictionary/src/gdict-window.c:599
 msgid "Print"
 msgstr "Stampa"
 
@@ -690,10 +1293,6 @@ msgstr "Impostazioni _avanzate"
 msgid "_Description:"
 msgstr "_Descrizione:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
-msgid "_Port:"
-msgstr "_Porta:"
-
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
 msgid "_Print font:"
 msgstr "Carattere per _stampa:"
@@ -709,10 +1308,6 @@ msgstr "_Strategia:"
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
 msgid "_Transport:"
 msgstr "_Trasporto:"
-
-#: ../gnome-dictionary/data/french.desktop.in.h:1
-msgid "French Dictionaries from Wikipedia"
-msgstr "Dizionari francesi da Wikipedia"
 
 #: ../gnome-dictionary/data/spanish.desktop.in.h:1
 msgid "Spanish Dictionaries"
@@ -824,12 +1419,12 @@ msgstr "Nessun database trovato nel server di dizionario a «%s»"
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Nessuna strategia trovata nel server di dizionario a «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1679
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1705
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Connessione fallita al server di dizionario a «%s:%d»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1718
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1744
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -838,21 +1433,21 @@ msgstr ""
 "Errore durante la lettura della risposta dal server:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1791
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1817
 msgid "No hostname defined for the dictionary server"
 msgstr "Nessun nome host definito per il server di dizionario"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1827
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1842
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1853
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
 msgid "Unable to create socket"
 msgstr "Impossibile creare il socket"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1894
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Impossibile impostare il canale come non-bloccante: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1883
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1909
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Impossibile connettersi al server di dizionario a «%s:%d»"
@@ -1093,18 +1688,6 @@ msgstr "Sorgenti"
 msgid "Dictionary sources found"
 msgstr "Sorgenti dizionario trovate"
 
-#. Translator credits
-#: ../gnome-dictionary/src/gdict-about.c:59 ../logview/about.c:47
-msgid "translator-credits"
-msgstr ""
-"Traduzione mantenuta da:\n"
-"  Andrea Zagli <azagli@inwind.it>\n"
-"Con il contributo di:\n"
-"  Alessio Frusciante <algol@firenze.linux.it>\n"
-"  Lapo Calamandrei <lapo@it.gnome.org>\n"
-"  Luca Ferretti <elle.uca@infinito.it>\n"
-"  ... e tutti i revisori del Translation Project."
-
 #: ../gnome-dictionary/src/gdict-about.c:61
 #: ../gnome-dictionary/src/gdict-applet.c:610
 msgid "Look up words in dictionaries"
@@ -1118,7 +1701,7 @@ msgstr "Impossibile aprire l'icona dell'applicazione: %s"
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:213
+#: ../gnome-dictionary/src/gdict-app.c:216
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1131,20 +1714,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:227
+#: ../gnome-dictionary/src/gdict-app.c:230
 #, c-format
 msgid "Error: %s\n"
 msgstr "Errore: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:253
+#: ../gnome-dictionary/src/gdict-app.c:256
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Vedere gnome-dictionary --help per l'uso\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:266
+#: ../gnome-dictionary/src/gdict-app.c:269
 msgid "Unable to find a suitable dictionary source"
 msgstr "Impossibile trovare una sorgente dizionario adeguata"
 
-#: ../gnome-dictionary/src/gdict-app.c:300
+#: ../gnome-dictionary/src/gdict-app.c:303
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1153,73 +1736,73 @@ msgstr ""
 "Errore durante la ricerca della definizione di «%s»:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:345
+#: ../gnome-dictionary/src/gdict-app.c:348
 #: ../gnome-dictionary/src/gdict-applet.c:1421
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to rename file '%s' to '%s': %s"
-msgstr "Impossibile creare la directory dati «%s»: %s"
+msgstr "Impossibile rinominare il file «%s» in «%s»: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
-#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:395
 #: ../gnome-dictionary/src/gdict-applet.c:1445
 #: ../gnome-dictionary/src/gdict-applet.c:1468
 #, c-format
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Impossibile creare la directory dati «%s»: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:427
+#: ../gnome-dictionary/src/gdict-app.c:430
 msgid "Words to look up"
 msgstr "Parole da cercare"
 
-#: ../gnome-dictionary/src/gdict-app.c:427
+#: ../gnome-dictionary/src/gdict-app.c:430
 msgid "word"
 msgstr "parola"
 
-#: ../gnome-dictionary/src/gdict-app.c:429
+#: ../gnome-dictionary/src/gdict-app.c:432
 msgid "Dictionary source to use"
 msgstr "Sorgente dizionario da utilizzare"
 
-#: ../gnome-dictionary/src/gdict-app.c:429
+#: ../gnome-dictionary/src/gdict-app.c:432
 msgid "source"
 msgstr "sorgente"
 
-#: ../gnome-dictionary/src/gdict-app.c:431
+#: ../gnome-dictionary/src/gdict-app.c:434
 msgid "Show available dictionary sources"
 msgstr "Mostra le sorgenti dizionario disponibili"
 
-#: ../gnome-dictionary/src/gdict-app.c:433
+#: ../gnome-dictionary/src/gdict-app.c:436
 msgid "Print result to the console"
 msgstr "Stampa il risultato sulla console"
 
-#: ../gnome-dictionary/src/gdict-app.c:435
+#: ../gnome-dictionary/src/gdict-app.c:438
 msgid "Database to use"
 msgstr "Database da utilizzare"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:451
+#: ../gnome-dictionary/src/gdict-app.c:454
 msgid " - Look up words in dictionaries"
 msgstr " - Cerca parole sui dizionari"
 
-#: ../gnome-dictionary/src/gdict-app.c:455
+#: ../gnome-dictionary/src/gdict-app.c:458
 msgid "Dictionary and spelling tool"
 msgstr "Strumento dizionario e ortografia"
 
-#: ../gnome-dictionary/src/gdict-app.c:456
+#: ../gnome-dictionary/src/gdict-app.c:459
 msgid "Show Dictionary options"
 msgstr "Mostra opzioni dizionario"
 
 #: ../gnome-dictionary/src/gdict-applet.c:245
-#: ../gnome-dictionary/src/gdict-window.c:540
+#: ../gnome-dictionary/src/gdict-window.c:544
 msgid "Save a Copy"
 msgstr "Salva una copia"
 
 #: ../gnome-dictionary/src/gdict-applet.c:255
-#: ../gnome-dictionary/src/gdict-window.c:550
+#: ../gnome-dictionary/src/gdict-window.c:554
 msgid "Untitled document"
 msgstr "Documento senza titolo"
 
 #: ../gnome-dictionary/src/gdict-applet.c:276
-#: ../gnome-dictionary/src/gdict-window.c:571
+#: ../gnome-dictionary/src/gdict-window.c:575
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Errore durante la scrittura a «%s»"
@@ -1287,7 +1870,7 @@ msgstr "Preferenze"
 #: ../gnome-dictionary/src/gdict-applet.c:779
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:761
+#: ../gnome-dictionary/src/gdict-window.c:765
 msgid "There was an error while displaying help"
 msgstr "Si è verificato un errore nel mostrare la guida."
 
@@ -1318,17 +1901,17 @@ msgid "Unable to load the applet icon"
 msgstr "Impossibile caricare l'icona dell'applet"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1272
-#: ../gnome-dictionary/src/gdict-window.c:1316
+#: ../gnome-dictionary/src/gdict-window.c:1320
 msgid "Unable to connect to GConf"
 msgstr "Impossibile connettersi a GConf"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1287
-#: ../gnome-dictionary/src/gdict-window.c:1332
+#: ../gnome-dictionary/src/gdict-window.c:1336
 msgid "Unable to get notification for preferences"
 msgstr "Impossibile ottenere la notifica per le preferenze"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1302
-#: ../gnome-dictionary/src/gdict-window.c:1348
+#: ../gnome-dictionary/src/gdict-window.c:1352
 msgid "Unable to get notification for the document font"
 msgstr "Impossibile ottenere la notifica per il carattere del documento"
 
@@ -1391,113 +1974,109 @@ msgid "No definitions found"
 msgstr "Nessuna definizione trovata"
 
 #: ../gnome-dictionary/src/gdict-window.c:201
-#, fuzzy, c-format
+#, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Una definizione trovata"
-msgstr[1] "Una definizione trovata"
+msgstr[1] "%d definizioni trovate"
 
-#: ../gnome-dictionary/src/gdict-window.c:362
+#: ../gnome-dictionary/src/gdict-window.c:363
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Dizionario"
 
-#: ../gnome-dictionary/src/gdict-window.c:680
+#: ../gnome-dictionary/src/gdict-window.c:684
 msgid "Dictionary Preferences"
 msgstr "Preferenze di Dizionario"
 
-#: ../gnome-dictionary/src/gdict-window.c:796
+#: ../gnome-dictionary/src/gdict-window.c:800
 msgid "_File"
 msgstr "_File"
 
-#: ../gnome-dictionary/src/gdict-window.c:797 ../logview/logview.c:86
-msgid "_Edit"
-msgstr "_Modifica"
-
-#: ../gnome-dictionary/src/gdict-window.c:798
+#: ../gnome-dictionary/src/gdict-window.c:802
 msgid "_Go"
 msgstr "_Vai"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:806
 msgid "_New"
 msgstr "_Nuovo"
 
-#: ../gnome-dictionary/src/gdict-window.c:803
+#: ../gnome-dictionary/src/gdict-window.c:807
 msgid "New look up"
 msgstr "Nuova ricerca"
 
-#: ../gnome-dictionary/src/gdict-window.c:804
+#: ../gnome-dictionary/src/gdict-window.c:808
 msgid "_Save a Copy..."
 msgstr "_Salva una copia..."
 
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:810
 msgid "_Print..."
 msgstr "_Stampa..."
 
-#: ../gnome-dictionary/src/gdict-window.c:807
+#: ../gnome-dictionary/src/gdict-window.c:811
 msgid "Print this document"
 msgstr "Stampa questo documento"
 
-#: ../gnome-dictionary/src/gdict-window.c:814 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:818 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "_Seleziona tutto"
 
-#: ../gnome-dictionary/src/gdict-window.c:817
+#: ../gnome-dictionary/src/gdict-window.c:821
 msgid "Find a word or phrase in the document"
 msgstr "Trova una parola o una frase nel documento"
 
-#: ../gnome-dictionary/src/gdict-window.c:819
+#: ../gnome-dictionary/src/gdict-window.c:823
 msgid "Find Ne_xt"
 msgstr "Trova s_uccessiva"
 
-#: ../gnome-dictionary/src/gdict-window.c:821
+#: ../gnome-dictionary/src/gdict-window.c:825
 msgid "Find Pre_vious"
 msgstr "Trova pr_ecedente"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:831
 msgid "_Previous Definition"
 msgstr "Definizione pr_ecedente"
 
-#: ../gnome-dictionary/src/gdict-window.c:828
+#: ../gnome-dictionary/src/gdict-window.c:832
 msgid "Go to the previous definition"
 msgstr "Va alla definizione precedente"
 
-#: ../gnome-dictionary/src/gdict-window.c:829
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "_Next Definition"
 msgstr "Definizione successi_va"
 
-#: ../gnome-dictionary/src/gdict-window.c:830
+#: ../gnome-dictionary/src/gdict-window.c:834
 msgid "Go to the next definition"
 msgstr "Va alla definizione successiva"
 
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:835
 msgid "_First Definition"
 msgstr "Prima de_finizione"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:836
 msgid "Go to the first definition"
 msgstr "Va alla prima definizione"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "_Last Definition"
 msgstr "U_ltima definizione"
 
-#: ../gnome-dictionary/src/gdict-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:838
 msgid "Go to the last definition"
 msgstr "Va all'ultima definizione"
 
 #. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:837 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:841 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Sommario"
 
-#: ../gnome-dictionary/src/gdict-window.c:1129
+#: ../gnome-dictionary/src/gdict-window.c:1133
 msgid "Look _up:"
 msgstr "_Cerca:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1372
+#: ../gnome-dictionary/src/gdict-window.c:1376
 msgid "Unable to load the application icon"
 msgstr "Impossibile caricare l'icona dell'applicazione"
 
@@ -1623,7 +2202,7 @@ msgstr "Cattura una schermata della propria scrivania"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
-msgstr "_Salva nella cartella:"
+msgstr "Salva nella _cartella:"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:4
 msgid "_Name:"
@@ -1666,13 +2245,13 @@ msgstr ""
 "Controllare l'installazione di gnome-utils"
 
 #: ../gnome-screenshot/screenshot-dialog.c:216
-msgid "Select a directory"
-msgstr "Selezionare una directory"
+msgid "Select a folder"
+msgstr "Seleziona una cartella"
 
 #: ../gnome-screenshot/screenshot-save.c:41
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Unable to clear the temporary directory:\n"
+"Unable to clear the temporary folder:\n"
 "%s"
 msgstr ""
 "Impossibile pulire la directory per i file temporanei:\n"
@@ -1690,7 +2269,7 @@ msgstr ""
 msgid "Unknown error saving screenshot to disk"
 msgstr "Errore sconosciuto nel salvare la schermata su disco"
 
-#: ../gnome-screenshot/screenshot-utils.c:610
+#: ../gnome-screenshot/screenshot-utils.c:612
 msgid "Untitled Window"
 msgstr "Finestra senza titolo"
 
@@ -2084,15 +2663,6 @@ msgstr "Impossibile aprire la cartella «%s»."
 msgid "The nautilus file manager is not running."
 msgstr "Il file manager Nautilus non è in esecuzione"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:470
-#: ../gsearchtool/gsearchtool-callbacks.c:811
-msgid "The document does not exist."
-msgstr "Il documento non esiste."
-
-#: ../gsearchtool/gsearchtool-callbacks.c:485
-msgid "There is no installed viewer capable of displaying the document."
-msgstr "Non è installato alcun visualizzatore per il documento."
-
 #: ../gsearchtool/gsearchtool-callbacks.c:509
 #, c-format
 msgid "Are you sure you want to open %d folder?"
@@ -2468,10 +3038,6 @@ msgstr "Ri_sultati della ricerca:"
 msgid "List View"
 msgstr "Vista a lista"
 
-#: ../gsearchtool/gsearchtool.c:2498
-msgid "Folder"
-msgstr "Cartella"
-
 #: ../gsearchtool/gsearchtool.c:2510
 msgid "Size"
 msgstr "Dimensione"
@@ -2620,10 +3186,6 @@ msgstr "_Pulisci"
 msgid "_Log"
 msgstr "_Registri"
 
-#: ../logview/logview.c:87
-msgid "_View"
-msgstr "_Visualizza"
-
 #: ../logview/logview.c:90
 msgid "_Open..."
 msgstr "_Apri..."
@@ -2697,10 +3259,6 @@ msgid "Show the about dialog for the log viewer"
 msgstr "Mostra le informazioni sul visualizzatore di registri"
 
 #: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "Barra di s_tato"
-
-#: ../logview/logview.c:122
 msgid "Show Status Bar"
 msgstr "Mostra la barra di stato"
 
@@ -2769,7 +3327,7 @@ msgstr "File di registro da aprire all'avvio"
 msgid "Size of the font used to display the log"
 msgstr "Grandezza del carattere utilizzato per visualizzare il registro"
 
-# 
+#
 #: ../logview/logview.schemas.in.h:5
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
@@ -2784,7 +3342,7 @@ msgstr ""
 "Specifica l'altezza della finestra principale del visualizzatore di registro "
 "in pixel."
 
-# 
+#
 #: ../logview/logview.schemas.in.h:7
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
@@ -2904,39 +3462,44 @@ msgstr "Il monitoraggio dei file non è supportato in questo file system.\n"
 msgid "Gnome-VFS Error.\n"
 msgstr "Errore Gnome-VFS.\n"
 
-#~ msgid ""
-#~ "Unable to create the data directory '%s': there already is a file with "
-#~ "the same name.  You should move the file and re-run gnome-dictionary."
-#~ msgstr ""
-#~ "Impossibile creare la directory dati «%s»: esiste già un file con lo "
-#~ "stesso nome. Occorre spostare il file ed eseguire di nuovo gnome-"
-#~ "dictionary."
+#~ msgid "French Dictionaries from Wikipedia"
+#~ msgstr "Dizionari francesi da Wikipedia"
 
-#~ msgid "Unable to create the data directory '%s'"
-#~ msgstr "Impossibile creare la directory dati «%s»"
+#~ msgid "Select a directory"
+#~ msgstr "Selezionare una directory"
 
-#~ msgid ""
-#~ "There is a file with the same name in the path.\n"
-#~ "You should move the file and re-run the\n"
-#~ "Dictionary applet"
-#~ msgstr ""
-#~ "Esiste un file con lo stesso nome nel percorso.\n"
-#~ "Occorre spostare il file ed eseguire di nuovo la\n"
-#~ "applet «Dizionario»"
+#~ msgid "Advanced"
+#~ msgstr "Avanzate"
 
-#~ msgid "%d definitions found"
-#~ msgstr "%d definizioni trovate"
+#~ msgid "By _date"
+#~ msgstr "Ordina per d_ata"
 
-#~ msgid ""
-#~ "Definitions for \"%s\":\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Definizioni per \"%s\":\n"
-#~ "\n"
+#~ msgid "By _name"
+#~ msgstr "Ordina per _nome"
 
-#~ msgid ""
-#~ "From %s:\n"
-#~ "%s\n"
-#~ msgstr ""
-#~ "Da %s:\n"
-#~ "%s\n"
+#~ msgid "By _size"
+#~ msgstr "Ordina per _dimensione"
+
+#~ msgid "By _type"
+#~ msgstr "Ordina per _tipo"
+
+#~ msgid "Enter a file name to search:"
+#~ msgstr "Inserisci un file da cercare:"
+
+#~ msgid "Scan preferences"
+#~ msgstr "Preferenze di scansione"
+
+#~ msgid "Scan the whole _filesystem"
+#~ msgstr "Scansione di tutto il _filesystem"
+
+#~ msgid "Select"
+#~ msgstr "Seleziona"
+
+#~ msgid "Size:"
+#~ msgstr "Dimensione:"
+
+#~ msgid "_Actions"
+#~ msgstr "_Azioni"
+
+#~ msgid "_Folder graphical map"
+#~ msgstr "_Mappa grafica della cartella"
