@@ -1642,6 +1642,9 @@ get_status_code (const gchar *line,
       !g_unichar_isdigit (line[1]) ||
       !g_unichar_isdigit (line[2]))
     return 0;
+
+  if (!g_unitchar_isspace (line[3]))
+    return 0;
   
   status = g_strndup (line, 3);
   possible_status = atoi (status);
