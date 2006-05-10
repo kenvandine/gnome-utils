@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-25 16:07+0200\n"
+"POT-Creation-Date: 2006-05-10 22:05+0200\n"
 "PO-Revision-Date: 2006-04-25 16:07+0100\n"
 "Last-Translator: Fabio Marzocca <thesaltydog@gmail.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
@@ -197,74 +197,80 @@ msgstr "_Analizza"
 msgid "_Browse..."
 msgstr "S_foglia"
 
-#: ../baobab/data/baobab.glade.h:44
+#. Help menu
+#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:841
+#: ../logview/logview.c:114
+msgid "_Contents"
+msgstr "_Sommario"
+
+#: ../baobab/data/baobab.glade.h:45
 msgid "_Date"
 msgstr "_Data"
 
-#: ../baobab/data/baobab.glade.h:45
+#: ../baobab/data/baobab.glade.h:46
 msgid "_Depth level:"
 msgstr "_Livello di profondità:"
 
-#: ../baobab/data/baobab.glade.h:46 ../gnome-dictionary/src/gdict-window.c:801
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:801
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: ../baobab/data/baobab.glade.h:47
+#: ../baobab/data/baobab.glade.h:48
 msgid "_Enable auto-detect monitoring of home directory"
 msgstr "Abilita il monitoraggio _automatico della home directory"
 
-#: ../baobab/data/baobab.glade.h:48
+#: ../baobab/data/baobab.glade.h:49
 msgid "_Extended search"
 msgstr "Ricerca _estesa"
 
-#: ../baobab/data/baobab.glade.h:49
+#: ../baobab/data/baobab.glade.h:50
 msgid "_Find..."
 msgstr "_Trova..."
 
-#: ../baobab/data/baobab.glade.h:50
+#: ../baobab/data/baobab.glade.h:51
 msgid "_Graphical Usage Map"
 msgstr "Mappa _grafica"
 
-#: ../baobab/data/baobab.glade.h:51
+#: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
 #: ../gnome-dictionary/src/gdict-window.c:803 ../logview/logview.c:88
 msgid "_Help"
 msgstr "A_iuto"
 
-#: ../baobab/data/baobab.glade.h:52
+#: ../baobab/data/baobab.glade.h:53
 msgid "_Name"
 msgstr "_Nome"
 
-#: ../baobab/data/baobab.glade.h:53
+#: ../baobab/data/baobab.glade.h:54
 msgid "_Search for file:"
 msgstr "_Cerca  file"
 
-#: ../baobab/data/baobab.glade.h:54
+#: ../baobab/data/baobab.glade.h:55
 msgid "_Size"
 msgstr "_Dimensione"
 
-#: ../baobab/data/baobab.glade.h:55
+#: ../baobab/data/baobab.glade.h:56
 msgid "_Sort By"
 msgstr "_Ordina per"
 
-#: ../baobab/data/baobab.glade.h:56 ../logview/logview.c:122
+#: ../baobab/data/baobab.glade.h:57 ../logview/logview.c:122
 msgid "_Statusbar"
 msgstr "Barra di s_tato"
 
-#: ../baobab/data/baobab.glade.h:57
+#: ../baobab/data/baobab.glade.h:58
 msgid "_Toolbar"
 msgstr "Barra degli s_trumenti"
 
-#: ../baobab/data/baobab.glade.h:58
+#: ../baobab/data/baobab.glade.h:59
 msgid "_Total folders:"
 msgstr "Cartelle _totali:"
 
-#: ../baobab/data/baobab.glade.h:59
+#: ../baobab/data/baobab.glade.h:60
 msgid "_Type"
 msgstr "_Tipo"
 
-#: ../baobab/data/baobab.glade.h:60 ../logview/logview.c:87
+#: ../baobab/data/baobab.glade.h:61 ../logview/logview.c:87
 msgid "_View"
 msgstr "_Visualizza"
 
@@ -301,14 +307,14 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Se la barra degli strumenti della finestra deve essere visibile"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:219
-#: ../baobab/src/callbacks.c:440
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
+#: ../baobab/src/callbacks.c:441
 msgid "Calculating percentage bars..."
 msgstr "Sto calcolando le barre di percentuale..."
 
 #: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
-#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:227
-#: ../baobab/src/callbacks.c:444
+#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/callbacks.c:445
 msgid "Ready"
 msgstr "Pronto"
 
@@ -499,94 +505,106 @@ msgstr "C_onnetti"
 msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
 msgstr "<i>Usa il menu Modifica->Cerca o il tasto cerca sulla barra.<i>"
 
-#: ../baobab/src/baobab-utils.c:100
+#: ../baobab/src/baobab-utils.c:101
 msgid "Select a Folder"
 msgstr "Seleziona una cartella"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:112
+#: ../baobab/src/baobab-utils.c:113
 msgid "Show hidden folders"
 msgstr "Mostra cartelle nascoste"
 
-#: ../baobab/src/baobab-utils.c:192
+#: ../baobab/src/baobab-utils.c:193
 msgid "Scanning..."
 msgstr "Scansione in corso..."
 
-#: ../baobab/src/baobab-utils.c:348 ../baobab/src/baobab-utils.c:352
+#: ../baobab/src/baobab-utils.c:349 ../baobab/src/baobab-utils.c:353
 #, c-format
 msgid "%s is not a valid folder"
 msgstr "%s non è una cartella valida!"
 
-#: ../baobab/src/baobab-utils.c:379
+#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:437
+msgid "Remove from Trash"
+msgstr "_Elimina dal cestino"
+
+#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:440
+msgid "Move to Trash"
+msgstr "Sposta nel cestino"
+
+#: ../baobab/src/baobab-utils.c:385
 msgid "Folder graphical map"
 msgstr "Mappa grafica della cartella"
 
-#: ../baobab/src/baobab-utils.c:383
+#: ../baobab/src/baobab-utils.c:389
 msgid "List all files in folder"
 msgstr "Elenca tutti i file nella cartella"
 
-#: ../baobab/src/baobab-utils.c:483
+#: ../baobab/src/baobab-utils.c:443
+msgid "Scan Folder"
+msgstr "Scansione della cartella"
+
+#: ../baobab/src/baobab-utils.c:515
 msgid "Please provide a file name to search for!"
 msgstr "Inserire un nome file per la ricerca!"
 
-#: ../baobab/src/baobab-utils.c:663
+#: ../baobab/src/baobab-utils.c:695
 msgid "Total filesystem capacity:"
 msgstr "Capacità totale filesystem"
 
-#: ../baobab/src/baobab-utils.c:663
+#: ../baobab/src/baobab-utils.c:695
 msgid "used:"
 msgstr "usati"
 
-#: ../baobab/src/baobab-utils.c:664
+#: ../baobab/src/baobab-utils.c:696
 msgid "available:"
 msgstr "disponibili:"
 
-#: ../baobab/src/baobab-utils.c:702
+#: ../baobab/src/baobab-utils.c:734
 msgid "Found:"
 msgstr "Trovati:"
 
-#: ../baobab/src/baobab-utils.c:703
+#: ../baobab/src/baobab-utils.c:735
 msgid "file"
 msgstr "file"
 
-#: ../baobab/src/baobab-utils.c:703
+#: ../baobab/src/baobab-utils.c:735
 msgid "files"
 msgstr "file"
 
-#: ../baobab/src/baobab-utils.c:704
+#: ../baobab/src/baobab-utils.c:736
 msgid "for total:"
 msgstr "per totali:"
 
-#: ../baobab/src/baobab-utils.c:734 ../gsearchtool/gsearchtool-callbacks.c:485
+#: ../baobab/src/baobab-utils.c:766 ../gsearchtool/gsearchtool-callbacks.c:485
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Non è installato alcun visualizzatore per il documento."
 
-#: ../baobab/src/baobab-utils.c:796
+#: ../baobab/src/baobab-utils.c:828
 msgid "Cannot find the Trash on this system!"
 msgstr "Non riesco a trovare il Cestino su questo sistema!"
 
-#: ../baobab/src/baobab-utils.c:803 ../baobab/src/callbacks.c:276
+#: ../baobab/src/baobab-utils.c:835 ../baobab/src/callbacks.c:276
 #: ../gsearchtool/gsearchtool-callbacks.c:470
 #: ../gsearchtool/gsearchtool-callbacks.c:811
 msgid "The document does not exist."
 msgstr "Il documento non esiste."
 
-#: ../baobab/src/baobab-utils.c:815
+#: ../baobab/src/baobab-utils.c:847
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr "Spostamento di <b>%s</b> nel Cestino fallito: %s."
 
-#: ../baobab/src/baobab-utils.c:829
+#: ../baobab/src/baobab-utils.c:861
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "Vuoi eliminare <b>%s</b> permanentemente?"
 
-#: ../baobab/src/baobab-utils.c:841
+#: ../baobab/src/baobab-utils.c:873
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "Eliminazione di <b>%s</b> fallita: %s."
 
-#: ../baobab/src/baobab-utils.c:870
+#: ../baobab/src/baobab-utils.c:902
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
@@ -595,10 +613,14 @@ msgstr ""
 "Vuoi effettuare una nuova scansione dell'ultimo albero per aggiornare i "
 "dettagli?"
 
-#: ../baobab/src/baobab-utils.c:891
+#: ../baobab/src/baobab-utils.c:923
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Non trovo il file immagine: %s"
+
+#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:774
+msgid "There was an error displaying help."
+msgstr "Si è verificato un errore nel mostrare la guida."
 
 #: ../baobab/src/callbacks.c:75
 msgid "Baobab"
@@ -621,12 +643,15 @@ msgstr ""
 "  Luca Ferretti <elle.uca@infinito.it>\n"
 "  ... e tutti i revisori del Translation Project."
 
+#: ../baobab/src/callbacks.c:524
+msgid "The folder does not exist."
+msgstr "La cartella non esiste."
+
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Formattazione floppy"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
-#, fuzzy
 msgid "Format floppy disks"
 msgstr "Formatta i dischi floppy"
 
@@ -1040,7 +1065,6 @@ msgid "DEVICE"
 msgstr "DEVICE"
 
 #: ../gfloppy/src/main.c:583
-#, fuzzy
 msgid "- Floppy Formatter"
 msgstr "Formattazione floppy"
 
@@ -1419,12 +1443,12 @@ msgstr "Nessun database trovato nel server di dizionario a «%s»"
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Nessuna strategia trovata nel server di dizionario a «%s»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1705
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1708
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Connessione fallita al server di dizionario a «%s:%d»"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1744
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1747
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1433,21 +1457,21 @@ msgstr ""
 "Errore durante la lettura della risposta dal server:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1817
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1820
 msgid "No hostname defined for the dictionary server"
 msgstr "Nessun nome host definito per il server di dizionario"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1853
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1856
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1871
 msgid "Unable to create socket"
 msgstr "Impossibile creare il socket"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1894
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1897
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Impossibile impostare il canale come non-bloccante: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1909
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1912
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Impossibile connettersi al server di dizionario a «%s:%d»"
@@ -2067,11 +2091,6 @@ msgstr "U_ltima definizione"
 msgid "Go to the last definition"
 msgstr "Va all'ultima definizione"
 
-#. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:841 ../logview/logview.c:114
-msgid "_Contents"
-msgstr "_Sommario"
-
 #: ../gnome-dictionary/src/gdict-window.c:1133
 msgid "Look _up:"
 msgstr "_Cerca:"
@@ -2249,12 +2268,12 @@ msgid "Select a folder"
 msgstr "Seleziona una cartella"
 
 #: ../gnome-screenshot/screenshot-save.c:41
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to clear the temporary folder:\n"
 "%s"
 msgstr ""
-"Impossibile pulire la directory per i file temporanei:\n"
+"Impossibile pulire la directory temporanea:\n"
 "%s"
 
 #: ../gnome-screenshot/screenshot-save.c:79
@@ -3294,10 +3313,6 @@ msgstr "%s (monitorato) - %s"
 #: ../logview/logview.c:519
 msgid "Open Log"
 msgstr "Apri registro"
-
-#: ../logview/logview.c:774
-msgid "There was an error displaying help."
-msgstr "Si è verificato un errore nel mostrare la guida."
 
 #: ../logview/logview.c:907
 msgid "Version: "
