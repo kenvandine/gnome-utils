@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.gu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-26 06:20+0200\n"
-"PO-Revision-Date: 2006-04-26 11:23+0530\n"
+"POT-Creation-Date: 2006-05-10 06:51+0200\n"
+"PO-Revision-Date: 2006-05-10 11:45+0530\n"
 "Last-Translator: Ankit Patel <ankit644@yahoo.com>\n"
 "Language-Team: Gujarati <indianoss-gujarati@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n\n"
+"\n"
 "\n"
 "\n"
 "\n"
@@ -209,74 +210,80 @@ msgstr "વિશ્લેષક (_A)"
 msgid "_Browse..."
 msgstr "બ્રાઉઝ કરો (_B)..."
 
-#: ../baobab/data/baobab.glade.h:44
+#. Help menu
+#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:841
+#: ../logview/logview.c:114
+msgid "_Contents"
+msgstr "સમાવિષ્ટો (_C)"
+
+#: ../baobab/data/baobab.glade.h:45
 msgid "_Date"
 msgstr "તારીખ (_D)"
 
-#: ../baobab/data/baobab.glade.h:45
+#: ../baobab/data/baobab.glade.h:46
 msgid "_Depth level:"
 msgstr "ઊંડાઈ સ્તર (_D):"
 
-#: ../baobab/data/baobab.glade.h:46 ../gnome-dictionary/src/gdict-window.c:801
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:801
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "ફેરફાર કરો (_E)"
 
-#: ../baobab/data/baobab.glade.h:47
+#: ../baobab/data/baobab.glade.h:48
 msgid "_Enable auto-detect monitoring of home directory"
 msgstr "ઘર ડિરેક્ટરીનું આપોઆપ-શોધ મોનીટરીંગ સક્રિય કરો (_E)"
 
-#: ../baobab/data/baobab.glade.h:48
+#: ../baobab/data/baobab.glade.h:49
 msgid "_Extended search"
 msgstr "વિસ્તૃત શોધ (_E)"
 
-#: ../baobab/data/baobab.glade.h:49
+#: ../baobab/data/baobab.glade.h:50
 msgid "_Find..."
 msgstr "શોધો (_F)..."
 
-#: ../baobab/data/baobab.glade.h:50
+#: ../baobab/data/baobab.glade.h:51
 msgid "_Graphical Usage Map"
 msgstr "ગ્રાફિકવાળો વપરાશ નકશો (_G)"
 
-#: ../baobab/data/baobab.glade.h:51
+#: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
 #: ../gnome-dictionary/src/gdict-window.c:803 ../logview/logview.c:88
 msgid "_Help"
 msgstr "મદદ (_H)"
 
-#: ../baobab/data/baobab.glade.h:52
+#: ../baobab/data/baobab.glade.h:53
 msgid "_Name"
 msgstr "નામ (_N)"
 
-#: ../baobab/data/baobab.glade.h:53
+#: ../baobab/data/baobab.glade.h:54
 msgid "_Search for file:"
 msgstr "ફાઈલ માટે શોધો (_S):"
 
-#: ../baobab/data/baobab.glade.h:54
+#: ../baobab/data/baobab.glade.h:55
 msgid "_Size"
 msgstr "માપ (_S)"
 
-#: ../baobab/data/baobab.glade.h:55
+#: ../baobab/data/baobab.glade.h:56
 msgid "_Sort By"
 msgstr "આ પ્રમાણે ક્રમમાં ગોઠવો (_S)"
 
-#: ../baobab/data/baobab.glade.h:56 ../logview/logview.c:122
+#: ../baobab/data/baobab.glade.h:57 ../logview/logview.c:122
 msgid "_Statusbar"
 msgstr "પરિસ્થિતિદર્શક પટ્ટી (_S)"
 
-#: ../baobab/data/baobab.glade.h:57
+#: ../baobab/data/baobab.glade.h:58
 msgid "_Toolbar"
 msgstr "સાધનપટ્ટી (_T)"
 
-#: ../baobab/data/baobab.glade.h:58
+#: ../baobab/data/baobab.glade.h:59
 msgid "_Total folders:"
 msgstr "કુલ ફોલ્ડરો (_T):"
 
-#: ../baobab/data/baobab.glade.h:59
+#: ../baobab/data/baobab.glade.h:60
 msgid "_Type"
 msgstr "પ્રકાર (_T)"
 
-#: ../baobab/data/baobab.glade.h:60 ../logview/logview.c:87
+#: ../baobab/data/baobab.glade.h:61 ../logview/logview.c:87
 msgid "_View"
 msgstr "દેખાવ (_V)"
 
@@ -313,14 +320,14 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "શું સાધનપટ્ટી મુખ્ય વિન્ડોમાં દૃશ્યમાન હોવી જોઈએ."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:219
-#: ../baobab/src/callbacks.c:440
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
+#: ../baobab/src/callbacks.c:441
 msgid "Calculating percentage bars..."
 msgstr "ટકાવારી બારની ગણતરી કરી રહ્યા છીએ..."
 
 #: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
-#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:227
-#: ../baobab/src/callbacks.c:444
+#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/callbacks.c:445
 msgid "Ready"
 msgstr "તૈયાર"
 
@@ -511,102 +518,106 @@ msgstr "જોડો (_o)"
 msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
 msgstr "<i>ફેરફાર->શોધો મેનુ વસ્તુ અથવા શોધ સાધનપટ્ટી બટન વાપરો.</i>"
 
-#: ../baobab/src/baobab-utils.c:100
+#: ../baobab/src/baobab-utils.c:101
 msgid "Select a Folder"
 msgstr "ફોલ્ડર પસંદ કરો"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:112
+#: ../baobab/src/baobab-utils.c:113
 msgid "Show hidden folders"
 msgstr "છુપા ફોલ્ડરો બતાવો"
 
-#: ../baobab/src/baobab-utils.c:192
+#: ../baobab/src/baobab-utils.c:193
 msgid "Scanning..."
 msgstr "સ્કેન કરી રહ્યા છીએ..."
 
-#: ../baobab/src/baobab-utils.c:348 ../baobab/src/baobab-utils.c:352
+#: ../baobab/src/baobab-utils.c:349 ../baobab/src/baobab-utils.c:353
 #, c-format
 msgid "%s is not a valid folder"
 msgstr "%s એ માન્ય ફોલ્ડર નથી"
 
-#: ../baobab/src/baobab-utils.c:378 ../baobab/src/baobab-utils.c:429
+#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:437
 msgid "Remove from Trash"
 msgstr "કચરાપેટીમાંથી દૂર કરો"
 
-#: ../baobab/src/baobab-utils.c:381 ../baobab/src/baobab-utils.c:432
+#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:440
 msgid "Move to Trash"
 msgstr "કચરાપેટીમાં મોકલો"
 
-#: ../baobab/src/baobab-utils.c:384
+#: ../baobab/src/baobab-utils.c:385
 msgid "Folder graphical map"
 msgstr "ફોલ્ડર ગ્રાફિકવાળો નકશો"
 
-#: ../baobab/src/baobab-utils.c:388
+#: ../baobab/src/baobab-utils.c:389
 msgid "List all files in folder"
 msgstr "ફોલ્ડરમાંની બધી ફાઈલોની યાદી આપો"
 
-#: ../baobab/src/baobab-utils.c:497
+#: ../baobab/src/baobab-utils.c:443
+msgid "Scan Folder"
+msgstr "ફોલ્ડર સ્કેન કરો"
+
+#: ../baobab/src/baobab-utils.c:515
 msgid "Please provide a file name to search for!"
 msgstr "મહેરબાની કરીને શોધવા માટેની ફાઈલનું નામ પૂરું પાડો!"
 
-#: ../baobab/src/baobab-utils.c:677
+#: ../baobab/src/baobab-utils.c:695
 msgid "Total filesystem capacity:"
 msgstr "કુલ ફાઈલ સિસ્ટમ ક્ષમતા:"
 
-#: ../baobab/src/baobab-utils.c:677
+#: ../baobab/src/baobab-utils.c:695
 msgid "used:"
 msgstr "વપરાયેલ:"
 
-#: ../baobab/src/baobab-utils.c:678
+#: ../baobab/src/baobab-utils.c:696
 msgid "available:"
 msgstr "ઉપલબ્ધ:"
 
-#: ../baobab/src/baobab-utils.c:716
+#: ../baobab/src/baobab-utils.c:734
 msgid "Found:"
 msgstr "મળેલ:"
 
-#: ../baobab/src/baobab-utils.c:717
+#: ../baobab/src/baobab-utils.c:735
 msgid "file"
 msgstr "ફાઈલ"
 
-#: ../baobab/src/baobab-utils.c:717
+#: ../baobab/src/baobab-utils.c:735
 msgid "files"
 msgstr "ફાઈલો"
 
-#: ../baobab/src/baobab-utils.c:718
+#: ../baobab/src/baobab-utils.c:736
 msgid "for total:"
 msgstr "માટે કુલ:"
 
-#: ../baobab/src/baobab-utils.c:748 ../gsearchtool/gsearchtool-callbacks.c:485
+#: ../baobab/src/baobab-utils.c:766 ../gsearchtool/gsearchtool-callbacks.c:485
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "ત્યાં કોઈ સ્થાપિત દર્શક દસ્તાવેજન દેખાડવામાં સમર્ચ નથી."
 
-#: ../baobab/src/baobab-utils.c:810
+#: ../baobab/src/baobab-utils.c:828
 msgid "Cannot find the Trash on this system!"
 msgstr "આ સિસ્ટમ પર કચરાપેટી શોધી શકતા નથી!"
 
-#: ../baobab/src/baobab-utils.c:817 ../baobab/src/callbacks.c:276
+#: ../baobab/src/baobab-utils.c:835 ../baobab/src/callbacks.c:276
 #: ../gsearchtool/gsearchtool-callbacks.c:470
 #: ../gsearchtool/gsearchtool-callbacks.c:811
 msgid "The document does not exist."
 msgstr "દસ્તાવેજ હાજર નથી."
 
-#: ../baobab/src/baobab-utils.c:829
+#: ../baobab/src/baobab-utils.c:847
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr "<b>%s</b> ને કચરાપેટીમાં ખસેડવાનું નિષ્ફળ: %s."
 
-#: ../baobab/src/baobab-utils.c:843
+#: ../baobab/src/baobab-utils.c:861
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "શું તમે <b>%s</b> ને કાયમ માટે કાઢી નાંખવા માંગો છો?"
 
-#: ../baobab/src/baobab-utils.c:855
+#: ../baobab/src/baobab-utils.c:873
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "<b>%s</b> ને કાઢી નાંખવાનું નિષ્ફળ: %s."
 
-#: ../baobab/src/baobab-utils.c:884
+#: ../baobab/src/baobab-utils.c:902
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
@@ -614,10 +625,14 @@ msgstr ""
 "તમારી ઘર ડિરેક્ટરીના સમાવિષ્ટો બદલાઈ ગયેલ છે.\n"
 "શું તમે ફોલ્ડર શાખા વિગતો સુધારવા માટે છેલ્લું વૃક્ષ ફરીથી સ્કેન કરવા માંગો છો?"
 
-#: ../baobab/src/baobab-utils.c:905
+#: ../baobab/src/baobab-utils.c:923
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "pixmap ફાઈલ શોધી શક્યા નહિં: %s"
+
+#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:774
+msgid "There was an error displaying help."
+msgstr "મદદ પ્રદર્શિત કરવામાં ભૂલ હતી."
 
 #: ../baobab/src/callbacks.c:75
 msgid "Baobab"
@@ -632,6 +647,10 @@ msgstr "ડિસ્ક વપરાશનું વિશ્લેષણ કર
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr "અંકિત પટેલ <ankit644@yahoo.com>"
+
+#: ../baobab/src/callbacks.c:524
+msgid "The folder does not exist."
+msgstr "ફોલ્ડર અસ્તિત્વમાં નથી."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1405,12 +1424,12 @@ msgstr "'%s' આગળ શબ્દકોષ સર્વર પર કોઈ �
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "'%s' આગળ શબ્દકોષ સર્વર પર કોઈ વિચારધારાઓ મળી નહિં"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1705
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1708
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "%s:%d આગળ શબ્દકોષ સર્વર સાથે જોડાણ નિષ્ફળ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1744
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1747
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1419,21 +1438,21 @@ msgstr ""
 "સર્વરમાંથી પ્રત્યુત્તર વાંચતી વખતે ભૂલ:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1817
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1820
 msgid "No hostname defined for the dictionary server"
 msgstr "શબ્દકોષ સર્વર માટે કોઈ યજમાનનામ વ્યાખ્યાયિત નથી"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1853
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1856
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1871
 msgid "Unable to create socket"
 msgstr "સોકેટ બનાવવામાં અસમર્થ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1894
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1897
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "બિન-બ્લોકીંગને ચેનલ તરીકે સુયોજિત કરવામાં અસમર્થ: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1909
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1912
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "'%s:%d' આગળ શબ્દકોષ સર્વર સાથે જોડાવામાં અસમર્થ"
@@ -2043,11 +2062,6 @@ msgstr "અંતિમ વ્યાખ્યા (_L)"
 #: ../gnome-dictionary/src/gdict-window.c:838
 msgid "Go to the last definition"
 msgstr "અંતિમ વ્યાખ્યા પર જાઓ"
-
-#. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:841 ../logview/logview.c:114
-msgid "_Contents"
-msgstr "સમાવિષ્ટો (_C)"
 
 #: ../gnome-dictionary/src/gdict-window.c:1133
 msgid "Look _up:"
@@ -3245,10 +3259,6 @@ msgstr "%s (મોનિટર થયેલ) - %s"
 #: ../logview/logview.c:519
 msgid "Open Log"
 msgstr "લોગ ખોલો"
-
-#: ../logview/logview.c:774
-msgid "There was an error displaying help."
-msgstr "મદદ પ્રદર્શિત કરવામાં ભૂલ હતી."
 
 #: ../logview/logview.c:907
 msgid "Version: "
