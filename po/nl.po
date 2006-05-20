@@ -1,37 +1,827 @@
-# GNOME-UTILS
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2006 Free Software Foundation, Inc.
-# André van Dijk <ady@unseen.demon.nl>, 1999.
-# Mendel mobach <mendel@mobach.nl>, 2000.
-# Almer S. Tigelaar <almer@gnome.org>, 2001.
-# Marc Maurer <j.m.maurer@student.utwente.nl>, 2001.
-# Dennis Smit <synap@area101.penguin.nl>, 2001.
-# Patrick Londema <platypus@nerdz.nl>, 2002.
-# Tino Meinen <a.t.meinen@chello.nl>, 2002, 2003, 2004, 2005, 2006.
-# Taco Witte <T.C.Witte@phys.uu.nl>, 2002.
-# Huib Kleinhout <huib@stack.nl>, 2002
-# Reinout van Schouwen <reinout@cs.vu.nl>, 2002, 2005
-# Huib Kleinhout <huib@stack.nl>, 2002
-# Daniel van Eeden <daniel_e@dds.nl>, 2005
-# vergeet jezelf niet toe te voegen aan de credits
+# Alleyoop Dutch translation
+# Copyright (C) 2003 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Alleyoop package.
+# Jan-Willem Harmanny <jwharmanny@hotmail.com>, 2003.
+# Tino Meinen <a.t.meinen@chello.nl>, 2004, 2005
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils\n"
+"Project-Id-Version: baobab cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-06 16:25+0100\n"
-"PO-Revision-Date: 2006-02-09 01:12+0100\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2006-04-21 17:22+0200\n"
+"PO-Revision-Date: 2006-04-12 00:10+0100\n"
+"Last-Translator: Vincent van Adrighem <adrighem@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../baobab.desktop.in.in.h:1
+#, fuzzy
+msgid "A graphical tool to analyse disk usage"
+msgstr "Een grafisch hulpmiddel om mappenbomen te analyseren"
+
+#: ../baobab.desktop.in.in.h:2 ../baobab.glade.h:5 ../src/callbacks.c:75
+msgid "Baobab"
+msgstr "Baobab"
+
+#: ../data/baobab.schemas.in.h:1
+msgid "A list of partitions to be excluded from scanning."
+msgstr ""
+
+#: ../data/baobab.schemas.in.h:2
+#, fuzzy
+msgid "Enable monitoring of home directory"
+msgstr "Persoonlijke map in de gaten houden"
+
+#: ../data/baobab.schemas.in.h:3
+msgid "Exluded partitions"
+msgstr ""
+
+#: ../data/baobab.schemas.in.h:4
+msgid "Status Bar is Visible"
+msgstr ""
+
+#: ../data/baobab.schemas.in.h:5
+msgid "Toolbar is Visible"
+msgstr ""
+
+#: ../data/baobab.schemas.in.h:6
+msgid "Whether any change to the home directory should be monitored."
+msgstr ""
+
+#: ../data/baobab.schemas.in.h:7
+msgid "Whether the status bar at the bottom of main window should be visible."
+msgstr ""
+
+#: ../data/baobab.schemas.in.h:8
+msgid "Whether the toolbar should be visible in main window."
+msgstr ""
+
+#: ../baobab.glade.h:1
+msgid "<b>Search options:</b>"
+msgstr "<b>Zoekopties:</b>"
+
+#: ../baobab.glade.h:2
+msgid "Advanced"
+msgstr "Extra"
+
+# ../lisp/workspace.jl
+#: ../baobab.glade.h:3
+msgid "Allocated space"
+msgstr "Toegewezen ruimte"
+
+#: ../baobab.glade.h:4
+msgid "Any"
+msgstr "Willekeurig"
+
+#: ../baobab.glade.h:6
+msgid "By _date"
+msgstr "Op _datum"
+
+#: ../baobab.glade.h:7
+msgid "By _name"
+msgstr "Op _naam"
+
+#: ../baobab.glade.h:8
+msgid "By _size"
+msgstr "Op _grootte"
+
+#: ../baobab.glade.h:9
+msgid "By _type"
+msgstr "Op _type"
+
+#: ../baobab.glade.h:10
+msgid "Depth level:"
+msgstr "Diepte:"
+
+#: ../baobab.glade.h:11
+msgid "Directory tree"
+msgstr "Mappenboom"
+
+#: ../baobab.glade.h:12
+msgid "Enable auto-detect monitoring of home directory"
+msgstr "Persoonlijke map in de gaten houden"
+
+#: ../baobab.glade.h:13
+msgid "Enter a file name to search:"
+msgstr "Geef een bestandsnaam om naar te zoeken:"
+
+#: ../baobab.glade.h:14
+msgid "Exact matching search"
+msgstr "Exact overeenkomende tekst"
+
+#: ../baobab.glade.h:15
+msgid "Extended search"
+msgstr "Uitgebreid zoeken"
+
+#: ../baobab.glade.h:16
+msgid "File search"
+msgstr "Bestand zoeken"
+
+#: ../baobab.glade.h:17
+msgid "Filesystem"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:14 ../gsearchtool/gsearchtool.c:2498
+msgid "Folder"
+msgstr "Map"
+
+#: ../baobab.glade.h:19
+msgid "Last month"
+msgstr "Afgelopen maand"
+
+#: ../baobab.glade.h:20
+msgid "Last week"
+msgstr "Afgelopen week"
+
+#: ../baobab.glade.h:21
+msgid "Medium (< 1 MB)"
+msgstr "Gemiddeld (< 1MB)"
+
+#: ../baobab.glade.h:22
+msgid "Modification date:"
+msgstr "Datum gewijzigd:"
+
+#: ../baobab.glade.h:23
+msgid "Scan a _remote folder"
+msgstr "Map op _afstand doorzoeken"
+
+#: ../baobab.glade.h:24
+msgid "Scan a remote folder"
+msgstr "Map op afstand doorzoeken"
+
+#: ../baobab.glade.h:25
+#, fuzzy
+msgid "Scan a selected f_older"
+msgstr "Een _map doorzoeken"
+
+#: ../baobab.glade.h:26
+#, fuzzy
+msgid "Scan a selected folder"
+msgstr "Map op afstand doorzoeken"
+
+#: ../baobab.glade.h:27
+msgid "Scan preferences"
+msgstr "Voorkeuren"
+
+#: ../baobab.glade.h:28
+msgid "Scan the whole _filesystem"
+msgstr "Hele bestands_systeem doorzoeken"
+
+#: ../baobab.glade.h:29
+msgid "Scan the whole filesystem"
+msgstr "Hele bestandssysteem doorzoeken"
+
+#: ../baobab.glade.h:30
+msgid "Search"
+msgstr ""
+
+#: ../baobab.glade.h:31
+msgid "Search for a file"
+msgstr "Bestand zoeken"
+
+#: ../baobab.glade.h:32
+#, fuzzy
+msgid "Search in selected folder"
+msgstr "Gekozen map doorzoeken"
+
+# herschalen
+#: ../baobab.glade.h:33
+msgid "Search the whole filesystem"
+msgstr "Hele bestandssysteem doorzoeken"
+
+#: ../baobab.glade.h:34
+msgid "Select"
+msgstr "Selecteren"
+
+#: ../baobab.glade.h:35
+msgid "Select devices to be included during system scan"
+msgstr "Kies de apparaten die doorzocht moeten worden bij een systeemscan"
+
+#: ../baobab.glade.h:36
+msgid "Show allocated disk usage instead of apparent size"
+msgstr "Toegewezen schijfruimte weergeven in plaats van schijnbare grootte"
+
+#: ../baobab.glade.h:37
+msgid "Size:"
+msgstr "Grootte:"
+
+#: ../baobab.glade.h:38
+msgid "Small (< 100 kB)"
+msgstr "Klein (< 100KB)"
+
+#: ../baobab.glade.h:39
+#, fuzzy
+msgid "Sort"
+msgstr "_Sorteren"
+
+# gnomecard/columnhdrs.c:36
+#: ../baobab.glade.h:40
+msgid "Sort by name"
+msgstr "Op naam sorteren"
+
+#: ../baobab.glade.h:41
+msgid "Sort by size"
+msgstr "op grootte sorteren"
+
+#: ../baobab.glade.h:42
+msgid "Stop"
+msgstr ""
+
+#: ../baobab.glade.h:43
+msgid "Stop scanning"
+msgstr "Scannen stoppen"
+
+#: ../baobab.glade.h:44
+msgid "Take a snapshot"
+msgstr "Een momentopname maken"
+
+#: ../baobab.glade.h:45
+msgid "Total folders:"
+msgstr "Totaal mappen:"
+
+#: ../baobab.glade.h:47
+#, no-c-format
+msgid "Zoom 100%"
+msgstr "Originele grootte"
+
+#: ../baobab.glade.h:48
+msgid "Zoom in"
+msgstr "Inzoomen"
+
+#: ../baobab.glade.h:49
+msgid "Zoom out"
+msgstr "Uitzoomen"
+
+#: ../baobab.glade.h:50
+msgid "_Actions"
+msgstr "_Acties"
+
+#: ../baobab.glade.h:51
+msgid "_File"
+msgstr "_Bestand"
+
+#: ../baobab.glade.h:52
+msgid "_Help"
+msgstr "_Hulp"
+
+#: ../baobab.glade.h:53
+msgid "_Search for a file"
+msgstr "Bestand zoeken"
+
+#: ../baobab.glade.h:54
+msgid "_Sort"
+msgstr "_Sorteren"
+
+#: ../baobab/data/baobab.glade.h:57 ../logview/logview.c:122
+msgid "_Statusbar"
+msgstr "_Statusbalk"
+
+#: ../baobab.glade.h:56
+msgid "_Toolbar"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:61 ../logview/logview.c:87
+msgid "_View"
+msgstr "Beel_d"
+
+#. set statusbar, percentage and allocated/normal size
+#: ../src/baobab.c:168 ../src/callbacks.c:451 ../src/baobab-utils.c:219
+msgid "Calculating percentage bars..."
+msgstr "Berekenen van percentages..."
+
+# klaar
+#: ../src/baobab.c:174 ../src/baobab.c:222 ../src/baobab.c:872
+#: ../src/callbacks.c:455 ../src/baobab-utils.c:227
+msgid "Ready"
+msgstr "Voltooid"
+
+#: ../src/baobab.c:253
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: ../src/baobab.c:277
+msgid "Full path:"
+msgstr "Volledig pad:"
+
+#: ../src/baobab.c:278
+msgid "Last Modification:"
+msgstr "Laatst gewijzigd:"
+
+#: ../src/baobab.c:279
+msgid "Owner:"
+msgstr "Eigenaar:"
+
+#: ../src/baobab.c:280
+msgid "Allocated bytes:"
+msgstr "Toegewezen bytes:"
+
+#: ../src/baobab.c:451
+msgid "scanning..."
+msgstr "doorzoeken..."
+
+#: ../src/baobab.c:481
+msgid "<i>Total filesystem usage:</i>"
+msgstr "<i>Totaal gebruik:</i>"
+
+#: ../src/baobab.c:534
+msgid "contains hardlinks for:"
+msgstr "bevat koppelingen voor:"
+
+#: ../src/baobab.c:543
+#, c-format
+msgid "% 5d object"
+msgid_plural "% 5d objects"
+msgstr[0] "% 5d object"
+msgstr[1] "% 5d objecten"
+
+#: ../src/baobab.c:605
+msgid "Invalid UTF-8 characters"
+msgstr "Ongeldige UTF-8-tekens"
+
+#: ../src/baobab.c:782
+msgid ""
+"Cannot initialize GNOME VFS monitoring\n"
+"Some real-time auto-detect function will not be available!"
+msgstr ""
+"Kan GNOME VFS niet initialiseren\n"
+"Niet alle real-time functies zijn beschikbaar."
+
+#: ../src/callbacks.c:76
+#, fuzzy
+msgid "A graphical tool to analyse disk usage."
+msgstr "Een grafisch hulpmiddel om mappenbomen te analyseren"
+
+#: ../src/callbacks.c:85
+msgid "translator-credits"
+msgstr ""
+"Vincent van Adrighem\n"
+"\n"
+"Kijk voor meer informatie op http://nl.gnome.org"
+
+#: ../src/callbacks.c:287 ../src/baobab-utils.c:817
+msgid "The document does not exist."
+msgstr "Het document bestaat niet."
+
+#: ../src/baobab-treeview.c:82
+msgid ""
+"<i>Use Menu->Actions->Search for a file, or the search toolbar button.</i>"
+msgstr ""
+"<i>Gebruik menu Acties ->Bestand zoeken, of de knop op de werkbalk.</i>"
+
+#: ../src/baobab-utils.c:100
+#, fuzzy
+msgid "Select a folder"
+msgstr "Kies een map"
+
+#. add extra widget
+#: ../src/baobab-utils.c:112
+#, fuzzy
+msgid "Show hidden folders"
+msgstr "Verborgen mappen weergeven"
+
+#: ../src/baobab-utils.c:192
+msgid "Scanning..."
+msgstr "doorzoeken..."
+
+#: ../src/baobab-utils.c:348 ../src/baobab-utils.c:352
+#, fuzzy, c-format
+msgid "%s is not a valid folder"
+msgstr "'%s is geen geldige map"
+
+#: ../src/baobab-utils.c:393
+msgid "Folder graphical map"
+msgstr ""
+
+#: ../src/baobab-utils.c:397
+msgid "List all files in folder"
+msgstr "Alle bestanden in map weergeven"
+
+#: ../src/baobab-utils.c:497
+msgid "Please provide a file name to search for!"
+msgstr "Geef een bestandsnaam om naar te zoeken!"
+
+#: ../src/baobab-utils.c:677
+msgid "Total filesystem capacity:"
+msgstr "Totale capaciteit:"
+
+#: ../src/baobab-utils.c:677
+msgid "used:"
+msgstr "gebruikt:"
+
+#: ../src/baobab-utils.c:678
+msgid "available:"
+msgstr "beschikbaar:"
+
+#: ../src/baobab-utils.c:716
+msgid "Found:"
+msgstr "gevonden:"
+
+#: ../src/baobab-utils.c:717
+msgid "file"
+msgstr "bestand"
+
+#: ../src/baobab-utils.c:717
+msgid "files"
+msgstr "bestanden"
+
+#: ../src/baobab-utils.c:718
+msgid "for total:"
+msgstr "van in totaal:"
+
+#: ../src/baobab-utils.c:748
+msgid "There is no installed viewer capable of displaying the document."
+msgstr ""
+"Er is geen viewer geïnstalleerd die in staat is het document weer te geven."
+
+#: ../src/baobab-utils.c:810
+msgid "Cannot find the Trash on this system!"
+msgstr "Kan de Prullenbak niet vinden op het systeem!"
+
+#: ../src/baobab-utils.c:828
+#, c-format
+msgid "Moving <b>%s</b> to trash failed: %s."
+msgstr "Verplaatsen van <b>%s</b> naar Prullenbak mislukt: %s."
+
+#: ../src/baobab-utils.c:840
+#, c-format
+msgid "Do you want to delete <b>%s</b> permanently?"
+msgstr "Wilt u <b>%s</b> permanent verwijderen?"
+
+#: ../src/baobab-utils.c:852
+#, c-format
+msgid "Deleting <b>%s</b> failed: %s."
+msgstr "Verwijderen van <b>%s</b> mislukt: %s."
+
+#: ../src/baobab-utils.c:880
+msgid ""
+"The content of your home directory has changed.\n"
+"Do you want to rescan the last tree to update the folder branch details?"
+msgstr ""
+"De inhoud van uw persoonlijke map is gewijzigd.\n"
+"Wilt u de boom opnieuw doorzoeken om de informatie bij te werken?"
+
+#: ../src/baobab-utils.c:901
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "Het afbeeldingsbestand %s kan niet gevonden worden"
+
+#: ../src/baobab-prefs.c:146
+msgid "Scan"
+msgstr "Scan"
+
+#: ../src/baobab-prefs.c:153
+msgid "Device"
+msgstr "Apparaat"
+
+#: ../src/baobab-prefs.c:161
+msgid "Mount point"
+msgstr "Koppelpunt"
+
+#: ../src/baobab-graphwin.c:156
+msgid "Cannot create pixbuf image!"
+msgstr ""
+
+#: ../src/baobab-graphwin.c:162
+msgid "Save the screenshot"
+msgstr "Schermafdruk opslaan"
+
+#: ../src/baobab-graphwin.c:186
+msgid "Image type:"
+msgstr "Type afbeelding:"
+
+#: ../src/baobab-graphwin.c:221 ../src/baobab-graphwin.c:314
+msgid "Unlimited"
+msgstr "Ongelimiteerd"
+
+#: ../src/baobab-graphwin.c:276
+msgid "Cannot allocate memory for graphical window!"
+msgstr "Kan geen geheugenruimte reserveren voor het grafische venster!"
+
+#. Main treemap window
+#: ../src/baobab-graphwin.c:304
+msgid "Graphical map for folder:"
+msgstr ""
+
+#: ../src/baobab-remote-connect-dialog.c:125
+#, c-format
+msgid "\"%s\" is not a valid location."
+msgstr "\"%s\" is geen geldige locatie."
+
+#: ../src/baobab-remote-connect-dialog.c:134
+msgid "Please check the spelling and try again."
+msgstr "Controleer de spelling en probeer opnieuw."
+
+#: ../src/baobab-remote-connect-dialog.c:160
+msgid "You must enter a name for the server."
+msgstr "Voer een naam in voor de server."
+
+#: ../src/baobab-remote-connect-dialog.c:163
+msgid "Please enter a name and try again."
+msgstr "Vul een naam in en probeer het opnieuw."
+
+#: ../src/baobab-remote-connect-dialog.c:301
+#, c-format
+msgid "%s on %s"
+msgstr "%s op %s"
+
+#: ../src/baobab-remote-connect-dialog.c:400
+msgid "_Location (URI):"
+msgstr "_Locatie (URI):"
+
+#: ../src/baobab-remote-connect-dialog.c:447
+msgid "_Server:"
+msgstr "_Server:"
+
+#: ../src/baobab-remote-connect-dialog.c:466
+msgid "Optional information:"
+msgstr "Optionele informatie:"
+
+#: ../src/baobab-remote-connect-dialog.c:478
+msgid "_Share:"
+msgstr "_Gedeelde map:"
+
+#: ../src/baobab-remote-connect-dialog.c:499
+msgid "_Port:"
+msgstr "_Poort:"
+
+#: ../src/baobab-remote-connect-dialog.c:519
+msgid "_Folder:"
+msgstr "_Map:"
+
+#: ../src/baobab-remote-connect-dialog.c:539
+msgid "_User Name:"
+msgstr "_Gebruikersnaam:"
+
+#: ../src/baobab-remote-connect-dialog.c:560
+msgid "_Domain Name:"
+msgstr "_Domeinnaam:"
+
+#: ../src/baobab-remote-connect-dialog.c:620
+msgid "Connect to a remote folder"
+msgstr "Verbinden met een map op afstand"
+
+#: ../src/baobab-remote-connect-dialog.c:637
+msgid "Service _type:"
+msgstr "Server-_type:"
+
+#: ../src/baobab-remote-connect-dialog.c:646
+msgid "SSH"
+msgstr "SSH"
+
+#: ../src/baobab-remote-connect-dialog.c:648
+msgid "Public FTP"
+msgstr "Publieke FTP"
+
+#: ../src/baobab-remote-connect-dialog.c:650
+msgid "FTP (with login)"
+msgstr "FTP (met aanmelden)"
+
+#: ../src/baobab-remote-connect-dialog.c:652
+msgid "Windows share"
+msgstr "Windows gedeelde map"
+
+#: ../src/baobab-remote-connect-dialog.c:654
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../src/baobab-remote-connect-dialog.c:656
+msgid "Secure WebDAV (HTTPS)"
+msgstr "Beveiligde WebDAV (HTTPS)"
+
+#: ../src/baobab-remote-connect-dialog.c:658
+msgid "Custom Location"
+msgstr "Aangepaste locatie"
+
+#: ../src/baobab-remote-connect-dialog.c:714
+msgid "C_onnect"
+msgstr "_Verbinden"
+
+#: ../baobab/data/baobab.desktop.in.in.h:2
+msgid "Baobab - Disk Usage Analyser"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:1
+#, fuzzy
+msgid "<b>File Size</b>"
+msgstr "<b>Voorbeeld</b>"
+
+#: ../baobab/data/baobab.glade.h:2
+msgid "<b>Modification Date</b>"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:3
+#, fuzzy
+msgid "<b>Search Options</b>"
+msgstr "<b>Opties</b>"
+
+#: ../baobab/data/baobab.glade.h:4
+#, fuzzy
+msgid "A_dvanced Options"
+msgstr "E_xtra instellingen"
+
+#: ../baobab/data/baobab.glade.h:5
+msgid "A_ny"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:6
+msgid "Allocated _space"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:7
+msgid "An_y"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:8
+#, fuzzy
+msgid "Directory Tree"
+msgstr "Woordenboekserver"
+
+#: ../baobab/data/baobab.glade.h:9
+msgid "Disk Usage Analyser"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:10
+#, fuzzy
+msgid "Disk Usage Analyser Preferences"
+msgstr "Woordenboek-voorkeuren"
+
+#: ../baobab/data/baobab.glade.h:11
+msgid "Exact _match"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:12
+#, fuzzy
+msgid "File Search"
+msgstr "Snelzoeken uitschakelen"
+
+#: ../baobab/data/baobab.glade.h:15
+msgid "Last m_onth"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:16
+msgid "Last wee_k"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:17
+msgid "Medi_um (< 1 MB)"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:18
+msgid "Scan Selected F_older..."
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:19
+msgid "Scan _Filesystem"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:20
+msgid "Scan _Remote Folder..."
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:24
+#, fuzzy
+msgid "Se_arch in selected folder:"
+msgstr "Opslaan in _map:"
+
+#: ../baobab/data/baobab.glade.h:26
+#, fuzzy
+msgid "Search for File"
+msgstr "Naar bestanden zoeken"
+
+#: ../baobab/data/baobab.glade.h:28
+#, fuzzy
+msgid "Search the _whole filesystem"
+msgstr "Andere bestandssystemen meenemen"
+
+#: ../baobab/data/baobab.glade.h:29
+msgid "Select _devices to be included during system scan:"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:31
+msgid "Sma_ll (< 100 kB)"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:42
+msgid "_Analyser"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:43
+#, fuzzy
+msgid "_Browse..."
+msgstr "Bladeren"
+
+#. Help menu
+#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:841
+#: ../logview/logview.c:114
+msgid "_Contents"
+msgstr "In_houd"
+
+#: ../baobab/data/baobab.glade.h:45
+#, fuzzy
+msgid "_Date"
+msgstr "_Plakken"
+
+#: ../baobab/data/baobab.glade.h:46
+msgid "_Depth level:"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:801
+#: ../logview/logview.c:86
+msgid "_Edit"
+msgstr "Be_werken"
+
+#: ../baobab/data/baobab.glade.h:48
+msgid "_Enable auto-detect monitoring of home directory"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:49
+msgid "_Extended search"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:50
+msgid "_Find..."
+msgstr "_Zoeken..."
+
+#: ../baobab/data/baobab.glade.h:51
+msgid "_Graphical Usage Map"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:53
+#, fuzzy
+msgid "_Name"
+msgstr "_Naam:"
+
+#: ../baobab/data/baobab.glade.h:54
+#, fuzzy
+msgid "_Search for file:"
+msgstr "Naar bestanden zoeken"
+
+#: ../baobab/data/baobab.glade.h:55
+#, fuzzy
+msgid "_Size"
+msgstr "Grootte"
+
+#: ../baobab/data/baobab.glade.h:56
+msgid "_Sort By"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:59
+#, fuzzy
+msgid "_Total folders:"
+msgstr "_Beginnen in map:"
+
+#: ../baobab/data/baobab.glade.h:60
+#, fuzzy
+msgid "_Type"
+msgstr "Type"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:620
+msgid "Connect to a Remote Folder"
+msgstr ""
+
+#: ../baobab/src/baobab-treeview.c:83
+msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:101
+#, fuzzy
+msgid "Select a Folder"
+msgstr "Selecteer een map"
+
+#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:437
+#, fuzzy
+msgid "Remove from Trash"
+msgstr "Naar pr_ullenbak verplaatsen"
+
+#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:440
+#, fuzzy
+msgid "Move to Trash"
+msgstr "Naar pr_ullenbak verplaatsen"
+
+#: ../baobab/src/baobab-utils.c:443
+#, fuzzy
+msgid "Scan Folder"
+msgstr "Map"
+
+#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:774
+msgid "There was an error displaying help."
+msgstr "Er is een fout opgetreden bij het weergeven van de hulp."
+
+#: ../baobab/src/callbacks.c:524
+#, fuzzy
+msgid "The folder does not exist."
+msgstr "Het document bestaat niet."
+
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Diskettes formatteren"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
-msgid "Format Floppy Disks"
+#, fuzzy
+msgid "Format floppy disks"
 msgstr "Diskettes formatteren"
 
 #: ../gfloppy/gfloppy.schemas.in.h:1
@@ -458,13 +1248,18 @@ msgstr "Onjuiste volumennaam"
 msgid "The volume name can't contain any blank space."
 msgstr "De volumennaam kan geen lege spatie bevatten."
 
-#: ../gfloppy/src/main.c:576
+#: ../gfloppy/src/main.c:575
 msgid "The device to format"
 msgstr "Het apparaat om te formatteren"
 
-#: ../gfloppy/src/main.c:577
+#: ../gfloppy/src/main.c:575
 msgid "DEVICE"
 msgstr "APPARAAT"
+
+#: ../gfloppy/src/main.c:583
+#, fuzzy
+msgid "- Floppy Formatter"
+msgstr "Diskettes formatteren"
 
 #: ../gfloppy/src/progress.c:126
 #, c-format
@@ -510,21 +1305,16 @@ msgid "Cl_ear"
 msgstr "_Wissen"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:838 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:843 ../logview/logview.c:116
 msgid "_About"
 msgstr "I_nfo"
-
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:798 ../logview/logview.c:88
-msgid "_Help"
-msgstr "_Hulp"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:4
 msgid "_Look Up Selected Text"
 msgstr "Geselecteerde tekst op_zoeken"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:822
+#: ../gnome-dictionary/src/gdict-window.c:827
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
@@ -538,8 +1328,9 @@ msgstr "Op_slaan:"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:409
-#: ../gnome-dictionary/src/gdict-window.c:1203
+#: ../gnome-dictionary/src/gdict-app.c:471
+#: ../gnome-dictionary/src/gdict-window.c:365
+#: ../gnome-dictionary/src/gdict-window.c:1211
 msgid "Dictionary"
 msgstr "Woordenboek"
 
@@ -697,8 +1488,8 @@ msgid "H_ostname:"
 msgstr "_Hostnaam:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:230
-#: ../gnome-dictionary/src/gdict-window.c:594
+#: ../gnome-dictionary/src/gdict-applet.c:231
+#: ../gnome-dictionary/src/gdict-window.c:599
 msgid "Print"
 msgstr "_Afdrukken"
 
@@ -718,10 +1509,6 @@ msgstr "E_xtra instellingen"
 msgid "_Description:"
 msgstr "_Omschrijving"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
-msgid "_Port:"
-msgstr "_Poort:"
-
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
 msgid "_Print font:"
 msgstr "_Afdruklettertype:"
@@ -737,10 +1524,6 @@ msgstr "_Strategie:"
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
 msgid "_Transport:"
 msgstr "_Transport:"
-
-#: ../gnome-dictionary/data/french.desktop.in.h:1
-msgid "French Dictionaries from Wikipedia"
-msgstr "Franse woordenboeken van Wikipedia"
 
 #: ../gnome-dictionary/data/spanish.desktop.in.h:1
 msgid "Spanish Dictionaries"
@@ -854,12 +1637,12 @@ msgstr "Geen database gevonden op woordenboekserver op '%s'"
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Geen strategieën gevonden op woordenboekserver '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1664
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1708
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Verbinding mislukt voor de woordenboekserver op %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1703
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1747
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -868,22 +1651,22 @@ msgstr ""
 "Fout bij het lezen van het antwoord van server:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1774
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1820
 msgid "No hostname defined for the dictionary server"
 msgstr "Geen hostnaam opgegeven voor de woordenboekserver"
 
 # ontvanger?/socket/contactdoos
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1810
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1825
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1856
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1871
 msgid "Unable to create socket"
 msgstr "Kon geen 'socket' aanmaken"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1897
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Kon het kanaal niet instellen als non-blocking: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1866
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1912
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Kon geen verbinding maken met de woordenboekserver op '%s:%d'"
@@ -1039,7 +1822,7 @@ msgid "The filename used by this dictionary source"
 msgstr "De bestandsnaam die gebruikt wordt voor deze woordenboekbron"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:232
-#: ../gsearchtool/gsearchtool.c:2355
+#: ../gsearchtool/gsearchtool.c:2474
 msgid "Name"
 msgstr "Naam"
 
@@ -1128,30 +1911,10 @@ msgstr "Bronnen"
 msgid "Dictionary sources found"
 msgstr "Woordenboekbronnen gevonden"
 
-#. Translator credits
-#: ../gnome-dictionary/src/gdict-about.c:59 ../logview/about.c:47
-msgid "translator-credits"
-msgstr ""
-"Tino Meinen\n"
-"Reinout van Schouwen\n"
-"Vincent van Adrighem\n"
-"Almer S. Tigelaar\n"
-"André van Dijk \n"
-"Dennis Smit \n"
-"Huib Kleinhout \n"
-"Marc Maurer \n"
-"Mendel Mobach \n"
-"Michiel Sikkes\n"
-"Patrick Londema \n"
-"Taco Witte\n"
-"Daniel van Eeden\n"
-"\n"
-"Kijk voor meer informatie op http://nl.gnome.org/"
-
 # enkelvoud van woordenboek staat beter, meestal doorzoek
 # je maar 1 woordenboek tegelijk
 #: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:589
+#: ../gnome-dictionary/src/gdict-applet.c:610
 msgid "Look up words in dictionaries"
 msgstr "Woorden opzoeken in een woordenboek"
 
@@ -1160,26 +1923,10 @@ msgstr "Woorden opzoeken in een woordenboek"
 msgid "Unable to open the application icon: %s"
 msgstr "Kon het pictogram voor de toepassing niet openen: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:118
-#, c-format
-msgid ""
-"Unable to create the data directory '%s': there already is a file with the "
-"same name.  You should move the file and re-run gnome-dictionary."
-msgstr ""
-"Kon dat data-map '%s' niet aanmaken: er bestaat al een bestand met dezelfde "
-"naam.  U moet dit bestand verplaatsen en gnome-dictionary opnieuw opstarten."
-
-#. Translators: the first is the file name, the second is
-#. * the error message
-#: ../gnome-dictionary/src/gdict-app.c:130
-#, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr "Kan de data-map '%s' niet aanmaken: %s"
-
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:249
+#: ../gnome-dictionary/src/gdict-app.c:216
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1192,20 +1939,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:263
+#: ../gnome-dictionary/src/gdict-app.c:230
 #, c-format
 msgid "Error: %s\n"
 msgstr "Fout: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:289
+#: ../gnome-dictionary/src/gdict-app.c:256
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Zie gnome-dictionary --help voor gebruik\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:302
+#: ../gnome-dictionary/src/gdict-app.c:269
 msgid "Unable to find a suitable dictionary source"
 msgstr "Kon geen geschikte woordenboekbron vinden"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:303
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1214,191 +1961,185 @@ msgstr ""
 "Fout bij het opzoeken van de definitie van \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:348
+#: ../gnome-dictionary/src/gdict-applet.c:1421
+#, fuzzy, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "Kan de data-map '%s' niet aanmaken: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:1445
+#: ../gnome-dictionary/src/gdict-applet.c:1468
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "Kan de data-map '%s' niet aanmaken: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:430
 msgid "Words to look up"
 msgstr "De op te zoeken woorden"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:430
 msgid "word"
 msgstr "woord"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:432
 msgid "Dictionary source to use"
 msgstr "Te gebruiken woordenboekbron"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:432
 msgid "source"
 msgstr "bron"
 
-#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:434
 msgid "Show available dictionary sources"
 msgstr "Beschikbare woordenboekbronnen tonen"
 
-#: ../gnome-dictionary/src/gdict-app.c:374
+#: ../gnome-dictionary/src/gdict-app.c:436
 msgid "Print result to the console"
 msgstr "Resultaat tonen in de console"
 
-#: ../gnome-dictionary/src/gdict-app.c:376
+#: ../gnome-dictionary/src/gdict-app.c:438
 msgid "Database to use"
 msgstr "Te gebruiken database"
 
 # in woordenboeken/ in een woordenboek
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-app.c:454
 msgid " - Look up words in dictionaries"
 msgstr "- woorden opzoeken in een woordenboek"
 
 # spellingscontrole/programma
-#: ../gnome-dictionary/src/gdict-app.c:396
+#: ../gnome-dictionary/src/gdict-app.c:458
 msgid "Dictionary and spelling tool"
 msgstr "Woordenboek en spellingsprogramma"
 
 #
-#: ../gnome-dictionary/src/gdict-app.c:397
+#: ../gnome-dictionary/src/gdict-app.c:459
 msgid "Show Dictionary options"
 msgstr "Woordenboekopties tonen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:244
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:245
+#: ../gnome-dictionary/src/gdict-window.c:544
 msgid "Save a Copy"
 msgstr "Een kopie opslaan"
 
-#: ../gnome-dictionary/src/gdict-applet.c:254
-#: ../gnome-dictionary/src/gdict-window.c:549
+#: ../gnome-dictionary/src/gdict-applet.c:255
+#: ../gnome-dictionary/src/gdict-window.c:554
 msgid "Untitled document"
 msgstr "Naamloos document"
 
-#: ../gnome-dictionary/src/gdict-applet.c:275
-#: ../gnome-dictionary/src/gdict-window.c:570
+#: ../gnome-dictionary/src/gdict-applet.c:276
+#: ../gnome-dictionary/src/gdict-window.c:575
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Er is een fout opgetreden bij het schrijven naar '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Clear the definitions found"
 msgstr "De gevonden definities wissen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:387
 msgid "Clear definition"
 msgstr "Definitie wissen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:367
+#: ../gnome-dictionary/src/gdict-applet.c:388
 msgid "Clear the text of the definition"
 msgstr "De tekst van de definitie wissen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:377
+#: ../gnome-dictionary/src/gdict-applet.c:398
 msgid "Print the definitions found"
 msgstr "De gevonden definities afdrukken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:380
+#: ../gnome-dictionary/src/gdict-applet.c:401
 msgid "Print definition"
 msgstr "Definitie afdrukken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:381
+#: ../gnome-dictionary/src/gdict-applet.c:402
 msgid "Print the text of the definition"
 msgstr "De tekst van de definitie afdrukken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:391
+#: ../gnome-dictionary/src/gdict-applet.c:412
 msgid "Save the definitions found"
 msgstr "De gevonden definities opslaan"
 
-#: ../gnome-dictionary/src/gdict-applet.c:394
+#: ../gnome-dictionary/src/gdict-applet.c:415
 msgid "Save definition"
 msgstr "Definitie opslaan"
 
-#: ../gnome-dictionary/src/gdict-applet.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:416
 msgid "Save the text of the definition to a file"
 msgstr "De tekst van de definitie opslaan in een bestand"
 
-#: ../gnome-dictionary/src/gdict-applet.c:529
+#: ../gnome-dictionary/src/gdict-applet.c:550
 msgid "Toggle dictionary window"
 msgstr "Woordenboekvenster aan/uit"
 
-#: ../gnome-dictionary/src/gdict-applet.c:530
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Show or hide the definition window"
 msgstr "Het definitievenster tonen of verbergen"
 
 # klikken/klik hier/klik/
-#: ../gnome-dictionary/src/gdict-applet.c:533
+#: ../gnome-dictionary/src/gdict-applet.c:554
 msgid "Click to view the dictionary window"
 msgstr "Klik hier om het woordenboekvenster te tonen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:588
+#: ../gnome-dictionary/src/gdict-applet.c:609
 msgid "Dictionary entry"
 msgstr "Woordenboek invoer"
 
 # dat/wat/welke
-#: ../gnome-dictionary/src/gdict-applet.c:592
+#: ../gnome-dictionary/src/gdict-applet.c:613
 msgid "Type the word you want to look up"
 msgstr "Toets het woord in dat u wilt opzoeken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:726
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: ../gnome-dictionary/src/gdict-applet.c:758
+#: ../gnome-dictionary/src/gdict-applet.c:779
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:760
+#: ../gnome-dictionary/src/gdict-window.c:765
 msgid "There was an error while displaying help"
 msgstr "Er is een fout opgetreden bij het weergeven van de hulp"
 
-#: ../gnome-dictionary/src/gdict-applet.c:917
-#: ../gnome-dictionary/src/gdict-window.c:269
+#: ../gnome-dictionary/src/gdict-applet.c:938
+#: ../gnome-dictionary/src/gdict-window.c:270
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Geen woordenboekbron beschikbaar met de naam '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:921
-#: ../gnome-dictionary/src/gdict-window.c:273
+#: ../gnome-dictionary/src/gdict-applet.c:942
+#: ../gnome-dictionary/src/gdict-window.c:274
 msgid "Unable to find dictionary source"
 msgstr "Kon geen woordenboekbron vinden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:937
-#: ../gnome-dictionary/src/gdict-window.c:289
+#: ../gnome-dictionary/src/gdict-applet.c:958
+#: ../gnome-dictionary/src/gdict-window.c:290
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Geen context beschikbaar voor bron '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:941
-#: ../gnome-dictionary/src/gdict-window.c:293
+#: ../gnome-dictionary/src/gdict-applet.c:962
+#: ../gnome-dictionary/src/gdict-window.c:294
 msgid "Unable to create a context"
 msgstr "Kon geen context aanmaken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1215
-#: ../gnome-dictionary/src/gdict-applet.c:1232
-#, c-format
-msgid "Unable to create the data directory '%s'"
-msgstr "Kan de data-map niet aanmaken '%s'"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1216
-msgid ""
-"There is a file with the same name in the path.\n"
-"You should move the file and re-run the\n"
-"Dictionary applet"
-msgstr ""
-"Er is een bestand met dezelfde naam in het pad.\n"
-"U moet het bestand verplaatsen en het\n"
-"woordenboek-applet opnieuw opstarten"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1252
+#: ../gnome-dictionary/src/gdict-applet.c:1243
 msgid "Unable to load the applet icon"
 msgstr "Kon het pictogram voor de toepassing niet laden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1281
-#: ../gnome-dictionary/src/gdict-window.c:1312
+#: ../gnome-dictionary/src/gdict-applet.c:1272
+#: ../gnome-dictionary/src/gdict-window.c:1320
 msgid "Unable to connect to GConf"
 msgstr "Kon geen verbinding maken met GConf"
 
 # hint/mededelingen/indicatie/
-#: ../gnome-dictionary/src/gdict-applet.c:1296
-#: ../gnome-dictionary/src/gdict-window.c:1328
+#: ../gnome-dictionary/src/gdict-applet.c:1287
+#: ../gnome-dictionary/src/gdict-window.c:1336
 msgid "Unable to get notification for preferences"
 msgstr "Kon geen mededelingen verkrijgen voor de voorkeuren"
 
 # hint/mededelingen/indicatie/
-#: ../gnome-dictionary/src/gdict-applet.c:1311
-#: ../gnome-dictionary/src/gdict-window.c:1344
+#: ../gnome-dictionary/src/gdict-applet.c:1302
+#: ../gnome-dictionary/src/gdict-window.c:1352
 msgid "Unable to get notification for the document font"
 msgstr "Kon geen mededelingen verkrijgen voor het document-lettertype"
 
@@ -1457,121 +2198,106 @@ msgid "Searching for '%s'..."
 msgstr "Zoeken naar '%s'..."
 
 #: ../gnome-dictionary/src/gdict-window.c:199
-#: ../gnome-dictionary/src/gdict-window.c:220
+#: ../gnome-dictionary/src/gdict-window.c:221
 msgid "No definitions found"
 msgstr "Geen definities gevonden"
 
 #: ../gnome-dictionary/src/gdict-window.c:201
+#, fuzzy, c-format
 msgid "A definition found"
-msgstr "Definitie gevonden"
+msgid_plural "%d definitions found"
+msgstr[0] "Definitie gevonden"
+msgstr[1] "Definitie gevonden"
 
-#: ../gnome-dictionary/src/gdict-window.c:203
-#, c-format
-msgid "%d definitions found"
-msgstr "%d definities gevonden"
-
-#: ../gnome-dictionary/src/gdict-window.c:361
+#: ../gnome-dictionary/src/gdict-window.c:363
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Woordenboek"
 
-#: ../gnome-dictionary/src/gdict-window.c:679
+#: ../gnome-dictionary/src/gdict-window.c:684
 msgid "Dictionary Preferences"
 msgstr "Woordenboek-voorkeuren"
 
-#: ../gnome-dictionary/src/gdict-window.c:795
-msgid "_File"
-msgstr "_Bestand"
-
-#: ../gnome-dictionary/src/gdict-window.c:796 ../logview/logview.c:86
-msgid "_Edit"
-msgstr "Be_werken"
-
-#: ../gnome-dictionary/src/gdict-window.c:797
+#: ../gnome-dictionary/src/gdict-window.c:802
 msgid "_Go"
 msgstr "_Ga naar"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:801
+#: ../gnome-dictionary/src/gdict-window.c:806
 msgid "_New"
 msgstr "_Nieuw"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:807
 msgid "New look up"
 msgstr "Nieuw zoekopdracht"
 
-#: ../gnome-dictionary/src/gdict-window.c:803
+#: ../gnome-dictionary/src/gdict-window.c:808
 msgid "_Save a Copy..."
 msgstr "Een kopie op_slaan..."
 
-#: ../gnome-dictionary/src/gdict-window.c:805
+#: ../gnome-dictionary/src/gdict-window.c:810
 msgid "_Print..."
 msgstr "_Afdrukken..."
 
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:811
 msgid "Print this document"
 msgstr "Dit document afdrukken"
 
-#: ../gnome-dictionary/src/gdict-window.c:813 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:818 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "_Alles selecteren"
 
-#: ../gnome-dictionary/src/gdict-window.c:816
+#: ../gnome-dictionary/src/gdict-window.c:821
 msgid "Find a word or phrase in the document"
 msgstr "Zoek een woord of frase in het document"
 
-#: ../gnome-dictionary/src/gdict-window.c:818
+#: ../gnome-dictionary/src/gdict-window.c:823
 msgid "Find Ne_xt"
 msgstr "V_olgende zoeken"
 
-#: ../gnome-dictionary/src/gdict-window.c:820
+#: ../gnome-dictionary/src/gdict-window.c:825
 msgid "Find Pre_vious"
 msgstr "Vo_rige zoeken"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:826
+#: ../gnome-dictionary/src/gdict-window.c:831
 msgid "_Previous Definition"
 msgstr "Vo_rige definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:832
 msgid "Go to the previous definition"
 msgstr "Ga naar de vorige definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:828
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "_Next Definition"
 msgstr "V_olgende definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:829
+#: ../gnome-dictionary/src/gdict-window.c:834
 msgid "Go to the next definition"
 msgstr "Ga naar de volgende definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:830
+#: ../gnome-dictionary/src/gdict-window.c:835
 msgid "_First Definition"
 msgstr "_Eerste definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:836
 msgid "Go to the first definition"
 msgstr "Ga naar de eerse definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "_Last Definition"
 msgstr "_Laatste definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:838
 msgid "Go to the last definition"
 msgstr "Ga naar de laatste definitie"
 
-#. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:836 ../logview/logview.c:114
-msgid "_Contents"
-msgstr "In_houd"
-
 # zoekopdracht/opzoeken
-#: ../gnome-dictionary/src/gdict-window.c:1125
+#: ../gnome-dictionary/src/gdict-window.c:1133
 msgid "Look _up:"
 msgstr "_Opzoeken:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1368
+#: ../gnome-dictionary/src/gdict-window.c:1376
 msgid "Unable to load the application icon"
 msgstr "Kon het pictogram voor de toepassing niet laden"
 
@@ -1639,21 +2365,47 @@ msgid "Unable to take a screenshot of the current desktop."
 msgstr "Kon geen schermafdruk maken van het huidige werkblad."
 
 # "Een plaatje schieten"
-#: ../gnome-screenshot/gnome-panel-screenshot.c:438
+#: ../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "Grab a window instead of the entire screen"
 msgstr "Een vensterafdruk maken in plaats van het hele scherm"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:439
+#: ../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "Include the window border with the screenshot"
 msgstr "De vensterrand in de schermafdruk opnemen"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:440
+#: ../gnome-screenshot/gnome-panel-screenshot.c:441
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Schermafdruk maken na aangegeven vertraging [in seconden]"
 
 #: ../gnome-screenshot/gnome-panel-screenshot.c:441
-msgid "Effect to add to the window border"
+msgid "seconds"
+msgstr ""
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:442
+#, fuzzy
+msgid "Effect to add to the border"
 msgstr "Het aan vensterrand toe te voegen effect"
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:442
+#, fuzzy
+msgid "effect"
+msgstr "Vensterrand-effect"
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:452
+msgid "Options for Screenshot"
+msgstr ""
+
+#
+#: ../gnome-screenshot/gnome-panel-screenshot.c:453
+#, fuzzy
+msgid "Show Screenshot options"
+msgstr "Woordenboekopties tonen"
+
+# "Een plaatje schieten"
+#: ../gnome-screenshot/gnome-panel-screenshot.c:457
+#, fuzzy
+msgid "Take a picture of the screen"
+msgstr "Een vensterafdruk maken in plaats van het hele scherm"
 
 #: ../gnome-screenshot/gnome-panel-screenshot.glade.h:2
 msgid "<b>Options</b>"
@@ -1712,7 +2464,7 @@ msgstr "Schermafdruk map"
 msgid "The directory the last screenshot was saved in."
 msgstr "Map waar het schermafdrukprogramma het laatst in heeft opgeslagen"
 
-#: ../gnome-screenshot/screenshot-dialog.c:195
+#: ../gnome-screenshot/screenshot-dialog.c:197
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -1720,14 +2472,10 @@ msgstr ""
 "Het glade-bestand voor het schermafdruk-programma ontbreekt.\n"
 "Controleer uw installatie van gnome-utils"
 
-#: ../gnome-screenshot/screenshot-dialog.c:214
-msgid "Select a directory"
-msgstr "Selecteer een map"
-
 #: ../gnome-screenshot/screenshot-save.c:41
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Unable to clear the temporary directory:\n"
+"Unable to clear the temporary folder:\n"
 "%s"
 msgstr ""
 "Kan tijdelijke map niet leegmaken:\n"
@@ -1746,7 +2494,7 @@ msgstr ""
 msgid "Unknown error saving screenshot to disk"
 msgstr "Onbekende fout opgetreden bij het opslaan van schermafdruk naar schijf"
 
-#: ../gnome-screenshot/screenshot-utils.c:610
+#: ../gnome-screenshot/screenshot-utils.c:612
 msgid "Untitled Window"
 msgstr "Naamloos venster"
 
@@ -1774,8 +2522,8 @@ msgid "Unknown GnomeVFSXferProgressStatus %d"
 msgstr "Onbekende GnomeVFSXferProgressStatus %d"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Find files, folders, and documents on your computer"
-msgstr "Bestanden, mappen en documenten zoeken op uw computer"
+msgid "Locate documents and folders on this computer by name or content"
+msgstr ""
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
@@ -2139,16 +2887,6 @@ msgstr "Kon map \"%s\" niet openen."
 msgid "The nautilus file manager is not running."
 msgstr "Het nautilus-bestandsbeheer is niet actief."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:470
-#: ../gsearchtool/gsearchtool-callbacks.c:811
-msgid "The document does not exist."
-msgstr "Het document bestaat niet."
-
-#: ../gsearchtool/gsearchtool-callbacks.c:485
-msgid "There is no installed viewer capable of displaying the document."
-msgstr ""
-"Er is geen viewer geïnstalleerd die in staat is het document weer te geven."
-
 #: ../gsearchtool/gsearchtool-callbacks.c:509
 #, c-format
 msgid "Are you sure you want to open %d folder?"
@@ -2259,7 +2997,7 @@ msgstr "koppeling (verbroken)"
 msgid "link to %s"
 msgstr "verwijzing naar %s"
 
-#: ../gsearchtool/gsearchtool.c:81
+#: ../gsearchtool/gsearchtool.c:82
 msgid "Contains the _text"
 msgstr "Bevat de _tekst"
 
@@ -2269,170 +3007,170 @@ msgstr "Bevat de _tekst"
 # Gewijzigd minder dan (dagen) geleden
 # In de laatste (dagen) gewijzigd
 # Wijzigingsdatum minder dan (dagen) geleden
-#: ../gsearchtool/gsearchtool.c:83
+#: ../gsearchtool/gsearchtool.c:84
 msgid "_Date modified less than"
 msgstr "Mi_nder dan (dagen) geleden gewijzigd"
 
-#: ../gsearchtool/gsearchtool.c:83 ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:84 ../gsearchtool/gsearchtool.c:85
 msgid "days"
 msgstr "dagen"
 
-#: ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:85
 msgid "Date modified more than"
 msgstr "M_eer dan (dagen) geleden gewijzigd"
 
-#: ../gsearchtool/gsearchtool.c:86
+#: ../gsearchtool/gsearchtool.c:87
 msgid "S_ize at least"
 msgstr "Grootte _tenminste (kilobyte)"
 
 # enkelvoud gemaakt: (wij zeggen 15 kilobyte)
-#: ../gsearchtool/gsearchtool.c:86 ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:87 ../gsearchtool/gsearchtool.c:88
 msgid "kilobytes"
 msgstr "kilobyte"
 
-#: ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:88
 msgid "Si_ze at most"
 msgstr "Grootte _hoogstens (kilobyte)"
 
-#: ../gsearchtool/gsearchtool.c:88
+#: ../gsearchtool/gsearchtool.c:89
 msgid "File is empty"
 msgstr "Bestand is leeg"
 
-#: ../gsearchtool/gsearchtool.c:90
+#: ../gsearchtool/gsearchtool.c:91
 msgid "Owned by _user"
 msgstr "Eigendom van gebr_uiker"
 
-#: ../gsearchtool/gsearchtool.c:91
+#: ../gsearchtool/gsearchtool.c:92
 msgid "Owned by _group"
 msgstr "Eigendom van _groep"
 
 # bekend klinkt beter dan herkend, komt op hetzelfde neer?
-#: ../gsearchtool/gsearchtool.c:92
+#: ../gsearchtool/gsearchtool.c:93
 msgid "Owner is unrecognized"
 msgstr "Eigenaar is niet bekend"
 
-#: ../gsearchtool/gsearchtool.c:94
+#: ../gsearchtool/gsearchtool.c:95
 msgid "Na_me does not contain"
 msgstr "N_aam bevat niet"
 
-#: ../gsearchtool/gsearchtool.c:95
+#: ../gsearchtool/gsearchtool.c:96
 msgid "Name matches regular e_xpression"
 msgstr "Naam komt overeen met reguliere e_xpressie"
 
-#: ../gsearchtool/gsearchtool.c:97
+#: ../gsearchtool/gsearchtool.c:98
 msgid "Show hidden and backup files"
 msgstr "Verborgen bestanden en backupbestanden tonen"
 
-#: ../gsearchtool/gsearchtool.c:98
+#: ../gsearchtool/gsearchtool.c:99
 msgid "Follow symbolic links"
 msgstr "Volg symbolische verwijzingen"
 
-#: ../gsearchtool/gsearchtool.c:99
+#: ../gsearchtool/gsearchtool.c:100
 msgid "Include other filesystems"
 msgstr "Andere bestandssystemen meenemen"
 
-#: ../gsearchtool/gsearchtool.c:180
+#: ../gsearchtool/gsearchtool.c:181
 msgid "_Open"
 msgstr "_Openen"
 
-#: ../gsearchtool/gsearchtool.c:181
+#: ../gsearchtool/gsearchtool.c:182
 msgid "O_pen Folder"
 msgstr "Map _openen"
 
-#: ../gsearchtool/gsearchtool.c:182
+#: ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Naar pr_ullenbak verplaatsen"
 
-#: ../gsearchtool/gsearchtool.c:183
+#: ../gsearchtool/gsearchtool.c:184
 msgid "_Save Results As..."
 msgstr "Resultaten opslaan _als..."
 
-#: ../gsearchtool/gsearchtool.c:255 ../gsearchtool/gsearchtool.c:272
+#: ../gsearchtool/gsearchtool.c:390
 msgid "A locate database has probably not been created."
 msgstr "Er is waarschijnlijk nog geen zoekdatabase aangemaakt."
 
-#: ../gsearchtool/gsearchtool.c:376
+#: ../gsearchtool/gsearchtool.c:492
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Tekenset-conversie mislukt voor \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:796 ../gsearchtool/gsearchtool.c:825
+#: ../gsearchtool/gsearchtool.c:516
+msgid "Searching..."
+msgstr "Bezig met zoeken..."
+
+#: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3150
+msgid "Search for Files"
+msgstr "Naar bestanden zoeken"
+
+#: ../gsearchtool/gsearchtool.c:967 ../gsearchtool/gsearchtool.c:996
 msgid "No files found"
 msgstr "Geen bestanden gevonden"
 
 # we weten niet wat de reden is (afgebroken, voltooid, fout)
-#: ../gsearchtool/gsearchtool.c:818
+#: ../gsearchtool/gsearchtool.c:989
 msgid "(stopped)"
 msgstr "(gestopt)"
 
-#: ../gsearchtool/gsearchtool.c:824
+#: ../gsearchtool/gsearchtool.c:995
 msgid "No Files Found"
 msgstr "Geen bestanden gevonden"
 
-#: ../gsearchtool/gsearchtool.c:829
+#: ../gsearchtool/gsearchtool.c:1000
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "%d bestand gevonden"
 msgstr[1] "%d bestanden gevonden"
 
-#: ../gsearchtool/gsearchtool.c:833 ../gsearchtool/gsearchtool.c:871
+#: ../gsearchtool/gsearchtool.c:1004 ../gsearchtool/gsearchtool.c:1042
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "%d bestand gevonden"
 msgstr[1] "%d bestanden gevonden"
 
-#: ../gsearchtool/gsearchtool.c:850 ../gsearchtool/gsearchtool.c:1128
-#: ../gsearchtool/gsearchtool.c:1214 ../gsearchtool/gsearchtool.c:3026
-msgid "Search for Files"
-msgstr "Naar bestanden zoeken"
-
-#: ../gsearchtool/gsearchtool.c:962
+#: ../gsearchtool/gsearchtool.c:1133
 msgid "Entry changed called for a non entry option!"
 msgstr "Veranderde invoer riep een niet-invoeroptie aan!"
 
-#: ../gsearchtool/gsearchtool.c:1214
-msgid "Searching..."
-msgstr "Bezig met zoeken..."
-
-#: ../gsearchtool/gsearchtool.c:1237
+#: ../gsearchtool/gsearchtool.c:1384
 msgid "Set the text of \"Name contains\" search option"
 msgstr "De tekst voor de zoekoptie \"Naam bevat\" invoeren"
 
 # dit zijn de tooltips?
-#: ../gsearchtool/gsearchtool.c:1238
+#: ../gsearchtool/gsearchtool.c:1385
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "De tekst voor de zoekoptie \"Beginnen in map\" invoeren"
 
-#: ../gsearchtool/gsearchtool.c:1239
+#: ../gsearchtool/gsearchtool.c:1386
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Bestanden sorteren op één van de volgende: naam, map, grootte, type of datum"
 
-#: ../gsearchtool/gsearchtool.c:1240
+#: ../gsearchtool/gsearchtool.c:1387
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Sorteervolgorde instellen op aflopend, oplopend is standaard"
 
-#: ../gsearchtool/gsearchtool.c:1241
+#: ../gsearchtool/gsearchtool.c:1388
 msgid "Automatically start a search"
 msgstr "Zoekoperatie automatisch starten"
 
-#: ../gsearchtool/gsearchtool.c:1247
+#: ../gsearchtool/gsearchtool.c:1394
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "De zoekoptie \"%s\" selecteren"
 
-#: ../gsearchtool/gsearchtool.c:1250
+#: ../gsearchtool/gsearchtool.c:1397
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "De zoekoptie \"%s\" selecteren en instellen"
 
-#: ../gsearchtool/gsearchtool.c:1357
+#: ../gsearchtool/gsearchtool.c:1504
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ongeldige optie meegegeven aan 'sortby'-opdrachtregelargument"
 
-#: ../gsearchtool/gsearchtool.c:1668
+#: ../gsearchtool/gsearchtool.c:1802
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2440,7 +3178,7 @@ msgstr ""
 "\n"
 "... Teveel fouten om weer te geven ..."
 
-#: ../gsearchtool/gsearchtool.c:1682
+#: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -2448,11 +3186,11 @@ msgstr ""
 "De zoekresultaten zijn mogelijk onjuist.  Er waren fouten bij het uitvoeren "
 "van de zoekopdracht."
 
-#: ../gsearchtool/gsearchtool.c:1694 ../gsearchtool/gsearchtool.c:1738
+#: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
 msgstr "Meer _details tonen"
 
-#: ../gsearchtool/gsearchtool.c:1724
+#: ../gsearchtool/gsearchtool.c:1858
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2460,151 +3198,147 @@ msgstr ""
 "De zoekresultaten zijn mogelijk verouderd of onjuist.  Wilt u de "
 "snelzoekfunctie uitschakelen?"
 
-#: ../gsearchtool/gsearchtool.c:1749
+#: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
 msgstr "_Snel zoeken uitschakelen"
 
-#: ../gsearchtool/gsearchtool.c:1776
+#: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Instellen van process-group id van dochter %d is mislukt: %s.\n"
 
 # Fout bij verwerken van zoekopdracht
-#: ../gsearchtool/gsearchtool.c:1803
+#: ../gsearchtool/gsearchtool.c:1935
 msgid "Error parsing the search command."
 msgstr "Er is een fout opgetreden bij het verwerken van de zoekopdracht."
 
 # Fout bij uitvoeren van zoekopdracht
-#: ../gsearchtool/gsearchtool.c:1836
+#: ../gsearchtool/gsearchtool.c:1968
 msgid "Error running the search command."
 msgstr "Er is een fout opgetreden bij het uitvoeren van de zoekopdracht."
 
-#: ../gsearchtool/gsearchtool.c:1964
+#: ../gsearchtool/gsearchtool.c:2083
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Een tekstwaarde invoeren voor de zoekoptie \"%s\"."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1969
+#: ../gsearchtool/gsearchtool.c:2088
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" in %s"
 
-#: ../gsearchtool/gsearchtool.c:1971
+#: ../gsearchtool/gsearchtool.c:2090
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Een waarde invoeren in %s voor de zoekoptie \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:2030
+#: ../gsearchtool/gsearchtool.c:2149
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" verwijderen"
 
-#: ../gsearchtool/gsearchtool.c:2031
+#: ../gsearchtool/gsearchtool.c:2150
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Klik op de zoekoptie \"%s\" te verwijderen."
 
-#: ../gsearchtool/gsearchtool.c:2124
+#: ../gsearchtool/gsearchtool.c:2243
 msgid "A_vailable options:"
 msgstr "_Beschikbare opties:"
 
-#: ../gsearchtool/gsearchtool.c:2153
+#: ../gsearchtool/gsearchtool.c:2272
 msgid "Available options"
 msgstr "Beschikbare opties"
 
 # drop-down vertalen? vallijst/expansielijst?
-#: ../gsearchtool/gsearchtool.c:2154
+#: ../gsearchtool/gsearchtool.c:2273
 msgid "Select a search option from the drop-down list."
 msgstr "Selecteer een zoekoptie uit de lijst."
 
-#: ../gsearchtool/gsearchtool.c:2166
+#: ../gsearchtool/gsearchtool.c:2285
 msgid "Add search option"
 msgstr "Zoekoptie toevoegen"
 
 # beschikbare niet meevertaald
-#: ../gsearchtool/gsearchtool.c:2167
+#: ../gsearchtool/gsearchtool.c:2286
 msgid "Click to add the selected available search option."
 msgstr "Klik om de geselecteerde zoekoptie toe te voegen."
 
-#: ../gsearchtool/gsearchtool.c:2256
+#: ../gsearchtool/gsearchtool.c:2375
 msgid "S_earch results:"
 msgstr "Z_oekresultaten:"
 
-#: ../gsearchtool/gsearchtool.c:2295
+#: ../gsearchtool/gsearchtool.c:2414
 msgid "List View"
 msgstr "Lijstweergave"
 
-#: ../gsearchtool/gsearchtool.c:2379
-msgid "Folder"
-msgstr "Map"
-
-#: ../gsearchtool/gsearchtool.c:2391
+#: ../gsearchtool/gsearchtool.c:2510
 msgid "Size"
 msgstr "Grootte"
 
-#: ../gsearchtool/gsearchtool.c:2402
+#: ../gsearchtool/gsearchtool.c:2521
 msgid "Type"
 msgstr "Type"
 
-#: ../gsearchtool/gsearchtool.c:2413
+#: ../gsearchtool/gsearchtool.c:2532
 msgid "Date Modified"
 msgstr "Wijzigingsdatum"
 
-#: ../gsearchtool/gsearchtool.c:2815
+#: ../gsearchtool/gsearchtool.c:2934
 msgid "_Name contains:"
 msgstr "_Naam bevat:"
 
-#: ../gsearchtool/gsearchtool.c:2829 ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2948 ../gsearchtool/gsearchtool.c:2949
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Voer een (gedeeltelijke) bestandsnaam in, met of zonder jokers."
 
-#: ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2949
 msgid "Name contains"
 msgstr "Naam bevat"
 
-#: ../gsearchtool/gsearchtool.c:2836
+#: ../gsearchtool/gsearchtool.c:2955
 msgid "_Look in folder:"
 msgstr "_Beginnen in map:"
 
-#: ../gsearchtool/gsearchtool.c:2842
+#: ../gsearchtool/gsearchtool.c:2961
 msgid "Browse"
 msgstr "Bladeren"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Look in folder"
 msgstr "Zoeken in map"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2966
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Selecteer de map of het apparaat vanwaar u wilt beginnen met zoeken."
 
-#: ../gsearchtool/gsearchtool.c:2858
+#: ../gsearchtool/gsearchtool.c:2977
 msgid "Select more _options"
 msgstr "Meer _opties selecteren"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Select more options"
 msgstr "Meer opties selecteren"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2986
 msgid "Click to expand or collapse the list of available options."
 msgstr "Toont of verbergt een lijst met beschikbare opties."
 
-#: ../gsearchtool/gsearchtool.c:2891
+#: ../gsearchtool/gsearchtool.c:3010
 msgid "Click to display the help manual."
 msgstr "Klik om de handleiding weer te geven."
 
-#: ../gsearchtool/gsearchtool.c:2899
+#: ../gsearchtool/gsearchtool.c:3018
 msgid "Click to close \"Search for Files\"."
 msgstr "Klik om \"Bestanden zoeken\" te sluiten."
 
-#: ../gsearchtool/gsearchtool.c:2925
+#: ../gsearchtool/gsearchtool.c:3044
 msgid "Click to perform a search."
 msgstr "Klik om een zoekactie te starten."
 
-#: ../gsearchtool/gsearchtool.c:2926
+#: ../gsearchtool/gsearchtool.c:3045
 msgid "Click to stop a search."
 msgstr "Klik om een zoekactie te stoppen."
 
@@ -2687,10 +3421,6 @@ msgstr "_Wissen"
 msgid "_Log"
 msgstr "_Logboek"
 
-#: ../logview/logview.c:87
-msgid "_View"
-msgstr "Beel_d"
-
 #: ../logview/logview.c:90
 msgid "_Open..."
 msgstr "_Openen..."
@@ -2764,10 +3494,6 @@ msgid "Show the about dialog for the log viewer"
 msgstr "Toon het info-dialoog voor de logboekvieuwer"
 
 #: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "_Statusbalk"
-
-#: ../logview/logview.c:122
 msgid "Show Status Bar"
 msgstr "Statusblak weergeven"
 
@@ -2804,10 +3530,6 @@ msgstr "%s (bewaakt) - %s"
 #: ../logview/logview.c:519
 msgid "Open Log"
 msgstr "_Openen log"
-
-#: ../logview/logview.c:774
-msgid "There was an error displaying help."
-msgstr "Er is een fout opgetreden bij het weergeven van de hulp."
 
 #: ../logview/logview.c:907
 msgid "Version: "
@@ -2969,6 +3691,44 @@ msgstr ""
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS Fout.\n"
 
+#~ msgid "Preferences"
+#~ msgstr "Voorkeuren"
+
+#~ msgid "Quit"
+#~ msgstr "Afsluiten"
+
+#~ msgid "Scan a selected directory"
+#~ msgstr "Een map doorzoeken"
+
+#~ msgid "French Dictionaries from Wikipedia"
+#~ msgstr "Franse woordenboeken van Wikipedia"
+
+#~ msgid ""
+#~ "Unable to create the data directory '%s': there already is a file with "
+#~ "the same name.  You should move the file and re-run gnome-dictionary."
+#~ msgstr ""
+#~ "Kon dat data-map '%s' niet aanmaken: er bestaat al een bestand met "
+#~ "dezelfde naam.  U moet dit bestand verplaatsen en gnome-dictionary "
+#~ "opnieuw opstarten."
+
+#~ msgid "Unable to create the data directory '%s'"
+#~ msgstr "Kan de data-map niet aanmaken '%s'"
+
+#~ msgid ""
+#~ "There is a file with the same name in the path.\n"
+#~ "You should move the file and re-run the\n"
+#~ "Dictionary applet"
+#~ msgstr ""
+#~ "Er is een bestand met dezelfde naam in het pad.\n"
+#~ "U moet het bestand verplaatsen en het\n"
+#~ "woordenboek-applet opnieuw opstarten"
+
+#~ msgid "%d definitions found"
+#~ msgstr "%d definities gevonden"
+
+#~ msgid "Find files, folders, and documents on your computer"
+#~ msgstr "Bestanden, mappen en documenten zoeken op uw computer"
+
 #~ msgid ""
 #~ "Definitions for \"%s\":\n"
 #~ "\n"
@@ -3029,9 +3789,6 @@ msgstr "Gnome-VFS Fout.\n"
 #~ msgid "_Look Up Word"
 #~ msgstr "Woord _opzoeken"
 
-#~ msgid "_Find..."
-#~ msgstr "_Zoeken..."
-
 #~ msgid "Find next occurrence of the word"
 #~ msgstr "Volgende plek waar het woord voorkomt zoeken"
 
@@ -3052,9 +3809,6 @@ msgstr "Gnome-VFS Fout.\n"
 
 #~ msgid "Cut the selection"
 #~ msgstr "Selectie knippen"
-
-#~ msgid "_Paste"
-#~ msgstr "_Plakken"
 
 #~ msgid "Paste clipboard"
 #~ msgstr "Plakken vanaf het klembord"
@@ -3101,12 +3855,6 @@ msgstr "Gnome-VFS Fout.\n"
 #~ msgid "Reset port to default"
 #~ msgstr "Poort resetten naar standaardwaarde"
 
-#~ msgid "Server"
-#~ msgstr "Server"
-
-#~ msgid "Server Entry"
-#~ msgstr "Server Invoer"
-
 #~ msgid "Enter the Server Name"
 #~ msgstr "Servernaam invoeren"
 
@@ -3115,9 +3863,6 @@ msgstr "Gnome-VFS Fout.\n"
 
 #~ msgid "Enter the Port Number"
 #~ msgstr "Poortnummer invoeren"
-
-#~ msgid "F_ont:"
-#~ msgstr "_Lettertype:"
 
 #~ msgid "Web Site"
 #~ msgstr "Webpagina"
