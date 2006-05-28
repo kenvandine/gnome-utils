@@ -90,7 +90,7 @@ tree_path_find_row (GtkTreeModel *model, GtkTreePath *path, gboolean has_date)
         for (j = 0; j < indices[0]; j++) {
             date_path = gtk_tree_path_new_from_indices (j, -1);
             gtk_tree_model_get_iter (model, &iter, date_path);
-            row += gtk_tree_model_iter_n_children (model, &iter) - 1;
+            row += gtk_tree_model_iter_n_children (model, &iter);
         }
         if (gtk_tree_path_get_depth (path) > 1)
             row += indices[1];
