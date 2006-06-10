@@ -1,26 +1,647 @@
 # gnome-utils ko.po
 # update by Young-Ho, Cha <ganadist@chollian.net>, 2001
-# Changwoo Ryu <cwryu@debian.org>, 1998,2002-2005
+# Changwoo Ryu <cwryu@debian.org>, 1998,2002-2006
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 2.11.92\n"
+"Project-Id-Version: gnome-utils 2.15.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-18 08:58+0900\n"
-"PO-Revision-Date: 2006-03-18 16:16+0900\n"
-"Last-Translator: Young-Ho Cha <ganadist@gmail.com>\n"
+"POT-Creation-Date: 2006-06-10 16:46+0900\n"
+"PO-Revision-Date: 2006-06-11 05:24+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: ../baobab/data/baobab.desktop.in.in.h:1
+msgid "A graphical tool to analyse disk usage"
+msgstr "디스크 사용량을 분석하는 그래픽 도구"
+
+#: ../baobab/data/baobab.desktop.in.in.h:2
+msgid "Baobab - Disk Usage Analyser"
+msgstr "바오밥 - 디스크 사용량 분석"
+
+#: ../baobab/data/baobab.glade.h:1
+msgid "<b>File Size</b>"
+msgstr "<b>파일 크기</b>"
+
+#: ../baobab/data/baobab.glade.h:2
+msgid "<b>Modification Date</b>"
+msgstr "<b>변경 시각</b>"
+
+#: ../baobab/data/baobab.glade.h:3
+msgid "<b>Search Options</b>"
+msgstr "<b>찾기 옵션</b>"
+
+#: ../baobab/data/baobab.glade.h:4
+msgid "A_dvanced Options"
+msgstr "고급 옵션(_D)"
+
+#: ../baobab/data/baobab.glade.h:5
+msgid "A_ny"
+msgstr "모두(_N)"
+
+#: ../baobab/data/baobab.glade.h:6
+msgid "Allocated _space"
+msgstr "할당한 크기(_S)"
+
+#: ../baobab/data/baobab.glade.h:7
+msgid "An_y"
+msgstr "모두(_Y)"
+
+#: ../baobab/data/baobab.glade.h:8
+msgid "Directory Tree"
+msgstr "디렉토리 트리"
+
+#: ../baobab/data/baobab.glade.h:9
+msgid "Disk Usage Analyser"
+msgstr "디스크 사용량 분석"
+
+#: ../baobab/data/baobab.glade.h:10
+msgid "Disk Usage Analyser Preferences"
+msgstr "디스크 사용량 분석 기본 설정"
+
+#: ../baobab/data/baobab.glade.h:11
+msgid "Exact _match"
+msgstr "정확히 찾기(_M)"
+
+#: ../baobab/data/baobab.glade.h:12
+msgid "File Search"
+msgstr "파일 찾기"
+
+#: ../baobab/data/baobab.glade.h:13
+msgid "Filesystem"
+msgstr "파일 시스템"
+
+#: ../baobab/data/baobab.glade.h:14 ../gsearchtool/gsearchtool.c:2498
+msgid "Folder"
+msgstr "폴더"
+
+#: ../baobab/data/baobab.glade.h:15
+msgid "Last m_onth"
+msgstr "지난달(_O)"
+
+#: ../baobab/data/baobab.glade.h:16
+msgid "Last wee_k"
+msgstr "지난주(_K)"
+
+#: ../baobab/data/baobab.glade.h:17
+msgid "Medi_um (< 1 MB)"
+msgstr "중간(_U) (< 1 MB)"
+
+#: ../baobab/data/baobab.glade.h:18
+msgid "Scan Selected F_older..."
+msgstr "선택한 폴더 검사(_O)..."
+
+#: ../baobab/data/baobab.glade.h:19
+msgid "Scan _Filesystem"
+msgstr "파일 시스템 검사(_F)"
+
+#: ../baobab/data/baobab.glade.h:20
+msgid "Scan _Remote Folder..."
+msgstr "원격 폴더 검사(_R)..."
+
+#: ../baobab/data/baobab.glade.h:21
+msgid "Scan a remote folder"
+msgstr "원격 폴더 검사"
+
+#: ../baobab/data/baobab.glade.h:22
+msgid "Scan a selected folder"
+msgstr "선택한 폴더 검사"
+
+#: ../baobab/data/baobab.glade.h:23
+msgid "Scan the whole filesystem"
+msgstr "전체 파일 시스템 검사"
+
+#: ../baobab/data/baobab.glade.h:24
+msgid "Se_arch in selected folder:"
+msgstr "선택한 폴더에서 검사(_A):"
+
+#: ../baobab/data/baobab.glade.h:25
+msgid "Search"
+msgstr "찾기"
+
+#: ../baobab/data/baobab.glade.h:26
+msgid "Search for File"
+msgstr "파일 찾기"
+
+#: ../baobab/data/baobab.glade.h:27
+msgid "Search for a file"
+msgstr "파일 찾기"
+
+#: ../baobab/data/baobab.glade.h:28
+msgid "Search the _whole filesystem"
+msgstr "전체 파일 시스템 검사(_W)"
+
+#: ../baobab/data/baobab.glade.h:29
+msgid "Select _devices to be included during system scan:"
+msgstr "시스템 검사 도중에 포함할 장치 선택(_D):"
+
+#: ../baobab/data/baobab.glade.h:30
+msgid "Show allocated disk usage instead of apparent size"
+msgstr "디스크의 크기 대신에 할당한 사용량 표시"
+
+#: ../baobab/data/baobab.glade.h:31
+msgid "Sma_ll (< 100 kB)"
+msgstr "작음(_L) (< 100 kB)"
+
+#: ../baobab/data/baobab.glade.h:32
+msgid "Sort"
+msgstr "정렬"
+
+#: ../baobab/data/baobab.glade.h:33
+msgid "Sort by name"
+msgstr "이름으로 정렬"
+
+#: ../baobab/data/baobab.glade.h:34
+msgid "Sort by size"
+msgstr "크기로 정렬"
+
+#: ../baobab/data/baobab.glade.h:35
+msgid "Stop"
+msgstr "중지"
+
+#: ../baobab/data/baobab.glade.h:36
+msgid "Stop scanning"
+msgstr "찾기 중지"
+
+#: ../baobab/data/baobab.glade.h:37
+msgid "Take a snapshot"
+msgstr "스크린샷 찍기"
+
+#: ../baobab/data/baobab.glade.h:39
+#, no-c-format
+msgid "Zoom 100%"
+msgstr "100% 크기"
+
+#: ../baobab/data/baobab.glade.h:40
+msgid "Zoom in"
+msgstr "확대"
+
+#: ../baobab/data/baobab.glade.h:41
+msgid "Zoom out"
+msgstr "축소"
+
+#: ../baobab/data/baobab.glade.h:42
+msgid "_Analyser"
+msgstr "분석(_A)"
+
+#: ../baobab/data/baobab.glade.h:43
+msgid "_Browse..."
+msgstr "찾아보기(_B)..."
+
+#. Help menu
+#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:841
+#: ../logview/logview.c:114
+msgid "_Contents"
+msgstr "차례(_C)"
+
+#: ../baobab/data/baobab.glade.h:45
+msgid "_Date"
+msgstr "날짜(_D)"
+
+#: ../baobab/data/baobab.glade.h:46
+msgid "_Depth level:"
+msgstr "깊이 단계(_D):"
+
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:801
+#: ../logview/logview.c:86
+msgid "_Edit"
+msgstr "편집(_E)"
+
+#: ../baobab/data/baobab.glade.h:48
+msgid "_Enable auto-detect monitoring of home directory"
+msgstr "홈디렉토리 자동 감시하기(_E)"
+
+#: ../baobab/data/baobab.glade.h:49
+msgid "_Extended search"
+msgstr "확장 찾기(_E)"
+
+#: ../baobab/data/baobab.glade.h:50
+msgid "_Find..."
+msgstr "찾기(_F)..."
+
+#: ../baobab/data/baobab.glade.h:51
+msgid "_Graphical Usage Map"
+msgstr "그래픽 사용량 맵(_G)"
+
+#: ../baobab/data/baobab.glade.h:52
+#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
+#: ../gnome-dictionary/src/gdict-window.c:803 ../logview/logview.c:88
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#: ../baobab/data/baobab.glade.h:53
+msgid "_Name"
+msgstr "이름(_N)"
+
+#: ../baobab/data/baobab.glade.h:54
+msgid "_Search for file:"
+msgstr "파일 찾기(_S):"
+
+#: ../baobab/data/baobab.glade.h:55
+msgid "_Size"
+msgstr "크기(_S)"
+
+#: ../baobab/data/baobab.glade.h:56
+msgid "_Sort By"
+msgstr "정렬 기준(_S)"
+
+#: ../baobab/data/baobab.glade.h:57 ../logview/logview.c:122
+msgid "_Statusbar"
+msgstr "상태 표시줄(_S)"
+
+#: ../baobab/data/baobab.glade.h:58
+msgid "_Toolbar"
+msgstr "도구 모음(_T)"
+
+#: ../baobab/data/baobab.glade.h:59
+msgid "_Total folders:"
+msgstr "전체 폴더(_T):"
+
+#: ../baobab/data/baobab.glade.h:60
+msgid "_Type"
+msgstr "종류(_T)"
+
+#: ../baobab/data/baobab.glade.h:61 ../logview/logview.c:87
+msgid "_View"
+msgstr "보기(_V)"
+
+#: ../baobab/data/baobab.schemas.in.h:1
+msgid "A list of partitions to be excluded from scanning."
+msgstr "검사에서 제외할 파티션 목록."
+
+#: ../baobab/data/baobab.schemas.in.h:2
+msgid "Enable monitoring of home directory"
+msgstr "홈 디렉토리 검사하기"
+
+# typo?  excluded
+#: ../baobab/data/baobab.schemas.in.h:3
+msgid "Exluded partitions"
+msgstr "제외한 파티션"
+
+#: ../baobab/data/baobab.schemas.in.h:4
+msgid "Status Bar is Visible"
+msgstr "상태 표시줄 표시"
+
+#: ../baobab/data/baobab.schemas.in.h:5
+msgid "Toolbar is Visible"
+msgstr "도구 모음 표시"
+
+#: ../baobab/data/baobab.schemas.in.h:6
+msgid "Whether any change to the home directory should be monitored."
+msgstr "홈디렉토리의 바뀐 사항을 감시하는 지 여부."
+
+#: ../baobab/data/baobab.schemas.in.h:7
+msgid "Whether the status bar at the bottom of main window should be visible."
+msgstr "메인 창의 아래에 있는 상태 표시줄을 표시할 지 여부."
+
+#: ../baobab/data/baobab.schemas.in.h:8
+msgid "Whether the toolbar should be visible in main window."
+msgstr "메인 창의 도구 모음을 표시할 지 여부."
+
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
+#: ../baobab/src/callbacks.c:441
+msgid "Calculating percentage bars..."
+msgstr "퍼센트 표시 계산하는 중..."
+
+#: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
+#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/callbacks.c:445
+msgid "Ready"
+msgstr "준비"
+
+#: ../baobab/src/baobab.c:253
+msgid "Unknown"
+msgstr "알 수 없음"
+
+#: ../baobab/src/baobab.c:277
+msgid "Full path:"
+msgstr "완전한 경로:"
+
+#: ../baobab/src/baobab.c:278
+msgid "Last Modification:"
+msgstr "마지막 고침:"
+
+#: ../baobab/src/baobab.c:279
+msgid "Owner:"
+msgstr "소유자:"
+
+#: ../baobab/src/baobab.c:280
+msgid "Allocated bytes:"
+msgstr "할당한 바이트 수:"
+
+#: ../baobab/src/baobab.c:451
+msgid "scanning..."
+msgstr "검사하는 중..."
+
+#: ../baobab/src/baobab.c:481
+msgid "<i>Total filesystem usage:</i>"
+msgstr "<i>전체 파일시스템 사용량:</i>"
+
+#: ../baobab/src/baobab.c:534
+msgid "contains hardlinks for:"
+msgstr "다음에 대한 하드 링크 포함:"
+
+#: ../baobab/src/baobab.c:543
+#, c-format
+msgid "% 5d object"
+msgid_plural "% 5d objects"
+msgstr[0] "% 5d개 오브젝트"
+
+#: ../baobab/src/baobab.c:605
+msgid "Invalid UTF-8 characters"
+msgstr "잘못된 UTF-8 문자"
+
+#: ../baobab/src/baobab.c:782
+msgid ""
+"Cannot initialize GNOME VFS monitoring\n"
+"Some real-time auto-detect function will not be available!"
+msgstr ""
+"그놈 VFS 감시 기능을 초기화할 수 없습니다\n"
+"실시간으로 자동 검색하는 기능을 사용할 수 없을 것입니다!"
+
+#: ../baobab/src/baobab-graphwin.c:156
+msgid "Cannot create pixbuf image!"
+msgstr "픽스버퍼 그림을 만들 수 없습니다!"
+
+#: ../baobab/src/baobab-graphwin.c:162
+msgid "Save the screenshot"
+msgstr "스크린샷 저장"
+
+#: ../baobab/src/baobab-graphwin.c:186
+msgid "Image type:"
+msgstr "그림 종류:"
+
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
+msgid "Unlimited"
+msgstr "무제한"
+
+#: ../baobab/src/baobab-graphwin.c:276
+msgid "Cannot allocate memory for graphical window!"
+msgstr "그래픽 창에 필요한 메모리를 할당할 수 없습니다!"
+
+#. Main treemap window
+#: ../baobab/src/baobab-graphwin.c:304
+msgid "Graphical map for folder:"
+msgstr "폴더의 그래픽 맵:"
+
+#: ../baobab/src/baobab-prefs.c:146
+msgid "Scan"
+msgstr "검사"
+
+#: ../baobab/src/baobab-prefs.c:153
+msgid "Device"
+msgstr "장치"
+
+#: ../baobab/src/baobab-prefs.c:161
+msgid "Mount point"
+msgstr "마운트 위치"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:125
+#, c-format
+msgid "\"%s\" is not a valid location."
+msgstr "%s은(는) 올바른 위치가 아닙니다."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:134
+msgid "Please check the spelling and try again."
+msgstr "단어가 맞는지 확인하시고 다시 시도하십시오."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:160
+msgid "You must enter a name for the server."
+msgstr "서버의 이름을 입력해야 합니다."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:163
+msgid "Please enter a name and try again."
+msgstr "이름을 입력하고 다시 시도하십시오."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:301
+#, c-format
+msgid "%s on %s"
+msgstr "%s (위치: %s)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:400
+msgid "_Location (URI):"
+msgstr "위치(_L) (URI):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:447
+msgid "_Server:"
+msgstr "서버(_S):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:466
+msgid "Optional information:"
+msgstr "추가 정보:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:478
+msgid "_Share:"
+msgstr "공유(_S):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:499
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
+msgid "_Port:"
+msgstr "포트(_P):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:519
+msgid "_Folder:"
+msgstr "폴더(_F):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:539
+msgid "_User Name:"
+msgstr "사용자 이름(_U):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:560
+msgid "_Domain Name:"
+msgstr "도메인 이름(_D):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:620
+msgid "Connect to a Remote Folder"
+msgstr "원격 폴더에 연결"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:637
+msgid "Service _type:"
+msgstr "서비스 종류(_T):"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:646
+msgid "SSH"
+msgstr "SSH"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:648
+msgid "Public FTP"
+msgstr "공용 FTP"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:650
+msgid "FTP (with login)"
+msgstr "FTP (로그인)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:652
+msgid "Windows share"
+msgstr "Windows 공유"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:654
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:656
+msgid "Secure WebDAV (HTTPS)"
+msgstr "보안 WebDAV (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:658
+msgid "Custom Location"
+msgstr "사용자 설정 위치"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:714
+msgid "C_onnect"
+msgstr "연결(_O)"
+
+#: ../baobab/src/baobab-treeview.c:83
+msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
+msgstr "<i>편집->찾기 메뉴 항목이나 도구 모음의 찾기 단추를 이용하십시오.</i>"
+
+#: ../baobab/src/baobab-utils.c:101
+msgid "Select a Folder"
+msgstr "디렉토리 선택"
+
+#. add extra widget
+#: ../baobab/src/baobab-utils.c:113
+msgid "Show hidden folders"
+msgstr "숨겨진 폴더 보기"
+
+#: ../baobab/src/baobab-utils.c:193
+msgid "Scanning..."
+msgstr "검사하는 중입니다..."
+
+#: ../baobab/src/baobab-utils.c:349 ../baobab/src/baobab-utils.c:353
+#, c-format
+msgid "%s is not a valid folder"
+msgstr "%s은(는) 올바른 폴더가 아닙니다."
+
+#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:437
+msgid "Remove from Trash"
+msgstr "휴지통에서 버리기"
+
+#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:440
+msgid "Move to Trash"
+msgstr "휴지통으로 옮기기"
+
+#: ../baobab/src/baobab-utils.c:385
+msgid "Folder graphical map"
+msgstr "폴더 그래픽 맵"
+
+#: ../baobab/src/baobab-utils.c:389
+msgid "List all files in folder"
+msgstr "폴더의 모든 파일 목록 표시"
+
+#: ../baobab/src/baobab-utils.c:443
+msgid "Scan Folder"
+msgstr "폴더 검사"
+
+#: ../baobab/src/baobab-utils.c:515
+msgid "Please provide a file name to search for!"
+msgstr "찾으려는 파일이름을 입력하십시오!"
+
+#: ../baobab/src/baobab-utils.c:695
+msgid "Total filesystem capacity:"
+msgstr "전체 파일 시스템 용량:"
+
+#: ../baobab/src/baobab-utils.c:695
+msgid "used:"
+msgstr "사용:"
+
+#: ../baobab/src/baobab-utils.c:696
+msgid "available:"
+msgstr "사용 가능:"
+
+#: ../baobab/src/baobab-utils.c:734
+msgid "Found:"
+msgstr "찾음:"
+
+#: ../baobab/src/baobab-utils.c:735
+msgid "file"
+msgstr "파일"
+
+#: ../baobab/src/baobab-utils.c:735
+msgid "files"
+msgstr "파일"
+
+#: ../baobab/src/baobab-utils.c:736
+msgid "for total:"
+msgstr "전체:"
+
+#: ../baobab/src/baobab-utils.c:766 ../gsearchtool/gsearchtool-callbacks.c:485
+msgid "There is no installed viewer capable of displaying the document."
+msgstr "이 문서를 보여줄 수 있는 뷰어가 설치되어 있지 않습니다."
+
+#: ../baobab/src/baobab-utils.c:828
+msgid "Cannot find the Trash on this system!"
+msgstr "이 시스템에서 휴지통을 찾을 수 없습니다!"
+
+#: ../baobab/src/baobab-utils.c:835 ../baobab/src/callbacks.c:276
+#: ../gsearchtool/gsearchtool-callbacks.c:470
+#: ../gsearchtool/gsearchtool-callbacks.c:811
+msgid "The document does not exist."
+msgstr "해당 문서가 없습니다."
+
+#: ../baobab/src/baobab-utils.c:847
+#, c-format
+msgid "Moving <b>%s</b> to trash failed: %s."
+msgstr "<b>%s</b>을(를) 휴지통으로 옮기는 데 실패했습니다: %s."
+
+#: ../baobab/src/baobab-utils.c:861
+#, c-format
+msgid "Do you want to delete <b>%s</b> permanently?"
+msgstr "<b>%s</b>을(를) 영구히 지우시겠습니까?"
+
+#: ../baobab/src/baobab-utils.c:873
+#, c-format
+msgid "Deleting <b>%s</b> failed: %s."
+msgstr "<b>%s</b>을(를) 지우는 데 실패했습니다: %s."
+
+#: ../baobab/src/baobab-utils.c:902
+msgid ""
+"The content of your home directory has changed.\n"
+"Do you want to rescan the last tree to update the folder branch details?"
+msgstr ""
+"홈 디렉토리의 내용이 바뀌었습니다.\n"
+"마지막 트리를 다시 검사해서 폴더 정보를 업데이트하시겠습니까?"
+
+#: ../baobab/src/baobab-utils.c:923
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "픽스맵 파일을 찾을 수 없습니다: %s"
+
+#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:774
+msgid "There was an error displaying help."
+msgstr "도움말을 표시하는 데 오류가 발생했습니다."
+
+#: ../baobab/src/callbacks.c:75
+msgid "Baobab"
+msgstr "바오밥"
+
+#: ../baobab/src/callbacks.c:76
+msgid "A graphical tool to analyse disk usage."
+msgstr "디스크 사용량을 분석하는 그래픽 도구."
+
+#. Translator credits
+#: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:59
+#: ../logview/about.c:47
+msgid "translator-credits"
+msgstr ""
+"류창우 <cwryu debian.org>\n"
+"차영호 <ganadist gmail.com>"
+
+#: ../baobab/src/callbacks.c:524
+msgid "The folder does not exist."
+msgstr "폴더가 없습니다."
+
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "플로피 포맷"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
-msgid "Format Floppy Disks"
+msgid "Format floppy disks"
 msgstr "플로피 디스크 포맷"
 
 #: ../gfloppy/gfloppy.schemas.in.h:1
@@ -411,13 +1032,17 @@ msgstr "볼륨 이름이 틀렸습니다"
 msgid "The volume name can't contain any blank space."
 msgstr "볼륨 이름에는 공백이 들어갈 수 없습니다."
 
-#: ../gfloppy/src/main.c:576
+#: ../gfloppy/src/main.c:575
 msgid "The device to format"
 msgstr "포맷할 장치"
 
-#: ../gfloppy/src/main.c:577
+#: ../gfloppy/src/main.c:575
 msgid "DEVICE"
 msgstr "장치"
+
+#: ../gfloppy/src/main.c:583
+msgid "- Floppy Formatter"
+msgstr "- 플로피 포맷 프로그램"
 
 #: ../gfloppy/src/progress.c:126
 #, c-format
@@ -460,21 +1085,16 @@ msgid "Cl_ear"
 msgstr "비우기(_E)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:839 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:843 ../logview/logview.c:116
 msgid "_About"
 msgstr "정보(_A)"
-
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:799 ../logview/logview.c:88
-msgid "_Help"
-msgstr "도움말(_H)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:4
 msgid "_Look Up Selected Text"
 msgstr "선택한 글자를 찾습니다(_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:823
+#: ../gnome-dictionary/src/gdict-window.c:827
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
@@ -488,8 +1108,9 @@ msgstr "저장(_S)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
 #: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:468
-#: ../gnome-dictionary/src/gdict-window.c:1207
+#: ../gnome-dictionary/src/gdict-app.c:471
+#: ../gnome-dictionary/src/gdict-window.c:365
+#: ../gnome-dictionary/src/gdict-window.c:1211
 msgid "Dictionary"
 msgstr "사전"
 
@@ -506,112 +1127,99 @@ msgid "Port used to connect to server (Deprecated)"
 msgstr "서버에 연결할 때 사용할 포트(낡음)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:3
-#, fuzzy
 msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE. This key is "
 "deprecated and no longer in use."
-msgstr ""
-"똑똑한 찾기를 사용할 지 여부를 지정합니다. 이 키는 사전 서버가 똑똑한 찾기 옵"
-"션을 지원할 경우에만 의미가 있습니다. 기본값은 참"
+msgstr "똑똑한 찾기를 사용할 지 여부를 지정합니다. 이 키는 사전 서버가 똑똑한 찾기 옵션을 지원할 경우에만 의미가 있습니다. 기본값은 참입니다. 이 키는 없어질 예정이며 더 이상 사용하지 않습니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:4
-#, fuzzy
 msgid "The default database to use"
-msgstr "사용할 찾기 전략"
+msgstr "사용할 기본 데이터베이스"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:5
 msgid "The default height of the application window"
-msgstr ""
+msgstr "프로그램 창의 기본 높이"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:6
-#, fuzzy
 msgid "The default search strategy to use"
-msgstr "사용할 찾기 전략"
+msgstr "사용할 기본 찾기 방식"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:7
 msgid "The default width of the application window"
-msgstr ""
+msgstr "프로그램 창의 기본 너비"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
-#, fuzzy
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers. This key is deprecated and "
 "no longer in use."
-msgstr ""
-"연결할 사전 서버. 기본 서버는 dict.org입니다. 다른 서버에 대한 정보는 http://"
-"www.dict.org를 보십시오"
+msgstr "연결할 사전 서버. 기본 서버는 dict.org입니다. 다른 서버에 대한 정보는 http://www.dict.org를 보십시오. 이 키는 없어질 예정이며 더 이상 사용하지 않습니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid "The font to be used when printing"
-msgstr ""
+msgstr "인쇄할 때 사용할 글꼴"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:10
 msgid "The font to be used when printing a definition."
-msgstr ""
+msgstr "단어 정의를 인쇄할 때 사용할 글꼴."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:11
-#, fuzzy
 msgid ""
 "The name of the default individual database or meta-database to use on a "
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
 "present in a dictionary source should be searched"
-msgstr ""
-"사전 서버에서 사용할 각 데이터베이스의 이름. !는 그놈 사전이 주어진 서버에 있"
-"는 모든 데이터베이스를 찾는다는 뜻입니다."
+msgstr "사전 서버에서 사용할 각 데이터베이스의 이름. 느낌표(\"!\")는 사전 소스에 주어진 서버에 있는 모든 데이터베이스를 찾는다는 뜻입니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
-msgstr ""
+msgstr "주어진 사전 소스에서 사용할 기본 찾기 방식 (사용 가능하다면). 기본 방식은 'exact'로 정확히 맞는 단어만 찾습니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
-#, fuzzy
 msgid "The name of the dictionary source used"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "사용할 사전 소스의 이름"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
 msgid ""
 "The name of the dictionary source used to retrieve the definitions of words."
-msgstr ""
+msgstr "단어 정의를 가져올 때 사용할 사전 소스의 이름."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
-#, fuzzy
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
-msgstr "연결할 포트 번호. 기본 포트는 2628입니다."
+msgstr "연결할 포트 번호. 기본 포트는 2628입니다. 이 키는 없어질 예정이며 더 이상 사용하지 않습니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
 msgid ""
 "This key defines the window height and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a height based on the font size."
-msgstr ""
+msgstr "이 키는 창의 높이를 지정하고 세션마다 사전 창의 크기를 기억합니다. -1로 설정하면 글꼴 크기에 따라 창 높이가 결정됩니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
 msgid ""
 "This key defines the window width and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a width based on the font size."
-msgstr ""
+msgstr "이 키는 창의 너비를 지정하고 세션마다 사전 창의 크기를 기억합니다. -1로 설정하면 글꼴 크기에 따라 창 너비가 결정됩니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
 msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
-msgstr ""
+msgstr "이 키는 창을 최대화할 지 여부를 지정하고 세션마다 사전 창의 상태를 기억합니다. 참으로 설정하면 창은 항상 최대화된 상태로 나타납니다."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid "Use smart lookup (Deprecated)"
-msgstr "똑똑한 찾기(낡음)"
+msgstr "똑똑한 찾기 (낡음)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid "Whether the application window should be maximized"
-msgstr ""
+msgstr "프로그램 창을 최대화할 지 여부"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -633,18 +1241,17 @@ msgstr "호스트 이름(_O):"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:231
-#: ../gnome-dictionary/src/gdict-window.c:595
+#: ../gnome-dictionary/src/gdict-window.c:599
 msgid "Print"
 msgstr "인쇄"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:6
 msgid "Source"
-msgstr ""
+msgstr "소스"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:7
-#, fuzzy
 msgid "Source Name"
-msgstr "호스트 이름"
+msgstr "소스 이름"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:8
 msgid "_Advanced settings"
@@ -654,29 +1261,21 @@ msgstr "고급 설정(_A)"
 msgid "_Description:"
 msgstr "설명(_D):"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
-msgid "_Port:"
-msgstr "포트(_P):"
-
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
 msgid "_Print font:"
 msgstr "인쇄용 글꼴(_P):"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:12
 msgid "_Select a dictionary source for looking up words:"
-msgstr ""
+msgstr "단어를 찾을 때 사용할 사전 소스 선택(_S):"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:13
 msgid "_Strategy:"
-msgstr "전략(_S):"
+msgstr "방식(_S):"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:14
 msgid "_Transport:"
-msgstr ""
-
-#: ../gnome-dictionary/data/french.desktop.in.h:1
-msgid "French Dictionaries from Wikipedia"
-msgstr "Wikipedia의 불어 사전"
+msgstr "전송(_T):"
 
 #: ../gnome-dictionary/data/spanish.desktop.in.h:1
 msgid "Spanish Dictionaries"
@@ -739,19 +1338,21 @@ msgstr "호스트 '%s' 찾기 실패: 호스트를 찾을 수 없습니다"
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
-msgstr ""
+msgstr "'%s:%d' 사전 서버에 연결할 수 없습니다. 서버에서 %d번 코드로 응답했습니다 (서버 다운)"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
 ": '%s'"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr ""
+"사전 서버의 응답을 분석할 수 없습니다\n"
+": '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
 #, c-format
 msgid "No definitions found for '%s'"
-msgstr ""
+msgstr "'%s'에 대한 단어 정의를 찾을 수 없습니다"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
 #, c-format
@@ -761,7 +1362,7 @@ msgstr "잘못된 데이터베이스 '%s'"
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
 #, c-format
 msgid "Invalid strategy '%s'"
-msgstr "잘못된 전략 '%s'"
+msgstr "잘못된 찾기 방식 '%s'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
 #, c-format
@@ -781,14 +1382,14 @@ msgstr "'%s' 사전 서버에서 데이터베이스를 찾을 수 없습니다"
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
-msgstr "'%s' 사전 서버에서 전략을 찾을 수 없습니다"
+msgstr "'%s' 사전 서버에서 찾기 방식을 찾을 수 없습니다"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1679
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1708
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "'%s:%d' 사전서버에 연결 실패"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1718
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1747
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -797,32 +1398,32 @@ msgstr ""
 "서버에서 응답을 읽는 중 오류:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1791
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1820
 msgid "No hostname defined for the dictionary server"
 msgstr "사전 서버의 호스트이름이 정해지지 않았습니다"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1827
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1842
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1856
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1871
 msgid "Unable to create socket"
 msgstr "소켓을 만들 수 없습니다"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1897
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "채널을 non-blocking모드로 설정할 수 없습니다: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1883
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1912
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "'%s:%d' 사전 서버에 연결할 수 없습니다"
 
 #: ../gnome-dictionary/libgdict/gdict-context.c:196
 msgid "Local Only"
-msgstr ""
+msgstr "로컬만 사용"
 
 #: ../gnome-dictionary/libgdict/gdict-context.c:197
 msgid "Whether the context uses only local dictionaries or not"
-msgstr ""
+msgstr "컨텍스트가 로컬 사전만 사용할 지 여부"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:352
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:441
@@ -845,13 +1446,12 @@ msgstr "다음(_N)"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:694
 #: ../gnome-dictionary/libgdict/gdict-entry.c:104
 #: ../gnome-dictionary/libgdict/gdict-source.c:303
-#, fuzzy
 msgid "Context"
-msgstr "차례(_C)"
+msgstr "컨텍스트"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:695
 msgid "The GdictContext object used to get the word definition"
-msgstr ""
+msgstr "단어 정의를 찾을 때 사용할 GdictContext 오브젝트"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:709
 #: ../gnome-dictionary/libgdict/gdict-entry.c:119
@@ -860,9 +1460,8 @@ msgid "Database"
 msgstr "데이터베이스"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:710
-#, fuzzy
 msgid "The database used to query the GdictContext"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "GdictContext 질의에 사용할 데이터베이스"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:724
 msgid "Font Name"
@@ -870,23 +1469,24 @@ msgstr "글꼴 이름"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:725
 msgid "The font to be used by the defbox"
-msgstr ""
+msgstr "defbox가 사용할 글꼴"
 
+# typo?  emphasis
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:731
 msgid "Emphasys Color"
-msgstr ""
+msgstr "강조 색"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:732
 msgid "Color of emphasised text"
-msgstr ""
+msgstr "강조한 텍스트의 색"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:737
 msgid "Link Color"
-msgstr ""
+msgstr "바로가기 색"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:738
 msgid "Color of hyperlinks"
-msgstr ""
+msgstr "하이퍼링크의 색"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:743
 msgid "Word Color"
@@ -894,16 +1494,15 @@ msgstr "단어 색상"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:744
 msgid "Color of the dictionary word"
-msgstr "사전 단어의 색상"
+msgstr "사전 단어의 색"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:749
 msgid "Source Color"
-msgstr ""
+msgstr "소스 색"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:750
-#, fuzzy
 msgid "Color of the dictionary source"
-msgstr "MIT 사전 서버에 대한 클라이언트."
+msgstr "사전 소스의 색"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1041
 msgid "Progress"
@@ -912,46 +1511,45 @@ msgstr "진행"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1078
 #, c-format
 msgid "Definition for '%s' (%d/%d)"
-msgstr "'%s'의 정의 (%d/%d)"
+msgstr "'%s'의 단어 정의 (%d/%d)"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1280
 msgid "Error while looking up definition"
-msgstr "정의를 찾는 중 오류"
+msgstr "단어 정의를 찾는 중 오류"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
 #, c-format
 msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
-msgstr ""
+msgstr "'%s'을(를) 찾아보려고 했으나 GdictContext가 정의되지 않았습니다.  중지합니다."
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1332
 msgid "Another search is in progress"
-msgstr ""
+msgstr "다른 찾기가 진행 중입니다"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1333
 msgid "Please wait until the current search ends."
-msgstr ""
+msgstr "현재 찾기가 끝날 때까지 기다리십시오."
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1364
 msgid "Error while retrieving the definition"
-msgstr "정의를 받는 중 오류"
+msgstr "단어 정의를 받는 중 오류"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
 msgid "The GdictContext object bound to this entry"
-msgstr ""
+msgstr "이 입력창에 연결된 GdictContext 오브젝트"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
-#, fuzzy
 msgid "The database to be used to generate the completion list"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "완성 목록을 만들 때 사용할 데이터베이스"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:134
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
 msgid "Strategy"
-msgstr "전략"
+msgstr "찾기 방식"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
 msgid "The matching strategy to be used to generate the completion list"
-msgstr ""
+msgstr "완성 목록을 만들 때 사용할 찾기 방식"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:218
 msgid "Filename"
@@ -959,7 +1557,7 @@ msgstr "파일 이름"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:219
 msgid "The filename used by this dictionary source"
-msgstr ""
+msgstr "이 사전 소스가 사용하는 파일 이름"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:232
 #: ../gsearchtool/gsearchtool.c:2474
@@ -967,51 +1565,46 @@ msgid "Name"
 msgstr "이름"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:233
-#, fuzzy
 msgid "The display name of this dictonary source"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "사전 소스의 표시할 이름"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:246
 msgid "Description"
 msgstr "설명"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:247
-#, fuzzy
 msgid "The description of this dictionary source"
-msgstr "이 항목의 설명."
+msgstr "이 사전 소스의 설명"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:261
-#, fuzzy
 msgid "The default database of this dictonary source"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "이 사전 소스의 기본 데이터베이스"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:275
-#, fuzzy
 msgid "The default strategy of this dictonary source"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "이 사전 소스의 기본 방식"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:288
 msgid "Transport"
-msgstr ""
+msgstr "전송"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:289
-#, fuzzy
 msgid "The transport mechanism used by this dictionary source"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "이 사전 소스의 전송 방법"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:304
 msgid "The GdictContext bound to this source"
-msgstr ""
+msgstr "이 소스에 연결된 GdictContext"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:399
 #, c-format
 msgid "Invalid transport type '%d'"
-msgstr ""
+msgstr "전송 방식이 ('%d') 잘못되었습니다"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:427
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
-msgstr ""
+msgstr "사전 소스 정의 안에 '%s' 그룹을 찾을 수 없습니다"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:443
 #: ../gnome-dictionary/libgdict/gdict-source.c:467
@@ -1019,62 +1612,53 @@ msgstr ""
 #: ../gnome-dictionary/libgdict/gdict-source.c:516
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
-msgstr ""
+msgstr "사전 소스 정의에서 '%s' 키를 가져올 수 없습니다: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:541
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
-msgstr ""
+msgstr "사전 소스 정의 파일에서 '%s' 키를 가져올 수 없습니다: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:727
 msgid "Dictionary source does not have name"
-msgstr ""
+msgstr "사전 소스가 이름이 없습니다"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:736
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
-msgstr ""
+msgstr "'%s' 사전 소스의 '%s' 전송 방식이 잘못되었습니다"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:162
 msgid "Paths"
-msgstr ""
+msgstr "경로"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
 msgid "Search paths used by this object"
-msgstr ""
+msgstr "이 오브젝트가 사용할 찾기 경로"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:175
 msgid "Sources"
-msgstr ""
+msgstr "소스"
 
 #: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
-#, fuzzy
 msgid "Dictionary sources found"
-msgstr "사전 찾기"
-
-#. Translator credits
-#: ../gnome-dictionary/src/gdict-about.c:59 ../logview/about.c:47
-msgid "translator-credits"
-msgstr ""
-"류창우 <cwryu debian.org>\n"
-"차영호 <ganadist gmail.com>"
+msgstr "발견한 사전 소스"
 
 #: ../gnome-dictionary/src/gdict-about.c:61
 #: ../gnome-dictionary/src/gdict-applet.c:610
-#, fuzzy
 msgid "Look up words in dictionaries"
-msgstr "사전에서 단어를 찾음"
+msgstr "사전에서 단어를 찾습니다"
 
 #: ../gnome-dictionary/src/gdict-about.c:87
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to open the application icon: %s"
-msgstr "프로그램을 닫습니다"
+msgstr "프로그램 아이콘을 열 수 없습니다: %s"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:213
+#: ../gnome-dictionary/src/gdict-app.c:216
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1082,118 +1666,115 @@ msgid ""
 "\n"
 "%s\n"
 msgstr ""
+"'%s'에 대한 단어 정의\n"
+"  '%s'에서:\n"
+"\n"
+"%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:227
+#: ../gnome-dictionary/src/gdict-app.c:230
 #, c-format
 msgid "Error: %s\n"
 msgstr "오류: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:253
+#: ../gnome-dictionary/src/gdict-app.c:256
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "사용법은 gnome-dictionary --help를 보십시오\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:266
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-app.c:269
 msgid "Unable to find a suitable dictionary source"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "적당한 사전 소스를 찾을 수 없습니다"
 
-#: ../gnome-dictionary/src/gdict-app.c:300
+#: ../gnome-dictionary/src/gdict-app.c:303
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
 "%s"
 msgstr ""
-
-#: ../gnome-dictionary/src/gdict-app.c:345
-#: ../gnome-dictionary/src/gdict-applet.c:1422
-#, fuzzy, c-format
-msgid "Unable to rename file '%s' to '%s': %s"
-msgstr "장치 %s에 쓸 수 없습니다"
-
-#: ../gnome-dictionary/src/gdict-app.c:369
-#: ../gnome-dictionary/src/gdict-app.c:392
-#: ../gnome-dictionary/src/gdict-applet.c:1446
-#: ../gnome-dictionary/src/gdict-applet.c:1469
-#, fuzzy, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr ""
-"임시 디렉토리를 비울 수 없습니다:\n"
+"\"%s\"의 단어 정의를 찾는 데 오류:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:427
-#, fuzzy
-msgid "Words to look up"
-msgstr "단어 입력란"
+#: ../gnome-dictionary/src/gdict-app.c:348
+#: ../gnome-dictionary/src/gdict-applet.c:1421
+#, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "'%s' 파일의 이름을 '%s'(으)로 바꿀 수 없습니다: %s"
 
-#: ../gnome-dictionary/src/gdict-app.c:427
+#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:1445
+#: ../gnome-dictionary/src/gdict-applet.c:1468
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "'%s' 데이터 디렉토리를 만들 수 없습니다: %s"
+
+#: ../gnome-dictionary/src/gdict-app.c:430
+msgid "Words to look up"
+msgstr "찾아볼 단어"
+
+#: ../gnome-dictionary/src/gdict-app.c:430
 msgid "word"
 msgstr "단어"
 
-#: ../gnome-dictionary/src/gdict-app.c:429
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-app.c:432
 msgid "Dictionary source to use"
-msgstr "사전 찾기"
+msgstr "사용할 사전 소스"
 
-#: ../gnome-dictionary/src/gdict-app.c:429
+#: ../gnome-dictionary/src/gdict-app.c:432
 msgid "source"
-msgstr ""
+msgstr "소스"
 
-#: ../gnome-dictionary/src/gdict-app.c:431
+#: ../gnome-dictionary/src/gdict-app.c:434
 msgid "Show available dictionary sources"
-msgstr ""
+msgstr "사용 가능한 사전 소스 표시"
 
-#: ../gnome-dictionary/src/gdict-app.c:433
+#: ../gnome-dictionary/src/gdict-app.c:436
 msgid "Print result to the console"
 msgstr "콘솔에 결과 인쇄"
 
-#: ../gnome-dictionary/src/gdict-app.c:435
+#: ../gnome-dictionary/src/gdict-app.c:438
 msgid "Database to use"
 msgstr "사용할 데이터베이스"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:451
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-app.c:454
 msgid " - Look up words in dictionaries"
-msgstr "사전에서 단어를 찾음"
+msgstr "- 사전에서 단어를 찾습니다"
 
-#: ../gnome-dictionary/src/gdict-app.c:455
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-app.c:458
 msgid "Dictionary and spelling tool"
-msgstr "사전 단어 입력창"
+msgstr "사전 및 맞춤법 도구"
 
-#: ../gnome-dictionary/src/gdict-app.c:456
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-app.c:459
 msgid "Show Dictionary options"
-msgstr "추가 옵션 보기"
+msgstr "사전 옵션 보기"
 
 #: ../gnome-dictionary/src/gdict-applet.c:245
-#: ../gnome-dictionary/src/gdict-window.c:540
+#: ../gnome-dictionary/src/gdict-window.c:544
 msgid "Save a Copy"
-msgstr ""
+msgstr "복사본 저장"
 
 #: ../gnome-dictionary/src/gdict-applet.c:255
-#: ../gnome-dictionary/src/gdict-window.c:550
+#: ../gnome-dictionary/src/gdict-window.c:554
 msgid "Untitled document"
 msgstr "제목 없는 문서"
 
 #: ../gnome-dictionary/src/gdict-applet.c:276
-#: ../gnome-dictionary/src/gdict-window.c:571
-#, fuzzy, c-format
+#: ../gnome-dictionary/src/gdict-window.c:575
+#, c-format
 msgid "Error while writing to '%s'"
-msgstr "지정한 명령을 실행하는 데 오류: %s"
+msgstr "'%s'에 쓰는 데 오류가 발생했습니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Clear the definitions found"
-msgstr ""
+msgstr "찾은 단어 정의를 비웁니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:387
 msgid "Clear definition"
 msgstr "단어 정의 비우기"
 
 #: ../gnome-dictionary/src/gdict-applet.c:388
-#, fuzzy
 msgid "Clear the text of the definition"
-msgstr "현재 정의를 인쇄합니다"
+msgstr "단어 정의 텍스트를 비웁니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:398
 msgid "Print the definitions found"
@@ -1204,34 +1785,32 @@ msgid "Print definition"
 msgstr "단어 정의 인쇄"
 
 #: ../gnome-dictionary/src/gdict-applet.c:402
-#, fuzzy
 msgid "Print the text of the definition"
-msgstr "현재 정의를 인쇄합니다"
+msgstr "단어 정의 텍스트를 인쇄합니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:412
 msgid "Save the definitions found"
-msgstr ""
+msgstr "찾은 단어 정의를 저장합니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:415
-#, fuzzy
 msgid "Save definition"
-msgstr "단어 정의 인쇄"
+msgstr "단어 정의 저장"
 
 #: ../gnome-dictionary/src/gdict-applet.c:416
 msgid "Save the text of the definition to a file"
-msgstr ""
+msgstr "단어 정의 텍스트를 파일로 저장합니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:550
 msgid "Toggle dictionary window"
-msgstr ""
+msgstr "사전 창 토글"
 
 #: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Show or hide the definition window"
-msgstr ""
+msgstr "단어 정의 창을 보이거나 숨깁니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:554
 msgid "Click to view the dictionary window"
-msgstr ""
+msgstr "사전 창을 보려면 클릭하십시오"
 
 #: ../gnome-dictionary/src/gdict-applet.c:609
 msgid "Dictionary entry"
@@ -1239,7 +1818,7 @@ msgstr "사전 입력창"
 
 #: ../gnome-dictionary/src/gdict-applet.c:613
 msgid "Type the word you want to look up"
-msgstr ""
+msgstr "찾아보려는 단어를 입력하십시오"
 
 #: ../gnome-dictionary/src/gdict-applet.c:747
 msgid "Preferences"
@@ -1248,226 +1827,206 @@ msgstr "기본 설정"
 #: ../gnome-dictionary/src/gdict-applet.c:779
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:471
 #: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:761
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-window.c:765
 msgid "There was an error while displaying help"
-msgstr "도움말을 표시하는 데 오류가 발생했습니다."
+msgstr "도움말을 표시하는 데 오류가 발생했습니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:938
 #: ../gnome-dictionary/src/gdict-window.c:270
 #, c-format
 msgid "No dictionary source available with name '%s'"
-msgstr ""
+msgstr "이름이 '%s'인 사전 소스가 없습니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:942
 #: ../gnome-dictionary/src/gdict-window.c:274
-#, fuzzy
 msgid "Unable to find dictionary source"
-msgstr "사전 서버에서 사용할 데이터베이스."
+msgstr "사전 소스를 찾을 수 없습니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:958
 #: ../gnome-dictionary/src/gdict-window.c:290
 #, c-format
 msgid "No context available for source '%s'"
-msgstr ""
+msgstr "'%s' 소스에 대해 사용할 수 있는 컨텍스트가 없습니다"
 
 #: ../gnome-dictionary/src/gdict-applet.c:962
 #: ../gnome-dictionary/src/gdict-window.c:294
-#, fuzzy
 msgid "Unable to create a context"
-msgstr "파일시스템을 올바르게 만들 수 없습니다."
+msgstr "컨텍스트를 만들 수 없습니다"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1231
+#: ../gnome-dictionary/src/gdict-applet.c:1243
 msgid "Unable to load the applet icon"
 msgstr "애플릿 아이콘을 읽을 수 없습니다."
 
-#: ../gnome-dictionary/src/gdict-applet.c:1260
-#: ../gnome-dictionary/src/gdict-window.c:1316
+#: ../gnome-dictionary/src/gdict-applet.c:1272
+#: ../gnome-dictionary/src/gdict-window.c:1320
 msgid "Unable to connect to GConf"
 msgstr "GConf에 연결할 수 없습니다"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1275
-#: ../gnome-dictionary/src/gdict-window.c:1332
+#: ../gnome-dictionary/src/gdict-applet.c:1287
+#: ../gnome-dictionary/src/gdict-window.c:1336
 msgid "Unable to get notification for preferences"
-msgstr ""
+msgstr "기본 설정에 대한 알림을 받을 수 없습니다"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1290
-#: ../gnome-dictionary/src/gdict-window.c:1348
+#: ../gnome-dictionary/src/gdict-applet.c:1302
+#: ../gnome-dictionary/src/gdict-window.c:1352
 msgid "Unable to get notification for the document font"
-msgstr ""
+msgstr "문서 글꼴에 대한 알림을 받을 수 없습니다"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:272
-#, fuzzy
 msgid "Add Dictionary Source"
-msgstr "사전 찾기"
+msgstr "사전 소스 더하기"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:318
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\"?"
-msgstr "\"%s\" 지우기"
+msgstr "\"%s\"을(를) 지우시겠습니까?"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:320
 msgid "This will permanently remove the dictionary source from the list."
-msgstr ""
+msgstr "이렇게 하면 목록에서 사전 소스를 완전히 지우게 됩니다."
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:350
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to remove source '%s'"
-msgstr "장치 %s에 쓸 수 없습니다"
+msgstr "%s 소스를 지울 수 없습니다"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:638
-#, fuzzy
 msgid "Add a new dictionary source"
-msgstr "동작을 더합니다"
+msgstr "새 사전 소스를 더합니다"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:646
 msgid "Remove the currently selected dictionary source"
-msgstr ""
+msgstr "현재 선택한 사전 소스를 지웁니다"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:661
 msgid "Set the font used for printing the definitions"
-msgstr ""
+msgstr "단어 정의를 인쇄하는 데 사용할 글꼴 설정"
 
 #: ../gnome-dictionary/src/gdict-print.c:187
 #, c-format
 msgid "%s (page %d)"
-msgstr ""
+msgstr "%s (%d페이지)"
 
 #: ../gnome-dictionary/src/gdict-print.c:246
-#, fuzzy
 msgid "Print Preview"
-msgstr "정의 미리 보기"
+msgstr "미리 보기 인쇄"
 
 #: ../gnome-dictionary/src/gdict-source-dialog.c:276
-#, fuzzy
 msgid "Unable to create a source file"
-msgstr "파일시스템을 올바르게 만들 수 없습니다."
+msgstr "소스 파일을 만들 수 없습니다"
 
 #: ../gnome-dictionary/src/gdict-source-dialog.c:295
-#, fuzzy
 msgid "Unable to save source file"
-msgstr "로그 파일을 열 수 없습니다!\n"
+msgstr "소스 파일을 저장할 수 없습니다"
 
 #: ../gnome-dictionary/src/gdict-window.c:175
-#, fuzzy, c-format
+#, c-format
 msgid "Searching for '%s'..."
-msgstr "파일 찾기..."
+msgstr "'%s' 찾는 중입니다..."
 
 #: ../gnome-dictionary/src/gdict-window.c:199
 #: ../gnome-dictionary/src/gdict-window.c:221
-#, fuzzy
 msgid "No definitions found"
-msgstr "찾은 파일이 없습니다."
+msgstr "단어 설명이 없습니다"
 
 #: ../gnome-dictionary/src/gdict-window.c:201
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
-msgstr[0] ""
+msgstr[0] "%d개의 단어 정의를 찾았습니다"
 
-#: ../gnome-dictionary/src/gdict-window.c:362
+#: ../gnome-dictionary/src/gdict-window.c:363
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - 사전"
 
-#: ../gnome-dictionary/src/gdict-window.c:680
+#: ../gnome-dictionary/src/gdict-window.c:684
 msgid "Dictionary Preferences"
 msgstr "사전 기본 설정"
 
-#: ../gnome-dictionary/src/gdict-window.c:796
+#: ../gnome-dictionary/src/gdict-window.c:800
 msgid "_File"
 msgstr "파일(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:797 ../logview/logview.c:86
-msgid "_Edit"
-msgstr "편집(_E)"
-
-#: ../gnome-dictionary/src/gdict-window.c:798
+#: ../gnome-dictionary/src/gdict-window.c:802
 msgid "_Go"
-msgstr "가기(_G)"
+msgstr "이동(_G)"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:802
-#, fuzzy
-msgid "_New"
-msgstr "보기(_V)"
-
-#: ../gnome-dictionary/src/gdict-window.c:803
-msgid "New look up"
-msgstr ""
-
-#: ../gnome-dictionary/src/gdict-window.c:804
-msgid "_Save a Copy..."
-msgstr ""
-
 #: ../gnome-dictionary/src/gdict-window.c:806
+msgid "_New"
+msgstr "새로 만들기(_N)"
+
+#: ../gnome-dictionary/src/gdict-window.c:807
+msgid "New look up"
+msgstr "새로 찾아 보기"
+
+#: ../gnome-dictionary/src/gdict-window.c:808
+msgid "_Save a Copy..."
+msgstr "복사본 저장(_S)..."
+
+#: ../gnome-dictionary/src/gdict-window.c:810
 msgid "_Print..."
 msgstr "인쇄(_P)..."
 
-#: ../gnome-dictionary/src/gdict-window.c:807
+#: ../gnome-dictionary/src/gdict-window.c:811
 msgid "Print this document"
 msgstr "이 문서를 인쇄합니다"
 
-#: ../gnome-dictionary/src/gdict-window.c:814 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:818 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "모두 선택(_A)"
 
-#: ../gnome-dictionary/src/gdict-window.c:817
-#, fuzzy
+#: ../gnome-dictionary/src/gdict-window.c:821
 msgid "Find a word or phrase in the document"
-msgstr "텍스트 안의 단어 찾기"
+msgstr "문서에서 단어나 문구를 찾아 봅니다"
 
-#: ../gnome-dictionary/src/gdict-window.c:819
+#: ../gnome-dictionary/src/gdict-window.c:823
 msgid "Find Ne_xt"
 msgstr "다음 찾기(_X)"
 
-#: ../gnome-dictionary/src/gdict-window.c:821
+#: ../gnome-dictionary/src/gdict-window.c:825
 msgid "Find Pre_vious"
 msgstr "이전 찾기(_V)"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:831
 msgid "_Previous Definition"
 msgstr "이전 단어 정의(_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:828
+#: ../gnome-dictionary/src/gdict-window.c:832
 msgid "Go to the previous definition"
 msgstr "이전 단어 정의로 갑니다"
 
-#: ../gnome-dictionary/src/gdict-window.c:829
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "_Next Definition"
 msgstr "다음 단어 정의(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:830
+#: ../gnome-dictionary/src/gdict-window.c:834
 msgid "Go to the next definition"
 msgstr "다음 단어 정의로 갑니다"
 
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:835
 msgid "_First Definition"
-msgstr "처음 정의(_F)"
+msgstr "처음 단어 정의(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:836
 msgid "Go to the first definition"
-msgstr "첫번째 정의로 갑니다"
+msgstr "첫번째 단어 정의로 갑니다"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "_Last Definition"
-msgstr "마지막 정의(_L)"
+msgstr "마지막 단어 정의(_L)"
 
-#: ../gnome-dictionary/src/gdict-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:838
 msgid "Go to the last definition"
-msgstr "마지막 정의로 갑니다"
+msgstr "마지막 단어 정의로 갑니다"
 
-#. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:837 ../logview/logview.c:114
-msgid "_Contents"
-msgstr "차례(_C)"
-
-#: ../gnome-dictionary/src/gdict-window.c:1129
+#: ../gnome-dictionary/src/gdict-window.c:1133
 msgid "Look _up:"
 msgstr "단어 찾아 보기(_U):"
 
-#: ../gnome-dictionary/src/gdict-window.c:1372
+#: ../gnome-dictionary/src/gdict-window.c:1376
 msgid "Unable to load the application icon"
 msgstr "프로그램 아이콘을 읽을 수 없습니다"
 
@@ -1558,11 +2117,11 @@ msgstr "테두리 효과"
 
 #: ../gnome-screenshot/gnome-panel-screenshot.c:452
 msgid "Options for Screenshot"
-msgstr "화면 잡기 옵션"
+msgstr "스크린샷 옵션"
 
 #: ../gnome-screenshot/gnome-panel-screenshot.c:453
 msgid "Show Screenshot options"
-msgstr "화면 잡기 옵션을 봅니다"
+msgstr "스크린샷 옵션을 봅니다"
 
 #: ../gnome-screenshot/gnome-panel-screenshot.c:457
 msgid "Take a picture of the screen"
@@ -1579,11 +2138,11 @@ msgstr "<b>미리 보기</b>"
 #: ../gnome-screenshot/gnome-panel-screenshot.glade.h:4
 #: ../gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
-msgstr "화면 잡기 저장"
+msgstr "스크린샷 저장"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Take Screenshot"
-msgstr "화면 잡기"
+msgstr "스크린샷 찍기"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take a screenshot of your desktop"
@@ -1619,31 +2178,31 @@ msgstr "화면을 잡을 때 창 관리자 테두리도 포함"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
 msgid "Screenshot directory"
-msgstr "화면 잡기 디렉토리"
+msgstr "스크린샷 디렉토리"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "The directory the last screenshot was saved in."
-msgstr "화면 잡기를 마지막에 저장할 때 사용한 디렉토리."
+msgstr "스크린샷을 마지막에 저장할 때 사용한 디렉토리."
 
-#: ../gnome-screenshot/screenshot-dialog.c:195
+#: ../gnome-screenshot/screenshot-dialog.c:197
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
 msgstr ""
-"화면 잡기 프로그램의 Glade 파일이 없습니다.\n"
+"스크린샷 프로그램의 glade 파일이 없습니다.\n"
 "gnome-panel을 제대로 설치했는지 확인하십시오"
 
-#: ../gnome-screenshot/screenshot-dialog.c:214
-msgid "Select a directory"
-msgstr "디렉토리 선택"
+#: ../gnome-screenshot/screenshot-dialog.c:216
+msgid "Select a folder"
+msgstr "폴더 선택"
 
 #: ../gnome-screenshot/screenshot-save.c:41
 #, c-format
 msgid ""
-"Unable to clear the temporary directory:\n"
+"Unable to clear the temporary folder:\n"
 "%s"
 msgstr ""
-"임시 디렉토리를 비울 수 없습니다:\n"
+"임시 폴더를 비울 수 없습니다:\n"
 "%s"
 
 #: ../gnome-screenshot/screenshot-save.c:79
@@ -1651,14 +2210,14 @@ msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
 msgstr ""
-"하위 저장 프로세스가 갑자기 끝났습니다.  잡은 화면 파일을 디스크에 쓸 수 "
-"없습니다." 
+"하위 저장 프로세스가 갑자기 끝났습니다.  잡은 화면 파일을 디스크에 쓸 수 없습"
+"니다."
 
 #: ../gnome-screenshot/screenshot-save.c:191
 msgid "Unknown error saving screenshot to disk"
 msgstr "잡은 화면을 디스크에 저장하는 데 알 수 없는 오류"
 
-#: ../gnome-screenshot/screenshot-utils.c:610
+#: ../gnome-screenshot/screenshot-utils.c:612
 msgid "Untitled Window"
 msgstr "제목 없는 창"
 
@@ -1686,8 +2245,8 @@ msgid "Unknown GnomeVFSXferProgressStatus %d"
 msgstr "알 수 없는 GnomeVFSXferProgressStatus %d"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Find files, folders, and documents on your computer"
-msgstr "컴퓨터에 들어 있는 파일, 폴더, 문서 찾기"
+msgid "Locate documents and folders on this computer by name or content"
+msgstr "이 컴퓨터의 문서나 폴더를 이름이나 내용으로 찾습니다"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
@@ -2000,8 +2559,7 @@ msgstr ""
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:76
 msgid ""
 "This key determines if the search tool window starts in a maximized state."
-msgstr ""
-"이 키는 찾기 도구 창이 최대크기로 시작할 지 결정합니다."
+msgstr "이 키는 찾기 도구 창이 최대크기로 시작할 지 결정합니다."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:186
 msgid "Could not open help document."
@@ -2033,15 +2591,6 @@ msgstr "\"%s\" 폴더를 열 수 없습니다."
 #: ../gsearchtool/gsearchtool-callbacks.c:403
 msgid "The nautilus file manager is not running."
 msgstr "노틸러스 파일 관리자가 실행 중이 아닙니다."
-
-#: ../gsearchtool/gsearchtool-callbacks.c:470
-#: ../gsearchtool/gsearchtool-callbacks.c:811
-msgid "The document does not exist."
-msgstr "해당 문서가 없습니다."
-
-#: ../gsearchtool/gsearchtool-callbacks.c:485
-msgid "There is no installed viewer capable of displaying the document."
-msgstr "이 문서를 보여줄 수 있는 뷰어가 설치되어 있지 않습니다."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:509
 #, c-format
@@ -2244,7 +2793,7 @@ msgid "Searching..."
 msgstr "찾는 중입니다..."
 
 #: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
-#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3155
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3150
 msgid "Search for Files"
 msgstr "파일 찾기"
 
@@ -2407,10 +2956,6 @@ msgstr "찾은 결과(_E):"
 msgid "List View"
 msgstr "목록 보기"
 
-#: ../gsearchtool/gsearchtool.c:2498
-msgid "Folder"
-msgstr "폴더"
-
 #: ../gsearchtool/gsearchtool.c:2510
 msgid "Size"
 msgstr "크기"
@@ -2558,10 +3103,6 @@ msgstr "비우기(_C)"
 msgid "_Log"
 msgstr "로그(_L)"
 
-#: ../logview/logview.c:87
-msgid "_View"
-msgstr "보기(_V)"
-
 #: ../logview/logview.c:90
 msgid "_Open..."
 msgstr "열기(_O)..."
@@ -2635,10 +3176,6 @@ msgid "Show the about dialog for the log viewer"
 msgstr "로그 보기 프로그램의 정보 대화 상자를 봅니다"
 
 #: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "상태 표시줄(_S)"
-
-#: ../logview/logview.c:122
 msgid "Show Status Bar"
 msgstr "상태 표시줄을 봅니다"
 
@@ -2675,10 +3212,6 @@ msgstr "%s (감시중) - %s"
 msgid "Open Log"
 msgstr "로그 열기"
 
-#: ../logview/logview.c:774
-msgid "There was an error displaying help."
-msgstr "도움말을 표시하는 데 오류가 발생했습니다."
-
 #: ../logview/logview.c:907
 msgid "Version: "
 msgstr "판번호: "
@@ -2689,7 +3222,7 @@ msgstr "일"
 
 #: ../logview/logview.c:977
 msgid "Pointer towards a GSList of days for the current log."
-msgstr ""
+msgstr "현재 로그에 대한 날짜가 들어 있는 GSList에 대한 포인터."
 
 #: ../logview/logview.schemas.in.h:1
 msgid "Height of the main window in pixels"
@@ -2712,8 +3245,8 @@ msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
 msgstr ""
-"시작할 때 열어 볼 로그 파일의 목록을 지정합니다. 기본 목록은 /etc/syslog.conf "
-"파일을 읽어서 만듭니다."
+"시작할 때 열어 볼 로그 파일의 목록을 지정합니다. 기본 목록은 /etc/syslog."
+"conf 파일을 읽어서 만듭니다."
 
 #: ../logview/logview.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
@@ -2732,8 +3265,8 @@ msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
 msgstr ""
-"기본 로그 보기에서 쓰이는 고정폭 글꼴의 크기를 지정합니다. 터미널 글꼴 "
-"크기를 기본값으로 가져옵니다."
+"기본 로그 보기에서 쓰이는 고정폭 글꼴의 크기를 지정합니다. 터미널 글꼴 크기"
+"를 기본값으로 가져옵니다."
 
 #: ../logview/logview.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
