@@ -10,7 +10,9 @@ INCLUDES = \
 	-DG_LOG_DOMAIN=\"gnome-system-log\"			\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"				\
-	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""
+	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""			\
+	$(SUN_OS)						\
+	$(NULL)
 
 bin_PROGRAMS = gnome-system-log
 

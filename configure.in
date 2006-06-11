@@ -40,6 +40,18 @@ AC_PATH_XTRA
 LIBGDICT_LT_VERSION=3:0:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
+dnl *****************************************
+dnl host architecture check time
+dnl *****************************************
+
+case $host in
+*-*-solaris*)
+	SUN_OS="-DON_SUN_OS"
+	;;
+*)
+	SUN_OS=
+esac
+AC_SUBST(SUN_OS)
 
 dnl *****************************************
 dnl pkg-config check time
