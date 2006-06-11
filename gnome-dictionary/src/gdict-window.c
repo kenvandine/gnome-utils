@@ -406,7 +406,8 @@ gdict_window_set_print_font (GdictWindow *window,
 
 static void
 gdict_window_set_word (GdictWindow *window,
-		       const gchar *word)
+		       const gchar *word,
+		       const gchar *database)
 {
   gchar *title;
   
@@ -415,6 +416,11 @@ gdict_window_set_word (GdictWindow *window,
 
   if (word && word[0] != '\0')
     window->word = g_strdup (word);
+  else
+    return;
+
+  if (!database || database[0] == '\0')
+    database = window->database;
 
   if (window->word)
     title = g_strdup_printf (_("%s - Dictionary"), window->word);
@@ -425,7 +431,10 @@ gdict_window_set_word (GdictWindow *window,
   g_free (title);
 
   if (window->defbox)
-    gdict_defbox_lookup (GDICT_DEFBOX (window->defbox), window->word);
+    {
+      gdict_defbox_set_database (GDICT_DEFBOX (window->defbox), database);
+      gdict_defbox_lookup (GDICT_DEFBOX (window->defbox), word);
+    }
 }
 
 static void
@@ -516,7 +525,7 @@ gdict_window_set_property (GObject      *object,
       gdict_window_set_source_name (window, g_value_get_string (value));
       break;
     case PROP_WORD:
-      gdict_window_set_word (window, g_value_get_string (value));
+      gdict_window_set_word (window, g_value_get_string (value), NULL);
       break;
     case PROP_PRINT_FONT:
       gdict_window_set_print_font (window, g_value_get_string (value));
@@ -1020,16 +1029,18 @@ entry_activate_cb (GtkWidget   *widget,
   if (!word || *word == '\0')
     return;
 
-  gdict_window_set_word (window, word);
+  gdict_window_set_word (window, word, NULL);
 }
 
 static void
 speller_word_activated_cb (GdictSpeller *speller,
 			   const gchar  *word,
+			   const gchar  *db_name,
 			   GdictWindow  *window)
 {
   gtk_entry_set_text (GTK_ENTRY (window->entry), word);
-  gdict_window_set_word (window, word);
+  
+  gdict_window_set_word (window, word, db_name);
 }
 
 static void
@@ -1060,7 +1071,7 @@ gdict_window_drag_data_received_cb (GtkWidget        *widget,
       
       gtk_entry_set_text (GTK_ENTRY (window->entry), text);
 
-      gdict_window_set_word (window, text);
+      gdict_window_set_word (window, text, NULL);
       g_free (text);
       
       gtk_drag_finish (context, TRUE, FALSE, time_);
@@ -1538,7 +1549,7 @@ gdict_window_new (GdictSourceLoader *loader,
     {
       gtk_entry_set_text (GTK_ENTRY (GDICT_WINDOW (retval)->entry), word);
       
-      gdict_window_set_word (GDICT_WINDOW (retval), word);
+      gdict_window_set_word (GDICT_WINDOW (retval), word, NULL);
     }
 
   return retval;

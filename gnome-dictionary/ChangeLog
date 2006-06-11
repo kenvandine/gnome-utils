@@ -1,5 +1,24 @@
 2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* libgdict/gdict-speller.h:
+	* libgdict/gdict-speller.c: Update the "word-activated" signal
+	signature: it now includes the name of the database where the
+	word was found.
+
+	* libgdict/gdict-marshal.list: Add marshaller for the new
+	"word-activated" signal signature.
+
+	* src/gdict-window.c (gdict_window_set_word): Add a "database"
+	parameter that changes the database for the word definition
+	query; the change is local: the database from the source is
+	kept unchanged for the following queries.
+
+	(gdict_window_set_property), (entry_activate_cb),
+	(speller_word_activated_cb), (gdict_window_drag_data_received_cb),
+	(gdict_window_new): Update calls to gdict_window_set_word().
+
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* libgdict/Makefile.am: Remove the stamp-* files when cleaning
 	up.
 

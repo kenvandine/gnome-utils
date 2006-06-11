@@ -238,7 +238,7 @@ row_activated_cb (GtkTreeView       *treeview,
   GdictSpeller *speller = GDICT_SPELLER (user_data);
   GdictSpellerPrivate *priv = speller->priv;
   GtkTreeIter iter;
-  gchar *word;
+  gchar *word, *db_name;
   gboolean valid;
 
   valid = gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store),
@@ -253,9 +253,11 @@ row_activated_cb (GtkTreeView       *treeview,
   
   gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
 		      MATCH_COLUMN_WORD, &word,
+		      MATCH_COLUMN_DB_NAME, &db_name,
 		      -1);
   if (word)
-    g_signal_emit (speller, speller_signals[WORD_ACTIVATED], 0, word);
+    g_signal_emit (speller, speller_signals[WORD_ACTIVATED], 0,
+		   word, db_name);
   else
     {
       gchar *row = gtk_tree_path_to_string (path);
@@ -265,6 +267,7 @@ row_activated_cb (GtkTreeView       *treeview,
     }
 
   g_free (word);
+  g_free (db_name);
 }
 
 static GObject *
@@ -380,8 +383,9 @@ gdict_speller_class_init (GdictSpellerClass *klass)
 		  G_SIGNAL_RUN_LAST,
 		  G_STRUCT_OFFSET (GdictSpellerClass, word_activated),
 		  NULL, NULL,
-		  gdict_marshal_VOID__STRING,
-		  G_TYPE_NONE, 1,
+		  gdict_marshal_VOID__STRING_STRING,
+		  G_TYPE_NONE, 2,
+		  G_TYPE_STRING,
 		  G_TYPE_STRING);
   speller_signals[CLOSED] =
     g_signal_new ("closed",

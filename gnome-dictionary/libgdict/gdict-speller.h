@@ -49,7 +49,8 @@ struct _GdictSpellerClass
   GtkVBoxClass parent_class;
 
   void (*word_activated) (GdictSpeller *speller,
-		          const gchar  *word);
+		          const gchar  *word,
+			  const gchar  *database);
   void (*closed)        (GdictSpeller *speller);
 
   /* padding for future expansion */
