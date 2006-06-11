@@ -76,21 +76,6 @@ typedef enum {
 #define GDICT_IS_VALID_STATUS_CODE(x)	(((x) > GDICT_STATUS_INVALID) && \
                                          ((x) <= GDICT_STATUS_NO_STRATEGIES_PRESENT))
 
-#ifdef GDICT_ENABLE_DEBUG
-void gdict_debug (const gchar *fmt, ...);
-#else
-#define gdict_debug(...)
-#endif
-
-gboolean gdict_has_ipv6 (void);
-
-void gdict_show_error_dialog  (GtkWidget   *widget,
-			       const gchar *title,
-			       const gchar *detail);
-void gdict_show_gerror_dialog (GtkWidget   *widget,
-			       const gchar *title,
-			       GError      *error);
-
 G_END_DECLS
 
 #endif /* __GDICT_UTILS_H__ */

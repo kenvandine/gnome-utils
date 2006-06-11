@@ -1,3 +1,51 @@
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	A libgdict/gdict-debug.[ch]
+	A libgdict/gdict-private.h
+	A libgdict/gdict-speller.[ch]
+	A libgdict/gdict-database-chooser.[ch]
+	A libgdict/gdict-strategy-chooser.[ch]
+
+	* libgdict/gdict-utils.h:
+	* libgdict/gdict-utils.c:
+	* libgdict/gdict-debug.c:
+	* libgdict/gdict-debug.h: Isolate gdict_debug calls and mark them
+	as semi-private.
+
+	* libgdict/gdict-private.h: Private API.
+
+	* libgdict/gdict.h
+	* libgdict/gdict-speller.h:
+	* libgdict/gdict-speller.c: GdictSpeller widget.  Initial
+	implementation of a widget showing matches, like the defbox
+	shows definitions.
+
+	* libgdict/gdict-database-chooser.h:
+	* libgdict/gdict-database-chooser.c:
+	* libgdict/gdict-strategy-chooser.h:
+	* libgdict/gdict-strategy-chooser.c: Stubs for databases and
+	strategies chooser widgets; not included in the build yet,
+	as they are still work in progress.
+
+2006-05-20  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-defbox.c: Make the defbox jump to the
+	beginning of the definition, instead of the middle
+	of it (#341047, Michael Hofmann).
+
+2006-05-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* data/Makefile.am: Install the gnome-dictionary icon inside the
+	right theme directory, and make sure to rebuild the icon cache
+	when done.
+
+	* src/gdict-about.c (gdict_show_about_dialog):
+	* src/gdict-app.c (gdict_init):
+	* src/gdict-applet.c (gdict_app_init):
+	* src/gdict-window.c (gdict_window_init): Remove the old
+	pixbuf loading from the icon file, and change with calls to
+	the icon name.
+
 2006-05-06  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/gdict-client-context.c (get_status_code): Add further

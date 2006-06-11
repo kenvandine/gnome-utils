@@ -28,8 +28,11 @@
 #include "gdict-utils.h"
 #include "gdict-marshal.h"
 #include "gdict-context-private.h"
+#include "gdict-private.h"
+
 
 static void gdict_context_class_init (gpointer g_iface);
+
 
 GType
 gdict_context_get_type (void)
@@ -202,12 +205,7 @@ gdict_context_class_init (gpointer g_iface)
 GQuark
 gdict_context_error_quark (void)
 {
-  static GQuark quark = 0;
-  
-  if (G_UNLIKELY (quark == 0))
-    quark = g_quark_from_static_string ("gdict-context-error-quark");
-  
-  return quark;
+  return g_quark_from_static_string ("gdict-context-error-quark");
 }
 
 /**
@@ -257,7 +255,7 @@ gdict_context_get_local_only (GdictContext *context)
  * @error: return location for a #GError, or %NULL
  *
  * Query @context for the list of databases available.  Each time a
- * new database is found, the "database-found" signal is fired.
+ * database is found, the "database-found" signal is fired.
  *
  * Return value: %TRUE if the query was successfully started.
  *
@@ -268,6 +266,15 @@ gdict_context_lookup_databases (GdictContext  *context,
 				GError       **error)
 {
   g_return_val_if_fail (GDICT_IS_CONTEXT (context), FALSE);
+
+  if (!GDICT_CONTEXT_GET_IFACE (context)->get_databases)
+    {
+      g_warning ("Object `%s' does not implement the get_databases "
+                 "virtual function.",
+                 g_type_name (G_OBJECT_TYPE (context)));
+      
+      return FALSE;
+    }
   
   return GDICT_CONTEXT_GET_IFACE (context)->get_databases (context, error);
 }
@@ -289,7 +296,16 @@ gdict_context_lookup_strategies (GdictContext  *context,
 				 GError       **error)
 {
   g_return_val_if_fail (GDICT_IS_CONTEXT (context), FALSE);
-  
+
+  if (!GDICT_CONTEXT_GET_IFACE (context)->get_strategies)
+    {
+      g_warning ("Object `%s' does not implement the get_strategies "
+                 "virtual function.",
+                 g_type_name (G_OBJECT_TYPE (context)));
+      
+      return FALSE;
+    }
+
   return GDICT_CONTEXT_GET_IFACE (context)->get_strategies (context, error);
 }
 
@@ -320,6 +336,15 @@ gdict_context_match_word (GdictContext  *context,
 {
   g_return_val_if_fail (GDICT_IS_CONTEXT (context), FALSE);
   g_return_val_if_fail (word != NULL, FALSE);
+
+  if (!GDICT_CONTEXT_GET_IFACE (context)->match_word)
+    {
+      g_warning ("Object `%s' does not implement the match_word "
+                 "virtual function.",
+                 g_type_name (G_OBJECT_TYPE (context)));
+      
+      return FALSE;
+    }
   
   return GDICT_CONTEXT_GET_IFACE (context)->match_word (context,
   							database,
@@ -351,6 +376,15 @@ gdict_context_define_word (GdictContext  *context,
 {
   g_return_val_if_fail (GDICT_IS_CONTEXT (context), FALSE);
   g_return_val_if_fail (word != NULL, FALSE);
+  
+  if (!GDICT_CONTEXT_GET_IFACE (context)->define_word)
+    {
+      g_warning ("Object `%s' does not implement the define_word "
+                 "virtual function.",
+                 g_type_name (G_OBJECT_TYPE (context)));
+      
+      return FALSE;
+    }
   
   return GDICT_CONTEXT_GET_IFACE (context)->define_word (context,
   							 database,

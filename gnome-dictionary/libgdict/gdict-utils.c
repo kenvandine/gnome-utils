@@ -39,28 +39,15 @@
 #include <gtk/gtk.h>
 
 #include "gdict-context-private.h"
+#include "gdict-debug.h"
 #include "gdict-utils.h"
-
-#ifdef GDICT_ENABLE_DEBUG
-void
-gdict_debug (const gchar *fmt,
-             ...)
-{
-  va_list args;
-
-  fprintf (stderr, "GDICT_DEBUG: ");
-    
-  va_start (args, fmt);
-  vfprintf (stderr, fmt, args);
-  va_end (args);
-}
-#endif
+#include "gdict-private.h"
 
 /* gdict_has_ipv6: checks for the existence of the IPv6 extensions; if
  * IPv6 support was not enabled, this function always return false
  */
 gboolean
-gdict_has_ipv6 (void)
+_gdict_has_ipv6 (void)
 {
 #ifdef ENABLE_IPV6
   int s;
@@ -96,7 +83,7 @@ show_error_dialog (GtkWindow   *parent,
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
   					      "%s", detail);
   
-  if (parent->group)
+  if (parent && parent->group)
     gtk_window_group_add_window (parent->group, GTK_WINDOW (dialog));
   
   gtk_dialog_run (GTK_DIALOG (dialog));
@@ -128,9 +115,9 @@ get_toplevel_window (GtkWidget *widget)
  * Since: 1.0
  */
 void
-gdict_show_error_dialog (GtkWidget   *widget,
-			 const gchar *title,
-			 const gchar *detail)
+_gdict_show_error_dialog (GtkWidget   *widget,
+			  const gchar *title,
+			  const gchar *detail)
 {
   g_return_if_fail (GTK_IS_WIDGET (widget));
   g_return_if_fail (title != NULL);
@@ -151,9 +138,9 @@ gdict_show_error_dialog (GtkWidget   *widget,
  * Since: 1.0
  */
 void
-gdict_show_gerror_dialog (GtkWidget   *widget,
-			  const gchar *title,
-			  GError      *error)
+_gdict_show_gerror_dialog (GtkWidget   *widget,
+			   const gchar *title,
+			   GError      *error)
 {
   g_return_if_fail (GTK_IS_WIDGET (widget));
   g_return_if_fail (title != NULL);

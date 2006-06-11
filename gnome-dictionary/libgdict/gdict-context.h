@@ -91,19 +91,19 @@ struct _GdictContextIface
   GTypeInterface base_iface;
   
   /* methods, not signals */
-  gboolean (*get_databases)  (GdictContext  *context,
-  			      GError       **error);
-  gboolean (*get_strategies) (GdictContext  *context,
-  			      GError       **error);
-  gboolean (*match_word)     (GdictContext  *context,
-  			      const gchar   *database,
-  			      const gchar   *strategy,
-  			      const gchar   *word,
-  			      GError       **error);
-  gboolean (*define_word)    (GdictContext  *context,
-  			      const gchar   *database,
-  			      const gchar   *word,
-  			      GError       **error);  
+  gboolean (*get_databases)     (GdictContext  *context,
+  			         GError       **error);
+  gboolean (*get_strategies)    (GdictContext  *context,
+  			         GError       **error);
+  gboolean (*match_word)        (GdictContext  *context,
+  			         const gchar   *database,
+  			         const gchar   *strategy,
+  			         const gchar   *word,
+  			         GError       **error);
+  gboolean (*define_word)       (GdictContext  *context,
+  			         const gchar   *database,
+  			         const gchar   *word,
+  			         GError       **error);  
   
   /* signals */
   void (*lookup_start)     (GdictContext    *context);

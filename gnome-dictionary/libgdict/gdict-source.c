@@ -31,6 +31,7 @@
 #include "gdict-client-context.h"
 #include "gdict-utils.h"
 #include "gdict-enum-types.h"
+#include "gdict-private.h"
 
 /* Main group */
 #define SOURCE_GROUP		"Dictionary Source"

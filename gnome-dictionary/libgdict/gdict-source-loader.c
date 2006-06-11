@@ -36,6 +36,7 @@
 #include "gdict-utils.h"
 #include "gdict-enum-types.h"
 #include "gdict-marshal.h"
+#include "gdict-private.h"
 
 #define GDICT_SOURCE_FILE_SUFFIX	 	".desktop"
 

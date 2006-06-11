@@ -35,6 +35,7 @@
 #include "gdict-enum-types.h"
 #include "gdict-marshal.h"
 #include "gdict-utils.h"
+#include "gdict-private.h"
 
 #define GDICT_ENTRY_GET_PRIVATE(obj)	(G_TYPE_INSTANCE_GET_PRIVATE ((obj), GDICT_TYPE_ENTRY, GdictEntryPrivate))
 

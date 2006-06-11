@@ -33,9 +33,12 @@
 
 #include "gdict-defbox.h"
 #include "gdict-utils.h"
+#include "gdict-private.h"
 #include "gdict-enum-types.h"
 #include "gdict-marshal.h"
 
+#define QUERY_MARGIN	48
+#define ERROR_MARGIN	24
 
 typedef struct
 {
@@ -44,7 +47,8 @@ typedef struct
   gint begin;
 } Definition;
 
-#define GDICT_DEFBOX_GET_PRIVATE(obj)	(G_TYPE_INSTANCE_GET_PRIVATE ((obj), GDICT_TYPE_DEFBOX, GdictDefboxPrivate))
+#define GDICT_DEFBOX_GET_PRIVATE(obj) \
+(G_TYPE_INSTANCE_GET_PRIVATE ((obj), GDICT_TYPE_DEFBOX, GdictDefboxPrivate))
 
 struct _GdictDefboxPrivate
 {
@@ -159,16 +163,13 @@ gdict_defbox_finalize (GObject *object)
   
   if (priv->definitions)
     {
-      g_slist_foreach (priv->definitions,
-      		       (GFunc) definition_free,
-      		       NULL);
+      g_slist_foreach (priv->definitions, (GFunc) definition_free, NULL);
       g_slist_free (priv->definitions);
       
       priv->definitions = NULL;
     }
   
   g_object_unref (priv->tooltips);
-  
   g_object_unref (priv->buffer);
   
   if (priv->busy_cursor)
@@ -190,7 +191,7 @@ set_gdict_context (GdictDefbox  *defbox,
     {
       if (priv->start_id)
         {
-          gdict_debug ("Removing old context handlers\n");
+          _gdict_debug ("Removing old context handlers\n");
           
           g_signal_handler_disconnect (priv->context, priv->start_id);
           g_signal_handler_disconnect (priv->context, priv->define_id);
@@ -208,7 +209,7 @@ set_gdict_context (GdictDefbox  *defbox,
           priv->error_id = 0;
         }
 
-      gdict_debug ("Removing old context\n");
+      _gdict_debug ("Removing old context\n");
       
       g_object_unref (G_OBJECT (priv->context));
     }
@@ -223,7 +224,7 @@ set_gdict_context (GdictDefbox  *defbox,
       return;
     }
 
-  gdict_debug ("Setting new context\n");
+  _gdict_debug ("Setting new context\n");
     
   priv->context = context;
   g_object_ref (G_OBJECT (priv->context));
@@ -476,21 +477,22 @@ find_entry_changed_cb (GtkWidget *widget,
   g_free (text);
 }
 
-static void
+static GtkWidget *
 create_find_pane (GdictDefbox *defbox)
 {
   GdictDefboxPrivate *priv;
+  GtkWidget *find_pane;
   GtkWidget *label;
   GtkWidget *sep;
   GtkWidget *hbox1, *hbox2;
  
   priv = defbox->priv;
   
-  priv->find_pane = gtk_hbox_new (FALSE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (priv->find_pane), 0);
+  find_pane = gtk_hbox_new (FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (find_pane), 0);
   
   hbox1 = gtk_hbox_new (FALSE, 6);
-  gtk_box_pack_start (GTK_BOX (priv->find_pane), hbox1, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (find_pane), hbox1, TRUE, TRUE, 0);
   gtk_widget_show (hbox1);
 
   hbox2 = gtk_hbox_new (FALSE, 12);
@@ -528,8 +530,10 @@ create_find_pane (GdictDefbox *defbox)
   
   priv->find_label = gtk_label_new (NULL);
   gtk_label_set_use_markup (GTK_LABEL (priv->find_label), TRUE);
-  gtk_box_pack_end (GTK_BOX (priv->find_pane), priv->find_label, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (find_pane), priv->find_label, FALSE, FALSE, 0);
   gtk_widget_hide (priv->find_label);
+
+  return find_pane;
 }
 
 static void
@@ -548,23 +552,44 @@ gdict_defbox_init_tags (GdictDefbox *defbox)
   gtk_text_buffer_create_tag (priv->buffer, "underline",
   			      "underline", PANGO_UNDERLINE_SINGLE,
   			      NULL);
+  
   gtk_text_buffer_create_tag (priv->buffer, "big",
   			      "scale", 1.6,
-  			      "pixels-below-lines", 5,
-  			      "pixels-above-lines", 5,
   			      NULL);
-  gtk_text_buffer_create_tag (priv->buffer, "gray",
-  			      "foreground", "dark gray",
-  			      NULL);
+  gtk_text_buffer_create_tag (priv->buffer, "small",
+		  	      "scale", PANGO_SCALE_SMALL,
+			      NULL);  
+  
   gtk_text_buffer_create_tag (priv->buffer, "emphasis",
   			      "foreground", "dark green",
   			      NULL);
+
+  gtk_text_buffer_create_tag (priv->buffer, "query-title",
+		              "left-margin", QUERY_MARGIN,
+  			      "pixels-above-lines", 5,
+  			      "pixels-below-lines", 20,
+			      NULL);
+  gtk_text_buffer_create_tag (priv->buffer, "query-from",
+		  	      "foreground", "dark gray",
+			      "scale", PANGO_SCALE_SMALL,
+		  	      "left-margin", QUERY_MARGIN,
+			      "pixels-above-lines", 5,
+			      "pixels-below-lines", 10,
+			      NULL);
+
+  gtk_text_buffer_create_tag (priv->buffer, "error-title",
+		  	      "foreground", "dark red",
+			      "left-margin", ERROR_MARGIN,
+			      NULL);
+  gtk_text_buffer_create_tag (priv->buffer, "error-message",
+		              "left-margin", ERROR_MARGIN,
+			      NULL);
 }
 
 static GObject *
-gdict_defbox_default_constructor (GType                  type,
-				  guint                  n_construct_properties,
-				  GObjectConstructParam *construct_params)
+gdict_defbox_constructor (GType                  type,
+			  guint                  n_construct_properties,
+			  GObjectConstructParam *construct_params)
 {
   GdictDefbox *defbox;
   GdictDefboxPrivate *priv;
@@ -580,6 +605,7 @@ gdict_defbox_default_constructor (GType                  type,
   gtk_widget_push_composite_child ();
   
   sw = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_set_composite_name (sw, "gdict-defbox-scrolled-window");
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
   				  GTK_POLICY_AUTOMATIC,
   				  GTK_POLICY_AUTOMATIC);
@@ -592,12 +618,14 @@ gdict_defbox_default_constructor (GType                  type,
   gdict_defbox_init_tags (defbox);
   
   priv->text_view = gtk_text_view_new_with_buffer (priv->buffer);
+  gtk_widget_set_composite_name (priv->text_view, "gdict-defbox-text-view");
   gtk_text_view_set_editable (GTK_TEXT_VIEW (priv->text_view), FALSE);
   gtk_text_view_set_left_margin (GTK_TEXT_VIEW (priv->text_view), 4);
   gtk_container_add (GTK_CONTAINER (sw), priv->text_view);
   gtk_widget_show (priv->text_view);
   
-  create_find_pane (defbox);
+  priv->find_pane = create_find_pane (defbox);
+  gtk_widget_set_composite_name (priv->find_pane, "gdict-defbox-find-pane");
   gtk_box_pack_end (GTK_BOX (defbox), priv->find_pane, FALSE, FALSE, 0);
   
   gtk_widget_pop_composite_child ();
@@ -673,7 +701,7 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
   GtkBindingSet *binding_set;
   
-  gobject_class->constructor = gdict_defbox_default_constructor;
+  gobject_class->constructor = gdict_defbox_constructor;
   gobject_class->set_property = gdict_defbox_set_property;
   gobject_class->get_property = gdict_defbox_get_property;
   gobject_class->finalize = gdict_defbox_finalize;
@@ -691,8 +719,8 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
   g_object_class_install_property (gobject_class,
   				   PROP_CONTEXT,
   				   g_param_spec_object ("context",
-  				   			_("Context"),
-  				   			_("The GdictContext object used to get the word definition"),
+  				   			"Context",
+  				   			"The GdictContext object used to get the word definition",
   				   			GDICT_TYPE_CONTEXT,
   				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
   /**
@@ -706,8 +734,8 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
   g_object_class_install_property (gobject_class,
 		  		   PROP_DATABASE,
 				   g_param_spec_string ("database",
-					   		_("Database"),
-							_("The database used to query the GdictContext"),
+					   		"Database",
+							"The database used to query the GdictContext",
 							GDICT_DEFAULT_DATABASE,
 							(G_PARAM_READABLE | G_PARAM_WRITABLE)));
   /**
@@ -721,36 +749,11 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
   g_object_class_install_property (gobject_class,
 		  		   PROP_FONT_NAME,
 				   g_param_spec_string ("font-name",
-					   		_("Font Name"),
-							_("The font to be used by the defbox"),
+					   		"Font Name",
+							"The font to be used by the defbox",
 							GDICT_DEFAULT_FONT_NAME,
 							(G_PARAM_READABLE | G_PARAM_WRITABLE)));
   
-  gtk_widget_class_install_style_property (widget_class,
-  					   g_param_spec_boxed ("emphasis-color",
-  					   		       _("Emphasys Color"),
-  					   		       _("Color of emphasised text"),
-  					   		       GDK_TYPE_COLOR,
-  					   		       (G_PARAM_READABLE | G_PARAM_WRITABLE)));
-  gtk_widget_class_install_style_property (widget_class,
-  					   g_param_spec_boxed ("link-color",
-  					   		       _("Link Color"),
-  					   		       _("Color of hyperlinks"),
-  					   		       GDK_TYPE_COLOR,
-  					   		       (G_PARAM_READABLE | G_PARAM_WRITABLE)));
-  gtk_widget_class_install_style_property (widget_class,
-  					   g_param_spec_boxed ("word-color",
-  					   		       _("Word Color"),
-  					   		       _("Color of the dictionary word"),
-  					   		       GDK_TYPE_COLOR,
-  					   		       (G_PARAM_READABLE | G_PARAM_WRITABLE)));
-  gtk_widget_class_install_style_property (widget_class,
-  					   g_param_spec_boxed ("source-color",
-  					   		       _("Source Color"),
-  					   		       _("Color of the dictionary source"),
-  					   		       GDK_TYPE_COLOR,
-  					   		       (G_PARAM_READABLE | G_PARAM_WRITABLE)));
-
   gdict_defbox_signals[SHOW_FIND] =
     g_signal_new ("show-find",
 		  G_OBJECT_CLASS_TYPE (gobject_class),
@@ -1012,84 +1015,6 @@ gdict_defbox_get_show_find (GdictDefbox *defbox)
   return (defbox->priv->show_find == TRUE);
 }
 
-/* find the toplevel widget for @widget */
-static GtkWindow *
-get_toplevel_window (GtkWidget *widget)
-{
-  GtkWidget *toplevel;
-  
-  toplevel = gtk_widget_get_toplevel (widget);
-  if (!GTK_WIDGET_TOPLEVEL (toplevel))
-    return NULL;
-  else
-    return GTK_WINDOW (toplevel);
-}
-
-static GtkWidget *
-create_progress_dialog (GdictDefbox *defbox)
-{
-  GtkWidget *dialog;
-  GtkWidget *vbox;
-  GtkWidget *label;
-  GtkWidget *progress;
-
-  dialog = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_transient_for (GTK_WINDOW (dialog),
-		                get_toplevel_window (GTK_WIDGET (defbox)));
-  gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
-  gtk_window_set_position (GTK_WINDOW (dialog), GTK_WIN_POS_CENTER_ON_PARENT);
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Progress"));
-  gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
-  gtk_window_set_skip_taskbar_hint (GTK_WINDOW (dialog), TRUE);
-  gtk_container_set_border_width (GTK_CONTAINER (dialog), 12);
-  
-  vbox = gtk_vbox_new (FALSE, 6);
-  gtk_container_add (GTK_CONTAINER (dialog), vbox);
-  gtk_widget_show (vbox);
-
-  label = gtk_label_new (NULL);
-  g_object_set_data (G_OBJECT (dialog), "progress-label", label);
-  gtk_box_pack_start (GTK_BOX (vbox), label, FALSE, FALSE, 0);
-  gtk_widget_show (label);
-  
-  progress = gtk_progress_bar_new ();
-  g_object_set_data (G_OBJECT (dialog), "progress-bar", progress);
-  gtk_box_pack_end (GTK_BOX (vbox), progress, FALSE, FALSE, 0);
-  gtk_widget_show (progress);
-
-  return dialog;
-}
-
-static void
-update_progress_dialog (GdictDefbox     *defbox,
-			GdictDefinition *definition)
-{
-  GdictDefboxPrivate *priv;
-  GtkWidget *progress, *label;
-  gchar *text;
-  gint total, current;
-  gdouble fraction;
-
-  priv = defbox->priv;
-
-  total = gdict_definition_get_total (definition);
-  current = g_slist_length (priv->definitions);
-  
-  text = g_strdup_printf (_("Definition for '%s' (%d/%d)"),
-			  gdict_definition_get_word (definition),
-			  current,
-			  total);
-  
-  label = g_object_get_data (G_OBJECT (priv->progress_dialog), "progress-label");
-  gtk_label_set_text (GTK_LABEL (label), text);
-  g_free (text);
-
-  fraction = ((gdouble) current / (gdouble) total);
-  progress = g_object_get_data (G_OBJECT (priv->progress_dialog), "progress-bar");
-  gtk_progress_bar_set_fraction (GTK_PROGRESS_BAR (progress),
-		  		 MIN (fraction, 0.1));
-}
-
 static void
 lookup_start_cb (GdictContext *context,
 		 gpointer      user_data)
@@ -1100,8 +1025,6 @@ lookup_start_cb (GdictContext *context,
 
   priv->is_searching = TRUE;
   
-  gdict_defbox_clear (defbox);
-
   if (!priv->busy_cursor)
     priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
   
@@ -1109,11 +1032,6 @@ lookup_start_cb (GdictContext *context,
   				     GTK_TEXT_WINDOW_WIDGET);
   
   gdk_window_set_cursor (window, priv->busy_cursor);
-
-  g_assert (priv->progress_dialog == NULL);
-  
-  priv->progress_dialog = create_progress_dialog (defbox);
-  gtk_widget_show_all (priv->progress_dialog);
 }
 
 static void
@@ -1131,12 +1049,6 @@ lookup_end_cb (GdictContext *context,
   gtk_text_buffer_get_start_iter (buffer, &start);
   gtk_text_buffer_place_cursor (buffer, &start);
   
-  if (priv->progress_dialog)
-    {
-      gtk_widget_destroy (priv->progress_dialog);
-      priv->progress_dialog = NULL;
-    }
-  
   window = gtk_text_view_get_window (GTK_TEXT_VIEW (priv->text_view),
   				     GTK_TEXT_WINDOW_WIDGET);
   
@@ -1144,7 +1056,7 @@ lookup_end_cb (GdictContext *context,
   
   g_free (priv->word);
   priv->word = NULL;
-  
+
   priv->is_searching = FALSE;
 }
 
@@ -1164,11 +1076,11 @@ gdict_defbox_insert_word (GdictDefbox *defbox,
   
   g_assert (GTK_IS_TEXT_BUFFER (priv->buffer));
   
-  text = g_strdup_printf ("%s\n\n", word);
+  text = g_strdup_printf ("%s\n", word);
   gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
   					    iter,
   					    text, strlen (text),
-  					    "big",
+  					    "big", "bold", "query-title",
   					    NULL);
   g_free (text);
 }
@@ -1217,9 +1129,47 @@ gdict_defbox_insert_from (GdictDefbox *defbox,
   gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
   					    iter,
   					    text, strlen (text),
-  					    "gray",
+  					    "small", "query-from",
   					    NULL);
   g_free (text);
+}
+
+static void
+gdict_defbox_insert_error (GdictDefbox *defbox,
+			   GtkTextIter *iter,
+			   const gchar *title,
+			   const gchar *message)
+{
+  GdictDefboxPrivate *priv;
+  GtkTextMark *mark;
+  GtkTextIter cur_iter;
+  
+  if (!title)
+    return;
+  
+  g_assert (GDICT_IS_DEFBOX (defbox));
+  priv = defbox->priv;
+  
+  g_assert (GTK_IS_TEXT_BUFFER (priv->buffer));
+
+  mark = gtk_text_buffer_create_mark (priv->buffer, "block-cursor", iter, FALSE);
+  gtk_text_buffer_get_iter_at_mark (priv->buffer, &cur_iter, mark);
+  
+  gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
+  					    &cur_iter,
+  					    title, strlen (title),
+  					    "error-title", "big", "bold",
+  					    NULL);
+  gtk_text_buffer_get_iter_at_mark (priv->buffer, &cur_iter, mark);
+
+  gtk_text_buffer_insert (priv->buffer, &cur_iter, "\n\n", -1);
+  gtk_text_buffer_get_iter_at_mark (priv->buffer, &cur_iter, mark);
+
+  gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
+		  			    &cur_iter,
+					    message, strlen (message),
+					    "error-message",
+					    NULL);
 }
 
 static void
@@ -1252,10 +1202,6 @@ definition_found_cb (GdictContext    *context,
   def->definition = gdict_definition_ref (definition);
   
   priv->definitions = g_slist_append (priv->definitions, def);
-
-  g_assert (priv->progress_dialog != NULL);
-  
-  update_progress_dialog (defbox, definition);
 }
 
 static void
@@ -1265,35 +1211,20 @@ error_cb (GdictContext *context,
 {
   GdictDefbox *defbox = GDICT_DEFBOX (user_data);
   GdictDefboxPrivate *priv = defbox->priv;
-
-  if (priv->progress_dialog)
-    {
-      gtk_widget_destroy (priv->progress_dialog);
-      priv->progress_dialog = NULL;
-    }
+  GtkTextIter iter;
 
   if (!error)
     return;
   
-  /* the error must not be freed */
-  gdict_show_error_dialog (GTK_WIDGET (defbox),
-  			   _("Error while looking up definition"),
-  			   error->message);
-
   gdict_defbox_clear (defbox);
+
+  gtk_text_buffer_get_start_iter (priv->buffer, &iter);
+  gdict_defbox_insert_error (defbox, &iter,
+		             _("Error while looking up definition"),
+		             error->message);
   
   g_free (priv->word);
   priv->word = NULL;
-
-  /* disconnect everything except the error callback */
-  if (priv->start_id)
-    {
-      g_signal_handler_disconnect (priv->context, priv->start_id);
-      g_signal_handler_disconnect (priv->context, priv->define_id);
-      g_signal_handler_disconnect (priv->context, priv->end_id);
-
-      priv->start_id = priv->define_id = priv->end_id = 0;
-    }
   
   defbox->priv->is_searching = FALSE;
 }
@@ -1321,32 +1252,37 @@ gdict_defbox_lookup (GdictDefbox *defbox,
   
   if (!priv->context)
     {
-      g_warning (_("Attempting to look up '%s' but no GdictContext defined.  Aborting."),
+      g_warning ("Attempting to look up `%s', but no GdictContext "
+		 "has been set.  Use gdict_defbox_set_context() "
+		 "before invoking gdict_defbox_lookup().",
                  word);
       return;
     }
   
   if (priv->is_searching)
     {
-      gdict_show_error_dialog (GTK_WIDGET (defbox),
-      			       _("Another search is in progress"),
-      			       _("Please wait until the current search ends."));
+      _gdict_show_error_dialog (GTK_WIDGET (defbox),
+      			        _("Another search is in progress"),
+      			        _("Please wait until the current search ends."));
       
       return;
     }
+
+  gdict_defbox_clear (defbox);
   
   if (!priv->start_id)
-    priv->start_id = g_signal_connect (priv->context, "lookup-start",
-  				       G_CALLBACK (lookup_start_cb),
+    {
+      priv->start_id = g_signal_connect (priv->context, "lookup-start",
+  				         G_CALLBACK (lookup_start_cb),
+					 defbox);
+      priv->define_id = g_signal_connect (priv->context, "definition-found",
+  				          G_CALLBACK (definition_found_cb),
+  				          defbox);
+      priv->end_id = g_signal_connect (priv->context, "lookup-end",
+  				       G_CALLBACK (lookup_end_cb),
   				       defbox);
-  if (!priv->define_id)
-    priv->define_id = g_signal_connect (priv->context, "definition-found",
-  				        G_CALLBACK (definition_found_cb),
-  				        defbox);
-  if (!priv->end_id)
-    priv->end_id = g_signal_connect (priv->context, "lookup-end",
-  				     G_CALLBACK (lookup_end_cb),
-  				     defbox);
+    }
+  
   if (!priv->error_id)
     priv->error_id = g_signal_connect (priv->context, "error",
   				       G_CALLBACK (error_cb),
@@ -1360,9 +1296,16 @@ gdict_defbox_lookup (GdictDefbox *defbox,
   			     word,
   			     &define_error);
   if (define_error)
-    gdict_show_gerror_dialog (GTK_WIDGET (defbox),
-    			      _("Error while retrieving the definition"),
-    			      define_error);
+    {
+      GtkTextIter iter;
+
+      gtk_text_buffer_get_start_iter (priv->buffer, &iter);
+      gdict_defbox_insert_error (defbox, &iter,
+    			         _("Error while retrieving the definition"),
+				 define_error->message);
+
+      g_error_free (define_error);
+    }
 }
 
 /**
@@ -1543,7 +1486,7 @@ gdict_defbox_jump_to_definition (GdictDefbox *defbox,
       				&def_start,
       				0.0,
       				TRUE,
-      				0.5, 0.5);
+      				0.0, 0.0);
 }
 
 /**

@@ -2,6 +2,9 @@
 
 NULL =
 
+# uncomment to enable verbose logging in libgdict
+#GDICT_ENABLE_DEBUG=-DGDICT_ENABLE_DEBUG=1
+
 INCLUDES = -DG_LOG_DOMAIN=\"Gdict\" 				\
 	-DDATADIR=\""$(datadir)"\" 				\
 	-DLIBDIR=\""$(libdir)"\" 				\
@@ -10,6 +13,7 @@ INCLUDES = -DG_LOG_DOMAIN=\"Gdict\" 				\
 	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\" 		\
 	-DGDICTSOURCESDIR=\""$(datadir)/gdict-1.0/sources"\" 	\
 	-DGDICT_ENABLE_INTERNALS=1 				\
+	$(GDICT_ENABLE_DEBUG)					\
 	$(DISABLE_DEPRECATED_CFLAGS) 				\
 	$(WARN_CFLAGS) 						\
 	$(NULL)
@@ -18,6 +22,9 @@ lib_LTLIBRARIES = libgdict-1.0.la
 
 # GNOME Dictionary shared library
 libgdict_1_0_la_SOURCES =	\
+	gdict-private.h		\
+	gdict-debug.c		\
+	gdict-debug.h		\
 	gdict-context.c		\
 	gdict-context.h		\
 	gdict-context-private.h	\
@@ -35,6 +42,8 @@ libgdict_1_0_la_SOURCES =	\
 	gdict-source.h		\
 	gdict-source-loader.c	\
 	gdict-source-loader.h	\
+	gdict-speller.c		\
+	gdict-speller.h		\
 	gdict-utils.c		\
 	gdict-utils.h		\
 	$(NULL)
@@ -55,6 +64,7 @@ libgdict_include_HEADERS = 	\
 	gdict-enum-types.h	\
 	gdict-source.h		\
 	gdict-source-loader.h	\
+	gdict-speller.h		\
 	gdict-utils.h		\
 	gdict-version.h 	\
 	gdict.h			\
@@ -102,8 +112,11 @@ libgdict_enum_headers = \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-client-context.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-defbox.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-entry.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-database-chooser.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-strategy-chooser.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source-loader.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-speller.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-utils.h \
 	$(NULL)
 
