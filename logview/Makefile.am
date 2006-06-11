@@ -46,6 +46,10 @@ man_MANS = gnome-system-log.1
 
 Utilities_in_files = gnome-system-log.desktop.in
 Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
+
+$(Utilities_in_files): $(Utilities_in_files:.desktop.in=.desktop.in.in)
+	@sed -e "s|\@VERSION\@|@VERSION@|" $< > $@
+
 @INTLTOOL_DESKTOP_RULE@
 
 schemasdir   = $(GCONF_SCHEMA_FILE_DIR)
@@ -89,6 +93,7 @@ endif
 
 CLEANFILES = 				\
 	gnome-system-log.desktop	\
+	gnome-system-log.desktop.in	\
 	logview.schemas
 
 dist-hook:
