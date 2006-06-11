@@ -59,45 +59,59 @@ parse_syslog(gchar *syslog_file) {
 	char *cline, *p;
 	FILE *cf;
 	GSList *logfiles = NULL;
-
 	if ((cf = fopen(syslog_file, "r")) == NULL) {
 		return NULL;
 	}
 	cline = cbuf;
 	while (fgets(cline, sizeof(cbuf) - (cline - cbuf), cf) != NULL) {
-		for (p = cline; isspace(*p); ++p);
-		if (*p == '\0' || *p == '#')
+		gchar **list;
+		gint i;
+		for (p = cline; g_ascii_isspace(*p); ++p);
+		if (*p == '\0' || *p == '#' || *p == '\n')
 			continue;
-		for (;*p && !strchr("\t ", *p); ++p);
-		while (*p == '\t' || *p == ' ')
-			p++;
-		if (*p == '-')
-			p++;
-		if (*p == '/') {
-			logfile = g_strdup (p);
-			/* remove trailing newline */
-			if (logfile[strlen(logfile)-1] == '\n')
-				logfile[strlen(logfile)-1] = '\0';
-			logfiles = g_slist_append (logfiles, logfile);
+		list = g_strsplit_set (p, ", -\t()\n", 0);
+		for (i = 0; list[i]; ++i) {
+			if (*list[i] == '/' &&
+				g_slist_find_custom(logfiles, list[i],
+				g_ascii_strcasecmp) == NULL) {
+					logfiles = g_slist_insert (logfiles,
+						g_strdup(list[i]), 0);
+			}
 		}
+		g_strfreev(list);
 	}
-	return logfiles; 
+	fclose(cf);
+	return logfiles;
 }
 
 static void
 prefs_create_defaults (UserPrefs *p)
 {
 	int i;
-	gchar *logfiles[] = {"/var/adm/messages",
-                         "/var/log/messages",
-                         "/var/log/sys.log",
-                         "/var/log/secure",
-                         "/var/log/maillog",
-                         "/var/log/cron",
-                         "/var/log/Xorg.0.log",
-                         "/var/log/XFree86.0.log",
-                         "/var/log/auth.log",
-                         "/var/log/cups/error_log"};
+	gchar *logfiles[] = {
+		"/var/log/sys.log",
+#ifndef ON_SUN_OS
+		"/var/log/messages",
+		"/var/log/secure",
+		"/var/log/maillog",
+		"/var/log/cron",
+		"/var/log/Xorg.0.log",
+		"/var/log/XFree86.0.log",
+		"/var/log/auth.log",
+		"/var/log/cups/error_log",
+#else
+		"/var/adm/messages",
+		"/var/adm/sulog",
+		"/var/log/authlog",
+		"/var/log/brlog",
+		"/var/log/postrun.log",
+		"/var/log/scrollkeeper.log",
+		"/var/log/snmpd.log",
+		"/var/log/sysidconfig.log",
+		"/var/log/swupas/swupas.log",
+		"/var/log/swupas/swupas.error.log",
+#endif
+	NULL};
 	struct stat filestat;
 	GSList *logs = NULL;
 	GnomeVFSResult result;
@@ -114,9 +128,10 @@ prefs_create_defaults (UserPrefs *p)
 		logs = parse_syslog ("/etc/syslog.conf");
 	}
 	
-	for (i=0; i<10; i++) {
-		if (file_is_log (logfiles[i], FALSE))
-			logs = g_slist_append (logs, g_strdup(logfiles[i]));
+	for (i=0; logfiles[i]; i++) {
+	    if (g_slist_find_custom(logs, logfiles[i], g_ascii_strcasecmp) == NULL &&
+		file_is_log (logfiles[i], FALSE))
+		logs = g_slist_insert (logs, g_strdup(logfiles[i]), 0);
 	}
 
 	if (logs != NULL) {
@@ -142,7 +157,7 @@ prefs_load (void)
 					 GCONF_LOGFILES,
 					 GCONF_VALUE_STRING,
 					 &err);
-	if (err)
+	if (p->logs == NULL)
 		prefs_create_defaults (p);
 	
 	logfile = NULL;

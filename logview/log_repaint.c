@@ -164,23 +164,26 @@ static void
 logview_update_statusbar (LogviewWindow *logview)
 {
    char *statusbar_text;
-   char *size, *modified;
+   char *size, *modified, *index;
    Log *log;
 
    g_assert (LOGVIEW_IS_WINDOW (logview));
 
    log = logview->curlog;
 
-   if (log == NULL) { 
+   if (log == NULL) {
        gtk_statusbar_pop (GTK_STATUSBAR (logview->statusbar), 0);
        return;
    }
-
-   modified = g_strdup_printf (_("last update : %s"), ctime (&(log->stats->file_time)));   
+   
+   /* ctime returned string has "\n\0" causes statusbar display a invalid char */
+   modified = ctime (&(log->stats->file_time));
+   index = strrchr (modified, '\n'); *index = '\0';
+   modified = g_strdup_printf (_("last update : %s"), modified);
    size = gnome_vfs_format_file_size_for_display (log->stats->file_size);
    statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
                                      log->total_lines, size, modified);
-
+                                     
    if (statusbar_text) {
        gtk_statusbar_pop (GTK_STATUSBAR(logview->statusbar), 0);
        gtk_statusbar_push (GTK_STATUSBAR(logview->statusbar), 0, statusbar_text);
@@ -305,7 +308,7 @@ log_add_new_log_lines (Log *log)
     } else {
       iter_ptr = NULL;
     }  
-                
+ 
     for (i=log->displayed_lines; i<log->total_lines; i++) {
 
         line = log->lines[i];

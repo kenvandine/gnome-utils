@@ -82,7 +82,7 @@ static void logview_window_get_property	(GObject *object, guint param_id, GValue
 /* Menus */
 
 static GtkActionEntry entries[] = {
-	{ "FileMenu", NULL, N_("_Log"), NULL, NULL, NULL },
+	{ "FileMenu", NULL, N_("_File"), NULL, NULL, NULL },
 	{ "EditMenu", NULL, N_("_Edit"), NULL, NULL, NULL },
 	{ "ViewMenu", NULL, N_("_View"), NULL, NULL, NULL },
 	{ "HelpMenu", NULL, N_("_Help"), NULL, NULL, NULL },
@@ -134,32 +134,31 @@ static const char *ui_description =
 	"	<menubar name='LogviewMenu'>"
 	"		<menu action='FileMenu'>"
 	"			<menuitem action='OpenLog'/>"
-	"			<separator/>"
-	"			<menuitem action='MonitorLogs'/>"
-	"			<separator/>"
 	"			<menuitem action='CloseLog'/>"
 	"			<menuitem action='Quit'/>"
 	"		</menu>"
 	"		<menu action='EditMenu'>"
-	"       <menuitem action='Copy'/>"
-	"       <menuitem action='SelectAll'/>"
-	"		</menu>"	
+	"			<menuitem action='Copy'/>"
+	"	    	<menuitem action='SelectAll'/>"
+	"		</menu>"
 	"		<menu action='ViewMenu'>"
-    "     <menuitem action='ShowStatusBar'/>"
-    "     <menuitem action='ShowSidebar'/>"
-	"	  <menuitem action='ShowCalendar'/>"
-	"     <separator/>"
-	"	  <menuitem action='Search'/>"
-	"	  <menuitem action='CollapseAll'/>"
-    "     <separator/>"
-    "     <menuitem action='ViewZoomIn'/>"
-    "     <menuitem action='ViewZoomOut'/>"
-    "     <menuitem action='ViewZoom100'/>"
-	"	  </menu>"
-	"	  <menu action='HelpMenu'>"
-	"		<menuitem action='HelpContents'/>"
-	"		<menuitem action='AboutAction'/>"
-	"	  </menu>"
+	"			<menuitem action='MonitorLogs'/>"
+	"			<separator/>"
+	"			<menuitem action='ShowStatusBar'/>"
+	"			<menuitem action='ShowSidebar'/>"
+	"			<menuitem action='ShowCalendar'/>"
+	"			<separator/>"
+	"			<menuitem action='Search'/>"
+	"			<menuitem action='CollapseAll'/>"
+	"			<separator/>"
+	"			<menuitem action='ViewZoomIn'/>"
+	"			<menuitem action='ViewZoomOut'/>"
+	"			<menuitem action='ViewZoom100'/>"
+	"		</menu>"
+	"		<menu action='HelpMenu'>"
+	"			<menuitem action='HelpContents'/>"
+	"			<menuitem action='AboutAction'/>"
+	"		</menu>"
 	"	</menubar>"
 	"</ui>";
 
@@ -272,10 +271,10 @@ logview_menus_set_state (LogviewWindow *logview)
     if (log) {
         monitor_active = (log->display_name == NULL);
         calendar_active = (log->days != NULL);
-        logview_menu_item_toggle_set_active (logview, "/LogviewMenu/FileMenu/MonitorLogs", logview->curlog->monitored);
+        logview_menu_item_toggle_set_active (logview, "/LogviewMenu/ViewMenu/MonitorLogs", logview->curlog->monitored);
     }
     
-    logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/MonitorLogs", monitor_active);
+    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/MonitorLogs", monitor_active);
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
     logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
     logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", calendar_active);
@@ -398,9 +397,9 @@ logview_add_log (LogviewWindow *logview, Log *log)
     g_return_if_fail (log);
 
     logview->logs = g_slist_append (logview->logs, log);
-    monitor_start (log);
     loglist_add_log (LOG_LIST(logview->loglist), log);
-    log->window = logview;    
+    log->window = logview;
+    monitor_start (log);
 }
 
 
@@ -461,7 +460,7 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
         return;
 
     if (logview->curlog->monitored) {
-        GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/FileMenu/MonitorLogs");
+        GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/ViewMenu/MonitorLogs");
         gtk_action_activate (action);
     }
     
@@ -879,7 +878,7 @@ logview_init (LogviewWindow *logview)
 
    /* Main Tree View */
    logview->view = gtk_tree_view_new ();
-   gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (logview->view), TRUE);
+   gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (logview->view), FALSE);
    gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (logview->view), FALSE);
 
    /* Use the desktop monospace font */
@@ -895,7 +894,7 @@ logview_init (LogviewWindow *logview)
                                         "weight", LOG_LINE_WEIGHT,
                                         "weight-set", LOG_LINE_WEIGHT_SET,
                                         NULL);
-   gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
+   //gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
    gtk_tree_view_append_column (GTK_TREE_VIEW (logview->view), column);
 
    /* Version selector */

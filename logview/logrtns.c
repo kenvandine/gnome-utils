@@ -410,7 +410,7 @@ log_open (char *filename, gboolean show_error)
    g_free (buffer);   
 
    log->total_lines = g_strv_length (log->lines);
-   log->displayed_lines = 0;
+   log->displayed_lines = log->total_lines;
    log->first_time = TRUE;
    log->stats = stats;
    log->model = NULL;
@@ -486,15 +486,15 @@ log_read_new_lines (Log *log)
     GnomeVFSResult result;
     gchar *buffer;
     GnomeVFSFileSize newfilesize, read;
-    int size, newsize;
+    guint64 size, newsize;
     
     g_return_val_if_fail (log!=NULL, FALSE);
     
     result = gnome_vfs_seek (log->mon_file_handle, GNOME_VFS_SEEK_END, 0L);
     result = gnome_vfs_tell (log->mon_file_handle, &newfilesize);
-    size = (int) log->mon_offset;
-    newsize = (int) newfilesize;
-    
+    size = log->mon_offset;
+    newsize = newfilesize;
+
     if (newsize > size) {
       buffer = g_malloc (newsize - size);
       if (!buffer)
