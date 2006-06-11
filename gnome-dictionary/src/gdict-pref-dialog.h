@@ -24,8 +24,7 @@
 #define __GDICT_PREF_DIALOG_H__
 
 #include <gtk/gtk.h>
-
-#include "gdict.h"
+#include <libgdict/gdict.h>
 
 G_BEGIN_DECLS
 
@@ -45,16 +44,18 @@ G_BEGIN_DECLS
 #define GDICT_GCONF_WINDOW_WIDTH_KEY 		GDICT_GCONF_DIR "/default-window-width"
 #define GDICT_GCONF_WINDOW_HEIGHT_KEY 		GDICT_GCONF_DIR "/default-window-height"
 #define GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY 	GDICT_GCONF_DIR "/window-is-maximized"
+#define GDICT_GCONF_SPELLER_VISIBLE_KEY		GDICT_GCONF_DIR "/speller-visible"
 
 #define DOCUMENT_FONT_KEY 			"/desktop/gnome/interface/document_font_name"
 
 typedef struct _GdictPrefDialog        GdictPrefDialog;
 typedef struct _GdictPrefDialogClass   GdictPrefDialogClass;
 
-GType      gdict_pref_dialog_get_type   (void) G_GNUC_CONST;
-GtkWidget *gdict_pref_dialog_new        (GtkWindow         *parent,
-				         const gchar       *title,
-				         GdictSourceLoader *loader);
+GType gdict_pref_dialog_get_type (void) G_GNUC_CONST;
+
+void gdict_show_pref_dialog (GtkWindow         *parent,
+			     const gchar       *title,
+			     GdictSourceLoader *loader);
 
 G_END_DECLS
 

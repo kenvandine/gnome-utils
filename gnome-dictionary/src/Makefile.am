@@ -19,6 +19,8 @@ gnome_dictionary_SOURCES = \
 	gdict-about.h		\
 	gdict-app.c		\
 	gdict-app.h		\
+	gdict-common.c 		\
+	gdict-common.h		\
 	gdict-pref-dialog.c	\
 	gdict-pref-dialog.h	\
 	gdict-print.c 		\
@@ -30,13 +32,13 @@ gnome_dictionary_SOURCES = \
 	main.c			\
 	$(NULL)
 gnome_dictionary_CFLAGS = \
-	-I$(top_srcdir)/gnome-dictionary/libgdict \
+	-I$(top_srcdir)/gnome-dictionary \
 	$(GNOME_UTILS_CFLAGS) \
 	$(LIBGLADE_CFLAGS) \
 	$(LIBGNOMEPRINT_CFLAGS) \
 	$(NULL)
 gnome_dictionary_LDADD = \
-	../libgdict/libgdict-1.0.la \
+	$(top_builddir)/gnome-dictionary/libgdict/libgdict-1.0.la \
 	$(GNOME_UTILS_LIBS) \
 	$(LIBGLADE_LIBS) \
 	$(LIBGNOMEPRINT_LIBS) \
@@ -56,6 +58,8 @@ gnome_dictionary_applet_SOURCES = \
 	gdict-about.h		\
 	gdict-applet.c		\
 	gdict-applet.h		\
+	gdict-common.c		\
+	gdict-common.h		\
 	gdict-pref-dialog.c	\
 	gdict-pref-dialog.h	\
 	gdict-print.c 		\
@@ -64,14 +68,14 @@ gnome_dictionary_applet_SOURCES = \
 	gdict-source-dialog.h 	\
 	$(NULL)
 gnome_dictionary_applet_CFLAGS = \
-	-I$(top_srcdir)/gnome-dictionary/libgdict \
+	-I$(top_srcdir)/gnome-dictionary \
 	$(GNOME_UTILS_CFLAGS) \
 	$(LIBGLADE_CFLAGS) \
 	$(LIBGNOMEPRINT_CFLAGS) \
 	$(APPLET_CFLAGS) \
 	$(NULL)
 gnome_dictionary_applet_LDADD = \
-	../libgdict/libgdict-1.0.la \
+	$(top_builddir)/gnome-dictionary/libgdict/libgdict-1.0.la \
 	libgtkalignedwindow.la \
 	$(GNOME_UTILS_LIBS) \
 	$(LIBGLADE_LIBS) \

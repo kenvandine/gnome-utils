@@ -22,8 +22,7 @@
 
 #include <gtk/gtk.h>
 #include <panel-applet.h>
-
-#include "gdict.h"
+#include <libgdict/gdict.h>
 
 G_BEGIN_DECLS
 

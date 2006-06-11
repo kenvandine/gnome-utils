@@ -38,8 +38,6 @@
 #include <gconf/gconf-client.h>
 #include <libgnomeui/gnome-help.h>
 
-#include "gdict.h"
-
 #include "gdict-source-dialog.h"
 
 #define GDICT_PREFERENCES_GLADE 	PKGDATADIR "/gnome-dictionary-preferences.glade"
@@ -60,6 +58,7 @@ struct _GdictSourceDialog
   guint notify_id;
   
   GdictSourceLoader *loader;
+  GdictSource *source;
   gchar *source_name;
   
   GdictSourceDialogAction action;
@@ -91,32 +90,6 @@ enum
 };
 
 G_DEFINE_TYPE (GdictSourceDialog, gdict_source_dialog, GTK_TYPE_DIALOG);
-
-
-static void
-show_gerror_dialog (GtkWindow   *parent,
-		    const gchar *message,
-		    GError      *error)
-{
-  GtkWidget *error_dialog;
-
-  error_dialog = gtk_message_dialog_new (parent,
-					 GTK_DIALOG_DESTROY_WITH_PARENT,
-					 GTK_MESSAGE_ERROR,
-					 GTK_BUTTONS_OK,
-					 "%s",
-					 message);
-  gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
-					    "%s",
-					    error->message);
-  gtk_window_set_title (GTK_WINDOW (error_dialog), "");
-          
-  gtk_dialog_run (GTK_DIALOG (error_dialog));
-          
-  gtk_widget_destroy (error_dialog);
-          
-  g_error_free (error);
-}
 
 static void
 set_source_loader (GdictSourceDialog *dialog,
@@ -173,14 +146,6 @@ transport_combo_changed_cb (GtkWidget *widget,
     }
 }
 
-static void
-update_dialog_ui (GdictSourceDialog *dialog)
-{
-  /* TODO - add code to update the contents of the dialog depending
-   * on the action; if we are in _CREATE, no action is needed
-   */
-}
-
 static gchar *
 get_text_from_entry (GdictSourceDialog *dialog,
 		     const gchar       *entry_name)
@@ -197,6 +162,20 @@ get_text_from_entry (GdictSourceDialog *dialog,
   return retval;
 }
 
+static void
+set_text_to_entry (GdictSourceDialog *dialog,
+		   const gchar       *entry_name,
+		   const gchar       *text)
+{
+  GtkWidget *entry;
+
+  entry = glade_xml_get_widget (dialog->xml, entry_name);
+  if (!entry)
+    return;
+
+  gtk_entry_set_text (GTK_ENTRY (entry), text);
+}
+
 static gchar *
 get_text_from_combo (GdictSourceDialog *dialog,
 		     const gchar       *combo_name)
@@ -211,6 +190,51 @@ get_text_from_combo (GdictSourceDialog *dialog,
   retval = gtk_combo_box_get_active_text (GTK_COMBO_BOX (combo));
   
   return retval;
+}
+
+static void
+update_dialog_ui (GdictSourceDialog *dialog)
+{
+  GdictSource *source;
+  
+  /* TODO - add code to update the contents of the dialog depending
+   * on the action; if we are in _CREATE, no action is needed
+   */
+  switch (dialog->action)
+    {
+    case GDICT_SOURCE_DIALOG_VIEW:
+    case GDICT_SOURCE_DIALOG_EDIT:
+      if (!dialog->source_name)
+	{
+          g_warning ("Attempting to retrieve source, but no "
+		     "source name has been defined.  Aborting...");
+	  return;
+	}
+      
+      source = gdict_source_loader_get_source (dialog->loader,
+		      			       dialog->source_name);
+      if (!source)
+	{
+          g_warning ("Attempting to retrieve source, but no "
+		     "source named `%s' was found.  Aborting...",
+		     dialog->source_name);
+	  return;
+	}
+      
+      g_object_ref (source);
+      
+      dialog->source = source;
+      set_text_to_entry (dialog, "description_entry",
+		         gdict_source_get_description (source));
+
+      g_object_unref (source);
+      break;
+    case GDICT_SOURCE_DIALOG_CREATE:
+      break;
+    default:
+      g_assert_not_reached ();
+      break;
+    }
 }
 
 static void
@@ -247,57 +271,145 @@ build_new_source (GdictSourceDialog *dialog)
   g_free (text);
       
   /* get the selected transport id */
-   transport = dialog->transport;
-   switch (transport)
-     {
-     case GDICT_SOURCE_TRANSPORT_DICTD:
-       host = get_text_from_entry (dialog, "hostname_entry");
-       port = get_text_from_entry (dialog, "port_entry");
+  transport = dialog->transport;
+  switch (transport)
+    {
+    case GDICT_SOURCE_TRANSPORT_DICTD:
+      host = get_text_from_entry (dialog, "hostname_entry");
+      port = get_text_from_entry (dialog, "port_entry");
        
-       gdict_source_set_transport (source, GDICT_SOURCE_TRANSPORT_DICTD,
-          			   "hostname", host,
-          			   "port", atoi (port),
-          			   NULL);
+      gdict_source_set_transport (source, GDICT_SOURCE_TRANSPORT_DICTD,
+          			  "hostname", host,
+          			  "port", atoi (port),
+          			  NULL);
           
-       g_free (host);
-       g_free (port);
-       break;
-     case GDICT_SOURCE_TRANSPORT_INVALID:
-     default:
-       g_warning ("Invalid transport");
-       return;
-     }
+      g_free (host);
+      g_free (port);
+      break;
+    case GDICT_SOURCE_TRANSPORT_INVALID:
+    default:
+      g_warning ("Invalid transport");
+      return;
+    }
       
-   error = NULL;
-   data = gdict_source_to_data (source, &length, &error);
-   if (error)
-     {
-       show_gerror_dialog (GTK_WINDOW (dialog),
-			   _("Unable to create a source file"),
-			   error);
+  error = NULL;
+  data = gdict_source_to_data (source, &length, &error);
+  if (error)
+    {
+      gdict_show_gerror_dialog (GTK_WINDOW (dialog),
+				_("Unable to create a source file"),
+				error);
        
-       g_object_unref (source);
+      g_object_unref (source);
 
-       return;
-     }
+      return;
+    }
       
-   name = g_strdup_printf ("%s.desktop", gdict_source_get_name (source));
-   filename = g_build_filename (g_get_home_dir (),
-      				".gnome2",
-      				"gnome-dictionary",
-      				name,
-      				NULL);
-   g_free (name);
+  name = g_strdup_printf ("%s.desktop", gdict_source_get_name (source));
+  filename = g_build_filename (g_get_home_dir (),
+  			       ".gnome2",
+      			       "gnome-dictionary",
+      			       name,
+      			       NULL);
+  g_free (name);
       
-   g_file_set_contents (filename, data, length, &error);
-   if (error)
-     show_gerror_dialog (GTK_WINDOW (dialog),
-       			 _("Unable to save source file"),
-       			 error);
+  g_file_set_contents (filename, data, length, &error);
+  if (error)
+    gdict_show_gerror_dialog (GTK_WINDOW (dialog),
+       			      _("Unable to save source file"),
+       			      error);
 
-   g_free (filename);
-   g_free (data);
-   g_object_unref (source);
+  g_free (filename);
+  g_free (data);
+  g_object_unref (source);
+}
+
+static void
+save_source (GdictSourceDialog *dialog)
+{
+  GdictSource *source;
+  gchar *name, *text;
+  GdictSourceTransport transport;
+  gchar *host, *port;
+  gchar *data;
+  gsize length;
+  GError *error;
+  gchar *filename;
+  
+  source = gdict_source_loader_get_source (dialog->loader,
+		  			   dialog->source_name);
+  if (!source)
+    {
+      g_warning ("Attempting to save source `%s', but no "
+		 "source for that name was found.",
+		 dialog->source_name);
+
+      return;
+    }
+      
+  text = get_text_from_entry (dialog, "description_entry");
+  gdict_source_set_description (source, text);
+  g_free (text);
+      
+  text = get_text_from_combo (dialog, "database_combo");
+  gdict_source_set_database (source, text);
+  g_free (text);
+
+  text = get_text_from_combo (dialog, "strategy_combo");
+  gdict_source_set_strategy (source, text);
+  g_free (text);
+      
+  /* get the selected transport id */
+  transport = dialog->transport;
+  switch (transport)
+    {
+    case GDICT_SOURCE_TRANSPORT_DICTD:
+      host = get_text_from_entry (dialog, "hostname_entry");
+      port = get_text_from_entry (dialog, "port_entry");
+       
+      gdict_source_set_transport (source, GDICT_SOURCE_TRANSPORT_DICTD,
+          			  "hostname", host,
+          			  "port", atoi (port),
+          			  NULL);
+          
+      g_free (host);
+      g_free (port);
+      break;
+    case GDICT_SOURCE_TRANSPORT_INVALID:
+    default:
+      g_warning ("Invalid transport");
+      return;
+    }
+      
+  error = NULL;
+  data = gdict_source_to_data (source, &length, &error);
+  if (error)
+    {
+      gdict_show_gerror_dialog (GTK_WINDOW (dialog),
+			 	_("Unable to create a source file"),
+			 	error);
+      
+      g_object_unref (source);
+      return;
+    }
+      
+  name = g_strdup_printf ("%s.desktop", gdict_source_get_name (source));
+  filename = g_build_filename (g_get_home_dir (),
+      			       ".gnome2",
+			       "gnome-dictionary",
+			       name,
+			       NULL);
+  g_free (name);
+      
+  g_file_set_contents (filename, data, length, &error);
+  if (error)
+    gdict_show_gerror_dialog (GTK_WINDOW (dialog),
+       			      _("Unable to save source file"),
+       			      error);
+
+  g_free (filename);
+  g_free (data);
+  g_object_unref (source);
 }
 
 static void
@@ -320,14 +432,16 @@ gdict_source_dialog_response_cb (GtkDialog *dialog,
       					    gtk_widget_get_screen (GTK_WIDGET (dialog)),
       					    &err);
       if (err)
-        show_gerror_dialog (GTK_WINDOW (dialog),
-          		    _("There was an error while displaying help"),
-          		    err);
+        gdict_show_gerror_dialog (GTK_WINDOW (dialog),
+          		 	  _("There was an error while displaying help"),
+          		 	  err);
       
       /* we don't want the dialog to close itself */
       g_signal_stop_emission_by_name (dialog, "response");
       break;
     case GTK_RESPONSE_CLOSE:
+      save_source (GDICT_SOURCE_DIALOG (dialog));
+      break;
     case GTK_RESPONSE_CANCEL:
       break;
     default:
@@ -486,6 +600,9 @@ gdict_source_dialog_constructor (GType                  type,
       gtk_widget_set_sensitive (dialog->add_button, FALSE);
       break;
     case GDICT_SOURCE_DIALOG_EDIT:
+      dialog->close_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
+		      				    GTK_STOCK_CLOSE,
+						    GTK_RESPONSE_CLOSE);
       break;
     default:
       g_assert_not_reached ();

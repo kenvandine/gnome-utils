@@ -27,8 +27,7 @@
 #include <gtk/gtk.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
-
-#include "gdict.h"
+#include <libgdict/gdict.h>
 
 G_BEGIN_DECLS
 
@@ -46,8 +45,12 @@ struct _GdictWindow
   GtkWidget *main_box;
   GtkWidget *menubar;
   GtkWidget *entry;
+  GtkWidget *speller;
+  GtkWidget *speller_frame;
   GtkWidget *defbox;
+  GtkWidget *defbox_frame;
   GtkWidget *status;
+  GtkWidget *progress;
   
   GtkUIManager *ui_manager;
   GtkActionGroup *action_group;
@@ -57,10 +60,12 @@ struct _GdictWindow
   gchar *word;
   gint max_definition;
   gint last_definition;
+  gint current_definition;
  
   gchar *source_name;
   GdictSourceLoader *loader;
   GdictContext *context;
+  guint definition_id;
   guint lookup_start_id;
   guint lookup_end_id;
   guint error_id;
@@ -74,11 +79,13 @@ struct _GdictWindow
   guint notify_id;
   guint font_notify_id;
 
-  GdkPixbuf *icon;
+  GdkCursor *busy_cursor;
 
   gint default_width;
   gint default_height;
-  guint is_maximized : 1;
+  
+  guint is_maximized    : 1;
+  guint speller_visible : 1;
   
   gulong window_id;
 };

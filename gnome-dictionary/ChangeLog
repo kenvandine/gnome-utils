@@ -1,5 +1,37 @@
 2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	A src/gdict-common.h
+	A src/gdict-common.c
+
+	* src/Makefile.am:
+	* src/gdict-common.h:
+	* src/gdict-common.c: Refactor out some functions common to
+	the application and applet.
+
+	* src/gdict-about.c: Use the installed themed icon for the
+	dictionary logo.
+
+	* src/gdict-app.h:
+	* src/gdict-app.c: Use the installed themed icon for the
+	dictionary window icon; add stub code for a --match command
+	line switch; 
+
+	* src/gdict-pref-dialog.h:
+	* src/gdict-pref-dialog.c: Hide the dialog on close; bind
+	it to the parent widget; mimic the gdict_show_about_dialog()
+	and gdict_show_source_dialog() functions; add the speller-visible
+	GConf key.
+
+	* src/gdict-applet.h:
+	* src/gdict-applet.c: Use the installed themed icon for the
+	dictionary window icon.
+
+	* src/gdict-window.h:
+	* src/gdict-window.c: Miscellaneous fixes; add support for
+	a GdictSpeller widget.
+
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	A libgdict/gdict-debug.[ch]
 	A libgdict/gdict-private.h
 	A libgdict/gdict-speller.[ch]

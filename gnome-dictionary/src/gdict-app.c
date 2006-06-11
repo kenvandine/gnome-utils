@@ -40,6 +40,7 @@
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
 
+#include "gdict-common.h"
 #include "gdict-pref-dialog.h"
 #include "gdict-app.h"
 
@@ -71,16 +72,14 @@ gdict_app_finalize (GObject *object)
   		   NULL);
   g_slist_free (app->windows);
 
-  g_list_foreach (app->words,
-		  (GFunc) g_free,
-		  NULL);
-  g_list_free (app->words);
+  g_slist_foreach (app->lookup_words, (GFunc) g_free, NULL);
+  g_slist_free (app->lookup_words);
 
-  if (app->database)
-    g_free (app->database);
+  g_slist_foreach (app->match_words, (GFunc) g_free, NULL);
+  g_slist_free (app->match_words);
 
-  if (app->source_name)
-    g_free (app->source_name);
+  g_free (app->database);
+  g_free (app->source_name);
 
   if (app->program)
     g_object_unref (G_OBJECT (app->program));
@@ -162,9 +161,9 @@ gdict_window_created_cb (GdictWindow *parent,
 static void
 gdict_create_window (GdictApp *app)
 {
-  GList *l;
+  GSList *l;
 
-  if (!singleton->words)
+  if (!singleton->lookup_words)
     {
       GtkWidget *window;
 
@@ -176,17 +175,17 @@ gdict_create_window (GdictApp *app)
       g_signal_connect (window, "destroy",
 		        G_CALLBACK (gdict_window_destroy_cb), app);
   
-     app->windows = g_slist_prepend (app->windows, window);
-     app->current_window = GDICT_WINDOW (window);
+      app->windows = g_slist_prepend (app->windows, window);
+      app->current_window = GDICT_WINDOW (window);
   
-     gtk_widget_show (window);
+      gtk_widget_show (window);
 
-     return;
-   }
+      return;
+    }
       
-  for (l = singleton->words; l != NULL; l = l->next)
+  for (l = singleton->lookup_words; l != NULL; l = l->next)
     {
-      gchar *word = (gchar *) l->data;
+      gchar *word = l->data;
       GtkWidget *window;
 
       window = gdict_window_new (singleton->loader,
@@ -249,9 +248,9 @@ gdict_look_up_word_and_quit (GdictApp *app)
 {
   GdictSource *source;
   GdictContext *context;
-  GList *l;
+  GSList *l;
   
-  if (!app->words)
+  if ((!app->lookup_words) || (!app->match_words))
     {
       g_print (_("See gnome-dictionary --help for usage\n"));
 
@@ -286,9 +285,9 @@ gdict_look_up_word_and_quit (GdictApp *app)
 		    G_CALLBACK (lookup_end_cb), app);
 
   app->remaining_words = 0;
-  for (l = app->words; l != NULL; l = l->next)
+  for (l = app->lookup_words; l != NULL; l = l->next)
     {
-      gchar *word = (gchar *) l->data;
+      gchar *word = l->data;
       GError *err = NULL;
 
       app->remaining_words += 1;
@@ -316,101 +315,6 @@ gdict_look_up_word_and_quit (GdictApp *app)
   exit (0);
 }
 
-/* create the data directory inside $HOME, if it doesn't exist yet */
-static gboolean
-gdict_app_create_data_dir ()
-{
-  gchar *data_dir_name;
-  
-  data_dir_name = g_build_filename (g_get_home_dir (),
-  				    ".gnome2",
-  				    "gnome-dictionary",
-  				    NULL);
-  
-  if (g_mkdir (data_dir_name, 0700) == -1)
-    {
-      /* this is weird, but sometimes there's a "gnome-dictionary" file
-       * inside $HOME/.gnome2; see bug #329126.
-       */
-      if ((errno == EEXIST) &&
-          (g_file_test (data_dir_name, G_FILE_TEST_IS_REGULAR)))
-        {
-          gchar *backup = g_strdup_printf ("%s.pre-2-14", data_dir_name);
-	      
-	  if (g_rename (data_dir_name, backup) == -1)
-	    {
-              GtkWidget *error_dialog;
-
-	      error_dialog = gtk_message_dialog_new (NULL,
-                                                     GTK_DIALOG_MODAL,
-						     GTK_MESSAGE_ERROR,
-						     GTK_BUTTONS_CLOSE,
-						     _("Unable to rename file '%s' to '%s': %s"),
-						     data_dir_name,
-						     backup,
-						     g_strerror (errno));
-	      
-	      gtk_dialog_run (GTK_DIALOG (error_dialog));
-	      
-	      gtk_widget_destroy (error_dialog);
-	      g_free (backup);
-	      g_free (data_dir_name);
-
-	      return FALSE;
-            }
-
-	  g_free (backup);
-	  
-          if (g_mkdir (data_dir_name, 0700) == -1)
-            {
-              GtkWidget *error_dialog;
-	      
-	      error_dialog = gtk_message_dialog_new (NULL,
-						     GTK_DIALOG_MODAL,
-						     GTK_MESSAGE_ERROR,
-						     GTK_BUTTONS_CLOSE,
-						     _("Unable to create the data directory '%s': %s"),
-						     data_dir_name,
-						     g_strerror (errno));
-	      
-	      gtk_dialog_run (GTK_DIALOG (error_dialog));
-	      
-	      gtk_widget_destroy (error_dialog);
-              g_free (data_dir_name);
-
-	      return FALSE;
-            }
-
-	  goto success;
-	}
-      
-      if (errno != EEXIST)
-        {
-          GtkWidget *error_dialog;
-
-	  error_dialog = gtk_message_dialog_new (NULL,
-						 GTK_DIALOG_MODAL,
-						 GTK_MESSAGE_ERROR,
-						 GTK_BUTTONS_CLOSE,
-						 _("Unable to create the data directory '%s': %s"),
-						 data_dir_name,
-						 g_strerror (errno));
-	  
-	  gtk_dialog_run (GTK_DIALOG (error_dialog));
-	  
-	  gtk_widget_destroy (error_dialog);
-	  g_free (data_dir_name);
-
-	  return FALSE;
-	}
-    }
-
-success:
-  g_free (data_dir_name);
-
-  return TRUE;
-}
-
 void
 gdict_init (int *argc, char ***argv)
 {
@@ -418,24 +322,30 @@ gdict_init (int *argc, char ***argv)
   GOptionContext *context;
   GOptionGroup *group;
   gchar *loader_path;
-  gchar **words = NULL;
+  gchar **lookup_words = NULL;
+  gchar **match_words = NULL;
   gchar *database = NULL;
+  gchar *strategy = NULL;
   gchar *source_name = NULL;
   gboolean no_window = FALSE;
   gboolean list_sources = FALSE;
 
   const GOptionEntry gdict_app_goptions[] =
   {
-    { "look-up", 0, 0, G_OPTION_ARG_STRING_ARRAY, &words,
+    { "look-up", 0, 0, G_OPTION_ARG_STRING_ARRAY, &lookup_words,
        N_("Words to look up"), N_("word") },
+    { "match", 0, 0, G_OPTION_ARG_STRING_ARRAY, &match_words,
+       N_("Words to match"), N_("word") },
     { "source", 's', 0, G_OPTION_ARG_STRING, &source_name,
        N_("Dictionary source to use"), N_("source") },
     { "list-sources", 'l', 0, G_OPTION_ARG_NONE, &list_sources,
        N_("Show available dictionary sources"), NULL },
     { "no-window", 'n', 0, G_OPTION_ARG_NONE, &no_window,
        N_("Print result to the console"), NULL },
-    { "database", 'd', 0, G_OPTION_ARG_STRING, &database,
-       N_("Database to use"), NULL },
+    { "database", 'D', 0, G_OPTION_ARG_STRING, &database,
+       N_("Database to use"), N_("db") },
+    { "strategy", 'S', 0, G_OPTION_ARG_STRING, &strategy,
+       N_("Strategy to use"), N_("strat") },
     { NULL },
   };
   
@@ -469,10 +379,10 @@ gdict_init (int *argc, char ***argv)
 					   GNOME_PARAM_GOPTION_CONTEXT, context,
 					   NULL);
   g_set_application_name (_("Dictionary"));
+  gtk_window_set_default_icon_name ("gnome-dictionary");
   
-  if (!gdict_app_create_data_dir ())
+  if (!gdict_create_data_dir ())
     {
-      g_option_context_free (context);
       gdict_cleanup ();
 
       exit (1);
@@ -510,13 +420,24 @@ gdict_init (int *argc, char ***argv)
   gdict_source_loader_add_search_path (singleton->loader, loader_path);
   g_free (loader_path);
 
-  if (words)
+  if (lookup_words)
     {
       gsize i;
-      gsize length = g_strv_length (words);
+      gsize length = g_strv_length (lookup_words);
 
       for (i = 0; i < length; i++)
-	singleton->words = g_list_prepend (singleton->words, g_strdup (words[i]));
+	singleton->lookup_words = g_slist_prepend (singleton->lookup_words,
+			                           g_strdup (lookup_words[i]));
+    }
+
+  if (match_words)
+    {
+      gsize i;
+      gsize length = g_strv_length (match_words);
+
+      for (i = 0; i < length; i++)
+        singleton->match_words = g_slist_prepend (singleton->match_words,
+			                          g_strdup (match_words[i]));
     }
 
   if (database)

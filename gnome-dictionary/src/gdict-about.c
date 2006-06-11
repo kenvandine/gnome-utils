@@ -36,10 +36,6 @@
 void
 gdict_show_about_dialog (GtkWidget *parent)
 {
-  gchar *icon_file;
-  GdkPixbuf *icon;
-  GError *icon_error;
-  
   const gchar *authors[] = {
     "Mike Hughes <mfh@psilord.com>",
     "Spiros Papadimitriou <spapadim+@cs.cmu.edu>",
@@ -76,24 +72,6 @@ gdict_show_about_dialog (GtkWidget *parent)
     "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA "
     "02111-1307, USA.\n";
 
-  icon_file = g_build_filename (DATADIR,
-		  		"pixmaps",
-				"gnome-dictionary.png",
-				NULL);
-  icon_error = NULL;
-  icon = gdk_pixbuf_new_from_file (icon_file, &icon_error);
-  if (icon_error)
-    {
-      g_warning (_("Unable to open the application icon: %s"),
-		 icon_error->message);
-      
-      g_error_free (icon_error);
-    }
-  else
-    icon = NULL;
-
-  g_free (icon_file);
-  
   gtk_show_about_dialog (GTK_WINDOW (parent),
   			 "name", _("Dictionary"),
   			 "version", VERSION,
@@ -102,7 +80,7 @@ gdict_show_about_dialog (GtkWidget *parent)
   			 "authors", authors,
   			 "documenters", documenters,
   			 "translator-credits", translator_credits,
-  			 "logo", icon,
+  			 "logo-icon-name", "gnome-dictionary",
   			 "license", license,
   			 "wrap-license", TRUE,
   			 NULL);

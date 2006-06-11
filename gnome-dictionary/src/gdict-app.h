@@ -28,8 +28,8 @@
 #include <libgnomeui/gnome-client.h>
 #include <libgnomeprint/gnome-print-job.h>
 #include <gconf/gconf-client.h>
+#include <libgdict/gdict.h>
 
-#include "gdict.h"
 #include "gdict-window.h"
 
 G_BEGIN_DECLS
@@ -51,7 +51,8 @@ struct _GdictApp
   
   GConfClient *gconf_client;
 
-  GList *words;
+  GSList *lookup_words;
+  GSList *match_words;
   gint remaining_words;
   
   gchar *database;

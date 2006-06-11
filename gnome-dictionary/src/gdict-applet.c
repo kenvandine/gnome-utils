@@ -38,12 +38,11 @@
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
 
-#include "gdict.h"
-
 #include "gdict-applet.h"
 #include "gdict-about.h"
 #include "gdict-pref-dialog.h"
 #include "gdict-print.h"
+#include "gdict-common.h"
 
 #include "gtkalignedwindow.h"
 
@@ -118,34 +117,7 @@ static const GtkTargetEntry drop_types[] =
 static const guint n_drop_types = G_N_ELEMENTS (drop_types);
 
 
-/* shows an error dialog making it transient for @parent */
 static void
-show_error_dialog (GtkWindow   *parent,
-		   const gchar *message,
-		   const gchar *detail)
-{
-  GtkWidget *dialog;
-  
-  dialog = gtk_message_dialog_new (parent,
-  				   GTK_DIALOG_DESTROY_WITH_PARENT,
-  				   GTK_MESSAGE_ERROR,
-  				   GTK_BUTTONS_OK,
-  				   "%s", message);
-  gtk_window_set_title (GTK_WINDOW (dialog), "");
-  
-  if (detail)
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-  					      "%s", detail);
-  
-  if (parent && parent->group)
-    gtk_window_group_add_window (parent->group, GTK_WINDOW (dialog));
-  
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  
-  gtk_widget_destroy (dialog);
-}
-
-void
 set_atk_name_description (GtkWidget  *widget,
 			  const char *name,
 			  const char *description)
@@ -275,9 +247,9 @@ save_cb (GtkWidget   *widget,
           
           message = g_strdup_printf (_("Error while writing to '%s'"), filename);
           
-          show_error_dialog (GTK_WINDOW (priv->window),
-          		     message,
-          		     write_error->message);
+          gdict_show_error_dialog (GTK_WINDOW (priv->window),
+          			   message,
+          			   write_error->message);
           
           g_error_free (write_error);
           g_free (message);
@@ -740,16 +712,9 @@ gdict_applet_cmd_preferences (BonoboUIComponent *component,
 			      GdictApplet       *applet,
 			      const gchar       *cname)
 {
-  GdictAppletPrivate *priv = applet->priv;
-  GtkWidget *pref_dialog;
-  
-  pref_dialog = gdict_pref_dialog_new (NULL,
-  				       _("Preferences"),
-  				       priv->loader);
-  
-  gtk_dialog_run (GTK_DIALOG (pref_dialog));
-  
-  gtk_widget_destroy (pref_dialog);
+  gdict_show_pref_dialog (NULL,
+  			  _("Dictionary Preferences"),
+  			  applet->priv->loader);
 }
 
 static void
@@ -775,9 +740,9 @@ gdict_applet_cmd_help (BonoboUIComponent *component,
   					&err);
   if (err)
     {
-      show_error_dialog (NULL,
-      			 _("There was an error while displaying help"),
-      			 err->message);
+      gdict_show_error_dialog (NULL,
+      			       _("There was an error while displaying help"),
+      			       err->message);
       g_error_free (err);
     }
 }
@@ -938,9 +903,9 @@ get_context_from_loader (GdictApplet *applet)
       detail = g_strdup_printf (_("No dictionary source available with name '%s'"),
       				priv->source_name);
 
-      show_error_dialog (NULL,
-                         _("Unable to find dictionary source"),
-                         NULL);
+      gdict_show_error_dialog (NULL,
+                               _("Unable to find dictionary source"),
+                               NULL);
       
       g_free (detail);
 
@@ -958,9 +923,9 @@ get_context_from_loader (GdictApplet *applet)
       detail = g_strdup_printf (_("No context available for source '%s'"),
       				gdict_source_get_description (source));
       				
-      show_error_dialog (NULL,
-                         _("Unable to create a context"),
-                         detail);
+      gdict_show_error_dialog (NULL,
+                               _("Unable to create a context"),
+                               detail);
       
       g_free (detail);
       g_object_unref (source);
@@ -1212,9 +1177,8 @@ static void
 gdict_applet_init (GdictApplet *applet)
 {
   GdictAppletPrivate *priv;
-  gchar *data_dir, *icon_file;
-  GdkPixbuf *icon;
-  GError *icon_error, *gconf_error;
+  gchar *data_dir;
+  GError *gconf_error;
 
   priv = GDICT_APPLET_GET_PRIVATE (applet);
   applet->priv = priv;
@@ -1231,28 +1195,7 @@ gdict_applet_init (GdictApplet *applet)
 
   g_free (data_dir);
   
-  icon_file = g_build_filename (DATADIR,
-		  		"pixmaps",
-				"gnome-dictionary.png",
-				NULL);
-  icon_error = NULL;
-  icon = gdk_pixbuf_new_from_file (icon_file, &icon_error);
-  if (icon_error)
-    {
-      show_error_dialog (NULL,
-			 _("Unable to load the applet icon"),
-			 icon_error->message);
-
-      g_error_free (icon_error);
-      priv->icon = NULL;
-    }
-  else
-    {
-      gtk_window_set_default_icon (icon);
-      priv->icon = icon;
-    }
-
-  g_free (icon_file);
+  gtk_window_set_default_icon_name ("gnome-dictionary");
   
   panel_applet_set_flags (PANEL_APPLET (applet),
 			  PANEL_APPLET_EXPAND_MINOR);
@@ -1268,11 +1211,9 @@ gdict_applet_init (GdictApplet *applet)
   			&gconf_error);
   if (gconf_error)
     {
-      show_error_dialog (NULL,
-		         _("Unable to connect to GConf"),
-			 gconf_error->message);
-      
-      g_error_free (gconf_error);
+      gdict_show_gerror_dialog (NULL,
+		                _("Unable to connect to GConf"),
+		                gconf_error);
       gconf_error = NULL;
     }
   
@@ -1283,11 +1224,10 @@ gdict_applet_init (GdictApplet *applet)
 					     &gconf_error);
   if (gconf_error)
     {
-      show_error_dialog (NULL,
-		         _("Unable to get notification for preferences"),
-			 gconf_error->message);
+      gdict_show_gerror_dialog (NULL,
+		                _("Unable to get notification for preferences"),
+		                gconf_error);
 
-      g_error_free (gconf_error);
       gconf_error = NULL;
     }
   
@@ -1298,11 +1238,10 @@ gdict_applet_init (GdictApplet *applet)
 						   &gconf_error);
   if (gconf_error)
     {
-      show_error_dialog (NULL,
-			 _("Unable to get notification for the document font"),
-			 gconf_error->message);
+      gdict_show_gerror_dialog (NULL,
+                               _("Unable to get notification for the document font"),
+                               gconf_error);
 
-      g_error_free (gconf_error);
       gconf_error = NULL;
     }
   
@@ -1331,6 +1270,12 @@ gdict_applet_init (GdictApplet *applet)
   	     priv->size,
   	     (priv->orient == GTK_ORIENTATION_HORIZONTAL ? "H" : "V"));
 #endif /* !GDICT_APPLET_STAND_ALONE */
+
+  priv->icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
+		  			 "gnome-dictionary",
+					 48,
+					 0,
+					 NULL);
   
   priv->tooltips = gtk_tooltips_new ();
   g_object_ref (priv->tooltips);
@@ -1389,101 +1334,6 @@ gdict_applet_factory (PanelApplet *applet,
 }
 #endif /* !GDICT_APPLET_STAND_ALONE */
 
-/* create the data directory inside $HOME, if it doesn't exist yet */
-static gboolean
-gdict_applet_create_data_dir ()
-{
-  gchar *data_dir_name;
-  
-  data_dir_name = g_build_filename (g_get_home_dir (),
-  				    ".gnome2",
-  				    "gnome-dictionary",
-  				    NULL);
-  
-  if (g_mkdir (data_dir_name, 0700) == -1)
-    {
-      /* this is weird, but sometimes there's a "gnome-dictionary" file
-       * inside $HOME/.gnome2; see bug #329126.
-       */
-      if ((errno == EEXIST) &&
-          (g_file_test (data_dir_name, G_FILE_TEST_IS_REGULAR)))
-        {
-          gchar *backup = g_strdup_printf ("%s.pre-2-14", data_dir_name);
-	      
-	  if (g_rename (data_dir_name, backup) == -1)
-	    {
-              GtkWidget *error_dialog;
-
-	      error_dialog = gtk_message_dialog_new (NULL,
-                                                     GTK_DIALOG_MODAL,
-						     GTK_MESSAGE_ERROR,
-						     GTK_BUTTONS_CLOSE,
-						     _("Unable to rename file '%s' to '%s': %s"),
-						     data_dir_name,
-						     backup,
-						     g_strerror (errno));
-	      
-	      gtk_dialog_run (GTK_DIALOG (error_dialog));
-	      
-	      gtk_widget_destroy (error_dialog);
-	      g_free (backup);
-	      g_free (data_dir_name);
-
-	      return FALSE;
-            }
-
-	  g_free (backup);
-	  
-          if (g_mkdir (data_dir_name, 0700) == -1)
-            {
-              GtkWidget *error_dialog;
-	      
-	      error_dialog = gtk_message_dialog_new (NULL,
-						     GTK_DIALOG_MODAL,
-						     GTK_MESSAGE_ERROR,
-						     GTK_BUTTONS_CLOSE,
-						     _("Unable to create the data directory '%s': %s"),
-						     data_dir_name,
-						     g_strerror (errno));
-	      
-	      gtk_dialog_run (GTK_DIALOG (error_dialog));
-	      
-	      gtk_widget_destroy (error_dialog);
-              g_free (data_dir_name);
-
-	      return FALSE;
-            }
-
-	  goto success;
-	}
-      
-      if (errno != EEXIST)
-        {
-          GtkWidget *error_dialog;
-
-	  error_dialog = gtk_message_dialog_new (NULL,
-						 GTK_DIALOG_MODAL,
-						 GTK_MESSAGE_ERROR,
-						 GTK_BUTTONS_CLOSE,
-						 _("Unable to create the data directory '%s': %s"),
-						 data_dir_name,
-						 g_strerror (errno));
-	  
-	  gtk_dialog_run (GTK_DIALOG (error_dialog));
-	  
-	  gtk_widget_destroy (error_dialog);
-	  g_free (data_dir_name);
-
-	  return FALSE;
-	}
-    }
-
-success:
-  g_free (data_dir_name);
-
-  return TRUE;
-}
-
 int
 main (int argc, char *argv[])
 {
@@ -1507,7 +1357,7 @@ main (int argc, char *argv[])
 		      GNOME_PROGRAM_STANDARD_PROPERTIES,
 		      NULL);
 
-  if (!gdict_applet_create_data_dir ())
+  if (!gdict_create_data_dir ())
     return EXIT_FAILURE;
 
   return panel_applet_factory_main ("OAFIID:GNOME_DictionaryApplet_Factory",

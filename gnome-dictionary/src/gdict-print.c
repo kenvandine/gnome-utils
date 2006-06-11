@@ -39,7 +39,7 @@
 #include <libgnomeprintui/gnome-print-dialog.h>
 #include <libgnomeprintui/gnome-print-job-preview.h>
 
-#include "gdict.h"
+#include <libgdict/gdict.h>
 
 #include "gdict-pref-dialog.h"
 #include "gdict-print.h"

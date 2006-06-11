@@ -38,10 +38,9 @@
 #include <gconf/gconf-client.h>
 #include <libgnomeui/gnome-help.h>
 
-#include "gdict.h"
-
 #include "gdict-source-dialog.h"
 #include "gdict-pref-dialog.h"
+#include "gdict-common.h"
 
 #define GDICT_PREFERENCES_GLADE 	PKGDATADIR "/gnome-dictionary-preferences.glade"
 
@@ -51,6 +50,8 @@
 /*******************
  * GdictPrefDialog *
  *******************/
+
+static GtkWidget *global_dialog = NULL;
 
 enum
 {
@@ -159,7 +160,7 @@ update_sources_view (GdictPrefDialog *dialog)
 
       if (strcmp (name, dialog->active_source) == 0)
         is_active = TRUE;
-      
+
       gtk_list_store_append (dialog->sources_list, &iter);
       gtk_list_store_set (dialog->sources_list, &iter,
       			  SOURCES_ACTIVE_COLUMN, is_active,
@@ -222,6 +223,41 @@ source_renderer_toggled_cb (GtkCellRendererToggle *renderer,
 }
 
 static void
+sources_view_row_activated_cb (GtkTreeView       *tree_view,
+			       GtkTreePath       *tree_path,
+			       GtkTreeViewColumn *tree_iter,
+			       GdictPrefDialog   *dialog)
+{
+  GtkWidget *edit_dialog;
+  gchar *source_name;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+
+  model = gtk_tree_view_get_model (tree_view);
+  if (!model)
+    return;
+  
+  if (!gtk_tree_model_get_iter (model, &iter, tree_path))
+    return;
+  
+  gtk_tree_model_get (model, &iter, SOURCES_NAME_COLUMN, &source_name, -1);
+  if (!source_name)
+    return;
+  
+  edit_dialog = gdict_source_dialog_new (GTK_WINDOW (dialog),
+  					 _("Edit Dictionary Source"),
+  					 GDICT_SOURCE_DIALOG_EDIT,
+  					 dialog->loader,
+  					 source_name);
+  gtk_dialog_run (GTK_DIALOG (edit_dialog));
+
+  gtk_widget_destroy (edit_dialog);
+  g_free (source_name);
+
+  update_sources_view (dialog);
+}
+
+static void
 build_sources_view (GdictPrefDialog *dialog)
 {
   GtkTreeViewColumn *column;
@@ -231,9 +267,9 @@ build_sources_view (GdictPrefDialog *dialog)
     return;
     
   dialog->sources_list = gtk_list_store_new (SOURCES_N_COLUMNS,
-  					     G_TYPE_BOOLEAN,
-  					     G_TYPE_STRING,
-  					     G_TYPE_STRING);
+  					     G_TYPE_BOOLEAN,  /* active */
+  					     G_TYPE_STRING,   /* name */
+  					     G_TYPE_STRING    /* description */);
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (dialog->sources_list),
   					SOURCES_DESCRIPTION_COLUMN,
   					GTK_SORT_ASCENDING);
@@ -249,7 +285,7 @@ build_sources_view (GdictPrefDialog *dialog)
   						     "active", SOURCES_ACTIVE_COLUMN,
   						     NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (dialog->sources_view), column);
-  
+
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes ("description",
   						     renderer,
@@ -260,6 +296,10 @@ build_sources_view (GdictPrefDialog *dialog)
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (dialog->sources_view), FALSE);
   gtk_tree_view_set_model (GTK_TREE_VIEW (dialog->sources_view),
   			   GTK_TREE_MODEL (dialog->sources_list));
+
+  g_signal_connect (dialog->sources_view, "row-activated",
+		    G_CALLBACK (sources_view_row_activated_cb),
+		    dialog);
 }
 
 static void
@@ -489,6 +529,7 @@ response_cb (GtkDialog *dialog,
       break;
     case GTK_RESPONSE_ACCEPT:
     default:
+      gtk_widget_hide (GTK_WIDGET (dialog));
       break;
     }
 }
@@ -675,23 +716,45 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
 		    NULL);
 }
 
-GtkWidget *
-gdict_pref_dialog_new (GtkWindow         *parent,
-		       const gchar       *title,
-		       GdictSourceLoader *loader)
+void
+gdict_show_pref_dialog (GtkWindow         *parent,
+			const gchar       *title,
+			GdictSourceLoader *loader)
 {
-  GtkWidget *retval;
+  GtkWidget *dialog;
   
-  g_return_val_if_fail ((parent == NULL || GTK_IS_WINDOW (parent)), NULL);
-  g_return_val_if_fail (GDICT_IS_SOURCE_LOADER (loader), NULL);
+  g_return_if_fail ((parent == NULL) || GTK_IS_WINDOW (parent));
+  g_return_if_fail (GDICT_IS_SOURCE_LOADER (loader));
   
-  retval = g_object_new (GDICT_TYPE_PREF_DIALOG,
-  			 "source-loader", loader,
-  			 "title", title,
-  			 NULL);
-
   if (parent)
-    gtk_window_set_transient_for (GTK_WINDOW (retval), parent);
+    dialog = g_object_get_data (G_OBJECT (parent), "gdict-pref-dialog");
+  else
+    dialog = global_dialog;
   
-  return retval;
+  if (!dialog)
+    {
+      dialog = g_object_new (GDICT_TYPE_PREF_DIALOG,
+                             "source-loader", loader,
+                             "title", title,
+                             NULL);
+      
+      g_object_ref_sink (dialog);
+      
+      g_signal_connect (dialog, "delete-event",
+                        G_CALLBACK (gtk_widget_hide_on_delete),
+                        NULL);
+      
+      if (parent)
+        {
+          gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+          gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+          g_object_set_data_full (G_OBJECT (parent), "gdict-pref-dialog",
+                                  dialog,
+                                  g_object_unref);
+        }
+      else
+        global_dialog = dialog;
+    }
+  
+  gtk_window_present (GTK_WINDOW (dialog));
 }

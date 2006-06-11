@@ -1,4 +1,4 @@
-/* gdict-print.h - print-related helper functions
+/* gdict-common.h - shared code between application and applet
  *
  * This file is part of GNOME Dictionary
  *
@@ -20,18 +20,22 @@
  * 02111-1307, USA.
  */
 
-#ifndef __GDICT_PRINT_H__
-#define __GDICT_PRINT_H__
+#ifndef __GDICT_COMMON_H__
+#define __GDICT_COMMON_H__
 
 #include <gtk/gtk.h>
-#include <libgdict/gdict-defbox.h>
 
 G_BEGIN_DECLS
 
-void gdict_show_print_dialog (GtkWindow   *parent,
-			      const gchar *title,
-			      GdictDefbox *defbox);
+gboolean gdict_create_data_dir    (void);
+
+void     gdict_show_error_dialog  (GtkWindow   *parent,
+				   const gchar *message,
+				   const gchar *detail);
+void     gdict_show_gerror_dialog (GtkWindow   *parent,
+				   const gchar *message,
+				   GError      *error);
 
 G_END_DECLS
 
-#endif /* __GDICT_PRINT_H__ */
+#endif /* __GDICT_COMMON_H__ */
