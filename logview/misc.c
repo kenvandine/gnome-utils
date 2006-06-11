@@ -135,15 +135,15 @@ string_get_date (char *line)
 {
     GDate *date;
     struct tm tp;
-    int cp;
+    char *cp;
     
     if (line == NULL || line[0] == 0)
         return NULL;
 
     cp = strptime (line, "%b %d", &tp);
-    if (cp == 0) {
+    if (cp == NULL) {
         cp = strptime (line, "%F", &tp);
-        if (cp == 0) {
+        if (cp == NULL) {
             return NULL;
         }
     }

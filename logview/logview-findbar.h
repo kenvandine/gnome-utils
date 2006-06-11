@@ -44,6 +44,7 @@ typedef struct LogviewFindBarClass
 	GtkHBoxClass parent_class;
 }LogviewFindBarClass;
 
+GType logview_findbar_get_type (void);
 GtkWidget *logview_findbar_new (void);
 void logview_findbar_connect (LogviewFindBar *findbar, LogviewWindow *logview);
 void logview_findbar_update_visibility (LogviewFindBar *findbar, LogviewWindow *logview);

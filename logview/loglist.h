@@ -39,6 +39,7 @@ typedef struct LogListClass
 	GtkTreeViewClass parent_class;
 }LogListClass;
 
+GType loglist_get_type (void);
 GtkWidget *loglist_new (void);
 void loglist_connect (LogList *list, LogviewWindow *window);
 void loglist_add_log (LogList *list, Log *log);

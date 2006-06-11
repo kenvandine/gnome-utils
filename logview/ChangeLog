@@ -1,5 +1,15 @@
 2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* logview.h:
+	* calendar.h:
+	* loglist.h:
+	* logrtns.c:
+	* logview-findbar.c:
+	* misc.c: Avoid crashing due to pointer truncation problems
+	on 64-bit platforms (Joe Marcus Clarke, #339057).
+
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* log_repaint.c: Fix include of string.h.
 
 2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
