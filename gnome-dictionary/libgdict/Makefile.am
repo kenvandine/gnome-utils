@@ -81,7 +81,7 @@ gdict_built_files = 		\
 stamp_files = stamp-gdict-enum-types.h stamp-gdict-marshal.h
 
 gen_sources = xgen-gmh xgen-gmc xgen-geth xgen-getc
-CLEANFILES = $(gen_sources)
+CLEANFILES = $(gen_sources) $(stamp_files)
 MAINTAINERCLEANFILES = $(stamp_files) $(gdict_built_files)
 
 EXTRA_DIST = 				\
