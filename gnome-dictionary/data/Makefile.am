@@ -2,12 +2,30 @@ NULL =
 
 man_MANS = gnome-dictionary.1
 
-appicondir = $(datadir)/pixmaps
+scalableicondir = $(datadir)/icons/hicolor/scalable
+scalableicon_DATA = gnome-dictionary.svg
+
+appicondir = $(datadir)/icons/hicolor/48x48/apps
 appicon_DATA = gnome-dictionary.png
+
+gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
+
+install-data-hook:
+	@-if test -z "$(DESTDIR)"; then 		\
+		echo "Updating Gtk icon cache."; 	\
+		$(gtk_update_icon_cache); 		\
+	else \
+		echo "*** Icon cache not updated.  After install, run this:"; \
+		echo "***   $(gtk_update_icon_cache)";	\
+	fi
 
 gdictappdir = $(datadir)/applications
 gdictapp_in_files = gnome-dictionary.desktop.in
 gdictapp_DATA = $(gdictapp_in_files:.desktop.in=.desktop)
+
+$(gdictapp_in_files): $(gdictapp_in_files:.desktop.in=.desktop.in.in)
+	@sed -e "s|\@VERSION\@|@VERSION@|" $< > $@
+
 @INTLTOOL_DESKTOP_RULE@
 
 # dictionary sources definitions
@@ -34,7 +52,10 @@ server_in_files = GNOME_DictionaryApplet.server.in
 server_DATA     = $(server_in_files:.server.in=.server)
 
 $(server_in_files): $(server_in_files:.server.in=.server.in.in)
-	sed -e "s|\@LIBEXECDIR\@|$(libexecdir)|" $< > $@
+	@sed 						\
+		-e "s|\@VERSION\@|@VERSION@|" 		\
+		-e "s|\@LIBEXECDIR\@|$(libexecdir)|" 	\
+	$< > $@
 
 @INTLTOOL_SERVER_RULE@
 
@@ -45,13 +66,11 @@ schema_DATA = $(schemas_in_file:.schemas.in=.schemas)
 
 EXTRA_DIST = \
 	GNOME_DictionaryApplet.server.in.in 	\
+	gnome-dictionary.desktop.in.in		\
 	$(appicon_DATA) 			\
 	$(dictsource_in_files)			\
-	$(gdictapp_in_files) 			\
-	$(gdictapp_DATA) 			\
 	$(man_MANS) 				\
 	$(schemas_in_file) 			\
-	$(schema_DATA) 				\
 	$(glade_DATA) 				\
 	$(ui_DATA)				\
 	$(appletui_DATA)			\
@@ -61,8 +80,9 @@ CLEANFILES = 				\
 	$(dictsource_DATA)		\
 	$(server_in_files) 		\
 	$(server_DATA) 			\
+	$(gdictapp_in_files)		\
 	$(gdictapp_DATA) 		\
-	gnome-dictionary.schemas	\
+	$(schema_DATA)			\
 	$(NULL)
 
 if GCONF_SCHEMAS_INSTALL
