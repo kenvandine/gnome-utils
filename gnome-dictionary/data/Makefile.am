@@ -57,6 +57,7 @@ $(server_in_files): $(server_in_files:.server.in=.server.in.in)
 		-e "s|\@LIBEXECDIR\@|$(libexecdir)|" 	\
 	$< > $@
 
+
 @INTLTOOL_SERVER_RULE@
 
 schemadir   = $(GCONF_SCHEMA_FILE_DIR)
@@ -68,6 +69,7 @@ EXTRA_DIST = \
 	GNOME_DictionaryApplet.server.in.in 	\
 	gnome-dictionary.desktop.in.in		\
 	$(appicon_DATA) 			\
+	$(scalableicon_DATA)			\
 	$(dictsource_in_files)			\
 	$(man_MANS) 				\
 	$(schemas_in_file) 			\

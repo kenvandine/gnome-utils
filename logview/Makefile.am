@@ -62,9 +62,8 @@ additional_DATA  = gnome-system-log-descript.db \
 		   gnome-system-log-actions.db
 
 EXTRA_DIST = \
-	$(Utilities_in_files)	\
-	$(Utilities_DATA)	\
-	$(additional_DATA)	\
+	gnome-system-log.desktop.in.in	\
+	$(additional_DATA)		\
 	$(schemas_in_file) 		\
 	gnome-system-log-pam		\
 	gnome-system-log-security.in	\
