@@ -112,8 +112,6 @@ libgdict_enum_headers = \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-client-context.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-defbox.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-entry.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-database-chooser.h \
-	$(top_srcdir)/gnome-dictionary/libgdict/gdict-strategy-chooser.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source-loader.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-speller.h \
