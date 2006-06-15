@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-28 16:23+0700\n"
-"PO-Revision-Date: 2006-05-28 17:43+0700\n"
+"POT-Creation-Date: 2006-06-15 23:22+0700\n"
+"PO-Revision-Date: 2006-06-15 23:38+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -197,7 +197,7 @@ msgid "_Browse..."
 msgstr "เ_รียกดู..."
 
 #. Help menu
-#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:841
+#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:933
 #: ../logview/logview.c:114
 msgid "_Contents"
 msgstr "เนื้อ_หา"
@@ -210,7 +210,7 @@ msgstr "_วันที่"
 msgid "_Depth level:"
 msgstr "ระดับความ_ลึก:"
 
-#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:801
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:890
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "แ_ก้ไข"
@@ -233,7 +233,7 @@ msgstr "แผน_ภาพการใช้ดิสก์แบบกรา�
 
 #: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:803 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:893 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_วิธีใช้"
 
@@ -269,7 +269,8 @@ msgstr "จำนวนโฟ_ลเดอร์ทั้งหมด:"
 msgid "_Type"
 msgstr "_ชนิด"
 
-#: ../baobab/data/baobab.glade.h:61 ../logview/logview.c:87
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:891
+#: ../logview/logview.c:87
 msgid "_View"
 msgstr "_มุมมอง"
 
@@ -616,7 +617,7 @@ msgstr ""
 msgid "Couldn't find pixmap file: %s"
 msgstr "หาแฟ้ม pixmap ไม่พบ: %s"
 
-#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:774
+#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "เกิดข้อผิดพลาดขณะแสดงคำแนะนำ"
 
@@ -629,7 +630,7 @@ msgid "A graphical tool to analyse disk usage."
 msgstr "เครื่องมือวิเคราะห์การใช้งานดิสก์แบบกราฟิก"
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:59
+#: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -1103,7 +1104,7 @@ msgid "Cl_ear"
 msgstr "_ล้าง"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:843 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:935 ../logview/logview.c:116
 msgid "_About"
 msgstr "เ_กี่ยวกับ"
 
@@ -1112,7 +1113,7 @@ msgid "_Look Up Selected Text"
 msgstr "_หาข้อความที่เลือก"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:917
 msgid "_Preferences"
 msgstr "_ปรับแต่ง"
 
@@ -1124,17 +1125,17 @@ msgstr "_พิมพ์"
 msgid "_Save"
 msgstr "_บันทึก"
 
-#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
-#: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:471
-#: ../gnome-dictionary/src/gdict-window.c:365
-#: ../gnome-dictionary/src/gdict-window.c:1211
+#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:1
+msgid "Check word definitions and spellings in an online dictionary"
+msgstr "หาความหมายและการสะกดของคำในพจนานุกรมออนไลน์"
+
+#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
+#: ../gnome-dictionary/src/gdict-about.c:76
+#: ../gnome-dictionary/src/gdict-app.c:381
+#: ../gnome-dictionary/src/gdict-window.c:428
+#: ../gnome-dictionary/src/gdict-window.c:1382
 msgid "Dictionary"
 msgstr "พจนานุกรม"
-
-#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:2
-msgid "Look up words in an online dictionary"
-msgstr "หาคำในพจนานุกรมออนไลน์"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:1
 msgid "Dictionary server (Deprecated)"
@@ -1238,6 +1239,15 @@ msgstr ""
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
 msgid ""
+"This key defines whether the speller widget should be visible and it's used "
+"to remember the state of the speller widgets across sessions. Setting it to "
+"TRUE will make the speller widget always be displayed."
+msgstr ""
+"กำหนดว่าจะแสดงวิดเจ็ตช่วยสะกดคำหรือไม่ และใช้จำสถานะของวิดเจ็ตช่วยสะกดคำข้ามวาระ "
+"ถ้ากำหนดเป็นค่าจริง จะทำให้วิดเจ็ตช่วยสะกดคำปรากฏเสมอ"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
@@ -1245,13 +1255,17 @@ msgstr ""
 "กำหนดว่าจะให้ขยายหน้าต่างเต็มจอหรือไม่ และใช้จำสถานะของหน้าต่างพจนานุกรมข้ามวาระ "
 "ถ้ากำหนดเป็นค่าจริง จะขยายหน้าต่างเต็มจอเสมอ"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid "Use smart lookup (Deprecated)"
 msgstr "ใช้การค้นหาอย่างฉลาด (เลิกใช้แล้ว)"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
 msgid "Whether the application window should be maximized"
 msgstr "กำหนดว่าจะขยายหน้าต่างโปรแกรมเต็มจอหรือไม่"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
+msgid "Whether the speller should be visible"
+msgstr "กำหนดว่าจะแสดงช่องช่วยสะกดคำหรือไม่"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -1263,7 +1277,7 @@ msgstr "ฐา_นข้อมูล:"
 #. * widget items.
 #.
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-#: ../gnome-dictionary/src/gdict-source-dialog.c:146
+#: ../gnome-dictionary/src/gdict-source-dialog.c:119
 msgid "Dictionary Server"
 msgstr "เซิร์ฟเวอร์พจนานุกรม"
 
@@ -1272,8 +1286,8 @@ msgid "H_ostname:"
 msgstr "ชื่อโ_ฮสต์:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:231
-#: ../gnome-dictionary/src/gdict-window.c:599
+#: ../gnome-dictionary/src/gdict-applet.c:203
+#: ../gnome-dictionary/src/gdict-window.c:670
 msgid "Print"
 msgstr "พิมพ์"
 
@@ -1313,59 +1327,59 @@ msgstr "การ_ส่งข้อมูล:"
 msgid "Spanish Dictionaries"
 msgstr "พจนานุกรมสเปน"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:266
 msgid "Client Name"
 msgstr "ชื่อไคลเอนต์"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:267
 msgid "The name of the client of the context object"
 msgstr "ชื่อของไคลเอนต์ของอ็อบเจกต์ context"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:280
 msgid "Hostname"
 msgstr "ชื่อโฮสต์"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:281
 msgid "The hostname of the dictionary server to connect to"
 msgstr "ชื่อโฮสต์ของเซิร์ฟเวอร์พจนานุกรมที่จะเชื่อมต่อ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:294
 msgid "Port"
 msgstr "พอร์ต"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:295
 msgid "The port of the dictionary server to connect to"
 msgstr "พอร์ตของเซิร์ฟเวอร์พจนานุกรมที่จะเชื่อมต่อ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:310
 msgid "Status"
 msgstr "สถานะ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "The status code as returned by the dictionary server"
 msgstr "รหัสสถานะที่คืนค่ามาจากเซิร์ฟเวอร์พจนานุกรม"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:759
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "ไม่มีการเชื่อมต่อไปยังเซิร์ฟเวอร์พจนานุกรมที่ '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1021
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "ค้นหาที่อยู่ของชื่อโฮสต์ '%s' ไม่สำเร็จ: ไม่พบทรัพยากรที่เหมาะสม"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1052
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "ค้นหาที่อยู่ของโฮสต์ '%s' ไม่สำเร็จ: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "ค้นหาที่อยู่ของโฮสต์ '%s' ไม่สำเร็จ: หาโฮสต์ไม่พบ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -1374,7 +1388,7 @@ msgstr ""
 "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์พจนานุกรมที่ '%s:%d' ได้ คำตอบจากเซิร์ฟเวอร์คือรหัส %d "
 "(เซิร์ฟเวอร์ปิดบริการ)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -1383,47 +1397,47 @@ msgstr ""
 "ไม่สามารถแจงคำตอบจากเซิร์ฟเวอร์พจนานุกรมได้\n"
 ": '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "ไม่พบความหมายของ '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "ฐานข้อมูล '%s' ใช้ไม่ได้"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "กลวิธี '%s' ใช้ไม่ได้"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
 #, c-format
 msgid "Bad command '%s'"
 msgstr "คำสั่ง '%s' ผิดพลาด"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "พารามิเตอร์ผิดพลาดสำหรับคำสั่ง '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "ไม่พบฐานข้อมูลในเซิร์ฟเวอร์พจนานุกรมที่ '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "ไม่พบกลวิธีค้นหาในพจนานุกรมที่ '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1708
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1707
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "การเชื่อมต่อไปยังเซิร์ฟเวอร์พจนานุกรมที่ %s:%d ล้มเหลว"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1747
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1746
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1432,266 +1446,222 @@ msgstr ""
 "เกิดข้อผิดพลาดขณะอ่านคำตอบจากเซิร์ฟเวอร์:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1820
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1819
 msgid "No hostname defined for the dictionary server"
 msgstr "ไม่ได้กำหนดชื่อโฮสต์สำหรับเซิร์ฟเวอร์พจนานุกรม"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1856
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1871
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1855
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1870
 msgid "Unable to create socket"
 msgstr "ไม่สามารถสร้างซ็อกเก็ตได้"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1897
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1896
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "ไม่สามารถกำหนดช่องรับส่งข้อมูลให้ไม่หยุดรอได้: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1912
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1911
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "ไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์พจนานุกรมที่ '%s:%d' ได้"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:196
+#: ../gnome-dictionary/libgdict/gdict-context.c:199
 msgid "Local Only"
 msgstr "ในเครื่องเท่านั้น"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:197
+#: ../gnome-dictionary/libgdict/gdict-context.c:200
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "กำหนดว่า context ใช้พจนานุกรมในเครื่องเท่านั้นหรือไม่"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:352
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:441
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:469
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:353
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:442
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:470
 msgid "Not found"
 msgstr "ไม่พบ"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:500
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:502
 msgid "F_ind:"
 msgstr "_หา:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:513
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
 msgid "_Previous"
 msgstr "_ก่อนหน้า"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:521
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:523
 msgid "_Next"
 msgstr "_ถัดไป"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:694
-#: ../gnome-dictionary/libgdict/gdict-entry.c:104
-#: ../gnome-dictionary/libgdict/gdict-source.c:303
-msgid "Context"
-msgstr "Context"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:695
-msgid "The GdictContext object used to get the word definition"
-msgstr "อ็อบเจกต์ GdictContext ที่ใช้อ่านความหมายของคำ"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:709
-#: ../gnome-dictionary/libgdict/gdict-entry.c:119
-#: ../gnome-dictionary/libgdict/gdict-source.c:260
-msgid "Database"
-msgstr "ฐานข้อมูล"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:710
-msgid "The database used to query the GdictContext"
-msgstr "ฐานข้อมูลที่จะใช้สืบค้น GdictContext"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:724
-msgid "Font Name"
-msgstr "ชื่อแบบอักษร"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:725
-msgid "The font to be used by the defbox"
-msgstr "แบบอักษรที่จะใช้ในช่องแสดงความหมาย"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:731
-msgid "Emphasys Color"
-msgstr "สีเน้น"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:732
-msgid "Color of emphasised text"
-msgstr "สีที่ใช้เน้นข้อความ"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:737
-msgid "Link Color"
-msgstr "สีลิงก์"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:738
-msgid "Color of hyperlinks"
-msgstr "สีของไฮเปอร์ลิงก์"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:743
-msgid "Word Color"
-msgstr "สีคำ"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:744
-msgid "Color of the dictionary word"
-msgstr "สีของคำตั้งในพจนานุกรม"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:749
-msgid "Source Color"
-msgstr "สีแหล่ง"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:750
-msgid "Color of the dictionary source"
-msgstr "สีของแหล่งพจนานุกรม"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1041
-msgid "Progress"
-msgstr "ความคืบหน้า"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1078
-#, c-format
-msgid "Definition for '%s' (%d/%d)"
-msgstr "ความหมายของคำว่า '%s' (%d/%d)"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1280
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1223
 msgid "Error while looking up definition"
 msgstr "เกิดข้อผิดพลาดขณะค้นความหมายของคำ"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
-#, c-format
-msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
-msgstr "พยายามจะค้นคำว่า '%s' แต่ไม่ได้กำหนด GdictContext ไว้ ขอยกเลิก"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1332
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
+#: ../gnome-dictionary/libgdict/gdict-speller.c:720
 msgid "Another search is in progress"
 msgstr "กำลังอยู่ระหว่างค้นคำอื่น"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1333
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
+#: ../gnome-dictionary/libgdict/gdict-speller.c:721
 msgid "Please wait until the current search ends."
 msgstr "กรุณารอสักครู่ จนกว่าจะการค้นจะเสร็จสิ้น"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1364
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Error while retrieving the definition"
 msgstr "เกิดข้อผิดพลาดระหว่างดึงความหมายของคำ"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
+#: ../gnome-dictionary/libgdict/gdict-source.c:304
+#: ../gnome-dictionary/libgdict/gdict-speller.c:361
+msgid "Context"
+msgstr "Context"
+
+#: ../gnome-dictionary/libgdict/gdict-entry.c:106
 msgid "The GdictContext object bound to this entry"
 msgstr "อ็อบเจกต์ GdictContext ที่ผูกโยงกับช่องป้อนข้อความนี้"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
+#: ../gnome-dictionary/libgdict/gdict-speller.c:368
+msgid "Database"
+msgstr "ฐานข้อมูล"
+
+#: ../gnome-dictionary/libgdict/gdict-entry.c:121
 msgid "The database to be used to generate the completion list"
 msgstr "ฐานข้อมูลที่จะใช้สร้างรายการสำหรับเติมเต็มคำ"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:134
-#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-entry.c:135
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
+#: ../gnome-dictionary/libgdict/gdict-speller.c:375
 msgid "Strategy"
 msgstr "กลวิธีการค้นหา"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
+#: ../gnome-dictionary/libgdict/gdict-entry.c:136
 msgid "The matching strategy to be used to generate the completion list"
 msgstr "กลวิธีการค้นหาที่จะใช้สร้างรายการสำหรับเติมเต็มคำ"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:218
+#: ../gnome-dictionary/libgdict/gdict-source.c:219
 msgid "Filename"
 msgstr "ชื่อแฟ้ม"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:220
 msgid "The filename used by this dictionary source"
 msgstr "ชื่อแฟ้มที่แหล่งพจนานุกรมนี้ใช้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:232
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
 #: ../gsearchtool/gsearchtool.c:2474
 msgid "Name"
 msgstr "ชื่อ"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:234
 msgid "The display name of this dictonary source"
 msgstr "ชื่อเรียกของแหล่งพจนานุกรมนี้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:246
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "Description"
 msgstr "คำบรรยาย"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:248
 msgid "The description of this dictionary source"
 msgstr "คำบรรยายของแหล่งพจนานุกรมนี้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
+#: ../gnome-dictionary/libgdict/gdict-source.c:262
 msgid "The default database of this dictonary source"
 msgstr "ฐานข้อมูลปริยายของแหล่งพจนานุกรมนี้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
+#: ../gnome-dictionary/libgdict/gdict-source.c:276
 msgid "The default strategy of this dictonary source"
 msgstr "กลวิธีค้นหาปริยายของแหล่งพจนานุกรมนี้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "Transport"
 msgstr "การส่งข้อมูล"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:290
 msgid "The transport mechanism used by this dictionary source"
 msgstr "กรรมวิธีการส่งข้อมูลที่แหล่งพจนานุกรมนี้ใช้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
+#: ../gnome-dictionary/libgdict/gdict-source.c:305
 msgid "The GdictContext bound to this source"
 msgstr "อ็อบเจกต์ GdictContext ที่ผูกโยงกับแหล่งนี้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:399
+#: ../gnome-dictionary/libgdict/gdict-source.c:400
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "ชนิดของการส่งข้อมูล '%d' ใช้ไม่ได้"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:427
+#: ../gnome-dictionary/libgdict/gdict-source.c:428
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr "ไม่พบกลุ่ม '%s' ภายในข้อกำหนดแหล่งพจนานุกรม"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:443
-#: ../gnome-dictionary/libgdict/gdict-source.c:467
-#: ../gnome-dictionary/libgdict/gdict-source.c:491
-#: ../gnome-dictionary/libgdict/gdict-source.c:516
+#: ../gnome-dictionary/libgdict/gdict-source.c:444
+#: ../gnome-dictionary/libgdict/gdict-source.c:468
+#: ../gnome-dictionary/libgdict/gdict-source.c:492
+#: ../gnome-dictionary/libgdict/gdict-source.c:517
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr "ไม่สามารถอ่านค่าคีย์ '%s' ภายในข้อกำหนดแหล่งพจนานุกรม: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:541
+#: ../gnome-dictionary/libgdict/gdict-source.c:542
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr "ไม่สามารถอ่านค่าคีย์ '%s' ภายในแฟ้มข้อกำหนดแหล่งพจนานุกรม: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:727
+#: ../gnome-dictionary/libgdict/gdict-source.c:728
 msgid "Dictionary source does not have name"
 msgstr "แหล่งพจนานุกรมไม่มีชื่อ"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:736
+#: ../gnome-dictionary/libgdict/gdict-source.c:737
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "แหล่งพจนานุกรม '%s' ระบุวิธีส่งข้อมูล '%s' ที่ใช้ไม่ได้"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:162
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
 msgid "Paths"
 msgstr "พาธ"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
 msgid "Search paths used by this object"
 msgstr "พาธการค้นหาที่อ็อบเจกต์นี้ใช้"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:175
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
 msgid "Sources"
 msgstr "แหล่ง"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
 msgid "Dictionary sources found"
 msgstr "แหล่งพจนานุกรมที่พบ"
 
-#: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:610
+#: ../gnome-dictionary/libgdict/gdict-speller.c:299
+msgid "Similar words"
+msgstr "คำคล้าย"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:362
+msgid "The GdictContext object used to get the word definition"
+msgstr "อ็อบเจกต์ GdictContext ที่ใช้อ่านความหมายของคำ"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:369
+msgid "The database used to query the GdictContext"
+msgstr "ฐานข้อมูลที่จะใช้สืบค้น GdictContext"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+msgid "The strategy used to query the GdictContext"
+msgstr "กลวิธีที่จะใช้สืบค้น GdictContext"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:762
+msgid "Error while matching"
+msgstr "เกิดข้อผิดพลาดขณะค้นหา"
+
+#: ../gnome-dictionary/src/gdict-about.c:57
+#: ../gnome-dictionary/src/gdict-applet.c:582
 msgid "Look up words in dictionaries"
 msgstr "ค้นหาคำในพจนานุกรมต่างๆ"
-
-#: ../gnome-dictionary/src/gdict-about.c:87
-#, c-format
-msgid "Unable to open the application icon: %s"
-msgstr "ไม่สามารถเปิดไอคอนของโปรแกรมได้: %s"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:216
+#: ../gnome-dictionary/src/gdict-app.c:215
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1704,20 +1674,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:230
+#: ../gnome-dictionary/src/gdict-app.c:229
 #, c-format
 msgid "Error: %s\n"
 msgstr "ผิดพลาด: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:256
+#: ../gnome-dictionary/src/gdict-app.c:255
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "เรียก gnome-dictionary --help เพื่อดูวิธีเรียกใช้\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:269
+#: ../gnome-dictionary/src/gdict-app.c:268
 msgid "Unable to find a suitable dictionary source"
 msgstr "ไม่พบแหล่งพจนานุกรมที่เหมาะสม"
 
-#: ../gnome-dictionary/src/gdict-app.c:303
+#: ../gnome-dictionary/src/gdict-app.c:302
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1726,212 +1696,227 @@ msgstr ""
 "เกิดข้อผิดพลาดขณะค้นความหมายของคำว่า \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:348
-#: ../gnome-dictionary/src/gdict-applet.c:1421
-#, c-format
-msgid "Unable to rename file '%s' to '%s': %s"
-msgstr "ไม่สามารถเปลี่ยนชื่อแฟ้ม '%s' ไปเป็น '%s': %s"
-
-#: ../gnome-dictionary/src/gdict-app.c:372
-#: ../gnome-dictionary/src/gdict-app.c:395
-#: ../gnome-dictionary/src/gdict-applet.c:1445
-#: ../gnome-dictionary/src/gdict-applet.c:1468
-#, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr "ไม่สามารถสร้างโฟลเดอร์ข้อมูล '%s': %s"
-
-#: ../gnome-dictionary/src/gdict-app.c:430
+#: ../gnome-dictionary/src/gdict-app.c:336
 msgid "Words to look up"
 msgstr "คำที่จะค้นหา"
 
-#: ../gnome-dictionary/src/gdict-app.c:430
+#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:338
 msgid "word"
 msgstr "คำ"
 
-#: ../gnome-dictionary/src/gdict-app.c:432
+#: ../gnome-dictionary/src/gdict-app.c:338
+msgid "Words to match"
+msgstr "คำที่จะค้นหา"
+
+#: ../gnome-dictionary/src/gdict-app.c:340
 msgid "Dictionary source to use"
 msgstr "แหล่งพจนานุกรมที่จะใช้"
 
-#: ../gnome-dictionary/src/gdict-app.c:432
+#: ../gnome-dictionary/src/gdict-app.c:340
 msgid "source"
 msgstr "แหล่ง"
 
-#: ../gnome-dictionary/src/gdict-app.c:434
+#: ../gnome-dictionary/src/gdict-app.c:342
 msgid "Show available dictionary sources"
 msgstr "แสดงแหล่งพจนานุกรมทั้งหมดที่มี"
 
-#: ../gnome-dictionary/src/gdict-app.c:436
+#: ../gnome-dictionary/src/gdict-app.c:344
 msgid "Print result to the console"
 msgstr "แสดงผลลัพธ์ออกทางคอนโซล"
 
-#: ../gnome-dictionary/src/gdict-app.c:438
+#: ../gnome-dictionary/src/gdict-app.c:346
 msgid "Database to use"
 msgstr "ฐานข้อมูลที่จะใช้"
 
+#: ../gnome-dictionary/src/gdict-app.c:346
+msgid "db"
+msgstr "db"
+
+#: ../gnome-dictionary/src/gdict-app.c:348
+msgid "Strategy to use"
+msgstr "กลวิธีที่จะใช้"
+
+#: ../gnome-dictionary/src/gdict-app.c:348
+msgid "strat"
+msgstr "strat"
+
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:454
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid " - Look up words in dictionaries"
 msgstr " - ค้นหาคำในพจนานุกรมต่างๆ"
 
-#: ../gnome-dictionary/src/gdict-app.c:458
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "Dictionary and spelling tool"
 msgstr "เครื่องมือค้นพจนานุกรมและตรวจตัวสะกด"
 
-#: ../gnome-dictionary/src/gdict-app.c:459
+#: ../gnome-dictionary/src/gdict-app.c:369
 msgid "Show Dictionary options"
 msgstr "แสดงตัวเลือกต่างๆ ของพจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-applet.c:245
-#: ../gnome-dictionary/src/gdict-window.c:544
+#: ../gnome-dictionary/src/gdict-applet.c:217
+#: ../gnome-dictionary/src/gdict-window.c:616
 msgid "Save a Copy"
 msgstr "บันทึกสำเนา"
 
-#: ../gnome-dictionary/src/gdict-applet.c:255
-#: ../gnome-dictionary/src/gdict-window.c:554
+#: ../gnome-dictionary/src/gdict-applet.c:227
+#: ../gnome-dictionary/src/gdict-window.c:626
 msgid "Untitled document"
 msgstr "เอกสารไม่มีชื่อ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:276
-#: ../gnome-dictionary/src/gdict-window.c:575
+#: ../gnome-dictionary/src/gdict-applet.c:248
+#: ../gnome-dictionary/src/gdict-window.c:647
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "เกิดข้อผิดพลาดขณะเขียนแฟ้ม '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:384
+#: ../gnome-dictionary/src/gdict-applet.c:356
 msgid "Clear the definitions found"
 msgstr "ล้างความหมายที่พบทั้งหมด"
 
-#: ../gnome-dictionary/src/gdict-applet.c:387
+#: ../gnome-dictionary/src/gdict-applet.c:359
 msgid "Clear definition"
 msgstr "ล้างความหมาย"
 
-#: ../gnome-dictionary/src/gdict-applet.c:388
+#: ../gnome-dictionary/src/gdict-applet.c:360
 msgid "Clear the text of the definition"
 msgstr "ล้างเนื้อความของความหมายของคำ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:398
+#: ../gnome-dictionary/src/gdict-applet.c:370
 msgid "Print the definitions found"
 msgstr "พิมพ์ความหมายที่พบทั้งหมด"
 
-#: ../gnome-dictionary/src/gdict-applet.c:401
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print definition"
 msgstr "พิมพ์ความหมาย"
 
-#: ../gnome-dictionary/src/gdict-applet.c:402
+#: ../gnome-dictionary/src/gdict-applet.c:374
 msgid "Print the text of the definition"
 msgstr "พิมพ์เนื้อความของความหมายของคำ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:412
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Save the definitions found"
 msgstr "บันทึกความหมายที่พบทั้งหมด"
 
-#: ../gnome-dictionary/src/gdict-applet.c:415
+#: ../gnome-dictionary/src/gdict-applet.c:387
 msgid "Save definition"
 msgstr "บันทึกความหมาย"
 
-#: ../gnome-dictionary/src/gdict-applet.c:416
+#: ../gnome-dictionary/src/gdict-applet.c:388
 msgid "Save the text of the definition to a file"
 msgstr "บันทึกเนื้อความของความหมายของคำลงในแฟ้ม"
 
-#: ../gnome-dictionary/src/gdict-applet.c:550
+#: ../gnome-dictionary/src/gdict-applet.c:522
 msgid "Toggle dictionary window"
 msgstr "ซ่อนหรือแสดงหน้าต่างพจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-applet.c:551
+#: ../gnome-dictionary/src/gdict-applet.c:523
 msgid "Show or hide the definition window"
 msgstr "ซ่อนหรือแสดงหน้าต่างแสดงความหมายของคำ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:554
+#: ../gnome-dictionary/src/gdict-applet.c:526
 msgid "Click to view the dictionary window"
 msgstr "คลิกเพื่อแสดงหน้าต่างพจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-applet.c:609
+#: ../gnome-dictionary/src/gdict-applet.c:581
 msgid "Dictionary entry"
 msgstr "ช่องค้นพจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-applet.c:613
+#: ../gnome-dictionary/src/gdict-applet.c:585
 msgid "Type the word you want to look up"
 msgstr "ป้อนคำที่คุณต้องการค้นหาความหมาย"
 
-#: ../gnome-dictionary/src/gdict-applet.c:747
-msgid "Preferences"
-msgstr "การปรับแต่ง"
+#: ../gnome-dictionary/src/gdict-applet.c:716
+#: ../gnome-dictionary/src/gdict-window.c:759
+msgid "Dictionary Preferences"
+msgstr "ปรับแต่งพจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-applet.c:779
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:765
+#: ../gnome-dictionary/src/gdict-applet.c:744
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
+#: ../gnome-dictionary/src/gdict-source-dialog.c:436
+#: ../gnome-dictionary/src/gdict-window.c:848
 msgid "There was an error while displaying help"
 msgstr "เกิดข้อผิดพลาดขณะแสดงคำแนะนำ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:938
-#: ../gnome-dictionary/src/gdict-window.c:270
+#: ../gnome-dictionary/src/gdict-applet.c:903
+#: ../gnome-dictionary/src/gdict-window.c:327
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "ไม่มีแหล่งพจนานุกรมที่ชื่อ '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:942
-#: ../gnome-dictionary/src/gdict-window.c:274
+#: ../gnome-dictionary/src/gdict-applet.c:907
+#: ../gnome-dictionary/src/gdict-window.c:331
 msgid "Unable to find dictionary source"
 msgstr "หาแหล่งพจนานุกรมไม่พบ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:958
-#: ../gnome-dictionary/src/gdict-window.c:290
+#: ../gnome-dictionary/src/gdict-applet.c:923
+#: ../gnome-dictionary/src/gdict-window.c:347
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "ไม่มี context สำหรับแหล่ง '%s' ให้ใช้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:962
-#: ../gnome-dictionary/src/gdict-window.c:294
+#: ../gnome-dictionary/src/gdict-applet.c:927
+#: ../gnome-dictionary/src/gdict-window.c:351
 msgid "Unable to create a context"
 msgstr "ไม่สามารถสร้าง context ได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1243
-msgid "Unable to load the applet icon"
-msgstr "ไม่สามารถโหลดไอคอนของแอพเพล็ตได้"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1272
-#: ../gnome-dictionary/src/gdict-window.c:1320
+#: ../gnome-dictionary/src/gdict-applet.c:1215
+#: ../gnome-dictionary/src/gdict-window.c:1489
 msgid "Unable to connect to GConf"
 msgstr "ไม่สามารถเชื่อมต่อไปยัง GConf ได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1287
-#: ../gnome-dictionary/src/gdict-window.c:1336
+#: ../gnome-dictionary/src/gdict-applet.c:1228
+#: ../gnome-dictionary/src/gdict-window.c:1502
 msgid "Unable to get notification for preferences"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1302
-#: ../gnome-dictionary/src/gdict-window.c:1352
+#: ../gnome-dictionary/src/gdict-applet.c:1242
+#: ../gnome-dictionary/src/gdict-window.c:1515
 msgid "Unable to get notification for the document font"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งแบบอักษรเอกสารได้"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:272
+#: ../gnome-dictionary/src/gdict-common.c:68
+#, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "ไม่สามารถเปลี่ยนชื่อแฟ้ม '%s' ไปเป็น '%s': %s"
+
+#: ../gnome-dictionary/src/gdict-common.c:92
+#: ../gnome-dictionary/src/gdict-common.c:115
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "ไม่สามารถสร้างโฟลเดอร์ข้อมูล '%s': %s"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+msgid "Edit Dictionary Source"
+msgstr "แก้ไขแหล่งพจนานุกรม"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
 msgid "Add Dictionary Source"
 msgstr "เพิ่มแหล่งพจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:318
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "ลบ \"%s\" หรือไม่?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:320
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "การลบนี้ จะลบแหล่งพจนานุกรมออกจากรายการอย่างถาวร"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:350
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "ไม่สามารถลบแหล่ง '%s' ได้"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:638
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:679
 msgid "Add a new dictionary source"
 msgstr "เพิ่มแหล่งพจนานุกรมใหม่"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:646
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:687
 msgid "Remove the currently selected dictionary source"
 msgstr "ลบแหล่งพจนานุกรมที่เลือกอยู่"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:661
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:702
 msgid "Set the font used for printing the definitions"
 msgstr "กำหนดแบบอักษรที่จะใช้พิมพ์คำจำกัดความของคำ"
 
@@ -1944,125 +1929,128 @@ msgstr "%s (หน้า %d)"
 msgid "Print Preview"
 msgstr "ตัวอย่างก่อนพิมพ์"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:276
+#: ../gnome-dictionary/src/gdict-source-dialog.c:300
+#: ../gnome-dictionary/src/gdict-source-dialog.c:389
 msgid "Unable to create a source file"
 msgstr "ไม่สามารถสร้างแฟ้มแหล่งได้"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:295
+#: ../gnome-dictionary/src/gdict-source-dialog.c:319
+#: ../gnome-dictionary/src/gdict-source-dialog.c:407
 msgid "Unable to save source file"
 msgstr "ไม่สามารถบันทึกแฟ้มแหล่งได้"
 
-#: ../gnome-dictionary/src/gdict-window.c:175
+#: ../gnome-dictionary/src/gdict-window.c:191
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "กำลังค้นหา '%s'..."
 
-#: ../gnome-dictionary/src/gdict-window.c:199
-#: ../gnome-dictionary/src/gdict-window.c:221
+#: ../gnome-dictionary/src/gdict-window.c:220
+#: ../gnome-dictionary/src/gdict-window.c:247
 msgid "No definitions found"
 msgstr "ไม่พบความหมายของคำ"
 
-#: ../gnome-dictionary/src/gdict-window.c:201
+#: ../gnome-dictionary/src/gdict-window.c:222
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "พบความหมายหนึ่ง"
 msgstr[1] "พบ %d ความหมาย"
 
-#: ../gnome-dictionary/src/gdict-window.c:363
+#: ../gnome-dictionary/src/gdict-window.c:426
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - พจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-window.c:684
-msgid "Dictionary Preferences"
-msgstr "ปรับแต่งพจนานุกรม"
+#: ../gnome-dictionary/src/gdict-window.c:882
+msgid "_Similar Words"
+msgstr "คำ_คล้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:800
+#: ../gnome-dictionary/src/gdict-window.c:883
+msgid "Show similar words"
+msgstr "แสดงคำคล้าย"
+
+#: ../gnome-dictionary/src/gdict-window.c:889 ../logview/logview.c:85
 msgid "_File"
 msgstr "แ_ฟ้ม"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:892
 msgid "_Go"
 msgstr "ไ_ป"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:896
 msgid "_New"
 msgstr "ใ_หม่"
 
-#: ../gnome-dictionary/src/gdict-window.c:807
+#: ../gnome-dictionary/src/gdict-window.c:897
 msgid "New look up"
 msgstr "การค้นหาใหม่"
 
-#: ../gnome-dictionary/src/gdict-window.c:808
+#: ../gnome-dictionary/src/gdict-window.c:898
 msgid "_Save a Copy..."
 msgstr "_บันทึกสำเนา..."
 
-#: ../gnome-dictionary/src/gdict-window.c:810
+#: ../gnome-dictionary/src/gdict-window.c:900
 msgid "_Print..."
 msgstr "_พิมพ์..."
 
-#: ../gnome-dictionary/src/gdict-window.c:811
+#: ../gnome-dictionary/src/gdict-window.c:901
 msgid "Print this document"
 msgstr "พิมพ์เอกสารนี้"
 
-#: ../gnome-dictionary/src/gdict-window.c:818 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:908 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "เลือกทั้ง_หมด"
 
-#: ../gnome-dictionary/src/gdict-window.c:821
+#: ../gnome-dictionary/src/gdict-window.c:911
 msgid "Find a word or phrase in the document"
 msgstr "หาคำหรือวลีในเอกสาร"
 
-#: ../gnome-dictionary/src/gdict-window.c:823
+#: ../gnome-dictionary/src/gdict-window.c:913
 msgid "Find Ne_xt"
 msgstr "หาต่_อ"
 
-#: ../gnome-dictionary/src/gdict-window.c:825
+#: ../gnome-dictionary/src/gdict-window.c:915
 msgid "Find Pre_vious"
 msgstr "หา_ก่อนหน้า"
 
+#. View menu
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:923
 msgid "_Previous Definition"
 msgstr "ความหมาย_ก่อนหน้า"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:924
 msgid "Go to the previous definition"
 msgstr "ไปยังความหมายก่อนหน้า"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:925
 msgid "_Next Definition"
 msgstr "ความหมาย_ถัดไป"
 
-#: ../gnome-dictionary/src/gdict-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:926
 msgid "Go to the next definition"
 msgstr "ไปยังความหมายถัดไป"
 
-#: ../gnome-dictionary/src/gdict-window.c:835
+#: ../gnome-dictionary/src/gdict-window.c:927
 msgid "_First Definition"
 msgstr "ความหมายแ_รก"
 
-#: ../gnome-dictionary/src/gdict-window.c:836
+#: ../gnome-dictionary/src/gdict-window.c:928
 msgid "Go to the first definition"
 msgstr "ไปยังความหมายแรก"
 
-#: ../gnome-dictionary/src/gdict-window.c:837
+#: ../gnome-dictionary/src/gdict-window.c:929
 msgid "_Last Definition"
 msgstr "ความหมายสุด_ท้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:838
+#: ../gnome-dictionary/src/gdict-window.c:930
 msgid "Go to the last definition"
 msgstr "ไปยังความหมายสุดท้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:1133
+#: ../gnome-dictionary/src/gdict-window.c:1258
 msgid "Look _up:"
 msgstr "_ค้นหา:"
-
-#: ../gnome-dictionary/src/gdict-window.c:1376
-msgid "Unable to load the application icon"
-msgstr "ไม่สามารถโหลดไอคอนของโปรแกรมได้"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -2101,7 +2089,7 @@ msgstr "Screenshot-%s.png"
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-panel-screenshot.c:116
-#: ../gnome-screenshot/screenshot-save.c:164
+#: ../gnome-screenshot/screenshot-save.c:165
 msgid "Screenshot.png"
 msgstr "Screenshot.png"
 
@@ -2175,12 +2163,12 @@ msgid "Save Screenshot"
 msgstr "บันทึกภาพหน้าจอ"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
-msgid "Take Screenshot"
-msgstr "บันทึกภาพหน้าจอ"
+msgid "Save images of your desktop or individual windows"
+msgstr "บันทึกภาพของเดสก์ท็อปหรือหน้าต่างที่กำหนด"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
-msgid "Take a screenshot of your desktop"
-msgstr "จับภาพพื้นโต๊ะของคุณ"
+msgid "Take Screenshot"
+msgstr "บันทึกภาพหน้าจอ"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
@@ -2218,7 +2206,7 @@ msgstr "โฟลเดอร์เก็บภาพหน้าจอ"
 msgid "The directory the last screenshot was saved in."
 msgstr "โฟลเดอร์ที่เก็บภาพหน้าจอครั้งล่าสุด"
 
-#: ../gnome-screenshot/screenshot-dialog.c:197
+#: ../gnome-screenshot/screenshot-dialog.c:203
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -2226,11 +2214,11 @@ msgstr ""
 "แฟ้ม Glade สำหรับโปรแกรมจับภาพหน้าจอหายไป\n"
 "กรุณาตรวจสอบการติดตั้งโปรแกรม gnome-utils ของคุณ"
 
-#: ../gnome-screenshot/screenshot-dialog.c:216
+#: ../gnome-screenshot/screenshot-dialog.c:222
 msgid "Select a folder"
 msgstr "เลือกโฟลเดอร์"
 
-#: ../gnome-screenshot/screenshot-save.c:41
+#: ../gnome-screenshot/screenshot-save.c:42
 #, c-format
 msgid ""
 "Unable to clear the temporary folder:\n"
@@ -2239,39 +2227,39 @@ msgstr ""
 "ไม่สามารถล้างโฟลเดอร์ทำงานชั่วคราว:\n"
 "%s"
 
-#: ../gnome-screenshot/screenshot-save.c:79
+#: ../gnome-screenshot/screenshot-save.c:80
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
 msgstr "โพรเซสลูกที่บันทึกแฟ้มหยุดทำงานกระทันหัน จึงไม่สามารถเขียนแฟ้มภาพหน้าจอลงดิสก์ได้"
 
-#: ../gnome-screenshot/screenshot-save.c:191
+#: ../gnome-screenshot/screenshot-save.c:192
 msgid "Unknown error saving screenshot to disk"
 msgstr "เกิดข้อผิดพลาดที่ไม่รู้จักระหว่างบันทึกภาพหน้าจอ"
 
-#: ../gnome-screenshot/screenshot-utils.c:612
+#: ../gnome-screenshot/screenshot-utils.c:614
 msgid "Untitled Window"
 msgstr "หน้าต่างไม่มีชื่อ"
 
-#: ../gnome-screenshot/screenshot-xfer.c:103
+#: ../gnome-screenshot/screenshot-xfer.c:104
 msgid "Preparing to copy"
 msgstr "กำลังเตรียมคัดลอก"
 
-#: ../gnome-screenshot/screenshot-xfer.c:181
+#: ../gnome-screenshot/screenshot-xfer.c:182
 msgid "File already exists"
 msgstr "มีแฟ้มอยู่แล้ว"
 
-#: ../gnome-screenshot/screenshot-xfer.c:184
+#: ../gnome-screenshot/screenshot-xfer.c:185
 #, c-format
 msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "มีแฟ้มชื่อ \"%s\" อยู่ก่อนแล้ว  จะเขียนทับหรือไม่?"
 
-#: ../gnome-screenshot/screenshot-xfer.c:190
+#: ../gnome-screenshot/screenshot-xfer.c:191
 #: ../gsearchtool/gsearchtool-callbacks.c:1412
 msgid "_Replace"
 msgstr "เ_ขียนทับ"
 
-#: ../gnome-screenshot/screenshot-xfer.c:230
+#: ../gnome-screenshot/screenshot-xfer.c:231
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
 msgstr "ค่า GnomeVFSXferProgressStatus %d ไม่รู้จัก"
@@ -3036,25 +3024,25 @@ msgstr "โปรแกรมอ่านบันทึกปฏิบัติ
 msgid "A system log viewer for GNOME."
 msgstr "โปรแกรมอ่านบันทึกปฏิบัติการของระบบสำหรับ GNOME"
 
-#: ../logview/gnome-system-log.desktop.in.h:1
+#: ../logview/gnome-system-log.desktop.in.in.h:1
 msgid "System Log"
 msgstr "บันทึกปฏิบัติการของระบบ"
 
-#: ../logview/gnome-system-log.desktop.in.h:2
-msgid "View the system log file"
-msgstr "อ่านบันทึกปฏิบัติการของระบบ"
+#: ../logview/gnome-system-log.desktop.in.in.h:2
+msgid "View or monitor system log files"
+msgstr "อ่านหรือติดตามบันทึกปฏิบัติการของระบบ"
 
-#: ../logview/log_repaint.c:179
+#: ../logview/log_repaint.c:187
 #, c-format
 msgid "last update : %s"
 msgstr "เปลี่ยนแปลงล่าสุด : %s"
 
-#: ../logview/log_repaint.c:181
+#: ../logview/log_repaint.c:189
 #, c-format
 msgid "%d lines (%s) - %s"
 msgstr "%d บรรทัด (%s) - %s"
 
-#: ../logview/log_repaint.c:219
+#: ../logview/log_repaint.c:227
 msgid "Current"
 msgstr "ปัจจุบัน"
 
@@ -3102,10 +3090,6 @@ msgstr "_กรอง:"
 #: ../logview/logview-findbar.c:157
 msgid "_Clear"
 msgstr "_ล้าง"
-
-#: ../logview/logview.c:85
-msgid "_Log"
-msgstr "_บันทึกปฏิบัติการ"
 
 #: ../logview/logview.c:90
 msgid "_Open..."
@@ -3206,26 +3190,26 @@ msgstr "_ปฏิทิน"
 # The user clicks on the calendar to display log entries on that date.
 #: ../logview/logview.c:128
 msgid "Show Calendar Log"
-msgstr "แสดงปฎิทินของบันทึกปฏิบัติการ"
+msgstr "แสดงปฏิทินของบันทึกปฏิบัติการ"
 
-#: ../logview/logview.c:308
+#: ../logview/logview.c:307
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (ติดตามอยู่) - %s"
 
-#: ../logview/logview.c:519
+#: ../logview/logview.c:518
 msgid "Open Log"
 msgstr "เปิดบันทึกปฏิบัติการ"
 
-#: ../logview/logview.c:907
+#: ../logview/logview.c:906
 msgid "Version: "
 msgstr "รุ่น: "
 
-#: ../logview/logview.c:976
+#: ../logview/logview.c:975
 msgid "Days"
 msgstr "รายการวัน"
 
-#: ../logview/logview.c:977
+#: ../logview/logview.c:976
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "พอยน์เตอร์ไปยัง GSList ของวันต่างๆ ในบันทึกปฏิบัติการปัจจุบัน"
 
@@ -3371,6 +3355,63 @@ msgstr "ระบบแฟ้มนี้ไม่สนับสนุนกา
 msgid "Gnome-VFS Error.\n"
 msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 
+#~ msgid "Font Name"
+#~ msgstr "ชื่อแบบอักษร"
+
+#~ msgid "The font to be used by the defbox"
+#~ msgstr "แบบอักษรที่จะใช้ในช่องแสดงความหมาย"
+
+#~ msgid "Emphasys Color"
+#~ msgstr "สีเน้น"
+
+#~ msgid "Color of emphasised text"
+#~ msgstr "สีที่ใช้เน้นข้อความ"
+
+#~ msgid "Link Color"
+#~ msgstr "สีลิงก์"
+
+#~ msgid "Color of hyperlinks"
+#~ msgstr "สีของไฮเปอร์ลิงก์"
+
+#~ msgid "Word Color"
+#~ msgstr "สีคำ"
+
+#~ msgid "Color of the dictionary word"
+#~ msgstr "สีของคำตั้งในพจนานุกรม"
+
+#~ msgid "Source Color"
+#~ msgstr "สีแหล่ง"
+
+#~ msgid "Color of the dictionary source"
+#~ msgstr "สีของแหล่งพจนานุกรม"
+
+#~ msgid "Progress"
+#~ msgstr "ความคืบหน้า"
+
+#~ msgid "Definition for '%s' (%d/%d)"
+#~ msgstr "ความหมายของคำว่า '%s' (%d/%d)"
+
+#~ msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
+#~ msgstr "พยายามจะค้นคำว่า '%s' แต่ไม่ได้กำหนด GdictContext ไว้ ขอยกเลิก"
+
+#~ msgid "Unable to open the application icon: %s"
+#~ msgstr "ไม่สามารถเปิดไอคอนของโปรแกรมได้: %s"
+
+#~ msgid "Preferences"
+#~ msgstr "การปรับแต่ง"
+
+#~ msgid "Unable to load the applet icon"
+#~ msgstr "ไม่สามารถโหลดไอคอนของแอพเพล็ตได้"
+
+#~ msgid "Unable to load the application icon"
+#~ msgstr "ไม่สามารถโหลดไอคอนของโปรแกรมได้"
+
+#~ msgid "Take a screenshot of your desktop"
+#~ msgstr "จับภาพพื้นโต๊ะของคุณ"
+
+#~ msgid "_Log"
+#~ msgstr "_บันทึกปฏิบัติการ"
+
 #~ msgid "French Dictionaries from Wikipedia"
 #~ msgstr "พจนานุกรมฝรั่งเศสจากวิกิพีเดีย"
 
@@ -3457,9 +3498,6 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 
 #~ msgid "port"
 #~ msgstr "พอร์ต"
-
-#~ msgid "strategy"
-#~ msgstr "กลวิธีการค้นหา"
 
 #~ msgid "transport"
 #~ msgstr "การส่งข้อมูล"
@@ -3706,7 +3744,7 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 #~ msgstr "_ลบออก"
 
 #~ msgid "Remove an action"
-#~ msgstr "ลบการปฎิบัติการออก"
+#~ msgstr "ลบการปฏิบัติการออก"
 
 #~ msgid "Cannot open action data base <%s>! Open failed."
 #~ msgstr "ไม่สามารถเปิดฐานข้อมูลปฏิบัติการ <%s>!"
