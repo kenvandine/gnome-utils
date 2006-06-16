@@ -1,10 +1,10 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
-/* 
+/*
  * GNOME Search Tool
  *
  *  File:  gsearchtool-callbacks.h
  *
- *  (C) 2002 the Free Software Foundation 
+ *  (C) 2002 the Free Software Foundation
  *
  *  Authors:   	Dennis Cranston  <dennis_cranston@yahoo.com>
  *		George Lebl
@@ -24,7 +24,7 @@
  *  Foundation, Inc., 59 Temple Street #330, Boston, MA 02111-1307, USA.
  *
  */
- 
+
 #ifndef _GSEARCHTOOL_CALLBACKS_H_
 #define _GSEARCHTOOL_CALLBACKS_H_
 
@@ -58,7 +58,7 @@ click_expander_cb (GObject * object,
                    gpointer data);
 void
 size_allocate_cb (GtkWidget * widget,
-                  GtkAllocation * allocation, 
+                  GtkAllocation * allocation,
                   gpointer data);
 void
 add_constraint_cb (GtkWidget * widget,
@@ -73,7 +73,7 @@ void
 constraint_update_info_cb (GtkWidget * widget,
                            gpointer data);
 void
-name_contains_activate_cb (GtkWidget * widget, 
+name_contains_activate_cb (GtkWidget * widget,
                            gpointer data);
 void
 open_file_cb (GtkAction * action,
@@ -147,10 +147,10 @@ gboolean
 file_motion_notify_cb (GtkWidget *widget,
                        GdkEventMotion *event,
                        gpointer user_data);
-gboolean 
+gboolean
 file_leave_notify_cb (GtkWidget *widget,
                       GdkEventCrossing *event,
-                      gpointer user_data);		       
+                      gpointer user_data);
 gboolean
 not_running_timeout_cb (gpointer data);
 
@@ -159,16 +159,16 @@ disable_quick_search_cb (GtkWidget * dialog,
                          gint response,
                          gpointer data);
 void
-single_click_to_activate_key_changed_cb (GConfClient * client, 
+single_click_to_activate_key_changed_cb (GConfClient * client,
                                          guint cnxn_id,
                                          GConfEntry * entry,
                                          gpointer user_data);
 void
-columns_changed_cb (GtkTreeView * treeview, 
+columns_changed_cb (GtkTreeView * treeview,
                     gpointer user_data);
 gboolean
-window_state_event_cb (GtkWidget * widget, 
-                       GdkEventWindowState * event, 
+window_state_event_cb (GtkWidget * widget,
+                       GdkEventWindowState * event,
                        gpointer data);
 
 #ifdef __cplusplus

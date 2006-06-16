@@ -1,13 +1,13 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
-/* 
+/*
  * GNOME Search Tool
  *
  *  File:  gsearchtool.h
  *
- *  (C) 1998,2002 the Free Software Foundation 
+ *  (C) 1998,2002 the Free Software Foundation
  *
  *  Authors:	Dennis Cranston  <dennis_cranston@yahoo.com>
- *              George Lebl		
+ *              George Lebl
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -90,7 +90,7 @@ struct _GSearchWindow {
 	gint                    window_height;
 	gboolean                is_window_maximized;
 	gboolean                is_window_accessible;
-	
+
 	GtkWidget             * name_contains_entry;
 	GtkWidget             * look_in_folder_button;
 	GtkWidget             * name_and_folder_table;
@@ -111,8 +111,8 @@ struct _GSearchWindow {
 	GtkWidget             * search_results_vbox;
 	GtkWidget             * search_results_popup_menu;
 	GtkWidget             * search_results_save_results_as_item;
-	GtkTreeView           * search_results_tree_view;	
-	GtkListStore          * search_results_list_store;	
+	GtkTreeView           * search_results_tree_view;
+	GtkListStore          * search_results_list_store;
 	GtkCellRenderer       * search_results_name_cell_renderer;
 	GtkTreeSelection      * search_results_selection;
 	GtkTreeIter             search_results_iter;
@@ -128,18 +128,18 @@ struct _GSearchWindow {
 	gboolean		is_locate_database_available;
 
 	gchar                 * save_results_as_default_filename;
-	
+
 	GSearchCommandDetails * command_details;
 };
 
 struct _GSearchCommandDetails {
 	pid_t                   command_pid;
 	GSearchCommandStatus    command_status;
-		
+
 	gchar                 * name_contains_pattern_string;
 	gchar                 * name_contains_regex_string;
 	gchar                 * look_in_folder_string;
-	
+
 	gboolean		is_command_first_pass;
 	gboolean		is_command_using_quick_mode;
 	gboolean		is_command_second_pass_enabled;
@@ -167,32 +167,32 @@ struct _GSearchMonitor {
 	GnomeVFSMonitorHandle * handle;
 };
 
-GType 
+GType
 gsearch_window_get_type (void);
 
 gchar *
-build_search_command (GSearchWindow * gsearch, 
+build_search_command (GSearchWindow * gsearch,
                       gboolean first_pass);
 void
 spawn_search_command (GSearchWindow * gsearch,
                       gchar * command);
-void  		
+void
 add_constraint (GSearchWindow * gsearch,
                 gint constraint_id,
                 gchar * value,
                 gboolean show_constraint);
-void  		
-update_constraint_info (GSearchConstraint * constraint, 
+void
+update_constraint_info (GSearchConstraint * constraint,
                         gchar * info);
-void  		
+void
 remove_constraint (gint constraint_id);
 
 void
-set_constraint_gconf_boolean (gint constraint_id, 
+set_constraint_gconf_boolean (gint constraint_id,
                               gboolean flag);
 void
 set_constraint_selected_state (GSearchWindow * gsearch,
-                               gint constraint_id, 
+                               gint constraint_id,
                                gboolean state);
 void
 set_clone_command (GSearchWindow * gsearch,

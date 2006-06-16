@@ -1,10 +1,10 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
-/* 
+/*
  * GNOME Search Tool
  *
  *  File:  gsearchtool-support.h
  *
- *  (C) 2002 the Free Software Foundation 
+ *  (C) 2002 the Free Software Foundation
  *
  *  Authors:	Dennis Cranston  <dennis_cranston@yahoo.com>
  *		George Lebl
@@ -37,13 +37,13 @@ extern "C" {
 
 #define ICON_SIZE 24
 
-gboolean 
+gboolean
 gsearchtool_gconf_get_boolean (const gchar * key);
 
 void
-gsearchtool_gconf_set_boolean (const gchar * key, 
+gsearchtool_gconf_set_boolean (const gchar * key,
                                const gboolean flag);
-gint 
+gint
 gsearchtool_gconf_get_int (const gchar * key);
 
 void
@@ -52,7 +52,7 @@ gsearchtool_gconf_set_int (const gchar * key,
 char *
 gsearchtool_gconf_get_string (const gchar * key);
 
-GSList * 
+GSList *
 gsearchtool_gconf_get_list (const gchar * key,
                             GConfValueType list_type);
 void
@@ -64,39 +64,39 @@ gsearchtool_gconf_add_dir (const gchar * dir);
 
 void
 gsearchtool_gconf_watch_key (const gchar * dir,
-                             const gchar * key, 
+                             const gchar * key,
                              GConfClientNotifyFunc callback,
                              gpointer user_data);
-gboolean  	
+gboolean
 is_path_hidden (const gchar * path);
 
-gboolean  	
+gboolean
 is_quick_search_excluded_path (const gchar * path);
 
-gboolean  	
+gboolean
 is_second_scan_excluded_path (const gchar * path);
 
-gboolean  	
-compare_regex (const gchar * regex, 
+gboolean
+compare_regex (const gchar * regex,
                const gchar * string);
-gboolean  	
-limit_string_to_x_lines (GString * string, 
+gboolean
+limit_string_to_x_lines (GString * string,
                          gint x);
-gchar *	
+gchar *
 escape_single_quotes (const gchar * string);
 
-gchar *	
+gchar *
 backslash_special_characters (const gchar * string);
 
 gchar *
 remove_mnemonic_character (const gchar * string);
 
-gchar *   	
+gchar *
 get_readable_date (const gchar * format_string,
                    const time_t file_time_raw);
-gchar *    	
-gsearchtool_strdup_strftime (const gchar * format, 
-                             struct tm * time_pieces); 
+gchar *
+gsearchtool_strdup_strftime (const gchar * format,
+                             struct tm * time_pieces);
 gchar *
 get_file_type_description (const gchar * file,
                            GnomeVFSFileInfo * file_info);
@@ -104,10 +104,10 @@ GdkPixbuf *
 get_file_pixbuf (GSearchWindow * gsearch,
                  const gchar * file,
                  GnomeVFSFileInfo * file_info);
-gboolean 	
+gboolean
 open_file_with_nautilus (GtkWidget * window,
                          const gchar * file);
-gboolean  	
+gboolean
 open_file_with_application (GtkWidget * window,
                             const gchar * file);
 gboolean

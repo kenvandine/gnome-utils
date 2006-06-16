@@ -1,10 +1,10 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
-/* 
+/*
  * GNOME Search Tool
  *
  *  File:  gsearchtool-support.c
  *
- *  (C) 2002 the Free Software Foundation 
+ *  (C) 2002 the Free Software Foundation
  *
  *  Authors:	Dennis Cranston  <dennis_cranston@yahoo.com>
  *		George Lebl
@@ -36,7 +36,7 @@
 #include <libart_lgpl/art_rgb.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
-#include <libgnomevfs/gnome-vfs-ops.h> 
+#include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>
 #include <libgnome/gnome-desktop-item.h>
 #include <libgnomeui/gnome-thumbnail.h>
@@ -81,23 +81,23 @@ static GConfClient *
 gsearchtool_gconf_client_get_global (void)
 {
 	static GConfClient * global_gconf_client = NULL;
-	
+
 	/* Initialize gconf if needed */
 	if (!gconf_is_initialized ()) {
 		char *argv[] = { "gsearchtool-preferences", NULL };
 		GError *error = NULL;
-		
+
 		if (!gconf_init (1, argv, &error)) {
 			if (gsearchtool_gconf_handle_error (&error)) {
 				return NULL;
 			}
 		}
 	}
-	
+
 	if (global_gconf_client == NULL) {
 		global_gconf_client = gconf_client_get_default ();
 	}
-	
+
 	return global_gconf_client;
 }
 
@@ -109,20 +109,20 @@ gsearchtool_gconf_get_string (const gchar * key)
 	gchar * result;
 
 	g_return_val_if_fail (key != NULL, NULL);
-	
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_val_if_fail (client != NULL, NULL);
-	
+
 	result = gconf_client_get_string (client, key, &error);
-	
+
 	if (gsearchtool_gconf_handle_error (&error)) {
 		result = g_strdup ("");
 	}
-	
+
 	return result;
 }
 
-GSList * 
+GSList *
 gsearchtool_gconf_get_list (const gchar * key,
                             GConfValueType list_type)
 {
@@ -131,16 +131,16 @@ gsearchtool_gconf_get_list (const gchar * key,
 	GSList * result;
 
 	g_return_val_if_fail (key != NULL, FALSE);
-	
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_val_if_fail (client != NULL, NULL);
-	
+
 	result = gconf_client_get_list (client, key, list_type, &error);
-	
+
 	if (gsearchtool_gconf_handle_error (&error)) {
 		result = NULL;
 	}
-	
+
 	return result;
 }
 
@@ -153,16 +153,16 @@ gsearchtool_gconf_set_list (const gchar * key,
 	GError * error = NULL;
 
 	g_return_if_fail (key != NULL);
-	
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_if_fail (client != NULL);
-	
+
 	gconf_client_set_list (client, key, list_type, list, &error);
-	
+
 	gsearchtool_gconf_handle_error (&error);
 }
 
-gint 
+gint
 gsearchtool_gconf_get_int (const gchar * key)
 {
 	GConfClient * client;
@@ -170,16 +170,16 @@ gsearchtool_gconf_get_int (const gchar * key)
 	gint result;
 
 	g_return_val_if_fail (key != NULL, FALSE);
-	
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_val_if_fail (client != NULL, FALSE);
-	
+
 	result = gconf_client_get_int (client, key, &error);
-	
+
 	if (gsearchtool_gconf_handle_error (&error)) {
 		result = 0;
 	}
-	
+
 	return result;
 }
 
@@ -189,18 +189,18 @@ gsearchtool_gconf_set_int (const gchar * key,
 {
 	GConfClient * client;
 	GError * error = NULL;
-	
+
 	g_return_if_fail (key != NULL);
-	
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_if_fail (client != NULL);
-	
+
 	gconf_client_set_int (client, key, value, &error);
-	
+
 	gsearchtool_gconf_handle_error (&error);
 }
 
-gboolean 
+gboolean
 gsearchtool_gconf_get_boolean (const gchar * key)
 {
 	GConfClient * client;
@@ -208,16 +208,16 @@ gsearchtool_gconf_get_boolean (const gchar * key)
 	gboolean result;
 
 	g_return_val_if_fail (key != NULL, FALSE);
-	
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_val_if_fail (client != NULL, FALSE);
-	
+
 	result = gconf_client_get_bool (client, key, &error);
-	
+
 	if (gsearchtool_gconf_handle_error (&error)) {
 		result = FALSE;
 	}
-	
+
 	return result;
 }
 
@@ -227,14 +227,14 @@ gsearchtool_gconf_set_boolean (const gchar * key,
 {
 	GConfClient * client;
 	GError * error = NULL;
-	
+
 	g_return_if_fail (key != NULL);
-	
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_if_fail (client != NULL);
-	
+
 	gconf_client_set_bool (client, key, flag, &error);
-	
+
 	gsearchtool_gconf_handle_error (&error);
 }
 
@@ -259,16 +259,16 @@ gsearchtool_gconf_add_dir (const gchar * dir)
 
 void
 gsearchtool_gconf_watch_key (const gchar * dir,
-                             const gchar * key, 
+                             const gchar * key,
                              GConfClientNotifyFunc callback,
                              gpointer user_data)
 {
 	GConfClient * client;
 	GError * error = NULL;
-		
+
 	g_return_if_fail (key != NULL);
 	g_return_if_fail (dir != NULL);
-			
+
 	client = gsearchtool_gconf_client_get_global ();
 	g_return_if_fail (client != NULL);
 
@@ -291,18 +291,18 @@ gsearchtool_gconf_watch_key (const gchar * dir,
 
 /* START OF GENERIC GNOME-SEARCH-TOOL FUNCTIONS */
 
-gboolean 
+gboolean
 is_path_hidden (const gchar * path)
 {
 	gint results = FALSE;
 	gchar * sub_str;
 	gchar * hidden_path_substr = g_strconcat (G_DIR_SEPARATOR_S, ".", NULL);
-	
+
 	sub_str = g_strstr_len (path, strlen (path), hidden_path_substr);
 
 	if (sub_str != NULL) {
 		gchar * gnome_desktop_str;
-		
+
 		gnome_desktop_str = g_strconcat (G_DIR_SEPARATOR_S, ".gnome-desktop", G_DIR_SEPARATOR_S, NULL);
 
 		/* exclude the .gnome-desktop folder */
@@ -313,7 +313,7 @@ is_path_hidden (const gchar * path)
 		else {
 			results = TRUE;
 		}
-		
+
 		g_free (gnome_desktop_str);
 	}
 
@@ -321,68 +321,68 @@ is_path_hidden (const gchar * path)
 	return results;
 }
 
-gboolean  	
+gboolean
 is_quick_search_excluded_path (const gchar * path)
 {
 	GSList     * exclude_path_list;
 	GSList     * tmp_list;
 	gchar      * dir;
 	gboolean     results = FALSE;
-	
+
 	dir = g_strdup (path);
-	
+
 	/* Remove trailing G_DIR_SEPARATOR. */
 	if ((strlen (dir) > 1) && (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == TRUE)) {
-		dir[strlen (dir) - 1] = '\0'; 
+		dir[strlen (dir) - 1] = '\0';
 	}
-	
+
 	/* Always exclude a path that is symbolic link. */
 	if (g_file_test (dir, G_FILE_TEST_IS_SYMLINK)) {
 		g_free (dir);
-		
+
 		return TRUE;
 	}
 	g_free (dir);
-	
+
 	/* Check path against the Quick-Search-Excluded-Paths list. */
 	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_excluded_paths",
 	                                                GCONF_VALUE_STRING);
 
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
-	
+
 		gchar * dir;
-		
+
 		/* Skip empty or null values. */
 		if ((tmp_list->data == NULL) || (strlen (tmp_list->data) == 0)) {
 			continue;
 		}
-		
+
 		dir = g_strdup (tmp_list->data);
-			
-		/* Wild-card comparisons. */		
-		if (g_strstr_len (dir, strlen (dir), "*") != NULL) { 
-		
+
+		/* Wild-card comparisons. */
+		if (g_strstr_len (dir, strlen (dir), "*") != NULL) {
+
 			if (g_pattern_match_simple (dir, path) == TRUE) {
 
 				results = TRUE;
-				g_free (dir);			
+				g_free (dir);
 				break;
 			}
-		} 
+		}
 		/* Non-wild-card comparisons. */
 		else {
 			/* Add a trailing G_DIR_SEPARATOR. */
 			if (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == FALSE) {
-			 
+
 				gchar *tmp;
-			
+
 				tmp = dir;
 				dir = g_strconcat (dir, G_DIR_SEPARATOR_S, NULL);
 				g_free (tmp);
 			}
-			
+
 			if (strcmp (path, dir) == 0) {
-				
+
 				results = TRUE;
 				g_free (dir);
 				break;
@@ -390,77 +390,77 @@ is_quick_search_excluded_path (const gchar * path)
 		}
 		g_free (dir);
 	}
-	
+
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
 		g_free (tmp_list->data);
 	}
 	g_slist_free (exclude_path_list);
-	
+
 	return results;
 }
 
-gboolean  	
+gboolean
 is_second_scan_excluded_path (const gchar * path)
 {
 	GSList     * exclude_path_list;
 	GSList     * tmp_list;
 	gchar      * dir;
 	gboolean     results = FALSE;
-	
+
 	dir = g_strdup (path);
-	
+
 	/* Remove trailing G_DIR_SEPARATOR. */
 	if ((strlen (dir) > 1) && (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == TRUE)) {
-		dir[strlen (dir) - 1] = '\0'; 
+		dir[strlen (dir) - 1] = '\0';
 	}
-	
+
 	/* Always exclude a path that is symbolic link. */
 	if (g_file_test (dir, G_FILE_TEST_IS_SYMLINK)) {
 		g_free (dir);
-		
+
 		return TRUE;
 	}
 	g_free (dir);
-	
+
 	/* Check path against the Quick-Search-Excluded-Paths list. */
 	exclude_path_list = gsearchtool_gconf_get_list ("/apps/gnome-search-tool/quick_search_second_scan_excluded_paths",
 	                                                GCONF_VALUE_STRING);
 
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
-	
+
 		gchar * dir;
-		
+
 		/* Skip empty or null values. */
 		if ((tmp_list->data == NULL) || (strlen (tmp_list->data) == 0)) {
 			continue;
 		}
 
 		dir = g_strdup (tmp_list->data);
-			
-		/* Wild-card comparisons. */		
-		if (g_strstr_len (dir, strlen (dir), "*") != NULL) { 
-		
+
+		/* Wild-card comparisons. */
+		if (g_strstr_len (dir, strlen (dir), "*") != NULL) {
+
 			if (g_pattern_match_simple (dir, path) == TRUE) {
 
 				results = TRUE;
 				g_free (dir);
 				break;
 			}
-		} 
+		}
 		/* Non-wild-card comparisons. */
 		else {
 			/* Add a trailing G_DIR_SEPARATOR. */
 			if (g_str_has_suffix (dir, G_DIR_SEPARATOR_S) == FALSE) {
-			 
+
 				gchar *tmp;
-			
+
 				tmp = dir;
 				dir = g_strconcat (dir, G_DIR_SEPARATOR_S, NULL);
 				g_free (tmp);
 			}
-			
+
 			if (strcmp (path, dir) == 0) {
-				
+
 				results = TRUE;
 				g_free (dir);
 				break;
@@ -468,25 +468,25 @@ is_second_scan_excluded_path (const gchar * path)
 		}
 		g_free (dir);
 	}
-	
+
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
 		g_free (tmp_list->data);
 	}
 	g_slist_free (exclude_path_list);
-	
+
 	return results;
 }
 
 gboolean
-compare_regex (const gchar * regex, 
+compare_regex (const gchar * regex,
 	       const gchar * string)
 {
 	regex_t regexec_pattern;
-	
+
 	if (regex == NULL) {
 		return TRUE;
 	}
-	
+
 	if (!regcomp (&regexec_pattern, regex, REG_NOSUB)) {
 		if (regexec (&regexec_pattern, string, 0, 0, 0) != REG_NOMATCH) {
 			return TRUE;
@@ -496,7 +496,7 @@ compare_regex (const gchar * regex,
 }
 
 gboolean
-limit_string_to_x_lines (GString * string, 
+limit_string_to_x_lines (GString * string,
 			 gint x)
 {
 	int i;
@@ -514,7 +514,7 @@ limit_string_to_x_lines (GString * string,
 }
 
 static gint
-count_of_char_in_string (const gchar * string, 
+count_of_char_in_string (const gchar * string,
 			 const gchar c)
 {
 	int cnt = 0;
@@ -581,11 +581,11 @@ remove_mnemonic_character (const gchar * string)
 {
 	GString * gs;
 	gboolean first_mnemonic = TRUE;
-	
+
 	if (string == NULL) {
 		return NULL;
 	}
-	
+
 	gs = g_string_new ("");
 	for(; *string; string++) {
 		if ((first_mnemonic) && (*string == '_')) {
@@ -618,24 +618,24 @@ get_readable_date (const gchar * format_string,
 			return gsearchtool_strdup_strftime ("%Y-%m-%d %H:%M:%S", file_time);
 		}
 	}
-	
+
 	file_date = g_date_new_dmy (file_time->tm_mday,
 			       file_time->tm_mon + 1,
 			       file_time->tm_year + 1900);
-	
+
 	today = g_date_new ();
 	g_date_set_time_t (today, time (NULL));
 
 	file_date_age = g_date_get_julian (today) - g_date_get_julian (file_date);
-	 
+
 	g_date_free (today);
 	g_date_free (file_date);
-			
+
 	if (file_date_age == 0)	{
 	/* Translators:  Below are the strings displayed in the 'Date Modified'
-	   column of the list view.  The format of this string can vary depending 
+	   column of the list view.  The format of this string can vary depending
 	   on age of a file.  Please modify the format of the timestamp to match
-	   your locale.  For example, to display 24 hour time replace the '%-I' 
+	   your locale.  For example, to display 24 hour time replace the '%-I'
 	   with '%-H' and remove the '%p'.  (See bugzilla report #120434.) */
 		format = g_strdup(_("today at %-I:%M %p"));
 	} else if (file_date_age == 1) {
@@ -645,15 +645,15 @@ get_readable_date (const gchar * format_string,
 	} else {
 		format = g_strdup(_("%A, %B %-d %Y at %-I:%M:%S %p"));
 	}
-	
+
 	readable_date = gsearchtool_strdup_strftime (format, file_time);
 	g_free (format);
-	
+
 	return readable_date;
-}  
+}
 
 gchar *
-gsearchtool_strdup_strftime (const gchar * format, 
+gsearchtool_strdup_strftime (const gchar * format,
                              struct tm * time_pieces)
 {
 	/* This function is borrowed from eel's eel_strdup_strftime() */
@@ -670,7 +670,7 @@ gsearchtool_strdup_strftime (const gchar * format,
 	 * so convert to locale encoding which strftime uses */
 	converted = g_locale_from_utf8 (format, -1, NULL, NULL, NULL);
 	g_return_val_if_fail (converted != NULL, NULL);
-	
+
 	string = g_string_new ("");
 	remainder = converted;
 
@@ -720,8 +720,8 @@ gsearchtool_strdup_strftime (const gchar * format,
 				g_warning ("Unfinished %%%c modifier passed to gsearchtool_strdup_strftime", modifier);
 				break;
 			}
-		} 
-		
+		}
+
 		if (strchr (C_STANDARD_STRFTIME_CHARACTERS, *remainder) == NULL) {
 			g_warning ("gsearchtool_strdup_strftime does not support "
 				   "non-standard escape code %%%c",
@@ -779,7 +779,7 @@ gsearchtool_strdup_strftime (const gchar * format,
 		/* Add this piece. */
 		g_string_append (string, piece);
 	}
-	
+
 	/* Convert the string back into utf-8. */
 	result = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
 
@@ -790,11 +790,11 @@ gsearchtool_strdup_strftime (const gchar * format,
 }
 
 gchar *
-get_file_type_description (const gchar * file, 
+get_file_type_description (const gchar * file,
                            GnomeVFSFileInfo * file_info)
 {
 	gchar * desc;
-	
+
 	if (file == NULL || file_info->mime_type == NULL) {
 		return g_strdup (gnome_vfs_mime_get_description (GNOME_VFS_MIME_TYPE_UNKNOWN));
 	}
@@ -802,13 +802,13 @@ get_file_type_description (const gchar * file,
 	desc = g_strdup (gnome_vfs_mime_get_description (file_info->mime_type));
 
 	if (file_info->symlink_name != NULL) {
-	
+
 		gchar * absolute_symlink = NULL;
 		gchar * str = NULL;
-		
+
 		if (g_path_is_absolute (file_info->symlink_name) != TRUE) {
 			gchar *dirname;
-			
+
 			dirname = g_path_get_dirname (file);
 			absolute_symlink = g_strconcat (dirname, G_DIR_SEPARATOR_S, file_info->symlink_name, NULL);
 			g_free (dirname);
@@ -816,7 +816,7 @@ get_file_type_description (const gchar * file,
 		else {
 			absolute_symlink = g_strdup (file_info->symlink_name);
 		}
-		
+
 		if (g_file_test (absolute_symlink, G_FILE_TEST_EXISTS) != TRUE) {
                        if ((g_ascii_strcasecmp (file_info->mime_type, "x-special/socket") != 0) &&
                            (g_ascii_strcasecmp (file_info->mime_type, "x-special/fifo") != 0)) {
@@ -825,14 +825,14 @@ get_file_type_description (const gchar * file,
 				return g_strdup (_("link (broken)"));
 			}
 		}
-			
+
 		str = g_strdup_printf (_("link to %s"), (desc != NULL) ? desc : file_info->mime_type);
 		g_free (absolute_symlink);
 		g_free (desc);
 		return str;
 	}
 	return desc;
-} 
+}
 
 static gchar *
 gsearchtool_pixmap_file (const gchar * partial_path)
@@ -852,7 +852,7 @@ gsearchtool_load_thumbnail_frame (void)
 {
 	GdkPixbuf * pixbuf = NULL;
 	gchar * image_path;
-	
+
 	image_path = gsearchtool_pixmap_file ("thumbnail_frame.png");
 
 	if (image_path != NULL) {
@@ -860,66 +860,66 @@ gsearchtool_load_thumbnail_frame (void)
 	}
 	g_free (image_path);
 	return pixbuf;
-} 
+}
 
 static void
-gsearchtool_draw_frame_row (GdkPixbuf * frame_image, 
-                            gint target_width, 
-                            gint source_width, 
-                            gint source_v_position, 
-                            gint dest_v_position, 
-                            GdkPixbuf * result_pixbuf, 
-                            gint left_offset, 
+gsearchtool_draw_frame_row (GdkPixbuf * frame_image,
+                            gint target_width,
+                            gint source_width,
+                            gint source_v_position,
+                            gint dest_v_position,
+                            GdkPixbuf * result_pixbuf,
+                            gint left_offset,
                             gint height)
 {
 	gint remaining_width;
 	gint h_offset;
 	gint slab_width;
-	
+
 	remaining_width = target_width;
 	h_offset = 0;
-	while (remaining_width > 0) {	
+	while (remaining_width > 0) {
 		slab_width = remaining_width > source_width ? source_width : remaining_width;
-		gdk_pixbuf_copy_area (frame_image, left_offset, source_v_position, slab_width, 
+		gdk_pixbuf_copy_area (frame_image, left_offset, source_v_position, slab_width,
 		                      height, result_pixbuf, left_offset + h_offset, dest_v_position);
 		remaining_width -= slab_width;
-		h_offset += slab_width; 
+		h_offset += slab_width;
 	}
 }
 
 static void
-gsearchtool_draw_frame_column (GdkPixbuf * frame_image, 
-                               gint target_height, 
-                               gint source_height, 
-                               gint source_h_position, 
-                               gint dest_h_position, 
-                               GdkPixbuf * result_pixbuf, 
-                               gint top_offset, 
+gsearchtool_draw_frame_column (GdkPixbuf * frame_image,
+                               gint target_height,
+                               gint source_height,
+                               gint source_h_position,
+                               gint dest_h_position,
+                               GdkPixbuf * result_pixbuf,
+                               gint top_offset,
                                gint width)
 {
 	gint remaining_height;
 	gint v_offset;
 	gint slab_height;
-	
+
 	remaining_height = target_height;
 	v_offset = 0;
-	while (remaining_height > 0) {	
+	while (remaining_height > 0) {
 		slab_height = remaining_height > source_height ? source_height : remaining_height;
-		gdk_pixbuf_copy_area (frame_image, source_h_position, top_offset, width, slab_height, 
+		gdk_pixbuf_copy_area (frame_image, source_h_position, top_offset, width, slab_height,
 		                      result_pixbuf, dest_h_position, top_offset + v_offset);
 		remaining_height -= slab_height;
-		v_offset += slab_height; 
+		v_offset += slab_height;
 	}
 }
 
 static GdkPixbuf *
-gsearchtool_stretch_frame_image (GdkPixbuf *frame_image, 
-                                 gint left_offset, 
-                                 gint top_offset, 
-                                 gint right_offset, 
+gsearchtool_stretch_frame_image (GdkPixbuf *frame_image,
+                                 gint left_offset,
+                                 gint top_offset,
+                                 gint right_offset,
                                  gint bottom_offset,
-                                 gint dest_width, 
-                                 gint dest_height, 
+                                 gint dest_width,
+                                 gint dest_height,
                                  gboolean fill_flag)
 {
 	GdkPixbuf * result_pixbuf;
@@ -928,10 +928,10 @@ gsearchtool_stretch_frame_image (GdkPixbuf *frame_image,
 	gint y, row_stride;
 	gint target_width, target_frame_width;
 	gint target_height, target_frame_height;
-	
+
 	frame_width = gdk_pixbuf_get_width (frame_image);
 	frame_height = gdk_pixbuf_get_height (frame_image);
-	
+
 	if (fill_flag) {
 		result_pixbuf = gdk_pixbuf_scale_simple (frame_image, dest_width, dest_height, GDK_INTERP_NEAREST);
 	} else {
@@ -939,70 +939,70 @@ gsearchtool_stretch_frame_image (GdkPixbuf *frame_image,
 	}
 	row_stride = gdk_pixbuf_get_rowstride (result_pixbuf);
 	pixels_ptr = gdk_pixbuf_get_pixels (result_pixbuf);
-	
+
 	/* clear the new pixbuf */
 	if (fill_flag == FALSE) {
 		for (y = 0; y < dest_height; y++) {
 			art_rgb_run_alpha (pixels_ptr, 255, 255, 255, 255, dest_width);
-			pixels_ptr += row_stride; 
+			pixels_ptr += row_stride;
 		}
 	}
-	
+
 	target_width  = dest_width - left_offset - right_offset;
 	target_frame_width = frame_width - left_offset - right_offset;
-	
+
 	target_height  = dest_height - top_offset - bottom_offset;
 	target_frame_height = frame_height - top_offset - bottom_offset;
-	
+
 	/* Draw the left top corner  and top row */
 	gdk_pixbuf_copy_area (frame_image, 0, 0, left_offset, top_offset, result_pixbuf, 0,  0);
-	gsearchtool_draw_frame_row (frame_image, target_width, target_frame_width, 0, 0, 
+	gsearchtool_draw_frame_row (frame_image, target_width, target_frame_width, 0, 0,
 	                            result_pixbuf, left_offset, top_offset);
-	
+
 	/* Draw the right top corner and left column */
-	gdk_pixbuf_copy_area (frame_image, frame_width - right_offset, 0, right_offset, top_offset, 
+	gdk_pixbuf_copy_area (frame_image, frame_width - right_offset, 0, right_offset, top_offset,
 	                      result_pixbuf, dest_width - right_offset,  0);
-	gsearchtool_draw_frame_column (frame_image, target_height, target_frame_height, 0, 0, 
+	gsearchtool_draw_frame_column (frame_image, target_height, target_frame_height, 0, 0,
 	                               result_pixbuf, top_offset, left_offset);
 
 	/* Draw the bottom right corner and bottom row */
-	gdk_pixbuf_copy_area (frame_image, frame_width - right_offset, frame_height - bottom_offset, 
-	                      right_offset, bottom_offset, result_pixbuf, dest_width - right_offset,  
+	gdk_pixbuf_copy_area (frame_image, frame_width - right_offset, frame_height - bottom_offset,
+	                      right_offset, bottom_offset, result_pixbuf, dest_width - right_offset,
 			      dest_height - bottom_offset);
-	gsearchtool_draw_frame_row (frame_image, target_width, target_frame_width, 
-	                            frame_height - bottom_offset, dest_height - bottom_offset, 
+	gsearchtool_draw_frame_row (frame_image, target_width, target_frame_width,
+	                            frame_height - bottom_offset, dest_height - bottom_offset,
 				    result_pixbuf, left_offset, bottom_offset);
-		
+
 	/* Draw the bottom left corner and the right column */
-	gdk_pixbuf_copy_area (frame_image, 0, frame_height - bottom_offset, left_offset, bottom_offset, 
+	gdk_pixbuf_copy_area (frame_image, 0, frame_height - bottom_offset, left_offset, bottom_offset,
 	                      result_pixbuf, 0,  dest_height - bottom_offset);
-	gsearchtool_draw_frame_column (frame_image, target_height, target_frame_height, 
-	                               frame_width - right_offset, dest_width - right_offset, 
+	gsearchtool_draw_frame_column (frame_image, target_height, target_frame_height,
+	                               frame_width - right_offset, dest_width - right_offset,
 				       result_pixbuf, top_offset, right_offset);
 	return result_pixbuf;
 }
 
 static GdkPixbuf *
-gsearchtool_embed_image_in_frame (GdkPixbuf * source_image, 
-                                  GdkPixbuf * frame_image, 
-                                  gint left_offset, 
-                                  gint top_offset, 
-                                  gint right_offset, 
+gsearchtool_embed_image_in_frame (GdkPixbuf * source_image,
+                                  GdkPixbuf * frame_image,
+                                  gint left_offset,
+                                  gint top_offset,
+                                  gint right_offset,
                                   gint bottom_offset)
 {
 	GdkPixbuf * result_pixbuf;
 	gint source_width, source_height;
 	gint dest_width, dest_height;
-	
+
 	source_width = gdk_pixbuf_get_width (source_image);
 	source_height = gdk_pixbuf_get_height (source_image);
 
 	dest_width = source_width + left_offset + right_offset;
 	dest_height = source_height + top_offset + bottom_offset;
-	
-	result_pixbuf = gsearchtool_stretch_frame_image (frame_image, left_offset, top_offset, right_offset, bottom_offset, 
+
+	result_pixbuf = gsearchtool_stretch_frame_image (frame_image, left_offset, top_offset, right_offset, bottom_offset,
 						         dest_width, dest_height, FALSE);
-		
+
 	gdk_pixbuf_copy_area (source_image, 0, 0, source_width, source_height, result_pixbuf, left_offset, top_offset);
 
 	return result_pixbuf;
@@ -1018,11 +1018,11 @@ gsearchtool_thumbnail_frame_image (GdkPixbuf ** pixbuf)
 	if (frame == NULL) {
 		return;
 	}
-	
+
 	pixbuf_with_frame = gsearchtool_embed_image_in_frame (*pixbuf, frame, 3, 3, 6, 6);
 	g_object_unref (*pixbuf);
 	g_object_unref (frame);
-	
+
 	*pixbuf = pixbuf_with_frame;
 }
 
@@ -1032,19 +1032,19 @@ gsearchtool_get_thumbnail_image (const gchar * file)
 	GdkPixbuf * pixbuf = NULL;
 	gchar * thumbnail_path;
 	gchar * uri;
-	
+
 	uri = gnome_vfs_get_uri_from_local_path (file);
 	thumbnail_path = gnome_thumbnail_path_for_uri (uri, GNOME_THUMBNAIL_SIZE_NORMAL);
-	
-	if (thumbnail_path != NULL) { 
+
+	if (thumbnail_path != NULL) {
 		if (g_file_test (thumbnail_path, G_FILE_TEST_EXISTS)) {
-			
+
 			GdkPixbuf * thumbnail_pixbuf = NULL;
 			gfloat scale_factor_x = 1.0;
 			gfloat scale_factor_y = 1.0;
 			gint scale_x;
 			gint scale_y;
-			
+
 			thumbnail_pixbuf = gdk_pixbuf_new_from_file (thumbnail_path, NULL);
 			gsearchtool_thumbnail_frame_image (&thumbnail_pixbuf);
 
@@ -1054,7 +1054,7 @@ gsearchtool_get_thumbnail_image (const gchar * file)
 			if (gdk_pixbuf_get_height (thumbnail_pixbuf) > ICON_SIZE) {
 				scale_factor_y = (gfloat) ICON_SIZE / (gfloat) gdk_pixbuf_get_height (thumbnail_pixbuf);
 			}
-				
+
 			if (gdk_pixbuf_get_width (thumbnail_pixbuf) > gdk_pixbuf_get_height (thumbnail_pixbuf)) {
 				scale_x = ICON_SIZE;
 				scale_y = (gint) (gdk_pixbuf_get_height (thumbnail_pixbuf) * scale_factor_x);
@@ -1075,7 +1075,7 @@ gsearchtool_get_thumbnail_image (const gchar * file)
 
 static gchar *
 gsearchtool_icon_lookup (GSearchWindow * gsearch,
-                         const gchar * file, 
+                         const gchar * file,
                          const gchar * mime,
                          GnomeVFSFileInfo * file_info,
                          gboolean enable_thumbnails)
@@ -1092,18 +1092,18 @@ gsearchtool_icon_lookup (GSearchWindow * gsearch,
 		    	if (gsearch->thumbnail_factory == NULL) {
 			    	gsearch->thumbnail_factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
 			}
-			lookup_flags = GNOME_ICON_LOOKUP_FLAGS_SHOW_SMALL_IMAGES_AS_THEMSELVES | 
+			lookup_flags = GNOME_ICON_LOOKUP_FLAGS_SHOW_SMALL_IMAGES_AS_THEMSELVES |
 			               GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES;
 		}
 	}
 
-	icon_name = gnome_icon_lookup (gtk_icon_theme_get_default (), 
+	icon_name = gnome_icon_lookup (gtk_icon_theme_get_default (),
 	                               gsearch->thumbnail_factory,
 				       uri,
-				       NULL, 
+				       NULL,
 				       file_info,
-				       mime, 
-				       lookup_flags, 
+				       mime,
+				       lookup_flags,
 				       NULL);
 	g_free (uri);
 	return icon_name;
@@ -1111,12 +1111,12 @@ gsearchtool_icon_lookup (GSearchWindow * gsearch,
 
 GdkPixbuf *
 get_file_pixbuf (GSearchWindow * gsearch,
-                 const gchar * file, 
-                 GnomeVFSFileInfo * file_info) 
+                 const gchar * file,
+                 GnomeVFSFileInfo * file_info)
 {
 	GdkPixbuf * pixbuf;
 	gchar * icon_name = NULL;
-	
+
 	if (file == NULL || file_info->mime_type == NULL) {
 		icon_name = g_strdup (ICON_THEME_REGULAR_ICON);
 	}
@@ -1139,24 +1139,24 @@ get_file_pixbuf (GSearchWindow * gsearch,
 	else {
 		icon_name = gsearchtool_icon_lookup (gsearch, file, file_info->mime_type, file_info, TRUE);
 	}
-	
+
 	pixbuf = (GdkPixbuf *) g_hash_table_lookup (gsearch->search_results_filename_hash_table, icon_name);
-	
+
 	if (pixbuf == NULL) {
 
-		if (gsearch->show_thumbnails == TRUE) { 
+		if (gsearch->show_thumbnails == TRUE) {
 
 			if ((strncmp (file_info->mime_type, "image/", 6) != 0) ||
 	    		    (file_info->size < gsearch->show_thumbnails_file_size_limit)) {
-		
+
 				if (strcmp (icon_name, file) == 0) {
 					pixbuf = gdk_pixbuf_new_from_file_at_scale (file, ICON_SIZE, ICON_SIZE, TRUE, NULL);
-					
+
 					if (pixbuf == NULL) {
 						icon_name = gsearchtool_icon_lookup (gsearch, file, file_info->mime_type, file_info, FALSE);
 					}
 				}
-			
+
 				if (pixbuf == NULL) {
 					pixbuf = gsearchtool_get_thumbnail_image (file);
 				}
@@ -1164,19 +1164,19 @@ get_file_pixbuf (GSearchWindow * gsearch,
 		}
 
 		if (pixbuf == NULL) {
-		
+
 			GdkPixbuf * thumbnail_pixbuf = NULL;
-			
-			thumbnail_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name, 
+
+			thumbnail_pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (), icon_name,
 			                                             ICON_SIZE, 0, NULL);
 
 			if (thumbnail_pixbuf != NULL) {
-			
+
 				/*  The following is a workaround for bugzilla report #311318,                   */
 				/*  "gtk_icon_theme_load_icon () can return pixbufs larger than requested size". */
 				/*  Please see the url, http://bugzilla.gnome.org/show_bug.cgi?id=311318.        */
-			
-				if ((gdk_pixbuf_get_width (thumbnail_pixbuf) > ICON_SIZE) || 
+
+				if ((gdk_pixbuf_get_width (thumbnail_pixbuf) > ICON_SIZE) ||
 				    (gdk_pixbuf_get_height (thumbnail_pixbuf) > ICON_SIZE)) {
 
 					gfloat scale_factor_x = 1.0;
@@ -1190,7 +1190,7 @@ get_file_pixbuf (GSearchWindow * gsearch,
 					if (gdk_pixbuf_get_height (thumbnail_pixbuf) > ICON_SIZE) {
 						scale_factor_y = (gfloat) ICON_SIZE / (gfloat) gdk_pixbuf_get_height (thumbnail_pixbuf);
 					}
-				
+
 					if (gdk_pixbuf_get_width (thumbnail_pixbuf) > gdk_pixbuf_get_height (thumbnail_pixbuf)) {
 						scale_x = ICON_SIZE;
 						scale_y = (gint) (gdk_pixbuf_get_height (thumbnail_pixbuf) * scale_factor_x);
@@ -1198,8 +1198,8 @@ get_file_pixbuf (GSearchWindow * gsearch,
 					else {
 						scale_x = (gint) (gdk_pixbuf_get_width (thumbnail_pixbuf) * scale_factor_y);
 						scale_y = ICON_SIZE;
-					}    
-			    
+					}
+
 					pixbuf = gdk_pixbuf_scale_simple (thumbnail_pixbuf, scale_x, scale_y, GDK_INTERP_BILINEAR);
 					g_object_unref (thumbnail_pixbuf);
 				}
@@ -1208,7 +1208,7 @@ get_file_pixbuf (GSearchWindow * gsearch,
 				}
 			}
 		}
-		
+
 		if (pixbuf != NULL) {
 			g_hash_table_insert (gsearch->search_results_filename_hash_table, icon_name, pixbuf);
 		}
@@ -1218,7 +1218,7 @@ get_file_pixbuf (GSearchWindow * gsearch,
 	}
 	else {
 		g_free (icon_name);
-	}					  
+	}
 
 	return pixbuf;
 }
@@ -1236,13 +1236,13 @@ open_file_with_nautilus (GtkWidget * window,
 
 	escaped = g_shell_quote (file);
 
-	command = g_strconcat ("nautilus ", 
+	command = g_strconcat ("nautilus ",
 	                       "--sm-disable ",
-	                       "--no-desktop ", 
+	                       "--no-desktop ",
 	                       "--no-default-window ",
-	                       escaped, 
+	                       escaped,
 	                       NULL);
-			       
+
 	contents = g_strdup_printf ("[Desktop Entry]\n"
 				    "Name=Nautilus\n"
 				    "Icon=file-manager\n"
@@ -1257,29 +1257,29 @@ open_file_with_nautilus (GtkWidget * window,
 	                                            strlen (contents),
 	                                            GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS ,
 	                                            NULL);
-	
+
 	if (ditem == NULL) {
 		g_free (contents);
 		g_free (command);
 		g_free (escaped);
 		return FALSE;
 	}
-	
+
 	screen = gtk_widget_get_screen (window);
 
-	gnome_desktop_item_set_launch_time (ditem, 
+	gnome_desktop_item_set_launch_time (ditem,
 	                                    gtk_get_current_event_time ());
 
-	gnome_desktop_item_launch_on_screen (ditem, NULL, 
-	                                     GNOME_DESKTOP_ITEM_LAUNCH_ONLY_ONE, 
-					     screen, -1, &error);				
+	gnome_desktop_item_launch_on_screen (ditem, NULL,
+	                                     GNOME_DESKTOP_ITEM_LAUNCH_ONLY_ONE,
+					     screen, -1, &error);
 
 	gnome_desktop_item_unref (ditem);
 	g_free (contents);
 	g_free (command);
 	g_free (escaped);
 
-	if (error) {		
+	if (error) {
 		g_error_free (error);
 		return FALSE;
 	}
@@ -1292,10 +1292,10 @@ open_file_with_application (GtkWidget * window,
 {
 	GnomeVFSMimeApplication * application;
 	const char * mime;
-	
+
 	mime = gnome_vfs_get_file_mime_type (file, NULL, FALSE);
 	application = gnome_vfs_mime_get_default_application (mime);
-		
+
 	if (!g_file_test (file, G_FILE_TEST_IS_DIR)) {
 		if (application) {
 			const char *desktop_file;
@@ -1307,10 +1307,10 @@ open_file_with_application (GtkWidget * window,
 			char *uri;
 
 			desktop_file = gnome_vfs_mime_application_get_desktop_file_path (application);
-				 
+
 			uri = gnome_vfs_get_uri_from_local_path (file);
 			uris = g_list_append (uris, uri);
-			
+
 			if (!g_file_test (desktop_file, G_FILE_TEST_EXISTS)) {
 				result = (gnome_vfs_mime_application_launch (application, uris) == GNOME_VFS_OK);
 			}
@@ -1324,10 +1324,10 @@ open_file_with_application (GtkWidget * window,
 				else {
 				 	screen = gtk_widget_get_screen (window);
 					gnome_desktop_item_set_launch_time (ditem, gtk_get_current_event_time ());
-					gnome_desktop_item_launch_on_screen (ditem, uris, 
+					gnome_desktop_item_launch_on_screen (ditem, uris,
 						GNOME_DESKTOP_ITEM_LAUNCH_APPEND_PATHS, screen, -1, &error);
 					if (error) {
-						result = FALSE;			
+						result = FALSE;
 						g_error_free (error);
 					}
 				}
@@ -1346,14 +1346,14 @@ open_file_with_application (GtkWidget * window,
 gboolean
 launch_file (const gchar * file)
 {
-	const char * mime = gnome_vfs_get_file_mime_type (file, NULL, FALSE);	
+	const char * mime = gnome_vfs_get_file_mime_type (file, NULL, FALSE);
 	gboolean result = FALSE;
-	
+
 	if ((g_file_test (file, G_FILE_TEST_IS_EXECUTABLE)) &&
-	    (g_ascii_strcasecmp (mime, BINARY_EXEC_MIME_TYPE) == 0)) { 
+	    (g_ascii_strcasecmp (mime, BINARY_EXEC_MIME_TYPE) == 0)) {
 		result = g_spawn_command_line_async (file, NULL);
 	}
-	
+
 	return result;
 }
 
@@ -1401,7 +1401,7 @@ gsearchtool_get_unique_filename (const gchar * path,
 }
 
 GtkWidget *
-gsearchtool_button_new_with_stock_icon (const gchar * string, 
+gsearchtool_button_new_with_stock_icon (const gchar * string,
                                         const gchar * stock_id)
 {
 	GtkWidget * align;
@@ -1409,7 +1409,7 @@ gsearchtool_button_new_with_stock_icon (const gchar * string,
 	GtkWidget * hbox;
 	GtkWidget * image;
 	GtkWidget * label;
-	
+
 	button = gtk_button_new ();
 	label = gtk_label_new_with_mnemonic (string);
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), GTK_WIDGET (button));
@@ -1447,7 +1447,7 @@ gsearchtool_get_columns_order (GtkTreeView * treeview)
 }
 
 GtkTreeViewColumn *
-gsearchtool_gtk_tree_view_get_column_with_sort_column_id (GtkTreeView * treeview, 
+gsearchtool_gtk_tree_view_get_column_with_sort_column_id (GtkTreeView * treeview,
                                                           gint id)
 {
 	GtkTreeViewColumn * col = NULL;
