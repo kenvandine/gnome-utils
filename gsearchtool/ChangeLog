@@ -1,3 +1,24 @@
+2006-06-15  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c: (open_file_cb), (open_folder_cb),
+	(move_to_trash_cb), (file_button_release_event_cb),
+	(drag_begin_file_cb), (drag_file_cb), (key_press_cb):  
+	Fix "dereferencing type-punned pointer will break 
+	strict-aliasing rules" compile warnings.  Add call to 
+	g_list_foreach (list, gtk_tree_path_free, NULL) to free 
+	lists returned by gtk_tree_selection_get_selected_rows().
+
+2006-06-15  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* gnome-search-tool.1,
+	* gsearchtool-callbacks.c,
+	* gsearchtool-callbacks.h,
+	* gsearchtool-spinner.c,
+	* gsearchtool-support.c,
+	* gsearchtool-support.h,
+	* gsearchtool.c,
+	* gsearchtool.h: git-stripspace - Filter out empty lines
+
 2006-05-12  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* gnome-search-tool.desktop.in:  Update the tooltip description.

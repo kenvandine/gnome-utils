@@ -419,6 +419,7 @@ open_file_cb (GtkAction * action,
               gpointer data)
 {
 	GSearchWindow * gsearch = data;
+	GtkTreeModel * model;
 	GList * list;
 	guint index;
 
@@ -427,7 +428,7 @@ open_file_cb (GtkAction * action,
 	}
 
 	list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
-						     (GtkTreeModel **) &gsearch->search_results_list_store);
+						     &model);
 
 	if (g_list_length (list) > SILENT_WINDOW_OPEN_LIMIT) {
 		gint response;
@@ -435,6 +436,7 @@ open_file_cb (GtkAction * action,
 		response = display_dialog_file_open_limit (gsearch->window, g_list_length (list));
 
 		if (response == GTK_RESPONSE_CANCEL) {
+			g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 			g_list_free (list);
 			return;
 		}
@@ -493,6 +495,7 @@ open_file_cb (GtkAction * action,
 		g_free (utf8_name);
 		g_free (utf8_path);
 	}
+	g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 	g_list_free (list);
 }
 
@@ -548,6 +551,7 @@ open_folder_cb (GtkAction * action,
                 gpointer data)
 {
 	GSearchWindow * gsearch = data;
+	GtkTreeModel * model;
 	GList * list;
 	guint index;
 
@@ -556,7 +560,7 @@ open_folder_cb (GtkAction * action,
 	}
 
 	list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
-						     (GtkTreeModel **) &gsearch->search_results_list_store);
+						     &model);
 
 	if (g_list_length (list) > SILENT_WINDOW_OPEN_LIMIT) {
 		gint response;
@@ -564,6 +568,7 @@ open_folder_cb (GtkAction * action,
 		response = display_dialog_folder_open_limit (gsearch->window, g_list_length (list));
 
 		if (response == GTK_RESPONSE_CANCEL) {
+			g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 			g_list_free (list);
 			return;
 		}
@@ -588,6 +593,7 @@ open_folder_cb (GtkAction * action,
 
 			display_dialog_could_not_open_folder (gsearch->window, folder_utf8);
 
+			g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 			g_list_free (list);
 			g_free (folder_locale);
 			g_free (folder_utf8);
@@ -596,6 +602,7 @@ open_folder_cb (GtkAction * action,
 		g_free (folder_locale);
 		g_free (folder_utf8);
 	}
+	g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 	g_list_free (list);
 }
 
@@ -774,6 +781,7 @@ move_to_trash_cb (GtkAction * action,
 
 	for (index = 0; index < total; index++) {
 		gboolean no_files_found = FALSE;
+		GtkTreeModel * model;
 		GtkTreeIter iter;
 		GList * list;
 		gchar * utf8_basename;
@@ -783,7 +791,7 @@ move_to_trash_cb (GtkAction * action,
 		gchar * trash_path;
 
 		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
- 		                                             (GtkTreeModel **) &gsearch->search_results_list_store);
+ 		                                             &model);
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 					 g_list_nth (list, 0)->data);
@@ -872,6 +880,7 @@ move_to_trash_cb (GtkAction * action,
 				}
 			}
 		}
+		g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 		g_list_free (list);
 		g_free (locale_filename);
 		g_free (utf8_filename);
@@ -974,10 +983,11 @@ file_button_release_event_cb (GtkWidget * widget,
 	}
 
 	if (event->button == 3) {
+		GtkTreeModel * model;
 		GList * list;
 
 		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
-		                                             (GtkTreeModel **) &gsearch->search_results_list_store);
+		                                             &model);
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 		                         g_list_first (list)->data);
@@ -990,6 +1000,7 @@ file_button_release_event_cb (GtkWidget * widget,
 			gtk_menu_popup (GTK_MENU (gsearch->search_results_popup_menu), NULL, NULL, NULL, NULL,
 			                event->button, event->time);
 		}
+		g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 		g_list_free (list);
 	}
 	else if (event->button == 1 || event->button == 2) {
@@ -1128,11 +1139,12 @@ drag_begin_file_cb (GtkWidget * widget,
 	}
 	else if (number_of_selected_rows == 1) {
 		GdkPixbuf * pixbuf;
+		GtkTreeModel * model;
 		GtkTreeIter iter;
 		GList * list;
 
 		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
-		                                             (GtkTreeModel **) &gsearch->search_results_list_store);
+		                                             &model);
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 		                         g_list_first (list)->data);
@@ -1140,6 +1152,7 @@ drag_begin_file_cb (GtkWidget * widget,
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 		                    COLUMN_ICON, &pixbuf,
 		                    -1);
+		g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 		g_list_free (list);
 
 		if (pixbuf) {
@@ -1162,6 +1175,7 @@ drag_file_cb  (GtkWidget * widget,
 	GSearchWindow * gsearch = data;
 	gchar * uri_list = NULL;
 	GList * list;
+	GtkTreeModel * model;
 	GtkTreeIter iter;
 	guint index;
 
@@ -1170,7 +1184,7 @@ drag_file_cb  (GtkWidget * widget,
 	}
 
 	list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
-                                                     (GtkTreeModel **) &gsearch->search_results_list_store);
+                                                     &model);
 
 	for (index = 0; index < g_list_length (list); index++) {
 
@@ -1213,6 +1227,7 @@ drag_file_cb  (GtkWidget * widget,
 		g_free (utf8_path);
 		g_free (file);
 	}
+	g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 	g_list_free (list);
 	g_free (uri_list);
 }
@@ -1551,6 +1566,7 @@ key_press_cb (GtkWidget * widget,
 	else if (event->keyval == GDK_F10) {
 		if (event->state & GDK_SHIFT_MASK) {
 			gboolean no_files_found = FALSE;
+			GtkTreeModel * model;
 			GtkTreeIter iter;
 			GList * list;
 
@@ -1559,13 +1575,16 @@ key_press_cb (GtkWidget * widget,
 			}
 
 			list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
-			       (GtkTreeModel **) &gsearch->search_results_list_store);
+			                                             &model);
 
 			gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 						 g_list_first (list)->data);
 
 			gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 					    COLUMN_NO_FILES_FOUND, &no_files_found, -1);
+
+			g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
+			g_list_free (list);
 
 			if (!no_files_found) {
 				gtk_menu_popup (GTK_MENU (gsearch->search_results_popup_menu), NULL, NULL, NULL, NULL,
