@@ -212,6 +212,34 @@ AC_ARG_ENABLE(console-helper,
   [  --enable-console-helper=[no/yes]  	Enable PAM console helper [ default=no ]],,
   enable_console_helper=no)
 
+dnl *****************************************************************
+dnl Allow users to run logview using the console helper 
+dnl PAM stuff.
+dnl *****************************************************************
+
+if test "x$enable_console_helper" = "xyes"; then
+  AM_CONDITIONAL(CONSOLE_HELPER, true)
+else
+  AM_CONDITIONAL(CONSOLE_HELPER, false)
+fi
+
+AC_PATH_PROG(CONSOLE_HELPER,consolehelper,no)
+if test "x$CONSOLE_HELPER" = "xno" -a "x$enable_console_helper" = "xyes" ; then
+	AC_MSG_ERROR(Console helper requested but consolehelper binary not found)
+fi
+
+dnl Enable debug messages
+AC_ARG_ENABLE(debug,
+  [ --enable-debug=[no/yes]             Enable debug messages [ default=no ]],,
+  enable_debug=no)
+
+if test "x$enable_debug" = "xyes"; then
+	AM_CONDITIONAL(ENABLE_DEBUG, true)
+else
+	AM_CONDITIONAL(ENABLE_DEBUG, false)
+fi
+
+
 dnl ***********
 dnl PAM prefix
 dnl ***********
@@ -263,15 +291,9 @@ else
 fi
 AC_SUBST(PAM_PREFIX)
     
-AC_PATH_PROG(CONSOLE_HELPER,consolehelper,no)
-if test "x$CONSOLE_HELPER" = "xno" -a "x$enable_console_helper" = "xyes" ; then
-	AC_MSG_ERROR(Console helper requested but consolehelper binary not found)
-fi
-
 dnl **************************************************************
 dnl Checks for typedefs, structures, and compiler characteristics.
 dnl **************************************************************
-
 AC_C_CONST
 AC_C_INLINE
 AC_TYPE_OFF_T
@@ -291,17 +313,6 @@ AC_FUNC_MMAP
 AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
 AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgid)
-
-dnl *****************************************************************
-dnl Allow users to run logview using the console helper 
-dnl PAM stuff.
-dnl *****************************************************************
-
-if test "x$enable_console_helper" = "xyes"; then
-  AM_CONDITIONAL(CONSOLE_HELPER, true)
-else
-  AM_CONDITIONAL(CONSOLE_HELPER, false)
-fi
 
 dnl ************************************************
 dnl X development libraries check
@@ -512,6 +523,13 @@ if test "x$enable_console_helper" = "xyes"; then
 	echo "Console helper (logview)          : YES"
 else
 	echo "Console helper (logview)          : NO"
+fi
+
+dnl <= Debug messages =>
+if test "x$enable_debug" = "xyes"; then
+	echo "Debug messages (libgdict)         : YES"
+else
+	echo "Debug messages (libgdict)         : NO"
 fi
 
 dnl <= message file =>
