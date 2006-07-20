@@ -106,17 +106,17 @@ transport_combo_changed_cb (GtkWidget *widget,
 			    gpointer   user_data)
 {
   GdictSourceDialog *dialog = GDICT_SOURCE_DIALOG (user_data);
-  gchar *transport;
-  
-  transport = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
-  if (!transport)
+  gint transport;
+
+  transport = gtk_combo_box_get_active (GTK_COMBO_BOX (widget));
+  if (transport == dialog->transport)
     return;
-  
+
   /* Translators: this is the same string used in the file
    * gnome-dictionary-preferences.glade for the transport_combo
    * widget items.
    */
-  if (strcmp (transport, _("Dictionary Server")) == 0)
+  if (transport == GDICT_SOURCE_TRANSPORT_DICTD)
     {
       gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_label"));
       gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_entry"));
@@ -230,6 +230,9 @@ update_dialog_ui (GdictSourceDialog *dialog)
       g_object_unref (source);
       break;
     case GDICT_SOURCE_DIALOG_CREATE:
+      /* DICTD transport is default */
+      gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->transport_combo), 0);
+      g_signal_emit_by_name (dialog->transport_combo, "changed");
       break;
     default:
       g_assert_not_reached ();
@@ -301,7 +304,6 @@ build_new_source (GdictSourceDialog *dialog)
 				error);
        
       g_object_unref (source);
-
       return;
     }
       
@@ -665,6 +667,8 @@ gdict_source_dialog_init (GdictSourceDialog *dialog)
   dialog->tips = gtk_tooltips_new ();
   g_object_ref (dialog->tips);
   gtk_object_sink (GTK_OBJECT (dialog->tips));
+
+  dialog->transport = GDICT_SOURCE_TRANSPORT_INVALID;
 
   g_signal_connect (dialog, "response",
   		    G_CALLBACK (gdict_source_dialog_response_cb),

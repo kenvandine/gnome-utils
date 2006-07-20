@@ -1,3 +1,32 @@
+2006-07-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/Makefile.am: Use the ENABLE_DEBUG conditional
+	to turn on debug messages at compile time.  Should really
+	make everything work at runtime too, some day.
+
+	* src/gdict-applet.c
+	(window_key_press_event): Ctrl+L should return focus to the
+	word entry.
+
+	(gdict_applet_toggle_window): Shift focus when showing the
+	definition window.
+
+	(gdict_applet_lookup_end_cb),
+	(gdict_applet_error_cb): Resize the definition window when
+	the look up ends, for good or evil. (#346893, reported by
+	Matthias Clasen et al.)
+
+	(gdict_applet_init): Use the new gdict_get_data_dir() function.
+
+	* gdict-common.h:
+	* gdict-common.c: Add gdict_get_data_dir() to factor out
+	the data dir path build code.
+
+	* gdict-source-dialog.c:
+	(transport_combo_changed_cb), (update_dialog_ui),
+	(build_new_source), (gdict_source_dialog_init): Use the
+	index of the transport combo box instead of the string.
+
 2006-06-12  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/Makefile.am: Remove wrong header files from the

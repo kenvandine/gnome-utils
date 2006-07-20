@@ -291,11 +291,18 @@ window_key_press_event_cb (GtkWidget   *widget,
 			   GdkEventKey *event,
 			   gpointer     user_data)
 {
+  GdictApplet *applet = GDICT_APPLET (user_data);
+  
   if (event->keyval == GDK_Escape)
     {
-      GdictApplet *applet = GDICT_APPLET (user_data);
-
       gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (applet->priv->toggle), FALSE);
+
+      return TRUE;
+    }
+  else if ((event->keyval == GDK_l) &&
+	   (event->state & GDK_CONTROL_MASK))
+    {
+      gtk_widget_grab_focus (applet->priv->entry);
 
       return TRUE;
     }
@@ -408,11 +415,15 @@ gdict_applet_toggle_window (GdictApplet *applet)
   if (!priv->is_window_showing)
     {
       gtk_widget_show (priv->window);
+      gtk_widget_grab_focus (priv->window);
+      
       priv->is_window_showing = TRUE;
     }
   else
     {
       gtk_widget_hide (priv->window);
+      gtk_widget_grab_focus (priv->entry);
+
       priv->is_window_showing = FALSE;
     }
 }
@@ -469,7 +480,7 @@ gdict_applet_icon_button_press_event_cb (GtkWidget      *widget,
    * user is toggling the button
    */
   if (event->button != 1)
-    g_signal_stop_emission_by_name(priv->toggle, "button-press-event");
+    g_signal_stop_emission_by_name (priv->toggle, "button-press-event");
 
   return FALSE;
 }
@@ -645,6 +656,8 @@ gdict_applet_lookup_end_cb (GdictContext *context,
 			    GdictApplet  *applet)
 {
   gdict_applet_set_menu_items_sensitive (applet, TRUE);
+
+  set_window_default_size (applet);
 }
 
 static void
@@ -654,9 +667,13 @@ gdict_applet_error_cb (GdictContext *context,
 {
   GdictAppletPrivate *priv = applet->priv;
 
+#if 0
   /* force window hide */
   gtk_widget_hide (priv->window);
   priv->is_window_showing = FALSE;
+#endif
+
+  set_window_default_size (applet);
   
   /* disable menu items */
   gdict_applet_set_menu_items_sensitive (applet, FALSE);
@@ -1183,16 +1200,12 @@ gdict_applet_init (GdictApplet *applet)
   priv = GDICT_APPLET_GET_PRIVATE (applet);
   applet->priv = priv;
       
-  data_dir = g_build_filename (g_get_home_dir (),
-  			       ".gnome2",
-  			       "gnome-dictionary",
-  			       NULL);
   if (!priv->loader)
     priv->loader = gdict_source_loader_new ();
 
   /* add our data dir inside $HOME to the loader's search paths */
+  data_dir = gdict_get_data_dir ();
   gdict_source_loader_add_search_path (priv->loader, data_dir);
-
   g_free (data_dir);
   
   gtk_window_set_default_icon_name ("gnome-dictionary");

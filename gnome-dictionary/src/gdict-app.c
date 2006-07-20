@@ -413,10 +413,7 @@ gdict_init (int *argc, char ***argv)
 
   /* add user's path for fetching dictionary sources */  
   singleton->loader = gdict_source_loader_new ();
-  loader_path = g_build_filename (g_get_home_dir (),
-                                  ".gnome2",
-                                  "gnome-dictionary",
-                                  NULL);
+  loader_path = gdict_get_data_dir (); 
   gdict_source_loader_add_search_path (singleton->loader, loader_path);
   g_free (loader_path);
 

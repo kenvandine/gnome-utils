@@ -2,8 +2,11 @@
 
 NULL =
 
-# uncomment to enable verbose logging in libgdict
-#GDICT_ENABLE_DEBUG=-DGDICT_ENABLE_DEBUG=1
+if ENABLE_DEBUG
+GDICT_ENABLE_DEBUG=-DGDICT_ENABLE_DEBUG=1
+else
+GDICT_ENABLE_DEBUG=
+endif
 
 INCLUDES = -DG_LOG_DOMAIN=\"Gdict\" 				\
 	-DDATADIR=\""$(datadir)"\" 				\

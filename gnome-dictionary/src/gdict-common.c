@@ -36,17 +36,26 @@
 
 #include <gtk/gtk.h>
 
+gchar *
+gdict_get_data_dir (void)
+{
+  gchar *retval;
+
+  retval = g_build_filename (g_get_home_dir (),
+		  	     ".gnome2",
+			     "gnome-dictionary",
+			     NULL);
+  
+  return retval;
+}
+
 /* create the data directory inside $HOME, if it doesn't exist yet */
 gboolean
 gdict_create_data_dir (void)
 {
   gchar *data_dir_name;
   
-  data_dir_name = g_build_filename (g_get_home_dir (),
-  				    ".gnome2",
-  				    "gnome-dictionary",
-  				    NULL);
-  
+  data_dir_name = gdict_get_data_dir ();
   if (g_mkdir (data_dir_name, 0700) == -1)
     {
       /* this is weird, but sometimes there's a "gnome-dictionary" file
