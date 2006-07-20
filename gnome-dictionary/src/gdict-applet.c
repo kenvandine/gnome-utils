@@ -296,6 +296,7 @@ window_key_press_event_cb (GtkWidget   *widget,
   if (event->keyval == GDK_Escape)
     {
       gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (applet->priv->toggle), FALSE);
+      gtk_toggle_button_toggled (GTK_TOGGLE_BUTTON (applet->priv->toggle));
 
       return TRUE;
     }
@@ -470,6 +471,27 @@ gdict_applet_entry_activate_cb (GtkWidget   *widget,
 }
 
 static gboolean
+gdict_applet_entry_key_press_cb (GtkWidget   *widget,
+				 GdkEventKey *event,
+				 gpointer     user_data)
+{
+  if (event->keyval == GDK_Escape)
+    {
+      GdictAppletPrivate *priv = GDICT_APPLET (user_data)->priv;
+      
+      if (priv->is_window_showing)
+	{
+          gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->toggle), FALSE);
+	  gtk_toggle_button_toggled (GTK_TOGGLE_BUTTON (priv->toggle));
+	  
+	  return TRUE;
+	}
+    }
+
+  return FALSE;
+}
+
+static gboolean
 gdict_applet_icon_button_press_event_cb (GtkWidget      *widget,
 					 GdkEventButton *event,
 					 GdictApplet    *applet)
@@ -603,6 +625,9 @@ gdict_applet_draw (GdictApplet *applet)
   		    applet);
   g_signal_connect (priv->entry, "button-press-event",
 		    G_CALLBACK (gdict_applet_entry_button_press_event_cb),
+		    applet);
+  g_signal_connect (priv->entry, "key-press-event",
+		    G_CALLBACK (gdict_applet_entry_key_press_cb),
 		    applet);
   gtk_box_pack_end (GTK_BOX (box), priv->entry, FALSE, FALSE, 0);
   gtk_widget_show (priv->entry);

@@ -1,5 +1,14 @@
 2006-07-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-applet.c:
+	(window_key_press_event):
+	(gdict_applet_entry_key_press_cb),
+	(gdict_applet_draw): Toggle the definition window when Esc
+	is pressed and the entry has focus. (#345117, reported by
+	Christopher Barrington-Leigh)
+
+2006-07-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* libgdict/Makefile.am: Use the ENABLE_DEBUG conditional
 	to turn on debug messages at compile time.  Should really
 	make everything work at runtime too, some day.
