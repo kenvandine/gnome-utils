@@ -350,6 +350,8 @@ gdict_applet_build_window (GdictApplet *applet)
   
   gtk_box_pack_start (GTK_BOX (vbox), priv->defbox, TRUE, TRUE, 0);
   gtk_widget_show (priv->defbox);
+  GTK_WIDGET_SET_FLAGS (priv->defbox, GTK_CAN_FOCUS);
+  GTK_WIDGET_SET_FLAGS (priv->defbox, GTK_CAN_DEFAULT);
   
   bbox = gtk_hbutton_box_new ();
   gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_END);
@@ -400,33 +402,11 @@ gdict_applet_build_window (GdictApplet *applet)
   gtk_widget_show (button);
   
   set_window_default_size (applet);
+
+  gtk_window_set_default (GTK_WINDOW (window), priv->defbox);
   
   priv->window = window;
   priv->is_window_showing = FALSE;
-}
-
-static void
-gdict_applet_toggle_window (GdictApplet *applet)
-{
-  GdictAppletPrivate *priv = applet->priv;
-  
-  if (!priv->window)
-    gdict_applet_build_window (applet);
-      
-  if (!priv->is_window_showing)
-    {
-      gtk_widget_show (priv->window);
-      gtk_widget_grab_focus (priv->window);
-      
-      priv->is_window_showing = TRUE;
-    }
-  else
-    {
-      gtk_widget_hide (priv->window);
-      gtk_widget_grab_focus (priv->entry);
-
-      priv->is_window_showing = FALSE;
-    }
 }
 
 static gboolean
@@ -440,12 +420,16 @@ gdict_applet_icon_toggled_cb (GtkWidget   *widget,
   
   if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)))
     {
-      gtk_widget_show (priv->window);
+      gtk_window_present (GTK_WINDOW (priv->window));
+      gtk_widget_grab_focus (priv->defbox);
+      
       priv->is_window_showing = TRUE;
     }
   else
     {
+      gtk_widget_grab_focus (priv->entry);
       gtk_widget_hide (priv->window);
+      
       priv->is_window_showing = FALSE;
     }
 }
@@ -475,10 +459,10 @@ gdict_applet_entry_key_press_cb (GtkWidget   *widget,
 				 GdkEventKey *event,
 				 gpointer     user_data)
 {
+  GdictAppletPrivate *priv = GDICT_APPLET (user_data)->priv;
+  
   if (event->keyval == GDK_Escape)
     {
-      GdictAppletPrivate *priv = GDICT_APPLET (user_data)->priv;
-      
       if (priv->is_window_showing)
 	{
           gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->toggle), FALSE);
@@ -486,6 +470,11 @@ gdict_applet_entry_key_press_cb (GtkWidget   *widget,
 	  
 	  return TRUE;
 	}
+    }
+  else if (event->keyval == GDK_Tab)
+    {
+      if (priv->is_window_showing)
+	gtk_widget_grab_focus (priv->defbox);
     }
 
   return FALSE;
@@ -640,8 +629,10 @@ gdict_applet_draw (GdictApplet *applet)
     }
   
   priv->box = box;
-  
+
+#if 0
   gtk_widget_grab_focus (priv->entry);
+#endif
   
   gtk_widget_show_all (GTK_WIDGET (applet));
 
@@ -669,7 +660,9 @@ gdict_applet_lookup_start_cb (GdictContext *context,
     {
       gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->toggle), TRUE);
       
-      gtk_widget_show (priv->window);
+      gtk_window_present (GTK_WINDOW (priv->window));
+      gtk_widget_grab_focus (priv->defbox);
+
       priv->is_window_showing = TRUE;
     }
 
@@ -682,6 +675,8 @@ gdict_applet_lookup_end_cb (GdictContext *context,
 {
   gdict_applet_set_menu_items_sensitive (applet, TRUE);
 
+  gtk_window_present (applet->priv->window);
+
   set_window_default_size (applet);
 }
 
@@ -690,14 +685,6 @@ gdict_applet_error_cb (GdictContext *context,
 		       const GError *error,
 		       GdictApplet  *applet)
 {
-  GdictAppletPrivate *priv = applet->priv;
-
-#if 0
-  /* force window hide */
-  gtk_widget_hide (priv->window);
-  priv->is_window_showing = FALSE;
-#endif
-
   set_window_default_size (applet);
   
   /* disable menu items */
