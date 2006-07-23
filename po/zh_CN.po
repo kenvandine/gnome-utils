@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-01 22:50+0200\n"
-"PO-Revision-Date: 2006-05-02 12:53+0800\n"
+"POT-Creation-Date: 2006-07-23 08:28+0200\n"
+"PO-Revision-Date: 2006-07-23 15:31+0800\n"
 "Last-Translator: Funda Wang <fundawang@linux.net.cn>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
@@ -78,7 +78,7 @@ msgstr "文件搜索"
 msgid "Filesystem"
 msgstr "文件系统"
 
-#: ../baobab/data/baobab.glade.h:14 ../gsearchtool/gsearchtool.c:2498
+#: ../baobab/data/baobab.glade.h:14 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "文件夹"
 
@@ -196,7 +196,7 @@ msgid "_Browse..."
 msgstr "浏览(_B)..."
 
 #. Help menu
-#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:841
+#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:933
 #: ../logview/logview.c:114
 msgid "_Contents"
 msgstr "目录(_C)"
@@ -209,7 +209,7 @@ msgstr "日期(_D)"
 msgid "_Depth level:"
 msgstr "深度级别(_D)："
 
-#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:801
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:890
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "编辑(_E)"
@@ -232,7 +232,7 @@ msgstr "使用图(_G)"
 
 #: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:803 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:893 ../logview/logview.c:88
 msgid "_Help"
 msgstr "帮助(_H)"
 
@@ -268,7 +268,8 @@ msgstr "总计文件夹(_T)："
 msgid "_Type"
 msgstr "类型(_T)"
 
-#: ../baobab/data/baobab.glade.h:61 ../logview/logview.c:87
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:891
+#: ../logview/logview.c:87
 msgid "_View"
 msgstr "查看(_V)"
 
@@ -306,13 +307,13 @@ msgstr "主窗口中的工具栏是否可见。"
 
 #. set statusbar, percentage and allocated/normal size
 #: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
-#: ../baobab/src/callbacks.c:441
+#: ../baobab/src/callbacks.c:442
 msgid "Calculating percentage bars..."
 msgstr "正在计算百分比条..."
 
 #: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
 #: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:228
-#: ../baobab/src/callbacks.c:445
+#: ../baobab/src/callbacks.c:446
 msgid "Ready"
 msgstr "就绪"
 
@@ -520,11 +521,11 @@ msgstr "正在扫描..."
 msgid "%s is not a valid folder"
 msgstr "%s 不是有效的文件夹"
 
-#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:430
+#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:437
 msgid "Remove from Trash"
 msgstr "从回收站删除"
 
-#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:433
+#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:440
 msgid "Move to Trash"
 msgstr "移动到回收站"
 
@@ -536,68 +537,72 @@ msgstr "文件夹使用图"
 msgid "List all files in folder"
 msgstr "列出文件夹中的全部文件"
 
-#: ../baobab/src/baobab-utils.c:498
+#: ../baobab/src/baobab-utils.c:443
+msgid "Scan Folder"
+msgstr "扫描文件夹"
+
+#: ../baobab/src/baobab-utils.c:515
 msgid "Please provide a file name to search for!"
 msgstr "请提供要搜索的文件名！"
 
-#: ../baobab/src/baobab-utils.c:678
+#: ../baobab/src/baobab-utils.c:695
 msgid "Total filesystem capacity:"
 msgstr "总计文件系统容量："
 
-#: ../baobab/src/baobab-utils.c:678
+#: ../baobab/src/baobab-utils.c:695
 msgid "used:"
 msgstr "已用："
 
-#: ../baobab/src/baobab-utils.c:679
+#: ../baobab/src/baobab-utils.c:696
 msgid "available:"
 msgstr "可用："
 
-#: ../baobab/src/baobab-utils.c:717
+#: ../baobab/src/baobab-utils.c:734
 msgid "Found:"
 msgstr "找到："
 
-#: ../baobab/src/baobab-utils.c:718
+#: ../baobab/src/baobab-utils.c:735
 msgid "file"
 msgstr "个文件"
 
-#: ../baobab/src/baobab-utils.c:718
+#: ../baobab/src/baobab-utils.c:735
 msgid "files"
 msgstr "个文件"
 
-#: ../baobab/src/baobab-utils.c:719
+#: ../baobab/src/baobab-utils.c:736
 msgid "for total:"
 msgstr "总计："
 
-#: ../baobab/src/baobab-utils.c:749 ../gsearchtool/gsearchtool-callbacks.c:485
+#: ../baobab/src/baobab-utils.c:766 ../gsearchtool/gsearchtool-callbacks.c:487
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "没有安装能显示文档的查看器。"
 
-#: ../baobab/src/baobab-utils.c:811
+#: ../baobab/src/baobab-utils.c:828
 msgid "Cannot find the Trash on this system!"
 msgstr "此系统上找不到回收站！"
 
-#: ../baobab/src/baobab-utils.c:818 ../baobab/src/callbacks.c:276
-#: ../gsearchtool/gsearchtool-callbacks.c:470
-#: ../gsearchtool/gsearchtool-callbacks.c:811
+#: ../baobab/src/baobab-utils.c:835 ../baobab/src/callbacks.c:276
+#: ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../gsearchtool/gsearchtool-callbacks.c:819
 msgid "The document does not exist."
 msgstr "文档不存在。"
 
-#: ../baobab/src/baobab-utils.c:830
+#: ../baobab/src/baobab-utils.c:847
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr "将 <b>%s</b> 移动到回收站失败：%s。"
 
-#: ../baobab/src/baobab-utils.c:844
+#: ../baobab/src/baobab-utils.c:861
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "您真得像要永久删除 <b>%s</b> 吗？"
 
-#: ../baobab/src/baobab-utils.c:856
+#: ../baobab/src/baobab-utils.c:873
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "删除 <b>%s</b> 失败：%s。"
 
-#: ../baobab/src/baobab-utils.c:885
+#: ../baobab/src/baobab-utils.c:902
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
@@ -605,12 +610,12 @@ msgstr ""
 "您主目录的内容已经更改。\n"
 "您想要重新扫描上一个目录树以便更新文件夹分支细节吗？"
 
-#: ../baobab/src/baobab-utils.c:906
+#: ../baobab/src/baobab-utils.c:923
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "找不到像素图文件：%s"
 
-#: ../baobab/src/baobab-utils.c:940 ../logview/logview.c:774
+#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "显示帮助时出错。"
 
@@ -623,12 +628,16 @@ msgid "A graphical tool to analyse disk usage."
 msgstr "分析磁盘使用的图形工具。"
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:59
+#: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Wang Li <charlesw1234@163.com>\n"
 "Funda Wang <fundawang@linux.net.cn>"
+
+#: ../baobab/src/callbacks.c:525
+msgid "The folder does not exist."
+msgstr "文件夹不存在。"
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1027,11 +1036,11 @@ msgstr "卷标名不正确"
 msgid "The volume name can't contain any blank space."
 msgstr "卷标名不能含有任何空白。"
 
-#: ../gfloppy/src/main.c:575
+#: ../gfloppy/src/main.c:573
 msgid "The device to format"
 msgstr "要格式化的设备"
 
-#: ../gfloppy/src/main.c:575
+#: ../gfloppy/src/main.c:573
 msgid "DEVICE"
 msgstr "设备"
 
@@ -1079,7 +1088,7 @@ msgid "Cl_ear"
 msgstr "清除(_E)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:843 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:935 ../logview/logview.c:116
 msgid "_About"
 msgstr "关于(_A)"
 
@@ -1088,7 +1097,7 @@ msgid "_Look Up Selected Text"
 msgstr "查阅选中的文本(_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:917
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
@@ -1100,17 +1109,17 @@ msgstr "打印(_P)"
 msgid "_Save"
 msgstr "保存(_S)"
 
-#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
-#: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:471
-#: ../gnome-dictionary/src/gdict-window.c:365
-#: ../gnome-dictionary/src/gdict-window.c:1211
+#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:1
+msgid "Check word definitions and spellings in an online dictionary"
+msgstr "在在线字典中查阅单词定义和拼写"
+
+#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
+#: ../gnome-dictionary/src/gdict-about.c:76
+#: ../gnome-dictionary/src/gdict-app.c:381
+#: ../gnome-dictionary/src/gdict-window.c:428
+#: ../gnome-dictionary/src/gdict-window.c:1382
 msgid "Dictionary"
 msgstr "字典"
-
-#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:2
-msgid "Look up words in an online dictionary"
-msgstr "在在线字典中查阅单词"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:1
 msgid "Dictionary server (Deprecated)"
@@ -1212,6 +1221,15 @@ msgstr ""
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
 msgid ""
+"This key defines whether the speller widget should be visible and it's used "
+"to remember the state of the speller widgets across sessions. Setting it to "
+"TRUE will make the speller widget always be displayed."
+msgstr ""
+"此键定义了拼写器部件是否可见，以及是否在不同的会话间记忆拼写器部件的状态。将其设置为 "
+"TRUE 将使得拼写器部件总是显示。"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
@@ -1219,25 +1237,24 @@ msgstr ""
 "此键定义了窗口是否应最大化，用于在不同的会话间记忆字典窗口的状态。将其设置为 "
 "TRUE 将使得字典窗口以最大化显示。"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid "Use smart lookup (Deprecated)"
 msgstr "使用智能查阅(已弃用)"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
 msgid "Whether the application window should be maximized"
 msgstr "应用程序窗口是否应最大化"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
+msgid "Whether the speller should be visible"
+msgstr "拼写器是否可见"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
 msgstr "数据库(_B)："
 
 #. Transport methods
-#. Translators: this is the same string used in the file
-#. * gnome-dictionary-preferences.glade for the transport_combo
-#. * widget items.
-#.
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-#: ../gnome-dictionary/src/gdict-source-dialog.c:146
 msgid "Dictionary Server"
 msgstr "字典服务器"
 
@@ -1246,8 +1263,8 @@ msgid "H_ostname:"
 msgstr "主机名(_O)："
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:231
-#: ../gnome-dictionary/src/gdict-window.c:599
+#: ../gnome-dictionary/src/gdict-applet.c:203
+#: ../gnome-dictionary/src/gdict-window.c:670
 msgid "Print"
 msgstr "打印"
 
@@ -1287,66 +1304,66 @@ msgstr "传送(_T)："
 msgid "Spanish Dictionaries"
 msgstr "西班牙语字典"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:266
 msgid "Client Name"
 msgstr "客户名"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:267
 msgid "The name of the client of the context object"
 msgstr "上下文对象的客户名称"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:280
 msgid "Hostname"
 msgstr "主机名"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:281
 msgid "The hostname of the dictionary server to connect to"
 msgstr "要连接的默认字典服务器的主机名"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:294
 msgid "Port"
 msgstr "端口"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:295
 msgid "The port of the dictionary server to connect to"
 msgstr "要连接的字典服务器的端口"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:310
 msgid "Status"
 msgstr "状态"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "The status code as returned by the dictionary server"
 msgstr "字典服务器返回的状态代码"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:759
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "“%s:%d”出的字典服务器无法连接"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1021
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "查阅主机名“%s”失败：未找到合适的资源"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1052
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "查阅主机“%s”失败：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "查阅主机“%s”失败：主机未找到"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
 msgstr "无法连接到字典服务器“%s:%d”。服务器返回了代码 %d(服务器已停机)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -1355,47 +1372,47 @@ msgstr ""
 "无法分析字典服务器回复\n"
 "：“%s”"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "未找到“%s”的定义"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "无效的数据库“%s”"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "无效的策略“%s”"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
 #, c-format
 msgid "Bad command '%s'"
 msgstr "错误的名称“%s”"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "命令“%s”的参数错误"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "未在字典服务器“%s”找到数据库"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "字典服务器“%s”未找到策略"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1705
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1707
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "连接服务器 %s:%d 失败"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1744
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1746
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1404,266 +1421,222 @@ msgstr ""
 "从服务器读取回复出错：\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1817
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1819
 msgid "No hostname defined for the dictionary server"
 msgstr "字典服务器未定义主机名"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1853
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1868
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1855
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1870
 msgid "Unable to create socket"
 msgstr "无法创建套接字"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1894
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1896
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "无法将频道设定为非屏蔽：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1909
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1911
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "无法连接到“%s:%d”的字典服务器"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:196
+#: ../gnome-dictionary/libgdict/gdict-context.c:199
 msgid "Local Only"
 msgstr "只有文本"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:197
+#: ../gnome-dictionary/libgdict/gdict-context.c:200
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "上下文是否只使用本地字典"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:352
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:441
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:469
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:353
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:442
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:470
 msgid "Not found"
 msgstr "未找到"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:500
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:502
 msgid "F_ind:"
 msgstr "查找(_I)："
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:513
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
 msgid "_Previous"
 msgstr "前一个(_P)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:521
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:523
 msgid "_Next"
 msgstr "下一个(_N)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:694
-#: ../gnome-dictionary/libgdict/gdict-entry.c:104
-#: ../gnome-dictionary/libgdict/gdict-source.c:303
-msgid "Context"
-msgstr "上下文"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:695
-msgid "The GdictContext object used to get the word definition"
-msgstr "用于获得单词定义的 GdictContext 对象"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:709
-#: ../gnome-dictionary/libgdict/gdict-entry.c:119
-#: ../gnome-dictionary/libgdict/gdict-source.c:260
-msgid "Database"
-msgstr "数据库"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:710
-msgid "The database used to query the GdictContext"
-msgstr "用于查询 GdictContext 的数据库"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:724
-msgid "Font Name"
-msgstr "字体名"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:725
-msgid "The font to be used by the defbox"
-msgstr "定义框所使用的字体"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:731
-msgid "Emphasys Color"
-msgstr "强调颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:732
-msgid "Color of emphasised text"
-msgstr "强调文本的颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:737
-msgid "Link Color"
-msgstr "链接颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:738
-msgid "Color of hyperlinks"
-msgstr "超级链接的颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:743
-msgid "Word Color"
-msgstr "单词颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:744
-msgid "Color of the dictionary word"
-msgstr "字典单词的颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:749
-msgid "Source Color"
-msgstr "源颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:750
-msgid "Color of the dictionary source"
-msgstr "字典源的颜色"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1041
-msgid "Progress"
-msgstr "格进度"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1078
-#, c-format
-msgid "Definition for '%s' (%d/%d)"
-msgstr "“%s”的定义(%d/%d)"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1280
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1223
 msgid "Error while looking up definition"
 msgstr "查阅定义出错"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
-#, c-format
-msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
-msgstr "试图查阅“%s”但未定义 GdictContext。中止。"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1332
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
+#: ../gnome-dictionary/libgdict/gdict-speller.c:720
 msgid "Another search is in progress"
 msgstr "另外一项搜索正在进行中"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1333
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
+#: ../gnome-dictionary/libgdict/gdict-speller.c:721
 msgid "Please wait until the current search ends."
 msgstr "请稍候，等待当前搜索结束。"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1364
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Error while retrieving the definition"
 msgstr "获取定义出错"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
+#: ../gnome-dictionary/libgdict/gdict-source.c:304
+#: ../gnome-dictionary/libgdict/gdict-speller.c:361
+msgid "Context"
+msgstr "上下文"
+
+#: ../gnome-dictionary/libgdict/gdict-entry.c:106
 msgid "The GdictContext object bound to this entry"
 msgstr "绑定到此输入项的 GdictContext 对象"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
+#: ../gnome-dictionary/libgdict/gdict-speller.c:368
+msgid "Database"
+msgstr "数据库"
+
+#: ../gnome-dictionary/libgdict/gdict-entry.c:121
 msgid "The database to be used to generate the completion list"
 msgstr "用于生成补全列表中的数据库"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:134
-#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-entry.c:135
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
+#: ../gnome-dictionary/libgdict/gdict-speller.c:375
 msgid "Strategy"
 msgstr "策略"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
+#: ../gnome-dictionary/libgdict/gdict-entry.c:136
 msgid "The matching strategy to be used to generate the completion list"
 msgstr "生成补全列表所使用的匹配策略"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:218
+#: ../gnome-dictionary/libgdict/gdict-source.c:219
 msgid "Filename"
 msgstr "文件名"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:220
 msgid "The filename used by this dictionary source"
 msgstr "此字典源所使用的文件名"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:232
-#: ../gsearchtool/gsearchtool.c:2474
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gsearchtool/gsearchtool.c:2473
 msgid "Name"
 msgstr "名称"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:234
 msgid "The display name of this dictonary source"
 msgstr "此字典源的显示名称"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:246
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "Description"
 msgstr "描述"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:248
 msgid "The description of this dictionary source"
 msgstr "此字典源的描述"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
+#: ../gnome-dictionary/libgdict/gdict-source.c:262
 msgid "The default database of this dictonary source"
 msgstr "此字典源的默认数据库"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
+#: ../gnome-dictionary/libgdict/gdict-source.c:276
 msgid "The default strategy of this dictonary source"
 msgstr "此字典源的默认策略"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "Transport"
 msgstr "传送"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:290
 msgid "The transport mechanism used by this dictionary source"
 msgstr "此字典源所使用的传送机制"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
+#: ../gnome-dictionary/libgdict/gdict-source.c:305
 msgid "The GdictContext bound to this source"
 msgstr "绑定到此源的 GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:399
+#: ../gnome-dictionary/libgdict/gdict-source.c:400
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "无效的传送类型“%d”"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:427
+#: ../gnome-dictionary/libgdict/gdict-source.c:428
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr "字典源定义中未找到“%s”组"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:443
-#: ../gnome-dictionary/libgdict/gdict-source.c:467
-#: ../gnome-dictionary/libgdict/gdict-source.c:491
-#: ../gnome-dictionary/libgdict/gdict-source.c:516
+#: ../gnome-dictionary/libgdict/gdict-source.c:444
+#: ../gnome-dictionary/libgdict/gdict-source.c:468
+#: ../gnome-dictionary/libgdict/gdict-source.c:492
+#: ../gnome-dictionary/libgdict/gdict-source.c:517
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr "无法在字典源定义中找到“%s”键：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:541
+#: ../gnome-dictionary/libgdict/gdict-source.c:542
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr "无法在字典源定义文件中找到“%s”键：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:727
+#: ../gnome-dictionary/libgdict/gdict-source.c:728
 msgid "Dictionary source does not have name"
 msgstr "字典源没有名称"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:736
+#: ../gnome-dictionary/libgdict/gdict-source.c:737
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "字典源“%s”的传送“%s”无效"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:162
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
 msgid "Paths"
 msgstr "路径"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
 msgid "Search paths used by this object"
 msgstr "此对象所使用的搜索路径"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:175
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
 msgid "Sources"
 msgstr "源"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
 msgid "Dictionary sources found"
 msgstr "找到的字典源"
 
-#: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:610
+#: ../gnome-dictionary/libgdict/gdict-speller.c:299
+msgid "Similar words"
+msgstr "相似单词"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:362
+msgid "The GdictContext object used to get the word definition"
+msgstr "用于获得单词定义的 GdictContext 对象"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:369
+msgid "The database used to query the GdictContext"
+msgstr "用于查询 GdictContext 的数据库"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+msgid "The strategy used to query the GdictContext"
+msgstr "查询 GdictContext 所使用的策略"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:762
+msgid "Error while matching"
+msgstr "匹配时出错"
+
+#: ../gnome-dictionary/src/gdict-about.c:57
+#: ../gnome-dictionary/src/gdict-applet.c:604
 msgid "Look up words in dictionaries"
 msgstr "在字典中查阅单词"
-
-#: ../gnome-dictionary/src/gdict-about.c:87
-#, c-format
-msgid "Unable to open the application icon: %s"
-msgstr "无法打开应用程序图标：%s"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:216
+#: ../gnome-dictionary/src/gdict-app.c:215
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1676,20 +1649,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:230
+#: ../gnome-dictionary/src/gdict-app.c:229
 #, c-format
 msgid "Error: %s\n"
 msgstr "错误：%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:256
+#: ../gnome-dictionary/src/gdict-app.c:255
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "请查看 gnome-dictionary --help 的用法\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:269
+#: ../gnome-dictionary/src/gdict-app.c:268
 msgid "Unable to find a suitable dictionary source"
 msgstr "找不到合适的字典源"
 
-#: ../gnome-dictionary/src/gdict-app.c:303
+#: ../gnome-dictionary/src/gdict-app.c:302
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1698,212 +1671,227 @@ msgstr ""
 "查阅“%s”的定义出错：\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:348
-#: ../gnome-dictionary/src/gdict-applet.c:1421
-#, c-format
-msgid "Unable to rename file '%s' to '%s': %s"
-msgstr "无法将文件“%s”重命名为“%s”：%s"
-
-#: ../gnome-dictionary/src/gdict-app.c:372
-#: ../gnome-dictionary/src/gdict-app.c:395
-#: ../gnome-dictionary/src/gdict-applet.c:1445
-#: ../gnome-dictionary/src/gdict-applet.c:1468
-#, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr "无法创建数据目录“%s”：%s"
-
-#: ../gnome-dictionary/src/gdict-app.c:430
+#: ../gnome-dictionary/src/gdict-app.c:336
 msgid "Words to look up"
 msgstr "要查阅的单词"
 
-#: ../gnome-dictionary/src/gdict-app.c:430
+#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:338
 msgid "word"
 msgstr "单词"
 
-#: ../gnome-dictionary/src/gdict-app.c:432
+#: ../gnome-dictionary/src/gdict-app.c:338
+msgid "Words to match"
+msgstr "要匹配的单词"
+
+#: ../gnome-dictionary/src/gdict-app.c:340
 msgid "Dictionary source to use"
 msgstr "要使用的字典源"
 
-#: ../gnome-dictionary/src/gdict-app.c:432
+#: ../gnome-dictionary/src/gdict-app.c:340
 msgid "source"
 msgstr "源"
 
-#: ../gnome-dictionary/src/gdict-app.c:434
+#: ../gnome-dictionary/src/gdict-app.c:342
 msgid "Show available dictionary sources"
 msgstr "显示可用的字典源"
 
-#: ../gnome-dictionary/src/gdict-app.c:436
+#: ../gnome-dictionary/src/gdict-app.c:344
 msgid "Print result to the console"
 msgstr "将结果打印到控制台"
 
-#: ../gnome-dictionary/src/gdict-app.c:438
+#: ../gnome-dictionary/src/gdict-app.c:346
 msgid "Database to use"
 msgstr "要使用的数据库"
 
+#: ../gnome-dictionary/src/gdict-app.c:346
+msgid "db"
+msgstr "db"
+
+#: ../gnome-dictionary/src/gdict-app.c:348
+msgid "Strategy to use"
+msgstr "要使用的策略"
+
+#: ../gnome-dictionary/src/gdict-app.c:348
+msgid "strat"
+msgstr "strat"
+
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:454
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid " - Look up words in dictionaries"
 msgstr " - 在字典中查阅单词"
 
-#: ../gnome-dictionary/src/gdict-app.c:458
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "Dictionary and spelling tool"
 msgstr "字典和拼写工具"
 
-#: ../gnome-dictionary/src/gdict-app.c:459
+#: ../gnome-dictionary/src/gdict-app.c:369
 msgid "Show Dictionary options"
 msgstr "选择字典选项"
 
-#: ../gnome-dictionary/src/gdict-applet.c:245
-#: ../gnome-dictionary/src/gdict-window.c:544
+#: ../gnome-dictionary/src/gdict-applet.c:217
+#: ../gnome-dictionary/src/gdict-window.c:616
 msgid "Save a Copy"
 msgstr "保存副本"
 
-#: ../gnome-dictionary/src/gdict-applet.c:255
-#: ../gnome-dictionary/src/gdict-window.c:554
+#: ../gnome-dictionary/src/gdict-applet.c:227
+#: ../gnome-dictionary/src/gdict-window.c:626
 msgid "Untitled document"
 msgstr "无标题文档"
 
-#: ../gnome-dictionary/src/gdict-applet.c:276
-#: ../gnome-dictionary/src/gdict-window.c:575
+#: ../gnome-dictionary/src/gdict-applet.c:248
+#: ../gnome-dictionary/src/gdict-window.c:647
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "试图写入“%s”时发生错误"
 
-#: ../gnome-dictionary/src/gdict-applet.c:384
+#: ../gnome-dictionary/src/gdict-applet.c:366
 msgid "Clear the definitions found"
 msgstr "清除找到的定义"
 
-#: ../gnome-dictionary/src/gdict-applet.c:387
+#: ../gnome-dictionary/src/gdict-applet.c:369
 msgid "Clear definition"
 msgstr "清除定义"
 
-#: ../gnome-dictionary/src/gdict-applet.c:388
+#: ../gnome-dictionary/src/gdict-applet.c:370
 msgid "Clear the text of the definition"
 msgstr "清除定义文本"
 
-#: ../gnome-dictionary/src/gdict-applet.c:398
+#: ../gnome-dictionary/src/gdict-applet.c:380
 msgid "Print the definitions found"
 msgstr "打印找到的定义"
 
-#: ../gnome-dictionary/src/gdict-applet.c:401
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Print definition"
 msgstr "打印定义"
 
-#: ../gnome-dictionary/src/gdict-applet.c:402
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Print the text of the definition"
 msgstr "打印定义的文本"
 
-#: ../gnome-dictionary/src/gdict-applet.c:412
+#: ../gnome-dictionary/src/gdict-applet.c:394
 msgid "Save the definitions found"
 msgstr "保存找到的定义"
 
-#: ../gnome-dictionary/src/gdict-applet.c:415
+#: ../gnome-dictionary/src/gdict-applet.c:397
 msgid "Save definition"
 msgstr "保存定义"
 
-#: ../gnome-dictionary/src/gdict-applet.c:416
+#: ../gnome-dictionary/src/gdict-applet.c:398
 msgid "Save the text of the definition to a file"
 msgstr "将定义的文本保存到文件"
 
-#: ../gnome-dictionary/src/gdict-applet.c:550
+#: ../gnome-dictionary/src/gdict-applet.c:544
 msgid "Toggle dictionary window"
 msgstr "切换字典窗口"
 
-#: ../gnome-dictionary/src/gdict-applet.c:551
+#: ../gnome-dictionary/src/gdict-applet.c:545
 msgid "Show or hide the definition window"
 msgstr "显示或隐藏定义窗口"
 
-#: ../gnome-dictionary/src/gdict-applet.c:554
+#: ../gnome-dictionary/src/gdict-applet.c:548
 msgid "Click to view the dictionary window"
 msgstr "单击可查看字典窗口"
 
-#: ../gnome-dictionary/src/gdict-applet.c:609
+#: ../gnome-dictionary/src/gdict-applet.c:603
 msgid "Dictionary entry"
 msgstr "字典项"
 
-#: ../gnome-dictionary/src/gdict-applet.c:613
+#: ../gnome-dictionary/src/gdict-applet.c:607
 msgid "Type the word you want to look up"
 msgstr "输入您想要查阅的单词"
 
-#: ../gnome-dictionary/src/gdict-applet.c:747
-msgid "Preferences"
-msgstr "首选项"
+#: ../gnome-dictionary/src/gdict-applet.c:745
+#: ../gnome-dictionary/src/gdict-window.c:759
+msgid "Dictionary Preferences"
+msgstr "字典首选项"
 
-#: ../gnome-dictionary/src/gdict-applet.c:779
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:765
+#: ../gnome-dictionary/src/gdict-applet.c:773
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
+#: ../gnome-dictionary/src/gdict-source-dialog.c:438
+#: ../gnome-dictionary/src/gdict-window.c:848
 msgid "There was an error while displaying help"
 msgstr "显示帮助时出错"
 
-#: ../gnome-dictionary/src/gdict-applet.c:938
-#: ../gnome-dictionary/src/gdict-window.c:270
+#: ../gnome-dictionary/src/gdict-applet.c:932
+#: ../gnome-dictionary/src/gdict-window.c:327
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "名称“%s”没有可用的字典源"
 
-#: ../gnome-dictionary/src/gdict-applet.c:942
-#: ../gnome-dictionary/src/gdict-window.c:274
+#: ../gnome-dictionary/src/gdict-applet.c:936
+#: ../gnome-dictionary/src/gdict-window.c:331
 msgid "Unable to find dictionary source"
 msgstr "找不到字典源"
 
-#: ../gnome-dictionary/src/gdict-applet.c:958
-#: ../gnome-dictionary/src/gdict-window.c:290
+#: ../gnome-dictionary/src/gdict-applet.c:952
+#: ../gnome-dictionary/src/gdict-window.c:347
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "源“%s”没有可用的上下文"
 
-#: ../gnome-dictionary/src/gdict-applet.c:962
-#: ../gnome-dictionary/src/gdict-window.c:294
+#: ../gnome-dictionary/src/gdict-applet.c:956
+#: ../gnome-dictionary/src/gdict-window.c:351
 msgid "Unable to create a context"
 msgstr "无法创建上下文"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1243
-msgid "Unable to load the applet icon"
-msgstr "无法装入小程序图标"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1272
-#: ../gnome-dictionary/src/gdict-window.c:1320
+#: ../gnome-dictionary/src/gdict-applet.c:1240
+#: ../gnome-dictionary/src/gdict-window.c:1489
 msgid "Unable to connect to GConf"
 msgstr "无法连接到 GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1287
-#: ../gnome-dictionary/src/gdict-window.c:1336
+#: ../gnome-dictionary/src/gdict-applet.c:1253
+#: ../gnome-dictionary/src/gdict-window.c:1502
 msgid "Unable to get notification for preferences"
 msgstr "无法获得首选项的通知"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1302
-#: ../gnome-dictionary/src/gdict-window.c:1352
+#: ../gnome-dictionary/src/gdict-applet.c:1267
+#: ../gnome-dictionary/src/gdict-window.c:1515
 msgid "Unable to get notification for the document font"
 msgstr "无法获得文档字体的通知"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:272
+#: ../gnome-dictionary/src/gdict-common.c:77
+#, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "无法将文件“%s”重命名为“%s”：%s"
+
+#: ../gnome-dictionary/src/gdict-common.c:101
+#: ../gnome-dictionary/src/gdict-common.c:124
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "无法创建数据目录“%s”：%s"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+msgid "Edit Dictionary Source"
+msgstr "编辑字典源"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
 msgid "Add Dictionary Source"
 msgstr "添加字典源"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:318
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "删除“%s”吗？"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:320
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "这将从列表中永久删除字典源。"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:350
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "无法删除源“%s”"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:638
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:679
 msgid "Add a new dictionary source"
 msgstr "添加新的字典源"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:646
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:687
 msgid "Remove the currently selected dictionary source"
 msgstr "删除目前选中的字典源"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:661
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:702
 msgid "Set the font used for printing the definitions"
 msgstr "设定打印定义时所使用的字体"
 
@@ -1916,124 +1904,127 @@ msgstr "%s (第%d页)"
 msgid "Print Preview"
 msgstr "打印预览"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:276
+#: ../gnome-dictionary/src/gdict-source-dialog.c:303
+#: ../gnome-dictionary/src/gdict-source-dialog.c:391
 msgid "Unable to create a source file"
 msgstr "无法创建源文件"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:295
+#: ../gnome-dictionary/src/gdict-source-dialog.c:321
+#: ../gnome-dictionary/src/gdict-source-dialog.c:409
 msgid "Unable to save source file"
 msgstr "无法保存源文件"
 
-#: ../gnome-dictionary/src/gdict-window.c:175
+#: ../gnome-dictionary/src/gdict-window.c:191
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "正在搜索“%s”..."
 
-#: ../gnome-dictionary/src/gdict-window.c:199
-#: ../gnome-dictionary/src/gdict-window.c:221
+#: ../gnome-dictionary/src/gdict-window.c:220
+#: ../gnome-dictionary/src/gdict-window.c:247
 msgid "No definitions found"
 msgstr "未找到定义"
 
-#: ../gnome-dictionary/src/gdict-window.c:201
+#: ../gnome-dictionary/src/gdict-window.c:222
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "找到了 %d 个定义"
 
-#: ../gnome-dictionary/src/gdict-window.c:363
+#: ../gnome-dictionary/src/gdict-window.c:426
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - 字典"
 
-#: ../gnome-dictionary/src/gdict-window.c:684
-msgid "Dictionary Preferences"
-msgstr "字典首选项"
+#: ../gnome-dictionary/src/gdict-window.c:882
+msgid "_Similar Words"
+msgstr "相似单词(_S)"
 
-#: ../gnome-dictionary/src/gdict-window.c:800
+#: ../gnome-dictionary/src/gdict-window.c:883
+msgid "Show similar words"
+msgstr "显示相似单词"
+
+#: ../gnome-dictionary/src/gdict-window.c:889 ../logview/logview.c:85
 msgid "_File"
 msgstr "文件(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:892
 msgid "_Go"
 msgstr "转到(_G)"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:896
 msgid "_New"
 msgstr "新建(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:807
+#: ../gnome-dictionary/src/gdict-window.c:897
 msgid "New look up"
 msgstr "新建查阅"
 
-#: ../gnome-dictionary/src/gdict-window.c:808
+#: ../gnome-dictionary/src/gdict-window.c:898
 msgid "_Save a Copy..."
 msgstr "保存副本(_S)..."
 
-#: ../gnome-dictionary/src/gdict-window.c:810
+#: ../gnome-dictionary/src/gdict-window.c:900
 msgid "_Print..."
 msgstr "打印(_P)..."
 
-#: ../gnome-dictionary/src/gdict-window.c:811
+#: ../gnome-dictionary/src/gdict-window.c:901
 msgid "Print this document"
 msgstr "打印此文档"
 
-#: ../gnome-dictionary/src/gdict-window.c:818 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:908 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "全选(_A)"
 
-#: ../gnome-dictionary/src/gdict-window.c:821
+#: ../gnome-dictionary/src/gdict-window.c:911
 msgid "Find a word or phrase in the document"
 msgstr "在文档中查找单词或短语"
 
-#: ../gnome-dictionary/src/gdict-window.c:823
+#: ../gnome-dictionary/src/gdict-window.c:913
 msgid "Find Ne_xt"
 msgstr "查找下一个(_X)"
 
-#: ../gnome-dictionary/src/gdict-window.c:825
+#: ../gnome-dictionary/src/gdict-window.c:915
 msgid "Find Pre_vious"
 msgstr "查找上一个(_V)"
 
+#. View menu
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:923
 msgid "_Previous Definition"
 msgstr "上一个定义(_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:924
 msgid "Go to the previous definition"
 msgstr "转到上一个定义"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:925
 msgid "_Next Definition"
 msgstr "下一个定义(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:926
 msgid "Go to the next definition"
 msgstr "转到下一个定义"
 
-#: ../gnome-dictionary/src/gdict-window.c:835
+#: ../gnome-dictionary/src/gdict-window.c:927
 msgid "_First Definition"
 msgstr "第一个定义(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:836
+#: ../gnome-dictionary/src/gdict-window.c:928
 msgid "Go to the first definition"
 msgstr "转到第一个定义"
 
-#: ../gnome-dictionary/src/gdict-window.c:837
+#: ../gnome-dictionary/src/gdict-window.c:929
 msgid "_Last Definition"
 msgstr "最后一个定义(_L)"
 
-#: ../gnome-dictionary/src/gdict-window.c:838
+#: ../gnome-dictionary/src/gdict-window.c:930
 msgid "Go to the last definition"
 msgstr "转到最后一个定义"
 
-#: ../gnome-dictionary/src/gdict-window.c:1133
+#: ../gnome-dictionary/src/gdict-window.c:1258
 msgid "Look _up:"
 msgstr "查阅(_U)："
-
-#: ../gnome-dictionary/src/gdict-window.c:1376
-msgid "Unable to load the application icon"
-msgstr "无法装入应用程序图标"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -2072,7 +2063,7 @@ msgstr "Screenshot-%s.png"
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-panel-screenshot.c:116
-#: ../gnome-screenshot/screenshot-save.c:164
+#: ../gnome-screenshot/screenshot-save.c:165
 msgid "Screenshot.png"
 msgstr "Screenshot.png"
 
@@ -2146,12 +2137,12 @@ msgid "Save Screenshot"
 msgstr "保存抓图"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
-msgid "Take Screenshot"
-msgstr "抓图"
+msgid "Save images of your desktop or individual windows"
+msgstr "保存您桌面还是单个窗口的图像"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
-msgid "Take a screenshot of your desktop"
-msgstr "获得您桌面的抓图"
+msgid "Take Screenshot"
+msgstr "抓图"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
@@ -2187,7 +2178,7 @@ msgstr "抓图目录"
 msgid "The directory the last screenshot was saved in."
 msgstr "上次用于保存屏幕抓图的目录。"
 
-#: ../gnome-screenshot/screenshot-dialog.c:197
+#: ../gnome-screenshot/screenshot-dialog.c:203
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -2195,11 +2186,11 @@ msgstr ""
 "屏幕抓图程序的 Glade 文件丢失。\n"
 "请检查 gnome-utils 的安装"
 
-#: ../gnome-screenshot/screenshot-dialog.c:216
+#: ../gnome-screenshot/screenshot-dialog.c:222
 msgid "Select a folder"
 msgstr "选择文件夹"
 
-#: ../gnome-screenshot/screenshot-save.c:41
+#: ../gnome-screenshot/screenshot-save.c:42
 #, c-format
 msgid ""
 "Unable to clear the temporary folder:\n"
@@ -2208,46 +2199,46 @@ msgstr ""
 "无法清除临时文件夹：\n"
 "%s"
 
-#: ../gnome-screenshot/screenshot-save.c:79
+#: ../gnome-screenshot/screenshot-save.c:80
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
 msgstr "子保存进程意外退出。无法将屏幕抓图保存到磁盘。"
 
-#: ../gnome-screenshot/screenshot-save.c:191
+#: ../gnome-screenshot/screenshot-save.c:192
 msgid "Unknown error saving screenshot to disk"
 msgstr "将抓图保存到磁盘出现未知错误"
 
-#: ../gnome-screenshot/screenshot-utils.c:612
+#: ../gnome-screenshot/screenshot-utils.c:614
 msgid "Untitled Window"
 msgstr "无标题窗口"
 
-#: ../gnome-screenshot/screenshot-xfer.c:103
+#: ../gnome-screenshot/screenshot-xfer.c:104
 msgid "Preparing to copy"
 msgstr "准备复制"
 
-#: ../gnome-screenshot/screenshot-xfer.c:181
+#: ../gnome-screenshot/screenshot-xfer.c:182
 msgid "File already exists"
 msgstr "文件已经存在"
 
-#: ../gnome-screenshot/screenshot-xfer.c:184
+#: ../gnome-screenshot/screenshot-xfer.c:185
 #, c-format
 msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "文件“%s”已经存在。您想要替换吗？"
 
-#: ../gnome-screenshot/screenshot-xfer.c:190
-#: ../gsearchtool/gsearchtool-callbacks.c:1412
+#: ../gnome-screenshot/screenshot-xfer.c:191
+#: ../gsearchtool/gsearchtool-callbacks.c:1427
 msgid "_Replace"
 msgstr "替换(_R)"
 
-#: ../gnome-screenshot/screenshot-xfer.c:230
+#: ../gnome-screenshot/screenshot-xfer.c:231
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
 msgstr "未知的 GnomeVFSXferProgressStatus %d"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Find files, folders, and documents on your computer"
-msgstr "在您的计算机上查找文件、文件夹和文档"
+msgid "Locate documents and folders on this computer by name or content"
+msgstr "按照名称或内容定位此计算机中的文档和文件夹"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
@@ -2538,7 +2529,7 @@ msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "您确定想要打开 %d 个文档吗？"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:326
-#: ../gsearchtool/gsearchtool-callbacks.c:514
+#: ../gsearchtool/gsearchtool-callbacks.c:517
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -2558,73 +2549,73 @@ msgstr "无法打开文件夹“%s”。"
 msgid "The nautilus file manager is not running."
 msgstr "nautilus 文件管理器没有运行。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:509
+#: ../gsearchtool/gsearchtool-callbacks.c:512
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "您确定想要打开 %d 个文件夹吗？"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:637
+#: ../gsearchtool/gsearchtool-callbacks.c:644
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "无法将“%s”移动到回收站。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:668
+#: ../gsearchtool/gsearchtool-callbacks.c:675
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "您想要永久删除“%s”吗？"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:671
+#: ../gsearchtool/gsearchtool-callbacks.c:678
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "回收站不可用。无法将“%s”移动到回收站。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:710
+#: ../gsearchtool/gsearchtool-callbacks.c:717
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "无法删除“%s”。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:832
+#: ../gsearchtool/gsearchtool-callbacks.c:840
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "移动“%s”失败：%s。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:866
+#: ../gsearchtool/gsearchtool-callbacks.c:874
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "删除“%s”失败：%s。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1297
+#: ../gsearchtool/gsearchtool-callbacks.c:1312
 msgid "Save Search Results As..."
 msgstr "搜索结果另存为..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1328
+#: ../gsearchtool/gsearchtool-callbacks.c:1343
 msgid "Could not save document."
 msgstr "无法保存文档。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1329
+#: ../gsearchtool/gsearchtool-callbacks.c:1344
 msgid "You did not select a document name."
 msgstr "您没有选择文档名称。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1359
+#: ../gsearchtool/gsearchtool-callbacks.c:1374
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "无法将文档“%s”保存到 %s。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1393
+#: ../gsearchtool/gsearchtool-callbacks.c:1408
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "文档“%s”已经存在。您想要替换吗？"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1397
+#: ../gsearchtool/gsearchtool-callbacks.c:1412
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "如果您替换已有文件，该文件中的全部内容都将被覆盖。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1462
+#: ../gsearchtool/gsearchtool-callbacks.c:1477
 msgid "The document name you selected is a folder."
 msgstr "您选择的文档名是文件夹。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1511
+#: ../gsearchtool/gsearchtool-callbacks.c:1526
 msgid "You may not have write permissions to the document."
 msgstr "您可能没有对文档的写权限。"
 
@@ -2758,7 +2749,7 @@ msgid "Searching..."
 msgstr "正在搜索..."
 
 #: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
-#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3150
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3149
 msgid "Search for Files"
 msgstr "搜索文件"
 
@@ -2882,109 +2873,109 @@ msgstr "“%s”，以%s计"
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "输入以 %s 计的“%s”搜索选项值。"
 
-#: ../gsearchtool/gsearchtool.c:2149
+#: ../gsearchtool/gsearchtool.c:2148
 #, c-format
 msgid "Remove \"%s\""
 msgstr "删除“%s”"
 
-#: ../gsearchtool/gsearchtool.c:2150
+#: ../gsearchtool/gsearchtool.c:2149
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "单击可删除“%s”搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2243
+#: ../gsearchtool/gsearchtool.c:2242
 msgid "A_vailable options:"
 msgstr "可用选项(_V)："
 
-#: ../gsearchtool/gsearchtool.c:2272
+#: ../gsearchtool/gsearchtool.c:2271
 msgid "Available options"
 msgstr "可用选项"
 
-#: ../gsearchtool/gsearchtool.c:2273
+#: ../gsearchtool/gsearchtool.c:2272
 msgid "Select a search option from the drop-down list."
 msgstr "从下拉列表中选择搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2285
+#: ../gsearchtool/gsearchtool.c:2284
 msgid "Add search option"
 msgstr "添加搜索选项"
 
-#: ../gsearchtool/gsearchtool.c:2286
+#: ../gsearchtool/gsearchtool.c:2285
 msgid "Click to add the selected available search option."
 msgstr "单击可添加选中的可用搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2375
+#: ../gsearchtool/gsearchtool.c:2374
 msgid "S_earch results:"
 msgstr "搜索结果(_E)："
 
-#: ../gsearchtool/gsearchtool.c:2414
+#: ../gsearchtool/gsearchtool.c:2413
 msgid "List View"
 msgstr "列表视图"
 
-#: ../gsearchtool/gsearchtool.c:2510
+#: ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "大小"
 
-#: ../gsearchtool/gsearchtool.c:2521
+#: ../gsearchtool/gsearchtool.c:2520
 msgid "Type"
 msgstr "类型"
 
-#: ../gsearchtool/gsearchtool.c:2532
+#: ../gsearchtool/gsearchtool.c:2531
 msgid "Date Modified"
 msgstr "修改时间"
 
-#: ../gsearchtool/gsearchtool.c:2934
+#: ../gsearchtool/gsearchtool.c:2933
 msgid "_Name contains:"
 msgstr "名称包含(_N)："
 
-#: ../gsearchtool/gsearchtool.c:2948 ../gsearchtool/gsearchtool.c:2949
+#: ../gsearchtool/gsearchtool.c:2947 ../gsearchtool/gsearchtool.c:2948
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "输入文件名或部分文件名，可以使用通配符。"
 
-#: ../gsearchtool/gsearchtool.c:2949
+#: ../gsearchtool/gsearchtool.c:2948
 msgid "Name contains"
 msgstr "名称包含"
 
-#: ../gsearchtool/gsearchtool.c:2955
+#: ../gsearchtool/gsearchtool.c:2954
 msgid "_Look in folder:"
 msgstr "搜索文件夹(_L)："
 
-#: ../gsearchtool/gsearchtool.c:2961
+#: ../gsearchtool/gsearchtool.c:2960
 msgid "Browse"
 msgstr "浏览"
 
-#: ../gsearchtool/gsearchtool.c:2966
+#: ../gsearchtool/gsearchtool.c:2965
 msgid "Look in folder"
 msgstr "搜索文件夹"
 
-#: ../gsearchtool/gsearchtool.c:2966
+#: ../gsearchtool/gsearchtool.c:2965
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "选择您想要开始搜索的文件夹或设备。"
 
-#: ../gsearchtool/gsearchtool.c:2977
+#: ../gsearchtool/gsearchtool.c:2976
 msgid "Select more _options"
 msgstr "选择更多选项(_O)"
 
-#: ../gsearchtool/gsearchtool.c:2986
+#: ../gsearchtool/gsearchtool.c:2985
 msgid "Select more options"
 msgstr "选择更多选项"
 
-#: ../gsearchtool/gsearchtool.c:2986
+#: ../gsearchtool/gsearchtool.c:2985
 msgid "Click to expand or collapse the list of available options."
 msgstr "单击可展开或折叠可用选项列表。"
 
-#: ../gsearchtool/gsearchtool.c:3010
+#: ../gsearchtool/gsearchtool.c:3009
 msgid "Click to display the help manual."
 msgstr "单击可显示帮助手册。"
 
-#: ../gsearchtool/gsearchtool.c:3018
+#: ../gsearchtool/gsearchtool.c:3017
 msgid "Click to close \"Search for Files\"."
 msgstr "单击可关闭“搜索文件”。"
 
-#: ../gsearchtool/gsearchtool.c:3044
+#: ../gsearchtool/gsearchtool.c:3043
 msgid "Click to perform a search."
 msgstr "单击可执行搜索。"
 
-#: ../gsearchtool/gsearchtool.c:3045
+#: ../gsearchtool/gsearchtool.c:3044
 msgid "Click to stop a search."
 msgstr "单击可停止搜索。"
 
@@ -2996,25 +2987,25 @@ msgstr "系统日志查看器"
 msgid "A system log viewer for GNOME."
 msgstr "GNOME 系统日志查看器。"
 
-#: ../logview/gnome-system-log.desktop.in.h:1
+#: ../logview/gnome-system-log.desktop.in.in.h:1
 msgid "System Log"
 msgstr "系统日志"
 
-#: ../logview/gnome-system-log.desktop.in.h:2
-msgid "View the system log file"
-msgstr "查看系统日志文件"
+#: ../logview/gnome-system-log.desktop.in.in.h:2
+msgid "View or monitor system log files"
+msgstr "查看或监视系统日志文件"
 
-#: ../logview/log_repaint.c:179
+#: ../logview/log_repaint.c:187
 #, c-format
 msgid "last update : %s"
 msgstr "上次更新：%s"
 
-#: ../logview/log_repaint.c:181
+#: ../logview/log_repaint.c:189
 #, c-format
 msgid "%d lines (%s) - %s"
 msgstr "%d 行(%s) - %s"
 
-#: ../logview/log_repaint.c:219
+#: ../logview/log_repaint.c:227
 msgid "Current"
 msgstr "当前"
 
@@ -3062,10 +3053,6 @@ msgstr "过滤器(_F)："
 #: ../logview/logview-findbar.c:157
 msgid "_Clear"
 msgstr "清除(_C)"
-
-#: ../logview/logview.c:85
-msgid "_Log"
-msgstr "日志(_L)"
 
 #: ../logview/logview.c:90
 msgid "_Open..."
@@ -3167,24 +3154,24 @@ msgstr "日历(_L)"
 msgid "Show Calendar Log"
 msgstr "显示日历日志"
 
-#: ../logview/logview.c:308
+#: ../logview/logview.c:307
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (已监视) - %s"
 
-#: ../logview/logview.c:519
+#: ../logview/logview.c:518
 msgid "Open Log"
 msgstr "打开日志"
 
-#: ../logview/logview.c:907
+#: ../logview/logview.c:906
 msgid "Version: "
 msgstr "版本："
 
-#: ../logview/logview.c:976
+#: ../logview/logview.c:975
 msgid "Days"
 msgstr "天数"
 
-#: ../logview/logview.c:977
+#: ../logview/logview.c:976
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "指向当前日志天数 GSList 的指针。"
 
@@ -3329,3 +3316,62 @@ msgstr "不支持对此文件系统进行监视。\n"
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS 错误。\n"
 
+#~ msgid "Font Name"
+#~ msgstr "字体名"
+
+#~ msgid "The font to be used by the defbox"
+#~ msgstr "定义框所使用的字体"
+
+#~ msgid "Emphasys Color"
+#~ msgstr "强调颜色"
+
+#~ msgid "Color of emphasised text"
+#~ msgstr "强调文本的颜色"
+
+#~ msgid "Link Color"
+#~ msgstr "链接颜色"
+
+#~ msgid "Color of hyperlinks"
+#~ msgstr "超级链接的颜色"
+
+#~ msgid "Word Color"
+#~ msgstr "单词颜色"
+
+#~ msgid "Color of the dictionary word"
+#~ msgstr "字典单词的颜色"
+
+#~ msgid "Source Color"
+#~ msgstr "源颜色"
+
+#~ msgid "Color of the dictionary source"
+#~ msgstr "字典源的颜色"
+
+#~ msgid "Progress"
+#~ msgstr "格进度"
+
+#~ msgid "Definition for '%s' (%d/%d)"
+#~ msgstr "“%s”的定义(%d/%d)"
+
+#~ msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
+#~ msgstr "试图查阅“%s”但未定义 GdictContext。中止。"
+
+#~ msgid "Unable to open the application icon: %s"
+#~ msgstr "无法打开应用程序图标：%s"
+
+#~ msgid "Preferences"
+#~ msgstr "首选项"
+
+#~ msgid "Unable to load the applet icon"
+#~ msgstr "无法装入小程序图标"
+
+#~ msgid "Unable to load the application icon"
+#~ msgstr "无法装入应用程序图标"
+
+#~ msgid "Take a screenshot of your desktop"
+#~ msgstr "获得您桌面的抓图"
+
+#~ msgid "Find files, folders, and documents on your computer"
+#~ msgstr "在您的计算机上查找文件、文件夹和文档"
+
+#~ msgid "_Log"
+#~ msgstr "日志(_L)"
