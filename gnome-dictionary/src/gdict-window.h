@@ -46,7 +46,9 @@ struct _GdictWindow
   GtkWidget *menubar;
   GtkWidget *entry;
   GtkWidget *speller;
-  GtkWidget *speller_frame;
+  GtkWidget *db_chooser;
+  GtkWidget *sidebar;
+  GtkWidget *sidebar_frame;
   GtkWidget *defbox;
   GtkWidget *defbox_frame;
   GtkWidget *status;
@@ -84,8 +86,9 @@ struct _GdictWindow
   gint default_width;
   gint default_height;
   
-  guint is_maximized    : 1;
-  guint speller_visible : 1;
+  guint is_maximized      : 1;
+  guint sidebar_visible   : 1;
+  guint statusbar_visible : 1;
   
   gulong window_id;
 };

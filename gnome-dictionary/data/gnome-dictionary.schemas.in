@@ -140,20 +140,34 @@
     </schema>
 
     <schema>
-      <key>/schemas/apps/gnome-dictionary/speller-visible</key>
-      <applyto>/apps/gnome-dictionary/speller-visible</applyto>
+      <key>/schemas/apps/gnome-dictionary/sidebar-visible</key>
+      <applyto>/apps/gnome-dictionary/sidebar-visible</applyto>
       <owner>gnome-dictionary</owner>
       <type>bool</type>
       <default>FALSE</default>
       <locale name="C">
-        <short>Whether the speller should be visible</short>
-	<long>This key defines whether the speller widget should be visible
-	and it's used to remember the state of the speller widgets across
-	sessions.  Setting it to TRUE will make the speller widget always
+        <short>Whether the sidebar should be visible</short>
+	<long>This key defines whether the sidebar should be visible
+	and it's used to remember the state of the sidebar across
+	sessions.  Setting it to TRUE will make the sidebar always
 	be displayed.</long>
       </locale>
     </schema>
 
+    <schema>
+      <key>/schemas/apps/gnome-dictionary/statusbar-visible</key>
+      <applyto>/apps/gnome-dictionary/statusbar-visible</applyto>
+      <owner>gnome-dictionary</owner>
+      <type>bool</type>
+      <default>FALSE</default>
+      <locale name="C">
+        <short>Whether the statusbar should be visible</short>
+	<long>This key defines whether the statusbar should be visible
+	and it's used to remember the state of the statusbar across
+	sessions.  Setting it to TRUE will make the statusbar always
+	be displayed.</long>
+      </locale>
+    </schema>
     
   </schemalist>
   

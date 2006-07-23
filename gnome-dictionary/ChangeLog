@@ -1,3 +1,42 @@
+2006-07-23  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	A src/gdict-sidebar.h
+	A src/gdict-sidebar.c
+
+	* src/gdict-sidebar.h:
+	* src/gdict-sidebar.c: Add a side bar widget, similar to
+	Evince and Totem own side bar.
+
+	* data/gnome-dictionary-ui.xml: Add new actions for the
+	View menu, controlling the visibility of the speller,
+	database chooser (NYI), side bar and status bar.
+
+	* data/gnome-dictionary.schemas.in: Remove the 'speller-visible'
+	key, and add the 'sidebar-visible' and 'statusbar-visible' keys.
+
+	* libgdict/gdict-database-chooser.h
+	* libgdict/gdict-database-chooser.c: Implement the database
+	chooser as the speller widget: a box containing a treeview with
+	all the available databases; to be displayed inside the side
+	bar.  Not yet finished.
+
+	* libgdict/gdict-speller.h:
+	* libgdict/gdict-speller.c: Remove the "sidebar" look and make
+	it a bit less specialized widget to be embedded inside the
+	side bar. Do not leak the list store.
+
+	* src/Makefile.am: Add gdict-sidebar.[ch] to the build.
+
+	* src/gdict-applet.c (gdict_applet_lookup_end_cb): Cast the
+	window pointer.
+
+	* src/gdict-pref-dialog.h: Add the macros for the new keys.
+
+	* src/gdict-window.h:
+	* src/gdict-window.c: Control the status bar using a GConf key
+	and a menu item; add the new GdictSidebar widget and embed the
+	speller widget as a page inside it.
+
 2006-07-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-applet.c: Remove an unneeded function; use

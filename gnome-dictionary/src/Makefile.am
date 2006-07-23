@@ -25,6 +25,8 @@ gnome_dictionary_SOURCES = \
 	gdict-pref-dialog.h	\
 	gdict-print.c 		\
 	gdict-print.h 		\
+	gdict-sidebar.c		\
+	gdict-sidebar.h		\
 	gdict-source-dialog.c 	\
 	gdict-source-dialog.h 	\
 	gdict-window.c 		\
@@ -64,6 +66,8 @@ gnome_dictionary_applet_SOURCES = \
 	gdict-pref-dialog.h	\
 	gdict-print.c 		\
 	gdict-print.h 		\
+	gdict-sidebar.c		\
+	gdict-sidebar.h		\
 	gdict-source-dialog.c 	\
 	gdict-source-dialog.h 	\
 	$(NULL)

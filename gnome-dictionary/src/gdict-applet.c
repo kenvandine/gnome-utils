@@ -675,7 +675,7 @@ gdict_applet_lookup_end_cb (GdictContext *context,
 {
   gdict_applet_set_menu_items_sensitive (applet, TRUE);
 
-  gtk_window_present (applet->priv->window);
+  gtk_window_present (GTK_WINDOW (applet->priv->window));
 
   set_window_default_size (applet);
 }

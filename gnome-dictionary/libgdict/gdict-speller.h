@@ -51,7 +51,6 @@ struct _GdictSpellerClass
   void (*word_activated) (GdictSpeller *speller,
 		          const gchar  *word,
 			  const gchar  *database);
-  void (*closed)        (GdictSpeller *speller);
 
   /* padding for future expansion */
   void (*_gdict_speller_1) (void);
@@ -82,8 +81,6 @@ void                  gdict_speller_match            (GdictSpeller *speller,
 gint                  gdict_speller_count_matches    (GdictSpeller *speller);
 gchar **              gdict_speller_get_matches      (GdictSpeller *speller,
 						      gsize         length);
-
-void                  gdict_speller_closed           (GdictSpeller *speller);
 
 G_END_DECLS
 

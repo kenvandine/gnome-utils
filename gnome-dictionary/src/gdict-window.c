@@ -42,6 +42,7 @@
 
 #include <libgdict/gdict.h>
 
+#include "gdict-sidebar.h"
 #include "gdict-print.h"
 #include "gdict-pref-dialog.h"
 #include "gdict-about.h"
@@ -135,19 +136,36 @@ gdict_window_finalize (GObject *object)
 }
 
 static void
-gdict_window_set_speller_visible (GdictWindow *window,
+gdict_window_set_sidebar_visible (GdictWindow *window,
 				  gboolean     is_visible)
 {
   g_assert (GDICT_IS_WINDOW (window));
   
-  if (is_visible != window->speller_visible)
+  if (is_visible != window->sidebar_visible)
     {
       if (is_visible)
-	gtk_widget_show (window->speller_frame);
+	gtk_widget_show (window->sidebar_frame);
       else
-	gtk_widget_hide (window->speller_frame);
+	gtk_widget_hide (window->sidebar_frame);
 
-      window->speller_visible = is_visible;
+      window->sidebar_visible = is_visible;
+    }
+}
+
+static void
+gdict_window_set_statusbar_visible (GdictWindow *window,
+				    gboolean     is_visible)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+  if (is_visible != window->statusbar_visible)
+    {
+      if (is_visible)
+	gtk_widget_show (window->status);
+      else
+	gtk_widget_hide (window->status);
+
+      window->statusbar_visible = is_visible;
     }
 }
 
@@ -186,8 +204,6 @@ gdict_window_lookup_start_cb (GdictContext *context,
   if (!window->busy_cursor)
     window->busy_cursor = gdk_cursor_new (GDK_WATCH);
 
-  gdict_window_set_speller_visible (window, FALSE);
-  
   message = g_strdup_printf (_("Searching for '%s'..."), window->word);
   
   if (window->status)
@@ -253,9 +269,9 @@ gdict_window_error_cb (GdictContext *context,
     {
       GdictSource *source;
       GdictContext *context;
-      
-      gtk_widget_show (window->speller_frame);
-      window->speller_visible = TRUE;
+
+      gdict_window_set_sidebar_visible (window, TRUE);
+      gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), "speller");
 
       /* we clone the context, so that the signals that it
        * fires do not get caught by the signal handlers we
@@ -595,8 +611,12 @@ gdict_window_cmd_file_new (GtkAction   *action,
 			 window->is_maximized,
 			 NULL);
   gconf_client_set_bool (window->gconf_client,
-		  	 GDICT_GCONF_SPELLER_VISIBLE_KEY,
-			 window->speller_visible,
+		  	 GDICT_GCONF_SIDEBAR_VISIBLE_KEY,
+			 window->sidebar_visible,
+			 NULL);
+  gconf_client_set_bool (window->gconf_client,
+		  	 GDICT_GCONF_STATUSBAR_VISIBLE_KEY,
+			 window->statusbar_visible,
 			 NULL);
  
   new_window = gdict_window_new (window->loader, NULL, NULL);
@@ -691,8 +711,12 @@ gdict_window_cmd_file_close_window (GtkAction   *action,
 			 window->is_maximized,
 			 NULL);
   gconf_client_set_bool (window->gconf_client,
-		         GDICT_GCONF_SPELLER_VISIBLE_KEY,
-			 window->speller_visible,
+		         GDICT_GCONF_SIDEBAR_VISIBLE_KEY,
+			 window->sidebar_visible,
+			 NULL);
+  gconf_client_set_bool (window->gconf_client,
+		  	 GDICT_GCONF_STATUSBAR_VISIBLE_KEY,
+			 window->statusbar_visible,
 			 NULL);
   
   /* if this was called from the uimanager, destroy the widget;
@@ -761,15 +785,51 @@ gdict_window_cmd_edit_preferences (GtkAction   *action,
 }
 
 static void
-gdict_window_cmd_view_speller (GtkAction   *action,
+gdict_window_cmd_view_sidebar (GtkAction   *action,
 			       GdictWindow *window)
 {
   gboolean is_active;
   
   g_assert (GDICT_IS_WINDOW (window));
 
-  is_active = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action));
-  gdict_window_set_speller_visible (window, is_active);
+  if (window->sidebar_visible)
+    gdict_window_set_sidebar_visible (window, FALSE);
+  else
+    gdict_window_set_sidebar_visible (window, TRUE);
+}
+
+static void
+gdict_window_cmd_view_statusbar (GtkAction   *action,
+				 GdictWindow *window)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+  if (window->statusbar_visible)
+    gdict_window_set_statusbar_visible (window, FALSE);
+  else
+    gdict_window_set_statusbar_visible (window, TRUE);
+}
+
+static void
+gdict_window_cmd_view_speller (GtkAction   *action,
+			       GdictWindow *window)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), "speller");
+  gdict_window_set_sidebar_visible (window, TRUE);
+}
+
+static void
+gdict_window_cmd_view_databases (GtkAction   *action,
+				 GdictWindow *window)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+#if 0
+  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), "databases");
+#endif
+  gdict_window_set_sidebar_visible (window, TRUE);
 }
 
 static void
@@ -877,13 +937,6 @@ gdict_window_cmd_escape (GtkAction   *action,
   gdict_defbox_set_show_find (GDICT_DEFBOX (window->defbox), FALSE);
 }
 
-static const GtkToggleActionEntry toggle_entries[] =
-{
-  { "ViewSpeller", NULL, N_("_Similar Words"), "<control>T",
-    N_("Show similar words"),
-    G_CALLBACK (gdict_window_cmd_view_speller), FALSE },
-};
-
 static const GtkActionEntry entries[] =
 {
   { "File", NULL, N_("_File") },
@@ -918,6 +971,14 @@ static const GtkActionEntry entries[] =
     G_CALLBACK (gdict_window_cmd_edit_preferences) },
 
   /* View menu */
+  { "ViewSidebar", NULL, N_("_Sidebar"), "F9", NULL,
+    G_CALLBACK (gdict_window_cmd_view_sidebar) },
+  { "ViewStatusbar", NULL, N_("S_tatusbar"), NULL, NULL,
+    G_CALLBACK (gdict_window_cmd_view_statusbar) },
+  { "ViewSpeller", NULL, N_("Similar _Words"), "<control>T", NULL,
+    G_CALLBACK (gdict_window_cmd_view_speller) },
+  { "ViewDb", NULL, N_("Available_Databases"), "<control>B", NULL,
+    G_CALLBACK (gdict_window_cmd_view_databases) },
 
   /* Go menu */
   { "GoPreviousDef", GTK_STOCK_GO_BACK, N_("_Previous Definition"), "<control>Page_Up",
@@ -1004,12 +1065,21 @@ gdict_window_gconf_notify_cb (GConfClient *client,
       else
         gdict_window_set_defbox_font (window, GDICT_DEFAULT_DEFBOX_FONT);
     }
-  else if (strcmp (entry->key, GDICT_GCONF_SPELLER_VISIBLE_KEY) == 0)
+  else if (strcmp (entry->key, GDICT_GCONF_SIDEBAR_VISIBLE_KEY) == 0)
     {
       if (entry->value && (entry->value->type == GCONF_VALUE_BOOL))
-        gdict_window_set_speller_visible (window, gconf_value_get_bool (entry->value));
+        gdict_window_set_sidebar_visible (window,
+					  gconf_value_get_bool (entry->value));
       else
-        gdict_window_set_speller_visible (window, FALSE);
+        gdict_window_set_sidebar_visible (window, FALSE);
+    }
+  else if (strcmp (entry->key, GDICT_GCONF_STATUSBAR_VISIBLE_KEY) == 0)
+    {
+      if (entry->value && (entry->value->type == GCONF_VALUE_BOOL))
+	gdict_window_set_statusbar_visible (window,
+					    gconf_value_get_bool (entry->value));
+      else
+	gdict_window_set_statusbar_visible (window, FALSE);
     }
 }
 
@@ -1032,6 +1102,17 @@ entry_activate_cb (GtkWidget   *widget,
   gdict_window_set_word (window, word, NULL);
 }
 
+#if 0
+static void
+database_activated_cb (GdictDatabaseChooser *chooser,
+		       const gchar          *db_name,
+		       const gchar          *db_desc,
+		       GdictWindow          *window)
+{
+  gdict_window_set_database (window, db_name);
+}
+#endif
+
 static void
 speller_word_activated_cb (GdictSpeller *speller,
 			   const gchar  *word,
@@ -1044,11 +1125,11 @@ speller_word_activated_cb (GdictSpeller *speller,
 }
 
 static void
-speller_closed_cb (GdictSpeller *speller,
+sidebar_closed_cb (GdictSidebar *sidebar,
 		   GdictWindow  *window)
 {
-  gtk_widget_hide (window->speller_frame);
-  window->speller_visible = FALSE;
+  gtk_widget_hide (window->sidebar_frame);
+  window->sidebar_visible = FALSE;
 }
 
 static void
@@ -1200,7 +1281,8 @@ gdict_window_constructor (GType                  type,
   PangoFontDescription *font_desc;
   gchar *font_name;
   GError *error;
-  gboolean speller_visible;
+  gboolean sidebar_visible;
+  gboolean statusbar_visible;
   
   object = G_OBJECT_CLASS (gdict_window_parent_class)->constructor (type,
   						   n_construct_properties,
@@ -1220,9 +1302,6 @@ gdict_window_constructor (GType                  type,
   gtk_action_group_add_actions (action_group, entries,
   				G_N_ELEMENTS (entries),
   				window);
-  gtk_action_group_add_toggle_actions (action_group, toggle_entries,
-		                       G_N_ELEMENTS (toggle_entries),
-				       window);
   
   window->ui_manager = gtk_ui_manager_new ();
   gtk_ui_manager_insert_action_group (window->ui_manager, action_group, 0);
@@ -1293,31 +1372,58 @@ gdict_window_constructor (GType                  type,
   gtk_container_add (GTK_CONTAINER (frame1), window->defbox);
   gtk_widget_show (window->defbox);
 
+  window->sidebar = gdict_sidebar_new ();
+  g_signal_connect (window->sidebar, "closed",
+		    G_CALLBACK (sidebar_closed_cb),
+		    window);
+  
   window->speller = gdict_speller_new ();
   if (window->context)
-    gdict_speller_set_context (GDICT_SPELLER (window->speller), window->context);
-
+    gdict_speller_set_context (GDICT_SPELLER (window->speller),
+		    	       window->context);
   g_signal_connect (window->speller, "word-activated",
 		    G_CALLBACK (speller_word_activated_cb),
 		    window);
-  g_signal_connect (window->speller, "closed",
-		    G_CALLBACK (speller_closed_cb),
-		    window);
-  gtk_container_add (GTK_CONTAINER (frame2), window->speller);
+  
+  gdict_sidebar_add_page (GDICT_SIDEBAR (window->sidebar),
+		          "speller",
+			  _("Similar words"),
+			  window->speller);
   gtk_widget_show (window->speller);
+
+#if 0
+  window->db_chooser = gdict_database_chooser_new ();
+  if (window->context)
+    gdict_database_chooser_set_contect (GDICT_DATABASE_CHOOSER (window->db_chooser,
+			    		window->context);
+  g_signal_connect (window->db_chooser, "database-activated",
+	  	    G_CALLBACK (database_activated_cb),
+		    window);
+  gdict_sidebar_add_page (GDICT_SIDEBAR (window->sidebar),
+	  		  "db-chooser",
+			  _("Available dictionaries"),
+			  window->db_chooser);
+  gtk_widget_show (window->db_chooser);
+#endif
+  
+  gtk_container_add (GTK_CONTAINER (frame2), window->sidebar);
+  gtk_widget_show (window->sidebar);
 
   gtk_paned_pack1 (GTK_PANED (handle), frame1, TRUE, FALSE);
   gtk_paned_pack2 (GTK_PANED (handle), frame2, FALSE, TRUE);
 
   window->defbox_frame = frame1;
-  window->speller_frame = frame2;
+  window->sidebar_frame = frame2;
 
   gtk_widget_show (window->defbox_frame);
 
   window->status = gtk_statusbar_new ();
   gtk_statusbar_set_has_resize_grip (GTK_STATUSBAR (window->status), TRUE);
   gtk_box_pack_end (GTK_BOX (window->main_box), window->status, FALSE, FALSE, 0);
-  gtk_widget_show (window->status);
+  statusbar_visible = gconf_client_get_bool (window->gconf_client,
+		  			     GDICT_GCONF_STATUSBAR_VISIBLE_KEY,
+					     NULL);
+  gdict_window_set_statusbar_visible (window, statusbar_visible);
 
   window->progress = gtk_progress_bar_new ();
   gtk_box_pack_end (GTK_BOX (window->status), window->progress, FALSE, FALSE, 0);
@@ -1332,18 +1438,11 @@ gdict_window_constructor (GType                  type,
   gdict_window_set_defbox_font (window, font_name);
   font_desc = pango_font_description_from_string (font_name);
 
-  speller_visible = gconf_client_get_bool (window->gconf_client,
-		  			   GDICT_GCONF_SPELLER_VISIBLE_KEY,
+  sidebar_visible = gconf_client_get_bool (window->gconf_client,
+		  			   GDICT_GCONF_SIDEBAR_VISIBLE_KEY,
 					   NULL);
-  action = gtk_action_group_get_action (action_group, "ViewSpeller");
-  if (action)
-    {
-      gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-		                    speller_visible);
-      gtk_toggle_action_toggled (GTK_TOGGLE_ACTION (action));
-    }
-  window->speller_visible = speller_visible;
-  
+  gdict_window_set_sidebar_visible (window, sidebar_visible);
+
   /* retrieve the window state from gconf */
   is_maximized = gconf_client_get_bool (window->gconf_client,
 		  			GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,

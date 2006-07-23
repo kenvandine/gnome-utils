@@ -21,7 +21,7 @@
 #define __GDICT_DATABASE_CHOOSER_H__
 
 #include <gdict-context.h>
-#include <gtk/gtkcomboxboxentry.h>
+#include <gtk/gtkvbox.h>
 
 G_BEGIN_DECLS
 
@@ -43,14 +43,18 @@ typedef struct _GdictDatabaseChooserClass	GdictDatabaseChooserClass;
 
 struct _GdictDatabaseChooser
 {
-  GtkComboBoxEntry parent_instance;
+  GtkVBox parent_instance;
   
   GdictDatabaseChooserPrivate *priv;
 };
 
 struct _GdictDatabaseChooserClass
 {
-  GtkComboBoxEntryClass parent_class;
+  GtkVBoxClass parent_class;
+
+  void (*database_activated) (GdictDatabaseChooser *chooser,
+		  	      const gchar          *name,
+			      const gchar          *description);
   
   void (*_gdict_padding1) (void);
   void (*_gdict_padding2) (void);
@@ -72,12 +76,10 @@ void          gdict_database_chooser_set_context      (GdictDatabaseChooser  *ch
 gchar **      gdict_database_chooser_get_databases    (GdictDatabaseChooser  *chooser,
 						       gsize                  length,
 						       GError               **error) G_GNUC_MALLOC;
+gint          gdict_database_chooser_count_databases  (GdictDatabaseChooser  *chooser);
 gboolean      gdict_database_chooser_has_database     (GdictDatabaseChooser  *chooser,
 						       const gchar           *database);
-gboolean      gdict_database_chooser_set_database     (GdictDatabaseChooser  *chooser,
-						       const gchar           *database,
-						       GError               **error);
-gchar *       gdict_database_chooser_get_database     (GdictDatabaseChooser  *chooser) G_GNUC_MALLOC;
+void          gdict_database_chooser_clear            (GdictDatabaseChooser  *chooser);
 
 G_END_DECLS
 

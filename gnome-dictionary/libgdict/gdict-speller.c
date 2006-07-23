@@ -49,7 +49,6 @@ struct _GdictSpellerPrivate
   gchar *word;
 
   GtkWidget *treeview;
-  GtkWidget *close;
 
   GdkCursor *busy_cursor;
 
@@ -94,7 +93,6 @@ enum
 enum
 {
   WORD_ACTIVATED,
-  CLOSED,
 
   LAST_SIGNAL
 };
@@ -145,7 +143,7 @@ set_gdict_context (GdictSpeller *speller,
 
   if (!GDICT_IS_CONTEXT (context))
     {
-      g_warning ("Object of type '%s' instead of a GdictContext\n",
+      g_warning ("Object of type `%s' instead of a GdictContext\n",
       		 g_type_name (G_OBJECT_TYPE (context)));
       return;
     }
@@ -171,6 +169,8 @@ gdict_speller_finalize (GObject *gobject)
   g_free (priv->strategy);
   g_free (priv->database);
   g_free (priv->word);
+
+  g_object_unref (priv->store);
     
   G_OBJECT_CLASS (gdict_speller_parent_class)->finalize (gobject);
 }
@@ -223,6 +223,8 @@ gdict_speller_get_property (GObject    *gobject,
     case PROP_CONTEXT:
       g_value_set_object (value, speller->priv->context);
       break;
+    case PROP_COUNT:
+      g_value_set_int (value, speller->priv->results);
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
       break;
@@ -272,46 +274,23 @@ row_activated_cb (GtkTreeView       *treeview,
 
 static GObject *
 gdict_speller_constructor (GType                  type,
-			   guint                  n_construct_properties,
-			   GObjectConstructParam *construct_params)
+			   guint                  n_params,
+			   GObjectConstructParam *params)
 {
   GObject *object;
   GdictSpeller *speller;
   GdictSpellerPrivate *priv;
-  GtkWidget *hbox;
-  GtkWidget *label;
   GtkWidget *sw;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
   
   object = G_OBJECT_CLASS (gdict_speller_parent_class)->constructor (type,
-  						                     n_construct_properties,
-								     construct_params);
+  						                     n_params,
+								     params);
   speller = GDICT_SPELLER (object);
   priv = speller->priv;
   
   gtk_widget_push_composite_child ();
-
-  hbox = gtk_hbox_new (FALSE, 6);
-  gtk_box_pack_start (GTK_BOX (speller), hbox, FALSE, FALSE, 0);
-  gtk_widget_show (hbox);
-
-  label = gtk_label_new (_("Similar words"));
-  gtk_widget_set_composite_name (label, "gdict-speller-label");
-  gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
-  gtk_box_pack_start (GTK_BOX (hbox), label, TRUE, TRUE, 0);
-  gtk_widget_show (label);
-
-  priv->close = gtk_button_new ();
-  gtk_widget_set_composite_name (priv->close, "gdict-speller-close-button");
-  gtk_button_set_image (GTK_BUTTON (priv->close),
-		        gtk_image_new_from_stock (GTK_STOCK_CLOSE,
-				                  GTK_ICON_SIZE_MENU));
-  gtk_button_set_relief (GTK_BUTTON (priv->close), GTK_RELIEF_NONE);
-  g_signal_connect_swapped (priv->close, "clicked",
-		            G_CALLBACK (gdict_speller_closed), speller);
-  gtk_box_pack_end (GTK_BOX (hbox), priv->close, FALSE, FALSE, 0);
-  gtk_widget_show (priv->close);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_set_composite_name (sw, "gdict-speller-scrolled-window");
@@ -387,14 +366,6 @@ gdict_speller_class_init (GdictSpellerClass *klass)
 		  G_TYPE_NONE, 2,
 		  G_TYPE_STRING,
 		  G_TYPE_STRING);
-  speller_signals[CLOSED] =
-    g_signal_new ("closed",
-		  G_OBJECT_CLASS_TYPE (gobject_class),
-		  G_SIGNAL_RUN_LAST,
-		  G_STRUCT_OFFSET (GdictSpellerClass, closed),
-		  NULL, NULL,
-		  gdict_marshal_VOID__VOID,
-		  G_TYPE_NONE, 0);
   
   g_type_class_add_private (gobject_class, sizeof (GdictSpellerPrivate));
 }
@@ -803,20 +774,4 @@ gdict_speller_get_matches (GdictSpeller *speller,
   g_return_val_if_fail (GDICT_IS_SPELLER (speller), NULL);
   
   return NULL;
-}
-
-/**
- * gdict_speller_closed:
- * @speller: a #GdictSpeller
- *
- * FIXME
- *
- * Since: FIXME
- */
-void
-gdict_speller_closed (GdictSpeller *speller)
-{
-  g_return_if_fail (GDICT_IS_SPELLER (speller));
-
-  g_signal_emit (speller, speller_signals[CLOSED], 0);
 }

@@ -43,14 +43,36 @@
 struct _GdictDatabaseChooserPrivate
 {
   GtkListStore *store;
+
+  GtkWidget *treeview;
   
   GdictContext *context;
-  GSList *matches;
+  gint results;
   
   guint start_id;
   guint match_id;
   guint end_id;
   guint error_id;
+
+  GdkCursor *busy_cursor;
+
+  guint is_searching : 1;
+};
+
+enum
+{
+  DATABASE_NAME,
+  DATABASE_DESCRIPTION,
+  DATABASE_ERROR
+} DBType;
+
+enum
+{
+  DB_COLUMN_TYPE,
+  DB_COLUMN_NAME,
+  DB_COLUMN_DESCRIPTION,
+
+  DB_N_COLUMNS
 };
 
 enum
@@ -61,10 +83,19 @@ enum
   PROP_COUNT
 };
 
+enum
+{
+  DATABASE_ACTIVATED,
+  CLOSED,
+
+  LAST_SIGNAL
+};
+
+static guint db_chooser_signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (GdictDatabaseChooser,
                gdict_database_chooser,
-               GTK_TYPE_COMBO_BOX_ENTRY);
+               GTK_TYPE_VBOX);
 
 
 static void
@@ -122,39 +153,16 @@ set_gdict_context (GdictDatabaseChooser *chooser,
 static void
 gdict_database_chooser_finalize (GObject *gobject)
 {
-  GdictDatabaseChooserPrivate *priv;
-  
-  priv = GDICT_DATABASE_CHOOSER_GET_PRIVATE (gobject);
-  
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (gobject);
+  GdictDatabaseChooserPrivate *priv = chooser->priv;
+
   if (priv->context)
-    {
-      if (priv->start_id)
-        {
-          _gdict_debug ("Removing old context handlers\n");
-          
-          g_signal_handler_disconnect (priv->context, priv->start_id);
-          g_signal_handler_disconnect (priv->context, priv->match_id);
-          g_signal_handler_disconnect (priv->context, priv->end_id);
-          
-          priv->start_id = 0;
-          priv->end_id = 0;
-          priv->match_id = 0;
-        }
-      
-      if (priv->error_id)
-        {
-          g_signal_handler_disconnect (priv->context, priv->error_id);
+    set_gdict_context (speller, NULL);
 
-          priv->error_id = 0;
-        }
+  if (priv->busy_cursor)
+    gdk_cursor_unref (priv->busy_cursor);
 
-      _gdict_debug ("Removing old context\n");
-      
-      g_object_unref (G_OBJECT (priv->context));
-    }
-  
-  if (priv->store)
-    g_object_unref (priv->store);
+  g_object_unref (priv->store);
   
   G_OBJECT_CLASS (gdict_database_chooser_parent_class)->finalize (gobject);
 }
@@ -169,6 +177,9 @@ gdict_database_chooser_set_property (GObject      *gobject,
   
   switch (prop_id)
     {
+    case PROP_CONTEXT:
+      set_gdict_context (chooser, g_value_get_object (value));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
       break;
@@ -185,10 +196,84 @@ gdict_database_chooser_get_property (GObject    *gobject,
   
   switch (prop_id)
     {
+    case PROP_CONTEXT:
+      g_value_set_object (value, chooser->priv->context);
+      break;
+    case PROP_COUNT:
+      g_value_set_integer (value, chooser->priv->count);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
       break;
     }
+}
+
+static void
+row_activated_cb (GtkTreeView       *treeview,
+		  GtkTreePath       *path,
+		  GtkTreeViewColumn *column,
+		  gpointer           user_data)
+{
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
+  GdictDatabaseChooserPrivate *priv = chooser->priv;
+  GtkTreeIter iter;
+  gchar *db_name, *db_desc;
+  gboolean valid;
+
+  valid = gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store),
+		  		   &iter,
+				   path);
+  if (!valid)
+    {
+      g_warning ("Invalid iterator found");
+      return;
+    }
+
+  gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+		      DB_COLUMN_NAME, &db_name,
+		      DB_COLUMN_DESCRIPTION, &db_desc,
+		      -1);
+  if (db_name && db_desc)
+    {
+      g_signal_emit (chooser, db_chooser_signals[DATABASE_ACTIVATED], 0,
+		     db_name, db_desc);
+    }
+  else
+    {
+      gchar *row = gtk_tree_path_to_string (path);
+
+      g_warning ("Row %s activated, but no database attached", row);
+      g_free (row);
+    }
+
+  g_free (db_name);
+  g_free (db_desc);
+}
+
+static GObject *
+gdict_database_chooser_constructor (GType                   type,
+				    guint                   n_params,
+				    GObjectConstructParams *params)
+{
+  GObject *object;
+  GdictDatabaseChooser *chooser;
+  GdictDatabaseChooserPrivate *priv;
+  GtkWidget *sw;
+  GtkCellRenderer *renderer;
+  GtkTreeViewColumn *column;
+
+  object = G_OBJECT_CLASS (gdict_database_chooser_parent_class)->constructor (type,
+		  							      n_params,
+									      params);
+
+  chooser = GDICT_DATABASE_CHOOSER (object);
+  priv = chooser->priv;
+
+  gtk_widget_push_composite_child ();
+
+  gtk_widget_pop_composite_child ();
+
+  return object;
 }
 
 static void
