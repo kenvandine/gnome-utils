@@ -977,7 +977,7 @@ static const GtkActionEntry entries[] =
     G_CALLBACK (gdict_window_cmd_view_statusbar) },
   { "ViewSpeller", NULL, N_("Similar _Words"), "<control>T", NULL,
     G_CALLBACK (gdict_window_cmd_view_speller) },
-  { "ViewDb", NULL, N_("Available_Databases"), "<control>B", NULL,
+  { "ViewDB", NULL, N_("Available_Databases"), "<control>B", NULL,
     G_CALLBACK (gdict_window_cmd_view_databases) },
 
   /* Go menu */
