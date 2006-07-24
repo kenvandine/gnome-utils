@@ -168,8 +168,8 @@ set_window_default_size (GdictApplet *applet)
 
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
-  width = MIN (width, monitor.width * 3 / 4);
-  height = MIN (height, monitor.height * 3 / 4);
+  width = MIN (width, monitor.width * 1 / 2);
+  height = MIN (height, monitor.height * 1 / 2);
 
   /* Set size */
   gtk_widget_set_size_request (priv->frame, width, height);
