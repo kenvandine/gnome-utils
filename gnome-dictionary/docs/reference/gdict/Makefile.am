@@ -33,7 +33,9 @@ CFILE_GLOB=$(top_srcdir)/gnome-dictionary/libgdict/*.c
 IGNORE_HFILES =			\
 	gdict-enum-types.h	\
 	gdict-marshal.h		\
-	gdict-context-private.h
+	gdict-context-private.h \
+	stamp-gdict-enum-types.h \
+	stamp-gdict-marshal.h
 
 # Images to copy into HTML directory.
 HTML_IMAGES =

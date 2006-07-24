@@ -24,10 +24,17 @@ You should rarely instantiate this object directely: use an appropriate
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT GdictClientContext ##### -->
+<!-- ##### STRUCT GdictClientContextPrivate ##### -->
 <para>
-The #GdictClientContext struct contains private data only.
+
 </para>
+
+
+<!-- ##### MACRO GDICT_CLIENT_CONTEXT_ERROR ##### -->
+<para>
+
+</para>
+
 
 
 <!-- ##### ENUM GdictClientContextError ##### -->
@@ -45,6 +52,20 @@ trying to establish the connection.
 @GDICT_CLIENT_CONTEXT_ERROR_SERVER_DOWN: Indicates that the server is
 unavailable at the moment.
 
+<!-- ##### FUNCTION gdict_client_context_error_quark ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### STRUCT GdictClientContext ##### -->
+<para>
+The #GdictClientContext struct contains private data only.
+</para>
+
+
 <!-- ##### FUNCTION gdict_client_context_new ##### -->
 <para>
 
@@ -55,13 +76,13 @@ unavailable at the moment.
 @Returns: 
 
 
-<!-- ##### FUNCTION gdict_client_context_get_client ##### -->
+<!-- ##### FUNCTION gdict_client_context_set_hostname ##### -->
 <para>
 
 </para>
 
 @context: 
-@Returns: 
+@hostname: 
 
 
 <!-- ##### FUNCTION gdict_client_context_get_hostname ##### -->
@@ -71,6 +92,15 @@ unavailable at the moment.
 
 @context: 
 @Returns: 
+
+
+<!-- ##### FUNCTION gdict_client_context_set_port ##### -->
+<para>
+
+</para>
+
+@context: 
+@port: 
 
 
 <!-- ##### FUNCTION gdict_client_context_get_port ##### -->
@@ -91,21 +121,12 @@ unavailable at the moment.
 @client: 
 
 
-<!-- ##### FUNCTION gdict_client_context_set_hostname ##### -->
+<!-- ##### FUNCTION gdict_client_context_get_client ##### -->
 <para>
 
 </para>
 
 @context: 
-@hostname: 
-
-
-<!-- ##### FUNCTION gdict_client_context_set_port ##### -->
-<para>
-
-</para>
-
-@context: 
-@port: 
+@Returns: 
 
 

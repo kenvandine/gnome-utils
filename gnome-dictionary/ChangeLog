@@ -1,5 +1,20 @@
 2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-sidebar.c:
+	(gdict_sidebar_menu_item_activate): Emit the "page-changed"
+	signal.
+
+	* src/gdict-window.c:
+	(database_activated_cb), (speller_word_activated_cb): Show
+	a message inside the status bar when the user selects a
+	database or a word from the side bar.
+
+	(gdict_window_constructor),
+	(sidebar_page_changed_cb): Show a message inside the status
+	bar depending on the page selected inside the side bar.
+
+2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-window.h:
 	* src/gdict-window.c: Add a GtkEntryCompletion to
 	the look up entry, to store the list of successfully

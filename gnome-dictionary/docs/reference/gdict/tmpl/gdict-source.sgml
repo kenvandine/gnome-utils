@@ -23,6 +23,45 @@ A #GdictSource is represented using a #GKeyFile.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### STRUCT GdictSourcePrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM GdictSourceTransport ##### -->
+<para>
+
+</para>
+
+@GDICT_SOURCE_TRANSPORT_DICTD: 
+@GDICT_SOURCE_TRANSPORT_INVALID: 
+
+<!-- ##### MACRO GDICT_SOURCE_ERROR ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### ENUM GdictSourceError ##### -->
+<para>
+
+</para>
+
+@GDICT_SOURCE_ERROR_PARSE: 
+@GDICT_SOURCE_ERROR_INVALID_NAME: 
+@GDICT_SOURCE_ERROR_INVALID_TRANSPORT: 
+@GDICT_SOURCE_ERROR_INVALID_BAD_PARAMETER: 
+
+<!-- ##### FUNCTION gdict_source_error_quark ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
 <!-- ##### STRUCT GdictSource ##### -->
 <para>
 The #GdictSource structure contains onlyn private data.
@@ -71,31 +110,13 @@ The #GdictSource structure contains onlyn private data.
 @Returns: 
 
 
-<!-- ##### FUNCTION gdict_source_get_context ##### -->
+<!-- ##### FUNCTION gdict_source_set_name ##### -->
 <para>
 
 </para>
 
 @source: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdict_source_get_database ##### -->
-<para>
-
-</para>
-
-@source: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdict_source_get_description ##### -->
-<para>
-
-</para>
-
-@source: 
-@Returns: 
+@name: 
 
 
 <!-- ##### FUNCTION gdict_source_get_name ##### -->
@@ -107,25 +128,16 @@ The #GdictSource structure contains onlyn private data.
 @Returns: 
 
 
-<!-- ##### FUNCTION gdict_source_get_strategy ##### -->
+<!-- ##### FUNCTION gdict_source_set_description ##### -->
 <para>
 
 </para>
 
 @source: 
-@Returns: 
+@description: 
 
 
-<!-- ##### FUNCTION gdict_source_get_transport ##### -->
-<para>
-
-</para>
-
-@source: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdict_source_peek_context ##### -->
+<!-- ##### FUNCTION gdict_source_get_description ##### -->
 <para>
 
 </para>
@@ -143,22 +155,13 @@ The #GdictSource structure contains onlyn private data.
 @database: 
 
 
-<!-- ##### FUNCTION gdict_source_set_description ##### -->
+<!-- ##### FUNCTION gdict_source_get_database ##### -->
 <para>
 
 </para>
 
 @source: 
-@description: 
-
-
-<!-- ##### FUNCTION gdict_source_set_name ##### -->
-<para>
-
-</para>
-
-@source: 
-@name: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gdict_source_set_strategy ##### -->
@@ -168,6 +171,15 @@ The #GdictSource structure contains onlyn private data.
 
 @source: 
 @strategy: 
+
+
+<!-- ##### FUNCTION gdict_source_get_strategy ##### -->
+<para>
+
+</para>
+
+@source: 
+@Returns: 
 
 
 <!-- ##### FUNCTION gdict_source_set_transport ##### -->
@@ -190,5 +202,32 @@ The #GdictSource structure contains onlyn private data.
 @transport: 
 @first_transport_property: 
 @var_args: 
+
+
+<!-- ##### FUNCTION gdict_source_get_transport ##### -->
+<para>
+
+</para>
+
+@source: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_source_get_context ##### -->
+<para>
+
+</para>
+
+@source: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_source_peek_context ##### -->
+<para>
+
+</para>
+
+@source: 
+@Returns: 
 
 

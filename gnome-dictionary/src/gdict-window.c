@@ -1142,6 +1142,15 @@ database_activated_cb (GdictDatabaseChooser *chooser,
 		       GdictWindow          *window)
 {
   gdict_window_set_database (window, db_name);
+
+  if (window->status)
+    {
+      gchar *message;
+
+      message = g_strdup_printf (_("Database `%s' selected"), db_desc);
+      gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
+      g_free (message);
+    }
 }
 
 static void
@@ -1153,6 +1162,41 @@ speller_word_activated_cb (GdictSpeller *speller,
   gtk_entry_set_text (GTK_ENTRY (window->entry), word);
   
   gdict_window_set_word (window, word, db_name);
+
+  if (window->status)
+    {
+      gchar *message;
+
+      message = g_strdup_printf (_("Word `%s' selected"), word);
+      gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
+      g_free (message);
+    }
+}
+
+static void
+sidebar_page_changed_cb (GdictSidebar *sidebar,
+			 GdictWindow  *window)
+{
+  const gchar *page_id;
+  const gchar *message;
+
+  page_id = gdict_sidebar_current_page (sidebar);
+
+  switch (page_id[0])
+    {
+    case 's': /* speller */
+      message = _("Double-click on the word to look up");
+      break;
+    case 'd': /* db-chooser */
+      message = _("Double-click on the database to use");
+      break;
+    default:
+      message = NULL;
+      break;
+    }
+
+  if (message && window->status)
+    gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
 }
 
 static void
@@ -1427,6 +1471,9 @@ gdict_window_constructor (GType                  type,
   gtk_widget_show (window->defbox);
 
   window->sidebar = gdict_sidebar_new ();
+  g_signal_connect (window->sidebar, "page-changed",
+		    G_CALLBACK (sidebar_page_changed_cb),
+		    window);
   g_signal_connect (window->sidebar, "closed",
 		    G_CALLBACK (sidebar_closed_cb),
 		    window);

@@ -247,20 +247,28 @@ gdict_sidebar_menu_item_activate (GtkWidget *widget,
 				  gpointer   user_data)
 {
   GdictSidebar *sidebar = GDICT_SIDEBAR (user_data);
+  GdictSidebarPrivate *priv = sidebar->priv;
   GtkWidget *menu_item;
-  gchar *id;
+  const gchar *id;
   SidebarPage *page;
+  gint current_index;
 
-  menu_item = gtk_menu_get_active (GTK_MENU (sidebar->priv->menu));
+  menu_item = gtk_menu_get_active (GTK_MENU (priv->menu));
   id = g_object_get_data (G_OBJECT (menu_item), "gdict-sidebar-page-id");
   g_assert (id != NULL);
   
-  page = g_hash_table_lookup (sidebar->priv->pages_by_id, id);
+  page = g_hash_table_lookup (priv->pages_by_id, id);
   g_assert (page != NULL);
 
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (sidebar->priv->notebook),
+  current_index = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
+  if (current_index == page->index)
+    return;
+
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 		  		 page->index);
-  gtk_label_set_text (GTK_LABEL (sidebar->priv->label), page->name);
+  gtk_label_set_text (GTK_LABEL (priv->label), page->name);
+
+  g_signal_emit (sidebar, sidebar_signals[PAGE_CHANGED], 0);
 }
 
 static void

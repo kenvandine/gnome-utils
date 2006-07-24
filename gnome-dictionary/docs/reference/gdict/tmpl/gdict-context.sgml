@@ -30,10 +30,92 @@ is found, a signal should be fired by those implementations.
 <!-- ##### SECTION Stability_Level ##### -->
 
 
+<!-- ##### MACRO GDICT_TYPE_DATABASE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDICT_TYPE_STRATEGY ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDICT_TYPE_MATCH ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO GDICT_TYPE_DEFINITION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### STRUCT GdictDatabase ##### -->
+<para>
+A #GdictDatabase represents a database inside a dictionary source.
+</para>
+
+
+<!-- ##### STRUCT GdictStrategy ##### -->
+<para>
+A #GdictStrategy represents a matching strategy inside a dictionary source.
+</para>
+
+
+<!-- ##### STRUCT GdictMatch ##### -->
+<para>
+A #GdictMatch represents a single match for a word inside a dictionary source.
+</para>
+
+
+<!-- ##### STRUCT GdictDefinition ##### -->
+<para>
+A #GdictDefinition represents a single definition for a word inside a
+dictionary source.
+</para>
+
+
 <!-- ##### STRUCT GdictContext ##### -->
 <para>
 The #GdictClientContext struct contains private data only.
 </para>
+
+
+<!-- ##### STRUCT GdictContextIface ##### -->
+<para>
+
+</para>
+
+@base_iface: 
+@get_databases: 
+@get_strategies: 
+@match_word: 
+@define_word: 
+@lookup_start: 
+@lookup_end: 
+@database_found: 
+@strategy_found: 
+@match_found: 
+@definition_found: 
+@error: 
+@_gdict_context_1: 
+@_gdict_context_2: 
+@_gdict_context_3: 
+@_gdict_context_4: 
+
+<!-- ##### MACRO GDICT_CONTEXT_ERROR ##### -->
+<para>
+
+</para>
+
 
 
 <!-- ##### ENUM GdictContextError ##### -->
@@ -60,73 +142,12 @@ the dictionary source.
 @GDICT_CONTEXT_ERROR_NO_STRATEGIES: Indicates that no strategies were found on
 the dictionary source.
 
-<!-- ##### FUNCTION gdict_context_get_local_only ##### -->
+<!-- ##### FUNCTION gdict_context_error_quark ##### -->
 <para>
 
 </para>
 
-@context: 
 @Returns: 
-
-
-<!-- ##### FUNCTION gdict_context_set_local_only ##### -->
-<para>
-
-</para>
-
-@context: 
-@local_only: 
-
-
-<!-- ##### FUNCTION gdict_context_lookup_databases ##### -->
-<para>
-
-</para>
-
-@context: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdict_context_lookup_strategies ##### -->
-<para>
-
-</para>
-
-@context: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdict_context_define_word ##### -->
-<para>
-
-</para>
-
-@context: 
-@database: 
-@word: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION gdict_context_match_word ##### -->
-<para>
-
-</para>
-
-@context: 
-@database: 
-@strategy: 
-@word: 
-@error: 
-@Returns: 
-
-
-<!-- ##### STRUCT GdictDatabase ##### -->
-<para>
-A #GdictDatabase represents a database inside a dictionary source.
-</para>
 
 
 <!-- ##### FUNCTION gdict_database_ref ##### -->
@@ -164,10 +185,12 @@ A #GdictDatabase represents a database inside a dictionary source.
 @Returns: 
 
 
-<!-- ##### STRUCT GdictStrategy ##### -->
+<!-- ##### FUNCTION gdict_strategy_get_type ##### -->
 <para>
-A #GdictStrategy represents a matching strategy inside a dictionary source.
+
 </para>
+
+@Returns: 
 
 
 <!-- ##### FUNCTION gdict_strategy_ref ##### -->
@@ -205,10 +228,12 @@ A #GdictStrategy represents a matching strategy inside a dictionary source.
 @Returns: 
 
 
-<!-- ##### STRUCT GdictMatch ##### -->
+<!-- ##### FUNCTION gdict_match_get_type ##### -->
 <para>
-A #GdictMatch represents a single match for a word inside a dictionary source.
+
 </para>
+
+@Returns: 
 
 
 <!-- ##### FUNCTION gdict_match_ref ##### -->
@@ -246,11 +271,12 @@ A #GdictMatch represents a single match for a word inside a dictionary source.
 @Returns: 
 
 
-<!-- ##### STRUCT GdictDefinition ##### -->
+<!-- ##### FUNCTION gdict_definition_get_type ##### -->
 <para>
-A #GdictDefinition represents a single definition for a word inside a
-dictionary source.
+
 </para>
+
+@Returns: 
 
 
 <!-- ##### FUNCTION gdict_definition_ref ##### -->
@@ -303,6 +329,77 @@ dictionary source.
 </para>
 
 @def: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_set_local_only ##### -->
+<para>
+
+</para>
+
+@context: 
+@local_only: 
+
+
+<!-- ##### FUNCTION gdict_context_get_local_only ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_lookup_databases ##### -->
+<para>
+
+</para>
+
+@context: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_lookup_strategies ##### -->
+<para>
+
+</para>
+
+@context: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_match_word ##### -->
+<para>
+
+</para>
+
+@context: 
+@database: 
+@strategy: 
+@word: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION gdict_context_define_word ##### -->
+<para>
+
+</para>
+
+@context: 
+@database: 
+@word: 
+@error: 
 @Returns: 
 
 
