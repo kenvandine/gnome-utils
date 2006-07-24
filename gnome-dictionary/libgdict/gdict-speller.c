@@ -55,6 +55,8 @@ struct _GdictSpellerPrivate
 
   GtkListStore *store;
   gint results;
+
+  GtkTooltips *tips;
   
   guint start_id;
   guint end_id;
@@ -167,11 +169,15 @@ gdict_speller_finalize (GObject *gobject)
   if (priv->busy_cursor)
     gdk_cursor_unref (priv->busy_cursor);
 
+  if (priv->tips)
+    g_object_unref (priv->tips);
+
   g_free (priv->strategy);
   g_free (priv->database);
   g_free (priv->word);
 
-  g_object_unref (priv->store);
+  if (priv->store)
+    g_object_unref (priv->store);
     
   G_OBJECT_CLASS (gdict_speller_parent_class)->finalize (gobject);
 }
@@ -341,6 +347,9 @@ gdict_speller_constructor (GType                  type,
 		    speller);
   gtk_box_pack_start (GTK_BOX (hbox), priv->clear_button, FALSE, FALSE, 0);
   gtk_widget_show (priv->clear_button);
+  gtk_tooltips_set_tip (priv->tips, priv->clear_button,
+		        _("Clear the list of similar words"),
+			NULL);
 
   gtk_box_pack_end (GTK_BOX (speller), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
@@ -415,6 +424,9 @@ gdict_speller_init (GdictSpeller *speller)
 		                    G_TYPE_STRING, /* db_name */
 				    G_TYPE_STRING  /* word */);
 
+  priv->tips = gtk_tooltips_new ();
+  g_object_ref_sink (G_OBJECT (priv->tips));
+  
   priv->start_id = 0;
   priv->end_id = 0;
   priv->match_id = 0;

@@ -1,5 +1,19 @@
 2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* libgdict/gdict-database-chooser.c:
+	(gdict_database_chooser_refresh): Hook up the error
+	callback.
+	
+	(gdict_database_chooser_finalize),
+	(gdict_database_chooser_constructor),
+	(gdict_database_chooser_init): Add support for tooltips.
+
+	* libgdict/gdict-speller.c:
+	(gdict_speller_finalize), (gdict_speller_constructor),
+	(gdict_speller_init): Add support for tooltips.
+
+2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-applet.c:
 	(set_window_default_size): Allow the definition window to
 	take up at most half of the screen size. (#348333, patch

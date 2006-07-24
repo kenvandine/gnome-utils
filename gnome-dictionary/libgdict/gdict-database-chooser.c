@@ -50,6 +50,8 @@ struct _GdictDatabaseChooserPrivate
   
   GdictContext *context;
   gint results;
+
+  GtkTooltips *tips;
   
   guint start_id;
   guint match_id;
@@ -164,6 +166,9 @@ gdict_database_chooser_finalize (GObject *gobject)
     gdk_cursor_unref (priv->busy_cursor);
 
   g_object_unref (priv->store);
+
+  if (priv->tips)
+    g_object_unref (priv->tips);
   
   G_OBJECT_CLASS (gdict_database_chooser_parent_class)->finalize (gobject);
 }
@@ -328,6 +333,9 @@ gdict_database_chooser_constructor (GType                  type,
 		    chooser);
   gtk_box_pack_start (GTK_BOX (hbox), priv->refresh_button, FALSE, FALSE, 0);
   gtk_widget_show (priv->refresh_button);
+  gtk_tooltips_set_tip (priv->tips, priv->refresh_button,
+		  	_("Reload the list of available databases"),
+			NULL);
 
   priv->clear_button = gtk_button_new ();
   gtk_button_set_image (GTK_BUTTON (priv->clear_button),
@@ -338,6 +346,9 @@ gdict_database_chooser_constructor (GType                  type,
 		    chooser);
   gtk_box_pack_start (GTK_BOX (hbox), priv->clear_button, FALSE, FALSE, 0);
   gtk_widget_show (priv->clear_button);
+  gtk_tooltips_set_tip (priv->tips, priv->clear_button,
+		        _("Clear the list of available databases"),
+			NULL);
 
   gtk_box_pack_end (GTK_BOX (chooser), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
@@ -393,6 +404,9 @@ gdict_database_chooser_init (GdictDatabaseChooser *chooser)
 		                    G_TYPE_INT,    /* DBType */
 		                    G_TYPE_STRING, /* db_name */
 				    G_TYPE_STRING  /* db_desc */);
+
+  priv->tips = gtk_tooltips_new ();
+  g_object_ref_sink (G_OBJECT (priv->tips));
 
   priv->start_id = 0;
   priv->end_id = 0;
@@ -590,6 +604,11 @@ gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
 		      		       G_CALLBACK (lookup_end_cb),
 				       chooser);
     }
+
+  if (!priv->error_id)
+    priv->error_id = g_signal_connect (priv->context, "error",
+		    		       G_CALLBACK (error_cb),
+				       chooser);
 
   db_error = NULL;
   gdict_context_lookup_databases (priv->context, &db_error);
