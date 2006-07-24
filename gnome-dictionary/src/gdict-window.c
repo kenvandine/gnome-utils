@@ -57,6 +57,13 @@
 
 enum
 {
+  COMPLETION_TEXT_COLUMN,
+
+  COMPLETION_N_COLUMNS
+};
+
+enum
+{
   PROP_0,
   
   PROP_SOURCE_LOADER,
@@ -121,6 +128,12 @@ gdict_window_finalize (GObject *object)
     g_object_unref (window->ui_manager);
   
   g_object_unref (window->action_group);
+
+  if (window->completion)
+    g_object_unref (window->completion);
+
+  if (window->completion_model)
+    g_object_unref (window->completion_model);
 
   if (window->busy_cursor)
     gdk_cursor_unref (window->busy_cursor);
@@ -227,6 +240,7 @@ gdict_window_lookup_end_cb (GdictContext *context,
 {
   gchar *message;
   gint count;
+  GtkTreeIter iter;
 
   count = window->current_definition;
 
@@ -245,6 +259,11 @@ gdict_window_lookup_end_cb (GdictContext *context,
 
   if (window->progress)
     gtk_widget_hide (window->progress);
+
+  gtk_list_store_append (window->completion_model, &iter);
+  gtk_list_store_set (window->completion_model, &iter,
+		      COMPLETION_TEXT_COLUMN, window->word,
+		      -1);
 
   gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
   g_free (message);
@@ -1363,11 +1382,23 @@ gdict_window_constructor (GType                  type,
   label = gtk_label_new_with_mnemonic (_("Look _up:"));
   gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
   gtk_widget_show (label);
+
+  window->completion_model = gtk_list_store_new (COMPLETION_N_COLUMNS,
+		  				 G_TYPE_STRING);
+  
+  window->completion = gtk_entry_completion_new ();
+  gtk_entry_completion_set_popup_completion (window->completion, TRUE);
+  gtk_entry_completion_set_model (window->completion,
+		  		  GTK_TREE_MODEL (window->completion_model));
+  gtk_entry_completion_set_text_column (window->completion,
+		  			COMPLETION_TEXT_COLUMN);
   
   window->entry = gtk_entry_new ();
   if (window->word)
     gtk_entry_set_text (GTK_ENTRY (window->entry), window->word);
   
+  gtk_entry_set_completion (GTK_ENTRY (window->entry),
+		  	    window->completion);
   g_signal_connect (window->entry, "activate", G_CALLBACK (entry_activate_cb), window);
   gtk_box_pack_start (GTK_BOX (hbox), window->entry, TRUE, TRUE, 0);
   gtk_widget_show (window->entry);

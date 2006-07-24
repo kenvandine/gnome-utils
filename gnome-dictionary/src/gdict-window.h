@@ -56,6 +56,9 @@ struct _GdictWindow
   
   GtkUIManager *ui_manager;
   GtkActionGroup *action_group;
+ 
+  GtkEntryCompletion *completion;
+  GtkListStore *completion_model;
   
   GtkTooltips *tooltips;
   

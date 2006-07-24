@@ -1,5 +1,14 @@
 2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-window.h:
+	* src/gdict-window.c: Add a GtkEntryCompletion to
+	the look up entry, to store the list of successfully
+	found words.  doesn't save the history across sessions
+	and doesn't share it with the applet, but it should
+	be enough for the time being. (#311418)
+
+2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* src/gdict-window.c:
 	(gdict_window_constructor): Use two vbox instead of
 	frames to wrap the defbox and the side bar. (#345078,
