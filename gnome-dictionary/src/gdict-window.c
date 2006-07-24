@@ -614,6 +614,14 @@ gdict_window_cmd_file_new (GtkAction   *action,
 		  	 GDICT_GCONF_SIDEBAR_VISIBLE_KEY,
 			 window->sidebar_visible,
 			 NULL);
+  gconf_client_set_int (window->gconf_client,
+		  	GDICT_GCONF_SIDEBAR_WIDTH_KEY,
+			window->sidebar_width,
+			NULL);
+  gconf_client_set_string (window->gconf_client,
+		  	   GDICT_GCONF_SIDEBAR_PAGE_KEY,
+			   gdict_sidebar_current_page (GDICT_SIDEBAR (window->sidebar)),
+			   NULL);
   gconf_client_set_bool (window->gconf_client,
 		  	 GDICT_GCONF_STATUSBAR_VISIBLE_KEY,
 			 window->statusbar_visible,
@@ -714,6 +722,14 @@ gdict_window_cmd_file_close_window (GtkAction   *action,
 		         GDICT_GCONF_SIDEBAR_VISIBLE_KEY,
 			 window->sidebar_visible,
 			 NULL);
+  gconf_client_set_int  (window->gconf_client,
+		  	 GDICT_GCONF_SIDEBAR_WIDTH_KEY,
+			 window->sidebar_width,
+			 NULL);
+  gconf_client_set_string (window->gconf_client,
+		           GDICT_GCONF_SIDEBAR_PAGE_KEY,
+			   gdict_sidebar_current_page (GDICT_SIDEBAR (window->sidebar)),
+			   NULL);
   gconf_client_set_bool (window->gconf_client,
 		  	 GDICT_GCONF_STATUSBAR_VISIBLE_KEY,
 			 window->statusbar_visible,
@@ -826,9 +842,7 @@ gdict_window_cmd_view_databases (GtkAction   *action,
 {
   g_assert (GDICT_IS_WINDOW (window));
 
-#if 0
   gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), "databases");
-#endif
   gdict_window_set_sidebar_visible (window, TRUE);
 }
 
@@ -1102,7 +1116,6 @@ entry_activate_cb (GtkWidget   *widget,
   gdict_window_set_word (window, word, NULL);
 }
 
-#if 0
 static void
 database_activated_cb (GdictDatabaseChooser *chooser,
 		       const gchar          *db_name,
@@ -1111,7 +1124,6 @@ database_activated_cb (GdictDatabaseChooser *chooser,
 {
   gdict_window_set_database (window, db_name);
 }
-#endif
 
 static void
 speller_word_activated_cb (GdictSpeller *speller,
@@ -1261,6 +1273,20 @@ gdict_window_style_set (GtkWidget *widget,
   set_window_default_size (GDICT_WINDOW (widget));
 }
 
+static void
+gdict_window_handle_notify_position_cb (GtkWidget  *widget,
+					GParamSpec *pspec,
+					gpointer    user_data)
+{
+  GdictWindow *window = GDICT_WINDOW (user_data);
+  gint window_width, pos;
+
+  pos = gtk_paned_get_position (GTK_PANED (widget));
+  window_width = GTK_WIDGET (window)->allocation.width;
+
+  window->sidebar_width = window_width - pos;
+}
+
 static GObject *
 gdict_window_constructor (GType                  type,
 			  guint                  n_construct_properties,
@@ -1268,7 +1294,7 @@ gdict_window_constructor (GType                  type,
 {
   GObject *object;
   GdictWindow *window;
-  gint width, height;
+  gint width, height, sidebar_width;
   gboolean is_maximized;
   GtkWidget *hbox;
   GtkWidget *handle;
@@ -1279,7 +1305,7 @@ gdict_window_constructor (GType                  type,
   GtkAccelGroup *accel_group;
   GtkAction *action;
   PangoFontDescription *font_desc;
-  gchar *font_name;
+  gchar *font_name, *sidebar_page;
   GError *error;
   gboolean sidebar_visible;
   gboolean statusbar_visible;
@@ -1356,7 +1382,6 @@ gdict_window_constructor (GType                  type,
   frame2 = gtk_frame_new (NULL);
   gtk_frame_set_shadow_type (GTK_FRAME (frame1), GTK_SHADOW_IN);
   gtk_frame_set_shadow_type (GTK_FRAME (frame2), GTK_SHADOW_IN);
-  gtk_widget_set_size_request (frame2, 150, -1);
   
   window->defbox = gdict_defbox_new ();
   if (window->context)
@@ -1391,10 +1416,9 @@ gdict_window_constructor (GType                  type,
 			  window->speller);
   gtk_widget_show (window->speller);
 
-#if 0
   window->db_chooser = gdict_database_chooser_new ();
   if (window->context)
-    gdict_database_chooser_set_contect (GDICT_DATABASE_CHOOSER (window->db_chooser,
+    gdict_database_chooser_set_context (GDICT_DATABASE_CHOOSER (window->db_chooser),
 			    		window->context);
   g_signal_connect (window->db_chooser, "database-activated",
 	  	    G_CALLBACK (database_activated_cb),
@@ -1404,7 +1428,6 @@ gdict_window_constructor (GType                  type,
 			  _("Available dictionaries"),
 			  window->db_chooser);
   gtk_widget_show (window->db_chooser);
-#endif
   
   gtk_container_add (GTK_CONTAINER (frame2), window->sidebar);
   gtk_widget_show (window->sidebar);
@@ -1454,7 +1477,13 @@ gdict_window_constructor (GType                  type,
   height = gconf_client_get_int (window->gconf_client,
 		  		 GDICT_GCONF_WINDOW_HEIGHT_KEY,
 				 NULL);
-  
+  sidebar_width = gconf_client_get_int (window->gconf_client,
+		  			GDICT_GCONF_SIDEBAR_WIDTH_KEY,
+					NULL);
+  sidebar_page = gconf_client_get_string (window->gconf_client,
+		  			  GDICT_GCONF_SIDEBAR_PAGE_KEY,
+					  NULL);
+
   /* if the (width, height) tuple is not defined, use the font to
    * calculate the right window geometry
    */
@@ -1484,6 +1513,10 @@ gdict_window_constructor (GType                  type,
   			       height);
   if (is_maximized)
     gtk_window_maximize (GTK_WINDOW (window));
+
+  gtk_paned_set_position (GTK_PANED (handle),
+		          GTK_WIDGET (window)->allocation.width - sidebar_width);
+  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), sidebar_page);
   
   g_signal_connect (window, "delete-event",
 		    G_CALLBACK (gdict_window_delete_event_cb),
@@ -1491,6 +1524,9 @@ gdict_window_constructor (GType                  type,
   g_signal_connect (window, "window-state-event",
 		    G_CALLBACK (gdict_window_state_event_cb),
 		    NULL);
+  g_signal_connect (handle, "notify::position",
+		    G_CALLBACK (gdict_window_handle_notify_position_cb),
+		    window);
 
   gtk_widget_pop_composite_child ();
   

@@ -45,6 +45,8 @@ G_BEGIN_DECLS
 #define GDICT_GCONF_WINDOW_HEIGHT_KEY 		GDICT_GCONF_DIR "/default-window-height"
 #define GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY 	GDICT_GCONF_DIR "/window-is-maximized"
 #define GDICT_GCONF_SIDEBAR_VISIBLE_KEY		GDICT_GCONF_DIR "/sidebar-visible"
+#define GDICT_GCONF_SIDEBAR_PAGE_KEY            GDICT_GCONF_DIR "/sidebar-page"
+#define GDICT_GCONF_SIDEBAR_WIDTH_KEY           GDICT_GCONF_DIR "/sidebar-width"
 #define GDICT_GCONF_STATUSBAR_VISIBLE_KEY	GDICT_GCONF_DIR "/statusbar-visible"
 
 #define DOCUMENT_FONT_KEY 			"/desktop/gnome/interface/document_font_name"

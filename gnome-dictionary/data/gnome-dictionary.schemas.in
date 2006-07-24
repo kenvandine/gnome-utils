@@ -168,6 +168,33 @@
 	be displayed.</long>
       </locale>
     </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-dictionary/sidebar-page</key>
+      <applyto>/apps/gnome-dictionary/sidebar-page</applyto>
+      <owner>gnome-dictionary</owner>
+      <type>string</type>
+      <default>speller</default>
+      <locale name="C">
+        <short>The page of the sidebar to show</short>
+	<long>This key defines which page of the sidebar should be
+	displayed and it's used to remember the setting across
+	sessions..  It can be "speller" or "databases".</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/gnome-dictionary/sidebar-width</key>
+      <applyto>/apps/gnome-dictionary/sidebar-width</applyto>
+      <owner>gnome-dictionary</owner>
+      <type>int</type>
+      <default>-1</default>
+      <locale name="C">
+        <short>The width of the sidebar</short>
+	<long>This key defines the width of the sidebar and it's
+	used to remember the setting across sessions.</long>
+      </locale>
+    </schema>
     
   </schemalist>
   

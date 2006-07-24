@@ -45,6 +45,7 @@ typedef struct
   gchar *name;
 
   GtkWidget *child;
+  GtkWidget *menu_item;
 } SidebarPage;
 
 #define GDICT_SIDEBAR_GET_PRIVATE(obj)	(G_TYPE_INSTANCE_GET_PRIVATE ((obj), GDICT_TYPE_SIDEBAR, GdictSidebarPrivate))
@@ -87,6 +88,7 @@ sidebar_page_new (const gchar *id,
   page->name = g_strdup (name);
   page->child = widget;
   page->index = -1;
+  page->menu_item = NULL;
 
   return page;
 }
@@ -330,6 +332,7 @@ gdict_sidebar_init (GdictSidebar *sidebar)
   select_hbox = gtk_hbox_new (FALSE, 0);
   
   priv->label = gtk_label_new (NULL);
+  gtk_misc_set_alignment (GTK_MISC (priv->label), 0.0, 0.5);
   gtk_box_pack_start (GTK_BOX (select_hbox), priv->label, FALSE, FALSE, 0);
   gtk_widget_show (priv->label);
 
@@ -428,6 +431,7 @@ gdict_sidebar_add_page (GdictSidebar *sidebar,
 		    sidebar);
   gtk_menu_shell_append (GTK_MENU_SHELL (priv->menu), menu_item);
   gtk_widget_show (menu_item);
+  page->menu_item = menu_item;
 
   gtk_menu_shell_select_item (GTK_MENU_SHELL (priv->menu), menu_item);
   gtk_label_set_text (GTK_LABEL (priv->label), page_name);
@@ -461,4 +465,24 @@ gdict_sidebar_view_page (GdictSidebar *sidebar,
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
 		  		 page->index);
+  gtk_label_set_text (GTK_LABEL (priv->label), page->name);
+  gtk_menu_shell_select_item (GTK_MENU_SHELL (priv->menu), page->menu_item);
+}
+
+G_CONST_RETURN gchar *
+gdict_sidebar_current_page (GdictSidebar *sidebar)
+{
+  GdictSidebarPrivate *priv;
+  gint index;
+  SidebarPage *page;
+  
+  g_return_val_if_fail (GDICT_IS_SIDEBAR (sidebar), NULL);
+
+  priv = sidebar->priv;
+  
+  index = gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook));
+  page = g_slist_nth_data (priv->pages, index);
+  g_assert (page != NULL);
+
+  return page->id;
 }

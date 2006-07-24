@@ -45,6 +45,8 @@ struct _GdictDatabaseChooserPrivate
   GtkListStore *store;
 
   GtkWidget *treeview;
+  GtkWidget *clear_button;
+  GtkWidget *refresh_button;
   
   GdictContext *context;
   gint results;
@@ -62,7 +64,6 @@ struct _GdictDatabaseChooserPrivate
 enum
 {
   DATABASE_NAME,
-  DATABASE_DESCRIPTION,
   DATABASE_ERROR
 } DBType;
 
@@ -157,7 +158,7 @@ gdict_database_chooser_finalize (GObject *gobject)
   GdictDatabaseChooserPrivate *priv = chooser->priv;
 
   if (priv->context)
-    set_gdict_context (speller, NULL);
+    set_gdict_context (chooser, NULL);
 
   if (priv->busy_cursor)
     gdk_cursor_unref (priv->busy_cursor);
@@ -200,7 +201,7 @@ gdict_database_chooser_get_property (GObject    *gobject,
       g_value_set_object (value, chooser->priv->context);
       break;
     case PROP_COUNT:
-      g_value_set_integer (value, chooser->priv->count);
+      g_value_set_int (value, chooser->priv->results);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (gobject, prop_id, pspec);
@@ -250,10 +251,28 @@ row_activated_cb (GtkTreeView       *treeview,
   g_free (db_desc);
 }
 
+static void
+refresh_button_clicked_cb (GtkWidget *widget,
+			   gpointer   user_data)
+{
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
+
+  gdict_database_chooser_refresh (chooser);
+}
+
+static void
+clear_button_clicked_cb (GtkWidget *widget,
+			 gpointer   user_data)
+{
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
+
+  gdict_database_chooser_clear (chooser);
+}
+
 static GObject *
-gdict_database_chooser_constructor (GType                   type,
-				    guint                   n_params,
-				    GObjectConstructParams *params)
+gdict_database_chooser_constructor (GType                  type,
+				    guint                  n_params,
+				    GObjectConstructParam *params)
 {
   GObject *object;
   GdictDatabaseChooser *chooser;
@@ -261,6 +280,7 @@ gdict_database_chooser_constructor (GType                   type,
   GtkWidget *sw;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
+  GtkWidget *hbox;
 
   object = G_OBJECT_CLASS (gdict_database_chooser_parent_class)->constructor (type,
 		  							      n_params,
@@ -271,6 +291,57 @@ gdict_database_chooser_constructor (GType                   type,
 
   gtk_widget_push_composite_child ();
 
+  sw = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_set_composite_name (sw, "gdict-database-chooser-scrolled-window");
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (sw),
+		  		  GTK_POLICY_AUTOMATIC,
+				  GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (sw),
+		  		       GTK_SHADOW_IN);
+  gtk_box_pack_start (GTK_BOX (chooser), sw, TRUE, TRUE, 0);
+  gtk_widget_show (sw);
+
+  renderer = gtk_cell_renderer_text_new ();
+  column = gtk_tree_view_column_new_with_attributes ("databases",
+		  				     renderer,
+						     "text", DB_COLUMN_DESCRIPTION,
+						     NULL);
+  priv->treeview = gtk_tree_view_new ();
+  gtk_widget_set_composite_name (priv->treeview, "gdict-database-chooser-treeview");
+  gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
+		  	   GTK_TREE_MODEL (priv->store));
+  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->treeview), FALSE);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->treeview), column);
+  g_signal_connect (priv->treeview, "row-activated",
+		    G_CALLBACK (row_activated_cb), chooser);
+  gtk_container_add (GTK_CONTAINER (sw), priv->treeview);
+  gtk_widget_show (priv->treeview);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+
+  priv->refresh_button = gtk_button_new ();
+  gtk_button_set_image (GTK_BUTTON (priv->refresh_button),
+		        gtk_image_new_from_stock (GTK_STOCK_REFRESH,
+						  GTK_ICON_SIZE_SMALL_TOOLBAR));
+  g_signal_connect (priv->refresh_button, "clicked",
+		    G_CALLBACK (refresh_button_clicked_cb),
+		    chooser);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->refresh_button, FALSE, FALSE, 0);
+  gtk_widget_show (priv->refresh_button);
+
+  priv->clear_button = gtk_button_new ();
+  gtk_button_set_image (GTK_BUTTON (priv->clear_button),
+		        gtk_image_new_from_stock (GTK_STOCK_CLEAR,
+						  GTK_ICON_SIZE_SMALL_TOOLBAR));
+  g_signal_connect (priv->clear_button, "clicked",
+		    G_CALLBACK (clear_button_clicked_cb),
+		    chooser);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->clear_button, FALSE, FALSE, 0);
+  gtk_widget_show (priv->clear_button);
+
+  gtk_box_pack_end (GTK_BOX (chooser), hbox, FALSE, FALSE, 0);
+  gtk_widget_show (hbox);
+  
   gtk_widget_pop_composite_child ();
 
   return object;
@@ -279,13 +350,54 @@ gdict_database_chooser_constructor (GType                   type,
 static void
 gdict_database_chooser_class_init (GdictDatabaseChooserClass *klass)
 {
+  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  
+  gobject_class->finalize = gdict_database_chooser_finalize;
+  gobject_class->set_property = gdict_database_chooser_set_property;
+  gobject_class->get_property = gdict_database_chooser_get_property;
+  gobject_class->constructor = gdict_database_chooser_constructor;
+  
+  g_object_class_install_property (gobject_class,
+  				   PROP_CONTEXT,
+  				   g_param_spec_object ("context",
+  				   			"Context",
+  				   			"The GdictContext object used to get the list of databases",
+  				   			GDICT_TYPE_CONTEXT,
+  				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
 
+  db_chooser_signals[DATABASE_ACTIVATED] =
+    g_signal_new ("database-activated",
+		  G_OBJECT_CLASS_TYPE (gobject_class),
+		  G_SIGNAL_RUN_LAST,
+		  G_STRUCT_OFFSET (GdictDatabaseChooserClass, database_activated),
+		  NULL, NULL,
+		  gdict_marshal_VOID__STRING_STRING,
+		  G_TYPE_NONE, 2,
+		  G_TYPE_STRING,
+		  G_TYPE_STRING);
+  
+  g_type_class_add_private (gobject_class, sizeof (GdictDatabaseChooserPrivate));
 }
 
 static void
 gdict_database_chooser_init (GdictDatabaseChooser *chooser)
 {
+  GdictDatabaseChooserPrivate *priv;
 
+  chooser->priv = priv = GDICT_DATABASE_CHOOSER_GET_PRIVATE (chooser);
+
+  priv->results = -1;
+  priv->context = NULL;
+
+  priv->store = gtk_list_store_new (DB_N_COLUMNS,
+		                    G_TYPE_INT,    /* DBType */
+		                    G_TYPE_STRING, /* db_name */
+				    G_TYPE_STRING  /* db_desc */);
+
+  priv->start_id = 0;
+  priv->end_id = 0;
+  priv->match_id = 0;
+  priv->error_id = 0;
 }
 
 /**
@@ -303,7 +415,17 @@ gdict_database_chooser_new (void)
   return g_object_new (GDICT_TYPE_DATABASE_CHOOSER, NULL);
 }
 
-GtkWigdet *
+/**
+ * gdict_database_chooser_new_with_context:
+ * @context: a #GdictContext
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since: 0.9
+ */
+GtkWidget *
 gdict_database_chooser_new_with_context (GdictContext *context)
 {
   g_return_val_if_fail (GDICT_IS_CONTEXT (context), NULL);
@@ -318,41 +440,189 @@ gdict_database_chooser_get_context (GdictDatabaseChooser *chooser)
 {
   g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), NULL);
   
-  
+  return chooser->priv->context;
 }
 
 void
 gdict_database_chooser_set_context (GdictDatabaseChooser *chooser,
 				    GdictContext         *context)
 {
+  g_return_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser));
+  g_return_if_fail (context == NULL || GDICT_IS_CONTEXT (context));
 
+  set_gdict_context (chooser, context);
+
+  g_object_notify (G_OBJECT (chooser), "context");
 }
 
 gchar **
 gdict_database_chooser_get_databases (GdictDatabaseChooser  *chooser,
-				      gsize                  length,
-				      GError               **error)
+				      gsize                  length)
 {
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), NULL);
 
+  return NULL;
 }
 
 gboolean
 gdict_database_chooser_has_database (GdictDatabaseChooser *chooser,
 				     const gchar          *database)
 {
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (database != NULL, FALSE);
 
+  return FALSE;
 }
 
-gboolean
-gdict_database_chooser_set_database (GdictDatabaseChooser  *chooser,
-				     const gchar           *database,
-				     GError               **error)
+gint
+gdict_database_chooser_count_databases (GdictDatabaseChooser *chooser)
 {
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), -1);
 
+  return chooser->priv->results;
 }
 
-gchar *
-gdict_database_chooser_get_database (GdictDatabaseChooser *chooser)
+static void
+lookup_start_cb (GdictContext *context,
+		 gpointer      user_data)
 {
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
+  GdictDatabaseChooserPrivate *priv = chooser->priv;
 
+  if (!priv->busy_cursor)
+    priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
+
+  if (GTK_WIDGET (chooser)->window)
+    gdk_window_set_cursor (GTK_WIDGET (chooser)->window, priv->busy_cursor);
+
+  priv->is_searching = TRUE;
+}
+
+static void
+lookup_end_cb (GdictContext *context,
+	       gpointer      user_data)
+{
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
+  GdictDatabaseChooserPrivate *priv = chooser->priv;
+
+  if (GTK_WIDGET (chooser)->window)
+    gdk_window_set_cursor (GTK_WIDGET (chooser)->window, NULL);
+
+  priv->is_searching = FALSE;
+}
+
+static void
+database_found_cb (GdictContext  *context,
+		   GdictDatabase *database,
+		   gpointer       user_data)
+{
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
+  GdictDatabaseChooserPrivate *priv = chooser->priv;
+  GtkTreeIter iter;
+
+  _gdict_debug ("DATABASE: `%s' (`%s')\n",
+		gdict_database_get_name (database),
+		gdict_database_get_full_name (database));
+
+  gtk_list_store_append (priv->store, &iter);
+  gtk_list_store_set (priv->store, &iter,
+		      DB_COLUMN_TYPE, DATABASE_NAME,
+		      DB_COLUMN_NAME, gdict_database_get_name (database),
+		      DB_COLUMN_DESCRIPTION, gdict_database_get_full_name (database),
+		      -1);
+
+  if (priv->results == -1)
+    priv->results = 1;
+  else
+    priv->results += 1;
+}
+
+static void
+error_cb (GdictContext *context,
+          const GError *error,
+	  gpointer      user_data)
+{
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
+
+  if (GTK_WIDGET (chooser)->window)
+    gdk_window_set_cursor (GTK_WIDGET (chooser)->window, NULL);
+
+  chooser->priv->is_searching = FALSE;
+}
+
+void
+gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
+{
+  GdictDatabaseChooserPrivate *priv;
+  GError *db_error;
+  
+  g_return_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser));
+
+  priv = chooser->priv;
+
+  if (!priv->context)
+    {
+      g_warning ("Attempting to retrieve the available databases, but "
+		 "no GdictContext has been set.  Use gdict_database_chooser_set_context() "
+		 "before invoking gdict_database_chooser_refresh().");
+      return;
+    }
+
+  if (priv->is_searching)
+    {
+      _gdict_show_error_dialog (NULL,
+				_("Another search is in progress"),
+				_("Please wait until the current search ends."));
+      return;
+    }
+
+  gdict_database_chooser_clear (chooser);
+
+  if (!priv->start_id)
+    {
+      priv->start_id = g_signal_connect (priv->context, "lookup-start",
+		      			 G_CALLBACK (lookup_start_cb),
+					 chooser);
+      priv->match_id = g_signal_connect (priv->context, "database-found",
+		      			 G_CALLBACK (database_found_cb),
+					 chooser);
+      priv->end_id = g_signal_connect (priv->context, "lookup-end",
+		      		       G_CALLBACK (lookup_end_cb),
+				       chooser);
+    }
+
+  db_error = NULL;
+  gdict_context_lookup_databases (priv->context, &db_error);
+  if (db_error)
+    {
+      GtkTreeIter iter;
+
+      gtk_list_store_append (priv->store, &iter);
+      gtk_list_store_set (priv->store, &iter,
+		      	  DB_COLUMN_TYPE, DATABASE_ERROR,
+			  DB_COLUMN_NAME, _("Error while matching"),
+			  DB_COLUMN_DESCRIPTION, NULL,
+			  -1);
+
+      _gdict_debug ("Error while searching: %s", db_error->message);
+      g_error_free (db_error);
+    }
+}
+
+void
+gdict_database_chooser_clear (GdictDatabaseChooser *chooser)
+{
+  GdictDatabaseChooserPrivate *priv;
+
+  g_return_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser));
+
+  priv = chooser->priv;
+
+  gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), NULL);
+
+  gtk_list_store_clear (priv->store);
+  priv->results = -1;
+
+  gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
+		  	   GTK_TREE_MODEL (priv->store));
 }

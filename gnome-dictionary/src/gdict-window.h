@@ -85,6 +85,7 @@ struct _GdictWindow
 
   gint default_width;
   gint default_height;
+  gint sidebar_width;
   
   guint is_maximized      : 1;
   guint sidebar_visible   : 1;

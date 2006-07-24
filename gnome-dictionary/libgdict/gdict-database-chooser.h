@@ -20,8 +20,8 @@
 #ifndef __GDICT_DATABASE_CHOOSER_H__
 #define __GDICT_DATABASE_CHOOSER_H__
 
-#include <gdict-context.h>
 #include <gtk/gtkvbox.h>
+#include "gdict-context.h"
 
 G_BEGIN_DECLS
 
@@ -67,19 +67,19 @@ struct _GdictDatabaseChooserClass
 GType         gdict_database_chooser_get_type         (void) G_GNUC_CONST;
 
 GtkWidget *   gdict_database_chooser_new              (void);
-GtkWigdet *   gdict_database_chooser_new_with_context (GdictContext          *context);
+GtkWidget *   gdict_database_chooser_new_with_context (GdictContext         *context);
 
-GdictContext *gdict_database_chooser_get_context      (GdictDatabaseChooser  *chooser);
-void          gdict_database_chooser_set_context      (GdictDatabaseChooser  *chooser,
-						       GdictContext          *context);
+GdictContext *gdict_database_chooser_get_context      (GdictDatabaseChooser *chooser);
+void          gdict_database_chooser_set_context      (GdictDatabaseChooser *chooser,
+						       GdictContext         *context);
 
-gchar **      gdict_database_chooser_get_databases    (GdictDatabaseChooser  *chooser,
-						       gsize                  length,
-						       GError               **error) G_GNUC_MALLOC;
-gint          gdict_database_chooser_count_databases  (GdictDatabaseChooser  *chooser);
-gboolean      gdict_database_chooser_has_database     (GdictDatabaseChooser  *chooser,
-						       const gchar           *database);
-void          gdict_database_chooser_clear            (GdictDatabaseChooser  *chooser);
+gchar **      gdict_database_chooser_get_databases    (GdictDatabaseChooser *chooser,
+						       gsize                 length) G_GNUC_MALLOC;
+gint          gdict_database_chooser_count_databases  (GdictDatabaseChooser *chooser);
+gboolean      gdict_database_chooser_has_database     (GdictDatabaseChooser *chooser,
+						       const gchar          *database);
+void          gdict_database_chooser_refresh          (GdictDatabaseChooser *chooser);
+void          gdict_database_chooser_clear            (GdictDatabaseChooser *chooser);
 
 G_END_DECLS
 

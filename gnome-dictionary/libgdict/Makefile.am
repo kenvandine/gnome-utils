@@ -33,6 +33,8 @@ libgdict_1_0_la_SOURCES =	\
 	gdict-context-private.h	\
 	gdict-client-context.c	\
 	gdict-client-context.h	\
+	gdict-database-chooser.h \
+	gdict-database-chooser.c \
 	gdict-defbox.c 		\
 	gdict-defbox.h 		\
 	gdict-entry.c		\
@@ -62,6 +64,7 @@ libgdict_includedir = $(includedir)/gdict-1.0/gdict
 libgdict_include_HEADERS = 	\
 	gdict-context.h		\
 	gdict-client-context.h	\
+	gdict-database-chooser.h \
 	gdict-defbox.h 		\
 	gdict-entry.h		\
 	gdict-enum-types.h	\
@@ -113,6 +116,7 @@ gdict-marshal.c: gdict-marshal.list $(GLIB_GENMARSHAL) Makefile
 libgdict_enum_headers = \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-context.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-client-context.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-database-chooser.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-defbox.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-entry.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source.h \

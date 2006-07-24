@@ -57,16 +57,17 @@ struct _GdictSidebarClass
   void (*_gdict_padding_4) (void);
 };
 
-GType      gdict_sidebar_get_type    (void) G_GNUC_CONST;
+GType                 gdict_sidebar_get_type     (void) G_GNUC_CONST;
 
-GtkWidget *gdict_sidebar_new         (void);
-void       gdict_sidebar_add_page    (GdictSidebar *sidebar,
-				      const gchar  *page_id,
-				      const gchar  *page_name,
-				      GtkWidget    *page_widget);
-void       gdict_sidebar_remove_page (GdictSidebar *sidebar,
-				      const gchar  *page_id);
-void       gdict_sidebar_view_page   (GdictSidebar *sidebar,
-				      const gchar  *page_id);
+GtkWidget *           gdict_sidebar_new          (void);
+void                  gdict_sidebar_add_page     (GdictSidebar *sidebar,
+						  const gchar  *page_id,
+						  const gchar  *page_name,
+						  GtkWidget    *page_widget);
+void                  gdict_sidebar_remove_page  (GdictSidebar *sidebar,
+						  const gchar  *page_id);
+void                  gdict_sidebar_view_page    (GdictSidebar *sidebar,
+						  const gchar  *page_id);
+G_CONST_RETURN gchar *gdict_sidebar_current_page (GdictSidebar *sidebar);
 
 #endif /* __GDICT_SIDEBAR_H__ */

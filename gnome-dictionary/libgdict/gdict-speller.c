@@ -49,6 +49,7 @@ struct _GdictSpellerPrivate
   gchar *word;
 
   GtkWidget *treeview;
+  GtkWidget *clear_button;
 
   GdkCursor *busy_cursor;
 
@@ -272,6 +273,15 @@ row_activated_cb (GtkTreeView       *treeview,
   g_free (db_name);
 }
 
+static void
+clear_button_clicked_cb (GtkWidget *widget,
+			 gpointer   user_data)
+{
+  GdictSpeller *speller = GDICT_SPELLER (user_data);
+
+  gdict_speller_clear (speller);
+}
+
 static GObject *
 gdict_speller_constructor (GType                  type,
 			   guint                  n_params,
@@ -283,6 +293,7 @@ gdict_speller_constructor (GType                  type,
   GtkWidget *sw;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
+  GtkWidget *hbox;
   
   object = G_OBJECT_CLASS (gdict_speller_parent_class)->constructor (type,
   						                     n_params,
@@ -318,6 +329,21 @@ gdict_speller_constructor (GType                  type,
 		    G_CALLBACK (row_activated_cb), speller);
   gtk_container_add (GTK_CONTAINER (sw), priv->treeview);
   gtk_widget_show (priv->treeview);
+
+  hbox = gtk_hbox_new (FALSE, 0);
+
+  priv->clear_button = gtk_button_new ();
+  gtk_button_set_image (GTK_BUTTON (priv->clear_button),
+		  	gtk_image_new_from_stock (GTK_STOCK_CLEAR,
+						  GTK_ICON_SIZE_SMALL_TOOLBAR));
+  g_signal_connect (priv->clear_button, "clicked",
+		    clear_button_clicked_cb,
+		    speller);
+  gtk_box_pack_start (GTK_BOX (hbox), priv->clear_button, FALSE, FALSE, 0);
+  gtk_widget_show (priv->clear_button);
+
+  gtk_box_pack_end (GTK_BOX (speller), hbox, FALSE, FALSE, 0);
+  gtk_widget_show (hbox);
 
   gtk_widget_pop_composite_child ();
 
@@ -687,7 +713,7 @@ gdict_speller_match (GdictSpeller *speller,
 
   if (priv->is_searching)
     {
-      _gdict_show_error_dialog (GTK_WIDGET (speller),
+      _gdict_show_error_dialog (NULL,
                                 _("Another search is in progress"),
                                 _("Please wait until the current search ends."));
 
@@ -733,7 +759,8 @@ gdict_speller_match (GdictSpeller *speller,
 			  MATCH_COLUMN_DB_NAME, _("Error while matching"),
 			  MATCH_COLUMN_WORD, NULL,
 			  -1);
-
+      
+      _gdict_debug ("Error while matching: %s", match_error->message);
       g_error_free (match_error);
     }
 }

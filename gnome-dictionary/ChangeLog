@@ -1,3 +1,30 @@
+2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-pref-dialog.h:
+	* data/gnome-dictionary.schemas.in: Add two more keys: 'sidebar-page'
+	and 'sidebar-width', for remembering the page and the size of the
+	side bar.
+
+	* libgdict/gdict.h:
+	* libgdict/Makefile.am: Add GdictDatabaseChooser to the build.
+
+	* libgdict/gdict-database-chooser.h:
+	* libgdict/gdict-database-chooser.c: Finish the GdictDatabaseChooser
+	widget.
+
+	* libgdict/gdict-speller.c: Add a "clear" button to the speller
+	widget.
+
+	* src/gdict-sidebar.h:
+	* src/gdict-sidebar.c: Add gdict_sidebar_current_page(), for
+	getting the id of the currently shown page; update the label
+	of the select button and the selected menu item when changing
+	the page using gdict_sidebar_view_page().
+
+	* src/gdict-window.h:
+	* src/gdict-window.c: Add the database chooser and hook up
+	the new state keys to the main window widget.
+
 2006-07-23  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-window.c: Fix a typo in the name of the ViewDB action.
