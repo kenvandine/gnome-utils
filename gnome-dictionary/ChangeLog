@@ -1,5 +1,12 @@
 2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* src/gdict-window.c:
+	(gdict_window_constructor): Use two vbox instead of
+	frames to wrap the defbox and the side bar. (#345078,
+	based on a patch by Dennis Cranston)
+
+2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* libgdict/gdict-database-chooser.c:
 	(gdict_database_chooser_refresh): Hook up the error
 	callback.

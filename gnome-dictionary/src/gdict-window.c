@@ -1378,10 +1378,8 @@ gdict_window_constructor (GType                  type,
   gtk_box_pack_start (GTK_BOX (vbox), handle, TRUE, TRUE, 0);
   gtk_widget_show (handle);
 
-  frame1 = gtk_frame_new (NULL);
-  frame2 = gtk_frame_new (NULL);
-  gtk_frame_set_shadow_type (GTK_FRAME (frame1), GTK_SHADOW_IN);
-  gtk_frame_set_shadow_type (GTK_FRAME (frame2), GTK_SHADOW_IN);
+  frame1 = gtk_vbox_new (FALSE, 0);
+  frame2 = gtk_vbox_new (FALSE, 0);
   
   window->defbox = gdict_defbox_new ();
   if (window->context)
