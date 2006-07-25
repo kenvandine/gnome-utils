@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-24 21:18+0700\n"
-"PO-Revision-Date: 2006-07-24 23:07+0700\n"
+"POT-Creation-Date: 2006-07-25 15:09+0700\n"
+"PO-Revision-Date: 2006-07-25 15:16+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,10 @@ msgstr "เครื่องมือกราฟิกสำหรับวิ
 #: ../baobab/data/baobab.desktop.in.in.h:2
 msgid "Baobab - Disk Usage Analyser"
 msgstr "Baobab - เครื่องมือวิเคราะห์การใช้ดิสก์"
+
+#: ../baobab/data/baobab.desktop.in.in.h:3 ../baobab/data/baobab.glade.h:9
+msgid "Disk Usage Analyser"
+msgstr "เครื่องมือวิเคราะห์การใช้ดิสก์"
 
 #: ../baobab/data/baobab.glade.h:1
 msgid "<b>File Size</b>"
@@ -58,10 +62,6 @@ msgstr "ทุก_ขนาด"
 #: ../baobab/data/baobab.glade.h:8
 msgid "Directory Tree"
 msgstr "โครงสร้างไดเรกทอรี"
-
-#: ../baobab/data/baobab.glade.h:9
-msgid "Disk Usage Analyser"
-msgstr "เครื่องมือวิเคราะห์การใช้ดิสก์"
 
 #: ../baobab/data/baobab.glade.h:10
 msgid "Disk Usage Analyser Preferences"
@@ -1133,7 +1133,7 @@ msgstr "หาความหมายและการสะกดของค
 #: ../gnome-dictionary/src/gdict-about.c:76
 #: ../gnome-dictionary/src/gdict-app.c:381
 #: ../gnome-dictionary/src/gdict-window.c:463
-#: ../gnome-dictionary/src/gdict-window.c:1539
+#: ../gnome-dictionary/src/gdict-window.c:1586
 msgid "Dictionary"
 msgstr "พจนานุกรม"
 
@@ -1257,8 +1257,8 @@ msgid ""
 "remember the state of the sidebar across sessions. Setting it to TRUE will "
 "make the sidebar always be displayed."
 msgstr ""
-"กำหนดว่าจะแสดงแถบข้างหรือไม่ และใช้จำสถานะของแถบข้างข้ามวาระ "
-"ถ้ากำหนดเป็นค่าจริง จะแสดงแถบข้างเสมอ"
+"กำหนดว่าจะแสดงแถบข้างหรือไม่ และใช้จำสถานะของแถบข้างข้ามวาระ ถ้ากำหนดเป็นค่าจริง "
+"จะแสดงแถบข้างเสมอ"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
 msgid ""
@@ -1266,8 +1266,8 @@ msgid ""
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
 msgstr ""
-"กำหนดว่าจะแสดงแถบสถานะหรือไม่ และใช้จำสถานะของแถบสถานะข้ามวาระ "
-"ถ้ากำหนดเป็นค่าจริง จะแสดงแถบสถานะเสมอ"
+"กำหนดว่าจะแสดงแถบสถานะหรือไม่ และใช้จำสถานะของแถบสถานะข้ามวาระ ถ้ากำหนดเป็นค่าจริง "
+"จะแสดงแถบสถานะเสมอ"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
@@ -1284,8 +1284,8 @@ msgid ""
 "to remember the setting across sessions.. It can be \"speller\" or "
 "\"databases\"."
 msgstr ""
-"กำหนดว่าจะแสดงหน้าไหนของแถบข้าง และใช้จำค่าไว้ใช้ข้ามวาระด้วย  ค่าที่เป็นไปได้คือ "
-"\"speller\" หรือ \"databases\""
+"กำหนดว่าจะแสดงหน้าไหนของแถบข้าง และใช้จำค่าไว้ใช้ข้ามวาระด้วย  ค่าที่เป็นไปได้คือ \"speller"
+"\" หรือ \"databases\""
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
@@ -1504,6 +1504,31 @@ msgstr "ในเครื่องเท่านั้น"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "กำหนดว่า context ใช้พจนานุกรมในเครื่องเท่านั้นหรือไม่"
 
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:337
+msgid "Reload the list of available databases"
+msgstr "อ่านรายการฐานข้อมูลที่มีอยู่ใหม่"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:350
+msgid "Clear the list of available databases"
+msgstr "ล้างรายการฐานข้อมูลที่มีอยู่"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:588
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
+#: ../gnome-dictionary/libgdict/gdict-speller.c:729
+msgid "Another search is in progress"
+msgstr "กำลังอยู่ระหว่างค้นคำอื่น"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:589
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
+#: ../gnome-dictionary/libgdict/gdict-speller.c:730
+msgid "Please wait until the current search ends."
+msgstr "กรุณารอสักครู่ จนกว่าจะการค้นจะเสร็จสิ้น"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:622
+#: ../gnome-dictionary/libgdict/gdict-speller.c:771
+msgid "Error while matching"
+msgstr "เกิดข้อผิดพลาดขณะค้นหา"
+
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:353
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:442
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:470
@@ -1525,16 +1550,6 @@ msgstr "_ถัดไป"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1223
 msgid "Error while looking up definition"
 msgstr "เกิดข้อผิดพลาดขณะค้นความหมายของคำ"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
-#: ../gnome-dictionary/libgdict/gdict-speller.c:729
-msgid "Another search is in progress"
-msgstr "กำลังอยู่ระหว่างค้นคำอื่น"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
-#: ../gnome-dictionary/libgdict/gdict-speller.c:730
-msgid "Please wait until the current search ends."
-msgstr "กรุณารอสักครู่ จนกว่าจะการค้นจะเสร็จสิ้น"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Error while retrieving the definition"
@@ -1679,10 +1694,6 @@ msgstr "ฐานข้อมูลที่จะใช้สืบค้น Gd
 #: ../gnome-dictionary/libgdict/gdict-speller.c:390
 msgid "The strategy used to query the GdictContext"
 msgstr "กลวิธีที่จะใช้สืบค้น GdictContext"
-
-#: ../gnome-dictionary/libgdict/gdict-speller.c:771
-msgid "Error while matching"
-msgstr "เกิดข้อผิดพลาดขณะค้นหา"
 
 #: ../gnome-dictionary/src/gdict-about.c:57
 #: ../gnome-dictionary/src/gdict-applet.c:604
@@ -1892,17 +1903,17 @@ msgid "Unable to create a context"
 msgstr "ไม่สามารถสร้าง context ได้"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1240
-#: ../gnome-dictionary/src/gdict-window.c:1653
+#: ../gnome-dictionary/src/gdict-window.c:1700
 msgid "Unable to connect to GConf"
 msgstr "ไม่สามารถเชื่อมต่อไปยัง GConf ได้"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1253
-#: ../gnome-dictionary/src/gdict-window.c:1666
+#: ../gnome-dictionary/src/gdict-window.c:1713
 msgid "Unable to get notification for preferences"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งได้"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1267
-#: ../gnome-dictionary/src/gdict-window.c:1679
+#: ../gnome-dictionary/src/gdict-window.c:1726
 msgid "Unable to get notification for the document font"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งแบบอักษรเอกสารได้"
 
@@ -2087,15 +2098,34 @@ msgstr "ความหมายสุด_ท้าย"
 msgid "Go to the last definition"
 msgstr "ไปยังความหมายสุดท้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:1382
+#: ../gnome-dictionary/src/gdict-window.c:1150
+msgid "Database `%s' selected"
+msgstr "เลือกฐานข้อมูล `%s' แล้ว"
+
+#: ../gnome-dictionary/src/gdict-window.c:1170
+#, c-format
+msgid "Word `%s' selected"
+msgstr "เลือกคำ `%s' แล้ว"
+
+#. speller
+#: ../gnome-dictionary/src/gdict-window.c:1188
+msgid "Double-click on the word to look up"
+msgstr "ดับเบิลคลิกที่คำที่คุณต้องการค้นหาความหมาย"
+
+#. db-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1191
+msgid "Double-click on the database to use"
+msgstr "ดับเบิลคลิกที่ฐานข้อมูลที่จะใช้"
+
+#: ../gnome-dictionary/src/gdict-window.c:1426
 msgid "Look _up:"
 msgstr "_ค้นหา:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1444
+#: ../gnome-dictionary/src/gdict-window.c:1491
 msgid "Similar words"
 msgstr "คำคล้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:1457
+#: ../gnome-dictionary/src/gdict-window.c:1504
 msgid "Available dictionaries"
 msgstr "พจนานุกรมที่มี"
 
