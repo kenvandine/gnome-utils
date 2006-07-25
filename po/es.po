@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-24 00:52+0200\n"
-"PO-Revision-Date: 2006-07-24 00:56+0200\n"
+"POT-Creation-Date: 2006-07-25 11:04+0200\n"
+"PO-Revision-Date: 2006-07-25 11:08+0200\n"
 "Last-Translator: Francisco Javier F. Serrador <serrador@cvs.gnome.org>\n"
 "Language-Team: Spanish <traductores@es.gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,10 @@ msgstr "Una herramienta gráfica para analizar el uso del disco"
 #: ../baobab/data/baobab.desktop.in.in.h:2
 msgid "Baobab - Disk Usage Analyser"
 msgstr "Analizador de uso de disco Baobab"
+
+#: ../baobab/data/baobab.desktop.in.in.h:3 ../baobab/data/baobab.glade.h:9
+msgid "Disk Usage Analyser"
+msgstr "Analizador de uso de disco"
 
 #: ../baobab/data/baobab.glade.h:1
 msgid "<b>File Size</b>"
@@ -65,10 +69,6 @@ msgstr "_Cualquiera"
 #: ../baobab/data/baobab.glade.h:8
 msgid "Directory Tree"
 msgstr "Árbol de directorios"
-
-#: ../baobab/data/baobab.glade.h:9
-msgid "Disk Usage Analyser"
-msgstr "Analizador de uso de disco"
 
 #: ../baobab/data/baobab.glade.h:10
 msgid "Disk Usage Analyser Preferences"
@@ -204,8 +204,8 @@ msgid "_Browse..."
 msgstr "_Examinar…"
 
 #. Help menu
-#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:994
-#: ../logview/logview.c:114
+#: ../baobab/data/baobab.glade.h:44
+#: ../gnome-dictionary/src/gdict-window.c:1027 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Contenido"
 
@@ -217,7 +217,7 @@ msgstr "_Fecha"
 msgid "_Depth level:"
 msgstr "Nivel de _profundidad:"
 
-#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:943
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:976
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Editar"
@@ -240,7 +240,7 @@ msgstr "Mapa de uso _gráfico"
 
 #: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:946 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:979 ../logview/logview.c:88
 msgid "_Help"
 msgstr "Ay_uda"
 
@@ -276,7 +276,7 @@ msgstr "Carpetas _totales:"
 msgid "_Type"
 msgstr "_Tipo"
 
-#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:944
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:977
 #: ../logview/logview.c:87
 msgid "_View"
 msgstr "_Ver"
@@ -313,9 +313,7 @@ msgstr ""
 
 #: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the toolbar should be visible in main window."
-msgstr ""
-"Indica si la barra de herramientas debe ser visible en la ventana "
-"principal."
+msgstr "Indica si la barra de herramientas debe ser visible en la ventana principal."
 
 #. set statusbar, percentage and allocated/normal size
 #: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
@@ -1117,7 +1115,7 @@ msgid "Cl_ear"
 msgstr "_Limpiar"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:996 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1029 ../logview/logview.c:116
 msgid "_About"
 msgstr "A_cerca de"
 
@@ -1126,7 +1124,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Buscar el texto seleccionado"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:970
+#: ../gnome-dictionary/src/gdict-window.c:1003
 msgid "_Preferences"
 msgstr "_Preferencias"
 
@@ -1145,8 +1143,8 @@ msgstr "Busque definiciones de palabras y ortografía en un diccionario en líne
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:76
 #: ../gnome-dictionary/src/gdict-app.c:381
-#: ../gnome-dictionary/src/gdict-window.c:444
-#: ../gnome-dictionary/src/gdict-window.c:1481
+#: ../gnome-dictionary/src/gdict-window.c:463
+#: ../gnome-dictionary/src/gdict-window.c:1586
 msgid "Dictionary"
 msgstr "Diccionario"
 
@@ -1232,6 +1230,10 @@ msgstr ""
 "de las palabras."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
+msgid "The page of the sidebar to show"
+msgstr "La página a mostrar en la barra lateral"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
@@ -1239,7 +1241,19 @@ msgstr ""
 "El número de puerto al cual conectarse. El puerto predeterminado es 2628. "
 "Esta clave ya no se usa y es obsoleta."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid "The width of the sidebar"
+msgstr "La anchura de la barra lateral"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines the width of the sidebar and it's used to remember the "
+"setting across sessions."
+msgstr ""
+"Esta clave define la anchura de la barra lateral y se usa para "
+"recordar el estado de la barra lateral entre las sesiones."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid ""
 "This key defines the window height and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
@@ -1250,7 +1264,7 @@ msgstr ""
 "que la ventana del diccionario use la altura basándose en el tamaño de la "
 "tipografía."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid ""
 "This key defines the window width and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
@@ -1261,27 +1275,27 @@ msgstr ""
 "que la ventana del diccionario use la altura basándose en el tamaño de la "
 "tipografía."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
 msgid ""
 "This key defines whether the sidebar should be visible and it's used to "
 "remember the state of the sidebar across sessions. Setting it to TRUE will "
 "make the sidebar always be displayed."
 msgstr ""
-"Esta clave define si la barra lateral debe ser visible y se usa "
-"para recordar el estado de la barra lateral entre las sesiones. "
-"Estableciéndola a TRUE hará que siempre se muestre la barra lateral."
+"Esta clave define si la barra lateral debe ser visible y se usa para "
+"recordar el estado de la barra lateral entre las sesiones. Estableciéndola a "
+"TRUE hará que siempre se muestre la barra lateral."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
 msgid ""
 "This key defines whether the statusbar should be visible and it's used to "
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
 msgstr ""
-"Esta clave define si la barra de estado debería ser visible y se usa "
-"para recordar el estado de la barra de estado entre las sesiones. "
-"Estableciéndola a TRUE hará que siempre se muestre la barra de estado."
+"Esta clave define si la barra de estado debería ser visible y se usa para "
+"recordar el estado de la barra de estado entre las sesiones. Estableciéndola "
+"a TRUE hará que siempre se muestre la barra de estado."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
@@ -1291,19 +1305,28 @@ msgstr ""
 "el estado de la ventana del diccionario entre las sesiones. Estableciéndola "
 "a TRUE hará que la ventana siempre aparezca maximizada."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
+msgid ""
+"This key defines which page of the sidebar should be displayed and it's used "
+"to remember the setting across sessions.. It can be \"speller\" or "
+"\"databases\"."
+msgstr ""
+"Esta clave define qué pagina de la barra lateral debe mostrarse y se usa para "
+"recordar el estado entre las sesiones. Puede ser «speller» o |databases»."
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
 msgstr "Usar búsqueda inteligente (Obsoleto)"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:26
 msgid "Whether the application window should be maximized"
 msgstr "Indica si la ventana de la aplicación debería ser maximizada"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:27
 msgid "Whether the sidebar should be visible"
 msgstr "Indica si barra lateral debe ser visible"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:28
 msgid "Whether the statusbar should be visible"
 msgstr "Indica si la barra de estado debe ser visible"
 
@@ -1322,7 +1345,7 @@ msgstr "_Servidor:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:203
-#: ../gnome-dictionary/src/gdict-window.c:690
+#: ../gnome-dictionary/src/gdict-window.c:717
 msgid "Print"
 msgstr "Imprimir"
 
@@ -1510,6 +1533,31 @@ msgstr "Sólo local"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Indica si el contexto usa sólo los diccionarios locales o no"
 
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:337
+msgid "Reload the list of available databases"
+msgstr "Recarga la lista de bases de datos disponibles"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:350
+msgid "Clear the list of available databases"
+msgstr "Limpia la lista de bases de datos disponibles"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:588
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
+#: ../gnome-dictionary/libgdict/gdict-speller.c:729
+msgid "Another search is in progress"
+msgstr "Ya se está haciendo otra búsqueda "
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:589
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
+#: ../gnome-dictionary/libgdict/gdict-speller.c:730
+msgid "Please wait until the current search ends."
+msgstr "Por favor, espere a que la búsqueda actual termine."
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:622
+#: ../gnome-dictionary/libgdict/gdict-speller.c:771
+msgid "Error while matching"
+msgstr "Ocurrió un error al coincidir"
+
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:353
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:442
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:470
@@ -1532,23 +1580,13 @@ msgstr "_Siguiente"
 msgid "Error while looking up definition"
 msgstr "Error al buscar la definición"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
-#: ../gnome-dictionary/libgdict/gdict-speller.c:691
-msgid "Another search is in progress"
-msgstr "Ya se está haciendo otra búsqueda "
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
-#: ../gnome-dictionary/libgdict/gdict-speller.c:692
-msgid "Please wait until the current search ends."
-msgstr "Por favor, espere a que la búsqueda actual termine."
-
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Error while retrieving the definition"
 msgstr "Error al obtener la definición"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
 #: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:340
+#: ../gnome-dictionary/libgdict/gdict-speller.c:375
 msgid "Context"
 msgstr "Contexto"
 
@@ -1558,7 +1596,7 @@ msgstr "El obGDictContext "
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
 #: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:347
+#: ../gnome-dictionary/libgdict/gdict-speller.c:382
 msgid "Database"
 msgstr "Base de datos"
 
@@ -1568,7 +1606,7 @@ msgstr "La base de datos para usar en la generación de la lista de completado"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
 #: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:354
+#: ../gnome-dictionary/libgdict/gdict-speller.c:389
 msgid "Strategy"
 msgstr "Estrategia"
 
@@ -1675,21 +1713,21 @@ msgstr "Fuentes"
 msgid "Dictionary sources found"
 msgstr "Se encontraron fuentes de diccionario"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:341
+#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+msgid "Clear the list of similar words"
+msgstr "Limpia la lista de palabras similares"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:376
 msgid "The GdictContext object used to get the word definition"
 msgstr "El objeto GDictContext usado para obtener la definición de la palabra"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:348
+#: ../gnome-dictionary/libgdict/gdict-speller.c:383
 msgid "The database used to query the GdictContext"
 msgstr "La base de datos usar para consultar el GDictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:355
+#: ../gnome-dictionary/libgdict/gdict-speller.c:390
 msgid "The strategy used to query the GdictContext"
 msgstr "La estrategia usada para consultar el GDictContext"
-
-#: ../gnome-dictionary/libgdict/gdict-speller.c:733
-msgid "Error while matching"
-msgstr "Ocurrió un error al coincidir"
 
 #: ../gnome-dictionary/src/gdict-about.c:57
 #: ../gnome-dictionary/src/gdict-applet.c:604
@@ -1793,17 +1831,17 @@ msgid "Show Dictionary options"
 msgstr "Mostrar opciones del diccionario"
 
 #: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:636
+#: ../gnome-dictionary/src/gdict-window.c:663
 msgid "Save a Copy"
 msgstr "Guardar una copia"
 
 #: ../gnome-dictionary/src/gdict-applet.c:227
-#: ../gnome-dictionary/src/gdict-window.c:646
+#: ../gnome-dictionary/src/gdict-window.c:673
 msgid "Untitled document"
 msgstr "Documento sin título"
 
 #: ../gnome-dictionary/src/gdict-applet.c:248
-#: ../gnome-dictionary/src/gdict-window.c:667
+#: ../gnome-dictionary/src/gdict-window.c:694
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Ocurrió un error al escribir en «%s»"
@@ -1865,51 +1903,51 @@ msgid "Type the word you want to look up"
 msgstr "Teclee la palabra que quiere buscar"
 
 #: ../gnome-dictionary/src/gdict-applet.c:745
-#: ../gnome-dictionary/src/gdict-window.c:783
+#: ../gnome-dictionary/src/gdict-window.c:818
 msgid "Dictionary Preferences"
 msgstr "Preferencias del diccionario"
 
 #: ../gnome-dictionary/src/gdict-applet.c:773
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:511
 #: ../gnome-dictionary/src/gdict-source-dialog.c:438
-#: ../gnome-dictionary/src/gdict-window.c:908
+#: ../gnome-dictionary/src/gdict-window.c:941
 msgid "There was an error while displaying help"
 msgstr "Hubo un error al mostrar la ayuda"
 
 #: ../gnome-dictionary/src/gdict-applet.c:932
-#: ../gnome-dictionary/src/gdict-window.c:343
+#: ../gnome-dictionary/src/gdict-window.c:362
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "No hay ninguna fuente de diccionario con el nombre «%s»"
 
 #: ../gnome-dictionary/src/gdict-applet.c:936
-#: ../gnome-dictionary/src/gdict-window.c:347
+#: ../gnome-dictionary/src/gdict-window.c:366
 msgid "Unable to find dictionary source"
 msgstr "No es posible encontrar la fuente del diccionario"
 
 #: ../gnome-dictionary/src/gdict-applet.c:952
-#: ../gnome-dictionary/src/gdict-window.c:363
+#: ../gnome-dictionary/src/gdict-window.c:382
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "No hay contexto disponible para la fuente «%s»"
 
 #: ../gnome-dictionary/src/gdict-applet.c:956
-#: ../gnome-dictionary/src/gdict-window.c:367
+#: ../gnome-dictionary/src/gdict-window.c:386
 msgid "Unable to create a context"
 msgstr "Imposible crear un contexto"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1240
-#: ../gnome-dictionary/src/gdict-window.c:1588
+#: ../gnome-dictionary/src/gdict-window.c:1700
 msgid "Unable to connect to GConf"
 msgstr "Imposible conectarse a GConf"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1253
-#: ../gnome-dictionary/src/gdict-window.c:1601
+#: ../gnome-dictionary/src/gdict-window.c:1713
 msgid "Unable to get notification for preferences"
 msgstr "No se pudo obtener notificación para las preferencias"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1267
-#: ../gnome-dictionary/src/gdict-window.c:1614
+#: ../gnome-dictionary/src/gdict-window.c:1726
 msgid "Unable to get notification for the document font"
 msgstr "No se pudo obtener notificación para la tipografía del documento"
 
@@ -1977,132 +2015,152 @@ msgstr "Imposible crear un archivo de fuentes"
 msgid "Unable to save source file"
 msgstr "Imposible guardar el archivo de fuentes"
 
-#: ../gnome-dictionary/src/gdict-window.c:207
+#: ../gnome-dictionary/src/gdict-window.c:220
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Buscando «%s»…"
 
-#: ../gnome-dictionary/src/gdict-window.c:236
-#: ../gnome-dictionary/src/gdict-window.c:263
+#: ../gnome-dictionary/src/gdict-window.c:250
+#: ../gnome-dictionary/src/gdict-window.c:282
 msgid "No definitions found"
 msgstr "No se encontraron definiciones"
 
-#: ../gnome-dictionary/src/gdict-window.c:238
+#: ../gnome-dictionary/src/gdict-window.c:252
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Se ha encontrado una definición"
 msgstr[1] "Se han encontrado %d definiciones"
 
-#: ../gnome-dictionary/src/gdict-window.c:442
+#: ../gnome-dictionary/src/gdict-window.c:461
 #, c-format
 msgid "%s - Dictionary"
 msgstr "Diccionario - %s"
 
-#: ../gnome-dictionary/src/gdict-window.c:942 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:975 ../logview/logview.c:85
 msgid "_File"
 msgstr "_Archivo"
 
-#: ../gnome-dictionary/src/gdict-window.c:945
+#: ../gnome-dictionary/src/gdict-window.c:978
 msgid "_Go"
 msgstr "_Ir"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:949
+#: ../gnome-dictionary/src/gdict-window.c:982
 msgid "_New"
 msgstr "_Nuevo"
 
-#: ../gnome-dictionary/src/gdict-window.c:950
+#: ../gnome-dictionary/src/gdict-window.c:983
 msgid "New look up"
 msgstr "Nueva búsqueda"
 
-#: ../gnome-dictionary/src/gdict-window.c:951
+#: ../gnome-dictionary/src/gdict-window.c:984
 msgid "_Save a Copy..."
 msgstr "_Guardar una copia…"
 
-#: ../gnome-dictionary/src/gdict-window.c:953
+#: ../gnome-dictionary/src/gdict-window.c:986
 msgid "_Print..."
 msgstr "Im_primir…"
 
-#: ../gnome-dictionary/src/gdict-window.c:954
+#: ../gnome-dictionary/src/gdict-window.c:987
 msgid "Print this document"
 msgstr "Imprime este documento"
 
-#: ../gnome-dictionary/src/gdict-window.c:961 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:994 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Seleccionar _todo"
 
-#: ../gnome-dictionary/src/gdict-window.c:964
+#: ../gnome-dictionary/src/gdict-window.c:997
 msgid "Find a word or phrase in the document"
 msgstr "Buscar una palabra o frase en el documento"
 
-#: ../gnome-dictionary/src/gdict-window.c:966
+#: ../gnome-dictionary/src/gdict-window.c:999
 msgid "Find Ne_xt"
 msgstr "Buscar _siguiente"
 
-#: ../gnome-dictionary/src/gdict-window.c:968
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Find Pre_vious"
 msgstr "Buscar _anterior"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:974
+#: ../gnome-dictionary/src/gdict-window.c:1007
 msgid "_Sidebar"
 msgstr "_Barra lateral"
 
-#: ../gnome-dictionary/src/gdict-window.c:976
+#: ../gnome-dictionary/src/gdict-window.c:1009
 msgid "S_tatusbar"
 msgstr "Barra de _estado"
 
-#: ../gnome-dictionary/src/gdict-window.c:978
+#: ../gnome-dictionary/src/gdict-window.c:1011
 msgid "Similar _Words"
 msgstr "Palabras _similares"
 
-#: ../gnome-dictionary/src/gdict-window.c:980
+#: ../gnome-dictionary/src/gdict-window.c:1013
 msgid "Available_Databases"
 msgstr "_Bases de datos disponibles"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:984
+#: ../gnome-dictionary/src/gdict-window.c:1017
 msgid "_Previous Definition"
 msgstr "Definición _anterior"
 
-#: ../gnome-dictionary/src/gdict-window.c:985
+#: ../gnome-dictionary/src/gdict-window.c:1018
 msgid "Go to the previous definition"
 msgstr "Va a la anterior definición"
 
-#: ../gnome-dictionary/src/gdict-window.c:986
+#: ../gnome-dictionary/src/gdict-window.c:1019
 msgid "_Next Definition"
 msgstr "_Siguiente definición"
 
-#: ../gnome-dictionary/src/gdict-window.c:987
+#: ../gnome-dictionary/src/gdict-window.c:1020
 msgid "Go to the next definition"
 msgstr "Va a la siguiente definición"
 
-#: ../gnome-dictionary/src/gdict-window.c:988
+#: ../gnome-dictionary/src/gdict-window.c:1021
 msgid "_First Definition"
 msgstr "_Primera definición"
 
-#: ../gnome-dictionary/src/gdict-window.c:989
+#: ../gnome-dictionary/src/gdict-window.c:1022
 msgid "Go to the first definition"
 msgstr "Va a la última definición"
 
-#: ../gnome-dictionary/src/gdict-window.c:990
+#: ../gnome-dictionary/src/gdict-window.c:1023
 msgid "_Last Definition"
 msgstr "Ú_ltima definición"
 
-#: ../gnome-dictionary/src/gdict-window.c:991
+#: ../gnome-dictionary/src/gdict-window.c:1024
 msgid "Go to the last definition"
 msgstr "Ir a la última definición"
 
-#: ../gnome-dictionary/src/gdict-window.c:1337
+#: ../gnome-dictionary/src/gdict-window.c:1150
+#, c-format
+msgid "Database `%s' selected"
+msgstr "Base de datos «%s» seleccionada"
+
+#: ../gnome-dictionary/src/gdict-window.c:1170
+#, c-format
+msgid "Word `%s' selected"
+msgstr "Palabra «%s» seleccionada"
+
+#. speller
+#: ../gnome-dictionary/src/gdict-window.c:1188
+msgid "Double-click on the word to look up"
+msgstr "Pulse dos veces en la palabra que quiere buscar"
+
+#. db-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1191
+msgid "Double-click on the database to use"
+msgstr "Pulse dos veces en la base de datos que usar"
+
+#: ../gnome-dictionary/src/gdict-window.c:1426
 msgid "Look _up:"
 msgstr "_Buscar:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1390
+#: ../gnome-dictionary/src/gdict-window.c:1491
 msgid "Similar words"
 msgstr "Palabras similares"
 
-#: ../gnome-dictionary/src/gdict-window.c:1404
+#: ../gnome-dictionary/src/gdict-window.c:1504
 msgid "Available dictionaries"
 msgstr "Diccionarios disponibles"
 
