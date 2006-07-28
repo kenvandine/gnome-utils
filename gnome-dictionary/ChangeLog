@@ -1,3 +1,18 @@
+2007-07-28  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-app.c (gdict_init): Use G_OPTION_REMAINING
+	to catch every word used on the command line and look up
+	them (#335886).
+
+	(gdict_create_window): Create a window for every request
+	for match
+
+	* src/gdict-app.c:
+	* src/gdict-window.h:
+	* src/gdict-window.c: Add an "action" property for the
+	GdictWindow widget: use this property to set the
+	initial state and action to perform.
+
 2006-07-24  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-sidebar.c:

@@ -163,11 +163,12 @@ gdict_create_window (GdictApp *app)
 {
   GSList *l;
 
-  if (!singleton->lookup_words)
+  if (!singleton->lookup_words && !singleton->match_words)
     {
       GtkWidget *window;
 
-      window = gdict_window_new (singleton->loader,
+      window = gdict_window_new (GDICT_WINDOW_ACTION_CLEAR,
+      				 singleton->loader,
 				 singleton->source_name,
 				 NULL);
       g_signal_connect (window, "created",
@@ -188,7 +189,8 @@ gdict_create_window (GdictApp *app)
       gchar *word = l->data;
       GtkWidget *window;
 
-      window = gdict_window_new (singleton->loader,
+      window = gdict_window_new (GDICT_WINDOW_ACTION_LOOKUP,
+      				 singleton->loader,
 		      		 singleton->source_name,
 				 word);
       
@@ -200,6 +202,27 @@ gdict_create_window (GdictApp *app)
       app->windows = g_slist_prepend (app->windows, window);
       app->current_window = GDICT_WINDOW (window);
   
+      gtk_widget_show (window);
+    }
+
+  for (l = singleton->match_words; l != NULL; l = l->next)
+    {
+      gchar *word = l->data;
+      GtkWidget *window;
+
+      window = gdict_window_new (GDICT_WINDOW_ACTION_MATCH,
+      				 singleton->loader,
+				 singleton->source_name,
+				 word);
+      
+      g_signal_connect (window, "created",
+      			G_CALLBACK (gdict_window_created_cb), app);
+      g_signal_connect (window, "destroy",
+      			G_CALLBACK (gdict_window_destroy_cb), app);
+      
+      app->windows = g_slist_prepend (app->windows, window);
+      app->current_window = GDICT_WINDOW (window);
+
       gtk_widget_show (window);
     }
 }
@@ -346,6 +369,8 @@ gdict_init (int *argc, char ***argv)
        N_("Database to use"), N_("db") },
     { "strategy", 'S', 0, G_OPTION_ARG_STRING, &strategy,
        N_("Strategy to use"), N_("strat") },
+    { G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_STRING_ARRAY, &lookup_words,
+       N_("Words to look up"), N_("word") },
     { NULL },
   };
   

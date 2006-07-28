@@ -65,7 +65,8 @@ enum
 enum
 {
   PROP_0,
-  
+
+  PROP_ACTION,
   PROP_SOURCE_LOADER,
   PROP_SOURCE_NAME,
   PROP_PRINT_FONT,
@@ -550,6 +551,9 @@ gdict_window_set_property (GObject      *object,
   
   switch (prop_id)
     {
+    case PROP_ACTION:
+      window->action = g_value_get_enum (value);
+      break;
     case PROP_SOURCE_LOADER:
       if (window->loader)
         g_object_unref (window->loader);
@@ -584,6 +588,9 @@ gdict_window_get_property (GObject    *object,
   
   switch (prop_id)
     {
+    case PROP_ACTION:
+      g_value_set_enum (value, window->action);
+      break;
     case PROP_SOURCE_LOADER:
       g_value_set_object (value, window->loader);
       break;
@@ -646,7 +653,9 @@ gdict_window_cmd_file_new (GtkAction   *action,
 			 window->statusbar_visible,
 			 NULL);
  
-  new_window = gdict_window_new (window->loader, NULL, NULL);
+  new_window = gdict_window_new (GDICT_WINDOW_ACTION_CLEAR,
+  				 window->loader,
+				 NULL, NULL);
   gtk_widget_show (new_window);
   
   g_signal_emit (window, gdict_window_signals[CREATED], 0, new_window);
@@ -1624,6 +1633,14 @@ gdict_window_class_init (GdictWindowClass *klass)
   widget_class->size_allocate = gdict_window_size_allocate;
   
   g_object_class_install_property (gobject_class,
+  				   PROP_ACTION,
+				   g_param_spec_enum ("action",
+				   		      "Action",
+						      "The default action performed by the window",
+						      GDICT_TYPE_WINDOW_ACTION,
+						      GDICT_WINDOW_ACTION_CLEAR,
+						      (G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)));
+  g_object_class_install_property (gobject_class,
   				   PROP_SOURCE_LOADER,
   				   g_param_spec_object ("source-loader",
   							"Source Loader",
@@ -1683,6 +1700,8 @@ static void
 gdict_window_init (GdictWindow *window)
 {
   GError *gconf_error;
+
+  window->action = GDICT_WINDOW_ACTION_CLEAR;
   
   window->loader = NULL;
   window->context = NULL;
@@ -1743,7 +1762,8 @@ gdict_window_init (GdictWindow *window)
 }
 
 GtkWidget *
-gdict_window_new (GdictSourceLoader *loader,
+gdict_window_new (GdictWindowAction  action,
+		  GdictSourceLoader *loader,
 		  const gchar       *source_name,
 		  const gchar       *word)
 {
@@ -1752,16 +1772,48 @@ gdict_window_new (GdictSourceLoader *loader,
   g_return_val_if_fail (GDICT_IS_SOURCE_LOADER (loader), NULL);
   
   retval = g_object_new (GDICT_TYPE_WINDOW,
+  			 "action", action,
                          "source-loader", loader,
 			 "source-name", source_name,
 			 NULL);
 
   if (word && word[0] != '\0')
     {
-      gtk_entry_set_text (GTK_ENTRY (GDICT_WINDOW (retval)->entry), word);
-      
-      gdict_window_set_word (GDICT_WINDOW (retval), word, NULL);
+      switch (action)
+        {
+	case GDICT_WINDOW_ACTION_LOOKUP:
+	  gtk_entry_set_text (GTK_ENTRY (GDICT_WINDOW (retval)->entry), word);
+	  gdict_window_set_word (GDICT_WINDOW (retval), word, NULL);
+	  break;
+	case GDICT_WINDOW_ACTION_MATCH:
+	  gtk_entry_set_text (GTK_ENTRY (GDICT_WINDOW (retval)->entry), word);
+	  /* FIXME */
+	case GDICT_WINDOW_ACTION_CLEAR:
+	  break;
+	default:
+	  g_assert_not_reached ();
+	  break;
+	}
     }
 
   return retval;
+}
+
+/* GdictWindowAction */
+static const GEnumValue _gdict_window_action_values[] = {
+  { GDICT_WINDOW_ACTION_LOOKUP, "GDICT_WINDOW_ACTION_LOOKUP", "lookup" },
+  { GDICT_WINDOW_ACTION_MATCH, "GDICT_WINDOW_ACTION_MATCH", "match" },
+  { GDICT_WINDOW_ACTION_CLEAR, "GDICT_WINDOW_ACTION_CLEAR", "clear" },
+  { 0, NULL, NULL }
+};
+
+GType
+gdict_window_action_get_type (void)
+{
+  static GType our_type = 0;
+
+  if (!our_type)
+    our_type = g_enum_register_static ("GdictWindowAction", _gdict_window_action_values);
+
+  return our_type;
 }

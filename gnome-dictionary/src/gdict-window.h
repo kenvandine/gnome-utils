@@ -35,6 +35,15 @@ G_BEGIN_DECLS
 #define GDICT_WINDOW(obj)	(G_TYPE_CHECK_INSTANCE_CAST ((obj), GDICT_TYPE_WINDOW, GdictWindow))
 #define GDICT_IS_WINDOW(obj)	(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GDICT_TYPE_WINDOW))
 
+typedef enum {
+  GDICT_WINDOW_ACTION_LOOKUP,
+  GDICT_WINDOW_ACTION_MATCH,
+  GDICT_WINDOW_ACTION_CLEAR
+} GdictWindowAction;
+
+#define GDICT_TYPE_WINDOW_ACTION	(gdict_window_action_get_type ())
+GType gdict_window_action_get_type (void) G_GNUC_CONST;
+
 typedef struct _GdictWindow      GdictWindow;
 typedef struct _GdictWindowClass GdictWindowClass;
 
@@ -61,6 +70,8 @@ struct _GdictWindow
   GtkListStore *completion_model;
   
   GtkTooltips *tooltips;
+
+  GdictWindowAction action;
   
   gchar *word;
   gint max_definition;
@@ -106,7 +117,8 @@ struct _GdictWindowClass
 };
 
 GType      gdict_window_get_type (void) G_GNUC_CONST;
-GtkWidget *gdict_window_new      (GdictSourceLoader *loader,
+GtkWidget *gdict_window_new      (GdictWindowAction  action,
+				  GdictSourceLoader *loader,
 				  const gchar       *source_name,
 				  const gchar       *word);
 
