@@ -75,6 +75,13 @@ static guint sidebar_signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (GdictSidebar, gdict_sidebar, GTK_TYPE_VBOX);
 
+#define SIDEBAR_PAGE_ID		(sidebar_page_id_quark ())
+static GQuark
+sidebar_page_id_quark (void)
+{
+  return g_quark_from_static_string ("gdict-sidebar-page-id");
+}
+
 SidebarPage *
 sidebar_page_new (const gchar *id,
 		  const gchar *name,
@@ -254,7 +261,7 @@ gdict_sidebar_menu_item_activate (GtkWidget *widget,
   gint current_index;
 
   menu_item = gtk_menu_get_active (GTK_MENU (priv->menu));
-  id = g_object_get_data (G_OBJECT (menu_item), "gdict-sidebar-page-id");
+  id = g_object_get_qdata (G_OBJECT (menu_item), SIDEBAR_PAGE_ID);
   g_assert (id != NULL);
   
   page = g_hash_table_lookup (priv->pages_by_id, id);
@@ -430,10 +437,10 @@ gdict_sidebar_add_page (GdictSidebar *sidebar,
 
   /* add the menu item for the page */
   menu_item = gtk_image_menu_item_new_with_label (page_name);
-  g_object_set_data_full (G_OBJECT (menu_item),
-		          "gdict-sidebar-page-id",
-			  g_strdup (page_id),
-			  (GDestroyNotify) g_free);
+  g_object_set_qdata_full (G_OBJECT (menu_item),
+		           SIDEBAR_PAGE_ID,
+			   g_strdup (page_id),
+			   (GDestroyNotify) g_free);
   g_signal_connect (menu_item, "activate",
 		    G_CALLBACK (gdict_sidebar_menu_item_activate),
 		    sidebar);
@@ -450,10 +457,54 @@ void
 gdict_sidebar_remove_page (GdictSidebar *sidebar,
 			   const gchar  *page_id)
 {
+  GdictSidebarPrivate *priv;
+  SidebarPage *page;
+  GtkWidget *menu_item;
+  GList *children, *l;
+  
   g_return_if_fail (GDICT_IS_SIDEBAR (sidebar));
   g_return_if_fail (page_id != NULL);
+
+  priv = sidebar->priv;
   
-  g_warning ("FIXME");
+  if ((page = g_hash_table_lookup (priv->pages_by_id, page_id)) == NULL)
+    {
+      g_warning ("Attempting to remove a page from the sidebar with "
+		 "id `%s', but there is no page with this id. Aborting...",
+		 page_id);
+      return;
+    }
+
+  children = gtk_container_get_children (GTK_CONTAINER (priv->menu));
+  for (l = children; l != NULL; l = l->next)
+    {
+      GtkWidget *menu_item = l->data;
+
+      if (menu_item == page->menu_item)
+        {
+          gtk_container_remove (GTK_CONTAINER (priv->menu), menu_item);
+	  break;
+	}
+    }
+  g_list_free (children);
+
+  gtk_notebook_remove_page (GTK_NOTEBOOK (priv->notebook), page->index);
+
+  g_hash_table_remove (priv->pages_by_id, page->id);
+  priv->pages = g_slist_remove (priv->pages, page);
+
+  sidebar_page_free (page);
+
+  /* select the first page, if present */
+  page = priv->pages->data;
+  if (page)
+    {
+      gtk_menu_shell_select_item (GTK_MENU_SHELL (priv->menu), page->menu_item);
+      gtk_label_set_text (GTK_LABEL (priv->label), page->name);
+      gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), page->index);
+    }
+  else
+    gtk_widget_hide (GTK_WIDGET (sidebar));
 }
 
 void

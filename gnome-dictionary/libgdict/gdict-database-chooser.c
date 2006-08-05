@@ -449,6 +449,16 @@ gdict_database_chooser_new_with_context (GdictContext *context)
                        NULL);
 }
 
+/**
+ * gdict_database_chooser_get_context:
+ * @chooser: a #GdictDatabaseChooser
+ *
+ * FIXME
+ *
+ * Return value: a #GdictContext
+ *
+ * Since:
+ */
 GdictContext *
 gdict_database_chooser_get_context (GdictDatabaseChooser *chooser)
 {
@@ -457,6 +467,15 @@ gdict_database_chooser_get_context (GdictDatabaseChooser *chooser)
   return chooser->priv->context;
 }
 
+/**
+ * gdict_database_chooser_set_context:
+ * @chooser: a #GdictDatabaseChooser
+ * @context: a #GdictContext
+ *
+ * FIXME
+ *
+ * Since:
+ */
 void
 gdict_database_chooser_set_context (GdictDatabaseChooser *chooser,
 				    GdictContext         *context)
@@ -469,6 +488,17 @@ gdict_database_chooser_set_context (GdictDatabaseChooser *chooser,
   g_object_notify (G_OBJECT (chooser), "context");
 }
 
+/**
+ * gdict_database_chooser_get_databases:
+ * @chooser: a #GdictDatabaseChooser
+ * @length: FIXME
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since:
+ */
 gchar **
 gdict_database_chooser_get_databases (GdictDatabaseChooser  *chooser,
 				      gsize                  length)
@@ -478,6 +508,17 @@ gdict_database_chooser_get_databases (GdictDatabaseChooser  *chooser,
   return NULL;
 }
 
+/**
+ * gdict_database_chooser_has_database:
+ * @chooser: a #GdictDatabaseChooser
+ * @database: FIXME
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since:
+ */
 gboolean
 gdict_database_chooser_has_database (GdictDatabaseChooser *chooser,
 				     const gchar          *database)
@@ -488,6 +529,16 @@ gdict_database_chooser_has_database (GdictDatabaseChooser *chooser,
   return FALSE;
 }
 
+/**
+ * gdict_database_chooser_count_dayabases:
+ * @chooser: a #GdictDatabaseChooser
+ *
+ * Returns the number of databases found.
+ *
+ * Return value: the number of databases or -1 if case of error
+ *
+ * Since:
+ */
 gint
 gdict_database_chooser_count_databases (GdictDatabaseChooser *chooser)
 {
@@ -564,6 +615,14 @@ error_cb (GdictContext *context,
   chooser->priv->is_searching = FALSE;
 }
 
+/**
+ * gdict_database_chooser_refresh:
+ * @chooser: a #GdictDatabaseChooser
+ *
+ * Reloads the list of available databases.
+ *
+ * Since:
+ */
 void
 gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
 {
@@ -628,6 +687,14 @@ gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
     }
 }
 
+/**
+ * gdict_database_chooser_clear:
+ * @chooser: a #GdictDatabaseChooser
+ *
+ * Clears @chooser.
+ *
+ * Since:
+ */
 void
 gdict_database_chooser_clear (GdictDatabaseChooser *chooser)
 {

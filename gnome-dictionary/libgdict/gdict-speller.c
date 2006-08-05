@@ -507,6 +507,15 @@ gdict_speller_get_context (GdictSpeller *speller)
   return speller->priv->context;
 }
 
+/**
+ * gdict_speller_set_database:
+ * @speller: a #GdictSpeller
+ * @database: FIXME
+ *
+ * FIXME
+ *
+ * Since:
+ */
 void
 gdict_speller_set_database (GdictSpeller *speller,
 			    const gchar  *database)

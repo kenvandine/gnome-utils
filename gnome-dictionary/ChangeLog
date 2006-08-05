@@ -1,8 +1,29 @@
-2007-07-29  Christophe Merlet  <redfox@redfoxcenter.org>
+2006-08-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-speller.c:
+	* libgdict/gdict-database-chooser.c: Add API documentation
+	definitions for gtk-doc.
+
+	* src/gdict-applet.c: Change the default columns and rows
+	number of the applet.
+
+	(window_show_cb), (gdict_applet_build_window),
+	(gdict_applet_lookup_end_cb), (gdict_applet_error_cb),
+	(gdict_applet_style_set): Move the resize call to a
+	callback to the show signal; this should make the
+	window manager happier when it tries to place the
+	definition window on the desktop.
+
+	* src/gdict-sidebar.c:
+	(sidebar_page_id_quark), (gdict_sidebar_add_page),
+	(gdict_sidebar_remove_page): Implement the page removal
+	function of GdictSidebar.
+
+2006-07-29  Christophe Merlet  <redfox@redfoxcenter.org>
 
 	* src/gdict-window.c: Fixed typo.
 
-2007-07-28  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+2006-07-28  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* src/gdict-app.c (gdict_init): Use G_OPTION_REMAINING
 	to catch every word used on the command line and look up

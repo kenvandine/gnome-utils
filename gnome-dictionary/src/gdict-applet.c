@@ -101,8 +101,8 @@ struct _GdictAppletPrivate
 
 #define WINDOW_MIN_WIDTH 	300
 #define WINDOW_MIN_HEIGHT 	200
-#define WINDOW_NUM_COLUMNS 	56
-#define WINDOW_NUM_ROWS  	23
+#define WINDOW_NUM_COLUMNS 	47
+#define WINDOW_NUM_ROWS  	20
 
 G_DEFINE_TYPE (GdictApplet, gdict_applet, PANEL_TYPE_APPLET);
 
@@ -162,18 +162,17 @@ set_window_default_size (GdictApplet *applet)
   width = MAX (width, req.width);
   height = MAX (height, req.height);
 
-  /* ... but make it no larger than the monitor */
+  /* ... but make it no larger than half the monitor size */
   screen = gtk_widget_get_screen (widget);
   monitor_num = gdk_screen_get_monitor_at_window (screen, widget->window);
 
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
-  width = MIN (width, monitor.width * 1 / 2);
-  height = MIN (height, monitor.height * 1 / 2);
+  width = MIN (width, monitor.width / 2);
+  height = MIN (height, monitor.height / 2);
 
   /* Set size */
   gtk_widget_set_size_request (priv->frame, width, height);
-
 }
 
 static void
@@ -312,6 +311,13 @@ window_key_press_event_cb (GtkWidget   *widget,
 }
 
 static void
+window_show_cb (GtkWidget   *window,
+		GdictApplet *applet)
+{
+  set_window_default_size (applet);
+}
+
+static void
 gdict_applet_build_window (GdictApplet *applet)
 {
   GdictAppletPrivate *priv = applet->priv;
@@ -331,6 +337,9 @@ gdict_applet_build_window (GdictApplet *applet)
   window = gtk_aligned_window_new (priv->toggle);
   g_signal_connect (window, "key-press-event",
 		    G_CALLBACK (window_key_press_event_cb),
+		    applet);
+  g_signal_connect (window, "show",
+  		    G_CALLBACK (window_show_cb),
 		    applet);
 
   frame = gtk_frame_new (NULL);
@@ -401,8 +410,6 @@ gdict_applet_build_window (GdictApplet *applet)
   gtk_box_pack_start (GTK_BOX (bbox), button, FALSE, FALSE, 0);
   gtk_widget_show (button);
   
-  set_window_default_size (applet);
-
   gtk_window_set_default (GTK_WINDOW (window), priv->defbox);
   
   priv->window = window;
@@ -676,8 +683,6 @@ gdict_applet_lookup_end_cb (GdictContext *context,
   gdict_applet_set_menu_items_sensitive (applet, TRUE);
 
   gtk_window_present (GTK_WINDOW (applet->priv->window));
-
-  set_window_default_size (applet);
 }
 
 static void
@@ -685,8 +690,6 @@ gdict_applet_error_cb (GdictContext *context,
 		       const GError *error,
 		       GdictApplet  *applet)
 {
-  set_window_default_size (applet);
-  
   /* disable menu items */
   gdict_applet_set_menu_items_sensitive (applet, FALSE);
 }
@@ -866,8 +869,9 @@ gdict_applet_style_set (GtkWidget *widget,
   if (GTK_WIDGET_CLASS (gdict_applet_parent_class)->style_set)
     GTK_WIDGET_CLASS (gdict_applet_parent_class)->style_set (widget,
 		    					     old_style);
-
+#if 0
   set_window_default_size (GDICT_APPLET (widget));
+#endif
 }
 
 static void
