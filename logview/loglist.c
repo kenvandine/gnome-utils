@@ -296,7 +296,7 @@ loglist_init (LogList *list)
 					 "weight", LOG_WEIGHT,
 					 NULL);
 
-    gtk_tree_sortable_set_sort_column_id (list->priv->model, 0, GTK_SORT_ASCENDING);
+    gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE(list->priv->model), 0, GTK_SORT_ASCENDING);
     gtk_tree_view_append_column (GTK_TREE_VIEW (list), column);
     gtk_tree_view_set_search_column (GTK_TREE_VIEW (list), -1);
 }

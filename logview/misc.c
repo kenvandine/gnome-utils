@@ -30,6 +30,7 @@
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#define _XOPEN_SOURCE
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>

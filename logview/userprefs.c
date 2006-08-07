@@ -73,7 +73,7 @@ parse_syslog(gchar *syslog_file) {
 		for (i = 0; list[i]; ++i) {
 			if (*list[i] == '/' &&
 				g_slist_find_custom(logfiles, list[i],
-				g_ascii_strcasecmp) == NULL) {
+				(GCompareFunc)g_ascii_strcasecmp) == NULL) {
 					logfiles = g_slist_insert (logfiles,
 						g_strdup(list[i]), 0);
 			}
@@ -129,7 +129,7 @@ prefs_create_defaults (UserPrefs *p)
 	}
 	
 	for (i=0; logfiles[i]; i++) {
-	    if (g_slist_find_custom(logs, logfiles[i], g_ascii_strcasecmp) == NULL &&
+	    if (g_slist_find_custom(logs, logfiles[i], (GCompareFunc)g_ascii_strcasecmp) == NULL &&
 		file_is_log (logfiles[i], FALSE))
 		logs = g_slist_insert (logs, g_strdup(logfiles[i]), 0);
 	}

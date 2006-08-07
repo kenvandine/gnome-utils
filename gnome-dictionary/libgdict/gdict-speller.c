@@ -343,7 +343,7 @@ gdict_speller_constructor (GType                  type,
 		  	gtk_image_new_from_stock (GTK_STOCK_CLEAR,
 						  GTK_ICON_SIZE_SMALL_TOOLBAR));
   g_signal_connect (priv->clear_button, "clicked",
-		    clear_button_clicked_cb,
+		    G_CALLBACK (clear_button_clicked_cb),
 		    speller);
   gtk_box_pack_start (GTK_BOX (hbox), priv->clear_button, FALSE, FALSE, 0);
   gtk_widget_show (priv->clear_button);

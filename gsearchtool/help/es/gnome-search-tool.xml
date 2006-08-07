@@ -19,12 +19,10 @@
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <articleinfo> 
-    <title>Search for Files Manual</title>
+    <title>Manual de la búsqueda de archivos</title>
 
     <abstract role="description">
-      <para>
-    	A search tool to find files, folders and documents on your computer.
-      </para>
+      <para>Una herramienta de búsqueda para buscar archivos, carpetas y documentos en su equipo.</para>
     </abstract>
 
     <copyright> 
@@ -76,7 +74,7 @@
 	<firstname>Dennis</firstname> 
 	<surname>Cranston</surname> 
 	<affiliation> 
-	  <orgname>Search for Files Maintainer</orgname> 
+	  <orgname>Mantenedor de Buscar archivos</orgname> 
 	  <address>dennis_cranston@yahoo.com</address> 
 	</affiliation> 
       </author> 
@@ -125,7 +123,7 @@
 			<date>Junio de 2005</date> 
 			<revdescription> 
 	  		<para role="author">Joachim Noreiko <email>jnoreiko@yahoo.com</email></para>
-	  		<para role="publisher">Search for Files Maintainer</para>
+	  		<para role="publisher">Mantenedor de Buscar archivos</para>
 			</revdescription> 
   </revision>
   <revision> 
@@ -133,7 +131,7 @@
 			<date>Enero de 2005</date> 
 			<revdescription> 
 	  		<para role="author">Dennis Cranston <email>dennis_cranston@yahoo.com</email></para>
-	  		<para role="publisher">Search for Files Maintainer</para>
+	  		<para role="publisher">Mantenedor de Buscar archivos</para>
 			</revdescription> 
  </revision>
  <revision> 
@@ -177,7 +175,7 @@
 			</revdescription> 
  </revision> 
  <revision> 
-	<revnumber>Search for Files Manual</revnumber> 
+	<revnumber>Manual de la búsqueda de archivos</revnumber> 
 	<date>2000</date> 
 	<revdescription> 
 	  <para role="author">Alexander Kirillov <email>kirillov@math.sunysb.edu</email></para>
@@ -310,41 +308,37 @@
         </tgroup>
       </informaltable>
     </listitem>
-    <listitem><para>In the <guilabel>Look in folder</guilabel> field, select the folder or device from which you want <application>Search for Files</application> to begin the search. 
-</para></listitem>
-    <listitem><para>Click <guibutton>Find</guibutton> to perform the search. </para>
+    <listitem><para>En el campo <guilabel>Buscar en la carpeta</guilabel>, seleccione la carpeta o dispositivo desde el que quiere que <application>Buscar archivos</application> empiece a buscar.</para></listitem>
+    <listitem><para>Pulse en <guibutton>Buscar</guibutton> para efectuar la búsqueda.</para>
     </listitem>
     </orderedlist>
-    <para>
-      <application>Search for Files</application> searches in the directory that you specify and the subdirectories of the directory.
-<application>Search for Files</application> displays the results of the search in the <guilabel>Search results</guilabel> list box. If <application>Search for Files</application> does not find any files that match the search criteria, the application displays the message "No files found" in the <guilabel>Search results</guilabel> list box. 
-</para>
-    <para>By default, <application>Search for Files</application> will perform a quick search using the <command>locate</command> command followed by a more thorough second search using the <command>find</command> command. The <command>locate</command> command is faster because it uses a database of information about files. If this database is more than a week old, <application>Search for Files</application> could warn you that the search results may be out of date and give you the option of disabling the quick search. To update the database, run the command <command>updatedb</command> as the root user.</para>
+    <para><application>Buscar archivos</application> busca en el directorio que especifique y en los subdirectorios del directorio. <application>Buscar archivos</application> muestra los resultados de la búsqueda en la caja <guilabel>Resultados de la búsqueda</guilabel>. Si <application>Buscar archivos</application> no encuentra ningún archivo que coincida con el criterio de búsqueda, la aplicación muestra el mensaje «No se encontró ningún archivo» en la caja <guilabel>Resultados de la búsqueda</guilabel>.</para>
+    <para>Por omisión, <application>Buscar archivos</application> realiza una búsqueda rápida usando el comando <command>locate</command> seguido por una búsqueda más intensa usando el comando <command>find</command>. El comando <command>locate</command> es más rápido porque usa una base de datos de información sobre los archivos. Si esta base de datos es más de una semana de antigua, <application>Búsqueda de archivos</application> le puede avisar de que los resultados de la búsqueda pueden estar desactualizados y darle la opción para desactivar la búsqueda rápida. Para actualizar la base de datos, ejecute el programa <command>updatedb</command> como usuario root.</para>
   </sect2>
     
     <sect2 id="gsearchtool-advanced">
-    <title>To Add Search Options</title>
-    <para>You can add additional options to search for a file on the system. To add search options, perform the following steps:</para>
+    <title>Añadir a las opciones de búsqueda</title>
+    <para>Puede añadir opciones adicionales para buscar un archivo en el sistema. Para añadir opciones de búsqueda, realice los pasos siguientes:</para>
   	<orderedlist>
-    		<listitem><para>Click on the <guilabel>Select more options</guilabel> text. </para></listitem>
-    		<listitem><para>Click on the <guilabel>Available options</guilabel> drop-down list.</para></listitem>
-    		<listitem><para>Select the search option that you want to apply.</para></listitem>
+    		<listitem><para>Pulse en el texto <guilabel>Seleccionar más opciones</guilabel>.</para></listitem>
+    		<listitem><para>Pulse en la lista desplegable <guilabel>Opciones disponibles</guilabel>.</para></listitem>
+    		<listitem><para>Seleccione la opción de búsqueda que quiere aplicar.</para></listitem>
     		<listitem><para>Pulse en <guibutton>Añadir</guibutton>.</para></listitem>
-    		<listitem><para>Specify the required search information for the search option, as described in <xref linkend="tbl-search-rules"/>.</para></listitem>
-    		<listitem><para>Repeat the above steps for each search option that you want to apply.</para></listitem>
+    		<listitem><para>Especifique la información de búsqueda requerida para la opción de búsqueda, tal como se describe en la <xref linkend="tbl-search-rules"/>.</para></listitem>
+    		<listitem><para>Repita los pasos de arriba por cada opción de búsqueda que quiera aplicar.</para></listitem>
     	</orderedlist>	
-    	<para>To remove a search option from the current search, click on the <guibutton>Remove</guibutton> button next to the option. </para>
-    	<para>To disable the search options from the current search, click on the <guilabel>Select more options</guilabel> text.</para>
+    	<para>Para quitar una opción de búsqueda de la búsqueda actual, pulse en el botón <guibutton>Quitar</guibutton> junto a la opción</para>
+    	<para>Para desactivar las opciones de búsqueda de la búsqueda actual, pulse en el texto <guilabel>Seleccionar más opciones</guilabel>.</para>
     
     <table id="tbl-search-rules" frame="topbot">
-    <title>Search Options</title> 
+    <title>Opciones de búsqueda</title> 
 		  <tgroup cols="2" colsep="1" rowsep="1">
 			 <colspec colname="COLSPEC0" colwidth="33*"/>
 			 <colspec colname="COLSPEC1" colwidth="33*"/>
 			 <thead> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Option Name</para></entry> 
+					 <para>Nombre de opción</para></entry> 
 				  <entry> 
 					 <para>Descripción</para></entry> 
 				</row> 
@@ -352,87 +346,87 @@
 			 <tbody> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Contains the text</para></entry> 
+					 <para>Contiene el texto</para></entry> 
 				  <entry> 
-					 <para>Search for a file by filename. Enter a full filename or a partial filename with wildcards in the field provided. Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case sensitive.</para></entry>  
+					 <para>Busca un archivo por su nombre. Introduzca un nombre completo de archivo o un nombre parcial con comodines en el campo proporcionado. Use * para indicar una secuencia de caracteres. Use ? para indicar un solo carácter. La búsqueda discrimina la capitalización.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Date modified less than</para></entry> 
+					 <para>Fecha de modificación anterior a</para></entry> 
 				  <entry> 
-					 <para>Search for files that are modified less than the period specified in days.</para></entry>  
+					 <para>Busca archivos que se han modificado antes del periodo especificado en días.</para></entry>  
 				</row>
 				<row valign="top"> 
 				  <entry> 
-					 <para>Date modified more than</para></entry> 
+					 <para>Fecha de modificación posterior a</para></entry> 
 				  <entry> 
-					 <para>Search for files that are modified longer than the period specified in days.</para></entry>  
+					 <para>Busca archivos que se han modificado posteriormente al periodo especificado en días.</para></entry>  
 				</row>
 				<row valign="top"> 
 				  <entry> 
-					 <para>Size at least</para></entry> 
+					 <para>Tamaño de al menos</para></entry> 
 				  <entry> 
-					 <para>Search for files that are equal to or larger than the size specified in kilobytes.</para></entry>  
+					 <para>Busca archivos que son iguales o mayores que el tamaño especificado en kilobytes.</para></entry>  
 				</row>
 				<row valign="top"> 
 				  <entry> 
-					 <para>Size at most</para></entry> 
+					 <para>Tamaño de como mucho</para></entry> 
 				  <entry> 
-					 <para>Search for files that are smaller than or equal to the size specified in kilobytes.</para></entry>  
+					 <para>Busca archivos que son más pequeños o iguales al tamaño especificado en kilobytes.</para></entry>  
 				</row>
 				<row valign="top"> 
 				  <entry> 
-					 <para>File is empty</para></entry> 
+					 <para>El archivo está vacío</para></entry> 
 				  <entry> 
-					 <para>Search for empty files.</para></entry>  
+					 <para>Busca archivos vacíos.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Owned by user</para></entry> 
+					 <para>Pertenece al usuario</para></entry> 
 				  <entry> 
-					 <para>Search for files that are owned by the user specified. Type the name of the user in the text box provided.</para></entry>  
+					 <para>Busca archivos que pertenecen al usuario especificado. Teclee el nombre del usuario en la caja de texto proporcionada.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Owned by group</para></entry> 
+					 <para>Pertenece al grupo</para></entry> 
 				  <entry> 
-					 <para>Search for files that are owned by the group specified. Type the name of the group in the text box provided. </para></entry>  
+					 <para>Busca archivos que pertenecen al grupo especificado. Teclee el nombre del grupo en la caja de texto proporcionada.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Owner is unrecognized</para></entry> 
+					 <para>El propietario es desconocido</para></entry> 
 				  <entry> 
-					 <para>Search for files that are owned by a user or group that is unknown to the system.</para></entry>  
+					 <para>Busca archivos que pertenecen a un usuario o grupo que es desconocido para el sistema.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Name does not contain</para></entry> 
+					 <para>El nombre no contiene</para></entry> 
 				  <entry> 
-					 <para>Search for filenames that do not contain the string that you enter. Enter a full filename or a partial filename with wildcards in the field provided. Use * to indicate a sequence of characters. Use ? to indicate a single character. The search is case sensitive.</para></entry>  
+					 <para>Busca nombres de archivos que no contienen la cadena que introduzca. Introduzca un nombre completo de archivo o un nombre parcial con comodines en el campo proporcionado. Use * para indicar una secuencia de caracteres. Use ? para indicar un solo carácter. La búsqueda discrimina la capitalización.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Name matches regular expression</para></entry> 
+					 <para>El nombre coincide con la expresión regular</para></entry> 
 				  <entry> 
-					 <para>Search for files that contain the specified regular expression in their directory path or filename. Type the regular expression in the text box provided. </para></entry>  
+					 <para>Busca archivos que contengan la expresión regular especificada en su ruta de directorio o nombre de archivo. Teclee la expresión regular en la caja de texto proporcionada.</para></entry>  
 				</row>
 				<row valign="top"> 
 				  <entry> 
-					 <para>Show hidden and backup files</para></entry> 
+					 <para>Mostrar archivos ocultos y de resguardo</para></entry> 
 				  <entry> 
-					 <para>Include hidden and backup files in the search. </para></entry>  
+					 <para>Incluye archivos ocultos y de resguardo en la búsqueda.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Follow symbolic links</para></entry> 
+					 <para>Seguir enlaces simbólicos</para></entry> 
 				  <entry> 
-					 <para>Follow symbolic links when searching for files.</para></entry>  
+					 <para>Sigue los enlaces simbólicos al buscar archivos.</para></entry>  
 				</row> 
 				<row valign="top"> 
 				  <entry> 
-					 <para>Include other filesystems</para></entry> 
+					 <para>Incluir otros sistemas de archivos</para></entry> 
 				  <entry> 
-					 <para>Search in directories that are not in the same filesystem as the start directory.</para></entry>  
+					 <para>Busca en los directorios que no están en el mismo sistema de archivos que el directorio de inicio.</para></entry>  
 				</row> 
 				 				
 			 </tbody> 
@@ -442,23 +436,23 @@
     </sect2>
 
     <sect2 id="gsearchtool-stop">
-    <title>To Stop a Search</title>
-    <para>Click <guibutton>Stop</guibutton> to stop a search before <application>Search for Files</application> completes the search. </para>
+    <title>Para parar una búsqueda</title>
+    <para>Pulse en el botón <guibutton>Detener</guibutton> para parar una búsqueda antes de que <application>Búsqueda de archivos</application> complete la búsqueda.</para>
     </sect2>
     
     <sect2 id="gsearchtool-view">
-    <title>To Open a Displayed File</title>
-    <para>To open a file displayed in the <guilabel>Search results</guilabel> list box, perform one of the following steps:</para>
+    <title>Para abrir un archivo mostrado</title>
+    <para>Para abrir un archivo mostrado en la lista de <guilabel>Resultados de búsqueda</guilabel>, realice uno de los siguientes pasos:</para>
     <itemizedlist>
-    <listitem><para>Right-click on the file, then choose <guimenuitem>Open</guimenuitem>. </para></listitem>
-     <listitem><para>Double-click on the file. </para></listitem>
+    <listitem><para>Pulse con el botón derecho del ratón y seleccione <guimenuitem>Abrir</guimenuitem>.</para></listitem>
+     <listitem><para>Doble pulsación en el archivo.</para></listitem>
     </itemizedlist>
-    <para>To open the folder that contains a file displayed in the <guilabel>Search results</guilabel> list box, right-click on the file, then choose <guimenuitem>Open Folder</guimenuitem>.</para>
+    <para>Para abrir la carpeta que contiene un archivo mostrado en la lista <guilabel>Buscar resultados</guilabel>, pulse con el botón derecho en el archivo, después elija <guimenuitem>Abrir carpeta</guimenuitem>.</para>
     </sect2>
 
     <sect2 id="gsearchtool-delete">
-    <title>To Delete a Displayed File</title>
-    <para>To delete a file displayed in the <guilabel>Search results</guilabel> list box, right-click on the file, then choose <guimenuitem>Move to Trash</guimenuitem>. </para>
+    <title>Para borrar archivo mostrado</title>
+    <para>Para borrar un archivo mostrado en los <guilabel>Resultados de la búsqueda</guilabel>, pulse con el botón derecho en el archivo, después elija <guimenuitem>Mover a la papelera</guimenuitem>.</para>
     </sect2>
     
     <!--
@@ -469,8 +463,8 @@
     -->
     
     <sect2 id="gsearchtool-savetofile">
-    <title>To Save the Search Results</title>
-    <para>To save the results of the last search that <application>Search for Files</application> performed, right-click in the <guilabel>Search results</guilabel> list, then choose <guimenuitem>Save Results As</guimenuitem>. Enter the name of the file to which you want to save the results, then click Save.</para>
+    <title>Para guardar los resultados de la búsqueda</title>
+    <para>Para guardar los resultados de la última búsqueda que realizó <application>Búsqueda de archivos</application>, pulse en la lista <guilabel>Resultados de la búsqueda</guilabel></para>
     </sect2>
  
   </sect1>
@@ -478,58 +472,57 @@
 <!-- ============= Settings ============================== -->
 
   <sect1 id="gsearchtool-settings-gconf-keys">
-    <title>Settings</title> 
+    <title>Configuraciones</title> 
 
-    <para><application>Search for Files</application> provides gconf keys to modify some of its behavior.  The gconf values can be changed by starting the <application>Configuration Editor</application> in the following ways:
-    </para> 
+    <para><application>Buscar archivos</application> proporciona claves gconf para modificar algo su comportamiento. Los valores gconf se pueden cambiar iniciando el <application>Editor de configuración</application> de las formas siguientes:</para> 
     <variablelist>
     	<varlistentry>
     		<term>Menú <guimenu>Aplicaciones</guimenu></term>
     		<listitem>
-    		<para>Choose <menuchoice><guisubmenu>System Tools</guisubmenu><guimenuitem>Configuration Editor</guimenuitem></menuchoice>. </para>
+    		<para>Elija<menuchoice><guisubmenu>Herramientas del sistema</guisubmenu><guimenuitem>Editor de configuración</guimenuitem></menuchoice>.</para>
     		</listitem>
     	</varlistentry>
     	<varlistentry>
-    		<term>Línea de órdenes</term>
+    		<term>Línea de comandos</term>
     		<listitem>
-    		<para>Execute the following command: <command>gconf-editor</command></para> 
+    		<para>Ejecute el siguiente comando: <command>gconf-editor</command></para> 
     		</listitem>
     	</varlistentry>	
     </variablelist>
     
     <sect2 id="gsearchtool-disablequicksearch">
-    <title>Disable Quick Search</title>
-    <para>Key name: /apps/gnome-search-tool/disable_quick_search</para>
-    <para>Default value: false</para>
-    <para><application>Search for Files</application> speeds up file name searches by using the <command>locate</command> command.  <command>Locate</command> provides a secure way to index and quickly search for file names.  Because <command>locate</command> relies on a file index, the <guilabel>Search results</guilabel> list may not always be up to date.</para>
+    <title>Desactivar búsqueda rápida</title>
+    <para>Nombre de la clave: /apps/gnome-search-tool/disable_quick_search</para>
+    <para>Valor predeterminado: false</para>
+    <para><application>Buscar archivos</application> acelera las búsquedas de nombres de archivos usando el comando <command>locate</command>. <command>Locate</command> proporciona una manera segura para indizar y buscar rápidamente nombres de archivo. Debido a que <command>locate</command> se basa en un índice de archivos, la lista <guilabel>Resultados de búsqueda</guilabel> quizá no siempre esté al día.</para>
     </sect2>
 
     <sect2 id="gsearchtool-disablesecondscan">
-    <title>Disable Quick Search Second Scan</title>
-    <para>Key name: /apps/gnome-search-tool/disable_quick_search_second_scan</para>
-    <para>Default value: false</para>
-    <para>After completing a quick search, <application>Search for Files</application> will perform a thorough search using the <command>find</command> command.  The purpose of this second scan is to find files that have not been indexed.  Files that match the search criteria are added to the <guilabel>Search results</guilabel> list keeping the list up to date.</para>
+    <title>Desactivar el segundo análisis de la búsqueda rápida</title>
+    <para>Nombre de la clave: /apps/gnome-search-tool/disable_quick_search_second_scan</para>
+    <para>Valor predeterminado: false</para>
+    <para>Tras completar una búsqueda rápida, <application>Buscar archivos</application> realizará una búsqueda intensiva usando el comando <command>find</command>. El propósito de esta segunda búsqueda es encontrar los archivos que no se hayan indexado. Los archivos que coincidan con el criterio de búsqueda se añaden a la lista de <guilabel>Resultados de búsqueda</guilabel> manteniendo la lista al día.</para>
     </sect2>
 
     <sect2 id="gsearchtool-quicksearchexclude">
-    <title>Quick Search Excluded Paths</title>
-    <para>Key name: /apps/gnome-search-tool/quick_search_excluded_paths</para>
-    <para>Default values: [/mnt/*,/media/*,/dev/*,/tmp/*,/proc/*,/var/*]</para>
-    <para><application>Search for Files</application> will not perform a quick search for paths defined by this key.  File name searches in the defined paths will use the <command>find</command> command.  The wildcards '*' and '?' are supported.</para>
+    <title>Rutas excluidas de la búsqueda rápida</title>
+    <para>Nombre de la clave: /apps/gnome-search-tool/quick_search_excluded_paths</para>
+    <para>Valores predeterminados: [/mnt/*,/media/*,/dev/*,/tmp/*,/proc/*,/var/*]</para>
+    <para><application>Buscar archivos</application> no realizará una búsqueda rápida para las rutas definidas por esta clave. Las búsquedas de nombres de archivo en las rutas definidas usarán el comando <command>find</command>. Los comodines * y ? están soportados.</para>
     </sect2>
 
     <sect2 id="gsearchtool-secondscanexclude">
-    <title>Quick Search Second Scan Excluded Paths</title>
-    <para>Key name: /apps/gnome-search-tool/quick_search_second_scan_excluded_paths</para>
-    <para>Default values: [/]</para>
-    <para><application>Search for Files</application> will not perform a second scan after a quick search for the paths defined by this key.  Quick searches in the defined paths will not be followed by a thorough search using the <command>find</command> command.  The wildcards '*' and '?' are supported.</para>
+    <title>Rutas excluidas de la segunda inspección de la búsqueda rápida</title>
+    <para>Nombre de la clave: /apps/gnome-search-tool/quick_search_second_scan_excluded_paths</para>
+    <para>Valores predeterminados: [/]</para>
+    <para><application>Buscar archivos</application> no realizará una segunda inspección después de una búsqueda rápida para las rutas definidas en esta clave. Las búsquedas rápidas en las rutas definidas no se las seguirá con una búsqueda intensa usando el comando <command>find</command>. Los comodines *  y ? están soportados.</para>
     </sect2>
 
     <sect2 id="gsearchtool-showoptions">
-    <title>Show Additional Options</title>
-    <para>Key name: /apps/gnome-search-tool/show_additional_options</para>
-    <para>Default value: false</para>
-    <para>This key determines if the <guilabel>Select more options</guilabel> section is expanded when <application>Search for Files</application> is started.</para>
+    <title>Mostrar opciones adicionales</title>
+    <para>Nombre de la clave:  /apps/gnome-search-tool/show_additional_options</para>
+    <para>Valor predeterminado: false</para>
+    <para>Esta clave determina si la sección <guilabel>Seleccionar más opciones</guilabel> está expandida cuando se inicia  <application>Buscar archivos</application></para>
     </sect2>
     
   </sect1>
