@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.dz\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-18 22:48+0530\n"
+"POT-Creation-Date: 2006-08-10 01:46+0530\n"
 "PO-Revision-Date: 2006-07-18 15:52+0530\n"
 "Last-Translator: Mindu Dorji\n"
 "Language-Team: DZONGKHA <pgeyleg@dit.gov.bt>\n"
@@ -19,12 +19,14 @@ msgstr ""
 "X-Po-SourceCharset: utf-8\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "A graphical tool to analyse disk usage"
+#, fuzzy
+msgid "A graphical tool to analyze disk usage"
 msgstr "ཌིཀསི་གི་བེད་སྤྱོད་དཔྱད་ཞིབ་འབད་ནིའི་ཚད་རིས་ལག་ཆས་ཅིག"
 
-#: ../baobab/data/baobab.desktop.in.in.h:2
-msgid "Baobab - Disk Usage Analyser"
-msgstr "བའོ་བབ་ - ཌིཀསི་བེད་སྤྱོད་དཔྱད་ཞིཔ་པ།"
+#: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:9
+#, fuzzy
+msgid "Disk Usage Analyzer"
+msgstr "ཌིཀསི་བེད་སྤྱོད་དཔྱད་ཞིབ་པ།"
 
 #: ../baobab/data/baobab.glade.h:1
 msgid "<b>File Size</b>"
@@ -58,12 +60,9 @@ msgstr "གང་རུང་།(_y)"
 msgid "Directory Tree"
 msgstr "ཚིག་མཛོད་རྩ་འབྲེལ།"
 
-#: ../baobab/data/baobab.glade.h:9
-msgid "Disk Usage Analyser"
-msgstr "ཌིཀསི་བེད་སྤྱོད་དཔྱད་ཞིབ་པ།"
-
 #: ../baobab/data/baobab.glade.h:10
-msgid "Disk Usage Analyser Preferences"
+#, fuzzy
+msgid "Disk Usage Analyzer Preferences"
 msgstr "ཌིཀསི་བེད་སྤྱོད་དཔྱད་ཞིབ་པའི་དགའ་གདམས་ཚུ།"
 
 #: ../baobab/data/baobab.glade.h:11
@@ -188,7 +187,8 @@ msgid "Zoom out"
 msgstr "ནང་ན་ཟུམ།"
 
 #: ../baobab/data/baobab.glade.h:42
-msgid "_Analyser"
+#, fuzzy
+msgid "_Analyzer"
 msgstr "དཔྱད་ཞིབ་པ།(_A)"
 
 #: ../baobab/data/baobab.glade.h:43
@@ -196,8 +196,8 @@ msgid "_Browse..."
 msgstr "བརྡ་འཚོལ་...(_B)"
 
 #. Help menu
-#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:933
-#: ../logview/logview.c:114
+#: ../baobab/data/baobab.glade.h:44
+#: ../gnome-dictionary/src/gdict-window.c:1036 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "ནང་དོན་ཚུ།(_C)"
 
@@ -209,7 +209,7 @@ msgstr "ཚེས་གྲངས།(_D)"
 msgid "_Depth level:"
 msgstr "གཏིང་ཚད་གནས་རིམ་:(_D)"
 
-#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:890
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:985
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "ཞུན་དག(_E)"
@@ -232,7 +232,7 @@ msgstr "ཚད་རིས་བེད་སྤྱོད་ས་ཁྲ།(_G)"
 
 #: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:893 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:988 ../logview/logview.c:88
 msgid "_Help"
 msgstr "གྲོགས་རམ་།(_H)"
 
@@ -268,7 +268,7 @@ msgstr "སྣོད་འཛིན་བསྡོམས་:(_T)"
 msgid "_Type"
 msgstr "དབྱེ་བ།(_T)"
 
-#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:891
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:986
 #: ../logview/logview.c:87
 msgid "_View"
 msgstr "མཐོང་སྣང་།(_V)"
@@ -307,13 +307,13 @@ msgstr "ཁྱིམ་གྱི་སྣོད་ཐོ་ལུ་ བསྒ�
 
 #. set statusbar, percentage and allocated/normal size
 #: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
-#: ../baobab/src/callbacks.c:442
+#: ../baobab/src/callbacks.c:444
 msgid "Calculating percentage bars..."
 msgstr "བརྒྱ་ཆའི་ཕྲ་རིང་ཚུ་རྩིས་རྐྱབ་དོ་..."
 
 #: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
-#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:228
-#: ../baobab/src/callbacks.c:446
+#: ../baobab/src/baobab.c:893 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/callbacks.c:448
 msgid "Ready"
 msgstr "གྲ་སྒྲིག"
 
@@ -341,26 +341,26 @@ msgstr "སྤྲོད་དེ་ཡོད་པའི་བའིཊི་:"
 msgid "scanning..."
 msgstr "ལྟ་་ཞིབ་འབད་དོ་..."
 
-#: ../baobab/src/baobab.c:481
+#: ../baobab/src/baobab.c:482
 msgid "<i>Total filesystem usage:</i>"
 msgstr "<i>ཡིག་སྣོད་རིམ་ལུགས་བེད་སྤྱོད་བསྡོམས་:</i>"
 
-#: ../baobab/src/baobab.c:534
+#: ../baobab/src/baobab.c:535
 msgid "contains hardlinks for:"
 msgstr "གི་དོན་ལུ་ སྲ་བའི་འགྲེལ་ལམ་འདུག་་:"
 
-#: ../baobab/src/baobab.c:543
+#: ../baobab/src/baobab.c:544
 #, c-format
 msgid "% 5d object"
 msgid_plural "% 5d objects"
 msgstr[0] "དངོས་པོ་% 5d།"
 msgstr[1] "དངོས་པོ་% 5d།"
 
-#: ../baobab/src/baobab.c:605
+#: ../baobab/src/baobab.c:606
 msgid "Invalid UTF-8 characters"
 msgstr "ནུས་མེད་ཡུ་ཊི་ཨེཕ་-༨ ཡིག་འབྲུ།"
 
-#: ../baobab/src/baobab.c:782
+#: ../baobab/src/baobab.c:795
 msgid ""
 "Cannot initialize GNOME VFS monitoring\n"
 "Some real-time auto-detect function will not be available!"
@@ -500,8 +500,9 @@ msgstr "སྲོལ་སྒྲིག་གནས་ཁོངས།"
 msgid "C_onnect"
 msgstr "མཐུད།(_o)"
 
-#: ../baobab/src/baobab-treeview.c:83
-msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
+#: ../baobab/src/baobab-treeview.c:66
+#, fuzzy
+msgid "Use the Edit->Find menu item or the search toolbar button."
 msgstr ""
 "<i>ཞུན་དག་ལགལེན་འཐབ་->དཀར་ཆག་རྣམ་གྲངས་འཚོལ་ ཡང་ན་ ལག་ཆས་ཕྲ་རིང་འཚོལ་ཞིབ་འབད་</i>"
 
@@ -518,93 +519,93 @@ msgstr "སྦ་སྟེ་ཡོད་པའི་སྣོད་འཛིན
 msgid "Scanning..."
 msgstr "་ཞིབ་ལྟ་འབད་དོ་..."
 
-#: ../baobab/src/baobab-utils.c:349 ../baobab/src/baobab-utils.c:353
+#: ../baobab/src/baobab-utils.c:354 ../baobab/src/baobab-utils.c:358
 #, c-format
 msgid "%s is not a valid folder"
 msgstr "%s དེ་ ནུས་ཅན་སྣོད་འཛིན་ཅིག་མིན་པས།"
 
-#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:437
+#: ../baobab/src/baobab-utils.c:384 ../baobab/src/baobab-utils.c:442
 msgid "Remove from Trash"
 msgstr "ཕྱགས་ཧོད་ནང་ལས་རྩ་བསྐྲད་གཏང་།"
 
-#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:440
+#: ../baobab/src/baobab-utils.c:387 ../baobab/src/baobab-utils.c:445
 msgid "Move to Trash"
 msgstr "ཕྱགས་ཧོད་ནང་སྤོ་བཤུད་འབད།"
 
-#: ../baobab/src/baobab-utils.c:385
+#: ../baobab/src/baobab-utils.c:390
 msgid "Folder graphical map"
 msgstr "སྣོད་འཛིན་གྱི་ཚད་རིས་ས་ཁྲ།"
 
-#: ../baobab/src/baobab-utils.c:389
+#: ../baobab/src/baobab-utils.c:394
 msgid "List all files in folder"
 msgstr "ཡིག་སྣོད་ཆ་མཉམ་སྣོད་འཛིན་ནང་ཐོ་འགོད་འབད།"
 
-#: ../baobab/src/baobab-utils.c:443
+#: ../baobab/src/baobab-utils.c:448
 msgid "Scan Folder"
 msgstr "སྣོད་འཛིན་ཞིབ་ལྟ་འབད།"
 
-#: ../baobab/src/baobab-utils.c:515
+#: ../baobab/src/baobab-utils.c:520
 msgid "Please provide a file name to search for!"
 msgstr "འཚོལ་ནིའི་དོན་ལུ་ ཡིག་སྣོད་ཀྱི་མིང་ཅིག་བྱིན།"
 
-#: ../baobab/src/baobab-utils.c:695
+#: ../baobab/src/baobab-utils.c:700
 msgid "Total filesystem capacity:"
 msgstr "ཡིག་སྣོད་རིམ་ལུགས་ཀྱི་ཤོམ་ཚད་བསྡོམས།"
 
-#: ../baobab/src/baobab-utils.c:695
+#: ../baobab/src/baobab-utils.c:700
 msgid "used:"
 msgstr "ལག་ལེན་འཐབ་ཡོདཔ་:"
 
-#: ../baobab/src/baobab-utils.c:696
+#: ../baobab/src/baobab-utils.c:701
 msgid "available:"
 msgstr "ཡོདཔ་:"
 
-#: ../baobab/src/baobab-utils.c:734
+#: ../baobab/src/baobab-utils.c:739
 msgid "Found:"
 msgstr "ཐོབ་ཡོདཔ་:"
 
-#: ../baobab/src/baobab-utils.c:735
+#: ../baobab/src/baobab-utils.c:740
 msgid "file"
 msgstr "ཡིག་སྣོད།"
 
-#: ../baobab/src/baobab-utils.c:735
+#: ../baobab/src/baobab-utils.c:740
 msgid "files"
 msgstr "ཡིག་སྣོད་ཚུ།"
 
-#: ../baobab/src/baobab-utils.c:736
+#: ../baobab/src/baobab-utils.c:741
 msgid "for total:"
 msgstr "བསྡོམས་ཀྱི་དོན་ལུ་:"
 
-#: ../baobab/src/baobab-utils.c:766 ../gsearchtool/gsearchtool-callbacks.c:487
+#: ../baobab/src/baobab-utils.c:771 ../gsearchtool/gsearchtool-callbacks.c:487
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "ཡིག་ཆ་དེ་ བཀྲམ་སྟོན་འབད་ཚུགས་པའི་མཐོང་བྱེད་ གཞི་བཙུགས་འབད་འབདཝ་མིན་འདུག"
 
-#: ../baobab/src/baobab-utils.c:828
+#: ../baobab/src/baobab-utils.c:833
 msgid "Cannot find the Trash on this system!"
 msgstr "རིམ་ལུགས་འདི་ཁར་ཕྱགས་ཧོད་འཚོལ་མི་འཐོབ་པས།"
 
-#: ../baobab/src/baobab-utils.c:835 ../baobab/src/callbacks.c:276
+#: ../baobab/src/baobab-utils.c:840 ../baobab/src/callbacks.c:276
 #: ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:819
 msgid "The document does not exist."
 msgstr "ཡིག་ཆ་དེ་མིན་འདུག"
 
-#: ../baobab/src/baobab-utils.c:847
+#: ../baobab/src/baobab-utils.c:852
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr " <b>%s</b>སྤོ་བཤུད་འབད་མ་ཚུགས་:%s།"
 
-#: ../baobab/src/baobab-utils.c:861
+#: ../baobab/src/baobab-utils.c:866
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "ཁྱོད་ཀྱིས་ <b>%s</b>རྟག་གཏན་སྦེ་ བཏོན་གཏང་ནི་ཨིན་ན?"
 
-#: ../baobab/src/baobab-utils.c:873
+#: ../baobab/src/baobab-utils.c:878
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "<b>%s</b>བཏོན་གཏང་མ་ཚུགས་: %s།"
 
-#: ../baobab/src/baobab-utils.c:902
+#: ../baobab/src/baobab-utils.c:907
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
@@ -612,12 +613,12 @@ msgstr ""
 "ཁྱོད་ཀྱི་ཁྱིམ་གྱི་སྣོད་ཐོའི་ནང་དོན་དེ་ བསྒྱུར་བཅོས་སོང་ནུག\n"
 "སྣོད་འཛིན་གྱི་ཡན་ལག་རྒྱས་བཤད་ཚུ་ དུས་མཐུན་བཟོ་ནི་ལུ་ མཐའ་མའི་རྩ་འབྲེལ་དེ་ ལོག་ཞིབ་ལྟ་འབད་ནི་ཨིན་ན?"
 
-#: ../baobab/src/baobab-utils.c:923
+#: ../baobab/src/baobab-utils.c:928
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "པར་ཁོངས་ཡིག་སྣོད་:%sའཚོལ་བ་ཐོབ།"
 
-#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:962 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "གྲོགས་རམ་་བཀྲམ་སྟོན་འབད་ནི་ལུ་ འཛོལ་བ་ཅིག་འདུག"
 
@@ -637,7 +638,7 @@ msgstr ""
 "ཨའི་ཌི་ཨར་སི་གི་མ་དངུལ་རྒྱབ་སྐྱོར་ཐོག་ལས་ བརྡ་དོན་འཕྲུལ་རིག་ལས་ཁུངས་ནང་ སྐད་བསྒྱུར་འབད་ཡི། ཁ་གསལ་གྱི་"
 "དོན་ལུ་ འབྲེལ་བ་འཐབ་ས་: <pema_geyleg@druknet.bt>/<pgeyleg@dit.gov.bt>"
 
-#: ../baobab/src/callbacks.c:525
+#: ../baobab/src/callbacks.c:527
 msgid "The folder does not exist."
 msgstr "སྣོད་འཛིན་དེ་མིན་འདུག"
 
@@ -1098,7 +1099,7 @@ msgid "Cl_ear"
 msgstr "བསལ།(_e)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:935 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1038 ../logview/logview.c:116
 msgid "_About"
 msgstr "སྐོར་ལས།(_A)"
 
@@ -1107,7 +1108,7 @@ msgid "_Look Up Selected Text"
 msgstr "སེལ་འཐུ་འབད་མི་ ཚིག་ཡིག་ལུ་བལྟ།(_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:917
+#: ../gnome-dictionary/src/gdict-window.c:1012
 msgid "_Preferences"
 msgstr "དགའ་གདམ་ཚུ།(_P)"
 
@@ -1125,9 +1126,9 @@ msgstr "གློག་ཐོག་ཚིག་མཛོད་ཅིག་ནང
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:76
-#: ../gnome-dictionary/src/gdict-app.c:381
-#: ../gnome-dictionary/src/gdict-window.c:428
-#: ../gnome-dictionary/src/gdict-window.c:1382
+#: ../gnome-dictionary/src/gdict-app.c:406
+#: ../gnome-dictionary/src/gdict-window.c:464
+#: ../gnome-dictionary/src/gdict-window.c:1595
 msgid "Dictionary"
 msgstr "ཚིག་མཛོད།"
 
@@ -1210,6 +1211,11 @@ msgid ""
 msgstr "མིང་ཚིག་གི་ངེས་ཚིག་ སླར་འདྲེན་འབད་ནི་ལུ་ ལག་ལེན་འཐབ་མི་ ཚིག་མཛོད་འབྱུང་ཁུངས་ཀྱི་མིང་།"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
+#, fuzzy
+msgid "The page of the sidebar to show"
+msgstr "ལག་ལེན་འཐབ་ཡོད་པའི་ཚིག་མཛོད་འབྱུང་ཁུངས་ཀྱི་མིང་།"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
@@ -1217,7 +1223,17 @@ msgstr ""
 "མཐུད་སའི་འདྲེན་ལམ་ཨང་། སྔོན་སྒྲིག་འདྲེན་ལམ་དེ་ ༢༦༢༨ ཨིན། ལྡེ་མིག་འདི་ངོས་ལན་མེདཔ་བཟོ་སྟེ་ ལག་ལེན་"
 "འཐབ་སྲོལ་མེད།"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid "The width of the sidebar"
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines the width of the sidebar and it's used to remember the "
+"setting across sessions."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid ""
 "This key defines the window height and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
@@ -1227,7 +1243,7 @@ msgstr ""
 "སེམས་ཁར་བཞག་ནི་ལུ་ ལག་ལེན་འཐབ་ཨིན། -༡ གུ་གཞི་སྒྲིག་འབད་བ་ཅིན་ ཚིག་མཛོད་སྒོ་སྒྲིག་ལུ་ ཡིག་གཟུགས་ཀྱི་"
 "ཚད་ལུ་གཞི་བཞག་པའི་མཐོ་ཚད་ཅིག་ ལག་ལེན་འཐབ་བཅུགཔ་ཨིན།"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid ""
 "This key defines the window width and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
@@ -1237,17 +1253,29 @@ msgstr ""
 "སེམས་ཁར་བཞག་ནི་ལུ་ ལག་ལེན་འཐབ་ཨིན། -༡ གུ་གཞི་སྒྲིག་འབད་བ་ཅིན་ ཚིག་མཛོད་སྒོ་སྒྲིག་ལུ་ ཡིག་གཟུགས་ཀྱི་"
 "ཚད་ལུ་གཞི་བཞག་པའི་རྒྱ་ཚད་ཅིག་ ལག་ལེན་འཐབ་བཅུགཔ་ཨིན།"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
+#, fuzzy
 msgid ""
-"This key defines whether the speller widget should be visible and it's used "
-"to remember the state of the speller widgets across sessions. Setting it to "
-"TRUE will make the speller widget always be displayed."
+"This key defines whether the sidebar should be visible and it's used to "
+"remember the state of the sidebar across sessions. Setting it to TRUE will "
+"make the sidebar always be displayed."
 msgstr ""
 "ལྡེ་མིག་འདི་གིས་ ཡིག་སྡེབ་སླབ་མི་་ ཝི་གེཊི་དེ་ མཐོང་དགོཔ་ཨིན་ན་མེན་ ངེས་འཛིན་འབད་བའི་ཁར་ ལཱ་ཡུན་ཆ་"
 "མཉམ་གྱི་གྱི་དོན་ལུ་ ཡིག་སྡེབ་སླབ་མི་ཝི་གེཊི་གི་གནས་ལུགས་ སེམས་ཁར་བཞག་ནི་ལུ་ ལག་ལེན་འཐབ་ཨིན། འདི་"
 "བདེན་པ་གུ་ གཞི་སྒྲིག་འབད་བ་ཅིན་ ཡིག་སྡེབ་སླབ་མི་དེ་ ཨ་རྟག་རང་ བཀྲམ་སྟོན་འབད་འོང་།"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
+#, fuzzy
+msgid ""
+"This key defines whether the statusbar should be visible and it's used to "
+"remember the state of the statusbar across sessions. Setting it to TRUE will "
+"make the statusbar always be displayed."
+msgstr ""
+"ལྡེ་མིག་འདི་གིས་ ཡིག་སྡེབ་སླབ་མི་་ ཝི་གེཊི་དེ་ མཐོང་དགོཔ་ཨིན་ན་མེན་ ངེས་འཛིན་འབད་བའི་ཁར་ ལཱ་ཡུན་ཆ་"
+"མཉམ་གྱི་གྱི་དོན་ལུ་ ཡིག་སྡེབ་སླབ་མི་ཝི་གེཊི་གི་གནས་ལུགས་ སེམས་ཁར་བཞག་ནི་ལུ་ ལག་ལེན་འཐབ་ཨིན། འདི་"
+"བདེན་པ་གུ་ གཞི་སྒྲིག་འབད་བ་ཅིན་ ཡིག་སྡེབ་སླབ་མི་དེ་ ཨ་རྟག་རང་ བཀྲམ་སྟོན་འབད་འོང་།"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
@@ -1257,16 +1285,33 @@ msgstr ""
 "སྒྲིག་གི་གནས་ལུགས་ སེམས་ཁར་བཞག་ནི་ལུ་ལག་ལེན་འཐབ་ཨིན།  འདི་བདེན་པ་གུ་གཞི་སྒྲིག་འབདཝ་ད་ སྒོ་སྒྲིག་དེ་"
 "ཨ་རྟག་རང་སྦོམ་སྦེ་འཆརཝ་ཨིན།"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
+#, fuzzy
+msgid ""
+"This key defines which page of the sidebar should be displayed and it's used "
+"to remember the setting across sessions.. It can be \"speller\" or "
+"\"databases\"."
+msgstr ""
+"ལྡེ་མིག་འདི་གིས་ ཡིག་སྡེབ་སླབ་མི་་ ཝི་གེཊི་དེ་ མཐོང་དགོཔ་ཨིན་ན་མེན་ ངེས་འཛིན་འབད་བའི་ཁར་ ལཱ་ཡུན་ཆ་"
+"མཉམ་གྱི་གྱི་དོན་ལུ་ ཡིག་སྡེབ་སླབ་མི་ཝི་གེཊི་གི་གནས་ལུགས་ སེམས་ཁར་བཞག་ནི་ལུ་ ལག་ལེན་འཐབ་ཨིན། འདི་"
+"བདེན་པ་གུ་ གཞི་སྒྲིག་འབད་བ་ཅིན་ ཡིག་སྡེབ་སླབ་མི་དེ་ ཨ་རྟག་རང་ བཀྲམ་སྟོན་འབད་འོང་།"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
 msgstr "སི་མརཊི་བལྟ་བ་ལག་ལེན་འཐབ།(ངོས་ལན་མེདཔ)"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:26
 msgid "Whether the application window should be maximized"
 msgstr "གློག་རིམ་སྒོ་སྒྲིག་དེ་ སྦོམ་བཟོ་དགོཔ་ཨིན་ན་མེན།"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
-msgid "Whether the speller should be visible"
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:27
+#, fuzzy
+msgid "Whether the sidebar should be visible"
+msgstr "ཡིག་སྡེབ་སླབ་མི་དེ་ མཐོང་དགོཔ་ཨིན་ན་མེན།"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:28
+#, fuzzy
+msgid "Whether the statusbar should be visible"
 msgstr "ཡིག་སྡེབ་སླབ་མི་དེ་ མཐོང་དགོཔ་ཨིན་ན་མེན།"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
@@ -1274,12 +1319,7 @@ msgid "Data_base:"
 msgstr "གནད་སྡུད་གཞི་རྟེན་:(_b)"
 
 #. Transport methods
-#. Translators: this is the same string used in the file
-#. * gnome-dictionary-preferences.glade for the transport_combo
-#. * widget items.
-#.
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-#: ../gnome-dictionary/src/gdict-source-dialog.c:119
 msgid "Dictionary Server"
 msgstr "ཚིག་མཛོད་ཀྱི་སར་བར།"
 
@@ -1288,8 +1328,8 @@ msgid "H_ostname:"
 msgstr "ཧོསཊི་ནེམ།(_o)"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:203
-#: ../gnome-dictionary/src/gdict-window.c:670
+#: ../gnome-dictionary/src/gdict-applet.c:202
+#: ../gnome-dictionary/src/gdict-window.c:726
 msgid "Print"
 msgstr "དཔར་བསྐྲུན།"
 
@@ -1476,6 +1516,33 @@ msgstr "གནས་ཉེས་ཀྱི་རྐྱངམ་གཅིག"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "སྐབས་དོན་དེ་གིས་ ཉེ་གནས་ཀྱི་ཚིག་མཛོད་རྐྱངམ་གཅིག་ ལག་ལེན་འཐབ་ནི་ཨིན་ན་མེན།"
 
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:337
+#, fuzzy
+msgid "Reload the list of available databases"
+msgstr "འཐོབ་ཚུགས་པའི་གདམ་ཁ་ཚུ་གི་ཐོ་ཡིག་ རྒྱ་བསྐྱེད་འབད་ནིའམ་ ཧྲམ་གཏང་ནིའི་དོན་ལུ་ ཨེབ་གཏང་འབད།"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:350
+#, fuzzy
+msgid "Clear the list of available databases"
+msgstr "གནད་སྡུད་གཞི་རྟེན་ ཆ་མཉམ་འཚོལ་ཞིབ་འབད།"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:647
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+msgid "Another search is in progress"
+msgstr "འཚོལ་ཞིབ་གཞན་ཅིག་འབད་བའི་བསྒང་ཡོད།"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:648
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
+#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+msgid "Please wait until the current search ends."
+msgstr "ད་ལྟའི་འཚོལ་ཞིབ་དེ་ མཇུག་མ་བསྡུ་ཚུན་ཚོད་བསྒུག་གནང་།"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:681
+#: ../gnome-dictionary/libgdict/gdict-speller.c:780
+msgid "Error while matching"
+msgstr "མཐུན་སྒྲིག་འབད་བའི་སྐབས་ལུ་འཛོལ་བ།"
+
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:353
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:442
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:470
@@ -1498,23 +1565,13 @@ msgstr "ཤུལ་མམ།(_N)"
 msgid "Error while looking up definition"
 msgstr "ངེས་ཚིག་ལུ་བལྟ་བའི་སྐབས་འཛོལ་བ།"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
-#: ../gnome-dictionary/libgdict/gdict-speller.c:720
-msgid "Another search is in progress"
-msgstr "འཚོལ་ཞིབ་གཞན་ཅིག་འབད་བའི་བསྒང་ཡོད།"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
-#: ../gnome-dictionary/libgdict/gdict-speller.c:721
-msgid "Please wait until the current search ends."
-msgstr "ད་ལྟའི་འཚོལ་ཞིབ་དེ་ མཇུག་མ་བསྡུ་ཚུན་ཚོད་བསྒུག་གནང་།"
-
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Error while retrieving the definition"
 msgstr "་ངེས་ཚིག་སླར་འདྲེན་འབད་བའི་སྐབས་འཛོལ་བ།"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
 #: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:361
+#: ../gnome-dictionary/libgdict/gdict-speller.c:375
 msgid "Context"
 msgstr "ནང་དོན།"
 
@@ -1524,7 +1581,7 @@ msgstr "ཐོ་བཀོད་འདི་ལུགནས་དགོ་པའ
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
 #: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:368
+#: ../gnome-dictionary/libgdict/gdict-speller.c:382
 msgid "Database"
 msgstr "གནད་སྡུད་གཞི་རྟེན།"
 
@@ -1534,7 +1591,7 @@ msgstr "ཡོངས་སྒྲུབ་ཐོ་ཡིག་བཟོ་བཏ
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
 #: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:375
+#: ../gnome-dictionary/libgdict/gdict-speller.c:389
 msgid "Strategy"
 msgstr "ཐབས་བྱུས།"
 
@@ -1636,35 +1693,32 @@ msgstr "འབྱུང་ཁུངས།"
 msgid "Dictionary sources found"
 msgstr "ཚིག་མཛོད་འབྱུང་ཁུངས་ཐོབ་ཅི།"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:299
-msgid "Similar words"
-msgstr "ཆ་འདྲ་བའི་མིང་ཚིག་ཚུ།"
+#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+#, fuzzy
+msgid "Clear the list of similar words"
+msgstr "ཆ་འབྲ་བའི་མིང་ཚིག་ཚུ་སྟོན།"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:362
+#: ../gnome-dictionary/libgdict/gdict-speller.c:376
 msgid "The GdictContext object used to get the word definition"
 msgstr "མིང་ཚིག་གི་ངེས་ཚིག་ལེན་ནི་ལུ་ ལག་ལེན་འཐབ་མི་ ཇི་ཌིཀ་ཀཱོན་ཊེགསི་དངོས་པོ།"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:369
+#: ../gnome-dictionary/libgdict/gdict-speller.c:383
 msgid "The database used to query the GdictContext"
 msgstr "ཇི་ཌིཀ་ཀཱོན་ཊེགསི་ལུ་ དྲི་དཔྱད་འབད་ནི་ལུ་ ལག་ལེན་འཐབ་ནིའི་གནད་སྡུད་གཞི་རྟེན།"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+#: ../gnome-dictionary/libgdict/gdict-speller.c:390
 msgid "The strategy used to query the GdictContext"
 msgstr "ཇི་ཌིཀ་ཀཱན་ཊེགསི་ལུ་ དྲི་དཔྱད་འབད་ནི་ལུ་ ལག་ལེན་འཐབ་ནིའི་ཐབས་བྱུས།"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:762
-msgid "Error while matching"
-msgstr "མཐུན་སྒྲིག་འབད་བའི་སྐབས་ལུ་འཛོལ་བ།"
-
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:582
+#: ../gnome-dictionary/src/gdict-applet.c:611
 msgid "Look up words in dictionaries"
 msgstr "ཚིག་མཛོད་ནང་ མིང་ཚིག་ལུ་བལྟ་བ།"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:215
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1677,20 +1731,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:229
+#: ../gnome-dictionary/src/gdict-app.c:252
 #, c-format
 msgid "Error: %s\n"
 msgstr "འཛོལ་བ་:%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:255
+#: ../gnome-dictionary/src/gdict-app.c:278
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "ལག་ལེན་གྱི་དོན་ལུ་ ཇི་ནོམ་ཚིག་མཛོད་ གྲོགས་རམ་ལུ་བལྟ།\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:268
+#: ../gnome-dictionary/src/gdict-app.c:291
 msgid "Unable to find a suitable dictionary source"
 msgstr "ཚིག་མཛོད་འབྱུང་ཁུངས་འོས་ལྡན་ཅིག་ཐོབ་མ་ཚུགས།"
 
-#: ../gnome-dictionary/src/gdict-app.c:302
+#: ../gnome-dictionary/src/gdict-app.c:325
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1699,192 +1753,194 @@ msgstr ""
 "\"%s\"གི་ངེས་ཚིག་ལུ་བལྟ་བའི་སྐབས་འཛོལ་བ།\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:359
+#: ../gnome-dictionary/src/gdict-app.c:373
 msgid "Words to look up"
 msgstr "བལྟ་ནིའི་མིང་ཚིག"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
-#: ../gnome-dictionary/src/gdict-app.c:338
+#: ../gnome-dictionary/src/gdict-app.c:359
+#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:373
 msgid "word"
 msgstr "མིང་ཚིག"
 
-#: ../gnome-dictionary/src/gdict-app.c:338
+#: ../gnome-dictionary/src/gdict-app.c:361
 msgid "Words to match"
 msgstr "མཐུན་སྒྲིག་འབད་ནིའི་་མིང་ཚིག།"
 
-#: ../gnome-dictionary/src/gdict-app.c:340
+#: ../gnome-dictionary/src/gdict-app.c:363
 msgid "Dictionary source to use"
 msgstr "ལག་ལེན་འཐབ་ནིའི་ཚིག་མཛོད།"
 
-#: ../gnome-dictionary/src/gdict-app.c:340
+#: ../gnome-dictionary/src/gdict-app.c:363
 msgid "source"
 msgstr "འབྱུང་ཁུངས།"
 
-#: ../gnome-dictionary/src/gdict-app.c:342
+#: ../gnome-dictionary/src/gdict-app.c:365
 msgid "Show available dictionary sources"
 msgstr "ཐོབ་ཚུགས་པའི་ཚིག་མཛོད་འབྱུང་ཁུངས་ཚུ་སྟོན།"
 
-#: ../gnome-dictionary/src/gdict-app.c:344
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid "Print result to the console"
 msgstr "གྲུབ་འབྲས་མ་སྒྲོམ་ལུ་དཔར་བསྐྲུན་འབད།"
 
-#: ../gnome-dictionary/src/gdict-app.c:346
+#: ../gnome-dictionary/src/gdict-app.c:369
 msgid "Database to use"
 msgstr "ལག་ལེན་འཐབ་ནིའི་གནད་སྡུད་གཞི་རྟེན།"
 
-#: ../gnome-dictionary/src/gdict-app.c:346
+#: ../gnome-dictionary/src/gdict-app.c:369
 msgid "db"
 msgstr "ཌི་བི།"
 
-#: ../gnome-dictionary/src/gdict-app.c:348
+#: ../gnome-dictionary/src/gdict-app.c:371
 msgid "Strategy to use"
 msgstr "ལག་ལེན་འཐབ་ནིའི་ཐབས་བྱུས།"
 
-#: ../gnome-dictionary/src/gdict-app.c:348
+#: ../gnome-dictionary/src/gdict-app.c:371
 msgid "strat"
 msgstr "ཐབས་བྱུས།"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid " - Look up words in dictionaries"
 msgstr "- ཚིག་མཛོད་ནང་མིང་ཚིག་ལུ་བལྟ།"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:393
 msgid "Dictionary and spelling tool"
 msgstr "ཚིག་མཛོད་དང་སྡེབ་དཔྱད་ལག་ཆས།"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:394
 msgid "Show Dictionary options"
 msgstr "ཚིག་མཛོད་གདམ་ཁ་ཚུ་སྟོན།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:616
+#: ../gnome-dictionary/src/gdict-applet.c:216
+#: ../gnome-dictionary/src/gdict-window.c:672
 msgid "Save a Copy"
 msgstr "འདྲ་ཅིག་སྲུངས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:227
-#: ../gnome-dictionary/src/gdict-window.c:626
+#: ../gnome-dictionary/src/gdict-applet.c:226
+#: ../gnome-dictionary/src/gdict-window.c:682
 msgid "Untitled document"
 msgstr "མགོ་མིང་མ་བཏགས་པའི་ཡིག་ཆ།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:248
-#: ../gnome-dictionary/src/gdict-window.c:647
+#: ../gnome-dictionary/src/gdict-applet.c:247
+#: ../gnome-dictionary/src/gdict-window.c:703
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "'%s'ལུ་འབྲི་བའི་སྐབས་འཛོལ་བ།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:356
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Clear the definitions found"
 msgstr "ཐོབ་ཡོད་པའི་ངེས་ཚིག་ཚུ་བསལ།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:359
+#: ../gnome-dictionary/src/gdict-applet.c:378
 msgid "Clear definition"
 msgstr "ངེས་ཚིག་བསལ།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:360
+#: ../gnome-dictionary/src/gdict-applet.c:379
 msgid "Clear the text of the definition"
 msgstr "ངེས་ཚིག་གི་ཚིག་ཡིག་བསལ།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:370
+#: ../gnome-dictionary/src/gdict-applet.c:389
 msgid "Print the definitions found"
 msgstr "ཐོབ་ཡོད་པའི་ངེས་ཚིག་དེ་དཔར་བསྐྲུན་འབད།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:373
+#: ../gnome-dictionary/src/gdict-applet.c:392
 msgid "Print definition"
 msgstr "ངེས་ཚིག་དཔར་བསྐྲུན་འབད།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:374
+#: ../gnome-dictionary/src/gdict-applet.c:393
 msgid "Print the text of the definition"
 msgstr "ངེས་ཚིག་གི་ཚིག་ཡིག་དཔར་བསྐྲུན་འབད།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:384
+#: ../gnome-dictionary/src/gdict-applet.c:403
 msgid "Save the definitions found"
 msgstr "ཐོབ་ཡོད་པའི་ངེས་ཚིག་ཚུ་སྲུངས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:387
+#: ../gnome-dictionary/src/gdict-applet.c:406
 msgid "Save definition"
 msgstr "ངེས་ཚིག་སྲུངས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:388
+#: ../gnome-dictionary/src/gdict-applet.c:407
 msgid "Save the text of the definition to a file"
 msgstr "ངེས་ཚིག་གི་ཚིག་ཡིག་ཚུ་ ཡིག་སྣོད་ཅིག་ལུ་སྲུངས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:522
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Toggle dictionary window"
 msgstr "ཚིག་མཛོད་སྒོ་སྒྲིག་སོར་སྟོན་འབད།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:523
+#: ../gnome-dictionary/src/gdict-applet.c:552
 msgid "Show or hide the definition window"
 msgstr "ངེས་ཚིག་སྒོ་སྒྲིག་དེ་སྟོན་/སྦ་བཞག"
 
-#: ../gnome-dictionary/src/gdict-applet.c:526
+#: ../gnome-dictionary/src/gdict-applet.c:555
 msgid "Click to view the dictionary window"
 msgstr "ཚིག་མཛོད་སྒོ་སྒྲིག་མཐོང་ནི་ལུ་གཡེབ་གཏང་འབད།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:581
+#: ../gnome-dictionary/src/gdict-applet.c:610
 msgid "Dictionary entry"
 msgstr "ཚིག་མཛོད་ཐོ་བཀོད།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:585
+#: ../gnome-dictionary/src/gdict-applet.c:614
 msgid "Type the word you want to look up"
 msgstr "ཁྱོད་ཀྱིས་བལྟ་དགོ་མནོ་མི་མིང་ཚིག་དེ་ཡིག་དཔར་རྐྱབས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:716
-#: ../gnome-dictionary/src/gdict-window.c:759
+#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-window.c:827
 msgid "Dictionary Preferences"
 msgstr "ཚིག་མཛོད་དགའ་གདམས་ཚུ།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:744
+#: ../gnome-dictionary/src/gdict-applet.c:776
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:511
-#: ../gnome-dictionary/src/gdict-source-dialog.c:436
-#: ../gnome-dictionary/src/gdict-window.c:848
+#: ../gnome-dictionary/src/gdict-source-dialog.c:438
+#: ../gnome-dictionary/src/gdict-window.c:950
 msgid "There was an error while displaying help"
 msgstr "གྲོགས་རམ་བཀྲམ་སྟོན་འབདབའི་སྐབས་ལུ་འཛོལ་བ་ཅིག་བྱུང་ནུག"
 
-#: ../gnome-dictionary/src/gdict-applet.c:903
-#: ../gnome-dictionary/src/gdict-window.c:327
+#: ../gnome-dictionary/src/gdict-applet.c:936
+#: ../gnome-dictionary/src/gdict-window.c:363
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "མིང་'%s'འབད་མི་ཚིག་མཛོད་འབྱུང་ཁུངས་འཐོབ་མི་ཚུགས་པས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:907
-#: ../gnome-dictionary/src/gdict-window.c:331
+#: ../gnome-dictionary/src/gdict-applet.c:940
+#: ../gnome-dictionary/src/gdict-window.c:367
 msgid "Unable to find dictionary source"
 msgstr "ཚིག་མཛོད་འབྱུང་ཁུངས་འཚོལ་མ་ཐོབ།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:923
-#: ../gnome-dictionary/src/gdict-window.c:347
+#: ../gnome-dictionary/src/gdict-applet.c:956
+#: ../gnome-dictionary/src/gdict-window.c:383
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "འབྱུང་ཁུངས་'%s'གི་དོན་ལུ་སྐབས་དོན་འཐོབ་མི་ཚུགས་པས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:927
-#: ../gnome-dictionary/src/gdict-window.c:351
+#: ../gnome-dictionary/src/gdict-applet.c:960
+#: ../gnome-dictionary/src/gdict-window.c:387
 msgid "Unable to create a context"
 msgstr "སྐབས་དོན་ཅིག་གསར་བསྐྲུན་འབད་མ་ཚུགས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1215
-#: ../gnome-dictionary/src/gdict-window.c:1489
+#: ../gnome-dictionary/src/gdict-applet.c:1244
+#: ../gnome-dictionary/src/gdict-window.c:1719
 msgid "Unable to connect to GConf"
 msgstr "ཇི་ཀཱོནཕི་ལུ་མཐུད་མ་ཚུགས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1228
-#: ../gnome-dictionary/src/gdict-window.c:1502
+#: ../gnome-dictionary/src/gdict-applet.c:1257
+#: ../gnome-dictionary/src/gdict-window.c:1732
 msgid "Unable to get notification for preferences"
 msgstr "དགའ་གདམ་ཚུ་གི་དོན་ལུ་ བརྡ་བསྐུལ་འཐོབ་མི་ཚུགས་པས།"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1242
-#: ../gnome-dictionary/src/gdict-window.c:1515
+#: ../gnome-dictionary/src/gdict-applet.c:1271
+#: ../gnome-dictionary/src/gdict-window.c:1745
 msgid "Unable to get notification for the document font"
 msgstr "ཡིག་ཆའི་ཡིག་གཟུགས་ཀྱི་དོན་ལུ་ བརྡ་བསྐུལ་འཐོབ་མི་ཚུགས་པས།"
 
-#: ../gnome-dictionary/src/gdict-common.c:68
+#: ../gnome-dictionary/src/gdict-common.c:77
 #, c-format
 msgid "Unable to rename file '%s' to '%s': %s"
 msgstr "'%s'ལས་ '%s': %s བསྐྱར་མིང་བཏགས་མ་ཚུགས།"
 
-#: ../gnome-dictionary/src/gdict-common.c:92
-#: ../gnome-dictionary/src/gdict-common.c:115
+#: ../gnome-dictionary/src/gdict-common.c:101
+#: ../gnome-dictionary/src/gdict-common.c:124
 #, c-format
 msgid "Unable to create the data directory '%s': %s"
 msgstr "གནད་སྡུད་སྣོད་ཐོ་'%s': %sགསར་བསྐྲུན་འབད་མ་ཚུགས།"
@@ -1932,128 +1988,171 @@ msgstr "%s (ཤོག་ལེབ་ %d)"
 msgid "Print Preview"
 msgstr "དཔར་བསྐྲུན་སྔོན་ལྟ།"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:300
-#: ../gnome-dictionary/src/gdict-source-dialog.c:389
+#: ../gnome-dictionary/src/gdict-source-dialog.c:303
+#: ../gnome-dictionary/src/gdict-source-dialog.c:391
 msgid "Unable to create a source file"
 msgstr "འབྱུང་ཁུངས་ཡིག་སྣོད་ཅིག་གསར་བསྐྲུན་འབད་མ་ཚུགས།"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:319
-#: ../gnome-dictionary/src/gdict-source-dialog.c:407
+#: ../gnome-dictionary/src/gdict-source-dialog.c:321
+#: ../gnome-dictionary/src/gdict-source-dialog.c:409
 msgid "Unable to save source file"
 msgstr "འབྱུང་ཁུངས་ཡིག་སྣོད་བསྲུང་མ་ཚུགས།"
 
-#: ../gnome-dictionary/src/gdict-window.c:191
+#: ../gnome-dictionary/src/gdict-window.c:221
 #, c-format
 msgid "Searching for '%s'..."
 msgstr " '%s'གི་དོན་ལུ་འཚོལ་ཞིབ་འབད་དོ་..."
 
-#: ../gnome-dictionary/src/gdict-window.c:220
-#: ../gnome-dictionary/src/gdict-window.c:247
+#: ../gnome-dictionary/src/gdict-window.c:251
+#: ../gnome-dictionary/src/gdict-window.c:283
 msgid "No definitions found"
 msgstr "ངེས་ཚིག་ག་ནི་ཡང་མ་ཐོབ།"
 
-#: ../gnome-dictionary/src/gdict-window.c:222
+#: ../gnome-dictionary/src/gdict-window.c:253
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "ངེས་ཚིག་ཅིག་ཐོབ་ཅི།"
 msgstr[1] "ངེས་ཚིག་%dཐོབ་ཅི།"
 
-#: ../gnome-dictionary/src/gdict-window.c:426
+#: ../gnome-dictionary/src/gdict-window.c:462
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - ཚིག་མཛོད།"
 
-#: ../gnome-dictionary/src/gdict-window.c:882
-msgid "_Similar Words"
-msgstr "ཆ་འདྲ་བའི་མིང་ཚིག་ཚུ།(_S)"
-
-#: ../gnome-dictionary/src/gdict-window.c:883
-msgid "Show similar words"
-msgstr "ཆ་འབྲ་བའི་མིང་ཚིག་ཚུ་སྟོན།"
-
-#: ../gnome-dictionary/src/gdict-window.c:889 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:984 ../logview/logview.c:85
 msgid "_File"
 msgstr "ཡིག་སྣོད།(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:892
+#: ../gnome-dictionary/src/gdict-window.c:987
 msgid "_Go"
 msgstr "འགྱོ།(_G)"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:896
+#: ../gnome-dictionary/src/gdict-window.c:991
 msgid "_New"
 msgstr "གསརཔ།(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:897
+#: ../gnome-dictionary/src/gdict-window.c:992
 msgid "New look up"
 msgstr "གསརཔ་ལུ་བལྟ་བ།"
 
-#: ../gnome-dictionary/src/gdict-window.c:898
+#: ../gnome-dictionary/src/gdict-window.c:993
 msgid "_Save a Copy..."
 msgstr "འདྲ་ཅིག་སྲུངས་...(_S)"
 
-#: ../gnome-dictionary/src/gdict-window.c:900
+#: ../gnome-dictionary/src/gdict-window.c:995
 msgid "_Print..."
 msgstr "དཔར་བསྐྲུན་...(_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:901
+#: ../gnome-dictionary/src/gdict-window.c:996
 msgid "Print this document"
 msgstr "ཡིག་ཆ་འདི་དཔར་བསྐྲུན་འབད།"
 
-#: ../gnome-dictionary/src/gdict-window.c:908 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1003 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "ཆ་མཉམ་སེལ་འཐུ་འབད།(_A)"
 
-#: ../gnome-dictionary/src/gdict-window.c:911
+#: ../gnome-dictionary/src/gdict-window.c:1006
 msgid "Find a word or phrase in the document"
 msgstr "ཡིག་ཆ་དེ་ནང་མིང་ཚིག་ ཡང་ན་ ཚིག་ཚན་ཅིག་འཚོལ།"
 
-#: ../gnome-dictionary/src/gdict-window.c:913
+#: ../gnome-dictionary/src/gdict-window.c:1008
 msgid "Find Ne_xt"
 msgstr "ཤུལ་མམ་འཚོལ།(_x)"
 
-#: ../gnome-dictionary/src/gdict-window.c:915
+#: ../gnome-dictionary/src/gdict-window.c:1010
 msgid "Find Pre_vious"
 msgstr "ཧེ་མམ་འཚོལ(_v)"
 
 #. View menu
+#: ../gnome-dictionary/src/gdict-window.c:1016
+#, fuzzy
+msgid "_Sidebar"
+msgstr "ཟུར་ཁའི་ཕྲ་རིང་།"
+
+#: ../gnome-dictionary/src/gdict-window.c:1018
+#, fuzzy
+msgid "S_tatusbar"
+msgstr "གནས་ཚད་ཕྲ་རིང་།(_S)"
+
+#: ../gnome-dictionary/src/gdict-window.c:1020
+#, fuzzy
+msgid "Similar _Words"
+msgstr "ཆ་འདྲ་བའི་མིང་ཚིག་ཚུ།(_S)"
+
+#: ../gnome-dictionary/src/gdict-window.c:1022
+#, fuzzy
+msgid "Available _Databases"
+msgstr "\"འཐོབ་ཚུགས་པའི་གདམ་ཁ་ཚུ་།"
+
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:923
+#: ../gnome-dictionary/src/gdict-window.c:1026
 msgid "_Previous Definition"
 msgstr "ངེས་ཚིག་ཧེ་མམ།(_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:924
+#: ../gnome-dictionary/src/gdict-window.c:1027
 msgid "Go to the previous definition"
 msgstr "ངེས་ཚིག་ཧེ་མམ་ལུ་འགྱོ།"
 
-#: ../gnome-dictionary/src/gdict-window.c:925
+#: ../gnome-dictionary/src/gdict-window.c:1028
 msgid "_Next Definition"
 msgstr "ངེས་ཚིག་ཤུལ་མམ།(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:926
+#: ../gnome-dictionary/src/gdict-window.c:1029
 msgid "Go to the next definition"
 msgstr "ངེས་ཚིག་ཤུལ་མམ་ལུ་འགྱོ།"
 
-#: ../gnome-dictionary/src/gdict-window.c:927
+#: ../gnome-dictionary/src/gdict-window.c:1030
 msgid "_First Definition"
 msgstr "ངེས་ཚིག་དང་པམ།(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:928
+#: ../gnome-dictionary/src/gdict-window.c:1031
 msgid "Go to the first definition"
 msgstr "ངེས་ཚིག་དང་པམ་ལུ་འགྱོ།"
 
-#: ../gnome-dictionary/src/gdict-window.c:929
+#: ../gnome-dictionary/src/gdict-window.c:1032
 msgid "_Last Definition"
 msgstr "ངེས་ཚིག་མཐའ་མམ་ལུ་འགྱོ།(_L)"
 
-#: ../gnome-dictionary/src/gdict-window.c:930
+#: ../gnome-dictionary/src/gdict-window.c:1033
 msgid "Go to the last definition"
 msgstr "ངེས་ཚིག་མཐའ་མམ་ལུ་འགྱོ།"
 
-#: ../gnome-dictionary/src/gdict-window.c:1258
+#: ../gnome-dictionary/src/gdict-window.c:1159
+#, fuzzy, c-format
+msgid "Database `%s' selected"
+msgstr "ལག་ལེན་འཐབ་ནིའི་གནད་སྡུད་གཞི་རྟེན།"
+
+#: ../gnome-dictionary/src/gdict-window.c:1179
+#, c-format
+msgid "Word `%s' selected"
+msgstr ""
+
+#. speller
+#: ../gnome-dictionary/src/gdict-window.c:1197
+#, fuzzy
+msgid "Double-click on the word to look up"
+msgstr "ཁྱོད་ཀྱིས་བལྟ་དགོ་མནོ་མི་མིང་ཚིག་དེ་ཡིག་དཔར་རྐྱབས།"
+
+#. db-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1200
+#, fuzzy
+msgid "Double-click on the database to use"
+msgstr "ལག་ལེན་འཐབ་ནིའི་སྔོན་སྒྲིག་གནད་སྡུད་གཞི་རྟེན།"
+
+#: ../gnome-dictionary/src/gdict-window.c:1435
 msgid "Look _up:"
 msgstr "བལྟ།(_u)"
+
+#: ../gnome-dictionary/src/gdict-window.c:1500
+msgid "Similar words"
+msgstr "ཆ་འདྲ་བའི་མིང་ཚིག་ཚུ།"
+
+#: ../gnome-dictionary/src/gdict-window.c:1513
+#, fuzzy
+msgid "Available dictionaries"
+msgstr "\"འཐོབ་ཚུགས་པའི་གདམ་ཁ་ཚུ་།"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -3333,60 +3432,60 @@ msgstr "དྲན་དེབ་མཐོང་བྱེད།"
 msgid "Unable to create user interface."
 msgstr "ལག་ལེན་པའི་ངོས་འདྲ་བ་ གསར་བསྐྲུན་འབད་མ་ཚུགས།"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "January"
 msgstr "སྤྱི་ཟླ་དང་པ།"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "February"
 msgstr "སྤྱི་ཟླ་གཉིས་པ།"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "March"
 msgstr "སྤྱི་ཟླ་གསུམ་པ།"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "April"
 msgstr "སྤྱི་ཟླ་བཞི་པ།"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "May"
 msgstr "སྤྱི་ཟླ་ལྔ་པ།"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "June"
 msgstr "སྤྱི་ཟླ་དྲུག་པ།"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "July"
 msgstr "སྤྱི་ཟླ་བདུན་པ།"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "August"
 msgstr "སྤྱི་ཟླ་བརྒྱད་པ།"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "September"
 msgstr "སྤྱི་ཟླ་དགུ་པ།"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "October"
 msgstr "སྤྱི་ཟླ་བཅུ་པ།"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "November"
 msgstr "སྤྱི་ཟླ་བཅུ་གཅིག་པ།"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "December"
 msgstr "སྤྱི་ཟླ་བཅུ་གཉིས་པ།"
 
-#: ../logview/misc.c:162
+#: ../logview/misc.c:163
 msgid "Invalid date"
 msgstr "ནུས་མེད་ཚེས་གྲངས།"
 
 #. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:167
+#: ../logview/misc.c:168
 #, c-format
 msgid "%x"
 msgstr "%x"
@@ -3402,6 +3501,9 @@ msgstr "ཡིག་སྣོད་རིམ་ལུགས་འདི་གུ
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "ཇི་ནོམ་-ཝི་ཨེཕ་ཨེསི་འཛོལ་བ།\n"
+
+#~ msgid "Baobab - Disk Usage Analyser"
+#~ msgstr "བའོ་བབ་ - ཌིཀསི་བེད་སྤྱོད་དཔྱད་ཞིཔ་པ།"
 
 #~ msgid "Font Name"
 #~ msgstr "ཡིག་གཟུགས་མིང་།"
@@ -3592,9 +3694,6 @@ msgstr "ཇི་ནོམ་-ཝི་ཨེཕ་ཨེསི་འཛོལ�
 #~ msgid "Web Sites"
 #~ msgstr "ཝེབ་ས་ཁོངས་ཚུ།"
 
-#~ msgid "Search all databases"
-#~ msgstr "གནད་སྡུད་གཞི་རྟེན་ ཆ་མཉམ་འཚོལ་ཞིབ་འབད།"
-
 #~ msgid "Default Strategy"
 #~ msgstr "སྔོན་སྒྲིག་ཐབས་བྱུས།"
 
@@ -3762,9 +3861,6 @@ msgstr "ཇི་ནོམ་-ཝི་ཨེཕ་ཨེསི་འཛོལ�
 
 #~ msgid "Select All"
 #~ msgstr "ཆ་མཉམ་སེལ་འཐུ་འབད།"
-
-#~ msgid "Sidebar"
-#~ msgstr "ཟུར་ཁའི་ཕྲ་རིང་།"
 
 #~ msgid "Message"
 #~ msgstr "འཕྲིན་དོན།"
