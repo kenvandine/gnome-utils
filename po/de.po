@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-13 18:42+0200\n"
-"PO-Revision-Date: 2006-08-13 19:26+0200\n"
+"PO-Revision-Date: 2006-08-13 20:08+0200\n"
 "Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -251,7 +251,6 @@ msgid "_Size"
 msgstr "_Größe"
 
 #: ../baobab/data/baobab.glade.h:56
-#, fuzzy
 msgid "_Sort By"
 msgstr "_Sortieren nach"
 
@@ -515,31 +514,27 @@ msgstr "Ordner auswählen"
 
 #. add extra widget
 #: ../baobab/src/baobab-utils.c:113
-#, fuzzy
 msgid "Show hidden folders"
-msgstr "Verborgene Dateien und Sicherungsdateien anzeigen"
+msgstr "Verborgene Ordner anzeigen"
 
 #: ../baobab/src/baobab-utils.c:193
-#, fuzzy
 msgid "Scanning..."
-msgstr "Suche läuft …"
+msgstr "Einlesen läuft …"
 
 #: ../baobab/src/baobab-utils.c:354 ../baobab/src/baobab-utils.c:358
-#, fuzzy, c-format
+#, c-format
 msgid "%s is not a valid folder"
-msgstr "%s ist keine Protokolldatei."
+msgstr "%s ist kein gültiger Ordner"
 
-# Nautilus-Konsistenz beachten!
+# Nautilus-Konsistenz beachten
 #: ../baobab/src/baobab-utils.c:384 ../baobab/src/baobab-utils.c:442
-#, fuzzy
 msgid "Remove from Trash"
-msgstr "In den _Müll verschieben"
+msgstr "Aus Müll löschen"
 
-# Nautilus-Konsistenz beachten!
+# Nautilus-Konsistenz beachten
 #: ../baobab/src/baobab-utils.c:387 ../baobab/src/baobab-utils.c:445
-#, fuzzy
 msgid "Move to Trash"
-msgstr "In den _Müll verschieben"
+msgstr "In den Müll verschieben"
 
 #: ../baobab/src/baobab-utils.c:390
 msgid "Folder graphical map"
@@ -551,9 +546,8 @@ msgid "List all files in folder"
 msgstr "Im _Ordner speichern:"
 
 #: ../baobab/src/baobab-utils.c:448
-#, fuzzy
 msgid "Scan Folder"
-msgstr "Ordner"
+msgstr "Ordner einlesen"
 
 #: ../baobab/src/baobab-utils.c:520
 msgid "Please provide a file name to search for!"
@@ -566,27 +560,23 @@ msgstr "Vorgabe-Typ des Dateisystems"
 
 #: ../baobab/src/baobab-utils.c:700
 msgid "used:"
-msgstr ""
+msgstr "belegt:"
 
 #: ../baobab/src/baobab-utils.c:701
-#, fuzzy
 msgid "available:"
-msgstr "_Verfügbare Kriterien:"
+msgstr "frei:"
 
 #: ../baobab/src/baobab-utils.c:739
-#, fuzzy
 msgid "Found:"
-msgstr "_Schrift:"
+msgstr ""
 
 #: ../baobab/src/baobab-utils.c:740
-#, fuzzy
 msgid "file"
-msgstr "_Datei"
+msgstr ""
 
 #: ../baobab/src/baobab-utils.c:740
-#, fuzzy
 msgid "files"
-msgstr "_Datei"
+msgstr ""
 
 #: ../baobab/src/baobab-utils.c:741
 msgid "for total:"
@@ -608,19 +598,19 @@ msgid "The document does not exist."
 msgstr "Das Dokument existiert nicht."
 
 #: ../baobab/src/baobab-utils.c:852
-#, fuzzy, c-format
+#, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
-msgstr "Verschieben von »%s« fehlgeschlagen: %s."
+msgstr "Verschieben von »%s« ist gescheitert: %s."
 
 #: ../baobab/src/baobab-utils.c:866
-#, fuzzy, c-format
+#, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "Wollen Sie »%s« dauerhaft löschen?"
 
 #: ../baobab/src/baobab-utils.c:878
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting <b>%s</b> failed: %s."
-msgstr "Löschen von »%s« fehlgeschlagen: %s."
+msgstr "Löschen von »%s« ist gescheitert: %s."
 
 #: ../baobab/src/baobab-utils.c:907
 msgid ""
@@ -661,9 +651,8 @@ msgstr ""
 "Hendrik Richter <hendrikr@gnome.org>"
 
 #: ../baobab/src/callbacks.c:527
-#, fuzzy
 msgid "The folder does not exist."
-msgstr "Das Dokument existiert nicht."
+msgstr "Der Ordner existiert nicht."
 
 # CHECK - nicht perfekt aber Formatierprogramm ist noch grausamer
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
@@ -671,7 +660,6 @@ msgid "Floppy Formatter"
 msgstr "Diskette formatieren"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
-#, fuzzy
 msgid "Format floppy disks"
 msgstr "Disketten formatieren"
 
@@ -712,7 +700,7 @@ msgstr ""
 
 #: ../gfloppy/src/badblocks.c:89
 msgid "Internal Error: Unable to seek to the correct location."
-msgstr "Interner Fehler: Suche nach korrekter Position fehlgeschlagen."
+msgstr "Interner Fehler: Suche nach korrekter Position ist gescheitert."
 
 #: ../gfloppy/src/badblocks.c:98
 #, c-format
@@ -729,7 +717,7 @@ msgstr "Prüfen auf fehlerhafte Blöcke …"
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
 msgstr ""
-"Öffnen des Geräts %s zum Prüfen auf fehlerhafte Blöcke fehlgeschlagen\n"
+"Öffnen des Geräts %s zum Prüfen auf fehlerhafte Blöcke ist gescheitert\n"
 
 #: ../gfloppy/src/badblocks.c:288 ../gfloppy/src/gfloppy.c:531
 msgid "Checking for bad blocks... Done"
@@ -1091,9 +1079,8 @@ msgstr "GERÄT"
 
 # CHECK - nicht perfekt aber Formatierprogramm ist noch grausamer
 #: ../gfloppy/src/main.c:583
-#, fuzzy
 msgid "- Floppy Formatter"
-msgstr "Diskette formatieren"
+msgstr "- Disketten formatieren"
 
 #: ../gfloppy/src/progress.c:126
 #, c-format
@@ -1161,9 +1148,8 @@ msgid "_Save"
 msgstr "_Speichern"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:1
-#, fuzzy
 msgid "Check word definitions and spellings in an online dictionary"
-msgstr "Wörter im Online-Wörterbuch nachschlagen"
+msgstr "Definitionen und Schreibweisen im Online-Wörterbuch nachschlagen"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:76
@@ -1356,14 +1342,12 @@ msgid "Whether the application window should be maximized"
 msgstr "Legt fest, ob das Wörterbuch-Fenster maximiert gestartet wird"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:27
-#, fuzzy
 msgid "Whether the sidebar should be visible"
-msgstr "Legt fest, ob das Wörterbuch-Fenster maximiert gestartet wird"
+msgstr "Legt fest, ob die Seitenleiste sichtbar ist"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:28
-#, fuzzy
 msgid "Whether the statusbar should be visible"
-msgstr "Legt fest, ob das Wörterbuch-Fenster maximiert gestartet wird"
+msgstr "Legt fest, ob die Statusleiste sichtbar ist"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -1574,16 +1558,12 @@ msgid "Whether the context uses only local dictionaries or not"
 msgstr "Legt fest, ob lediglich lokale Wörterbücher verwendet werden"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:337
-#, fuzzy
 msgid "Reload the list of available databases"
-msgstr ""
-"Klicken Sie hier, um eine Liste weiterer verfügbarer Kriterien aus- bzw. "
-"einzuklappen"
+msgstr "Liste der verfügbaren Datenbanken erneut laden"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:350
-#, fuzzy
 msgid "Clear the list of available databases"
-msgstr "Alle Datenbanken durchsuchen"
+msgstr "Liste der verfügbaren Datenbanken leeren"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:647
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
@@ -1762,9 +1742,8 @@ msgid "Dictionary sources found"
 msgstr "Wörterbuchquelle gefunden"
 
 #: ../gnome-dictionary/libgdict/gdict-speller.c:351
-#, fuzzy
 msgid "Clear the list of similar words"
-msgstr "Farbe für das nachgeschlagene Wort"
+msgstr "Liste der ähnlichen Wörter leeren"
 
 #: ../gnome-dictionary/libgdict/gdict-speller.c:376
 msgid "The GdictContext object used to get the word definition"
@@ -2020,9 +1999,8 @@ msgid "Unable to create the data directory '%s': %s"
 msgstr "Das Datenverzeichnis »%s« konnte nicht erstellt werden: %s"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:248
-#, fuzzy
 msgid "Edit Dictionary Source"
-msgstr "Wörterbuchquelle hinzufügen"
+msgstr "Wörterbuchquelle bearbeiten"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:312
 msgid "Add Dictionary Source"
@@ -2142,23 +2120,20 @@ msgstr "_Rückwärts suchen"
 
 #. View menu
 #: ../gnome-dictionary/src/gdict-window.c:1016
-#, fuzzy
 msgid "_Sidebar"
-msgstr "Seitenleiste"
+msgstr "_Seitenleiste"
 
 #: ../gnome-dictionary/src/gdict-window.c:1018
-#, fuzzy
 msgid "S_tatusbar"
-msgstr "_Statusleiste"
+msgstr "S_tatusleiste"
 
 #: ../gnome-dictionary/src/gdict-window.c:1020
 msgid "Similar _Words"
-msgstr ""
+msgstr "Ähnliche _Wörter"
 
 #: ../gnome-dictionary/src/gdict-window.c:1022
-#, fuzzy
 msgid "Available _Databases"
-msgstr "Verfügbare Kriterien"
+msgstr "Verfügbare _Datenbanken"
 
 #. Go menu
 #: ../gnome-dictionary/src/gdict-window.c:1026
@@ -2194,14 +2169,14 @@ msgid "Go to the last definition"
 msgstr "Zur letzten Definition gehen"
 
 #: ../gnome-dictionary/src/gdict-window.c:1159
-#, fuzzy, c-format
+#, c-format
 msgid "Database `%s' selected"
-msgstr "Zu verwendende Datenbank"
+msgstr "Datenbank »%s« gewählt"
 
 #: ../gnome-dictionary/src/gdict-window.c:1179
 #, c-format
 msgid "Word `%s' selected"
-msgstr ""
+msgstr "Wort »%s« gewählt"
 
 #. speller
 #: ../gnome-dictionary/src/gdict-window.c:1197
@@ -2832,12 +2807,12 @@ msgstr "»%s« konnte nicht gelöscht werden."
 #: ../gsearchtool/gsearchtool-callbacks.c:840
 #, c-format
 msgid "Moving \"%s\" failed: %s."
-msgstr "Verschieben von »%s« fehlgeschlagen: %s."
+msgstr "Verschieben von »%s« ist gescheitert: %s."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:874
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
-msgstr "Löschen von »%s« fehlgeschlagen: %s."
+msgstr "Löschen von »%s« ist gescheitert: %s."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1312
 msgid "Save Search Results As..."
@@ -3818,7 +3793,7 @@ msgstr "GNOME-VFS-Fehler.\n"
 
 #~ msgid "Cannot open action data base <%s>! Open failed."
 #~ msgstr ""
-#~ "Aktionsdatenbank <%s> konnte nicht geöffnet werden! Öffnen fehlgeschlagen."
+#~ "Aktionsdatenbank <%s> konnte nicht geöffnet werden! Öffnen ist gescheitert."
 
 #~ msgid "Error parsing actions data base"
 #~ msgstr "Beim Verarbeiten der Aktionsdatenbank ist ein Fehler aufgetreten"
@@ -3899,12 +3874,12 @@ msgstr "GNOME-VFS-Fehler.\n"
 #~ msgid "Cannot open regexp data base <%s>! Open failed."
 #~ msgstr ""
 #~ "Datenbank mit regulären Ausdrücken <%s> konnte nicht geöffnet werden! "
-#~ "Öffnen fehlgeschlagen."
+#~ "Öffnen ist gescheitert."
 
 #~ msgid "Cannot open description data base <%s>! Open failed."
 #~ msgstr ""
 #~ "Beschreibungsdatenbank <%s> konnte nicht geöffnet werden! Öffnen "
-#~ "fehlgeschlagen."
+#~ "ist gescheitert."
 
 #~ msgid "Properties"
 #~ msgstr "Eigenschaften"
