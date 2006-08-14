@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-09 15:51+0300\n"
-"PO-Revision-Date: 2006-08-09 15:54+0300\n"
+"POT-Creation-Date: 2006-08-14 09:27+0300\n"
+"PO-Revision-Date: 2006-08-14 09:28+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -304,44 +304,61 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Näytätäänkö työkalupalkki pääikkunassa"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:164 ../baobab/src/baobab-utils.c:209
-#: ../baobab/src/callbacks.c:293
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
+#: ../baobab/src/callbacks.c:444
 msgid "Calculating percentage bars..."
 msgstr "Lasketaan prosenttipalkkeja..."
 
-#: ../baobab/src/baobab.c:170 ../baobab/src/baobab.c:692
-#: ../baobab/src/baobab-utils.c:216 ../baobab/src/callbacks.c:297
+#: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
+#: ../baobab/src/baobab.c:893 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/callbacks.c:448
 msgid "Ready"
 msgstr "Valmis"
 
-#: ../baobab/src/baobab.c:206
+#: ../baobab/src/baobab.c:253
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: ../baobab/src/baobab.c:267
+#: ../baobab/src/baobab.c:277
+msgid "Full path:"
+msgstr "Koko polku:"
+
+#: ../baobab/src/baobab.c:278
+msgid "Last Modification:"
+msgstr "Viimeksi muokattu:"
+
+#: ../baobab/src/baobab.c:279
+msgid "Owner:"
+msgstr "Omistaja:"
+
+#: ../baobab/src/baobab.c:280
+msgid "Allocated bytes:"
+msgstr "Varatut tavut:"
+
+#: ../baobab/src/baobab.c:451
 msgid "scanning..."
 msgstr "kartoitetaan..."
 
-#: ../baobab/src/baobab.c:298
+#: ../baobab/src/baobab.c:482
 msgid "<i>Total filesystem usage:</i>"
 msgstr "<i>Tiedostojärjestelmän kokonaiskäyttö:</i>"
 
-#: ../baobab/src/baobab.c:351
+#: ../baobab/src/baobab.c:535
 msgid "contains hardlinks for:"
 msgstr "sisältää kovia linkkejä kohteelle:"
 
-#: ../baobab/src/baobab.c:360
+#: ../baobab/src/baobab.c:544
 #, c-format
 msgid "% 5d object"
 msgid_plural "% 5d objects"
 msgstr[0] "% 5d kohde"
 msgstr[1] "% 5d kohdetta"
 
-#: ../baobab/src/baobab.c:422
+#: ../baobab/src/baobab.c:606
 msgid "Invalid UTF-8 characters"
 msgstr "Virheellisiä UTF-8-merkkejä"
 
-#: ../baobab/src/baobab.c:601
+#: ../baobab/src/baobab.c:795
 msgid ""
 "Cannot initialize GNOME VFS monitoring\n"
 "Some real-time auto-detect function will not be available!"
@@ -374,15 +391,15 @@ msgstr "Graafiselle ikkunalle ei voi varata muistia!"
 msgid "Graphical map for folder:"
 msgstr "Graafinen kartta kansiosta:"
 
-#: ../baobab/src/baobab-prefs.c:145
+#: ../baobab/src/baobab-prefs.c:146
 msgid "Scan"
 msgstr "Kartoita"
 
-#: ../baobab/src/baobab-prefs.c:152
+#: ../baobab/src/baobab-prefs.c:153
 msgid "Device"
 msgstr "Laite"
 
-#: ../baobab/src/baobab-prefs.c:160
+#: ../baobab/src/baobab-prefs.c:161
 msgid "Mount point"
 msgstr "Liitospiste"
 
@@ -481,78 +498,111 @@ msgstr "Oma sijainti"
 msgid "C_onnect"
 msgstr "_Yhdistä"
 
-#: ../baobab/src/baobab-utils.c:99
+#: ../baobab/src/baobab-treeview.c:66
+msgid "Use the Edit->Find menu item or the search toolbar button."
+msgstr ""
+"Käytä valikon kohtaa Muokkaa->Etsi tai työkalupalkin hakupainiketta."
+
+#: ../baobab/src/baobab-utils.c:101
 msgid "Select a Folder"
 msgstr "Valitse kansio"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:111
+#: ../baobab/src/baobab-utils.c:113
 msgid "Show hidden folders"
 msgstr "Näytä piilokansiot"
 
-#: ../baobab/src/baobab-utils.c:188
+#: ../baobab/src/baobab-utils.c:193
 msgid "Scanning..."
 msgstr "Kartoitetaan..."
 
-#: ../baobab/src/baobab-utils.c:334 ../baobab/src/baobab-utils.c:338
+#: ../baobab/src/baobab-utils.c:354 ../baobab/src/baobab-utils.c:358
 #, c-format
 msgid "%s is not a valid folder"
 msgstr "%s ei ole kelvollinen kansio"
 
-#: ../baobab/src/baobab-utils.c:364
+#: ../baobab/src/baobab-utils.c:384 ../baobab/src/baobab-utils.c:442
 msgid "Remove from Trash"
 msgstr "Poista roskakorista"
 
-#: ../baobab/src/baobab-utils.c:367
+#: ../baobab/src/baobab-utils.c:387 ../baobab/src/baobab-utils.c:445
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
-#: ../baobab/src/baobab-utils.c:370
+#: ../baobab/src/baobab-utils.c:390
 msgid "Folder graphical map"
 msgstr "Graafinen kartta kansioista"
 
-#: ../baobab/src/baobab-utils.c:460
+#: ../baobab/src/baobab-utils.c:394
+msgid "List all files in folder"
+msgstr "Listaa kaikki kansion tiedostot"
+
+#: ../baobab/src/baobab-utils.c:448
+msgid "Scan Folder"
+msgstr "Kartoita kansio"
+
+#: ../baobab/src/baobab-utils.c:520
+msgid "Please provide a file name to search for!"
+msgstr "Anna etsittävä tiedostonimi!"
+
+#: ../baobab/src/baobab-utils.c:700
 msgid "Total filesystem capacity:"
 msgstr "Tiedostojärjestelmän koko:"
 
-#: ../baobab/src/baobab-utils.c:460
+#: ../baobab/src/baobab-utils.c:700
 msgid "used:"
 msgstr "käytössä:"
 
-#: ../baobab/src/baobab-utils.c:461
+#: ../baobab/src/baobab-utils.c:701
 msgid "available:"
 msgstr "käytettävissä:"
 
-#: ../baobab/src/baobab-utils.c:510 ../gsearchtool/gsearchtool-callbacks.c:487
+#: ../baobab/src/baobab-utils.c:739
+msgid "Found:"
+msgstr "Löytyi:"
+
+#: ../baobab/src/baobab-utils.c:740
+msgid "file"
+msgstr "tiedosto"
+
+#: ../baobab/src/baobab-utils.c:740
+msgid "files"
+msgstr "tiedostoa"
+
+#: ../baobab/src/baobab-utils.c:741
+msgid "for total:"
+msgstr "kaikkiaan:"
+
+#: ../baobab/src/baobab-utils.c:771 ../gsearchtool/gsearchtool-callbacks.c:487
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Ei löydy ohjelmaa, joka voisi näyttää asiakirjan."
 
-#: ../baobab/src/baobab-utils.c:572
+#: ../baobab/src/baobab-utils.c:833
 msgid "Cannot find the Trash on this system!"
 msgstr "Roskakoria ei löydy tästä järjestelmästä!"
 
-#: ../baobab/src/baobab-utils.c:579 ../baobab/src/callbacks.c:185
+#: ../baobab/src/baobab-utils.c:840 ../baobab/src/callbacks.c:276
 #: ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:819
 msgid "The document does not exist."
 msgstr "Asiakirja ei ole olemassa."
 
-#: ../baobab/src/baobab-utils.c:591
+#: ../baobab/src/baobab-utils.c:852
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr "Kohteen <b>%s</b> siirtäminen roskakoriin epäonnistui: %s."
 
-#: ../baobab/src/baobab-utils.c:605
+#: ../baobab/src/baobab-utils.c:866
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "Haluatko poistaa kohteen <b>%s</b> pysyvästi?"
 
-#: ../baobab/src/baobab-utils.c:617
+#: ../baobab/src/baobab-utils.c:878
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "Kohteen <b>%s</b> poistaminen epäonnistui: %s."
 
-#: ../baobab/src/baobab-utils.c:646
+#: ../baobab/src/baobab-utils.c:907
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
@@ -561,12 +611,12 @@ msgstr ""
 "Haluatko päivittää edellisen puun, jotta alikansioiden yksityiskohdat "
 "täsmäävät?"
 
-#: ../baobab/src/baobab-utils.c:667
+#: ../baobab/src/baobab-utils.c:928
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Pixmap-tiedostoa ei löydy: %s"
 
-#: ../baobab/src/baobab-utils.c:701 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:962 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Ohjeen näyttämisessä tapahtui virhe."
 
@@ -591,7 +641,7 @@ msgstr ""
 "\n"
 "http://gnome.fi/"
 
-#: ../baobab/src/callbacks.c:376
+#: ../baobab/src/callbacks.c:527
 msgid "The folder does not exist."
 msgstr "Kansiota ei ole olemassa."
 
@@ -1217,17 +1267,16 @@ msgstr ""
 "Tämä avain määrittelee, näytetäänkö sivupalkki. Avainta käytetään "
 "sivupaneelin tilan muistamiseen istuntojen välissä. Arvon asettaminen "
 "todeksi pakottaa sivupalkin näyttämisen aina."
- 
- 
+
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
 msgid ""
 "This key defines whether the statusbar should be visible and it's used to "
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
 msgstr ""
-"Tämä avain määrittelee, näytetäänkö tilarivi. Avainta käytetään "
-"tilarivin tilan muistamiseen istuntojen välissä. Arvon asettaminen "
-"todeksi pakottaa oikolukuelementin näyttämisen aina."
+"Tämä avain määrittelee, näytetäänkö tilarivi. Avainta käytetään tilarivin "
+"tilan muistamiseen istuntojen välissä. Arvon asettaminen todeksi pakottaa "
+"oikolukuelementin näyttämisen aina."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
@@ -1245,9 +1294,9 @@ msgid ""
 "to remember the setting across sessions.. It can be \"speller\" or "
 "\"databases\"."
 msgstr ""
-"Tämä avain määrittelee, mikä sivupalkin sivu näytetään. Avainta "
-"käytetään myös valitun sivun muistamiseen istuntojen välissä. "
-"Avaimen arvo voi olla joko \"speller\" tai \"databases\"."
+"Tämä avain määrittelee, mikä sivupalkin sivu näytetään. Avainta käytetään "
+"myös valitun sivun muistamiseen istuntojen välissä. Avaimen arvo voi olla "
+"joko \"speller\" tai \"databases\"."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
@@ -3373,60 +3422,60 @@ msgstr "Lokikatselin"
 msgid "Unable to create user interface."
 msgstr "Käyttöliittymän luominen ei onnistunut."
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "January"
 msgstr "tammikuu"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "February"
 msgstr "helmikuu"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "March"
 msgstr "maaliskuu"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "April"
 msgstr "huhtikuu"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "May"
 msgstr "toukokuu"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "June"
 msgstr "kesäkuu"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "July"
 msgstr "heinäkuu"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "August"
 msgstr "elokuu"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "September"
 msgstr "syyskuu"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "October"
 msgstr "lokakuu"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "November"
 msgstr "marraskuu"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "December"
 msgstr "joulukuu"
 
-#: ../logview/misc.c:162
+#: ../logview/misc.c:163
 msgid "Invalid date"
 msgstr "Virheellinen päiväys"
 
 #. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:167
+#: ../logview/misc.c:168
 #, c-format
 msgid "%x"
 msgstr "%x"
@@ -3445,44 +3494,6 @@ msgstr "Gnome-VFS:n virhe.\n"
 
 #~ msgid "Baobab - Disk Usage Analyser"
 #~ msgstr "Baobab - Levynkäytön analysointi"
-
-#~ msgid "Full path:"
-#~ msgstr "Koko polku:"
-
-#~ msgid "Last Modification:"
-#~ msgstr "Viimeksi muokattu:"
-
-#~ msgid "Owner:"
-#~ msgstr "Omistaja:"
-
-#~ msgid "Allocated bytes:"
-#~ msgstr "Varatut tavut:"
-
-#~ msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
-#~ msgstr ""
-#~ "<i>Käytä valikon kohtaa Muokkaa->Etsi tai työkalupalkin hakupainiketta.</"
-#~ "i>"
-
-#~ msgid "List all files in folder"
-#~ msgstr "Listaa kaikki kansion tiedostot"
-
-#~ msgid "Scan Folder"
-#~ msgstr "Kartoita kansio"
-
-#~ msgid "Please provide a file name to search for!"
-#~ msgstr "Anna etsittävä tiedostonimi!"
-
-#~ msgid "Found:"
-#~ msgstr "Löytyi:"
-
-#~ msgid "file"
-#~ msgstr "tiedosto"
-
-#~ msgid "files"
-#~ msgstr "tiedostoa"
-
-#~ msgid "for total:"
-#~ msgstr "kaikkiaan:"
 
 #~ msgid "French Dictionaries from Wikipedia"
 #~ msgstr "Ranskankielinen sanakirja Wikipediasta"
