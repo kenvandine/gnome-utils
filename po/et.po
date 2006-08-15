@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-02-06 08:15+0100\n"
-"PO-Revision-Date: 2006-03-27 22:30+0300\n"
+"POT-Creation-Date: 2006-08-13 08:02+0200\n"
+"PO-Revision-Date: 2006-08-15 12:47+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +22,653 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../baobab/data/baobab.desktop.in.in.h:1
+msgid "A graphical tool to analyze disk usage"
+msgstr "Graafiline tööriist kettakasutuse analüüsimiseks"
+
+#: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:9
+msgid "Disk Usage Analyzer"
+msgstr "Kettakasutuse analüsaator"
+
+#: ../baobab/data/baobab.glade.h:1
+msgid "<b>File Size</b>"
+msgstr "<b>Faili suurus</b>"
+
+#: ../baobab/data/baobab.glade.h:2
+msgid "<b>Modification Date</b>"
+msgstr "<b>Muutmiskuupäev</b>"
+
+#: ../baobab/data/baobab.glade.h:3
+msgid "<b>Search Options</b>"
+msgstr "<b>Otsimisvalikud</b>"
+
+#: ../baobab/data/baobab.glade.h:4
+msgid "A_dvanced Options"
+msgstr "Laie_ndatud valikud"
+
+#: ../baobab/data/baobab.glade.h:5
+msgid "A_ny"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:6
+msgid "Allocated _space"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:7
+msgid "An_y"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:8
+msgid "Directory Tree"
+msgstr "Kataloogipuu"
+
+#: ../baobab/data/baobab.glade.h:10
+msgid "Disk Usage Analyzer Preferences"
+msgstr "Kettakasutuse analüsaatori eelistused"
+
+#: ../baobab/data/baobab.glade.h:11
+msgid "Exact _match"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:12
+msgid "File Search"
+msgstr "Failiotsing"
+
+#: ../baobab/data/baobab.glade.h:13
+msgid "Filesystem"
+msgstr "Failisüsteem"
+
+#: ../baobab/data/baobab.glade.h:14 ../gsearchtool/gsearchtool.c:2497
+msgid "Folder"
+msgstr "Kataloog"
+
+#: ../baobab/data/baobab.glade.h:15
+msgid "Last m_onth"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:16
+msgid "Last wee_k"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:17
+msgid "Medi_um (< 1 MB)"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:18
+msgid "Scan Selected F_older..."
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:19
+msgid "Scan _Filesystem"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:20
+msgid "Scan _Remote Folder..."
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:21
+msgid "Scan a remote folder"
+msgstr "Kaugkataloogi läbivaatamine"
+
+#: ../baobab/data/baobab.glade.h:22
+msgid "Scan a selected folder"
+msgstr "Valitud kataloogi läbivaatamine."
+
+#: ../baobab/data/baobab.glade.h:23
+msgid "Scan the whole filesystem"
+msgstr "Kogu failisüsteemi läbivaatamine."
+
+#: ../baobab/data/baobab.glade.h:24
+#, fuzzy
+msgid "Se_arch in selected folder:"
+msgstr "Salvestada _kataloogi:"
+
+#: ../baobab/data/baobab.glade.h:25
+#, fuzzy
+msgid "Search"
+msgstr "märts"
+
+#: ../baobab/data/baobab.glade.h:26
+#, fuzzy
+msgid "Search for File"
+msgstr "Failiotsing"
+
+#: ../baobab/data/baobab.glade.h:27
+#, fuzzy
+msgid "Search for a file"
+msgstr "Failiotsing"
+
+#: ../baobab/data/baobab.glade.h:28
+#, fuzzy
+msgid "Search the _whole filesystem"
+msgstr "Kaasata teised failisüsteemid"
+
+#: ../baobab/data/baobab.glade.h:29
+msgid "Select _devices to be included during system scan:"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:30
+msgid "Show allocated disk usage instead of apparent size"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:31
+msgid "Sma_ll (< 100 kB)"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:32
+msgid "Sort"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:33
+msgid "Sort by name"
+msgstr "Sortimine nime järgi"
+
+#: ../baobab/data/baobab.glade.h:34
+msgid "Sort by size"
+msgstr "Sortimine suuruse järgi"
+
+#: ../baobab/data/baobab.glade.h:35
+msgid "Stop"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:36
+msgid "Stop scanning"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:37
+#, fuzzy
+msgid "Take a snapshot"
+msgstr "Kuvatõmmise salvestamine"
+
+#: ../baobab/data/baobab.glade.h:39
+#, no-c-format
+msgid "Zoom 100%"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:40
+msgid "Zoom in"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:41
+msgid "Zoom out"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:42
+msgid "_Analyzer"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:43
+msgid "_Browse..."
+msgstr "_Sirvi..."
+
+#. Help menu
+#: ../baobab/data/baobab.glade.h:44
+#: ../gnome-dictionary/src/gdict-window.c:1036 ../logview/logview.c:114
+msgid "_Contents"
+msgstr "_Sisu"
+
+#: ../baobab/data/baobab.glade.h:45
+msgid "_Date"
+msgstr "_Kuupäev"
+
+#: ../baobab/data/baobab.glade.h:46
+msgid "_Depth level:"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:985
+#: ../logview/logview.c:86
+msgid "_Edit"
+msgstr "_Redaktor"
+
+#: ../baobab/data/baobab.glade.h:48
+msgid "_Enable auto-detect monitoring of home directory"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:49
+msgid "_Extended search"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:50
+msgid "_Find..."
+msgstr "_Otsi..."
+
+#: ../baobab/data/baobab.glade.h:51
+msgid "_Graphical Usage Map"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:52
+#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
+#: ../gnome-dictionary/src/gdict-window.c:988 ../logview/logview.c:88
+msgid "_Help"
+msgstr "_Abi"
+
+#: ../baobab/data/baobab.glade.h:53
+msgid "_Name"
+msgstr "_Nimi"
+
+#: ../baobab/data/baobab.glade.h:54
+#, fuzzy
+msgid "_Search for file:"
+msgstr "Failiotsing"
+
+#: ../baobab/data/baobab.glade.h:55
+msgid "_Size"
+msgstr "_Suurus"
+
+#: ../baobab/data/baobab.glade.h:56
+msgid "_Sort By"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:57 ../logview/logview.c:122
+msgid "_Statusbar"
+msgstr "_Olekuriba"
+
+#: ../baobab/data/baobab.glade.h:58
+msgid "_Toolbar"
+msgstr ""
+
+#: ../baobab/data/baobab.glade.h:59
+#, fuzzy
+msgid "_Total folders:"
+msgstr "_Alustada kataloogist:"
+
+#: ../baobab/data/baobab.glade.h:60
+msgid "_Type"
+msgstr "_Tüüp"
+
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:986
+#: ../logview/logview.c:87
+msgid "_View"
+msgstr "_Vaata"
+
+#: ../baobab/data/baobab.schemas.in.h:1
+msgid "A list of partitions to be excluded from scanning."
+msgstr ""
+
+#: ../baobab/data/baobab.schemas.in.h:2
+msgid "Enable monitoring of home directory"
+msgstr ""
+
+#: ../baobab/data/baobab.schemas.in.h:3
+msgid "Exluded partitions"
+msgstr ""
+
+#: ../baobab/data/baobab.schemas.in.h:4
+msgid "Status Bar is Visible"
+msgstr ""
+
+#: ../baobab/data/baobab.schemas.in.h:5
+msgid "Toolbar is Visible"
+msgstr ""
+
+#: ../baobab/data/baobab.schemas.in.h:6
+msgid "Whether any change to the home directory should be monitored."
+msgstr ""
+
+#: ../baobab/data/baobab.schemas.in.h:7
+#, fuzzy
+msgid "Whether the status bar at the bottom of main window should be visible."
+msgstr "Millal tuleb rakenduse akent maksimeerida"
+
+#: ../baobab/data/baobab.schemas.in.h:8
+#, fuzzy
+msgid "Whether the toolbar should be visible in main window."
+msgstr "Millal tuleb rakenduse akent maksimeerida"
+
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
+#: ../baobab/src/callbacks.c:444
+msgid "Calculating percentage bars..."
+msgstr ""
+
+#: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
+#: ../baobab/src/baobab.c:893 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/callbacks.c:448
+msgid "Ready"
+msgstr ""
+
+#: ../baobab/src/baobab.c:253
+msgid "Unknown"
+msgstr ""
+
+#: ../baobab/src/baobab.c:277
+msgid "Full path:"
+msgstr ""
+
+#: ../baobab/src/baobab.c:278
+msgid "Last Modification:"
+msgstr "Viimati muudetud:"
+
+#: ../baobab/src/baobab.c:279
+msgid "Owner:"
+msgstr "Omanik:"
+
+#: ../baobab/src/baobab.c:280
+msgid "Allocated bytes:"
+msgstr "Eraldatud baite:"
+
+#: ../baobab/src/baobab.c:451
+msgid "scanning..."
+msgstr "läbivaatamine..."
+
+#: ../baobab/src/baobab.c:482
+msgid "<i>Total filesystem usage:</i>"
+msgstr "<i>Kogu failisüsteemi kasutus:</i>"
+
+#: ../baobab/src/baobab.c:535
+msgid "contains hardlinks for:"
+msgstr ""
+
+#: ../baobab/src/baobab.c:544
+#, c-format
+msgid "% 5d object"
+msgid_plural "% 5d objects"
+msgstr[0] "% 5d objekt"
+msgstr[1] "% 5d objekti"
+
+#: ../baobab/src/baobab.c:606
+msgid "Invalid UTF-8 characters"
+msgstr "Vigased UTF-8 märgid"
+
+#: ../baobab/src/baobab.c:795
+msgid ""
+"Cannot initialize GNOME VFS monitoring\n"
+"Some real-time auto-detect function will not be available!"
+msgstr ""
+
+#: ../baobab/src/baobab-graphwin.c:156
+msgid "Cannot create pixbuf image!"
+msgstr ""
+
+#: ../baobab/src/baobab-graphwin.c:162
+#, fuzzy
+msgid "Save the screenshot"
+msgstr "Kuvatõmmise salvestamine"
+
+#: ../baobab/src/baobab-graphwin.c:186
+msgid "Image type:"
+msgstr ""
+
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
+msgid "Unlimited"
+msgstr ""
+
+#: ../baobab/src/baobab-graphwin.c:276
+msgid "Cannot allocate memory for graphical window!"
+msgstr ""
+
+#. Main treemap window
+#: ../baobab/src/baobab-graphwin.c:304
+msgid "Graphical map for folder:"
+msgstr ""
+
+#: ../baobab/src/baobab-prefs.c:146
+msgid "Scan"
+msgstr ""
+
+#: ../baobab/src/baobab-prefs.c:153
+msgid "Device"
+msgstr ""
+
+#: ../baobab/src/baobab-prefs.c:161
+msgid "Mount point"
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:125
+#, fuzzy, c-format
+msgid "\"%s\" is not a valid location."
+msgstr "%s ei ole logifail."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:134
+msgid "Please check the spelling and try again."
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:160
+msgid "You must enter a name for the server."
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:163
+msgid "Please enter a name and try again."
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:301
+#, fuzzy, c-format
+msgid "%s on %s"
+msgstr "\"%s\" on %s"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:400
+msgid "_Location (URI):"
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:447
+#, fuzzy
+msgid "_Server:"
+msgstr "Server"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:466
+msgid "Optional information:"
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:478
+#, fuzzy
+msgid "_Share:"
+msgstr "_Salvesta"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:499
+#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
+msgid "_Port:"
+msgstr "_Port:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:519
+#, fuzzy
+msgid "_Folder:"
+msgstr "Kataloog"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:539
+#, fuzzy
+msgid "_User Name:"
+msgstr "_Nimi:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:560
+#, fuzzy
+msgid "_Domain Name:"
+msgstr "Kirjatüübi nimi"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:620
+msgid "Connect to a Remote Folder"
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:637
+msgid "Service _type:"
+msgstr "Teenuse _liik:"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:646
+msgid "SSH"
+msgstr "SSH"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:648
+msgid "Public FTP"
+msgstr "Avalik FTP"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:650
+msgid "FTP (with login)"
+msgstr "FTP (sisselogimisega)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:652
+msgid "Windows share"
+msgstr ""
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:654
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:656
+msgid "Secure WebDAV (HTTPS)"
+msgstr "Turvaline WebDAV (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:658
+msgid "Custom Location"
+msgstr "Kohandatud asukoht"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:714
+msgid "C_onnect"
+msgstr ""
+
+#: ../baobab/src/baobab-treeview.c:66
+msgid "Use the Edit->Find menu item or the search toolbar button."
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:101
+msgid "Select a Folder"
+msgstr "Kataloogi valimine"
+
+#. add extra widget
+#: ../baobab/src/baobab-utils.c:113
+#, fuzzy
+msgid "Show hidden folders"
+msgstr "Näidata peidetud ja varufaile"
+
+#: ../baobab/src/baobab-utils.c:193
+msgid "Scanning..."
+msgstr "Läbivaatamine..."
+
+#: ../baobab/src/baobab-utils.c:354 ../baobab/src/baobab-utils.c:358
+#, fuzzy, c-format
+msgid "%s is not a valid folder"
+msgstr "%s ei ole logifail."
+
+#: ../baobab/src/baobab-utils.c:384 ../baobab/src/baobab-utils.c:442
+#, fuzzy
+msgid "Remove from Trash"
+msgstr "Tõsta _prügikasti"
+
+#: ../baobab/src/baobab-utils.c:387 ../baobab/src/baobab-utils.c:445
+#, fuzzy
+msgid "Move to Trash"
+msgstr "Tõsta _prügikasti"
+
+#: ../baobab/src/baobab-utils.c:390
+msgid "Folder graphical map"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:394
+#, fuzzy
+msgid "List all files in folder"
+msgstr "Salvestada _kataloogi:"
+
+#: ../baobab/src/baobab-utils.c:448
+#, fuzzy
+msgid "Scan Folder"
+msgstr "Kataloog"
+
+#: ../baobab/src/baobab-utils.c:520
+msgid "Please provide a file name to search for!"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:700
+#, fuzzy
+msgid "Total filesystem capacity:"
+msgstr "Failisüsteemi vaiketüüp"
+
+#: ../baobab/src/baobab-utils.c:700
+msgid "used:"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:701
+#, fuzzy
+msgid "available:"
+msgstr "Võimalikud _valikud:"
+
+#: ../baobab/src/baobab-utils.c:739
+#, fuzzy
+msgid "Found:"
+msgstr "Leitud:"
+
+#: ../baobab/src/baobab-utils.c:740
+msgid "file"
+msgstr "fail"
+
+#: ../baobab/src/baobab-utils.c:740
+#, fuzzy
+msgid "files"
+msgstr "faili"
+
+#: ../baobab/src/baobab-utils.c:741
+msgid "for total:"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:771 ../gsearchtool/gsearchtool-callbacks.c:487
+msgid "There is no installed viewer capable of displaying the document."
+msgstr "Selle dokumendi jaoks pole vaaturit paigaldatud."
+
+#: ../baobab/src/baobab-utils.c:833
+msgid "Cannot find the Trash on this system!"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:840 ../baobab/src/callbacks.c:276
+#: ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../gsearchtool/gsearchtool-callbacks.c:819
+msgid "The document does not exist."
+msgstr "Dokumenti pole olemas"
+
+#: ../baobab/src/baobab-utils.c:852
+#, fuzzy, c-format
+msgid "Moving <b>%s</b> to trash failed: %s."
+msgstr "Tõrge \"%s\" ümbertõstmisel: %s"
+
+#: ../baobab/src/baobab-utils.c:866
+#, fuzzy, c-format
+msgid "Do you want to delete <b>%s</b> permanently?"
+msgstr "Soovid sa tõesti jäädavalt kustutada \"%s\"?"
+
+#: ../baobab/src/baobab-utils.c:878
+#, fuzzy, c-format
+msgid "Deleting <b>%s</b> failed: %s."
+msgstr "Tõrge \"%s\" kustutamisel: %s."
+
+#: ../baobab/src/baobab-utils.c:907
+msgid ""
+"The content of your home directory has changed.\n"
+"Do you want to rescan the last tree to update the folder branch details?"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:928
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr ""
+
+#: ../baobab/src/baobab-utils.c:962 ../logview/logview.c:773
+msgid "There was an error displaying help."
+msgstr "Abiteabe kuvamisel tekkis viga."
+
+#: ../baobab/src/callbacks.c:75
+msgid "Baobab"
+msgstr ""
+
+#: ../baobab/src/callbacks.c:76
+msgid "A graphical tool to analyse disk usage."
+msgstr ""
+
+#. Translator credits
+#: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:55
+#: ../logview/about.c:47
+msgid "translator-credits"
+msgstr ""
+"Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
+"Tõivo Leedjärv <toivo@linux.ee>, 2002.\n"
+"Ivar Smolin <okul@linux.ee>, 2005, 2006.\n"
+"Priit Laes <amd@store20.com>, 2005."
+
+#: ../baobab/src/callbacks.c:527
+msgid "The folder does not exist."
+msgstr "Kataloogi pole olemas."
+
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Diskettide vormindaja"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
-msgid "Format Floppy Disks"
+msgid "Format floppy disks"
 msgstr "Diskettide vormindamine"
 
 #: ../gfloppy/gfloppy.schemas.in.h:1
@@ -421,13 +1062,17 @@ msgstr "Vigane ketta nimi"
 msgid "The volume name can't contain any blank space."
 msgstr "Ketta nimes ei tohi olla tühikuid."
 
-#: ../gfloppy/src/main.c:576
+#: ../gfloppy/src/main.c:573
 msgid "The device to format"
 msgstr "Vormindatav seade"
 
-#: ../gfloppy/src/main.c:577
+#: ../gfloppy/src/main.c:573
 msgid "DEVICE"
 msgstr "SEADE"
+
+#: ../gfloppy/src/main.c:583
+msgid "- Floppy Formatter"
+msgstr "- Diskettide vormindaja"
 
 #: ../gfloppy/src/progress.c:126
 #, c-format
@@ -438,11 +1083,11 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"Ketas on vormingatud kuid selle käigus leiti ja märgiti <b>1 paha blokk</b> "
-"(%d'st)."
+"Ketas on vormindatud, kuid selle käigus leiti ja märgiti <b>%d paha "
+"blokk</b> (%d'st)."
 msgstr[1] ""
-"Ketas on vormingatud kuid selle käigus leiti ja märgiti <b>1 paha blokki</b> "
-"(%d'st)."
+"Ketas on vormindatud, kuid selle käigus leiti ja märgiti <b>%d paha "
+"blokki</b> (%d'st)."
 
 #: ../gfloppy/src/progress.c:129
 msgid "Floppy formatted successfully."
@@ -473,21 +1118,16 @@ msgid "Cl_ear"
 msgstr "_Puhasta"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:838 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1038 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Programmist lähemalt"
-
-#: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:798 ../logview/logview.c:88
-msgid "_Help"
-msgstr "_Abi"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:4
 msgid "_Look Up Selected Text"
 msgstr "_Otsi valitud teksti"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:822
+#: ../gnome-dictionary/src/gdict-window.c:1012
 msgid "_Preferences"
 msgstr "_Eelistused"
 
@@ -499,16 +1139,18 @@ msgstr "_Trüki"
 msgid "_Save"
 msgstr "_Salvesta"
 
-#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:1
-#: ../gnome-dictionary/src/gdict-about.c:98
-#: ../gnome-dictionary/src/gdict-app.c:409
-#: ../gnome-dictionary/src/gdict-window.c:1203
+#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:1
+#, fuzzy
+msgid "Check word definitions and spellings in an online dictionary"
+msgstr "Sõnade otsimine onlain-sõnaraamatust"
+
+#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
+#: ../gnome-dictionary/src/gdict-about.c:76
+#: ../gnome-dictionary/src/gdict-app.c:406
+#: ../gnome-dictionary/src/gdict-window.c:464
+#: ../gnome-dictionary/src/gdict-window.c:1595
 msgid "Dictionary"
 msgstr "Sõnaraamat"
-
-#: ../gnome-dictionary/data/gnome-dictionary.desktop.in.h:2
-msgid "Look up words in an online dictionary"
-msgstr "Sõnade otsimine onlain-sõnaraamatust"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:1
 msgid "Dictionary server (Deprecated)"
@@ -568,9 +1210,9 @@ msgid ""
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
 "present in a dictionary source should be searched"
 msgstr ""
-"Sõnaraamatuserveris vaikimisi allikana kasutatava üksiku andmebaasi või "
-"meta-andmebaasi nimi. Hüüumärk (\"!\") tähendab, et otsing teostatakse üle "
-"kõigi sõnaraamatuallikas olevate andmebaaside"
+"Sõnaraamatuserveris vaikimisi allikana kasutatava üksiku andmebaasi või meta-"
+"andmebaasi nimi. Hüüumärk (\"!\") tähendab, et otsing teostatakse üle kõigi "
+"sõnaraamatuallikas olevate andmebaaside"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
@@ -588,10 +1230,14 @@ msgstr "Kasutuseloleva sõnaraamatu allika nimi"
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
 msgid ""
 "The name of the dictionary source used to retrieve the definitions of words."
-msgstr ""
-"Sõnadefinitsioonide hankimiseks kasutatav sõnaraamatuallikas."
+msgstr "Sõnadefinitsioonide hankimiseks kasutatav sõnaraamatuallikas."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
+#, fuzzy
+msgid "The page of the sidebar to show"
+msgstr "Kasutuseloleva sõnaraamatu allika nimi"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
@@ -599,33 +1245,74 @@ msgstr ""
 "Pordi number, kuhu ühenduda. Vaikimisi port on 2628. See valik on aegunud ja "
 "pole enam kasutusel."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid "The width of the sidebar"
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines the width of the sidebar and it's used to remember the "
+"setting across sessions."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid ""
 "This key defines the window height and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a height based on the font size."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid ""
 "This key defines the window width and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a width based on the font size."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
+msgid ""
+"This key defines whether the sidebar should be visible and it's used to "
+"remember the state of the sidebar across sessions. Setting it to TRUE will "
+"make the sidebar always be displayed."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
+msgid ""
+"This key defines whether the statusbar should be visible and it's used to "
+"remember the state of the statusbar across sessions. Setting it to TRUE will "
+"make the statusbar always be displayed."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
+msgid ""
+"This key defines which page of the sidebar should be displayed and it's used "
+"to remember the setting across sessions.. It can be \"speller\" or "
+"\"databases\"."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
 msgstr "Targa otsingu kasutamine (aegunud)"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:26
 msgid "Whether the application window should be maximized"
+msgstr "Millal tuleb rakenduse akent maksimeerida"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:27
+#, fuzzy
+msgid "Whether the sidebar should be visible"
+msgstr "Millal tuleb rakenduse akent maksimeerida"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:28
+#, fuzzy
+msgid "Whether the statusbar should be visible"
 msgstr "Millal tuleb rakenduse akent maksimeerida"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
@@ -633,12 +1320,7 @@ msgid "Data_base:"
 msgstr "Andme_baas:"
 
 #. Transport methods
-#. Translators: this is the same string used in the file
-#. * gnome-dictionary-preferences.glade for the transport_combo
-#. * widget items.
-#.
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-#: ../gnome-dictionary/src/gdict-source-dialog.c:146
 msgid "Dictionary Server"
 msgstr "Sõnaraamatuserver"
 
@@ -647,8 +1329,8 @@ msgid "H_ostname:"
 msgstr "H_osti nimi:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:230
-#: ../gnome-dictionary/src/gdict-window.c:594
+#: ../gnome-dictionary/src/gdict-applet.c:202
+#: ../gnome-dictionary/src/gdict-window.c:726
 msgid "Print"
 msgstr "Printimine"
 
@@ -668,10 +1350,6 @@ msgstr "Laie_ndatud sätted"
 msgid "_Description:"
 msgstr "_Kirjeldus:"
 
-#: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
-msgid "_Port:"
-msgstr "_Port:"
-
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:11
 msgid "_Print font:"
 msgstr "_Printimise kirjatüüp:"
@@ -688,74 +1366,70 @@ msgstr "_Strateegia:"
 msgid "_Transport:"
 msgstr "_Transport:"
 
-#: ../gnome-dictionary/data/french.desktop.in.h:1
-msgid "French Dictionaries from Wikipedia"
-msgstr "Prantsuse sõnaraamatud Vikipeediast"
-
 #: ../gnome-dictionary/data/spanish.desktop.in.h:1
 msgid "Spanish Dictionaries"
 msgstr "Hispaaniakeelsed sõnaraamatud"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:266
 msgid "Client Name"
 msgstr "Kliendi nimi"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:267
 msgid "The name of the client of the context object"
 msgstr "Kontekstiobjekti kliendi nimi"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:280
 msgid "Hostname"
 msgstr "Hosti nimi"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:281
 msgid "The hostname of the dictionary server to connect to"
 msgstr "Sõnaraamatuserveri hostinimi"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:294
 msgid "Port"
 msgstr "Port"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:295
 msgid "The port of the dictionary server to connect to"
 msgstr "Sõnaraamatuserveri port, kuhu tuleb ühenduda"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:310
 msgid "Status"
 msgstr "Olek"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "The status code as returned by the dictionary server"
 msgstr "Sõnaraamatuserverist tagastatud olekukood"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:759
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1021
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1055
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1052
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Tõrge hosti '%s' lahendamisel: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1088
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1087
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Tõrge hosti '%s' lahendamisel: hosti ei leitud"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1140
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1139
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1159
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1158
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -764,336 +1438,282 @@ msgstr ""
 "Sõnaraamatuserveri vastust pole võimalik analüüsida\n"
 ": '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1188
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1187
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "'%s' definitsioone ei leitud"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1203
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1202
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Vigane andmebaas '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1218
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1217
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Vigane strateegia '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1233
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1232
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Vigane käsk '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1248
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1247
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Vigased parameetrid käsule '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1263
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1262
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Sõnaraamatuserveris '%s' ei leitud ühtegi andmebaasi"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1278
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1277
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1664
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1707
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Tõrge ühendumisel sõnaraamatuserveriga '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1703
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1746
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
 "%s"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1774
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1819
 msgid "No hostname defined for the dictionary server"
 msgstr "Sõnaraamatuserverile pole hostinime määratud"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1810
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1825
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1855
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1870
 msgid "Unable to create socket"
 msgstr "Soklit pole võimalik luua"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1896
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Kanalit pole võimalik mitteblokeeruvaks muuta: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1866
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1911
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Sõnaraamatuserveriga aadressil '%s:%d' pole võimalik ühenduda"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:196
+#: ../gnome-dictionary/libgdict/gdict-context.c:199
 msgid "Local Only"
 msgstr "Ainult kohalikud"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:197
+#: ../gnome-dictionary/libgdict/gdict-context.c:200
 msgid "Whether the context uses only local dictionaries or not"
-msgstr "Kas kontekstid peavad kasutama ainult kohalikke sõnaraamatuid või mitte"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:352
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:441
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:469
-msgid "Not found"
-msgstr "Ei leitud"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:500
-msgid "F_ind:"
-msgstr "_Otsing:"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:513
-msgid "_Previous"
-msgstr "_Eelmine"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:521
-msgid "_Next"
-msgstr "_Järgmine"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:694
-#: ../gnome-dictionary/libgdict/gdict-entry.c:104
-#: ../gnome-dictionary/libgdict/gdict-source.c:303
-msgid "Context"
-msgstr "Kontekst"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:695
-msgid "The GdictContext object used to get the word definition"
-msgstr "GdictContext objekt, mida kasutatakse sõna definitsiooni hankimiseks"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:709
-#: ../gnome-dictionary/libgdict/gdict-entry.c:119
-#: ../gnome-dictionary/libgdict/gdict-source.c:260
-msgid "Database"
-msgstr "Andmebaas"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:710
-msgid "The database used to query the GdictContext"
-msgstr "Andmebaasid GdictContext päringute jaoks"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:724
-msgid "Font Name"
-msgstr "Kirjatüübi nimi"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:725
-msgid "The font to be used by the defbox"
-msgstr "Definitsioonikasti jaoks kasutatav kirjatüüp"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:731
-msgid "Emphasys Color"
 msgstr ""
+"Kas kontekstid peavad kasutama ainult kohalikke sõnaraamatuid või mitte"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:732
-msgid "Color of emphasised text"
-msgstr ""
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:337
+msgid "Reload the list of available databases"
+msgstr "Saadaolevate andmebaaside loendi uuestilaadimine"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:737
-msgid "Link Color"
-msgstr "Viida värvus"
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:350
+msgid "Clear the list of available databases"
+msgstr "Saadaolevate andmebaaside loendi puhastamine"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:738
-msgid "Color of hyperlinks"
-msgstr "Hüperlinkide värvus"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:743
-msgid "Word Color"
-msgstr "Sõna värvus"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:744
-msgid "Color of the dictionary word"
-msgstr "Sõnaraamatu sõna värvus"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:749
-msgid "Source Color"
-msgstr "Allika värvus"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:750
-msgid "Color of the dictionary source"
-msgstr "Sõnaraamatu allika värvus"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1041
-msgid "Progress"
-msgstr "Edenemine"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1078
-#, c-format
-msgid "Definition for '%s' (%d/%d)"
-msgstr "'%s' definitsioon (%d/%d)"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1280
-msgid "Error while looking up definition"
-msgstr "Viga definitsiooni otsimisel"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
-#, c-format
-msgid "Attempting to look up '%s' but no GdictContext defined.  Aborting."
-msgstr ""
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1332
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:647
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
 msgid "Another search is in progress"
-msgstr "Teine otsing on parasjagu käimas"
+msgstr "Parasjagu toimub teine otsing"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1333
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:648
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
+#: ../gnome-dictionary/libgdict/gdict-speller.c:739
 msgid "Please wait until the current search ends."
 msgstr "Palun oota kuni käesolev otsing lõpetab."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1364
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:681
+#: ../gnome-dictionary/libgdict/gdict-speller.c:780
+msgid "Error while matching"
+msgstr ""
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:353
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:442
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:470
+msgid "Not found"
+msgstr "Ei leitud"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:502
+msgid "F_ind:"
+msgstr "_Otsing:"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
+msgid "_Previous"
+msgstr "_Eelmine"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:523
+msgid "_Next"
+msgstr "_Järgmine"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1223
+msgid "Error while looking up definition"
+msgstr "Viga definitsiooni otsimisel"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Error while retrieving the definition"
 msgstr "Viga definitsiooni vastuvõtmisel"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
+#: ../gnome-dictionary/libgdict/gdict-source.c:304
+#: ../gnome-dictionary/libgdict/gdict-speller.c:375
+msgid "Context"
+msgstr "Kontekst"
+
+#: ../gnome-dictionary/libgdict/gdict-entry.c:106
 msgid "The GdictContext object bound to this entry"
 msgstr ""
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
+#: ../gnome-dictionary/libgdict/gdict-speller.c:382
+msgid "Database"
+msgstr "Andmebaas"
+
+#: ../gnome-dictionary/libgdict/gdict-entry.c:121
 msgid "The database to be used to generate the completion list"
 msgstr "Lõpetamisnimekirja koostamiseks kasutatav andmebaas"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:134
-#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-entry.c:135
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
+#: ../gnome-dictionary/libgdict/gdict-speller.c:389
 msgid "Strategy"
 msgstr "Strateegia"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
+#: ../gnome-dictionary/libgdict/gdict-entry.c:136
 msgid "The matching strategy to be used to generate the completion list"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:218
+#: ../gnome-dictionary/libgdict/gdict-source.c:219
 msgid "Filename"
 msgstr "Failinimi"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:220
 msgid "The filename used by this dictionary source"
 msgstr "Selle sõnaraamatuallika poolt kasutatav failinimi"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:232
-#: ../gsearchtool/gsearchtool.c:2355
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gsearchtool/gsearchtool.c:2473
 msgid "Name"
 msgstr "Nimi"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:234
 msgid "The display name of this dictonary source"
 msgstr "Selle sõnaraamatuallika ekraaninimi"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:246
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "Description"
 msgstr "Kirjeldus"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:248
 msgid "The description of this dictionary source"
 msgstr "Sõnaraamatuallika kirjeldus"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
+#: ../gnome-dictionary/libgdict/gdict-source.c:262
 msgid "The default database of this dictonary source"
 msgstr "Selle sõnaraamatuallika vaikimisi andmebaas"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
+#: ../gnome-dictionary/libgdict/gdict-source.c:276
 msgid "The default strategy of this dictonary source"
 msgstr "Selle sõnaraamatuallika vaikimisi strateegia"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "Transport"
 msgstr "Transport"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:290
 msgid "The transport mechanism used by this dictionary source"
 msgstr "Selle sõnaraamatuallika transpordimehhanism"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
+#: ../gnome-dictionary/libgdict/gdict-source.c:305
 msgid "The GdictContext bound to this source"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:399
+#: ../gnome-dictionary/libgdict/gdict-source.c:400
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "Vigane transpordiliik '%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:427
+#: ../gnome-dictionary/libgdict/gdict-source.c:428
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:443
-#: ../gnome-dictionary/libgdict/gdict-source.c:467
-#: ../gnome-dictionary/libgdict/gdict-source.c:491
-#: ../gnome-dictionary/libgdict/gdict-source.c:516
+#: ../gnome-dictionary/libgdict/gdict-source.c:444
+#: ../gnome-dictionary/libgdict/gdict-source.c:468
+#: ../gnome-dictionary/libgdict/gdict-source.c:492
+#: ../gnome-dictionary/libgdict/gdict-source.c:517
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:541
+#: ../gnome-dictionary/libgdict/gdict-source.c:542
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr ""
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:727
+#: ../gnome-dictionary/libgdict/gdict-source.c:728
 msgid "Dictionary source does not have name"
 msgstr "Sõnaraamatuallikal pole nime"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:736
+#: ../gnome-dictionary/libgdict/gdict-source.c:737
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Sõnaraamatuallikal '%s' on vigane transport '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:162
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
 msgid "Paths"
 msgstr "Rajad"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
 msgid "Search paths used by this object"
 msgstr "Selle objekti poolt kasutatavad otsingurajad"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:175
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
 msgid "Sources"
 msgstr "Allikad"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
 msgid "Dictionary sources found"
 msgstr "Leitud sõnaraamatuallikad"
 
-#. Translator credits
-#: ../gnome-dictionary/src/gdict-about.c:59 ../logview/about.c:47
-msgid "translator-credits"
-msgstr ""
-"Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
-"Tõivo Leedjärv <toivo@linux.ee>, 2002.\n"
-"Ivar Smolin <okul@linux.ee>, 2005, 2006.\n"
-"Priit Laes <amd@store20.com>, 2005."
+#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+msgid "Clear the list of similar words"
+msgstr "Sarnaste sõnade loendi puhastamine"
 
-#: ../gnome-dictionary/src/gdict-about.c:61
-#: ../gnome-dictionary/src/gdict-applet.c:589
+#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+msgid "The GdictContext object used to get the word definition"
+msgstr "GdictContext objekt, mida kasutatakse sõna definitsiooni hankimiseks"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:383
+msgid "The database used to query the GdictContext"
+msgstr "Andmebaasid GdictContext päringute jaoks"
+
+#: ../gnome-dictionary/libgdict/gdict-speller.c:390
+#, fuzzy
+msgid "The strategy used to query the GdictContext"
+msgstr "Andmebaasid GdictContext päringute jaoks"
+
+#: ../gnome-dictionary/src/gdict-about.c:57
+#: ../gnome-dictionary/src/gdict-applet.c:611
 msgid "Look up words in dictionaries"
 msgstr "Sõnade otsimine sõnaraamatutest"
-
-#: ../gnome-dictionary/src/gdict-about.c:87
-#, c-format
-msgid "Unable to open the application icon: %s"
-msgstr "Rakenduse ikooni pole võimalik avada: %s"
-
-#: ../gnome-dictionary/src/gdict-app.c:118
-#, c-format
-msgid ""
-"Unable to create the data directory '%s': there already is a file with the "
-"same name.  You should move the file and re-run gnome-dictionary."
-msgstr ""
-
-#. Translators: the first is the file name, the second is
-#. * the error message
-#: ../gnome-dictionary/src/gdict-app.c:130
-#, c-format
-msgid "Unable to create the data directory '%s': %s"
-msgstr "Andmekataloogi '%s' pole võimalik luua: %s"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:249
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1106,20 +1726,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:263
+#: ../gnome-dictionary/src/gdict-app.c:252
 #, c-format
 msgid "Error: %s\n"
 msgstr "Viga: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:289
+#: ../gnome-dictionary/src/gdict-app.c:278
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Kasutamisjuhisteks proovi gnome-dictionary --help\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:302
+#: ../gnome-dictionary/src/gdict-app.c:291
 msgid "Unable to find a suitable dictionary source"
 msgstr "Kasutatavat sõnaraamatuallikat pole võimalik leida"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:325
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1128,211 +1748,232 @@ msgstr ""
 "Viga \"%s\" definitsiooni otsimisel:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:359
+#: ../gnome-dictionary/src/gdict-app.c:373
 msgid "Words to look up"
 msgstr "Otsitavad sõnad"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:359
+#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:373
 msgid "word"
 msgstr "sõna"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:361
+#, fuzzy
+msgid "Words to match"
+msgstr "Otsitavad sõnad"
+
+#: ../gnome-dictionary/src/gdict-app.c:363
 msgid "Dictionary source to use"
 msgstr "Kasutatav sõnaraamatuallikas"
 
-#: ../gnome-dictionary/src/gdict-app.c:370
+#: ../gnome-dictionary/src/gdict-app.c:363
 msgid "source"
 msgstr "allikas"
 
-#: ../gnome-dictionary/src/gdict-app.c:372
+#: ../gnome-dictionary/src/gdict-app.c:365
 msgid "Show available dictionary sources"
 msgstr "Saadaolevate sõnaraamatuallikate näitamine"
 
-#: ../gnome-dictionary/src/gdict-app.c:374
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid "Print result to the console"
 msgstr "Tulemuse printimine konsoolile"
 
-#: ../gnome-dictionary/src/gdict-app.c:376
+#: ../gnome-dictionary/src/gdict-app.c:369
 msgid "Database to use"
 msgstr "Kasutatav andmebaas"
 
+#: ../gnome-dictionary/src/gdict-app.c:369
+msgid "db"
+msgstr ""
+
+#: ../gnome-dictionary/src/gdict-app.c:371
+#, fuzzy
+msgid "Strategy to use"
+msgstr "Strateegia"
+
+#: ../gnome-dictionary/src/gdict-app.c:371
+#, fuzzy
+msgid "strat"
+msgstr "Strateegia"
+
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:392
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid " - Look up words in dictionaries"
 msgstr " - Sõnade otsimine sõnaraamatust"
 
-#: ../gnome-dictionary/src/gdict-app.c:396
+#: ../gnome-dictionary/src/gdict-app.c:393
 msgid "Dictionary and spelling tool"
 msgstr "Sõnaraamatu ja õigekirja tööriist"
 
-#: ../gnome-dictionary/src/gdict-app.c:397
+#: ../gnome-dictionary/src/gdict-app.c:394
 msgid "Show Dictionary options"
 msgstr "Sõnaraamatu valikute näitamine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:244
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:216
+#: ../gnome-dictionary/src/gdict-window.c:672
 msgid "Save a Copy"
 msgstr "Koopia salvestamine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:254
-#: ../gnome-dictionary/src/gdict-window.c:549
+#: ../gnome-dictionary/src/gdict-applet.c:226
+#: ../gnome-dictionary/src/gdict-window.c:682
 msgid "Untitled document"
 msgstr "Pealkirjata dokument"
 
-#: ../gnome-dictionary/src/gdict-applet.c:275
-#: ../gnome-dictionary/src/gdict-window.c:570
+#: ../gnome-dictionary/src/gdict-applet.c:247
+#: ../gnome-dictionary/src/gdict-window.c:703
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Viga '%s' kirjutamisel"
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Clear the definitions found"
 msgstr "Leitud definitsioonidest puhastamine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:378
 msgid "Clear definition"
 msgstr "Puhasta definitsioon"
 
-#: ../gnome-dictionary/src/gdict-applet.c:367
+#: ../gnome-dictionary/src/gdict-applet.c:379
 msgid "Clear the text of the definition"
 msgstr "Definitsiooniteksti puhastamine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:377
+#: ../gnome-dictionary/src/gdict-applet.c:389
 msgid "Print the definitions found"
 msgstr "Leitud definitsioonide printimine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:380
+#: ../gnome-dictionary/src/gdict-applet.c:392
 msgid "Print definition"
 msgstr "Prindi definitsioon"
 
-#: ../gnome-dictionary/src/gdict-applet.c:381
+#: ../gnome-dictionary/src/gdict-applet.c:393
 msgid "Print the text of the definition"
 msgstr "Definitsiooni teksti printimine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:391
+#: ../gnome-dictionary/src/gdict-applet.c:403
 msgid "Save the definitions found"
 msgstr "Leitud definitsioonide salvestamine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:394
+#: ../gnome-dictionary/src/gdict-applet.c:406
 msgid "Save definition"
 msgstr "Definitsiooni salvestamine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:395
+#: ../gnome-dictionary/src/gdict-applet.c:407
 msgid "Save the text of the definition to a file"
 msgstr "Definitsiooniteksti salvestamine faili"
 
-#: ../gnome-dictionary/src/gdict-applet.c:529
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Toggle dictionary window"
 msgstr "Sõnaraamatuakna sisse- ja väljalülitamine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:530
+#: ../gnome-dictionary/src/gdict-applet.c:552
 msgid "Show or hide the definition window"
 msgstr "Definitsiooniakna näitamine või peitmine"
 
-#: ../gnome-dictionary/src/gdict-applet.c:533
+#: ../gnome-dictionary/src/gdict-applet.c:555
 msgid "Click to view the dictionary window"
 msgstr "Klõpsa sõnaraamatuakna näitamiseks"
 
-#: ../gnome-dictionary/src/gdict-applet.c:588
+#: ../gnome-dictionary/src/gdict-applet.c:610
 msgid "Dictionary entry"
 msgstr "Sõnaraamatukirje"
 
-#: ../gnome-dictionary/src/gdict-applet.c:592
+#: ../gnome-dictionary/src/gdict-applet.c:614
 msgid "Type the word you want to look up"
 msgstr "Sisesta sõna, mida soovid otsida"
 
-#: ../gnome-dictionary/src/gdict-applet.c:726
-msgid "Preferences"
-msgstr "Eelistused"
+#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-window.c:827
+msgid "Dictionary Preferences"
+msgstr "Sõnaraamatu eelistused"
 
-#: ../gnome-dictionary/src/gdict-applet.c:758
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:471
-#: ../gnome-dictionary/src/gdict-source-dialog.c:324
-#: ../gnome-dictionary/src/gdict-window.c:760
+#: ../gnome-dictionary/src/gdict-applet.c:776
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
+#: ../gnome-dictionary/src/gdict-source-dialog.c:438
+#: ../gnome-dictionary/src/gdict-window.c:950
 msgid "There was an error while displaying help"
 msgstr "Abiteabe kuvamisel tekkis viga"
 
-#: ../gnome-dictionary/src/gdict-applet.c:917
-#: ../gnome-dictionary/src/gdict-window.c:269
+#: ../gnome-dictionary/src/gdict-applet.c:936
+#: ../gnome-dictionary/src/gdict-window.c:363
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Sõnaraamatuallikat nimega '%s' pole saadaval"
 
-#: ../gnome-dictionary/src/gdict-applet.c:921
-#: ../gnome-dictionary/src/gdict-window.c:273
+#: ../gnome-dictionary/src/gdict-applet.c:940
+#: ../gnome-dictionary/src/gdict-window.c:367
 msgid "Unable to find dictionary source"
 msgstr "Sõnaraamatuallikat pole võimalik leida"
 
-#: ../gnome-dictionary/src/gdict-applet.c:937
-#: ../gnome-dictionary/src/gdict-window.c:289
+#: ../gnome-dictionary/src/gdict-applet.c:956
+#: ../gnome-dictionary/src/gdict-window.c:383
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Allikas '%s' jaoks pole konteksti saadaval"
 
-#: ../gnome-dictionary/src/gdict-applet.c:941
-#: ../gnome-dictionary/src/gdict-window.c:293
+#: ../gnome-dictionary/src/gdict-applet.c:960
+#: ../gnome-dictionary/src/gdict-window.c:387
 msgid "Unable to create a context"
 msgstr "Konteksti pole võimalik luua"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1215
-#: ../gnome-dictionary/src/gdict-applet.c:1232
-#, c-format
-msgid "Unable to create the data directory '%s'"
-msgstr "Andmekataloogi '%s' pole võimalik luua"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1216
-msgid ""
-"There is a file with the same name in the path.\n"
-"You should move the file and re-run the\n"
-"Dictionary applet"
-msgstr ""
-
-#: ../gnome-dictionary/src/gdict-applet.c:1252
-msgid "Unable to load the applet icon"
-msgstr "Rakendi ikooni pole võimalik laadida"
-
-#: ../gnome-dictionary/src/gdict-applet.c:1281
-#: ../gnome-dictionary/src/gdict-window.c:1312
+#: ../gnome-dictionary/src/gdict-applet.c:1244
+#: ../gnome-dictionary/src/gdict-window.c:1719
 msgid "Unable to connect to GConf"
 msgstr "GConf'iga pole võimalik ühenduda"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1296
-#: ../gnome-dictionary/src/gdict-window.c:1328
+#: ../gnome-dictionary/src/gdict-applet.c:1257
+#: ../gnome-dictionary/src/gdict-window.c:1732
 msgid "Unable to get notification for preferences"
 msgstr ""
 
-#: ../gnome-dictionary/src/gdict-applet.c:1311
-#: ../gnome-dictionary/src/gdict-window.c:1344
+#: ../gnome-dictionary/src/gdict-applet.c:1271
+#: ../gnome-dictionary/src/gdict-window.c:1745
 msgid "Unable to get notification for the document font"
 msgstr ""
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:272
+#: ../gnome-dictionary/src/gdict-common.c:77
+#, fuzzy, c-format
+msgid "Unable to rename file '%s' to '%s': %s"
+msgstr "Andmekataloogi '%s' pole võimalik luua: %s"
+
+#: ../gnome-dictionary/src/gdict-common.c:101
+#: ../gnome-dictionary/src/gdict-common.c:124
+#, c-format
+msgid "Unable to create the data directory '%s': %s"
+msgstr "Andmekataloogi '%s' pole võimalik luua: %s"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+msgid "Edit Dictionary Source"
+msgstr "Sõnaraamatuallika redigeerimine"
+
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
 msgid "Add Dictionary Source"
 msgstr "Sõnaraamatuallika lisamine"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:318
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "Kas eemaldada \"%s\""
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:320
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Sõnaraamatuallikas eemaldatakse sellest loendist jäädavalt."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:350
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Allikat %s pole võimalik eemaldada"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:638
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:679
 msgid "Add a new dictionary source"
 msgstr "Uue sõnaraamatuallika lisamine"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:646
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:687
 msgid "Remove the currently selected dictionary source"
 msgstr ""
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:661
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:702
 msgid "Set the font used for printing the definitions"
 msgstr "Definitsiooni printimiseks kirjatüübi määramine"
 
@@ -1345,136 +1986,170 @@ msgstr "%s (lehekülg %d)"
 msgid "Print Preview"
 msgstr "Printimise eelvaade"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:276
+#: ../gnome-dictionary/src/gdict-source-dialog.c:303
+#: ../gnome-dictionary/src/gdict-source-dialog.c:391
 msgid "Unable to create a source file"
 msgstr "Lähtefaili pole võimalik luua"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:295
+#: ../gnome-dictionary/src/gdict-source-dialog.c:321
+#: ../gnome-dictionary/src/gdict-source-dialog.c:409
 msgid "Unable to save source file"
 msgstr "Lähtefaili pole võimalik salvestada"
 
-#: ../gnome-dictionary/src/gdict-window.c:175
+#: ../gnome-dictionary/src/gdict-window.c:221
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "'%s' otsimine..."
 
-#: ../gnome-dictionary/src/gdict-window.c:199
-#: ../gnome-dictionary/src/gdict-window.c:220
+#: ../gnome-dictionary/src/gdict-window.c:251
+#: ../gnome-dictionary/src/gdict-window.c:283
 msgid "No definitions found"
 msgstr "Definitsioone ei leitud"
 
-#: ../gnome-dictionary/src/gdict-window.c:201
+#: ../gnome-dictionary/src/gdict-window.c:253
+#, fuzzy, c-format
 msgid "A definition found"
-msgstr "Definitsioon leiti"
+msgid_plural "%d definitions found"
+msgstr[0] "Definitsioon leiti"
+msgstr[1] "Definitsioon leiti"
 
-#: ../gnome-dictionary/src/gdict-window.c:203
-#, c-format
-msgid "%d definitions found"
-msgstr "Leiti %d definitsiooni"
-
-#: ../gnome-dictionary/src/gdict-window.c:361
+#: ../gnome-dictionary/src/gdict-window.c:462
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - sõnaraamat"
 
-#: ../gnome-dictionary/src/gdict-window.c:679
-msgid "Dictionary Preferences"
-msgstr "Sõnaraamatu eelistused"
-
-#: ../gnome-dictionary/src/gdict-window.c:795
+#: ../gnome-dictionary/src/gdict-window.c:984 ../logview/logview.c:85
 msgid "_File"
 msgstr "_Fail"
 
-#: ../gnome-dictionary/src/gdict-window.c:796 ../logview/logview.c:86
-msgid "_Edit"
-msgstr "_Redaktor"
-
-#: ../gnome-dictionary/src/gdict-window.c:797
+#: ../gnome-dictionary/src/gdict-window.c:987
 msgid "_Go"
 msgstr "_Liikumine"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:801
+#: ../gnome-dictionary/src/gdict-window.c:991
 msgid "_New"
 msgstr "_Uus"
 
-#: ../gnome-dictionary/src/gdict-window.c:802
+#: ../gnome-dictionary/src/gdict-window.c:992
 msgid "New look up"
 msgstr "Uus otsing"
 
-#: ../gnome-dictionary/src/gdict-window.c:803
+#: ../gnome-dictionary/src/gdict-window.c:993
 msgid "_Save a Copy..."
 msgstr "_Salvesta koopia.."
 
-#: ../gnome-dictionary/src/gdict-window.c:805
+#: ../gnome-dictionary/src/gdict-window.c:995
 msgid "_Print..."
 msgstr "_Prindi..."
 
-#: ../gnome-dictionary/src/gdict-window.c:806
+#: ../gnome-dictionary/src/gdict-window.c:996
 msgid "Print this document"
 msgstr "Selle dokumendi printimine"
 
-#: ../gnome-dictionary/src/gdict-window.c:813 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1003 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "_Vali kõik"
 
-#: ../gnome-dictionary/src/gdict-window.c:816
+#: ../gnome-dictionary/src/gdict-window.c:1006
 msgid "Find a word or phrase in the document"
 msgstr "Dokumendist sõna või fraasi otsimine"
 
-#: ../gnome-dictionary/src/gdict-window.c:818
+#: ../gnome-dictionary/src/gdict-window.c:1008
 msgid "Find Ne_xt"
 msgstr "Otsi _järgmist"
 
-#: ../gnome-dictionary/src/gdict-window.c:820
+#: ../gnome-dictionary/src/gdict-window.c:1010
 msgid "Find Pre_vious"
 msgstr "Otsi ee_lmist"
 
+#. View menu
+#: ../gnome-dictionary/src/gdict-window.c:1016
+#, fuzzy
+msgid "_Sidebar"
+msgstr "Külgpaan"
+
+#: ../gnome-dictionary/src/gdict-window.c:1018
+#, fuzzy
+msgid "S_tatusbar"
+msgstr "_Olekuriba"
+
+#: ../gnome-dictionary/src/gdict-window.c:1020
+msgid "Similar _Words"
+msgstr ""
+
+#: ../gnome-dictionary/src/gdict-window.c:1022
+#, fuzzy
+msgid "Available _Databases"
+msgstr "Võimalikud valikud"
+
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:826
+#: ../gnome-dictionary/src/gdict-window.c:1026
 msgid "_Previous Definition"
 msgstr "_Eelmine definitsioon"
 
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:1027
 msgid "Go to the previous definition"
 msgstr "Eelmisele definitsioonile liikumine"
 
-#: ../gnome-dictionary/src/gdict-window.c:828
+#: ../gnome-dictionary/src/gdict-window.c:1028
 msgid "_Next Definition"
 msgstr "_Järgmine definitsioon"
 
-#: ../gnome-dictionary/src/gdict-window.c:829
+#: ../gnome-dictionary/src/gdict-window.c:1029
 msgid "Go to the next definition"
 msgstr "Järgmisele definitsioonile liikumine"
 
-#: ../gnome-dictionary/src/gdict-window.c:830
+#: ../gnome-dictionary/src/gdict-window.c:1030
 msgid "_First Definition"
 msgstr "E_simene definitsioon"
 
-#: ../gnome-dictionary/src/gdict-window.c:831
+#: ../gnome-dictionary/src/gdict-window.c:1031
 msgid "Go to the first definition"
 msgstr "Esimesele definitsioonile liikumine"
 
-#: ../gnome-dictionary/src/gdict-window.c:832
+#: ../gnome-dictionary/src/gdict-window.c:1032
 msgid "_Last Definition"
 msgstr "_Viimane definitsioon"
 
-#: ../gnome-dictionary/src/gdict-window.c:833
+#: ../gnome-dictionary/src/gdict-window.c:1033
 msgid "Go to the last definition"
 msgstr "Viimasele definitsioonile liikumine"
 
-#. Help menu
-#: ../gnome-dictionary/src/gdict-window.c:836 ../logview/logview.c:114
-msgid "_Contents"
-msgstr "_Sisu"
+#: ../gnome-dictionary/src/gdict-window.c:1159
+#, fuzzy, c-format
+msgid "Database `%s' selected"
+msgstr "Kasutatav andmebaas"
 
-#: ../gnome-dictionary/src/gdict-window.c:1125
+#: ../gnome-dictionary/src/gdict-window.c:1179
+#, c-format
+msgid "Word `%s' selected"
+msgstr ""
+
+#. speller
+#: ../gnome-dictionary/src/gdict-window.c:1197
+#, fuzzy
+msgid "Double-click on the word to look up"
+msgstr "Sisesta sõna, mida soovid otsida"
+
+#. db-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1200
+#, fuzzy
+msgid "Double-click on the database to use"
+msgstr "Andmebaas, mida vaikimisi kasutada"
+
+#: ../gnome-dictionary/src/gdict-window.c:1435
 msgid "Look _up:"
 msgstr "_Otsing:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1368
-msgid "Unable to load the application icon"
-msgstr "Rakenduse ikooni pole võimalik laadida"
+#: ../gnome-dictionary/src/gdict-window.c:1500
+msgid "Similar words"
+msgstr ""
+
+#: ../gnome-dictionary/src/gdict-window.c:1513
+#, fuzzy
+msgid "Available dictionaries"
+msgstr "Võimalikud valikud"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -1513,7 +2188,7 @@ msgstr "Kuvatõmmis-%s.png"
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-panel-screenshot.c:116
-#: ../gnome-screenshot/screenshot-save.c:164
+#: ../gnome-screenshot/screenshot-save.c:165
 msgid "Screenshot.png"
 msgstr "Kuvatõmmis.png"
 
@@ -1537,21 +2212,45 @@ msgstr "Kuvatõmmis-%d.png"
 msgid "Unable to take a screenshot of the current desktop."
 msgstr "Käesoleva töölaua kuvatõmmist pole võimalik võtta."
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:438
+#: ../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "Grab a window instead of the entire screen"
 msgstr "Tõmmise tegemine aknast, mitte tervest töölauast"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:439
+#: ../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "Include the window border with the screenshot"
 msgstr "Kuvatõmmisesse lisatakse ka akna raam"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:440
+#: ../gnome-screenshot/gnome-panel-screenshot.c:441
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Kuvatõmmise võtmine peale määratud viivitust [sekundites]"
 
 #: ../gnome-screenshot/gnome-panel-screenshot.c:441
-msgid "Effect to add to the window border"
+msgid "seconds"
+msgstr ""
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:442
+#, fuzzy
+msgid "Effect to add to the border"
 msgstr "Aknaraamile lisatav efekt"
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:442
+#, fuzzy
+msgid "effect"
+msgstr "Raamiefekt"
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:452
+msgid "Options for Screenshot"
+msgstr ""
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:453
+#, fuzzy
+msgid "Show Screenshot options"
+msgstr "Sõnaraamatu valikute näitamine"
+
+#: ../gnome-screenshot/gnome-panel-screenshot.c:457
+#, fuzzy
+msgid "Take a picture of the screen"
+msgstr "Tõmmise tegemine aknast, mitte tervest töölauast"
 
 #: ../gnome-screenshot/gnome-panel-screenshot.glade.h:2
 msgid "<b>Options</b>"
@@ -1567,12 +2266,12 @@ msgid "Save Screenshot"
 msgstr "Kuvatõmmise salvestamine"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
-msgid "Take Screenshot"
-msgstr "Kuvatõmmise salvestamine"
+msgid "Save images of your desktop or individual windows"
+msgstr ""
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
-msgid "Take a screenshot of your desktop"
-msgstr "Kuvatõmmise võtmine Sinu töölauast"
+msgid "Take Screenshot"
+msgstr "Kuvatõmmise salvestamine"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:3
 msgid "Save in _folder:"
@@ -1610,7 +2309,7 @@ msgstr "Ekraanitõmmiste kataloog"
 msgid "The directory the last screenshot was saved in."
 msgstr "Kataloog, kuhu viimati salvestati ekraanitõmmis."
 
-#: ../gnome-screenshot/screenshot-dialog.c:195
+#: ../gnome-screenshot/screenshot-dialog.c:203
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -1618,20 +2317,21 @@ msgstr ""
 "Ekraanitõmmiste tegemise programmi Glade' faili ei leitud.\n"
 "Palun kontrolli gnome-utils'i paigaldust"
 
-#: ../gnome-screenshot/screenshot-dialog.c:214
-msgid "Select a directory"
+#: ../gnome-screenshot/screenshot-dialog.c:222
+#, fuzzy
+msgid "Select a folder"
 msgstr "Kataloogi valimine"
 
-#: ../gnome-screenshot/screenshot-save.c:41
-#, c-format
+#: ../gnome-screenshot/screenshot-save.c:42
+#, fuzzy, c-format
 msgid ""
-"Unable to clear the temporary directory:\n"
+"Unable to clear the temporary folder:\n"
 "%s"
 msgstr ""
 "Ajutist kataloogi pole võimalik puhastada:\n"
 "%s"
 
-#: ../gnome-screenshot/screenshot-save.c:79
+#: ../gnome-screenshot/screenshot-save.c:80
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
@@ -1639,40 +2339,40 @@ msgstr ""
 "Lapsprotsess lõpetas ootamatult, seetõttu pole võimalik ekraanitõmmist "
 "kettale salvestada."
 
-#: ../gnome-screenshot/screenshot-save.c:191
+#: ../gnome-screenshot/screenshot-save.c:192
 msgid "Unknown error saving screenshot to disk"
 msgstr "Kuvatõmmise salvestamisel tekkis tundmatu viga"
 
-#: ../gnome-screenshot/screenshot-utils.c:610
+#: ../gnome-screenshot/screenshot-utils.c:614
 msgid "Untitled Window"
 msgstr "Pealkirjata aken"
 
-#: ../gnome-screenshot/screenshot-xfer.c:103
+#: ../gnome-screenshot/screenshot-xfer.c:104
 msgid "Preparing to copy"
 msgstr "Ettevalmistus kopeerimiseks"
 
-#: ../gnome-screenshot/screenshot-xfer.c:181
+#: ../gnome-screenshot/screenshot-xfer.c:182
 msgid "File already exists"
 msgstr "Fail on juba olemas"
 
-#: ../gnome-screenshot/screenshot-xfer.c:184
+#: ../gnome-screenshot/screenshot-xfer.c:185
 #, c-format
 msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "Fail \"%s\" on juba olemas.  Kas sa soovid seda üle kirjutada?"
 
-#: ../gnome-screenshot/screenshot-xfer.c:190
-#: ../gsearchtool/gsearchtool-callbacks.c:1412
+#: ../gnome-screenshot/screenshot-xfer.c:191
+#: ../gsearchtool/gsearchtool-callbacks.c:1427
 msgid "_Replace"
 msgstr "_Kirjuta üle"
 
-#: ../gnome-screenshot/screenshot-xfer.c:230
+#: ../gnome-screenshot/screenshot-xfer.c:231
 #, c-format
 msgid "Unknown GnomeVFSXferProgressStatus %d"
 msgstr "Tundmatu GnomeVFSXferProgressStatus %d"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
-msgid "Find files, folders, and documents on your computer"
-msgstr "Failide, kataloogide ja dokumentide otsimine"
+msgid "Locate documents and folders on this computer by name or content"
+msgstr ""
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
@@ -1696,7 +2396,7 @@ msgstr "Keela kiirotsing"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:5
 msgid "Disable Quick Search Second Scan"
-msgstr "Keela kiirotsingu teine skanneerimine"
+msgstr "Kiirotsingu teise läbivaatuse keelamine"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:6
 msgid "Quick Search Excluded Paths"
@@ -1704,7 +2404,7 @@ msgstr "Kiirotsinugu vahelejäetavad rajad"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:7
 msgid "Quick Search Second Scan Excluded Paths"
-msgstr "Kiirotsinugu teisel skanneerimisel vahelejäetavad rajad"
+msgstr "Kiirotsinugu teisel läbivaatusel vahelejäetavad rajad"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:8
 msgid "Search Result Columns Order"
@@ -1825,8 +2525,8 @@ msgid ""
 "is /."
 msgstr ""
 "Selle võtme abil kirjeldatakse rajad, mida otsinguprogramm kiirotsingu teise "
-"skanneerimise käigus vahele jätab. Teine skanneerimine kasutab failide "
-"otsimiseks find käsku. Teise skanneerimise eesmärk on indekseerimata failide "
+"läbivaatuse käigus vahele jätab. Teine läbivaatus kasutab failide "
+"otsimiseks find käsku. Teise läbivaatus eesmärk on indekseerimata failide "
 "leidmine. Toetatavad metasümbolid on '*' ja '?'. Vaikimisi on väärtuseks /."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:55
@@ -1990,7 +2690,7 @@ msgstr[0] "Oled kindel, et soovid avada %d dokumendi?"
 msgstr[1] "Oled kindel, et soovid avada %d dokumenti?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:326
-#: ../gsearchtool/gsearchtool-callbacks.c:514
+#: ../gsearchtool/gsearchtool-callbacks.c:517
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -2011,83 +2711,74 @@ msgstr "Kataloogi \"%s\" pole võimalik avada"
 msgid "The nautilus file manager is not running."
 msgstr "Nautilus failihaldurit pole käivitatud."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:470
-#: ../gsearchtool/gsearchtool-callbacks.c:811
-msgid "The document does not exist."
-msgstr "Dokumenti pole olemas"
-
-#: ../gsearchtool/gsearchtool-callbacks.c:485
-msgid "There is no installed viewer capable of displaying the document."
-msgstr "Selle dokumendi jaoks pole vaaturit paigaldatud."
-
-#: ../gsearchtool/gsearchtool-callbacks.c:509
+#: ../gsearchtool/gsearchtool-callbacks.c:512
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Soovid sa tõesti avada %d kataloogi?"
 msgstr[1] "Soovid sa tõesti avada %d kataloogi?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:637
+#: ../gsearchtool/gsearchtool-callbacks.c:644
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\" pole võimalik prügikasti tõsta."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:668
+#: ../gsearchtool/gsearchtool-callbacks.c:675
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Soovid sa tõesti jäädavalt kustutada \"%s\"?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:671
+#: ../gsearchtool/gsearchtool-callbacks.c:678
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Prügikasti pole saadaval.  \"%s\" pole võimalik prügikasti tõsta."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:710
+#: ../gsearchtool/gsearchtool-callbacks.c:717
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\" pole võimalik kustutada."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:832
+#: ../gsearchtool/gsearchtool-callbacks.c:840
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Tõrge \"%s\" ümbertõstmisel: %s"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:866
+#: ../gsearchtool/gsearchtool-callbacks.c:874
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Tõrge \"%s\" kustutamisel: %s."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1297
+#: ../gsearchtool/gsearchtool-callbacks.c:1312
 msgid "Save Search Results As..."
 msgstr "Otsingutulemuste salvestamine..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1328
+#: ../gsearchtool/gsearchtool-callbacks.c:1343
 msgid "Could not save document."
 msgstr "Dokumenti pole võimalik salvestada."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1329
+#: ../gsearchtool/gsearchtool-callbacks.c:1344
 msgid "You did not select a document name."
 msgstr "Sa ei valinud dokumendi nime."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1359
+#: ../gsearchtool/gsearchtool-callbacks.c:1374
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Dokumenti \"%s\" pole võimalik \"%s\" alla salvestada."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1393
+#: ../gsearchtool/gsearchtool-callbacks.c:1408
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokument \"%s\" on juba olemas.  Kas sa soovid seda üle kirjutada?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1397
+#: ../gsearchtool/gsearchtool-callbacks.c:1412
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Olemasolevat faili üle kirjutades kirjutatakse üle ka faili sisu."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1462
+#: ../gsearchtool/gsearchtool-callbacks.c:1477
 msgid "The document name you selected is a folder."
 msgstr "Sinu poolt valitud dokumendinimi on kataloog."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1511
+#: ../gsearchtool/gsearchtool-callbacks.c:1526
 msgid "You may not have write permissions to the document."
 msgstr "Sul puudub selle dokumendi kirjutamisõigus."
 
@@ -2127,171 +2818,171 @@ msgstr "viide (katki)"
 msgid "link to %s"
 msgstr "viide -> %s"
 
-#: ../gsearchtool/gsearchtool.c:81
+#: ../gsearchtool/gsearchtool.c:82
 msgid "Contains the _text"
 msgstr "Sisaldab _teksti"
 
-#: ../gsearchtool/gsearchtool.c:83
+#: ../gsearchtool/gsearchtool.c:84
 msgid "_Date modified less than"
 msgstr "_Muutmise kuupäev on vanem kui"
 
-#: ../gsearchtool/gsearchtool.c:83 ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:84 ../gsearchtool/gsearchtool.c:85
 msgid "days"
 msgstr "päeva"
 
-#: ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:85
 msgid "Date modified more than"
 msgstr "Muutmise kuupäev on _uuem kui"
 
-#: ../gsearchtool/gsearchtool.c:86
+#: ../gsearchtool/gsearchtool.c:87
 msgid "S_ize at least"
 msgstr "Suurus _vähemalt"
 
-#: ../gsearchtool/gsearchtool.c:86 ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:87 ../gsearchtool/gsearchtool.c:88
 msgid "kilobytes"
 msgstr "kilobaiti"
 
-#: ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:88
 msgid "Si_ze at most"
 msgstr "Suurus _maksimaalselt"
 
-#: ../gsearchtool/gsearchtool.c:88
+#: ../gsearchtool/gsearchtool.c:89
 msgid "File is empty"
 msgstr "Fail on tühi"
 
-#: ../gsearchtool/gsearchtool.c:90
+#: ../gsearchtool/gsearchtool.c:91
 msgid "Owned by _user"
 msgstr "Kuulub _kasutajale"
 
-#: ../gsearchtool/gsearchtool.c:91
+#: ../gsearchtool/gsearchtool.c:92
 msgid "Owned by _group"
 msgstr "Kuulub _grupile"
 
-#: ../gsearchtool/gsearchtool.c:92
+#: ../gsearchtool/gsearchtool.c:93
 msgid "Owner is unrecognized"
 msgstr "Omanik on tundmatu"
 
-#: ../gsearchtool/gsearchtool.c:94
+#: ../gsearchtool/gsearchtool.c:95
 msgid "Na_me does not contain"
 msgstr "Nimi ei _sisalda"
 
-#: ../gsearchtool/gsearchtool.c:95
+#: ../gsearchtool/gsearchtool.c:96
 msgid "Name matches regular e_xpression"
 msgstr "Nimi vastab _regulaaravaldisele"
 
-#: ../gsearchtool/gsearchtool.c:97
+#: ../gsearchtool/gsearchtool.c:98
 msgid "Show hidden and backup files"
 msgstr "Näidata peidetud ja varufaile"
 
-#: ../gsearchtool/gsearchtool.c:98
+#: ../gsearchtool/gsearchtool.c:99
 msgid "Follow symbolic links"
 msgstr "Järgida nimeviiteid (symlinks)"
 
-#: ../gsearchtool/gsearchtool.c:99
+#: ../gsearchtool/gsearchtool.c:100
 msgid "Include other filesystems"
 msgstr "Kaasata teised failisüsteemid"
 
-#: ../gsearchtool/gsearchtool.c:180
+#: ../gsearchtool/gsearchtool.c:181
 msgid "_Open"
 msgstr "_Ava"
 
-#: ../gsearchtool/gsearchtool.c:181
+#: ../gsearchtool/gsearchtool.c:182
 msgid "O_pen Folder"
 msgstr "Ava _kataloog"
 
-#: ../gsearchtool/gsearchtool.c:182
+#: ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Tõsta _prügikasti"
 
-#: ../gsearchtool/gsearchtool.c:183
+#: ../gsearchtool/gsearchtool.c:184
 msgid "_Save Results As..."
 msgstr "Salvesta tulemused _kui..."
 
-#: ../gsearchtool/gsearchtool.c:255 ../gsearchtool/gsearchtool.c:272
+#: ../gsearchtool/gsearchtool.c:390
 msgid "A locate database has probably not been created."
 msgstr "Otsingu andmebaasi pole arvatavasti loodud"
 
-#: ../gsearchtool/gsearchtool.c:376
+#: ../gsearchtool/gsearchtool.c:492
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Tõrge \"%s\" kooditabeli teisendamisel"
 
-#: ../gsearchtool/gsearchtool.c:796 ../gsearchtool/gsearchtool.c:825
+#: ../gsearchtool/gsearchtool.c:516
+msgid "Searching..."
+msgstr "Otsimine..."
+
+#: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3149
+msgid "Search for Files"
+msgstr "Failiotsing"
+
+#: ../gsearchtool/gsearchtool.c:967 ../gsearchtool/gsearchtool.c:996
 msgid "No files found"
 msgstr "Ühtegi faili ei leitud"
 
-#: ../gsearchtool/gsearchtool.c:818
+#: ../gsearchtool/gsearchtool.c:989
 msgid "(stopped)"
 msgstr "(seisatud)"
 
-#: ../gsearchtool/gsearchtool.c:824
+#: ../gsearchtool/gsearchtool.c:995
 msgid "No Files Found"
 msgstr "Ühtegi faili ei leitud"
 
-#: ../gsearchtool/gsearchtool.c:829
+#: ../gsearchtool/gsearchtool.c:1000
 #, c-format
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "leitud %d fail"
 msgstr[1] "leitud %d faili"
 
-#: ../gsearchtool/gsearchtool.c:833 ../gsearchtool/gsearchtool.c:871
+#: ../gsearchtool/gsearchtool.c:1004 ../gsearchtool/gsearchtool.c:1042
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "leitud %d fail"
 msgstr[1] "leitud %d faili"
 
-#: ../gsearchtool/gsearchtool.c:850 ../gsearchtool/gsearchtool.c:1128
-#: ../gsearchtool/gsearchtool.c:1214 ../gsearchtool/gsearchtool.c:3026
-msgid "Search for Files"
-msgstr "Failiotsing"
-
-#: ../gsearchtool/gsearchtool.c:962
+#: ../gsearchtool/gsearchtool.c:1133
 msgid "Entry changed called for a non entry option!"
 msgstr "Kirje muutmist on kasutatud ilma valikuta kirje puhul!"
 
-#: ../gsearchtool/gsearchtool.c:1214
-msgid "Searching..."
-msgstr "Otsimine..."
-
-#: ../gsearchtool/gsearchtool.c:1237
+#: ../gsearchtool/gsearchtool.c:1384
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Otsinguvaliku \"Nimi sisaldab\" valimine"
 
-#: ../gsearchtool/gsearchtool.c:1238
+#: ../gsearchtool/gsearchtool.c:1385
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Otsinguvaliku \"Alustada kataloogist\" valimine"
 
-#: ../gsearchtool/gsearchtool.c:1239
+#: ../gsearchtool/gsearchtool.c:1386
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sordi faile järgnevate kriteeriumite alusel: nimi, kaust, suurus, tüüp või "
 "kuupäev"
 
-#: ../gsearchtool/gsearchtool.c:1240
+#: ../gsearchtool/gsearchtool.c:1387
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Sortimisjärjestuse määramine vähenevaks, vaikimisi on see suurenev"
 
-#: ../gsearchtool/gsearchtool.c:1241
+#: ../gsearchtool/gsearchtool.c:1388
 msgid "Automatically start a search"
 msgstr "Otsingu automaatne alustamine"
 
-#: ../gsearchtool/gsearchtool.c:1247
+#: ../gsearchtool/gsearchtool.c:1394
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Otsinguvaliku \"%s\" valimine"
 
-#: ../gsearchtool/gsearchtool.c:1250
+#: ../gsearchtool/gsearchtool.c:1397
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "\"%s\" võtme valimine ja määramine"
 
-#: ../gsearchtool/gsearchtool.c:1357
+#: ../gsearchtool/gsearchtool.c:1504
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Sortby käsureavõtmele on määratud vigane argument."
 
-#: ../gsearchtool/gsearchtool.c:1668
+#: ../gsearchtool/gsearchtool.c:1802
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2299,17 +2990,17 @@ msgstr ""
 "\n"
 "... Liiga palju veateateid kuvamiseks ..."
 
-#: ../gsearchtool/gsearchtool.c:1682
+#: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "Otsingutulemused võivad olla vigased.  Otsingu käigus tekkis viga."
 
-#: ../gsearchtool/gsearchtool.c:1694 ../gsearchtool/gsearchtool.c:1738
+#: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
 msgstr "Näita _põhjalikumalt"
 
-#: ../gsearchtool/gsearchtool.c:1724
+#: ../gsearchtool/gsearchtool.c:1858
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2317,147 +3008,143 @@ msgstr ""
 "Otsingutulemused võivad olla aegunud või vigased.  Kas sa soovid keelata "
 "kiirotsingu võimalust?."
 
-#: ../gsearchtool/gsearchtool.c:1749
+#: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
 msgstr "Keela _kiirotsing"
 
-#: ../gsearchtool/gsearchtool.c:1776
+#: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Tõrge lapsprotsessile grupi id seadmisel %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1803
+#: ../gsearchtool/gsearchtool.c:1935
 msgid "Error parsing the search command."
 msgstr "Viga otsingukäsu analüüsimisel"
 
-#: ../gsearchtool/gsearchtool.c:1836
+#: ../gsearchtool/gsearchtool.c:1968
 msgid "Error running the search command."
 msgstr "Viga otsingukäsu täitmisel."
 
-#: ../gsearchtool/gsearchtool.c:1964
+#: ../gsearchtool/gsearchtool.c:2083
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Sisesta väärtus otsinguvõtme \"%s\"  jaoks."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1969
+#: ../gsearchtool/gsearchtool.c:2088
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" on %s"
 
-#: ../gsearchtool/gsearchtool.c:1971
+#: ../gsearchtool/gsearchtool.c:2090
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "%s väärtuse sisestamine otsinguvaliku \"%s\" jaoks."
 
-#: ../gsearchtool/gsearchtool.c:2030
+#: ../gsearchtool/gsearchtool.c:2148
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Eemalda \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:2031
+#: ../gsearchtool/gsearchtool.c:2149
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Klõpsa reegli \"%s\" eemaldamiseks."
 
-#: ../gsearchtool/gsearchtool.c:2124
+#: ../gsearchtool/gsearchtool.c:2242
 msgid "A_vailable options:"
 msgstr "Võimalikud _valikud:"
 
-#: ../gsearchtool/gsearchtool.c:2153
+#: ../gsearchtool/gsearchtool.c:2271
 msgid "Available options"
 msgstr "Võimalikud valikud"
 
-#: ../gsearchtool/gsearchtool.c:2154
+#: ../gsearchtool/gsearchtool.c:2272
 msgid "Select a search option from the drop-down list."
 msgstr "Otsinguvaliku valimine rippnimekirjast."
 
-#: ../gsearchtool/gsearchtool.c:2166
+#: ../gsearchtool/gsearchtool.c:2284
 msgid "Add search option"
 msgstr "Lisa otsinguvalik"
 
-#: ../gsearchtool/gsearchtool.c:2167
+#: ../gsearchtool/gsearchtool.c:2285
 msgid "Click to add the selected available search option."
 msgstr "Klõpsa otsinguvaliku lisamiseks."
 
-#: ../gsearchtool/gsearchtool.c:2256
+#: ../gsearchtool/gsearchtool.c:2374
 msgid "S_earch results:"
 msgstr "O_tsingutulemused:"
 
-#: ../gsearchtool/gsearchtool.c:2295
+#: ../gsearchtool/gsearchtool.c:2413
 msgid "List View"
 msgstr "Nimekirjavaade"
 
-#: ../gsearchtool/gsearchtool.c:2379
-msgid "Folder"
-msgstr "Kataloog"
-
-#: ../gsearchtool/gsearchtool.c:2391
+#: ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Suurus"
 
-#: ../gsearchtool/gsearchtool.c:2402
+#: ../gsearchtool/gsearchtool.c:2520
 msgid "Type"
 msgstr "Tüüp"
 
-#: ../gsearchtool/gsearchtool.c:2413
+#: ../gsearchtool/gsearchtool.c:2531
 msgid "Date Modified"
 msgstr "Viimase muutmise aeg"
 
-#: ../gsearchtool/gsearchtool.c:2815
+#: ../gsearchtool/gsearchtool.c:2933
 msgid "_Name contains:"
 msgstr "_Nimi sisaldab:"
 
-#: ../gsearchtool/gsearchtool.c:2829 ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2947 ../gsearchtool/gsearchtool.c:2948
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Sisesta failinimi või failinime osa koos metasümbolitega või ilma."
 
-#: ../gsearchtool/gsearchtool.c:2830
+#: ../gsearchtool/gsearchtool.c:2948
 msgid "Name contains"
 msgstr "Nimi sisaldab"
 
-#: ../gsearchtool/gsearchtool.c:2836
+#: ../gsearchtool/gsearchtool.c:2954
 msgid "_Look in folder:"
 msgstr "_Alustada kataloogist:"
 
-#: ../gsearchtool/gsearchtool.c:2842
+#: ../gsearchtool/gsearchtool.c:2960
 msgid "Browse"
 msgstr "Sirvimine"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2965
 msgid "Look in folder"
 msgstr "Alustada kataloogist"
 
-#: ../gsearchtool/gsearchtool.c:2847
+#: ../gsearchtool/gsearchtool.c:2965
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Sisesta kataloogi nimi, kust tahad otsingut alustada."
 
-#: ../gsearchtool/gsearchtool.c:2858
+#: ../gsearchtool/gsearchtool.c:2976
 msgid "Select more _options"
 msgstr "Näita _rohkem valikuid"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2985
 msgid "Select more options"
 msgstr "Rohkemate valikute näitamine"
 
-#: ../gsearchtool/gsearchtool.c:2867
+#: ../gsearchtool/gsearchtool.c:2985
 msgid "Click to expand or collapse the list of available options."
 msgstr "Klõpsa võimalike valikute nimekirja laiendamiseks või ahendamiseks"
 
-#: ../gsearchtool/gsearchtool.c:2891
+#: ../gsearchtool/gsearchtool.c:3009
 msgid "Click to display the help manual."
 msgstr "Klõpsa abiteabe kuvamiseks"
 
-#: ../gsearchtool/gsearchtool.c:2899
+#: ../gsearchtool/gsearchtool.c:3017
 msgid "Click to close \"Search for Files\"."
 msgstr "Klõpsa \"Failiotsingu\" sulgemiseks"
 
-#: ../gsearchtool/gsearchtool.c:2925
+#: ../gsearchtool/gsearchtool.c:3043
 msgid "Click to perform a search."
 msgstr "Klõpsa otsingu läbiviimiseks"
 
-#: ../gsearchtool/gsearchtool.c:2926
+#: ../gsearchtool/gsearchtool.c:3044
 msgid "Click to stop a search."
 msgstr "Klõpsa otsingu peatamiseks"
 
@@ -2469,25 +3156,26 @@ msgstr "Süsteemilogi vaatur"
 msgid "A system log viewer for GNOME."
 msgstr "Süsteemilogi vaatur GNOME keskkonnale."
 
-#: ../logview/gnome-system-log.desktop.in.h:1
+#: ../logview/gnome-system-log.desktop.in.in.h:1
 msgid "System Log"
 msgstr "Süsteemi logiraamat"
 
-#: ../logview/gnome-system-log.desktop.in.h:2
-msgid "View the system log file"
+#: ../logview/gnome-system-log.desktop.in.in.h:2
+#, fuzzy
+msgid "View or monitor system log files"
 msgstr "Süsteemi logiraamatu vaatamine"
 
-#: ../logview/log_repaint.c:179
+#: ../logview/log_repaint.c:187
 #, c-format
 msgid "last update : %s"
 msgstr "viimane uuendus: %s"
 
-#: ../logview/log_repaint.c:181
+#: ../logview/log_repaint.c:189
 #, c-format
 msgid "%d lines (%s) - %s"
 msgstr "%d rida (%s) - %s"
 
-#: ../logview/log_repaint.c:219
+#: ../logview/log_repaint.c:227
 msgid "Current"
 msgstr "Käesolev"
 
@@ -2535,14 +3223,6 @@ msgstr "_Filter:"
 #: ../logview/logview-findbar.c:157
 msgid "_Clear"
 msgstr "_Puhasta"
-
-#: ../logview/logview.c:85
-msgid "_Log"
-msgstr "_Logi"
-
-#: ../logview/logview.c:87
-msgid "_View"
-msgstr "_Vaata"
 
 #: ../logview/logview.c:90
 msgid "_Open..."
@@ -2617,10 +3297,6 @@ msgid "Show the about dialog for the log viewer"
 msgstr "Logivaaturi lähema teabe kuvamise dialoogi avamine"
 
 #: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "_Olekuriba"
-
-#: ../logview/logview.c:122
 msgid "Show Status Bar"
 msgstr "Näita olekuriba"
 
@@ -2648,28 +3324,24 @@ msgstr "Ka_lender"
 msgid "Show Calendar Log"
 msgstr "Näitab logikalendrit"
 
-#: ../logview/logview.c:308
+#: ../logview/logview.c:307
 #, c-format
 msgid "%s (monitored) - %s"
 msgstr "%s (jälgimisel) - %s"
 
-#: ../logview/logview.c:519
+#: ../logview/logview.c:518
 msgid "Open Log"
 msgstr "_Ava logi"
 
-#: ../logview/logview.c:774
-msgid "There was an error displaying help."
-msgstr "Abiteabe kuvamisel tekkis viga."
-
-#: ../logview/logview.c:907
+#: ../logview/logview.c:906
 msgid "Version: "
 msgstr "Versioon: "
 
-#: ../logview/logview.c:976
+#: ../logview/logview.c:975
 msgid "Days"
 msgstr "Päeva"
 
-#: ../logview/logview.c:977
+#: ../logview/logview.c:976
 msgid "Pointer towards a GSList of days for the current log."
 msgstr "Viit aktiivse logi päevade GSList loendile. "
 
@@ -2746,60 +3418,60 @@ msgstr "Logivaatur"
 msgid "Unable to create user interface."
 msgstr "Kasutajaliidest pole võimalik luua."
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "January"
 msgstr "jaanuar"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "February"
 msgstr "veebruar"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "March"
 msgstr "märts"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "April"
 msgstr "aprill"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:41
 msgid "May"
 msgstr "mai"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "June"
 msgstr "juuni"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "July"
 msgstr "juuli"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "August"
 msgstr "august"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "September"
 msgstr "september"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "October"
 msgstr "oktoober"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "November"
 msgstr "november"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "December"
 msgstr "detsember"
 
-#: ../logview/misc.c:162
+#: ../logview/misc.c:163
 msgid "Invalid date"
 msgstr "Vigane kuupäev"
 
 #. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:167
+#: ../logview/misc.c:168
 #, c-format
 msgid "%x"
 msgstr "%x"
@@ -2815,6 +3487,60 @@ msgstr "Selle failisüsteemi puhul pole failimonitooring toetatud.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS viga.\n"
+
+#~ msgid "French Dictionaries from Wikipedia"
+#~ msgstr "Prantsuse sõnaraamatud Vikipeediast"
+
+#~ msgid "The font to be used by the defbox"
+#~ msgstr "Definitsioonikasti jaoks kasutatav kirjatüüp"
+
+#~ msgid "Link Color"
+#~ msgstr "Viida värvus"
+
+#~ msgid "Color of hyperlinks"
+#~ msgstr "Hüperlinkide värvus"
+
+#~ msgid "Word Color"
+#~ msgstr "Sõna värvus"
+
+#~ msgid "Source Color"
+#~ msgstr "Allika värvus"
+
+#~ msgid "Color of the dictionary source"
+#~ msgstr "Sõnaraamatu allika värvus"
+
+#~ msgid "Progress"
+#~ msgstr "Edenemine"
+
+#~ msgid "Definition for '%s' (%d/%d)"
+#~ msgstr "'%s' definitsioon (%d/%d)"
+
+#~ msgid "Unable to open the application icon: %s"
+#~ msgstr "Rakenduse ikooni pole võimalik avada: %s"
+
+#~ msgid "Preferences"
+#~ msgstr "Eelistused"
+
+#~ msgid "Unable to create the data directory '%s'"
+#~ msgstr "Andmekataloogi '%s' pole võimalik luua"
+
+#~ msgid "Unable to load the applet icon"
+#~ msgstr "Rakendi ikooni pole võimalik laadida"
+
+#~ msgid "%d definitions found"
+#~ msgstr "Leiti %d definitsiooni"
+
+#~ msgid "Unable to load the application icon"
+#~ msgstr "Rakenduse ikooni pole võimalik laadida"
+
+#~ msgid "Take a screenshot of your desktop"
+#~ msgstr "Kuvatõmmise võtmine Sinu töölauast"
+
+#~ msgid "Find files, folders, and documents on your computer"
+#~ msgstr "Failide, kataloogide ja dokumentide otsimine"
+
+#~ msgid "_Log"
+#~ msgstr "_Logi"
 
 #~ msgid "Cannot connect to server"
 #~ msgstr "Serveriga pole võimalik ühenduda"
@@ -2853,9 +3579,6 @@ msgstr "Gnome-VFS viga.\n"
 
 #~ msgid "_Look Up Word"
 #~ msgstr "Otsi _sõna"
-
-#~ msgid "_Find..."
-#~ msgstr "_Otsi..."
 
 #~ msgid "Find next occurrence of the word"
 #~ msgstr "Otsib järgmist kohta, kus sõna asub"
@@ -2923,12 +3646,6 @@ msgstr "Gnome-VFS viga.\n"
 #~ msgid "Reset port to default"
 #~ msgstr "Taasta vaikeport"
 
-#~ msgid "Server"
-#~ msgstr "Server"
-
-#~ msgid "Server Entry"
-#~ msgstr "Serveri sisestusväli"
-
 #~ msgid "Enter the Server Name"
 #~ msgstr "Sisesta serveri nimi"
 
@@ -2938,9 +3655,6 @@ msgstr "Gnome-VFS viga.\n"
 #~ msgid "Enter the Port Number"
 #~ msgstr "Sisesta pordi number"
 
-#~ msgid "F_ont:"
-#~ msgstr "_Kirjatüüp:"
-
 #~ msgid "Web Site"
 #~ msgstr "Veebisait"
 
@@ -2949,9 +3663,6 @@ msgstr "Gnome-VFS viga.\n"
 
 #~ msgid "Web Sites"
 #~ msgstr "Veebisaidid"
-
-#~ msgid "Search all databases"
-#~ msgstr "Otsing kõikidest andmebaasidest"
 
 #~ msgid "Default Strategy"
 #~ msgstr "Vaikestrateegia"
@@ -2970,12 +3681,6 @@ msgstr "Gnome-VFS viga.\n"
 #~ "Kasutatav otsingustrateegia sõltub sellest, kas sõnaraamatuserver toetab "
 #~ "valitud strateegiat. Vaikimisi strateegiaks on 'lev' - tulemustes "
 #~ "väljasta ainult sõnad, mille Levenshteini kaugus on üks"
-
-#~ msgid "<b>Size</b>: %s"
-#~ msgstr "<b>Suurus</b>: %s"
-
-#~ msgid "<b>Modified</b>: %s"
-#~ msgstr "<b>Muudetud</b>: %s"
 
 #~ msgid "<b>Number of Lines</b>: %ld"
 #~ msgstr "<b>Ridade arv</b>: %ld"
@@ -3003,12 +3708,6 @@ msgstr "Gnome-VFS viga.\n"
 
 #~ msgid "Select All"
 #~ msgstr "Vali kõik"
-
-#~ msgid "Sidebar"
-#~ msgstr "Külgpaan"
-
-#~ msgid "Date"
-#~ msgstr "Kuupäev"
 
 #~ msgid "Message"
 #~ msgstr "Teade"
