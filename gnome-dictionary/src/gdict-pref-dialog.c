@@ -164,8 +164,8 @@ update_sources_view (GdictPrefDialog *dialog)
       gtk_list_store_append (dialog->sources_list, &iter);
       gtk_list_store_set (dialog->sources_list, &iter,
       			  SOURCES_ACTIVE_COLUMN, is_active,
-      			  SOURCES_NAME_COLUMN, g_strdup (name),
-      			  SOURCES_DESCRIPTION_COLUMN, g_strdup (description),
+      			  SOURCES_NAME_COLUMN, name,
+      			  SOURCES_DESCRIPTION_COLUMN, description,
       			  -1);
     }
 
@@ -667,12 +667,10 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   dialog->sources_view = glade_xml_get_widget (dialog->xml, "sources_treeview");
   build_sources_view (dialog);
 
-  dialog->active_source = gconf_client_get_string (dialog->gconf_client,
-		  				   GDICT_GCONF_SOURCE_KEY,
-						   NULL);
-  if (!dialog->active_source)
-    dialog->active_source = g_strdup (GDICT_DEFAULT_SOURCE_NAME);
-  
+  dialog->active_source = gdict_gconf_get_string_with_default (dialog->gconf_client,
+							       GDICT_GCONF_SOURCE_KEY,
+							       GDICT_DEFAULT_SOURCE_NAME);
+
   dialog->sources_add = glade_xml_get_widget (dialog->xml, "add_button");
   gtk_tooltips_set_tip (dialog->tips,
   			dialog->sources_add,

@@ -1,3 +1,15 @@
+2006-08-20  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* src/gdict-common.h:
+	* src/gdict-common.c:
+	(gdict_gconf_get_string_with_default): Add function for
+	retrieving a string from GConf with a default fallback.
+
+	* src/gdict-applet.c:
+	* src/gdict-pref-dialog.c:
+	* src/gdict-window.c: Fix memory leaks. (#352128, patch
+	by Paolo Borelli)
+
 2006-08-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/gdict-speller.c:

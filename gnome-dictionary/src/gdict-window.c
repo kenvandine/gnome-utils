@@ -318,21 +318,18 @@ static void
 gdict_window_set_database (GdictWindow *window,
 			   const gchar *database)
 {
-  if (window->database)
-    g_free (window->database);
+  g_free (window->database);
 
-  if (!database)
-    database = gconf_client_get_string (window->gconf_client,
-		    			GDICT_GCONF_DATABASE_KEY,
-					NULL);
-  
-  if (!database)
-    database = GDICT_DEFAULT_DATABASE;
-
-  window->database = g_strdup (database);
+  if (database)
+    window->database = g_strdup (database);
+  else
+    window->database = gdict_gconf_get_string_with_default (window->gconf_client,
+							    GDICT_GCONF_DATABASE_KEY,
+							    GDICT_DEFAULT_DATABASE);
 
   if (window->defbox)
-    gdict_defbox_set_database (GDICT_DEFBOX (window->defbox), database);
+    gdict_defbox_set_database (GDICT_DEFBOX (window->defbox),
+			       window->database);
 }
 
 static void
@@ -402,42 +399,32 @@ static void
 gdict_window_set_defbox_font (GdictWindow *window,
 			      const gchar *defbox_font)
 {
-  if (!defbox_font)
-    defbox_font = gconf_client_get_string (window->gconf_client,
-		    			   DOCUMENT_FONT_KEY,
-					   NULL);
+  g_free (window->defbox_font);
 
-  if (!defbox_font)
-    defbox_font = GDICT_DEFAULT_DEFBOX_FONT;
+  if (defbox_font)
+    window->defbox_font = g_strdup (defbox_font);
+  else
+    window->defbox_font = gdict_gconf_get_string_with_default (window->gconf_client,
+							       DOCUMENT_FONT_KEY,
+							       GDICT_DEFAULT_DEFBOX_FONT);
 
-  if (window->defbox_font)
-    g_free (window->defbox_font);
-
-  window->defbox_font = g_strdup (defbox_font);
-
-  if (!window->defbox)
-    return;
-
-  gdict_defbox_set_font_name (GDICT_DEFBOX (window->defbox),
-		  	      window->defbox_font);
+  if (window->defbox)
+    gdict_defbox_set_font_name (GDICT_DEFBOX (window->defbox),
+				window->defbox_font);
 }
 
 static void
 gdict_window_set_print_font (GdictWindow *window,
 			     const gchar *print_font)
 {
-  if (!print_font)
-    print_font = gconf_client_get_string (window->gconf_client,
-    					  GDICT_GCONF_PRINT_FONT_KEY,
-    					  NULL);
-  
-  if (!print_font)
-    print_font = GDICT_DEFAULT_PRINT_FONT;
-  
-  if (window->print_font)
-    g_free (window->print_font);
-  
-  window->print_font = g_strdup (print_font);
+  g_free (window->print_font);
+
+  if (print_font)
+    window->print_font = g_strdup (print_font);
+  else
+    window->print_font = gdict_gconf_get_string_with_default (window->gconf_client,
+							      GDICT_GCONF_PRINT_FONT_KEY,
+							      GDICT_DEFAULT_PRINT_FONT);
 }
 
 static void
@@ -521,23 +508,17 @@ gdict_window_set_source_name (GdictWindow *window,
 			      const gchar *source_name)
 {
   GdictContext *context;
-  
-  /* some sanity checks first */
-  if (!source_name)
-    source_name = gconf_client_get_string (window->gconf_client,
-      					   GDICT_GCONF_SOURCE_KEY,
-      					   NULL);
-  
-  if (!source_name)
-    source_name = GDICT_DEFAULT_SOURCE_NAME;
-  
-  if (window->source_name)
-    g_free (window->source_name);
-  
-  window->source_name = g_strdup (source_name);
-  
+
+  g_free (window->source_name);
+
+  if (source_name)
+    window->source_name = g_strdup (source_name);
+  else
+    window->source_name = gdict_gconf_get_string_with_default (window->gconf_client,
+							       GDICT_GCONF_SOURCE_KEY,
+							       GDICT_DEFAULT_SOURCE_NAME);
+
   context = get_context_from_loader (window);
-  
   gdict_window_set_context (window, context);
 }
 
@@ -1537,14 +1518,13 @@ gdict_window_constructor (GType                  type,
   gtk_box_pack_end (GTK_BOX (window->status), window->progress, FALSE, FALSE, 0);
 
   /* retrieve the font size from gconf */
-  font_name = gconf_client_get_string (window->gconf_client,
-		  		       DOCUMENT_FONT_KEY,
-				       NULL);
-  if (!font_name)
-    font_name = GDICT_DEFAULT_DEFBOX_FONT;
-  
+  font_name = gdict_gconf_get_string_with_default (window->gconf_client,
+						   DOCUMENT_FONT_KEY,
+						   GDICT_DEFAULT_DEFBOX_FONT);
+
   gdict_window_set_defbox_font (window, font_name);
   font_desc = pango_font_description_from_string (font_name);
+  g_free (font_name);
 
   sidebar_visible = gconf_client_get_bool (window->gconf_client,
 		  			   GDICT_GCONF_SIDEBAR_VISIBLE_KEY,
@@ -1602,7 +1582,9 @@ gdict_window_constructor (GType                  type,
   gtk_paned_set_position (GTK_PANED (handle),
 		          GTK_WIDGET (window)->allocation.width - sidebar_width);
   gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), sidebar_page);
-  
+
+  g_free (sidebar_page);
+
   g_signal_connect (window, "delete-event",
 		    G_CALLBACK (gdict_window_delete_event_cb),
 		    NULL);

@@ -880,21 +880,17 @@ gdict_applet_set_database (GdictApplet *applet,
 {
   GdictAppletPrivate *priv = applet->priv;
   
-  if (priv->database)
-    g_free (priv->database);
+  g_free (priv->database);
 
-  if (!database)
-    database = gconf_client_get_string (priv->gconf_client,
-		    			GDICT_GCONF_DATABASE_KEY,
-					NULL);
-  
-  if (!database)
-    database = GDICT_DEFAULT_DATABASE;
-
-  priv->database = g_strdup (database);
-
+  if (database)
+    priv->database = g_strdup (database);
+  else
+    priv->database = gdict_gconf_get_string_with_default (priv->gconf_client,
+							  GDICT_GCONF_DATABASE_KEY,
+							  GDICT_DEFAULT_DATABASE);
   if (priv->defbox)
-    gdict_defbox_set_database (GDICT_DEFBOX (priv->defbox), database);
+    gdict_defbox_set_database (GDICT_DEFBOX (priv->defbox),
+			       priv->database);
 }
 
 static void
@@ -903,18 +899,14 @@ gdict_applet_set_strategy (GdictApplet *applet,
 {
   GdictAppletPrivate *priv = applet->priv;
   
-  if (priv->strategy)
-    g_free (priv->strategy);
+  g_free (priv->strategy);
 
-  if (!strategy)
-    strategy = gconf_client_get_string (priv->gconf_client,
-		    			GDICT_GCONF_STRATEGY_KEY,
-					NULL);
-
-  if (!strategy)
-    strategy = GDICT_DEFAULT_STRATEGY;
-
-  priv->strategy = g_strdup (strategy);
+  if (strategy)
+    priv->strategy = g_strdup (strategy);
+  else
+    priv->strategy = gdict_gconf_get_string_with_default (priv->gconf_client,
+							  GDICT_GCONF_STRATEGY_KEY,
+							  GDICT_DEFAULT_STRATEGY);
 }
 
 static GdictContext *
@@ -976,19 +968,15 @@ gdict_applet_set_print_font (GdictApplet *applet,
 			     const gchar *print_font)
 {
   GdictAppletPrivate *priv = applet->priv;
-  
-  if (!print_font)
-    print_font = gconf_client_get_string (priv->gconf_client,
-    					  GDICT_GCONF_PRINT_FONT_KEY,
-    					  NULL);
-  
-  if (!print_font)
-    print_font = GDICT_DEFAULT_PRINT_FONT;
-  
-  if (priv->print_font)
-    g_free (priv->print_font);
-  
-  priv->print_font = g_strdup (print_font);
+
+  g_free (priv->print_font);
+
+  if (print_font)
+    priv->print_font = g_strdup (print_font);
+  else
+    priv->print_font = gdict_gconf_get_string_with_default (priv->gconf_client,
+							    GDICT_GCONF_PRINT_FONT_KEY,
+							    GDICT_DEFAULT_PRINT_FONT);
 }
 
 static void
@@ -996,25 +984,19 @@ gdict_applet_set_defbox_font (GdictApplet *applet,
 			      const gchar *defbox_font)
 {
   GdictAppletPrivate *priv = applet->priv;
-  
-  if (!defbox_font)
-    defbox_font = gconf_client_get_string (priv->gconf_client,
-		    			   DOCUMENT_FONT_KEY,
-					   NULL);
 
-  if (!defbox_font)
-    defbox_font = GDICT_DEFAULT_DEFBOX_FONT;
+  g_free (priv->defbox_font);
 
-  if (priv->defbox_font)
-    g_free (priv->defbox_font);
+  if (defbox_font)
+    priv->defbox_font = g_strdup (defbox_font);
+  else
+    priv->defbox_font = gdict_gconf_get_string_with_default (priv->gconf_client,
+							     DOCUMENT_FONT_KEY,
+							     GDICT_DEFAULT_DEFBOX_FONT);
 
-  priv->defbox_font = g_strdup (defbox_font);
-
-  if (!priv->defbox)
-    return;
-
-  gdict_defbox_set_font_name (GDICT_DEFBOX (priv->defbox),
-			      priv->defbox_font);
+  if (priv->defbox)
+    gdict_defbox_set_font_name (GDICT_DEFBOX (priv->defbox),
+				priv->defbox_font);
 }
 
 static void
@@ -1075,23 +1057,17 @@ gdict_applet_set_source_name (GdictApplet *applet,
 {
   GdictAppletPrivate *priv = applet->priv;
   GdictContext *context;
-  
-  /* some sanity checks first */
-  if (!source_name)
-    source_name = gconf_client_get_string (priv->gconf_client,
-      					   GDICT_GCONF_SOURCE_KEY,
-      					   NULL);
-  
-  if (!source_name)
-    source_name = GDICT_DEFAULT_SOURCE_NAME;
-  
-  if (priv->source_name)
-    g_free (priv->source_name);
-  
-  priv->source_name = g_strdup (source_name);
+
+  g_free (priv->source_name);
+
+  if (source_name)
+    priv->source_name = g_strdup (source_name);
+  else
+    priv->source_name = gdict_gconf_get_string_with_default (priv->gconf_client,
+							     GDICT_GCONF_SOURCE_KEY,
+							     GDICT_DEFAULT_SOURCE_NAME);
   
   context = get_context_from_loader (applet);
-  
   gdict_applet_set_context (applet, context);
 }
 

@@ -24,6 +24,7 @@
 #define __GDICT_COMMON_H__
 
 #include <gtk/gtk.h>
+#include <gconf/gconf-client.h>
 
 G_BEGIN_DECLS
 
@@ -36,6 +37,11 @@ void     gdict_show_error_dialog  (GtkWindow   *parent,
 void     gdict_show_gerror_dialog (GtkWindow   *parent,
 				   const gchar *message,
 				   GError      *error);
+
+gchar *  gdict_gconf_get_string_with_default (GConfClient *client,
+					      const gchar *key,
+					      const gchar *def);
+
 
 G_END_DECLS
 
