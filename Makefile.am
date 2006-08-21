@@ -39,7 +39,6 @@ DIST_SUBDIRS = \
 	gfloppy
 
 EXTRA_DIST = \
-	m4 \
 	gnome-utils.spec.in \
 	gnome-utils.spec \
 	omf.make \
