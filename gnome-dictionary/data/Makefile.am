@@ -2,7 +2,7 @@ NULL =
 
 man_MANS = gnome-dictionary.1
 
-scalableicondir = $(datadir)/icons/hicolor/scalable
+scalableicondir = $(datadir)/icons/hicolor/scalable/apps
 scalableicon_DATA = gnome-dictionary.svg
 
 appicondir = $(datadir)/icons/hicolor/48x48/apps
