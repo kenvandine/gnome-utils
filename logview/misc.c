@@ -24,16 +24,17 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+#define _XOPEN_SOURCE
+#include <time.h>
+#include <string.h>
+#include <stdlib.h>
+
 #ifdef HAVE_LOCALE_H
 #include <locale.h>
 #endif
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
-#define _XOPEN_SOURCE
-#include <time.h>
-#include <string.h>
-#include <stdlib.h>
 
 static gboolean queue_err_messages = FALSE;
 static GSList *msg_queue_main = NULL, *msg_queue_sec = NULL;
