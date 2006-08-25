@@ -1176,9 +1176,15 @@ sidebar_page_changed_cb (GdictSidebar *sidebar,
     {
     case 's': /* speller */
       message = _("Double-click on the word to look up");
+
+      if (window->word)
+        gdict_speller_match (window->speller,
+                             window->word);
       break;
     case 'd': /* db-chooser */
       message = _("Double-click on the database to use");
+      
+      gdict_database_chooser_refresh (window->db_chooser);
       break;
     default:
       message = NULL;
