@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-14 13:32+0200\n"
-"PO-Revision-Date: 2006-08-14 14:32+0200\n"
+"POT-Creation-Date: 2006-08-25 14:19+0200\n"
+"PO-Revision-Date: 2006-08-25 14:41+0200\n"
 "Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -201,7 +201,7 @@ msgstr "_Durchsuchen …"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:44
-#: ../gnome-dictionary/src/gdict-window.c:1036 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1017 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Inhalt"
 
@@ -213,7 +213,7 @@ msgstr "_Datum"
 msgid "_Depth level:"
 msgstr "_Tiefe:"
 
-#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:985
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:966
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Bearbeiten"
@@ -236,7 +236,7 @@ msgstr "Belegung _grafisch anzeigen"
 
 #: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:988 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:969 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_Hilfe"
 
@@ -272,7 +272,7 @@ msgstr "An_zahl Ordner::"
 msgid "_Type"
 msgstr "_Typ"
 
-#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:986
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:967
 #: ../logview/logview.c:87
 msgid "_View"
 msgstr "_Ansicht"
@@ -300,6 +300,7 @@ msgstr "Werkzeugleiste anzeigen"
 #: ../baobab/data/baobab.schemas.in.h:6
 msgid "Whether any change to the home directory should be monitored."
 msgstr ""
+"Legt fest, ob der persönliche Ordner auf Änderungen überwacht werden soll."
 
 #: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether the status bar at the bottom of main window should be visible."
@@ -312,24 +313,24 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Legt fest, ob die Werkzeugleiste im Hauptfenster angezeigt wird."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:263
 #: ../baobab/src/callbacks.c:444
 msgid "Calculating percentage bars..."
-msgstr ""
+msgstr "Prozentuale Anzeigen berechnen …"
 
 #: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
-#: ../baobab/src/baobab.c:893 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/baobab.c:888 ../baobab/src/baobab-utils.c:271
 #: ../baobab/src/callbacks.c:448
 msgid "Ready"
-msgstr ""
+msgstr "Fertig"
 
 #: ../baobab/src/baobab.c:253
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 #: ../baobab/src/baobab.c:277
 msgid "Full path:"
-msgstr ""
+msgstr "Vollständiger Pfad:"
 
 #: ../baobab/src/baobab.c:278
 msgid "Last Modification:"
@@ -349,11 +350,11 @@ msgstr "Einlesen läuft …"
 
 #: ../baobab/src/baobab.c:482
 msgid "<i>Total filesystem usage:</i>"
-msgstr ""
+msgstr "<i>Gesamter Speicherverbrauch des Dateisystems:</i>"
 
 #: ../baobab/src/baobab.c:535
 msgid "contains hardlinks for:"
-msgstr ""
+msgstr "enthält harte Verknüpfungen für:"
 
 #: ../baobab/src/baobab.c:544
 #, c-format
@@ -384,32 +385,32 @@ msgstr "Bildschirmfoto speichern"
 
 #: ../baobab/src/baobab-graphwin.c:186
 msgid "Image type:"
-msgstr ""
+msgstr "Bildtyp"
 
 #: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
 msgid "Unlimited"
-msgstr ""
+msgstr "Unbegrenzt"
 
 #: ../baobab/src/baobab-graphwin.c:276
 msgid "Cannot allocate memory for graphical window!"
-msgstr ""
+msgstr "Speicher für grafische Anzeige konnte nicht reserviert werden."
 
 #. Main treemap window
 #: ../baobab/src/baobab-graphwin.c:304
 msgid "Graphical map for folder:"
-msgstr ""
+msgstr "Belegung des Ordners grafisch anzeigen:"
 
 #: ../baobab/src/baobab-prefs.c:146
 msgid "Scan"
-msgstr ""
+msgstr "Einlesen"
 
 #: ../baobab/src/baobab-prefs.c:153
 msgid "Device"
-msgstr ""
+msgstr "Gerät"
 
 #: ../baobab/src/baobab-prefs.c:161
 msgid "Mount point"
-msgstr ""
+msgstr "Einhängepunkt"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:125
 #, c-format
@@ -509,6 +510,8 @@ msgstr "_Verbinden"
 #: ../baobab/src/baobab-treeview.c:66
 msgid "Use the Edit->Find menu item or the search toolbar button."
 msgstr ""
+"Verwenden Sie das Menü »Bearbeiten ‒ Suchen« oder den Knopf auf der "
+"Werkzeugleiste."
 
 #: ../baobab/src/baobab-utils.c:101
 msgid "Select a Folder"
@@ -519,117 +522,120 @@ msgstr "Ordner auswählen"
 msgid "Show hidden folders"
 msgstr "Verborgene Ordner anzeigen"
 
-#: ../baobab/src/baobab-utils.c:193
+#: ../baobab/src/baobab-utils.c:160
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "Pixmap-Datei »%s« konnte icht gefunden werden."
+
+#: ../baobab/src/baobab-utils.c:236
 msgid "Scanning..."
 msgstr "Einlesen läuft …"
 
-#: ../baobab/src/baobab-utils.c:354 ../baobab/src/baobab-utils.c:358
+#: ../baobab/src/baobab-utils.c:397 ../baobab/src/baobab-utils.c:401
 #, c-format
 msgid "%s is not a valid folder"
 msgstr "%s ist kein gültiger Ordner"
 
 # Nautilus-Konsistenz beachten
-#: ../baobab/src/baobab-utils.c:384 ../baobab/src/baobab-utils.c:442
+#: ../baobab/src/baobab-utils.c:427 ../baobab/src/baobab-utils.c:485
 msgid "Remove from Trash"
 msgstr "Aus Müll löschen"
 
 # Nautilus-Konsistenz beachten
-#: ../baobab/src/baobab-utils.c:387 ../baobab/src/baobab-utils.c:445
+#: ../baobab/src/baobab-utils.c:430 ../baobab/src/baobab-utils.c:488
 msgid "Move to Trash"
 msgstr "In den Müll verschieben"
 
-#: ../baobab/src/baobab-utils.c:390
+#: ../baobab/src/baobab-utils.c:433
 msgid "Folder graphical map"
-msgstr ""
+msgstr "Belegung des Ordners grafisch anzeigen"
 
-#: ../baobab/src/baobab-utils.c:394
+#: ../baobab/src/baobab-utils.c:437
 msgid "List all files in folder"
 msgstr "Alle Dateien im Ordner auflisten"
 
-#: ../baobab/src/baobab-utils.c:448
+#: ../baobab/src/baobab-utils.c:491
 msgid "Scan Folder"
 msgstr "Ordner einlesen"
 
-#: ../baobab/src/baobab-utils.c:520
+#: ../baobab/src/baobab-utils.c:563
 msgid "Please provide a file name to search for!"
 msgstr "Bitte geben Sie einen Dateinamen an, nach dem gesucht werden soll."
 
-#: ../baobab/src/baobab-utils.c:700
+#: ../baobab/src/baobab-utils.c:743
 msgid "Total filesystem capacity:"
 msgstr "Speicherkapazität des Dateisystems:"
 
-#: ../baobab/src/baobab-utils.c:700
+#: ../baobab/src/baobab-utils.c:743
 msgid "used:"
 msgstr "belegt:"
 
-#: ../baobab/src/baobab-utils.c:701
+#: ../baobab/src/baobab-utils.c:744
 msgid "available:"
 msgstr "frei:"
 
-#: ../baobab/src/baobab-utils.c:739
+#: ../baobab/src/baobab-utils.c:782
 msgid "Found:"
-msgstr ""
+msgstr "Gefunden:"
 
-#: ../baobab/src/baobab-utils.c:740
+#: ../baobab/src/baobab-utils.c:783
 msgid "file"
-msgstr ""
+msgstr "Datei"
 
-#: ../baobab/src/baobab-utils.c:740
+#: ../baobab/src/baobab-utils.c:783
 msgid "files"
-msgstr ""
+msgstr "Dateien"
 
-#: ../baobab/src/baobab-utils.c:741
+#: ../baobab/src/baobab-utils.c:784
 msgid "for total:"
-msgstr ""
+msgstr "mit Gesamtgröße:"
 
-#: ../baobab/src/baobab-utils.c:771 ../gsearchtool/gsearchtool-callbacks.c:487
+#: ../baobab/src/baobab-utils.c:814 ../gsearchtool/gsearchtool-callbacks.c:487
 msgid "There is no installed viewer capable of displaying the document."
 msgstr ""
 "Kein installierter Betrachter ist in der Lage, das Dokument anzuzeigen."
 
-#: ../baobab/src/baobab-utils.c:833
+#: ../baobab/src/baobab-utils.c:876
 msgid "Cannot find the Trash on this system!"
-msgstr ""
+msgstr "Der Müll konnte auf diesem System nicht gefunden werden."
 
-#: ../baobab/src/baobab-utils.c:840 ../baobab/src/callbacks.c:276
+#: ../baobab/src/baobab-utils.c:883 ../baobab/src/callbacks.c:276
 #: ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:819
 msgid "The document does not exist."
 msgstr "Das Dokument existiert nicht."
 
-#: ../baobab/src/baobab-utils.c:852
+#: ../baobab/src/baobab-utils.c:895
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr "Verschieben von »%s« ist gescheitert: %s."
 
-#: ../baobab/src/baobab-utils.c:866
+#: ../baobab/src/baobab-utils.c:909
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "Wollen Sie »%s« dauerhaft löschen?"
 
-#: ../baobab/src/baobab-utils.c:878
+#: ../baobab/src/baobab-utils.c:921
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "Löschen von »%s« ist gescheitert: %s."
 
-#: ../baobab/src/baobab-utils.c:907
+#: ../baobab/src/baobab-utils.c:950
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
 msgstr ""
+"Der Inhalt Ihres persönlichen Ordners wurde geändert.\n"
+"Soll der letzte Baum erneut eingelesen werden um die Details der Ordner zu "
+"aktualisieren?"
 
-#: ../baobab/src/baobab-utils.c:928
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr ""
-
-#: ../baobab/src/baobab-utils.c:962 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:977 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Beim Anzeigen der Hilfe ist ein Fehler aufgetreten."
 
 #: ../baobab/src/callbacks.c:75
 msgid "Baobab"
-msgstr ""
+msgstr "Baobab"
 
 #: ../baobab/src/callbacks.c:76
 msgid "A graphical tool to analyse disk usage."
@@ -1126,7 +1132,7 @@ msgid "Cl_ear"
 msgstr "_Leeren"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1038 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1019 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Info"
 
@@ -1135,7 +1141,7 @@ msgid "_Look Up Selected Text"
 msgstr "Markierten Text _nachschlagen …"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1012
+#: ../gnome-dictionary/src/gdict-window.c:993
 msgid "_Preferences"
 msgstr "_Einstellungen"
 
@@ -1154,8 +1160,8 @@ msgstr "Definitionen und Schreibweisen im Online-Wörterbuch nachschlagen"
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:76
 #: ../gnome-dictionary/src/gdict-app.c:406
-#: ../gnome-dictionary/src/gdict-window.c:464
-#: ../gnome-dictionary/src/gdict-window.c:1595
+#: ../gnome-dictionary/src/gdict-window.c:451
+#: ../gnome-dictionary/src/gdict-window.c:1581
 msgid "Dictionary"
 msgstr "Wörterbuch"
 
@@ -1257,13 +1263,15 @@ msgstr ""
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
 msgid "The width of the sidebar"
-msgstr ""
+msgstr "Die Breite der Seitenleiste"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
 msgid ""
 "This key defines the width of the sidebar and it's used to remember the "
 "setting across sessions."
 msgstr ""
+"Dieser Schlüssel legt die Breite der Seitenleiste fest und speichert die "
+"Einstellung über mehrer Sitzungen hinweg."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid ""
@@ -1286,28 +1294,24 @@ msgstr ""
 "wird eine Breite basierend auf der Schriftgröße verwendet."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
-#, fuzzy
 msgid ""
 "This key defines whether the sidebar should be visible and it's used to "
 "remember the state of the sidebar across sessions. Setting it to TRUE will "
 "make the sidebar always be displayed."
 msgstr ""
-"Dieser Schlüssel legt fest, ob das Fenster maximiert geöffnet wird, damit "
-"der Zustand des Wörterbuch-Fensters bei weiteren Starts wiederhergestellt "
-"werden kann. Bei einem Wert von »TRUE« wird das Fenster immer maximiert "
-"geöffnet."
+"Dieser Schlüssel legt fest, ob die Seitenleiste angezeigt wird und speichert "
+"ihren Zustand über mehrere Sitzungen hinweg. Bei einem Wert von »TRUE« wird "
+"die Seitenleiste immer angezeigt."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
-#, fuzzy
 msgid ""
 "This key defines whether the statusbar should be visible and it's used to "
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
 msgstr ""
-"Dieser Schlüssel legt fest, ob das Fenster maximiert geöffnet wird, damit "
-"der Zustand des Wörterbuch-Fensters bei weiteren Starts wiederhergestellt "
-"werden kann. Bei einem Wert von »TRUE« wird das Fenster immer maximiert "
-"geöffnet."
+"Dieser Schlüssel legt fest, ob die Statusleiste angezeigt wird und speichert "
+"ihren Zustand über mehrere Sitzungen hinweg. Bei einem Wert von »TRUE« wird "
+"die Statusleiste immer angezeigt."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
@@ -1321,16 +1325,14 @@ msgstr ""
 "geöffnet."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
-#, fuzzy
 msgid ""
 "This key defines which page of the sidebar should be displayed and it's used "
 "to remember the setting across sessions.. It can be \"speller\" or "
 "\"databases\"."
 msgstr ""
-"Dieser Schlüssel legt fest, ob das Fenster maximiert geöffnet wird, damit "
-"der Zustand des Wörterbuch-Fensters bei weiteren Starts wiederhergestellt "
-"werden kann. Bei einem Wert von »TRUE« wird das Fenster immer maximiert "
-"geöffnet."
+"Dieser Schlüssel legt fest, welche Seite der Seitenleiste angezeigt wird und "
+"speichert die Einstellungen über mehrere Sitzungen hinweg. Mögliche Werte "
+"sind »speller« (Schreibweisen) und »databases« (Datenbanken)."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
@@ -1363,7 +1365,7 @@ msgstr "_Rechnername:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:202
-#: ../gnome-dictionary/src/gdict-window.c:726
+#: ../gnome-dictionary/src/gdict-window.c:707
 msgid "Print"
 msgstr "Drucken"
 
@@ -1809,7 +1811,7 @@ msgstr "Nachzuschlagende Wörter"
 #: ../gnome-dictionary/src/gdict-app.c:361
 #: ../gnome-dictionary/src/gdict-app.c:373
 msgid "word"
-msgstr ""
+msgstr "wort"
 
 # CHECK
 #: ../gnome-dictionary/src/gdict-app.c:361
@@ -1822,7 +1824,7 @@ msgstr "Zu verwendende Wörterbuchquelle"
 
 #: ../gnome-dictionary/src/gdict-app.c:363
 msgid "source"
-msgstr ""
+msgstr "quelle"
 
 #: ../gnome-dictionary/src/gdict-app.c:365
 msgid "Show available dictionary sources"
@@ -1846,7 +1848,7 @@ msgstr "Zu verwendende Methode"
 
 #: ../gnome-dictionary/src/gdict-app.c:371
 msgid "strat"
-msgstr ""
+msgstr "methode"
 
 #. create the new option context
 #: ../gnome-dictionary/src/gdict-app.c:389
@@ -1862,17 +1864,17 @@ msgid "Show Dictionary options"
 msgstr "Wörterbuchoptionen anzeigen"
 
 #: ../gnome-dictionary/src/gdict-applet.c:216
-#: ../gnome-dictionary/src/gdict-window.c:672
+#: ../gnome-dictionary/src/gdict-window.c:653
 msgid "Save a Copy"
 msgstr "Eine Kopie speichern"
 
 #: ../gnome-dictionary/src/gdict-applet.c:226
-#: ../gnome-dictionary/src/gdict-window.c:682
+#: ../gnome-dictionary/src/gdict-window.c:663
 msgid "Untitled document"
 msgstr "Namenloses Dokument"
 
 #: ../gnome-dictionary/src/gdict-applet.c:247
-#: ../gnome-dictionary/src/gdict-window.c:703
+#: ../gnome-dictionary/src/gdict-window.c:684
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Beim Schreiben von »%s« ist ein Fehler aufgetreten"
@@ -1934,61 +1936,61 @@ msgid "Type the word you want to look up"
 msgstr "Geben Sie das Wort ein, das sie nachschlagen möchten"
 
 #: ../gnome-dictionary/src/gdict-applet.c:748
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:808
 msgid "Dictionary Preferences"
 msgstr "Wörterbucheinstellungen"
 
 #: ../gnome-dictionary/src/gdict-applet.c:776
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:511
 #: ../gnome-dictionary/src/gdict-source-dialog.c:438
-#: ../gnome-dictionary/src/gdict-window.c:950
+#: ../gnome-dictionary/src/gdict-window.c:931
 msgid "There was an error while displaying help"
 msgstr "Beim Anzeigen der Hilfe ist ein Fehler aufgetreten"
 
-#: ../gnome-dictionary/src/gdict-applet.c:936
-#: ../gnome-dictionary/src/gdict-window.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:360
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Es ist keine Wörterbuchquelle mit dem Namen »%s« verfügbar"
 
-#: ../gnome-dictionary/src/gdict-applet.c:940
-#: ../gnome-dictionary/src/gdict-window.c:367
+#: ../gnome-dictionary/src/gdict-applet.c:932
+#: ../gnome-dictionary/src/gdict-window.c:364
 msgid "Unable to find dictionary source"
 msgstr "Die Wörterbuchquelle konnte nicht gefunden werden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:956
-#: ../gnome-dictionary/src/gdict-window.c:383
+#: ../gnome-dictionary/src/gdict-applet.c:948
+#: ../gnome-dictionary/src/gdict-window.c:380
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Für die Quelle »%s« ist kein Kontext verfügbar"
 
-#: ../gnome-dictionary/src/gdict-applet.c:960
-#: ../gnome-dictionary/src/gdict-window.c:387
+#: ../gnome-dictionary/src/gdict-applet.c:952
+#: ../gnome-dictionary/src/gdict-window.c:384
 msgid "Unable to create a context"
 msgstr "Es konnte kein Kontext erstellt werden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1244
-#: ../gnome-dictionary/src/gdict-window.c:1719
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1707
 msgid "Unable to connect to GConf"
 msgstr "Es konnte nicht zu GConf verbunden werden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1257
-#: ../gnome-dictionary/src/gdict-window.c:1732
+#: ../gnome-dictionary/src/gdict-applet.c:1233
+#: ../gnome-dictionary/src/gdict-window.c:1720
 msgid "Unable to get notification for preferences"
 msgstr "Benachrichtigungen für Einstellungen können nicht erhalten werden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1271
-#: ../gnome-dictionary/src/gdict-window.c:1745
+#: ../gnome-dictionary/src/gdict-applet.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1733
 msgid "Unable to get notification for the document font"
 msgstr "Benachrichtigung für Dokumentenschriftart kann nicht erhalten werden"
 
-#: ../gnome-dictionary/src/gdict-common.c:77
+#: ../gnome-dictionary/src/gdict-common.c:79
 #, c-format
 msgid "Unable to rename file '%s' to '%s': %s"
 msgstr "Die Datei »%s« konnte nicht in »%s« umbenannt werden: %s"
 
-#: ../gnome-dictionary/src/gdict-common.c:101
-#: ../gnome-dictionary/src/gdict-common.c:124
+#: ../gnome-dictionary/src/gdict-common.c:103
+#: ../gnome-dictionary/src/gdict-common.c:126
 #, c-format
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Das Datenverzeichnis »%s« konnte nicht erstellt werden: %s"
@@ -2015,15 +2017,15 @@ msgstr "Dies wird die Wörterbuchquelle dauerhaft aus dieser Liste löschen."
 msgid "Unable to remove source '%s'"
 msgstr "Quelle »%s« konnte nicht entfernt werden"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:679
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
 msgid "Add a new dictionary source"
 msgstr "Eine neue Wörterbuchquelle hinzufügen"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:687
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
 msgid "Remove the currently selected dictionary source"
 msgstr "Die momentan ausgewählte Wörterbuchquelle entfernen"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:702
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
 msgid "Set the font used for printing the definitions"
 msgstr "Legt die zum Drucken von Definitionen verwendete Schriftart fest"
 
@@ -2063,135 +2065,135 @@ msgid_plural "%d definitions found"
 msgstr[0] "Eine Definition gefunden"
 msgstr[1] "%d Definitionen gefunden"
 
-#: ../gnome-dictionary/src/gdict-window.c:462
+#: ../gnome-dictionary/src/gdict-window.c:449
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Wörterbuch"
 
-#: ../gnome-dictionary/src/gdict-window.c:984 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:965 ../logview/logview.c:85
 msgid "_File"
 msgstr "_Datei"
 
-#: ../gnome-dictionary/src/gdict-window.c:987
+#: ../gnome-dictionary/src/gdict-window.c:968
 msgid "_Go"
 msgstr "_Gehe zu"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:991
+#: ../gnome-dictionary/src/gdict-window.c:972
 msgid "_New"
 msgstr "_Neu"
 
-#: ../gnome-dictionary/src/gdict-window.c:992
+#: ../gnome-dictionary/src/gdict-window.c:973
 msgid "New look up"
 msgstr "Neue Wörterbuchsuche"
 
-#: ../gnome-dictionary/src/gdict-window.c:993
+#: ../gnome-dictionary/src/gdict-window.c:974
 msgid "_Save a Copy..."
 msgstr "_Eine Kopie speichern …"
 
-#: ../gnome-dictionary/src/gdict-window.c:995
+#: ../gnome-dictionary/src/gdict-window.c:976
 msgid "_Print..."
 msgstr "_Drucken …"
 
-#: ../gnome-dictionary/src/gdict-window.c:996
+#: ../gnome-dictionary/src/gdict-window.c:977
 msgid "Print this document"
 msgstr "Dieses Dokument ausdrucken"
 
-#: ../gnome-dictionary/src/gdict-window.c:1003 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:984 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "_Alles auswählen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1006
+#: ../gnome-dictionary/src/gdict-window.c:987
 msgid "Find a word or phrase in the document"
 msgstr "Ein Wort oder einen Satz im Text suchen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1008
+#: ../gnome-dictionary/src/gdict-window.c:989
 msgid "Find Ne_xt"
 msgstr "_Weitersuchen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1010
+#: ../gnome-dictionary/src/gdict-window.c:991
 msgid "Find Pre_vious"
 msgstr "_Rückwärts suchen"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1016
+#: ../gnome-dictionary/src/gdict-window.c:997
 msgid "_Sidebar"
 msgstr "_Seitenleiste"
 
-#: ../gnome-dictionary/src/gdict-window.c:1018
+#: ../gnome-dictionary/src/gdict-window.c:999
 msgid "S_tatusbar"
 msgstr "S_tatusleiste"
 
-#: ../gnome-dictionary/src/gdict-window.c:1020
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Similar _Words"
 msgstr "Ähnliche _Wörter"
 
-#: ../gnome-dictionary/src/gdict-window.c:1022
+#: ../gnome-dictionary/src/gdict-window.c:1003
 msgid "Available _Databases"
 msgstr "Verfügbare _Datenbanken"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1026
+#: ../gnome-dictionary/src/gdict-window.c:1007
 msgid "_Previous Definition"
 msgstr "_Vorherige Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1027
+#: ../gnome-dictionary/src/gdict-window.c:1008
 msgid "Go to the previous definition"
 msgstr "Zur vorherigen Definition gehen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1028
+#: ../gnome-dictionary/src/gdict-window.c:1009
 msgid "_Next Definition"
 msgstr "_Nächste Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1029
+#: ../gnome-dictionary/src/gdict-window.c:1010
 msgid "Go to the next definition"
 msgstr "Zur nächsten Definition gehen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1030
+#: ../gnome-dictionary/src/gdict-window.c:1011
 msgid "_First Definition"
 msgstr "_Erste Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1031
+#: ../gnome-dictionary/src/gdict-window.c:1012
 msgid "Go to the first definition"
 msgstr "Zur ersten Definition gehen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1032
+#: ../gnome-dictionary/src/gdict-window.c:1013
 msgid "_Last Definition"
 msgstr "_Letzte Definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1033
+#: ../gnome-dictionary/src/gdict-window.c:1014
 msgid "Go to the last definition"
 msgstr "Zur letzten Definition gehen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1159
+#: ../gnome-dictionary/src/gdict-window.c:1140
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Datenbank »%s« gewählt"
 
-#: ../gnome-dictionary/src/gdict-window.c:1179
+#: ../gnome-dictionary/src/gdict-window.c:1160
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Wort »%s« gewählt"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1197
+#: ../gnome-dictionary/src/gdict-window.c:1178
 msgid "Double-click on the word to look up"
 msgstr "Wort per Doppelklick nachschlagen"
 
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1200
+#: ../gnome-dictionary/src/gdict-window.c:1185
 msgid "Double-click on the database to use"
 msgstr "Datenbank per Doppelklick auswählen"
 
-#: ../gnome-dictionary/src/gdict-window.c:1435
+#: ../gnome-dictionary/src/gdict-window.c:1422
 msgid "Look _up:"
 msgstr "_Nachschlagen:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1500
+#: ../gnome-dictionary/src/gdict-window.c:1487
 msgid "Similar words"
 msgstr "Ähnliche Wörter"
 
-#: ../gnome-dictionary/src/gdict-window.c:1513
+#: ../gnome-dictionary/src/gdict-window.c:1500
 msgid "Available dictionaries"
 msgstr "Verfügbare Wörterbücher"
 
@@ -2308,7 +2310,7 @@ msgstr "Bildschirmfoto speichern"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
-msgstr ""
+msgstr "Bildschirmfotos Ihrer Arbeitsumgebung oder einzelner Fenster speichern"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
@@ -2414,7 +2416,7 @@ msgstr "Unbekannter GnomeVFSXferProgressStatus %d"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Locate documents and folders on this computer by name or content"
-msgstr ""
+msgstr "Dateien und Ordner auf diesem Computer nach Namen oder Inhalt suchen"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
