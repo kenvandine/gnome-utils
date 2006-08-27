@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-09 14:10+0700\n"
-"PO-Revision-Date: 2006-08-09 14:13+0700\n"
+"POT-Creation-Date: 2006-08-27 17:40+0700\n"
+"PO-Revision-Date: 2006-08-27 17:44+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <L10n@opentle.org>\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "เ_รียกดู..."
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:44
-#: ../gnome-dictionary/src/gdict-window.c:1036 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1017 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "เนื้อ_หา"
 
@@ -206,7 +206,7 @@ msgstr "_วันที่"
 msgid "_Depth level:"
 msgstr "ระดับความ_ลึก:"
 
-#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:985
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:966
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "แ_ก้ไข"
@@ -229,7 +229,7 @@ msgstr "แผน_ภาพการใช้ดิสก์แบบกรา�
 
 #: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:988 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:969 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_วิธีใช้"
 
@@ -265,7 +265,7 @@ msgstr "จำนวนโฟ_ลเดอร์ทั้งหมด:"
 msgid "_Type"
 msgstr "_ชนิด"
 
-#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:986
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:967
 #: ../logview/logview.c:87
 msgid "_View"
 msgstr "_มุมมอง"
@@ -303,13 +303,13 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "กำหนดว่าจะแสดงแถบเครื่องมือในหน้าต่างหลักหรือไม่"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
+#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:263
 #: ../baobab/src/callbacks.c:444
 msgid "Calculating percentage bars..."
 msgstr "กำลังคำนวณแถบร้อยละ..."
 
 #: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
-#: ../baobab/src/baobab.c:893 ../baobab/src/baobab-utils.c:228
+#: ../baobab/src/baobab.c:888 ../baobab/src/baobab-utils.c:271
 #: ../baobab/src/callbacks.c:448
 msgid "Ready"
 msgstr "พร้อม"
@@ -351,7 +351,6 @@ msgstr "มี hardlink รวม:"
 msgid "% 5d object"
 msgid_plural "% 5d objects"
 msgstr[0] "% 5d รายการ"
-msgstr[1] "% 5d รายการ"
 
 #: ../baobab/src/baobab.c:606
 msgid "Invalid UTF-8 characters"
@@ -510,97 +509,102 @@ msgstr "เลือกโฟลเดอร์"
 msgid "Show hidden folders"
 msgstr "แสดงโฟลเดอร์ซ่อนด้วย"
 
-#: ../baobab/src/baobab-utils.c:193
+#: ../baobab/src/baobab-utils.c:160
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "หาแฟ้ม pixmap ไม่พบ: %s"
+
+#: ../baobab/src/baobab-utils.c:236
 msgid "Scanning..."
 msgstr "กำลังตรวจข้อมูล..."
 
-#: ../baobab/src/baobab-utils.c:354 ../baobab/src/baobab-utils.c:358
+#: ../baobab/src/baobab-utils.c:397 ../baobab/src/baobab-utils.c:401
 #, c-format
 msgid "%s is not a valid folder"
 msgstr "%s ไม่ใช่โฟลเดอร์ที่ใช้การได้"
 
-#: ../baobab/src/baobab-utils.c:384 ../baobab/src/baobab-utils.c:442
+#: ../baobab/src/baobab-utils.c:427 ../baobab/src/baobab-utils.c:485
 msgid "Remove from Trash"
 msgstr "ลบออกจากถังขยะ"
 
-#: ../baobab/src/baobab-utils.c:387 ../baobab/src/baobab-utils.c:445
+#: ../baobab/src/baobab-utils.c:430 ../baobab/src/baobab-utils.c:488
 msgid "Move to Trash"
 msgstr "ทิ้งลงถังขยะ"
 
-#: ../baobab/src/baobab-utils.c:390
+#: ../baobab/src/baobab-utils.c:433
 msgid "Folder graphical map"
 msgstr "แผนภาพการใช้ดิสก์แบบกราฟิก"
 
-#: ../baobab/src/baobab-utils.c:394
+#: ../baobab/src/baobab-utils.c:437
 msgid "List all files in folder"
 msgstr "รายการแฟ้มทั้งหมดในโฟลเดอร์"
 
-#: ../baobab/src/baobab-utils.c:448
+#: ../baobab/src/baobab-utils.c:491
 msgid "Scan Folder"
 msgstr "ตรวจข้อมูลในโฟลเดอร์"
 
-#: ../baobab/src/baobab-utils.c:520
+#: ../baobab/src/baobab-utils.c:563
 msgid "Please provide a file name to search for!"
 msgstr "กรุณาป้อนชื่อแฟ้มที่จะค้นหาด้วย!"
 
-#: ../baobab/src/baobab-utils.c:700
+#: ../baobab/src/baobab-utils.c:743
 msgid "Total filesystem capacity:"
 msgstr "ความจุรวมของระบบแฟ้ม:"
 
-#: ../baobab/src/baobab-utils.c:700
+#: ../baobab/src/baobab-utils.c:743
 msgid "used:"
 msgstr "ใช้ไป:"
 
-#: ../baobab/src/baobab-utils.c:701
+#: ../baobab/src/baobab-utils.c:744
 msgid "available:"
 msgstr "เหลืออยู่:"
 
-#: ../baobab/src/baobab-utils.c:739
+#: ../baobab/src/baobab-utils.c:782
 msgid "Found:"
 msgstr "พบ:"
 
-#: ../baobab/src/baobab-utils.c:740
+#: ../baobab/src/baobab-utils.c:783
 msgid "file"
 msgstr "แฟ้ม"
 
-#: ../baobab/src/baobab-utils.c:740
+#: ../baobab/src/baobab-utils.c:783
 msgid "files"
 msgstr "แฟ้ม"
 
-#: ../baobab/src/baobab-utils.c:741
+#: ../baobab/src/baobab-utils.c:784
 msgid "for total:"
 msgstr "รวม:"
 
-#: ../baobab/src/baobab-utils.c:771 ../gsearchtool/gsearchtool-callbacks.c:487
+#: ../baobab/src/baobab-utils.c:814 ../gsearchtool/gsearchtool-callbacks.c:487
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "ไม่มีโปรแกรมที่สามารถแสดงเอกสารนี้ได้ติดตั้งอยู่"
 
-#: ../baobab/src/baobab-utils.c:833
+#: ../baobab/src/baobab-utils.c:876
 msgid "Cannot find the Trash on this system!"
 msgstr "หาถังขยะในระบบนี้ไม่พบ!"
 
-#: ../baobab/src/baobab-utils.c:840 ../baobab/src/callbacks.c:276
+#: ../baobab/src/baobab-utils.c:883 ../baobab/src/callbacks.c:276
 #: ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:819
 msgid "The document does not exist."
 msgstr "เอกสารไม่มีอยู่จริง"
 
-#: ../baobab/src/baobab-utils.c:852
+#: ../baobab/src/baobab-utils.c:895
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr "ย้าย <b>%s</b> ไปถังขยะไม่สำเร็จ: %s"
 
-#: ../baobab/src/baobab-utils.c:866
+#: ../baobab/src/baobab-utils.c:909
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "ต้องการลบ <b>%s</b> ทิ้งอย่างถาวรเลยหรือไม่?"
 
-#: ../baobab/src/baobab-utils.c:878
+#: ../baobab/src/baobab-utils.c:921
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "ลบ <b>%s</b> ไม่สำเร็จ: %s"
 
-#: ../baobab/src/baobab-utils.c:907
+#: ../baobab/src/baobab-utils.c:950
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
@@ -608,12 +612,7 @@ msgstr ""
 "เนื้อหาของไดเรกทอรีบ้านของคุณมีการเปลี่ยนแปลง\n"
 "คุณต้องการตรวจข้อมูลในไดเรกทอรีสุดท้ายเพื่อปรับข้อมูลของกิ่งโฟลเดอร์นั้นหรือไม่?"
 
-#: ../baobab/src/baobab-utils.c:928
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "หาแฟ้ม pixmap ไม่พบ: %s"
-
-#: ../baobab/src/baobab-utils.c:962 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:977 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "เกิดข้อผิดพลาดขณะแสดงคำแนะนำ"
 
@@ -1067,9 +1066,6 @@ msgid_plural ""
 msgstr[0] ""
 "ฟอร์แมตฟลอปปี้เสร็จแล้ว แต่พบ<b>บล็อกเสีย %d บล็อก</b> (จาก %d) "
 "และได้ทำเครื่องหมายไว้ว่าไม่ให้ใช้"
-msgstr[1] ""
-"ฟอร์แมตฟลอปปี้เสร็จแล้ว แต่พบ<b>บล็อกเสีย %d บล็อก</b> (จาก %d) "
-"และได้ทำเครื่องหมายไว้ว่าไม่ให้ใช้"
 
 #: ../gfloppy/src/progress.c:129
 msgid "Floppy formatted successfully."
@@ -1100,7 +1096,7 @@ msgid "Cl_ear"
 msgstr "_ล้าง"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1038 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1019 ../logview/logview.c:116
 msgid "_About"
 msgstr "เ_กี่ยวกับ"
 
@@ -1109,7 +1105,7 @@ msgid "_Look Up Selected Text"
 msgstr "_หาข้อความที่เลือก"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1012
+#: ../gnome-dictionary/src/gdict-window.c:993
 msgid "_Preferences"
 msgstr "_ปรับแต่ง"
 
@@ -1128,8 +1124,8 @@ msgstr "หาความหมายและการสะกดของค
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:76
 #: ../gnome-dictionary/src/gdict-app.c:406
-#: ../gnome-dictionary/src/gdict-window.c:464
-#: ../gnome-dictionary/src/gdict-window.c:1595
+#: ../gnome-dictionary/src/gdict-window.c:451
+#: ../gnome-dictionary/src/gdict-window.c:1581
 msgid "Dictionary"
 msgstr "พจนานุกรม"
 
@@ -1314,7 +1310,7 @@ msgstr "ชื่อโ_ฮสต์:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
 #: ../gnome-dictionary/src/gdict-applet.c:202
-#: ../gnome-dictionary/src/gdict-window.c:726
+#: ../gnome-dictionary/src/gdict-window.c:707
 msgid "Print"
 msgstr "พิมพ์"
 
@@ -1795,17 +1791,17 @@ msgid "Show Dictionary options"
 msgstr "แสดงตัวเลือกต่างๆ ของพจนานุกรม"
 
 #: ../gnome-dictionary/src/gdict-applet.c:216
-#: ../gnome-dictionary/src/gdict-window.c:672
+#: ../gnome-dictionary/src/gdict-window.c:653
 msgid "Save a Copy"
 msgstr "บันทึกสำเนา"
 
 #: ../gnome-dictionary/src/gdict-applet.c:226
-#: ../gnome-dictionary/src/gdict-window.c:682
+#: ../gnome-dictionary/src/gdict-window.c:663
 msgid "Untitled document"
 msgstr "เอกสารไม่มีชื่อ"
 
 #: ../gnome-dictionary/src/gdict-applet.c:247
-#: ../gnome-dictionary/src/gdict-window.c:703
+#: ../gnome-dictionary/src/gdict-window.c:684
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "เกิดข้อผิดพลาดขณะเขียนแฟ้ม '%s'"
@@ -1867,61 +1863,61 @@ msgid "Type the word you want to look up"
 msgstr "ป้อนคำที่คุณต้องการค้นหาความหมาย"
 
 #: ../gnome-dictionary/src/gdict-applet.c:748
-#: ../gnome-dictionary/src/gdict-window.c:827
+#: ../gnome-dictionary/src/gdict-window.c:808
 msgid "Dictionary Preferences"
 msgstr "ปรับแต่งพจนานุกรม"
 
 #: ../gnome-dictionary/src/gdict-applet.c:776
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:511
 #: ../gnome-dictionary/src/gdict-source-dialog.c:438
-#: ../gnome-dictionary/src/gdict-window.c:950
+#: ../gnome-dictionary/src/gdict-window.c:931
 msgid "There was an error while displaying help"
 msgstr "เกิดข้อผิดพลาดขณะแสดงคำแนะนำ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:936
-#: ../gnome-dictionary/src/gdict-window.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:360
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "ไม่มีแหล่งพจนานุกรมที่ชื่อ '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:940
-#: ../gnome-dictionary/src/gdict-window.c:367
+#: ../gnome-dictionary/src/gdict-applet.c:932
+#: ../gnome-dictionary/src/gdict-window.c:364
 msgid "Unable to find dictionary source"
 msgstr "หาแหล่งพจนานุกรมไม่พบ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:956
-#: ../gnome-dictionary/src/gdict-window.c:383
+#: ../gnome-dictionary/src/gdict-applet.c:948
+#: ../gnome-dictionary/src/gdict-window.c:380
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "ไม่มี context สำหรับแหล่ง '%s' ให้ใช้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:960
-#: ../gnome-dictionary/src/gdict-window.c:387
+#: ../gnome-dictionary/src/gdict-applet.c:952
+#: ../gnome-dictionary/src/gdict-window.c:384
 msgid "Unable to create a context"
 msgstr "ไม่สามารถสร้าง context ได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1244
-#: ../gnome-dictionary/src/gdict-window.c:1719
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1707
 msgid "Unable to connect to GConf"
 msgstr "ไม่สามารถเชื่อมต่อไปยัง GConf ได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1257
-#: ../gnome-dictionary/src/gdict-window.c:1732
+#: ../gnome-dictionary/src/gdict-applet.c:1233
+#: ../gnome-dictionary/src/gdict-window.c:1720
 msgid "Unable to get notification for preferences"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งได้"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1271
-#: ../gnome-dictionary/src/gdict-window.c:1745
+#: ../gnome-dictionary/src/gdict-applet.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1733
 msgid "Unable to get notification for the document font"
 msgstr "ไม่สามารถรับการแจ้งเหตุการปรับแต่งแบบอักษรเอกสารได้"
 
-#: ../gnome-dictionary/src/gdict-common.c:77
+#: ../gnome-dictionary/src/gdict-common.c:79
 #, c-format
 msgid "Unable to rename file '%s' to '%s': %s"
 msgstr "ไม่สามารถเปลี่ยนชื่อแฟ้ม '%s' ไปเป็น '%s': %s"
 
-#: ../gnome-dictionary/src/gdict-common.c:101
-#: ../gnome-dictionary/src/gdict-common.c:124
+#: ../gnome-dictionary/src/gdict-common.c:103
+#: ../gnome-dictionary/src/gdict-common.c:126
 #, c-format
 msgid "Unable to create the data directory '%s': %s"
 msgstr "ไม่สามารถสร้างโฟลเดอร์ข้อมูล '%s': %s"
@@ -1948,15 +1944,15 @@ msgstr "การลบนี้ จะลบแหล่งพจนานุ�
 msgid "Unable to remove source '%s'"
 msgstr "ไม่สามารถลบแหล่ง '%s' ได้"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:679
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
 msgid "Add a new dictionary source"
 msgstr "เพิ่มแหล่งพจนานุกรมใหม่"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:687
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
 msgid "Remove the currently selected dictionary source"
 msgstr "ลบแหล่งพจนานุกรมที่เลือกอยู่"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:702
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
 msgid "Set the font used for printing the definitions"
 msgstr "กำหนดแบบอักษรที่จะใช้พิมพ์คำจำกัดความของคำ"
 
@@ -1993,138 +1989,137 @@ msgstr "ไม่พบความหมายของคำ"
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
-msgstr[0] "พบความหมายหนึ่ง"
-msgstr[1] "พบ %d ความหมาย"
+msgstr[0] "พบ %d ความหมาย"
 
-#: ../gnome-dictionary/src/gdict-window.c:462
+#: ../gnome-dictionary/src/gdict-window.c:449
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - พจนานุกรม"
 
-#: ../gnome-dictionary/src/gdict-window.c:984 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:965 ../logview/logview.c:85
 msgid "_File"
 msgstr "แ_ฟ้ม"
 
-#: ../gnome-dictionary/src/gdict-window.c:987
+#: ../gnome-dictionary/src/gdict-window.c:968
 msgid "_Go"
 msgstr "ไ_ป"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:991
+#: ../gnome-dictionary/src/gdict-window.c:972
 msgid "_New"
 msgstr "ใ_หม่"
 
-#: ../gnome-dictionary/src/gdict-window.c:992
+#: ../gnome-dictionary/src/gdict-window.c:973
 msgid "New look up"
 msgstr "การค้นหาใหม่"
 
-#: ../gnome-dictionary/src/gdict-window.c:993
+#: ../gnome-dictionary/src/gdict-window.c:974
 msgid "_Save a Copy..."
 msgstr "_บันทึกสำเนา..."
 
-#: ../gnome-dictionary/src/gdict-window.c:995
+#: ../gnome-dictionary/src/gdict-window.c:976
 msgid "_Print..."
 msgstr "_พิมพ์..."
 
-#: ../gnome-dictionary/src/gdict-window.c:996
+#: ../gnome-dictionary/src/gdict-window.c:977
 msgid "Print this document"
 msgstr "พิมพ์เอกสารนี้"
 
-#: ../gnome-dictionary/src/gdict-window.c:1003 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:984 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "เลือกทั้ง_หมด"
 
-#: ../gnome-dictionary/src/gdict-window.c:1006
+#: ../gnome-dictionary/src/gdict-window.c:987
 msgid "Find a word or phrase in the document"
 msgstr "หาคำหรือวลีในเอกสาร"
 
-#: ../gnome-dictionary/src/gdict-window.c:1008
+#: ../gnome-dictionary/src/gdict-window.c:989
 msgid "Find Ne_xt"
 msgstr "หาต่_อ"
 
-#: ../gnome-dictionary/src/gdict-window.c:1010
+#: ../gnome-dictionary/src/gdict-window.c:991
 msgid "Find Pre_vious"
 msgstr "หา_ก่อนหน้า"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1016
+#: ../gnome-dictionary/src/gdict-window.c:997
 msgid "_Sidebar"
 msgstr "แถบ_ข้าง"
 
-#: ../gnome-dictionary/src/gdict-window.c:1018
+#: ../gnome-dictionary/src/gdict-window.c:999
 msgid "S_tatusbar"
 msgstr "แถบ_สถานะ"
 
-#: ../gnome-dictionary/src/gdict-window.c:1020
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Similar _Words"
 msgstr "คำ_คล้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:1022
+#: ../gnome-dictionary/src/gdict-window.c:1003
 msgid "Available _Databases"
 msgstr "ฐาน_ข้อมูลที่มี"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1026
+#: ../gnome-dictionary/src/gdict-window.c:1007
 msgid "_Previous Definition"
 msgstr "ความหมาย_ก่อนหน้า"
 
-#: ../gnome-dictionary/src/gdict-window.c:1027
+#: ../gnome-dictionary/src/gdict-window.c:1008
 msgid "Go to the previous definition"
 msgstr "ไปยังความหมายก่อนหน้า"
 
-#: ../gnome-dictionary/src/gdict-window.c:1028
+#: ../gnome-dictionary/src/gdict-window.c:1009
 msgid "_Next Definition"
 msgstr "ความหมาย_ถัดไป"
 
-#: ../gnome-dictionary/src/gdict-window.c:1029
+#: ../gnome-dictionary/src/gdict-window.c:1010
 msgid "Go to the next definition"
 msgstr "ไปยังความหมายถัดไป"
 
-#: ../gnome-dictionary/src/gdict-window.c:1030
+#: ../gnome-dictionary/src/gdict-window.c:1011
 msgid "_First Definition"
 msgstr "ความหมายแ_รก"
 
-#: ../gnome-dictionary/src/gdict-window.c:1031
+#: ../gnome-dictionary/src/gdict-window.c:1012
 msgid "Go to the first definition"
 msgstr "ไปยังความหมายแรก"
 
-#: ../gnome-dictionary/src/gdict-window.c:1032
+#: ../gnome-dictionary/src/gdict-window.c:1013
 msgid "_Last Definition"
 msgstr "ความหมายสุด_ท้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:1033
+#: ../gnome-dictionary/src/gdict-window.c:1014
 msgid "Go to the last definition"
 msgstr "ไปยังความหมายสุดท้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:1159
+#: ../gnome-dictionary/src/gdict-window.c:1140
 #, c-format
 msgid "Database `%s' selected"
 msgstr "เลือกฐานข้อมูล `%s' แล้ว"
 
-#: ../gnome-dictionary/src/gdict-window.c:1179
+#: ../gnome-dictionary/src/gdict-window.c:1160
 #, c-format
 msgid "Word `%s' selected"
 msgstr "เลือกคำ `%s' แล้ว"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1197
+#: ../gnome-dictionary/src/gdict-window.c:1178
 msgid "Double-click on the word to look up"
 msgstr "ดับเบิลคลิกที่คำที่คุณต้องการค้นหาความหมาย"
 
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1200
+#: ../gnome-dictionary/src/gdict-window.c:1185
 msgid "Double-click on the database to use"
 msgstr "ดับเบิลคลิกที่ฐานข้อมูลที่จะใช้"
 
-#: ../gnome-dictionary/src/gdict-window.c:1435
+#: ../gnome-dictionary/src/gdict-window.c:1422
 msgid "Look _up:"
 msgstr "_ค้นหา:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1500
+#: ../gnome-dictionary/src/gdict-window.c:1487
 msgid "Similar words"
 msgstr "คำคล้าย"
 
-#: ../gnome-dictionary/src/gdict-window.c:1513
+#: ../gnome-dictionary/src/gdict-window.c:1500
 msgid "Available dictionaries"
 msgstr "พจนานุกรมที่มี"
 
@@ -2633,7 +2628,6 @@ msgstr "ไม่สามารถเปิดเอกสารคำแนะ
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "แน่ใจหรือไม่ว่าจะเปิดเอกสาร %d ฉบับ?"
-msgstr[1] "แน่ใจหรือไม่ว่าจะเปิดเอกสาร %d ฉบับ?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:326
 #: ../gsearchtool/gsearchtool-callbacks.c:517
@@ -2641,7 +2635,6 @@ msgstr[1] "แน่ใจหรือไม่ว่าจะเปิดเอ
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "จะเปิดหน้าต่างแยก %d หน้าต่าง"
-msgstr[1] "จะเปิดหน้าต่างแยก %d หน้าต่าง"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:366
 #, c-format
@@ -2662,7 +2655,6 @@ msgstr "โปรแกรมจัดการแฟ้ม Nautilus ไม่�
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "แน่ใจหรือไม่ว่าจะเปิดโฟลเดอร์ %d โฟลเดอร์?"
-msgstr[1] "แน่ใจหรือไม่ว่าจะเปิดโฟลเดอร์ %d โฟลเดอร์?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:644
 #, c-format
@@ -2881,14 +2873,12 @@ msgstr "ไม่พบแฟ้ม"
 msgid "%d File Found"
 msgid_plural "%d Files Found"
 msgstr[0] "พบ %d แฟ้ม"
-msgstr[1] "พบ %d แฟ้ม"
 
 #: ../gsearchtool/gsearchtool.c:1004 ../gsearchtool/gsearchtool.c:1042
 #, c-format
 msgid "%d file found"
 msgid_plural "%d files found"
 msgstr[0] "พบ %d แฟ้ม"
-msgstr[1] "พบ %d แฟ้ม"
 
 #: ../gsearchtool/gsearchtool.c:1133
 msgid "Entry changed called for a non entry option!"
@@ -3361,60 +3351,60 @@ msgstr "โปรแกรมอ่านบันทึกปฏิบัติ
 msgid "Unable to create user interface."
 msgstr "ไม่สามารถสร้างหน้าต่างติดต่อผู้ใช้ได้"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "January"
 msgstr "มกราคม"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "February"
 msgstr "กุมภาพันธ์"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "March"
 msgstr "มีนาคม"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "April"
 msgstr "เมษายน"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:42
 msgid "May"
 msgstr "พฤษภาคม"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "June"
 msgstr "มิถุนายน"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "July"
 msgstr "กรกฎาคม"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "August"
 msgstr "สิงหาคม"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "September"
 msgstr "กันยายน"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:43
 msgid "October"
 msgstr "ตุลาคม"
 
-#: ../logview/misc.c:43
+#: ../logview/misc.c:44
 msgid "November"
 msgstr "พฤศจิกายน"
 
-#: ../logview/misc.c:43
+#: ../logview/misc.c:44
 msgid "December"
 msgstr "ธันวาคม"
 
-#: ../logview/misc.c:163
+#: ../logview/misc.c:164
 msgid "Invalid date"
 msgstr "วันที่ไม่ถูกต้อง"
 
 #. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:168
+#: ../logview/misc.c:169
 #, c-format
 msgid "%x"
 msgstr "%x"
@@ -3905,7 +3895,6 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 #~ msgid "%ld byte"
 #~ msgid_plural "%ld bytes"
 #~ msgstr[0] "%ld ไบต์"
-#~ msgstr[1] "%ld ไบต์"
 
 #~ msgid "Last Modified: %s, %d lines"
 #~ msgstr "เปลี่ยนแปลงล่าสุด: %s, %d บรรทัด"
