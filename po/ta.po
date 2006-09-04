@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-07-03 07:28+0200\n"
-"PO-Revision-Date: 2006-07-04 12:45+0530\n"
+"POT-Creation-Date: 2006-09-01 12:39+0200\n"
+"PO-Revision-Date: 2006-09-03 04:06+0530\n"
 "Last-Translator: Felix <ifelix@redhat.com>\n"
 "Language-Team: Tamil <ta@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,14 +22,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 "\n"
 "\n"
+"\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "A graphical tool to analyse disk usage"
+msgid "A graphical tool to analyze disk usage"
 msgstr "வட்டு பயன்பாட்டினை ஆராயும் ஒரு வரைகலை கருவி"
 
-#: ../baobab/data/baobab.desktop.in.in.h:2
-msgid "Baobab - Disk Usage Analyser"
-msgstr "Baobab - வட்டு பயன்பாடு ஆராய்வி"
+#: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:9
+msgid "Disk Usage Analyzer"
+msgstr "வட்டு பயன்பாடு ஆராய்வி"
 
 #: ../baobab/data/baobab.glade.h:1
 msgid "<b>File Size</b>"
@@ -63,12 +64,8 @@ msgstr "ஏதாவது(_y)"
 msgid "Directory Tree"
 msgstr "அடைவு கிளை"
 
-#: ../baobab/data/baobab.glade.h:9
-msgid "Disk Usage Analyser"
-msgstr "வட்டு பயன்பாடு ஆராய்வி"
-
 #: ../baobab/data/baobab.glade.h:10
-msgid "Disk Usage Analyser Preferences"
+msgid "Disk Usage Analyzer Preferences"
 msgstr "வட்டு பயன்பாடு ஆய்வி விருப்பங்கள்"
 
 #: ../baobab/data/baobab.glade.h:11
@@ -193,7 +190,7 @@ msgid "Zoom out"
 msgstr "பெரிதாக்கு"
 
 #: ../baobab/data/baobab.glade.h:42
-msgid "_Analyser"
+msgid "_Analyzer"
 msgstr "ஆராய்வி (_A)"
 
 #: ../baobab/data/baobab.glade.h:43
@@ -201,8 +198,8 @@ msgid "_Browse..."
 msgstr "உலாவு...(_B)"
 
 #. Help menu
-#: ../baobab/data/baobab.glade.h:44 ../gnome-dictionary/src/gdict-window.c:933
-#: ../logview/logview.c:114
+#: ../baobab/data/baobab.glade.h:44
+#: ../gnome-dictionary/src/gdict-window.c:1017 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "உள்ளடக்கம் (_C)"
 
@@ -214,7 +211,7 @@ msgstr "தேதி(_D)"
 msgid "_Depth level:"
 msgstr ""
 
-#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:890
+#: ../baobab/data/baobab.glade.h:47 ../gnome-dictionary/src/gdict-window.c:966
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "(_E)தொகு"
@@ -237,7 +234,7 @@ msgstr "வரைகலை பயன்பாடு ஒப்பீடு (_G)"
 
 #: ../baobab/data/baobab.glade.h:52
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:893 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:969 ../logview/logview.c:88
 msgid "_Help"
 msgstr "உதவி (_H)"
 
@@ -273,7 +270,7 @@ msgstr "மொத்த அடைவுகள்: (_T)"
 msgid "_Type"
 msgstr "வகை(_T)"
 
-#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:891
+#: ../baobab/data/baobab.glade.h:61 ../gnome-dictionary/src/gdict-window.c:967
 #: ../logview/logview.c:87
 msgid "_View"
 msgstr "பார்வை (_V)"
@@ -311,61 +308,61 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr ""
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:168 ../baobab/src/baobab-utils.c:220
-#: ../baobab/src/callbacks.c:441
+#: ../baobab/src/baobab.c:164 ../baobab/src/baobab-utils.c:263
+#: ../baobab/src/callbacks.c:444
 msgid "Calculating percentage bars..."
-msgstr ""
+msgstr "சதவீத பட்டைகளை கணக்கிடுகிறது..."
 
-#: ../baobab/src/baobab.c:174 ../baobab/src/baobab.c:222
-#: ../baobab/src/baobab.c:875 ../baobab/src/baobab-utils.c:228
-#: ../baobab/src/callbacks.c:445
+#: ../baobab/src/baobab.c:170 ../baobab/src/baobab.c:218
+#: ../baobab/src/baobab.c:884 ../baobab/src/baobab-utils.c:271
+#: ../baobab/src/callbacks.c:448
 msgid "Ready"
 msgstr "தயார்"
 
-#: ../baobab/src/baobab.c:253
+#: ../baobab/src/baobab.c:249
 msgid "Unknown"
 msgstr "தெரியாத"
 
-#: ../baobab/src/baobab.c:277
+#: ../baobab/src/baobab.c:273
 msgid "Full path:"
 msgstr "முழு பாதை:"
 
-#: ../baobab/src/baobab.c:278
+#: ../baobab/src/baobab.c:274
 msgid "Last Modification:"
 msgstr "கடைசி மாற்றம்"
 
-#: ../baobab/src/baobab.c:279
+#: ../baobab/src/baobab.c:275
 msgid "Owner:"
 msgstr "உரிமையாளர்:"
 
-#: ../baobab/src/baobab.c:280
+#: ../baobab/src/baobab.c:276
 msgid "Allocated bytes:"
 msgstr "ஒதுக்கப்பட்ட பைட்கள்:"
 
-#: ../baobab/src/baobab.c:451
+#: ../baobab/src/baobab.c:447
 msgid "scanning..."
 msgstr "வருடுகிறது..."
 
-#: ../baobab/src/baobab.c:481
+#: ../baobab/src/baobab.c:478
 msgid "<i>Total filesystem usage:</i>"
 msgstr "<i>மொத்த கோப்பு முறை பயன்பாடு:</i>"
 
-#: ../baobab/src/baobab.c:534
+#: ../baobab/src/baobab.c:531
 msgid "contains hardlinks for:"
 msgstr ""
 
-#: ../baobab/src/baobab.c:543
+#: ../baobab/src/baobab.c:540
 #, c-format
 msgid "% 5d object"
 msgid_plural "% 5d objects"
 msgstr[0] "% 5d பொருள்"
 msgstr[1] "% 5d பொருட்கள்"
 
-#: ../baobab/src/baobab.c:605
+#: ../baobab/src/baobab.c:602
 msgid "Invalid UTF-8 characters"
 msgstr "தவறான UTF-8 எழுத்துக்கள்"
 
-#: ../baobab/src/baobab.c:782
+#: ../baobab/src/baobab.c:791
 msgid ""
 "Cannot initialize GNOME VFS monitoring\n"
 "Some real-time auto-detect function will not be available!"
@@ -373,7 +370,7 @@ msgstr ""
 
 #: ../baobab/src/baobab-graphwin.c:156
 msgid "Cannot create pixbuf image!"
-msgstr ""
+msgstr "pixbuf உருவினை உருவாக்க முடியவில்லை!"
 
 #: ../baobab/src/baobab-graphwin.c:162
 msgid "Save the screenshot"
@@ -503,8 +500,8 @@ msgstr "தனிபயன் இடம்"
 msgid "C_onnect"
 msgstr "இணை (_o)"
 
-#: ../baobab/src/baobab-treeview.c:83
-msgid "<i>Use the Edit->Find menu item or the search toolbar button.</i>"
+#: ../baobab/src/baobab-treeview.c:66
+msgid "Use the Edit->Find menu item or the search toolbar button."
 msgstr ""
 
 #: ../baobab/src/baobab-utils.c:101
@@ -516,108 +513,108 @@ msgstr "ஒரு அடைவினை தேர்ந்தெடு"
 msgid "Show hidden folders"
 msgstr "மறைந்திருக்கும் அடைவுகளை காட்டவும்"
 
-#: ../baobab/src/baobab-utils.c:193
+#: ../baobab/src/baobab-utils.c:160
+#, c-format
+msgid "Couldn't find pixmap file: %s"
+msgstr "pixmap கோப்பினை காண முடியவில்லை: %s"
+
+#: ../baobab/src/baobab-utils.c:236
 msgid "Scanning..."
 msgstr "வருடுகிறது..."
 
-#: ../baobab/src/baobab-utils.c:349 ../baobab/src/baobab-utils.c:353
+#: ../baobab/src/baobab-utils.c:397 ../baobab/src/baobab-utils.c:401
 #, c-format
 msgid "%s is not a valid folder"
 msgstr "%s சரியான அடைவு இல்லை."
 
-#: ../baobab/src/baobab-utils.c:379 ../baobab/src/baobab-utils.c:437
+#: ../baobab/src/baobab-utils.c:427 ../baobab/src/baobab-utils.c:485
 msgid "Remove from Trash"
 msgstr "மீள்சேமிப்பு அடைவிலிருந்து நீக்கு"
 
-#: ../baobab/src/baobab-utils.c:382 ../baobab/src/baobab-utils.c:440
+#: ../baobab/src/baobab-utils.c:430 ../baobab/src/baobab-utils.c:488
 msgid "Move to Trash"
 msgstr "மீள்சேமிப்பு அடைவுக்கு நகர்த்து"
 
-#: ../baobab/src/baobab-utils.c:385
+#: ../baobab/src/baobab-utils.c:433
 msgid "Folder graphical map"
 msgstr "அடைவு வரைகலை ஒப்பீடு"
 
-#: ../baobab/src/baobab-utils.c:389
+#: ../baobab/src/baobab-utils.c:437
 msgid "List all files in folder"
 msgstr "அடைவிலுள்ள அனைத்து கோப்புகளையும் பட்டியலிடு"
 
-#: ../baobab/src/baobab-utils.c:443
+#: ../baobab/src/baobab-utils.c:491
 msgid "Scan Folder"
 msgstr "அடைவினை வருடு"
 
-#: ../baobab/src/baobab-utils.c:515
+#: ../baobab/src/baobab-utils.c:563
 msgid "Please provide a file name to search for!"
 msgstr "தேடுவதற்கு ஒரு கோப்பு பெயரை கொடுக்கவும்!"
 
-#: ../baobab/src/baobab-utils.c:695
+#: ../baobab/src/baobab-utils.c:743
 msgid "Total filesystem capacity:"
 msgstr "மொத்த கோப்பு முறைமை கொள்ளளவு:"
 
-#: ../baobab/src/baobab-utils.c:695
+#: ../baobab/src/baobab-utils.c:743
 msgid "used:"
 msgstr "பயன்படுத்தப்பட்டது:"
 
-#: ../baobab/src/baobab-utils.c:696
+#: ../baobab/src/baobab-utils.c:744
 msgid "available:"
 msgstr "இருப்பவை:"
 
-#: ../baobab/src/baobab-utils.c:734
+#: ../baobab/src/baobab-utils.c:782
 msgid "Found:"
 msgstr "கண்டவை:"
 
-#: ../baobab/src/baobab-utils.c:735
+#: ../baobab/src/baobab-utils.c:783
 msgid "file"
 msgstr "கோப்பு"
 
-#: ../baobab/src/baobab-utils.c:735
+#: ../baobab/src/baobab-utils.c:783
 msgid "files"
 msgstr "கோப்புகள்"
 
-#: ../baobab/src/baobab-utils.c:736
+#: ../baobab/src/baobab-utils.c:784
 msgid "for total:"
 msgstr "மொத்தத்திற்கு:"
 
-#: ../baobab/src/baobab-utils.c:766 ../gsearchtool/gsearchtool-callbacks.c:487
+#: ../baobab/src/baobab-utils.c:814 ../gsearchtool/gsearchtool-callbacks.c:487
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "இந்த ஆவணத்தை காட்டக்கூடிய காட்சி மென்பொருள் எதுவும் நிறுவப்படவில்லை"
 
-#: ../baobab/src/baobab-utils.c:828
+#: ../baobab/src/baobab-utils.c:876
 msgid "Cannot find the Trash on this system!"
 msgstr "இந்த கணினியில் மீள் சேமிப்பு அடைவினை காண முடியவில்லை!"
 
-#: ../baobab/src/baobab-utils.c:835 ../baobab/src/callbacks.c:276
+#: ../baobab/src/baobab-utils.c:883 ../baobab/src/callbacks.c:276
 #: ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:819
 msgid "The document does not exist."
 msgstr "இந்த ஆவணம் கிடைக்கவில்லை. "
 
-#: ../baobab/src/baobab-utils.c:847
+#: ../baobab/src/baobab-utils.c:895
 #, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
 msgstr "<b>%s</b>ஐ மீள்சேமிப்பு அடைவுக்கு நகர்த்த முடியவில்லை: %s."
 
-#: ../baobab/src/baobab-utils.c:861
+#: ../baobab/src/baobab-utils.c:909
 #, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
 msgstr "<b>%s</b> ஐ நிரந்தரமாக அழிக்க வேண்டுமா?"
 
-#: ../baobab/src/baobab-utils.c:873
+#: ../baobab/src/baobab-utils.c:921
 #, c-format
 msgid "Deleting <b>%s</b> failed: %s."
 msgstr "<b>%s</b> ஐ அழிக்க முடியவில்லை: %s."
 
-#: ../baobab/src/baobab-utils.c:902
+#: ../baobab/src/baobab-utils.c:950
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
 msgstr ""
 
-#: ../baobab/src/baobab-utils.c:923
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "pixmap கோப்பினை காண முடியவில்லை: %s"
-
-#: ../baobab/src/baobab-utils.c:957 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:988 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "உதவியைக் காட்டுவதில் பிழை"
 
@@ -635,7 +632,7 @@ msgstr "வட்டு பயன்பாட்டினை ஆராயும�
 msgid "translator-credits"
 msgstr "மொழிபெயர்பாளர் நன்றிகள்"
 
-#: ../baobab/src/callbacks.c:524
+#: ../baobab/src/callbacks.c:527
 msgid "The folder does not exist."
 msgstr "அடைவு இல்லை."
 
@@ -1035,11 +1032,11 @@ msgstr "தவறான தொகுதி பெயர்"
 msgid "The volume name can't contain any blank space."
 msgstr "நிறையில் வெற்றிடம் எதுவும் இருக்கக்கூடாது."
 
-#: ../gfloppy/src/main.c:575
+#: ../gfloppy/src/main.c:573
 msgid "The device to format"
 msgstr "ஃபார்மாட் செய்ய வேண்டிய சாதனம்"
 
-#: ../gfloppy/src/main.c:575
+#: ../gfloppy/src/main.c:573
 msgid "DEVICE"
 msgstr "சாதனம்"
 
@@ -1087,7 +1084,7 @@ msgid "Cl_ear"
 msgstr "துடை(_e)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:935 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1019 ../logview/logview.c:116
 msgid "_About"
 msgstr "பற்றி...(_A)"
 
@@ -1096,7 +1093,7 @@ msgid "_Look Up Selected Text"
 msgstr "தேர்ந்தெடுத்த உரையில் தேடுவும் (_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:917
+#: ../gnome-dictionary/src/gdict-window.c:993
 msgid "_Preferences"
 msgstr "(_P)விருப்ப முதன்மைகள்..."
 
@@ -1109,15 +1106,14 @@ msgid "_Save"
 msgstr "சேமி (_S)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:1
-#, fuzzy
 msgid "Check word definitions and spellings in an online dictionary"
 msgstr "ஒரு இணைய அகராதியில் சொற்களை தேடவும்"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:76
-#: ../gnome-dictionary/src/gdict-app.c:381
-#: ../gnome-dictionary/src/gdict-window.c:428
-#: ../gnome-dictionary/src/gdict-window.c:1382
+#: ../gnome-dictionary/src/gdict-app.c:406
+#: ../gnome-dictionary/src/gdict-window.c:451
+#: ../gnome-dictionary/src/gdict-window.c:1581
 msgid "Dictionary"
 msgstr "அகராதி"
 
@@ -1156,14 +1152,13 @@ msgid "The default width of the application window"
 msgstr "பயன்பாட்டு சாளரத்தின் முன்னிருப்பு அகலம்"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:8
-#, fuzzy
 msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers. This key is deprecated and "
 "no longer in use."
 msgstr ""
-"இயல்பான இணைக்கப்பட வேண்டிய அகராதி சேவகன் dict.org.விவரங்களுக்கு http://www.dict.org "
-"ஐ பார்க்கவும்"
+"அகராதி சேவையகம் இணைப்பட்டுள்ளது. முன்னிருப்பு சேவையகம் dict.org. வேறு "
+"சேவையகம் பற்றி விவரங்களுக்கு http://www.dict.org ஐ பார்க்கவும். இந்த விசை எதிரிடையானது"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid "The font to be used when printing"
@@ -1198,63 +1193,90 @@ msgid "The name of the dictionary source used to retrieve the definitions of wor
 msgstr ""
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
+msgid "The page of the sidebar to show"
+msgstr "பக்கத்தின் பக்க பட்டையை காட்டவும்"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
 #, fuzzy
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
 msgstr "துறை எண்ணை முன்னிருப்பு துறையோடு அதாவது 2628 டொடு இனைக்கவும்."
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+msgid "The width of the sidebar"
+msgstr "பக்கப்பட்டையின் அகலம்"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+msgid ""
+"This key defines the width of the sidebar and it's used to remember the "
+"setting across sessions."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid ""
 "This key defines the window height and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a height based on the font size."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid ""
 "This key defines the window width and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a width based on the font size."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
 msgid ""
-"This key defines whether the speller widget should be visible and it's used "
-"to remember the state of the speller widgets across sessions. Setting it to "
-"TRUE will make the speller widget always be displayed."
+"This key defines whether the sidebar should be visible and it's used to "
+"remember the state of the sidebar across sessions. Setting it to TRUE will "
+"make the sidebar always be displayed."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
+msgid ""
+"This key defines whether the statusbar should be visible and it's used to "
+"remember the state of the statusbar across sessions. Setting it to TRUE will "
+"make the statusbar always be displayed."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
+msgid ""
+"This key defines which page of the sidebar should be displayed and it's used "
+"to remember the setting across sessions.. It can be \"speller\" or "
+"\"databases\"."
+msgstr ""
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
 msgstr "சாமர்த்திய தேடுதலை பயன்படுத்து (எதிரிடையானது)"
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:26
 msgid "Whether the application window should be maximized"
 msgstr ""
 
-#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
-msgid "Whether the speller should be visible"
-msgstr "சொல்திருத்தி தெரிய வேண்டுமா"
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:27
+msgid "Whether the sidebar should be visible"
+msgstr "பக்கப்பட்டை தெரிய வேண்டுமா"
+
+#: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:28
+msgid "Whether the statusbar should be visible"
+msgstr "நிலைப்பட்டை தெரிய வேண்டுமா"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
 msgstr "தரவுத்தளம்: (_b)"
 
 #. Transport methods
-#. Translators: this is the same string used in the file
-#. * gnome-dictionary-preferences.glade for the transport_combo
-#. * widget items.
-#.
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-#: ../gnome-dictionary/src/gdict-source-dialog.c:119
 msgid "Dictionary Server"
 msgstr "அகராதி சேவையகம்"
 
@@ -1263,8 +1285,8 @@ msgid "H_ostname:"
 msgstr "புரவலன் பெயர்: (_o)"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:203
-#: ../gnome-dictionary/src/gdict-window.c:670
+#: ../gnome-dictionary/src/gdict-applet.c:202
+#: ../gnome-dictionary/src/gdict-window.c:707
 msgid "Print"
 msgstr "அச்சிடு"
 
@@ -1448,6 +1470,31 @@ msgstr "இருப்பிடம் மட்டும்"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "சூழல் உள்ளமை அகராதிகளை மட்டும் பயன்படுத்துகிறதா இல்லையா"
 
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:337
+msgid "Reload the list of available databases"
+msgstr "இருக்கும் தரவுத்தளங்களின் பட்டியலை மீண்டும் ஏற்றவும்"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:350
+msgid "Clear the list of available databases"
+msgstr "இருக்கும் தரவுத்தளங்களின் பட்டியலை துடைக்கவும்"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:647
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+msgid "Another search is in progress"
+msgstr "வேறு தேடுதல் நடைபெற்றுக்கொண்டிருக்கிறது"
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:648
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
+#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+msgid "Please wait until the current search ends."
+msgstr "நடப்பு தேடுதல்கள் முடியும் வரை காத்திருக்கவும்."
+
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:681
+#: ../gnome-dictionary/libgdict/gdict-speller.c:780
+msgid "Error while matching"
+msgstr "பொருந்தும் போது பிழை"
+
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:353
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:442
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:470
@@ -1470,23 +1517,13 @@ msgstr "அடுத்து (_N)"
 msgid "Error while looking up definition"
 msgstr "விளக்கங்களை தேடும் போது பிழை"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
-#: ../gnome-dictionary/libgdict/gdict-speller.c:720
-msgid "Another search is in progress"
-msgstr "வேறு தேடுதல் நடைபெற்றுக்கொண்டிருக்கிறது"
-
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1266
-#: ../gnome-dictionary/libgdict/gdict-speller.c:721
-msgid "Please wait until the current search ends."
-msgstr "நடப்பு தேடுதல்கள் முடியும் வரை காத்திருக்கவும்."
-
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1304
 msgid "Error while retrieving the definition"
 msgstr "விளக்கங்களை எடுக்கும் போது பிழை"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:105
 #: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:361
+#: ../gnome-dictionary/libgdict/gdict-speller.c:375
 msgid "Context"
 msgstr "சூழல்"
 
@@ -1496,7 +1533,7 @@ msgstr "GdictContext பொருள் இந்த உள்ளீடுடன
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:120
 #: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:368
+#: ../gnome-dictionary/libgdict/gdict-speller.c:382
 msgid "Database"
 msgstr "தரவுத்தளம்"
 
@@ -1506,7 +1543,7 @@ msgstr "முடிவு பட்டியலை உருவாக்க த
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
 #: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:375
+#: ../gnome-dictionary/libgdict/gdict-speller.c:389
 msgid "Strategy"
 msgstr "திட்டம்"
 
@@ -1607,35 +1644,31 @@ msgstr "மூலங்கள்"
 msgid "Dictionary sources found"
 msgstr "அகராதியை மூலங்கள் கண்டுபிடிக்கப்பட்டன"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:299
-msgid "Similar words"
-msgstr "ஒரே மாதிரியான சொற்கள்"
+#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+msgid "Clear the list of similar words"
+msgstr "ஒரே மாதிரியான சொற்களின் பட்டியலை துடைக்கவும்"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:362
+#: ../gnome-dictionary/libgdict/gdict-speller.c:376
 msgid "The GdictContext object used to get the word definition"
 msgstr "GdictContext பொருள் சொல் விளக்கங்களை பெறுகிறது"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:369
+#: ../gnome-dictionary/libgdict/gdict-speller.c:383
 msgid "The database used to query the GdictContext"
 msgstr "GdictContext ஐ வினா எழுப்ப பயன்படும் தரவுத்தளம்"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+#: ../gnome-dictionary/libgdict/gdict-speller.c:390
 msgid "The strategy used to query the GdictContext"
 msgstr "GdictContext ஐ வினா எழுப்ப பயன்படும் கூறு"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:762
-msgid "Error while matching"
-msgstr "பொருந்தும் போது பிழை"
-
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:582
+#: ../gnome-dictionary/src/gdict-applet.c:611
 msgid "Look up words in dictionaries"
 msgstr "அகராதிகளில் சொற்களை தேடவும்"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:215
+#: ../gnome-dictionary/src/gdict-app.c:238
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1648,20 +1681,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:229
+#: ../gnome-dictionary/src/gdict-app.c:252
 #, c-format
 msgid "Error: %s\n"
 msgstr "பிழை: [%s]\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:255
+#: ../gnome-dictionary/src/gdict-app.c:278
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "பயன்படுத்த க்னோம்-அகராதி உதவியை பார்க்கவும்\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:268
+#: ../gnome-dictionary/src/gdict-app.c:291
 msgid "Unable to find a suitable dictionary source"
 msgstr "ஒரு சரியான அகராதி மூலத்தினை காண முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-app.c:302
+#: ../gnome-dictionary/src/gdict-app.c:325
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1670,192 +1703,194 @@ msgstr ""
 "\"%s\" விளக்கத்தை தேடும் போது பிழை:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
+#: ../gnome-dictionary/src/gdict-app.c:359
+#: ../gnome-dictionary/src/gdict-app.c:373
 msgid "Words to look up"
 msgstr "சொற்களை தேடு"
 
-#: ../gnome-dictionary/src/gdict-app.c:336
-#: ../gnome-dictionary/src/gdict-app.c:338
+#: ../gnome-dictionary/src/gdict-app.c:359
+#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:373
 msgid "word"
 msgstr "சொல்"
 
-#: ../gnome-dictionary/src/gdict-app.c:338
+#: ../gnome-dictionary/src/gdict-app.c:361
 msgid "Words to match"
 msgstr "பொருந்த சொற்கள்"
 
-#: ../gnome-dictionary/src/gdict-app.c:340
+#: ../gnome-dictionary/src/gdict-app.c:363
 msgid "Dictionary source to use"
 msgstr "பயன்படுத்த வேண்டிய அகராதி மூலம்"
 
-#: ../gnome-dictionary/src/gdict-app.c:340
+#: ../gnome-dictionary/src/gdict-app.c:363
 msgid "source"
 msgstr "மூலம்"
 
-#: ../gnome-dictionary/src/gdict-app.c:342
+#: ../gnome-dictionary/src/gdict-app.c:365
 msgid "Show available dictionary sources"
 msgstr "இருக்கும் அகராதி மூலங்களை காட்டு"
 
-#: ../gnome-dictionary/src/gdict-app.c:344
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid "Print result to the console"
-msgstr ""
+msgstr "பணியகத்தின் தீர்வினை அச்சிடவும்"
 
-#: ../gnome-dictionary/src/gdict-app.c:346
+#: ../gnome-dictionary/src/gdict-app.c:369
 msgid "Database to use"
 msgstr "பயன்படுத்த வேண்டிய தரவுத்தளம்"
 
-#: ../gnome-dictionary/src/gdict-app.c:346
+#: ../gnome-dictionary/src/gdict-app.c:369
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:348
+#: ../gnome-dictionary/src/gdict-app.c:371
 msgid "Strategy to use"
 msgstr "பயன்படுத்த கூறு"
 
-#: ../gnome-dictionary/src/gdict-app.c:348
+#: ../gnome-dictionary/src/gdict-app.c:371
 msgid "strat"
 msgstr "ஆரம்பம்"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid " - Look up words in dictionaries"
 msgstr " - அகராதியில் சொற்களை தேடு"
 
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:393
 msgid "Dictionary and spelling tool"
 msgstr "அகராதி மற்றும் சொல்திருத்தும் கருவி"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:394
 msgid "Show Dictionary options"
 msgstr "அகராதி விருப்பங்களை காட்டு"
 
-#: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:616
+#: ../gnome-dictionary/src/gdict-applet.c:216
+#: ../gnome-dictionary/src/gdict-window.c:653
 msgid "Save a Copy"
 msgstr "நகலாக சேமி"
 
-#: ../gnome-dictionary/src/gdict-applet.c:227
-#: ../gnome-dictionary/src/gdict-window.c:626
+#: ../gnome-dictionary/src/gdict-applet.c:226
+#: ../gnome-dictionary/src/gdict-window.c:663
 msgid "Untitled document"
 msgstr "தலைப்பில்லாத ஆவணம்"
 
-#: ../gnome-dictionary/src/gdict-applet.c:248
-#: ../gnome-dictionary/src/gdict-window.c:647
+#: ../gnome-dictionary/src/gdict-applet.c:247
+#: ../gnome-dictionary/src/gdict-window.c:684
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "'%s'க்கு எழுதும் போது பிழை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:356
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Clear the definitions found"
 msgstr "கண்டுபிடிக்கப்பட்ட விளக்கங்களை துடை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:359
+#: ../gnome-dictionary/src/gdict-applet.c:378
 msgid "Clear definition"
 msgstr "விளக்கத்தை துடை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:360
+#: ../gnome-dictionary/src/gdict-applet.c:379
 msgid "Clear the text of the definition"
 msgstr "உரை விளக்கத்தை துடை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:370
+#: ../gnome-dictionary/src/gdict-applet.c:389
 msgid "Print the definitions found"
 msgstr "கண்டுபிடிக்கப்பட்ட விளக்கங்களை அச்சிடு"
 
-#: ../gnome-dictionary/src/gdict-applet.c:373
+#: ../gnome-dictionary/src/gdict-applet.c:392
 msgid "Print definition"
 msgstr "விளக்கத்தை அச்சிடு"
 
-#: ../gnome-dictionary/src/gdict-applet.c:374
+#: ../gnome-dictionary/src/gdict-applet.c:393
 msgid "Print the text of the definition"
 msgstr "உரை விளக்கத்தை அச்சிடவும்"
 
-#: ../gnome-dictionary/src/gdict-applet.c:384
+#: ../gnome-dictionary/src/gdict-applet.c:403
 msgid "Save the definitions found"
 msgstr "கண்டுபிடிக்கப்பட்ட விளக்கங்களை சேமி"
 
-#: ../gnome-dictionary/src/gdict-applet.c:387
+#: ../gnome-dictionary/src/gdict-applet.c:406
 msgid "Save definition"
 msgstr "விளக்கத்தை சேமி"
 
-#: ../gnome-dictionary/src/gdict-applet.c:388
+#: ../gnome-dictionary/src/gdict-applet.c:407
 msgid "Save the text of the definition to a file"
 msgstr "உரை விளக்கத்தை ஒரு கோப்பாக சேமிக்கவும்"
 
-#: ../gnome-dictionary/src/gdict-applet.c:522
+#: ../gnome-dictionary/src/gdict-applet.c:551
 msgid "Toggle dictionary window"
 msgstr "அகராதி சாளரத்தை மாற்று"
 
-#: ../gnome-dictionary/src/gdict-applet.c:523
+#: ../gnome-dictionary/src/gdict-applet.c:552
 msgid "Show or hide the definition window"
 msgstr "விளக்க சாளரத்தை காட்டு அல்லது மறை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:526
+#: ../gnome-dictionary/src/gdict-applet.c:555
 msgid "Click to view the dictionary window"
 msgstr "அகராதி சாளரத்தை பார்க்க சொடுக்கவும்"
 
-#: ../gnome-dictionary/src/gdict-applet.c:581
+#: ../gnome-dictionary/src/gdict-applet.c:610
 msgid "Dictionary entry"
 msgstr "அகராதி உள்ளீடு"
 
-#: ../gnome-dictionary/src/gdict-applet.c:585
+#: ../gnome-dictionary/src/gdict-applet.c:614
 msgid "Type the word you want to look up"
 msgstr "தேட வேண்டிய சொல்லை தட்டச்சு செய்யவும்"
 
-#: ../gnome-dictionary/src/gdict-applet.c:716
-#: ../gnome-dictionary/src/gdict-window.c:759
+#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-window.c:808
 msgid "Dictionary Preferences"
 msgstr "அகராதி விருப்பங்கள்"
 
-#: ../gnome-dictionary/src/gdict-applet.c:744
+#: ../gnome-dictionary/src/gdict-applet.c:776
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:511
-#: ../gnome-dictionary/src/gdict-source-dialog.c:436
-#: ../gnome-dictionary/src/gdict-window.c:848
+#: ../gnome-dictionary/src/gdict-source-dialog.c:438
+#: ../gnome-dictionary/src/gdict-window.c:931
 msgid "There was an error while displaying help"
 msgstr "உதவியை காட்டுவதில் பிழை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:903
-#: ../gnome-dictionary/src/gdict-window.c:327
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:360
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "'%s' என்ற பெயரில் அகராதி மூலம் எதுவும் இல்லை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:907
-#: ../gnome-dictionary/src/gdict-window.c:331
+#: ../gnome-dictionary/src/gdict-applet.c:932
+#: ../gnome-dictionary/src/gdict-window.c:364
 msgid "Unable to find dictionary source"
 msgstr "அகராதி மூலத்தினை காண முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:923
-#: ../gnome-dictionary/src/gdict-window.c:347
+#: ../gnome-dictionary/src/gdict-applet.c:948
+#: ../gnome-dictionary/src/gdict-window.c:380
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "'%s' மூலத்திற்கு சூழல் எதுவும் இல்லை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:927
-#: ../gnome-dictionary/src/gdict-window.c:351
+#: ../gnome-dictionary/src/gdict-applet.c:952
+#: ../gnome-dictionary/src/gdict-window.c:384
 msgid "Unable to create a context"
 msgstr "ஒரு சூழலை உருவாக்க முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1215
-#: ../gnome-dictionary/src/gdict-window.c:1489
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1707
 msgid "Unable to connect to GConf"
 msgstr "GConf உடன் இணைக்க முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1228
-#: ../gnome-dictionary/src/gdict-window.c:1502
+#: ../gnome-dictionary/src/gdict-applet.c:1233
+#: ../gnome-dictionary/src/gdict-window.c:1720
 msgid "Unable to get notification for preferences"
 msgstr "முன்னுரிமைகளுக்கு அறிவிப்புகளை பெற முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1242
-#: ../gnome-dictionary/src/gdict-window.c:1515
+#: ../gnome-dictionary/src/gdict-applet.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1733
 msgid "Unable to get notification for the document font"
 msgstr "ஆவண எழுத்துருக்களுக்கு அறிவிப்பினை பெற முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-common.c:68
+#: ../gnome-dictionary/src/gdict-common.c:79
 #, c-format
 msgid "Unable to rename file '%s' to '%s': %s"
 msgstr "'%s' கோப்பினை '%s'க்கு மறுபெயரிட முடியவில்லை: %s"
 
-#: ../gnome-dictionary/src/gdict-common.c:92
-#: ../gnome-dictionary/src/gdict-common.c:115
+#: ../gnome-dictionary/src/gdict-common.c:103
+#: ../gnome-dictionary/src/gdict-common.c:126
 #, c-format
 msgid "Unable to create the data directory '%s': %s"
 msgstr "தரவு அடைவினை உருவாக்க முடியவில்லை '%s': %s"
@@ -1882,15 +1917,15 @@ msgstr "இது பட்டியலிருந்து அகராதி 
 msgid "Unable to remove source '%s'"
 msgstr "மூலத்தை நீக்க முடியவில்லை '%s'"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:679
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
 msgid "Add a new dictionary source"
 msgstr "ஒரு புதிய அகராதி மூலத்தை சேர்"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:687
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
 msgid "Remove the currently selected dictionary source"
 msgstr "தற்போது தேர்ந்தெடுக்கப்பட்ட அகராதி மூலத்தை நீக்கு"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:702
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
 msgid "Set the font used for printing the definitions"
 msgstr "விளக்கங்களை அச்சிட எழுத்துருவினை அமைக்கவும்"
 
@@ -1903,128 +1938,164 @@ msgstr "%s (பக்கம் %d)"
 msgid "Print Preview"
 msgstr "அச்சு முன்பார்வை"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:300
-#: ../gnome-dictionary/src/gdict-source-dialog.c:389
+#: ../gnome-dictionary/src/gdict-source-dialog.c:303
+#: ../gnome-dictionary/src/gdict-source-dialog.c:391
 msgid "Unable to create a source file"
 msgstr "ஒரு மூல கோப்பினை உருவாக்க முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:319
-#: ../gnome-dictionary/src/gdict-source-dialog.c:407
+#: ../gnome-dictionary/src/gdict-source-dialog.c:321
+#: ../gnome-dictionary/src/gdict-source-dialog.c:409
 msgid "Unable to save source file"
 msgstr "மூலக்கோப்பினை சேமிக்க முடியவில்லை"
 
-#: ../gnome-dictionary/src/gdict-window.c:191
+#: ../gnome-dictionary/src/gdict-window.c:221
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "'%s'ஐ தேடுகிறது..."
 
-#: ../gnome-dictionary/src/gdict-window.c:220
-#: ../gnome-dictionary/src/gdict-window.c:247
+#: ../gnome-dictionary/src/gdict-window.c:251
+#: ../gnome-dictionary/src/gdict-window.c:283
 msgid "No definitions found"
 msgstr "விளக்கங்கள் எதுவும் இல்லை"
 
-#: ../gnome-dictionary/src/gdict-window.c:222
+#: ../gnome-dictionary/src/gdict-window.c:253
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "ஒரு விளக்கம் கண்டுபிடிக்கப்பட்டது"
 msgstr[1] "%d விளக்கங்கள் கண்டுபிடிக்கப்பட்டன"
 
-#: ../gnome-dictionary/src/gdict-window.c:426
+#: ../gnome-dictionary/src/gdict-window.c:449
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - அகராதி"
 
-#: ../gnome-dictionary/src/gdict-window.c:882
-msgid "_Similar Words"
-msgstr "ஒரே மாதிரியான சொற்கள் (_S)"
-
-#: ../gnome-dictionary/src/gdict-window.c:883
-msgid "Show similar words"
-msgstr "ஒரே மாதிரியான சொற்களை காட்டவும்"
-
-#: ../gnome-dictionary/src/gdict-window.c:889 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:965 ../logview/logview.c:85
 msgid "_File"
 msgstr "கோப்பு (_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:892
+#: ../gnome-dictionary/src/gdict-window.c:968
 msgid "_Go"
 msgstr "செல்(_G)"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:896
+#: ../gnome-dictionary/src/gdict-window.c:972
 msgid "_New"
 msgstr "புதிய (_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:897
+#: ../gnome-dictionary/src/gdict-window.c:973
 msgid "New look up"
 msgstr "புதிய தேடுதல்"
 
-#: ../gnome-dictionary/src/gdict-window.c:898
+#: ../gnome-dictionary/src/gdict-window.c:974
 msgid "_Save a Copy..."
 msgstr "ஒரு நகலை சேமி... (_S)"
 
-#: ../gnome-dictionary/src/gdict-window.c:900
+#: ../gnome-dictionary/src/gdict-window.c:976
 msgid "_Print..."
 msgstr "அச்சிடு... (_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:901
+#: ../gnome-dictionary/src/gdict-window.c:977
 msgid "Print this document"
 msgstr "இந்த ஆவணத்தை அச்சிடு"
 
-#: ../gnome-dictionary/src/gdict-window.c:908 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:984 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "அனைத்தையும் தேர்ந்தெடு (_A)"
 
-#: ../gnome-dictionary/src/gdict-window.c:911
+#: ../gnome-dictionary/src/gdict-window.c:987
 msgid "Find a word or phrase in the document"
 msgstr "இந்த ஆவணத்தில் ஒரு சொல் அல்லது சொற்றொடரை தேடு "
 
-#: ../gnome-dictionary/src/gdict-window.c:913
+#: ../gnome-dictionary/src/gdict-window.c:989
 msgid "Find Ne_xt"
 msgstr "அடுத்ததை தேடு (_x)"
 
-#: ../gnome-dictionary/src/gdict-window.c:915
+#: ../gnome-dictionary/src/gdict-window.c:991
 msgid "Find Pre_vious"
 msgstr "முந்தையதை தேடு (_v)"
 
 #. View menu
+#: ../gnome-dictionary/src/gdict-window.c:997
+msgid "_Sidebar"
+msgstr "பக்கப்பட்டை(_S)"
+
+#: ../gnome-dictionary/src/gdict-window.c:999
+msgid "S_tatusbar"
+msgstr "நிலைப்பட்டை (_t)"
+
+#: ../gnome-dictionary/src/gdict-window.c:1001
+msgid "Similar _Words"
+msgstr "ஒரே மாதிரியான சொற்கள் (_W)"
+
+#: ../gnome-dictionary/src/gdict-window.c:1003
+msgid "Available _Databases"
+msgstr "இருக்கும் தரவுத்தளங்கள் (_D)"
+
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:923
+#: ../gnome-dictionary/src/gdict-window.c:1007
 msgid "_Previous Definition"
 msgstr "முந்தைய விளக்கம் (_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:924
+#: ../gnome-dictionary/src/gdict-window.c:1008
 msgid "Go to the previous definition"
 msgstr "முந்தைய விளக்கத்திற்கு செல்லவும்"
 
-#: ../gnome-dictionary/src/gdict-window.c:925
+#: ../gnome-dictionary/src/gdict-window.c:1009
 msgid "_Next Definition"
 msgstr "அடுத்த விளக்கம் (_N) "
 
-#: ../gnome-dictionary/src/gdict-window.c:926
+#: ../gnome-dictionary/src/gdict-window.c:1010
 msgid "Go to the next definition"
 msgstr "அடுத்த விளக்கத்திற்கு செல்லவும்"
 
-#: ../gnome-dictionary/src/gdict-window.c:927
+#: ../gnome-dictionary/src/gdict-window.c:1011
 msgid "_First Definition"
 msgstr "முதல் விளக்கம் (_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:928
+#: ../gnome-dictionary/src/gdict-window.c:1012
 msgid "Go to the first definition"
 msgstr "முதல் விளக்கத்திற்கு செல்"
 
-#: ../gnome-dictionary/src/gdict-window.c:929
+#: ../gnome-dictionary/src/gdict-window.c:1013
 msgid "_Last Definition"
 msgstr "கடைசி விளக்கம் (_L)"
 
-#: ../gnome-dictionary/src/gdict-window.c:930
+#: ../gnome-dictionary/src/gdict-window.c:1014
 msgid "Go to the last definition"
 msgstr "கடைசி விளக்கத்திற்கு செல்"
 
-#: ../gnome-dictionary/src/gdict-window.c:1258
+#: ../gnome-dictionary/src/gdict-window.c:1140
+#, c-format
+msgid "Database `%s' selected"
+msgstr "தரவுத்தளம் `%s' தேர்ந்தெடுக்கப்பட்டது"
+
+#: ../gnome-dictionary/src/gdict-window.c:1160
+#, c-format
+msgid "Word `%s' selected"
+msgstr "வார்த்தை `%s' தேர்ந்தெடுக்கப்பட்டது"
+
+#. speller
+#: ../gnome-dictionary/src/gdict-window.c:1178
+msgid "Double-click on the word to look up"
+msgstr "தேட வேண்டிய சொல்லை இருமுறை சொடுக்கவும்"
+
+#. db-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1185
+msgid "Double-click on the database to use"
+msgstr "தரவுத்தளத்தைப் பயன்படுத்த இருமுறை சொடுக்கவும்"
+
+#: ../gnome-dictionary/src/gdict-window.c:1422
 msgid "Look _up:"
 msgstr "தேடுதல்: (_u)"
+
+#: ../gnome-dictionary/src/gdict-window.c:1487
+msgid "Similar words"
+msgstr "ஒரே மாதிரியான சொற்கள்"
+
+#: ../gnome-dictionary/src/gdict-window.c:1500
+msgid "Available dictionaries"
+msgstr "இருக்கும் அகராதிகள்"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -3189,7 +3260,9 @@ msgstr "பதிவினை காட்ட பயன்படுத்தப�
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
-msgstr "துவக்கத்தில் திறக்க வேண்டிய பதிவு கோப்புகளை குறிக்கிறது. முன்னிருப்பு பட்டியல் /etc/syslog.conf ஏ படிப்பது மூலம் உருவாக்கப்பட்டிருக்கும்."
+msgstr ""
+"துவக்கத்தில் திறக்க வேண்டிய பதிவு கோப்புகளை குறிக்கிறது. முன்னிருப்பு பட்டியல் /etc/"
+"syslog.conf ஏ படிப்பது மூலம் உருவாக்கப்பட்டிருக்கும்."
 
 #: ../logview/logview.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
@@ -3200,8 +3273,8 @@ msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"துவக்கத்தில் திறக்க வேண்டிய பதிவு கோப்புகளை குறிக்கிறது. முன்னிருப்பு /var/adm/messages அல்லது "
-"/var/log/messages, உங்கள் இயக்கத்தளத்தைப் பொருத்து இருக்கலாம்."
+"துவக்கத்தில் திறக்க வேண்டிய பதிவு கோப்புகளை குறிக்கிறது. முன்னிருப்பு /var/adm/"
+"messages அல்லது /var/log/messages, உங்கள் இயக்கத்தளத்தைப் பொருத்து இருக்கலாம்."
 
 #: ../logview/logview.schemas.in.h:8
 msgid ""
@@ -3237,60 +3310,60 @@ msgstr "பதிவு காட்டி"
 msgid "Unable to create user interface."
 msgstr "பயனர் இடைமுகத்தை உருவாக்க முடியவில்லை."
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:42
 msgid "January"
 msgstr "ஜனவரி"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:42
 msgid "February"
 msgstr "பிப்ரவரி"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:42
 msgid "March"
 msgstr "மார்ச்"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:42
 msgid "April"
 msgstr "ஏப்ரல்"
 
-#: ../logview/misc.c:40
+#: ../logview/misc.c:42
 msgid "May"
 msgstr "மே"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:43
 msgid "June"
 msgstr "ஜுன்"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:43
 msgid "July"
 msgstr "ஜூலை"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:43
 msgid "August"
 msgstr "ஆகஸ்ட்"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:43
 msgid "September"
 msgstr "செப்டம்பர்"
 
-#: ../logview/misc.c:41
+#: ../logview/misc.c:43
 msgid "October"
 msgstr "அக்டோபர்"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:44
 msgid "November"
 msgstr "நவம்பர்"
 
-#: ../logview/misc.c:42
+#: ../logview/misc.c:44
 msgid "December"
 msgstr "டிசம்பர்"
 
-#: ../logview/misc.c:162
+#: ../logview/misc.c:164
 msgid "Invalid date"
 msgstr "தவறான தேதி"
 
 #. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:167
+#: ../logview/misc.c:169
 #, c-format
 msgid "%x"
 msgstr "%x"
