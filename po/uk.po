@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-09-01 14:08+0300\n"
-"PO-Revision-Date: 2006-03-03 10:50+0300\n"
+"PO-Revision-Date: 2006-09-01 10:50+0300\n"
 "Last-Translator: Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -590,25 +590,27 @@ msgid "The document does not exist."
 msgstr "Документ не існує."
 
 #: ../baobab/src/baobab-utils.c:895
-#, fuzzy, c-format
+#, c-format
 msgid "Moving <b>%s</b> to trash failed: %s."
-msgstr "Помилка переміщення \"%s\": %s."
+msgstr "Помилка переміщення <b>%s</b> у смітник: %s."
 
 #: ../baobab/src/baobab-utils.c:909
-#, fuzzy, c-format
+#, c-format
 msgid "Do you want to delete <b>%s</b> permanently?"
-msgstr "Бажаєте остаточно видалити \"%s\"?"
+msgstr "Бажаєте остаточно видалити <b>%s</b>?"
 
 #: ../baobab/src/baobab-utils.c:921
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting <b>%s</b> failed: %s."
-msgstr "Помилка видалення \"%s\": %s."
+msgstr "Помилка видалення <b>%s</b>: %s."
 
 #: ../baobab/src/baobab-utils.c:950
 msgid ""
 "The content of your home directory has changed.\n"
 "Do you want to rescan the last tree to update the folder branch details?"
 msgstr ""
+"Зміст вашого домашнього каталогу змінено.\n"
+"Бажаєте пересканувати останнє дерево, щоб оновити інформацію про гілку теки?"
 
 #: ../baobab/src/baobab-utils.c:988 ../logview/logview.c:773
 msgid "There was an error displaying help."
@@ -616,11 +618,11 @@ msgstr "Помилка при відображенні довідки."
 
 #: ../baobab/src/callbacks.c:75
 msgid "Baobab"
-msgstr ""
+msgstr "Baobab"
 
 #: ../baobab/src/callbacks.c:76
 msgid "A graphical tool to analyse disk usage."
-msgstr ""
+msgstr "Графічний засіб аналізу використання диску."
 
 #. Translator credits
 #: ../baobab/src/callbacks.c:85 ../gnome-dictionary/src/gdict-about.c:55
@@ -631,16 +633,14 @@ msgstr ""
 "Максим Дзюманенко <dziumanenko@gmail.com>"
 
 #: ../baobab/src/callbacks.c:527
-#, fuzzy
 msgid "The folder does not exist."
-msgstr "Документ не існує."
+msgstr "Тека не існує."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
 msgstr "Форматування дискет"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
-#, fuzzy
 msgid "Format floppy disks"
 msgstr "Програма форматування дискет"
 
@@ -1045,9 +1045,8 @@ msgid "DEVICE"
 msgstr "ПРИСТРІЙ"
 
 #: ../gfloppy/src/main.c:583
-#, fuzzy
 msgid "- Floppy Formatter"
-msgstr "Форматування дискет"
+msgstr "- Форматування дискет"
 
 #: ../gfloppy/src/progress.c:126
 #, c-format
@@ -1118,9 +1117,8 @@ msgid "_Save"
 msgstr "З_берегти"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:1
-#, fuzzy
 msgid "Check word definitions and spellings in an online dictionary"
-msgstr "Пошук слів у інтерактивному словнику"
+msgstr "Пошук слів та їх написання у інтерактивному словнику"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:76
@@ -1211,9 +1209,8 @@ msgstr ""
 "Назва словникового сервера, що використовується для отримання визначень слів."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
-#, fuzzy
 msgid "The page of the sidebar to show"
-msgstr "Назва сервера словника"
+msgstr "Сторінка бічної панелі, яка відображається"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:16
 msgid ""
@@ -1225,13 +1222,14 @@ msgstr ""
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
 msgid "The width of the sidebar"
-msgstr ""
+msgstr "Ширина бічної панелі"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:18
 msgid ""
 "This key defines the width of the sidebar and it's used to remember the "
 "setting across sessions."
 msgstr ""
+"Цей ключ визначає ширину бічної панелі та використовується для запису її параметрів між сеансами."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid ""
@@ -1254,26 +1252,24 @@ msgstr ""
 "залежати від розміру шрифту."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
-#, fuzzy
 msgid ""
 "This key defines whether the sidebar should be visible and it's used to "
 "remember the state of the sidebar across sessions. Setting it to TRUE will "
 "make the sidebar always be displayed."
 msgstr ""
-"Ключ визначає чи слід виводити вікно розгорнутим та використовується, щоб "
-"запам'ятати розмір вікна словника між сеансами. При встановленні TRUE вікно "
-"програми буде завжди розгорнуте."
+"Ключ визначає чи слід відображати бічну панель та використовується, щоб "
+"запам'ятати розмір бічної панелі між сеансами. При встановленні TRUE бічна панель "
+"буде завжди розгорнуте."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
-#, fuzzy
 msgid ""
 "This key defines whether the statusbar should be visible and it's used to "
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
 msgstr ""
-"Ключ визначає чи слід виводити вікно розгорнутим та використовується, щоб "
-"запам'ятати розмір вікна словника між сеансами. При встановленні TRUE вікно "
-"програми буде завжди розгорнуте."
+"Ключ визначає чи слід виводити рядок стану та використовується, щоб "
+"запам'ятати розмір рядка стану між сеансами. При встановленні TRUE рядок стану "
+" буде завжди розгорнуте."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
@@ -1286,7 +1282,6 @@ msgstr ""
 "програми буде завжди розгорнуте."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
-#, fuzzy
 msgid ""
 "This key defines which page of the sidebar should be displayed and it's used "
 "to remember the setting across sessions.. It can be \"speller\" or "
@@ -1302,17 +1297,15 @@ msgstr "Використовувати розумний пошук (застар
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:26
 msgid "Whether the application window should be maximized"
-msgstr "Чи слід виводити вікно програми згорнутим"
+msgstr "Відображати вікно програми згорнутим"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:27
-#, fuzzy
 msgid "Whether the sidebar should be visible"
-msgstr "Чи слід виводити вікно програми згорнутим"
+msgstr "Відображати бічну панель"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:28
-#, fuzzy
 msgid "Whether the statusbar should be visible"
-msgstr "Чи слід виводити вікно програми згорнутим"
+msgstr "Відображати рядок стану"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:1
 msgid "Data_base:"
@@ -1516,14 +1509,12 @@ msgid "Whether the context uses only local dictionaries or not"
 msgstr "Чи контекст використовує лише локальні словники"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:337
-#, fuzzy
 msgid "Reload the list of available databases"
-msgstr "Натисніть, щоб розтягнути або стиснути доступних параметрів."
+msgstr "Перезавантажити список доступних баз даних"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:350
-#, fuzzy
 msgid "Clear the list of available databases"
-msgstr "Натисніть, щоб розтягнути або стиснути доступних параметрів."
+msgstr "Очистити список доступних баз даних"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:647
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1265
@@ -1539,9 +1530,8 @@ msgstr "Зачекайте доки закінчиться поточна опе
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:681
 #: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#, fuzzy
 msgid "Error while matching"
-msgstr "Помилка при запису у '%s'"
+msgstr "Помилка при співставленні"
 
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:353
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:442
@@ -1695,9 +1685,8 @@ msgid "Dictionary sources found"
 msgstr "Знайдено джерела словників"
 
 #: ../gnome-dictionary/libgdict/gdict-speller.c:351
-#, fuzzy
 msgid "Clear the list of similar words"
-msgstr "Колір слова зі словника"
+msgstr "Очистити список схожих слів"
 
 #: ../gnome-dictionary/libgdict/gdict-speller.c:376
 msgid "The GdictContext object used to get the word definition"
@@ -1708,9 +1697,8 @@ msgid "The database used to query the GdictContext"
 msgstr "База даних, що використовується для запиту GdictContext"
 
 #: ../gnome-dictionary/libgdict/gdict-speller.c:390
-#, fuzzy
 msgid "The strategy used to query the GdictContext"
-msgstr "База даних, що використовується для запиту GdictContext"
+msgstr "Стратегія, що використовується для запиту GdictContext"
 
 #: ../gnome-dictionary/src/gdict-about.c:57
 #: ../gnome-dictionary/src/gdict-applet.c:611
@@ -1767,7 +1755,6 @@ msgid "word"
 msgstr "Слово"
 
 #: ../gnome-dictionary/src/gdict-app.c:361
-#, fuzzy
 msgid "Words to match"
 msgstr "Слова для пошуку"
 
@@ -1793,17 +1780,15 @@ msgstr "База даних"
 
 #: ../gnome-dictionary/src/gdict-app.c:369
 msgid "db"
-msgstr ""
+msgstr "БД"
 
 #: ../gnome-dictionary/src/gdict-app.c:371
-#, fuzzy
 msgid "Strategy to use"
-msgstr "Стратегія"
+msgstr "Стратегія пошуку"
 
 #: ../gnome-dictionary/src/gdict-app.c:371
-#, fuzzy
 msgid "strat"
-msgstr "Стратегія"
+msgstr "стратегія"
 
 #. create the new option context
 #: ../gnome-dictionary/src/gdict-app.c:389
@@ -1951,9 +1936,8 @@ msgid "Unable to create the data directory '%s': %s"
 msgstr "Не вдається створити каталог з даними '%s': %s"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:248
-#, fuzzy
 msgid "Edit Dictionary Source"
-msgstr "Додати слово у словник"
+msgstr "Зміна джерела словника"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:312
 msgid "Add Dictionary Source"
@@ -2075,21 +2059,19 @@ msgstr "Знайти _попереднє"
 #. View menu
 #: ../gnome-dictionary/src/gdict-window.c:997
 msgid "_Sidebar"
-msgstr ""
+msgstr "_Бічна панель"
 
 #: ../gnome-dictionary/src/gdict-window.c:999
-#, fuzzy
 msgid "S_tatusbar"
-msgstr "Панель с_тану"
+msgstr "_Рядок стану"
 
 #: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Similar _Words"
-msgstr ""
+msgstr "Подібні _слова"
 
 #: ../gnome-dictionary/src/gdict-window.c:1003
-#, fuzzy
 msgid "Available _Databases"
-msgstr "Можливі параметри"
+msgstr "Доступні _бази даних"
 
 #. Go menu
 #: ../gnome-dictionary/src/gdict-window.c:1007
@@ -2125,26 +2107,24 @@ msgid "Go to the last definition"
 msgstr "Перейти до останнього визначення"
 
 #: ../gnome-dictionary/src/gdict-window.c:1140
-#, fuzzy, c-format
+#, c-format
 msgid "Database `%s' selected"
-msgstr "База даних"
+msgstr "Виділена база даних `%s'"
 
 #: ../gnome-dictionary/src/gdict-window.c:1160
 #, c-format
 msgid "Word `%s' selected"
-msgstr ""
+msgstr "Виділено слово `%s'"
 
 #. speller
 #: ../gnome-dictionary/src/gdict-window.c:1178
-#, fuzzy
 msgid "Double-click on the word to look up"
-msgstr "Введіть слово, яке треба знайти"
+msgstr "Двічі клацніть на слові для пошуку"
 
 #. db-chooser
 #: ../gnome-dictionary/src/gdict-window.c:1185
-#, fuzzy
 msgid "Double-click on the database to use"
-msgstr "Типова база даних"
+msgstr "Двічі клацніть на базі даних для її вибору"
 
 #: ../gnome-dictionary/src/gdict-window.c:1422
 msgid "Look _up:"
@@ -2152,12 +2132,11 @@ msgstr "З_найти"
 
 #: ../gnome-dictionary/src/gdict-window.c:1487
 msgid "Similar words"
-msgstr ""
+msgstr "Подібні слова"
 
 #: ../gnome-dictionary/src/gdict-window.c:1500
-#, fuzzy
 msgid "Available dictionaries"
-msgstr "Можливі параметри"
+msgstr "Доступні словники"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 msgid " (invalid Unicode)"
@@ -2271,7 +2250,7 @@ msgstr "Зберегти знімок екрану"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
-msgstr ""
+msgstr "Збереження зображень робочого столу чи окремих  вікон"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
@@ -2322,12 +2301,11 @@ msgstr ""
 "Перевірте встановлення gnome-utils"
 
 #: ../gnome-screenshot/screenshot-dialog.c:222
-#, fuzzy
 msgid "Select a folder"
-msgstr "Виберіть каталог"
+msgstr "Виберіть теку"
 
 #: ../gnome-screenshot/screenshot-save.c:42
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to clear the temporary folder:\n"
 "%s"
@@ -2376,7 +2354,7 @@ msgstr "Невідомий стан GnomeVFSXferProgressStatus %d"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Locate documents and folders on this computer by name or content"
-msgstr ""
+msgstr "Шукати документи та теки на цьому комп'ютері за назвою чи змістом"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
@@ -3187,9 +3165,8 @@ msgid "System Log"
 msgstr "Системний журнал"
 
 #: ../logview/gnome-system-log.desktop.in.in.h:2
-#, fuzzy
 msgid "View or monitor system log files"
-msgstr "Перегляд системних журналів"
+msgstr "Перегляд та контроль системних журналів"
 
 #: ../logview/log_repaint.c:187
 #, c-format
