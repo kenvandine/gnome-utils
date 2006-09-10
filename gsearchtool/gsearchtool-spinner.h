@@ -31,19 +31,20 @@
 #define _GSEARCHTOOL_SPINNER_H
 
 #include <gtk/gtkeventbox.h>
+#include <gtk/gtkenums.h>
 
 G_BEGIN_DECLS
 
-#define GSEARCH_TYPE_SPINNER	        (gsearch_spinner_get_type ())
-#define GSEARCH_SPINNER(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GSEARCH_TYPE_SPINNER, GSearchSpinner))
-#define GSEARCH_SPINNER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass), GSEARCH_TYPE_SPINNER, GSearchSpinnerClass))
-#define GSEARCH_IS_SPINNER(obj)	        (G_TYPE_CHECK_INSTANCE_TYPE((obj), GSEARCH_TYPE_SPINNER))
-#define GSEARCH_IS_SPINNER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass), GSEARCH_TYPE_SPINNER))
-#define GSEARCH_SPINNER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), GSEARCH_TYPE_SPINNER, GSearchSpinnerClass))
+#define GSEARCH_TYPE_SPINNER            (gsearch_spinner_get_type ())
+#define GSEARCH_SPINNER(o)              (G_TYPE_CHECK_INSTANCE_CAST ((o), GSEARCH_TYPE_SPINNER, GSearchSpinner))
+#define GSEARCH_SPINNER_CLASS(k)        (G_TYPE_CHECK_CLASS_CAST((k), GSEARCH_TYPE_SPINNER, GSearchSpinnerClass))
+#define GSEARCH_IS_SPINNER(o)           (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSEARCH_TYPE_SPINNER))
+#define GSEARCH_IS_SPINNER_CLASS(k)     (G_TYPE_CHECK_CLASS_TYPE ((k), GSEARCH_TYPE_SPINNER))
+#define GSEARCH_SPINNER_GET_CLASS(o)    (G_TYPE_INSTANCE_GET_CLASS ((o), GSEARCH_TYPE_SPINNER, GSearchSpinnerClass))
 
-typedef struct _GSearchSpinner GSearchSpinner;
-typedef struct _GSearchSpinnerClass GSearchSpinnerClass;
-typedef struct _GSearchSpinnerDetails GSearchSpinnerDetails;
+typedef struct _GSearchSpinner          GSearchSpinner;
+typedef struct _GSearchSpinnerClass     GSearchSpinnerClass;
+typedef struct _GSearchSpinnerDetails   GSearchSpinnerDetails;
 
 struct _GSearchSpinner {
 	GtkEventBox parent;
@@ -69,8 +70,8 @@ void
 gsearch_spinner_stop (GSearchSpinner * throbber);
 
 void
-gsearch_spinner_set_small_mode (GSearchSpinner * spinner,
-                                gboolean new_mode);
+gsearch_spinner_set_size (GSearchSpinner * spinner,
+                          GtkIconSize size);
 
 G_END_DECLS
 

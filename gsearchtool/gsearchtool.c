@@ -2900,7 +2900,6 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gsearch->progress_spinner = gsearch_spinner_new ();
 	gtk_widget_show (gsearch->progress_spinner);
 	gtk_box_pack_start (GTK_BOX (vbox), gsearch->progress_spinner, FALSE, FALSE, 0);
-	gsearch_spinner_set_small_mode (GSEARCH_SPINNER (gsearch->progress_spinner), FALSE);
 
 	gtk_drag_source_set (gsearch->progress_spinner,
 			     GDK_BUTTON1_MASK,
