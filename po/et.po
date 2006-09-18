@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-13 08:02+0200\n"
-"PO-Revision-Date: 2006-09-14 12:32+0300\n"
+"PO-Revision-Date: 2006-09-17 21:44+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -346,6 +346,8 @@ msgstr "läbivaatamine..."
 msgid "<i>Total filesystem usage:</i>"
 msgstr "<i>Kogu failisüsteemi kasutus:</i>"
 
+# lähtekoodis järgneb sellele mingi suurus. ma pole kindel aga julgen arvata,
+# et suurus väljendab püsiviitade kaudu eraldatud kettaruumi. (ökul, 17.09.2006)
 #: ../baobab/src/baobab.c:535
 msgid "contains hardlinks for:"
 msgstr ""
@@ -426,7 +428,7 @@ msgstr "Palun sisesta nimi ja proovi uuesti."
 #: ../baobab/src/baobab-remote-connect-dialog.c:301
 #, c-format
 msgid "%s on %s"
-msgstr ""
+msgstr "%s hostis %s"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:400
 msgid "_Location (URI):"
@@ -820,7 +822,7 @@ msgstr ""
 
 #: ../gfloppy/src/fdformat.c:211
 msgid "Could not determine current floppy geometry."
-msgstr "Käesoleva ketta geomeetriat ei õnnestu tuvastada."
+msgstr "Käesoleva ketta geomeetriat pole võimalik tuvastada."
 
 #: ../gfloppy/src/gfloppy.c:219
 msgid "Error while creating a unique filename for the bad blocks list file."
@@ -1263,6 +1265,9 @@ msgid ""
 "remember the state of the sidebar across sessions. Setting it to TRUE will "
 "make the sidebar always be displayed."
 msgstr ""
+"See võti määrab, kas külgpaan on nähtaval ja see on mõeldud külgpaani "
+"oleku meelespidamiseks seansside vahel. Kui see võti märkida, siis "
+"kuvatakse külgpaani alati."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
 msgid ""
@@ -1270,6 +1275,9 @@ msgid ""
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
 msgstr ""
+"See võti määrab, kas olekuriba on nähtaval ja see on mõeldud olekuriba "
+"seisundi meelespidamiseks seansside vahel. Kui see võti märkida, siis "
+"kuvatakse olekuriba alati."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
@@ -1277,6 +1285,9 @@ msgid ""
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
 msgstr ""
+"See võti määrab, kas aken tuleb maksimeerida ja see on mõeldud "
+"sõnaraamatuakna oleku meelespidamiseks seansside vahel. Kui see võti "
+"märkida, siis sõnaraamatu käivitamisel maksimeeritakse selle aken."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
 msgid ""
@@ -1916,12 +1927,12 @@ msgstr "GConf'iga pole võimalik ühenduda"
 #: ../gnome-dictionary/src/gdict-applet.c:1257
 #: ../gnome-dictionary/src/gdict-window.c:1732
 msgid "Unable to get notification for preferences"
-msgstr ""
+msgstr "Eelistuste kohta pole võimalik teavitust hankida"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1271
 #: ../gnome-dictionary/src/gdict-window.c:1745
 msgid "Unable to get notification for the document font"
-msgstr ""
+msgstr "Dokumendi kirjatüübi kohta pole võimalik teavitust hankida"
 
 #: ../gnome-dictionary/src/gdict-common.c:77
 #, c-format
@@ -2517,6 +2528,9 @@ msgid ""
 "the search tool between sessions. Setting it to -1 will make the search tool "
 "use the default height."
 msgstr ""
+"See võti määrab otsimisvahendi akna kõrguse ja see on mõeldud akna oleku "
+"meelespidamiseks seansside vahel. Kui selle võtme väärtuseks määrata -1, "
+"siis on otsimisvahendi aken vaikimisi kõrgusega."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
@@ -2524,6 +2538,9 @@ msgid ""
 "search tool between sessions. Setting it to -1 will make the search tool use "
 "the default width."
 msgstr ""
+"See võti määrab otsimisvahendi akna laiuse ja see on mõeldud akna oleku "
+"meelespidamiseks seansside vahel. Kui selle võtme väärtuseks määrata -1, "
+"siis on otsimisvahendi aken vaikimisi laiusega."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
