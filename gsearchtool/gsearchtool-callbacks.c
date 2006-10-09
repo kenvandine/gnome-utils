@@ -929,7 +929,9 @@ file_key_press_event_cb (GtkWidget * widget,
                          GdkEventKey * event,
                          gpointer data)
 {
-	if (event->keyval == GDK_space || event->keyval == GDK_Return) {
+	if (event->keyval == GDK_space  ||
+	    event->keyval == GDK_Return ||
+	    event->keyval == GDK_KP_Enter) {
 		if (event->state != GDK_CONTROL_MASK) {
 			open_file_cb ((GtkAction *) NULL, data);
 			return TRUE;
