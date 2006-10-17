@@ -715,13 +715,13 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
 }
 
 void
-gdict_show_pref_dialog (GtkWindow         *parent,
+gdict_show_pref_dialog (GtkWidget         *parent,
 			const gchar       *title,
 			GdictSourceLoader *loader)
 {
   GtkWidget *dialog;
   
-  g_return_if_fail ((parent == NULL) || GTK_IS_WINDOW (parent));
+  g_return_if_fail (GTK_IS_WIDGET (parent));
   g_return_if_fail (GDICT_IS_SOURCE_LOADER (loader));
   
   if (parent)
@@ -742,9 +742,9 @@ gdict_show_pref_dialog (GtkWindow         *parent,
                         G_CALLBACK (gtk_widget_hide_on_delete),
                         NULL);
       
-      if (parent)
+      if (parent && GTK_IS_WINDOW (parent))
         {
-          gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+          gtk_window_set_transient_for (GTK_WINDOW (dialog), GTK_WINDOW (parent));
           gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
           g_object_set_data_full (G_OBJECT (parent), "gdict-pref-dialog",
                                   dialog,
@@ -753,6 +753,8 @@ gdict_show_pref_dialog (GtkWindow         *parent,
       else
         global_dialog = dialog;
     }
-  
-  gtk_window_present (GTK_WINDOW (dialog));
+
+  gtk_window_set_screen (GTK_WINDOW (dialog),
+ 			 gtk_widget_get_screen (parent));
+  gtk_window_present (GTK_WINDOW (dialog));  
 }

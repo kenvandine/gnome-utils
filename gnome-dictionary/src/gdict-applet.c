@@ -427,6 +427,8 @@ gdict_applet_icon_toggled_cb (GtkWidget   *widget,
   
   if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (widget)))
     {
+      gtk_window_set_screen (GTK_WINDOW (priv->window),
+	                     gtk_widget_get_screen (GTK_WIDGET (applet)));
       gtk_window_present (GTK_WINDOW (priv->window));
       gtk_widget_grab_focus (priv->defbox);
       
@@ -744,7 +746,7 @@ gdict_applet_cmd_preferences (BonoboUIComponent *component,
 			      GdictApplet       *applet,
 			      const gchar       *cname)
 {
-  gdict_show_pref_dialog (NULL,
+  gdict_show_pref_dialog (GTK_WIDGET (applet),
   			  _("Dictionary Preferences"),
   			  applet->priv->loader);
 }
@@ -754,7 +756,7 @@ gdict_applet_cmd_about (BonoboUIComponent *component,
 			GdictApplet       *applet,
 			const gchar       *cname)
 {
-  gdict_show_about_dialog (NULL);
+  gdict_show_about_dialog (GTK_WIDGET (applet));
 }
 
 static void

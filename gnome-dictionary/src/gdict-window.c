@@ -804,7 +804,7 @@ gdict_window_cmd_edit_preferences (GtkAction   *action,
 {
   g_assert (GDICT_IS_WINDOW (window));
   
-  gdict_show_pref_dialog (GTK_WINDOW (window),
+  gdict_show_pref_dialog (GTK_WIDGET (window),
   			  _("Dictionary Preferences"),
   			  window->loader);
 }
@@ -1178,13 +1178,13 @@ sidebar_page_changed_cb (GdictSidebar *sidebar,
       message = _("Double-click on the word to look up");
 
       if (window->word)
-        gdict_speller_match (window->speller,
+        gdict_speller_match (GDICT_SPELLER (window->speller),
                              window->word);
       break;
     case 'd': /* db-chooser */
       message = _("Double-click on the database to use");
       
-      gdict_database_chooser_refresh (window->db_chooser);
+      gdict_database_chooser_refresh (GDICT_DATABASE_CHOOSER (window->db_chooser));
       break;
     default:
       message = NULL;
