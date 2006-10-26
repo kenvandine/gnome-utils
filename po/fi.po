@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-15 18:11+0300\n"
-"PO-Revision-Date: 2006-10-15 18:13+0300\n"
+"POT-Creation-Date: 2006-10-26 08:53+0300\n"
+"PO-Revision-Date: 2006-10-26 08:58+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Levynkäytön analysoinnin asetukset"
 
 #: ../baobab/data/baobab.glade.h:4
 msgid "Refresh graph"
-msgstr ""
+msgstr "Päivitä kaavio"
 
 #: ../baobab/data/baobab.glade.h:5
 msgid "Scan F_older..."
@@ -86,9 +86,8 @@ msgid "Scan home folder"
 msgstr "Kartoita kotikansio"
 
 #: ../baobab/data/baobab.glade.h:16
-#, fuzzy
 msgid "Select _devices to include in filesystem scan:"
-msgstr "Valitse laitteet, joilta haetaan järjestelmäkartoituksen aikana:"
+msgstr "Valitse laitteet järjestelmäkartoitusta varten:"
 
 #: ../baobab/data/baobab.glade.h:17
 msgid "St_atusbar"
@@ -144,9 +143,9 @@ msgstr "_Muokkaa"
 
 #: ../baobab/data/baobab.glade.h:30
 msgid "_Expand All"
-msgstr ""
+msgstr "_Laajenna kaikki"
 
-#: ../baobab/data/baobab.glade.h:31 ../baobab/src/baobab-utils.c:445
+#: ../baobab/data/baobab.glade.h:31 ../baobab/src/baobab-utils.c:367
 msgid "_Graphical Usage Map"
 msgstr "_Graafinen käyttökartta"
 
@@ -158,7 +157,7 @@ msgstr "O_hje"
 
 #: ../baobab/data/baobab.glade.h:33
 msgid "_Monitor changes to your home folder"
-msgstr ""
+msgstr "_Tarkkaile muutoksia kotikansioon"
 
 #: ../baobab/data/baobab.glade.h:34
 msgid "_Scan Home Folder"
@@ -214,47 +213,46 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Näytätäänkö työkalupalkki pääikkunassa"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:139 ../baobab/src/baobab-utils.c:259
+#: ../baobab/src/baobab.c:139 ../baobab/src/baobab-utils.c:188
 #: ../baobab/src/callbacks.c:292
 msgid "Calculating percentage bars..."
 msgstr "Lasketaan prosenttipalkkeja..."
 
-#: ../baobab/src/baobab.c:145 ../baobab/src/baobab.c:760
-#: ../baobab/src/baobab-utils.c:266 ../baobab/src/callbacks.c:296
+#: ../baobab/src/baobab.c:145 ../baobab/src/baobab.c:741
+#: ../baobab/src/baobab-utils.c:195 ../baobab/src/callbacks.c:296
 msgid "Ready"
 msgstr "Valmis"
 
-#: ../baobab/src/baobab.c:220 ../baobab/src/baobab-utils.c:233
+#: ../baobab/src/baobab.c:218 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
 msgstr "Kartoitetaan..."
 
-#: ../baobab/src/baobab.c:257
+#: ../baobab/src/baobab.c:252
 msgid "Total filesystem usage:"
 msgstr "Tiedostojärjestelmän kokonaiskäyttö:"
 
-#: ../baobab/src/baobab.c:313
+#: ../baobab/src/baobab.c:297
 msgid "contains hardlinks for:"
 msgstr "sisältää kovia linkkejä kohteelle:"
 
-#: ../baobab/src/baobab.c:322
+#: ../baobab/src/baobab.c:306
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d kohde"
 msgstr[1] "% 5d kohdetta"
 
-#: ../baobab/src/baobab.c:388
+#: ../baobab/src/baobab.c:369
 msgid "Invalid UTF-8 characters"
 msgstr "Virheellisiä UTF-8-merkkejä"
 
-#: ../baobab/src/baobab.c:644
+#: ../baobab/src/baobab.c:625
 msgid "Could not initialize GNOME VFS monitoring"
-msgstr ""
+msgstr "GNomen VFS-tarkkailijaa ei voitu alustaa"
 
-#: ../baobab/src/baobab.c:645
-#, fuzzy
+#: ../baobab/src/baobab.c:626
 msgid "Changes to your home folder will not be monitored."
-msgstr "Tarkkaillaanko muutoksia kotihakemistossa."
+msgstr "Muutoksia kotihakemistoosi ei tarkkailla."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -278,9 +276,8 @@ msgstr "Graafiselle ikkunalle ei voi varata muistia!"
 
 #. Main treemap window
 #: ../baobab/src/baobab-graphwin.c:307
-#, fuzzy
 msgid "Graphical Usage Map"
-msgstr "_Graafinen käyttökartta"
+msgstr "Graafinen käyttökartta"
 
 #: ../baobab/src/baobab-prefs.c:165
 msgid "Scan"
@@ -299,18 +296,17 @@ msgid "Filesystem Type"
 msgstr "Tiedostojärjestelmän tyyppi"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
-#, fuzzy, c-format
+#, c-format
 msgid "\"%s\" is not a valid location"
-msgstr "%s ei ole kelvollinen sijainti."
+msgstr "%s ei ole kelvollinen sijainti"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:135
 msgid "Please check the spelling and try again."
 msgstr "Tarkista oikeinkirjoitus ja yritä uudestaan."
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:161
-#, fuzzy
 msgid "You must enter a name for the server"
-msgstr "Palvelimelle täytyy antaa nimi."
+msgstr "Palvelimelle täytyy antaa nimi"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:164
 msgid "Please enter a name and try again."
@@ -415,127 +411,111 @@ msgstr "Valitse kansio"
 msgid "_Show hidden folders"
 msgstr "_Näytä piilokansiot"
 
-#: ../baobab/src/baobab-utils.c:156
+#: ../baobab/src/baobab-utils.c:332 ../baobab/src/baobab-utils.c:336
 #, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "Pixmap-tiedostoa ei löydy: %s"
-
-#: ../baobab/src/baobab-utils.c:410 ../baobab/src/baobab-utils.c:414
-#, fuzzy, c-format
 msgid "\"%s\" is not a valid folder"
-msgstr "%s ei ole kelvollinen kansio"
+msgstr "\"%s\" ei ole kelvollinen kansio"
 
-#: ../baobab/src/baobab-utils.c:418
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:340
 msgid "Could not analyze disk usage."
-msgstr "Graafinen työkalu levytilan käytön analysointiin"
+msgstr "Levynkäyttöä ei voitu analysoida."
 
-#: ../baobab/src/baobab-utils.c:442
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:364
 msgid "_Open Folder"
 msgstr "Avaa _kansio"
 
-#: ../baobab/src/baobab-utils.c:463
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:385
 msgid "_Remove from Trash"
-msgstr "Poista roskakorista"
+msgstr "Poista _roskakorista"
 
-#: ../baobab/src/baobab-utils.c:473 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:395 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "_Siirrä roskakoriin"
 
-#: ../baobab/src/baobab-utils.c:512
+#: ../baobab/src/baobab-utils.c:434
 msgid "Total filesystem capacity:"
 msgstr "Tiedostojärjestelmän koko:"
 
-#: ../baobab/src/baobab-utils.c:512
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:434
 msgid "Used:"
-msgstr "käytössä:"
+msgstr "Käytössä:"
 
-#: ../baobab/src/baobab-utils.c:513
+#: ../baobab/src/baobab-utils.c:435
 msgid "Free:"
-msgstr ""
+msgstr "Vapaana:"
 
-#: ../baobab/src/baobab-utils.c:559
-#, fuzzy, c-format
+#: ../baobab/src/baobab-utils.c:481
+#, c-format
 msgid "Could not open folder \"%s\""
-msgstr "Kansion \"%s\" avaaminen epäonnistui."
+msgstr "Kansiota \"%s\" ei voi avata"
 
-#: ../baobab/src/baobab-utils.c:562
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:484
 msgid "There is no installed viewer capable of displaying the folder."
-msgstr "Ei löydy ohjelmaa, joka voisi näyttää asiakirjan."
+msgstr "Kansion näyttämistä varten ei löydy asennettua katselinta."
 
-#: ../baobab/src/baobab-utils.c:627
-#, fuzzy, c-format
+#: ../baobab/src/baobab-utils.c:549
+#, c-format
 msgid "The folder \"%s\" was not moved to the trash."
-msgstr "Kohteen \"%s\" siirtäminen roskakoriin epäonnistui."
+msgstr "Kansiota \"%s\" ei siirretty roskakoriin."
 
-#: ../baobab/src/baobab-utils.c:629
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:551
 msgid "Could not find a Trash folder on this system"
-msgstr "Roskakoria ei löydy tästä järjestelmästä!"
+msgstr "Järjestelmästä ei löydy roskakorikansiota"
 
-#: ../baobab/src/baobab-utils.c:637 ../baobab/src/baobab-utils.c:651
-#, fuzzy, c-format
+#: ../baobab/src/baobab-utils.c:559 ../baobab/src/baobab-utils.c:573
+#, c-format
 msgid "Could not move \"%s\" to the Trash"
-msgstr "Kohteen \"%s\" siirtäminen roskakoriin epäonnistui."
+msgstr "Kohdetta \"%s\" ei voi siirtää roskakoriin"
 
-#: ../baobab/src/baobab-utils.c:638 ../baobab/src/callbacks.c:375
+#: ../baobab/src/baobab-utils.c:560 ../baobab/src/callbacks.c:375
 msgid "The folder does not exist."
 msgstr "Kansiota ei ole olemassa."
 
-#: ../baobab/src/baobab-utils.c:652
+#: ../baobab/src/baobab-utils.c:574
 #, c-format
 msgid "Details: %s"
-msgstr ""
+msgstr "Yksityiskohdat: %s"
 
-#: ../baobab/src/baobab-utils.c:666
-#, fuzzy, c-format
+#: ../baobab/src/baobab-utils.c:588
+#, c-format
 msgid "Delete the folder \"%s\" permanently?"
-msgstr "Haluatko poistaa kohteen \"%s\" pysyvästi?"
+msgstr "Poistetaanko kansio \"%s\" pysyvästi?"
 
-#: ../baobab/src/baobab-utils.c:669
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:591
 msgid "Could not move the folder to the trash."
-msgstr "Kohteen \"%s\" siirtäminen roskakoriin epäonnistui."
+msgstr "Kansiota ei voitu siirtää roskakoriin."
 
-#: ../baobab/src/baobab-utils.c:670
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:592
 msgid "_Delete Folder"
-msgstr "Valitse kansio"
+msgstr "_Poista kansio"
 
-#: ../baobab/src/baobab-utils.c:681 ../gsearchtool/gsearchtool-callbacks.c:874
+#: ../baobab/src/baobab-utils.c:603 ../gsearchtool/gsearchtool-callbacks.c:874
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Kohteen \"%s\" poistaminen epäonnistui: %s."
 
-#: ../baobab/src/baobab-utils.c:684
-#, fuzzy, c-format
+#: ../baobab/src/baobab-utils.c:606
+#,  c-format
 msgid "Could not delete the folder \"%s\""
-msgstr "Kansion \"%s\" avaaminen epäonnistui."
+msgstr "Kansiota \"%s\" ei voitu poistaa"
 
-#: ../baobab/src/baobab-utils.c:712
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:634
 msgid "Rescan your home folder?"
-msgstr "Kartoita etäkansio"
+msgstr "Kartoitetaanko kotikansio uudestaan?"
 
-#: ../baobab/src/baobab-utils.c:713
-#, fuzzy
+#: ../baobab/src/baobab-utils.c:635
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
 msgstr ""
-"Kotihakemiston sisältö on muuttunut.\n"
-"Haluatko päivittää edellisen puun, jotta alikansioiden yksityiskohdat "
-"täsmäävät?"
+"Kotihakemistosi sisältö on muuttunut. Valitse kotikansion "
+"uudelleenkartoitus, jos haluat päivittä levynkäytön yksityiskohdat."
 
-#: ../baobab/src/baobab-utils.c:714
+#: ../baobab/src/baobab-utils.c:636
 msgid "_Rescan"
-msgstr ""
+msgstr "Kartoita _uudestaan"
 
-#: ../baobab/src/baobab-utils.c:750 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:672 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Ohjeen näyttämisessä tapahtui virhe."
 
@@ -544,12 +524,11 @@ msgid "Baobab"
 msgstr "Baobab"
 
 #: ../baobab/src/callbacks.c:83
-#, fuzzy
 msgid "A graphical tool to analyze disk usage."
-msgstr "Graafinen työkalu levytilan käytön analysointiin"
+msgstr "Graafinen työkalu levytilan käytön analysointiin."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:57
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -1049,7 +1028,7 @@ msgid "Check word definitions and spellings in an online dictionary"
 msgstr "Etsi sanojen määrittelyjä ja kirjoitusasuja verkkosanakirjoista"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
-#: ../gnome-dictionary/src/gdict-about.c:76
+#: ../gnome-dictionary/src/gdict-about.c:78
 #: ../gnome-dictionary/src/gdict-app.c:406
 #: ../gnome-dictionary/src/gdict-window.c:451
 #: ../gnome-dictionary/src/gdict-window.c:1581
@@ -1629,8 +1608,8 @@ msgstr "GdictContext-olion kyselyssä käytettävä tietokanta"
 msgid "The strategy used to query the GdictContext"
 msgstr "GdictContext-olion kyselyssä käytettävä hakutapa"
 
-#: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:611
+#: ../gnome-dictionary/src/gdict-about.c:59
+#: ../gnome-dictionary/src/gdict-applet.c:613
 msgid "Look up words in dictionaries"
 msgstr "Etsi sanoja sanakirjoista"
 
@@ -1784,71 +1763,71 @@ msgstr "Tallenna määritelmä"
 msgid "Save the text of the definition to a file"
 msgstr "Tallenna määritelmän teksti tiedostoon"
 
-#: ../gnome-dictionary/src/gdict-applet.c:551
+#: ../gnome-dictionary/src/gdict-applet.c:553
 msgid "Toggle dictionary window"
 msgstr "Vaihtele sanakirjaikkunan näyttämistä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:552
+#: ../gnome-dictionary/src/gdict-applet.c:554
 msgid "Show or hide the definition window"
 msgstr "Piilota tai näytä määritelmäikkuna"
 
-#: ../gnome-dictionary/src/gdict-applet.c:555
+#: ../gnome-dictionary/src/gdict-applet.c:557
 msgid "Click to view the dictionary window"
 msgstr "Napsauta näyttääksesi sanakirjaikkuna"
 
-#: ../gnome-dictionary/src/gdict-applet.c:610
+#: ../gnome-dictionary/src/gdict-applet.c:612
 msgid "Dictionary entry"
 msgstr "Sanakirjan kohta"
 
-#: ../gnome-dictionary/src/gdict-applet.c:614
+#: ../gnome-dictionary/src/gdict-applet.c:616
 msgid "Type the word you want to look up"
 msgstr "Kirjoita sanat, joita haluat hakea"
 
-#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-applet.c:750
 #: ../gnome-dictionary/src/gdict-window.c:808
 msgid "Dictionary Preferences"
 msgstr "Sanakirjan asetukset"
 
-#: ../gnome-dictionary/src/gdict-applet.c:776
+#: ../gnome-dictionary/src/gdict-applet.c:778
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:511
 #: ../gnome-dictionary/src/gdict-source-dialog.c:438
 #: ../gnome-dictionary/src/gdict-window.c:931
 msgid "There was an error while displaying help"
 msgstr "Ohjetta näytettäessä tapahtui virhe"
 
-#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-applet.c:930
 #: ../gnome-dictionary/src/gdict-window.c:360
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Nimellä \"%s\" ei löydy sanakirjan lähdettä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:932
+#: ../gnome-dictionary/src/gdict-applet.c:934
 #: ../gnome-dictionary/src/gdict-window.c:364
 msgid "Unable to find dictionary source"
 msgstr "Sanakirjan lähdettä ei löydy"
 
-#: ../gnome-dictionary/src/gdict-applet.c:948
+#: ../gnome-dictionary/src/gdict-applet.c:950
 #: ../gnome-dictionary/src/gdict-window.c:380
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Lähteelle \"%s\" ei löydy kontekstia"
 
-#: ../gnome-dictionary/src/gdict-applet.c:952
+#: ../gnome-dictionary/src/gdict-applet.c:954
 #: ../gnome-dictionary/src/gdict-window.c:384
 msgid "Unable to create a context"
 msgstr "Kontekstia ei voi luoda"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-applet.c:1222
 #: ../gnome-dictionary/src/gdict-window.c:1707
 msgid "Unable to connect to GConf"
 msgstr "GConfiin ei saatu yhteyttä"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1233
+#: ../gnome-dictionary/src/gdict-applet.c:1235
 #: ../gnome-dictionary/src/gdict-window.c:1720
 msgid "Unable to get notification for preferences"
 msgstr "Huomautusta asetuksista ei saada"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1247
+#: ../gnome-dictionary/src/gdict-applet.c:1249
 #: ../gnome-dictionary/src/gdict-window.c:1733
 msgid "Unable to get notification for the document font"
 msgstr "Huomautusta asiakirjan kirjasimesta ei saada"
@@ -2085,24 +2064,24 @@ msgstr "(%d:%02d jäljellä)"
 msgid "%ld of %ld"
 msgstr "%ld / %ld"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:86
+#: ../gnome-screenshot/gnome-panel-screenshot.c:84
 msgid "Error loading help"
 msgstr "Virhe ohjeen lataamisessa"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:87
+#: ../gnome-screenshot/gnome-panel-screenshot.c:85
 msgid "There was an error displaying the help pages for this dialog:"
 msgstr "Tämän ikkunan ohjeen näyttämisessä tapahtui virhe:"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:110
+#: ../gnome-screenshot/gnome-panel-screenshot.c:108
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Kuvakaappaus-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:116
+#: ../gnome-screenshot/gnome-panel-screenshot.c:114
 #: ../gnome-screenshot/screenshot-save.c:165
 msgid "Screenshot.png"
 msgstr "Kuvakaappaus.png"
@@ -2110,7 +2089,7 @@ msgstr "Kuvakaappaus.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:152
+#: ../gnome-screenshot/gnome-panel-screenshot.c:150
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Kuvakaappaus-%s-%d.png"
@@ -2118,48 +2097,48 @@ msgstr "Kuvakaappaus-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-panel-screenshot.c:160
+#: ../gnome-screenshot/gnome-panel-screenshot.c:158
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Kuvakaappaus-%d.png"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:337
+#: ../gnome-screenshot/gnome-panel-screenshot.c:335
 msgid "Unable to take a screenshot of the current desktop."
 msgstr "Kuvan ottaminen nykyisestä työpöydästä ei onnistunut."
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:439
+#: ../gnome-screenshot/gnome-panel-screenshot.c:437
 msgid "Grab a window instead of the entire screen"
 msgstr "Ota kuva ikkunasta koko ruudun sijaan"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:440
+#: ../gnome-screenshot/gnome-panel-screenshot.c:438
 msgid "Include the window border with the screenshot"
 msgstr "Sisällytä ikkunan kehykset mukaan kuvaan"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:441
+#: ../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Ota kuva annetun viiveen (sekuntia) jälkeen"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:441
+#: ../gnome-screenshot/gnome-panel-screenshot.c:439
 msgid "seconds"
 msgstr "sekuntia"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:442
+#: ../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "Effect to add to the border"
 msgstr "Reunoihin lisättävä tehoste"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:442
+#: ../gnome-screenshot/gnome-panel-screenshot.c:440
 msgid "effect"
 msgstr "tehoste"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:452
+#: ../gnome-screenshot/gnome-panel-screenshot.c:450
 msgid "Options for Screenshot"
 msgstr "Kuvakaappauksen vaihtoehdot"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:453
+#: ../gnome-screenshot/gnome-panel-screenshot.c:451
 msgid "Show Screenshot options"
 msgstr "Näytä kuvakaapauksen vaihtoehdot"
 
-#: ../gnome-screenshot/gnome-panel-screenshot.c:457
+#: ../gnome-screenshot/gnome-panel-screenshot.c:455
 msgid "Take a picture of the screen"
 msgstr "Ota kuva näytöstä"
 
@@ -2220,7 +2199,7 @@ msgstr "Kuvakaappausten hakemisto"
 msgid "The directory the last screenshot was saved in."
 msgstr "Kansio, johon viimeisin kuvakaappaus tallennettiin."
 
-#: ../gnome-screenshot/screenshot-dialog.c:213
+#: ../gnome-screenshot/screenshot-dialog.c:220
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -2228,7 +2207,7 @@ msgstr ""
 "Kuvakaappausohjelman Glade-tiedosto puuttuu.\n"
 "Tarkista, että gnome-utils on asennettu oikein"
 
-#: ../gnome-screenshot/screenshot-dialog.c:232
+#: ../gnome-screenshot/screenshot-dialog.c:239
 msgid "Select a folder"
 msgstr "Valitse kansio"
 
@@ -3407,6 +3386,9 @@ msgstr "Tämä tiedostojärjestelmä ei tue tiedostojen tarkkailua.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS:n virhe.\n"
+
+#~ msgid "Couldn't find pixmap file: %s"
+#~ msgstr "Pixmap-tiedostoa ei löydy: %s"
 
 #~ msgid "<b>File Size</b>"
 #~ msgstr "<b>Tiedoston koko</b>: %s"
