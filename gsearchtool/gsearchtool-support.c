@@ -29,6 +29,7 @@
 #  include <config.h>
 #endif
 
+#include <string.h>
 #include <glib/gi18n.h>
 #include <glib/gdate.h>
 #include <regex.h>
