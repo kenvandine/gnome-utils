@@ -47,6 +47,7 @@ struct _GdictDatabaseChooserPrivate
   GtkWidget *treeview;
   GtkWidget *clear_button;
   GtkWidget *refresh_button;
+  GtkWidget *buttons_box;
   
   GdictContext *context;
   gint results;
@@ -59,6 +60,8 @@ struct _GdictDatabaseChooserPrivate
   guint error_id;
 
   GdkCursor *busy_cursor;
+
+  gchar *current_db;
 
   guint is_searching : 1;
 };
@@ -169,6 +172,8 @@ gdict_database_chooser_finalize (GObject *gobject)
 
   if (priv->tips)
     g_object_unref (priv->tips);
+
+  g_free (priv->current_db);
   
   G_OBJECT_CLASS (gdict_database_chooser_parent_class)->finalize (gobject);
 }
@@ -241,6 +246,9 @@ row_activated_cb (GtkTreeView       *treeview,
 		      -1);
   if (db_name && db_desc)
     {
+      g_free (priv->current_db);
+      priv->current_db = g_strdup (db_name);
+
       g_signal_emit (chooser, db_chooser_signals[DATABASE_ACTIVATED], 0,
 		     db_name, db_desc);
     }
@@ -323,6 +331,7 @@ gdict_database_chooser_constructor (GType                  type,
   gtk_widget_show (priv->treeview);
 
   hbox = gtk_hbox_new (FALSE, 0);
+  priv->buttons_box = hbox;
 
   priv->refresh_button = gtk_button_new ();
   gtk_button_set_image (GTK_BUTTON (priv->refresh_button),
@@ -711,4 +720,201 @@ gdict_database_chooser_clear (GdictDatabaseChooser *chooser)
 
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
 		  	   GTK_TREE_MODEL (priv->store));
+}
+
+typedef struct
+{
+  gchar *db_name;
+  GdictDatabaseChooser *chooser;
+  
+  guint found       : 1;
+  guint do_select   : 1;
+  guint do_activate : 1;
+} SelectData;
+
+static gboolean
+scan_for_db_name (GtkTreeModel *model,
+                  GtkTreePath  *path,
+                  GtkTreeIter  *iter,
+                  gpointer      user_data)
+{
+  SelectData *select_data = user_data;
+  gchar *db_name = NULL;
+
+  if (!select_data)
+    return TRUE;
+
+  if (select_data->found)
+    return TRUE;
+
+  gtk_tree_model_get (model, iter, DB_COLUMN_NAME, &db_name, -1);
+  if (!db_name)
+    return FALSE;
+
+  if (strcmp (db_name, select_data->db_name) == 0)
+    {
+      GtkTreeView *tree_view;
+      GtkTreeSelection *selection;
+
+      select_data->found = TRUE;
+
+      tree_view = GTK_TREE_VIEW (select_data->chooser->priv->treeview);
+      if (select_data->do_activate)
+        gtk_tree_view_row_activated (tree_view, path,
+                                     gtk_tree_view_get_column (tree_view, 2));
+
+      selection = gtk_tree_view_get_selection (tree_view);
+      if (select_data->do_select)
+        gtk_tree_selection_select_path (selection, path);
+      else
+        gtk_tree_selection_unselect_path (selection, path);
+    }
+
+  g_free (db_name);
+
+  return select_data->found;
+}
+
+gboolean
+gdict_database_chooser_select_database (GdictDatabaseChooser *chooser,
+                                        const gchar          *db_name)
+{
+  GdictDatabaseChooserPrivate *priv;
+  SelectData *data;
+  gboolean retval;
+
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (db_name != NULL, FALSE);
+
+  priv = chooser->priv;
+
+  data = g_slice_new0 (SelectData);
+  data->db_name = g_strdup (db_name);
+  data->chooser = chooser;
+  data->found = FALSE;
+  data->do_select = TRUE;
+  data->do_activate = FALSE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_db_name,
+                          data);
+
+  retval = data->found;
+
+  g_free (data->db_name);
+  g_slice_free (SelectData, data);
+
+  return retval;
+}
+
+gboolean
+gdict_database_chooser_unselect_database (GdictDatabaseChooser *chooser,
+                                          const gchar          *db_name)
+{
+  GdictDatabaseChooserPrivate *priv;
+  SelectData *data;
+  gboolean retval;
+
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (db_name != NULL, FALSE);
+
+  priv = chooser->priv;
+
+  data = g_slice_new0 (SelectData);
+  data->db_name = g_strdup (db_name);
+  data->chooser = chooser;
+  data->found = FALSE;
+  data->do_select = FALSE;
+  data->do_activate = FALSE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_db_name,
+                          data);
+
+  retval = data->found;
+
+  g_free (data->db_name);
+  g_slice_free (SelectData, data);
+
+  return retval;
+}
+
+gboolean
+gdict_database_chooser_set_current_database (GdictDatabaseChooser *chooser,
+                                             const gchar          *db_name)
+{
+  GdictDatabaseChooserPrivate *priv;
+  SelectData *data;
+  gboolean retval;
+
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (db_name != NULL, FALSE);
+
+  priv = chooser->priv;
+
+  data = g_slice_new0 (SelectData);
+  data->db_name = g_strdup (db_name);
+  data->chooser = chooser;
+  data->found = FALSE;
+  data->do_select = TRUE;
+  data->do_activate = TRUE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_db_name,
+                          data);
+
+  retval = data->found;
+
+  g_free (data->db_name);
+  g_slice_free (SelectData, data);
+
+  return retval;
+}
+
+gchar *
+gdict_database_chooser_get_current_database (GdictDatabaseChooser *chooser)
+{
+  GdictDatabaseChooserPrivate *priv;
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gchar *retval = NULL;
+
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), NULL);
+  
+  priv = chooser->priv;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    return NULL;
+
+  gtk_tree_model_get (model, &iter, DB_COLUMN_NAME, &retval, -1);
+  
+  g_free (priv->current_db);
+  priv->current_db = g_strdup (retval);
+
+  return retval;
+}
+
+GtkWidget *
+gdict_database_chooser_add_button (GdictDatabaseChooser *chooser,
+                                   const gchar          *button_text)
+{
+  GdictDatabaseChooserPrivate *priv;
+  GtkWidget *button;
+
+  g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), NULL);
+  g_return_val_if_fail (button_text != NULL, NULL);
+
+  priv = chooser->priv;
+
+  button = gtk_button_new_from_stock (button_text);
+
+  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+
+  gtk_widget_show (button);
+
+  gtk_box_pack_end (GTK_BOX (priv->buttons_box), button, FALSE, TRUE, 0);
+
+  return button;
 }

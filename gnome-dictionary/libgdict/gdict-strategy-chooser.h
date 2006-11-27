@@ -64,22 +64,30 @@ struct _GdictStrategyChooserClass
   void (*_gdict_padding6) (void);
 };
 
-GType         gdict_strategy_chooser_get_type         (void) G_GNUC_CONST;
+GType         gdict_strategy_chooser_get_type             (void) G_GNUC_CONST;
 
-GtkWidget *   gdict_strategy_chooser_new              (void);
-GtkWidget *   gdict_strategy_chooser_new_with_context (GdictContext         *context);
+GtkWidget *   gdict_strategy_chooser_new                  (void);
+GtkWidget *   gdict_strategy_chooser_new_with_context     (GdictContext         *context);
 
-GdictContext *gdict_strategy_chooser_get_context      (GdictStrategyChooser *chooser);
-void          gdict_strategy_chooser_set_context      (GdictStrategyChooser *chooser,
-						       GdictContext         *context);
-
-gchar **      gdict_strategy_chooser_get_strategies   (GdictStrategyChooser *chooser,
-						       gsize                 length) G_GNUC_MALLOC;
-gint          gdict_strategy_chooser_count_strategies (GdictStrategyChooser *chooser);
-gboolean      gdict_strategy_chooser_has_strategy     (GdictStrategyChooser *chooser,
-						       const gchar          *strategy);
-void          gdict_strategy_chooser_refresh          (GdictStrategyChooser *chooser);
-void          gdict_strategy_chooser_clear            (GdictStrategyChooser *chooser);
+GdictContext *gdict_strategy_chooser_get_context          (GdictStrategyChooser *chooser);
+void          gdict_strategy_chooser_set_context          (GdictStrategyChooser *chooser,
+						           GdictContext         *context);
+gboolean      gdict_strategy_chooser_select_strategy      (GdictStrategyChooser *chooser,
+                                                           const gchar          *strat_name);
+gboolean      gdict_strategy_chooser_unselect_strategy    (GdictStrategyChooser *chooser,
+                                                           const gchar          *strat_name);
+gboolean      gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser *chooser,
+                                                           const gchar          *strat_name);
+gchar *       gdict_strategy_chooser_get_current_strategy (GdictStrategyChooser *chooser) G_GNUC_MALLOC;
+gchar **      gdict_strategy_chooser_get_strategies       (GdictStrategyChooser *chooser,
+						           gsize                 length) G_GNUC_MALLOC;
+gint          gdict_strategy_chooser_count_strategies     (GdictStrategyChooser *chooser);
+gboolean      gdict_strategy_chooser_has_strategy         (GdictStrategyChooser *chooser,
+						           const gchar          *strategy);
+void          gdict_strategy_chooser_refresh              (GdictStrategyChooser *chooser);
+void          gdict_strategy_chooser_clear                (GdictStrategyChooser *chooser);
+GtkWidget *   gdict_strategy_chooser_add_button           (GdictStrategyChooser *chooser,
+                                                           const gchar          *button_text);
 
 G_END_DECLS
 

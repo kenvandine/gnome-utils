@@ -64,22 +64,30 @@ struct _GdictDatabaseChooserClass
   void (*_gdict_padding6) (void);
 };
 
-GType         gdict_database_chooser_get_type         (void) G_GNUC_CONST;
+GType         gdict_database_chooser_get_type             (void) G_GNUC_CONST;
 
-GtkWidget *   gdict_database_chooser_new              (void);
-GtkWidget *   gdict_database_chooser_new_with_context (GdictContext         *context);
+GtkWidget *   gdict_database_chooser_new                  (void);
+GtkWidget *   gdict_database_chooser_new_with_context     (GdictContext         *context);
 
-GdictContext *gdict_database_chooser_get_context      (GdictDatabaseChooser *chooser);
-void          gdict_database_chooser_set_context      (GdictDatabaseChooser *chooser,
-						       GdictContext         *context);
-
-gchar **      gdict_database_chooser_get_databases    (GdictDatabaseChooser *chooser,
-						       gsize                 length) G_GNUC_MALLOC;
-gint          gdict_database_chooser_count_databases  (GdictDatabaseChooser *chooser);
-gboolean      gdict_database_chooser_has_database     (GdictDatabaseChooser *chooser,
-						       const gchar          *database);
-void          gdict_database_chooser_refresh          (GdictDatabaseChooser *chooser);
-void          gdict_database_chooser_clear            (GdictDatabaseChooser *chooser);
+GdictContext *gdict_database_chooser_get_context          (GdictDatabaseChooser *chooser);
+void          gdict_database_chooser_set_context          (GdictDatabaseChooser *chooser,
+						           GdictContext         *context);
+gboolean      gdict_database_chooser_select_database      (GdictDatabaseChooser *chooser,
+                                                           const gchar          *db_name);
+gboolean      gdict_database_chooser_unselect_database    (GdictDatabaseChooser *chooser,
+                                                           const gchar          *db_name);
+gboolean      gdict_database_chooser_set_current_database (GdictDatabaseChooser *chooser,
+                                                           const gchar          *db_name);
+gchar *       gdict_database_chooser_get_current_database (GdictDatabaseChooser *chooser) G_GNUC_MALLOC;
+gchar **      gdict_database_chooser_get_databases        (GdictDatabaseChooser *chooser,
+						           gsize                 length) G_GNUC_MALLOC;
+gint          gdict_database_chooser_count_databases      (GdictDatabaseChooser *chooser);
+gboolean      gdict_database_chooser_has_database         (GdictDatabaseChooser *chooser,
+						           const gchar          *database);
+void          gdict_database_chooser_refresh              (GdictDatabaseChooser *chooser);
+void          gdict_database_chooser_clear                (GdictDatabaseChooser *chooser);
+GtkWidget *   gdict_database_chooser_add_button           (GdictDatabaseChooser *chooser,
+                                                           const gchar          *button_text);
 
 G_END_DECLS
 

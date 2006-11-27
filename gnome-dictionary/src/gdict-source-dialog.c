@@ -60,19 +60,21 @@ struct _GdictSourceDialog
   GdictSourceLoader *loader;
   GdictSource *source;
   gchar *source_name;
+  GdictContext *context;
   
   GdictSourceDialogAction action;
   
   GdictSourceTransport transport;
-  
+
   GtkWidget *add_button;
   GtkWidget *close_button;
   GtkWidget *cancel_button;
   GtkWidget *help_button;
+
+  GtkWidget *db_chooser;
+  GtkWidget *strat_chooser;
   
   GtkWidget *transport_combo;
-  GtkWidget *database_combo;
-  GtkWidget *strategy_combo;
 };
 
 struct _GdictSourceDialogClass
@@ -112,10 +114,6 @@ transport_combo_changed_cb (GtkWidget *widget,
   if (transport == dialog->transport)
     return;
 
-  /* Translators: this is the same string used in the file
-   * gnome-dictionary-preferences.glade for the transport_combo
-   * widget items.
-   */
   if (transport == GDICT_SOURCE_TRANSPORT_DICTD)
     {
       gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_label"));
@@ -139,7 +137,7 @@ transport_combo_changed_cb (GtkWidget *widget,
 
       if (dialog->action == GDICT_SOURCE_DIALOG_CREATE)
         {
-          gtk_widget_set_sensitive (dialog->add_button, TRUE);
+          gtk_widget_set_sensitive (dialog->add_button, FALSE);
           
           dialog->transport = GDICT_SOURCE_TRANSPORT_INVALID;
         }
@@ -193,6 +191,40 @@ get_text_from_combo (GdictSourceDialog *dialog,
 }
 
 static void
+set_transport_settings (GdictSourceDialog *dialog)
+{
+  switch (dialog->transport)
+    {
+    case GDICT_SOURCE_TRANSPORT_DICTD:
+      {
+        GdictClientContext *context;
+        const gchar *hostname;
+        gchar *port_str;
+        guint port;
+
+        context = GDICT_CLIENT_CONTEXT (dialog->context);
+        hostname = gdict_client_context_get_hostname (context);
+        port = gdict_client_context_get_port (context);
+        port_str = g_strdup_printf ("%d", port);
+
+        set_text_to_entry (dialog, "hostname_entry", hostname);
+        set_text_to_entry (dialog, "port_entry", port_str);
+
+        gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_label"));
+        gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_entry"));
+        gtk_widget_show (glade_xml_get_widget (dialog->xml, "port_label"));
+        gtk_widget_show (glade_xml_get_widget (dialog->xml, "port_entry"));
+
+        g_free (port_str);
+      }
+      break;
+    case GDICT_SOURCE_TRANSPORT_INVALID:
+    default:
+      break;
+    }
+}
+
+static void
 update_dialog_ui (GdictSourceDialog *dialog)
 {
   GdictSource *source;
@@ -227,7 +259,28 @@ update_dialog_ui (GdictSourceDialog *dialog)
       set_text_to_entry (dialog, "description_entry",
 		         gdict_source_get_description (source));
 
-      g_object_unref (source);
+      dialog->transport = gdict_source_get_transport (source);
+      gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->transport_combo),
+                                (gint) dialog->transport);
+
+      /* set the context for the database and strategy choosers */
+      dialog->context = gdict_source_get_context (source);
+      if (!dialog->context)
+        {
+          g_warning ("Attempting to retrieve the context, but "
+                     "none was found for source `%s'.",
+                     dialog->source_name);
+          return;
+        }
+      
+      set_transport_settings (dialog);
+
+      gdict_database_chooser_set_context (GDICT_DATABASE_CHOOSER (dialog->db_chooser),
+                                          dialog->context);
+      gdict_database_chooser_refresh (GDICT_DATABASE_CHOOSER (dialog->db_chooser));
+      gdict_strategy_chooser_set_context (GDICT_STRATEGY_CHOOSER (dialog->strat_chooser),
+                                          dialog->context);
+      gdict_strategy_chooser_refresh (GDICT_STRATEGY_CHOOSER (dialog->strat_chooser));
       break;
     case GDICT_SOURCE_DIALOG_CREATE:
       /* DICTD transport is default */
@@ -251,6 +304,8 @@ build_new_source (GdictSourceDialog *dialog)
   gsize length;
   GError *error;
   gchar *filename;
+  GdictDatabaseChooser *db_chooser;
+  GdictStrategyChooser *strat_chooser;
   
   source = gdict_source_new ();
       
@@ -264,15 +319,17 @@ build_new_source (GdictSourceDialog *dialog)
   text = get_text_from_entry (dialog, "description_entry");
   gdict_source_set_description (source, text);
   g_free (text);
-      
-  text = get_text_from_combo (dialog, "database_combo");
+
+  db_chooser = GDICT_DATABASE_CHOOSER (dialog->db_chooser);
+  text = gdict_database_chooser_get_current_database (db_chooser);
   gdict_source_set_database (source, text);
   g_free (text);
 
-  text = get_text_from_combo (dialog, "strategy_combo");
+  strat_chooser = GDICT_STRATEGY_CHOOSER (dialog->strat_chooser);
+  text = gdict_strategy_chooser_get_current_strategy (strat_chooser);
   gdict_source_set_strategy (source, text);
   g_free (text);
-      
+
   /* get the selected transport id */
   transport = dialog->transport;
   switch (transport)
@@ -330,6 +387,8 @@ static void
 save_source (GdictSourceDialog *dialog)
 {
   GdictSource *source;
+  GdictDatabaseChooser *db_chooser;
+  GdictStrategyChooser *strat_chooser;
   gchar *name, *text;
   GdictSourceTransport transport;
   gchar *host, *port;
@@ -352,15 +411,18 @@ save_source (GdictSourceDialog *dialog)
   text = get_text_from_entry (dialog, "description_entry");
   gdict_source_set_description (source, text);
   g_free (text);
-      
-  text = get_text_from_combo (dialog, "database_combo");
+
+  db_chooser = GDICT_DATABASE_CHOOSER (dialog->db_chooser);
+  text = gdict_database_chooser_get_current_database (db_chooser);
   gdict_source_set_database (source, text);
   g_free (text);
 
-  text = get_text_from_combo (dialog, "strategy_combo");
+  strat_chooser = GDICT_STRATEGY_CHOOSER (dialog->strat_chooser);
+  text = gdict_strategy_chooser_get_current_strategy (strat_chooser);
   gdict_source_set_strategy (source, text);
   g_free (text);
-      
+
+
   /* get the selected transport id */
   transport = dialog->transport;
   switch (transport)
@@ -464,6 +526,9 @@ gdict_source_dialog_finalize (GObject *object)
 
   if (dialog->source_name)
     g_free (dialog->source_name);
+
+  if (dialog->source)
+    g_object_unref (dialog->source);
   
   if (dialog->loader)
     g_object_unref (dialog->loader);
@@ -527,6 +592,7 @@ gdict_source_dialog_constructor (GType                  type,
 {
   GObject *object;
   GdictSourceDialog *dialog;
+  GtkWidget *vbox;
 
   object = G_OBJECT_CLASS (gdict_source_dialog_parent_class)->constructor (type,
 									   n_construct_properties,
@@ -555,18 +621,21 @@ gdict_source_dialog_constructor (GType                  type,
   g_signal_connect (dialog->transport_combo, "changed",
   		    G_CALLBACK (transport_combo_changed_cb),
   		    dialog);
-  
-  /* FIXME - these should be filled using then context bound to the chosen
-   * transport; this requires a bit of black magic, since we don't build the
-   * source until we are inside the response callback.
-   */
-  dialog->database_combo = glade_xml_get_widget (dialog->xml, "database_combo");
-  dialog->strategy_combo = glade_xml_get_widget (dialog->xml, "strategy_combo");
 
   /* the help button is always visible */
   dialog->help_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
   					       GTK_STOCK_HELP,
 					       GTK_RESPONSE_HELP);
+  
+  vbox = glade_xml_get_widget (dialog->xml, "db-vbox");
+  dialog->db_chooser = gdict_database_chooser_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), dialog->db_chooser, TRUE, TRUE, 0);
+  gtk_widget_show (dialog->db_chooser);
+
+  vbox = glade_xml_get_widget (dialog->xml, "strat-vbox");
+  dialog->strat_chooser = gdict_strategy_chooser_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), dialog->strat_chooser, TRUE, TRUE, 0);
+  gtk_widget_show (dialog->strat_chooser);
 
   /* the UI changes depending on the action that the source dialog
    * should perform
@@ -581,9 +650,7 @@ gdict_source_dialog_constructor (GType                  type,
       gtk_editable_set_editable (GTK_EDITABLE (glade_xml_get_widget (dialog->xml, "port_entry")), FALSE);
       
       gtk_widget_set_sensitive (dialog->transport_combo, FALSE);
-      gtk_widget_set_sensitive (dialog->database_combo, FALSE);
-      gtk_widget_set_sensitive (dialog->strategy_combo, FALSE);
-      
+
       /* we just allow closing the dialog */
       dialog->close_button  = gtk_dialog_add_button (GTK_DIALOG (dialog),
       						     GTK_STOCK_CLOSE,
@@ -602,9 +669,12 @@ gdict_source_dialog_constructor (GType                  type,
       gtk_widget_set_sensitive (dialog->add_button, FALSE);
       break;
     case GDICT_SOURCE_DIALOG_EDIT:
-      dialog->close_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
-		      				    GTK_STOCK_CLOSE,
-						    GTK_RESPONSE_CLOSE);
+      dialog->cancel_button = gtk_dialog_add_button (GTK_DIALOG (dialog),
+      						     GTK_STOCK_CANCEL,
+      						     GTK_RESPONSE_CANCEL);
+      dialog->close_button  = gtk_dialog_add_button (GTK_DIALOG (dialog),
+		      	 			     GTK_STOCK_CLOSE,
+						     GTK_RESPONSE_CLOSE);
       break;
     default:
       g_assert_not_reached ();
@@ -659,7 +729,7 @@ gdict_source_dialog_class_init (GdictSourceDialogClass *klass)
 static void
 gdict_source_dialog_init (GdictSourceDialog *dialog)
 {
-  gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+  gtk_widget_set_size_request (GTK_WIDGET (dialog), 400, 300);
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
   
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
@@ -695,7 +765,12 @@ gdict_source_dialog_new (GtkWindow               *parent,
   			 NULL);
 
   if (parent)
-    gtk_window_set_transient_for (GTK_WINDOW (retval), parent);
+    {
+      gtk_window_set_transient_for (GTK_WINDOW (retval), parent);
+      gtk_window_set_destroy_with_parent (GTK_WINDOW (retval), TRUE);
+      gtk_window_set_screen (GTK_WINDOW (retval),
+                             gtk_widget_get_screen (GTK_WIDGET (parent)));
+    }
   
   return retval;
 }

@@ -1,3 +1,23 @@
+2006-11-27  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-database-chooser.h:
+	* libgdict/gdict-database-chooser.c: Add API for selecting
+	and unselecting a database using its name; add API for
+	setting and getting the current database using its name.
+
+	* libgdict/gdict-strategy-chooser.h:
+	* libgdict/gdict-strategy-chooser.c: Ditto for the strategy
+	chooser.
+
+	* src/gdict-source-dialog.c: Commit source editing support:
+	now you can update the source by double-clicking on the
+	source list of the preferences dialog; still a bit rough
+	around the edges, but it'll come into shape.
+
+	* data/gnome-dictionary-preferences.glade: Update the
+	source dialog UI: move the database and strategy advanced
+	settings into their own tabs.
+
 2006-11-26  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/gdict-defbox.c:

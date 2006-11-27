@@ -47,6 +47,7 @@ struct _GdictStrategyChooserPrivate
   GtkWidget *treeview;
   GtkWidget *clear_button;
   GtkWidget *refresh_button;
+  GtkWidget *buttons_box;
   
   GdictContext *context;
   gint results;
@@ -59,6 +60,8 @@ struct _GdictStrategyChooserPrivate
   guint error_id;
 
   GdkCursor *busy_cursor;
+
+  gchar *current_strat;
 
   guint is_searching : 1;
 };
@@ -711,4 +714,201 @@ gdict_strategy_chooser_clear (GdictStrategyChooser *chooser)
 
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
 		  	   GTK_TREE_MODEL (priv->store));
+}
+
+typedef struct
+{
+  gchar *strat_name;
+  GdictStrategyChooser *chooser;
+  
+  guint found       : 1;
+  guint do_select   : 1;
+  guint do_activate : 1;
+} SelectData;
+
+static gboolean
+scan_for_strat_name (GtkTreeModel *model,
+                  GtkTreePath  *path,
+                  GtkTreeIter  *iter,
+                  gpointer      user_data)
+{
+  SelectData *select_data = user_data;
+  gchar *strat_name = NULL;
+
+  if (!select_data)
+    return TRUE;
+
+  if (select_data->found)
+    return TRUE;
+
+  gtk_tree_model_get (model, iter, DB_COLUMN_NAME, &strat_name, -1);
+  if (!strat_name)
+    return FALSE;
+
+  if (strcmp (strat_name, select_data->strat_name) == 0)
+    {
+      GtkTreeView *tree_view;
+      GtkTreeSelection *selection;
+
+      select_data->found = TRUE;
+
+      tree_view = GTK_TREE_VIEW (select_data->chooser->priv->treeview);
+      if (select_data->do_activate)
+        gtk_tree_view_row_activated (tree_view, path,
+                                     gtk_tree_view_get_column (tree_view, 2));
+
+      selection = gtk_tree_view_get_selection (tree_view);
+      if (select_data->do_select)
+        gtk_tree_selection_select_path (selection, path);
+      else
+        gtk_tree_selection_unselect_path (selection, path);
+    }
+
+  g_free (strat_name);
+
+  return select_data->found;
+}
+
+gboolean
+gdict_strategy_chooser_select_strategy (GdictStrategyChooser *chooser,
+                                        const gchar          *strat_name)
+{
+  GdictStrategyChooserPrivate *priv;
+  SelectData *data;
+  gboolean retval;
+
+  g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (strat_name != NULL, FALSE);
+
+  priv = chooser->priv;
+
+  data = g_slice_new0 (SelectData);
+  data->strat_name = g_strdup (strat_name);
+  data->chooser = chooser;
+  data->found = FALSE;
+  data->do_select = TRUE;
+  data->do_activate = FALSE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_strat_name,
+                          data);
+
+  retval = data->found;
+
+  g_free (data->strat_name);
+  g_slice_free (SelectData, data);
+
+  return retval;
+}
+
+gboolean
+gdict_strategy_chooser_unselect_strategy (GdictStrategyChooser *chooser,
+                                          const gchar          *strat_name)
+{
+  GdictStrategyChooserPrivate *priv;
+  SelectData *data;
+  gboolean retval;
+
+  g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (strat_name != NULL, FALSE);
+
+  priv = chooser->priv;
+
+  data = g_slice_new0 (SelectData);
+  data->strat_name = g_strdup (strat_name);
+  data->chooser = chooser;
+  data->found = FALSE;
+  data->do_select = FALSE;
+  data->do_activate = FALSE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_strat_name,
+                          data);
+
+  retval = data->found;
+
+  g_free (data->strat_name);
+  g_slice_free (SelectData, data);
+
+  return retval;
+}
+
+gboolean
+gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser *chooser,
+                                             const gchar          *strat_name)
+{
+  GdictStrategyChooserPrivate *priv;
+  SelectData *data;
+  gboolean retval;
+
+  g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), FALSE);
+  g_return_val_if_fail (strat_name != NULL, FALSE);
+
+  priv = chooser->priv;
+
+  data = g_slice_new0 (SelectData);
+  data->strat_name = g_strdup (strat_name);
+  data->chooser = chooser;
+  data->found = FALSE;
+  data->do_select = TRUE;
+  data->do_activate = TRUE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_strat_name,
+                          data);
+
+  retval = data->found;
+
+  g_free (data->strat_name);
+  g_slice_free (SelectData, data);
+
+  return retval;
+}
+
+gchar *
+gdict_strategy_chooser_get_current_strategy (GdictStrategyChooser *chooser)
+{
+  GdictStrategyChooserPrivate *priv;
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gchar *retval = NULL;
+
+  g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), NULL);
+  
+  priv = chooser->priv;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    return NULL;
+
+  gtk_tree_model_get (model, &iter, DB_COLUMN_NAME, &retval, -1);
+  
+  g_free (priv->current_strat);
+  priv->current_strat = g_strdup (retval);
+
+  return retval;
+}
+
+GtkWidget *
+gdict_strategy_chooser_add_button (GdictStrategyChooser *chooser,
+                                   const gchar          *button_text)
+{
+  GdictStrategyChooserPrivate *priv;
+  GtkWidget *button;
+
+  g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), NULL);
+  g_return_val_if_fail (button_text != NULL, NULL);
+
+  priv = chooser->priv;
+
+  button = gtk_button_new_from_stock (button_text);
+
+  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+
+  gtk_widget_show (button);
+
+  gtk_box_pack_end (GTK_BOX (priv->buttons_box), button, FALSE, TRUE, 0);
+
+  return button;
 }
