@@ -1775,3 +1775,34 @@ gdict_defbox_get_font_name (GdictDefbox *defbox)
 
   return defbox->priv->font_name;
 }
+
+/**
+ * gdict_defbox_get_selected_word:
+ * @defbox: a #GdictDefbox
+ *
+ * Since: 0.11
+ */
+gchar *
+gdict_defbox_get_selected_word (GdictDefbox *defbox)
+{
+  GdictDefboxPrivate *priv;
+  GtkTextBuffer *buffer;
+
+  g_return_val_if_fail (GDICT_IS_DEFBOX (defbox), NULL);
+
+  priv = defbox->priv;
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->text_view));
+
+  if (!gtk_text_buffer_get_has_selection (buffer))
+    return NULL;
+  else
+    {
+      GtkTextIter start, end;
+      gchar *retval;
+
+      gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
+      retval = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+
+      return retval;
+    }
+}

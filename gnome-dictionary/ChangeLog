@@ -1,5 +1,15 @@
 2006-11-27  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
+	* libgdict/gdict-defbox.h:
+	* libgdict/gdict-defbox.c: Add a function for getting the
+	currently selected word from the defbox.
+
+	* src/gdict-window.c:
+	(gdict_window_cmd_file_new): Automatically lookup the
+	selected text when opening a new window. (#166015)
+
+2006-11-27  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
 	* libgdict/gdict-database-chooser.h:
 	* libgdict/gdict-database-chooser.c: Add API for selecting
 	and unselecting a database using its name; add API for

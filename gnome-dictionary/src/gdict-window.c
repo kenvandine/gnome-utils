@@ -619,6 +619,7 @@ gdict_window_cmd_file_new (GtkAction   *action,
 			   GdictWindow *window)
 {
   GtkWidget *new_window;
+  gchar *word = NULL;
   
   /* store the default size of the window and its state, so that
    * it's picked up by the newly created window
@@ -651,10 +652,20 @@ gdict_window_cmd_file_new (GtkAction   *action,
 		  	 GDICT_GCONF_STATUSBAR_VISIBLE_KEY,
 			 window->statusbar_visible,
 			 NULL);
- 
-  new_window = gdict_window_new (GDICT_WINDOW_ACTION_CLEAR,
-  				 window->loader,
-				 NULL, NULL);
+
+  word = gdict_defbox_get_selected_word (GDICT_DEFBOX (window->defbox));
+  if (word)
+    {
+      new_window = gdict_window_new (GDICT_WINDOW_ACTION_LOOKUP,
+                                     window->loader,
+                                     NULL, word);
+      g_free (word);
+    }
+  else
+    new_window = gdict_window_new (GDICT_WINDOW_ACTION_CLEAR,
+                                   window->loader,
+                                   NULL, NULL);
+
   gtk_widget_show (new_window);
   
   g_signal_emit (window, gdict_window_signals[CREATED], 0, new_window);

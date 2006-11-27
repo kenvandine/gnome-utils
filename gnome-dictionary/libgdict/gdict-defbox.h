@@ -80,11 +80,9 @@ void                  gdict_defbox_copy_to_clipboard  (GdictDefbox  *defbox,
 void                  gdict_defbox_clear              (GdictDefbox  *defbox);
 void                  gdict_defbox_lookup             (GdictDefbox  *defbox,
 						       const gchar  *word);
-					       
 gint                  gdict_defbox_count_definitions  (GdictDefbox  *defbox);
 void                  gdict_defbox_jump_to_definition (GdictDefbox  *defbox,
 						       gint          number);
-					       
 void                  gdict_defbox_set_show_find      (GdictDefbox  *defbox,
 						       gboolean      show_find);
 gboolean              gdict_defbox_get_show_find      (GdictDefbox  *defbox);
@@ -93,6 +91,7 @@ void                  gdict_defbox_find_previous      (GdictDefbox  *defbox);
 void                  gdict_defbox_set_font_name      (GdictDefbox  *defbox,
 						       const gchar  *font_name);
 G_CONST_RETURN gchar *gdict_defbox_get_font_name      (GdictDefbox  *defbox);
+gchar *               gdict_defbox_get_selected_word  (GdictDefbox  *defbox) G_GNUC_MALLOC;
 
 G_END_DECLS
 
