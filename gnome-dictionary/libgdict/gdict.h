@@ -27,6 +27,7 @@
 #include "gdict-database-chooser.h"
 #include "gdict-defbox.h"
 #include "gdict-speller.h"
+#include "gdict-strategy-chooser.h"
 #include "gdict-utils.h"
 #include "gdict-enum-types.h"
 #include "gdict-version.h"

@@ -49,6 +49,8 @@ libgdict_1_0_la_SOURCES =	\
 	gdict-source-loader.h	\
 	gdict-speller.c		\
 	gdict-speller.h		\
+	gdict-strategy-chooser.h \
+	gdict-strategy-chooser.c \
 	gdict-utils.c		\
 	gdict-utils.h		\
 	$(NULL)
@@ -71,6 +73,7 @@ libgdict_include_HEADERS = 	\
 	gdict-source.h		\
 	gdict-source-loader.h	\
 	gdict-speller.h		\
+	gdict-strategy-chooser.h \
 	gdict-utils.h		\
 	gdict-version.h 	\
 	gdict.h			\
@@ -122,6 +125,7 @@ libgdict_enum_headers = \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source-loader.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-speller.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-strategy-chooser.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-utils.h \
 	$(NULL)
 

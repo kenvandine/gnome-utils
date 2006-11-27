@@ -55,6 +55,11 @@
 #define GDICT_WINDOW_MIN_WIDTH	  400
 #define GDICT_WINDOW_MIN_HEIGHT	  330
 
+/* sidebar pages logical ids */
+#define GDICT_SIDEBAR_SPELLER_PAGE      "speller"
+#define GDICT_SIDEBAR_DATABASES_PAGE    "db-chooser"
+#define GDICT_SIDEBAR_STRATEGIES_PAGE   "strat-chooser"
+
 enum
 {
   COMPLETION_TEXT_COLUMN,
@@ -157,10 +162,16 @@ gdict_window_set_sidebar_visible (GdictWindow *window,
   
   if (is_visible != window->sidebar_visible)
     {
+      GtkAction *action;
+
       if (is_visible)
 	gtk_widget_show (window->sidebar_frame);
       else
 	gtk_widget_hide (window->sidebar_frame);
+
+      action = gtk_action_group_get_action (window->action_group,
+                                            "ViewSidebar");
+      gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), is_visible);
 
       window->sidebar_visible = is_visible;
     }
@@ -174,10 +185,16 @@ gdict_window_set_statusbar_visible (GdictWindow *window,
 
   if (is_visible != window->statusbar_visible)
     {
+      GtkAction *action;
+
       if (is_visible)
 	gtk_widget_show (window->status);
       else
 	gtk_widget_hide (window->status);
+
+      action = gtk_action_group_get_action (window->action_group,
+                                            "ViewStatusbar");
+      gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), is_visible);
 
       window->statusbar_visible = is_visible;
     }
@@ -291,7 +308,8 @@ gdict_window_error_cb (GdictContext *context,
       GdictContext *context;
 
       gdict_window_set_sidebar_visible (window, TRUE);
-      gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), "speller");
+      gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar),
+                               GDICT_SIDEBAR_SPELLER_PAGE);
 
       /* we clone the context, so that the signals that it
        * fires do not get caught by the signal handlers we
@@ -841,7 +859,8 @@ gdict_window_cmd_view_speller (GtkAction   *action,
 {
   g_assert (GDICT_IS_WINDOW (window));
 
-  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), "speller");
+  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar),
+                           GDICT_SIDEBAR_SPELLER_PAGE);
   gdict_window_set_sidebar_visible (window, TRUE);
 }
 
@@ -851,7 +870,19 @@ gdict_window_cmd_view_databases (GtkAction   *action,
 {
   g_assert (GDICT_IS_WINDOW (window));
 
-  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), "databases");
+  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar),
+                           GDICT_SIDEBAR_DATABASES_PAGE);
+  gdict_window_set_sidebar_visible (window, TRUE);
+}
+
+static void
+gdict_window_cmd_view_strategies (GtkAction   *action,
+                                  GdictWindow *window)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar),
+                           GDICT_SIDEBAR_STRATEGIES_PAGE);
   gdict_window_set_sidebar_visible (window, TRUE);
 }
 
@@ -993,16 +1024,6 @@ static const GtkActionEntry entries[] =
   { "EditPreferences", GTK_STOCK_PREFERENCES, N_("_Preferences"), NULL, NULL,
     G_CALLBACK (gdict_window_cmd_edit_preferences) },
 
-  /* View menu */
-  { "ViewSidebar", NULL, N_("_Sidebar"), "F9", NULL,
-    G_CALLBACK (gdict_window_cmd_view_sidebar) },
-  { "ViewStatusbar", NULL, N_("S_tatusbar"), NULL, NULL,
-    G_CALLBACK (gdict_window_cmd_view_statusbar) },
-  { "ViewSpeller", NULL, N_("Similar _Words"), "<control>T", NULL,
-    G_CALLBACK (gdict_window_cmd_view_speller) },
-  { "ViewDB", NULL, N_("Available _Databases"), "<control>B", NULL,
-    G_CALLBACK (gdict_window_cmd_view_databases) },
-
   /* Go menu */
   { "GoPreviousDef", GTK_STOCK_GO_BACK, N_("_Previous Definition"), "<control>Page_Up",
     N_("Go to the previous definition"), G_CALLBACK (gdict_window_cmd_go_previous_def) },
@@ -1012,6 +1033,14 @@ static const GtkActionEntry entries[] =
     N_("Go to the first definition"), G_CALLBACK (gdict_window_cmd_go_first_def) },
   { "GoLastDef", GTK_STOCK_GOTO_LAST, N_("_Last Definition"), "<control>End",
     N_("Go to the last definition"), G_CALLBACK (gdict_window_cmd_go_last_def) },
+
+  /* View menu */
+  { "ViewSpeller", NULL, N_("Similar _Words"), "<control>T", NULL,
+    G_CALLBACK (gdict_window_cmd_view_speller), },
+  { "ViewDB", NULL, N_("Available _Databases"), "<control>B", NULL,
+    G_CALLBACK (gdict_window_cmd_view_databases), },
+  { "ViewStrat", NULL, N_("Available St_rategies"), "<control>R", NULL,
+    G_CALLBACK (gdict_window_cmd_view_strategies), },
 
   /* Help menu */
   { "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", NULL,
@@ -1023,6 +1052,14 @@ static const GtkActionEntry entries[] =
   { "Lookup", NULL, "", "<control>L", NULL, G_CALLBACK (gdict_window_cmd_lookup) },
   { "Escape", NULL, "", "Escape", "", G_CALLBACK (gdict_window_cmd_escape) },
   { "Slash", GTK_STOCK_FIND, NULL, "slash", NULL, G_CALLBACK (gdict_window_cmd_edit_find) },
+};
+
+static const GtkToggleActionEntry toggle_entries[] = {
+  /* View menu */
+  { "ViewSidebar", NULL, N_("_Sidebar"), "F9", NULL,
+    G_CALLBACK (gdict_window_cmd_view_sidebar), FALSE },
+  { "ViewStatusbar", NULL, N_("S_tatusbar"), NULL, NULL,
+    G_CALLBACK (gdict_window_cmd_view_statusbar), FALSE },
 };
 
 static gboolean
@@ -1107,22 +1144,39 @@ gdict_window_gconf_notify_cb (GConfClient *client,
 }
 
 static void
-entry_activate_cb (GtkWidget   *widget,
-		   GdictWindow *window)
+lookup_word (GdictWindow *window,
+             gpointer     dummy)
 {
   const gchar *word;
-  gchar *title;
   
   g_assert (GDICT_IS_WINDOW (window));
   
   if (!window->context)
     return;
   
-  word = gtk_entry_get_text (GTK_ENTRY (widget));
+  word = gtk_entry_get_text (GTK_ENTRY (window->entry));
   if (!word || *word == '\0')
     return;
 
   gdict_window_set_word (window, word, NULL);
+}
+
+static void
+strategy_activated_cb (GdictStrategyChooser *chooser,
+                       const gchar          *strat_name,
+                       const gchar          *strat_desc,
+                       GdictWindow          *window)
+{
+  gdict_window_set_strategy (window, strat_name);
+
+  if (window->status)
+    {
+      gchar *message;
+
+      message = g_strdup_printf (_("Strategy `%s' selected"), strat_desc);
+      gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
+      g_free (message);
+    }
 }
 
 static void
@@ -1174,12 +1228,25 @@ sidebar_page_changed_cb (GdictSidebar *sidebar,
 
   switch (page_id[0])
     {
-    case 's': /* speller */
-      message = _("Double-click on the word to look up");
-
-      if (window->word)
-        gdict_speller_match (GDICT_SPELLER (window->speller),
-                             window->word);
+    case 's':
+      {
+      switch (page_id[1])
+        {
+        case 'p': /* speller */
+          message = _("Double-click on the word to look up");
+          if (window->word)
+            gdict_speller_match (GDICT_SPELLER (window->speller),
+                                 window->word);
+          break;
+        case 't': /* strat-chooser */
+          message = _("Double-click on the matching strategy to use");
+          
+          gdict_strategy_chooser_refresh (GDICT_STRATEGY_CHOOSER (window->strat_chooser));
+          break;
+        default:
+          message = NULL;
+        }
+      }
       break;
     case 'd': /* db-chooser */
       message = _("Double-click on the database to use");
@@ -1359,7 +1426,7 @@ gdict_window_constructor (GType                  type,
   GtkWidget *handle;
   GtkWidget *frame1, *frame2;
   GtkWidget *vbox;
-  GtkWidget *label;
+  GtkWidget *button;
   GtkActionGroup *action_group;
   GtkAccelGroup *accel_group;
   GtkAction *action;
@@ -1387,6 +1454,9 @@ gdict_window_constructor (GType                  type,
   gtk_action_group_add_actions (action_group, entries,
   				G_N_ELEMENTS (entries),
   				window);
+  gtk_action_group_add_toggle_actions (action_group, toggle_entries,
+                                       G_N_ELEMENTS (toggle_entries),
+                                       window);
   
   window->ui_manager = gtk_ui_manager_new ();
   gtk_ui_manager_insert_action_group (window->ui_manager, action_group, 0);
@@ -1419,9 +1489,13 @@ gdict_window_constructor (GType                  type,
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
   
-  label = gtk_label_new_with_mnemonic (_("Look _up:"));
-  gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 0);
-  gtk_widget_show (label);
+  button = gtk_button_new_with_mnemonic (_("Look _up:"));
+  g_signal_connect_swapped (button, "clicked",
+                            G_CALLBACK (lookup_word),
+                            window);
+  gtk_button_set_relief (GTK_BUTTON (button), GTK_RELIEF_NONE);
+  gtk_box_pack_start (GTK_BOX (hbox), button, FALSE, FALSE, 0);
+  gtk_widget_show (button);
 
   window->completion_model = gtk_list_store_new (COMPLETION_N_COLUMNS,
 		  				 G_TYPE_STRING);
@@ -1439,11 +1513,11 @@ gdict_window_constructor (GType                  type,
   
   gtk_entry_set_completion (GTK_ENTRY (window->entry),
 		  	    window->completion);
-  g_signal_connect (window->entry, "activate", G_CALLBACK (entry_activate_cb), window);
+  g_signal_connect_swapped (window->entry, "activate",
+                            G_CALLBACK (lookup_word),
+                            window);
   gtk_box_pack_start (GTK_BOX (hbox), window->entry, TRUE, TRUE, 0);
   gtk_widget_show (window->entry);
-
-  gtk_label_set_mnemonic_widget (GTK_LABEL (label), window->entry);
 
   handle = gtk_hpaned_new ();
   gtk_box_pack_start (GTK_BOX (vbox), handle, TRUE, TRUE, 0);
@@ -1483,7 +1557,7 @@ gdict_window_constructor (GType                  type,
 		    window);
   
   gdict_sidebar_add_page (GDICT_SIDEBAR (window->sidebar),
-		          "speller",
+		          GDICT_SIDEBAR_SPELLER_PAGE,
 			  _("Similar words"),
 			  window->speller);
   gtk_widget_show (window->speller);
@@ -1496,11 +1570,24 @@ gdict_window_constructor (GType                  type,
 	  	    G_CALLBACK (database_activated_cb),
 		    window);
   gdict_sidebar_add_page (GDICT_SIDEBAR (window->sidebar),
-	  		  "db-chooser",
+	  		  GDICT_SIDEBAR_DATABASES_PAGE,
 			  _("Available dictionaries"),
 			  window->db_chooser);
   gtk_widget_show (window->db_chooser);
-  
+
+  window->strat_chooser = gdict_strategy_chooser_new ();
+  if (window->context)
+    gdict_strategy_chooser_set_context (GDICT_STRATEGY_CHOOSER (window->strat_chooser),
+                                        window->context);
+  g_signal_connect (window->strat_chooser, "strategy-activated",
+                    G_CALLBACK (strategy_activated_cb),
+                    window);
+  gdict_sidebar_add_page (GDICT_SIDEBAR (window->sidebar),
+                          GDICT_SIDEBAR_STRATEGIES_PAGE,
+                          _("Available strategies"),
+                          window->strat_chooser);
+  gtk_widget_show (window->strat_chooser);
+
   gtk_container_add (GTK_CONTAINER (frame2), window->sidebar);
   gtk_widget_show (window->sidebar);
 
@@ -1600,6 +1687,8 @@ gdict_window_constructor (GType                  type,
   g_signal_connect (handle, "notify::position",
 		    G_CALLBACK (gdict_window_handle_notify_position_cb),
 		    window);
+
+  gtk_widget_grab_focus (window->entry);
 
   gtk_widget_pop_composite_child ();
   

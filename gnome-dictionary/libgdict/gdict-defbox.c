@@ -540,9 +540,10 @@ static void
 gdict_defbox_init_tags (GdictDefbox *defbox)
 {
   GdictDefboxPrivate *priv = defbox->priv;
+  GdkColor link_color, visited_color;
   
   g_assert (GTK_IS_TEXT_BUFFER (priv->buffer));
-  
+
   gtk_text_buffer_create_tag (priv->buffer, "italic",
   			      "style", PANGO_STYLE_ITALIC,
   			      NULL);
@@ -559,10 +560,23 @@ gdict_defbox_init_tags (GdictDefbox *defbox)
   gtk_text_buffer_create_tag (priv->buffer, "small",
 		  	      "scale", PANGO_SCALE_SMALL,
 			      NULL);  
-  
-  gtk_text_buffer_create_tag (priv->buffer, "emphasis",
-  			      "foreground", "dark green",
-  			      NULL);
+
+  gtk_widget_style_get (GTK_WIDGET (defbox),
+                        "link-color", &link_color,
+                        "visited-link-color", &visited_color,
+                        NULL);
+  gtk_text_buffer_create_tag (priv->buffer, "link",
+                              "underline", PANGO_UNDERLINE_SINGLE,
+                              "foreground-gdk", &link_color,
+                              NULL);
+  gtk_text_buffer_create_tag (priv->buffer, "visited-link",
+                              "underline", PANGO_UNDERLINE_SINGLE,
+                              "foreground-gdk", &visited_color,
+                              NULL);
+
+  gtk_text_buffer_create_tag (priv->buffer, "phonetic",
+                              "foreground", "dark gray",
+                              NULL);
 
   gtk_text_buffer_create_tag (priv->buffer, "query-title",
 		              "left-margin", QUERY_MARGIN,
@@ -1085,13 +1099,68 @@ gdict_defbox_insert_word (GdictDefbox *defbox,
   g_free (text);
 }
 
+/* escape a link string; links are expressed as "{...}".
+ * the link with the '{}' removed is stored inside link_str, while
+ * the returned value is a pointer to what follows the trailing '}'.
+ * link_str is allocated and should be freed.
+ */
+static const gchar *
+escape_link (const gchar  *str,
+             gchar       **link_str)
+{
+  gsize str_len;
+  GString *link_buf;
+  const gchar *p;
+
+  str_len = strlen (str);
+  link_buf = g_string_sized_new (str_len - 2);
+
+  for (p = str + 1; *p != '}'; p++)
+    {
+      link_buf = g_string_append_c (link_buf, *p);
+    }
+
+  if (link_str)
+    *link_str = g_string_free (link_buf, FALSE);
+
+  p++;
+
+  return p;
+}
+
+static const gchar *
+escape_phonethic (const gchar  *str,
+                  gchar       **phon_str)
+{
+  gsize str_len;
+  GString *phon_buf;
+  const gchar *p;
+
+  str_len = strlen (str);
+  phon_buf = g_string_sized_new (str_len - 2);
+
+  for (p = str + 1; *p != '\\'; p++)
+    {
+      phon_buf = g_string_append_c (phon_buf, *p);
+    }
+
+  if (phon_str)
+    *phon_str = g_string_free (phon_buf, FALSE);
+
+  p++;
+
+  return p;
+}
+
 static void
 gdict_defbox_insert_body (GdictDefbox *defbox,
 			  GtkTextIter *iter,
 			  const gchar *body)
 {
   GdictDefboxPrivate *priv;
-  gchar *text;
+  gchar **words;
+  gint len, i;
+  GtkTextIter end_iter;
   
   if (!body)
     return;
@@ -1100,13 +1169,136 @@ gdict_defbox_insert_body (GdictDefbox *defbox,
   priv = defbox->priv;
   
   g_assert (GTK_IS_TEXT_BUFFER (priv->buffer));
-  
-  text = g_strdup_printf ("%s\n", body);
-  
-  gtk_text_buffer_insert (priv->buffer,
-  			  iter,
-  			  text, strlen (text));
-  g_free (text);
+
+  words = g_strsplit (body, " ", -1);
+  len = g_strv_length (words);
+  end_iter = *iter;
+
+  for (i = 0; i < len; i++)
+    {
+      gchar *w = words[i];
+      gint w_len = strlen (w);
+      gchar *begin, *end;
+
+      if (w_len == 0)
+        continue;
+
+      begin = g_utf8_offset_to_pointer (w, 0);
+
+      if (*begin == '{')
+        {
+          end = g_utf8_strrchr (w, -1, '}');
+
+          /* see this is a self contained link */
+          if (end && *end == '}')
+            {
+              const gchar *rest;
+              gchar *link;
+
+              rest = escape_link (w, &link);
+
+              gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
+                                                        &end_iter,
+                                                        link, -1,
+                                                        "link",
+                                                        NULL);
+
+              gtk_text_buffer_insert (priv->buffer, &end_iter, rest, -1);
+
+              gtk_text_buffer_get_end_iter (priv->buffer, &end_iter);
+              gtk_text_buffer_insert (priv->buffer, &end_iter, " ", 1);
+
+              g_free (link);
+
+              continue;
+            }
+          else
+            {
+              /* uh-oh: the link ends in another word */
+              GString *buf;
+              gchar *next;
+              gint cur = i;
+
+              buf = g_string_new (NULL);
+              next = words[cur++];
+
+              while ((end = g_utf8_strrchr (next, -1, '}')) == NULL)
+                {
+                  buf = g_string_append (buf, next);
+                  buf = g_string_append_c (buf, ' ');
+
+                  next = words[cur++];
+                }
+
+              buf = g_string_append (buf, next);
+
+              next = g_string_free (buf, FALSE);
+
+              if (*end == '}')
+                {
+                  const gchar *rest;
+                  gchar *link;
+
+                  rest = escape_link (next, &link);
+
+                  gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
+                                                            &end_iter,
+                                                            link, -1,
+                                                            "link",
+                                                            NULL);
+
+                  gtk_text_buffer_insert (priv->buffer, &end_iter, rest, -1);
+                  gtk_text_buffer_insert (priv->buffer, &end_iter, " ", 1);
+
+                  g_free (link);
+                }
+
+              g_free (next);
+              i = cur;
+
+              continue;
+            }
+        }
+      else if (*begin == '\\')
+        {
+          end = g_utf8_strrchr (w, -1, '\\');
+
+          if (end && *end == '\\')
+            {
+              const gchar *rest;
+              gchar *phon;
+
+              rest = escape_phonethic (w, &phon);
+
+              gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
+                                                        &end_iter,
+                                                        phon, -1,
+                                                        "italic", "phonetic",
+                                                        NULL);
+
+              gtk_text_buffer_insert (priv->buffer, &end_iter, rest, -1);
+
+              gtk_text_buffer_get_end_iter (priv->buffer, &end_iter);
+              gtk_text_buffer_insert (priv->buffer, &end_iter, " ", -1);
+
+              g_free (phon);
+
+              continue;
+            }
+        }
+      
+      gtk_text_buffer_insert (priv->buffer, &end_iter, w, w_len);
+
+      gtk_text_buffer_get_end_iter (priv->buffer, &end_iter);
+      gtk_text_buffer_insert (priv->buffer, &end_iter, " ", 1);
+    }
+
+  gtk_text_buffer_get_end_iter (priv->buffer, &end_iter);
+  gtk_text_buffer_insert (priv->buffer, &end_iter, "\n", 1);
+
+  *iter = end_iter;
+
+  g_strfreev (words);
 }
 
 static void

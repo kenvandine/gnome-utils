@@ -54,12 +54,18 @@ struct _GdictWindow
   GtkWidget *main_box;
   GtkWidget *menubar;
   GtkWidget *entry;
+  
+  /* sidebar widgets */
   GtkWidget *speller;
   GtkWidget *db_chooser;
+  GtkWidget *strat_chooser;
+
   GtkWidget *sidebar;
   GtkWidget *sidebar_frame;
+  
   GtkWidget *defbox;
   GtkWidget *defbox_frame;
+
   GtkWidget *status;
   GtkWidget *progress;
   
