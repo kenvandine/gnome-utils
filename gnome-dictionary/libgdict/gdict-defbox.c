@@ -76,8 +76,11 @@ struct _GdictDefboxPrivate
   
   guint show_find : 1;
   guint is_searching : 1;
+  guint is_hovering : 1;
   
   GdkCursor *busy_cursor;
+  GdkCursor *hand_cursor;
+  GdkCursor *regular_cursor;
   
   guint start_id;
   guint end_id;
@@ -102,6 +105,7 @@ enum
   HIDE_FIND,
   FIND_NEXT,
   FIND_PREVIOUS,
+  LINK_CLICKED,
   
   LAST_SIGNAL
 };
@@ -174,6 +178,12 @@ gdict_defbox_finalize (GObject *object)
   
   if (priv->busy_cursor)
     gdk_cursor_unref (priv->busy_cursor);
+
+  if (priv->hand_cursor)
+    gdk_cursor_unref (priv->hand_cursor);
+
+  if (priv->regular_cursor)
+    gdk_cursor_unref (priv->regular_cursor);
   
   G_OBJECT_CLASS (gdict_defbox_parent_class)->finalize (object);
 }
@@ -600,6 +610,185 @@ gdict_defbox_init_tags (GdictDefbox *defbox)
 			      NULL);
 }
 
+static void
+follow_if_is_link (GdictDefbox *defbox,
+                   GtkTextView *text_view,
+                   GtkTextIter *iter)
+{
+  GSList *tags, *l;
+
+  tags = gtk_text_iter_get_tags (iter);
+  
+  for (l = tags; l != NULL; l = l->next)
+    {
+      GtkTextTag *tag = l->data;
+      gchar *name;
+
+      g_object_get (G_OBJECT (tag), "name", &name, NULL);
+      if (name &&
+          (strcmp (name, "link") == 0 ||
+           strcmp (name, "visited-link") == 0))
+        {
+          GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
+          GtkTextIter start, end;
+          gchar *link;
+
+          start = *iter;
+          end = *iter;
+
+          gtk_text_iter_backward_to_tag_toggle (&start, tag);
+          gtk_text_iter_forward_to_tag_toggle (&end, tag);
+
+          link = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+
+          g_signal_emit (defbox, gdict_defbox_signals[LINK_CLICKED], 0, link);
+
+          g_free (link);
+          g_free (name);
+          
+          break;
+        }
+
+      g_free (name);
+    }
+
+  g_slist_free (tags);
+}
+
+static gboolean
+defbox_event_after_cb (GtkWidget   *text_view,
+                       GdkEvent    *event,
+                       GdictDefbox *defbox)
+{
+  GtkTextIter iter;
+  GtkTextBuffer *buffer;
+  GdkEventButton *button_event;
+  gint bx, by;
+
+  if (event->type != GDK_BUTTON_RELEASE)
+    return FALSE;
+
+  button_event = (GdkEventButton *) event;
+
+  if (button_event->button != 1)
+    return FALSE;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
+  if (gtk_text_buffer_get_has_selection (buffer))
+    return FALSE;
+
+  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (text_view),
+                                         GTK_TEXT_WINDOW_WIDGET,
+                                         button_event->x, button_event->y,
+                                         &bx, &by);
+
+  gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (text_view),
+                                      &iter,
+                                      bx, by);
+
+  follow_if_is_link (defbox, GTK_TEXT_VIEW (text_view), &iter);
+
+  return FALSE;
+}
+
+static void
+set_cursor_if_appropriate (GdictDefbox *defbox,
+                           GtkTextView *text_view,
+                           gint         x,
+                           gint         y)
+{
+  GdictDefboxPrivate *priv;
+  GSList *tags, *l;
+  GtkTextIter iter;
+  gboolean hovering = FALSE;
+
+  priv = defbox->priv;
+
+  if (!priv->hand_cursor)
+    priv->hand_cursor = gdk_cursor_new (GDK_HAND2);
+
+  if (!priv->regular_cursor)
+    priv->regular_cursor = gdk_cursor_new (GDK_XTERM);
+
+  gtk_text_view_get_iter_at_location (text_view, &iter, x, y);
+
+  tags = gtk_text_iter_get_tags (&iter);
+  for (l = tags; l != NULL; l = l->next)
+    {
+      GtkTextTag *tag = l->data;
+      gchar *name;
+
+      g_object_get (G_OBJECT (tag), "name", &name, NULL);
+      if (name &&
+          (strcmp (name, "link") == 0 ||
+           strcmp (name, "visited-link") == 0))
+        {
+          hovering = TRUE;
+          g_free (name);
+
+          break;
+        }
+
+      g_free (name);
+    }
+
+  if (hovering != defbox->priv->is_hovering)
+    {
+      defbox->priv->is_hovering = hovering;
+
+      if (defbox->priv->is_hovering)
+        gdk_window_set_cursor (gtk_text_view_get_window (text_view,
+                                                         GTK_TEXT_WINDOW_TEXT),
+                               defbox->priv->hand_cursor);
+      else
+        gdk_window_set_cursor (gtk_text_view_get_window (text_view,
+                                                         GTK_TEXT_WINDOW_TEXT),
+                               defbox->priv->regular_cursor);
+    }
+
+  if (tags)
+    g_slist_free (tags);
+}
+
+static gboolean
+defbox_motion_notify_cb (GtkWidget      *text_view,
+                         GdkEventMotion *event,
+                         GdictDefbox    *defbox)
+{
+  gint bx, by;
+
+  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (text_view),
+                                         GTK_TEXT_WINDOW_WIDGET,
+                                         event->x, event->y,
+                                         &bx, &by);
+
+  set_cursor_if_appropriate (defbox, GTK_TEXT_VIEW (text_view), bx, by);
+
+  gdk_window_get_pointer (text_view->window, NULL, NULL, NULL);
+
+  return FALSE;
+}
+
+static gboolean
+defbox_visibility_notify_cb (GtkWidget          *text_view,
+                             GdkEventVisibility *event,
+                             GdictDefbox        *defbox)
+{
+  gint wx, wy;
+  gint bx, by;
+
+  gdk_window_get_pointer (text_view->window, &wx, &wy, NULL);
+
+  gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (text_view),
+                                         GTK_TEXT_WINDOW_WIDGET,
+                                         wx, wy,
+                                         &bx, &by);
+
+  set_cursor_if_appropriate (defbox, GTK_TEXT_VIEW (text_view), bx, by);
+
+  return FALSE;
+}
+
 static GObject *
 gdict_defbox_constructor (GType                  type,
 			  guint                  n_construct_properties,
@@ -641,6 +830,17 @@ gdict_defbox_constructor (GType                  type,
   priv->find_pane = create_find_pane (defbox);
   gtk_widget_set_composite_name (priv->find_pane, "gdict-defbox-find-pane");
   gtk_box_pack_end (GTK_BOX (defbox), priv->find_pane, FALSE, FALSE, 0);
+
+  /* stuff to make the link machinery work */
+  g_signal_connect (priv->text_view, "event-after",
+                    G_CALLBACK (defbox_event_after_cb),
+                    defbox);
+  g_signal_connect (priv->text_view, "motion-notify-event",
+                    G_CALLBACK (defbox_motion_notify_cb),
+                    defbox);
+  g_signal_connect (priv->text_view, "visibility-notify-event",
+                    G_CALLBACK (defbox_visibility_notify_cb),
+                    defbox);
   
   gtk_widget_pop_composite_child ();
   
@@ -800,6 +1000,15 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
 		  NULL, NULL,
 		  gdict_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
+  gdict_defbox_signals[LINK_CLICKED] =
+    g_signal_new ("link-clicked",
+                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GdictDefboxClass, link_clicked),
+                  NULL, NULL,
+                  gdict_marshal_VOID__STRING,
+                  G_TYPE_NONE, 1,
+                  G_TYPE_STRING);
   
   klass->show_find = gdict_defbox_real_show_find;
   klass->hide_find = gdict_defbox_real_hide_find;
@@ -845,13 +1054,15 @@ gdict_defbox_init (GdictDefbox *defbox)
   priv->definitions = NULL;
   
   priv->busy_cursor = NULL;
+  priv->hand_cursor = NULL;
+  priv->regular_cursor = NULL;
   
   priv->show_find = FALSE;
   priv->is_searching = FALSE;
+  priv->is_hovering = FALSE;
   
   priv->tooltips = gtk_tooltips_new ();
-  g_object_ref (priv->tooltips);
-  gtk_object_sink (GTK_OBJECT (priv->tooltips));
+  g_object_ref_sink (G_OBJECT (priv->tooltips));
 }
 
 /**

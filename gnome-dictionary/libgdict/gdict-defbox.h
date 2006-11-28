@@ -53,6 +53,10 @@ struct _GdictDefboxClass
   void (*hide_find)     (GdictDefbox *defbox);
   void (*find_previous) (GdictDefbox *defbox);
   void (*find_next)     (GdictDefbox *defbox);
+
+  /* signals */
+  void (*link_clicked)  (GdictDefbox *defbox,
+                         const gchar *link);
   
   /* padding for future expansion */
   void (*_gdict_defbox_1) (void);

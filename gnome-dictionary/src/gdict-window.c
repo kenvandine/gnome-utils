@@ -1282,6 +1282,53 @@ sidebar_closed_cb (GdictSidebar *sidebar,
 }
 
 static void
+gdict_window_link_clicked (GdictDefbox *defbox,
+                           const gchar *link_text,
+                           GdictWindow *window)
+{
+  GtkWidget *new_window;
+  
+  /* store the default size of the window and its state, so that
+   * it's picked up by the newly created window
+   */
+  gconf_client_set_int (window->gconf_client,
+		        GDICT_GCONF_WINDOW_WIDTH_KEY,
+		  	window->default_width,
+			NULL);
+  gconf_client_set_int (window->gconf_client,
+		  	GDICT_GCONF_WINDOW_HEIGHT_KEY,
+			window->default_height,
+			NULL);
+  gconf_client_set_bool (window->gconf_client,
+		  	 GDICT_GCONF_WINDOW_IS_MAXIMIZED_KEY,
+			 window->is_maximized,
+			 NULL);
+  gconf_client_set_bool (window->gconf_client,
+		  	 GDICT_GCONF_SIDEBAR_VISIBLE_KEY,
+			 window->sidebar_visible,
+			 NULL);
+  gconf_client_set_int (window->gconf_client,
+		  	GDICT_GCONF_SIDEBAR_WIDTH_KEY,
+			window->sidebar_width,
+			NULL);
+  gconf_client_set_string (window->gconf_client,
+		  	   GDICT_GCONF_SIDEBAR_PAGE_KEY,
+			   gdict_sidebar_current_page (GDICT_SIDEBAR (window->sidebar)),
+			   NULL);
+  gconf_client_set_bool (window->gconf_client,
+		  	 GDICT_GCONF_STATUSBAR_VISIBLE_KEY,
+			 window->statusbar_visible,
+			 NULL);
+
+  new_window = gdict_window_new (GDICT_WINDOW_ACTION_LOOKUP,
+                                 window->loader,
+                                 NULL, link_text);
+  gtk_widget_show (new_window);
+  
+  g_signal_emit (window, gdict_window_signals[CREATED], 0, new_window);
+}
+
+static void
 gdict_window_drag_data_received_cb (GtkWidget        *widget,
 				    GdkDragContext   *context,
 				    gint              x,
@@ -1540,6 +1587,10 @@ gdict_window_constructor (GType                  type,
   window->defbox = gdict_defbox_new ();
   if (window->context)
     gdict_defbox_set_context (GDICT_DEFBOX (window->defbox), window->context);
+
+  g_signal_connect (window->defbox, "link-clicked",
+                    G_CALLBACK (gdict_window_link_clicked),
+                    window);
 
   gtk_drag_dest_set (window->defbox,
   		     GTK_DEST_DEFAULT_ALL,

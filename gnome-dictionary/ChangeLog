@@ -1,3 +1,27 @@
+2006-11-28  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* libgdict/gdict-defbox.c:
+	(gdict_defbox_finalize), (follow_if_is_link),
+	(defbox_event_after_cb), (set_cursor_if_appropriate),
+	(defbox_motion_notify_cb), (defbox_visibility_notify_cb),
+	(gdict_defbox_constructor): Update the cursor when hovering
+	on a text tagged with the "link" or "visited-link" tags;
+	emit the "link-clicked" signal when clicking on a link.
+	
+	(gdict_defbox_class_init): Add "link-clicked" signal
+	definition to GdictDefboxClass.
+
+	(gdict_defbox_init): Use g_object_ref_sink() in lieu of
+	g_object_ref() + gtk_object_sink().
+
+	* libgdict/gdict-defbox.h: Add the GdictDefbox::link-clicked
+	signal class closure.
+
+	* src/gdict-window.c:
+	(gdict_window_link_clicked),
+	(gdict_window_constructor): Create a new window in LOOKUP
+	mode using the link text.
+
 2006-11-27  Emmanuele Bassi  <ebassi@cvs.gnome.org>
 
 	* libgdict/gdict-defbox.h:
