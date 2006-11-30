@@ -183,7 +183,10 @@ logview_update_statusbar (LogviewWindow *logview)
    
    /* ctime returned string has "\n\0" causes statusbar display a invalid char */
    modified = ctime (&(log->stats->file_time));
-   index = strrchr (modified, '\n'); *index = '\0';
+   index = strrchr (modified, '\n');
+   if (index && *index != '\0')
+     *index = '\0';
+
    modified = g_strdup_printf (_("last update : %s"), modified);
    size = gnome_vfs_format_file_size_for_display (log->stats->file_size);
    statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
