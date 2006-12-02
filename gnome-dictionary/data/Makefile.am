@@ -33,6 +33,7 @@ dictsourcedir = $(datadir)/gdict-1.0/sources
 dictsource_in_files = \
 	default.desktop.in \
 	spanish.desktop.in \
+	thai.desktop.in \
 	$(NULL)
 dictsource_DATA = $(dictsource_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
