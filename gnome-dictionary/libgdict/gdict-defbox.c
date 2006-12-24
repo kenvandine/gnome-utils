@@ -111,6 +111,10 @@ enum
 };
 
 static guint gdict_defbox_signals[LAST_SIGNAL] = { 0 };
+static const GdkColor default_link_color = { 0, 0, 0, 0xeeee };
+static const GdkColor default_visited_link_color = { 0, 0x5555, 0x1a1a, 0x8b8b }
+;
+
 
 G_DEFINE_TYPE (GdictDefbox, gdict_defbox, GTK_TYPE_VBOX);
 
@@ -550,7 +554,7 @@ static void
 gdict_defbox_init_tags (GdictDefbox *defbox)
 {
   GdictDefboxPrivate *priv = defbox->priv;
-  GdkColor link_color, visited_color;
+  GdkColor *link_color, *visited_link_color;
   
   g_assert (GTK_IS_TEXT_BUFFER (priv->buffer));
 
@@ -571,18 +575,31 @@ gdict_defbox_init_tags (GdictDefbox *defbox)
 		  	      "scale", PANGO_SCALE_SMALL,
 			      NULL);  
 
+  link_color = visited_link_color = NULL;
   gtk_widget_style_get (GTK_WIDGET (defbox),
                         "link-color", &link_color,
-                        "visited-link-color", &visited_color,
+                        "visited-link-color", &visited_link_color,
                         NULL);
+  if (!link_color)
+    link_color = &default_link_color;
+
+  if (!visited_link_color)
+    visited_link_color = &default_visited_link_color;
+
   gtk_text_buffer_create_tag (priv->buffer, "link",
                               "underline", PANGO_UNDERLINE_SINGLE,
                               "foreground-gdk", &link_color,
                               NULL);
   gtk_text_buffer_create_tag (priv->buffer, "visited-link",
                               "underline", PANGO_UNDERLINE_SINGLE,
-                              "foreground-gdk", &visited_color,
+                              "foreground-gdk", &visited_link_color,
                               NULL);
+
+  if (link_color != &default_link_color)
+    gdk_color_free (link_color);
+
+  if (visited_link_color != &default_visited_link_color)
+    gdk_color_free (visited_link_color);
 
   gtk_text_buffer_create_tag (priv->buffer, "phonetic",
                               "foreground", "dark gray",
