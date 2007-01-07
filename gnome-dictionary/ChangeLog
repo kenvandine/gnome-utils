@@ -1,5 +1,12 @@
 2007-01-07  Emmanuele Bassi  <ebassi@gnome.org>
 
+	* src/gdict-window.c: Match the word passed to the constructor
+	function, if action is GDICT_WINDOW_ACTION_MATCH; move all the
+	reference release calls into gdict_window_dispose() from the
+	finalize function.
+
+2007-01-07  Emmanuele Bassi  <ebassi@gnome.org>
+
 	* src/gdict-sidebar.c: Use GObject::dispose instead
 	of GtkObject::destroy for detaching the menu widget
 	from the toggle button of the side bar.

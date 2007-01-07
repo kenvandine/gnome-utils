@@ -104,45 +104,9 @@ G_DEFINE_TYPE (GdictWindow, gdict_window, GTK_TYPE_WINDOW);
 
 
 static void
-gdict_window_finalize (GObject *object)
+gdict_window_finalize (GObject *gobject)
 {
-  GdictWindow *window = GDICT_WINDOW (object);
-
-  if (window->notify_id)
-    gconf_client_notify_remove (window->gconf_client, window->notify_id);
-
-  if (window->font_notify_id)
-    gconf_client_notify_remove (window->gconf_client, window->font_notify_id);
-  
-  if (window->gconf_client)
-    g_object_unref (window->gconf_client);
-  
-  if (window->context)
-    {
-      g_signal_handler_disconnect (window->context, window->lookup_start_id);
-      g_signal_handler_disconnect (window->context, window->definition_id);
-      g_signal_handler_disconnect (window->context, window->lookup_end_id);
-      g_signal_handler_disconnect (window->context, window->error_id);
-
-      g_object_unref (window->context);
-    }
-  
-  if (window->loader)
-    g_object_unref (window->loader);
-  
-  if (window->ui_manager)
-    g_object_unref (window->ui_manager);
-  
-  g_object_unref (window->action_group);
-
-  if (window->completion)
-    g_object_unref (window->completion);
-
-  if (window->completion_model)
-    g_object_unref (window->completion_model);
-
-  if (window->busy_cursor)
-    gdk_cursor_unref (window->busy_cursor);
+  GdictWindow *window = GDICT_WINDOW (gobject);
 
   g_free (window->source_name);
   g_free (window->print_font);
@@ -151,7 +115,93 @@ gdict_window_finalize (GObject *object)
   g_free (window->database);
   g_free (window->strategy);
   
-  G_OBJECT_CLASS (gdict_window_parent_class)->finalize (object);
+  G_OBJECT_CLASS (gdict_window_parent_class)->finalize (gobject);
+}
+
+static void
+gdict_window_dispose (GObject *gobject)
+{
+  GdictWindow *window = GDICT_WINDOW (gobject);
+
+  if (window->notify_id)
+    {
+      gconf_client_notify_remove (window->gconf_client, window->notify_id);
+      window->notify_id = 0;
+    }
+
+  if (window->font_notify_id)
+    {
+      gconf_client_notify_remove (window->gconf_client,
+                                  window->font_notify_id);
+      window->font_notify_id = 0;
+    }
+  
+  if (window->gconf_client)
+    {
+      g_object_unref (window->gconf_client);
+      window->gconf_client = NULL;
+    }
+  
+  if (window->context)
+    {
+      if (window->lookup_start_id)
+        {
+          g_signal_handler_disconnect (window->context,
+                                       window->lookup_start_id);
+          g_signal_handler_disconnect (window->context,
+                                       window->definition_id);
+          g_signal_handler_disconnect (window->context,
+                                       window->lookup_end_id);
+          g_signal_handler_disconnect (window->context,
+                                       window->error_id);
+
+          window->lookup_start_id = 0;
+          window->definition_id = 0;
+          window->lookup_end_id = 0;
+          window->error_id = 0;
+        }
+
+      g_object_unref (window->context);
+      window->context = NULL;
+    }
+  
+  if (window->loader)
+    {
+      g_object_unref (window->loader);
+      window->loader = NULL;
+    }
+  
+  if (window->ui_manager)
+    {
+      g_object_unref (window->ui_manager);
+      window->ui_manager = NULL;
+    }
+  
+  if (window->action_group)
+    {
+      g_object_unref (window->action_group);
+      window->action_group = NULL;
+    }
+
+  if (window->completion)
+    {
+      g_object_unref (window->completion);
+      window->completion = NULL;
+    }
+
+  if (window->completion_model)
+    {
+      g_object_unref (window->completion_model);
+      window->completion_model = NULL;
+    }
+
+  if (window->busy_cursor)
+    {
+      gdk_cursor_unref (window->busy_cursor);
+      window->busy_cursor = NULL;
+    }
+
+  G_OBJECT_CLASS (gdict_window_parent_class)->dispose (gobject);
 }
 
 static void
@@ -1764,6 +1814,7 @@ gdict_window_class_init (GdictWindowClass *klass)
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   gobject_class->finalize = gdict_window_finalize;
+  gobject_class->dispose = gdict_window_dispose;
   gobject_class->set_property = gdict_window_set_property;
   gobject_class->get_property = gdict_window_get_property;
   gobject_class->constructor = gdict_window_constructor;
@@ -1778,7 +1829,7 @@ gdict_window_class_init (GdictWindowClass *klass)
 						      "The default action performed by the window",
 						      GDICT_TYPE_WINDOW_ACTION,
 						      GDICT_WINDOW_ACTION_CLEAR,
-						      (G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY)));
+						      (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY)));
   g_object_class_install_property (gobject_class,
   				   PROP_SOURCE_LOADER,
   				   g_param_spec_object ("source-loader",
@@ -1907,6 +1958,7 @@ gdict_window_new (GdictWindowAction  action,
 		  const gchar       *word)
 {
   GtkWidget *retval;
+  GdictWindow *window;
   
   g_return_val_if_fail (GDICT_IS_SOURCE_LOADER (loader), NULL);
   
@@ -1916,18 +1968,47 @@ gdict_window_new (GdictWindowAction  action,
 			 "source-name", source_name,
 			 NULL);
 
+  window = GDICT_WINDOW (retval);
+
   if (word && word[0] != '\0')
     {
       switch (action)
         {
 	case GDICT_WINDOW_ACTION_LOOKUP:
-	  gtk_entry_set_text (GTK_ENTRY (GDICT_WINDOW (retval)->entry), word);
-	  gdict_window_set_word (GDICT_WINDOW (retval), word, NULL);
+	  gtk_entry_set_text (GTK_ENTRY (window->entry), word);
+	  gdict_window_set_word (window, word, NULL);
 	  break;
 	case GDICT_WINDOW_ACTION_MATCH:
-	  gtk_entry_set_text (GTK_ENTRY (GDICT_WINDOW (retval)->entry), word);
-	  /* FIXME */
+          {
+          GdictSource *source;
+          GdictContext *context;
+
+	  gtk_entry_set_text (GTK_ENTRY (window->entry), word);
+          
+          gdict_window_set_sidebar_visible (window, TRUE);
+          gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar),
+                                   GDICT_SIDEBAR_SPELLER_PAGE);
+
+          /* we clone the context, so that the signals that it
+           * fires do not get caught by the signal handlers we
+           * use for getting the definitions.
+           */
+          source = gdict_source_loader_get_source (window->loader,
+                                                   window->source_name);
+          context = gdict_source_get_context (source);
+
+          gdict_speller_set_context (GDICT_SPELLER (window->speller), context);
+          
+          g_object_unref (context);
+          g_object_unref (source);
+      
+          gdict_speller_set_strategy (GDICT_SPELLER (window->speller),
+                                      window->strategy);
+      
+          gdict_speller_match (GDICT_SPELLER (window->speller), word);
+          }
 	case GDICT_WINDOW_ACTION_CLEAR:
+          gdict_defbox_clear (GDICT_DEFBOX (window->defbox));
 	  break;
 	default:
 	  g_assert_not_reached ();
