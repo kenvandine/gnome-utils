@@ -131,7 +131,7 @@ gdict_sidebar_finalize (GObject *object)
 }
 
 static void
-gdict_sidebar_destroy (GtkObject *object)
+gdict_sidebar_dispose (GObject *object)
 {
   GdictSidebar *sidebar = GDICT_SIDEBAR (object);
 
@@ -141,7 +141,7 @@ gdict_sidebar_destroy (GtkObject *object)
       sidebar->priv->menu = NULL;
     }
 
-  GTK_OBJECT_CLASS (gdict_sidebar_parent_class)->destroy (object);
+  G_OBJECT_CLASS (gdict_sidebar_parent_class)->dispose (object);
 }
 
 static void
@@ -282,10 +282,9 @@ static void
 gdict_sidebar_class_init (GdictSidebarClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GtkObjectClass *gtkobject_class = GTK_OBJECT_CLASS (klass);
 
   gobject_class->finalize = gdict_sidebar_finalize;
-  gtkobject_class->destroy = gdict_sidebar_destroy;
+  gobject_class->dispose = gdict_sidebar_dispose;
 
   sidebar_signals[PAGE_CHANGED] =
     g_signal_new ("page-changed",
