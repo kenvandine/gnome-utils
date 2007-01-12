@@ -111,9 +111,8 @@ enum
 };
 
 static guint gdict_defbox_signals[LAST_SIGNAL] = { 0 };
-static const GdkColor default_link_color = { 0, 0, 0, 0xeeee };
-static const GdkColor default_visited_link_color = { 0, 0x5555, 0x1a1a, 0x8b8b }
-;
+static GdkColor default_link_color = { 0, 0, 0, 0xeeee };
+static GdkColor default_visited_link_color = { 0, 0x5555, 0x1a1a, 0x8b8b };
 
 
 G_DEFINE_TYPE (GdictDefbox, gdict_defbox, GTK_TYPE_VBOX);

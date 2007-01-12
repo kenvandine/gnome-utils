@@ -1,3 +1,16 @@
+2007-01-12  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* libgdict/gdict-client-context.c: Add a timeout or 30 seconds
+	when establishing a connection to the dictionary server; if we
+	receive something on the wire within the timeout limit we are
+	safe, otherwise we force closing the connection. (#395837)
+
+	* libgdict/gdict-defbox.c: Hush compiler warnings.
+
+	* src/gdict-window.c: Try and fall back to the default source
+	if we could not find the one set in GConf, before actually
+	giving up. (#395125)
+
 2007-01-07  Emmanuele Bassi  <ebassi@gnome.org>
 
 	* src/gdict-window.c: Match the word passed to the constructor

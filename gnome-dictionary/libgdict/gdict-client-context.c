@@ -122,6 +122,9 @@ typedef struct
 /* make the hostname lookup expire every five minutes */
 #define HOSTNAME_LOOKUP_EXPIRE 	300
 
+/* wait 30 seconds between connection and receiving data on the line */
+#define CONNECTION_TIMEOUT      30
+
 enum
 {
   PROP_0,
@@ -160,6 +163,7 @@ struct _GdictClientContextPrivate
   
   GIOChannel *channel;
   guint source_id;
+  guint timeout_id;
   
   GdictCommand *command;
   GQueue *commands_queue;
@@ -1697,6 +1701,17 @@ gdict_client_context_io_watch_cb (GIOChannel         *channel,
 
       return FALSE;
     }
+
+  if (priv->is_connecting)
+    {
+      priv->is_connecting = FALSE;
+
+      if (priv->timeout_id)
+        {
+          g_source_remove (priv->timeout_id);
+          priv->timeout_id = 0;
+        }
+    }
   
   if (condition & G_IO_ERR)
     {
@@ -1795,6 +1810,37 @@ gdict_client_context_io_watch_cb (GIOChannel         *channel,
     }
   
   return TRUE;
+}
+
+static gboolean
+check_for_connection (gpointer data)
+{
+  GdictClientContext *context = data;
+
+  g_debug (G_STRLOC ": checking for connection (is connecting:%s)",
+           context->priv->is_connecting ? "true" : "false");
+
+  if (context->priv->is_connecting)
+    {
+      GError *err = NULL;
+              
+      _gdict_debug ("Forcing a disconnection due to timeout");
+      
+      g_set_error (&err, GDICT_CLIENT_CONTEXT_ERROR,
+                   GDICT_CLIENT_CONTEXT_ERROR_SOCKET,
+                   _("Connection timeout for the dictionary server at '%s:%d'"),
+                   context->priv->hostname,
+                   context->priv->port);
+              
+      g_signal_emit_by_name (context, "error", err);
+              
+      g_error_free (err);
+      
+      gdict_client_context_force_disconnect (context);
+    }
+
+  /* this is a one-off operation */
+  return FALSE;
 }
 
 static gboolean
@@ -1914,6 +1960,10 @@ gdict_client_context_connect (GdictClientContext  *context,
 
       return FALSE;
     }
+
+  priv->timeout_id = g_timeout_add (CONNECTION_TIMEOUT * 1000,
+                                    check_for_connection,
+                                    context);
   
   /* XXX - remember that g_io_add_watch() increases the reference count
    * of the GIOChannel we are using.
@@ -1922,9 +1972,6 @@ gdict_client_context_connect (GdictClientContext  *context,
                                     (G_IO_IN | G_IO_ERR),
                                     (GIOFunc) gdict_client_context_io_watch_cb,
                                     context);
-
-  /* at this point, we at least have an established connection */
-  priv->is_connecting = FALSE;
 
   return TRUE;
 }

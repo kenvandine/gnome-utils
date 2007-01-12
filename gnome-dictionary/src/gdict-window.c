@@ -421,6 +421,16 @@ get_context_from_loader (GdictWindow *window)
 
   source = gdict_source_loader_get_source (window->loader,
 		  			   window->source_name);
+  if (!source &&
+      strcmp (window->source_name, GDICT_DEFAULT_SOURCE_NAME) != 0)
+    {
+      g_free (window->source_name);
+      window->source_name = g_strdup (GDICT_DEFAULT_SOURCE_NAME);
+
+      source = gdict_source_loader_get_source (window->loader,
+                                               window->source_name);
+    }
+  
   if (!source)
     {
       gchar *detail;
