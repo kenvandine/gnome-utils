@@ -187,7 +187,7 @@ logview_update_statusbar (LogviewWindow *logview)
    if (index && *index != '\0')
      *index = '\0';
 
-   modified = g_strdup_printf (_("last update : %s"), modified);
+   modified = g_strdup_printf (_("last update: %s"), modified);
    size = gnome_vfs_format_file_size_for_display (log->stats->file_size);
    statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
                                      log->total_lines, size, modified);
