@@ -770,6 +770,7 @@ move_to_trash_cb (GtkAction * action,
                   gpointer data)
 {
 	GSearchWindow * gsearch = data;
+	GtkTreePath * last_selected_path = NULL;
 	gint total;
 	gint index;
 
@@ -806,6 +807,10 @@ move_to_trash_cb (GtkAction * action,
 			g_free (utf8_basename);
 			g_free (utf8_basepath);
 			return;
+		}
+		
+		if (index + 1 == total) {
+			last_selected_path = gtk_tree_model_get_path (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter);
 		}
 
 		utf8_filename = g_build_filename (utf8_basepath, utf8_basename, NULL);
@@ -889,6 +894,20 @@ move_to_trash_cb (GtkAction * action,
 		g_free (trash_path);
 	}
 
+	/* Bugzilla #397945: Select next row in the search results list */
+	if (last_selected_path != NULL) {
+		if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
+			gtk_tree_selection_select_path (GTK_TREE_SELECTION (gsearch->search_results_selection), 
+			                                last_selected_path);
+			if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
+				gtk_tree_path_prev (last_selected_path);
+				gtk_tree_selection_select_path (GTK_TREE_SELECTION (gsearch->search_results_selection), 
+				                                last_selected_path);
+			}
+		}
+		gtk_tree_path_free (last_selected_path);
+	}
+	
 	if (gsearch->command_details->command_status != RUNNING) {
 		update_search_counts (gsearch);
 	}
