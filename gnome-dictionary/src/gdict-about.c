@@ -36,8 +36,6 @@
 void
 gdict_show_about_dialog (GtkWidget *parent)
 {
-  g_return_if_fail (GTK_IS_WIDGET (parent));
-
   const gchar *authors[] = {
     "Mike Hughes <mfh@psilord.com>",
     "Spiros Papadimitriou <spapadim+@cs.cmu.edu>",
@@ -74,6 +72,8 @@ gdict_show_about_dialog (GtkWidget *parent)
     "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA "
     "02111-1307, USA.\n";
 
+  g_return_if_fail (GTK_IS_WIDGET (parent));
+  
   gtk_show_about_dialog (GTK_IS_WINDOW (parent) ? GTK_WINDOW (parent) : NULL,
   			 "name", _("Dictionary"),
   			 "version", VERSION,
