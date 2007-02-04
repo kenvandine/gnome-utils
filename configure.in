@@ -137,13 +137,13 @@ dnl ****************************************
 dnl HAL for floppy detection in gfloppy
 dnl ****************************************
 AC_ARG_ENABLE(hal,
-AC_HELP_STRING([--enable-hal],[use hal, if available]),
-[case "${enableval}" in
-yes) ENABLE_HAL=yes ;;
-no)  ENABLE_HAL=no ;;
-*) AC_MSG_ERROR(bad value ${enableval} for --enable-hal) ;;
-esac],
-[ENABLE_HAL=yes]) dnl Default value
+              AC_HELP_STRING([--enable-hal], [use HAL if available]), [
+              case "${enableval}" in
+                yes) ENABLE_HAL=yes ;;
+                no)  ENABLE_HAL=no ;;
+                *) AC_MSG_ERROR(bad value ${enableval} for --enable-hal) ;;
+              esac],
+              [ENABLE_HAL=yes]) dnl Default value
 
 if test "x$ENABLE_HAL" = "xyes"; then
 	PKG_CHECK_MODULES(HAL, hal >= 0.5.0,
@@ -178,7 +178,7 @@ dnl *********************************************
 
 AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 
-if test x"$GCONFTOOL" = xno; then
+if test "x$GCONFTOOL" = "xno"; then
   AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
 fi
 
@@ -209,8 +209,9 @@ dnl Other miscellaneous checks
 dnl ***************************************************************
 
 AC_ARG_ENABLE(console-helper,
-  [  --enable-console-helper=[no/yes]  	Enable PAM console helper [ default=no ]],,
-  enable_console_helper=no)
+              AC_HELP_STRING([--enable-console-helper=@<:@no/yes@:>@],
+                             [Enable PAM console helper @<:@default=no@:>@]),,
+              enable_console_helper=no)
 
 dnl *****************************************************************
 dnl Allow users to run logview using the console helper 
@@ -230,8 +231,9 @@ fi
 
 dnl Enable debug messages
 AC_ARG_ENABLE(debug,
-  [ --enable-debug=[no/yes]             Enable debug messages [ default=no ]],,
-  enable_debug=no)
+              AC_HELP_STRING([--enable-debug=@<:@no/yes@:>@],
+                             [Enable debug messages @<:@default=no@:>@]),,
+              enable_debug=no)
 
 if test "x$enable_debug" = "xyes"; then
 	AM_CONDITIONAL(ENABLE_DEBUG, true)
@@ -247,9 +249,11 @@ dnl ***********
 dnl  ***************Checking for availability of IPv6************ 
 AC_MSG_CHECKING([whether to enable IPv6])
 AC_ARG_ENABLE(ipv6,
-  [ --enable-ipv6=[yes/no] enables compilation of IPv6 code]
-   , ,enable_ipv6=yes)
-if test $enable_ipv6 = yes; then
+              AC_HELP_STRING([--enable-ipv6=@<:@yes/no@:>@],
+                             [Enables compilation of IPv6 code]),,
+              enable_ipv6=yes)
+
+if test "x$enable_ipv6" = "xyes"; then
   AC_TRY_COMPILE([
    #include <sys/socket.h>
    #include <sys/types.h>], [
@@ -261,16 +265,16 @@ if test $enable_ipv6 = yes; then
   )
 fi
 
-if test $have_ipv6 = yes; then
+if test "x$have_ipv6" = "xyes"; then
   have_getaddrinfo=no
   AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes)
-  if test $have_getaddrinfo != yes; then
+  if test "x$have_getaddrinfo" != "xyes"; then
     for lib in bsd socket inet; do
       AC_CHECK_LIB($lib,getaddrinfo,["LIBS=$LIBS -l$lib";have_getaddrinfo=yes;break])
     done
   fi
 
-  if test $have_getaddrinfo = yes; then
+  if test "x$have_getaddrinfo" = "xyes"; then
     AC_DEFINE([ENABLE_IPV6], [1], [Define whether IPv6 support is enabled])
   fi
 fi
@@ -279,10 +283,14 @@ dnl  ************************end IPv6 checks*********************
 
 withval=""
 AC_ARG_WITH(pam-prefix,
-[      --with-pam-prefix=<prefix>   specify where pam files go],[
-if test x$withval != x; then
-   AC_MSG_RESULT("PAM files will be installed in prefix ${withval}.")
-fi])
+            AC_HELP_STRING([--with-pam-prefix=@<:@prefix@:>@],
+                           [specify where pam files go]),
+            [
+            if test x$withval != x; then
+              AC_MSG_RESULT("PAM files will be installed in prefix ${withval}.")
+            fi
+            ])
+
 if test x$withval != x; then
 	PAM_PREFIX_UNEXPANDED="$withval"
 	PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
@@ -369,6 +377,7 @@ dnl gfloppy checks
 dnl ********************
 
 build_gfloppy=true
+
 AC_CHECK_HEADER(linux/fd.h,
 		AC_DEFINE([HAVE_LINUX_FD_H], [1], [Define whether we have linux/fd.h]),
 		build_gfloppy=false
@@ -389,7 +398,20 @@ AC_CHECK_HEADER([ext2fs/ext2_io.h], [],
 #include <et/com_err.h>
 #endif
 ])
-AM_CONDITIONAL(BUILD_GFLOPPY, test "$build_gfloppy" = true)
+
+m4_define([gfloppy_default],
+          m4_if(m4_equal($build_gfloppy), ["true"], [yes], [no]))
+
+AC_ARG_ENABLE(gfloppy,
+              AC_HELP_STRING([--enable-gfloppy=@<:@no/yes@:>@],
+                             [build GFloppy @<:@default=gfloppy_default@:>@]),,
+              enable_gfloppy=gfloppy_default)
+
+if test "x$build_gfloppy" = "xfalse" -a "x$enable_gfloppy" = "xyes" ; then
+	AC_MSG_ERROR(GFloppy requested, but the required libraries and headers were not found)
+fi
+
+AM_CONDITIONAL(BUILD_GFLOPPY, [ test "x$enable_gfloppy" = "xyes" ])
 
 
 dnl *******************************
@@ -398,17 +420,22 @@ dnl *******************************
 
 withval=""
 AC_ARG_WITH(grep,
-[      --with-grep=<grep command>   specify grep],[
-if test x$withval != x; then
-   AC_MSG_RESULT(${withval} is used for gnome-search-tool.)
-else
-   AC_MSG_RESULT(grep is used for gnome-search-tool.)
-fi])
+            AC_HELP_STRING([--with-grep=@<:@grep command@:>@]
+                           [Specify where to find the grep binary]),
+            [
+            if test x$withval != x; then
+              AC_MSG_RESULT(${withval} is used for gnome-search-tool.)
+            else
+              AC_MSG_RESULT(grep is used for gnome-search-tool.)
+            fi
+            ])
+
 if test x$withval != x; then
 	GREP_COMMAND="$withval"
 else
 	GREP_COMMAND="grep"
 fi
+
 AC_SUBST(GREP_COMMAND)
 
 
