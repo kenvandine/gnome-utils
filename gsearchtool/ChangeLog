@@ -1,3 +1,12 @@
+2007-02-08  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c: (move_to_trash_cb):
+	* gsearchtool-support.c: (make_valid_utf8), (extract_string_until),
+	(parse_previous_duplicate_name), (make_next_duplicate_name),
+	(get_duplicate_name), (gsearchtool_get_next_duplicate_name):
+	* gsearchtool-support.h: Fix bug #404158, do not overwrite files
+	in the trash folder.  Use same file renaming logic as nautilus.
+
 2007-01-26  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* gsearchtool-callbacks.c: (move_to_trash_cb): Fix bug #395381,

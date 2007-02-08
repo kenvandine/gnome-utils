@@ -128,6 +128,8 @@ gsearchtool_set_columns_order (GtkTreeView * treeview);
 void
 gsearchtool_get_stored_window_geometry (gint * width,
                                         gint * height);
+gchar *
+gsearchtool_get_next_duplicate_name (const gchar * basname);
 
 #ifdef __cplusplus
 }

@@ -1521,3 +1521,344 @@ gsearchtool_get_stored_window_geometry (gint * width,
 	*width = MAX (saved_width, MINIMUM_WINDOW_WIDTH);
 	*height = MAX (saved_height, MINIMUM_WINDOW_HEIGHT);
 }
+
+/* START OF NAUTILUS/EEL FUNCTIONS: USED FOR HANDLING OF DUPLICATE FILENAMES */
+
+/* Localizers: 
+ * Feel free to leave out the st, nd, rd and th suffix or
+ * make some or all of them match.
+ */
+
+/* localizers: tag used to detect the first copy of a file */
+static const char untranslated_copy_duplicate_tag[] = N_(" (copy)");
+/* localizers: tag used to detect the second copy of a file */
+static const char untranslated_another_copy_duplicate_tag[] = N_(" (another copy)");
+
+/* localizers: tag used to detect the x11th copy of a file */
+static const char untranslated_x11th_copy_duplicate_tag[] = N_("th copy)");
+/* localizers: tag used to detect the x12th copy of a file */
+static const char untranslated_x12th_copy_duplicate_tag[] = N_("th copy)");
+/* localizers: tag used to detect the x13th copy of a file */
+static const char untranslated_x13th_copy_duplicate_tag[] = N_("th copy)");
+
+/* localizers: tag used to detect the x1st copy of a file */
+static const char untranslated_st_copy_duplicate_tag[] = N_("st copy)");
+/* localizers: tag used to detect the x2nd copy of a file */
+static const char untranslated_nd_copy_duplicate_tag[] = N_("nd copy)");
+/* localizers: tag used to detect the x3rd copy of a file */
+static const char untranslated_rd_copy_duplicate_tag[] = N_("rd copy)");
+
+/* localizers: tag used to detect the xxth copy of a file */
+static const char untranslated_th_copy_duplicate_tag[] = N_("th copy)");
+
+#define COPY_DUPLICATE_TAG _(untranslated_copy_duplicate_tag)
+#define ANOTHER_COPY_DUPLICATE_TAG _(untranslated_another_copy_duplicate_tag)
+#define X11TH_COPY_DUPLICATE_TAG _(untranslated_x11th_copy_duplicate_tag)
+#define X12TH_COPY_DUPLICATE_TAG _(untranslated_x12th_copy_duplicate_tag)
+#define X13TH_COPY_DUPLICATE_TAG _(untranslated_x13th_copy_duplicate_tag)
+
+#define ST_COPY_DUPLICATE_TAG _(untranslated_st_copy_duplicate_tag)
+#define ND_COPY_DUPLICATE_TAG _(untranslated_nd_copy_duplicate_tag)
+#define RD_COPY_DUPLICATE_TAG _(untranslated_rd_copy_duplicate_tag)
+#define TH_COPY_DUPLICATE_TAG _(untranslated_th_copy_duplicate_tag)
+
+/* localizers: appended to first file copy */
+static const char untranslated_first_copy_duplicate_format[] = N_("%s (copy)%s");
+/* localizers: appended to second file copy */
+static const char untranslated_second_copy_duplicate_format[] = N_("%s (another copy)%s");
+
+/* localizers: appended to x11th file copy */
+static const char untranslated_x11th_copy_duplicate_format[] = N_("%s (%dth copy)%s");
+/* localizers: appended to x12th file copy */
+static const char untranslated_x12th_copy_duplicate_format[] = N_("%s (%dth copy)%s");
+/* localizers: appended to x13th file copy */
+static const char untranslated_x13th_copy_duplicate_format[] = N_("%s (%dth copy)%s");
+
+/* localizers: appended to x1st file copy */
+static const char untranslated_st_copy_duplicate_format[] = N_("%s (%dst copy)%s");
+/* localizers: appended to x2nd file copy */
+static const char untranslated_nd_copy_duplicate_format[] = N_("%s (%dnd copy)%s");
+/* localizers: appended to x3rd file copy */
+static const char untranslated_rd_copy_duplicate_format[] = N_("%s (%drd copy)%s");
+/* localizers: appended to xxth file copy */
+static const char untranslated_th_copy_duplicate_format[] = N_("%s (%dth copy)%s");
+
+#define FIRST_COPY_DUPLICATE_FORMAT _(untranslated_first_copy_duplicate_format)
+#define SECOND_COPY_DUPLICATE_FORMAT _(untranslated_second_copy_duplicate_format)
+#define X11TH_COPY_DUPLICATE_FORMAT _(untranslated_x11th_copy_duplicate_format)
+#define X12TH_COPY_DUPLICATE_FORMAT _(untranslated_x12th_copy_duplicate_format)
+#define X13TH_COPY_DUPLICATE_FORMAT _(untranslated_x13th_copy_duplicate_format)
+
+#define ST_COPY_DUPLICATE_FORMAT _(untranslated_st_copy_duplicate_format)
+#define ND_COPY_DUPLICATE_FORMAT _(untranslated_nd_copy_duplicate_format)
+#define RD_COPY_DUPLICATE_FORMAT _(untranslated_rd_copy_duplicate_format)
+#define TH_COPY_DUPLICATE_FORMAT _(untranslated_th_copy_duplicate_format)
+
+static gchar *
+make_valid_utf8 (const gchar * name)
+{
+	GString *string;
+	const char *remainder, *invalid;
+	int remaining_bytes, valid_bytes;
+
+	string = NULL;
+	remainder = name;
+	remaining_bytes = strlen (name);
+
+	while (remaining_bytes != 0) {
+		if (g_utf8_validate (remainder, remaining_bytes, &invalid)) {
+			break;
+		}
+		valid_bytes = invalid - remainder;
+
+		if (string == NULL) {
+			string = g_string_sized_new (remaining_bytes);
+		}
+		g_string_append_len (string, remainder, valid_bytes);
+		g_string_append_c (string, '?');
+
+		remaining_bytes -= valid_bytes + 1;
+		remainder = invalid + 1;
+	}
+
+	if (string == NULL) {
+		return g_strdup (name);
+	}
+
+	g_string_append (string, remainder);
+	g_string_append (string, _(" (invalid Unicode)"));
+	g_assert (g_utf8_validate (string->str, -1, NULL));
+
+	return g_string_free (string, FALSE);
+}
+
+static gchar *
+extract_string_until (const gchar * original, 
+                      const gchar * until_substring)
+{
+	gchar * result;
+	
+	g_assert ((gint) strlen (original) >= until_substring - original);
+	g_assert (until_substring - original >= 0);
+
+	result = g_malloc (until_substring - original + 1);
+	strncpy (result, original, until_substring - original);
+	result[until_substring - original] = '\0';
+	
+	return result;
+}
+
+/* Dismantle a file name, separating the base name, the file suffix and removing any
+ * (xxxcopy), etc. string. Figure out the count that corresponds to the given
+ * (xxxcopy) substring.
+ */
+static void
+parse_previous_duplicate_name (const gchar * name,
+                               gchar ** name_base,
+                               const gchar ** suffix,
+                               gint * count)
+{
+	const gchar * tag;
+
+	g_assert (name[0] != '\0');
+	
+	*suffix = strchr (name + 1, '.');
+	if (*suffix == NULL || (*suffix)[1] == '\0') {
+		/* no suffix */
+		*suffix = "";
+	}
+
+	tag = strstr (name, COPY_DUPLICATE_TAG);
+	if (tag != NULL) {
+		if (tag > *suffix) {
+			/* handle case "foo. (copy)" */
+			*suffix = "";
+		}
+		*name_base = extract_string_until (name, tag);
+		*count = 1;
+		return;
+	}
+
+	tag = strstr (name, ANOTHER_COPY_DUPLICATE_TAG);
+	if (tag != NULL) {
+		if (tag > *suffix) {
+			/* handle case "foo. (another copy)" */
+			*suffix = "";
+		}
+		*name_base = extract_string_until (name, tag);
+		*count = 2;
+		return;
+	}
+
+	/* Check to see if we got one of st, nd, rd, th. */
+	tag = strstr (name, X11TH_COPY_DUPLICATE_TAG);
+
+	if (tag == NULL) {
+		tag = strstr (name, X12TH_COPY_DUPLICATE_TAG);
+	}
+	if (tag == NULL) {
+		tag = strstr (name, X13TH_COPY_DUPLICATE_TAG);
+	}
+	if (tag == NULL) {
+		tag = strstr (name, ST_COPY_DUPLICATE_TAG);
+	}
+	if (tag == NULL) {
+		tag = strstr (name, ND_COPY_DUPLICATE_TAG);
+	}
+	if (tag == NULL) {
+		tag = strstr (name, RD_COPY_DUPLICATE_TAG);
+	}
+	if (tag == NULL) {
+		tag = strstr (name, TH_COPY_DUPLICATE_TAG);
+	}
+
+	/* If we got one of st, nd, rd, th, fish out the duplicate number. */
+	if (tag != NULL) {
+		/* localizers: opening parentheses to match the "th copy)" string */
+		tag = strstr (name, _(" ("));
+		if (tag != NULL) {
+			if (tag > *suffix) {
+				/* handle case "foo. (22nd copy)" */
+				*suffix = "";
+			}
+			*name_base = extract_string_until (name, tag);
+			/* localizers: opening parentheses of the "th copy)" string */
+			if (sscanf (tag, _(" (%d"), count) == 1) {
+				if (*count < 1 || *count > 1000000) {
+					/* keep the count within a reasonable range */
+					*count = 0;
+				}
+				return;
+			}
+			*count = 0;
+			return;
+		}
+	}
+
+	*count = 0;
+	if (**suffix != '\0') {
+		*name_base = extract_string_until (name, *suffix);
+	} else {
+		*name_base = g_strdup (name);
+	}
+}
+
+static gchar *
+make_next_duplicate_name (const gchar *base, 
+                          const gchar *suffix,
+                          gint count)
+{
+	const gchar * format;
+	gchar * result;
+
+	if (count < 1) {
+		g_warning ("bad count %d in make_next_duplicate_name()", count);
+		count = 1;
+	}
+
+	if (count <= 2) {
+
+		/* Handle special cases for low numbers.
+		 * Perhaps for some locales we will need to add more.
+		 */
+		switch (count) {
+		default:
+			g_assert_not_reached ();
+			/* fall through */
+		case 1:
+			format = FIRST_COPY_DUPLICATE_FORMAT;
+			break;
+		case 2:
+			format = SECOND_COPY_DUPLICATE_FORMAT;
+			break;
+
+		}
+		result = g_strdup_printf (format, base, suffix);
+	} else {
+
+		/* Handle special cases for the first few numbers of each ten.
+		 * For locales where getting this exactly right is difficult,
+		 * these can just be made all the same as the general case below.
+		 */
+
+		/* Handle special cases for x11th - x20th.
+		 */
+		switch (count % 100) {
+		case 11:
+			format = X11TH_COPY_DUPLICATE_FORMAT;
+			break;
+		case 12:
+			format = X12TH_COPY_DUPLICATE_FORMAT;
+			break;
+		case 13:
+			format = X13TH_COPY_DUPLICATE_FORMAT;
+			break;
+		default:
+			format = NULL;
+			break;
+		}
+
+		if (format == NULL) {
+			switch (count % 10) {
+			case 1:
+				format = ST_COPY_DUPLICATE_FORMAT;
+				break;
+			case 2:
+				format = ND_COPY_DUPLICATE_FORMAT;
+				break;
+			case 3:
+				format = RD_COPY_DUPLICATE_FORMAT;
+				break;
+			default:
+				/* The general case. */
+				format = TH_COPY_DUPLICATE_FORMAT;
+				break;
+			}
+		}
+		result = g_strdup_printf (format, base, count, suffix);
+	}
+	return result;
+}
+
+static gchar *
+get_duplicate_name (const gchar *name)
+{
+	const gchar * suffix;
+	gchar * name_base;
+	gchar * result;
+	gint count;
+
+	parse_previous_duplicate_name (name, &name_base, &suffix, &count);
+	result = make_next_duplicate_name (name_base, suffix, count + 1);
+	g_free (name_base);
+
+	return result;
+}
+
+gchar *
+gsearchtool_get_next_duplicate_name (const gchar * basename)
+{
+	gchar * utf8_name;
+	gchar * utf8_result;
+	gchar * result;
+
+	utf8_name = g_filename_to_utf8 (basename, -1, NULL, NULL, NULL);
+	
+	if (utf8_name == NULL) {
+		/* Couldn't convert to utf8 - probably
+		 * G_BROKEN_FILENAMES not set when it should be.
+		 * Try converting from the locale */
+		utf8_name = g_locale_to_utf8 (basename, -1, NULL, NULL, NULL);	
+
+		if (utf8_name == NULL) {
+			utf8_name = make_valid_utf8 (basename);
+		}
+	}
+
+	utf8_result = get_duplicate_name (utf8_name);
+	g_free (utf8_name);
+
+	result = g_filename_from_utf8 (utf8_result, -1, NULL, NULL, NULL);
+	g_free (utf8_result);
+	return result;
+}

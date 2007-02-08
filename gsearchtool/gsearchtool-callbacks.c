@@ -832,6 +832,20 @@ move_to_trash_cb (GtkAction * action,
 
 			basename = g_locale_from_utf8 (utf8_basename, -1, NULL, NULL, NULL);
 			destination = g_build_filename (trash_path, basename, NULL);
+
+			/* Bugzilla #404158: Do not overwrite existing files in the trash folder */
+			while (g_file_test (destination, G_FILE_TEST_EXISTS)) {
+				gchar * temp;
+
+				temp = g_strdup (basename);
+				g_free (basename);
+
+				basename = gsearchtool_get_next_duplicate_name (temp);
+				g_free (destination);
+				g_free (temp);
+
+				destination = g_build_filename (trash_path, basename, NULL);
+			}
 			
 			destination_uri = g_filename_to_uri (destination, NULL, NULL);
 			source_uri = g_filename_to_uri (locale_filename, NULL, NULL);
