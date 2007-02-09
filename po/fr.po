@@ -1,24 +1,24 @@
 # French translation of gnome-utils.
-# Copyright (C) 1998-2006 Free Software Foundation, Inc.
+# Copyright (C) 1998-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-utils package.
 #
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Thibaut Cousin <cousin@clermont.in2p3.fr>, 1999.
-# maintainer: Christophe Merlet (RedFox) <redfox@redfoxcenter.org>, 2000-2006.
+# Christophe Merlet <redfox@redfoxcenter.org>, 2000-2006.
 # Bretin Didier <didier@bretin.net>, 2001.
 # Christophe Fergeau <teuf@users.sourceforge.net>, 2002.
 # Baptiste Mille-Mathias <bmm80@free.fr>, 2005.
 # Cyprien Le Pannérer <cyplp@free.fr>, 2006.
-# Jonathan Ernst <jonathan@ernstfamily.ch>, 2006.
+# Jonathan Ernst <jonathan@ernstfamily.ch>, 2006-2007.
 # Robert-André Mauchin <zebob.m@gmail.com>, 2005-2007.
-# Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007
+# Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.15.94\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-23 21:57+0100\n"
-"PO-Revision-Date: 2007-01-23 22:10+0100\n"
+"POT-Creation-Date: 2007-02-09 21:18+0100\n"
+"PO-Revision-Date: 2007-02-09 21:37+0100\n"
 "Last-Translator: Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "Carte d'utilisation _visuelle"
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
 #: ../gnome-dictionary/src/gdict-window.c:1071 ../logview/logview.c:88
 msgid "_Help"
-msgstr "_Aide"
+msgstr "Aid_e"
 
 #: ../baobab/data/baobab.glade.h:33
 msgid "_Monitor changes to your home folder"
@@ -178,7 +178,7 @@ msgstr "_Total des dossiers :"
 #: ../baobab/data/baobab.glade.h:36
 #: ../gnome-dictionary/src/gdict-window.c:1069 ../logview/logview.c:87
 msgid "_View"
-msgstr "Afficha_ge"
+msgstr "_Affichage"
 
 #: ../baobab/data/baobab.schemas.in.h:1
 msgid "A list of partitions to be excluded from scanning."
@@ -494,7 +494,7 @@ msgstr "Impossible de mettre « %s » à la corbeille."
 msgid "_Delete Folder"
 msgstr "_Supprimer le dossier"
 
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:874
+#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "La suppression de « %s » a échoué : %s."
@@ -560,11 +560,11 @@ msgid "A graphical tool to analyze disk usage."
 msgstr "Un outil graphique pour analyser l'usage des disques."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:57
+#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
-"Christophe Merlet (RedFox) <redfox@redfoxcenter.org>\n"
+"Christophe Merlet <redfox@redfoxcenter.org>\n"
 "Christophe Fergeau <teuf@users.sourceforge.net>\n"
 "Baptiste Mille-Mathias <bmm80@free.fr>\n"
 "Cyprien Le Pannérer <cyplp@free.fr>\n"
@@ -573,7 +573,7 @@ msgstr ""
 "Stéphane Raimbault <stephane.raimbault@gmail.com>"
 
 #: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
-#: ../gsearchtool/gsearchtool-callbacks.c:819
+#: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Le document n'existe pas."
 
@@ -1683,7 +1683,7 @@ msgstr "Recharger la liste des stratégies disponibles"
 msgid "Clear the list of available strategies"
 msgstr "Effacer la liste des stratégies disponibles"
 
-#: ../gnome-dictionary/src/gdict-about.c:59
+#: ../gnome-dictionary/src/gdict-about.c:57
 #: ../gnome-dictionary/src/gdict-applet.c:613
 msgid "Look up words in dictionaries"
 msgstr "Recherche les mots dans les dictionnaires"
@@ -2140,6 +2140,7 @@ msgid "Available strategies"
 msgstr "Statégies disponibles"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
+#: ../gsearchtool/gsearchtool-support.c:1629
 msgid " (invalid Unicode)"
 msgstr " (Unicode non valide)"
 
@@ -2162,81 +2163,81 @@ msgstr "%ld sur %ld"
 msgid "Error loading the help page"
 msgstr "Erreur lors du chargement de la page d'aide"
 
-#: ../gnome-screenshot/gnome-screenshot.c:193
+#: ../gnome-screenshot/gnome-screenshot.c:186
 msgid "None"
 msgstr "Aucun"
 
-#: ../gnome-screenshot/gnome-screenshot.c:199
+#: ../gnome-screenshot/gnome-screenshot.c:187
 msgid "Drop shadow"
 msgstr "Ombre portée"
 
-#: ../gnome-screenshot/gnome-screenshot.c:205
+#: ../gnome-screenshot/gnome-screenshot.c:188
 msgid "Border"
 msgstr "Bordure"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:286
-msgid "_Include the window border"
-msgstr "_Inclure la bordure de la fenêtre"
+#: ../gnome-screenshot/gnome-screenshot.c:297
+msgid "Include the window _border"
+msgstr "Inclure la _bordure de la fenêtre"
 
-#: ../gnome-screenshot/gnome-screenshot.c:301
-msgid "Apply effect:"
-msgstr "Appliquer l'effet :"
+#: ../gnome-screenshot/gnome-screenshot.c:312
+msgid "Apply _effect:"
+msgstr "Appliquer l'_effet :"
 
-#: ../gnome-screenshot/gnome-screenshot.c:356
+#: ../gnome-screenshot/gnome-screenshot.c:372
 msgid "Grab the whole _desktop"
 msgstr "Capturer l'ensemble du _bureau"
 
-#: ../gnome-screenshot/gnome-screenshot.c:368
+#: ../gnome-screenshot/gnome-screenshot.c:384
 msgid "Grab the current _window"
 msgstr "Capturer la _fenêtre courante"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:385
-msgid "Grab after a delay of"
-msgstr "Capturer après un délai de"
+#: ../gnome-screenshot/gnome-screenshot.c:401
+msgid "Grab _after a delay of"
+msgstr "Capturer _après un délai de"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:404
-#: ../gnome-screenshot/gnome-screenshot.c:844
+#: ../gnome-screenshot/gnome-screenshot.c:421
+#: ../gnome-screenshot/gnome-screenshot.c:863
 msgid "seconds"
 msgstr "secondes"
 
-#: ../gnome-screenshot/gnome-screenshot.c:430
+#: ../gnome-screenshot/gnome-screenshot.c:448
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:431
+#: ../gnome-screenshot/gnome-screenshot.c:449
 msgid "Effects"
 msgstr "Effets"
 
-#: ../gnome-screenshot/gnome-screenshot.c:437
+#: ../gnome-screenshot/gnome-screenshot.c:455
 msgid "Take _Screenshot"
 msgstr "Prendre une _capture d'écran"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:463
+#: ../gnome-screenshot/gnome-screenshot.c:481
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Capture-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:469
-#: ../gnome-screenshot/screenshot-save.c:178
+#: ../gnome-screenshot/gnome-screenshot.c:487
+#: ../gnome-screenshot/screenshot-save.c:197
 msgid "Screenshot.png"
 msgstr "Capture.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:509
+#: ../gnome-screenshot/gnome-screenshot.c:527
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Capture-%s-%d.png"
@@ -2244,48 +2245,48 @@ msgstr "Capture-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:517
+#: ../gnome-screenshot/gnome-screenshot.c:535
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Capture-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:693
+#: ../gnome-screenshot/gnome-screenshot.c:711
 msgid "Unable to take a screenshot of the current window"
 msgstr "Impossible de prendre une capture d'écran de la fenêtre courante"
 
-#: ../gnome-screenshot/gnome-screenshot.c:842
+#: ../gnome-screenshot/gnome-screenshot.c:861
 msgid "Grab a window instead of the entire screen"
 msgstr "Capturer une fenêtre plutôt que l'écran complet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:843
+#: ../gnome-screenshot/gnome-screenshot.c:862
 msgid "Include the window border with the screenshot"
 msgstr "Inclure la bordure de la fenêtre dans la capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:844
+#: ../gnome-screenshot/gnome-screenshot.c:863
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Effectue une capture d'écran après le délai indiqué [en secondes]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:845
+#: ../gnome-screenshot/gnome-screenshot.c:864
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effet à appliquer à la bordure (ombre, bordure ou aucun)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:845
+#: ../gnome-screenshot/gnome-screenshot.c:864
 msgid "effect"
 msgstr "effet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:846
+#: ../gnome-screenshot/gnome-screenshot.c:865
 msgid "Interactively set options"
 msgstr "Options définies inter-activement"
 
-#: ../gnome-screenshot/gnome-screenshot.c:856
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "Options for Screenshot"
 msgstr "Options pour la capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:857
+#: ../gnome-screenshot/gnome-screenshot.c:876
 msgid "Show Screenshot options"
 msgstr "Afficher les options de la capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:861
+#: ../gnome-screenshot/gnome-screenshot.c:880
 msgid "Take a picture of the screen"
 msgstr "Effectue une capture d'écran"
 
@@ -2313,7 +2314,9 @@ msgstr "Effet au bord"
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"border\"."
-msgstr "Effet à ajouter à l'extérieur du bord. Les valeurs possibles sont « shadow » (ombre), « border » (bordure) et « none » (aucun)."
+msgstr ""
+"Effet à ajouter à l'extérieur du bord. Les valeurs possibles sont "
+"« shadow » (ombre), « border » (bordure) et « none » (aucun)."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
 msgid "Include Border"
@@ -2343,7 +2346,7 @@ msgstr ""
 msgid "Select a folder"
 msgstr "Sélectionner un dossier"
 
-#: ../gnome-screenshot/screenshot-save.c:38
+#: ../gnome-screenshot/screenshot-save.c:57
 #, c-format
 msgid ""
 "Unable to clear the temporary folder:\n"
@@ -2352,7 +2355,7 @@ msgstr ""
 "Impossible de vider le répertoire temporaire :\n"
 "%s"
 
-#: ../gnome-screenshot/screenshot-save.c:76
+#: ../gnome-screenshot/screenshot-save.c:95
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
@@ -2360,12 +2363,12 @@ msgstr ""
 "Le processus fils d'enregistrement a quitté inopinément. Impossible d'écrire "
 "la capture d'écran sur le disque."
 
-#: ../gnome-screenshot/screenshot-save.c:205
+#: ../gnome-screenshot/screenshot-save.c:224
 msgid "Unknown error saving screenshot to disk"
 msgstr ""
 "Erreur inconnue lors de l'enregistrement de la capture d'écran sur le disque"
 
-#: ../gnome-screenshot/screenshot-utils.c:614
+#: ../gnome-screenshot/screenshot-utils.c:633
 msgid "Untitled Window"
 msgstr "Fenêtre sans nom"
 
@@ -2383,7 +2386,7 @@ msgid "The file \"%s\" already exists.  Would you like to replace it?"
 msgstr "Le fichier « %s » existe déjà. Voulez-vous le remplacer ?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:191
-#: ../gsearchtool/gsearchtool-callbacks.c:1429
+#: ../gsearchtool/gsearchtool-callbacks.c:1469
 msgid "_Replace"
 msgstr "Re_mplacer"
 
@@ -2795,42 +2798,42 @@ msgstr ""
 msgid "Could not delete \"%s\"."
 msgstr "Impossible de supprimer « %s »."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:840
+#: ../gsearchtool/gsearchtool-callbacks.c:864
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Le déplacement de « %s » a échoué : %s."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1314
+#: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
 msgstr "Enregistrer le résultat de la recherche sous..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1345
+#: ../gsearchtool/gsearchtool-callbacks.c:1385
 msgid "Could not save document."
 msgstr "Impossible d'enregistrer le document."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1346
+#: ../gsearchtool/gsearchtool-callbacks.c:1386
 msgid "You did not select a document name."
 msgstr "Vous n'avez pas sélectionné de nom de document."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1376
+#: ../gsearchtool/gsearchtool-callbacks.c:1416
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Impossible d'enregistrer le document « %s » dans « %s »."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1410
+#: ../gsearchtool/gsearchtool-callbacks.c:1450
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Le document « %s » existe déjà. Voulez-vous le remplacer ?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1414
+#: ../gsearchtool/gsearchtool-callbacks.c:1454
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Si vous remplacez un fichier existant, son contenu sera écrasé."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1479
+#: ../gsearchtool/gsearchtool-callbacks.c:1519
 msgid "The document name you selected is a folder."
 msgstr "Le nom de document que vous avez sélectionné est un dossier."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1528
+#: ../gsearchtool/gsearchtool-callbacks.c:1568
 msgid "You may not have write permissions to the document."
 msgstr "Vous n'avez pas les permissions en écriture sur le document."
 
@@ -2869,6 +2872,100 @@ msgstr "lien (cassé)"
 #, c-format
 msgid "link to %s"
 msgstr "lien vers %s"
+
+#. START OF NAUTILUS/EEL FUNCTIONS: USED FOR HANDLING OF DUPLICATE FILENAMES
+#. Localizers:
+#. * Feel free to leave out the st, nd, rd and th suffix or
+#. * make some or all of them match.
+#.
+#. localizers: tag used to detect the first copy of a file
+#: ../gsearchtool/gsearchtool-support.c:1533
+msgid " (copy)"
+msgstr " (copie)"
+
+#. localizers: tag used to detect the second copy of a file
+#: ../gsearchtool/gsearchtool-support.c:1535
+msgid " (another copy)"
+msgstr " (autre copie)"
+
+#. localizers: tag used to detect the x11th copy of a file
+#. localizers: tag used to detect the x12th copy of a file
+#. localizers: tag used to detect the x13th copy of a file
+#. localizers: tag used to detect the xxth copy of a file
+#: ../gsearchtool/gsearchtool-support.c:1538
+#: ../gsearchtool/gsearchtool-support.c:1540
+#: ../gsearchtool/gsearchtool-support.c:1542
+#: ../gsearchtool/gsearchtool-support.c:1552
+msgid "th copy)"
+msgstr "e copie)"
+
+#. localizers: tag used to detect the x1st copy of a file
+#: ../gsearchtool/gsearchtool-support.c:1545
+msgid "st copy)"
+msgstr "re copy)"
+
+#. localizers: tag used to detect the x2nd copy of a file
+#: ../gsearchtool/gsearchtool-support.c:1547
+msgid "nd copy)"
+msgstr "e copy)"
+
+#. localizers: tag used to detect the x3rd copy of a file
+#: ../gsearchtool/gsearchtool-support.c:1549
+msgid "rd copy)"
+msgstr "e copie)"
+
+#. localizers: appended to first file copy
+#: ../gsearchtool/gsearchtool-support.c:1566
+#, c-format
+msgid "%s (copy)%s"
+msgstr "%s (copie)%s"
+
+#. localizers: appended to second file copy
+#: ../gsearchtool/gsearchtool-support.c:1568
+#, c-format
+msgid "%s (another copy)%s"
+msgstr "%s (autre copie)%s"
+
+#. localizers: appended to x11th file copy
+#. localizers: appended to x12th file copy
+#. localizers: appended to x13th file copy
+#. localizers: appended to xxth file copy
+#: ../gsearchtool/gsearchtool-support.c:1571
+#: ../gsearchtool/gsearchtool-support.c:1573
+#: ../gsearchtool/gsearchtool-support.c:1575
+#: ../gsearchtool/gsearchtool-support.c:1584
+#, c-format
+msgid "%s (%dth copy)%s"
+msgstr "%s (%de copie)%s"
+
+#. localizers: appended to x1st file copy
+#: ../gsearchtool/gsearchtool-support.c:1578
+#, c-format
+msgid "%s (%dst copy)%s"
+msgstr "%s (%dre copie)%s"
+
+#. localizers: appended to x2nd file copy
+#: ../gsearchtool/gsearchtool-support.c:1580
+#, c-format
+msgid "%s (%dnd copy)%s"
+msgstr "%s (%de copie)%s"
+
+#. localizers: appended to x3rd file copy
+#: ../gsearchtool/gsearchtool-support.c:1582
+#, c-format
+msgid "%s (%drd copy)%s"
+msgstr "%s (%de copie)%s"
+
+#. localizers: opening parentheses to match the "th copy)" string
+#: ../gsearchtool/gsearchtool-support.c:1718
+msgid " ("
+msgstr " ("
+
+#. localizers: opening parentheses of the "th copy)" string
+#: ../gsearchtool/gsearchtool-support.c:1726
+#, c-format
+msgid " (%d"
+msgstr " (%d"
 
 #: ../gsearchtool/gsearchtool.c:82
 msgid "Contains the _text"
