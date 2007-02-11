@@ -29,6 +29,22 @@ GNOME_COMPILE_WARNINGS(yes)
 
 AC_PATH_XTRA
 
+AC_C_CONST
+AC_C_INLINE
+AC_TYPE_OFF_T
+AC_TYPE_PID_T
+AC_TYPE_SIZE_T
+AC_STRUCT_ST_RDEV
+AC_HEADER_TIME
+AC_STRUCT_TM
+AC_TYPE_UID_T
+AC_FUNC_ALLOCA
+AC_FUNC_MMAP
+AC_TYPE_SIGNAL
+AC_FUNC_STRFTIME
+AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgid)
+
+
 # Before making a release, the LT_VERSION string should be modified.
 # The string is of the form C:R:A.
 # - If interfaces have been changed or added, but binary compatibility has
@@ -75,7 +91,10 @@ dnl *****************************************
 dnl libgnome, libgnomeui needed for all utils
 dnl *****************************************
 
-PKG_CHECK_MODULES(GNOME_UTILS, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED libgnome-2.0 >= $LIBGNOME_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+PKG_CHECK_MODULES(GNOME_UTILS, glib-2.0 >= $GLIB_REQUIRED dnl
+                               gtk+-2.0 >= $GTK_REQUIRED dnl
+                               libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
+                               libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
 
@@ -96,7 +115,8 @@ AC_SUBST(LIBGNOMEPRINT_LIBS)
 dnl *****************************************
 dnl libgdict requires just gtk+
 dnl *****************************************
-PKG_CHECK_MODULES(LIBGDICT, glib-2.0 >= $GLIB_REQUIRED gtk+-2.0 >= $GTK_REQUIRED)
+PKG_CHECK_MODULES(LIBGDICT, glib-2.0 >= $GLIB_REQUIRED dnl
+                            gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(LIBGDICT_CFLAGS)
 AC_SUBST(LIBGDICT_LIBS)
 
@@ -129,7 +149,9 @@ dnl *****************************************
 AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
 AC_SUBST(XSHAPE_LIBS)
 
-PKG_CHECK_MODULES(SCREENSHOT, gtk+-2.0 >= $GTK_REQUIRED libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED libglade-2.0 >= $LIBGLADE_REQUIRED)
+PKG_CHECK_MODULES(SCREENSHOT, gtk+-2.0 >= $GTK_REQUIRED dnl
+                              libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dnl
+                              libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(SCREENSHOT_CFLAGS)
 AC_SUBST(SCREENSHOT_LIBS)
 
@@ -160,7 +182,8 @@ dnl *********************************************
 dnl gnome-vfs/mime-data is need for gsearchtool
 dnl *********************************************
 
-PKG_CHECK_MODULES(GNOMEVFS, gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED gnome-vfs-module-2.0 >= $GNOMEVFS_REQUIRED)
+PKG_CHECK_MODULES(GNOMEVFS, gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED dnl
+                            gnome-vfs-module-2.0 >= $GNOMEVFS_REQUIRED)
 AC_SUBST(GNOMEVFS_CFLAGS)
 AC_SUBST(GNOMEVFS_LIBS)
 
@@ -208,15 +231,11 @@ dnl ***************************************************************
 dnl Other miscellaneous checks 
 dnl ***************************************************************
 
+dnl Allow users to run logview using the console helper PAM stuff.
 AC_ARG_ENABLE(console-helper,
               AC_HELP_STRING([--enable-console-helper=@<:@no/yes@:>@],
                              [Enable PAM console helper @<:@default=no@:>@]),,
               enable_console_helper=no)
-
-dnl *****************************************************************
-dnl Allow users to run logview using the console helper 
-dnl PAM stuff.
-dnl *****************************************************************
 
 if test "x$enable_console_helper" = "xyes"; then
   AM_CONDITIONAL(CONSOLE_HELPER, true)
@@ -242,11 +261,7 @@ else
 fi
 
 
-dnl ***********
-dnl PAM prefix
-dnl ***********
-
-dnl  ***************Checking for availability of IPv6************ 
+dnl IPv6 support
 AC_MSG_CHECKING([whether to enable IPv6])
 AC_ARG_ENABLE(ipv6,
               AC_HELP_STRING([--enable-ipv6=@<:@yes/no@:>@],
@@ -279,8 +294,7 @@ if test "x$have_ipv6" = "xyes"; then
   fi
 fi
 
-dnl  ************************end IPv6 checks*********************
-
+dnl PAM prefix
 withval=""
 AC_ARG_WITH(pam-prefix,
             AC_HELP_STRING([--with-pam-prefix=@<:@prefix@:>@],
@@ -299,29 +313,6 @@ else
 fi
 AC_SUBST(PAM_PREFIX)
     
-dnl **************************************************************
-dnl Checks for typedefs, structures, and compiler characteristics.
-dnl **************************************************************
-AC_C_CONST
-AC_C_INLINE
-AC_TYPE_OFF_T
-AC_TYPE_PID_T
-AC_TYPE_SIZE_T
-AC_STRUCT_ST_RDEV
-AC_HEADER_TIME
-AC_STRUCT_TM
-AC_TYPE_UID_T
-
-dnl *****************************
-dnl Checks for library functions.
-dnl *****************************
-
-AC_FUNC_ALLOCA
-AC_FUNC_MMAP
-AC_TYPE_SIGNAL
-AC_FUNC_STRFTIME
-AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgid)
-
 dnl ************************************************
 dnl X development libraries check
 dnl ************************************************
@@ -364,8 +355,9 @@ AC_TRY_RUN([#include <time.h>
                   return 1;
                 }
             ],
-	    AC_DEFINE(HAVE_STRFTIME_EXTENSION, 1, [Define if strftime supports %E and %O modifiers.])
-            )
+	    AC_DEFINE([HAVE_STRFTIME_EXTENSION], [1],
+                      [Define if strftime supports %E and %O modifiers.])
+)
 
 dnl *************************************************
 dnl Individual gnome-utils checks 
@@ -385,14 +377,12 @@ AC_CHECK_HEADER(linux/fd.h,
 # Check for the ext2fs library
 AC_CHECK_LIB(ext2fs, ext2fs_mkdir, x_libs="-lext2fs",
   build_gfloppy=false
-  AC_MSG_WARN([
-*** libext2fs not found. You need e2fsprogs and e2fsprogs-devel installed to build gfloppy.]))
+  AC_MSG_WARN([libext2fs not found. You need e2fsprogs and e2fsprogs-devel installed to build gfloppy.]))
 # check for ext2fs header specific includes
 AC_CHECK_HEADERS([et/com_err.h])
 AC_CHECK_HEADER([ext2fs/ext2_io.h], [],
   [build_gfloppy=false
-  AC_MSG_WARN([
-*** ext2fs/ext2_io.h not found.  You need e2fsprogs-devel installed.])],
+  AC_MSG_WARN([ext2fs/ext2_io.h not found.  You need e2fsprogs-devel installed.])],
   [#include <string.h>
 #if HAVE_ET_COM_ERR_H
 #include <et/com_err.h>
@@ -408,7 +398,8 @@ AC_ARG_ENABLE(gfloppy,
               enable_gfloppy=gfloppy_default)
 
 if test "x$build_gfloppy" = "xfalse" -a "x$enable_gfloppy" = "xyes" ; then
-	AC_MSG_ERROR(GFloppy requested, but the required libraries and headers were not found)
+	AC_MSG_WARN([GFloppy requested, but the required libraries and headers were not found])
+        enable_gfloppy=false
 fi
 
 AM_CONDITIONAL(BUILD_GFLOPPY, [ test "x$enable_gfloppy" = "xyes" ])
@@ -457,7 +448,6 @@ AC_SUBST(EXPANDED_LOGVIEWDIR)
 dnl ********************
 dnl scrollkeeper checks 
 dnl ********************
-
 AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
 if test x$SCROLLKEEPER_CONFIG = xno; then
   AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package)
@@ -467,7 +457,6 @@ fi
 dnl *******************************
 dnl Internationalization
 dnl ******************************* 
-
 GETTEXT_PACKAGE=gnome-utils-2.0
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], "$GETTEXT_PACKAGE", [Define the gettext
 package to use])
@@ -480,11 +469,9 @@ gnomeutilslocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(gnomeutilslocaledir)
 
 dnl gtk-doc stuff
-
 GTK_DOC_CHECK([1.0])
 
 dnl gnome-doc-utils stuff
-
 GNOME_DOC_INIT
 
 AC_OUTPUT([
@@ -529,18 +516,18 @@ echo "=================================="
 echo ""
 
 dnl <= CFLAGS and LDFLAGS =>
-echo "CFLAGS : $CFLAGS"
+echo "CFLAGS  : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
-echo "X_LIBS : $X_LIBS"
+echo "X_LIBS  : $X_LIBS"
 echo ""
 
 dnl <= Prefixes =>
 echo "prefix : $prefix"
 echo "sysconf dir : "`eval echo $sysconfdir`
-echo "bin dir : "`eval echo $bindir`
-echo "sbin dir : "`eval echo $sbindir`
-echo "PAM prefix : $PAM_PREFIX"
-echo "data dir : "`eval echo $datadir`
+echo "bin dir     : "`eval echo $bindir`
+echo "sbin dir    : "`eval echo $sbindir`
+echo "PAM prefix  : $PAM_PREFIX"
+echo "data dir    : "`eval echo $datadir`
 echo ""
 
 echo ""
@@ -549,16 +536,16 @@ echo "============================="
 echo ""
 dnl <= Console Helper =>
 if test "x$enable_console_helper" = "xyes"; then
-	echo "Console helper (logview)          : YES"
+  echo "Console helper (logview)          : YES"
 else
-	echo "Console helper (logview)          : NO"
+  echo "Console helper (logview)          : NO"
 fi
 
 dnl <= Debug messages =>
 if test "x$enable_debug" = "xyes"; then
-	echo "Debug messages (libgdict)         : YES"
+  echo "Debug messages (libgdict)         : YES"
 else
-	echo "Debug messages (libgdict)         : NO"
+  echo "Debug messages (libgdict)         : NO"
 fi
 
 dnl <= message file =>
@@ -566,9 +553,9 @@ echo "Logview default message file      : $messages_file"
 
 dnl <= gfloppy =>
 if test "x$build_gfloppy" = "xtrue"; then
-	echo "Build gfloppy                     : YES"
+  echo "Build gfloppy                     : YES"
 else
-	echo "Build gfloppy                     : NO"
+  echo "Build gfloppy                     : NO"
 fi
 
 dnl <= libgdict =>
