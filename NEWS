@@ -22,6 +22,8 @@ Screenshot
     * Clean up the interactive dialog code.
     * Hide the interactive dialog as soon as possible and avoid
       errors when grabbing a window without a delay.
+    * Use a better interpolation algorithm for the border
+      effect.
     * Fix bug #400200 - Do not leak the GnomeProgram instance
       when quitting. [Christian Persch]
     * Fix part of bug #400203 - HIG fixes for the interactive
@@ -33,6 +35,8 @@ Search Tool
       deleting a file.
     * Fix bug #395381 - Cannot delete filenames containing %21
       from the search window.
+    * Fix bug #404158 - Do not overwrite files in the trash folder.
+      Use same file renaming logic as nautilus.
 
 System Log Viewer
 
