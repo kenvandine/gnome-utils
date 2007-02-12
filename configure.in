@@ -53,7 +53,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgi
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LIBGDICT_LT_VERSION=5:9:0
+LIBGDICT_LT_VERSION=5:10:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
 dnl *****************************************
@@ -129,7 +129,7 @@ AC_SUBST(LIBGDICT_LIBS)
 # no API breakage past the API freeze.
 m4_define([gdict_major_version], [0])
 m4_define([gdict_minor_version], [10])
-m4_define([gdict_micro_version], [7])
+m4_define([gdict_micro_version], [8])
 m4_define([gdict_version],
 	  [gdict_major_version().gdict_minor_version().gdict_micro_version()])
 
