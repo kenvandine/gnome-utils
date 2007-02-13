@@ -1,18 +1,16 @@
 [Gdict]
 
 * Great UI rework: port the old UI to the new infrastructure
-  [+] Gdict::Entry
+  [ ] Gdict::Entry
   [+] Gdict::Defbox
-    [ ] common pattern recognition for definition sections
+    [x] common pattern recognition for definition sections
     [ ] colors for sections (with theme support)
   [+] Gdict::Speller
     [ ] visually separate matchs from different dictionaries
 
 * UI additions
-  [x] Gdict::DatabaseChooser (combo with all the databases available on
-      a GdictContext);
-  [ ] Gdict::StrategyChooser (combo with all the strategies available on
-      a GdictContext);
+  [x] Gdict::DatabaseChooser
+  [x] Gdict::StrategyChooser
   [x] add a "find bottom pane" to Gdict::Defbox;
 
 * Add preferences support
@@ -27,8 +25,8 @@
   [x] Create a new HIG-compliant preferences dialog using Glade, and
       share it with the applet;
   [+] Source dialog
-    [ ] Add view/edit modes
-    [ ] Use the DatabaseChooser and StrategyChooser widgets for
+    [x] Add view/edit modes
+    [x] Use the DatabaseChooser and StrategyChooser widgets for
         the "Database" and "Startegy" fields.
   [x] Source remove
   [x] Remember window size/state across sessions
@@ -38,4 +36,4 @@
 * UI updates
   [x] Use GtkAlignedWindow as the container for the Gdict::Defbox;
 
-$ Last updated: 2005-12-31 19:20 (+0100) ebassi $
+$ Last updated: 2007-02-13 01:00 (+0000) ebassi $
