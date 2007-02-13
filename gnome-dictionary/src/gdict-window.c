@@ -1529,8 +1529,6 @@ gdict_window_handle_notify_position_cb (GtkWidget  *widget,
   window_width = GTK_WIDGET (window)->allocation.width;
 
   window->sidebar_width = window_width - pos;
-
-  g_debug (G_STRLOC ": sidebar_width = %d", window->sidebar_width);
 }
 
 static GObject *
@@ -1715,10 +1713,9 @@ gdict_window_constructor (GType                  type,
   gtk_container_add (GTK_CONTAINER (frame2), window->sidebar);
   gtk_widget_show (window->sidebar);
 
-  gtk_widget_set_size_request (frame1, 300, -1);
   gtk_paned_pack1 (GTK_PANED (handle), frame1, TRUE, FALSE);
-  gtk_widget_set_size_request (frame2, 150, -1);
-  gtk_paned_pack2 (GTK_PANED (handle), frame2, TRUE, FALSE);
+  gtk_paned_pack2 (GTK_PANED (handle), frame2, FALSE, TRUE);
+
   window->defbox_frame = frame1;
   window->sidebar_frame = frame2;
 
@@ -1797,13 +1794,8 @@ gdict_window_constructor (GType                  type,
   if (is_maximized)
     gtk_window_maximize (GTK_WINDOW (window));
 
-  g_debug (G_STRLOC ": sidebar_width: %d, width: %d, pos: %d",
-           sidebar_width,
-           width,
-           width - sidebar_width);
-
-  gtk_paned_set_position (GTK_PANED (handle), width - sidebar_width);
-  
+  gtk_paned_set_position (GTK_PANED (handle),
+		          GTK_WIDGET (window)->allocation.width - sidebar_width);
   gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), sidebar_page);
 
   g_free (sidebar_page);
