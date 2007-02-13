@@ -372,20 +372,20 @@ gdict_sidebar_init (GdictSidebar *sidebar)
   gtk_widget_show (close_button);
   priv->close_button = close_button;
 
-  sidebar->priv->menu = gtk_menu_new ();
-  g_signal_connect (sidebar->priv->menu, "deactivate",
+  priv->menu = gtk_menu_new ();
+  g_signal_connect (priv->menu, "deactivate",
 		    G_CALLBACK (gdict_sidebar_menu_deactivate_cb),
 		    sidebar);
-  gtk_menu_attach_to_widget (GTK_MENU (sidebar->priv->menu),
+  gtk_menu_attach_to_widget (GTK_MENU (priv->menu),
 		  	     GTK_WIDGET (sidebar),
 			     gdict_sidebar_menu_detach_cb);
-  gtk_widget_show (sidebar->priv->menu);
+  gtk_widget_show (priv->menu);
 
-  sidebar->priv->notebook = gtk_notebook_new ();
-  gtk_notebook_set_show_border (GTK_NOTEBOOK (sidebar->priv->notebook), FALSE);
-  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (sidebar->priv->notebook), FALSE);
-  gtk_box_pack_start (GTK_BOX (sidebar), sidebar->priv->notebook, TRUE, TRUE, 6);
-  gtk_widget_show (sidebar->priv->notebook);
+  priv->notebook = gtk_notebook_new ();
+  gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
+  gtk_box_pack_start (GTK_BOX (sidebar), priv->notebook, TRUE, TRUE, 6);
+  gtk_widget_show (priv->notebook);
 }
 
 /*
