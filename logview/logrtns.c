@@ -252,7 +252,11 @@ log_read_dates (gchar **buffer_lines, time_t current)
            i++;
            date_string = string_get_date_string (buffer_lines[i]);
            if (date_string == NULL)
-             continue;
+             if (i==n-1) {
+               done = TRUE;
+               break;
+             } else
+               continue;
            newdate = string_get_date (buffer_lines[i]);
            
            if (newdate == NULL && i==n-1)
