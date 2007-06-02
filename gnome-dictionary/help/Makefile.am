@@ -5,4 +5,4 @@ DOC_MODULE = gnome-dictionary
 DOC_ENTITIES = legal.xml
 DOC_INCLUDES = 
 
-DOC_LINGUAS = el en_GB es fr it uk ru sv
+DOC_LINGUAS = ca el en_GB es fr it uk ru sv
