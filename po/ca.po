@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.11.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-03 03:29+0100\n"
-"PO-Revision-Date: 2007-02-15 02:36+0100\n"
+"POT-Creation-Date: 2007-06-03 03:37+0100\n"
+"PO-Revision-Date: 2007-06-23 02:36+0100\n"
 "Last-Translator: Josep Puigdemont <josep.puigdemont@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgstr "Fes una captura"
 #: ../baobab/data/baobab.glade.h:23
 #, no-c-format
 msgid "Zoom 100%"
-msgstr "Ampliació al 100%"
+msgstr "Amplia al 100%"
 
 #: ../baobab/data/baobab.glade.h:24
 msgid "Zoom in"
@@ -178,7 +178,7 @@ msgstr "_Visualitza"
 
 #: ../baobab/data/baobab.schemas.in.h:1
 msgid "A list of partitions to be excluded from scanning."
-msgstr "Llista de les particions que s'exclouran durant l'escaneig."
+msgstr "Llista de les particions que no s'escanejaran."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
@@ -198,7 +198,7 @@ msgstr "La barra d'eines és visible"
 
 #: ../baobab/data/baobab.schemas.in.h:6
 msgid "Whether any change to the home directory should be monitored."
-msgstr "Si qualsevol canvi al directori d'inici s'ha de monitoritzar."
+msgstr "Si s'han de monitoritzar els canvis al directori d'inici."
 
 #: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether the status bar at the bottom of main window should be visible."
@@ -245,7 +245,7 @@ msgstr "Caràcters UTF-8 invàlids"
 
 #: ../baobab/src/baobab.c:639
 msgid "Could not initialize GNOME VFS monitoring"
-msgstr "No s'ha pogut inicialitzar el GNOME VFS per a monitoritzar"
+msgstr "No s'ha pogut inicialitzar la monitorització amb GNOME VFS"
 
 #: ../baobab/src/baobab.c:640
 msgid "Changes to your home folder will not be monitored."
@@ -253,7 +253,7 @@ msgstr "No es monitoritzaran els canvis a la carpeta d'inici."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
-msgstr "No s'ha pogut crear la imatge de memòria de píxels."
+msgstr "No s'ha pogut crear la imatge."
 
 #: ../baobab/src/baobab-graphwin.c:163
 msgid "Save Snapshot"
@@ -269,7 +269,7 @@ msgstr "Il·limitat"
 
 #: ../baobab/src/baobab-graphwin.c:279
 msgid "Cannot allocate memory for graphical window!"
-msgstr "No s'ha pogut ubicar memòria per a la finestra gràfica."
+msgstr "No s'ha pogut ubicar la memòria per a la finestra gràfica."
 
 #. Main treemap window
 #: ../baobab/src/baobab-graphwin.c:307
@@ -514,7 +514,7 @@ msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
 msgstr ""
-"El contingut de la carpeta d'inici ha canviat. Seleccioneu tornar a "
+"El contingut de la carpeta d'inici ha canviat. Torneu a "
 "escanejar per a actualitzar els detalls d'ús."
 
 #: ../baobab/src/baobab-utils.c:625
@@ -578,7 +578,7 @@ msgstr "Formatador de disquet"
 
 #: ../gfloppy/gfloppy.desktop.in.h:2
 msgid "Format floppy disks"
-msgstr "Formata disquets"
+msgstr "Formateu disquets"
 
 #: ../gfloppy/gfloppy.schemas.in.h:1
 msgid ""
@@ -606,18 +606,17 @@ msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
 msgstr ""
-"CERT per a establir mkdosfs com el rerefons de format FAT preferit o "
-"FALS per a establir mtools com el rerefons de format FAT preferit."
+"CERT per a establir l'mkdosfs com a aplicació preferida per al formateig FAT," "FALS per a emprar l'mtools."
 
 #: ../gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
 msgstr ""
-"ext2 per al sistema de fitxers natiu de linux o fat per al sistema de "
+"Empra ext2 per al sistema de fitxers natiu de linux, o fat per al sistema de "
 "fitxers DOS."
 
 #: ../gfloppy/src/badblocks.c:89
 msgid "Internal Error: Unable to seek to the correct location."
-msgstr "Error intern: No s'ha pogut desplaçar a la ubicació correcta."
+msgstr "Error intern: no s'ha pogut desplaçar a la ubicació correcta."
 
 #: ../gfloppy/src/badblocks.c:98
 #, c-format
@@ -646,7 +645,7 @@ msgstr "S'està formatant el disc..."
 
 #: ../gfloppy/src/fdformat.c:49
 msgid "I don't know what this is, but it's very wrong."
-msgstr "Això no se sap què és, però no pot ser gens bo."
+msgstr "No se sap què és, però no pot ser gens bo."
 
 #: ../gfloppy/src/fdformat.c:57 ../gfloppy/src/fdformat.c:70
 #, c-format
@@ -675,12 +674,12 @@ msgid ""
 msgstr ""
 "No s'ha pogut escriure al disquet.\n"
 "\n"
-"Confirmeu que no està protegit contra escriptura."
+"Comproveu que no està protegit contra escriptura."
 
 #: ../gfloppy/src/fdformat.c:107 ../gfloppy/src/fdformat.c:192
 #, c-format
 msgid "Insufficient permissions to open floppy device %s."
-msgstr "No teniu prou permisos per a obrir la unitat de disquet %s."
+msgstr "No teniu permís per a obrir la unitat de disquet %s."
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
 msgid ""
@@ -692,7 +691,7 @@ msgstr ""
 "No s'ha pogut accedir al disquet.\n"
 "\n"
 "Assegureu-vos que està inserit dins la\n"
-"unitat i te la tapa tancada."
+"unitat i té la tapa tancada."
 
 #: ../gfloppy/src/fdformat.c:114
 #, c-format
@@ -712,8 +711,8 @@ msgid ""
 "Problem reading cylinder %d, expected %d, read %d"
 msgstr ""
 "S'ha produït un error de lectura:\n"
-"Hi ha hagut un problema en llegir el cilindre %d, s'esperava %d, s'ha llegit "
-"%d"
+"hi ha hagut un problema en llegir el cilindre %d, s'esperava %d, se n'ha "
+"llegit %d"
 
 #: ../gfloppy/src/fdformat.c:140
 #, c-format
@@ -754,7 +753,7 @@ msgstr ""
 
 #: ../gfloppy/src/fdformat.c:211
 msgid "Could not determine current floppy geometry."
-msgstr "No s'ha pogut determinat la geometria del disquet actual."
+msgstr "No s'ha pogut determinat la geometria del disquet."
 
 #: ../gfloppy/src/gfloppy.c:219
 msgid "Error while creating a unique filename for the bad blocks list file."
@@ -775,7 +774,7 @@ msgstr "S'ha produït un error en invocar l'ordre (%s): %s."
 
 #: ../gfloppy/src/gfloppy.c:328
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr "No es reconeix la signatura d'inici del mke2fs, s'està cancel·lant."
+msgstr "No es reconeix la signatura d'inici de l'mke2fs, s'està cancel·lant."
 
 #: ../gfloppy/src/gfloppy.c:342
 #, c-format
@@ -810,7 +809,7 @@ msgstr ""
 
 #: ../gfloppy/src/gfloppy.c:439
 msgid "Abnormal mbadblocks child process termination."
-msgstr "El procés fill de mbadblocks no ha sortit tal com s'esperava."
+msgstr "El procés fill de l'mbadblocks no ha sortit tal com s'esperava."
 
 #. make the filesystem
 #: ../gfloppy/src/gfloppy.c:465 ../gfloppy/src/gfloppy.c:505
@@ -848,7 +847,7 @@ msgid ""
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
 msgstr ""
-"<small><i><b>Nota</b>: La utilitat mbadblocks no està instal·lada al "
+"<small><i><b>Nota</b>: la utilitat mbadblocks no està instal·lada al "
 "sistema. Ha d'estar instal·lada per a poder fer un formatat DOS (fat) "
 "exhaustiu.</i></small>"
 
@@ -931,7 +930,7 @@ msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
-"Cap de les aplicacions mke2fs o mkdosfs/mformat estan instal·lades. No podeu "
+"Ni l'aplicació mke2fs ni mkdosfs/mformat estan instal·lades. No podeu "
 "formatar un disquet sense cap d'elles."
 
 #: ../gfloppy/src/main.c:280
@@ -956,7 +955,8 @@ msgid ""
 "Contact your system administrator about getting write permissions."
 msgstr ""
 "No teniu suficients permisos per a escriure a %s, no es podrà formatar.\n"
-"Contacteu amb l'administrador del sistema per a obtenir permisos d'escriptura."
+"Contacteu amb l'administrador del sistema per a obtenir permisos "
+"d'escriptura."
 
 #: ../gfloppy/src/main.c:293 ../gfloppy/src/main.c:356
 msgid "Cannot initialize device"
@@ -1003,15 +1003,15 @@ msgid_plural ""
 "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
 "been found and marked."
 msgstr[0] ""
-"S'ha formatat el disquet, però s'ha trobat <b>%d bloc defectuós</b> (de %d) "
-"que ha estat marcat."
+"S'ha formatat el disquet, però s'ha trobat i marcat <b>%d bloc defectuós</b>"
+" (de %d)."
 msgstr[1] ""
-"S'ha formatat el disquet, però s'han trobat <b>%d blocs defectuosos</b> (de %"
-"d) que han estat marcats."
+"S'ha formatat el disquet, però s'ha trobat i marcat <b>%d blocs defectuosos"
+"</b> (de %d)."
 
 #: ../gfloppy/src/progress.c:129
 msgid "Floppy formatted successfully."
-msgstr "S'ha formatat el disquet amb èxit."
+msgstr "S'ha formatat el disquet correctament."
 
 #: ../gfloppy/src/progress.c:135
 msgid "Floppy formatting cancelled."
@@ -1019,7 +1019,7 @@ msgstr "S'ha cancel·lat el formatat del disquet."
 
 #: ../gfloppy/src/progress.c:178
 msgid "Format Progress"
-msgstr "Progrés del format"
+msgstr "Progrés del formatat"
 
 #: ../gnome-dictionary/data/default.desktop.in.h:1
 msgid "Default Dictionary Server"
@@ -1031,7 +1031,7 @@ msgstr "Cerca al diccionari"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.server.in.in.h:2
 msgid "Look up words in a dictionary"
-msgstr "Cerca la paraula a un diccionari"
+msgstr "Cerceu paraules a un diccionari"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:1
 msgid "Cl_ear"
@@ -1062,7 +1062,7 @@ msgstr "De_sa"
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:1
 msgid "Check word definitions and spellings in an online dictionary"
 msgstr ""
-"Comprova les definicions de paraules i l'ortografia en un diccionari en línia"
+"Comproveu les definicions de paraules i l'ortografia en un diccionari en línia"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
@@ -1074,11 +1074,11 @@ msgstr "Diccionari"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:1
 msgid "Dictionary server (Deprecated)"
-msgstr "Servidor de diccionari (desaconsellat)"
+msgstr "Servidor de diccionari (obsolet)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:2
 msgid "Port used to connect to server (Deprecated)"
-msgstr "Port utilitzat per a connectar al servidor (desaconsellat)"
+msgstr "Port utilitzat per a connectar al servidor (obsolet)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:3
 msgid ""
@@ -1114,7 +1114,7 @@ msgid ""
 msgstr ""
 "El servidor de diccionari on connectar-se. El servidor per defecte és dict."
 "org. Vegeu http://www.dict.org per a detalls d'altres servidors. Aquesta "
-"clau està desaconsellada i ja no es fa servir."
+"clau és obsoleta i ja no es fa servir."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:9
 msgid "The font to be used when printing"
@@ -1164,7 +1164,7 @@ msgid ""
 "deprecated and no longer in use."
 msgstr ""
 "El número de port on connectar-se. El port per defecte és el 2628. Aquesta "
-"clau està desaconsellada i ja no s'utilitza."
+"clau està obsoleta i ja no s'utilitza."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
 msgid "The width of the sidebar"
@@ -1175,7 +1175,7 @@ msgid ""
 "This key defines the width of the sidebar and it's used to remember the "
 "setting across sessions."
 msgstr ""
-"Aquesta clau defineix l'amplada de la barra lateral i s'utilitza per "
+"Aquesta clau defineix l'amplada de la barra lateral i s'utilitza per a "
 "recordar la configuració entre sessions."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
@@ -1240,7 +1240,7 @@ msgstr ""
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
 msgid "Use smart lookup (Deprecated)"
-msgstr "Utilitza la cerca intel·ligent (desaconsellat)"
+msgstr "Utilitza la cerca intel·ligent (obsolet)"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:26
 msgid "Whether the application window should be maximized"
@@ -1403,7 +1403,7 @@ msgstr "L'ordre no és correcta «%s»"
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1251
 #, c-format
 msgid "Bad parameters for command '%s'"
-msgstr "Els paràmetres per l'ordre «%s» no són correctes"
+msgstr "Els paràmetres per a l'ordre «%s» no són correctes"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1266
 #, c-format
@@ -1536,7 +1536,7 @@ msgstr "Base de dades"
 #: ../gnome-dictionary/libgdict/gdict-entry.c:121
 msgid "The database to be used to generate the completion list"
 msgstr ""
-"La base de dades que vulgueu emprar per a generar la llista de compleció"
+"La base de dades a emprar per a generar la llista de compleció"
 
 #: ../gnome-dictionary/libgdict/gdict-entry.c:135
 #: ../gnome-dictionary/libgdict/gdict-source.c:275
@@ -1700,7 +1700,7 @@ msgstr "Error: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:278
 msgid "See gnome-dictionary --help for usage\n"
-msgstr "Vegeu gnome-dictionary --help per a l'ús\n"
+msgstr "Vegeu-ne l'ús amb gnome-dictionary --help\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:291
 msgid "Unable to find a suitable dictionary source"
@@ -1874,7 +1874,7 @@ msgstr "No s'ha pogut trobar el diccionari font"
 #: ../gnome-dictionary/src/gdict-window.c:458
 #, c-format
 msgid "No context available for source '%s'"
-msgstr "No hi ha cap context disponibles per a la font «%s»"
+msgstr "No hi ha cap context disponible per a la font «%s»"
 
 #: ../gnome-dictionary/src/gdict-applet.c:954
 #: ../gnome-dictionary/src/gdict-window.c:462
@@ -1910,7 +1910,7 @@ msgstr "No s'ha pogut crear el directori de dades «%s»: %s"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:248
 msgid "Edit Dictionary Source"
-msgstr "Edita la font del diccionari "
+msgstr "Edita la font del diccionari"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:312
 msgid "Add Dictionary Source"
@@ -2111,7 +2111,7 @@ msgstr "Feu doble clic a l'estratègia de coincidència a emprar"
 #. db-chooser
 #: ../gnome-dictionary/src/gdict-window.c:1323
 msgid "Double-click on the database to use"
-msgstr "Feu doble clic a la base de dades que vulgueu emprar"
+msgstr "Feu doble clic a la base de dades a emprar"
 
 #: ../gnome-dictionary/src/gdict-window.c:1610
 msgid "Look _up:"
@@ -2284,7 +2284,7 @@ msgstr "Fes una captura de la pantalla"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
-msgstr "Desa imatges del vostre escriptori o de finestres individuals"
+msgstr "Deseu imatges de l'escriptori o de finestres individuals"
 
 #: ../gnome-screenshot/gnome-screenshot.glade.h:2
 msgid "Save Screenshot"
@@ -2389,7 +2389,7 @@ msgstr "GnomeVFSXferProgressStatus %d desconegut"
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Locate documents and folders on this computer by name or content"
 msgstr ""
-"Localitza documents i directoris en aquest ordinador pel nom o contingut"
+"Trobeu documents i directoris en aquest ordinador pel nom o contingut"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
@@ -2543,8 +2543,8 @@ msgid ""
 "is /."
 msgstr ""
 "Aquesta clau defineix quins camins exclourà l'eina de cerca del segon pas de "
-"la cerca ràpida. El segon pas utilitza l'ordre «find» per a cercar fitxers. La "
-"idea del segon pas és cercar fitxers que no estan indexats. Es poden "
+"la cerca ràpida. El segon pas utilitza l'ordre «find» per a cercar fitxers. "
+"La idea del segon pas és cercar fitxers que no estan indexats. Es poden "
 "utilitzar els comodins «*» i «?» valen. El valor per defecte és /."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:55
@@ -2805,8 +2805,7 @@ msgstr "Ja existeix el document «%s». El voleu reemplaçar?"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1454
 msgid "If you replace an existing file, its contents will be overwritten."
-msgstr ""
-"Si reemplaceu un fitxer existent, se sobreescriurà el seu contingut."
+msgstr "Si reemplaceu un fitxer existent, se sobreescriurà el seu contingut."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1519
 msgid "The document name you selected is a folder."
@@ -3129,8 +3128,8 @@ msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
 msgstr ""
-"Pot ser que els resultats de la cerca no siguin actuals o bé no siguin vàlids. "
-"Voleu inhabilitar la funcionalitat de cerca ràpida?"
+"Pot ser que els resultats de la cerca no siguin actuals o bé no siguin "
+"vàlids. Voleu inhabilitar la funcionalitat de cerca ràpida?"
 
 #: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
@@ -3218,7 +3217,8 @@ msgstr "El _nom conté:"
 
 #: ../gsearchtool/gsearchtool.c:2946 ../gsearchtool/gsearchtool.c:2947
 msgid "Enter a filename or partial filename with or without wildcards."
-msgstr "Introduïu el nom sencer o parcial del fitxer amb comodins o sense."
+msgstr "Introduïu el nom sencer o parcial del fitxer, opcionalment amb "
+"comodins."
 
 #: ../gsearchtool/gsearchtool.c:2947
 msgid "Name contains"
@@ -3238,8 +3238,7 @@ msgstr "Cerca a la carpeta"
 
 #: ../gsearchtool/gsearchtool.c:2964
 msgid "Select the folder or device from which you want to begin the search."
-msgstr ""
-"Seleccioneu el directori o dispositiu des d'on voleu iniciar la cerca."
+msgstr "Seleccioneu el directori o dispositiu des d'on voleu iniciar la cerca."
 
 #: ../gsearchtool/gsearchtool.c:2975
 msgid "Select more _options"
@@ -3324,16 +3323,16 @@ msgstr "%s és massa gran."
 msgid "%s could not be opened."
 msgstr "No s'ha pogut obrir %s."
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s no és un fitxer de registre."
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "No hi ha prou memòria."
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "No s'ha pogut obrir %s."
@@ -3499,16 +3498,16 @@ msgstr ""
 #: ../logview/logview.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
 msgstr ""
-"Especifica l'alçada en píxels de la finestra principal del visualitzador "
-"de fitxers de registres."
+"Especifica l'alçada en píxels de la finestra principal del visualitzador de "
+"fitxers de registres."
 
 #: ../logview/logview.schemas.in.h:7
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"Especifica el fitxer de registre a mostrar en iniciar. El predeterminat és /var/"
-"adm/messages o /var/log/messages segons el vostre sistema operatiu."
+"Especifica el fitxer de registre a mostrar en iniciar. El predeterminat és /"
+"var/adm/messages o /var/log/messages segons el vostre sistema operatiu."
 
 #: ../logview/logview.schemas.in.h:8
 msgid ""
@@ -3522,8 +3521,8 @@ msgstr ""
 #: ../logview/logview.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
 msgstr ""
-"Especifica l'amplada en píxels de la finestra principal del visualitzador "
-"de fitxers de registre."
+"Especifica l'amplada en píxels de la finestra principal del visualitzador de "
+"fitxers de registre."
 
 #: ../logview/logview.schemas.in.h:10
 msgid "Width of the main window in pixels"
