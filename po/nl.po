@@ -5,15 +5,15 @@
 # Jan-Willem Harmanny <jwharmanny@hotmail.com>, 2003.
 # Tino Meinen <a.t.meinen@chello.nl>, 2004, 2005, 2006, 2007.
 # Vincent van Adrighem <adrighem@gnome.org>, 2006.
-# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006.
+# Wouter Bolsterlee <wbolster@gnome.org>, 2006, 2007
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-14 03:37+0000\n"
-"PO-Revision-Date: 2007-03-11 01:28+0100\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2007-07-17 18:41+0200\n"
+"Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
+"PO-Revision-Date: 2007-07-17 18:46+0200 \n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,8 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "Analyze disk usage"
-msgstr "Schijfgebruik analyseren"
+msgid "Check folder sizes and available disk space"
+msgstr "Mapgroottes en beschikbare schijfruimte bekijken"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -152,7 +152,7 @@ msgstr "Be_werken"
 msgid "_Expand All"
 msgstr "_Alles uitvouwen"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:363
 msgid "_Graphical Usage Map"
 msgstr "_Grafische gebruikskaart"
 
@@ -212,45 +212,45 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Of de werkbalk zichtbaar dient te zijn."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:139 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:304
+#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:191
+#: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Berekenen van percentages..."
 
 # klaar
-#: ../baobab/src/baobab.c:145 ../baobab/src/baobab.c:753
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:308
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab-utils.c:198 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Voltooid"
 
-#: ../baobab/src/baobab.c:226 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:163
 msgid "Scanning..."
 msgstr "Scannen..."
 
-#: ../baobab/src/baobab.c:261
+#: ../baobab/src/baobab.c:265
 msgid "Total filesystem usage:"
 msgstr "Totaal gebruik:"
 
-#: ../baobab/src/baobab.c:305
+#: ../baobab/src/baobab.c:309
 msgid "contains hardlinks for:"
 msgstr "bevat koppelingen voor:"
 
-#: ../baobab/src/baobab.c:314
+#: ../baobab/src/baobab.c:318
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d item"
 msgstr[1] "% 5d items"
 
-#: ../baobab/src/baobab.c:379
+#: ../baobab/src/baobab.c:383
 msgid "Invalid UTF-8 characters"
 msgstr "Ongeldige UTF-8-tekens"
 
-#: ../baobab/src/baobab.c:635
+#: ../baobab/src/baobab.c:639
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "Kon Gnome VFS voor het detecteren van veranderingen niet initialiseren"
 
-#: ../baobab/src/baobab.c:636
+#: ../baobab/src/baobab.c:640
 msgid "Changes to your home folder will not be monitored."
 msgstr "Wijzigingen in de persoonlijke worden niet continue gevolgd."
 
@@ -279,21 +279,29 @@ msgstr "Kan geen geheugenruimte reserveren voor het grafische venster!"
 msgid "Graphical Usage Map"
 msgstr "Grafische gebruikskaart"
 
-#: ../baobab/src/baobab-prefs.c:165
+#: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
 msgstr "Scan"
 
-#: ../baobab/src/baobab-prefs.c:172
+#: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
 msgstr "Apparaat"
 
-#: ../baobab/src/baobab-prefs.c:180
+#: ../baobab/src/baobab-prefs.c:183
 msgid "Mount Point"
 msgstr "Koppelpunt"
 
-#: ../baobab/src/baobab-prefs.c:188
+#: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
 msgstr "Bestandssysteemtype"
+
+#: ../baobab/src/baobab-prefs.c:199
+msgid "Total Size"
+msgstr "Totale grootte"
+
+#: ../baobab/src/baobab-prefs.c:208
+msgid "Available"
+msgstr "Beschikbaar"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -386,136 +394,138 @@ msgstr "Aangepaste locatie"
 msgid "_Scan"
 msgstr "_Scannen"
 
-#: ../baobab/src/baobab-treeview.c:236 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Map"
 
-#: ../baobab/src/baobab-treeview.c:258
+#: ../baobab/src/baobab-treeview.c:253
 msgid "Usage"
 msgstr "Gebruik"
 
-#: ../baobab/src/baobab-treeview.c:271 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Grootte"
 
-#: ../baobab/src/baobab-treeview.c:284
+#: ../baobab/src/baobab-treeview.c:283
 msgid "Contents"
 msgstr "Inhoud"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:103
 msgid "Select Folder"
 msgstr "Selecteer een map"
 
 # tonen/weergeven
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:116
+#: ../baobab/src/baobab-utils.c:115
 msgid "_Show hidden folders"
 msgstr "_Verborgen mappen tonen"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:332
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "‘%s’ is geen geldige map"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:335
 msgid "Could not analyze disk usage."
 msgstr "Kon schijfgebruik niet analyseren."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:360
 msgid "_Open Folder"
 msgstr "Map _openen"
 
-#: ../baobab/src/baobab-utils.c:380
+#: ../baobab/src/baobab-utils.c:381
 msgid "_Remove from Trash"
 msgstr "_Uit prullenbak halen"
 
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:391 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "_Naar prullenbak verplaatsen"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:423
 msgid "Total filesystem capacity:"
 msgstr "Totale capaciteit:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:424
 msgid "used:"
 msgstr "gebruikt:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:425
 msgid "available:"
 msgstr "beschikbaar:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:471
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Kon map ‘%s’ niet openen"
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:474
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Er is geen viewer geïnstalleerd die het document kan weergeven."
 
-#: ../baobab/src/baobab-utils.c:538
+#: ../baobab/src/baobab-utils.c:539
 #, c-format
 msgid "The folder \"%s\" was not moved to the trash."
 msgstr "De map ‘%s’ is niet naar de prullenbak verplaatst."
 
-#: ../baobab/src/baobab-utils.c:540
+#: ../baobab/src/baobab-utils.c:541
 msgid "Could not find a Trash folder on this system"
 msgstr "Kan geen prullenbak vinden op dit systeem!"
 
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/baobab-utils.c:563
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Kon ‘%s’ niet naar de prullenbak verplaatsen"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:387
+#: ../baobab/src/baobab-utils.c:550 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "De map bestaat niet."
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:564
 #, c-format
 msgid "Details: %s"
 msgstr "Details: %s"
 
-#: ../baobab/src/baobab-utils.c:577
+#: ../baobab/src/baobab-utils.c:578
 #, c-format
 msgid "Delete the folder \"%s\" permanently?"
 msgstr "Wilt u de map ‘%s’ definitief verwijderen?"
 
-#: ../baobab/src/baobab-utils.c:580
+#: ../baobab/src/baobab-utils.c:581
 msgid "Could not move the folder to the trash."
 msgstr "Kon de map niet naar de prullenbak verplaatsen."
 
-#: ../baobab/src/baobab-utils.c:581
+#: ../baobab/src/baobab-utils.c:582
 msgid "_Delete Folder"
 msgstr "Map _verwijderen"
 
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
+#: ../baobab/src/baobab-utils.c:593 ../gsearchtool/gsearchtool-callbacks.c:900
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Verwijderen van ‘%s’ mislukt: %s."
 
-#: ../baobab/src/baobab-utils.c:595
+#: ../baobab/src/baobab-utils.c:596
 #, c-format
 msgid "Could not delete the folder \"%s\""
 msgstr "Kon de map ‘%s’ niet verwijderen"
 
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:624
 msgid "Rescan your home folder?"
 msgstr "Uw persoonlijke map opnieuw scannen?"
 
 # druk op/selecteer/kies
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:625
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
-msgstr "De inhoud van uw persoonlijke map is gewijzigd. Selecteer ‘herscannen’ om de details van het schijfgebruik bij te werken."
+msgstr ""
+"De inhoud van uw persoonlijke map is gewijzigd. Selecteer ‘herscannen’ om de "
+"details van het schijfgebruik bij te werken."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:626
 msgid "_Rescan"
 msgstr "He_rscannen"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:662 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Er is een fout opgetreden bij het weergeven van de hulp."
 
@@ -543,17 +553,17 @@ msgstr "Ringengrafiek root-map"
 msgid "Set the root node from the model"
 msgstr "Stel de root-map in van het model"
 
-#: ../baobab/src/callbacks.c:82
+#: ../baobab/src/callbacks.c:99
 msgid "Baobab"
 msgstr "Baobab"
 
 # schijfgebruik/hardeschijfgebruik
-#: ../baobab/src/callbacks.c:83
+#: ../baobab/src/callbacks.c:100
 msgid "A graphical tool to analyze disk usage."
 msgstr "Een grafisch hulpmiddel om hardeschijfgebruik te analyseren."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -564,7 +574,7 @@ msgstr ""
 "\n"
 "Kijk voor meer informatie op http://nl.gnome.org/"
 
-#: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Het document bestaat niet."
@@ -1449,7 +1459,9 @@ msgstr ""
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1831
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
-msgstr "Verbinding mislukt (tijdslimiet overschreden) voor de woordenboekserver op ‘%s:%d’"
+msgstr ""
+"Verbinding mislukt (tijdslimiet overschreden) voor de woordenboekserver op ‘%"
+"s:%d’"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
 msgid "No hostname defined for the dictionary server"
@@ -2179,32 +2191,32 @@ msgstr "(%d:%02d resterend)"
 msgid "%ld of %ld"
 msgstr "%ld van %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:108
+#: ../gnome-screenshot/gnome-screenshot.c:109
 msgid "Error loading the help page"
 msgstr "Fout bij laden van hulptekst"
 
 # Apply effect: None
-#: ../gnome-screenshot/gnome-screenshot.c:186
+#: ../gnome-screenshot/gnome-screenshot.c:192
 msgid "None"
 msgstr "Geen effect"
 
-#: ../gnome-screenshot/gnome-screenshot.c:187
+#: ../gnome-screenshot/gnome-screenshot.c:193
 msgid "Drop shadow"
 msgstr "Valschaduw"
 
 # kader/rand/lijn/zwarte rand/zwart kader/
 # het is in werkelijkheid een smalle zwarte/grijze rand om het venster heen.
-#: ../gnome-screenshot/gnome-screenshot.c:188
+#: ../gnome-screenshot/gnome-screenshot.c:194
 msgid "Border"
 msgstr "Donkere lijn"
 
 # het gaat hier om de vensterdecoratie
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:297
+#: ../gnome-screenshot/gnome-screenshot.c:304
 msgid "Include the window _border"
 msgstr "De _vensterrand in de schermafdruk opnemen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:312
+#: ../gnome-screenshot/gnome-screenshot.c:319
 msgid "Apply _effect:"
 msgstr "_Effect toepassen:"
 
@@ -2213,11 +2225,11 @@ msgstr "_Effect toepassen:"
 #  [ ] huidige venster
 #
 # 'grab' kan veilig weggelaten worden (tino)
-#: ../gnome-screenshot/gnome-screenshot.c:372
+#: ../gnome-screenshot/gnome-screenshot.c:379
 msgid "Grab the whole _desktop"
 msgstr "Gehele _bureaublad"
 
-#: ../gnome-screenshot/gnome-screenshot.c:384
+#: ../gnome-screenshot/gnome-screenshot.c:391
 msgid "Grab the current _window"
 msgstr "Huidige _venster"
 
@@ -2225,42 +2237,43 @@ msgstr "Huidige _venster"
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:401
+#: ../gnome-screenshot/gnome-screenshot.c:408
 msgid "Grab _after a delay of"
 msgstr "Na een wachttijd van"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:421
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:428
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "seconds"
 msgstr "seconden"
 
-#: ../gnome-screenshot/gnome-screenshot.c:448
+#: ../gnome-screenshot/gnome-screenshot.c:455
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Schermafdruk maken"
 
 # Vensterrand-effect?
-#: ../gnome-screenshot/gnome-screenshot.c:449
+#: ../gnome-screenshot/gnome-screenshot.c:456
 msgid "Effects"
 msgstr "Effecten"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:462
 msgid "Take _Screenshot"
 msgstr "_Schermafdruk maken"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:481
+#: ../gnome-screenshot/gnome-screenshot.c:488
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Schermafdruk-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:487
+#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:197
 msgid "Screenshot.png"
 msgstr "Schermafdruk.png"
@@ -2268,7 +2281,7 @@ msgstr "Schermafdruk.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:527
+#: ../gnome-screenshot/gnome-screenshot.c:534
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Schermafdruk-%s-%d.png"
@@ -2276,53 +2289,53 @@ msgstr "Schermafdruk-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:535
+#: ../gnome-screenshot/gnome-screenshot.c:542
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Schermafdruk-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:711
+#: ../gnome-screenshot/gnome-screenshot.c:718
 msgid "Unable to take a screenshot of the current window"
 msgstr "Kon geen schermafdruk maken van het huidige venster."
 
 # "Een plaatje schieten"
-#: ../gnome-screenshot/gnome-screenshot.c:861
+#: ../gnome-screenshot/gnome-screenshot.c:868
 msgid "Grab a window instead of the entire screen"
 msgstr "Een vensterafdruk maken in plaats van het hele scherm"
 
 # vensterdecoratie
-#: ../gnome-screenshot/gnome-screenshot.c:862
+#: ../gnome-screenshot/gnome-screenshot.c:869
 msgid "Include the window border with the screenshot"
 msgstr "De vensterrand in de schermafdruk opnemen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Schermafdruk maken na aangegeven vertraging [in seconden]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effect voor de vensterrand (schaduw, lijn of geen)"
 
 # Vensterrand-effect?
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "effect"
 msgstr "effect"
 
-#: ../gnome-screenshot/gnome-screenshot.c:865
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Interactively set options"
 msgstr "Interactief opties instellen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:882
 msgid "Options for Screenshot"
 msgstr "Opties voor schermafdruk"
 
 #
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:883
 msgid "Show Screenshot options"
 msgstr "Schermafdrukopties tonen"
 
 # "Een plaatje schieten"
-#: ../gnome-screenshot/gnome-screenshot.c:880
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Take a picture of the screen"
 msgstr "Schermafdruk maken"
 
@@ -2351,7 +2364,9 @@ msgstr "Vensterrand-effect"
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"border\"."
-msgstr "Effect dat aan de buitenkant van een venster wordt toegevoegd. Mogelijke waarden zijn ‘shadow’, ‘none’, en ‘border’."
+msgstr ""
+"Effect dat aan de buitenkant van een venster wordt toegevoegd. Mogelijke "
+"waarden zijn ‘shadow’, ‘none’, en ‘border’."
 
 # vensterdecoratie
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
@@ -3393,16 +3408,16 @@ msgstr "%s is te groot."
 msgid "%s could not be opened."
 msgstr "%s kan niet worden geopend."
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s is geen logboek-bestand."
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "Niet genoeg geheugen."
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "%s kan niet worden geopend."
@@ -3688,6 +3703,9 @@ msgstr ""
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS Fout.\n"
+
+#~ msgid "Analyze disk usage"
+#~ msgstr "Schijfgebruik analyseren"
 
 #~ msgid "<b>File Size</b>"
 #~ msgstr "<b>Bestandsgrootte</b>"
