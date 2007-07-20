@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-20 14:22+0100\n"
-"PO-Revision-Date: 2007-02-20 14:41+0100\n"
+"POT-Creation-Date: 2007-07-20 19:49+0200\n"
+"PO-Revision-Date: 2007-07-20 19:50+0200\n"
 "Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -24,8 +24,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "Analyze disk usage"
-msgstr "Festplattenbelegung analysieren"
+msgid "Check folder sizes and available disk space"
+msgstr "Ordnergrößen und freien Festplattenplatz analysieren"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -155,7 +155,7 @@ msgstr "_Bearbeiten"
 msgid "_Expand All"
 msgstr "Alles aus_klappen"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:363
 msgid "_Graphical Usage Map"
 msgstr "Belegung _grafisch anzeigen"
 
@@ -218,44 +218,44 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Legt fest, ob die Werkzeugleiste im Hauptfenster angezeigt wird."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:139 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:304
+#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:191
+#: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Prozentuale Anzeigen berechnen …"
 
-#: ../baobab/src/baobab.c:145 ../baobab/src/baobab.c:753
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:308
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab-utils.c:198 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Fertig"
 
-#: ../baobab/src/baobab.c:226 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:163
 msgid "Scanning..."
 msgstr "Einlesen läuft …"
 
-#: ../baobab/src/baobab.c:261
+#: ../baobab/src/baobab.c:265
 msgid "Total filesystem usage:"
 msgstr "Gesamter Speicherverbrauch des Dateisystems:"
 
-#: ../baobab/src/baobab.c:305
+#: ../baobab/src/baobab.c:309
 msgid "contains hardlinks for:"
 msgstr "enthält harte Verknüpfungen für:"
 
-#: ../baobab/src/baobab.c:314
+#: ../baobab/src/baobab.c:318
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d Objekt"
 msgstr[1] "% 5d Objekte"
 
-#: ../baobab/src/baobab.c:379
+#: ../baobab/src/baobab.c:383
 msgid "Invalid UTF-8 characters"
 msgstr "Ungültige UTF-8-Zeichen"
 
-#: ../baobab/src/baobab.c:635
+#: ../baobab/src/baobab.c:639
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "GNOME-VFS-Überwachung konnte nicht initialisiert werden"
 
-#: ../baobab/src/baobab.c:636
+#: ../baobab/src/baobab.c:640
 msgid "Changes to your home folder will not be monitored."
 msgstr "Ihr persönlicher Ordner wird nicht auf Änderungen überwacht."
 
@@ -284,21 +284,29 @@ msgstr "Speicher für grafische Anzeige konnte nicht reserviert werden."
 msgid "Graphical Usage Map"
 msgstr "Belegung grafisch anzeigen"
 
-#: ../baobab/src/baobab-prefs.c:165
+#: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
 msgstr "Einlesen"
 
-#: ../baobab/src/baobab-prefs.c:172
+#: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
 msgstr "Gerät"
 
-#: ../baobab/src/baobab-prefs.c:180
+#: ../baobab/src/baobab-prefs.c:183
 msgid "Mount Point"
 msgstr "Einhängepunkt"
 
-#: ../baobab/src/baobab-prefs.c:188
+#: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
 msgstr "Dateisystemtyp"
+
+#: ../baobab/src/baobab-prefs.c:199
+msgid "Total Size"
+msgstr "Gesamtgröße"
+
+#: ../baobab/src/baobab-prefs.c:208
+msgid "Available"
+msgstr "Frei"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -391,127 +399,127 @@ msgstr "Benutzerdefinierter Ort"
 msgid "_Scan"
 msgstr "_Einlesen"
 
-#: ../baobab/src/baobab-treeview.c:236 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Ordner"
 
-#: ../baobab/src/baobab-treeview.c:258
+#: ../baobab/src/baobab-treeview.c:253
 msgid "Usage"
 msgstr "Verbrauch"
 
-#: ../baobab/src/baobab-treeview.c:271 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Größe"
 
-#: ../baobab/src/baobab-treeview.c:284
+#: ../baobab/src/baobab-treeview.c:283
 msgid "Contents"
 msgstr "Inhalt"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:103
 msgid "Select Folder"
 msgstr "Ordner auswählen"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:116
+#: ../baobab/src/baobab-utils.c:115
 msgid "_Show hidden folders"
 msgstr "_Verborgene Ordner anzeigen"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:332
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "»%s« ist kein gültiger Ordner"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:335
 msgid "Could not analyze disk usage."
 msgstr "Festplattenbelegung konnte nicht analysiert werden."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:360
 msgid "_Open Folder"
 msgstr "_Ordner öffnen"
 
 # Nautilus-Konsistenz beachten
-#: ../baobab/src/baobab-utils.c:380
+#: ../baobab/src/baobab-utils.c:381
 msgid "_Remove from Trash"
 msgstr "Aus Müll _löschen"
 
 # Nautilus-Konsistenz beachten!
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:391 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "In den _Müll verschieben"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:423
 msgid "Total filesystem capacity:"
 msgstr "Speicherkapazität des Dateisystems:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:424
 msgid "used:"
 msgstr "belegt:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:425
 msgid "available:"
 msgstr "frei:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:471
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Der Ordner »%s« konnte nicht geöffnet werden"
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:474
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr ""
 "Kein installierter Betrachter ist in der Lage, das Dokument anzuzeigen."
 
-#: ../baobab/src/baobab-utils.c:538
+#: ../baobab/src/baobab-utils.c:539
 #, c-format
 msgid "The folder \"%s\" was not moved to the trash."
 msgstr "Der Ordner »%s« konnte nicht in den Müll verschoben werden."
 
-#: ../baobab/src/baobab-utils.c:540
+#: ../baobab/src/baobab-utils.c:541
 msgid "Could not find a Trash folder on this system"
 msgstr "Der Müll konnte auf diesem System nicht gefunden werden"
 
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/baobab-utils.c:563
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "»%s« konnte nicht in den Müll verschoben werden"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:387
+#: ../baobab/src/baobab-utils.c:550 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "Der Ordner existiert nicht."
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:564
 #, c-format
 msgid "Details: %s"
 msgstr "Details: %s"
 
-#: ../baobab/src/baobab-utils.c:577
+#: ../baobab/src/baobab-utils.c:578
 #, c-format
 msgid "Delete the folder \"%s\" permanently?"
 msgstr "Wollen Sie den Ordner »%s« dauerhaft löschen?"
 
-#: ../baobab/src/baobab-utils.c:580
+#: ../baobab/src/baobab-utils.c:581
 msgid "Could not move the folder to the trash."
 msgstr "Der Ordner konnte nicht in den Müll verschoben werden."
 
-#: ../baobab/src/baobab-utils.c:581
+#: ../baobab/src/baobab-utils.c:582
 msgid "_Delete Folder"
 msgstr "Ordner _löschen"
 
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
+#: ../baobab/src/baobab-utils.c:593 ../gsearchtool/gsearchtool-callbacks.c:900
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Löschen von »%s« ist gescheitert: %s."
 
-#: ../baobab/src/baobab-utils.c:595
+#: ../baobab/src/baobab-utils.c:596
 #, c-format
 msgid "Could not delete the folder \"%s\""
 msgstr "Der Ordner »%s« konnte nicht gelöscht werden"
 
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:624
 msgid "Rescan your home folder?"
 msgstr "Persönlichen Ordner erneut einlesen?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:625
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -519,11 +527,11 @@ msgstr ""
 "Der Inhalt Ihres persönlichen Ordners wurde geändert. Wählen Sie »Erneut "
 "einlesen« um die Anzeige des verbrauchten Speicherplatzes zu aktualisieren."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:626
 msgid "_Rescan"
 msgstr "_Erneut einlesen"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:662 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Beim Anzeigen der Hilfe ist ein Fehler aufgetreten."
 
@@ -553,16 +561,16 @@ msgstr "Wurzelelement des Ringdiagramms"
 msgid "Set the root node from the model"
 msgstr "Legt das Wurzelelement des Modells fest"
 
-#: ../baobab/src/callbacks.c:82
+#: ../baobab/src/callbacks.c:99
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:83
+#: ../baobab/src/callbacks.c:100
 msgid "A graphical tool to analyze disk usage."
 msgstr "Ein grafisches Werkzeug zur Analyse der Festplattenbelegung."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -576,7 +584,7 @@ msgstr ""
 "Hendrik Brandt <heb@gnome-de.org>\n"
 "Hendrik Richter <hendrikr@gnome.org>"
 
-#: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Das Dokument existiert nicht."
@@ -2172,77 +2180,78 @@ msgstr "(%d:%02d verbleiben)"
 msgid "%ld of %ld"
 msgstr "%ld von %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:108
+#: ../gnome-screenshot/gnome-screenshot.c:109
 msgid "Error loading the help page"
 msgstr "Fehler beim Laden der Hilfe"
 
-#: ../gnome-screenshot/gnome-screenshot.c:186
+#: ../gnome-screenshot/gnome-screenshot.c:192
 msgid "None"
 msgstr "Keiner"
 
-#: ../gnome-screenshot/gnome-screenshot.c:187
+#: ../gnome-screenshot/gnome-screenshot.c:193
 msgid "Drop shadow"
 msgstr "Schlagschatten"
 
-#: ../gnome-screenshot/gnome-screenshot.c:188
+#: ../gnome-screenshot/gnome-screenshot.c:194
 msgid "Border"
 msgstr "Rahmen"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:297
+#: ../gnome-screenshot/gnome-screenshot.c:304
 msgid "Include the window _border"
 msgstr "Den Fenster_rahmen mit aufnehmen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:312
+#: ../gnome-screenshot/gnome-screenshot.c:319
 msgid "Apply _effect:"
 msgstr "Effekt an_wenden:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:372
+#: ../gnome-screenshot/gnome-screenshot.c:379
 msgid "Grab the whole _desktop"
 msgstr "Den gesamten _Bildschirm aufnehmen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:384
+#: ../gnome-screenshot/gnome-screenshot.c:391
 msgid "Grab the current _window"
 msgstr "Das aktuelle _Fenster aufnehmen"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:401
+#: ../gnome-screenshot/gnome-screenshot.c:408
 msgid "Grab _after a delay of"
 msgstr "Bildschirmfoto aufnehmen _nach"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:421
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:428
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "seconds"
 msgstr "Sekunden"
 
-#: ../gnome-screenshot/gnome-screenshot.c:448
+#: ../gnome-screenshot/gnome-screenshot.c:455
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Bildschirmfoto aufnehmen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:449
+#: ../gnome-screenshot/gnome-screenshot.c:456
 msgid "Effects"
 msgstr "Effekte"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:462
 msgid "Take _Screenshot"
 msgstr "Bildschirmfoto _aufnehmen"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:481
+#: ../gnome-screenshot/gnome-screenshot.c:488
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Bildschirmfoto-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:487
+#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:197
 msgid "Screenshot.png"
 msgstr "Bildschirmfoto.png"
@@ -2250,7 +2259,7 @@ msgstr "Bildschirmfoto.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:527
+#: ../gnome-screenshot/gnome-screenshot.c:534
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Bildschirmfoto-%s-%d.png"
@@ -2258,51 +2267,51 @@ msgstr "Bildschirmfoto-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:535
+#: ../gnome-screenshot/gnome-screenshot.c:542
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Bildschirmfoto-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:711
+#: ../gnome-screenshot/gnome-screenshot.c:718
 msgid "Unable to take a screenshot of the current window"
 msgstr "Es war nicht möglich ein Foto des aktuellen Fensters zu erstellen."
 
-#: ../gnome-screenshot/gnome-screenshot.c:861
+#: ../gnome-screenshot/gnome-screenshot.c:868
 msgid "Grab a window instead of the entire screen"
 msgstr "Nur ein Fenster anstatt des gesamten Bildschirms aufnehmen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:862
+#: ../gnome-screenshot/gnome-screenshot.c:869
 msgid "Include the window border with the screenshot"
 msgstr "Den Fensterrahmen mit in das Bildschirmfoto aufnehmen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr ""
 "Ein Bildschirmfoto erst nach der angegebenen zeit aufnehmen [in Sekunden]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr ""
 "Der Effekt (Schatten, Rahmen oder keiner), der auf den Fensterrahmen "
 "angewendet werden soll"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "effect"
 msgstr "Effekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:865
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Interactively set options"
 msgstr "Optionen interaktiv festlegen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:882
 msgid "Options for Screenshot"
 msgstr "Optionen für Bildschirmfoto"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:883
 msgid "Show Screenshot options"
 msgstr "Optionen für Bildschirmfoto anzeigen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:880
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Take a picture of the screen"
 msgstr "Ein Foto des Bildschirms aufnehmen"
 
@@ -2332,8 +2341,8 @@ msgid ""
 "\"none\", and \"border\"."
 msgstr ""
 "Der Effekt der auf die Außenseite des Fensterrahmens angewendet wird. "
-"Mögliche Werte sind »shadow« (Schatten), »none« (kein Effekt) und »border«"
-"(Rahmen)."
+"Mögliche Werte sind »shadow« (Schatten), »none« (kein Effekt) und "
+"»border«(Rahmen)."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
 msgid "Include Border"
@@ -3357,16 +3366,16 @@ msgstr "%s ist zu groß."
 msgid "%s could not be opened."
 msgstr "%s konnte nicht geöffnet werden."
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s ist keine Protokolldatei."
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "Nicht genügend Speicher."
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "%s konnte nicht geöffnet werden."
@@ -3647,6 +3656,9 @@ msgstr "Dateiüberwachung wird vom verwendeten Dateisystem nicht unterstützt.\n
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "GNOME-VFS-Fehler.\n"
+
+#~ msgid "Analyze disk usage"
+#~ msgstr "Festplattenbelegung analysieren"
 
 #~ msgid "Data_base:"
 #~ msgstr "_Datenbank:"
