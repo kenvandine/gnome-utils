@@ -1,5 +1,4 @@
-# translation of ru.po to
-# translation of gnome-utils.HEAD.po to
+# translation of gnome-utils to Russian
 # Copyright (C) 1999-2002, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 #
 # Valek Filppov <frob@df.ru>, 1999-2002.
@@ -9,22 +8,22 @@
 # Leonid Kanter <leon@asplinux.ru>, 2004, 2005, 2006, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: ru\n"
+"Project-Id-Version: gnome-utils trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-22 13:38+0200\n"
+"POT-Creation-Date: 2007-07-23 17:23+0400\n"
 "PO-Revision-Date: 2007-02-22 18:16+0200\n"
-"Last-Translator: Leonid Kanter <leon@asplinux.ru>\n"
-"Language-Team:  <gnome-cyr@gnome.org>\n"
+"Last-Translator: Nickolay V. Shmyrev <nshmyrev@yandex.ru>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "Analyze disk usage"
-msgstr "Анализ использования дисков"
+msgid "Check folder sizes and available disk space"
+msgstr "Изучение размера каталогов и свободного места на дисках"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -68,12 +67,16 @@ msgstr ""
 
 #: ../baobab/data/baobab.glade.h:10
 msgid "Scan Home"
-msgstr "   Сканировать\nдомашнюю папку"
+msgstr ""
+"   Сканировать\n"
+"домашнюю папку"
 
 #: ../baobab/data/baobab.glade.h:11
 #: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
-msgstr "    Сканировать\n удалённую папку"
+msgstr ""
+"    Сканировать\n"
+" удалённую папку"
 
 #: ../baobab/data/baobab.glade.h:12
 msgid "Scan _Filesystem"
@@ -155,7 +158,7 @@ msgstr "_Правка"
 msgid "_Expand All"
 msgstr "_Развернуть все"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:363
 msgid "_Graphical Usage Map"
 msgstr "_Графическая карта занятости папок"
 
@@ -167,7 +170,7 @@ msgstr "_Справка"
 
 #: ../baobab/data/baobab.glade.h:34
 msgid "_Monitor changes to your home folder"
-msgstr "_Мониторить изменения в вашей домашней папке"
+msgstr "Следить за _изменениями в домашней папке"
 
 #: ../baobab/data/baobab.glade.h:35
 msgid "_Toolbar"
@@ -215,29 +218,29 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Должна ли быть видима панель инструментов в главном окне."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:139 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:304
+#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:191
+#: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Вычисление процентного соотношения..."
 
-#: ../baobab/src/baobab.c:145 ../baobab/src/baobab.c:753
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:308
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab-utils.c:198 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Готово"
 
-#: ../baobab/src/baobab.c:226 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:163
 msgid "Scanning..."
 msgstr "Сканирование..."
 
-#: ../baobab/src/baobab.c:261
+#: ../baobab/src/baobab.c:265
 msgid "Total filesystem usage:"
 msgstr "Общее использование ФС:"
 
-#: ../baobab/src/baobab.c:305
+#: ../baobab/src/baobab.c:309
 msgid "contains hardlinks for:"
 msgstr "содержит \"жёсткие\" ссылки для:"
 
-#: ../baobab/src/baobab.c:314
+#: ../baobab/src/baobab.c:318
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
@@ -245,15 +248,15 @@ msgstr[0] "% 5d объект"
 msgstr[1] "% 5d объекта"
 msgstr[2] "% 5d объектов"
 
-#: ../baobab/src/baobab.c:379
+#: ../baobab/src/baobab.c:383
 msgid "Invalid UTF-8 characters"
 msgstr "Недопустимые символы UTF-8"
 
-#: ../baobab/src/baobab.c:635
+#: ../baobab/src/baobab.c:639
 msgid "Could not initialize GNOME VFS monitoring"
-msgstr "Не удаётся инициализировать мониторинг GNOME VFS"
+msgstr "Не удаётся начать слежение за файлами GNOME VFS"
 
-#: ../baobab/src/baobab.c:636
+#: ../baobab/src/baobab.c:640
 msgid "Changes to your home folder will not be monitored."
 msgstr "Изменения в вашей домашней папке не будут отслеживаться."
 
@@ -282,21 +285,29 @@ msgstr "Невозможно выделить память для окна!"
 msgid "Graphical Usage Map"
 msgstr "Графическая карта использования"
 
-#: ../baobab/src/baobab-prefs.c:165
+#: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
 msgstr "Сканировать"
 
-#: ../baobab/src/baobab-prefs.c:172
+#: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
 msgstr "Устройство"
 
-#: ../baobab/src/baobab-prefs.c:180
+#: ../baobab/src/baobab-prefs.c:183
 msgid "Mount Point"
 msgstr "Точка монтирования"
 
-#: ../baobab/src/baobab-prefs.c:188
+#: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
 msgstr "Тип файловой системы"
+
+#: ../baobab/src/baobab-prefs.c:199
+msgid "Total Size"
+msgstr "Общий размер"
+
+#: ../baobab/src/baobab-prefs.c:208
+msgid "Available"
+msgstr "Доступно"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -389,134 +400,136 @@ msgstr "Другое местоположение"
 msgid "_Scan"
 msgstr "_Сканировать"
 
-#: ../baobab/src/baobab-treeview.c:236 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Папка"
 
-#: ../baobab/src/baobab-treeview.c:258
+#: ../baobab/src/baobab-treeview.c:253
 msgid "Usage"
 msgstr "Использование"
 
-#: ../baobab/src/baobab-treeview.c:271 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Размер"
 
-#: ../baobab/src/baobab-treeview.c:284
+#: ../baobab/src/baobab-treeview.c:283
 msgid "Contents"
 msgstr "Содержание"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:103
 msgid "Select Folder"
 msgstr "Выберите папку"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:116
+#: ../baobab/src/baobab-utils.c:115
 msgid "_Show hidden folders"
 msgstr "Отображать _скрытые папки"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:332
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" не является действительной папкой"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:335
 msgid "Could not analyze disk usage."
 msgstr "Не удаётся проанализировать использование дисков."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:360
 msgid "_Open Folder"
 msgstr "_Открыть папку"
 
-#: ../baobab/src/baobab-utils.c:380
+#: ../baobab/src/baobab-utils.c:381
 msgid "_Remove from Trash"
 msgstr "_Удалить из корзины"
 
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:391 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "_Переместить в корзину"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:423
 msgid "Total filesystem capacity:"
 msgstr "Общая ёмкость:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:424
 msgid "used:"
 msgstr "использовано:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:425
 msgid "available:"
 msgstr "доступно:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:471
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Не удаётся открыть папку «%s»"
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:474
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Отсутствует программа просмотра, способная отобразить эту папку."
 
-#: ../baobab/src/baobab-utils.c:538
+#: ../baobab/src/baobab-utils.c:539
 #, c-format
 msgid "The folder \"%s\" was not moved to the trash."
 msgstr "Папка «%s» была перемещена в корзину."
 
-#: ../baobab/src/baobab-utils.c:540
+#: ../baobab/src/baobab-utils.c:541
 msgid "Could not find a Trash folder on this system"
 msgstr "Не удаётся найти папку корзины в этой системе"
 
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/baobab-utils.c:563
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Не удается переместить «%s» в корзину."
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:387
+#: ../baobab/src/baobab-utils.c:550 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "Папка не существует."
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:564
 #, c-format
 msgid "Details: %s"
 msgstr "Сведения: %s"
 
-#: ../baobab/src/baobab-utils.c:577
+#: ../baobab/src/baobab-utils.c:578
 #, c-format
 msgid "Delete the folder \"%s\" permanently?"
 msgstr "Удалить папку «%s» безвозвратно?"
 
-#: ../baobab/src/baobab-utils.c:580
+#: ../baobab/src/baobab-utils.c:581
 msgid "Could not move the folder to the trash."
 msgstr "Не удается переместить папку в корзину."
 
-#: ../baobab/src/baobab-utils.c:581
+#: ../baobab/src/baobab-utils.c:582
 msgid "_Delete Folder"
 msgstr "_Удалить папку"
 
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
+#: ../baobab/src/baobab-utils.c:593 ../gsearchtool/gsearchtool-callbacks.c:900
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Сбой удаления «%s»: %s"
 
-#: ../baobab/src/baobab-utils.c:595
+#: ../baobab/src/baobab-utils.c:596
 #, c-format
 msgid "Could not delete the folder \"%s\""
 msgstr "Не удаётся удалить папку «%s»."
 
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:624
 msgid "Rescan your home folder?"
 msgstr "Пересканировать дом. папку?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:625
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
-msgstr "Содержимое вашего домашнего каталога изменилось. Для обновления информации об использовании диска необходимо повторное сканирование."
+msgstr ""
+"Содержимое вашего домашнего каталога изменилось. Для обновления информации "
+"об использовании диска необходимо повторное сканирование."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:626
 msgid "_Rescan"
 msgstr "Пе_ресканировать"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:662 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "При отображении справки произошла ошибка."
 
@@ -544,16 +557,16 @@ msgstr "Корневой узел кольцевой диаграммы"
 msgid "Set the root node from the model"
 msgstr "Установить корневой узел диаграммы"
 
-#: ../baobab/src/callbacks.c:82
+#: ../baobab/src/callbacks.c:99
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:83
+#: ../baobab/src/callbacks.c:100
 msgid "A graphical tool to analyze disk usage."
 msgstr "Графическая утилита для анализа использования дисков."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -563,7 +576,7 @@ msgstr ""
 "Андрей Носенко\n"
 "Леонид Кантер"
 
-#: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Документ не существует."
@@ -632,7 +645,8 @@ msgstr "Идёт проверка на плохие блоки..."
 #: ../gfloppy/src/badblocks.c:268
 #, c-format
 msgid "Failed to open device %s for badblock checking\n"
-msgstr "Произошёл сбой при открытии устройства %s для проверки на плохие блоки\n"
+msgstr ""
+"Произошёл сбой при открытии устройства %s для проверки на плохие блоки\n"
 
 #: ../gfloppy/src/badblocks.c:288 ../gfloppy/src/gfloppy.c:531
 msgid "Checking for bad blocks... Done"
@@ -766,7 +780,8 @@ msgstr "Произошла ошибка при выполнении команд
 
 #: ../gfloppy/src/gfloppy.c:328
 msgid "Unknown mke2fs starting signature, cancelling."
-msgstr "Обнаружена неизвестная начальная строка (сигнатура) mke2fs, отменяется."
+msgstr ""
+"Обнаружена неизвестная начальная строка (сигнатура) mke2fs, отменяется."
 
 #: ../gfloppy/src/gfloppy.c:342
 #, c-format
@@ -817,7 +832,8 @@ msgstr "Создание файловой системы на диске... Вы
 
 #: ../gfloppy/src/gfloppy.c:522
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "Идёт проверка на наличие сбойных блоков... (может занять некоторое время)"
+msgstr ""
+"Идёт проверка на наличие сбойных блоков... (может занять некоторое время)"
 
 #: ../gfloppy/src/gfloppy.c:527
 msgid "Error while checking the bad blocks."
@@ -909,7 +925,8 @@ msgstr "_быстрый (только создаёт файловую систе
 
 #: ../gfloppy/src/gfloppy2.glade.h:22
 msgid "_Standard (adds a low-level format to the quick mode)"
-msgstr "ст_андартный (добавляет низкоуровневое форматирование к быстрому режиму)"
+msgstr ""
+"ст_андартный (добавляет низкоуровневое форматирование к быстрому режиму)"
 
 #: ../gfloppy/src/main.c:259
 msgid "Cannot Format"
@@ -926,7 +943,8 @@ msgstr ""
 #: ../gfloppy/src/main.c:280
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
-msgstr "Не удалось открыть устройство «%s», невозможно продолжать форматирование."
+msgstr ""
+"Не удалось открыть устройство «%s», невозможно продолжать форматирование."
 
 #: ../gfloppy/src/main.c:283 ../gfloppy/src/main.c:345
 #, c-format
@@ -1140,7 +1158,8 @@ msgid "The name of the dictionary source used"
 msgstr "Название используемого источника словарей"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:14
-msgid "The name of the dictionary source used to retrieve the definitions of words."
+msgid ""
+"The name of the dictionary source used to retrieve the definitions of words."
 msgstr "Сервер словарей, используемый для получения определений слов."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:15
@@ -1594,12 +1613,15 @@ msgstr "Группа «%s» не найдена внтури определен�
 #: ../gnome-dictionary/libgdict/gdict-source.c:517
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
-msgstr "Невозможно получить ключ «%s» внутри определения источника словарей: %s"
+msgstr ""
+"Невозможно получить ключ «%s» внутри определения источника словарей: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:542
 #, c-format
-msgid "Unable to get the '%s' key inside the dictionary source definition file: %s"
-msgstr "Невозможно получить ключ «%s» внутри файла определения источника словарей: %s"
+msgid ""
+"Unable to get the '%s' key inside the dictionary source definition file: %s"
+msgstr ""
+"Невозможно получить ключ «%s» внутри файла определения источника словарей: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:728
 msgid "Dictionary source does not have name"
@@ -2127,77 +2149,78 @@ msgstr "(%d:%02d осталось)"
 msgid "%ld of %ld"
 msgstr "%ld из %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:108
+#: ../gnome-screenshot/gnome-screenshot.c:109
 msgid "Error loading the help page"
 msgstr "Ошибка при загрузке страницы справки"
 
-#: ../gnome-screenshot/gnome-screenshot.c:186
+#: ../gnome-screenshot/gnome-screenshot.c:192
 msgid "None"
 msgstr "Нет"
 
-#: ../gnome-screenshot/gnome-screenshot.c:187
+#: ../gnome-screenshot/gnome-screenshot.c:193
 msgid "Drop shadow"
 msgstr "Отбрасывать тень"
 
-#: ../gnome-screenshot/gnome-screenshot.c:188
+#: ../gnome-screenshot/gnome-screenshot.c:194
 msgid "Border"
 msgstr "Рамка"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:297
+#: ../gnome-screenshot/gnome-screenshot.c:304
 msgid "Include the window _border"
 msgstr "Включить _рамку окна"
 
-#: ../gnome-screenshot/gnome-screenshot.c:312
+#: ../gnome-screenshot/gnome-screenshot.c:319
 msgid "Apply _effect:"
 msgstr "Применить _эффект:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:372
+#: ../gnome-screenshot/gnome-screenshot.c:379
 msgid "Grab the whole _desktop"
 msgstr "Захватить весь _рабочий стол"
 
-#: ../gnome-screenshot/gnome-screenshot.c:384
+#: ../gnome-screenshot/gnome-screenshot.c:391
 msgid "Grab the current _window"
 msgstr "Захватить текущее _окно"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:401
+#: ../gnome-screenshot/gnome-screenshot.c:408
 msgid "Grab _after a delay of"
 msgstr "Захватить после _задержки"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:421
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:428
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "seconds"
 msgstr "секунд"
 
-#: ../gnome-screenshot/gnome-screenshot.c:448
+#: ../gnome-screenshot/gnome-screenshot.c:455
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Сделать снимок экрана"
 
-#: ../gnome-screenshot/gnome-screenshot.c:449
+#: ../gnome-screenshot/gnome-screenshot.c:456
 msgid "Effects"
 msgstr "Эффекты"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:462
 msgid "Take _Screenshot"
 msgstr "Сделать _снимок экрана"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:481
+#: ../gnome-screenshot/gnome-screenshot.c:488
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Screenshot-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:487
+#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:197
 msgid "Screenshot.png"
 msgstr "Screenshot.png"
@@ -2205,7 +2228,7 @@ msgstr "Screenshot.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:527
+#: ../gnome-screenshot/gnome-screenshot.c:534
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Screenshot-%s-%d.png"
@@ -2213,48 +2236,48 @@ msgstr "Screenshot-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:535
+#: ../gnome-screenshot/gnome-screenshot.c:542
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Screenshot-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:711
+#: ../gnome-screenshot/gnome-screenshot.c:718
 msgid "Unable to take a screenshot of the current window"
 msgstr "Не удается сделать снимок текущего окна"
 
-#: ../gnome-screenshot/gnome-screenshot.c:861
+#: ../gnome-screenshot/gnome-screenshot.c:868
 msgid "Grab a window instead of the entire screen"
 msgstr "Захватить снимок окна, а не всего экрана"
 
-#: ../gnome-screenshot/gnome-screenshot.c:862
+#: ../gnome-screenshot/gnome-screenshot.c:869
 msgid "Include the window border with the screenshot"
 msgstr "Включить рамку окна в снимок"
 
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Сделать снимок через указанное время [в секундах]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Эффект, добавляемый к рамке окна (тень, рамка или никакого)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "effect"
 msgstr "эффект"
 
-#: ../gnome-screenshot/gnome-screenshot.c:865
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Interactively set options"
 msgstr "Установить параметры интерактивно"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:882
 msgid "Options for Screenshot"
 msgstr "Настройки Снимка экрана"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:883
 msgid "Show Screenshot options"
 msgstr "Показать опции "
 
-#: ../gnome-screenshot/gnome-screenshot.c:880
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Take a picture of the screen"
 msgstr "Сделать снимок окна, а не всего экрана"
 
@@ -2448,7 +2471,8 @@ msgstr "Устанавливать параметр поиска \"Имя фай
 #. search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:32
 msgid "Select the search option \"Name matches regular expression\""
-msgstr "Устанавливать параметр поиска \"Имя файла совпадает с регулярным выражением\""
+msgstr ""
+"Устанавливать параметр поиска \"Имя файла совпадает с регулярным выражением\""
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
@@ -2680,7 +2704,8 @@ msgstr ""
 "locate для ускорения поиска."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:76
-msgid "This key determines if the search tool window starts in a maximized state."
+msgid ""
+"This key determines if the search tool window starts in a maximized state."
 msgstr "Этот ключ определяет, должно ли окно поиска запускаться развернутым."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:186
@@ -3055,7 +3080,8 @@ msgstr "Установить текст параметра поиска \"Иск
 
 #: ../gsearchtool/gsearchtool.c:1386
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Сортировать файлы по одному из критериев: имя, папка, размер, тип, дата"
+msgstr ""
+"Сортировать файлы по одному из критериев: имя, папка, размер, тип, дата"
 
 #: ../gsearchtool/gsearchtool.c:1387
 msgid "Set sort order to descending, the default is ascending"
@@ -3091,7 +3117,8 @@ msgstr ""
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
-msgstr "Результаты поиска могут быть неверными. В процессе поиска происходили ошибки."
+msgstr ""
+"Результаты поиска могут быть неверными. В процессе поиска происходили ошибки."
 
 #: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
@@ -3112,7 +3139,8 @@ msgstr "Отключить _Быстрый поиск"
 #: ../gsearchtool/gsearchtool.c:1910
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
-msgstr "Не удалось установить идентификатор группы дочернего процесса %d: %s.\n"
+msgstr ""
+"Не удалось установить идентификатор группы дочернего процесса %d: %s.\n"
 
 #: ../gsearchtool/gsearchtool.c:1935
 msgid "Error parsing the search command."
@@ -3295,16 +3323,16 @@ msgstr "%s слишком велик."
 msgid "%s could not be opened."
 msgstr "Файл «%s» не удалось открыть."
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s не является журналом."
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "Недостаточно памяти."
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "%s не удалось открыть."
@@ -3468,7 +3496,8 @@ msgstr ""
 
 #: ../logview/logview.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
-msgstr "Указывает высоту главного окна программы просмотра журналов в пикселах."
+msgstr ""
+"Указывает высоту главного окна программы просмотра журналов в пикселах."
 
 #: ../logview/logview.schemas.in.h:7
 msgid ""
@@ -3489,7 +3518,8 @@ msgstr ""
 
 #: ../logview/logview.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
-msgstr "Устанавливает ширину главного окна программы просмотра журналов в пикселах."
+msgstr ""
+"Устанавливает ширину главного окна программы просмотра журналов в пикселах."
 
 #: ../logview/logview.schemas.in.h:10
 msgid "Width of the main window in pixels"
@@ -3579,9 +3609,11 @@ msgstr "За этим файлом нельзя наблюдать."
 
 #: ../logview/monitor.c:86
 msgid "File monitoring is not supported on this file system.\n"
-msgstr "Мониторинг файлов не поддерживается на этой файловой системе.\n"
+msgstr "Эта файловая система не позволяет наблюдать за файлами.\n"
 
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Ошибка Gnome-VFS.\n"
 
+#~ msgid "Analyze disk usage"
+#~ msgstr "Анализ использования дисков"
