@@ -9,14 +9,15 @@
 # Guilherme de S. Pastore <gpastore@colband.com.br>, 2005-2006.
 # Luiz Fernando S. Armesto <luiz.armesto@gmail.com>, 2007.
 # Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>, 2007.
+# Og Maciel <ogmaciel@gnome.org>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-06-23 18:06-0300\n"
-"PO-Revision-Date: 2007-06-23 18:17-0300\n"
-"Last-Translator: Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>\n"
+"POT-Creation-Date: 2007-08-05 08:34-0300\n"
+"PO-Revision-Date: 2007-08-05 09:15-0300\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,8 +25,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "Analyze disk usage"
-msgstr "Analise a utilização do disco"
+msgid "Check folder sizes and available disk space"
+msgstr "Verifica o tamanho de pastas e espaço disponível no disco"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -41,11 +42,11 @@ msgstr "Preferências do Analisador de Utilização do Disco"
 
 #: ../baobab/data/baobab.glade.h:4
 msgid "Refresh"
-msgstr "Atualizar"
+msgstr "Atualiza"
 
 #: ../baobab/data/baobab.glade.h:5
 msgid "Refresh graph"
-msgstr "Atualizar o gráfico"
+msgstr "Atualiza o gráfico"
 
 #: ../baobab/data/baobab.glade.h:6
 msgid "S_can Remote Folder..."
@@ -82,11 +83,11 @@ msgstr "Varrer Pasta _Pessoal"
 
 #: ../baobab/data/baobab.glade.h:14
 msgid "Scan a folder"
-msgstr "Varrer uma pasta"
+msgstr "Varre uma pasta"
 
 #: ../baobab/data/baobab.glade.h:15
 msgid "Scan a remote folder"
-msgstr "Varrer uma pasta remota"
+msgstr "Varre uma pasta remota"
 
 #: ../baobab/data/baobab.glade.h:16
 msgid "Scan filesystem"
@@ -107,11 +108,11 @@ msgstr "Barra de Est_ado"
 
 #: ../baobab/data/baobab.glade.h:20
 msgid "Stop scanning"
-msgstr "Interromper análise"
+msgstr "Interrompe a varredura"
 
 #: ../baobab/data/baobab.glade.h:21
 msgid "Take a snapshot"
-msgstr "Capturar uma imagem da tela"
+msgstr "Captura uma imagem da tela"
 
 #: ../baobab/data/baobab.glade.h:23
 #, no-c-format
@@ -120,11 +121,11 @@ msgstr "Zoom 100%"
 
 #: ../baobab/data/baobab.glade.h:24
 msgid "Zoom in"
-msgstr "Aproximar"
+msgstr "Aproxima"
 
 #: ../baobab/data/baobab.glade.h:25
 msgid "Zoom out"
-msgstr "Afastar"
+msgstr "Afasta"
 
 #: ../baobab/data/baobab.glade.h:26
 msgid "_Analyzer"
@@ -207,8 +208,7 @@ msgstr "Monitorar ou não qualquer mudança no diretório pessoal."
 #: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr ""
-"Se a barra de status na parte inferior da janela principal deve estar "
-"visível."
+"Manter ou não a barra de status visível na parte inferior da janela principal."
 
 #: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the toolbar should be visible in main window."
@@ -216,12 +216,12 @@ msgstr "Mostrar ou não a barra de ferramentas na janela principal."
 
 #. set statusbar, percentage and allocated/normal size
 #: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:307
+#: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Calculando barras de porcentagens..."
 
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:757
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:311
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Pronto"
 
@@ -281,21 +281,29 @@ msgstr "Não foi possível alocar memória para janela gráfica!"
 msgid "Graphical Usage Map"
 msgstr "Mapa Gráfico de Utilização"
 
-#: ../baobab/src/baobab-prefs.c:165
+#: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
 msgstr "Analisar"
 
-#: ../baobab/src/baobab-prefs.c:172
+#: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
 msgstr "Dispositivo"
 
-#: ../baobab/src/baobab-prefs.c:180
+#: ../baobab/src/baobab-prefs.c:183
 msgid "Mount Point"
 msgstr "Ponto de Montagem"
 
-#: ../baobab/src/baobab-prefs.c:188
+#: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
 msgstr "Tipo de Sistema de Arquivos"
+
+#: ../baobab/src/baobab-prefs.c:199
+msgid "Total Size"
+msgstr "Capacidade Total"
+
+#: ../baobab/src/baobab-prefs.c:208
+msgid "Available"
+msgstr "Disponível"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -304,7 +312,7 @@ msgstr "\"%s\" não é uma localização válida"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:135
 msgid "Please check the spelling and try again."
-msgstr "Por favor, verifique a ortografia e tente denovo."
+msgstr "Por favor, verifique a ortografia e tente novamente."
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:161
 msgid "You must enter a name for the server"
@@ -312,7 +320,7 @@ msgstr "Você deve digitar um nome para o servidor"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:164
 msgid "Please enter a name and try again."
-msgstr "Por favor, digite um nome e tente denovo."
+msgstr "Por favor, digite um nome e tente novamente."
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:302
 #, c-format
@@ -404,12 +412,12 @@ msgstr "Tamanho"
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:102
 msgid "Select Folder"
 msgstr "Selecione uma Pasta"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:116
+#: ../baobab/src/baobab-utils.c:114
 msgid "_Show hidden folders"
 msgstr "Mostrar pasta_s ocultas"
 
@@ -469,7 +477,7 @@ msgstr "Não foi possível localizar a Lixeira neste sistema"
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Não foi possível mover \"%s\" para a Lixeira"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:390
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "A pasta não existe."
 
@@ -527,7 +535,7 @@ msgstr "Profundidade máxima"
 
 #: ../baobab/src/baobab-ringschart.c:238
 msgid "The maximum depth drawn in the rings chart from the root"
-msgstr "A profundidade máxima desenhada apartir do centro em grafico de anéis"
+msgstr "A profundidade máxima desenhada a partir do centro em gráfico de anéis"
 
 #: ../baobab/src/baobab-ringschart.c:247
 msgid "Rings chart model"
@@ -539,22 +547,22 @@ msgstr "Definir o modelo do gráfico de anéis"
 
 #: ../baobab/src/baobab-ringschart.c:255
 msgid "Rings chart root node"
-msgstr "Nó central de grafico de anéis"
+msgstr "Nó central de gráfico de anéis"
 
 #: ../baobab/src/baobab-ringschart.c:256
 msgid "Set the root node from the model"
 msgstr "Definir o nó central do modelo"
 
-#: ../baobab/src/callbacks.c:82
+#: ../baobab/src/callbacks.c:99
 msgid "Baobab"
-msgstr "Baobab"
+msgstr "Baobá"
 
-#: ../baobab/src/callbacks.c:83
+#: ../baobab/src/callbacks.c:100
 msgid "A graphical tool to analyze disk usage."
 msgstr "Uma ferramenta gráfica para analisar a utilização do disco."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -566,12 +574,14 @@ msgstr ""
 "Welther José O. Esteves <weltherjoe@yahoo.com.br>\n"
 "Goedson Teixeira Paixão <goedson@debian.org>\n"
 "Guilherme de S. Pastore <gpastore@colband.com.br>\n"
-"Luiz Fernando S. Armesto <luiz.armesto@gmail.com>"
+"Luiz Fernando S. Armesto <luiz.armesto@gmail.com>\n"
+"Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>\n"
+"Og Maciel <ogmaciel@gnome.org>"
 
-#: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
-msgstr "O documento não exixte."
+msgstr "O documento não existe."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -1058,7 +1068,7 @@ msgstr "Verificar definição e pronúncia da palavra em um dicionário on-line"
 #: ../gnome-dictionary/src/gdict-about.c:78
 #: ../gnome-dictionary/src/gdict-app.c:406
 #: ../gnome-dictionary/src/gdict-window.c:529
-#: ../gnome-dictionary/src/gdict-window.c:1790
+#: ../gnome-dictionary/src/gdict-window.c:1789
 msgid "Dictionary"
 msgstr "Dicionário"
 
@@ -1451,11 +1461,11 @@ msgstr "Usar ou não apenas dicionários locais para o contexto"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:346
 msgid "Reload the list of available databases"
-msgstr "Recarregar a lista de bases de dados disponíveis"
+msgstr "Recarrega a lista de bases de dados disponíveis"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:359
 msgid "Clear the list of available databases"
-msgstr "Limpar a lista de bases de dados disponíveis"
+msgstr "Limpa a lista de bases de dados disponíveis"
 
 #: ../gnome-dictionary/libgdict/gdict-database-chooser.c:656
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1684
@@ -1634,7 +1644,7 @@ msgstr "Fontes de dicionário encontradas"
 
 #: ../gnome-dictionary/libgdict/gdict-speller.c:351
 msgid "Clear the list of similar words"
-msgstr "Limpar a lista de sinônimos"
+msgstr "Limpa a lista de sinônimos"
 
 #: ../gnome-dictionary/libgdict/gdict-speller.c:376
 msgid "The GdictContext object used to get the word definition"
@@ -1650,11 +1660,11 @@ msgstr "A estratégia usada para consultar o GdictContext"
 
 #: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:340
 msgid "Reload the list of available strategies"
-msgstr "Recarregar a lista de estratégias disponíveis"
+msgstr "Recarrega a lista de estratégias disponíveis"
 
 #: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:353
 msgid "Clear the list of available strategies"
-msgstr "Limpar a lista de estratégias disponíveis"
+msgstr "Limpa a lista de estratégias disponíveis"
 
 #: ../gnome-dictionary/src/gdict-about.c:57
 #: ../gnome-dictionary/src/gdict-applet.c:613
@@ -1821,7 +1831,7 @@ msgstr "Mostra ou oculta a janela de definição"
 
 #: ../gnome-dictionary/src/gdict-applet.c:557
 msgid "Click to view the dictionary window"
-msgstr "Clique para ver a janela do dicionário"
+msgstr "Mostra a janela do dicionário"
 
 #: ../gnome-dictionary/src/gdict-applet.c:612
 msgid "Dictionary entry"
@@ -1866,17 +1876,17 @@ msgid "Unable to create a context"
 msgstr "Não foi possível criar um contexto"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1222
-#: ../gnome-dictionary/src/gdict-window.c:1919
+#: ../gnome-dictionary/src/gdict-window.c:1918
 msgid "Unable to connect to GConf"
 msgstr "Não foi possível conectar ao GConf"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1235
-#: ../gnome-dictionary/src/gdict-window.c:1932
+#: ../gnome-dictionary/src/gdict-window.c:1931
 msgid "Unable to get notification for preferences"
 msgstr "Não foi possível obter notificação para preferências"
 
 #: ../gnome-dictionary/src/gdict-applet.c:1249
-#: ../gnome-dictionary/src/gdict-window.c:1945
+#: ../gnome-dictionary/src/gdict-window.c:1944
 msgid "Unable to get notification for the document font"
 msgstr "Não foi possível obter notificação para a fonte do documento"
 
@@ -1906,7 +1916,7 @@ msgstr "Remover \"%s\"?"
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:360
 msgid "This will permanently remove the dictionary source from the list."
-msgstr "Isto removerá permanentemente a fonte de dicioário da lista."
+msgstr "Isto removerá permanentemente a fonte de dicionário da lista."
 
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:390
 #, c-format
@@ -2096,19 +2106,19 @@ msgstr "Clique dúplo na etratégia adequada para usá-la"
 msgid "Double-click on the database to use"
 msgstr "Clique dúplo no banco de dados para usá-lo"
 
-#: ../gnome-dictionary/src/gdict-window.c:1610
+#: ../gnome-dictionary/src/gdict-window.c:1609
 msgid "Look _up:"
 msgstr "_Consultar:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1683
+#: ../gnome-dictionary/src/gdict-window.c:1682
 msgid "Similar words"
 msgstr "Sinônimos"
 
-#: ../gnome-dictionary/src/gdict-window.c:1696
+#: ../gnome-dictionary/src/gdict-window.c:1695
 msgid "Available dictionaries"
 msgstr "Dicionários disponíveis"
 
-#: ../gnome-dictionary/src/gdict-window.c:1709
+#: ../gnome-dictionary/src/gdict-window.c:1708
 msgid "Available strategies"
 msgstr "Estratégias disponíveis"
 
@@ -2203,8 +2213,8 @@ msgstr "Captura_da_tela-%s.png"
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-screenshot.c:494
-#: ../gnome-screenshot/screenshot-dialog.c:343
-#: ../gnome-screenshot/screenshot-save.c:197
+#: ../gnome-screenshot/screenshot-dialog.c:329
+#: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Captura_da_tela.png"
 
@@ -2308,7 +2318,7 @@ msgstr "Diretório de captura de tela"
 msgid "The directory the last screenshot was saved in."
 msgstr "Diretório em que a última captura de tela foi salva."
 
-#: ../gnome-screenshot/screenshot-dialog.c:225
+#: ../gnome-screenshot/screenshot-dialog.c:220
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -2316,7 +2326,7 @@ msgstr ""
 "O arquivo do Glade para o programa de captura de tela está faltando.\n"
 "Por favor, verifique sua instalação do gnome-utils"
 
-#: ../gnome-screenshot/screenshot-dialog.c:245
+#: ../gnome-screenshot/screenshot-dialog.c:239
 msgid "Select a folder"
 msgstr "Selecione um diretório"
 
@@ -2337,7 +2347,7 @@ msgstr ""
 "O processo filho salvo terminou de maneira inesperada. Você não pode salvar "
 "a captura de tela no disco."
 
-#: ../gnome-screenshot/screenshot-save.c:224
+#: ../gnome-screenshot/screenshot-save.c:223
 msgid "Unknown error saving screenshot to disk"
 msgstr "Erro desconhecido ao salvar a captura de tela no disco"
 
@@ -3604,3 +3614,6 @@ msgstr ""
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Erro do Gnome-VFS.\n"
+
+#~ msgid "Analyze disk usage"
+#~ msgstr "Analise a utilização do disco"
