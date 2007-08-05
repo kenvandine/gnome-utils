@@ -1337,8 +1337,7 @@ static void
 sidebar_closed_cb (GdictSidebar *sidebar,
 		   GdictWindow  *window)
 {
-  gtk_widget_hide (window->sidebar_frame);
-  window->sidebar_visible = FALSE;
+  gdict_window_set_sidebar_visible (window, FALSE); 
 }
 
 static void
