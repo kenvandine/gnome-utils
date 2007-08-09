@@ -309,6 +309,8 @@ gdict_window_lookup_end_cb (GdictContext *context,
   gchar *message;
   gint count;
   GtkTreeIter iter;
+  GdictSource *source;
+  GdictContext *speller_context;
 
   count = window->current_definition;
 
@@ -327,6 +329,20 @@ gdict_window_lookup_end_cb (GdictContext *context,
 
   if (window->progress)
     gtk_widget_hide (window->progress);
+
+  /* we clone the context, so that the signals that it
+   * fires do not get caught by the signal handlers we
+   * use for getting the definitions.
+   */
+  source = gdict_source_loader_get_source (window->loader, window->source_name);
+  speller_context = gdict_source_get_context (source);
+  gdict_speller_set_context (GDICT_SPELLER (window->speller), speller_context);
+  g_object_unref (speller_context);
+  g_object_unref (source);
+
+  /* search for similar words */
+  gdict_speller_set_strategy (GDICT_SPELLER (window->speller), window->strategy);
+  gdict_speller_match (GDICT_SPELLER (window->speller), window->word);
 
   gtk_list_store_append (window->completion_model, &iter);
   gtk_list_store_set (window->completion_model, &iter,
