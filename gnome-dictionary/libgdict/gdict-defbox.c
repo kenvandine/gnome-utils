@@ -1449,7 +1449,7 @@ gdict_defbox_insert_body (GdictDefbox *defbox,
               buf = g_string_new (NULL);
               next = words[cur++];
 
-              while ((end = g_utf8_strrchr (next, -1, '}')) == NULL)
+              while (next && (end = g_utf8_strrchr (next, -1, '}')) == NULL)
                 {
                   buf = g_string_append (buf, next);
                   buf = g_string_append_c (buf, ' ');
@@ -1461,7 +1461,7 @@ gdict_defbox_insert_body (GdictDefbox *defbox,
 
               next = g_string_free (buf, FALSE);
 
-              if (*end == '}')
+              if (end && *end == '}')
                 {
                   const gchar *rest;
                   gchar *link;
