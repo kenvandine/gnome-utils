@@ -65,8 +65,6 @@ struct _GdictDefboxPrivate
   
   GtkTextBuffer *buffer;
 
-  GtkTooltips *tooltips;
-
   GdictContext *context;
   GSList *definitions;
   
@@ -86,6 +84,7 @@ struct _GdictDefboxPrivate
   guint end_id;
   guint define_id;
   guint error_id;
+  guint hide_timeout;
 };
 
 enum
@@ -176,7 +175,6 @@ gdict_defbox_finalize (GObject *object)
       priv->definitions = NULL;
     }
   
-  g_object_unref (priv->tooltips);
   g_object_unref (priv->buffer);
   
   if (priv->busy_cursor)
@@ -296,6 +294,715 @@ gdict_defbox_get_property (GObject    *object,
     }
 }
 
+/*
+ * this code has been copied from gtksourceview; it's the implementation
+ * for case-insensitive search in a GtkTextBuffer. this is non-trivial, as
+ * searches on a utf-8 text stream involve a norm(casefold(norm(utf8)))
+ * operation which can be costly on large buffers. luckily for us, it's
+ * not the case on a set of definitions.
+ */
+
+#define GTK_TEXT_UNKNOWN_CHAR 0xFFFC
+
+/* this function acts like g_utf8_offset_to_pointer() except that if it finds a
+ * decomposable character it consumes the decomposition length from the given
+ * offset.  So it's useful when the offset was calculated for the normalized
+ * version of str, but we need a pointer to str itself. */
+static const gchar *
+pointer_from_offset_skipping_decomp (const gchar *str, gint offset)
+{
+	gchar *casefold, *normal;
+	const gchar *p, *q;
+
+	p = str;
+	while (offset > 0)
+	{
+		q = g_utf8_next_char (p);
+		casefold = g_utf8_casefold (p, q - p);
+		normal = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
+		offset -= g_utf8_strlen (normal, -1);
+		g_free (casefold);
+		g_free (normal);
+		p = q;
+	}
+	return p;
+}
+
+static gboolean
+exact_prefix_cmp (const gchar *string,
+		  const gchar *prefix,
+		  guint        prefix_len)
+{
+	GUnicodeType type;
+
+	if (strncmp (string, prefix, prefix_len) != 0)
+		return FALSE;
+	if (string[prefix_len] == '\0')
+		return TRUE;
+
+	type = g_unichar_type (g_utf8_get_char (string + prefix_len));
+
+	/* If string contains prefix, check that prefix is not followed
+	 * by a unicode mark symbol, e.g. that trailing 'a' in prefix
+	 * is not part of two-char a-with-hat symbol in string. */
+	return type != G_UNICODE_COMBINING_MARK &&
+		type != G_UNICODE_ENCLOSING_MARK &&
+		type != G_UNICODE_NON_SPACING_MARK;
+}
+
+static const gchar *
+utf8_strcasestr (const gchar *haystack, const gchar *needle)
+{
+	gsize needle_len;
+	gsize haystack_len;
+	const gchar *ret = NULL;
+	gchar *p;
+	gchar *casefold;
+	gchar *caseless_haystack;
+	gint i;
+
+	g_return_val_if_fail (haystack != NULL, NULL);
+	g_return_val_if_fail (needle != NULL, NULL);
+
+	casefold = g_utf8_casefold (haystack, -1);
+	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
+	g_free (casefold);
+
+	needle_len = g_utf8_strlen (needle, -1);
+	haystack_len = g_utf8_strlen (caseless_haystack, -1);
+
+	if (needle_len == 0)
+	{
+		ret = (gchar *)haystack;
+		goto finally_1;
+	}
+
+	if (haystack_len < needle_len)
+	{
+		ret = NULL;
+		goto finally_1;
+	}
+
+	p = (gchar*)caseless_haystack;
+	needle_len = strlen (needle);
+	i = 0;
+
+	while (*p)
+	{
+		if (exact_prefix_cmp (p, needle, needle_len))
+		{
+			ret = pointer_from_offset_skipping_decomp (haystack, i);
+			goto finally_1;
+		}
+
+		p = g_utf8_next_char (p);
+		i++;
+	}
+
+finally_1:
+	g_free (caseless_haystack);
+
+	return ret;
+}
+
+static const gchar *
+utf8_strrcasestr (const gchar *haystack, const gchar *needle)
+{
+	gsize needle_len;
+	gsize haystack_len;
+	const gchar *ret = NULL;
+	gchar *p;
+	gchar *casefold;
+	gchar *caseless_haystack;
+	gint i;
+
+	g_return_val_if_fail (haystack != NULL, NULL);
+	g_return_val_if_fail (needle != NULL, NULL);
+
+	casefold = g_utf8_casefold (haystack, -1);
+	caseless_haystack = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
+	g_free (casefold);
+
+	needle_len = g_utf8_strlen (needle, -1);
+	haystack_len = g_utf8_strlen (caseless_haystack, -1);
+
+	if (needle_len == 0)
+	{
+		ret = (gchar *)haystack;
+		goto finally_1;
+	}
+
+	if (haystack_len < needle_len)
+	{
+		ret = NULL;
+		goto finally_1;
+	}
+
+	i = haystack_len - needle_len;
+	p = g_utf8_offset_to_pointer (caseless_haystack, i);
+	needle_len = strlen (needle);
+
+	while (p >= caseless_haystack)
+	{
+		if (exact_prefix_cmp (p, needle, needle_len))
+		{
+			ret = pointer_from_offset_skipping_decomp (haystack, i);
+			goto finally_1;
+		}
+
+		p = g_utf8_prev_char (p);
+		i--;
+	}
+
+finally_1:
+	g_free (caseless_haystack);
+
+	return ret;
+}
+
+static gboolean
+utf8_caselessnmatch (const char *s1, const char *s2,
+		     gssize n1, gssize n2)
+{
+	gchar *casefold;
+	gchar *normalized_s1;
+	gchar *normalized_s2;
+	gint len_s1;
+	gint len_s2;
+	gboolean ret = FALSE;
+
+	g_return_val_if_fail (s1 != NULL, FALSE);
+	g_return_val_if_fail (s2 != NULL, FALSE);
+	g_return_val_if_fail (n1 > 0, FALSE);
+	g_return_val_if_fail (n2 > 0, FALSE);
+
+	casefold = g_utf8_casefold (s1, n1);
+	normalized_s1 = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
+	g_free (casefold);
+
+	casefold = g_utf8_casefold (s2, n2);
+	normalized_s2 = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
+	g_free (casefold);
+
+	len_s1 = strlen (normalized_s1);
+	len_s2 = strlen (normalized_s2);
+
+	if (len_s1 < len_s2)
+		goto finally_2;
+
+	ret = (strncmp (normalized_s1, normalized_s2, len_s2) == 0);
+
+finally_2:
+	g_free (normalized_s1);
+	g_free (normalized_s2); 
+
+	return ret;
+}
+
+/* FIXME: total horror */
+static gboolean
+char_is_invisible (const GtkTextIter *iter)
+{
+	GSList *tags;
+	gboolean invisible = FALSE;
+	tags = gtk_text_iter_get_tags (iter);
+	while (tags)
+	{
+		gboolean this_invisible, invisible_set;
+		g_object_get (tags->data, "invisible", &this_invisible, 
+			      "invisible-set", &invisible_set, NULL);
+		if (invisible_set)
+			invisible = this_invisible;
+		tags = g_slist_delete_link (tags, tags);
+	}
+	return invisible;
+}
+
+static void
+forward_chars_with_skipping (GtkTextIter *iter,
+			     gint         count,
+			     gboolean     skip_invisible,
+			     gboolean     skip_nontext,
+			     gboolean     skip_decomp)
+{
+	gint i;
+
+	g_return_if_fail (count >= 0);
+
+	i = count;
+
+	while (i > 0)
+	{
+		gboolean ignored = FALSE;
+
+		/* minimal workaround to avoid the infinite loop of bug #168247.
+		 * It doesn't fix the problemjust the symptom...
+		 */
+		if (gtk_text_iter_is_end (iter))
+			return;
+
+		if (skip_nontext && gtk_text_iter_get_char (iter) == GTK_TEXT_UNKNOWN_CHAR)
+			ignored = TRUE;
+
+		/* FIXME: char_is_invisible() gets list of tags for each char there,
+		   and checks every tag. It doesn't sound like a good idea. */
+		if (!ignored && skip_invisible && char_is_invisible (iter))
+			ignored = TRUE;
+
+		if (!ignored && skip_decomp)
+		{
+			/* being UTF8 correct sucks; this accounts for extra
+			   offsets coming from canonical decompositions of
+			   UTF8 characters (e.g. accented characters) which 
+			   g_utf8_normalize() performs */
+			gchar *normal;
+			gchar buffer[6];
+			gint buffer_len;
+
+			buffer_len = g_unichar_to_utf8 (gtk_text_iter_get_char (iter), buffer);
+			normal = g_utf8_normalize (buffer, buffer_len, G_NORMALIZE_NFD);
+			i -= (g_utf8_strlen (normal, -1) - 1);
+			g_free (normal);
+		}
+
+		gtk_text_iter_forward_char (iter);
+
+		if (!ignored)
+			--i;
+	}
+}
+
+static gboolean
+lines_match (const GtkTextIter *start,
+	     const gchar      **lines,
+	     gboolean           visible_only,
+	     gboolean           slice,
+	     GtkTextIter       *match_start,
+	     GtkTextIter       *match_end)
+{
+	GtkTextIter next;
+	gchar *line_text;
+	const gchar *found;
+	gint offset;
+
+	if (*lines == NULL || **lines == '\0')
+	{
+		if (match_start)
+			*match_start = *start;
+		if (match_end)
+			*match_end = *start;
+		return TRUE;
+	}
+
+	next = *start;
+	gtk_text_iter_forward_line (&next);
+
+	/* No more text in buffer, but *lines is nonempty */
+	if (gtk_text_iter_equal (start, &next))
+		return FALSE;
+
+	if (slice)
+	{
+		if (visible_only)
+			line_text = gtk_text_iter_get_visible_slice (start, &next);
+		else
+			line_text = gtk_text_iter_get_slice (start, &next);
+	}
+	else
+	{
+		if (visible_only)
+			line_text = gtk_text_iter_get_visible_text (start, &next);
+		else
+			line_text = gtk_text_iter_get_text (start, &next);
+	}
+
+	if (match_start) /* if this is the first line we're matching */
+	{
+		found = utf8_strcasestr (line_text, *lines);
+	}
+	else
+	{
+		/* If it's not the first line, we have to match from the
+		 * start of the line.
+		 */
+		if (utf8_caselessnmatch (line_text, *lines, strlen (line_text),
+					 strlen (*lines)))
+			found = line_text;
+		else
+			found = NULL;
+	}
+
+	if (found == NULL)
+	{
+		g_free (line_text);
+		return FALSE;
+	}
+
+	/* Get offset to start of search string */
+	offset = g_utf8_strlen (line_text, found - line_text);
+
+	next = *start;
+
+	/* If match start needs to be returned, set it to the
+	 * start of the search string.
+	 */
+	forward_chars_with_skipping (&next, offset, visible_only, !slice, FALSE);
+	if (match_start)
+	{
+		*match_start = next;
+	}
+
+	/* Go to end of search string */
+	forward_chars_with_skipping (&next, g_utf8_strlen (*lines, -1), visible_only, !slice, TRUE);
+
+	g_free (line_text);
+
+	++lines;
+
+	if (match_end)
+		*match_end = next;
+
+	/* pass NULL for match_start, since we don't need to find the
+	 * start again.
+	 */
+	return lines_match (&next, lines, visible_only, slice, NULL, match_end);
+}
+
+static gboolean
+backward_lines_match (const GtkTextIter *start,
+		      const gchar      **lines,
+		      gboolean           visible_only,
+		      gboolean           slice,
+		      GtkTextIter       *match_start,
+		      GtkTextIter       *match_end)
+{
+	GtkTextIter line, next;
+	gchar *line_text;
+	const gchar *found;
+	gint offset;
+
+	if (*lines == NULL || **lines == '\0')
+	{
+		if (match_start)
+			*match_start = *start;
+		if (match_end)
+			*match_end = *start;
+		return TRUE;
+	}
+
+	line = next = *start;
+	if (gtk_text_iter_get_line_offset (&next) == 0)
+	{
+		if (!gtk_text_iter_backward_line (&next))
+			return FALSE;
+	}
+	else
+		gtk_text_iter_set_line_offset (&next, 0);
+
+	if (slice)
+	{
+		if (visible_only)
+			line_text = gtk_text_iter_get_visible_slice (&next, &line);
+		else
+			line_text = gtk_text_iter_get_slice (&next, &line);
+	}
+	else
+	{
+		if (visible_only)
+			line_text = gtk_text_iter_get_visible_text (&next, &line);
+		else
+			line_text = gtk_text_iter_get_text (&next, &line);
+	}
+
+	if (match_start) /* if this is the first line we're matching */
+	{
+		found = utf8_strrcasestr (line_text, *lines);
+	}
+	else
+	{
+		/* If it's not the first line, we have to match from the
+		 * start of the line.
+		 */
+		if (utf8_caselessnmatch (line_text, *lines, strlen (line_text),
+					 strlen (*lines)))
+			found = line_text;
+		else
+			found = NULL;
+	}
+
+	if (found == NULL)
+	{
+		g_free (line_text);
+		return FALSE;
+	}
+
+	/* Get offset to start of search string */
+	offset = g_utf8_strlen (line_text, found - line_text);
+
+	forward_chars_with_skipping (&next, offset, visible_only, !slice, FALSE);
+
+	/* If match start needs to be returned, set it to the
+	 * start of the search string.
+	 */
+	if (match_start)
+	{
+		*match_start = next;
+	}
+
+	/* Go to end of search string */
+	forward_chars_with_skipping (&next, g_utf8_strlen (*lines, -1), visible_only, !slice, TRUE);
+
+	g_free (line_text);
+
+	++lines;
+
+	if (match_end)
+		*match_end = next;
+
+	/* try to match the rest of the lines forward, passing NULL
+	 * for match_start so lines_match will try to match the entire
+	 * line */
+	return lines_match (&next, lines, visible_only,
+			    slice, NULL, match_end);
+}
+
+/* strsplit () that retains the delimiter as part of the string. */
+static gchar **
+breakup_string (const char *string,
+		const char *delimiter,
+		gint        max_tokens)
+{
+	GSList *string_list = NULL, *slist;
+	gchar **str_array, *s, *casefold, *new_string;
+	guint i, n = 1;
+
+	g_return_val_if_fail (string != NULL, NULL);
+	g_return_val_if_fail (delimiter != NULL, NULL);
+
+	if (max_tokens < 1)
+		max_tokens = G_MAXINT;
+
+	s = strstr (string, delimiter);
+	if (s)
+	{
+		guint delimiter_len = strlen (delimiter);
+
+		do
+		{
+			guint len;
+
+			len = s - string + delimiter_len;
+			new_string = g_new (gchar, len + 1);
+			strncpy (new_string, string, len);
+			new_string[len] = 0;
+			casefold = g_utf8_casefold (new_string, -1);
+			g_free (new_string);
+			new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
+			g_free (casefold);
+			string_list = g_slist_prepend (string_list, new_string);
+			n++;
+			string = s + delimiter_len;
+			s = strstr (string, delimiter);
+		} while (--max_tokens && s);
+	}
+
+	if (*string)
+	{
+		n++;
+		casefold = g_utf8_casefold (string, -1);
+		new_string = g_utf8_normalize (casefold, -1, G_NORMALIZE_NFD);
+		g_free (casefold);
+		string_list = g_slist_prepend (string_list, new_string);
+	}
+
+	str_array = g_new (gchar*, n);
+
+	i = n - 1;
+
+	str_array[i--] = NULL;
+	for (slist = string_list; slist; slist = slist->next)
+		str_array[i--] = slist->data;
+
+	g_slist_free (string_list);
+
+	return str_array;
+}
+
+static gboolean
+gdict_defbox_iter_forward_search (const GtkTextIter   *iter,
+                                  const gchar         *str,
+                                  GtkTextIter         *match_start,
+                                  GtkTextIter         *match_end,
+                                  const GtkTextIter   *limit)
+{
+  gchar **lines = NULL;
+  GtkTextIter match;
+  gboolean retval = FALSE;
+  GtkTextIter search;
+
+  g_return_val_if_fail (iter != NULL, FALSE);
+  g_return_val_if_fail (str != NULL, FALSE);
+
+  if (limit && gtk_text_iter_compare (iter, limit) >= 0)
+    return FALSE;
+
+  if (*str == '\0')
+    {
+      /* If we can move one char, return the empty string there */
+      match = *iter;
+
+      if (gtk_text_iter_forward_char (&match))
+        {
+          if (limit && gtk_text_iter_equal (&match, limit))
+            return FALSE;
+
+          if (match_start)
+            *match_start = match;
+
+          if (match_end)
+            *match_end = match;
+
+          return TRUE;
+        }
+      else
+        return FALSE;
+    }
+
+  /* locate all lines */
+  lines = breakup_string (str, "\n", -1);
+
+  search = *iter;
+
+  /* This loop has an inefficient worst-case, where
+   * gtk_text_iter_get_text () is called repeatedly on
+   * a single line.
+   */
+  do
+    {
+      GtkTextIter end;
+      gboolean res;
+
+      if (limit && gtk_text_iter_compare (&search, limit) >= 0)
+        break;
+
+      res = lines_match (&search, (const gchar**)lines,
+                         TRUE, FALSE,
+                         &match, &end);
+      if (res)
+        {
+          if (limit == NULL ||
+              (limit && gtk_text_iter_compare (&end, limit) <= 0))
+            {
+              retval = TRUE;
+              
+              if (match_start)
+                *match_start = match;
+
+              if (match_end)
+                *match_end = end;
+            }
+
+          break;
+        }
+    } while (gtk_text_iter_forward_line (&search));
+
+  g_strfreev ((gchar**) lines);
+
+  return retval;
+}
+
+static gboolean
+gdict_defbox_iter_backward_search (const GtkTextIter   *iter,
+                                   const gchar         *str,
+                                   GtkTextIter         *match_start,
+                                   GtkTextIter         *match_end,
+                                   const GtkTextIter   *limit)
+{
+  gchar **lines = NULL;
+  GtkTextIter match;
+  gboolean retval = FALSE;
+  GtkTextIter search;
+
+  g_return_val_if_fail (iter != NULL, FALSE);
+  g_return_val_if_fail (str != NULL, FALSE);
+
+  if (limit && gtk_text_iter_compare (iter, limit) <= 0)
+    return FALSE;
+
+  if (*str == '\0')
+    {
+      /* If we can move one char, return the empty string there */
+      match = *iter;
+
+      if (gtk_text_iter_backward_char (&match))
+        {
+          if (limit && gtk_text_iter_equal (&match, limit))
+            return FALSE;
+
+          if (match_start)
+            *match_start = match;
+
+          if (match_end)
+            *match_end = match;
+
+          return TRUE;
+        }
+      else
+        return FALSE;
+    }
+
+  /* locate all lines */
+  lines = breakup_string (str, "\n", -1);
+
+  search = *iter;
+
+  /* This loop has an inefficient worst-case, where
+   * gtk_text_iter_get_text () is called repeatedly on
+   * a single line.
+   */
+  while (TRUE)
+    {
+      GtkTextIter end;
+      gboolean res;
+
+      if (limit && gtk_text_iter_compare (&search, limit) <= 0)
+        break;
+
+      res = backward_lines_match (&search, (const gchar**)lines,
+                                  TRUE, FALSE,
+                                  &match, &end);
+      if (res)
+        {
+           if (limit == NULL ||
+               (limit && gtk_text_iter_compare (&end, limit) > 0))
+             {
+               retval = TRUE;
+               
+               if (match_start)
+                 *match_start = match;
+
+               if (match_end)
+                 *match_end = end;
+
+             }
+           
+           break;
+        }
+
+      if (gtk_text_iter_get_line_offset (&search) == 0)
+        {
+          if (!gtk_text_iter_backward_line (&search))
+            break;
+        }
+      else
+        gtk_text_iter_set_line_offset (&search, 0);
+    }
+
+  g_strfreev ((gchar**) lines);
+
+  return retval;
+}
+
 static gboolean
 gdict_defbox_find_backward (GdictDefbox *defbox,
 			    const gchar *text)
@@ -318,11 +1025,9 @@ gdict_defbox_find_backward (GdictDefbox *defbox,
   else
     iter = end_iter;
   
-  res = gtk_text_iter_backward_search (&iter, text,
-  				       GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY,
-  				       &match_start,
-  				       &match_end,
-  				       NULL);
+  res = gdict_defbox_iter_backward_search (&iter, text,
+                                           &match_start, &match_end,
+                                           NULL);
   if (res)
     {
       gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->text_view),
@@ -340,6 +1045,21 @@ gdict_defbox_find_backward (GdictDefbox *defbox,
       return TRUE;
     }
   
+  return FALSE;
+}
+
+static gboolean
+hide_find_pane (gpointer user_data)
+{
+  GdictDefbox *defbox = user_data;
+
+  gtk_widget_hide (defbox->priv->find_pane);
+  defbox->priv->show_find = FALSE;
+  
+  gtk_widget_grab_focus (defbox->priv->text_view);
+  
+  defbox->priv->hide_timeout = 0;
+
   return FALSE;
 }
 
@@ -368,6 +1088,12 @@ find_prev_clicked_cb (GtkWidget *widget,
       gtk_widget_show (priv->find_label);
       
       g_free (str);
+    }
+
+  if (priv->hide_timeout)
+    {
+      g_source_remove (priv->hide_timeout);
+      priv->hide_timeout = g_timeout_add (5000, hide_find_pane, defbox);
     }
 }
 
@@ -407,11 +1133,10 @@ gdict_defbox_find_forward (GdictDefbox *defbox,
 	iter = start_iter;
     }
   
-  res = gtk_text_iter_forward_search (&iter, text,
-  				      GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY,
-  				      &match_start,
-  				      &match_end,
-  				      NULL);
+  res = gdict_defbox_iter_forward_search (&iter, text,
+                                          &match_start,
+                                          &match_end,
+                                          NULL);
   if (res)
     {
       gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->text_view),
@@ -458,6 +1183,12 @@ find_next_clicked_cb (GtkWidget *widget,
       
       g_free (str);
     }
+
+  if (priv->hide_timeout)
+    {
+      g_source_remove (priv->hide_timeout);
+      priv->hide_timeout = g_timeout_add (5000, hide_find_pane, defbox);
+    }
 }
 
 static void
@@ -488,6 +1219,12 @@ find_entry_changed_cb (GtkWidget *widget,
     }
 
   g_free (text);
+
+  if (priv->hide_timeout)
+    {
+      g_source_remove (priv->hide_timeout);
+      priv->hide_timeout = g_timeout_add (5000, hide_find_pane, defbox);
+    }
 }
 
 static GtkWidget *
@@ -899,6 +1636,8 @@ gdict_defbox_real_show_find (GdictDefbox *defbox)
   defbox->priv->show_find = TRUE;
   
   gtk_widget_grab_focus (defbox->priv->find_entry);
+
+  defbox->priv->hide_timeout = g_timeout_add (5000, hide_find_pane, defbox);
 }
 
 static void
@@ -922,6 +1661,12 @@ gdict_defbox_real_hide_find (GdictDefbox *defbox)
   defbox->priv->show_find = FALSE;
   
   gtk_widget_grab_focus (defbox->priv->text_view);
+
+  if (defbox->priv->hide_timeout)
+    {
+      g_source_remove (defbox->priv->hide_timeout);
+      defbox->priv->hide_timeout = 0;
+    }
 }
 
 static void
@@ -1076,9 +1821,8 @@ gdict_defbox_init (GdictDefbox *defbox)
   priv->show_find = FALSE;
   priv->is_searching = FALSE;
   priv->is_hovering = FALSE;
-  
-  priv->tooltips = gtk_tooltips_new ();
-  g_object_ref_sink (G_OBJECT (priv->tooltips));
+
+  priv->hide_timeout = 0;
 }
 
 /**
@@ -1233,9 +1977,20 @@ gdict_defbox_set_show_find (GdictDefbox *defbox,
     {
       gtk_widget_show_all (priv->find_pane);
       gtk_widget_grab_focus (priv->find_entry);
+
+      if (!priv->hide_timeout)
+        priv->hide_timeout = g_timeout_add (5000, hide_find_pane, defbox);
     }
   else
-    gtk_widget_hide (priv->find_pane);
+    {
+      gtk_widget_hide (priv->find_pane);
+
+      if (priv->hide_timeout)
+        {
+          g_source_remove (priv->hide_timeout);
+          priv->hide_timeout = 0;
+        }
+    }
 }
 
 /**

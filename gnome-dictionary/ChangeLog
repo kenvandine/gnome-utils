@@ -1,3 +1,19 @@
+2007-08-13  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* libgdict/gdict-defbox.c: Add case-insensitive search, using
+	gtksourceview search code. (#466180)
+	
+	(hide_find_pane),
+	(find_prev_clicked_cb), (find_next_clicked_cb),
+	(find_entry_changed_cb),
+	(gdict_defbox_real_show_find), (gdict_defbox_real_hide_find),
+	(gdict_defbox_set_show_find): Automatically hide the find pane
+	widget after 5 seconds since the last change in the entry or the
+	last clicked event on the find next/prev buttons.
+	
+	(gdict_defbox_init), (gdict_defbox_dispose): Remove the unused
+	GtkTooltips object.
+
 2007-08-10  Emmanuele Bassi  <ebassi@gnome.org>
 
 	* libgdict/gdict-defbox.c (gdict_defbox_insert_body): Add
