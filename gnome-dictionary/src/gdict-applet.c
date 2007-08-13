@@ -436,6 +436,9 @@ gdict_applet_icon_toggled_cb (GtkWidget   *widget,
     }
   else
     {
+      /* force hiding the find pane */
+      gdict_defbox_set_show_find (GDICT_DEFBOX (priv->defbox), FALSE);
+
       gtk_widget_grab_focus (priv->entry);
       gtk_widget_hide (priv->window);
       
