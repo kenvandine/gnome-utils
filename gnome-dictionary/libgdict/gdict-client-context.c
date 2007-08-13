@@ -944,6 +944,12 @@ gdict_client_context_force_disconnect (GdictClientContext *context)
           
       priv->channel = NULL;
     }
+
+  if (priv->command)
+    {
+      gdict_command_free (priv->command);
+      priv->command = NULL;
+    }
   
   clear_command_queue (context);
 }

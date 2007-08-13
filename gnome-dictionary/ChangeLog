@@ -1,5 +1,11 @@
 2007-08-13  Emmanuele Bassi  <ebassi@gnome.org>
 
+	* libgdict/gdict-client-context.c: Destroy the current command,
+	if present, when we are forcing a disconnection. (should fix
+	#406119 and duplicates, when we get garbage from the server)
+
+2007-08-13  Emmanuele Bassi  <ebassi@gnome.org>
+
 	* src/gdict-window.c: Set the page of the sidebar only if we
 	have one coming from GConf.
 
