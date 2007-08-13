@@ -1811,9 +1811,11 @@ gdict_window_constructor (GType                  type,
 
   gtk_paned_set_position (GTK_PANED (handle),
 		          GTK_WIDGET (window)->allocation.width - sidebar_width);
-  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), sidebar_page);
-
-  g_free (sidebar_page);
+  if (sidebar_page)
+    {
+      gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), sidebar_page);
+      g_free (sidebar_page);
+    }
 
   g_signal_connect (window, "delete-event",
 		    G_CALLBACK (gdict_window_delete_event_cb),
