@@ -45,6 +45,19 @@ typedef struct _GdictContextIface GdictContextIface;
 
 #define GDICT_CONTEXT_ERROR	(gdict_context_error_quark ())
 
+/**
+ * GdictContextError:
+ * @GDICT_CONTEXT_ERROR_PARSE:
+ * @GDICT_CONTEXT_ERROR_NOT_IMPLEMENTED:
+ * @GDICT_CONTEXT_ERROR_INVALID_DATABASE:
+ * @GDICT_CONTEXT_ERROR_INVALID_STRATEGY:
+ * @GDICT_CONTEXT_ERROR_INVALID_COMMAND:
+ * @GDICT_CONTEXT_ERROR_NO_MATCH:
+ * @GDICT_CONTEXT_ERROR_NO_DATABASES:
+ * @GDICT_CONTEXT_ERROR_NO_STRATEGIES:
+ *
+ * #GdictContext error enumeration.
+ */
 typedef enum {
   GDICT_CONTEXT_ERROR_PARSE,
   GDICT_CONTEXT_ERROR_NOT_IMPLEMENTED,
@@ -58,25 +71,58 @@ typedef enum {
 
 GQuark gdict_context_error_quark (void);
 
-
+/**
+ * GdictDatabase:
+ *
+ * A #GdictDatabase represents a database inside a dictionary source.
+ *
+ * The #GdictDatabase structure is private and should only be accessed
+ * using the available functions.
+ */
 GType                 gdict_database_get_type        (void) G_GNUC_CONST;
 GdictDatabase *       gdict_database_ref             (GdictDatabase   *db);
 void                  gdict_database_unref           (GdictDatabase   *db);
 G_CONST_RETURN gchar *gdict_database_get_name        (GdictDatabase   *db);
 G_CONST_RETURN gchar *gdict_database_get_full_name   (GdictDatabase   *db);
 
+/**
+ * GdictStrategy:
+ *
+ * A #GdictStrategy represents a matching strategy implemented by
+ * a dictionary source.
+ *
+ * The #GdictStrategy structure is private and should only be accessed
+ * using the available functions.
+ */
 GType                 gdict_strategy_get_type        (void) G_GNUC_CONST;
 GdictStrategy *       gdict_strategy_ref             (GdictStrategy   *strat);
 void                  gdict_strategy_unref           (GdictStrategy   *strat);
 G_CONST_RETURN gchar *gdict_strategy_get_name        (GdictStrategy   *strat);
 G_CONST_RETURN gchar *gdict_strategy_get_description (GdictStrategy   *strat);
 
+/**
+ * GdictMatch:
+ *
+ * A #GdictMatch represents a single match for the searched word.
+ *
+ * The #GdictMatch structure is private and should only be accessed
+ * using the available functions.
+ */
 GType                 gdict_match_get_type           (void) G_GNUC_CONST;
 GdictMatch *          gdict_match_ref                (GdictMatch      *match);
 void                  gdict_match_unref              (GdictMatch      *match);
 G_CONST_RETURN gchar *gdict_match_get_word           (GdictMatch      *match);
 G_CONST_RETURN gchar *gdict_match_get_database       (GdictMatch      *match);
 
+/**
+ * GdictDefinition:
+ *
+ * A #GdictDefinition represents a single definition for the searched
+ * word.
+ *
+ * The #GdictDefinition structure is private and should only be
+ * accessed using the available functions.
+ */
 GType                 gdict_definition_get_type      (void) G_GNUC_CONST;
 GdictDefinition *     gdict_definition_ref           (GdictDefinition *def);
 void                  gdict_definition_unref         (GdictDefinition *def);
@@ -85,11 +131,17 @@ G_CONST_RETURN gchar *gdict_definition_get_word      (GdictDefinition *def);
 G_CONST_RETURN gchar *gdict_definition_get_database  (GdictDefinition *def);
 G_CONST_RETURN gchar *gdict_definition_get_text      (GdictDefinition *def);
 
-
+/**
+ * GdictContextIface:
+ *
+ * Interface defintion
+ */
 struct _GdictContextIface
 {
+  /*< private >*/
   GTypeInterface base_iface;
   
+  /*< public >*/
   /* methods, not signals */
   gboolean (*get_databases)     (GdictContext  *context,
   			         GError       **error);
@@ -123,12 +175,6 @@ struct _GdictContextIface
    */
   void (*error)            (GdictContext    *context,
   			    const GError    *error);
-
-  /* padding for future expansion */
-  void (*_gdict_context_1) (void);
-  void (*_gdict_context_2) (void);
-  void (*_gdict_context_3) (void);
-  void (*_gdict_context_4) (void);
 };
 
 GType    gdict_context_get_type          (void) G_GNUC_CONST;

@@ -17,6 +17,25 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-context
+ * @short_description: Interface for dictionary transports
+ *
+ * #GdictContext is an interface used to uniformly access dictionary
+ * transport objects. Each implementation of #GdictContext must provide
+ * functions for accessing the list of databases available on a dictionary
+ * source and the available matching strategies; a function for retrieving
+ * all words matching a given string, inside one (or more) of those databases
+ * and using one of those strategies; a function for querying one (or more)
+ * of those databases for a definition of a word.
+ *
+ * Implementations of the #GdictContext interface should query their
+ * dictionary sources asynchronously; methods of the #GdictContext interface
+ * should return immediately, and each time a new database, strategy, match
+ * or definition has been found, a signal should be fired by those
+ * implementations.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

@@ -17,6 +17,18 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-client-context
+ * @short_description: DICT client transport
+ *
+ * #GdictClientContext is an implementation of the #GdictContext interface.
+ * It implements the Dictionary Protocol as defined by the RFC 2229 in order
+ * to connect to a dictionary server.
+ *
+ * You should rarely instantiate this object directely: use an appropriate
+ * #GdictSource instead.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

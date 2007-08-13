@@ -34,6 +34,16 @@ typedef struct _GdictClientContextPrivate GdictClientContextPrivate;
 
 #define GDICT_CLIENT_CONTEXT_ERROR	(gdict_client_context_error_quark ())
 
+/**
+ * GdictClientContextError:
+ *
+ * @GDICT_CLIENT_CONTEXT_ERROR_SOCKET:
+ * @GDICT_CLIENT_CONTEXT_ERROR_LOOKUP:
+ * @GDICT_CLIENT_CONTEXT_ERROR_NO_CONNECTION:
+ * @GDICT_CLIENT_CONTEXT_ERROR_SERVER_DOWN:
+ *
+ * #GdictClientContext error enumeration
+ */
 typedef enum {
   GDICT_CLIENT_CONTEXT_ERROR_SOCKET,
   GDICT_CLIENT_CONTEXT_ERROR_LOOKUP,
@@ -53,14 +63,17 @@ struct _GdictClientContext
 
 struct _GdictClientContextClass
 {
+  /*< private >*/
   GObjectClass parent_class;
   
+  /*< public >*/
   /* signals monitoring the lifetime of the connection with
    * the dictionary server
    */
   void (*connected)    (GdictClientContext *context);
   void (*disconnected) (GdictClientContext *context);
   
+  /*< private >*/
   /* padding for future expansion */
   void (*_gdict_client_1) (void);
   void (*_gdict_client_2) (void);
