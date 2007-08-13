@@ -34,6 +34,7 @@ IGNORE_HFILES =			\
 	gdict-enum-types.h	\
 	gdict-marshal.h		\
 	gdict-context-private.h \
+	gdict-entry.h		\
 	stamp-gdict-enum-types.h \
 	stamp-gdict-marshal.h
 
