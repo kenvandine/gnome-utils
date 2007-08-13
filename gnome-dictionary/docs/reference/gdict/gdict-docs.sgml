@@ -1,17 +1,9 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY GdictContext SYSTEM "xml/gdict-context.xml">
-<!ENTITY GdictClientContext SYSTEM "xml/gdict-client-context.xml">
-<!ENTITY GdictSource SYSTEM "xml/gdict-source.xml">
-<!ENTITY GdictSourceLoader SYSTEM "xml/gdict-source-loader.xml">
-<!ENTITY GdictDefbox SYSTEM "xml/gdict-defbox.xml">
-<!ENTITY GdictSpeller SYSTEM "xml/gdict-speller.xml">
-<!ENTITY GdictDatabaseChooser SYSTEM "xml/gdict-database-chooser.xml">
-<!ENTITY GdictStrategyChooser SYSTEM "xml/gdict-strategy-chooser.xml">
 ]>
 
-<book id="libgdict">
+<book xmlns:xi="http://www.w3.org/2003/XInclude" id="libgdict">
   <bookinfo>
     <title>GNOME Dictionary Library Reference Manual</title>
     <authorgroup>
@@ -37,22 +29,29 @@
   
   </bookinfo>
   
-  <chapter id="introduction">
+  <part id="introduction">
     <title>Introduction</title>
     
-    <para>The GNOME Dictionary Library is a simple yet powerful collection of
-    classes that can be used to access various dictionary sources.</para>
+    <partintro>
+      <para>
+      The GNOME Dictionary Library is a simple yet powerful collection of
+      classes that can be used to access various dictionary sources.
+      </para>
 
-    <para>It was created for the GNOME Dictionary application, but it has been
-    made available for each developer whom wishes to access definitions stored
-    inside language dictionaries.</para>
+      <para>
+      It was created for the GNOME Dictionary application, but it has been
+      made available for each developer whom wishes to access definitions
+      stored inside language dictionaries.
+      </para>
+
+    </partintro>
     
-  </chapter>
+  </part>
   
-  <chapter id="gdict">
+  <part id="gdict">
     <title>The GNOME Dictionary Library</title>
     
-    <sect1 id="context">
+    <chapter id="context">
       <title>Dictionary Context</title>
 
       <para>A dictionary context is a representation of a transport method,
@@ -67,21 +66,21 @@
       StarDict formats, and offer an interface for queries compliant to the
       Dictionary Protocol as defined by the RFC 2229.</para>
 
-      &GdictContext;
+      <xi:include href="xml/gdict-context.xml"/>
 
-      <sect2 id="context-types">
-        <title>Context Implementations</title>
+    </chapter>
 
-	<para>The only context implementation currently available is a client
-	for the Dictionary Protocol.</para>
+    <chapter id="context-types">
+      <title>Context Implementations</title>
 
-	&GdictClientContext;
+      <para>The only context implementation currently available is a client
+      for the Dictionary Protocol.</para>
+
+      <xi:include href="xml/gdict-client-context.xml"/>
       
-      </sect2>
-      
-    </sect1>
-    
-    <sect1 id="sources">
+    </chapter>
+          
+    <chapter id="sources">
       <title>Dictionary Source</title>
 
       <para>A dictionary source is repesented using a specially crafted file,
@@ -92,24 +91,48 @@
       stored inside a predefined path and loaded using the GdictSourceLoader
       class.</para>
 
-      &GdictSource;
-      &GdictSourceLoader;
+      <xi:include href="xml/gdict-source.xml"/>
+      <xi:include href="xml/gdict-source-loader.xml"/>
 
-    </sect1>
-  </chapter>
+    </chapter>
 
-  <chapter id="gdictui">
+    <chapter id="gdict-utils">
+      <title>Gdict Utilities</title>
+
+      <xi:include href="xml/gdict-utils.xml"/>
+      <xi:include href="xml/gdict-version.xml"/>
+
+    </chapter>
+
+  </part>
+
+  <part id="gdictui">
     <title>The GNOME Dictionary Library Widgets</title>
     
-    <para>Apart from the low-level classes, the GNOME Dictionary library
-    offers a set of widgets for accessing the dictionary sources and showing
-    the results of queries.</para>
+    <partintro>
 
-    &GdictDefbox;
-    &GdictSpeller;
-    &GdictDatabaseChooser;
-    &GdictStrategyChooser;
+      <para>
+      Apart from the low-level classes, the GNOME Dictionary library
+      offers a set of widgets for accessing the dictionary sources and showing
+      the results of queries.
+      </para>
     
-  </chapter>
+    </partintro>
+
+    <chapter>
+      <title>Base widgets</title>
+
+      <xi:include href="xml/gdict-defbox.xml"/>
+      <xi:include href="xml/gdict-speller.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Advanced widgets</title>
+
+      <xi:include href="xml/gdict-database-chooser.xml"/>
+      <xi:include href="xml/gdict-strategy-chooser.xml"/>
+    </chapter>
+    
+  </part>
   
 </book>
