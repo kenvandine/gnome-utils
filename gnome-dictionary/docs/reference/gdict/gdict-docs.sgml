@@ -6,6 +6,9 @@
 <!ENTITY GdictSource SYSTEM "xml/gdict-source.xml">
 <!ENTITY GdictSourceLoader SYSTEM "xml/gdict-source-loader.xml">
 <!ENTITY GdictDefbox SYSTEM "xml/gdict-defbox.xml">
+<!ENTITY GdictSpeller SYSTEM "xml/gdict-speller.xml">
+<!ENTITY GdictDatabaseChooser SYSTEM "xml/gdict-database-chooser.xml">
+<!ENTITY GdictStrategyChooser SYSTEM "xml/gdict-strategy-chooser.xml">
 ]>
 
 <book id="libgdict">
@@ -17,7 +20,7 @@
         <surname>Bassi</surname>
         <affiliation>
           <address>
-            <email>ebassi@gmail.com</email>
+            <email>ebassi@gnome.org</email>
           </address>
         </affiliation>
       </author>
@@ -84,13 +87,12 @@
       <para>A dictionary source is repesented using a specially crafted file,
       and can be accessed using the GdictSource class.</para>
 
+      <para>Dictionary sources can be created at runtime or stored inside a
+      file and loaded directly using its path. Usually, sources files are
+      stored inside a predefined path and loaded using the GdictSourceLoader
+      class.</para>
+
       &GdictSource;
-      
-    </sect1>
-
-    <sect1 id="sources-loader">
-      <title>Dictionary Sources Loader</title>
-
       &GdictSourceLoader;
 
     </sect1>
@@ -99,11 +101,14 @@
   <chapter id="gdictui">
     <title>The GNOME Dictionary Library Widgets</title>
     
-    <para>Apart from the low-level classes, the GNOME Dictionary library offers
-    a set of widgets for accessing the dictionary sources and showing the
-    results of queries.</para>
+    <para>Apart from the low-level classes, the GNOME Dictionary library
+    offers a set of widgets for accessing the dictionary sources and showing
+    the results of queries.</para>
 
     &GdictDefbox;
+    &GdictSpeller;
+    &GdictDatabaseChooser;
+    &GdictStrategyChooser;
     
   </chapter>
   
