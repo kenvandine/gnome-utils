@@ -17,6 +17,15 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-database-chooser
+ * @short_description: Display the list of available databases
+ *
+ * Each #GdictContext has a list of databases, that is dictionaries that
+ * can be queried. #GdictDatabaseChooser is a widget that queries a given
+ * #GdictContext and displays the list of available databases.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

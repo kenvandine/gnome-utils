@@ -17,6 +17,14 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-source-loader
+ * @short_description: Loader object for a set of dictionary sources
+ *
+ * #GdictSourceLoader allows searching for dictionary source definition
+ * files inside a set of paths and return a #GdictSource using its name.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

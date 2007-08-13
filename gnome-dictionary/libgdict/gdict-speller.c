@@ -17,6 +17,14 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-speller
+ * @short_description: Display matching words
+ *
+ * #GdictSpeller is a widget showing a list of words returned by a 
+ * #GdictContext query, using a specific database and a matching strategy.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

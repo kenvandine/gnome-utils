@@ -36,7 +36,6 @@ typedef struct _GdictClientContextPrivate GdictClientContextPrivate;
 
 /**
  * GdictClientContextError:
- *
  * @GDICT_CLIENT_CONTEXT_ERROR_SOCKET:
  * @GDICT_CLIENT_CONTEXT_ERROR_LOOKUP:
  * @GDICT_CLIENT_CONTEXT_ERROR_NO_CONNECTION:

@@ -17,6 +17,19 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-source
+ * @short_description: A dictionary source definition
+ *
+ * #GdictSource is the representation of a #GdictContext. Each dictionary
+ * source provides a list of available dictionaries (databases) and a list
+ * of available matching strategies. Using a #GdictContext you can query
+ * the dictionary source for matching words and for definitions.
+ *
+ * By using a #GdictSource object you can retrieve the appropriate
+ * #GdictContext, already set up with the right parameters.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

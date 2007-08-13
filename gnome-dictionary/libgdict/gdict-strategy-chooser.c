@@ -17,6 +17,15 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-strategy-chooser
+ * @short_description: Display a list of matching strategies
+ *
+ * Each #GdictContext allows matching a word using a specific "matching
+ * strategy". The #GdictStrategyChooser widget queries a #GdictContext and
+ * displays the list of available matching strategies.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

@@ -17,6 +17,18 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
+/**
+ * SECTION:gdict-defbox
+ * @short_description: Display the list of definitions for a word
+ *
+ * The #GdictDefbox widget is a composite widget showing the list of
+ * definitions for a word. It queries the passed #GdictContext and displays
+ * the list of #GdictDefinition<!-- -->s obtained.
+ *
+ * It provides syntax highlighting, clickable links and an embedded find
+ * bar.
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
