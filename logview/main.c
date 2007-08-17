@@ -74,7 +74,7 @@ logview_show_version_and_quit (void)
 	exit (0);
 }
 
-static gint
+static gboolean
 save_session_cb (GnomeClient        *gnome_client,
 		 gint                phase,
 		 GnomeRestartStyle   save_style,
@@ -113,15 +113,6 @@ save_session_cb (GnomeClient        *gnome_client,
 	g_strfreev (argv);
 
 	return TRUE;
-}
-
-static gint
-die_cb (GnomeClient *gnome_client,
-	gpointer     client_data)
-{
-    gtk_main_quit ();
-    
-    return 0;
 }
 
 int
@@ -196,8 +187,6 @@ main (int argc, char *argv[])
 	if (gnome_client) {
 		g_signal_connect (gnome_client, "save_yourself",
 				  G_CALLBACK (save_session_cb), logview);
-		g_signal_connect (gnome_client, "die",
-				  G_CALLBACK (die_cb), NULL);
 	}
 
 	gtk_main ();
