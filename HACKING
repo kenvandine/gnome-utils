@@ -5,9 +5,9 @@ or, alternatively, attach them to a bugzilla.gnome.org report.
 
 * Branches
 
+        gnome-2-18
+        gnome-2-16
         gnome-2-14
-	gnome-2-12
-	gnome-2-10
 
 These branches are in deep code freeze. Please do not commit even the most
 simple bug fixes to it without emailing the release team
@@ -22,7 +22,7 @@ anymore, and no more new releases will be made.
 Patches should be sent using the unified diff format; no normal, no ed style,
 just use:
 
-	cvs diff -Nup > some-patch.diff
+	svn diff --diff-cmd=diff -x -Nuarp > some-patch.diff
 
 on a modified source tree.
 
@@ -37,7 +37,7 @@ Even though libgdict is not inside the Developers Platform, the same rules
 
 If you intend to change the API for libgdict, contact Emmanuele Bassi (see
 the MAINTAINERS file) and kindly provide a rationale for the API change,
-with a use case and (possibly, a test case).  In case of a patch (see above
+with a use case and, possibly, a test case. In case of a patch (see above
 for the diff format), kindly provide:
 
 	- documentation (in gtk-doc form);
@@ -52,3 +52,4 @@ The versioning scheme for libgdict should follow this ruleset:
 		minor += 1;
 	else if release is after API freeze:
 		micro += 1;
+
