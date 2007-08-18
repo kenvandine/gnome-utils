@@ -34,6 +34,7 @@ gnome_dictionary_SOURCES = \
 	main.c			\
 	$(NULL)
 gnome_dictionary_CFLAGS = \
+	-I$(top_builddir)/gnome-dictionary \
 	-I$(top_srcdir)/gnome-dictionary \
 	$(GNOME_UTILS_CFLAGS) \
 	$(LIBGLADE_CFLAGS) \
@@ -72,6 +73,7 @@ gnome_dictionary_applet_SOURCES = \
 	gdict-source-dialog.h 	\
 	$(NULL)
 gnome_dictionary_applet_CFLAGS = \
+	-I$(top_builddir)/gnome-dictionary \
 	-I$(top_srcdir)/gnome-dictionary \
 	$(GNOME_UTILS_CFLAGS) \
 	$(LIBGLADE_CFLAGS) \
