@@ -2110,7 +2110,7 @@ gdict_client_context_define_word (GdictContext  *context,
   
   cmd = gdict_command_new (CMD_DEFINE);
   cmd->database = g_strdup ((database != NULL ? database : GDICT_DEFAULT_DATABASE));
-  cmd->word = g_strdup (word);
+  cmd->word = g_utf8_normalize (word, -1, G_NORMALIZE_NFC);
   
   return gdict_client_context_push_command (client_ctx, cmd);
 }
@@ -2145,7 +2145,7 @@ gdict_client_context_match_word (GdictContext  *context,
   cmd = gdict_command_new (CMD_MATCH);
   cmd->database = g_strdup ((database != NULL ? database : GDICT_DEFAULT_DATABASE));
   cmd->strategy = g_strdup ((strategy != NULL ? strategy : GDICT_DEFAULT_STRATEGY));
-  cmd->word = g_strdup (word);
+  cmd->word = g_utf8_normalize (word, -1, G_NORMALIZE_NFC);
   
   return gdict_client_context_push_command (client_ctx, cmd);
 }
