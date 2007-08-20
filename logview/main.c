@@ -78,9 +78,9 @@ static gboolean
 save_session_cb (GnomeClient        *gnome_client,
 		 gint                phase,
 		 GnomeRestartStyle   save_style,
-		 gint                shutdown,
+		 gboolean            shutdown,
 		 GnomeInteractStyle  interact_style,
-		 gint                fast,
+		 gboolean            fast,
 		 LogviewWindow      *logview)
 {
 	gchar **argv;
@@ -98,6 +98,7 @@ save_session_cb (GnomeClient        *gnome_client,
 	argv = g_new0 (gchar *, numlogs + 2);
 	argv[0] = g_get_prgname();
 
+        i = 0;
 	for (logs = logview->logs; logs != NULL; logs = logs->next) {
 		Log *log = (Log *) logs->data;
 
@@ -105,7 +106,8 @@ save_session_cb (GnomeClient        *gnome_client,
 
 		argv[i++] = g_strdup (log->name);
 	}
-	argv[i] = NULL;
+	
+        argv[i] = NULL;
 
 	gnome_client_set_clone_command (gnome_client, numlogs + 1, argv);
 	gnome_client_set_restart_command (gnome_client, numlogs + 1, argv);
