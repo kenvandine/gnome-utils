@@ -445,16 +445,14 @@ log_open (char *filename, gboolean show_error)
 
    return log;
 
-   /* Error catching */
-
- error:
-
+error:
    if (error_message && show_error) {
        error_dialog_show (NULL, error_main, error_message);
-       g_free (error_message);
    }
-   return NULL;
    
+   g_free (error_message);
+   
+   return NULL;
 }
 
 static void
