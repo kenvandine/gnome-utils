@@ -1234,18 +1234,22 @@ static void
 lookup_word (GdictWindow *window,
              gpointer     dummy)
 {
-  const gchar *word;
+  const gchar *entry_text;
+  gchar *word;
   
   g_assert (GDICT_IS_WINDOW (window));
   
   if (!window->context)
     return;
   
-  word = gtk_entry_get_text (GTK_ENTRY (window->entry));
-  if (!word || *word == '\0')
+  entry_text = gtk_entry_get_text (GTK_ENTRY (window->entry));
+  if (!entry_text || *entry_text == '\0')
     return;
 
-  gdict_window_set_word (window, word, NULL);
+  word = g_strdup (entry_text);
+  gdict_window_set_word (window, g_strstrip (word), NULL);
+
+  g_free (word);
 }
 
 static void

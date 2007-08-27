@@ -1,3 +1,9 @@
+2007-08-27  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* src/gdict-window.c (lookup_word): Remove leading and trailing
+	whitespace from the content of the lookup entry before feeding
+	it to the GdictContext. (#432968)
+
 2007-08-18  Emmanuele Bassi  <ebassi@gnome.org>
 
 	* libgdict/gdict-client-context.c: Handle decomposed strings
