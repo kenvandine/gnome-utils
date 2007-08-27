@@ -811,6 +811,7 @@ gdict_client_context_run_command (GdictClientContext  *context,
                                   GError             **error)
 {
   GdictClientContextPrivate *priv;
+  gchar *payload;
   GError *send_error;
   gboolean res;
   
@@ -840,9 +841,11 @@ gdict_client_context_run_command (GdictClientContext  *context,
   switch (command->cmd_type)
     {
     case CMD_CLIENT:
-      command->cmd_string = g_strdup_printf ("%s \"%s\"\r\n",
+      payload = g_shell_quote (priv->client_name);
+      command->cmd_string = g_strdup_printf ("%s %s\r\n",
                                              dict_command_strings[CMD_CLIENT],
-                                             priv->client_name);
+                                             payload);
+      g_free (payload);
       break;
     case CMD_QUIT:
       command->cmd_string = g_strdup_printf ("%s\r\n",
@@ -858,18 +861,22 @@ gdict_client_context_run_command (GdictClientContext  *context,
       break;
     case CMD_MATCH:
       g_assert (command->word);
-      command->cmd_string = g_strdup_printf ("%s %s %s \"%s\"\r\n",
+      payload = g_shell_quote (command->word);
+      command->cmd_string = g_strdup_printf ("%s %s %s %s\r\n",
                                              dict_command_strings[CMD_MATCH],
                                              (command->database != NULL ? command->database : "!"),
                                              (command->strategy != NULL ? command->strategy : "*"),
-                                             command->word);
+                                             payload);
+      g_free (payload);
       break;
     case CMD_DEFINE:
       g_assert (command->word);
-      command->cmd_string = g_strdup_printf ("%s %s \"%s\"\r\n",
+      payload = g_shell_quote (command->word);
+      command->cmd_string = g_strdup_printf ("%s %s %s\r\n",
                                              dict_command_strings[CMD_DEFINE],
                                              (command->database != NULL ? command->database : "!"),
-                                             command->word);
+                                             payload);
+      g_free (payload);
       break;
     default:
       g_assert_not_reached ();
@@ -915,11 +922,14 @@ clear_command_queue (GdictClientContext *context)
 {
   GdictClientContextPrivate *priv = context->priv;
 
-  g_queue_foreach (priv->commands_queue,
-                   (GFunc) gdict_command_free,
-                   NULL);
+  if (priv->commands_queue)
+    {
+      g_queue_foreach (priv->commands_queue,
+                       (GFunc) gdict_command_free,
+                       NULL);
   
-  g_queue_free (priv->commands_queue);
+      g_queue_free (priv->commands_queue);
+    }
   
   /* renew */
   priv->commands_queue = g_queue_new ();
@@ -1835,8 +1845,10 @@ check_for_connection (gpointer data)
 {
   GdictClientContext *context = data;
 
+#if 0
   g_debug (G_STRLOC ": checking for connection (is connecting:%s)",
            context->priv->is_connecting ? "true" : "false");
+#endif
 
   if (context->priv->is_connecting)
     {
