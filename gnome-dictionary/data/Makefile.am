@@ -2,23 +2,6 @@ NULL =
 
 man_MANS = gnome-dictionary.1
 
-scalableicondir = $(datadir)/icons/hicolor/scalable/apps
-scalableicon_DATA = gnome-dictionary.svg
-
-appicondir = $(datadir)/icons/hicolor/48x48/apps
-appicon_DATA = gnome-dictionary.png
-
-gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
-
-install-data-hook:
-	@-if test -z "$(DESTDIR)"; then 		\
-		echo "Updating Gtk icon cache."; 	\
-		$(gtk_update_icon_cache); 		\
-	else \
-		echo "*** Icon cache not updated.  After install, run this:"; \
-		echo "***   $(gtk_update_icon_cache)";	\
-	fi
-
 gdictappdir = $(datadir)/applications
 gdictapp_in_files = gnome-dictionary.desktop.in
 gdictapp_DATA = $(gdictapp_in_files:.desktop.in=.desktop)
@@ -69,8 +52,6 @@ schema_DATA = $(schemas_in_file:.schemas.in=.schemas)
 EXTRA_DIST = \
 	GNOME_DictionaryApplet.server.in.in 	\
 	gnome-dictionary.desktop.in.in		\
-	$(appicon_DATA) 			\
-	$(scalableicon_DATA)			\
 	$(dictsource_in_files)			\
 	$(man_MANS) 				\
 	$(schemas_in_file) 			\

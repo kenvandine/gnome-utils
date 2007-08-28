@@ -1205,7 +1205,7 @@ gdict_applet_init (GdictApplet *applet)
   gdict_source_loader_add_search_path (priv->loader, data_dir);
   g_free (data_dir);
   
-  gtk_window_set_default_icon_name ("gnome-dictionary");
+  gtk_window_set_default_icon_name ("accessories-dictionary");
   
   panel_applet_set_flags (PANEL_APPLET (applet),
 			  PANEL_APPLET_EXPAND_MINOR);
@@ -1282,7 +1282,7 @@ gdict_applet_init (GdictApplet *applet)
 #endif /* !GDICT_APPLET_STAND_ALONE */
 
   priv->icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-		  			 "gnome-dictionary",
+		  			 "accessories-dictionary",
 					 48,
 					 0,
 					 NULL);

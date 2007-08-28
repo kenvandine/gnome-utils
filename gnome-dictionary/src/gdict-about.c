@@ -82,7 +82,7 @@ gdict_show_about_dialog (GtkWidget *parent)
   			 "authors", authors,
   			 "documenters", documenters,
   			 "translator-credits", translator_credits,
-  			 "logo-icon-name", "gnome-dictionary",
+  			 "logo-icon-name", "accessories-dictionary",
   			 "license", license,
   			 "wrap-license", TRUE,
 			 "screen", gtk_widget_get_screen (parent),

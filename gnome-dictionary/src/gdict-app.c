@@ -404,7 +404,7 @@ gdict_init (int *argc, char ***argv)
 					   GNOME_PARAM_GOPTION_CONTEXT, context,
 					   NULL);
   g_set_application_name (_("Dictionary"));
-  gtk_window_set_default_icon_name ("gnome-dictionary");
+  gtk_window_set_default_icon_name ("accessories-dictionary");
   
   if (!gdict_create_data_dir ())
     {
