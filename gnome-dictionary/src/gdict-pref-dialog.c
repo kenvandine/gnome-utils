@@ -68,8 +68,6 @@ struct _GdictPrefDialog
 
   GladeXML *xml;
   
-  GtkTooltips *tips;
-  
   GConfClient *gconf_client;
   guint notify_id;
   
@@ -539,9 +537,6 @@ gdict_pref_dialog_finalize (GObject *object)
 {
   GdictPrefDialog *dialog = GDICT_PREF_DIALOG (object);
   
-  if (dialog->tips)
-    g_object_unref (dialog->tips);
-  
   if (dialog->notify_id);
     gconf_client_notify_remove (dialog->gconf_client, dialog->notify_id);
   
@@ -635,10 +630,6 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   			 "gtk-close",
   			 GTK_RESPONSE_ACCEPT);
 
-  dialog->tips = gtk_tooltips_new ();
-  g_object_ref (dialog->tips);
-  gtk_object_sink (GTK_OBJECT (dialog->tips));
-  
   dialog->gconf_client = gconf_client_get_default ();
   gconf_client_add_dir (dialog->gconf_client,
   			GDICT_GCONF_DIR,
@@ -672,18 +663,14 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
 							       GDICT_DEFAULT_SOURCE_NAME);
 
   dialog->sources_add = glade_xml_get_widget (dialog->xml, "add_button");
-  gtk_tooltips_set_tip (dialog->tips,
-  			dialog->sources_add,
-  			_("Add a new dictionary source"),
-  			NULL);
+  gtk_widget_set_tooltip_text (dialog->sources_add,
+                               _("Add a new dictionary source"));
   g_signal_connect (dialog->sources_add, "clicked",
   		    G_CALLBACK (source_add_clicked_cb), dialog);
   		    
   dialog->sources_remove = glade_xml_get_widget (dialog->xml, "remove_button");
-  gtk_tooltips_set_tip (dialog->tips,
-  			dialog->sources_remove,
-  			_("Remove the currently selected dictionary source"),
-  			NULL);
+  gtk_widget_set_tooltip_text (dialog->sources_remove,
+                               _("Remove the currently selected dictionary source"));
   g_signal_connect (dialog->sources_remove, "clicked",
   		    G_CALLBACK (source_remove_clicked_cb), dialog);
   
@@ -695,10 +682,8 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   
   dialog->font_button = glade_xml_get_widget (dialog->xml, "print_font_button");
   gtk_font_button_set_font_name (GTK_FONT_BUTTON (dialog->font_button), font);
-  gtk_tooltips_set_tip (dialog->tips,
-  			dialog->font_button,
-  			_("Set the font used for printing the definitions"),
-  			NULL);
+  gtk_widget_set_tooltip_text (dialog->font_button,
+                               _("Set the font used for printing the definitions"));
   g_signal_connect (dialog->font_button, "font-set",
   		    G_CALLBACK (font_button_font_set_cb), dialog);
   g_free (font);

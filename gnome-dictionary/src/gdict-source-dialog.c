@@ -52,8 +52,6 @@ struct _GdictSourceDialog
   
   GladeXML *xml;
 
-  GtkTooltips *tips;
-  
   GConfClient *gconf_client;
   guint notify_id;
   
@@ -733,10 +731,6 @@ gdict_source_dialog_init (GdictSourceDialog *dialog)
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
   
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
-
-  dialog->tips = gtk_tooltips_new ();
-  g_object_ref (dialog->tips);
-  gtk_object_sink (GTK_OBJECT (dialog->tips));
 
   dialog->transport = GDICT_SOURCE_TRANSPORT_INVALID;
 
