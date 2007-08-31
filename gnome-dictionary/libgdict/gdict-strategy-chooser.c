@@ -61,8 +61,6 @@ struct _GdictStrategyChooserPrivate
   GdictContext *context;
   gint results;
 
-  GtkTooltips *tips;
-  
   guint start_id;
   guint match_id;
   guint end_id;
@@ -179,9 +177,6 @@ gdict_strategy_chooser_finalize (GObject *gobject)
 
   g_object_unref (priv->store);
 
-  if (priv->tips)
-    g_object_unref (priv->tips);
-  
   G_OBJECT_CLASS (gdict_strategy_chooser_parent_class)->finalize (gobject);
 }
 
@@ -345,9 +340,8 @@ gdict_strategy_chooser_constructor (GType                  type,
 		    chooser);
   gtk_box_pack_start (GTK_BOX (hbox), priv->refresh_button, FALSE, FALSE, 0);
   gtk_widget_show (priv->refresh_button);
-  gtk_tooltips_set_tip (priv->tips, priv->refresh_button,
-		  	_("Reload the list of available strategies"),
-			NULL);
+  gtk_widget_set_tooltip_text (priv->refresh_button,
+                               _("Reload the list of available strategies"));
 
   priv->clear_button = gtk_button_new ();
   gtk_button_set_image (GTK_BUTTON (priv->clear_button),
@@ -358,9 +352,8 @@ gdict_strategy_chooser_constructor (GType                  type,
 		    chooser);
   gtk_box_pack_start (GTK_BOX (hbox), priv->clear_button, FALSE, FALSE, 0);
   gtk_widget_show (priv->clear_button);
-  gtk_tooltips_set_tip (priv->tips, priv->clear_button,
-		        _("Clear the list of available strategies"),
-			NULL);
+  gtk_widget_set_tooltip_text (priv->clear_button,
+                               _("Clear the list of available strategies"));
 
   gtk_box_pack_end (GTK_BOX (chooser), hbox, FALSE, FALSE, 0);
   gtk_widget_show (hbox);
@@ -380,6 +373,11 @@ gdict_strategy_chooser_class_init (GdictStrategyChooserClass *klass)
   gobject_class->get_property = gdict_strategy_chooser_get_property;
   gobject_class->constructor = gdict_strategy_chooser_constructor;
   
+  /**
+   * GdictStrategyChooser:context:
+   *
+   * The #GdictContext object used to retrieve the list of strategies.
+   */
   g_object_class_install_property (gobject_class,
   				   PROP_CONTEXT,
   				   g_param_spec_object ("context",
@@ -388,6 +386,16 @@ gdict_strategy_chooser_class_init (GdictStrategyChooserClass *klass)
   				   			GDICT_TYPE_CONTEXT,
   				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
 
+  /**
+   * GdictStrategyChooser::strategy-activated:
+   * @chooser: the widget that received the signal
+   * @name: the name of the activated strategy
+   * @description: the description of the activate strategy
+   *
+   * The ::strategy-activated signal is emitted each time the user
+   * activates a strategy in the @chooser, either by double click or
+   * using the keyboard.
+   */
   db_chooser_signals[STRATEGY_ACTIVATED] =
     g_signal_new ("strategy-activated",
 		  G_OBJECT_CLASS_TYPE (gobject_class),
@@ -417,9 +425,6 @@ gdict_strategy_chooser_init (GdictStrategyChooser *chooser)
 		                    G_TYPE_STRING, /* db_name */
 				    G_TYPE_STRING  /* db_desc */);
 
-  priv->tips = gtk_tooltips_new ();
-  g_object_ref_sink (G_OBJECT (priv->tips));
-
   priv->start_id = 0;
   priv->end_id = 0;
   priv->match_id = 0;
@@ -429,9 +434,11 @@ gdict_strategy_chooser_init (GdictStrategyChooser *chooser)
 /**
  * gdict_strategy_chooser_new:
  *
- * FIXME
+ * Creates a new #GdictStrategyChooser. Use this widget to show a list
+ * of matching strategies available on a dictionary source represented
+ * by a #GdictContext, set with gdict_strategy_chooser_set_context().
  *
- * Return value: FIXME
+ * Return value: the newly created #GdictStrategyChooser widget
  *
  * Since: 0.9
  */
@@ -445,9 +452,10 @@ gdict_strategy_chooser_new (void)
  * gdict_strategy_chooser_new_with_context:
  * @context: a #GdictContext
  *
- * FIXME
+ * Creates a new #GdictStrategyChooser widget, using @context as the
+ * representation of a dictionary source.
  *
- * Return value: FIXME
+ * Return value: the newly created #GdictStrategyChooser widget
  *
  * Since: 0.9
  */
@@ -465,7 +473,7 @@ gdict_strategy_chooser_new_with_context (GdictContext *context)
  * gdict_strategy_chooser_get_context:
  * @chooser: a #GdictStrategyChooser
  *
- * FIXME
+ * Retrieves the #GdictContext used by @chooser.
  *
  * Return value: a #GdictContext
  *
@@ -482,11 +490,12 @@ gdict_strategy_chooser_get_context (GdictStrategyChooser *chooser)
 /**
  * gdict_strategy_chooser_set_context:
  * @chooser: a #GdictStrategyChooser
- * @context: a #GdictContext
+ * @context: a #GdictContext, or %NULL to unset the context
  *
- * FIXME
+ * Sets the #GdictContext to be used by @chooser to retrieve the
+ * list of matching strategies.
  *
- * Since:
+ * Since: 0.9
  */
 void
 gdict_strategy_chooser_set_context (GdictStrategyChooser *chooser,
@@ -503,13 +512,14 @@ gdict_strategy_chooser_set_context (GdictStrategyChooser *chooser,
 /**
  * gdict_strategy_chooser_get_strategies:
  * @chooser: a #GdictStrategyChooser
- * @length: FIXME
+ * @length: return location for the length of the returned string list
  *
- * FIXME
+ * Retrieves the list of matching strategies available.
  *
- * Return value: FIXME
+ * Return value: a string vector containing the names of the matching
+ *   strategies. Use g_strfreev() to deallocate the memory when done
  *
- * Since:
+ * Since:0.9
  */
 gchar **
 gdict_strategy_chooser_get_strategies (GdictStrategyChooser  *chooser,
@@ -523,13 +533,14 @@ gdict_strategy_chooser_get_strategies (GdictStrategyChooser  *chooser,
 /**
  * gdict_strategy_chooser_has_strategy:
  * @chooser: a #GdictStrategyChooser
- * @strategy: FIXME
+ * @strategy: a strategy name
  *
- * FIXME
+ * Checks whether @strategy is available in the list of matching
+ * strategies displayed by @chooser.
  *
- * Return value: FIXME
+ * Return value: %TRUE if the strategy was found, %FALSE otherwise
  *
- * Since:
+ * Since: 0.9
  */
 gboolean
 gdict_strategy_chooser_has_strategy (GdictStrategyChooser *chooser,
@@ -542,7 +553,7 @@ gdict_strategy_chooser_has_strategy (GdictStrategyChooser *chooser,
 }
 
 /**
- * gdict_strategy_chooser_count_dayabases:
+ * gdict_strategy_chooser_count_strategies:
  * @chooser: a #GdictStrategyChooser
  *
  * Returns the number of strategies found.
@@ -633,7 +644,7 @@ error_cb (GdictContext *context,
  *
  * Reloads the list of available strategies.
  *
- * Since:
+ * Since: 0.10
  */
 void
 gdict_strategy_chooser_refresh (GdictStrategyChooser *chooser)
@@ -705,7 +716,7 @@ gdict_strategy_chooser_refresh (GdictStrategyChooser *chooser)
  *
  * Clears @chooser.
  *
- * Since:
+ * Since: 0.10
  */
 void
 gdict_strategy_chooser_clear (GdictStrategyChooser *chooser)
@@ -778,6 +789,17 @@ scan_for_strat_name (GtkTreeModel *model,
   return select_data->found;
 }
 
+/**
+ * gdict_strategy_chooser_select_strategy:
+ * @chooser: a #GdictStrategyChooser
+ * @strat_name: the name of the strategy to select
+ *
+ * Selects @strat_name, if available.
+ *
+ * Return value: %TRUE if the matching strategy was found and selected
+ *
+ * Since: 0.10
+ */
 gboolean
 gdict_strategy_chooser_select_strategy (GdictStrategyChooser *chooser,
                                         const gchar          *strat_name)
@@ -810,6 +832,18 @@ gdict_strategy_chooser_select_strategy (GdictStrategyChooser *chooser,
   return retval;
 }
 
+/**
+ * gdict_strategy_chooser_unselect_strategy:
+ * @chooser: a #GdictStrategyChooser
+ * @strat_name: the name of the strategy to unselect
+ *
+ * Unselects @strat_name from the list.
+ *
+ * Return value: %TRUE if the matching strategy was found and successfully
+ *   unselected
+ *
+ * Since: 0.10
+ */
 gboolean
 gdict_strategy_chooser_unselect_strategy (GdictStrategyChooser *chooser,
                                           const gchar          *strat_name)
@@ -842,6 +876,17 @@ gdict_strategy_chooser_unselect_strategy (GdictStrategyChooser *chooser,
   return retval;
 }
 
+/**
+ * gdict_strategy_chooser_set_current_strategy:
+ * @chooser: a #GdictStrategyChooser
+ * @strat_name: the name of the matching strategy
+ *
+ * Sets @strat_name as the current matching strategy.
+ *
+ * Return value: %TRUE if the matching strategy was found
+ *
+ * Since: 0.10
+ */
 gboolean
 gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser *chooser,
                                              const gchar          *strat_name)
@@ -874,6 +919,17 @@ gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser *chooser,
   return retval;
 }
 
+/**
+ * gdict_strategy_chooser_get_current_strategy:
+ * @chooser: a #GdictStrategyChooser
+ *
+ * Retrieves the current matching strategy.
+ *
+ * Return value: a newly allocated string containing the name of
+ *   the current matching strategy
+ *
+ * Since: 0.10
+ */
 gchar *
 gdict_strategy_chooser_get_current_strategy (GdictStrategyChooser *chooser)
 {
@@ -899,6 +955,18 @@ gdict_strategy_chooser_get_current_strategy (GdictStrategyChooser *chooser)
   return retval;
 }
 
+/**
+ * gdict_strategy_chooser_add_button:
+ * @chooser: a #GdictStrategyChooser
+ * @button_text: text of the button (can be a stock id)
+ *
+ * Creates a new button and packs it into the #GdictStrategyChooser
+ * "action area".
+ *
+ * Return value: the packed #GtkButton
+ *
+ * Since: 0.10
+ */
 GtkWidget *
 gdict_strategy_chooser_add_button (GdictStrategyChooser *chooser,
                                    const gchar          *button_text)
