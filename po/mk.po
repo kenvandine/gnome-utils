@@ -1,4 +1,4 @@
-# translation of mk.po to Macedonian
+# translation of gnome-utils.HEAD.po to Macedonian
 # translation of gnome-utils.HEAD.mk.po to
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER.
@@ -12,13 +12,14 @@
 # Arangel Angov <ufo@linux.net.mk>, 2004, 2007.
 # Арангел Ангов <ufo@linux.net.mk>, 2005.
 # Jovan Naumovski <jovan@lugola.net>, 2006, 2007.
+# Arangel Angov <arangel@linux.net.mk>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: mk\n"
+"Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-14 03:37+0000\n"
-"PO-Revision-Date: 2007-04-28 15:04+0200\n"
-"Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
+"POT-Creation-Date: 2007-04-28 14:05+0100\n"
+"PO-Revision-Date: 2007-09-02 21:48+0200\n"
+"Last-Translator: Arangel Angov <arangel@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,8 +28,8 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "Analyze disk usage"
-msgstr "Анализирајте го дискот"
+msgid "Check folder sizes and available disk space"
+msgstr "Провери ја големината на папките и достапниот простор на дискот"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -215,29 +216,29 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Дали лентата со алатки треба да биде видлива во главниот прозорец."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:139 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:304
+#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
+#: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Ги пресметувам лентите за проценти..."
 
-#: ../baobab/src/baobab.c:145 ../baobab/src/baobab.c:753
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:308
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Подготвено"
 
-#: ../baobab/src/baobab.c:226 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
 msgstr "Пребарувам..."
 
-#: ../baobab/src/baobab.c:261
+#: ../baobab/src/baobab.c:265
 msgid "Total filesystem usage:"
 msgstr "Вкупна употреба на датотечниот систем:"
 
-#: ../baobab/src/baobab.c:305
+#: ../baobab/src/baobab.c:309
 msgid "contains hardlinks for:"
 msgstr "содржи цврсти врски за:"
 
-#: ../baobab/src/baobab.c:314
+#: ../baobab/src/baobab.c:318
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
@@ -245,15 +246,15 @@ msgstr[0] "% 5d предмет"
 msgstr[1] "% 5d предмети"
 msgstr[2] "% 5d предмети"
 
-#: ../baobab/src/baobab.c:379
+#: ../baobab/src/baobab.c:383
 msgid "Invalid UTF-8 characters"
 msgstr "Невалидни UTF-8 знаци"
 
-#: ../baobab/src/baobab.c:635
+#: ../baobab/src/baobab.c:639
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "Не можам да го иницијализирам GNOME VFS надгледувањето"
 
-#: ../baobab/src/baobab.c:636
+#: ../baobab/src/baobab.c:640
 msgid "Changes to your home folder will not be monitored."
 msgstr "Промените на домашната папка нема да бидат надгледувани."
 
@@ -282,21 +283,29 @@ msgstr "Не можам да доделам меморија за графичк
 msgid "Graphical Usage Map"
 msgstr "Графичка мапа на употребата "
 
-#: ../baobab/src/baobab-prefs.c:165
+#: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
 msgstr "Скенирај"
 
-#: ../baobab/src/baobab-prefs.c:172
+#: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
 msgstr "Уред"
 
-#: ../baobab/src/baobab-prefs.c:180
+#: ../baobab/src/baobab-prefs.c:183
 msgid "Mount Point"
 msgstr "Точка за монтирање"
 
-#: ../baobab/src/baobab-prefs.c:188
+#: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
 msgstr "Тип на датотечен систем"
+
+#: ../baobab/src/baobab-prefs.c:199
+msgid "Total Size"
+msgstr "Вкупна големина"
+
+#: ../baobab/src/baobab-prefs.c:208
+msgid "Available"
+msgstr "Достапно"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -389,19 +398,19 @@ msgstr "Посебна локација"
 msgid "_Scan"
 msgstr "_Скенирај"
 
-#: ../baobab/src/baobab-treeview.c:236 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Папка"
 
-#: ../baobab/src/baobab-treeview.c:258
+#: ../baobab/src/baobab-treeview.c:253
 msgid "Usage"
 msgstr "Употреба"
 
-#: ../baobab/src/baobab-treeview.c:271 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Големина"
 
-#: ../baobab/src/baobab-treeview.c:284
+#: ../baobab/src/baobab-treeview.c:283
 msgid "Contents"
 msgstr "Содржини"
 
@@ -470,7 +479,7 @@ msgstr "Не можам да ја пронајдам папката со ѓуб�
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Не можам да ја преместам папката \"%s\" во ѓубрето."
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:387
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "Папката не постои."
 
@@ -511,8 +520,8 @@ msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
 msgstr ""
-"Содржината на Вашата домашна папка е променета. Одберете скенирање "
-"одново за да ги освежите деталите за употребата на дискот."
+"Содржината на Вашата домашна папка е променета. Одберете скенирање одново за "
+"да ги освежите деталите за употребата на дискот."
 
 #: ../baobab/src/baobab-utils.c:625
 msgid "_Rescan"
@@ -546,23 +555,23 @@ msgstr "Главен јазол на прстенестиот графикон"
 msgid "Set the root node from the model"
 msgstr "Постави го главниот јазол од моделот"
 
-#: ../baobab/src/callbacks.c:82
+#: ../baobab/src/callbacks.c:99
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:83
+#: ../baobab/src/callbacks.c:100
 msgid "A graphical tool to analyze disk usage."
 msgstr "Графичкa алатка за анализирање на употребата на дискот."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Арангел Ангов\n"
 "ufo@linux.net.mk"
 
-#: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Документот не постои"
@@ -2125,77 +2134,78 @@ msgstr "(%d:%02d преостанато)"
 msgid "%ld of %ld"
 msgstr "%ld од %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:108
+#: ../gnome-screenshot/gnome-screenshot.c:109
 msgid "Error loading the help page"
 msgstr "Грешка во вчитувањето на страницата за помош"
 
-#: ../gnome-screenshot/gnome-screenshot.c:186
+#: ../gnome-screenshot/gnome-screenshot.c:192
 msgid "None"
 msgstr "Ништо"
 
-#: ../gnome-screenshot/gnome-screenshot.c:187
+#: ../gnome-screenshot/gnome-screenshot.c:193
 msgid "Drop shadow"
 msgstr "Фрлај сенка"
 
-#: ../gnome-screenshot/gnome-screenshot.c:188
+#: ../gnome-screenshot/gnome-screenshot.c:194
 msgid "Border"
 msgstr "Рамка"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:297
+#: ../gnome-screenshot/gnome-screenshot.c:304
 msgid "Include the window _border"
 msgstr "Вклучи ја _рамката на прозорецот во сликата"
 
-#: ../gnome-screenshot/gnome-screenshot.c:312
+#: ../gnome-screenshot/gnome-screenshot.c:319
 msgid "Apply _effect:"
 msgstr "Примени _ефект:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:372
+#: ../gnome-screenshot/gnome-screenshot.c:379
 msgid "Grab the whole _desktop"
 msgstr "Сними ја целата _работна површина"
 
-#: ../gnome-screenshot/gnome-screenshot.c:384
+#: ../gnome-screenshot/gnome-screenshot.c:391
 msgid "Grab the current _window"
 msgstr "Сними го тековниот _прозорец"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:401
+#: ../gnome-screenshot/gnome-screenshot.c:408
 msgid "Grab _after a delay of"
 msgstr "Сними _после задоцнување од"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:421
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:428
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "seconds"
 msgstr "секунди"
 
-#: ../gnome-screenshot/gnome-screenshot.c:448
+#: ../gnome-screenshot/gnome-screenshot.c:455
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Зачувај слика од екранот"
 
-#: ../gnome-screenshot/gnome-screenshot.c:449
+#: ../gnome-screenshot/gnome-screenshot.c:456
 msgid "Effects"
 msgstr "Ефекти"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:462
 msgid "Take _Screenshot"
 msgstr "Зачувај _слика од екранот"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:481
+#: ../gnome-screenshot/gnome-screenshot.c:488
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "СликаОдЕкранот-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:487
+#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:197
 msgid "Screenshot.png"
 msgstr "СликаОдЕкранот.png"
@@ -2203,7 +2213,7 @@ msgstr "СликаОдЕкранот.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:527
+#: ../gnome-screenshot/gnome-screenshot.c:534
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "СликаОдЕкранот-%s-%d.png"
@@ -2211,48 +2221,50 @@ msgstr "СликаОдЕкранот-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:535
+#: ../gnome-screenshot/gnome-screenshot.c:542
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "СликаОдЕкран-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:711
+#: ../gnome-screenshot/gnome-screenshot.c:718
 msgid "Unable to take a screenshot of the current window"
 msgstr "Не можам да направам слика од екранот од тековниот прозорец"
 
-#: ../gnome-screenshot/gnome-screenshot.c:861
+#: ../gnome-screenshot/gnome-screenshot.c:868
 msgid "Grab a window instead of the entire screen"
 msgstr "Сликај прозорец наместо целиот екран"
 
-#: ../gnome-screenshot/gnome-screenshot.c:862
+#: ../gnome-screenshot/gnome-screenshot.c:869
 msgid "Include the window border with the screenshot"
 msgstr "Вклучи ја границата на прозорецот во сликата"
 
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:870
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Сликај по одредено време [во секунди]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "Effect to add to the border (shadow, border or none)"
-msgstr "Ефект кој што треба да биде додаден на рамката на прозорецот (сенка, рамка или ништо)"
+msgstr ""
+"Ефект кој што треба да биде додаден на рамката на прозорецот (сенка, рамка "
+"или ништо)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:871
 msgid "effect"
 msgstr "ефект"
 
-#: ../gnome-screenshot/gnome-screenshot.c:865
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Interactively set options"
 msgstr "Интерактивно постави ги опциите"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:882
 msgid "Options for Screenshot"
 msgstr "Опции за слика од екран"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:883
 msgid "Show Screenshot options"
 msgstr "Прикажи ги опциите за сликата од екранот"
 
-#: ../gnome-screenshot/gnome-screenshot.c:880
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Take a picture of the screen"
 msgstr "Сликај го екранот"
 
@@ -3294,16 +3306,16 @@ msgstr "%s е преголем."
 msgid "%s could not be opened."
 msgstr "%s не може да се отвори."
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s не е лог датотека."
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "Нема доволно меморија."
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "%s не може да се отвори."
