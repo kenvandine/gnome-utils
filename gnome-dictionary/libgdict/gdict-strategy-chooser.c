@@ -77,15 +77,15 @@ enum
 {
   STRATEGY_NAME,
   STRATEGY_ERROR
-} DBType;
+} StratType;
 
 enum
 {
-  DB_COLUMN_TYPE,
-  DB_COLUMN_NAME,
-  DB_COLUMN_DESCRIPTION,
+  STRAT_COLUMN_TYPE,
+  STRAT_COLUMN_NAME,
+  STRAT_COLUMN_DESCRIPTION,
 
-  DB_N_COLUMNS
+  STRAT_N_COLUMNS
 };
 
 enum
@@ -243,8 +243,8 @@ row_activated_cb (GtkTreeView       *treeview,
     }
 
   gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
-		      DB_COLUMN_NAME, &db_name,
-		      DB_COLUMN_DESCRIPTION, &db_desc,
+		      STRAT_COLUMN_NAME, &db_name,
+		      STRAT_COLUMN_DESCRIPTION, &db_desc,
 		      -1);
   if (db_name && db_desc)
     {
@@ -316,7 +316,7 @@ gdict_strategy_chooser_constructor (GType                  type,
   renderer = gtk_cell_renderer_text_new ();
   column = gtk_tree_view_column_new_with_attributes ("strategies",
 		  				     renderer,
-						     "text", DB_COLUMN_DESCRIPTION,
+						     "text", STRAT_COLUMN_DESCRIPTION,
 						     NULL);
   priv->treeview = gtk_tree_view_new ();
   gtk_widget_set_composite_name (priv->treeview, "gdict-strategy-chooser-treeview");
@@ -420,8 +420,8 @@ gdict_strategy_chooser_init (GdictStrategyChooser *chooser)
   priv->results = -1;
   priv->context = NULL;
 
-  priv->store = gtk_list_store_new (DB_N_COLUMNS,
-		                    G_TYPE_INT,    /* DBType */
+  priv->store = gtk_list_store_new (STRAT_N_COLUMNS,
+		                    G_TYPE_INT,    /* StratType */
 		                    G_TYPE_STRING, /* db_name */
 				    G_TYPE_STRING  /* db_desc */);
 
@@ -614,9 +614,9 @@ strategy_found_cb (GdictContext  *context,
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
-		      DB_COLUMN_TYPE, STRATEGY_NAME,
-		      DB_COLUMN_NAME, gdict_strategy_get_name (strategy),
-		      DB_COLUMN_DESCRIPTION, gdict_strategy_get_description (strategy),
+		      STRAT_COLUMN_TYPE, STRATEGY_NAME,
+		      STRAT_COLUMN_NAME, gdict_strategy_get_name (strategy),
+		      STRAT_COLUMN_DESCRIPTION, gdict_strategy_get_description (strategy),
 		      -1);
 
   if (priv->results == -1)
@@ -700,9 +700,9 @@ gdict_strategy_chooser_refresh (GdictStrategyChooser *chooser)
 
       gtk_list_store_append (priv->store, &iter);
       gtk_list_store_set (priv->store, &iter,
-		      	  DB_COLUMN_TYPE, STRATEGY_ERROR,
-			  DB_COLUMN_NAME, _("Error while matching"),
-			  DB_COLUMN_DESCRIPTION, NULL,
+		      	  STRAT_COLUMN_TYPE, STRATEGY_ERROR,
+			  STRAT_COLUMN_NAME, _("Error while matching"),
+			  STRAT_COLUMN_DESCRIPTION, NULL,
 			  -1);
 
       _gdict_debug ("Error while searching: %s", db_error->message);
@@ -761,7 +761,7 @@ scan_for_strat_name (GtkTreeModel *model,
   if (select_data->found)
     return TRUE;
 
-  gtk_tree_model_get (model, iter, DB_COLUMN_NAME, &strat_name, -1);
+  gtk_tree_model_get (model, iter, STRAT_COLUMN_NAME, &strat_name, -1);
   if (!strat_name)
     return FALSE;
 
@@ -947,7 +947,7 @@ gdict_strategy_chooser_get_current_strategy (GdictStrategyChooser *chooser)
   if (!gtk_tree_selection_get_selected (selection, &model, &iter))
     return NULL;
 
-  gtk_tree_model_get (model, &iter, DB_COLUMN_NAME, &retval, -1);
+  gtk_tree_model_get (model, &iter, STRAT_COLUMN_NAME, &retval, -1);
   
   g_free (priv->current_strat);
   priv->current_strat = g_strdup (retval);
