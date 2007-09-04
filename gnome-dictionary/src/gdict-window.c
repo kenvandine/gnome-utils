@@ -342,7 +342,8 @@ gdict_window_lookup_end_cb (GdictContext *context,
 
   /* search for similar words */
   gdict_speller_set_strategy (GDICT_SPELLER (window->speller), window->strategy);
-  gdict_speller_match (GDICT_SPELLER (window->speller), window->word);
+  if (window->word)
+    gdict_speller_match (GDICT_SPELLER (window->speller), window->word);
 
   gtk_list_store_append (window->completion_model, &iter);
   gtk_list_store_set (window->completion_model, &iter,
