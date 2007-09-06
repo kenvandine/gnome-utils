@@ -71,6 +71,8 @@ gchar **               gdict_source_loader_get_names       (GdictSourceLoader *l
 G_CONST_RETURN GSList *gdict_source_loader_get_sources     (GdictSourceLoader *loader);
 GdictSource *          gdict_source_loader_get_source      (GdictSourceLoader *loader,
 							    const gchar       *name);
+gboolean               gdict_source_loader_has_source      (GdictSourceLoader *loader,
+                                                            const gchar       *source_name);
 gboolean               gdict_source_loader_remove_source   (GdictSourceLoader *loader,
 							    const gchar       *name);
 
