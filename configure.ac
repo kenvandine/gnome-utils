@@ -495,7 +495,6 @@ gnome-dictionary/Makefile
 gnome-dictionary/libgdict/Makefile
 gnome-dictionary/libgdict/gdict-version.h
 gnome-dictionary/libgdict/gdict-1.0.pc
-gnome-dictionary/libgdict/gdict-1.0-uninstalled.pc
 gnome-dictionary/data/Makefile
 gnome-dictionary/docs/Makefile
 gnome-dictionary/docs/reference/Makefile
