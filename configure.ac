@@ -53,7 +53,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgi
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LIBGDICT_LT_VERSION=6:0:1
+LIBGDICT_LT_VERSION=6:0:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
 dnl *****************************************
