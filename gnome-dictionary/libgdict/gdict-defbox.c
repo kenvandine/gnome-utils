@@ -45,6 +45,7 @@
 
 #include "gdict-defbox.h"
 #include "gdict-utils.h"
+#include "gdict-debug.h"
 #include "gdict-private.h"
 #include "gdict-enum-types.h"
 #include "gdict-marshal.h"
@@ -241,7 +242,7 @@ set_gdict_context (GdictDefbox  *defbox,
     {
       if (priv->start_id)
         {
-          _gdict_debug ("Removing old context handlers\n");
+          GDICT_NOTE (DEFBOX, "Removing old context handlers");
           
           g_signal_handler_disconnect (priv->context, priv->start_id);
           g_signal_handler_disconnect (priv->context, priv->define_id);
@@ -259,7 +260,7 @@ set_gdict_context (GdictDefbox  *defbox,
           priv->error_id = 0;
         }
 
-      _gdict_debug ("Removing old context\n");
+      GDICT_NOTE (DEFBOX, "Removing old context");
       
       g_object_unref (G_OBJECT (priv->context));
     }
@@ -274,7 +275,7 @@ set_gdict_context (GdictDefbox  *defbox,
       return;
     }
 
-  _gdict_debug ("Setting new context\n");
+  GDICT_NOTE (DEFBOX, "Setting new context");
     
   priv->context = context;
   g_object_ref (G_OBJECT (priv->context));

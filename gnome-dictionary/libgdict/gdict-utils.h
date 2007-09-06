@@ -76,6 +76,10 @@ typedef enum {
 #define GDICT_IS_VALID_STATUS_CODE(x)	(((x) > GDICT_STATUS_INVALID) && \
                                          ((x) <= GDICT_STATUS_NO_STRATEGIES_PRESENT))
 
+GOptionGroup *gdict_get_option_group (void);
+void          gdict_debug_init       (gint    *argc,
+                                      gchar ***argv);
+
 G_END_DECLS
 
 #endif /* __GDICT_UTILS_H__ */

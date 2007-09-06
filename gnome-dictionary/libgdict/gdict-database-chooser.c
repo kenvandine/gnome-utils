@@ -44,6 +44,7 @@
 
 #include "gdict-database-chooser.h"
 #include "gdict-utils.h"
+#include "gdict-debug.h"
 #include "gdict-private.h"
 #include "gdict-enum-types.h"
 #include "gdict-marshal.h"
@@ -126,7 +127,7 @@ set_gdict_context (GdictDatabaseChooser *chooser,
     {
       if (priv->start_id)
         {
-          _gdict_debug ("Removing old context handlers\n");
+          GDICT_NOTE (CHOOSER, "Removing old context handlers");
           
           g_signal_handler_disconnect (priv->context, priv->start_id);
           g_signal_handler_disconnect (priv->context, priv->match_id);
@@ -144,7 +145,7 @@ set_gdict_context (GdictDatabaseChooser *chooser,
           priv->error_id = 0;
         }
 
-      _gdict_debug ("Removing old context\n");
+      GDICT_NOTE (CHOOSER, "Removing old context");
       
       g_object_unref (G_OBJECT (priv->context));
 
@@ -162,7 +163,7 @@ set_gdict_context (GdictDatabaseChooser *chooser,
       return;
     }
 
-  _gdict_debug ("Setting new context\n");
+  GDICT_NOTE (CHOOSER, "Setting new context");
     
   priv->context = g_object_ref (context);
   priv->results = 0;
@@ -679,9 +680,9 @@ database_found_cb (GdictContext  *context,
   GdictDatabaseChooserPrivate *priv = chooser->priv;
   GtkTreeIter iter;
 
-  _gdict_debug ("DATABASE: `%s' (`%s')\n",
-		gdict_database_get_name (database),
-		gdict_database_get_full_name (database));
+  GDICT_NOTE (CHOOSER, "DATABASE: `%s' (`%s')\n",
+              gdict_database_get_name (database),
+              gdict_database_get_full_name (database));
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
@@ -774,7 +775,9 @@ gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
 			  DB_COLUMN_DESCRIPTION, NULL,
 			  -1);
 
-      _gdict_debug ("Error while searching: %s", db_error->message);
+      g_warning ("Error while looking for databases: %s",
+                 db_error->message);
+
       g_error_free (db_error);
     }
 }

@@ -41,8 +41,189 @@
 #include "gdict-context-private.h"
 #include "gdict-debug.h"
 #include "gdict-utils.h"
+#include "gdict-version.h"
 #include "gdict-private.h"
 
+guint gdict_major_version = GDICT_MAJOR_VERSION;
+guint gdict_minor_version = GDICT_MINOR_VERSION;
+guint gdict_micro_version = GDICT_MICRO_VERSION;
+
+guint gdict_debug_flags = 0;  /* global gdict debug flag */
+
+#ifdef GDICT_ENABLE_DEBUG
+static const GDebugKey gdict_debug_keys[] = {
+  { "misc", GDICT_DEBUG_MISC },
+  { "context", GDICT_DEBUG_CONTEXT },
+  { "dict", GDICT_DEBUG_DICT },
+  { "source", GDICT_DEBUG_SOURCE },
+  { "loader", GDICT_DEBUG_LOADER },
+  { "chooser", GDICT_DEBUG_CHOOSER },
+  { "defbux", GDICT_DEBUG_DEFBOX },
+  { "speller", GDICT_DEBUG_SPELLER },
+};
+#endif /* GDICT_ENABLE_DEBUG */
+
+static gboolean gdict_is_initialized = FALSE;
+
+#ifdef GDICT_ENABLE_DEBUG
+static gboolean
+gdict_arg_debug_cb (const char *key,
+                    const char *value,
+                    gpointer    user_data)
+{
+  gdict_debug_flags |=
+    g_parse_debug_string (value,
+                          gdict_debug_keys,
+                          G_N_ELEMENTS (gdict_debug_keys));
+  return TRUE;
+}
+
+static gboolean
+gdict_arg_no_debug_cb (const char *key,
+                       const char *value,
+                       gpointer    user_data)
+{
+  gdict_debug_flags &=
+    ~g_parse_debug_string (value,
+                           gdict_debug_keys,
+                           G_N_ELEMENTS (gdict_debug_keys));
+  return TRUE;
+}
+#endif /* CLUTTER_ENABLE_DEBUG */
+
+static GOptionEntry gdict_args[] = {
+#ifdef GDICT_ENABLE_DEBUG
+  { "gdict-debug", 0, 0, G_OPTION_ARG_CALLBACK, gdict_arg_debug_cb,
+    "GDict debugging flags to set", "FLAGS" },
+  { "gdict-no-debug", 0, 0, G_OPTION_ARG_CALLBACK, gdict_arg_no_debug_cb,
+    "GDict debugging flags to unset", "FLAGS" },
+#endif /* GDICT_ENABLE_DEBUG */
+  { NULL, },
+};
+
+static gboolean
+pre_parse_hook (GOptionContext  *context,
+                GOptionGroup    *group,
+                gpointer         data,
+                GError         **error)
+{
+  const char *env_string;
+
+  if (gdict_is_initialized)
+    return TRUE;
+
+#ifdef GDICT_ENABLE_DEBUG
+  env_string = g_getenv ("GDICT_DEBUG");
+  if (env_string != NULL)
+    {
+      gdict_debug_flags =
+        g_parse_debug_string (env_string,
+                              gdict_debug_keys,
+                              G_N_ELEMENTS (gdict_debug_keys));
+    }
+#else
+  env_string = NULL;
+#endif /* GDICT_ENABLE_DEBUG */
+
+  return TRUE;
+}
+
+static gboolean
+post_parse_hook (GOptionContext  *context,
+                 GOptionGroup    *group,
+                 gpointer         data,
+                 GError         **error)
+{
+  gdict_is_initialized = TRUE;
+
+  return TRUE;
+}
+
+/**
+ * gdict_get_option_group:
+ *
+ * FIXME
+ *
+ * Return value: FIXME
+ *
+ * Since: 0.11
+ */
+GOptionGroup *
+gdict_get_option_group (void)
+{
+  GOptionGroup *group;
+
+  group = g_option_group_new ("gdict",
+                              _("GDict Options"),
+                              _("Show GDict Options"),
+                              NULL,
+                              NULL);
+  
+  g_option_group_set_parse_hooks (group, pre_parse_hook, post_parse_hook);
+  g_option_group_add_entries (group, gdict_args);
+  g_option_group_set_translation_domain (group, GETTEXT_PACKAGE);
+
+  return group;
+}
+
+/**
+ * gdict_debug_init:
+ * @argc: FIXME
+ * @argv: FIXME
+ *
+ * FIXME
+ *
+ * Since: 0.11
+ */
+void
+gdict_debug_init (gint    *argc,
+                  gchar ***argv)
+{
+  GOptionContext *option_context;
+  GOptionGroup *gdict_group;
+  GError *error = NULL;
+
+  if (gdict_is_initialized)
+    return;
+
+  option_context = g_option_context_new (NULL);
+  g_option_context_set_ignore_unknown_options (option_context, TRUE);
+  g_option_context_set_help_enabled (option_context, FALSE); 
+
+  gdict_group = gdict_get_option_group ();
+  g_option_context_set_main_group (option_context, gdict_group);
+
+  if (!g_option_context_parse (option_context, argc, argv, &error))
+    {
+      g_warning ("%s", error->message);
+      g_error_free (error);
+    }
+
+  g_option_context_free (option_context);
+}
+
+gboolean
+gdict_check_version (guint required_major,
+                     guint required_minor,
+                     guint required_micro)
+{
+  gint gdict_effective_micro = 100 * GDICT_MINOR_VERSION + GDICT_MICRO_VERSION;
+  gint required_effective_micro = 100 * required_minor + required_micro;
+
+  if (required_major > GDICT_MAJOR_VERSION)
+    return FALSE;
+
+  if (required_major < GDICT_MAJOR_VERSION)
+    return FALSE;
+
+  if (required_effective_micro < gdict_effective_micro)
+    return FALSE;
+
+  if (required_effective_micro > gdict_effective_micro)
+    return FALSE;
+
+  return TRUE;
+}
 /* gdict_has_ipv6: checks for the existence of the IPv6 extensions; if
  * IPv6 support was not enabled, this function always return false
  */

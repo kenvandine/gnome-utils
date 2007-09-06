@@ -43,6 +43,7 @@
 #include "gdict-utils.h"
 #include "gdict-enum-types.h"
 #include "gdict-marshal.h"
+#include "gdict-debug.h"
 #include "gdict-private.h"
 
 #define GDICT_SPELLER_GET_PRIVATE(obj) \
@@ -124,7 +125,7 @@ set_gdict_context (GdictSpeller *speller,
     {
       if (priv->start_id)
         {
-          _gdict_debug ("Removing old context handlers\n");
+          GDICT_NOTE (SPELLER, "Removing old context handlers");
           
           g_signal_handler_disconnect (priv->context, priv->start_id);
           g_signal_handler_disconnect (priv->context, priv->match_id);
@@ -142,7 +143,7 @@ set_gdict_context (GdictSpeller *speller,
           priv->error_id = 0;
         }
 
-      _gdict_debug ("Removing old context\n");
+      GDICT_NOTE (SPELLER, "Removing old context");
       
       g_object_unref (G_OBJECT (priv->context));
     }
@@ -157,7 +158,7 @@ set_gdict_context (GdictSpeller *speller,
       return;
     }
 
-  _gdict_debug ("Setting new context\n");
+  GDICT_NOTE (SPELLER, "Setting new context\n");
     
   priv->context = context;
   g_object_ref (G_OBJECT (priv->context));
@@ -664,9 +665,9 @@ match_found_cb (GdictContext *context,
   GdictSpellerPrivate *priv = speller->priv;
   GtkTreeIter iter;
   
-  _gdict_debug ("MATCH: `%s' (from `%s')\n",
-		gdict_match_get_word (match),
-		gdict_match_get_database (match));
+  GDICT_NOTE (SPELLER, "MATCH: `%s' (from `%s')",
+              gdict_match_get_word (match),
+              gdict_match_get_database (match));
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
@@ -780,7 +781,10 @@ gdict_speller_match (GdictSpeller *speller,
 			  MATCH_COLUMN_WORD, NULL,
 			  -1);
       
-      _gdict_debug ("Error while matching: %s", match_error->message);
+      g_warning ("Error while matching `%s': %s",
+                 priv->word,
+                 match_error->message);
+
       g_error_free (match_error);
     }
 }

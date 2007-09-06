@@ -2,12 +2,6 @@
 
 NULL =
 
-if ENABLE_DEBUG
-GDICT_ENABLE_DEBUG=-DGDICT_ENABLE_DEBUG=1
-else
-GDICT_ENABLE_DEBUG=
-endif
-
 INCLUDES = -DG_LOG_DOMAIN=\"Gdict\" 				\
 	-DDATADIR=\""$(datadir)"\" 				\
 	-DLIBDIR=\""$(libdir)"\" 				\
@@ -16,7 +10,7 @@ INCLUDES = -DG_LOG_DOMAIN=\"Gdict\" 				\
 	-DGNOMELOCALEDIR=\""$(gnomeutilslocaledir)"\" 		\
 	-DGDICTSOURCESDIR=\""$(datadir)/gdict-1.0/sources"\" 	\
 	-DGDICT_ENABLE_INTERNALS=1 				\
-	$(GDICT_ENABLE_DEBUG)					\
+	$(GDICT_DEBUG_CFLAGS)					\
 	$(DISABLE_DEPRECATED_CFLAGS) 				\
 	$(WARN_CFLAGS) 						\
 	$(NULL)
@@ -26,7 +20,6 @@ lib_LTLIBRARIES = libgdict-1.0.la
 # GNOME Dictionary shared library
 libgdict_1_0_la_SOURCES =	\
 	gdict-private.h		\
-	gdict-debug.c		\
 	gdict-debug.h		\
 	gdict-context.c		\
 	gdict-context.h		\

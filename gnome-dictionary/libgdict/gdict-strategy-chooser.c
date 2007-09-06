@@ -42,6 +42,7 @@
 
 #include "gdict-strategy-chooser.h"
 #include "gdict-utils.h"
+#include "gdict-debug.h"
 #include "gdict-private.h"
 #include "gdict-enum-types.h"
 #include "gdict-marshal.h"
@@ -124,7 +125,7 @@ set_gdict_context (GdictStrategyChooser *chooser,
     {
       if (priv->start_id)
         {
-          _gdict_debug ("Removing old context handlers\n");
+          GDICT_NOTE (CHOOSER, "Removing old context handlers");
           
           g_signal_handler_disconnect (priv->context, priv->start_id);
           g_signal_handler_disconnect (priv->context, priv->match_id);
@@ -142,7 +143,7 @@ set_gdict_context (GdictStrategyChooser *chooser,
           priv->error_id = 0;
         }
 
-      _gdict_debug ("Removing old context\n");
+      GDICT_NOTE (CHOOSER, "Removing old context");
       
       g_object_unref (G_OBJECT (priv->context));
     }
@@ -157,7 +158,7 @@ set_gdict_context (GdictStrategyChooser *chooser,
       return;
     }
 
-  _gdict_debug ("Setting new context\n");
+  GDICT_NOTE (CHOOSER, "Setting new context");
     
   priv->context = context;
   g_object_ref (G_OBJECT (priv->context));
@@ -608,9 +609,9 @@ strategy_found_cb (GdictContext  *context,
   GdictStrategyChooserPrivate *priv = chooser->priv;
   GtkTreeIter iter;
 
-  _gdict_debug ("STRATEGY: `%s' (`%s')\n",
-		gdict_strategy_get_name (strategy),
-		gdict_strategy_get_description (strategy));
+  GDICT_NOTE (CHOOSER, "STRATEGY: `%s' (`%s')",
+              gdict_strategy_get_name (strategy),
+              gdict_strategy_get_description (strategy));
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
@@ -705,7 +706,9 @@ gdict_strategy_chooser_refresh (GdictStrategyChooser *chooser)
 			  STRAT_COLUMN_DESCRIPTION, NULL,
 			  -1);
 
-      _gdict_debug ("Error while searching: %s", db_error->message);
+      g_warning ("Error while retrieving strategies: %s",
+                 db_error->message);
+
       g_error_free (db_error);
     }
 }
