@@ -43,6 +43,7 @@ typedef struct _GdictDatabaseChooserClass	GdictDatabaseChooserClass;
 
 struct _GdictDatabaseChooser
 {
+  /*< private >*/
   GtkVBox parent_instance;
   
   GdictDatabaseChooserPrivate *priv;
@@ -50,13 +51,17 @@ struct _GdictDatabaseChooser
 
 struct _GdictDatabaseChooserClass
 {
+  /*< private >*/
   GtkVBoxClass parent_class;
 
+  /*< public >*/
   void (*database_activated) (GdictDatabaseChooser *chooser,
 		  	      const gchar          *name,
 			      const gchar          *description);
-  
-  void (*_gdict_padding1) (void);
+  void (*selection_changed)  (GdictDatabaseChooser *chooser);
+
+  /*< private >*/
+  /* padding for future expansion */
   void (*_gdict_padding2) (void);
   void (*_gdict_padding3) (void);
   void (*_gdict_padding4) (void);

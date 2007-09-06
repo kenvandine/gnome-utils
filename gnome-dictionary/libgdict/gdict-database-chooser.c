@@ -24,6 +24,8 @@
  * Each #GdictContext has a list of databases, that is dictionaries that
  * can be queried. #GdictDatabaseChooser is a widget that queries a given
  * #GdictContext and displays the list of available databases.
+ *
+ * #GdictDatabaseChooser is available since Gdict 0.10
  */
 
 #ifdef HAVE_CONFIG_H
@@ -99,7 +101,7 @@ enum
 enum
 {
   DATABASE_ACTIVATED,
-  CLOSED,
+  SELECTION_CHANGED,
 
   LAST_SIGNAL
 };
@@ -145,6 +147,9 @@ set_gdict_context (GdictDatabaseChooser *chooser,
       _gdict_debug ("Removing old context\n");
       
       g_object_unref (G_OBJECT (priv->context));
+
+      priv->context = NULL;
+      priv->results = -1;
     }
 
   if (!context)
@@ -159,8 +164,8 @@ set_gdict_context (GdictDatabaseChooser *chooser,
 
   _gdict_debug ("Setting new context\n");
     
-  priv->context = context;
-  g_object_ref (G_OBJECT (priv->context));
+  priv->context = g_object_ref (context);
+  priv->results = 0;
 }
 
 static void
@@ -169,17 +174,33 @@ gdict_database_chooser_finalize (GObject *gobject)
   GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (gobject);
   GdictDatabaseChooserPrivate *priv = chooser->priv;
 
+  g_free (priv->current_db);
+  
+  G_OBJECT_CLASS (gdict_database_chooser_parent_class)->finalize (gobject);
+}
+
+static void
+gdict_database_chooser_dispose (GObject *gobject)
+{
+  GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (gobject);
+  GdictDatabaseChooserPrivate *priv = chooser->priv;
+
   if (priv->context)
     set_gdict_context (chooser, NULL);
 
   if (priv->busy_cursor)
-    gdk_cursor_unref (priv->busy_cursor);
+    {
+      gdk_cursor_unref (priv->busy_cursor);
+      priv->busy_cursor = NULL;
+    }
 
-  g_object_unref (priv->store);
+  if (priv->store)
+    {
+      g_object_unref (priv->store);
+      priv->store = NULL;
+    }
 
-  g_free (priv->current_db);
-  
-  G_OBJECT_CLASS (gdict_database_chooser_parent_class)->finalize (gobject);
+  G_OBJECT_CLASS (gdict_database_chooser_parent_class)->dispose (gobject);
 }
 
 static void
@@ -286,11 +307,19 @@ clear_button_clicked_cb (GtkWidget *widget,
   gdict_database_chooser_clear (chooser);
 }
 
+static void
+selection_changed_cb (GtkTreeSelection *selection,
+                      gpointer          user_data)
+{
+  g_signal_emit (user_data, db_chooser_signals[SELECTION_CHANGED], 0);
+}
+
 static GObject *
 gdict_database_chooser_constructor (GType                  type,
 				    guint                  n_params,
 				    GObjectConstructParam *params)
 {
+  GObjectClass *parent_class;
   GObject *object;
   GdictDatabaseChooser *chooser;
   GdictDatabaseChooserPrivate *priv;
@@ -299,9 +328,8 @@ gdict_database_chooser_constructor (GType                  type,
   GtkTreeViewColumn *column;
   GtkWidget *hbox;
 
-  object = G_OBJECT_CLASS (gdict_database_chooser_parent_class)->constructor (type,
-		  							      n_params,
-									      params);
+  parent_class = G_OBJECT_CLASS (gdict_database_chooser_parent_class);
+  object = parent_class->constructor (type, n_params, params);
 
   chooser = GDICT_DATABASE_CHOOSER (object);
   priv = chooser->priv;
@@ -329,6 +357,9 @@ gdict_database_chooser_constructor (GType                  type,
 		  	   GTK_TREE_MODEL (priv->store));
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->treeview), FALSE);
   gtk_tree_view_append_column (GTK_TREE_VIEW (priv->treeview), column);
+  g_signal_connect (gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview)),
+                    "changed", G_CALLBACK (selection_changed_cb),
+                    chooser);
   g_signal_connect (priv->treeview, "row-activated",
 		    G_CALLBACK (row_activated_cb), chooser);
   gtk_container_add (GTK_CONTAINER (sw), priv->treeview);
@@ -375,18 +406,52 @@ gdict_database_chooser_class_init (GdictDatabaseChooserClass *klass)
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   
   gobject_class->finalize = gdict_database_chooser_finalize;
+  gobject_class->dispose = gdict_database_chooser_dispose;
   gobject_class->set_property = gdict_database_chooser_set_property;
   gobject_class->get_property = gdict_database_chooser_get_property;
   gobject_class->constructor = gdict_database_chooser_constructor;
-  
+
+  /**
+   * GdictDatabaseChooser:context:
+   *
+   * The #GdictContext used to retrieve the list of available databases.
+   *
+   * Since: 0.10
+   */
   g_object_class_install_property (gobject_class,
   				   PROP_CONTEXT,
   				   g_param_spec_object ("context",
   				   			"Context",
   				   			"The GdictContext object used to get the list of databases",
   				   			GDICT_TYPE_CONTEXT,
-  				   			(G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT)));
+  				   			(G_PARAM_READWRITE | G_PARAM_CONSTRUCT)));
+  /**
+   * GdictDatabaseChooser:count:
+   *
+   * The number of displayed databases or, if no #GdictContext is set, -1.
+   *
+   * Since: 0.11
+   */
+  g_object_class_install_property (gobject_class,
+                                   PROP_COUNT,
+                                   g_param_spec_int ("count",
+                                                     "Count",
+                                                     "The number of available databases",
+                                                     -1, G_MAXINT, -1,
+                                                     G_PARAM_READABLE));
 
+  /**
+   * GdictDatabaseChooser::database-activated:
+   * @chooser: the database chooser that received the signal
+   * @name: the name of the activated database
+   * @description: the description of the activated database
+   *
+   * The ::database-activated signal is emitted each time the user
+   * activated a row in the database chooser widgte, either by double
+   * clicking on it or by a keyboard event.
+   *
+   * Since: 0.10
+   */
   db_chooser_signals[DATABASE_ACTIVATED] =
     g_signal_new ("database-activated",
 		  G_OBJECT_CLASS_TYPE (gobject_class),
@@ -397,7 +462,24 @@ gdict_database_chooser_class_init (GdictDatabaseChooserClass *klass)
 		  G_TYPE_NONE, 2,
 		  G_TYPE_STRING,
 		  G_TYPE_STRING);
-  
+  /**
+   * GdictDatabaseChooser::selection-changed:
+   * @chooser: the database chooser that received the signal
+   *
+   * The ::selection-changed signal is emitted each time the selection
+   * inside the database chooser has been changed.
+   *
+   * Since: 0.11
+   */
+  db_chooser_signals[SELECTION_CHANGED] =
+    g_signal_new ("selection-changed",
+                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GdictDatabaseChooserClass, selection_changed),
+                  NULL, NULL,
+                  gdict_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
   g_type_class_add_private (gobject_class, sizeof (GdictDatabaseChooserPrivate));
 }
 
@@ -425,11 +507,14 @@ gdict_database_chooser_init (GdictDatabaseChooser *chooser)
 /**
  * gdict_database_chooser_new:
  *
- * FIXME
+ * Creates a new #GdictDatabaseChooser widget. A Database chooser widget
+ * can be used to display the list of available databases on a dictionary
+ * source using the #GdictContext representing it. After creation, the
+ * #GdictContext can be set using gdict_database_chooser_set_context().
  *
- * Return value: FIXME
+ * Return value: the newly created #GdictDatabaseChooser widget.
  *
- * Since: 0.9
+ * Since: 0.10
  */
 GtkWidget *
 gdict_database_chooser_new (void)
@@ -441,11 +526,12 @@ gdict_database_chooser_new (void)
  * gdict_database_chooser_new_with_context:
  * @context: a #GdictContext
  *
- * FIXME
+ * Creates a new #GdictDatabaseChooser, using @context as the representation
+ * of the dictionary source to query for the list of available databases.
  *
- * Return value: FIXME
+ * Return value: the newly created #GdictDatabaseChooser widget.
  *
- * Since: 0.9
+ * Since: 0.10
  */
 GtkWidget *
 gdict_database_chooser_new_with_context (GdictContext *context)
@@ -461,11 +547,11 @@ gdict_database_chooser_new_with_context (GdictContext *context)
  * gdict_database_chooser_get_context:
  * @chooser: a #GdictDatabaseChooser
  *
- * FIXME
+ * Retrieves the #GdictContext used by @chooser.
  *
- * Return value: a #GdictContext
+ * Return value: a #GdictContext or %NULL
  *
- * Since:
+ * Since: 0.10
  */
 GdictContext *
 gdict_database_chooser_get_context (GdictDatabaseChooser *chooser)
@@ -538,14 +624,14 @@ gdict_database_chooser_has_database (GdictDatabaseChooser *chooser,
 }
 
 /**
- * gdict_database_chooser_count_dayabases:
+ * gdict_database_chooser_count_databases:
  * @chooser: a #GdictDatabaseChooser
  *
  * Returns the number of databases found.
  *
- * Return value: the number of databases or -1 if case of error
+ * Return value: the number of databases or -1 if no context is set
  *
- * Since:
+ * Since: 0.10
  */
 gint
 gdict_database_chooser_count_databases (GdictDatabaseChooser *chooser)
@@ -604,10 +690,7 @@ database_found_cb (GdictContext  *context,
 		      DB_COLUMN_DESCRIPTION, gdict_database_get_full_name (database),
 		      -1);
 
-  if (priv->results == -1)
-    priv->results = 1;
-  else
-    priv->results += 1;
+  priv->results += 1;
 }
 
 static void
@@ -621,6 +704,7 @@ error_cb (GdictContext *context,
     gdk_window_set_cursor (GTK_WIDGET (chooser)->window, NULL);
 
   chooser->priv->is_searching = FALSE;
+  chooser->priv->results = 0;
 }
 
 /**
@@ -715,7 +799,7 @@ gdict_database_chooser_clear (GdictDatabaseChooser *chooser)
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), NULL);
 
   gtk_list_store_clear (priv->store);
-  priv->results = -1;
+  priv->results = 0;
 
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
 		  	   GTK_TREE_MODEL (priv->store));
