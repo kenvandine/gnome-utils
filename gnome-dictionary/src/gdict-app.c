@@ -395,6 +395,7 @@ gdict_init (int *argc, char ***argv)
 			      NULL, NULL);
   g_option_group_add_entries (group, gdict_app_goptions);
   g_option_context_set_main_group (context, group);
+  g_option_context_add_group (context, gdict_get_option_group ());
   
   singleton->program = gnome_program_init ("gnome-dictionary",
 					   VERSION,
