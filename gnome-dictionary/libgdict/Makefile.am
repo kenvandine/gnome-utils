@@ -96,7 +96,6 @@ EXTRA_DIST = 				\
 	gdict-enum-types.c.in		\
 	gdict-marshal.list		\
 	gdict-1.0.pc.in			\
-	gdict-1.0-uninstalled.pc.in	\
 	$(NULL)
 
 BUILT_SOURCES = $(gdict_built_files) 
