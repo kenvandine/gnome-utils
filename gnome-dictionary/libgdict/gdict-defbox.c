@@ -1919,9 +1919,7 @@ gdict_defbox_new_with_context (GdictContext *context)
 {
   g_return_val_if_fail (GDICT_IS_CONTEXT (context), NULL);
   
-  return g_object_new (GDICT_TYPE_DEFBOX,
-                       "context", context,
-                       NULL);
+  return g_object_new (GDICT_TYPE_DEFBOX, "context", context, NULL);
 }
 
 /**
@@ -1957,15 +1955,9 @@ gdict_defbox_set_context (GdictDefbox  *defbox,
 GdictContext *
 gdict_defbox_get_context (GdictDefbox *defbox)
 {
-  GdictContext *context;
-  
   g_return_val_if_fail (GDICT_IS_DEFBOX (defbox), NULL);
-  
-  g_object_get (defbox, "context", &context, NULL);
-  if (context)
-    g_object_unref (context);
-  
-  return context;
+
+  return defbox->priv->context;
 }
 
 /**
@@ -1973,8 +1965,8 @@ gdict_defbox_get_context (GdictDefbox *defbox)
  * @defbox: a #GdictDefbox
  * @database: a database
  *
- * Sets @database as the database used by the #GdictContext bound to @defbox to
- * query for word definitions.
+ * Sets @database as the database used by the #GdictContext bound to @defbox
+ * to query for word definitions.
  *
  * Since: 0.1
  */
@@ -1982,9 +1974,16 @@ void
 gdict_defbox_set_database (GdictDefbox *defbox,
 			   const gchar *database)
 {
+  GdictDefboxPrivate *priv;
+
   g_return_if_fail (GDICT_IS_DEFBOX (defbox));
 
-  g_object_set (G_OBJECT (defbox), "database", database, NULL);
+  priv = defbox->priv;
+
+  g_free (priv->database);
+  priv->database = g_strdup (database);
+
+  g_object_notify (G_OBJECT (defbox), "database");
 }
 
 /**
@@ -1993,21 +1992,37 @@ gdict_defbox_set_database (GdictDefbox *defbox,
  *
  * Gets the database used by @defbox.  See gdict_defbox_set_database().
  *
- * Return value: the name of a database.  The string is owned by the
- * #GdictDefbox and should not be modified or freed.
+ * Return value: the name of a database. The return string is owned by
+ *   the #GdictDefbox widget and should not be modified or freed.
  *
  * Since: 0.1
  */
 G_CONST_RETURN gchar *
 gdict_defbox_get_database (GdictDefbox *defbox)
 {
-  gchar *database;
-  
   g_return_val_if_fail (GDICT_IS_DEFBOX (defbox), NULL);
 
-  g_object_get (G_OBJECT (defbox), "database", &database, NULL);
+  return defbox->priv->database;
+}
 
-  return database;
+/**
+ * gdict_defbox_get_word:
+ * @defbox: a #GdictDefbox
+ *
+ * Retrieves the word being looked up.
+ *
+ * Return value: the word looked up, or %NULL. The returned string is
+ *   owned by the #GdictDefbox widget and should never be modified or
+ *   freed.
+ *
+ * Since: 0.11
+ */
+G_CONST_RETURN gchar *
+gdict_defbox_get_word (GdictDefbox *defbox)
+{
+  g_return_val_if_fail (GDICT_IS_DEFBOX (defbox), NULL);
+
+  return defbox->priv->word;
 }
 
 /**

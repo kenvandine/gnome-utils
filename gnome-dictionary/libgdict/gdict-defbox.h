@@ -75,7 +75,7 @@ GdictContext *        gdict_defbox_get_context        (GdictDefbox  *defbox);
 void                  gdict_defbox_set_database       (GdictDefbox  *defbox,
 						       const gchar  *database);
 G_CONST_RETURN gchar *gdict_defbox_get_database       (GdictDefbox  *defbox);
-
+G_CONST_RETURN gchar *gdict_defbox_get_word           (GdictDefbox  *defbox);
 gchar *               gdict_defbox_get_text           (GdictDefbox  *defbox,
 						       gsize        *length) G_GNUC_MALLOC;
 void                  gdict_defbox_select_all         (GdictDefbox  *defbox);
