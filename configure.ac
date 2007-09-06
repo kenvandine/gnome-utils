@@ -6,7 +6,7 @@ AM_INIT_AUTOMAKE
 AC_CONFIG_MACRO_DIR([m4])
 GNOME_COMMON_INIT
 
-AM_MAINTAINER_MODE
+dnl AM_MAINTAINER_MODE
 GNOME_MAINTAINER_MODE_DEFINES
 
 IT_PROG_INTLTOOL([0.35.0])
@@ -53,7 +53,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgi
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LIBGDICT_LT_VERSION=5:14:0
+LIBGDICT_LT_VERSION=6:0:1
 AC_SUBST(LIBGDICT_LT_VERSION)
 
 dnl *****************************************
@@ -249,17 +249,18 @@ if test "x$CONSOLE_HELPER" = "xno" -a "x$enable_console_helper" = "xyes" ; then
 fi
 
 dnl Enable debug messages
+m4_define([debug_default],
+          m4_if(m4_eval(gdict_minor_version % 2), [1], [yes], [no]))
 AC_ARG_ENABLE(debug,
               AC_HELP_STRING([--enable-debug=@<:@no/yes@:>@],
-                             [Enable debug messages @<:@default=no@:>@]),,
-              enable_debug=no)
+                             [Enable debug messages @<:@default=debug_default@:>@]),,
+              enable_debug=debug_default)
 
 if test "x$enable_debug" = "xyes"; then
-	AM_CONDITIONAL(ENABLE_DEBUG, true)
-else
-	AM_CONDITIONAL(ENABLE_DEBUG, false)
+  GDICT_DEBUG_CFLAGS="-DGDICT_ENABLE_DEBUG"
 fi
 
+AC_SUBST(GDICT_DEBUG_CFLAGS)
 
 dnl IPv6 support
 AC_MSG_CHECKING([whether to enable IPv6])
