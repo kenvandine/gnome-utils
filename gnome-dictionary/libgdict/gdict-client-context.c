@@ -1094,7 +1094,7 @@ gdict_client_context_lookup_server (GdictClientContext  *context,
 #endif /* ENABLE_IPV6 */
       /* if we don't support IPv6, fallback to usual IPv4 lookup */
       
-      GDICT_NOTE ("Hostname '%s' look-up (using IPv4)", priv->hostname);
+      GDICT_NOTE (DICT, "Hostname '%s' look-up (using IPv4)", priv->hostname);
       
       ((struct sockaddr_in *) &priv->sockaddr)->sin_family = AF_INET;
 	
@@ -1219,7 +1219,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
                    _("No definitions found for '%s'"),
                    priv->command->word);
 
-      GDICT_NOTE ("No match: %s", server_error->message);
+      GDICT_NOTE (DICT, "No match: %s", server_error->message);
       
       g_signal_emit_by_name (context, "error", server_error);
           
