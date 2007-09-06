@@ -326,3 +326,57 @@
 	* gnome-dictionary/libgdict/gdict-defbox.c:
 
 	Add GdictDefbox:word property
+
+----
+
+ ChangeLog.dictionary-work                          |  328 ++++++++
+ autogen.sh                                         |    2 +-
+ configure.ac                                       |  559 +++++++++++++
+ configure.in                                       |  565 -------------
+ gnome-dictionary/data/gnome-dictionary-ui.xml      |    2 +
+ gnome-dictionary/docs/reference/gdict/Makefile.am  |   11 +-
+ .../docs/reference/gdict/gdict-docs.sgml           |   29 +-
+ .../docs/reference/gdict/gdict-sections.txt        |   42 +
+ gnome-dictionary/docs/reference/gdict/gdict.types  |    1 +
+ .../docs/reference/gdict/version.xml.in            |    1 +
+ gnome-dictionary/libgdict/Makefile.am              |   62 +-
+ .../libgdict/gdict-1.0-uninstalled.pc.in           |   10 -
+ gnome-dictionary/libgdict/gdict-client-context.c   |  124 ++--
+ gnome-dictionary/libgdict/gdict-context.c          |    2 +-
+ gnome-dictionary/libgdict/gdict-database-chooser.c |  377 +++++++--
+ gnome-dictionary/libgdict/gdict-database-chooser.h |   11 +-
+ gnome-dictionary/libgdict/gdict-debug.c            |   49 --
+ gnome-dictionary/libgdict/gdict-debug.h            |   37 +-
+ gnome-dictionary/libgdict/gdict-defbox.c           |  206 ++++--
+ gnome-dictionary/libgdict/gdict-defbox.h           |    2 +-
+ gnome-dictionary/libgdict/gdict-entry.c            |  514 ------------
+ gnome-dictionary/libgdict/gdict-entry.h            |   70 --
+ gnome-dictionary/libgdict/gdict-enum-types.c.in    |   33 +
+ gnome-dictionary/libgdict/gdict-enum-types.h.in    |   26 +
+ gnome-dictionary/libgdict/gdict-marshal.list       |    1 +
+ gnome-dictionary/libgdict/gdict-source-chooser.c   |  880 ++++++++++++++++++++
+ gnome-dictionary/libgdict/gdict-source-chooser.h   |   93 ++
+ gnome-dictionary/libgdict/gdict-source-loader.c    |   23 +-
+ gnome-dictionary/libgdict/gdict-source-loader.h    |    2 +
+ gnome-dictionary/libgdict/gdict-source.c           |    2 +-
+ gnome-dictionary/libgdict/gdict-speller.c          |   20 +-
+ gnome-dictionary/libgdict/gdict-strategy-chooser.c |   79 +-
+ gnome-dictionary/libgdict/gdict-utils.c            |  183 ++++-
+ gnome-dictionary/libgdict/gdict-utils.h            |    4 +
+ gnome-dictionary/libgdict/gdict-version.h.in       |   70 ++-
+ gnome-dictionary/libgdict/gdict.h                  |    1 +
+ gnome-dictionary/src/Makefile.am                   |   16 +-
+ gnome-dictionary/src/gdict-aligned-window.c        |  347 ++++++++
+ gnome-dictionary/src/gdict-aligned-window.h        |   69 ++
+ gnome-dictionary/src/gdict-app.c                   |    6 +-
+ gnome-dictionary/src/gdict-app.h                   |    1 -
+ gnome-dictionary/src/gdict-applet.c                |   11 +-
+ gnome-dictionary/src/gdict-print.c                 |  468 ++++++-----
+ gnome-dictionary/src/gdict-print.h                 |    7 +-
+ gnome-dictionary/src/gdict-sidebar.c               |   56 +-
+ gnome-dictionary/src/gdict-sidebar.h               |   10 +-
+ gnome-dictionary/src/gdict-window.c                |  141 +++-
+ gnome-dictionary/src/gdict-window.h                |    1 +
+ gnome-dictionary/src/gtkalignedwindow.c            |  349 --------
+ gnome-dictionary/src/gtkalignedwindow.h            |   69 --
+ 50 files changed, 3714 insertions(+), 2258 deletions(-)
