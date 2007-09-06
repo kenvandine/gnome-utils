@@ -372,7 +372,7 @@ gdict_window_lookup_end_cb (GdictContext *context,
   /* search for similar words; if we have a no-match we already started
    * looking in the error signal handler
    */
-  if (count != 0)
+  if (count != 0 && window->word)
     {
       gdict_speller_set_strategy (GDICT_SPELLER (window->speller), window->strategy);
       gdict_speller_match (GDICT_SPELLER (window->speller), window->word);
