@@ -232,7 +232,7 @@ gdict_show_print_preview (GtkWindow   *parent,
 
   error = NULL;
   gtk_print_operation_run (operation,
-                           GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+                           GTK_PRINT_OPERATION_ACTION_PREVIEW,
                            parent,
                            &error);
   g_object_unref (operation);
