@@ -43,8 +43,7 @@
 #include "gdict-pref-dialog.h"
 #include "gdict-print.h"
 #include "gdict-common.h"
-
-#include "gtkalignedwindow.h"
+#include "gdict-aligned-window.h"
 
 #define GDICT_APPLET_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GDICT_TYPE_APPLET, GdictAppletClass))
 #define GDICT_APPLET_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GDICT_TYPE_APPLET, GdictAppletClass))
@@ -331,7 +330,7 @@ gdict_applet_build_window (GdictApplet *applet)
       return;
     }
   
-  window = gtk_aligned_window_new (priv->toggle);
+  window = gdict_aligned_window_new (priv->toggle);
   g_signal_connect (window, "key-press-event",
 		    G_CALLBACK (window_key_press_event_cb),
 		    applet);
