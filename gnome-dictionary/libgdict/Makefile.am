@@ -43,6 +43,8 @@ libgdict_1_0_la_SOURCES =	\
 	gdict-marshal.h		\
 	gdict-source.c		\
 	gdict-source.h		\
+	gdict-source-chooser.c	\
+	gdict-source-chooser.h	\
 	gdict-source-loader.c	\
 	gdict-source-loader.h	\
 	gdict-speller.c		\
@@ -120,6 +122,7 @@ libgdict_enum_headers = \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-database-chooser.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-defbox.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source.h \
+	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source-chooser.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-source-loader.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-speller.h \
 	$(top_srcdir)/gnome-dictionary/libgdict/gdict-strategy-chooser.h \
