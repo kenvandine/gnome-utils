@@ -1,0 +1,328 @@
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-window.c:
+
+	Check if we have a word, before using it to match
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/Makefile.am:
+
+	Drop libgnomeprint flags and libraries
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.ac:
+
+	Bump up to 2.21.0 and drop libgnomeprint checks
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-sidebar.c:
+	* gnome-dictionary/src/gdict-sidebar.h:
+
+	Relicense GdictSidebar under the GNU LGPL v2.1 (or later)
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-sidebar.c:
+	* gnome-dictionary/src/gdict-sidebar.h:
+
+	Add GdictSidebar::list_pages() method
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-debug.h:
+
+	Show the source location of the GDICT_NOTE() message
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-client-context.c:
+	* gnome-dictionary/libgdict/gdict-database-chooser.c:
+
+	Remove newlines at the end of a GDICT_NOTE() message
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/docs/reference/gdict/gdict-docs.sgml:
+
+	Add GdictSourceChooser link to the API reference index
+
+2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/docs/reference/gdict/Makefile.am:
+	* gnome-dictionary/docs/reference/gdict/gdict-sections.txt:
+	* gnome-dictionary/docs/reference/gdict/gdict.types:
+
+	Add unused symbols to the API reference build
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-database-chooser.c:
+	* gnome-dictionary/libgdict/gdict-strategy-chooser.c:
+
+	Do not hit the slice allocator when the stack suits just fine
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-database-chooser.c:
+	* gnome-dictionary/libgdict/gdict-database-chooser.h:
+	* gnome-dictionary/libgdict/gdict-defbox.c:
+	* gnome-dictionary/libgdict/gdict-source-chooser.c:
+	* gnome-dictionary/libgdict/gdict-source-loader.c:
+	* gnome-dictionary/libgdict/gdict-utils.c:
+
+	Implement missing functions in DatabaseChooser and SourceChooser
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/docs/reference/gdict/Makefile.am:
+	* gnome-dictionary/docs/reference/gdict/gdict-docs.sgml:
+	* gnome-dictionary/docs/reference/gdict/version.xml.in:
+
+	Update GDict documentation build
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.ac:
+
+	We had to break API for a typo
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.ac:
+
+	Add version file for the GDict documentation
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-client-context.c:
+
+	Fix two malformed GDICT_NOTE() statements
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-debug.h:
+
+	Fix a typo in the debug macro definition
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-app.c:
+
+	Enable the GDict command line switches in Dictionary
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/Makefile.am:
+	* gnome-dictionary/libgdict/gdict-client-context.c:
+	* gnome-dictionary/libgdict/gdict-database-chooser.c:
+	* gnome-dictionary/libgdict/gdict-debug.c:
+	* gnome-dictionary/libgdict/gdict-debug.h:
+	* gnome-dictionary/libgdict/gdict-defbox.c:
+	* gnome-dictionary/libgdict/gdict-speller.c:
+	* gnome-dictionary/libgdict/gdict-strategy-chooser.c:
+	* gnome-dictionary/libgdict/gdict-utils.c:
+	* gnome-dictionary/libgdict/gdict-utils.h:
+
+	Improve GDict debug messages handling
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-version.h.in:
+
+	Add more version macros and runtime version checking functions
+
+2007-09-05  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.ac:
+
+	Update the GDict debugging switch definition
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/Makefile.am:
+	* gnome-dictionary/src/gdict-aligned-window.c:
+	* gnome-dictionary/src/gdict-aligned-window.h:
+	* gnome-dictionary/src/gdict-applet.c:
+	* gnome-dictionary/src/gtkalignedwindow.c:
+	* gnome-dictionary/src/gtkalignedwindow.h:
+
+	Rename GtkAlignedWindow to GdictAlignedWindow
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/data/gnome-dictionary-ui.xml:
+	* gnome-dictionary/src/gdict-window.c:
+
+	Add a menu item to show the Dictionary Source page of the sidebar
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict.h:
+	* gnome-dictionary/src/gdict-window.c:
+	* gnome-dictionary/src/gdict-window.h:
+
+	Display the Source chooser inside the side bar of Dictionary
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-source-chooser.c:
+
+	Small fixes for GdictSourceChooser
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/Makefile.am:
+	* gnome-dictionary/libgdict/gdict-marshal.list:
+	* gnome-dictionary/libgdict/gdict-source-chooser.c:
+	* gnome-dictionary/libgdict/gdict-source-chooser.h:
+
+	Add the GdictSourceChooser widget
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-source-loader.c:
+	* gnome-dictionary/libgdict/gdict-source-loader.h:
+
+	Add gdict_source_loader_has_source()
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-database-chooser.c:
+
+	Fix typo in the documentation
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-database-chooser.c:
+	* gnome-dictionary/libgdict/gdict-database-chooser.h:
+
+	Update GdictDatabaseChooser
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-entry.c:
+	* gnome-dictionary/libgdict/gdict-entry.h:
+
+	Remove GdictEntry
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-client-context.c:
+	* gnome-dictionary/libgdict/gdict-context.c:
+	* gnome-dictionary/libgdict/gdict-database-chooser.c:
+	* gnome-dictionary/libgdict/gdict-debug.c:
+	* gnome-dictionary/libgdict/gdict-defbox.c:
+	* gnome-dictionary/libgdict/gdict-source-loader.c:
+	* gnome-dictionary/libgdict/gdict-source.c:
+	* gnome-dictionary/libgdict/gdict-speller.c:
+	* gnome-dictionary/libgdict/gdict-strategy-chooser.c:
+	* gnome-dictionary/libgdict/gdict-utils.c:
+
+	Use the correct GLib i18n header
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/Makefile.am:
+
+	Remove the uninstalled pkgconfig file from EXTRA_DIST
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* autogen.sh:
+
+	Update autogen script to locate the right files
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.ac:
+	* gnome-dictionary/libgdict/gdict-1.0-uninstalled.pc.in:
+
+	Remove the uninstalled pkgconfig file for gdict
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.ac:
+	* configure.in:
+
+	Rename configure template file
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.in:
+
+	Bump up Gdict version
+
+2007-09-04  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/Makefile.am:
+
+	Remove GdictEntry from the build
+
+2007-09-03  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/Makefile.am:
+	* gnome-dictionary/libgdict/gdict-enum-types.c.in:
+	* gnome-dictionary/libgdict/gdict-enum-types.h.in:
+
+	Use enum types templates
+
+2007-09-03  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* configure.in:
+
+	Update GLib requirement to 2.14
+
+2007-09-03  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-defbox.c:
+
+	Add a close button to the GdictDefbox find pane
+
+2007-09-03  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-defbox.c:
+	* gnome-dictionary/libgdict/gdict-defbox.h:
+
+	Add GdictDefbox:word accessor function and clean up code
+
+2007-09-03  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-print.c:
+
+	Fix general header inclusion
+
+2007-09-01  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-window.c:
+
+	Ensure the state of the menus depending on the look up
+
+2007-09-01  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-print.c:
+
+	Invoke the right print operation in Preview mode
+
+2007-09-01  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/src/gdict-applet.c:
+	* gnome-dictionary/src/gdict-print.c:
+	* gnome-dictionary/src/gdict-print.h:
+	* gnome-dictionary/src/gdict-window.c:
+
+	Port gnome-dictionary to gtk-print
+
+2007-09-01  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/data/gnome-dictionary-ui.xml:
+
+	Add Preview item to the File menu
+
+2007-09-01  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* gnome-dictionary/libgdict/gdict-defbox.c:
+
+	Add GdictDefbox:word property
