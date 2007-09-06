@@ -59,6 +59,7 @@
 #define GDICT_SIDEBAR_SPELLER_PAGE      "speller"
 #define GDICT_SIDEBAR_DATABASES_PAGE    "db-chooser"
 #define GDICT_SIDEBAR_STRATEGIES_PAGE   "strat-chooser"
+#define GDICT_SIDEBAR_SOURCES_PAGE      "source-chooser"
 
 enum
 {
@@ -1029,6 +1030,17 @@ gdict_window_cmd_view_strategies (GtkAction   *action,
 }
 
 static void
+gdict_window_cmd_view_sources (GtkAction   *action,
+                               GdictWindow *window)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+  gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar),
+                           GDICT_SIDEBAR_SOURCES_PAGE);
+  gdict_window_set_sidebar_visible (window, TRUE);
+}
+
+static void
 gdict_window_cmd_go_first_def (GtkAction   *action,
 			       GdictWindow *window)
 {
@@ -1310,6 +1322,25 @@ lookup_word (GdictWindow *window,
 }
 
 static void
+source_activated_cb (GdictSourceChooser *chooser,
+                     const gchar        *source_name,
+                     GdictSource        *source,
+                     GdictWindow        *window)
+{
+  gdict_window_set_source_name (window, source_name);
+
+  if (window->status)
+    {
+      gchar *message;
+
+      message = g_strdup_printf (_("Dictionary source `%s' selected"),
+                                 gdict_source_get_description (source));
+      gtk_statusbar_push (GTK_STATUSBAR (window->status), 0, message);
+      g_free (message);
+    }
+}
+
+static void
 strategy_activated_cb (GdictStrategyChooser *chooser,
                        const gchar          *strat_name,
                        const gchar          *strat_desc,
@@ -1390,6 +1421,10 @@ sidebar_page_changed_cb (GdictSidebar *sidebar,
           message = _("Double-click on the matching strategy to use");
           
           gdict_strategy_chooser_refresh (GDICT_STRATEGY_CHOOSER (window->strat_chooser));
+          break;
+        case 'o': /* source-chooser */
+          message = _("Double-click on the source to use");
+          gdict_source_chooser_refresh (GDICT_SOURCE_CHOOSER (window->source_chooser));
           break;
         default:
           message = NULL;
@@ -1740,6 +1775,7 @@ gdict_window_constructor (GType                  type,
   gtk_container_add (GTK_CONTAINER (frame1), window->defbox);
   gtk_widget_show (window->defbox);
 
+  /* Sidebar */
   window->sidebar = gdict_sidebar_new ();
   g_signal_connect (window->sidebar, "page-changed",
 		    G_CALLBACK (sidebar_page_changed_cb),
@@ -1748,6 +1784,7 @@ gdict_window_constructor (GType                  type,
 		    G_CALLBACK (sidebar_closed_cb),
 		    window);
   
+  /* Speller */
   window->speller = gdict_speller_new ();
   if (window->context)
     gdict_speller_set_context (GDICT_SPELLER (window->speller),
@@ -1755,13 +1792,13 @@ gdict_window_constructor (GType                  type,
   g_signal_connect (window->speller, "word-activated",
 		    G_CALLBACK (speller_word_activated_cb),
 		    window);
-  
   gdict_sidebar_add_page (GDICT_SIDEBAR (window->sidebar),
 		          GDICT_SIDEBAR_SPELLER_PAGE,
 			  _("Similar words"),
 			  window->speller);
   gtk_widget_show (window->speller);
 
+  /* Database chooser */
   window->db_chooser = gdict_database_chooser_new ();
   if (window->context)
     gdict_database_chooser_set_context (GDICT_DATABASE_CHOOSER (window->db_chooser),
@@ -1775,6 +1812,7 @@ gdict_window_constructor (GType                  type,
 			  window->db_chooser);
   gtk_widget_show (window->db_chooser);
 
+  /* Strategy chooser */
   window->strat_chooser = gdict_strategy_chooser_new ();
   if (window->context)
     gdict_strategy_chooser_set_context (GDICT_STRATEGY_CHOOSER (window->strat_chooser),
@@ -1787,6 +1825,20 @@ gdict_window_constructor (GType                  type,
                           _("Available strategies"),
                           window->strat_chooser);
   gtk_widget_show (window->strat_chooser);
+
+  /* Source chooser */
+  window->source_chooser = gdict_source_chooser_new ();
+  if (window->loader)
+    gdict_source_chooser_set_loader (GDICT_SOURCE_CHOOSER (window->source_chooser),
+                                     window->loader);
+  g_signal_connect (window->source_chooser, "source-activated",
+                    G_CALLBACK (source_activated_cb),
+                    window);
+  gdict_sidebar_add_page (GDICT_SIDEBAR (window->sidebar),
+                          GDICT_SIDEBAR_SOURCES_PAGE,
+                          _("Dictionary sources"),
+                          window->source_chooser);
+  gtk_widget_show (window->source_chooser);
 
   gtk_container_add (GTK_CONTAINER (frame2), window->sidebar);
   gtk_widget_show (window->sidebar);

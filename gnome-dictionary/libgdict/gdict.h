@@ -24,6 +24,7 @@
 #include "gdict-client-context.h"
 #include "gdict-source.h"
 #include "gdict-source-loader.h"
+#include "gdict-source-chooser.h"
 #include "gdict-database-chooser.h"
 #include "gdict-defbox.h"
 #include "gdict-speller.h"

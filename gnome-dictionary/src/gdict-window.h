@@ -59,6 +59,7 @@ struct _GdictWindow
   GtkWidget *speller;
   GtkWidget *db_chooser;
   GtkWidget *strat_chooser;
+  GtkWidget *source_chooser;
 
   GtkWidget *sidebar;
   GtkWidget *sidebar_frame;
