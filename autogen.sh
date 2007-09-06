@@ -7,7 +7,7 @@ test -z "$srcdir" && srcdir=.
 REQUIRED_AUTOMAKE_VERSION=1.7
 PKG_NAME="GNOME Utilities"
 
-(test -f $srcdir/configure.in \
+(test -f $srcdir/configure.ac \
   && test -f $srcdir/ChangeLog \
   && test -d $srcdir/gsearchtool) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
