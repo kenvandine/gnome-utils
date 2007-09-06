@@ -742,7 +742,7 @@ database_found_cb (GdictContext  *context,
   GdictDatabaseChooserPrivate *priv = chooser->priv;
   GtkTreeIter iter;
 
-  GDICT_NOTE (CHOOSER, "DATABASE: `%s' (`%s')\n",
+  GDICT_NOTE (CHOOSER, "DATABASE: `%s' (`%s')",
               gdict_database_get_name (database),
               gdict_database_get_full_name (database));
 

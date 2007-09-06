@@ -1070,7 +1070,7 @@ gdict_client_context_lookup_server (GdictClientContext  *context,
 
 	      priv->sockaddr.ss_family = res->ai_family;
 	      
-	      GDICT_NOTE (DICT, "Hostname '%s' found (using IPv6)\n",
+	      GDICT_NOTE (DICT, "Hostname '%s' found (using IPv6)",
                           priv->hostname);
 	      
 	      priv->last_lookup = time (NULL);
@@ -1105,7 +1105,7 @@ gdict_client_context_lookup_server (GdictClientContext  *context,
                   priv->hostinfo->h_addr,
                   priv->hostinfo->h_length);
           
-          GDICT_NOTE (DICT, "Hostname '%s' found (using IPv4)\n",
+          GDICT_NOTE (DICT, "Hostname '%s' found (using IPv4)",
 		      priv->hostname);
 
 	  priv->last_lookup = time (NULL);
@@ -1587,7 +1587,7 @@ gdict_client_context_parse_line (GdictClientContext *context,
           if (!priv->command->buffer)
             priv->command->buffer = g_string_new (NULL);
           
-	  GDICT_NOTE (DICT, "appending to buffer:\n %s\n", buffer);
+	  GDICT_NOTE (DICT, "appending to buffer:\n %s", buffer);
           
           /* TODO - collapse '..' to '.' */
           g_string_append_printf (priv->command->buffer, "%s\n", buffer);
