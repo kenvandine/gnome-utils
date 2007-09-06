@@ -38,7 +38,7 @@
 
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 
 #include "gdict-source-loader.h"
 #include "gdict-utils.h"

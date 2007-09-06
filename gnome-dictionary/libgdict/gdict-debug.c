@@ -31,7 +31,7 @@
 #endif
 
 #include <glib.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 
 #ifdef GDICT_ENABLE_DEBUG
 void

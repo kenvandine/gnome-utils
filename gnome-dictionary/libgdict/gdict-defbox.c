@@ -41,7 +41,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <gtk/gtkbindings.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 
 #include "gdict-defbox.h"
 #include "gdict-utils.h"
