@@ -447,7 +447,7 @@ gdict_database_chooser_class_init (GdictDatabaseChooserClass *klass)
    * @description: the description of the activated database
    *
    * The ::database-activated signal is emitted each time the user
-   * activated a row in the database chooser widgte, either by double
+   * activated a row in the database chooser widget, either by double
    * clicking on it or by a keyboard event.
    *
    * Since: 0.10
