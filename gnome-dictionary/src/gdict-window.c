@@ -1193,6 +1193,8 @@ static const GtkActionEntry entries[] =
   /* View menu */
   { "ViewSpeller", NULL, N_("Similar _Words"), "<control>T", NULL,
     G_CALLBACK (gdict_window_cmd_view_speller), },
+  { "ViewSource", NULL, N_("Dictionary Sources"), "<control>D", NULL,
+    G_CALLBACK (gdict_window_cmd_view_sources), },
   { "ViewDB", NULL, N_("Available _Databases"), "<control>B", NULL,
     G_CALLBACK (gdict_window_cmd_view_databases), },
   { "ViewStrat", NULL, N_("Available St_rategies"), "<control>R", NULL,
