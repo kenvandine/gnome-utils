@@ -63,6 +63,7 @@ libgdict_include_HEADERS = 	\
 	gdict-defbox.h 		\
 	gdict-enum-types.h	\
 	gdict-source.h		\
+	gdict-source-chooser.h	\
 	gdict-source-loader.h	\
 	gdict-speller.h		\
 	gdict-strategy-chooser.h \
