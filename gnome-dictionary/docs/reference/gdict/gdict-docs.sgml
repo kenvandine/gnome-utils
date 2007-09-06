@@ -1,6 +1,8 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+
+<!ENTITY version SYSTEM "version.xml">
 ]>
 
 <book xmlns:xi="http://www.w3.org/2003/XInclude" id="libgdict">
@@ -24,7 +26,12 @@
     </copyright>
     
     <abstract>
-      <para>This manual documents the Dictionary library for GNOME 2.x</para>
+
+      <para>
+      This manual documents the &version; release of the Dictionary
+      Library for GNOME 2.x
+      </para>
+
     </abstract>
   
   </bookinfo>
@@ -40,8 +47,8 @@
 
       <para>
       It was created for the GNOME Dictionary application, but it has been
-      made available for each developer whom wishes to access definitions
-      stored inside language dictionaries.
+      made available for each developer whom wishes to access and display
+      definitions stored inside language dictionaries.
       </para>
 
     </partintro>
@@ -134,5 +141,18 @@
     </chapter>
     
   </part>
-  
+
+  <index>
+    <title>Index</title>
+  </index>
+  <index role="deprecated">
+    <title>Index of deprecated symbols</title>
+  </index>
+  <index role="0.10">
+    <title>Index of new symbols in 0.10</title>
+  </index>
+  <index role="0.12">
+    <title>Index of new symbols in 0.12</title>
+  </index>
+
 </book>

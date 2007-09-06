@@ -34,7 +34,6 @@ IGNORE_HFILES =			\
 	gdict-enum-types.h	\
 	gdict-marshal.h		\
 	gdict-context-private.h \
-	gdict-entry.h		\
 	stamp-gdict-enum-types.h \
 	stamp-gdict-marshal.h
 
@@ -42,7 +41,7 @@ IGNORE_HFILES =			\
 HTML_IMAGES =
 
 # Extra SGML files that are included by $(DOC_MAIN_SGML_FILE).
-content_files =
+content_files = version.xml
 
 # Other files to distribute.
 extra_files =
@@ -63,7 +62,11 @@ GTKDOC_LIBS =						\
 
 include $(top_srcdir)/gtk-doc.make
 
-dist-hook-local:
+# Other files to distribute
+# e.g. EXTRA_DIST += version.xml.in
+EXTRA_DIST += version.xml.in
+
+#dist-hook-local:
 #	mkdir $(distdir)/TEXT;          \
 #	for f in $(srcdir)/TEXT/* ; do  \
 #	  test -f $$f && cp -p $$f $(distdir)/TEXT; \
