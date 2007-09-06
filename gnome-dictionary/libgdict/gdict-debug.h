@@ -35,7 +35,7 @@ typedef enum {
   GDICT_DEBUG_SPELLER = 1 << 7
 } GdictDebugFlags;
 
-#ifndef GDICT_ENABLE_DEBUG
+#ifdef GDICT_ENABLE_DEBUG
 
 #define GDICT_NOTE(type,x,a...)                 G_STMT_START {  \
         if (gdict_debug_flags & GDICT_DEBUG_##type) {           \
