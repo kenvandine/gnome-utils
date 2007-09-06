@@ -593,5 +593,8 @@ gdict_source_loader_has_source (GdictSourceLoader *loader,
   g_return_val_if_fail (GDICT_IS_SOURCE_LOADER (loader), FALSE);
   g_return_val_if_fail (source_name != NULL, FALSE);
 
+  if (loader->priv->paths_dirty)
+    gdict_source_loader_update_sources (loader);
+
   return (g_hash_table_lookup (loader->priv->sources_by_name, source_name) != NULL);
 }
