@@ -72,15 +72,9 @@ enum
 };
 
 static guint sidebar_signals[LAST_SIGNAL] = { 0 };
+static GQuark sidebar_page_id_quark = 0;
 
 G_DEFINE_TYPE (GdictSidebar, gdict_sidebar, GTK_TYPE_VBOX);
-
-#define SIDEBAR_PAGE_ID		(sidebar_page_id_quark ())
-static GQuark
-sidebar_page_id_quark (void)
-{
-  return g_quark_from_static_string ("gdict-sidebar-page-id");
-}
 
 SidebarPage *
 sidebar_page_new (const gchar *id,
@@ -261,7 +255,7 @@ gdict_sidebar_menu_item_activate (GtkWidget *widget,
   gint current_index;
 
   menu_item = gtk_menu_get_active (GTK_MENU (priv->menu));
-  id = g_object_get_qdata (G_OBJECT (menu_item), SIDEBAR_PAGE_ID);
+  id = g_object_get_qdata (G_OBJECT (menu_item), sidebar_page_id_quark);
   g_assert (id != NULL);
   
   page = g_hash_table_lookup (priv->pages_by_id, id);
@@ -283,6 +277,10 @@ gdict_sidebar_class_init (GdictSidebarClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
+  g_type_class_add_private (gobject_class, sizeof (GdictSidebarPrivate));
+  
+  sidebar_page_id_quark = g_quark_from_static_string ("gdict-sidebar-page-id");
+
   gobject_class->finalize = gdict_sidebar_finalize;
   gobject_class->dispose = gdict_sidebar_dispose;
 
@@ -302,8 +300,6 @@ gdict_sidebar_class_init (GdictSidebarClass *klass)
 		  NULL, NULL,
 		  g_cclosure_marshal_VOID__VOID,
 		  G_TYPE_NONE, 0);
-
-  g_type_class_add_private (gobject_class, sizeof (GdictSidebarPrivate));
 }
 
 static void
@@ -437,8 +433,8 @@ gdict_sidebar_add_page (GdictSidebar *sidebar,
   /* add the menu item for the page */
   menu_item = gtk_image_menu_item_new_with_label (page_name);
   g_object_set_qdata_full (G_OBJECT (menu_item),
-		           SIDEBAR_PAGE_ID,
-			   g_strdup (page_id),
+			   sidebar_page_id_quark,
+                           g_strdup (page_id),
 			   (GDestroyNotify) g_free);
   g_signal_connect (menu_item, "activate",
 		    G_CALLBACK (gdict_sidebar_menu_item_activate),
@@ -521,8 +517,7 @@ gdict_sidebar_view_page (GdictSidebar *sidebar,
   if (!page)
     return;
 
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook),
-		  		 page->index);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), page->index);
   gtk_label_set_text (GTK_LABEL (priv->label), page->name);
   gtk_menu_shell_select_item (GTK_MENU_SHELL (priv->menu), page->menu_item);
 }
@@ -543,4 +538,29 @@ gdict_sidebar_current_page (GdictSidebar *sidebar)
   g_assert (page != NULL);
 
   return page->id;
+}
+
+gchar **
+gdict_sidebar_list_pages (GdictSidebar *sidebar,
+                          gsize        *length)
+{
+  GdictSidebarPrivate *priv;
+  gchar **retval;
+  gint i;
+  GSList *l;
+
+  g_return_val_if_fail (GDICT_IS_SIDEBAR (sidebar), NULL);
+
+  priv = sidebar->priv;
+
+  retval = g_new (gchar*, g_slist_length (priv->pages) + 1);
+  for (l = priv->pages, i = 0; l; l = l->next, i++)
+    retval[i++] = g_strdup (l->data);
+
+  retval[i] = NULL;
+
+  if (length)
+    *length = i;
+
+  return retval;
 }
