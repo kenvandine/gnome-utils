@@ -1,4 +1,4 @@
-AC_INIT([gnome-utils], [2.19.92],
+AC_INIT([gnome-utils], [2.21.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils])
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE
@@ -104,13 +104,6 @@ dnl *****************************************
 PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
-
-dnl *****************************************
-dnl gnome-dictionary needs libgnomeprint and libgnomeprintui
-dnl *****************************************
-PKG_CHECK_MODULES(LIBGNOMEPRINT, libgnomeprintui-2.2 >= $LIBGNOMEPRINTUI_REQUIRED)
-AC_SUBST(LIBGNOMEPRINT_CFLAGS)
-AC_SUBST(LIBGNOMEPRINT_LIBS)
 
 dnl *****************************************
 dnl libgdict requires just gtk+
