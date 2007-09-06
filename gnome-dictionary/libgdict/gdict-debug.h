@@ -39,7 +39,7 @@ typedef enum {
 
 #define GDICT_NOTE(type,x,a...)                 G_STMT_START {  \
         if (gdict_debug_flags & GDICT_DEBUG_##type) {           \
-                g_message ("[" #type "]: " x, ##a);             \
+          g_message ("[" #type "]: " G_STRLOC ": " x, ##a);     \
         }                                       } G_STMT_END
 
 #else
