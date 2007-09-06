@@ -808,7 +808,7 @@ gdict_strategy_chooser_select_strategy (GdictStrategyChooser *chooser,
                                         const gchar          *strat_name)
 {
   GdictStrategyChooserPrivate *priv;
-  SelectData *data;
+  SelectData data;
   gboolean retval;
 
   g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), FALSE);
@@ -816,21 +816,19 @@ gdict_strategy_chooser_select_strategy (GdictStrategyChooser *chooser,
 
   priv = chooser->priv;
 
-  data = g_slice_new0 (SelectData);
-  data->strat_name = g_strdup (strat_name);
-  data->chooser = chooser;
-  data->found = FALSE;
-  data->do_select = TRUE;
-  data->do_activate = FALSE;
+  data.strat_name = g_strdup (strat_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = TRUE;
+  data.do_activate = FALSE;
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
                           scan_for_strat_name,
-                          data);
+                          &data);
 
-  retval = data->found;
+  retval = data.found;
 
-  g_free (data->strat_name);
-  g_slice_free (SelectData, data);
+  g_free (data.strat_name);
 
   return retval;
 }
@@ -852,7 +850,7 @@ gdict_strategy_chooser_unselect_strategy (GdictStrategyChooser *chooser,
                                           const gchar          *strat_name)
 {
   GdictStrategyChooserPrivate *priv;
-  SelectData *data;
+  SelectData data;
   gboolean retval;
 
   g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), FALSE);
@@ -860,21 +858,19 @@ gdict_strategy_chooser_unselect_strategy (GdictStrategyChooser *chooser,
 
   priv = chooser->priv;
 
-  data = g_slice_new0 (SelectData);
-  data->strat_name = g_strdup (strat_name);
-  data->chooser = chooser;
-  data->found = FALSE;
-  data->do_select = FALSE;
-  data->do_activate = FALSE;
+  data.strat_name = g_strdup (strat_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = FALSE;
+  data.do_activate = FALSE;
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
                           scan_for_strat_name,
-                          data);
+                          &data);
 
-  retval = data->found;
+  retval = data.found;
 
-  g_free (data->strat_name);
-  g_slice_free (SelectData, data);
+  g_free (data.strat_name);
 
   return retval;
 }
@@ -895,7 +891,7 @@ gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser *chooser,
                                              const gchar          *strat_name)
 {
   GdictStrategyChooserPrivate *priv;
-  SelectData *data;
+  SelectData data;
   gboolean retval;
 
   g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), FALSE);
@@ -903,21 +899,19 @@ gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser *chooser,
 
   priv = chooser->priv;
 
-  data = g_slice_new0 (SelectData);
-  data->strat_name = g_strdup (strat_name);
-  data->chooser = chooser;
-  data->found = FALSE;
-  data->do_select = TRUE;
-  data->do_activate = TRUE;
+  data.strat_name = g_strdup (strat_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = TRUE;
+  data.do_activate = TRUE;
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
                           scan_for_strat_name,
-                          data);
+                          &data);
 
-  retval = data->found;
+  retval = data.found;
 
-  g_free (data->strat_name);
-  g_slice_free (SelectData, data);
+  g_free (data.strat_name);
 
   return retval;
 }

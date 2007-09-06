@@ -980,7 +980,7 @@ gdict_database_chooser_unselect_database (GdictDatabaseChooser *chooser,
                                           const gchar          *db_name)
 {
   GdictDatabaseChooserPrivate *priv;
-  SelectData *data;
+  SelectData data;
   gboolean retval;
 
   g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
@@ -988,21 +988,19 @@ gdict_database_chooser_unselect_database (GdictDatabaseChooser *chooser,
 
   priv = chooser->priv;
 
-  data = g_slice_new0 (SelectData);
-  data->db_name = g_strdup (db_name);
-  data->chooser = chooser;
-  data->found = FALSE;
-  data->do_select = FALSE;
-  data->do_activate = FALSE;
+  data.db_name = g_strdup (db_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = FALSE;
+  data.do_activate = FALSE;
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
                           scan_for_db_name,
-                          data);
+                          &data);
 
-  retval = data->found;
+  retval = data.found;
 
-  g_free (data->db_name);
-  g_slice_free (SelectData, data);
+  g_free (data.db_name);
 
   return retval;
 }
@@ -1024,7 +1022,7 @@ gdict_database_chooser_set_current_database (GdictDatabaseChooser *chooser,
                                              const gchar          *db_name)
 {
   GdictDatabaseChooserPrivate *priv;
-  SelectData *data;
+  SelectData data;
   gboolean retval;
 
   g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
@@ -1032,21 +1030,19 @@ gdict_database_chooser_set_current_database (GdictDatabaseChooser *chooser,
 
   priv = chooser->priv;
 
-  data = g_slice_new0 (SelectData);
-  data->db_name = g_strdup (db_name);
-  data->chooser = chooser;
-  data->found = FALSE;
-  data->do_select = TRUE;
-  data->do_activate = TRUE;
+  data.db_name = g_strdup (db_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = TRUE;
+  data.do_activate = TRUE;
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
                           scan_for_db_name,
-                          data);
+                          &data);
 
-  retval = data->found;
+  retval = data.found;
 
-  g_free (data->db_name);
-  g_slice_free (SelectData, data);
+  g_free (data.db_name);
 
   return retval;
 }
