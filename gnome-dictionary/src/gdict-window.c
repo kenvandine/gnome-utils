@@ -204,11 +204,32 @@ gdict_window_dispose (GObject *gobject)
   G_OBJECT_CLASS (gdict_window_parent_class)->dispose (gobject);
 }
 
+static const gchar *toggle_state[] = {
+  "/MainMenu/FileMenu/SaveAsMenu",
+  "/MainMenu/FileMenu/FilePreviewMenu",
+  "/MainMenu/FileMenu/FilePrintMenu",
+  "/MainMenu/GoMenu",
+};
+
+static gint n_toggle_state = G_N_ELEMENTS (toggle_state);
+
 static void
 gdict_window_ensure_menu_state (GdictWindow *window)
 {
+  GtkWidget *item;
+  gint i;
+  gboolean is_sensitive;
+
   g_assert (GDICT_IS_WINDOW (window));
 
+  is_sensitive = !!(window->word != NULL);
+  for (i = 0; i < n_toggle_state; i++)
+    {
+      GtkWidget *item;
+
+      item = gtk_ui_manager_get_widget (window->ui_manager, toggle_state[i]);
+      gtk_widget_set_sensitive (item, is_sensitive);
+    }
 }
 
 static void
@@ -318,7 +339,7 @@ gdict_window_lookup_end_cb (GdictContext *context,
   GtkTreeIter iter;
   GdictSource *source;
   GdictContext *speller_context;
-
+  
   count = window->current_definition;
 
   window->max_definition = count - 1;
@@ -347,18 +368,29 @@ gdict_window_lookup_end_cb (GdictContext *context,
   g_object_unref (speller_context);
   g_object_unref (source);
 
-  /* search for similar words */
-  gdict_speller_set_strategy (GDICT_SPELLER (window->speller), window->strategy);
-  if (window->word)
-    gdict_speller_match (GDICT_SPELLER (window->speller), window->word);
-
-  gtk_list_store_append (window->completion_model, &iter);
-  gtk_list_store_set (window->completion_model, &iter,
-		      COMPLETION_TEXT_COLUMN, window->word,
-		      -1);
+  /* search for similar words; if we have a no-match we already started
+   * looking in the error signal handler
+   */
+  if (count != 0)
+    {
+      gdict_speller_set_strategy (GDICT_SPELLER (window->speller), window->strategy);
+      gdict_speller_match (GDICT_SPELLER (window->speller), window->word);
+      gtk_list_store_append (window->completion_model, &iter);
+      gtk_list_store_set (window->completion_model, &iter,
+                          COMPLETION_TEXT_COLUMN, window->word,
+                          -1);
+    }
 
   gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
   g_free (message);
+
+  if (count == 0)
+    {
+      g_free (window->word);
+      window->word = NULL;
+    }
+
+  gdict_window_ensure_menu_state (window);
 }
 
 static void
@@ -404,6 +436,12 @@ gdict_window_error_cb (GdictContext *context,
       gdict_speller_match (GDICT_SPELLER (window->speller),
 		           window->word);
     }
+
+  /* unset the word and update the UI */
+  g_free (window->word);
+  window->word = NULL;
+
+  gdict_window_ensure_menu_state (window);
 }
 
 static void
