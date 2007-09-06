@@ -197,7 +197,6 @@ print_cb (GtkWidget   *widget,
     return;
   
   gdict_show_print_dialog (GTK_WINDOW (priv->window),
-  			   _("Print"),
   			   GDICT_DEFBOX (priv->defbox));
 }
 

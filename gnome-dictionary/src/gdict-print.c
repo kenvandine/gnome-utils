@@ -33,42 +33,145 @@
 
 #include <gconf/gconf-client.h>
 
-#include <libgnomeprint/gnome-print.h>
-#include <libgnomeprint/gnome-print-job.h>
-#include <libgnomeprint/gnome-print-pango.h>
-#include <libgnomeprintui/gnome-print-dialog.h>
-#include <libgnomeprintui/gnome-print-job-preview.h>
-
 #include <libgdict/gdict.h>
 
 #include "gdict-pref-dialog.h"
 #include "gdict-print.h"
 
-static void
-get_page_margins (GnomePrintConfig *config,
-		  gdouble          *top_margin,
-		  gdouble          *right_margin,
-		  gdouble          *bottom_margin,
-		  gdouble          *left_margin)
-{
-  g_assert (config != NULL);
+#define HEADER_HEIGHT(lines)    ((lines) * 72 / 25.4)
+#define HEADER_GAP(lines)       ((lines) * 72 / 25.4)
 
-  gnome_print_config_get_length (config,
-  				 (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_TOP,
-  				 top_margin,
-  				 NULL);
-  gnome_print_config_get_length (config,
-  				 (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_RIGHT,
-  				 right_margin,
-  				 NULL);
-  gnome_print_config_get_length (config,
-  				 (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_BOTTOM,
-  				 bottom_margin,
-  				 NULL);
-  gnome_print_config_get_length (config,
-  				 (const guchar *) GNOME_PRINT_KEY_PAGE_MARGIN_LEFT,
-  				 left_margin,
-  				 NULL);
+typedef struct _GdictPrintData
+{
+  GdictDefbox *defbox;
+  gchar *word;
+
+  PangoFontDescription *font_desc;
+  gdouble font_size;
+
+  gchar **lines;
+  
+  gint n_lines;
+  gint lines_per_page;
+  gint n_pages;
+} GdictPrintData;
+
+static void
+begin_print (GtkPrintOperation *operation,
+             GtkPrintContext   *context,
+             gpointer           user_data)
+{
+  GdictPrintData *data = user_data;
+  gchar *contents;
+  gdouble height;
+
+  height = gtk_print_context_get_height (context)
+           - HEADER_HEIGHT (10)
+           - HEADER_GAP (3);
+
+  contents = gdict_defbox_get_text (data->defbox, NULL);
+
+  data->lines = g_strsplit (contents, "\n", 0);
+  data->n_lines = g_strv_length (data->lines);
+  data->lines_per_page = floor (height / data->font_size);
+
+  data->n_pages = (data->n_lines - 1) / data->lines_per_page + 1;
+
+  gtk_print_operation_set_n_pages (operation, data->n_pages);
+
+  g_free (contents);
+}
+
+static void
+draw_page (GtkPrintOperation *operation,
+           GtkPrintContext   *context,
+           gint               page_number,
+           gpointer           user_data)
+{
+  GdictPrintData *data = user_data;
+  cairo_t *cr;
+  PangoLayout *layout;
+  gint text_width, text_height;
+  gdouble width;
+  gint line, i;
+  PangoFontDescription *desc;
+  gchar *page_str;
+
+  cr = gtk_print_context_get_cairo_context (context);
+  width = gtk_print_context_get_width (context);
+
+  cairo_rectangle (cr, 0, 0, width, HEADER_HEIGHT (10));
+  
+  cairo_set_source_rgb (cr, 0.8, 0.8, 0.8);
+  cairo_fill_preserve (cr);
+  
+  cairo_set_source_rgb (cr, 0, 0, 0);
+  cairo_set_line_width (cr, 1);
+  cairo_stroke (cr);
+
+  /* header */
+  layout = gtk_print_context_create_pango_layout (context);
+
+  desc = pango_font_description_from_string ("sans 14");
+  pango_layout_set_font_description (layout, desc);
+  pango_font_description_free (desc);
+
+  pango_layout_set_text (layout, data->word, -1);
+  pango_layout_get_pixel_size (layout, &text_width, &text_height);
+
+  if (text_width > width)
+    {
+      pango_layout_set_width (layout, width);
+      pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_START);
+      pango_layout_get_pixel_size (layout, &text_width, &text_height);
+    }
+
+  cairo_move_to (cr, (width - text_width) / 2,
+                     (HEADER_HEIGHT (10) - text_height) / 2);
+  pango_cairo_show_layout (cr, layout);
+
+  page_str = g_strdup_printf ("%d/%d", page_number + 1, data->n_pages);
+  pango_layout_set_text (layout, page_str, -1);
+  g_free (page_str);
+
+  pango_layout_set_width (layout, -1);
+  pango_layout_get_pixel_size (layout, &text_width, &text_height);
+  cairo_move_to (cr, width - text_width - 4,
+                     (HEADER_HEIGHT (10) - text_height) / 2);
+  pango_cairo_show_layout (cr, layout);
+  
+  g_object_unref (layout);
+
+  /* text */
+  layout = gtk_print_context_create_pango_layout (context);
+  pango_font_description_set_size (data->font_desc,
+                                   data->font_size * PANGO_SCALE);
+  pango_layout_set_font_description (layout, data->font_desc);
+  
+  cairo_move_to (cr, 0, HEADER_HEIGHT (10) + HEADER_GAP (3));
+  line = page_number * data->lines_per_page;
+  for (i = 0; i < data->lines_per_page && line < data->n_lines; i++) 
+    {
+      pango_layout_set_text (layout, data->lines[line], -1);
+      pango_cairo_show_layout (cr, layout);
+      cairo_rel_move_to (cr, 0, data->font_size);
+      line++;
+    }
+
+  g_object_unref (layout);
+}
+
+static void
+end_print (GtkPrintOperation *operation,
+           GtkPrintContext   *context,
+           gpointer           user_data)
+{
+  GdictPrintData *data = user_data;
+
+  pango_font_description_free (data->font_desc);
+  g_free (data->word);
+  g_strfreev (data->lines);
+  g_free (data);
 }
 
 static gchar *
@@ -89,228 +192,130 @@ get_print_font (void)
   return print_font;
 }
 
-/* FIXME - add copies and collate support */
-static gboolean
-prepare_print (GdictDefbox   *defbox,
-	       GnomePrintJob *job,
-	       gint           n_copies,
-	       gint           collate)
+void
+gdict_show_print_preview (GtkWindow   *parent,
+                          GdictDefbox *defbox)
 {
-  GnomePrintContext *pc;
-  GnomePrintConfig *config;
+  GtkPrintOperation *operation;
+  GdictPrintData *data;
   gchar *print_font;
-  PangoLayout *layout;
-  PangoFontDescription *font_desc;
-  gdouble page_width, page_height;
-  gdouble top_margin, right_margin, bottom_margin, left_margin;
-  gint lines_per_page, total_lines, written_lines, remaining_lines;
-  gint line_width;
-  gint num_pages;
-  gint x, y, i;
-  gchar *text, *header_line;
-  gchar **text_lines;
-  gsize length;
+  gchar *word;
+  GError *error;
   
-  g_assert (GDICT_IS_DEFBOX (defbox));
-  g_assert (job != NULL);
-  
-  pc = gnome_print_job_get_context (job);
-  if (!pc)
-    {
-      g_warning ("Unable to create a GnomePrintContext for the job\n");
-      
-      return FALSE;
-    }
-  
-  /* take the defbox text, and break it up into lines */
-  total_lines = 0;
-  text = gdict_defbox_get_text (defbox, &length);
-  if (!text)
-    {
-      g_object_unref (pc);
-      
-      return TRUE;
-    }
-  
-  text_lines = g_strsplit (text, "\n", -1);
-  header_line = text_lines[0];
-  remaining_lines = total_lines = g_strv_length (text_lines);
-  
-  layout = gnome_print_pango_create_layout (pc);
+  g_return_if_fail (parent == NULL || GTK_IS_WINDOW (parent));
+  g_return_if_fail (GDICT_IS_DEFBOX (defbox));
 
-  print_font = get_print_font ();   
-  font_desc = pango_font_description_from_string (print_font);
-  line_width = pango_font_description_get_size (font_desc) / PANGO_SCALE;
-  pango_layout_set_font_description (layout, font_desc);
-  pango_font_description_free (font_desc);
-  
-  config = gnome_print_job_get_config (job);
-  gnome_print_job_get_page_size_from_config (config,
-                                             &page_width,
-                                             &page_height);
-  get_page_margins (config, &top_margin, &right_margin, &bottom_margin, &left_margin);
-  
-  pango_layout_set_width (layout, (page_width - left_margin - right_margin) * PANGO_SCALE);
-  
-  lines_per_page = (page_height - top_margin - bottom_margin) / line_width;
-
-  /* take into account that we are printing the header (word + page, line)
-   * and the footer (line), so update the real number of lines per page before
-   * using it to compute the number of pages.
-   */
-  lines_per_page -= 6;
-  
-  num_pages = ceil ((float) total_lines / (float) lines_per_page);
-
-  /* the first line of the buffer is the header, and will be printed on each
-   * page, so we skip it
-   */
-  written_lines = 1;
-  x = left_margin;
-  for (i = 0; i < num_pages; i++)
+  g_object_get (defbox, "word", &word, NULL);
+  if (!word)
     {
-      gchar *page;
-      gchar *header;
-      gint j;
-      
-      if (written_lines == total_lines)
-        break;
-      
-      page = g_strdup_printf ("%d", i + 1);
-      gnome_print_beginpage (pc, (const guchar *) page);
-      
-      y = page_height - top_margin;
-      
-      /* header (tile + line) */
-      gnome_print_moveto (pc, x, y);
-      
-      header = g_strdup_printf (_("%s (page %d)"), header_line, i + 1);
-      pango_layout_set_text (layout, header, -1);
-      gnome_print_pango_layout (pc, layout);
-      
-      y -= 2 * line_width;
-      
-      gnome_print_moveto (pc, x, y);
-      gnome_print_lineto (pc, x + (page_width - right_margin - left_margin), y);
-      gnome_print_stroke (pc);
-      
-      y -= 2 * line_width;
-      
-      for (j = 0; j < lines_per_page; j++)
-        {
-          gchar *line = text_lines[written_lines++];
-          
-          if (!line)
-            break;
-          
-          gnome_print_moveto (pc, x, y);
-          
-          pango_layout_set_text (layout, line, -1);
-          gnome_print_pango_layout (pc, layout);
-          
-          remaining_lines -= 1;
-          y -= line_width;
-        }
-      
-      /* footer (line) */
-      y = bottom_margin + line_width;
-      
-      gnome_print_moveto (pc, x, y);
-      gnome_print_lineto (pc, x + (page_width - right_margin - left_margin), y);
-      gnome_print_stroke (pc);
-      
-      g_free (page);
-      g_free (header);
-      
-      gnome_print_showpage (pc);
+      g_warning ("Preview should be disabled.");
+      return;
     }
-  
+
+  data = g_new0 (GdictPrintData, 1);
+  data->defbox = defbox;
+  data->word = word;
+
+  operation = gtk_print_operation_new ();
+  print_font = get_print_font ();
+  data->font_desc = pango_font_description_from_string (print_font);
+  data->font_size = pango_font_description_get_size (data->font_desc)
+                    / PANGO_SCALE;
   g_free (print_font);
-  
-  g_object_unref (pc);
 
-  g_strfreev (text_lines);
-  g_free (text);
-  
-  gnome_print_job_close (job);
-  
-  return TRUE;
-}
+  g_signal_connect (operation, "begin-print", 
+		    G_CALLBACK (begin_print), data);
+  g_signal_connect (operation, "draw-page", 
+		    G_CALLBACK (draw_page), data);
+  g_signal_connect (operation, "end-print", 
+		    G_CALLBACK (end_print), data);
 
-static void
-show_print_preview (GtkWindow     *parent,
-		    GnomePrintJob *job)
-{
-  GtkWidget *preview;
-  
-  preview = gnome_print_job_preview_new (job, (const guchar *) _("Print Preview"));
-  gtk_window_set_transient_for (GTK_WINDOW (preview), parent);
-  
-  gtk_widget_show (preview);
-}
+  error = NULL;
+  gtk_print_operation_run (operation,
+                           GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+                           parent,
+                           &error);
+  g_object_unref (operation);
 
-static void
-gdict_print_dialog_response_cb (GtkWidget *widget,
-				gint       response_id,
-				gpointer   user_data)
-{
-  GdictDefbox *defbox;
-  GnomePrintJob *job;
-  
-  defbox = g_object_get_data (G_OBJECT (widget), "defbox");
-  job = g_object_get_data (G_OBJECT (widget), "print-job");
-  
-  switch (response_id)
+  if (error)
     {
-    case GNOME_PRINT_DIALOG_RESPONSE_PRINT:
-      {
-      gint copies, collate;
-      
-      gnome_print_dialog_get_copies (GNOME_PRINT_DIALOG (widget),
-      				     &copies,
-      				     &collate);
-      
-      if (prepare_print (defbox, job, copies, collate))
-        gnome_print_job_print (job);
-      }
-      break;
-    case GNOME_PRINT_DIALOG_RESPONSE_PREVIEW:
-      if (prepare_print (defbox, job, 1, 0));
-        show_print_preview (GTK_WINDOW (widget), job);
-      break;
-    case GNOME_PRINT_DIALOG_RESPONSE_CANCEL:
-    default:
-      break;
+      GtkWidget *dialog;
+
+      dialog = gtk_message_dialog_new (parent,
+                                       GTK_DIALOG_DESTROY_WITH_PARENT,
+                                       GTK_MESSAGE_ERROR,
+                                       GTK_BUTTONS_CLOSE,
+				       _("Unable to display the preview: %s"),
+                                       error->message);
+      g_error_free (error);
+
+      g_signal_connect (dialog, "response",
+			G_CALLBACK (gtk_widget_destroy), NULL);
+
+      gtk_widget_show (dialog);
     }
 }
 
 void
 gdict_show_print_dialog (GtkWindow   *parent,
-			 const gchar *title,
 			 GdictDefbox *defbox)
 {
-  GtkWidget *print_dialog;
-  GnomePrintJob *job;
+  GtkPrintOperation *operation;
+  GdictPrintData *data;
+  gchar *print_font;
+  gchar *word;
+  GError *error;
   
   g_return_if_fail (parent == NULL || GTK_IS_WINDOW (parent));
   g_return_if_fail (GDICT_IS_DEFBOX (defbox));
-  
-  job = gnome_print_job_new (NULL);
-  
-  print_dialog = gnome_print_dialog_new (job, (const guchar *) title, 0);
-  gtk_window_set_transient_for (GTK_WINDOW (print_dialog),
-  				parent);
- 
-  g_object_set_data (G_OBJECT (print_dialog), "defbox", defbox);
-  g_object_set_data (G_OBJECT (print_dialog), "print-job", job);
-  
-  g_signal_connect (print_dialog, "response",
-      		    G_CALLBACK (gdict_print_dialog_response_cb),
-      		    parent);
-  
-  gtk_dialog_run (GTK_DIALOG (print_dialog));
-  
-  gtk_widget_destroy (print_dialog);
-  
-  g_object_unref (job);
+
+  g_object_get (defbox, "word", &word, NULL);
+  if (!word)
+    {
+      g_warning ("Print should be disabled.");
+      return;
+    }
+
+  data = g_new0 (GdictPrintData, 1);
+  data->defbox = defbox;
+  data->word = word;
+
+  operation = gtk_print_operation_new ();
+  print_font = get_print_font ();
+  data->font_desc = pango_font_description_from_string (print_font);
+  data->font_size = pango_font_description_get_size (data->font_desc)
+                    / PANGO_SCALE;
+  g_free (print_font);
+
+  g_signal_connect (operation, "begin-print", 
+		    G_CALLBACK (begin_print), data);
+  g_signal_connect (operation, "draw-page", 
+		    G_CALLBACK (draw_page), data);
+  g_signal_connect (operation, "end-print", 
+		    G_CALLBACK (end_print), data);
+
+  error = NULL;
+  gtk_print_operation_run (operation,
+                           GTK_PRINT_OPERATION_ACTION_PRINT_DIALOG,
+                           parent,
+                           &error);
+  g_object_unref (operation);
+
+  if (error)
+    {
+      GtkWidget *dialog;
+
+      dialog = gtk_message_dialog_new (parent,
+                                       GTK_DIALOG_DESTROY_WITH_PARENT,
+                                       GTK_MESSAGE_ERROR,
+                                       GTK_BUTTONS_CLOSE,
+				       _("Unable to display the preview: %s"),
+                                       error->message);
+      g_error_free (error);
+
+      g_signal_connect (dialog, "response",
+			G_CALLBACK (gtk_widget_destroy), NULL);
+
+      gtk_widget_show (dialog);
+    }
 }

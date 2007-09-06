@@ -205,6 +205,13 @@ gdict_window_dispose (GObject *gobject)
 }
 
 static void
+gdict_window_ensure_menu_state (GdictWindow *window)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+}
+
+static void
 gdict_window_set_sidebar_visible (GdictWindow *window,
 				  gboolean     is_visible)
 {
@@ -804,13 +811,22 @@ gdict_window_cmd_save_as (GtkAction   *action,
 }
 
 static void
+gdict_window_cmd_file_preview (GtkAction   *action,
+                               GdictWindow *window)
+{
+  g_assert (GDICT_IS_WINDOW (window));
+
+  gdict_show_print_preview (GTK_WINDOW (window),
+                            GDICT_DEFBOX (window->defbox));
+}
+
+static void
 gdict_window_cmd_file_print (GtkAction   *action,
 			     GdictWindow *window)
 {
   g_assert (GDICT_IS_WINDOW (window));
   
   gdict_show_print_dialog (GTK_WINDOW (window),
-  			   _("Print"),
   			   GDICT_DEFBOX (window->defbox));
 }
 
@@ -1092,6 +1108,8 @@ static const GtkActionEntry entries[] =
     N_("New look up"), G_CALLBACK (gdict_window_cmd_file_new) },
   { "FileSaveAs", GTK_STOCK_SAVE_AS, N_("_Save a Copy..."), NULL, NULL,
     G_CALLBACK (gdict_window_cmd_save_as) },
+  { "FilePreview", NULL, N_("P_review..."), "<control><shift>P",
+    N_("Preview this document"), G_CALLBACK (gdict_window_cmd_file_preview) },
   { "FilePrint", GTK_STOCK_PRINT, N_("_Print..."), "<control>P",
     N_("Print this document"), G_CALLBACK (gdict_window_cmd_file_print) },
   { "FileCloseWindow", GTK_STOCK_CLOSE, NULL, "<control>W", NULL,
@@ -1616,6 +1634,8 @@ gdict_window_constructor (GType                  type,
       
       gtk_box_pack_start (GTK_BOX (window->main_box), window->menubar, FALSE, FALSE, 0);
       gtk_widget_show (window->menubar);
+
+      gdict_window_ensure_menu_state (window);
     }
   
   vbox = gtk_vbox_new (FALSE, 6);
