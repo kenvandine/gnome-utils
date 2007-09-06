@@ -500,6 +500,7 @@ gnome-dictionary/data/Makefile
 gnome-dictionary/docs/Makefile
 gnome-dictionary/docs/reference/Makefile
 gnome-dictionary/docs/reference/gdict/Makefile
+gnome-dictionary/docs/reference/gdict/version.xml
 gnome-dictionary/help/Makefile
 gnome-dictionary/src/Makefile
 gfloppy/Makefile
