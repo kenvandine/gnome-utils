@@ -2039,7 +2039,7 @@ gdict_defbox_get_database (GdictDefbox *defbox)
  *   owned by the #GdictDefbox widget and should never be modified or
  *   freed.
  *
- * Since: 0.11
+ * Since: 0.12
  */
 G_CONST_RETURN gchar *
 gdict_defbox_get_word (GdictDefbox *defbox)
@@ -2859,7 +2859,12 @@ gdict_defbox_get_font_name (GdictDefbox *defbox)
  * gdict_defbox_get_selected_word:
  * @defbox: a #GdictDefbox
  *
- * Since: 0.11
+ * Retrieves the selected word from the defbox widget
+ *
+ * Return value: a newly allocated string containing the selected
+ *   word. Use g_free() when done using it.
+ *
+ * Since: 0.12
  */
 gchar *
 gdict_defbox_get_selected_word (GdictDefbox *defbox)

@@ -25,7 +25,7 @@
  * dictionary sources using a #GdictSourceLoader instance as a model.
  * It can be used to allow choosing the current dictionary source.
  *
- * #GdictSourceChooser is available since Gdict 0.11.
+ * #GdictSourceChooser is available since Gdict 0.12.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -324,7 +324,7 @@ gdict_source_chooser_class_init (GdictSourceChooserClass *klass)
    * The #GdictSourceLoader used to retrieve the list of available
    * dictionary sources.
    *
-   * Since: 0.11
+   * Since: 0.12
    */
   g_object_class_install_property (gobject_class,
                                    PROP_LOADER,
@@ -339,7 +339,7 @@ gdict_source_chooser_class_init (GdictSourceChooserClass *klass)
    * The number of available dictionary sources, or -1 if no
    * #GdictSourceLoader is set.
    *
-   * Since: 0.11
+   * Since: 0.12
    */
   g_object_class_install_property (gobject_class,
                                    PROP_COUNT,
@@ -359,7 +359,7 @@ gdict_source_chooser_class_init (GdictSourceChooserClass *klass)
    * activates a row in the source chooser widget, either by double
    * clicking on it or by a keyboard event.
    *
-   * Since: 0.11
+   * Since: 0.12
    */
   source_chooser_signals[SOURCE_ACTIVATED] =
     g_signal_new ("source-activated",
@@ -378,7 +378,7 @@ gdict_source_chooser_class_init (GdictSourceChooserClass *klass)
    * The ::selection-changed signal is emitted each time the
    * selection inside the source chooser widget has been changed.
    *
-   * Since: 0.11
+   * Since: 0.12
    */
   source_chooser_signals[SELECTION_CHANGED] =
     g_signal_new ("selection-changed",
@@ -416,7 +416,7 @@ gdict_source_chooser_init (GdictSourceChooser *chooser)
  *
  * Return value: the newly created #GdictSourceChooser widget.
  *
- * Since: 0.11
+ * Since: 0.12
  */
 GtkWidget *
 gdict_source_chooser_new (void)
@@ -434,7 +434,7 @@ gdict_source_chooser_new (void)
  *
  * Return value: the newly created #GdictSourceChooser widget.
  *
- * Since: 0.11
+ * Since: 0.12
  */
 GtkWidget *
 gdict_source_chooser_new_with_loader (GdictSourceLoader *loader)
@@ -452,7 +452,7 @@ gdict_source_chooser_new_with_loader (GdictSourceLoader *loader)
  * Sets the #GdictSourceLoader to be used by the source chooser
  * widget.
  *
- * Since: 0.11
+ * Since: 0.12
  */
 void
 gdict_source_chooser_set_loader (GdictSourceChooser *chooser,
@@ -480,6 +480,16 @@ gdict_source_chooser_set_loader (GdictSourceChooser *chooser,
     }
 }
 
+/**
+ * gdict_source_chooser_get_loader:
+ * @chooser: a #GdictSourceChooser
+ * 
+ * Retrieves the #GdictSourceLoader used by @chooser.
+ *
+ * Return value: a #GdictSourceLoader or %NULL is none is set
+ *
+ * Since: 0.12
+ */
 GdictSourceLoader *
 gdict_source_chooser_get_loader (GdictSourceChooser *chooser)
 {
@@ -488,44 +498,234 @@ gdict_source_chooser_get_loader (GdictSourceChooser *chooser)
   return chooser->priv->loader;
 }
 
+typedef struct
+{
+  gchar *source_name;
+  GdictSourceChooser *chooser;
+  
+  guint found       : 1;
+  guint do_select   : 1;
+  guint do_activate : 1;
+} SelectData;
+
+static gboolean
+scan_for_source_name (GtkTreeModel *model,
+                      GtkTreePath  *path,
+                      GtkTreeIter  *iter,
+                      gpointer      user_data)
+{
+  SelectData *select_data = user_data;
+  gchar *source_name = NULL;
+
+  if (!select_data)
+    return TRUE;
+
+  if (select_data->found)
+    return TRUE;
+
+  gtk_tree_model_get (model, iter, SOURCE_NAME, &source_name, -1);
+  if (!source_name)
+    return FALSE;
+
+  if (strcmp (source_name, select_data->source_name) == 0)
+    {
+      GtkTreeView *tree_view;
+      GtkTreeSelection *selection;
+
+      select_data->found = TRUE;
+
+      tree_view = GTK_TREE_VIEW (select_data->chooser->priv->treeview);
+      if (select_data->do_activate)
+        gtk_tree_view_row_activated (tree_view, path,
+                                     gtk_tree_view_get_column (tree_view, 2));
+
+      selection = gtk_tree_view_get_selection (tree_view);
+      if (select_data->do_select)
+        gtk_tree_selection_select_path (selection, path);
+      else
+        gtk_tree_selection_unselect_path (selection, path);
+    }
+
+  g_free (source_name);
+
+  return select_data->found;
+}
+
+/**
+ * gdict_source_chooser_select_source:
+ * @chooser: a #GdictSourceChooser
+ * @source_name: the name of a dictionary source
+ *
+ * Selects the dictionary source named @source_name inside @chooser.
+ * The selection is moved but the row containing the dictionary source
+ * is not activated.
+ *
+ * Return value: %TRUE if the source was found and selected
+ *
+ * Since: 0.12
+ */
 gboolean
 gdict_source_chooser_select_source (GdictSourceChooser *chooser,
                                     const gchar        *source_name)
 {
+  GdictSourceChooserPrivate *priv;
+  SelectData data;
+  gboolean retval;
+
   g_return_val_if_fail (GDICT_IS_SOURCE_CHOOSER (chooser), FALSE);
   g_return_val_if_fail (source_name != NULL, FALSE);
 
-  return TRUE;
+  priv = chooser->priv;
+
+  data.source_name = g_strdup (source_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = TRUE;
+  data.do_activate = FALSE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_source_name,
+                          &data);
+
+  retval = data.found;
+
+  g_free (data.source_name);
+
+  return retval;
 }
 
+/**
+ * gdict_source_chooser_unselect_source:
+ * @chooser: a #GdictSourceChooser
+ * @source_name: the name of a dictionary source
+ *
+ * Unselects @source_name inside @chooser.
+ *
+ * Return value: %TRUE if the source was found and unselected
+ *
+ * Since: 0.12
+ */
 gboolean
 gdict_source_chooser_unselect_source (GdictSourceChooser *chooser,
                                       const gchar        *source_name)
 {
+  GdictSourceChooserPrivate *priv;
+  SelectData data;
+  gboolean retval;
+
   g_return_val_if_fail (GDICT_IS_SOURCE_CHOOSER (chooser), FALSE);
   g_return_val_if_fail (source_name != NULL, FALSE);
 
-  return TRUE;
+  priv = chooser->priv;
+
+  data.source_name = g_strdup (source_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = FALSE;
+  data.do_activate = FALSE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_source_name,
+                          &data);
+
+  retval = data.found;
+
+  g_free (data.source_name);
+
+  return retval;
 }
 
+/**
+ * gdict_source_chooser_set_current_source:
+ * @chooser: a #GdictSourceChooser
+ * @source_name: the name of a dictionary source
+ *
+ * Sets the current dictionary source named @source_name. The row
+ * of the source, if found, will be selected and activated.
+ *
+ * Return value: %TRUE if the source was found
+ *
+ * Since: 0.12
+ */
 gboolean
 gdict_source_chooser_set_current_source (GdictSourceChooser *chooser,
                                          const gchar        *source_name)
 {
+  GdictSourceChooserPrivate *priv;
+  SelectData data;
+  gboolean retval;
+
   g_return_val_if_fail (GDICT_IS_SOURCE_CHOOSER (chooser), FALSE);
   g_return_val_if_fail (source_name != NULL, FALSE);
 
-  return TRUE;
+  priv = chooser->priv;
+
+  data.source_name = g_strdup (source_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = TRUE;
+  data.do_activate = TRUE;
+
+  gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
+                          scan_for_source_name,
+                          &data);
+
+  retval = data.found;
+
+  g_free (data.source_name);
+
+  return retval;
 }
 
+/**
+ * gdict_source_chooser_get_current_source:
+ * @chooser: a #GdictSourceChooser
+ *
+ * Retrieves the currently selected source.
+ *
+ * Return value: a newly allocated string containing the name of
+ *   the currently selected source. Use g_free() when done using it
+ *
+ * Since: 0.12
+ */
 gchar *
 gdict_source_chooser_get_current_source (GdictSourceChooser *chooser)
 {
-  g_return_val_if_fail (GDICT_IS_SOURCE_CHOOSER (chooser), NULL);
+  GdictSourceChooserPrivate *priv;
+  GtkTreeSelection *selection;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  gchar *retval = NULL;
 
-  return chooser->priv->current_source;
+  g_return_val_if_fail (GDICT_IS_SOURCE_CHOOSER (chooser), NULL);
+  
+  priv = chooser->priv;
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->treeview));
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter))
+    return NULL;
+
+  gtk_tree_model_get (model, &iter, SOURCE_NAME, &retval, -1);
+  
+  g_free (priv->current_source);
+  priv->current_source = g_strdup (retval);
+
+  return retval;
 }
 
+/**
+ * gdict_source_chooser_get_sources:
+ * @chooser: a #GdictSouceChooser
+ * @length: return location for the length of the returned vector
+ *
+ * Retrieves the names of the available dictionary sources.
+ *
+ * Return value: a newly allocated, %NULL terminated string vector
+ *   containing the names of the available sources. Use g_strfreev()
+ *   when done using it.
+ *
+ * Since: 0.12
+ */
 gchar **
 gdict_source_chooser_get_sources (GdictSourceChooser *chooser,
                                   gsize              *length)
@@ -548,6 +748,17 @@ gdict_source_chooser_get_sources (GdictSourceChooser *chooser,
   return retval;
 }
 
+/**
+ * gdict_source_chooser_count_sources:
+ * @chooser: a #GdictSourceChooser
+ *
+ * Retrieve the number of available dictionary sources.
+ *
+ * Return value: the number of available sources, or -1 if no
+ *   #GdictSourceLoader has been set
+ *
+ * Since: 0.12
+ */
 gint
 gdict_source_chooser_count_sources (GdictSourceChooser *chooser)
 {
@@ -565,7 +776,7 @@ gdict_source_chooser_count_sources (GdictSourceChooser *chooser)
  *
  * Return value: %TRUE if the dictionary source was found
  *
- * Since: 0.11
+ * Since: 0.12
  */
 gboolean
 gdict_source_chooser_has_source (GdictSourceChooser *chooser,
@@ -590,7 +801,7 @@ gdict_source_chooser_has_source (GdictSourceChooser *chooser,
  *
  * Forces a refresh on the contents of the source chooser widget
  *
- * Since: 0.11
+ * Since: 0.12
  */
 void
 gdict_source_chooser_refresh (GdictSourceChooser *chooser)
@@ -642,7 +853,7 @@ gdict_source_chooser_refresh (GdictSourceChooser *chooser)
  *
  * Return value: the newly packed button.
  *
- * Since: 0.11
+ * Since: 0.12
  */
 GtkWidget *
 gdict_source_chooser_add_button (GdictSourceChooser *chooser,

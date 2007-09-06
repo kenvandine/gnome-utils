@@ -146,7 +146,7 @@ post_parse_hook (GOptionContext  *context,
  *
  * Return value: FIXME
  *
- * Since: 0.11
+ * Since: 0.12
  */
 GOptionGroup *
 gdict_get_option_group (void)
@@ -173,7 +173,7 @@ gdict_get_option_group (void)
  *
  * FIXME
  *
- * Since: 0.11
+ * Since: 0.12
  */
 void
 gdict_debug_init (gint    *argc,

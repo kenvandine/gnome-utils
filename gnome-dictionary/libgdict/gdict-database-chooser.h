@@ -85,7 +85,7 @@ gboolean      gdict_database_chooser_set_current_database (GdictDatabaseChooser 
                                                            const gchar          *db_name);
 gchar *       gdict_database_chooser_get_current_database (GdictDatabaseChooser *chooser) G_GNUC_MALLOC;
 gchar **      gdict_database_chooser_get_databases        (GdictDatabaseChooser *chooser,
-						           gsize                 length) G_GNUC_MALLOC;
+						           gsize                *length) G_GNUC_MALLOC;
 gint          gdict_database_chooser_count_databases      (GdictDatabaseChooser *chooser);
 gboolean      gdict_database_chooser_has_database         (GdictDatabaseChooser *chooser,
 						           const gchar          *database);

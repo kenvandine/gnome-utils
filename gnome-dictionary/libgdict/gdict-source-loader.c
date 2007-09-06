@@ -584,7 +584,7 @@ gdict_source_loader_remove_source (GdictSourceLoader *loader,
  *
  * Return value: %TRUE if the dictionary source is known
  *
- * Since: 0.11
+ * Since: 0.12
  */
 gboolean
 gdict_source_loader_has_source (GdictSourceLoader *loader,

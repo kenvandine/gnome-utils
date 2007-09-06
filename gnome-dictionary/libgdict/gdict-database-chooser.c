@@ -431,7 +431,7 @@ gdict_database_chooser_class_init (GdictDatabaseChooserClass *klass)
    *
    * The number of displayed databases or, if no #GdictContext is set, -1.
    *
-   * Since: 0.11
+   * Since: 0.12
    */
   g_object_class_install_property (gobject_class,
                                    PROP_COUNT,
@@ -470,7 +470,7 @@ gdict_database_chooser_class_init (GdictDatabaseChooserClass *klass)
    * The ::selection-changed signal is emitted each time the selection
    * inside the database chooser has been changed.
    *
-   * Since: 0.11
+   * Since: 0.12
    */
   db_chooser_signals[SELECTION_CHANGED] =
     g_signal_new ("selection-changed",
@@ -567,9 +567,10 @@ gdict_database_chooser_get_context (GdictDatabaseChooser *chooser)
  * @chooser: a #GdictDatabaseChooser
  * @context: a #GdictContext
  *
- * FIXME
+ * Sets the #GdictContext to be used to query a dictionary source
+ * for the list of available databases.
  *
- * Since:
+ * Since: 0.10
  */
 void
 gdict_database_chooser_set_context (GdictDatabaseChooser *chooser,
@@ -586,42 +587,103 @@ gdict_database_chooser_set_context (GdictDatabaseChooser *chooser,
 /**
  * gdict_database_chooser_get_databases:
  * @chooser: a #GdictDatabaseChooser
- * @length: FIXME
+ * @length: return location for the length of the returned vector
  *
- * FIXME
+ * Gets the list of available database names.
  *
- * Return value: FIXME
+ * Return value: a newly allocated, %NULL terminated string vector
+ *   containing database names. Use g_strfreev() to deallocate it.
  *
- * Since:
+ * Since: 0.10
  */
 gchar **
 gdict_database_chooser_get_databases (GdictDatabaseChooser  *chooser,
-				      gsize                  length)
+				      gsize                 *length)
 {
+  GdictDatabaseChooserPrivate *priv;
+  GtkTreeIter iter;
+  gchar **retval;
+  gsize i;
+
   g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), NULL);
 
-  return NULL;
+  priv = chooser->priv;
+
+  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
+    return NULL;
+
+  i = 0;
+  retval = g_new (gchar*, priv->results);
+
+  do
+    {
+      gchar *db_name;
+
+      gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                          DB_COLUMN_NAME, &db_name,
+                          -1);
+
+      retval[i++] = db_name;
+    }
+  while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter));
+
+  retval[i] = NULL;
+
+  if (length)
+    *length = i;
+
+  return retval;
 }
 
 /**
  * gdict_database_chooser_has_database:
  * @chooser: a #GdictDatabaseChooser
- * @database: FIXME
+ * @database: the name of a database
  *
- * FIXME
+ * Checks whether the @chooser displays @database
  *
- * Return value: FIXME
+ * Return value: %TRUE if the search database name is present
  *
- * Since:
+ * Since: 0.10
  */
 gboolean
 gdict_database_chooser_has_database (GdictDatabaseChooser *chooser,
 				     const gchar          *database)
 {
+  GdictDatabaseChooserPrivate *priv;
+  GtkTreeIter iter;
+  gboolean retval;
+
   g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
   g_return_val_if_fail (database != NULL, FALSE);
 
-  return FALSE;
+  priv = chooser->priv;
+
+  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
+    return FALSE;
+
+  retval = FALSE;
+
+  do
+    {
+      gchar *db_name;
+
+      gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                          DB_COLUMN_NAME, &db_name,
+                          -1);
+      
+      if (strcmp (db_name, database) == 0)
+        {
+          g_free (db_name);
+          retval = TRUE;
+          break;
+        }
+      
+      g_free (db_name);
+    }
+  while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter));
+
+  return retval;
 }
 
 /**
@@ -714,7 +776,7 @@ error_cb (GdictContext *context,
  *
  * Reloads the list of available databases.
  *
- * Since:
+ * Since: 0.10
  */
 void
 gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
@@ -788,7 +850,7 @@ gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
  *
  * Clears @chooser.
  *
- * Since:
+ * Since: 0.10
  */
 void
 gdict_database_chooser_clear (GdictDatabaseChooser *chooser)
@@ -861,12 +923,23 @@ scan_for_db_name (GtkTreeModel *model,
   return select_data->found;
 }
 
+/**
+ * gdict_database_chooser_select_database:
+ * @chooser: a #GdictDatabaseChooser
+ * @db_name: name of the database to select
+ *
+ * Selects the database with @db_name inside the @chooser widget.
+ *
+ * Return value: %TRUE if the database was found and selected
+ *
+ * Since: 0.10
+ */
 gboolean
 gdict_database_chooser_select_database (GdictDatabaseChooser *chooser,
                                         const gchar          *db_name)
 {
   GdictDatabaseChooserPrivate *priv;
-  SelectData *data;
+  SelectData data;
   gboolean retval;
 
   g_return_val_if_fail (GDICT_IS_DATABASE_CHOOSER (chooser), FALSE);
@@ -874,25 +947,34 @@ gdict_database_chooser_select_database (GdictDatabaseChooser *chooser,
 
   priv = chooser->priv;
 
-  data = g_slice_new0 (SelectData);
-  data->db_name = g_strdup (db_name);
-  data->chooser = chooser;
-  data->found = FALSE;
-  data->do_select = TRUE;
-  data->do_activate = FALSE;
+  data.db_name = g_strdup (db_name);
+  data.chooser = chooser;
+  data.found = FALSE;
+  data.do_select = TRUE;
+  data.do_activate = FALSE;
 
   gtk_tree_model_foreach (GTK_TREE_MODEL (priv->store),
                           scan_for_db_name,
-                          data);
+                          &data);
 
-  retval = data->found;
+  retval = data.found;
 
-  g_free (data->db_name);
-  g_slice_free (SelectData, data);
+  g_free (data.db_name);
 
   return retval;
 }
 
+/**
+ * gdict_database_chooser_unselect_database:
+ * @chooser: a #GdictDatabaseChooser
+ * @db_name: name of the database to unselect
+ *
+ * Unselects the database @db_name inside the @chooser widget
+ *
+ * Return value: %TRUE if the database was found and unselected
+ *
+ * Since: 0.10
+ */
 gboolean
 gdict_database_chooser_unselect_database (GdictDatabaseChooser *chooser,
                                           const gchar          *db_name)
@@ -925,6 +1007,18 @@ gdict_database_chooser_unselect_database (GdictDatabaseChooser *chooser,
   return retval;
 }
 
+/**
+ * gdict_database_chooser_set_current_database:
+ * @chooser: a #GdictDatabaseChooser
+ * @db_name: the name of the database
+ *
+ * Sets @db_name as the current database. This function will select
+ * and activate the corresponding row, if the database is found.
+ *
+ * Return value: %TRUE if the database was found and set
+ *
+ * Since: 0.10
+ */
 gboolean
 gdict_database_chooser_set_current_database (GdictDatabaseChooser *chooser,
                                              const gchar          *db_name)
@@ -957,6 +1051,17 @@ gdict_database_chooser_set_current_database (GdictDatabaseChooser *chooser,
   return retval;
 }
 
+/**
+ * gdict_database_chooser_get_current_database:
+ * @chooser: a #GdictDatabaseChooser
+ *
+ * Retrieves the name of the currently selected database inside @chooser
+ *
+ * Return value: the name of the selected database. Use g_free() on the
+ *   returned string when done using it
+ *
+ * Since: 0.10
+ */
 gchar *
 gdict_database_chooser_get_current_database (GdictDatabaseChooser *chooser)
 {
@@ -982,6 +1087,19 @@ gdict_database_chooser_get_current_database (GdictDatabaseChooser *chooser)
   return retval;
 }
 
+/**
+ * gdict_database_chooser_add_button:
+ * @chooser: a #GdictDatabase
+ * @button_text: text of the button
+ *
+ * Adds a #GtkButton with @button_text to the button area on
+ * the bottom of @chooser. The @button_text can also be a
+ * stock ID.
+ *
+ * Return value: the newly packed button.
+ *
+ * Since: 0.10
+ */
 GtkWidget *
 gdict_database_chooser_add_button (GdictDatabaseChooser *chooser,
                                    const gchar          *button_text)
