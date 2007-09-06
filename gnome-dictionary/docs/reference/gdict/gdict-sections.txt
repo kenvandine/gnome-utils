@@ -127,6 +127,7 @@ gdict_defbox_select_all
 gdict_defbox_copy_to_clipboard
 gdict_defbox_clear
 gdict_defbox_lookup
+gdict_defbox_get_word
 gdict_defbox_count_definitions
 gdict_defbox_jump_to_definition
 gdict_defbox_set_show_find
@@ -161,6 +162,7 @@ gdict_source_loader_get_names
 gdict_source_loader_get_sources
 gdict_source_loader_get_source
 gdict_source_loader_remove_source
+gdict_source_loader_has_source
 <SUBSECTION Standard>
 GDICT_SOURCE_LOADER
 GDICT_IS_SOURCE_LOADER
@@ -272,6 +274,36 @@ GdictStrategyChooserPrivate
 </SECTION>
 
 <SECTION>
+<FILE>gdict-source-chooser</FILE>
+<TITLE>GdictSourceChooser</TITLE>
+GdictSourceChooser
+GdictSourceChooserClass
+gdict_source_chooser_new
+gdict_source_chooser_new_with_loader
+gdict_source_chooser_get_loader
+gdict_source_chooser_set_loader
+gdict_source_chooser_get_sources
+gdict_source_chooser_count_sources
+gdict_source_chooser_has_source
+gdict_source_chooser_refresh
+gdict_source_chooser_select_source
+gdict_source_chooser_unselect_source
+gdict_source_chooser_get_current_source
+gdict_source_chooser_set_current_source
+gdict_source_chooser_add_button
+<SUBSECTION Standard>
+GDICT_SOURCE_CHOOSER
+GDICT_SOURCE_CHOOSER_CLASS
+GDICT_SOURCE_CHOOSER_GET_CLASS
+GDICT_TYPE_SOURCE_CHOOSER
+GDICT_IS_SOURCE_CHOOSER
+GDICT_IS_SOURCE_CHOOSER_CLASS
+gdict_source_chooser_get_type
+<SUBSECTION Private>
+GdictSourceChooserPrivate
+</SECTION>
+
+<SECTION>
 <FILE>gdict-utils</FILE>
 <TITLE>Gdict Utilities</TITLE>
 GDICT_DEFAULT_DATABASE
@@ -279,6 +311,8 @@ GDICT_DEFAULT_STRATEGY
 GDICT_DEFAULT_FONT_NAME
 GdictContextProp
 GdictStatusCode
+gdict_debug_init
+gdict_get_option_group
 <SUBSECTION Standard>
 GDICT_IS_VALID_STATUS_CODE
 </SECTION>
@@ -289,6 +323,14 @@ GDICT_IS_VALID_STATUS_CODE
 GDICT_MAJOR_VERSION
 GDICT_MINOR_VERSION
 GDICT_MICRO_VERSION
+GDICT_VERSION
+GDICT_VERSION_S
+GDICT_VERSION_HEX
 GDICT_CHECK_VERSION
+<SUBSECTION>
+gdict_major
+gdict_minor
+gdict_micro
+gdict_check_version
 </SECTION>
 
