@@ -34,11 +34,6 @@
 #include <glib/gi18n.h>
 #include <libgnome/libgnome.h>
 #include <libgnomeui/gnome-help.h>
-#include <libgnomeprint/gnome-print.h>
-#include <libgnomeprint/gnome-print-job.h>
-#include <libgnomeprint/gnome-print-pango.h>
-#include <libgnomeprintui/gnome-print-dialog.h>
-#include <libgnomeprintui/gnome-print-job-preview.h>
 
 #include <libgdict/gdict.h>
 

@@ -26,7 +26,6 @@
 #include <gtk/gtk.h>
 #include <libgnomeui/gnome-ui-init.h>
 #include <libgnomeui/gnome-client.h>
-#include <libgnomeprint/gnome-print-job.h>
 #include <gconf/gconf-client.h>
 #include <libgdict/gdict.h>
 
