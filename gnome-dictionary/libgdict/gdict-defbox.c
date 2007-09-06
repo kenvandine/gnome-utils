@@ -152,52 +152,79 @@ definition_free (Definition *def)
 }
 
 static void
-gdict_defbox_finalize (GObject *object)
+gdict_defbox_dispose (GObject *gobject)
 {
-  GdictDefbox *defbox = GDICT_DEFBOX (object);
+  GdictDefbox *defbox = GDICT_DEFBOX (gobject);
   GdictDefboxPrivate *priv = defbox->priv;
-  
+
   if (priv->start_id)
     {
       g_signal_handler_disconnect (priv->context, priv->start_id);
       g_signal_handler_disconnect (priv->context, priv->end_id);
       g_signal_handler_disconnect (priv->context, priv->define_id);
-    }
-  
-  if (priv->error_id)
-    g_signal_handler_disconnect (priv->context, priv->error_id);
-      
-  if (priv->context)
-    g_object_unref (priv->context);
-  
-  if (priv->database)
-    g_free (priv->database);
-  
-  if (priv->word)
-    g_free (priv->word);
 
-  if (priv->font_name)
-    g_free (priv->font_name);
-  
+      priv->start_id = 0;
+      priv->end_id = 0;
+      priv->define_id = 0;
+    }
+
+  if (priv->error_id)
+    {
+      g_signal_handler_disconnect (priv->context, priv->error_id);
+      priv->error_id = 0;
+    }
+
+  if (priv->context)
+    {
+      g_object_unref (priv->context);
+      priv->context = NULL;
+    }
+
+  if (priv->buffer)
+    {
+      g_object_unref (priv->buffer);
+      priv->buffer = NULL;
+    }
+
+  if (priv->busy_cursor)
+    {
+      gdk_cursor_unref (priv->busy_cursor);
+      priv->busy_cursor = NULL;
+    }
+
+  if (priv->hand_cursor)
+    {
+      gdk_cursor_unref (priv->hand_cursor);
+      priv->hand_cursor = NULL;
+    }
+
+  if (priv->regular_cursor)
+    {
+      gdk_cursor_unref (priv->regular_cursor);
+      priv->regular_cursor = NULL;
+    }
+
+  G_OBJECT_CLASS (gdict_defbox_parent_class)->dispose (gobject);
+}
+
+static void
+gdict_defbox_finalize (GObject *object)
+{
+  GdictDefbox *defbox = GDICT_DEFBOX (object);
+  GdictDefboxPrivate *priv = defbox->priv;
+
+  g_free (priv->database);
+  g_free (priv->word);
+  g_free (priv->font_name);
+
   if (priv->definitions)
     {
       g_slist_foreach (priv->definitions, (GFunc) definition_free, NULL);
       g_slist_free (priv->definitions);
-      
+
       priv->definitions = NULL;
     }
-  
-  g_object_unref (priv->buffer);
-  
-  if (priv->busy_cursor)
-    gdk_cursor_unref (priv->busy_cursor);
 
-  if (priv->hand_cursor)
-    gdk_cursor_unref (priv->hand_cursor);
-
-  if (priv->regular_cursor)
-    gdk_cursor_unref (priv->regular_cursor);
-  
   G_OBJECT_CLASS (gdict_defbox_parent_class)->finalize (object);
 }
 
@@ -264,6 +291,9 @@ gdict_defbox_set_property (GObject      *object,
   
   switch (prop_id)
     {
+    case PROP_WORD:
+      gdict_defbox_lookup (defbox, g_value_get_string (value));
+      break;
     case PROP_CONTEXT:
       set_gdict_context (defbox, g_value_get_object (value));
       break;
@@ -291,6 +321,9 @@ gdict_defbox_get_property (GObject    *object,
   
   switch (prop_id)
     {
+    case PROP_WORD:
+      g_value_set_string (value, priv->word);
+      break;
     case PROP_CONTEXT:
       g_value_set_object (value, priv->context);
       break;
@@ -1691,13 +1724,28 @@ gdict_defbox_class_init (GdictDefboxClass *klass)
   gobject_class->constructor = gdict_defbox_constructor;
   gobject_class->set_property = gdict_defbox_set_property;
   gobject_class->get_property = gdict_defbox_get_property;
+  gobject_class->dispose = gdict_defbox_dispose;
   gobject_class->finalize = gdict_defbox_finalize;
   
   widget_class->show_all = gdict_defbox_show_all;
   widget_class->style_set = gdict_defbox_style_set;
-  
+
   /**
-   * GdictDefbox:context
+   * GdictDefbox:word:
+   *
+   * The word to look up.
+   *
+   * Since: 0.10
+   */
+  g_object_class_install_property (gobject_class,
+                                   PROP_WORD,
+                                   g_param_spec_string ("word",
+                                                        "Word",
+                                                        "The word to look up",
+                                                        NULL,
+                                                        G_PARAM_READWRITE));
+  /**
+   * GdictDefbox:context:
    *
    * The #GdictContext object used to get the word definition.
    *
@@ -2061,9 +2109,6 @@ lookup_end_cb (GdictContext *context,
   				     GTK_TEXT_WINDOW_WIDGET);
   
   gdk_window_set_cursor (window, NULL);
-  
-  g_free (priv->word);
-  priv->word = NULL;
 
   priv->is_searching = FALSE;
 }
@@ -2475,6 +2520,7 @@ gdict_defbox_lookup (GdictDefbox *defbox,
   				       defbox);
   
   priv->word = g_strdup (word);
+  g_object_notify (G_OBJECT (defbox), "word");
   
   define_error = NULL;
   gdict_context_define_word (priv->context,
