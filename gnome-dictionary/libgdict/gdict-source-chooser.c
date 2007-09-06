@@ -277,7 +277,7 @@ gdict_source_chooser_constructor (GType                  gtype,
                     "changed", G_CALLBACK (selection_changed_cb),
                     chooser);
   g_signal_connect (priv->treeview,
-                    "changed", G_CALLBACK (row_activated_cb),
+                    "row-activated", G_CALLBACK (row_activated_cb),
                     chooser);
   gtk_container_add (GTK_CONTAINER (sw), priv->treeview);
   gtk_widget_show (priv->treeview);
@@ -444,6 +444,16 @@ gdict_source_chooser_new_with_loader (GdictSourceLoader *loader)
   return g_object_new (GDICT_TYPE_SOURCE_CHOOSER, "loader", loader, NULL);
 }
 
+/**
+ * gdict_source_chooser_set_loader:
+ * @chooser: a #GdictSourceChooser
+ * @loader: a #GdictSourceLoader or %NULL to unset it
+ *
+ * Sets the #GdictSourceLoader to be used by the source chooser
+ * widget.
+ *
+ * Since: 0.11
+ */
 void
 gdict_source_chooser_set_loader (GdictSourceChooser *chooser,
                                  GdictSourceLoader  *loader)
@@ -451,7 +461,7 @@ gdict_source_chooser_set_loader (GdictSourceChooser *chooser,
   GdictSourceChooserPrivate *priv;
 
   g_return_if_fail (GDICT_IS_SOURCE_CHOOSER (chooser));
-  g_return_if_fail (GDICT_IS_SOURCE_LOADER (loader));
+  g_return_if_fail (loader == NULL || GDICT_IS_SOURCE_LOADER (loader));
 
   priv = chooser->priv;
 
@@ -460,9 +470,11 @@ gdict_source_chooser_set_loader (GdictSourceChooser *chooser,
       if (priv->loader)
         g_object_unref (priv->loader);
 
-      priv->loader = g_object_ref (loader);
-
-      gdict_source_chooser_refresh (chooser);
+      if (loader)
+        {
+          priv->loader = g_object_ref (loader);
+          gdict_source_chooser_refresh (chooser);
+        }
 
       g_object_notify (G_OBJECT (chooser), "loader");
     }
