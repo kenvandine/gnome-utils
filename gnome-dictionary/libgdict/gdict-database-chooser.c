@@ -87,6 +87,7 @@ enum
   DB_COLUMN_TYPE,
   DB_COLUMN_NAME,
   DB_COLUMN_DESCRIPTION,
+  DB_COLUMN_CURRENT,
 
   DB_N_COLUMNS
 };
@@ -186,8 +187,7 @@ gdict_database_chooser_dispose (GObject *gobject)
   GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (gobject);
   GdictDatabaseChooserPrivate *priv = chooser->priv;
 
-  if (priv->context)
-    set_gdict_context (chooser, NULL);
+  set_gdict_context (chooser, NULL);
 
   if (priv->busy_cursor)
     {
@@ -351,6 +351,7 @@ gdict_database_chooser_constructor (GType                  type,
   column = gtk_tree_view_column_new_with_attributes ("databases",
 		  				     renderer,
 						     "text", DB_COLUMN_DESCRIPTION,
+                                                     "weight", DB_COLUMN_CURRENT,
 						     NULL);
   priv->treeview = gtk_tree_view_new ();
   gtk_widget_set_composite_name (priv->treeview, "gdict-database-chooser-treeview");
@@ -495,9 +496,10 @@ gdict_database_chooser_init (GdictDatabaseChooser *chooser)
   priv->context = NULL;
 
   priv->store = gtk_list_store_new (DB_N_COLUMNS,
-		                    G_TYPE_INT,    /* DBType */
+		                    G_TYPE_INT,    /* db_type */
 		                    G_TYPE_STRING, /* db_name */
-				    G_TYPE_STRING  /* db_desc */);
+				    G_TYPE_STRING, /* db_desc */
+                                    G_TYPE_INT     /* db_current */);
 
   priv->start_id = 0;
   priv->end_id = 0;
@@ -741,16 +743,25 @@ database_found_cb (GdictContext  *context,
   GdictDatabaseChooser *chooser = GDICT_DATABASE_CHOOSER (user_data);
   GdictDatabaseChooserPrivate *priv = chooser->priv;
   GtkTreeIter iter;
+  const gchar *name, *full_name;
+  gint weight = PANGO_WEIGHT_NORMAL;
+
+  name = gdict_database_get_name (database);
+  full_name = gdict_database_get_full_name (database);
+
+  if (priv->current_db && !strcmp (priv->current_db, name))
+    weight = PANGO_WEIGHT_BOLD;
 
   GDICT_NOTE (CHOOSER, "DATABASE: `%s' (`%s')",
-              gdict_database_get_name (database),
-              gdict_database_get_full_name (database));
-
+              name,
+              full_name);
+  
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter,
 		      DB_COLUMN_TYPE, DATABASE_NAME,
-		      DB_COLUMN_NAME, gdict_database_get_name (database),
-		      DB_COLUMN_DESCRIPTION, gdict_database_get_full_name (database),
+		      DB_COLUMN_NAME, name,
+		      DB_COLUMN_DESCRIPTION, full_name,
+                      DB_COLUMN_CURRENT, weight,
 		      -1);
 
   priv->results += 1;
@@ -797,12 +808,7 @@ gdict_database_chooser_refresh (GdictDatabaseChooser *chooser)
     }
 
   if (priv->is_searching)
-    {
-      _gdict_show_error_dialog (NULL,
-				_("Another search is in progress"),
-				_("Please wait until the current search ends."));
-      return;
-    }
+    return;
 
   gdict_database_chooser_clear (chooser);
 
@@ -892,9 +898,6 @@ scan_for_db_name (GtkTreeModel *model,
   if (!select_data)
     return TRUE;
 
-  if (select_data->found)
-    return TRUE;
-
   gtk_tree_model_get (model, iter, DB_COLUMN_NAME, &db_name, -1);
   if (!db_name)
     return FALSE;
@@ -908,8 +911,16 @@ scan_for_db_name (GtkTreeModel *model,
 
       tree_view = GTK_TREE_VIEW (select_data->chooser->priv->treeview);
       if (select_data->do_activate)
-        gtk_tree_view_row_activated (tree_view, path,
-                                     gtk_tree_view_get_column (tree_view, 2));
+        {
+          GtkTreeViewColumn *column;
+
+          gtk_list_store_set (GTK_LIST_STORE (model), iter,
+                              DB_COLUMN_CURRENT, PANGO_WEIGHT_BOLD,
+                              -1);
+
+          column = gtk_tree_view_get_column (tree_view, 0);
+          gtk_tree_view_row_activated (tree_view, path, column);
+        }
 
       selection = gtk_tree_view_get_selection (tree_view);
       if (select_data->do_select)
@@ -917,10 +928,16 @@ scan_for_db_name (GtkTreeModel *model,
       else
         gtk_tree_selection_unselect_path (selection, path);
     }
+  else
+    {
+      gtk_list_store_set (GTK_LIST_STORE (model), iter,
+                          DB_COLUMN_CURRENT, PANGO_WEIGHT_NORMAL,
+                          -1);
+    }
 
   g_free (db_name);
 
-  return select_data->found;
+  return FALSE;
 }
 
 /**
@@ -1042,7 +1059,13 @@ gdict_database_chooser_set_current_database (GdictDatabaseChooser *chooser,
 
   retval = data.found;
 
-  g_free (data.db_name);
+  if (data.found)
+    {
+      g_free (priv->current_db);
+      priv->current_db = data.db_name;
+    }
+  else
+    g_free (data.db_name);
 
   return retval;
 }
