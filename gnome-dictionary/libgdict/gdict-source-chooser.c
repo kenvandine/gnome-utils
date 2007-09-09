@@ -74,6 +74,7 @@ enum
   SOURCE_TRANSPORT,
   SOURCE_NAME,
   SOURCE_DESCRIPTION,
+  SOURCE_CURRENT,
 
   SOURCE_N_COLUMNS
 };
@@ -266,6 +267,7 @@ gdict_source_chooser_constructor (GType                  gtype,
   column = gtk_tree_view_column_new_with_attributes ("sources",
                                                      renderer,
                                                      "text", SOURCE_DESCRIPTION,
+                                                     "weight", SOURCE_CURRENT,
                                                      NULL);
   priv->treeview = gtk_tree_view_new ();
   gtk_widget_set_composite_name (priv->treeview, "gdict-source-chooser-treeview");
@@ -400,7 +402,8 @@ gdict_source_chooser_init (GdictSourceChooser *chooser)
   priv->store = gtk_list_store_new (SOURCE_N_COLUMNS,
                                     G_TYPE_INT,    /* TRANSPORT */
                                     G_TYPE_STRING, /* NAME */
-                                    G_TYPE_STRING  /* DESCRIPTION */);
+                                    G_TYPE_STRING, /* DESCRIPTION */
+                                    G_TYPE_INT     /* CURRENT */);
 
   priv->loader = NULL;
   priv->n_sources = -1;
@@ -520,9 +523,6 @@ scan_for_source_name (GtkTreeModel *model,
   if (!select_data)
     return TRUE;
 
-  if (select_data->found)
-    return TRUE;
-
   gtk_tree_model_get (model, iter, SOURCE_NAME, &source_name, -1);
   if (!source_name)
     return FALSE;
@@ -535,9 +535,19 @@ scan_for_source_name (GtkTreeModel *model,
       select_data->found = TRUE;
 
       tree_view = GTK_TREE_VIEW (select_data->chooser->priv->treeview);
+
       if (select_data->do_activate)
-        gtk_tree_view_row_activated (tree_view, path,
-                                     gtk_tree_view_get_column (tree_view, 2));
+        {
+          GtkTreeViewColumn *column;
+
+          column = gtk_tree_view_get_column (tree_view, 2);
+
+          gtk_list_store_set (GTK_LIST_STORE (model), iter,
+                              SOURCE_CURRENT, PANGO_WEIGHT_BOLD,
+                              -1);
+
+          gtk_tree_view_row_activated (tree_view, path, column);
+        }
 
       selection = gtk_tree_view_get_selection (tree_view);
       if (select_data->do_select)
@@ -545,10 +555,16 @@ scan_for_source_name (GtkTreeModel *model,
       else
         gtk_tree_selection_unselect_path (selection, path);
     }
+  else
+    {
+      gtk_list_store_set (GTK_LIST_STORE (model), iter,
+                          SOURCE_CURRENT, PANGO_WEIGHT_NORMAL,
+                          -1);
+    }
 
   g_free (source_name);
 
-  return select_data->found;
+  return FALSE;
 }
 
 /**
@@ -660,6 +676,9 @@ gdict_source_chooser_set_current_source (GdictSourceChooser *chooser,
 
   priv = chooser->priv;
 
+  if (priv->current_source && !strcmp (priv->current_source, source_name))
+    return TRUE;
+
   data.source_name = g_strdup (source_name);
   data.chooser = chooser;
   data.found = FALSE;
@@ -672,7 +691,15 @@ gdict_source_chooser_set_current_source (GdictSourceChooser *chooser,
 
   retval = data.found;
 
-  g_free (data.source_name);
+  GDICT_NOTE (CHOOSER, "%s current source: %s",
+              data.found ? "set" : "not set",
+              data.source_name);
+
+  if (data.found)
+    {
+      g_free (priv->current_source);
+      priv->current_source = data.source_name;
+    }
 
   return retval;
 }
@@ -816,7 +843,9 @@ gdict_source_chooser_refresh (GdictSourceChooser *chooser)
     {
       const GSList *sources, *l;
 
-      gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), NULL);
+      if (priv->treeview)
+        gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), NULL);
+
       gtk_list_store_clear (priv->store);
 
       sources = gdict_source_loader_get_sources (priv->loader);
@@ -825,20 +854,27 @@ gdict_source_chooser_refresh (GdictSourceChooser *chooser)
           GdictSource *source = l->data;
           const gchar *name, *description;
           GdictSourceTransport transport;
+          gint weight;
 
           transport = gdict_source_get_transport (source);
           name = gdict_source_get_name (source);
           description = gdict_source_get_description (source);
+          weight = PANGO_WEIGHT_NORMAL;
+
+          if (priv->current_source && !strcmp (priv->current_source, name))
+            weight = PANGO_WEIGHT_BOLD;
 
           gtk_list_store_insert_with_values (priv->store, NULL, -1,
                                              SOURCE_TRANSPORT, transport,
                                              SOURCE_NAME, name,
                                              SOURCE_DESCRIPTION, description,
+                                             SOURCE_CURRENT, weight,
                                              -1);
         }
 
-      gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
-                               GTK_TREE_MODEL (priv->store));
+      if (priv->treeview)
+        gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
+                                 GTK_TREE_MODEL (priv->store));
     }
 }
 
