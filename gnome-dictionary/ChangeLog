@@ -1,3 +1,19 @@
+2007-09-09  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* libgdict/gdict-source-chooser.c: Display the current source
+	in bold inside the source chooser widget.
+
+	* libgdict/gdict-strategy-chooser.[ch]: Fix a typo in the API;
+	implement the missing methods of the strategy chooser widget;
+	display the current strategy in bold.
+
+	* libgdict/gdict-database-chooser.c: Display the current database
+	in bold inside the source chooser widget.
+
+	* src/gdict-window.c: Rework how the sources and contexts are
+	loaded when constructing a new GdictWindow; do not update the
+	statusbar if it's not visible.
+
 2007-09-06  Emmanuele Bassi  <ebassi@gnome.org>
 
 	* libgdict/Makefile.am: Install gdict-source-loader.h.
