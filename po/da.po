@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-25 00:35+0200\n"
-"PO-Revision-Date: 2007-04-09 03:37+0200\n"
+"POT-Creation-Date: 2007-09-09 02:57+0200\n"
+"PO-Revision-Date: 2007-09-08 17:35+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
 msgid "Check folder sizes and available disk space"
-msgstr ""
+msgstr "Kontrollér mappestørrelser og tilgængelig diskplads"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -140,7 +140,7 @@ msgstr "_Sammenfold alle"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1117 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1199 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Indhold"
 
@@ -149,7 +149,7 @@ msgid "_Depth level:"
 msgstr "_Dybdeniveau:"
 
 #: ../baobab/data/baobab.glade.h:30
-#: ../gnome-dictionary/src/gdict-window.c:1068 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1146 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Redigér"
 
@@ -163,7 +163,7 @@ msgstr "_Grafisk afbildning af forbrug"
 
 #: ../baobab/data/baobab.glade.h:33
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1071 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1149 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_Hjælp"
 
@@ -181,7 +181,7 @@ msgid "_Total folders:"
 msgstr "_Samlet antal mapper:"
 
 #: ../baobab/data/baobab.glade.h:37
-#: ../gnome-dictionary/src/gdict-window.c:1069 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1147 ../logview/logview.c:87
 msgid "_View"
 msgstr "_Vis"
 
@@ -224,7 +224,7 @@ msgstr "Om værktøjslinjen skal være synlig i hovedvinduet."
 msgid "Calculating percentage bars..."
 msgstr "Beregner procentbjælker..."
 
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
 #: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Klar"
@@ -304,12 +304,11 @@ msgstr "Filsystemstype"
 
 #: ../baobab/src/baobab-prefs.c:199
 msgid "Total Size"
-msgstr ""
+msgstr "Samlet størrelse"
 
 #: ../baobab/src/baobab-prefs.c:208
-#, fuzzy
 msgid "Available"
-msgstr "tilgængelig:"
+msgstr "Tilgængeligt"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -418,12 +417,12 @@ msgstr "Størrelse"
 msgid "Contents"
 msgstr "Indhold"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:102
 msgid "Select Folder"
 msgstr "Markér mappe"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:116
+#: ../baobab/src/baobab-utils.c:114
 msgid "_Show hidden folders"
 msgstr "_Vis skjulte mapper"
 
@@ -1048,7 +1047,7 @@ msgid "Cl_ear"
 msgstr "_Ryd"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1119 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Om"
 
@@ -1057,7 +1056,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Slå markeret tekst op"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1095
+#: ../gnome-dictionary/src/gdict-window.c:1175
 msgid "_Preferences"
 msgstr "_Indstillinger"
 
@@ -1075,9 +1074,9 @@ msgstr "Slå orddefinitioner og stavning op i en ordbog på internettet"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:406
-#: ../gnome-dictionary/src/gdict-window.c:529
-#: ../gnome-dictionary/src/gdict-window.c:1790
+#: ../gnome-dictionary/src/gdict-app.c:402
+#: ../gnome-dictionary/src/gdict-window.c:587
+#: ../gnome-dictionary/src/gdict-window.c:1917
 msgid "Dictionary"
 msgstr "Ordbog"
 
@@ -1275,8 +1274,6 @@ msgid "H_ostname:"
 msgstr "V_ærtsnavn:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:202
-#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "Print"
 msgstr "Udskriv"
 
@@ -1316,59 +1313,59 @@ msgstr "Spansk-ordbøger"
 msgid "Longdo Thai-English Dictionaries"
 msgstr "Longdo Thai-Engelsk ordbøger"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:283
 msgid "Client Name"
 msgstr "Klientnavn"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "The name of the client of the context object"
 msgstr "Navnet på kontekst-objektets klient"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:297
 msgid "Hostname"
 msgstr "Værtsnavn"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
 msgid "The hostname of the dictionary server to connect to"
 msgstr "Værtsnavnet på ordbogsserveren der forbindes til"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "Port"
 msgstr "Port"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:312
 msgid "The port of the dictionary server to connect to"
 msgstr "Porten på ordbogsserveren der forbindes til"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:327
 msgid "Status"
 msgstr "Status"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:328
 msgid "The status code as returned by the dictionary server"
 msgstr "Statuskoden returneret af ordbogsserveren"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:777
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Ingen forbindelse til ordbogsserveren på \"%s:%d\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "Opslag på værtsnavn \"%s\" slog fejl: ingen passende ressourcer fundet"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1056
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Opslag slog fejl på vært \"%s\": %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1091
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Opslag slog fejl på vært \"%s\": vært ikke fundet"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1143
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1171
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -1377,7 +1374,7 @@ msgstr ""
 "Kan ikke forbinde til ordbogsserveren \"%s:%d\". Denne server svarede med "
 "kode %d (server nede)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1162
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -1386,47 +1383,47 @@ msgstr ""
 "Kan ikke fortolke ordbogsserverens svar\n"
 ": \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1191
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "Ingen definitioner fundet for \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1206
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1234
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Ugyldig database \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1221
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1249
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Ugyldig strategi \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1236
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1264
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Ugyldig kommando \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1251
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1279
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Ugyldige parametre til kommandoen \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1266
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1294
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Ingen databaser fundet på ordbogsserveren på \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1281
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1309
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Ingen strategier fundet på ordbogsserveren på \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1722
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1742
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Kunne ikke forbinde til ordbogsserveren på %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1761
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1781
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1435,251 +1432,251 @@ msgstr ""
 "Fejl under læsning af svar fra server:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1831
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Udløbstid for forbindelse til ordbogsserveren på \"%s:%d\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
 msgid "No hostname defined for the dictionary server"
 msgstr "Intet værtsnavn defineret til ordbogsserveren"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1901
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1916
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
 msgid "Unable to create socket"
 msgstr "Kunne ikke oprette sokkel"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1942
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1962
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Kunne ikke sætte kanalen op som ikke-blokerende: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1957
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1977
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Kunne ikke forbinde til ordbogsserveren på \"%s:%d\""
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:199
+#: ../gnome-dictionary/libgdict/gdict-context.c:218
 msgid "Local Only"
 msgstr "Kun lokal"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:200
+#: ../gnome-dictionary/libgdict/gdict-context.c:219
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Om konteksten kun bruger lokale ordbøger"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:346
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:382
 msgid "Reload the list of available databases"
 msgstr "Genindlæs listen af tilgængelige databaser"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:359
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:394
 msgid "Clear the list of available databases"
 msgstr "Ryd listen af tilgængelige databaser"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:656
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1684
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:802
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2535
 #: ../gnome-dictionary/libgdict/gdict-speller.c:738
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:650
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:671
 msgid "Another search is in progress"
 msgstr "En anden søgning er i gang"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:657
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1685
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:803
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2536
 #: ../gnome-dictionary/libgdict/gdict-speller.c:739
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:651
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:672
 msgid "Please wait until the current search ends."
 msgstr "Vent venligst til den aktuelle søgning er afsluttet."
 
 # Søgning er måske ikke det mest præcise
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:690
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:836
 #: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:684
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:705
 msgid "Error while matching"
 msgstr "Fejl under søgning"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:366
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:455
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:483
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1132
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1226
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1260
 msgid "Not found"
 msgstr "Ikke fundet"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1321
 msgid "F_ind:"
 msgstr "F_ind:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:528
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1334
 msgid "_Previous"
 msgstr "_Forrige"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:536
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1342
 msgid "_Next"
 msgstr "_Næste"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1642
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2493
 msgid "Error while looking up definition"
 msgstr "Fejl ved opslag af definition"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1723
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2575
 msgid "Error while retrieving the definition"
 msgstr "Fejl under overførsel af definition"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:105
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:375
-msgid "Context"
-msgstr "Kontekst"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:106
-msgid "The GdictContext object bound to this entry"
-msgstr "GdictContext-objektet bundet til dette element"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:120
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:382
-msgid "Database"
-msgstr "Database"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:121
-msgid "The database to be used to generate the completion list"
-msgstr "Databasen der skal benyttes til at generere fuldførelseslisten"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:389
-msgid "Strategy"
-msgstr "Strategi"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:136
-msgid "The matching strategy to be used to generate the completion list"
-msgstr "Træfningsstrategien der benyttes til at generere fuldførelseslisten"
-
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:232
 msgid "Filename"
 msgstr "Filnavn"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:220
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
 msgid "The filename used by this dictionary source"
 msgstr "Filnavnet der benyttes af denne ordbogskilde"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:246
 #: ../gsearchtool/gsearchtool.c:2473
 msgid "Name"
 msgstr "Navn"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:234
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "The display name of this dictonary source"
 msgstr "Kaldenavnet for denne ordbogskilde"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:260
 msgid "Description"
 msgstr "Beskrivelse"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:248
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
 msgid "The description of this dictionary source"
 msgstr "Beskrivelsen af denne ordbogskilde"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:262
+#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+msgid "Database"
+msgstr "Database"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
 msgid "The default database of this dictonary source"
 msgstr "Denne ordbogskildes standarddatabase"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:276
+#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+msgid "Strategy"
+msgstr "Strategi"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "The default strategy of this dictonary source"
 msgstr "Denne ordbogskildes standardstrategi"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:302
 msgid "Transport"
 msgstr "Transport"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:290
+#: ../gnome-dictionary/libgdict/gdict-source.c:303
 msgid "The transport mechanism used by this dictionary source"
 msgstr "Denne ordbogskildes transportmekanisme"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:305
+#: ../gnome-dictionary/libgdict/gdict-source.c:317
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+msgid "Context"
+msgstr "Kontekst"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:318
 msgid "The GdictContext bound to this source"
 msgstr "GdictContext bundet til denne kilde"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:400
+#: ../gnome-dictionary/libgdict/gdict-source.c:413
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "Ugyldig transporttype \"%d\""
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:428
+#: ../gnome-dictionary/libgdict/gdict-source.c:441
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr "Ingen \"%s\"-gruppe fundet i ordbogskildens definition"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:444
-#: ../gnome-dictionary/libgdict/gdict-source.c:468
-#: ../gnome-dictionary/libgdict/gdict-source.c:492
-#: ../gnome-dictionary/libgdict/gdict-source.c:517
+#: ../gnome-dictionary/libgdict/gdict-source.c:457
+#: ../gnome-dictionary/libgdict/gdict-source.c:481
+#: ../gnome-dictionary/libgdict/gdict-source.c:505
+#: ../gnome-dictionary/libgdict/gdict-source.c:530
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr "Kan ikke finde \"%s\"-nøglen i ordbogskildens definition: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:542
+#: ../gnome-dictionary/libgdict/gdict-source.c:555
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr "Kan ikke finde \"%s\"-nøglen i ordbogskildens definitionsfil: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:728
+#: ../gnome-dictionary/libgdict/gdict-source.c:741
 msgid "Dictionary source does not have name"
 msgstr "Ordbogskilden har ikke noget navn"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:737
+#: ../gnome-dictionary/libgdict/gdict-source.c:750
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Ordbogskilden \"%s\" har ugyldig transport \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:298
+#, fuzzy
+msgid "Reload the list of available sources"
+msgstr "Genindlæs listen af tilgængelige strategier"
+
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:171
 msgid "Paths"
 msgstr "Stier"
 
 # Søg på stier ... vs søgestier. Sidstnævnte synes at være mere realistisk.
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:172
 msgid "Search paths used by this object"
 msgstr "Søgestier benyttet af dette objekt"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:184
 msgid "Sources"
 msgstr "Kilder"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:185
 msgid "Dictionary sources found"
 msgstr "Ordbogskilder fundet"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+#: ../gnome-dictionary/libgdict/gdict-speller.c:355
 msgid "Clear the list of similar words"
 msgstr "Ryd listen af lignende ord"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+#: ../gnome-dictionary/libgdict/gdict-speller.c:379
 msgid "The GdictContext object used to get the word definition"
 msgstr "GdictContext-objektet der bruges til at hente orddefinitionen"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:383
+#: ../gnome-dictionary/libgdict/gdict-speller.c:386
 msgid "The database used to query the GdictContext"
 msgstr "Den database der skal benyttes til forespørgsler GdictContext'en"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:390
+#: ../gnome-dictionary/libgdict/gdict-speller.c:393
 msgid "The strategy used to query the GdictContext"
 msgstr "Strategien der bruges til forespørgsler til GdictContext'en"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:340
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:345
 msgid "Reload the list of available strategies"
 msgstr "Genindlæs listen af tilgængelige strategier"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:353
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:357
 msgid "Clear the list of available strategies"
 msgstr "Ryd listen af tilgængelige strategier"
 
+#: ../gnome-dictionary/libgdict/gdict-utils.c:157
+#, fuzzy
+msgid "GDict Options"
+msgstr "Overvågningsindstillinger"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:158
+#, fuzzy
+msgid "Show GDict Options"
+msgstr "Vis ordbogsindstillinger"
+
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:613
+#: ../gnome-dictionary/src/gdict-applet.c:591
 msgid "Look up words in dictionaries"
 msgstr "Slå ord op i ordbøger"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:238
+#: ../gnome-dictionary/src/gdict-app.c:233
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1692,20 +1689,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:252
+#: ../gnome-dictionary/src/gdict-app.c:247
 #, c-format
 msgid "Error: %s\n"
 msgstr "Fejl: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:278
+#: ../gnome-dictionary/src/gdict-app.c:273
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Se gnome-dictionary --help for brugsinstruktioner\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:291
+#: ../gnome-dictionary/src/gdict-app.c:286
 msgid "Unable to find a suitable dictionary source"
 msgstr "Kan ikke finde en passende ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-app.c:325
+#: ../gnome-dictionary/src/gdict-app.c:320
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1714,186 +1711,186 @@ msgstr ""
 "Fejl under opslag af definitionen på \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "Words to look up"
 msgstr "Ord der skal slås op"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:361
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "word"
 msgstr "ord"
 
-#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:356
 msgid "Words to match"
 msgstr "Søgeord"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "Dictionary source to use"
 msgstr "Benyttet ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "source"
 msgstr "kilde"
 
-#: ../gnome-dictionary/src/gdict-app.c:365
+#: ../gnome-dictionary/src/gdict-app.c:360
 msgid "Show available dictionary sources"
 msgstr "Vis tilgængelige ordbogskilder"
 
-#: ../gnome-dictionary/src/gdict-app.c:367
+#: ../gnome-dictionary/src/gdict-app.c:362
 msgid "Print result to the console"
 msgstr "Udskriv resultat til konsollen"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "Database to use"
 msgstr "Benyttet database"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "Strategy to use"
 msgstr "Benyttet søgningsstrategi"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "strat"
 msgstr "strat"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:389
+#: ../gnome-dictionary/src/gdict-app.c:384
 msgid " - Look up words in dictionaries"
 msgstr " - Slå ord op i ordbøger"
 
-#: ../gnome-dictionary/src/gdict-app.c:393
+#: ../gnome-dictionary/src/gdict-app.c:388
 msgid "Dictionary and spelling tool"
 msgstr "Ordbog og staveværktøj"
 
-#: ../gnome-dictionary/src/gdict-app.c:394
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid "Show Dictionary options"
 msgstr "Vis ordbogsindstillinger"
 
-#: ../gnome-dictionary/src/gdict-applet.c:216
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-applet.c:207
+#: ../gnome-dictionary/src/gdict-window.c:800
 msgid "Save a Copy"
 msgstr "Gem en kopi"
 
-#: ../gnome-dictionary/src/gdict-applet.c:226
-#: ../gnome-dictionary/src/gdict-window.c:752
+#: ../gnome-dictionary/src/gdict-applet.c:217
+#: ../gnome-dictionary/src/gdict-window.c:810
 msgid "Untitled document"
 msgstr "Dokument uden titel"
 
-#: ../gnome-dictionary/src/gdict-applet.c:247
-#: ../gnome-dictionary/src/gdict-window.c:773
+#: ../gnome-dictionary/src/gdict-applet.c:238
+#: ../gnome-dictionary/src/gdict-window.c:831
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Fejl under skrivning til \"%s\""
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear the definitions found"
 msgstr "Ryd de fundne definitioner"
 
-#: ../gnome-dictionary/src/gdict-applet.c:378
+#: ../gnome-dictionary/src/gdict-applet.c:365
 msgid "Clear definition"
 msgstr "Ryd definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:379
+#: ../gnome-dictionary/src/gdict-applet.c:366
 msgid "Clear the text of the definition"
 msgstr "Ryd definitionens tekst"
 
-#: ../gnome-dictionary/src/gdict-applet.c:389
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print the definitions found"
 msgstr "Udskriv de fundne definitioner"
 
-#: ../gnome-dictionary/src/gdict-applet.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Print definition"
 msgstr "Udskriv definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:393
+#: ../gnome-dictionary/src/gdict-applet.c:376
 msgid "Print the text of the definition"
 msgstr "Udskriv definitionens tekst"
 
-#: ../gnome-dictionary/src/gdict-applet.c:403
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save the definitions found"
 msgstr "Gem de fundne definitioner"
 
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:385
 msgid "Save definition"
 msgstr "Gem definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:407
+#: ../gnome-dictionary/src/gdict-applet.c:386
 msgid "Save the text of the definition to a file"
 msgstr "Gem definitionens tekst til en fil"
 
-#: ../gnome-dictionary/src/gdict-applet.c:553
-msgid "Toggle dictionary window"
-msgstr "Slå ordbogsvindue til/fra"
-
-#: ../gnome-dictionary/src/gdict-applet.c:554
-msgid "Show or hide the definition window"
-msgstr "Vis eller skjul definitionsvinduet"
-
-#: ../gnome-dictionary/src/gdict-applet.c:557
+#: ../gnome-dictionary/src/gdict-applet.c:533
 msgid "Click to view the dictionary window"
 msgstr "Klik for at se ordbogsvinduet"
 
-#: ../gnome-dictionary/src/gdict-applet.c:612
-msgid "Dictionary entry"
-msgstr "Ordbogspost"
+#: ../gnome-dictionary/src/gdict-applet.c:535
+msgid "Toggle dictionary window"
+msgstr "Slå ordbogsvindue til/fra"
 
-#: ../gnome-dictionary/src/gdict-applet.c:616
+#: ../gnome-dictionary/src/gdict-applet.c:536
+msgid "Show or hide the definition window"
+msgstr "Vis eller skjul definitionsvinduet"
+
+#: ../gnome-dictionary/src/gdict-applet.c:588
 msgid "Type the word you want to look up"
 msgstr "Ordet du vil slå op"
 
-#: ../gnome-dictionary/src/gdict-applet.c:750
-#: ../gnome-dictionary/src/gdict-window.c:897
+#: ../gnome-dictionary/src/gdict-applet.c:590
+msgid "Dictionary entry"
+msgstr "Ordbogspost"
+
+#: ../gnome-dictionary/src/gdict-applet.c:724
+#: ../gnome-dictionary/src/gdict-window.c:964
 msgid "Dictionary Preferences"
 msgstr "Indstillinger for ordbog"
 
-#: ../gnome-dictionary/src/gdict-applet.c:778
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
-#: ../gnome-dictionary/src/gdict-source-dialog.c:500
-#: ../gnome-dictionary/src/gdict-window.c:1033
+#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
+#: ../gnome-dictionary/src/gdict-source-dialog.c:498
+#: ../gnome-dictionary/src/gdict-window.c:1111
 msgid "There was an error while displaying help"
 msgstr "Der opstod en fejl ved visning af hjælp"
 
-#: ../gnome-dictionary/src/gdict-applet.c:930
-#: ../gnome-dictionary/src/gdict-window.c:438
+#: ../gnome-dictionary/src/gdict-applet.c:904
+#: ../gnome-dictionary/src/gdict-window.c:496
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Ingen ordbogskilde tilgængelig med navnet \"%s\""
 
-#: ../gnome-dictionary/src/gdict-applet.c:934
-#: ../gnome-dictionary/src/gdict-window.c:442
+#: ../gnome-dictionary/src/gdict-applet.c:908
+#: ../gnome-dictionary/src/gdict-window.c:500
 msgid "Unable to find dictionary source"
 msgstr "Kan ikke finde ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-applet.c:950
-#: ../gnome-dictionary/src/gdict-window.c:458
+#: ../gnome-dictionary/src/gdict-applet.c:924
+#: ../gnome-dictionary/src/gdict-window.c:516
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Ingen kontekst tilgængelig for kilden \"%s\""
 
-#: ../gnome-dictionary/src/gdict-applet.c:954
-#: ../gnome-dictionary/src/gdict-window.c:462
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:520
 msgid "Unable to create a context"
 msgstr "Kan ikke oprette kontekst"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1222
-#: ../gnome-dictionary/src/gdict-window.c:1919
+#: ../gnome-dictionary/src/gdict-applet.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:2048
 msgid "Unable to connect to GConf"
 msgstr "Kan ikke forbinde til GConf"
 
 # Gad vide hvad dette betyder
-#: ../gnome-dictionary/src/gdict-applet.c:1235
-#: ../gnome-dictionary/src/gdict-window.c:1932
+#: ../gnome-dictionary/src/gdict-applet.c:1206
+#: ../gnome-dictionary/src/gdict-window.c:2061
 msgid "Unable to get notification for preferences"
 msgstr "Kan ikke hente meddelelser for indstillinger"
 
 # Gad vide hvad dette betyder
-#: ../gnome-dictionary/src/gdict-applet.c:1249
-#: ../gnome-dictionary/src/gdict-window.c:1945
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:2074
 msgid "Unable to get notification for the document font"
 msgstr "Kan ikke hente meddelelser for dokumentskrifttypen"
 
@@ -1908,228 +1905,256 @@ msgstr "Kan ikke omdøbe filen \"%s\" til \"%s\": %s"
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Kan ikke oprette datamappen \"%s\": %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
 msgid "Edit Dictionary Source"
 msgstr "Redigér ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
 msgid "Add Dictionary Source"
 msgstr "Tilføj ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "Fjern \"%s\"?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Dette vil permanent fjerne ordbogskilden fra listen."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Kunne ikke fjerne kilden \"%s\""
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
 msgid "Add a new dictionary source"
 msgstr "Tilføj en ny ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
 msgid "Remove the currently selected dictionary source"
 msgstr "Fjern den valgte ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
 msgid "Set the font used for printing the definitions"
 msgstr "Sæt skrifttypen der bruges til udskrift af definitioner"
 
-#: ../gnome-dictionary/src/gdict-print.c:187
-#, c-format
-msgid "%s (page %d)"
-msgstr "%s (side %d)"
+#: ../gnome-dictionary/src/gdict-print.c:249
+#: ../gnome-dictionary/src/gdict-print.c:313
+#, fuzzy, c-format
+msgid "Unable to display the preview: %s"
+msgstr "Kunne ikke skrive til enheden %s"
 
-#: ../gnome-dictionary/src/gdict-print.c:246
-msgid "Print Preview"
-msgstr "Forhåndsvisning af udskrift"
-
-#: ../gnome-dictionary/src/gdict-source-dialog.c:360
-#: ../gnome-dictionary/src/gdict-source-dialog.c:453
+#: ../gnome-dictionary/src/gdict-source-dialog.c:358
+#: ../gnome-dictionary/src/gdict-source-dialog.c:451
 msgid "Unable to create a source file"
 msgstr "Kan ikke oprette en kildefil"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:378
-#: ../gnome-dictionary/src/gdict-source-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:376
+#: ../gnome-dictionary/src/gdict-source-dialog.c:469
 msgid "Unable to save source file"
 msgstr "Kan ikke gemme kildefil"
 
-#: ../gnome-dictionary/src/gdict-window.c:288
+#: ../gnome-dictionary/src/gdict-window.c:312
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Søger efter \"%s\"..."
 
-#: ../gnome-dictionary/src/gdict-window.c:318
-#: ../gnome-dictionary/src/gdict-window.c:350
+#: ../gnome-dictionary/src/gdict-window.c:344
+#: ../gnome-dictionary/src/gdict-window.c:402
 msgid "No definitions found"
 msgstr "Ingen definitioner fundet"
 
-#: ../gnome-dictionary/src/gdict-window.c:320
+#: ../gnome-dictionary/src/gdict-window.c:346
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Én definition fundet"
 msgstr[1] "%d definitioner fundet"
 
-#: ../gnome-dictionary/src/gdict-window.c:527
+#: ../gnome-dictionary/src/gdict-window.c:585
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Ordbog"
 
-#: ../gnome-dictionary/src/gdict-window.c:1067 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1145 ../logview/logview.c:85
 msgid "_File"
 msgstr "_Fil"
 
 # Tilhører tilsyneladende menuen med "forrige", "næste" etc.
-#: ../gnome-dictionary/src/gdict-window.c:1070
+#: ../gnome-dictionary/src/gdict-window.c:1148
 msgid "_Go"
 msgstr "_Gå til"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1074
+#: ../gnome-dictionary/src/gdict-window.c:1152
 msgid "_New"
 msgstr "_Ny"
 
-#: ../gnome-dictionary/src/gdict-window.c:1075
+#: ../gnome-dictionary/src/gdict-window.c:1153
 msgid "New look up"
 msgstr "Nyt opslag"
 
-#: ../gnome-dictionary/src/gdict-window.c:1076
+#: ../gnome-dictionary/src/gdict-window.c:1154
 msgid "_Save a Copy..."
 msgstr "_Gem en kopi..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1078
+#: ../gnome-dictionary/src/gdict-window.c:1156
+#, fuzzy
+msgid "P_review..."
+msgstr "_Udskriv..."
+
+#: ../gnome-dictionary/src/gdict-window.c:1157
+#, fuzzy
+msgid "Preview this document"
+msgstr "Udskriv dette dokument"
+
+#: ../gnome-dictionary/src/gdict-window.c:1158
 msgid "_Print..."
 msgstr "_Udskriv..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1079
+#: ../gnome-dictionary/src/gdict-window.c:1159
 msgid "Print this document"
 msgstr "Udskriv dette dokument"
 
-#: ../gnome-dictionary/src/gdict-window.c:1086 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1166 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Markér _alt"
 
 # bemærk: denne og følgende skal synkroniseres med senere tekster
-#: ../gnome-dictionary/src/gdict-window.c:1089
+#: ../gnome-dictionary/src/gdict-window.c:1169
 msgid "Find a word or phrase in the document"
 msgstr "Find et ord eller en frase i dokumentet"
 
-#: ../gnome-dictionary/src/gdict-window.c:1091
+#: ../gnome-dictionary/src/gdict-window.c:1171
 msgid "Find Ne_xt"
 msgstr "Find n_æste"
 
-#: ../gnome-dictionary/src/gdict-window.c:1093
+#: ../gnome-dictionary/src/gdict-window.c:1173
 msgid "Find Pre_vious"
 msgstr "Find f_orrige"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1099
+#: ../gnome-dictionary/src/gdict-window.c:1179
 msgid "_Previous Definition"
 msgstr "_Forrige definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1100
+#: ../gnome-dictionary/src/gdict-window.c:1180
 msgid "Go to the previous definition"
 msgstr "Gå til forrige definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1101
+#: ../gnome-dictionary/src/gdict-window.c:1181
 msgid "_Next Definition"
 msgstr "_Næste definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1102
+#: ../gnome-dictionary/src/gdict-window.c:1182
 msgid "Go to the next definition"
 msgstr "Gå til næste definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1103
+#: ../gnome-dictionary/src/gdict-window.c:1183
 msgid "_First Definition"
 msgstr "_Første definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1104
+#: ../gnome-dictionary/src/gdict-window.c:1184
 msgid "Go to the first definition"
 msgstr "Gå til den første definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1105
+#: ../gnome-dictionary/src/gdict-window.c:1185
 msgid "_Last Definition"
 msgstr "_Sidste definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1106
+#: ../gnome-dictionary/src/gdict-window.c:1186
 msgid "Go to the last definition"
 msgstr "Gå til den sidste definition"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1109
+#: ../gnome-dictionary/src/gdict-window.c:1189
 msgid "Similar _Words"
 msgstr "Lignende _ord"
 
-#: ../gnome-dictionary/src/gdict-window.c:1111
+#: ../gnome-dictionary/src/gdict-window.c:1191
+#, fuzzy
+msgid "Dictionary Sources"
+msgstr "Tilføj ordbogskilde"
+
+#: ../gnome-dictionary/src/gdict-window.c:1193
 msgid "Available _Databases"
 msgstr "Tilgængelige _databaser"
 
-#: ../gnome-dictionary/src/gdict-window.c:1113
+#: ../gnome-dictionary/src/gdict-window.c:1195
 msgid "Available St_rategies"
 msgstr "Tilgængelige st_rategier"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1130
+#: ../gnome-dictionary/src/gdict-window.c:1212
 msgid "_Sidebar"
 msgstr "_Sidepanel"
 
-#: ../gnome-dictionary/src/gdict-window.c:1132
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "S_tatusbar"
 msgstr "S_tatusbjælke"
 
-#: ../gnome-dictionary/src/gdict-window.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1333
+#, fuzzy, c-format
+msgid "Dictionary source `%s' selected"
+msgstr "Benyttet ordbogskilde"
+
+#: ../gnome-dictionary/src/gdict-window.c:1352
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "Strategi \"%s\" valgt"
 
-#: ../gnome-dictionary/src/gdict-window.c:1265
+#: ../gnome-dictionary/src/gdict-window.c:1370
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Database \"%s\" valgt"
 
-#: ../gnome-dictionary/src/gdict-window.c:1285
+#: ../gnome-dictionary/src/gdict-window.c:1390
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Ord \"%s\" valgt"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1307
+#: ../gnome-dictionary/src/gdict-window.c:1412
 msgid "Double-click on the word to look up"
 msgstr "Dobbeltklik på ordet for at slå det op"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1313
+#: ../gnome-dictionary/src/gdict-window.c:1418
 msgid "Double-click on the matching strategy to use"
 msgstr "Dobbeltklik på søgningsstrategien der skal benyttes"
 
+#. source-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1423
+#, fuzzy
+msgid "Double-click on the source to use"
+msgstr "Dobbeltklik på databasen der skal benyttes"
+
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1323
+#: ../gnome-dictionary/src/gdict-window.c:1432
 msgid "Double-click on the database to use"
 msgstr "Dobbeltklik på databasen der skal benyttes"
 
-#: ../gnome-dictionary/src/gdict-window.c:1610
+#: ../gnome-dictionary/src/gdict-window.c:1720
 msgid "Look _up:"
 msgstr "Slå _op:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1683
+#: ../gnome-dictionary/src/gdict-window.c:1794
 msgid "Similar words"
 msgstr "Lignende ord"
 
-#: ../gnome-dictionary/src/gdict-window.c:1696
+#: ../gnome-dictionary/src/gdict-window.c:1808
 msgid "Available dictionaries"
 msgstr "Tilgængelige ordbøger"
 
-#: ../gnome-dictionary/src/gdict-window.c:1709
+#: ../gnome-dictionary/src/gdict-window.c:1822
 msgid "Available strategies"
 msgstr "Tilgængelige strategier"
+
+#: ../gnome-dictionary/src/gdict-window.c:1836
+#, fuzzy
+msgid "Dictionary sources"
+msgstr "Ordbogskilder fundet"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 #: ../gsearchtool/gsearchtool-support.c:1629
@@ -2196,7 +2221,7 @@ msgstr "Tag billede _efter en ventetid på"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:870
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "seconds"
 msgstr "sekunder"
 
@@ -2224,7 +2249,7 @@ msgstr "Skærmbillede-%s.png"
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-screenshot.c:494
 #: ../gnome-screenshot/screenshot-dialog.c:329
-#: ../gnome-screenshot/screenshot-save.c:197
+#: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Skærmbillede.png"
 
@@ -2248,39 +2273,39 @@ msgstr "Skærmbillede-%d.png"
 msgid "Unable to take a screenshot of the current window"
 msgstr "Kunne ikke tage et skærmbillede af det aktuelle vindue"
 
-#: ../gnome-screenshot/gnome-screenshot.c:868
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Grab a window instead of the entire screen"
 msgstr "Tag et billede af et vindue i stedet for af hele skærmen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:869
+#: ../gnome-screenshot/gnome-screenshot.c:873
 msgid "Include the window border with the screenshot"
 msgstr "Inkludér vinduesrammen i skærmbilledet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:870
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Tag skærmbillede efter en anført forsinkelse [i sekunder]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effekt for vinduesrammen (\"shadow\", \"border\" eller \"none\")"
 
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "effect"
 msgstr "effekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:876
 msgid "Interactively set options"
 msgstr "Vælg indstillinger interaktivt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:882
+#: ../gnome-screenshot/gnome-screenshot.c:886
 msgid "Options for Screenshot"
 msgstr "Indstillinger for skærmbillede"
 
-#: ../gnome-screenshot/gnome-screenshot.c:883
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Show Screenshot options"
 msgstr "Vis indstillinger for skærmbillede"
 
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:891
 msgid "Take a picture of the screen"
 msgstr "Tag et skærmbillede"
 
@@ -2357,7 +2382,7 @@ msgstr ""
 "Gemme-underprocessen afsluttede uventet. Skærmbilledet kunne ikke skrives "
 "til disken."
 
-#: ../gnome-screenshot/screenshot-save.c:224
+#: ../gnome-screenshot/screenshot-save.c:223
 msgid "Unknown error saving screenshot to disk"
 msgstr "Ukendt fejl ved gemning af skærmbilledet til disken"
 
@@ -3543,11 +3568,11 @@ msgstr "Vis indstillinger for systemlog-fremviseren"
 msgid " - Browse and monitor logs"
 msgstr " - Gennemse og overvåg logge"
 
-#: ../logview/main.c:153
+#: ../logview/main.c:145
 msgid "Log Viewer"
 msgstr "Logfremviser"
 
-#: ../logview/main.c:162
+#: ../logview/main.c:154
 msgid "Unable to create user interface."
 msgstr "Kunne ikke oprette brugergrænseflade."
 
@@ -3620,6 +3645,21 @@ msgstr "Filovervågning understøttes ikke på dette filsystem.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS fejl.\n"
+
+#~ msgid "The GdictContext object bound to this entry"
+#~ msgstr "GdictContext-objektet bundet til dette element"
+
+#~ msgid "The database to be used to generate the completion list"
+#~ msgstr "Databasen der skal benyttes til at generere fuldførelseslisten"
+
+#~ msgid "The matching strategy to be used to generate the completion list"
+#~ msgstr "Træfningsstrategien der benyttes til at generere fuldførelseslisten"
+
+#~ msgid "%s (page %d)"
+#~ msgstr "%s (side %d)"
+
+#~ msgid "Print Preview"
+#~ msgstr "Forhåndsvisning af udskrift"
 
 #~ msgid "Analyze disk usage"
 #~ msgstr "Analysér diskforbrug"
@@ -3721,10 +3761,6 @@ msgstr "Gnome-VFS fejl.\n"
 
 #~ msgid "Error invoking query"
 #~ msgstr "Fejl ved udførsel af forespørgsel"
-
-#, fuzzy
-#~ msgid "Looking up entry..."
-#~ msgstr "Slår ord op..."
 
 #~ msgid "De_fault Server"
 #~ msgstr "For_valgt server"
@@ -4112,9 +4148,6 @@ msgstr "Gnome-VFS fejl.\n"
 
 #~ msgid "Too many open logs. Close one and try again"
 #~ msgstr "For mange åbne logfiler. Luk en og prøv igen"
-
-#~ msgid "Monitor Options"
-#~ msgstr "Overvågningsindstillinger"
 
 #~ msgid "Ac_tions..."
 #~ msgstr "_Handlinger..."
