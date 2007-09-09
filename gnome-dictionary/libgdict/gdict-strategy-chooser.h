@@ -80,7 +80,7 @@ gboolean      gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser 
                                                            const gchar          *strat_name);
 gchar *       gdict_strategy_chooser_get_current_strategy (GdictStrategyChooser *chooser) G_GNUC_MALLOC;
 gchar **      gdict_strategy_chooser_get_strategies       (GdictStrategyChooser *chooser,
-						           gsize                 length) G_GNUC_MALLOC;
+						           gsize                *length) G_GNUC_MALLOC;
 gint          gdict_strategy_chooser_count_strategies     (GdictStrategyChooser *chooser);
 gboolean      gdict_strategy_chooser_has_strategy         (GdictStrategyChooser *chooser,
 						           const gchar          *strategy);

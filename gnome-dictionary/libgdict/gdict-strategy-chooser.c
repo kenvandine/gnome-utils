@@ -164,8 +164,8 @@ set_gdict_context (GdictStrategyChooser *chooser,
 
   GDICT_NOTE (CHOOSER, "Setting new context");
     
-  priv->context = context;
-  g_object_ref (G_OBJECT (priv->context));
+  priv->context = g_object_ref (context);
+  priv->results = 0;
 }
 
 static void
@@ -548,11 +548,41 @@ gdict_strategy_chooser_set_context (GdictStrategyChooser *chooser,
  */
 gchar **
 gdict_strategy_chooser_get_strategies (GdictStrategyChooser  *chooser,
-				      gsize                  length)
+                                       gsize                 *length)
 {
+  GdictStrategyChooserPrivate *priv;
+  GtkTreeIter iter;
+  gchar **retval;
+  gsize i;
+
   g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), NULL);
 
-  return NULL;
+  priv = chooser->priv;
+
+  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
+    return NULL;
+
+  i = 0;
+  retval = g_new (gchar*, priv->results);
+
+  do
+    {
+      gchar *strat_name;
+
+      gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                          STRAT_COLUMN_NAME, &strat_name,
+                          -1);
+
+      retval[i++] = strat_name;
+    }
+  while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter));
+
+  retval[i] = NULL;
+
+  if (length)
+    *length = i;
+
+  return retval;
 }
 
 /**
@@ -571,10 +601,40 @@ gboolean
 gdict_strategy_chooser_has_strategy (GdictStrategyChooser *chooser,
 				     const gchar          *strategy)
 {
+  GdictStrategyChooserPrivate *priv;
+  GtkTreeIter iter;
+  gboolean retval;
+
   g_return_val_if_fail (GDICT_IS_STRATEGY_CHOOSER (chooser), FALSE);
   g_return_val_if_fail (strategy != NULL, FALSE);
 
-  return FALSE;
+  priv = chooser->priv;
+
+  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
+    return FALSE;
+
+  retval = FALSE;
+
+  do
+    {
+      gchar *strat_name;
+
+      gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                          STRAT_COLUMN_NAME, &strat_name,
+                          -1);
+      
+      if (strcmp (strat_name, strategy) == 0)
+        {
+          retval = TRUE;
+          g_free (strat_name);
+          break;
+        }
+
+      g_free (strat_name);
+    }
+  while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter));
+
+  return retval;
 }
 
 /**
@@ -653,10 +713,7 @@ strategy_found_cb (GdictContext  *context,
                       STRAT_COLUMN_CURRENT, weight,
 		      -1);
 
-  if (priv->results == -1)
-    priv->results = 1;
-  else
-    priv->results += 1;
+  priv->results += 1;
 }
 
 static void
@@ -670,6 +727,7 @@ error_cb (GdictContext *context,
     gdk_window_set_cursor (GTK_WIDGET (chooser)->window, NULL);
 
   chooser->priv->is_searching = FALSE;
+  chooser->priv->results = 0;
 }
 
 /**
@@ -761,7 +819,7 @@ gdict_strategy_chooser_clear (GdictStrategyChooser *chooser)
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview), NULL);
 
   gtk_list_store_clear (priv->store);
-  priv->results = -1;
+  priv->results = 0;
 
   gtk_tree_view_set_model (GTK_TREE_VIEW (priv->treeview),
 		  	   GTK_TREE_MODEL (priv->store));
@@ -805,12 +863,11 @@ scan_for_strat_name (GtkTreeModel *model,
         {
           GtkTreeViewColumn *column;
 
-          column = gtk_tree_view_get_column (tree_view, 2);
-
           gtk_list_store_set (GTK_LIST_STORE (model), iter,
                               STRAT_COLUMN_CURRENT, PANGO_WEIGHT_BOLD,
                               -1);
 
+          column = gtk_tree_view_get_column (tree_view, 2);
           gtk_tree_view_row_activated (tree_view, path, column);
         }
 
@@ -959,6 +1016,8 @@ gdict_strategy_chooser_set_current_strategy (GdictStrategyChooser *chooser,
       g_free (priv->current_strat);
       priv->current_strat = data.strat_name;
     }
+  else
+    g_free (data.strat_name);
 
   return retval;
 }
