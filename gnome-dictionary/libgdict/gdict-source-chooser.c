@@ -700,6 +700,8 @@ gdict_source_chooser_set_current_source (GdictSourceChooser *chooser,
       g_free (priv->current_source);
       priv->current_source = data.source_name;
     }
+  else
+    g_free (data.source_name);
 
   return retval;
 }
