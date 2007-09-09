@@ -469,7 +469,7 @@ gdict_window_set_strategy (GdictWindow *window,
 {
   g_free (window->strategy);
 
-  if (strategy && strategy[0])
+  if (strategy && strategy[0] != '\0')
     window->strategy = g_strdup (strategy);
   else
     window->strategy = gdict_gconf_get_string_with_default (window->gconf_client,
@@ -635,6 +635,12 @@ gdict_window_set_context (GdictWindow  *window,
 
   if (window->defbox)
     gdict_defbox_set_context (GDICT_DEFBOX (window->defbox), context);
+
+  if (window->db_chooser)
+    gdict_database_chooser_set_context (GDICT_DATABASE_CHOOSER (window->db_chooser), context);
+
+  if (window->strat_chooser)
+    gdict_strategy_chooser_set_context (GDICT_STRATEGY_CHOOSER (window->strat_chooser), context);
 
   if (!context)
     return;
