@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-03-05 11:47+0200\n"
-"PO-Revision-Date: 2007-03-05 10:50+0300\n"
+"POT-Creation-Date: 2007-09-12 15:48+0300\n"
+"PO-Revision-Date: 2007-09-12 10:50+0300\n"
 "Last-Translator: Maxim Dziumanenko <dziumanenko@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,8 @@ msgstr ""
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "Analyze disk usage"
-msgstr "Аналіз використання диску"
+msgid "Check folder sizes and available disk space"
+msgstr "Перевірте розміри тек та дисковий простір"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -129,7 +129,7 @@ msgstr "З_горути все"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1117 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1232 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "_Зміст"
 
@@ -138,7 +138,7 @@ msgid "_Depth level:"
 msgstr "_Рівень глибини:"
 
 #: ../baobab/data/baobab.glade.h:30
-#: ../gnome-dictionary/src/gdict-window.c:1068 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1179 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Правка"
 
@@ -152,7 +152,7 @@ msgstr "_Графічна мапа використання"
 
 #: ../baobab/data/baobab.glade.h:33
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1071 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_Довідка"
 
@@ -169,7 +169,7 @@ msgid "_Total folders:"
 msgstr "_Всього тек:"
 
 #: ../baobab/data/baobab.glade.h:37
-#: ../gnome-dictionary/src/gdict-window.c:1069 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview.c:87
 msgid "_View"
 msgstr "_Вигляд"
 
@@ -207,12 +207,12 @@ msgstr "Чи видима панель інструментів головног
 
 #. set statusbar, percentage and allocated/normal size
 #: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:307
+#: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Обчислення процентного співвідношення..."
 
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:757
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:311
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Завершено"
 
@@ -273,21 +273,29 @@ msgstr "Не вдається отримати пам'ять для графіч
 msgid "Graphical Usage Map"
 msgstr "Графічна карта використання"
 
-#: ../baobab/src/baobab-prefs.c:165
+#: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
 msgstr "Сканувати"
 
-#: ../baobab/src/baobab-prefs.c:172
+#: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
 msgstr "Пристрій"
 
-#: ../baobab/src/baobab-prefs.c:180
+#: ../baobab/src/baobab-prefs.c:183
 msgid "Mount Point"
 msgstr "Точка підключення"
 
-#: ../baobab/src/baobab-prefs.c:188
+#: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
 msgstr "Тип файлової системи"
+
+#: ../baobab/src/baobab-prefs.c:199
+msgid "Total Size"
+msgstr "Загальний розмір"
+
+#: ../baobab/src/baobab-prefs.c:208
+msgid "Available"
+msgstr "Доступно"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -396,12 +404,12 @@ msgstr "Розмір"
 msgid "Contents"
 msgstr "Зміст"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:102
 msgid "Select Folder"
 msgstr "Виберіть теку"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:116
+#: ../baobab/src/baobab-utils.c:114
 msgid "_Show hidden folders"
 msgstr "Показувати при_ховані теки"
 
@@ -461,7 +469,7 @@ msgstr "Не вдається знайти теку смітника на цій
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Не вдається перемістити документ \"%s\" у смітник."
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:390
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "Тека не існує."
 
@@ -502,7 +510,8 @@ msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
 msgstr ""
-"Зміст вашого домашнього каталогу змінився. Для оновлення інформації про використання диску потрібне повторне сканування."
+"Зміст вашого домашнього каталогу змінився. Для оновлення інформації про "
+"використання диску потрібне повторне сканування."
 
 #: ../baobab/src/baobab-utils.c:625
 msgid "_Rescan"
@@ -536,23 +545,23 @@ msgstr "Кореневий вузол кільцевої діаграми"
 msgid "Set the root node from the model"
 msgstr "Встановити кореневий вузол діаграми"
 
-#: ../baobab/src/callbacks.c:82
+#: ../baobab/src/callbacks.c:99
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:83
+#: ../baobab/src/callbacks.c:100
 msgid "A graphical tool to analyze disk usage."
 msgstr "Графічна утиліта для аналізу використання дисків."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Юрій Сирота <yuriy@beer.com>\n"
 "Максим Дзюманенко <dziumanenko@gmail.com>"
 
-#: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Документ не існує."
@@ -1015,7 +1024,7 @@ msgid "Cl_ear"
 msgstr "О_чистити"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1119 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview.c:116
 msgid "_About"
 msgstr "_Про програму"
 
@@ -1024,7 +1033,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Шукати виділений текст"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1095
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "_Preferences"
 msgstr "_Параметри"
 
@@ -1042,9 +1051,9 @@ msgstr "Пошук слів та їх написання у інтерактив
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:406
-#: ../gnome-dictionary/src/gdict-window.c:529
-#: ../gnome-dictionary/src/gdict-window.c:1790
+#: ../gnome-dictionary/src/gdict-app.c:402
+#: ../gnome-dictionary/src/gdict-window.c:604
+#: ../gnome-dictionary/src/gdict-window.c:1951
 msgid "Dictionary"
 msgstr "Словник"
 
@@ -1242,8 +1251,6 @@ msgid "H_ostname:"
 msgstr "Назва в_узла:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:202
-#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "Print"
 msgstr "Друк"
 
@@ -1283,59 +1290,59 @@ msgstr "Іспанські словники"
 msgid "Longdo Thai-English Dictionaries"
 msgstr "Тайсько-англійські словники Longo"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:283
 msgid "Client Name"
 msgstr "Назва клієнту"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "The name of the client of the context object"
 msgstr "Назва клієнту об'єкту контексту"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:297
 msgid "Hostname"
 msgstr "Назва комп'ютера"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
 msgid "The hostname of the dictionary server to connect to"
 msgstr "Назва вузла словникового сервера"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "Port"
 msgstr "Порт"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:312
 msgid "The port of the dictionary server to connect to"
 msgstr "Порт словникового сервера"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:327
 msgid "Status"
 msgstr "Статус"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:328
 msgid "The status code as returned by the dictionary server"
 msgstr "Код статуса, який повертається словниковим сервером"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:777
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Відсутнє з'єднання зі словниковим сервером '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "Помилка пошуку вузла '%s': не знайдено відповідний ресурс"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1056
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Помилка пошуку вузла '%s': %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1091
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Помилка пошуку вузла '%s': вузол не знайдено"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1143
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1171
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -1344,7 +1351,7 @@ msgstr ""
 "Не вдається з'єднатись зі словниковим сервером '%s:%d'. Сервер повернув код %"
 "d (сервер вимкнений)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1162
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -1353,47 +1360,47 @@ msgstr ""
 "Не вдається розібрати відповідь словникового сервера\n"
 ": '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1191
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "Немає визначення для '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1206
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1234
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Неправильна база даних '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1221
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1249
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Неправильна стратегія '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1236
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1264
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Неправильна команда '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1251
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1279
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Неправильні параметри для команди '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1266
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1294
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Відсутні бази даних на словниковому сервері '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1281
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1309
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Не знайдено стратегії на словниковому сервері '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1722
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1742
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Помилка з'єднанні словниковим сервером %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1761
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1781
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1402,250 +1409,242 @@ msgstr ""
 "Помилка при читанні відповіді сервера:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1831
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Помилка з'єднання зі словниковим сервером за адресою \"%s:%d\""
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
 msgid "No hostname defined for the dictionary server"
 msgstr "Не визначено назву вузла словникового сервера"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1901
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1916
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
 msgid "Unable to create socket"
 msgstr "Не вдається створити сокет"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1942
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1962
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Не вдається встановити канал для у неблокуючий режим: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1957
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1977
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Не вдається з'єднатись зі словниковим сервером '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:199
+#: ../gnome-dictionary/libgdict/gdict-context.c:218
 msgid "Local Only"
 msgstr "Лише локальні"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:200
+#: ../gnome-dictionary/libgdict/gdict-context.c:219
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Чи контекст використовує лише локальні словники"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:346
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
 msgid "Reload the list of available databases"
 msgstr "Перезавантажити список доступних баз даних"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:359
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
 msgid "Clear the list of available databases"
 msgstr "Очистити список доступних баз даних"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:656
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1684
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:650
-msgid "Another search is in progress"
-msgstr "Триває інша операція пошуку "
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:657
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1685
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:651
-msgid "Please wait until the current search ends."
-msgstr "Зачекайте доки закінчиться поточна операція пошуку."
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:690
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
 #: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:684
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
 msgid "Error while matching"
 msgstr "Помилка при співставленні"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:366
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:455
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:483
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1132
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1226
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1260
 msgid "Not found"
 msgstr "Не знайдено"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1321
 msgid "F_ind:"
 msgstr "З_найти:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:528
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1334
 msgid "_Previous"
 msgstr "Поп_ереднє"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:536
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1342
 msgid "_Next"
 msgstr "_Наступне"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1642
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2493
 msgid "Error while looking up definition"
 msgstr "Помилка при пошуку визначення"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1723
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2535
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+msgid "Another search is in progress"
+msgstr "Триває інша операція пошуку "
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2536
+#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+msgid "Please wait until the current search ends."
+msgstr "Зачекайте доки закінчиться поточна операція пошуку."
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2575
 msgid "Error while retrieving the definition"
 msgstr "Помилка при отриманні визначення"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:105
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:375
-msgid "Context"
-msgstr "Контекст"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:106
-msgid "The GdictContext object bound to this entry"
-msgstr "У цьому елементі не знайдено об'єкт GdictContext"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:120
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:382
-msgid "Database"
-msgstr "База даних"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:121
-msgid "The database to be used to generate the completion list"
-msgstr "База даних, що використовується для створення списку доповнень"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:389
-msgid "Strategy"
-msgstr "Стратегія"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:136
-msgid "The matching strategy to be used to generate the completion list"
-msgstr ""
-"Стратегія відповідності, що використовується для створення списку доповнень"
-
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:232
 msgid "Filename"
 msgstr "Назва файлу"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:220
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
 msgid "The filename used by this dictionary source"
 msgstr "Назва файлу, що використовується цим джерелом словників"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:246
 #: ../gsearchtool/gsearchtool.c:2473
 msgid "Name"
 msgstr "Назва"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:234
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "The display name of this dictonary source"
 msgstr "Назва відображення цього джерела словників"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:260
 msgid "Description"
 msgstr "Опис"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:248
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
 msgid "The description of this dictionary source"
 msgstr "Опис цього джерела словників"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:262
+#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+msgid "Database"
+msgstr "База даних"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
 msgid "The default database of this dictonary source"
 msgstr "Типова База даних, що використовується сервером"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:276
+#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+msgid "Strategy"
+msgstr "Стратегія"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "The default strategy of this dictonary source"
 msgstr "Типова стратегія, що використовується сервером"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:302
 msgid "Transport"
 msgstr "Транспорт"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:290
+#: ../gnome-dictionary/libgdict/gdict-source.c:303
 msgid "The transport mechanism used by this dictionary source"
 msgstr "Механізм транспорту, що використовується сервером"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:305
+#: ../gnome-dictionary/libgdict/gdict-source.c:317
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+msgid "Context"
+msgstr "Контекст"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:318
 msgid "The GdictContext bound to this source"
 msgstr "Об'єкт GdictContext, що пов'язаний з цим джерелом"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:400
+#: ../gnome-dictionary/libgdict/gdict-source.c:413
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "Неправильний тип транспорту '%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:428
+#: ../gnome-dictionary/libgdict/gdict-source.c:441
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr "У визначенні джерела словників відсутня група '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:444
-#: ../gnome-dictionary/libgdict/gdict-source.c:468
-#: ../gnome-dictionary/libgdict/gdict-source.c:492
-#: ../gnome-dictionary/libgdict/gdict-source.c:517
+#: ../gnome-dictionary/libgdict/gdict-source.c:457
+#: ../gnome-dictionary/libgdict/gdict-source.c:481
+#: ../gnome-dictionary/libgdict/gdict-source.c:505
+#: ../gnome-dictionary/libgdict/gdict-source.c:530
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr "У визначенні джерел словників не вдається отримати ключ '%s': %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:542
+#: ../gnome-dictionary/libgdict/gdict-source.c:555
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr "У файлі визначення джерел словників не вдається отримати ключ '%s': %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:728
+#: ../gnome-dictionary/libgdict/gdict-source.c:741
 msgid "Dictionary source does not have name"
 msgstr "Джерело словників не має назви"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:737
+#: ../gnome-dictionary/libgdict/gdict-source.c:750
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Джерело словників '%s' має неправильний транспорт '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+msgid "Reload the list of available sources"
+msgstr "Перезавантажити список доступних джерел"
+
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:171
 msgid "Paths"
 msgstr "Шляхи"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:172
 msgid "Search paths used by this object"
 msgstr "Шляхи пошуку, що використовуються цим об'єктом "
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:184
 msgid "Sources"
 msgstr "Джерела"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:185
 msgid "Dictionary sources found"
 msgstr "Знайдено джерела словників"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+#: ../gnome-dictionary/libgdict/gdict-speller.c:355
 msgid "Clear the list of similar words"
 msgstr "Очистити список схожих слів"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+#: ../gnome-dictionary/libgdict/gdict-speller.c:379
 msgid "The GdictContext object used to get the word definition"
 msgstr "Об'єкт GdictContext використовується для отримання визначення слова"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:383
+#: ../gnome-dictionary/libgdict/gdict-speller.c:386
 msgid "The database used to query the GdictContext"
 msgstr "База даних, що використовується для запиту GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:390
+#: ../gnome-dictionary/libgdict/gdict-speller.c:393
 msgid "The strategy used to query the GdictContext"
 msgstr "Стратегія, що використовується для запиту GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:340
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
 msgid "Reload the list of available strategies"
 msgstr "Перезавантажити список доступних стратегій"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:353
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
 msgid "Clear the list of available strategies"
 msgstr "Очистити список доступних стратегій"
 
+#: ../gnome-dictionary/libgdict/gdict-utils.c:157
+msgid "GDict Options"
+msgstr "Параметри GDict"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:158
+msgid "Show GDict Options"
+msgstr "Показувати параметри GDict"
+
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:613
+#: ../gnome-dictionary/src/gdict-applet.c:591
 msgid "Look up words in dictionaries"
 msgstr "Пошук слів у словниках"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:238
+#: ../gnome-dictionary/src/gdict-app.c:233
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1658,20 +1657,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:252
+#: ../gnome-dictionary/src/gdict-app.c:247
 #, c-format
 msgid "Error: %s\n"
 msgstr "Помилка: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:278
+#: ../gnome-dictionary/src/gdict-app.c:273
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Для перегляду довідки з використання вкажіть --help\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:291
+#: ../gnome-dictionary/src/gdict-app.c:286
 msgid "Unable to find a suitable dictionary source"
 msgstr "Не вдається знайти відповідне джерело словників"
 
-#: ../gnome-dictionary/src/gdict-app.c:325
+#: ../gnome-dictionary/src/gdict-app.c:320
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1680,184 +1679,184 @@ msgstr ""
 "Помилка при пошуку визначення \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "Words to look up"
 msgstr "Слова для пошуку"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:361
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "word"
 msgstr "Слово"
 
-#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:356
 msgid "Words to match"
 msgstr "Слова для пошуку"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "Dictionary source to use"
 msgstr "Джерело словників"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "source"
 msgstr "джерело"
 
-#: ../gnome-dictionary/src/gdict-app.c:365
+#: ../gnome-dictionary/src/gdict-app.c:360
 msgid "Show available dictionary sources"
 msgstr "Показувати доступні джерела словників"
 
-#: ../gnome-dictionary/src/gdict-app.c:367
+#: ../gnome-dictionary/src/gdict-app.c:362
 msgid "Print result to the console"
 msgstr "Виводити результат на консоль"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "Database to use"
 msgstr "База даних"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "db"
 msgstr "БД"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "Strategy to use"
 msgstr "Стратегія пошуку"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "strat"
 msgstr "стратегія"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:389
+#: ../gnome-dictionary/src/gdict-app.c:384
 msgid " - Look up words in dictionaries"
 msgstr " - Пошук слів у словниках"
 
-#: ../gnome-dictionary/src/gdict-app.c:393
+#: ../gnome-dictionary/src/gdict-app.c:388
 msgid "Dictionary and spelling tool"
 msgstr "Програма пошуку у словнику та перевірки правопису"
 
-#: ../gnome-dictionary/src/gdict-app.c:394
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid "Show Dictionary options"
 msgstr "Показувати параметри словників"
 
-#: ../gnome-dictionary/src/gdict-applet.c:216
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-applet.c:207
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "Save a Copy"
 msgstr "Зберегти копію"
 
-#: ../gnome-dictionary/src/gdict-applet.c:226
-#: ../gnome-dictionary/src/gdict-window.c:752
+#: ../gnome-dictionary/src/gdict-applet.c:217
+#: ../gnome-dictionary/src/gdict-window.c:843
 msgid "Untitled document"
 msgstr "Документ без заголовка"
 
-#: ../gnome-dictionary/src/gdict-applet.c:247
-#: ../gnome-dictionary/src/gdict-window.c:773
+#: ../gnome-dictionary/src/gdict-applet.c:238
+#: ../gnome-dictionary/src/gdict-window.c:864
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Помилка при запису у '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear the definitions found"
 msgstr "Очистити знайдені визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:378
+#: ../gnome-dictionary/src/gdict-applet.c:365
 msgid "Clear definition"
 msgstr "Очистити визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:379
+#: ../gnome-dictionary/src/gdict-applet.c:366
 msgid "Clear the text of the definition"
 msgstr "Очистити текст визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:389
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print the definitions found"
 msgstr "Друкувати знайдені визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Print definition"
 msgstr "Друкувати визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:393
+#: ../gnome-dictionary/src/gdict-applet.c:376
 msgid "Print the text of the definition"
 msgstr "Друкувати текст визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:403
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save the definitions found"
 msgstr "Зберегти знайдені визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:385
 msgid "Save definition"
 msgstr "Зберегти визначення"
 
-#: ../gnome-dictionary/src/gdict-applet.c:407
+#: ../gnome-dictionary/src/gdict-applet.c:386
 msgid "Save the text of the definition to a file"
 msgstr "Зберегти текст визначення у файл"
 
-#: ../gnome-dictionary/src/gdict-applet.c:553
-msgid "Toggle dictionary window"
-msgstr "Показати/сховати вікно словника"
-
-#: ../gnome-dictionary/src/gdict-applet.c:554
-msgid "Show or hide the definition window"
-msgstr "Показати чи сховати вікно словник"
-
-#: ../gnome-dictionary/src/gdict-applet.c:557
+#: ../gnome-dictionary/src/gdict-applet.c:533
 msgid "Click to view the dictionary window"
 msgstr "Натисніть, щоб побачити вікно словника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:612
-msgid "Dictionary entry"
-msgstr "Стання словника"
+#: ../gnome-dictionary/src/gdict-applet.c:535
+msgid "Toggle dictionary window"
+msgstr "Показати/сховати вікно словника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:616
+#: ../gnome-dictionary/src/gdict-applet.c:536
+msgid "Show or hide the definition window"
+msgstr "Показати чи сховати вікно словник"
+
+#: ../gnome-dictionary/src/gdict-applet.c:588
 msgid "Type the word you want to look up"
 msgstr "Введіть слово, яке треба знайти"
 
-#: ../gnome-dictionary/src/gdict-applet.c:750
-#: ../gnome-dictionary/src/gdict-window.c:897
+#: ../gnome-dictionary/src/gdict-applet.c:590
+msgid "Dictionary entry"
+msgstr "Стання словника"
+
+#: ../gnome-dictionary/src/gdict-applet.c:724
+#: ../gnome-dictionary/src/gdict-window.c:997
 msgid "Dictionary Preferences"
 msgstr "Параметри словника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:778
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
-#: ../gnome-dictionary/src/gdict-source-dialog.c:500
-#: ../gnome-dictionary/src/gdict-window.c:1033
+#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
+#: ../gnome-dictionary/src/gdict-source-dialog.c:498
+#: ../gnome-dictionary/src/gdict-window.c:1144
 msgid "There was an error while displaying help"
 msgstr "Помилка при відображенні довідки"
 
-#: ../gnome-dictionary/src/gdict-applet.c:930
-#: ../gnome-dictionary/src/gdict-window.c:438
+#: ../gnome-dictionary/src/gdict-applet.c:904
+#: ../gnome-dictionary/src/gdict-window.c:513
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Відсутнє джерело з назвою '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:934
-#: ../gnome-dictionary/src/gdict-window.c:442
+#: ../gnome-dictionary/src/gdict-applet.c:908
+#: ../gnome-dictionary/src/gdict-window.c:517
 msgid "Unable to find dictionary source"
 msgstr "Не вдається знайти джерело словника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:950
-#: ../gnome-dictionary/src/gdict-window.c:458
+#: ../gnome-dictionary/src/gdict-applet.c:924
+#: ../gnome-dictionary/src/gdict-window.c:533
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Недоступний контекст для джерела '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:954
-#: ../gnome-dictionary/src/gdict-window.c:462
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:537
 msgid "Unable to create a context"
 msgstr "Не вдається створити контекст"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1222
-#: ../gnome-dictionary/src/gdict-window.c:1919
+#: ../gnome-dictionary/src/gdict-applet.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:2082
 msgid "Unable to connect to GConf"
 msgstr "Не вдається з'єднатись з GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1235
-#: ../gnome-dictionary/src/gdict-window.c:1932
+#: ../gnome-dictionary/src/gdict-applet.c:1206
+#: ../gnome-dictionary/src/gdict-window.c:2095
 msgid "Unable to get notification for preferences"
 msgstr "Не вдається отримати сповіщення про параметри"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1249
-#: ../gnome-dictionary/src/gdict-window.c:1945
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:2108
 msgid "Unable to get notification for the document font"
 msgstr "Не вдається отримати сповіщення про шрифт документу"
 
@@ -1872,70 +1871,67 @@ msgstr "Не вдається перейменувати файл '%s' у '%s': 
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Не вдається створити каталог з даними '%s': %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
 msgid "Edit Dictionary Source"
 msgstr "Зміна джерела словника"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
 msgid "Add Dictionary Source"
 msgstr "Додати слово у словник"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "Видалити \"%s\"?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Це призведе до остаточного видалення джерела словників зі списку."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Не дається видалити джерело '%s'"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
 msgid "Add a new dictionary source"
 msgstr "Додати дову джерело словників"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
 msgid "Remove the currently selected dictionary source"
 msgstr "Видалити виділене джерело словників"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
 msgid "Set the font used for printing the definitions"
 msgstr "Встановити шрифт для друку визначення"
 
-#: ../gnome-dictionary/src/gdict-print.c:187
+#: ../gnome-dictionary/src/gdict-print.c:249
+#: ../gnome-dictionary/src/gdict-print.c:313
 #, c-format
-msgid "%s (page %d)"
-msgstr "%s (сторінка %d)"
+msgid "Unable to display the preview: %s"
+msgstr "Не вдається відобразити попередній перегляд: %s"
 
-#: ../gnome-dictionary/src/gdict-print.c:246
-msgid "Print Preview"
-msgstr "Попередній перегляд"
-
-#: ../gnome-dictionary/src/gdict-source-dialog.c:360
-#: ../gnome-dictionary/src/gdict-source-dialog.c:453
+#: ../gnome-dictionary/src/gdict-source-dialog.c:358
+#: ../gnome-dictionary/src/gdict-source-dialog.c:451
 msgid "Unable to create a source file"
 msgstr "Не вдається створити файл джерела"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:378
-#: ../gnome-dictionary/src/gdict-source-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:376
+#: ../gnome-dictionary/src/gdict-source-dialog.c:469
 msgid "Unable to save source file"
 msgstr "Не вдається створити файл джерела"
 
-#: ../gnome-dictionary/src/gdict-window.c:288
+#: ../gnome-dictionary/src/gdict-window.c:312
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Пошук '%s'..."
 
-#: ../gnome-dictionary/src/gdict-window.c:318
-#: ../gnome-dictionary/src/gdict-window.c:350
+#: ../gnome-dictionary/src/gdict-window.c:344
+#: ../gnome-dictionary/src/gdict-window.c:403
 msgid "No definitions found"
 msgstr "Не знайдено визначень"
 
-#: ../gnome-dictionary/src/gdict-window.c:320
+#: ../gnome-dictionary/src/gdict-window.c:346
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
@@ -1943,156 +1939,182 @@ msgstr[0] "знайдено %d визначення"
 msgstr[1] "знайдено %d визначення"
 msgstr[2] "знайдено %d визначень"
 
-#: ../gnome-dictionary/src/gdict-window.c:527
+#: ../gnome-dictionary/src/gdict-window.c:602
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Словник"
 
-#: ../gnome-dictionary/src/gdict-window.c:1067 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1178 ../logview/logview.c:85
 msgid "_File"
 msgstr "_Файл"
 
-#: ../gnome-dictionary/src/gdict-window.c:1070
+#: ../gnome-dictionary/src/gdict-window.c:1181
 msgid "_Go"
 msgstr "Пере_йти"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1074
+#: ../gnome-dictionary/src/gdict-window.c:1185
 msgid "_New"
 msgstr "_Створити"
 
-#: ../gnome-dictionary/src/gdict-window.c:1075
+#: ../gnome-dictionary/src/gdict-window.c:1186
 msgid "New look up"
 msgstr "Новий пошук"
 
-#: ../gnome-dictionary/src/gdict-window.c:1076
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_Save a Copy..."
 msgstr "З_берегти копію..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1078
+#: ../gnome-dictionary/src/gdict-window.c:1189
+msgid "P_review..."
+msgstr "_Попередній перегляд..."
+
+#: ../gnome-dictionary/src/gdict-window.c:1190
+msgid "Preview this document"
+msgstr "Попередній перегляд документу"
+
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "_Print..."
 msgstr "Д_рук..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1079
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Print this document"
 msgstr "Друкувати документ"
 
-#: ../gnome-dictionary/src/gdict-window.c:1086 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1199 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Виді_лити все"
 
-#: ../gnome-dictionary/src/gdict-window.c:1089
+#: ../gnome-dictionary/src/gdict-window.c:1202
 msgid "Find a word or phrase in the document"
 msgstr "Знайти слово чи фразу у документі"
 
-#: ../gnome-dictionary/src/gdict-window.c:1091
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find Ne_xt"
 msgstr "Зна_йти далі"
 
-#: ../gnome-dictionary/src/gdict-window.c:1093
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Pre_vious"
 msgstr "Знайти _попереднє"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1099
+#: ../gnome-dictionary/src/gdict-window.c:1212
 msgid "_Previous Definition"
 msgstr "_Попереднє визначення"
 
-#: ../gnome-dictionary/src/gdict-window.c:1100
+#: ../gnome-dictionary/src/gdict-window.c:1213
 msgid "Go to the previous definition"
 msgstr "Перейти до попереднього визначення"
 
-#: ../gnome-dictionary/src/gdict-window.c:1101
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Next Definition"
 msgstr "_Наступне визначення"
 
-#: ../gnome-dictionary/src/gdict-window.c:1102
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the next definition"
 msgstr "Перейти до наступного визначення"
 
-#: ../gnome-dictionary/src/gdict-window.c:1103
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_First Definition"
 msgstr "П_ерше визначення"
 
-#: ../gnome-dictionary/src/gdict-window.c:1104
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the first definition"
 msgstr "Перейти до першого визначення"
 
-#: ../gnome-dictionary/src/gdict-window.c:1105
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_Last Definition"
 msgstr "_Останнє визначення"
 
-#: ../gnome-dictionary/src/gdict-window.c:1106
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the last definition"
 msgstr "Перейти до останнього визначення"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1109
+#: ../gnome-dictionary/src/gdict-window.c:1222
 msgid "Similar _Words"
 msgstr "Подібні _слова"
 
-#: ../gnome-dictionary/src/gdict-window.c:1111
+#: ../gnome-dictionary/src/gdict-window.c:1224
+msgid "Dictionary Sources"
+msgstr "Додати джерела"
+
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Available _Databases"
 msgstr "Доступні _бази даних"
 
-#: ../gnome-dictionary/src/gdict-window.c:1113
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available St_rategies"
 msgstr "Доступні с_тратегії"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1130
+#: ../gnome-dictionary/src/gdict-window.c:1245
 msgid "_Sidebar"
 msgstr "_Бічна панель"
 
-#: ../gnome-dictionary/src/gdict-window.c:1132
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "S_tatusbar"
 msgstr "_Рядок стану"
 
-#: ../gnome-dictionary/src/gdict-window.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1368
+#, c-format
+msgid "Dictionary source `%s' selected"
+msgstr "Виділено джерело словників `%s'"
+
+#: ../gnome-dictionary/src/gdict-window.c:1389
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "Обрана стратегія \"%s\""
 
-#: ../gnome-dictionary/src/gdict-window.c:1265
+#: ../gnome-dictionary/src/gdict-window.c:1409
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Виділена база даних `%s'"
 
-#: ../gnome-dictionary/src/gdict-window.c:1285
+#: ../gnome-dictionary/src/gdict-window.c:1429
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Виділено слово `%s'"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1307
+#: ../gnome-dictionary/src/gdict-window.c:1451
 msgid "Double-click on the word to look up"
 msgstr "Двічі клацніть на слові для пошуку"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1313
+#: ../gnome-dictionary/src/gdict-window.c:1457
 msgid "Double-click on the matching strategy to use"
 msgstr "Двічі клацніть на відповідній стратегії її використання"
 
+#. source-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1462
+msgid "Double-click on the source to use"
+msgstr "Двічі клацніть на джерелі для його вибору"
+
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1323
+#: ../gnome-dictionary/src/gdict-window.c:1471
 msgid "Double-click on the database to use"
 msgstr "Двічі клацніть на базі даних для її вибору"
 
-#: ../gnome-dictionary/src/gdict-window.c:1610
+#: ../gnome-dictionary/src/gdict-window.c:1759
 msgid "Look _up:"
 msgstr "З_найти"
 
-#: ../gnome-dictionary/src/gdict-window.c:1683
+#: ../gnome-dictionary/src/gdict-window.c:1833
 msgid "Similar words"
 msgstr "Подібні слова"
 
-#: ../gnome-dictionary/src/gdict-window.c:1696
+#: ../gnome-dictionary/src/gdict-window.c:1846
 msgid "Available dictionaries"
 msgstr "Доступні словники"
 
-#: ../gnome-dictionary/src/gdict-window.c:1709
+#: ../gnome-dictionary/src/gdict-window.c:1859
 msgid "Available strategies"
 msgstr "Доступні стратегії"
+
+#: ../gnome-dictionary/src/gdict-window.c:1870
+msgid "Dictionary sources"
+msgstr "Джерела словників"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 #: ../gsearchtool/gsearchtool-support.c:1629
@@ -2158,7 +2180,7 @@ msgstr "Захопити після _затримки"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:870
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "seconds"
 msgstr "секунд"
 
@@ -2185,7 +2207,8 @@ msgstr "Екран-%s.png"
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-screenshot.c:494
-#: ../gnome-screenshot/screenshot-save.c:197
+#: ../gnome-screenshot/screenshot-dialog.c:329
+#: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Екран.png"
 
@@ -2209,39 +2232,39 @@ msgstr "Екран-%d.png"
 msgid "Unable to take a screenshot of the current window"
 msgstr "Не вдається зробити знімок поточного вікна"
 
-#: ../gnome-screenshot/gnome-screenshot.c:868
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Grab a window instead of the entire screen"
 msgstr "Зробити знімок віна, а не всього екрану"
 
-#: ../gnome-screenshot/gnome-screenshot.c:869
+#: ../gnome-screenshot/gnome-screenshot.c:873
 msgid "Include the window border with the screenshot"
 msgstr "Включити рамку вікна у список"
 
-#: ../gnome-screenshot/gnome-screenshot.c:870
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Зробити знімок через вказаний час [у секундах]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Ефект, що додається до рамки вікна (тінь, рамка або ніякого)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "effect"
 msgstr "ефекти рамки"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:876
 msgid "Interactively set options"
 msgstr "Встановити параметри інтерактивно"
 
-#: ../gnome-screenshot/gnome-screenshot.c:882
+#: ../gnome-screenshot/gnome-screenshot.c:886
 msgid "Options for Screenshot"
 msgstr "Параметри знімку"
 
-#: ../gnome-screenshot/gnome-screenshot.c:883
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Show Screenshot options"
 msgstr "Показати параметри знімку"
 
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:891
 msgid "Take a picture of the screen"
 msgstr "Зробити знімок екрану"
 
@@ -2318,7 +2341,7 @@ msgstr ""
 "Дочірній процес збереження несподівано завершився. Не вдається зберегти "
 "знімок екрану на диск."
 
-#: ../gnome-screenshot/screenshot-save.c:224
+#: ../gnome-screenshot/screenshot-save.c:223
 msgid "Unknown error saving screenshot to disk"
 msgstr "Невідома помилка при збереженні знімку екрана на диск"
 
@@ -3287,16 +3310,16 @@ msgstr "%s занадто великий."
 msgid "%s could not be opened."
 msgstr "%s не може бути відкритим."
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s не є файлом журналу."
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "Недостатньо пам'яті."
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "%s не вдається відкрити."
@@ -3499,11 +3522,11 @@ msgstr "Показати параметри програми перегляду 
 msgid " - Browse and monitor logs"
 msgstr " - Перегляд та контроль журналів"
 
-#: ../logview/main.c:153
+#: ../logview/main.c:145
 msgid "Log Viewer"
 msgstr "Перегляд журналів"
 
-#: ../logview/main.c:162
+#: ../logview/main.c:154
 msgid "Unable to create user interface."
 msgstr "Не вдається створити інтерфейс користувача."
 
@@ -3577,3 +3600,22 @@ msgstr "Контроль за файлом не підтримується на 
 msgid "Gnome-VFS Error.\n"
 msgstr "Помилка Gnome-VFS.\n"
 
+#~ msgid "Analyze disk usage"
+#~ msgstr "Аналіз використання диску"
+
+#~ msgid "The GdictContext object bound to this entry"
+#~ msgstr "У цьому елементі не знайдено об'єкт GdictContext"
+
+#~ msgid "The database to be used to generate the completion list"
+#~ msgstr "База даних, що використовується для створення списку доповнень"
+
+#~ msgid "The matching strategy to be used to generate the completion list"
+#~ msgstr ""
+#~ "Стратегія відповідності, що використовується для створення списку "
+#~ "доповнень"
+
+#~ msgid "%s (page %d)"
+#~ msgstr "%s (сторінка %d)"
+
+#~ msgid "Print Preview"
+#~ msgstr "Попередній перегляд"
