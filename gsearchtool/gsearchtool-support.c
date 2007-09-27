@@ -488,7 +488,7 @@ compare_regex (const gchar * regex,
 		return TRUE;
 	}
 
-	if (!regcomp (&regexec_pattern, regex, REG_NOSUB)) {
+	if (!regcomp (&regexec_pattern, regex, REG_EXTENDED|REG_NOSUB)) {
 		if (regexec (&regexec_pattern, string, 0, 0, 0) != REG_NOMATCH) {
 			return TRUE;
 		}
