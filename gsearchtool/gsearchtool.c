@@ -155,22 +155,22 @@ struct _GSearchGOptionArguments {
 } GSearchGOptionArguments;
 
 static GOptionEntry GSearchGOptionEntries[] = {
-	{ "named", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.name, NULL, "STRING" },
-	{ "path", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.path, NULL, "PATH" },
-	{ "sortby", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.sortby, NULL, "VALUE" },
+	{ "named", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.name, NULL, N_("STRING") },
+	{ "path", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.path, NULL, N_("PATH") },
+	{ "sortby", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.sortby, NULL, N_("VALUE") },
 	{ "descending", 0, 0, G_OPTION_ARG_NONE, &GSearchGOptionArguments.descending, NULL, NULL },
 	{ "start", 0, 0, G_OPTION_ARG_NONE, &GSearchGOptionArguments.start, NULL, NULL },
-	{ "contains", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.contains, NULL, "STRING" },
-	{ "mtimeless", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.mtimeless, NULL, "DAYS" },
-	{ "mtimemore", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.mtimemore, NULL, "DAYS" },
-	{ "sizemore", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.sizemore, NULL, "KILOBYTES" },
-	{ "sizeless", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.sizeless, NULL, "KILOBYTES" },
+	{ "contains", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.contains, NULL, N_("STRING") },
+	{ "mtimeless", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.mtimeless, NULL, N_("DAYS") },
+	{ "mtimemore", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.mtimemore, NULL, N_("DAYS") },
+	{ "sizemore", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.sizemore, NULL, N_("KILOBYTES") },
+	{ "sizeless", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.sizeless, NULL, N_("KILOBYTES") },
 	{ "empty", 0, 0, G_OPTION_ARG_NONE, &GSearchGOptionArguments.empty, NULL, NULL },
-	{ "user", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.user, NULL, "USER" },
-	{ "group", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.group, NULL, "GROUP" },
+	{ "user", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.user, NULL, N_("USER") },
+	{ "group", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.group, NULL, N_("GROUP") },
 	{ "nouser", 0, 0, G_OPTION_ARG_NONE, &GSearchGOptionArguments.nouser, NULL, NULL },
-	{ "notnamed", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.notnamed, NULL, "STRING" },
-	{ "regex", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.regex, NULL, "PATTERN" },
+	{ "notnamed", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.notnamed, NULL, N_("STRING") },
+	{ "regex", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.regex, NULL, N_("PATTERN") },
 	{ "hidden", 0, 0, G_OPTION_ARG_NONE, &GSearchGOptionArguments.hidden, NULL, NULL },
 	{ "follow", 0, 0, G_OPTION_ARG_NONE, &GSearchGOptionArguments.follow, NULL, NULL },
 	{ "allmounts", 0, 0, G_OPTION_ARG_NONE, &GSearchGOptionArguments.allmounts, NULL, NULL },
@@ -3131,7 +3131,8 @@ main (int argc,
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 
-	context = g_option_context_new ("- the GNOME Search Tool");
+	context = g_option_context_new (N_("- the GNOME Search Tool"));
+	g_option_context_set_translation_domain(context, GETTEXT_PACKAGE);
 	gsearch_setup_goption_descriptions ();
 	g_option_context_add_main_entries (context, GSearchGOptionEntries, GETTEXT_PACKAGE);
 	g_option_context_add_group (context, gtk_get_option_group (TRUE));
