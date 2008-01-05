@@ -1,21 +1,21 @@
 # Vietnamese Translation for Gnome-Utils.
-# Copyright © 2007 Gnome i18n Project for Vietnamese.
+# Copyright © 2008 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007.
-# Clytie Siddall <clytie@riverland.net.au>, 2005-2007.
+# Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
 # 
 msgid ""
 ""
-msgstr "Project-Id-Version: Gnome-utils 2.20 Gnome HEAD\n"
+msgstr "Project-Id-Version: Gnome-utils 2.20 GNOME TRUNK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-03 03:29+0100\n"
-"PO-Revision-Date: 2007-06-27 16:27+0930\n"
+"POT-Creation-Date: 2007-09-27 05:01+0100\n"
+"PO-Revision-Date: 2008-01-05 18:43+1030\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.6.4a5\n"
+"X-Generator: LocFactoryEditor 1.7b1\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
 msgid "Check folder sizes and available disk space"
@@ -128,10 +128,10 @@ msgstr "Bộ _phân tích"
 msgid "_Collapse All"
 msgstr "_Co tất cả"
 
+#.Help menu
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1117
+#: ../gnome-dictionary/src/gdict-window.c:1232
 #: ../logview/logview.c:114
-#. Help menu
 msgid "_Contents"
 msgstr "Mục lụ_c"
 
@@ -140,7 +140,7 @@ msgid "_Depth level:"
 msgstr "Lớp _sâu :"
 
 #: ../baobab/data/baobab.glade.h:30
-#: ../gnome-dictionary/src/gdict-window.c:1068
+#: ../gnome-dictionary/src/gdict-window.c:1179
 #: ../logview/logview.c:86
 msgid "_Edit"
 msgstr "_Sửa"
@@ -156,7 +156,7 @@ msgstr "Sơ đồ cách sử dụn_g đồ họa"
 
 #: ../baobab/data/baobab.glade.h:33
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1071
+#: ../gnome-dictionary/src/gdict-window.c:1182
 #: ../logview/logview.c:88
 msgid "_Help"
 msgstr "Trợ _giúp"
@@ -174,7 +174,7 @@ msgid "_Total folders:"
 msgstr "_Tổng thư mục:"
 
 #: ../baobab/data/baobab.glade.h:37
-#: ../gnome-dictionary/src/gdict-window.c:1069
+#: ../gnome-dictionary/src/gdict-window.c:1180
 #: ../logview/logview.c:87
 msgid "_View"
 msgstr "_Xem"
@@ -211,15 +211,15 @@ msgstr "Hiện/Ẩn thanh trạng thái bên dưới cửa sổ chính."
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Hiện/Ẩn thanh công cụ trong cửa sổ chính."
 
+#.set statusbar, percentage and allocated/normal size
 #: ../baobab/src/baobab.c:142
 #: ../baobab/src/baobab-utils.c:190
 #: ../baobab/src/callbacks.c:326
-#. set statusbar, percentage and allocated/normal size
 msgid "Calculating percentage bars..."
 msgstr "Đang tính các thanh phần trăm..."
 
 #: ../baobab/src/baobab.c:148
-#: ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab.c:766
 #: ../baobab/src/baobab-utils.c:197
 #: ../baobab/src/callbacks.c:330
 msgid "Ready"
@@ -277,8 +277,8 @@ msgstr "Vô hạn"
 msgid "Cannot allocate memory for graphical window!"
 msgstr "Không thể cấp phát bộ nhớ cho cửa sổ đồ họa !"
 
+#.Main treemap window
 #: ../baobab/src/baobab-graphwin.c:307
-#. Main treemap window
 msgid "Graphical Usage Map"
 msgstr "Sơ đồ cách sử dụn_g"
 
@@ -416,12 +416,12 @@ msgstr "Cỡ"
 msgid "Contents"
 msgstr "Nội dung"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:102
 msgid "Select Folder"
 msgstr "Chọn thư mục"
 
-#: ../baobab/src/baobab-utils.c:116
-#. add extra widget
+#.add extra widget
+#: ../baobab/src/baobab-utils.c:114
 msgid "_Show hidden folders"
 msgstr "Hiện thư mục ẩ_n"
 
@@ -570,10 +570,10 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "Công cụ đồ họa để phân tích cách sử dụng đĩa."
 
+#.Translator credits
 #: ../baobab/src/callbacks.c:108
 #: ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
-#. Translator credits
 msgid "translator-credits"
 msgstr "Nhóm Việt hoá GNOME (http://gnomevi.sourceforge.net)"
 
@@ -633,9 +633,9 @@ msgstr "Lỗi nội bộ : không thể tìm tới vị trí đúng."
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Lỗi nội bộ : giá trị lạ (%ld) trong « do_test »\n"
 
+#.while (!i)
+#.;
 #: ../gfloppy/src/badblocks.c:256
-#. while (!i)
-#. ;
 msgid "Checking for bad blocks..."
 msgstr "Đang kiểm tra tìm khối hỏng..."
 
@@ -667,13 +667,13 @@ msgstr "Lỗi khi định dạng rãnh #%d"
 msgid "Error during completion of formatting"
 msgstr "Lỗi khi đang hoàn tất việc định dạng"
 
+#.XXXX - need to tell parent we're finished
 #: ../gfloppy/src/fdformat.c:83
-#. XXXX - need to tell parent we're finished
 msgid "Formatting the disk... Done"
 msgstr "Đang định dạng đĩa... hoàn thành"
 
+#.XXXX - tell parent we're starting verify stage
 #: ../gfloppy/src/fdformat.c:99
-#. XXXX - tell parent we're starting verify stage
 msgid "Verifying the format..."
 msgstr "Đang kiểm tra định dạng..."
 
@@ -809,9 +809,9 @@ msgstr "Tiện ích kiểm tra khối hỏng (mbadblocks) gặp những lỗi sa
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Kết thúc tiến trình con « mbadblocks » bất thường."
 
+#.make the filesystem
 #: ../gfloppy/src/gfloppy.c:465
 #: ../gfloppy/src/gfloppy.c:505
-#. make the filesystem
 msgid "Making filesystem on disk..."
 msgstr "Đang tạo hệ thống tập tin trên đĩa..."
 
@@ -907,8 +907,8 @@ msgstr "Đầ_y đủ (thêm kiểm tra khối hỏng vào chế độ chuẩn)"
 msgid "Volume _name:"
 msgstr "Tên _bộ đĩa:"
 
+#.This is the "format" verb (not the noun).
 #: ../gfloppy/src/gfloppy2.glade.h:20
-#. This is the "format" verb (not the noun).
 msgid "_Format"
 msgstr "Định _dạng"
 
@@ -1032,7 +1032,7 @@ msgid "Cl_ear"
 msgstr "_Xóa"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1119
+#: ../gnome-dictionary/src/gdict-window.c:1234
 #: ../logview/logview.c:116
 msgid "_About"
 msgstr "_Giới thiệu"
@@ -1042,7 +1042,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Tìm đoạn được chọn"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1095
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "_Preferences"
 msgstr "Tu_ỳ thích"
 
@@ -1060,9 +1060,9 @@ msgstr "Tìm từ trong từ điển trực tuyến để kiểm tra chính tả
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:406
-#: ../gnome-dictionary/src/gdict-window.c:529
-#: ../gnome-dictionary/src/gdict-window.c:1790
+#: ../gnome-dictionary/src/gdict-app.c:402
+#: ../gnome-dictionary/src/gdict-window.c:604
+#: ../gnome-dictionary/src/gdict-window.c:1951
 msgid "Dictionary"
 msgstr "Từ điển"
 
@@ -1238,8 +1238,8 @@ msgstr "Hiện/Ẩn thanh trạng thái"
 msgid "Dictionaries"
 msgstr "Từ điển"
 
+#.Transport methods
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
-#. Transport methods
 msgid "Dictionary Server"
 msgstr "Máy phục vụ từ điển"
 
@@ -1248,8 +1248,6 @@ msgid "H_ostname:"
 msgstr "T_ên máy:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:202
-#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "Print"
 msgstr "In"
 
@@ -1289,59 +1287,59 @@ msgstr "Từ điển tiếng Tây-ban-nha"
 msgid "Longdo Thai-English Dictionaries"
 msgstr "Từ điển Longdo Thái-Anh"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:283
 msgid "Client Name"
 msgstr "Tên khách"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "The name of the client of the context object"
 msgstr "Tên của bộ khách của đối tượng ngữ cảnh"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:297
 msgid "Hostname"
 msgstr "Tên máy"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
 msgid "The hostname of the dictionary server to connect to"
 msgstr "Tên máy của máy phục vụ từ điển đến mà cần kết nối"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "Port"
 msgstr "Cổng"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:312
 msgid "The port of the dictionary server to connect to"
 msgstr "Cổng của máy phục vụ từ điển đến mà cần kết nối"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:327
 msgid "Status"
 msgstr "Trạng thái"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:328
 msgid "The status code as returned by the dictionary server"
 msgstr "Mã trạng thãi được trả lời bởi máy phục vụ từ điển."
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:777
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Không có kết nối đến máy phục vụ từ điển tại « %s:%d »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "Lỗi tra tìm với tên máy « %s »: không tìm thấy tài nguyên thích hợp"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1056
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Lỗi tra tìm với tên máy « %s »: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1091
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Lỗi tra tìm với tên máy « %s »: không tìm thấy máy"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1143
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1171
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -1349,7 +1347,7 @@ msgid ""
 msgstr "Không thể kết nối đến máy phục vụ từ điển tại « %s:%d ». Máy phục vụ đã trả "
 "lời mã %d (máy phục vụ không trực tuyến)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1162
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -1357,47 +1355,47 @@ msgid ""
 msgstr "Không thể phân tách trả lời của máy phục vụ từ điển\n"
 ": %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1191
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "Không tìm thấy lời định nghĩa cho « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1206
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1234
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Cơ sở dữ liệu không hợp lệ « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1221
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1249
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Chiến lược không hợp lệ « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1236
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1264
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Lệnh sai « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1251
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1279
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Tham số sai cho lệnh « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1266
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1294
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Không tìm thấy cơ sở dữ liệu trên máy phục vụ từ điển tại « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1281
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1309
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Không tìm thấy chiến lược trên máy phục vụ từ điển tại « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1722
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1742
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Lỗi kết nối đến máy phục vụ từ điển tại « %s:%d »"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1761
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1781
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1405,251 +1403,245 @@ msgid ""
 msgstr "Gặp lỗi khi đọc trả lời từ máy phục vụ :\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1831
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Quá hạn kết nối đến máy phục vụ từ điển tại '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
 msgid "No hostname defined for the dictionary server"
 msgstr "Chưa định nghĩa tên máy cho máy phục vụ từ điển"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1901
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1916
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
 msgid "Unable to create socket"
 msgstr "Không thể tạo ổ cắm"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1942
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1962
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Không thể lập kênh có kiểu không làm trở ngại: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1957
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1977
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Không thể kết nối đến máy phục vụ từ điển tại « %s:%d »"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:199
+#: ../gnome-dictionary/libgdict/gdict-context.c:218
 msgid "Local Only"
 msgstr "Chỉ cục bộ"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:200
+#: ../gnome-dictionary/libgdict/gdict-context.c:219
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Có ngữ cảnh nên dùng chỉ những từ điển cục bộ hay không"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:346
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
 msgid "Reload the list of available databases"
 msgstr "Tải lại danh sách các cơ sở dữ liệu sẵn sàng"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:359
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
 msgid "Clear the list of available databases"
 msgstr "Xoá danh sách các cơ sở dữ liệu sẵn sàng"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:656
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1684
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:650
-msgid "Another search is in progress"
-msgstr "Việc tìm kiếm khác đang chạy"
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:657
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1685
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:651
-msgid "Please wait until the current search ends."
-msgstr "Hãy đợi đến khi việc tìm kiếm hiện thời đã kết thúc."
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:690
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
 #: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:684
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
 msgid "Error while matching"
 msgstr "Gặp lỗi khi khớp"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:366
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:455
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:483
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1132
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1226
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1260
 msgid "Not found"
 msgstr "Không tìm thấy"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1321
 msgid "F_ind:"
 msgstr "_Tìm:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:528
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1334
 msgid "_Previous"
 msgstr "T_rước"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:536
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1342
 msgid "_Next"
 msgstr "_Kế"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1642
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2493
 msgid "Error while looking up definition"
 msgstr "Gặp lỗi khi tra tìm lời định nghĩa"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1723
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2535
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+msgid "Another search is in progress"
+msgstr "Việc tìm kiếm khác đang chạy"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2536
+#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+msgid "Please wait until the current search ends."
+msgstr "Hãy đợi đến khi việc tìm kiếm hiện thời đã kết thúc."
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2575
 msgid "Error while retrieving the definition"
 msgstr "Gặp lỗi khi lấy lời định nghĩa"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:105
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:375
-msgid "Context"
-msgstr "Ngữ cảnh"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:106
-msgid "The GdictContext object bound to this entry"
-msgstr "Đối tượng GdictContext được buộc với mục nhập này"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:120
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:382
-msgid "Database"
-msgstr "Cơ sở dữ liệu"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:121
-msgid "The database to be used to generate the completion list"
-msgstr "Cơ sở dữ liệu cần dùng để tạo ra danh sách gõ xong"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:389
-msgid "Strategy"
-msgstr "Chiến lược"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:136
-msgid "The matching strategy to be used to generate the completion list"
-msgstr "Chiến lược khớp cần dùng để tạo ra danh sách gõ xong"
-
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:232
 msgid "Filename"
 msgstr "Tên tập tin"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:220
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
 msgid "The filename used by this dictionary source"
 msgstr "Tên tập tin dùng bởi nguồn từ điển này"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:246
 #: ../gsearchtool/gsearchtool.c:2473
 msgid "Name"
 msgstr "Tên"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:234
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "The display name of this dictonary source"
 msgstr "Tên hiển thị của nguồn từ điển này"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:260
 msgid "Description"
 msgstr "Mô tả"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:248
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
 msgid "The description of this dictionary source"
 msgstr "Mô tả của nguồn từ điển này"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:262
+#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+msgid "Database"
+msgstr "Cơ sở dữ liệu"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
 msgid "The default database of this dictonary source"
 msgstr "Cơ sở dữ liệu mặc định của nguồn từ điển này"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:276
+#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+msgid "Strategy"
+msgstr "Chiến lược"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "The default strategy of this dictonary source"
 msgstr "Chiến lược mặc định của nguồn từ điển này"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:302
 msgid "Transport"
 msgstr "Chuyên chở"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:290
+#: ../gnome-dictionary/libgdict/gdict-source.c:303
 msgid "The transport mechanism used by this dictionary source"
 msgstr "Cơ chế chuyên chở dùng bởi nguồn từ điển này"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:305
+#: ../gnome-dictionary/libgdict/gdict-source.c:317
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+msgid "Context"
+msgstr "Ngữ cảnh"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:318
 msgid "The GdictContext bound to this source"
 msgstr "Đối tượng GdictContext được buộc với nguồn này"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:400
+#: ../gnome-dictionary/libgdict/gdict-source.c:413
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "Kiểu chuyên chở không hợp lệ « %d »"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:428
+#: ../gnome-dictionary/libgdict/gdict-source.c:441
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr "Không tìm thấy nhóm « %s » ở trong lời định nghĩa nguồn từ điển"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:444
-#: ../gnome-dictionary/libgdict/gdict-source.c:468
-#: ../gnome-dictionary/libgdict/gdict-source.c:492
-#: ../gnome-dictionary/libgdict/gdict-source.c:517
+#: ../gnome-dictionary/libgdict/gdict-source.c:457
+#: ../gnome-dictionary/libgdict/gdict-source.c:481
+#: ../gnome-dictionary/libgdict/gdict-source.c:505
+#: ../gnome-dictionary/libgdict/gdict-source.c:530
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr "Không thể lấy khóa « %s » ở trong lời định nghĩa nguồn từ điển: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:542
+#: ../gnome-dictionary/libgdict/gdict-source.c:555
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr "Không thể lấy khóa « %s » ở trong tập tin định nghĩa nguồn từ điển: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:728
+#: ../gnome-dictionary/libgdict/gdict-source.c:741
 msgid "Dictionary source does not have name"
 msgstr "Lời định nghĩa từ điển chưa có tên"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:737
+#: ../gnome-dictionary/libgdict/gdict-source.c:750
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Nguồn từ điển « %s » có chuyên chở không hợp lệ « %s »"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+msgid "Reload the list of available sources"
+msgstr "Nạp lại danh sách các nguồn sẵn sàng"
+
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:171
 msgid "Paths"
 msgstr "Đường dẫn"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:172
 msgid "Search paths used by this object"
 msgstr "Đường dẫn tìm kiếm dùng bởi đối tượng này"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:184
 msgid "Sources"
 msgstr "Nguồn"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:185
 msgid "Dictionary sources found"
 msgstr "Tìm tra nguồn từ điển"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+#: ../gnome-dictionary/libgdict/gdict-speller.c:355
 msgid "Clear the list of similar words"
 msgstr "Xoá danh sách các từ tương tự"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+#: ../gnome-dictionary/libgdict/gdict-speller.c:379
 msgid "The GdictContext object used to get the word definition"
 msgstr "Đối tượng GdictContext dùng để lấy lời định nghĩa từ"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:383
+#: ../gnome-dictionary/libgdict/gdict-speller.c:386
 msgid "The database used to query the GdictContext"
 msgstr "Cơ sở dữ liệu dùng để truy vấn ngữ cảnh GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:390
+#: ../gnome-dictionary/libgdict/gdict-speller.c:393
 msgid "The strategy used to query the GdictContext"
 msgstr "Chiến lược dùng để truy vấn ngữ cảnh GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:340
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
 msgid "Reload the list of available strategies"
 msgstr "Tải lại danh sách các chiến lược hiện có"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:353
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
 msgid "Clear the list of available strategies"
 msgstr "Xoá danh sách các chiến lược hiện có"
 
+#: ../gnome-dictionary/libgdict/gdict-utils.c:157
+msgid "GDict Options"
+msgstr "Tùy chọn Từ điển GNOME"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:158
+msgid "Show GDict Options"
+msgstr "Hiện các tùy chọn về Từ điển GNOME"
+
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:613
+#: ../gnome-dictionary/src/gdict-applet.c:591
 msgid "Look up words in dictionaries"
 msgstr "Tra tìm từ trong từ điển"
 
-#: ../gnome-dictionary/src/gdict-app.c:238
+#.Translators: the first is the word found, the second is the
+#.* database name and the last is the definition's text; please
+#.* keep the new lines.
+#: ../gnome-dictionary/src/gdict-app.c:233
 #, c-format
-#. Translators: the first is the word found, the second is the
-#. * database name and the last is the definition's text; please
-#. * keep the new lines.
-msgid "Definition for '%s'\n"
+msgid ""
+"Definition for '%s'\n"
 "  From '%s':\n"
 "\n"
 "%s\n"
@@ -1658,20 +1650,20 @@ msgstr "Lời định nghĩa cho « %s »\n"
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:252
+#: ../gnome-dictionary/src/gdict-app.c:247
 #, c-format
 msgid "Error: %s\n"
 msgstr "Lỗi: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:278
+#: ../gnome-dictionary/src/gdict-app.c:273
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Hãy chạy lệnh « -- help » của gnome-dictionary để xem cách sử dụng\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:291
+#: ../gnome-dictionary/src/gdict-app.c:286
 msgid "Unable to find a suitable dictionary source"
 msgstr "Không tìm thấy nguồn từ điển thích hợp"
 
-#: ../gnome-dictionary/src/gdict-app.c:325
+#: ../gnome-dictionary/src/gdict-app.c:320
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1679,184 +1671,184 @@ msgid ""
 msgstr "Gặp lỗi khi tra tìm lời định nghĩa của « %s »:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "Words to look up"
 msgstr "Từ cần tra tìm"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:361
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "word"
 msgstr "từ"
 
-#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:356
 msgid "Words to match"
 msgstr "Từ cần khớp"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "Dictionary source to use"
 msgstr "Nguồn từ điển cần dùng"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "source"
 msgstr "nguồn"
 
-#: ../gnome-dictionary/src/gdict-app.c:365
+#: ../gnome-dictionary/src/gdict-app.c:360
 msgid "Show available dictionary sources"
 msgstr "Hiển thị các nguồn từ điển sẵn sàng"
 
-#: ../gnome-dictionary/src/gdict-app.c:367
+#: ../gnome-dictionary/src/gdict-app.c:362
 msgid "Print result to the console"
 msgstr "In kết quả ra bàn giao tiếp"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "Database to use"
 msgstr "Cơ sở dữ liệu cần dùng"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "Strategy to use"
 msgstr "Chiến lược cần dùng"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "strat"
 msgstr "chiến"
 
-#: ../gnome-dictionary/src/gdict-app.c:389
-#. create the new option context
+#.create the new option context
+#: ../gnome-dictionary/src/gdict-app.c:384
 msgid " - Look up words in dictionaries"
 msgstr " — Tra tìm từ trong từ điển"
 
-#: ../gnome-dictionary/src/gdict-app.c:393
+#: ../gnome-dictionary/src/gdict-app.c:388
 msgid "Dictionary and spelling tool"
 msgstr "Công cụ từ điển và chính tả"
 
-#: ../gnome-dictionary/src/gdict-app.c:394
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid "Show Dictionary options"
 msgstr "Hiện tùy chọn Từ điển"
 
-#: ../gnome-dictionary/src/gdict-applet.c:216
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-applet.c:207
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "Save a Copy"
 msgstr "Lưu một bản sao"
 
-#: ../gnome-dictionary/src/gdict-applet.c:226
-#: ../gnome-dictionary/src/gdict-window.c:752
+#: ../gnome-dictionary/src/gdict-applet.c:217
+#: ../gnome-dictionary/src/gdict-window.c:843
 msgid "Untitled document"
 msgstr "Tài liệu không tên"
 
-#: ../gnome-dictionary/src/gdict-applet.c:247
-#: ../gnome-dictionary/src/gdict-window.c:773
+#: ../gnome-dictionary/src/gdict-applet.c:238
+#: ../gnome-dictionary/src/gdict-window.c:864
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Gặp lỗi khi ghi vào « %s »"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear the definitions found"
 msgstr "Xóa các lời định nghĩa đã tìm"
 
-#: ../gnome-dictionary/src/gdict-applet.c:378
+#: ../gnome-dictionary/src/gdict-applet.c:365
 msgid "Clear definition"
 msgstr "Xóa lời định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-applet.c:379
+#: ../gnome-dictionary/src/gdict-applet.c:366
 msgid "Clear the text of the definition"
 msgstr "Xóa chuỗi định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-applet.c:389
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print the definitions found"
 msgstr "In các lời định nghĩa đã tìm"
 
-#: ../gnome-dictionary/src/gdict-applet.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Print definition"
 msgstr "In lời định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-applet.c:393
+#: ../gnome-dictionary/src/gdict-applet.c:376
 msgid "Print the text of the definition"
 msgstr "In chuỗi định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-applet.c:403
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save the definitions found"
 msgstr "Lưu các lời định nghĩa đã tìm"
 
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:385
 msgid "Save definition"
 msgstr "Lưu lời định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-applet.c:407
+#: ../gnome-dictionary/src/gdict-applet.c:386
 msgid "Save the text of the definition to a file"
 msgstr "Lưu chuỗi định nghĩa vào tập tin"
 
-#: ../gnome-dictionary/src/gdict-applet.c:553
-msgid "Toggle dictionary window"
-msgstr "Bật tắt cửa sổ từ điển"
-
-#: ../gnome-dictionary/src/gdict-applet.c:554
-msgid "Show or hide the definition window"
-msgstr "Hiện/ẩn cửa sổ lời định nghĩa"
-
-#: ../gnome-dictionary/src/gdict-applet.c:557
+#: ../gnome-dictionary/src/gdict-applet.c:533
 msgid "Click to view the dictionary window"
 msgstr "Nhắp để xem cửa sổ từ điển"
 
-#: ../gnome-dictionary/src/gdict-applet.c:612
-msgid "Dictionary entry"
-msgstr "Nhập vào từ điển"
+#: ../gnome-dictionary/src/gdict-applet.c:535
+msgid "Toggle dictionary window"
+msgstr "Bật tắt cửa sổ từ điển"
 
-#: ../gnome-dictionary/src/gdict-applet.c:616
+#: ../gnome-dictionary/src/gdict-applet.c:536
+msgid "Show or hide the definition window"
+msgstr "Hiện/ẩn cửa sổ lời định nghĩa"
+
+#: ../gnome-dictionary/src/gdict-applet.c:588
 msgid "Type the word you want to look up"
 msgstr "Hãy gõ từ cần tra tìm"
 
-#: ../gnome-dictionary/src/gdict-applet.c:750
-#: ../gnome-dictionary/src/gdict-window.c:897
+#: ../gnome-dictionary/src/gdict-applet.c:590
+msgid "Dictionary entry"
+msgstr "Nhập vào từ điển"
+
+#: ../gnome-dictionary/src/gdict-applet.c:724
+#: ../gnome-dictionary/src/gdict-window.c:997
 msgid "Dictionary Preferences"
 msgstr "Tùy thích Từ điển"
 
-#: ../gnome-dictionary/src/gdict-applet.c:778
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
-#: ../gnome-dictionary/src/gdict-source-dialog.c:500
-#: ../gnome-dictionary/src/gdict-window.c:1033
+#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
+#: ../gnome-dictionary/src/gdict-source-dialog.c:498
+#: ../gnome-dictionary/src/gdict-window.c:1144
 msgid "There was an error while displaying help"
 msgstr "Gặp lỗi khi hiển thị trợ giúp"
 
-#: ../gnome-dictionary/src/gdict-applet.c:930
-#: ../gnome-dictionary/src/gdict-window.c:438
+#: ../gnome-dictionary/src/gdict-applet.c:904
+#: ../gnome-dictionary/src/gdict-window.c:513
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Không có nguồn từ điển với tên « %s »"
 
-#: ../gnome-dictionary/src/gdict-applet.c:934
-#: ../gnome-dictionary/src/gdict-window.c:442
+#: ../gnome-dictionary/src/gdict-applet.c:908
+#: ../gnome-dictionary/src/gdict-window.c:517
 msgid "Unable to find dictionary source"
 msgstr "Không tìm thấy nguồn từ điển"
 
-#: ../gnome-dictionary/src/gdict-applet.c:950
-#: ../gnome-dictionary/src/gdict-window.c:458
+#: ../gnome-dictionary/src/gdict-applet.c:924
+#: ../gnome-dictionary/src/gdict-window.c:533
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Không có ngữ cảnh cho nguồn « %s »"
 
-#: ../gnome-dictionary/src/gdict-applet.c:954
-#: ../gnome-dictionary/src/gdict-window.c:462
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:537
 msgid "Unable to create a context"
 msgstr "Không thể tạo ngữ cảnh"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1222
-#: ../gnome-dictionary/src/gdict-window.c:1919
+#: ../gnome-dictionary/src/gdict-applet.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:2082
 msgid "Unable to connect to GConf"
 msgstr "Không thể kết nối đến GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1235
-#: ../gnome-dictionary/src/gdict-window.c:1932
+#: ../gnome-dictionary/src/gdict-applet.c:1206
+#: ../gnome-dictionary/src/gdict-window.c:2095
 msgid "Unable to get notification for preferences"
 msgstr "Không thể lấy khả năng thông báo cho tùy thích"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1249
-#: ../gnome-dictionary/src/gdict-window.c:1945
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:2108
 msgid "Unable to get notification for the document font"
 msgstr "Không thể lấy khả năng thông báo cho phông chữ tài liệu"
 
@@ -1871,227 +1863,250 @@ msgstr "Không thể thay đổi tên của tập tin từ « %s » đến « %s
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Không thể tạo thư mục dữ liệu « %s »: %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
 msgid "Edit Dictionary Source"
 msgstr "Sửa nguồn từ điển"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
 msgid "Add Dictionary Source"
 msgstr "Thêm nguồn từ điển"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "Gỡ bỏ « %s » không?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Làm như thế sẽ gỡ bỏ hoàn toàn nguồn từ điển ra danh sách."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Không thể gỡ bỏ nguồn « %s »"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
 msgid "Add a new dictionary source"
 msgstr "Thêm một nguồn từ điển mới"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
 msgid "Remove the currently selected dictionary source"
 msgstr "Gỡ bỏ nguồn từ điển đã chọn hiện thời"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
 msgid "Set the font used for printing the definitions"
 msgstr "Lập phông chữ dùng để in lời định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-print.c:187
+#: ../gnome-dictionary/src/gdict-print.c:249
+#: ../gnome-dictionary/src/gdict-print.c:313
 #, c-format
-msgid "%s (page %d)"
-msgstr "%s (trang %d)"
+msgid "Unable to display the preview: %s"
+msgstr "Không thể hiển thị ô xem thử : %s"
 
-#: ../gnome-dictionary/src/gdict-print.c:246
-msgid "Print Preview"
-msgstr "Xem thử bản in"
-
-#: ../gnome-dictionary/src/gdict-source-dialog.c:360
-#: ../gnome-dictionary/src/gdict-source-dialog.c:453
+#: ../gnome-dictionary/src/gdict-source-dialog.c:358
+#: ../gnome-dictionary/src/gdict-source-dialog.c:451
 msgid "Unable to create a source file"
 msgstr "Không thể tạo tập tin nguồn"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:378
-#: ../gnome-dictionary/src/gdict-source-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:376
+#: ../gnome-dictionary/src/gdict-source-dialog.c:469
 msgid "Unable to save source file"
 msgstr "Không thể lưu tập tin nguồn"
 
-#: ../gnome-dictionary/src/gdict-window.c:288
+#: ../gnome-dictionary/src/gdict-window.c:312
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Đang tìm kiếm « %s »..."
 
-#: ../gnome-dictionary/src/gdict-window.c:318
-#: ../gnome-dictionary/src/gdict-window.c:350
+#: ../gnome-dictionary/src/gdict-window.c:344
+#: ../gnome-dictionary/src/gdict-window.c:403
 msgid "No definitions found"
 msgstr "Không tìm thấy lời định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-window.c:320
+#: ../gnome-dictionary/src/gdict-window.c:346
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Tìm thấy %d lời định nghĩa"
 
-#: ../gnome-dictionary/src/gdict-window.c:527
+#: ../gnome-dictionary/src/gdict-window.c:602
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s — Từ điển"
 
-#: ../gnome-dictionary/src/gdict-window.c:1067
+#: ../gnome-dictionary/src/gdict-window.c:1178
 #: ../logview/logview.c:85
 msgid "_File"
 msgstr "_Tập tin"
 
-#: ../gnome-dictionary/src/gdict-window.c:1070
+#: ../gnome-dictionary/src/gdict-window.c:1181
 msgid "_Go"
 msgstr "_Đi"
 
-#: ../gnome-dictionary/src/gdict-window.c:1074
-#. File menu
+#.File menu
+#: ../gnome-dictionary/src/gdict-window.c:1185
 msgid "_New"
 msgstr "_Mới"
 
-#: ../gnome-dictionary/src/gdict-window.c:1075
+#: ../gnome-dictionary/src/gdict-window.c:1186
 msgid "New look up"
 msgstr "Tra tìm mới"
 
-#: ../gnome-dictionary/src/gdict-window.c:1076
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_Save a Copy..."
 msgstr "_Lưu một bản sao..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1078
+#: ../gnome-dictionary/src/gdict-window.c:1189
+msgid "P_review..."
+msgstr "_Xem thử..."
+
+#: ../gnome-dictionary/src/gdict-window.c:1190
+msgid "Preview this document"
+msgstr "Xem thử tài liệu này"
+
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "_Print..."
 msgstr "_In..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1079
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Print this document"
 msgstr "In tài liệu này"
 
-#: ../gnome-dictionary/src/gdict-window.c:1086
+#: ../gnome-dictionary/src/gdict-window.c:1199
 #: ../logview/logview.c:99
 msgid "Select _All"
 msgstr "Chọn tất _cả"
 
-#: ../gnome-dictionary/src/gdict-window.c:1089
+#: ../gnome-dictionary/src/gdict-window.c:1202
 msgid "Find a word or phrase in the document"
 msgstr "Tìm từ hay cụm từ trong tài liệu"
 
-#: ../gnome-dictionary/src/gdict-window.c:1091
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find Ne_xt"
 msgstr "Tìm tiế_p"
 
-#: ../gnome-dictionary/src/gdict-window.c:1093
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Pre_vious"
 msgstr "Tìm t_rước"
 
-#: ../gnome-dictionary/src/gdict-window.c:1099
-#. Go menu
+#.Go menu
+#: ../gnome-dictionary/src/gdict-window.c:1212
 msgid "_Previous Definition"
 msgstr "Lời định nghĩa t_rước"
 
-#: ../gnome-dictionary/src/gdict-window.c:1100
+#: ../gnome-dictionary/src/gdict-window.c:1213
 msgid "Go to the previous definition"
 msgstr "Trở về lời định nghĩa trước"
 
-#: ../gnome-dictionary/src/gdict-window.c:1101
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Next Definition"
 msgstr "Lời định nghĩa _kế"
 
-#: ../gnome-dictionary/src/gdict-window.c:1102
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the next definition"
 msgstr "Đến lời định nghĩa kế tiếp"
 
-#: ../gnome-dictionary/src/gdict-window.c:1103
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_First Definition"
 msgstr "Lời định nghĩa thứ _đầu"
 
-#: ../gnome-dictionary/src/gdict-window.c:1104
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the first definition"
 msgstr "Đi đến lời định nghĩa thứ nhất"
 
-#: ../gnome-dictionary/src/gdict-window.c:1105
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_Last Definition"
 msgstr "Lời định nghĩa _cuối"
 
-#: ../gnome-dictionary/src/gdict-window.c:1106
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the last definition"
 msgstr "Đi đến lời định nghĩa cuối cùng"
 
-#: ../gnome-dictionary/src/gdict-window.c:1109
-#. View menu
+#.View menu
+#: ../gnome-dictionary/src/gdict-window.c:1222
 msgid "Similar _Words"
 msgstr "Từ tươn_g tự"
 
-#: ../gnome-dictionary/src/gdict-window.c:1111
+#: ../gnome-dictionary/src/gdict-window.c:1224
+msgid "Dictionary Sources"
+msgstr "Nguồn từ điển"
+
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Available _Databases"
 msgstr "Cơ sở _dữ liệu sẵn sàng"
 
-#: ../gnome-dictionary/src/gdict-window.c:1113
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available St_rategies"
 msgstr "_Chiến lược hiện có"
 
-#: ../gnome-dictionary/src/gdict-window.c:1130
-#. View menu
+#.View menu
+#: ../gnome-dictionary/src/gdict-window.c:1245
 msgid "_Sidebar"
 msgstr "Ô _bên"
 
-#: ../gnome-dictionary/src/gdict-window.c:1132
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "S_tatusbar"
 msgstr "Thanh _trạng thái"
 
-#: ../gnome-dictionary/src/gdict-window.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1368
+#, c-format
+msgid "Dictionary source `%s' selected"
+msgstr "Nguồn từ điển « %s » đã chọn"
+
+#: ../gnome-dictionary/src/gdict-window.c:1389
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "Chiến lược '%s' được chọn"
 
-#: ../gnome-dictionary/src/gdict-window.c:1265
+#: ../gnome-dictionary/src/gdict-window.c:1409
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Cơ sở dữ liệu « %s » đã chọn"
 
-#: ../gnome-dictionary/src/gdict-window.c:1285
+#: ../gnome-dictionary/src/gdict-window.c:1429
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Từ « %s » đã chọn"
 
-#: ../gnome-dictionary/src/gdict-window.c:1307
-#. speller
+#.speller
+#: ../gnome-dictionary/src/gdict-window.c:1451
 msgid "Double-click on the word to look up"
 msgstr "Nhấn đôi vào từ cần tra tìm"
 
-#: ../gnome-dictionary/src/gdict-window.c:1313
-#. strat-chooser
+#.strat-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1457
 msgid "Double-click on the matching strategy to use"
 msgstr "Nhấp đúp chiến lược tìm cần dùng"
 
-#: ../gnome-dictionary/src/gdict-window.c:1323
-#. db-chooser
+#.source-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1462
+msgid "Double-click on the source to use"
+msgstr "Nhấn đôi vào nguồn cần dùng"
+
+#.db-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1471
 msgid "Double-click on the database to use"
 msgstr "Nhấn đôi vào cơ sở dữ liệu cần dùng"
 
-#: ../gnome-dictionary/src/gdict-window.c:1610
+#: ../gnome-dictionary/src/gdict-window.c:1759
 msgid "Look _up:"
 msgstr "_Tra tìm:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1683
+#: ../gnome-dictionary/src/gdict-window.c:1833
 msgid "Similar words"
 msgstr "Từ tương tự"
 
-#: ../gnome-dictionary/src/gdict-window.c:1696
+#: ../gnome-dictionary/src/gdict-window.c:1846
 msgid "Available dictionaries"
 msgstr "Từ điển sẵn sàng"
 
-#: ../gnome-dictionary/src/gdict-window.c:1709
+#: ../gnome-dictionary/src/gdict-window.c:1859
 msgid "Available strategies"
 msgstr "Chiến lược hiện có"
+
+#: ../gnome-dictionary/src/gdict-window.c:1870
+msgid "Dictionary sources"
+msgstr "Nguồn từ điển"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 #: ../gsearchtool/gsearchtool-support.c:1629
@@ -2129,8 +2144,8 @@ msgstr "Bỏ bóng"
 msgid "Border"
 msgstr "Đường viền"
 
+#.* Include window border *
 #: ../gnome-screenshot/gnome-screenshot.c:304
-#. * Include window border *
 msgid "Include the window _border"
 msgstr "Gồm _viền cửa sổ"
 
@@ -2146,18 +2161,18 @@ msgstr "Chụp _toàn bộ màn hình"
 msgid "Grab the current _window"
 msgstr "Chụp cửa sổ _hiện thời"
 
-#: ../gnome-screenshot/gnome-screenshot.c:408
-#. translators: this is the first part of the "grab after a
-#. * delay of <spin button> seconds".
+#.translators: this is the first part of the "grab after a
+#.* delay of <spin button> seconds".
 #.
+#: ../gnome-screenshot/gnome-screenshot.c:408
 msgid "Grab _after a delay of"
 msgstr "Chụp _sau khi chờ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:870
-#. translators: this is the last part of the "grab after a
-#. * delay of <spin button> seconds".
+#.translators: this is the last part of the "grab after a
+#.* delay of <spin button> seconds".
 #.
+#: ../gnome-screenshot/gnome-screenshot.c:428
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "seconds"
 msgstr "giây"
 
@@ -2174,34 +2189,34 @@ msgstr "Hiệu ứng"
 msgid "Take _Screenshot"
 msgstr "_Chụp ảnh màn hình"
 
+#.translators: this is the name of the file that gets made up
+#.* with the screenshot if a specific window is taken
 #: ../gnome-screenshot/gnome-screenshot.c:488
 #, c-format
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if a specific window is taken
 msgid "Screenshot-%s.png"
 msgstr "Hình-chụp-%s.png"
 
+#.translators: this is the name of the file that gets made up
+#.* with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-screenshot.c:494
 #: ../gnome-screenshot/screenshot-dialog.c:329
-#: ../gnome-screenshot/screenshot-save.c:197
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if the entire screen is taken
+#: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Hình-chụp.png"
 
+#.translators: this is the name of the file that gets
+#.* made up with the screenshot if a specific window is
+#.* taken
 #: ../gnome-screenshot/gnome-screenshot.c:534
 #, c-format
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if a specific window is
-#. * taken
 msgid "Screenshot-%s-%d.png"
 msgstr "Hình-chụp-%s-%d.png"
 
+#.translators: this is the name of the file that gets
+#.* made up with the screenshot if the entire screen is
+#.* taken
 #: ../gnome-screenshot/gnome-screenshot.c:542
 #, c-format
-#. translators: this is the name of the file that gets
-#. * made up with the screenshot if the entire screen is
-#. * taken
 msgid "Screenshot-%d.png"
 msgstr "Hình-chụp-%d.png"
 
@@ -2209,39 +2224,39 @@ msgstr "Hình-chụp-%d.png"
 msgid "Unable to take a screenshot of the current window"
 msgstr "Không thể chụp hình cửa sổ hiện thời"
 
-#: ../gnome-screenshot/gnome-screenshot.c:868
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Grab a window instead of the entire screen"
 msgstr "Lấy một cửa sổ riêng thay thế toàn bộ màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:869
+#: ../gnome-screenshot/gnome-screenshot.c:873
 msgid "Include the window border with the screenshot"
 msgstr "Gồm viền cửa sổ khi chụp hình màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:870
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Chụp hình màn hình sau thời gian đã ghi rõ [theo giây]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Hiệu ứng cần thêm vào viền (bóng, viền hoặc không)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "effect"
 msgstr "hiệu ứng"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:876
 msgid "Interactively set options"
 msgstr "Đặt tuỳ chọn tương tác"
 
-#: ../gnome-screenshot/gnome-screenshot.c:882
+#: ../gnome-screenshot/gnome-screenshot.c:886
 msgid "Options for Screenshot"
 msgstr "Tùy chọn Chụp Màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:883
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Show Screenshot options"
 msgstr "Hiện Tùy chọn chụp màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:891
 msgid "Take a picture of the screen"
 msgstr "Chụp ảnh của màn hình"
 
@@ -2314,7 +2329,7 @@ msgid ""
 msgstr "Tiến trình con lưu đã thoát bất ngờ. Như thế thì không ghi được chụp hình "
 "màn hình vào đĩa."
 
-#: ../gnome-screenshot/screenshot-save.c:224
+#: ../gnome-screenshot/screenshot-save.c:223
 msgid "Unknown error saving screenshot to disk"
 msgstr "Gặp lỗi lạ khi lưu chụp hình màn hình vào đĩa"
 
@@ -2385,87 +2400,87 @@ msgstr "Đường dẫn bị Loại trừ Việc Ra Quét Thứ hai Tìm Nhanh"
 msgid "Search Result Columns Order"
 msgstr "Thứ tự cột kết quả tìm kiếm"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:11
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Contains the text\""
 msgstr "Dùng tùy chọn tìm kiếm « Chứa đoạn »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:14
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Date modified less than\""
 msgstr "Dùng tùy chọn tìm kiếm « Có ngày sửa đổi trước »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:17
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Date modified more than\""
 msgstr "Dùng tùy chọn tìm kiếm « Có ngày sửa đổi sau »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:20
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"File is empty\""
 msgstr "Dùng tùy chọn tìm kiếm « Tập tin rỗng »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:23
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Follow symbolic links\""
 msgstr "Dùng tùy chọn tìm kiếm « Theo liên kết biểu tượng »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:26
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Include other filesystems\""
 msgstr "Dùng tùy chọn tìm kiếm « Gồm hệ thống tập tin khác »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:29
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Name does not contain\""
 msgstr "Dùng tùy chọn tìm kiếm « Tên không chứa »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:32
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Name matches regular expression\""
 msgstr "Dùng tùy chọn tìm kiếm « Tên khớp biểu thức chính quy »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:35
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Owned by group\""
 msgstr "Dùng tùy chọn tìm kiếm « Sở hữu bởi nhóm »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:38
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Owned by user\""
 msgstr "Dùng tùy chọn tìm kiếm « Sở hữu bởi người dùng »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:41
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Owner is unrecognized\""
 msgstr "Dùng tùy chọn tìm kiếm « Người sở hữu không nhận diện được »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:44
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Show hidden files and folders\""
 msgstr "Dùng tùy chọn tìm kiếm « Hiện các tập tin và thư mục bị ẩn »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:47
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Size at least\""
 msgstr "Dùng tùy chọn tìm kiếm « Kích cỡ ít nhất »"
 
+#.Translators: The quoted text is the label of an available
+#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:50
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
 msgid "Select the search option \"Size at most\""
 msgstr "Dùng tùy chọn tìm kiếm « Kích cỡ lớn nhất »"
 
@@ -2598,10 +2613,11 @@ msgid ""
 msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Người sở hữu không nhận diện được » được chọn chưa."
 
+#.Translators: The quoted text is the label of the additional
+#.options expander that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:70
-#. Translators: The quoted text is the label of the additional
-#. options expander that is translated elsewhere.
-msgid "This key determines if the \"Select more options\" section is expanded when "
+msgid ""
+"This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
 msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Hiển thị tùy chọn bổ sung » được chọn chưa."
@@ -2755,12 +2771,12 @@ msgid ""
 msgstr "Lỗi GConf:\n"
 "  %s"
 
+#.Translators:  Below are the strings displayed in the 'Date Modified'
+#.column of the list view.  The format of this string can vary depending
+#.on age of a file.  Please modify the format of the timestamp to match
+#.your locale.  For example, to display 24 hour time replace the '%-I'
+#.with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
 #: ../gsearchtool/gsearchtool-support.c:641
-#. Translators:  Below are the strings displayed in the 'Date Modified'
-#. column of the list view.  The format of this string can vary depending
-#. on age of a file.  Please modify the format of the timestamp to match
-#. your locale.  For example, to display 24 hour time replace the '%-I'
-#. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
 msgid "today at %-I:%M %p"
 msgstr "hôm nay lúc %-I:%M:%p"
 
@@ -2782,97 +2798,97 @@ msgstr "liên kết (bị ngắt)"
 msgid "link to %s"
 msgstr "liên kết tới %s"
 
-#: ../gsearchtool/gsearchtool-support.c:1533
-#. START OF NAUTILUS/EEL FUNCTIONS: USED FOR HANDLING OF DUPLICATE FILENAMES
-#. Localizers:
-#. * Feel free to leave out the st, nd, rd and th suffix or
-#. * make some or all of them match.
+#.START OF NAUTILUS/EEL FUNCTIONS: USED FOR HANDLING OF DUPLICATE FILENAMES
+#.Localizers:
+#.* Feel free to leave out the st, nd, rd and th suffix or
+#.* make some or all of them match.
 #.
-#. localizers: tag used to detect the first copy of a file
+#.localizers: tag used to detect the first copy of a file
+#: ../gsearchtool/gsearchtool-support.c:1533
 msgid " (copy)"
 msgstr " (bản sao)"
 
+#.localizers: tag used to detect the second copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1535
-#. localizers: tag used to detect the second copy of a file
 msgid " (another copy)"
 msgstr " (bản sao khác)"
 
+#.localizers: tag used to detect the x11th copy of a file
+#.localizers: tag used to detect the x12th copy of a file
+#.localizers: tag used to detect the x13th copy of a file
+#.localizers: tag used to detect the xxth copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1538
 #: ../gsearchtool/gsearchtool-support.c:1540
 #: ../gsearchtool/gsearchtool-support.c:1542
 #: ../gsearchtool/gsearchtool-support.c:1552
-#. localizers: tag used to detect the x11th copy of a file
-#. localizers: tag used to detect the x12th copy of a file
-#. localizers: tag used to detect the x13th copy of a file
-#. localizers: tag used to detect the xxth copy of a file
 msgid "th copy)"
 msgstr "(bản sao"
 
+#.localizers: tag used to detect the x1st copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1545
-#. localizers: tag used to detect the x1st copy of a file
 msgid "st copy)"
 msgstr "(bản sao"
 
+#.localizers: tag used to detect the x2nd copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1547
-#. localizers: tag used to detect the x2nd copy of a file
 msgid "nd copy)"
 msgstr "(bản sao"
 
+#.localizers: tag used to detect the x3rd copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1549
-#. localizers: tag used to detect the x3rd copy of a file
 msgid "rd copy)"
 msgstr "(bản sao"
 
+#.localizers: appended to first file copy
 #: ../gsearchtool/gsearchtool-support.c:1566
 #, c-format
-#. localizers: appended to first file copy
 msgid "%s (copy)%s"
 msgstr "%s (bản sao)%s"
 
+#.localizers: appended to second file copy
 #: ../gsearchtool/gsearchtool-support.c:1568
 #, c-format
-#. localizers: appended to second file copy
 msgid "%s (another copy)%s"
 msgstr "%s (bản sao khác)%s"
 
+#.localizers: appended to x11th file copy
+#.localizers: appended to x12th file copy
+#.localizers: appended to x13th file copy
+#.localizers: appended to xxth file copy
 #: ../gsearchtool/gsearchtool-support.c:1571
 #: ../gsearchtool/gsearchtool-support.c:1573
 #: ../gsearchtool/gsearchtool-support.c:1575
 #: ../gsearchtool/gsearchtool-support.c:1584
 #, c-format
-#. localizers: appended to x11th file copy
-#. localizers: appended to x12th file copy
-#. localizers: appended to x13th file copy
-#. localizers: appended to xxth file copy
 msgid "%s (%dth copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
+#.localizers: appended to x1st file copy
 #: ../gsearchtool/gsearchtool-support.c:1578
 #, c-format
-#. localizers: appended to x1st file copy
 msgid "%s (%dst copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
+#.localizers: appended to x2nd file copy
 #: ../gsearchtool/gsearchtool-support.c:1580
 #, c-format
-#. localizers: appended to x2nd file copy
 msgid "%s (%dnd copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
+#.localizers: appended to x3rd file copy
 #: ../gsearchtool/gsearchtool-support.c:1582
 #, c-format
-#. localizers: appended to x3rd file copy
 msgid "%s (%drd copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
+#.localizers: opening parentheses to match the "th copy)" string
 #: ../gsearchtool/gsearchtool-support.c:1718
-#. localizers: opening parentheses to match the "th copy)" string
 msgid " ("
 msgstr " ("
 
+#.localizers: opening parentheses of the "th copy)" string
 #: ../gsearchtool/gsearchtool-support.c:1726
 #, c-format
-#. localizers: opening parentheses of the "th copy)" string
 msgid " (%d"
 msgstr " (%d"
 
@@ -2942,6 +2958,42 @@ msgstr "Theo liên kết biểu tượng"
 msgid "Include other filesystems"
 msgstr "Gồm hệ thống tập tin khác"
 
+#: ../gsearchtool/gsearchtool.c:158
+#: ../gsearchtool/gsearchtool.c:163
+#: ../gsearchtool/gsearchtool.c:172
+msgid "STRING"
+msgstr "CHUỖI"
+
+#: ../gsearchtool/gsearchtool.c:159
+msgid "PATH"
+msgstr "ĐƯỜNG DẪN"
+
+#: ../gsearchtool/gsearchtool.c:160
+msgid "VALUE"
+msgstr "GIÁ TRỊ"
+
+#: ../gsearchtool/gsearchtool.c:164
+#: ../gsearchtool/gsearchtool.c:165
+msgid "DAYS"
+msgstr "NGÀY"
+
+#: ../gsearchtool/gsearchtool.c:166
+#: ../gsearchtool/gsearchtool.c:167
+msgid "KILOBYTES"
+msgstr "KILÔ-BYTE"
+
+#: ../gsearchtool/gsearchtool.c:169
+msgid "USER"
+msgstr "NGƯỜI DÙNG"
+
+#: ../gsearchtool/gsearchtool.c:170
+msgid "GROUP"
+msgstr "NHÓM"
+
+#: ../gsearchtool/gsearchtool.c:173
+msgid "PATTERN"
+msgstr "MẪU"
+
 #: ../gsearchtool/gsearchtool.c:181
 msgid "_Open"
 msgstr "_Mở"
@@ -2970,7 +3022,7 @@ msgstr "Đang tìm kiếm..."
 #: ../gsearchtool/gsearchtool.c:516
 #: ../gsearchtool/gsearchtool.c:1021
 #: ../gsearchtool/gsearchtool.c:1299
-#: ../gsearchtool/gsearchtool.c:3148
+#: ../gsearchtool/gsearchtool.c:3149
 msgid "Search for Files"
 msgstr "Tìm tập tin"
 
@@ -3086,10 +3138,10 @@ msgstr "Gặp lỗi khi thực hiện lệnh tìm kiếm."
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Hãy nhập giá trị chữ cho tùy chọn « %s »."
 
+#.Translators:  Below is a string displaying the search options name
+#.and unit value.  For example, "\"Date modified less than\" in days".
 #: ../gsearchtool/gsearchtool.c:2088
 #, c-format
-#. Translators:  Below is a string displaying the search options name
-#. and unit value.  For example, "\"Date modified less than\" in days".
 msgid "\"%s\" in %s"
 msgstr "« %s » theo « %s »"
 
@@ -3202,6 +3254,10 @@ msgstr "Nhấn để tìm kiếm."
 msgid "Click to stop a search."
 msgstr "Nhấn để ngừng tìm."
 
+#: ../gsearchtool/gsearchtool.c:3134
+msgid "- the GNOME Search Tool"
+msgstr "— Công cụ Tìm kiếm GNOME"
+
 #: ../logview/about.c:51
 #: ../logview/logview.c:37
 #: ../logview/main.c:54
@@ -3257,16 +3313,16 @@ msgstr "« %s » quá lớn."
 msgid "%s could not be opened."
 msgstr "Không thể mở tập tin « %s »."
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s không phải là tập tin bản ghi."
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "Không đủ bộ nhớ."
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "Không thể mở %s."
@@ -3467,11 +3523,11 @@ msgstr "Hiển thị các tùy chọn Bộ Xem Bản Ghi Hệ Thống"
 msgid " - Browse and monitor logs"
 msgstr " • Duyệt qua và theo dõi bản ghi"
 
-#: ../logview/main.c:153
+#: ../logview/main.c:145
 msgid "Log Viewer"
 msgstr "Bộ Xem Bản Ghi"
 
-#: ../logview/main.c:162
+#: ../logview/main.c:154
 msgid "Unable to create user interface."
 msgstr "Không thể tạo giao diện người dùng."
 
@@ -3528,9 +3584,9 @@ msgid "Invalid date"
 msgstr "Ngày không hợp lệ"
 
 # Variable: do not translate/ biến: đừng dịch
+#.Translators: Only date format, time will be bogus
 #: ../logview/misc.c:169
 #, c-format
-#. Translators: Only date format, time will be bogus
 msgid "%x"
 msgstr "%x"
 
@@ -3545,6 +3601,21 @@ msgstr "Khả năng theo dõi tập tin không được hỗ trợ trong hệ th
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Lỗi Gnome-VFS.\n"
+
+#~ msgid "The GdictContext object bound to this entry"
+#~ msgstr "Đối tượng GdictContext được buộc với mục nhập này"
+
+#~ msgid "The database to be used to generate the completion list"
+#~ msgstr "Cơ sở dữ liệu cần dùng để tạo ra danh sách gõ xong"
+
+#~ msgid "The matching strategy to be used to generate the completion list"
+#~ msgstr "Chiến lược khớp cần dùng để tạo ra danh sách gõ xong"
+
+#~ msgid "%s (page %d)"
+#~ msgstr "%s (trang %d)"
+
+#~ msgid "Print Preview"
+#~ msgstr "Xem thử bản in"
 
 #~ msgid "Analyze disk usage"
 #~ msgstr "Công cụ phân tích sử dụng đĩa"
