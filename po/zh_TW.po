@@ -8,10 +8,10 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 2.17.93\n"
+"Project-Id-Version: gnome-utils 2.21.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-28 03:32+0000\n"
-"PO-Revision-Date: 2007-02-28 10:43+0800\n"
+"POT-Creation-Date: 2008-02-13 20:03+0800\n"
+"PO-Revision-Date: 2008-02-12 10:43+0800\n"
 "Last-Translator: Woodman Tuen <wmtuen@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
-msgid "Analyze disk usage"
-msgstr "分析磁碟使用率"
+msgid "Check folder sizes and available disk space"
+msgstr "檢查資料夾大小與可用的磁碟空間"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -131,7 +131,7 @@ msgstr "全部收起(_C)"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1117 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1232 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "內容(_C)"
 
@@ -140,7 +140,7 @@ msgid "_Depth level:"
 msgstr "深度層級(_D)："
 
 #: ../baobab/data/baobab.glade.h:30
-#: ../gnome-dictionary/src/gdict-window.c:1068 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1179 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "編輯(_E)"
 
@@ -154,7 +154,7 @@ msgstr "使用率對映圖(_G)"
 
 #: ../baobab/data/baobab.glade.h:33
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1071 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview.c:88
 msgid "_Help"
 msgstr "求助(_H)"
 
@@ -171,7 +171,7 @@ msgid "_Total folders:"
 msgstr "資料夾總數(_T)："
 
 #: ../baobab/data/baobab.glade.h:37
-#: ../gnome-dictionary/src/gdict-window.c:1069 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview.c:87
 msgid "_View"
 msgstr "顯示(_V)"
 
@@ -208,43 +208,43 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "應否顯示在主視窗中的工具列"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:307
+#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
+#: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "正在計算百分比長條圖..."
 
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:757
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:311
+#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
+#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "就緒"
 
-#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
 msgstr "掃描中..."
 
-#: ../baobab/src/baobab.c:265
+#: ../baobab/src/baobab.c:266
 msgid "Total filesystem usage:"
 msgstr "檔案系統的總用量："
 
-#: ../baobab/src/baobab.c:309
+#: ../baobab/src/baobab.c:310
 msgid "contains hardlinks for:"
 msgstr "包含的硬連結有："
 
-#: ../baobab/src/baobab.c:318
+#: ../baobab/src/baobab.c:319
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d 個項目"
 
-#: ../baobab/src/baobab.c:383
+#: ../baobab/src/baobab.c:384
 msgid "Invalid UTF-8 characters"
 msgstr "無效的 UTF-8 字元"
 
-#: ../baobab/src/baobab.c:639
+#: ../baobab/src/baobab.c:640
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "無法起動 GNOME VFS 監察"
 
-#: ../baobab/src/baobab.c:640
+#: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "不會監察個人資料夾的變更"
 
@@ -275,21 +275,29 @@ msgstr "無法為圖形化視窗配置記憶體！"
 msgid "Graphical Usage Map"
 msgstr "使用率對映圖"
 
-#: ../baobab/src/baobab-prefs.c:165
+#: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
 msgstr "掃描"
 
-#: ../baobab/src/baobab-prefs.c:172
+#: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
 msgstr "裝置"
 
-#: ../baobab/src/baobab-prefs.c:180
+#: ../baobab/src/baobab-prefs.c:183
 msgid "Mount Point"
 msgstr "掛載點"
 
-#: ../baobab/src/baobab-prefs.c:188
+#: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
 msgstr "檔案系統類型"
+
+#: ../baobab/src/baobab-prefs.c:199
+msgid "Total Size"
+msgstr "全部容量"
+
+#: ../baobab/src/baobab-prefs.c:208
+msgid "Available"
+msgstr "可用"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:126
 #, c-format
@@ -382,28 +390,28 @@ msgstr "自訂位置"
 msgid "_Scan"
 msgstr "掃描(_S)"
 
-#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "資料夾"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:255
 msgid "Usage"
 msgstr "用法"
 
-#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "大小"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:285
 msgid "Contents"
 msgstr "內容"
 
-#: ../baobab/src/baobab-utils.c:104
+#: ../baobab/src/baobab-utils.c:102
 msgid "Select Folder"
 msgstr "選擇資料夾"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:116
+#: ../baobab/src/baobab-utils.c:114
 msgid "_Show hidden folders"
 msgstr "顯示隱藏資料夾(_S)"
 
@@ -463,7 +471,7 @@ msgstr "找不到本系統的回收筒資料夾"
 msgid "Could not move \"%s\" to the Trash"
 msgstr "無法將“%s”丟進回收筒"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:390
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "資料夾不存在。"
 
@@ -537,16 +545,16 @@ msgstr "圓環圖根節點"
 msgid "Set the root node from the model"
 msgstr "從模式中設定根節點"
 
-#: ../baobab/src/callbacks.c:82
+#: ../baobab/src/callbacks.c:99
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:83
+#: ../baobab/src/callbacks.c:100
 msgid "A graphical tool to analyze disk usage."
 msgstr "分析磁碟使用率的圖形化工具。"
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:91 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -561,7 +569,7 @@ msgstr ""
 "Abel Cheung <abel@oaka.org>, 2001-2004\n"
 "Ming-Yen Hsu <myhsu@cyberdude.com>, 1999"
 
-#: ../baobab/src/callbacks.c:195 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "資料夾不存在。"
@@ -673,6 +681,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "沒有足夠權限開啟軟碟裝置 %s。"
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -941,6 +950,7 @@ msgid "Cannot initialize device"
 msgstr "裝置無法起動"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "無法開啟任何裝置，不能繼續格式化。"
 
@@ -1013,7 +1023,7 @@ msgid "Cl_ear"
 msgstr "清除(_E)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1119 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview.c:116
 msgid "_About"
 msgstr "關於(_A)"
 
@@ -1022,7 +1032,7 @@ msgid "_Look Up Selected Text"
 msgstr "查詢已選字詞(_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1095
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "_Preferences"
 msgstr "偏好設定(_P)"
 
@@ -1041,9 +1051,9 @@ msgstr "在線上字典中查詢字詞的解譯及拼法"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:406
-#: ../gnome-dictionary/src/gdict-window.c:529
-#: ../gnome-dictionary/src/gdict-window.c:1790
+#: ../gnome-dictionary/src/gdict-app.c:402
+#: ../gnome-dictionary/src/gdict-window.c:604
+#: ../gnome-dictionary/src/gdict-window.c:1951
 msgid "Dictionary"
 msgstr "字典"
 
@@ -1229,8 +1239,6 @@ msgstr "主機名稱(_O)："
 
 # zh_HK: msgstr "打印"
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:202
-#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "Print"
 msgstr "列印"
 
@@ -1271,66 +1279,66 @@ msgstr "西班牙文字典"
 msgid "Longdo Thai-English Dictionaries"
 msgstr "Longdo 泰英字典"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:283
 msgid "Client Name"
 msgstr "客戶端名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "The name of the client of the context object"
 msgstr "內容物件中客戶端的名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:297
 msgid "Hostname"
 msgstr "主機名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
 msgid "The hostname of the dictionary server to connect to"
 msgstr "連接至字典伺服器主機的名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "Port"
 msgstr "連接埠"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:312
 msgid "The port of the dictionary server to connect to"
 msgstr "連接至字典伺服器所使用的連接埠"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:327
 msgid "Status"
 msgstr "狀態"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:328
 msgid "The status code as returned by the dictionary server"
 msgstr "字典伺服器回傳的狀態碼"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:777
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "於‘%s:%d’沒有與字典伺服器的連線"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "在主機名稱‘%s’查詢失敗：沒有找到適合的資源"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1056
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "在主機‘%s’查詢失敗：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1091
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "在主機‘%s’查詢失敗：找不到主機"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1143
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1171
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
 msgstr "在‘%s:%d’無法連接字典伺服器，伺服器回應碼 %d（伺服器關閉）"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1162
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -1339,47 +1347,47 @@ msgstr ""
 "無法辨識字典伺服器回應\n"
 "：‘%s’"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1191
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "找不到‘%s’的解釋"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1206
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1234
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "不合法的資料庫‘%s’"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1221
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1249
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "不合法的搜尋方式‘%s’"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1236
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1264
 #, c-format
 msgid "Bad command '%s'"
 msgstr "不正確的指令‘%s’"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1251
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1279
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "不是指令‘%s’正確的參數"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1266
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1294
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "在字典伺服器上沒有發現資料庫‘%s’"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1281
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1309
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "在字典伺服器上沒有發現搜尋方式‘%s’"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1722
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1742
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "於 %s:%d 連接到字典伺服器失敗"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1761
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1781
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1388,249 +1396,245 @@ msgstr ""
 "從伺服器上讀取回應時發生錯誤：\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1831
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "於‘%s:%d’連接到字典伺服器逾時"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "在字典伺服器上沒有定義主機名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1901
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1916
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "無法建構socket連線"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1942
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1962
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "無法設定通道為 non-blocking：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1957
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1977
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "於‘%s:%d’無法連接到字典伺服器"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:199
+#: ../gnome-dictionary/libgdict/gdict-context.c:218
 msgid "Local Only"
 msgstr "僅限本地端"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:200
+#: ../gnome-dictionary/libgdict/gdict-context.c:219
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "背景是否只用於本地端的字典"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:346
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
 msgid "Reload the list of available databases"
 msgstr "重新載入可用資料庫清單"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:359
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
 msgid "Clear the list of available databases"
 msgstr "消除現存資料庫清單"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:656
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1684
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:650
-msgid "Another search is in progress"
-msgstr "正在進行其它的搜尋"
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:657
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1685
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:651
-msgid "Please wait until the current search ends."
-msgstr "請等待現正進行的搜尋結束。"
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:690
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
 #: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:684
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
 msgid "Error while matching"
 msgstr "比對時發生錯誤"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:366
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:455
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:483
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1132
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1226
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1260
 msgid "Not found"
 msgstr "找不到符合的結果"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1321
 msgid "F_ind:"
 msgstr "尋找(_I)："
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:528
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1334
 msgid "_Previous"
 msgstr "上一個(_P)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:536
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1342
 msgid "_Next"
 msgstr "下一個(_N)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1642
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2493
 msgid "Error while looking up definition"
 msgstr "查詢字詞解釋時發生錯誤"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1723
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2535
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+msgid "Another search is in progress"
+msgstr "正在進行其它的搜尋"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2536
+#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+msgid "Please wait until the current search ends."
+msgstr "請等待現正進行的搜尋結束。"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2575
 msgid "Error while retrieving the definition"
 msgstr "擷取字詞解釋時發生錯誤"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:105
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:375
-msgid "Context"
-msgstr "內容"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:106
-msgid "The GdictContext object bound to this entry"
-msgstr "連結這個進入點的 GdictContext"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:120
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:382
-msgid "Database"
-msgstr "資料庫"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:121
-msgid "The database to be used to generate the completion list"
-msgstr "用來產生完整列表的資料庫"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:389
-msgid "Strategy"
-msgstr "搜尋方法"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:136
-msgid "The matching strategy to be used to generate the completion list"
-msgstr "用來產生完整列表的比對方法"
-
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:232
 msgid "Filename"
 msgstr "檔案名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:220
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
 msgid "The filename used by this dictionary source"
 msgstr "此字典來源所使用的檔案名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:246
 #: ../gsearchtool/gsearchtool.c:2473
 msgid "Name"
 msgstr "名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:234
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "The display name of this dictonary source"
 msgstr "此字典來源的顯示名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:260
 msgid "Description"
 msgstr "說明"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:248
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
 msgid "The description of this dictionary source"
 msgstr "此字典來源的說明文字。"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:262
+#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+msgid "Database"
+msgstr "資料庫"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
 msgid "The default database of this dictonary source"
 msgstr "此字典來源預設的資料庫。"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:276
+#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+msgid "Strategy"
+msgstr "搜尋方法"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "The default strategy of this dictonary source"
 msgstr "此字典來源預設的搜尋方式"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:302
 msgid "Transport"
 msgstr "傳送"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:290
+#: ../gnome-dictionary/libgdict/gdict-source.c:303
 msgid "The transport mechanism used by this dictionary source"
 msgstr "此字典來源伺服器使用的傳送機制"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:305
+#: ../gnome-dictionary/libgdict/gdict-source.c:317
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+msgid "Context"
+msgstr "內容"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:318
 msgid "The GdictContext bound to this source"
 msgstr "連結此來源的 GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:400
+#: ../gnome-dictionary/libgdict/gdict-source.c:413
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "無效的傳送型態‘%d’"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:428
+#: ../gnome-dictionary/libgdict/gdict-source.c:441
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr "在字典來源的定義中找不到‘%s’群組"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:444
-#: ../gnome-dictionary/libgdict/gdict-source.c:468
-#: ../gnome-dictionary/libgdict/gdict-source.c:492
-#: ../gnome-dictionary/libgdict/gdict-source.c:517
+#: ../gnome-dictionary/libgdict/gdict-source.c:457
+#: ../gnome-dictionary/libgdict/gdict-source.c:481
+#: ../gnome-dictionary/libgdict/gdict-source.c:505
+#: ../gnome-dictionary/libgdict/gdict-source.c:530
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr "無法從字典伺服器解釋中取得‘%s’關鍵字：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:542
+#: ../gnome-dictionary/libgdict/gdict-source.c:555
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
 msgstr "無法從字典伺服器解釋檔案中取得‘%s’關鍵字：%s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:728
+#: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "字典伺服器沒有名稱"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:737
+#: ../gnome-dictionary/libgdict/gdict-source.c:750
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "字典伺服器‘%s’有不合法的傳送型態‘%s’"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+msgid "Reload the list of available sources"
+msgstr "重新載入可用來源的清單"
+
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:171
 msgid "Paths"
 msgstr "路徑"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:172
 msgid "Search paths used by this object"
 msgstr "這個物件所使用的搜尋路徑"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:184
 msgid "Sources"
 msgstr "來源"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:185
 msgid "Dictionary sources found"
 msgstr "找到字典來源"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+#: ../gnome-dictionary/libgdict/gdict-speller.c:355
 msgid "Clear the list of similar words"
 msgstr "清除近似字詞清單"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+#: ../gnome-dictionary/libgdict/gdict-speller.c:379
 msgid "The GdictContext object used to get the word definition"
 msgstr "用來取得字詞解釋的 GdictContext 物件"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:383
+#: ../gnome-dictionary/libgdict/gdict-speller.c:386
 msgid "The database used to query the GdictContext"
 msgstr "查詢 GdictContext 所使用的資料庫。"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:390
+#: ../gnome-dictionary/libgdict/gdict-speller.c:393
 msgid "The strategy used to query the GdictContext"
 msgstr "查詢 GdictContext 用的搜尋方法"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:340
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
 msgid "Reload the list of available strategies"
 msgstr "重新載入現有的搜尋方法"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:353
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
 msgid "Clear the list of available strategies"
 msgstr "清除現有搜尋方法"
 
+#: ../gnome-dictionary/libgdict/gdict-utils.c:157
+msgid "GDict Options"
+msgstr "GDict 選項"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:158
+msgid "Show GDict Options"
+msgstr "顯示 GDict 選項"
+
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:613
+#: ../gnome-dictionary/src/gdict-applet.c:591
 msgid "Look up words in dictionaries"
 msgstr "在字典中查詢字詞"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:238
+#: ../gnome-dictionary/src/gdict-app.c:233
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1643,20 +1647,21 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:252
+#: ../gnome-dictionary/src/gdict-app.c:247
 #, c-format
 msgid "Error: %s\n"
 msgstr "錯誤：%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:278
+#: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "執行 gnome-dictionary --help 來查詢使用方法\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:291
+#: ../gnome-dictionary/src/gdict-app.c:286
 msgid "Unable to find a suitable dictionary source"
 msgstr "無法找到合適的字典來源"
 
-#: ../gnome-dictionary/src/gdict-app.c:325
+#: ../gnome-dictionary/src/gdict-app.c:320
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1665,187 +1670,188 @@ msgstr ""
 "查詢“%s”解釋時發生錯誤：\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "Words to look up"
 msgstr "要查詢的字詞"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:361
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "word"
 msgstr "字詞"
 
-#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:356
 msgid "Words to match"
 msgstr "比對的字詞"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "Dictionary source to use"
 msgstr "使用的字典來源"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "source"
 msgstr "來源"
 
-#: ../gnome-dictionary/src/gdict-app.c:365
+#: ../gnome-dictionary/src/gdict-app.c:360
 msgid "Show available dictionary sources"
 msgstr "顯示現存的字典來源"
 
-#: ../gnome-dictionary/src/gdict-app.c:367
+#: ../gnome-dictionary/src/gdict-app.c:362
 msgid "Print result to the console"
 msgstr "將結果輸出至終端機"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "Database to use"
 msgstr "使用的資料庫"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "Strategy to use"
 msgstr "使用的搜尋方法"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "strat"
 msgstr "strat"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:389
+#: ../gnome-dictionary/src/gdict-app.c:384
 msgid " - Look up words in dictionaries"
 msgstr " - 在字典中查字詞"
 
-#: ../gnome-dictionary/src/gdict-app.c:393
+#: ../gnome-dictionary/src/gdict-app.c:388
 msgid "Dictionary and spelling tool"
 msgstr "字典及拼字檢查工具"
 
-#: ../gnome-dictionary/src/gdict-app.c:394
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid "Show Dictionary options"
 msgstr "顯示字典選項"
 
-#: ../gnome-dictionary/src/gdict-applet.c:216
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-applet.c:207
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "Save a Copy"
 msgstr "儲存副本"
 
-#: ../gnome-dictionary/src/gdict-applet.c:226
-#: ../gnome-dictionary/src/gdict-window.c:752
+#: ../gnome-dictionary/src/gdict-applet.c:217
+#: ../gnome-dictionary/src/gdict-window.c:843
 msgid "Untitled document"
 msgstr "未命名文件"
 
-#: ../gnome-dictionary/src/gdict-applet.c:247
-#: ../gnome-dictionary/src/gdict-window.c:773
+#: ../gnome-dictionary/src/gdict-applet.c:238
+#: ../gnome-dictionary/src/gdict-window.c:864
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "寫入‘%s’時發生錯誤"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear the definitions found"
 msgstr "清除找到的字詞解釋"
 
-#: ../gnome-dictionary/src/gdict-applet.c:378
+#: ../gnome-dictionary/src/gdict-applet.c:365
 msgid "Clear definition"
 msgstr "清除字詞解釋"
 
-#: ../gnome-dictionary/src/gdict-applet.c:379
+#: ../gnome-dictionary/src/gdict-applet.c:366
 msgid "Clear the text of the definition"
 msgstr "清除字詞解釋的文字"
 
 # zh_HK: msgstr "打印找到的字詞解釋"
-#: ../gnome-dictionary/src/gdict-applet.c:389
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print the definitions found"
 msgstr "列印找到的字詞解釋"
 
 # zh_HK: msgstr "打印字詞解釋"
-#: ../gnome-dictionary/src/gdict-applet.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Print definition"
 msgstr "列印字詞解釋"
 
 # zh_HK: msgstr "打印字詞解釋的文字"
-#: ../gnome-dictionary/src/gdict-applet.c:393
+#: ../gnome-dictionary/src/gdict-applet.c:376
 msgid "Print the text of the definition"
 msgstr "列印字詞解釋的文字"
 
-#: ../gnome-dictionary/src/gdict-applet.c:403
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save the definitions found"
 msgstr "儲存找到的解釋"
 
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:385
 msgid "Save definition"
 msgstr "儲存字詞解釋"
 
-#: ../gnome-dictionary/src/gdict-applet.c:407
+#: ../gnome-dictionary/src/gdict-applet.c:386
 msgid "Save the text of the definition to a file"
 msgstr "儲存解釋的文字到檔案中"
 
-#: ../gnome-dictionary/src/gdict-applet.c:553
-msgid "Toggle dictionary window"
-msgstr "打開字典視窗"
-
-#: ../gnome-dictionary/src/gdict-applet.c:554
-msgid "Show or hide the definition window"
-msgstr "顯示或隱藏解釋視窗"
-
-#: ../gnome-dictionary/src/gdict-applet.c:557
+#: ../gnome-dictionary/src/gdict-applet.c:533
 msgid "Click to view the dictionary window"
 msgstr "點擊一下來檢視字典視窗"
 
-#: ../gnome-dictionary/src/gdict-applet.c:612
-msgid "Dictionary entry"
-msgstr "字典輸入欄位"
+#: ../gnome-dictionary/src/gdict-applet.c:535
+msgid "Toggle dictionary window"
+msgstr "打開字典視窗"
 
-#: ../gnome-dictionary/src/gdict-applet.c:616
+#: ../gnome-dictionary/src/gdict-applet.c:536
+msgid "Show or hide the definition window"
+msgstr "顯示或隱藏解釋視窗"
+
+#: ../gnome-dictionary/src/gdict-applet.c:588
 msgid "Type the word you want to look up"
 msgstr "請輸入您想查詢的字詞"
 
-#: ../gnome-dictionary/src/gdict-applet.c:750
-#: ../gnome-dictionary/src/gdict-window.c:897
+#: ../gnome-dictionary/src/gdict-applet.c:590
+msgid "Dictionary entry"
+msgstr "字典輸入欄位"
+
+#: ../gnome-dictionary/src/gdict-applet.c:724
+#: ../gnome-dictionary/src/gdict-window.c:997
 msgid "Dictionary Preferences"
 msgstr "字典偏好設定"
 
-#: ../gnome-dictionary/src/gdict-applet.c:778
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
-#: ../gnome-dictionary/src/gdict-source-dialog.c:500
-#: ../gnome-dictionary/src/gdict-window.c:1033
+#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
+#: ../gnome-dictionary/src/gdict-source-dialog.c:498
+#: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "顯示說明文件時發生錯誤"
 
-#: ../gnome-dictionary/src/gdict-applet.c:930
-#: ../gnome-dictionary/src/gdict-window.c:438
+#: ../gnome-dictionary/src/gdict-applet.c:904
+#: ../gnome-dictionary/src/gdict-window.c:513
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "沒有現存字典來源的名稱為‘%s’"
 
-#: ../gnome-dictionary/src/gdict-applet.c:934
-#: ../gnome-dictionary/src/gdict-window.c:442
+#: ../gnome-dictionary/src/gdict-applet.c:908
+#: ../gnome-dictionary/src/gdict-window.c:517
 msgid "Unable to find dictionary source"
 msgstr "無法找到字典來源"
 
-#: ../gnome-dictionary/src/gdict-applet.c:950
-#: ../gnome-dictionary/src/gdict-window.c:458
+#: ../gnome-dictionary/src/gdict-applet.c:924
+#: ../gnome-dictionary/src/gdict-window.c:533
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "來源‘%s’沒有內容存在"
 
-#: ../gnome-dictionary/src/gdict-applet.c:954
-#: ../gnome-dictionary/src/gdict-window.c:462
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:537
 msgid "Unable to create a context"
 msgstr "無法建構內容"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1222
-#: ../gnome-dictionary/src/gdict-window.c:1919
+#: ../gnome-dictionary/src/gdict-applet.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:2082
 msgid "Unable to connect to GConf"
 msgstr "無法連接到 GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1235
-#: ../gnome-dictionary/src/gdict-window.c:1932
+#: ../gnome-dictionary/src/gdict-applet.c:1206
+#: ../gnome-dictionary/src/gdict-window.c:2095
 msgid "Unable to get notification for preferences"
 msgstr "無法為偏好設定取得通知"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1249
-#: ../gnome-dictionary/src/gdict-window.c:1945
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:2108
 msgid "Unable to get notification for the document font"
 msgstr "無法為文件字型取得通知"
 
@@ -1860,227 +1866,250 @@ msgstr "無法將檔案‘%s’更名為‘%s’：%s"
 msgid "Unable to create the data directory '%s': %s"
 msgstr "無法建構資料目錄‘%s’：%s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
 msgid "Edit Dictionary Source"
 msgstr "編輯字典來源"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
 msgid "Add Dictionary Source"
 msgstr "加入字典來源"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "移除“%s”？"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "這會從清單中將字典來源永久刪除。"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "無法移除來源‘%s’"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
 msgid "Add a new dictionary source"
 msgstr "新增一個字典來源"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
 msgid "Remove the currently selected dictionary source"
 msgstr "移除目前選擇的字典來源"
 
 # zh_HK: msgstr "設定打印解釋時使用的字型"
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
 msgid "Set the font used for printing the definitions"
 msgstr "設定列印解釋時使用的字型"
 
-#: ../gnome-dictionary/src/gdict-print.c:187
+#: ../gnome-dictionary/src/gdict-print.c:249
+#: ../gnome-dictionary/src/gdict-print.c:313
 #, c-format
-msgid "%s (page %d)"
-msgstr "%s(第 %d 頁)"
+msgid "Unable to display the preview: %s"
+msgstr "無法顯示預覽 %s"
 
-#: ../gnome-dictionary/src/gdict-print.c:246
-msgid "Print Preview"
-msgstr "預覽列印"
-
-#: ../gnome-dictionary/src/gdict-source-dialog.c:360
-#: ../gnome-dictionary/src/gdict-source-dialog.c:453
+#: ../gnome-dictionary/src/gdict-source-dialog.c:358
+#: ../gnome-dictionary/src/gdict-source-dialog.c:451
 msgid "Unable to create a source file"
 msgstr "無法建構來源檔案"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:378
-#: ../gnome-dictionary/src/gdict-source-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:376
+#: ../gnome-dictionary/src/gdict-source-dialog.c:469
 msgid "Unable to save source file"
 msgstr "無法儲存來源檔案"
 
-#: ../gnome-dictionary/src/gdict-window.c:288
+#: ../gnome-dictionary/src/gdict-window.c:312
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "搜尋‘%s’..."
 
-#: ../gnome-dictionary/src/gdict-window.c:318
-#: ../gnome-dictionary/src/gdict-window.c:350
+#: ../gnome-dictionary/src/gdict-window.c:344
+#: ../gnome-dictionary/src/gdict-window.c:403
 msgid "No definitions found"
 msgstr "找不到字詞解釋"
 
-#: ../gnome-dictionary/src/gdict-window.c:320
+#: ../gnome-dictionary/src/gdict-window.c:346
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "找到%d 字詞解釋"
 
-#: ../gnome-dictionary/src/gdict-window.c:527
+#: ../gnome-dictionary/src/gdict-window.c:602
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - 字典"
 
-#: ../gnome-dictionary/src/gdict-window.c:1067 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1178 ../logview/logview.c:85
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1070
+#: ../gnome-dictionary/src/gdict-window.c:1181
 msgid "_Go"
 msgstr "前往(_G)"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1074
+#: ../gnome-dictionary/src/gdict-window.c:1185
 msgid "_New"
 msgstr "新增(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1075
+#: ../gnome-dictionary/src/gdict-window.c:1186
 msgid "New look up"
 msgstr "新增查詢"
 
-#: ../gnome-dictionary/src/gdict-window.c:1076
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_Save a Copy..."
 msgstr "儲存一個副本(_S)..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1078
+#: ../gnome-dictionary/src/gdict-window.c:1189
+msgid "P_review..."
+msgstr "預覽(_R)..."
+
+#: ../gnome-dictionary/src/gdict-window.c:1190
+msgid "Preview this document"
+msgstr "預覽這份文件"
+
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "_Print..."
 msgstr "列印(_P)..."
 
 # zh_HK: msgstr "打印這份文件"
-#: ../gnome-dictionary/src/gdict-window.c:1079
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Print this document"
 msgstr "列印這份文件"
 
-#: ../gnome-dictionary/src/gdict-window.c:1086 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1199 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "全部選取(_A)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1089
+#: ../gnome-dictionary/src/gdict-window.c:1202
 msgid "Find a word or phrase in the document"
 msgstr "在文件中搜尋單字或片語"
 
-#: ../gnome-dictionary/src/gdict-window.c:1091
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find Ne_xt"
 msgstr "搜尋下一個(_X)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1093
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Pre_vious"
 msgstr "搜尋上一個(_P)"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1099
+#: ../gnome-dictionary/src/gdict-window.c:1212
 msgid "_Previous Definition"
 msgstr "上一個字詞解釋(_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1100
+#: ../gnome-dictionary/src/gdict-window.c:1213
 msgid "Go to the previous definition"
 msgstr "前往上一個字詞的解釋"
 
-#: ../gnome-dictionary/src/gdict-window.c:1101
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Next Definition"
 msgstr "下一個字詞解釋(_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1102
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the next definition"
 msgstr "前往下一個字詞解釋"
 
-#: ../gnome-dictionary/src/gdict-window.c:1103
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_First Definition"
 msgstr "第一個字詞解釋(_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1104
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the first definition"
 msgstr "前往第一個字詞解釋"
 
-#: ../gnome-dictionary/src/gdict-window.c:1105
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_Last Definition"
 msgstr "最後一個字詞解釋(_L)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1106
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the last definition"
 msgstr "前往最後一個字詞解釋"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1109
+#: ../gnome-dictionary/src/gdict-window.c:1222
 msgid "Similar _Words"
 msgstr "近似字詞(_W)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1111
+#: ../gnome-dictionary/src/gdict-window.c:1224
+msgid "Dictionary Sources"
+msgstr "字典來源"
+
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Available _Databases"
 msgstr "現存資料庫(_D)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1113
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available St_rategies"
 msgstr "現有搜尋方法(_R)"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1130
+#: ../gnome-dictionary/src/gdict-window.c:1245
 msgid "_Sidebar"
 msgstr "側面窗格(_S)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1132
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "S_tatusbar"
 msgstr "狀態列(_T)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1368
+#, c-format
+msgid "Dictionary source `%s' selected"
+msgstr "已選定字典來源「%s」"
+
+#: ../gnome-dictionary/src/gdict-window.c:1389
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "已選取搜尋方法‘%s’"
 
-#: ../gnome-dictionary/src/gdict-window.c:1265
+#: ../gnome-dictionary/src/gdict-window.c:1409
 #, c-format
 msgid "Database `%s' selected"
 msgstr "已選取資料庫‘%s’"
 
-#: ../gnome-dictionary/src/gdict-window.c:1285
+#: ../gnome-dictionary/src/gdict-window.c:1429
 #, c-format
 msgid "Word `%s' selected"
 msgstr "已選取字詞‘%s’"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1307
+#: ../gnome-dictionary/src/gdict-window.c:1451
 msgid "Double-click on the word to look up"
 msgstr "在要查詢的字詞上按兩下滑鼠鍵"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1313
+#: ../gnome-dictionary/src/gdict-window.c:1457
 msgid "Double-click on the matching strategy to use"
 msgstr "在要使用的搜尋方法上按兩下滑鼠鍵"
 
+#. source-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1462
+msgid "Double-click on the source to use"
+msgstr "在要使用的來源按兩下滑鼠鍵"
+
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1323
+#: ../gnome-dictionary/src/gdict-window.c:1471
 msgid "Double-click on the database to use"
 msgstr "在要使用的資料庫上按兩下滑鼠鍵"
 
-#: ../gnome-dictionary/src/gdict-window.c:1610
+#: ../gnome-dictionary/src/gdict-window.c:1759
 msgid "Look _up:"
 msgstr "查詢(_U)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1683
+#: ../gnome-dictionary/src/gdict-window.c:1833
 msgid "Similar words"
 msgstr "近似字詞"
 
-#: ../gnome-dictionary/src/gdict-window.c:1696
+#: ../gnome-dictionary/src/gdict-window.c:1846
 msgid "Available dictionaries"
 msgstr "現存字典"
 
-#: ../gnome-dictionary/src/gdict-window.c:1709
+#: ../gnome-dictionary/src/gdict-window.c:1859
 msgid "Available strategies"
 msgstr "現有搜尋方法"
+
+#: ../gnome-dictionary/src/gdict-window.c:1870
+msgid "Dictionary sources"
+msgstr "字典來源"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 #: ../gsearchtool/gsearchtool-support.c:1629
@@ -2102,85 +2131,86 @@ msgstr "（剩餘 %d:%02d）"
 msgid "%ld of %ld"
 msgstr "%ld 之 %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:108
+#: ../gnome-screenshot/gnome-screenshot.c:109
 msgid "Error loading the help page"
 msgstr "載入說明文件時發生錯誤"
 
-#: ../gnome-screenshot/gnome-screenshot.c:186
+#: ../gnome-screenshot/gnome-screenshot.c:192
 msgid "None"
 msgstr "沒有"
 
-#: ../gnome-screenshot/gnome-screenshot.c:187
+#: ../gnome-screenshot/gnome-screenshot.c:193
 msgid "Drop shadow"
 msgstr "陰影"
 
-#: ../gnome-screenshot/gnome-screenshot.c:188
+#: ../gnome-screenshot/gnome-screenshot.c:194
 msgid "Border"
 msgstr "邊框"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:297
+#: ../gnome-screenshot/gnome-screenshot.c:304
 msgid "Include the window _border"
 msgstr "包括視窗邊框(_B)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:312
+#: ../gnome-screenshot/gnome-screenshot.c:319
 msgid "Apply _effect:"
 msgstr "套用效果(_E)："
 
-#: ../gnome-screenshot/gnome-screenshot.c:372
+#: ../gnome-screenshot/gnome-screenshot.c:379
 msgid "Grab the whole _desktop"
 msgstr "拍下整個桌面(_D)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:384
+#: ../gnome-screenshot/gnome-screenshot.c:391
 msgid "Grab the current _window"
 msgstr "拍下目前的視窗(_W)"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:401
+#: ../gnome-screenshot/gnome-screenshot.c:408
 msgid "Grab _after a delay of"
 msgstr "在(_A)"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:421
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:428
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "seconds"
 msgstr "秒後拍下畫面快照"
 
-#: ../gnome-screenshot/gnome-screenshot.c:448
+#: ../gnome-screenshot/gnome-screenshot.c:455
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "拍下畫面快照"
 
-#: ../gnome-screenshot/gnome-screenshot.c:449
+#: ../gnome-screenshot/gnome-screenshot.c:456
 msgid "Effects"
 msgstr "效果"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:462
 msgid "Take _Screenshot"
 msgstr "拍下畫面快照(_S)"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:481
+#: ../gnome-screenshot/gnome-screenshot.c:488
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Screenshot-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:487
-#: ../gnome-screenshot/screenshot-save.c:197
+#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/screenshot-dialog.c:329
+#: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Screenshot.png"
 
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:527
+#: ../gnome-screenshot/gnome-screenshot.c:534
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Screenshot-%s-%d.png"
@@ -2188,48 +2218,48 @@ msgstr "Screenshot-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:535
+#: ../gnome-screenshot/gnome-screenshot.c:542
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Screenshot-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:711
+#: ../gnome-screenshot/gnome-screenshot.c:718
 msgid "Unable to take a screenshot of the current window"
 msgstr "無法拍下目前視窗的畫面快照"
 
-#: ../gnome-screenshot/gnome-screenshot.c:861
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Grab a window instead of the entire screen"
 msgstr "擷取單一視窗而不是整個畫面"
 
-#: ../gnome-screenshot/gnome-screenshot.c:862
+#: ../gnome-screenshot/gnome-screenshot.c:873
 msgid "Include the window border with the screenshot"
 msgstr "畫面快照包含視窗邊框"
 
-#: ../gnome-screenshot/gnome-screenshot.c:863
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "在指定的時間後（秒）拍攝畫面快照"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "加到視窗邊框的效果（陰影、邊框或沒有）"
 
-#: ../gnome-screenshot/gnome-screenshot.c:864
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "effect"
 msgstr "效果"
 
-#: ../gnome-screenshot/gnome-screenshot.c:865
+#: ../gnome-screenshot/gnome-screenshot.c:876
 msgid "Interactively set options"
 msgstr "互動設定選項"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:886
 msgid "Options for Screenshot"
 msgstr "畫面快照的選項"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Show Screenshot options"
 msgstr "顯示畫面快照的選項"
 
-#: ../gnome-screenshot/gnome-screenshot.c:880
+#: ../gnome-screenshot/gnome-screenshot.c:891
 msgid "Take a picture of the screen"
 msgstr "拍下整個螢幕"
 
@@ -2302,7 +2332,7 @@ msgid ""
 "screenshot to disk."
 msgstr "儲存進程在無法預期下離開。我們無法將畫面快照寫到磁碟上。"
 
-#: ../gnome-screenshot/screenshot-save.c:224
+#: ../gnome-screenshot/screenshot-save.c:223
 msgid "Unknown error saving screenshot to disk"
 msgstr "儲存畫面快照到磁碟時發生不明的錯誤"
 
@@ -2909,6 +2939,39 @@ msgstr "跟隨符號連結"
 msgid "Include other filesystems"
 msgstr "包括其它檔案系統"
 
+#: ../gsearchtool/gsearchtool.c:158 ../gsearchtool/gsearchtool.c:163
+#: ../gsearchtool/gsearchtool.c:172
+msgid "STRING"
+msgstr "字串"
+
+#: ../gsearchtool/gsearchtool.c:159
+msgid "PATH"
+msgstr "路徑"
+
+#: ../gsearchtool/gsearchtool.c:160
+msgid "VALUE"
+msgstr "值"
+
+#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
+msgid "DAYS"
+msgstr "日數"
+
+#: ../gsearchtool/gsearchtool.c:166 ../gsearchtool/gsearchtool.c:167
+msgid "KILOBYTES"
+msgstr "千位元組"
+
+#: ../gsearchtool/gsearchtool.c:169
+msgid "USER"
+msgstr "使用者"
+
+#: ../gsearchtool/gsearchtool.c:170
+msgid "GROUP"
+msgstr "群組"
+
+#: ../gsearchtool/gsearchtool.c:173
+msgid "PATTERN"
+msgstr "樣式"
+
 #: ../gsearchtool/gsearchtool.c:181
 msgid "_Open"
 msgstr "開啟(_O)"
@@ -2935,7 +2998,7 @@ msgid "Searching..."
 msgstr "搜尋中..."
 
 #: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
-#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3148
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3149
 msgid "Search for Files"
 msgstr "搜尋檔案"
 
@@ -3161,6 +3224,10 @@ msgstr "按下本按鈕來進行搜尋"
 msgid "Click to stop a search."
 msgstr "按下本按鈕來停止搜尋。"
 
+#: ../gsearchtool/gsearchtool.c:3134
+msgid "- the GNOME Search Tool"
+msgstr "- GNOME 搜尋工具"
+
 #: ../logview/about.c:51 ../logview/logview.c:37 ../logview/main.c:54
 msgid "System Log Viewer"
 msgstr "系統日誌顯示程式"
@@ -3214,16 +3281,16 @@ msgstr "%s 太大。"
 msgid "%s could not be opened."
 msgstr "無法開啟 %s。"
 
-#: ../logview/logrtns.c:378
+#: ../logview/logrtns.c:382
 #, c-format
 msgid "%s is not a log file."
 msgstr "%s 不是日誌檔案。"
 
-#: ../logview/logrtns.c:384
+#: ../logview/logrtns.c:388
 msgid "Not enough memory."
 msgstr "記憶體不足。"
 
-#: ../logview/logrtns.c:398
+#: ../logview/logrtns.c:402
 #, c-format
 msgid "%s cannot be opened."
 msgstr "無法開啟 %s。"
@@ -3422,11 +3489,11 @@ msgstr "顯示系統日誌檢視程式選項"
 msgid " - Browse and monitor logs"
 msgstr " - 瀏覽及監視日誌"
 
-#: ../logview/main.c:153
+#: ../logview/main.c:145
 msgid "Log Viewer"
 msgstr "日誌檢視程式"
 
-#: ../logview/main.c:162
+#: ../logview/main.c:154
 msgid "Unable to create user interface."
 msgstr "無法建構使用者介面"
 
@@ -3499,6 +3566,24 @@ msgstr "檔案監察功能不支援此檔案系統。\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS 錯誤。\n"
+
+#~ msgid "Analyze disk usage"
+#~ msgstr "分析磁碟使用率"
+
+#~ msgid "The GdictContext object bound to this entry"
+#~ msgstr "連結這個進入點的 GdictContext"
+
+#~ msgid "The database to be used to generate the completion list"
+#~ msgstr "用來產生完整列表的資料庫"
+
+#~ msgid "The matching strategy to be used to generate the completion list"
+#~ msgstr "用來產生完整列表的比對方法"
+
+#~ msgid "%s (page %d)"
+#~ msgstr "%s(第 %d 頁)"
+
+#~ msgid "Print Preview"
+#~ msgstr "預覽列印"
 
 #~ msgid "<b>File Size</b>"
 #~ msgstr "<b>檔案大小</b>"
