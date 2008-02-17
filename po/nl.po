@@ -3,17 +3,18 @@
 # This file is distributed under the same license as the gnome-utils package.
 #
 # Jan-Willem Harmanny <jwharmanny@hotmail.com>, 2003.
-# Tino Meinen <a.t.meinen@chello.nl>, 2004, 2005, 2006, 2007.
+# Tino Meinen <a.t.meinen@chello.nl>, 2004, 2005, 2006, 2007, 2008.
 # Vincent van Adrighem <adrighem@gnome.org>, 2006.
 # Wouter Bolsterlee <wbolster@gnome.org>, 2006, 2007
 #
+# side bar = side pane = zijpaneel
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils cvs\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-17 18:41+0200\n"
-"Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
-"PO-Revision-Date: 2007-07-17 18:46+0200 \n"
+"POT-Creation-Date: 2007-09-27 05:01+0100\n"
+"PO-Revision-Date: 2008-02-17 19:24+0100\n"
+"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr "_Toegewezen ruimte"
 
 #: ../baobab/data/baobab.glade.h:3
 msgid "Disk Usage Analyzer Preferences"
-msgstr "Voorkeuren schijfgebruikanalyse"
+msgstr "Voorkeuren schijfgebruik"
 
 # vernieuwen/verversen
 #: ../baobab/data/baobab.glade.h:4
@@ -48,11 +49,11 @@ msgstr "Grafiek verversen"
 
 #: ../baobab/data/baobab.glade.h:6
 msgid "S_can Remote Folder..."
-msgstr "Map op _afstand scannen..."
+msgstr "E_xterne map scannen…"
 
 #: ../baobab/data/baobab.glade.h:7
 msgid "Scan F_older..."
-msgstr "_Map scannen..."
+msgstr "_Map scannen…"
 
 #: ../baobab/data/baobab.glade.h:8
 msgid "Scan Filesystem"
@@ -69,7 +70,7 @@ msgstr "Persoonlijke map scannen"
 #: ../baobab/data/baobab.glade.h:11
 #: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
-msgstr "Map op afstand scannen"
+msgstr "Externe map scannen"
 
 #: ../baobab/data/baobab.glade.h:12
 msgid "Scan _Filesystem"
@@ -85,7 +86,7 @@ msgstr "Een map scannen"
 
 #: ../baobab/data/baobab.glade.h:15
 msgid "Scan a remote folder"
-msgstr "Een map op afstand scannen"
+msgstr "Een externe map scannen"
 
 #: ../baobab/data/baobab.glade.h:16
 msgid "Scan filesystem"
@@ -135,7 +136,7 @@ msgstr "Alles op_vouwen"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1117 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1232 ../logview/logview.c:114
 msgid "_Contents"
 msgstr "In_houd"
 
@@ -144,7 +145,7 @@ msgid "_Depth level:"
 msgstr "_Diepte:"
 
 #: ../baobab/data/baobab.glade.h:30
-#: ../gnome-dictionary/src/gdict-window.c:1068 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1179 ../logview/logview.c:86
 msgid "_Edit"
 msgstr "Be_werken"
 
@@ -152,19 +153,19 @@ msgstr "Be_werken"
 msgid "_Expand All"
 msgstr "_Alles uitvouwen"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:363
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
 msgid "_Graphical Usage Map"
 msgstr "_Grafische gebruikskaart"
 
 #: ../baobab/data/baobab.glade.h:33
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1071 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview.c:88
 msgid "_Help"
 msgstr "_Hulp"
 
 #: ../baobab/data/baobab.glade.h:34
 msgid "_Monitor changes to your home folder"
-msgstr "_Veranderingen aan uw persoonlijke map detecteren"
+msgstr "_Wijzigingen aan uw persoonlijke map detecteren"
 
 #: ../baobab/data/baobab.glade.h:35
 msgid "_Toolbar"
@@ -175,7 +176,7 @@ msgid "_Total folders:"
 msgstr "_Totaal aantal mappen:"
 
 #: ../baobab/data/baobab.glade.h:37
-#: ../gnome-dictionary/src/gdict-window.c:1069 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview.c:87
 msgid "_View"
 msgstr "Beel_d"
 
@@ -185,7 +186,7 @@ msgstr "Een lijst van te negeren partities."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
-msgstr "Veranderingen in persoonlijke map detecteren"
+msgstr "Wijzigingen in persoonlijke map detecteren"
 
 #: ../baobab/data/baobab.schemas.in.h:3
 msgid "Exluded partitions"
@@ -212,20 +213,20 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Of de werkbalk zichtbaar dient te zijn."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:191
+#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
 #: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
-msgstr "Berekenen van percentages..."
+msgstr "Berekenen van percentages…"
 
 # klaar
 #: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
-#: ../baobab/src/baobab-utils.c:198 ../baobab/src/callbacks.c:330
+#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Voltooid"
 
-#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:163
+#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
-msgstr "Scannen..."
+msgstr "Scannen…"
 
 #: ../baobab/src/baobab.c:265
 msgid "Total filesystem usage:"
@@ -281,7 +282,7 @@ msgstr "Grafische gebruikskaart"
 
 #: ../baobab/src/baobab-prefs.c:168
 msgid "Scan"
-msgstr "Scan"
+msgstr "Scannen"
 
 #: ../baobab/src/baobab-prefs.c:175
 msgid "Device"
@@ -293,7 +294,7 @@ msgstr "Koppelpunt"
 
 #: ../baobab/src/baobab-prefs.c:191
 msgid "Filesystem Type"
-msgstr "Bestandssysteemtype"
+msgstr "Type bestandssysteem"
 
 #: ../baobab/src/baobab-prefs.c:199
 msgid "Total Size"
@@ -410,122 +411,120 @@ msgstr "Grootte"
 msgid "Contents"
 msgstr "Inhoud"
 
-#: ../baobab/src/baobab-utils.c:103
+#: ../baobab/src/baobab-utils.c:102
 msgid "Select Folder"
 msgstr "Selecteer een map"
 
 # tonen/weergeven
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:115
+#: ../baobab/src/baobab-utils.c:114
 msgid "_Show hidden folders"
 msgstr "_Verborgen mappen tonen"
 
-#: ../baobab/src/baobab-utils.c:332
+#: ../baobab/src/baobab-utils.c:331
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "‘%s’ is geen geldige map"
 
-#: ../baobab/src/baobab-utils.c:335
+#: ../baobab/src/baobab-utils.c:334
 msgid "Could not analyze disk usage."
 msgstr "Kon schijfgebruik niet analyseren."
 
-#: ../baobab/src/baobab-utils.c:360
+#: ../baobab/src/baobab-utils.c:359
 msgid "_Open Folder"
 msgstr "Map _openen"
 
-#: ../baobab/src/baobab-utils.c:381
+#: ../baobab/src/baobab-utils.c:380
 msgid "_Remove from Trash"
 msgstr "_Uit prullenbak halen"
 
-#: ../baobab/src/baobab-utils.c:391 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "_Naar prullenbak verplaatsen"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:422
 msgid "Total filesystem capacity:"
 msgstr "Totale capaciteit:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:423
 msgid "used:"
 msgstr "gebruikt:"
 
-#: ../baobab/src/baobab-utils.c:425
+#: ../baobab/src/baobab-utils.c:424
 msgid "available:"
 msgstr "beschikbaar:"
 
-#: ../baobab/src/baobab-utils.c:471
+#: ../baobab/src/baobab-utils.c:470
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Kon map ‘%s’ niet openen"
 
-#: ../baobab/src/baobab-utils.c:474
+#: ../baobab/src/baobab-utils.c:473
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Er is geen viewer geïnstalleerd die het document kan weergeven."
 
-#: ../baobab/src/baobab-utils.c:539
+#: ../baobab/src/baobab-utils.c:538
 #, c-format
 msgid "The folder \"%s\" was not moved to the trash."
 msgstr "De map ‘%s’ is niet naar de prullenbak verplaatst."
 
-#: ../baobab/src/baobab-utils.c:541
+#: ../baobab/src/baobab-utils.c:540
 msgid "Could not find a Trash folder on this system"
 msgstr "Kan geen prullenbak vinden op dit systeem!"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Kon ‘%s’ niet naar de prullenbak verplaatsen"
 
-#: ../baobab/src/baobab-utils.c:550 ../baobab/src/callbacks.c:409
+#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
 msgid "The folder does not exist."
 msgstr "De map bestaat niet."
 
-#: ../baobab/src/baobab-utils.c:564
+#: ../baobab/src/baobab-utils.c:563
 #, c-format
 msgid "Details: %s"
 msgstr "Details: %s"
 
-#: ../baobab/src/baobab-utils.c:578
+#: ../baobab/src/baobab-utils.c:577
 #, c-format
 msgid "Delete the folder \"%s\" permanently?"
 msgstr "Wilt u de map ‘%s’ definitief verwijderen?"
 
-#: ../baobab/src/baobab-utils.c:581
+#: ../baobab/src/baobab-utils.c:580
 msgid "Could not move the folder to the trash."
 msgstr "Kon de map niet naar de prullenbak verplaatsen."
 
-#: ../baobab/src/baobab-utils.c:582
+#: ../baobab/src/baobab-utils.c:581
 msgid "_Delete Folder"
 msgstr "Map _verwijderen"
 
-#: ../baobab/src/baobab-utils.c:593 ../gsearchtool/gsearchtool-callbacks.c:900
+#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Verwijderen van ‘%s’ mislukt: %s."
 
-#: ../baobab/src/baobab-utils.c:596
+#: ../baobab/src/baobab-utils.c:595
 #, c-format
 msgid "Could not delete the folder \"%s\""
 msgstr "Kon de map ‘%s’ niet verwijderen"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:623
 msgid "Rescan your home folder?"
 msgstr "Uw persoonlijke map opnieuw scannen?"
 
 # druk op/selecteer/kies
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:624
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
-msgstr ""
-"De inhoud van uw persoonlijke map is gewijzigd. Selecteer ‘herscannen’ om de "
-"details van het schijfgebruik bij te werken."
+msgstr "De inhoud van uw persoonlijke map is gewijzigd. Selecteer ‘Opnieuw scannen’ om de details van het schijfgebruik bij te werken."
 
-#: ../baobab/src/baobab-utils.c:626
+#: ../baobab/src/baobab-utils.c:625
 msgid "_Rescan"
-msgstr "He_rscannen"
+msgstr "O_pnieuw scannen"
 
-#: ../baobab/src/baobab-utils.c:662 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Er is een fout opgetreden bij het weergeven van de hulp."
 
@@ -638,7 +637,7 @@ msgstr "Interne fout: Vreemde waarde (%ld) in do_test\n"
 #. ;
 #: ../gfloppy/src/badblocks.c:256
 msgid "Checking for bad blocks..."
-msgstr "Bezig met het controleren op onbetrouwbare blokken..."
+msgstr "Bezig met het controleren op onbetrouwbare blokken…"
 
 #: ../gfloppy/src/badblocks.c:268
 #, c-format
@@ -649,7 +648,7 @@ msgstr ""
 
 #: ../gfloppy/src/badblocks.c:288 ../gfloppy/src/gfloppy.c:531
 msgid "Checking for bad blocks... Done"
-msgstr "Controleren op onbetrouwbare blokken...Klaar"
+msgstr "Controleren op onbetrouwbare blokken… Klaar"
 
 # moet overeenkomen met de ...Done versie
 # disk hier vertaald met diskette (het gaat om gfloppy)
@@ -657,7 +656,7 @@ msgstr "Controleren op onbetrouwbare blokken...Klaar"
 # beter om "schijf" te gebruiken
 #: ../gfloppy/src/fdformat.c:46
 msgid "Formatting the disk..."
-msgstr "Bezig met het formatteren van de diskette..."
+msgstr "Bezig met het formatteren van de diskette…"
 
 # hehe, grappig
 #: ../gfloppy/src/fdformat.c:49
@@ -677,12 +676,12 @@ msgstr "Fout bij de afronding van het formatteren"
 #. XXXX - need to tell parent we're finished
 #: ../gfloppy/src/fdformat.c:83
 msgid "Formatting the disk... Done"
-msgstr "Bezig met het formatteren van de diskette... Klaar"
+msgstr "Bezig met het formatteren van de diskette… Klaar"
 
 #. XXXX - tell parent we're starting verify stage
 #: ../gfloppy/src/fdformat.c:99
 msgid "Verifying the format..."
-msgstr "Bezig met het controleren van de formattering..."
+msgstr "Bezig met het controleren van de formattering…"
 
 # hij?
 #: ../gfloppy/src/fdformat.c:104 ../gfloppy/src/fdformat.c:189
@@ -742,7 +741,7 @@ msgstr "Fout bij het lezen van cylinder %d, verwachtte %d, las %d"
 #: ../gfloppy/src/fdformat.c:151
 #, c-format
 msgid "Bad data in cyl %d.  Continuing... "
-msgstr "Foutieve gegegevens in cyl %d. Vervolgen..."
+msgstr "Foutieve gegegevens in cylinder %d. Vervolgen…"
 
 #: ../gfloppy/src/fdformat.c:160
 #, c-format
@@ -752,7 +751,7 @@ msgstr "Fout bij sluiten van apparaat %s"
 # idem aan versie zonder ...'Done'
 #: ../gfloppy/src/fdformat.c:167
 msgid "Verifying the format... Done"
-msgstr "Bezig met controleren van de formattering... Klaar"
+msgstr "Bezig met controleren van de formattering… Klaar"
 
 # Bij vertaling: Fout bij schrijven naar ..., zou je kunnen denken dat
 # er wel geschreven is, maar dat er een fout is opgetreden
@@ -837,7 +836,7 @@ msgstr "Dochterproces van mbadblocks op abnormale wijze afgebroken."
 #. make the filesystem
 #: ../gfloppy/src/gfloppy.c:465 ../gfloppy/src/gfloppy.c:505
 msgid "Making filesystem on disk..."
-msgstr "Bezig met aanmaken van bestandssysteem op diskette..."
+msgstr "Bezig met aanmaken van bestandssysteem op diskette…"
 
 #: ../gfloppy/src/gfloppy.c:473
 msgid "Unable to create filesystem correctly."
@@ -845,12 +844,11 @@ msgstr "Kan bestandssysteem niet correct aanmaken."
 
 #: ../gfloppy/src/gfloppy.c:478 ../gfloppy/src/gfloppy.c:517
 msgid "Making filesystem on disk... Done"
-msgstr "Bezig met aanmaken van bestandssysteem op diskette... Klaar"
+msgstr "Bezig met aanmaken van bestandssysteem op diskette… Klaar"
 
 #: ../gfloppy/src/gfloppy.c:522
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr ""
-"Bezig met controleren op onbetrouwbare blokken... (dit kan enige tijd duren)"
+msgstr "Bezig met controleren op onbetrouwbare blokken… (dit kan enige tijd duren)"
 
 #: ../gfloppy/src/gfloppy.c:527
 msgid "Error while checking the bad blocks."
@@ -1066,7 +1064,7 @@ msgid "Cl_ear"
 msgstr "_Wissen"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1119 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview.c:116
 msgid "_About"
 msgstr "I_nfo"
 
@@ -1075,7 +1073,7 @@ msgid "_Look Up Selected Text"
 msgstr "Geselecteerde tekst op_zoeken"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1095
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
@@ -1093,9 +1091,9 @@ msgstr "Definities en spelling van woorden opzoeken in een on-line woordenboek"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:406
-#: ../gnome-dictionary/src/gdict-window.c:529
-#: ../gnome-dictionary/src/gdict-window.c:1790
+#: ../gnome-dictionary/src/gdict-app.c:402
+#: ../gnome-dictionary/src/gdict-window.c:604
+#: ../gnome-dictionary/src/gdict-window.c:1951
 msgid "Dictionary"
 msgstr "Woordenboek"
 
@@ -1293,8 +1291,6 @@ msgid "H_ostname:"
 msgstr "_Hostnaam:"
 
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:5
-#: ../gnome-dictionary/src/gdict-applet.c:202
-#: ../gnome-dictionary/src/gdict-window.c:796
 msgid "Print"
 msgstr "_Afdrukken"
 
@@ -1334,62 +1330,62 @@ msgstr "Spaanse woordenboeken"
 msgid "Longdo Thai-English Dictionaries"
 msgstr "Longdo Thais-Engels woordenboeken"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:270
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:283
 msgid "Client Name"
 msgstr "Clientnaam"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:271
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
 msgid "The name of the client of the context object"
 msgstr "De naam van de client van het contextobject"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:284
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:297
 msgid "Hostname"
 msgstr "Hostnaam"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:285
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
 msgid "The hostname of the dictionary server to connect to"
 msgstr "De hostnaam van de woordenboekserver waarmee wordt verbonden"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:298
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:311
 msgid "Port"
 msgstr "Poort"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:299
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:312
 msgid "The port of the dictionary server to connect to"
 msgstr "De poort van de woordenboekserver waarmee wordt verbonden"
 
 # toestand
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:314
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:327
 msgid "Status"
 msgstr "Status"
 
 # terggegeven/doorgegeven
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:315
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:328
 msgid "The status code as returned by the dictionary server"
 msgstr "De statuscode die door de woordenboekserver wordt doorgegeven"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:763
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:777
 #, c-format
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Geen verbinding met de woordenboekserver op '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1025
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr ""
 "Zoekopdracht mislukt voor hostnaam '%s': geen geschikte bronnen gevonden"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1056
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Zoekopdracht mislukt voor host '%s': %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1091
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Zoekopdracht mislukt voor host '%s': host niet gevonden"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1143
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1171
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -1398,7 +1394,7 @@ msgstr ""
 "Kon niet verbinden met de woordenboekserver op '%s:%d'. De server antwoordde "
 "met code %d (server down)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1162
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -1407,47 +1403,47 @@ msgstr ""
 "Kon het antwoord van de woordenboekserver niet verwerken\n"
 ": '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1191
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "Geen definities gevonden voor '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1206
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1234
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Ongeldige database '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1221
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1249
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Ongeldige strategie '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1236
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1264
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Foutieve opdracht '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1251
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1279
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Foutieve parameters voor opdracht '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1266
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1294
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Geen database gevonden op woordenboekserver op '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1281
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1309
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Geen strategieën gevonden op woordenboekserver '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1722
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1742
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Verbinding mislukt voor de woordenboekserver op %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1761
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1781
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1456,194 +1452,173 @@ msgstr ""
 "Fout bij het lezen van het antwoord van server:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1831
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr ""
 "Verbinding mislukt (tijdslimiet overschreden) voor de woordenboekserver op ‘%"
 "s:%d’"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1865
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
 msgid "No hostname defined for the dictionary server"
 msgstr "Geen hostnaam opgegeven voor de woordenboekserver"
 
 # ontvanger?/socket/contactdoos
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1901
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1916
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
 msgid "Unable to create socket"
 msgstr "Kon geen 'socket' aanmaken"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1942
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1962
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Kon het kanaal niet instellen als non-blocking: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1957
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1977
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Kon geen verbinding maken met de woordenboekserver op '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:199
+#: ../gnome-dictionary/libgdict/gdict-context.c:218
 msgid "Local Only"
 msgstr "Alleen lokaal"
 
-#: ../gnome-dictionary/libgdict/gdict-context.c:200
+#: ../gnome-dictionary/libgdict/gdict-context.c:219
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Of de context alleen lokale woordenboeken gebruikt"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:346
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
 msgid "Reload the list of available databases"
 msgstr "Lijst van beschikbare databases herladen"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:359
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
 msgid "Clear the list of available databases"
 msgstr "Lijst van beschikbare databases wissen"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:656
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1684
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:650
-msgid "Another search is in progress"
-msgstr "Er is nog een andere zoekopdracht actief"
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:657
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1685
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:651
-msgid "Please wait until the current search ends."
-msgstr "Wacht tot de huidige zoekopdracht is voltooid."
-
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:690
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
 #: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:684
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
 msgid "Error while matching"
 msgstr "Fout tijdens zoeken"
 
 # Geen overeenkomsten gevonden/niet gevonden
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:366
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:455
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:483
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1132
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1226
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1260
 msgid "Not found"
 msgstr "Niet gevonden"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:515
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1321
 msgid "F_ind:"
 msgstr "_Zoeken:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:528
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1334
 msgid "_Previous"
 msgstr "Vo_rige"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:536
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1342
 msgid "_Next"
 msgstr "V_olgende"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1642
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2493
 msgid "Error while looking up definition"
 msgstr "Fout bij het opzoeken van de definitie"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1723
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2535
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+msgid "Another search is in progress"
+msgstr "Er is nog een andere zoekopdracht actief"
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2536
+#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+msgid "Please wait until the current search ends."
+msgstr "Wacht tot de huidige zoekopdracht is voltooid."
+
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2575
 msgid "Error while retrieving the definition"
 msgstr "Fout bij het ophalen van de definitie"
 
-#: ../gnome-dictionary/libgdict/gdict-entry.c:105
-#: ../gnome-dictionary/libgdict/gdict-source.c:304
-#: ../gnome-dictionary/libgdict/gdict-speller.c:375
-msgid "Context"
-msgstr "Context"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:106
-msgid "The GdictContext object bound to this entry"
-msgstr "Het GdictContext-object dat met dit item is verbonden"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:120
-#: ../gnome-dictionary/libgdict/gdict-source.c:261
-#: ../gnome-dictionary/libgdict/gdict-speller.c:382
-msgid "Database"
-msgstr "Database"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:121
-msgid "The database to be used to generate the completion list"
-msgstr ""
-"De database die wordt gebruikt voor het genereren van de aanvullingslijst"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:135
-#: ../gnome-dictionary/libgdict/gdict-source.c:275
-#: ../gnome-dictionary/libgdict/gdict-speller.c:389
-msgid "Strategy"
-msgstr "Strategie"
-
-#: ../gnome-dictionary/libgdict/gdict-entry.c:136
-msgid "The matching strategy to be used to generate the completion list"
-msgstr ""
-"De zoekstrategie die gebruikt wordt om de aanvullingslijst te genereren"
-
-#: ../gnome-dictionary/libgdict/gdict-source.c:219
+#: ../gnome-dictionary/libgdict/gdict-source.c:232
 msgid "Filename"
 msgstr "Bestandsnaam"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:220
+#: ../gnome-dictionary/libgdict/gdict-source.c:233
 msgid "The filename used by this dictionary source"
 msgstr "De bestandsnaam die gebruikt wordt voor deze woordenboekbron"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:233
+#: ../gnome-dictionary/libgdict/gdict-source.c:246
 #: ../gsearchtool/gsearchtool.c:2473
 msgid "Name"
 msgstr "Naam"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:234
+#: ../gnome-dictionary/libgdict/gdict-source.c:247
 msgid "The display name of this dictonary source"
 msgstr "De weergegeven naam voor deze woordenboekbron"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:247
+#: ../gnome-dictionary/libgdict/gdict-source.c:260
 msgid "Description"
 msgstr "Omschrijving"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:248
+#: ../gnome-dictionary/libgdict/gdict-source.c:261
 msgid "The description of this dictionary source"
 msgstr "De omschrijving van deze woordenboekbron"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:262
+#: ../gnome-dictionary/libgdict/gdict-source.c:274
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+msgid "Database"
+msgstr "Database"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:275
 msgid "The default database of this dictonary source"
 msgstr "De standaarddatabase van deze woordenboekbron"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:276
+#: ../gnome-dictionary/libgdict/gdict-source.c:288
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+msgid "Strategy"
+msgstr "Strategie"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:289
 msgid "The default strategy of this dictonary source"
 msgstr "De standaardstrategie van deze woordenboekbron"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:289
+#: ../gnome-dictionary/libgdict/gdict-source.c:302
 msgid "Transport"
 msgstr "Transport"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:290
+#: ../gnome-dictionary/libgdict/gdict-source.c:303
 msgid "The transport mechanism used by this dictionary source"
 msgstr "Het transportmechanisme dat wordt gebruikt door deze woordenboekbron"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:305
+#: ../gnome-dictionary/libgdict/gdict-source.c:317
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+msgid "Context"
+msgstr "Context"
+
+#: ../gnome-dictionary/libgdict/gdict-source.c:318
 msgid "The GdictContext bound to this source"
 msgstr "De GdictContext die aan deze bron is verbonden"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:400
+#: ../gnome-dictionary/libgdict/gdict-source.c:413
 #, c-format
 msgid "Invalid transport type '%d'"
 msgstr "Ongeldig transporttype '%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:428
+#: ../gnome-dictionary/libgdict/gdict-source.c:441
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr "Geen '%s'-groep gevonden binnen de woordenboekbron definitie"
 
 # wat een techno-babble!
-#: ../gnome-dictionary/libgdict/gdict-source.c:444
-#: ../gnome-dictionary/libgdict/gdict-source.c:468
-#: ../gnome-dictionary/libgdict/gdict-source.c:492
-#: ../gnome-dictionary/libgdict/gdict-source.c:517
+#: ../gnome-dictionary/libgdict/gdict-source.c:457
+#: ../gnome-dictionary/libgdict/gdict-source.c:481
+#: ../gnome-dictionary/libgdict/gdict-source.c:505
+#: ../gnome-dictionary/libgdict/gdict-source.c:530
 #, c-format
 msgid "Unable to get the '%s' key inside the dictionary source definition: %s"
 msgstr ""
 "Kon de '%s'-sleutel niet verkrijgen binnen de woordenboekbron definitie: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:542
+#: ../gnome-dictionary/libgdict/gdict-source.c:555
 #, c-format
 msgid ""
 "Unable to get the '%s' key inside the dictionary source definition file: %s"
@@ -1651,68 +1626,81 @@ msgstr ""
 "Kon de '%s'-sleutel niet verkrijgen binnen het woordenboekbron "
 "definitiebestand: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:728
+#: ../gnome-dictionary/libgdict/gdict-source.c:741
 msgid "Dictionary source does not have name"
 msgstr "Woordenboekbron heeft geen naam"
 
-#: ../gnome-dictionary/libgdict/gdict-source.c:737
+#: ../gnome-dictionary/libgdict/gdict-source.c:750
 #, c-format
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Woordenboekbron '%s' heeft een ongeldig transport '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:163
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+msgid "Reload the list of available sources"
+msgstr "Lijst met beschikbare bronnen herladen"
+
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:171
 msgid "Paths"
 msgstr "Paden"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:164
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:172
 msgid "Search paths used by this object"
 msgstr "Zoekpaden die door dit object worden gebruikt"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:176
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:184
 msgid "Sources"
 msgstr "Bronnen"
 
-#: ../gnome-dictionary/libgdict/gdict-source-loader.c:177
+#: ../gnome-dictionary/libgdict/gdict-source-loader.c:185
 msgid "Dictionary sources found"
 msgstr "Woordenboekbronnen gevonden"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:351
+#: ../gnome-dictionary/libgdict/gdict-speller.c:355
 msgid "Clear the list of similar words"
 msgstr "Lijst van vergelijkbare woorden wissen"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:376
+#: ../gnome-dictionary/libgdict/gdict-speller.c:379
 msgid "The GdictContext object used to get the word definition"
 msgstr ""
 "Het GdictContext-object dat gebruikt wordt om de definitie van het woord te "
 "krijgen"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:383
+#: ../gnome-dictionary/libgdict/gdict-speller.c:386
 msgid "The database used to query the GdictContext"
 msgstr "De gebruikte database voor de zoekopdracht op GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:390
+#: ../gnome-dictionary/libgdict/gdict-speller.c:393
 msgid "The strategy used to query the GdictContext"
 msgstr "De te gebruiken strategie voor de zoekopdracht op GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:340
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
 msgid "Reload the list of available strategies"
 msgstr "Lijst met beschikbare strategieën herladen"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:353
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
 msgid "Clear the list of available strategies"
 msgstr "Lijst met beschikbare strategieën wissen"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:157
+msgid "GDict Options"
+msgstr "GDict-opties"
+
+#
+#: ../gnome-dictionary/libgdict/gdict-utils.c:158
+msgid "Show GDict Options"
+msgstr "GDict-opties tonen"
 
 # enkelvoud van woordenboek staat beter, meestal doorzoek
 # je maar 1 woordenboek tegelijk
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:613
+#: ../gnome-dictionary/src/gdict-applet.c:591
 msgid "Look up words in dictionaries"
 msgstr "Woorden opzoeken in een woordenboek"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:238
+#: ../gnome-dictionary/src/gdict-app.c:233
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1725,20 +1713,20 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:252
+#: ../gnome-dictionary/src/gdict-app.c:247
 #, c-format
 msgid "Error: %s\n"
 msgstr "Fout: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:278
+#: ../gnome-dictionary/src/gdict-app.c:273
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Zie gnome-dictionary --help voor gebruik\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:291
+#: ../gnome-dictionary/src/gdict-app.c:286
 msgid "Unable to find a suitable dictionary source"
 msgstr "Kon geen geschikte woordenboekbron vinden"
 
-#: ../gnome-dictionary/src/gdict-app.c:325
+#: ../gnome-dictionary/src/gdict-app.c:320
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1747,429 +1735,452 @@ msgstr ""
 "Fout bij het opzoeken van de definitie van ‘%s’:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "Words to look up"
 msgstr "De op te zoeken woorden"
 
-#: ../gnome-dictionary/src/gdict-app.c:359
-#: ../gnome-dictionary/src/gdict-app.c:361
-#: ../gnome-dictionary/src/gdict-app.c:373
+#: ../gnome-dictionary/src/gdict-app.c:354
+#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:368
 msgid "word"
 msgstr "woord"
 
-#: ../gnome-dictionary/src/gdict-app.c:361
+#: ../gnome-dictionary/src/gdict-app.c:356
 msgid "Words to match"
 msgstr "Op te zoeken woorden"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "Dictionary source to use"
 msgstr "Te gebruiken woordenboekbron"
 
-#: ../gnome-dictionary/src/gdict-app.c:363
+#: ../gnome-dictionary/src/gdict-app.c:358
 msgid "source"
 msgstr "bron"
 
-#: ../gnome-dictionary/src/gdict-app.c:365
+#: ../gnome-dictionary/src/gdict-app.c:360
 msgid "Show available dictionary sources"
 msgstr "Beschikbare woordenboekbronnen tonen"
 
-#: ../gnome-dictionary/src/gdict-app.c:367
+#: ../gnome-dictionary/src/gdict-app.c:362
 msgid "Print result to the console"
 msgstr "Resultaat tonen in de console"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "Database to use"
 msgstr "Te gebruiken database"
 
-#: ../gnome-dictionary/src/gdict-app.c:369
+#: ../gnome-dictionary/src/gdict-app.c:364
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "Strategy to use"
 msgstr "Te gebruiken strategie"
 
-#: ../gnome-dictionary/src/gdict-app.c:371
+#: ../gnome-dictionary/src/gdict-app.c:366
 msgid "strat"
 msgstr "strat"
 
 # in woordenboeken/ in een woordenboek
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:389
+#: ../gnome-dictionary/src/gdict-app.c:384
 msgid " - Look up words in dictionaries"
 msgstr "- woorden opzoeken in een woordenboek"
 
 # spellingscontrole/programma
-#: ../gnome-dictionary/src/gdict-app.c:393
+#: ../gnome-dictionary/src/gdict-app.c:388
 msgid "Dictionary and spelling tool"
 msgstr "Woordenboek en spellingsprogramma"
 
 #
-#: ../gnome-dictionary/src/gdict-app.c:394
+#: ../gnome-dictionary/src/gdict-app.c:389
 msgid "Show Dictionary options"
 msgstr "Woordenboekopties tonen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:216
-#: ../gnome-dictionary/src/gdict-window.c:742
+#: ../gnome-dictionary/src/gdict-applet.c:207
+#: ../gnome-dictionary/src/gdict-window.c:833
 msgid "Save a Copy"
 msgstr "Een kopie opslaan"
 
-#: ../gnome-dictionary/src/gdict-applet.c:226
-#: ../gnome-dictionary/src/gdict-window.c:752
+#: ../gnome-dictionary/src/gdict-applet.c:217
+#: ../gnome-dictionary/src/gdict-window.c:843
 msgid "Untitled document"
 msgstr "Naamloos document"
 
-#: ../gnome-dictionary/src/gdict-applet.c:247
-#: ../gnome-dictionary/src/gdict-window.c:773
+#: ../gnome-dictionary/src/gdict-applet.c:238
+#: ../gnome-dictionary/src/gdict-window.c:864
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Er is een fout opgetreden bij het schrijven naar '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear the definitions found"
 msgstr "De gevonden definities wissen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:378
+#: ../gnome-dictionary/src/gdict-applet.c:365
 msgid "Clear definition"
 msgstr "Definitie wissen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:379
+#: ../gnome-dictionary/src/gdict-applet.c:366
 msgid "Clear the text of the definition"
 msgstr "De tekst van de definitie wissen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:389
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print the definitions found"
 msgstr "De gevonden definities afdrukken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:392
+#: ../gnome-dictionary/src/gdict-applet.c:375
 msgid "Print definition"
 msgstr "Definitie afdrukken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:393
+#: ../gnome-dictionary/src/gdict-applet.c:376
 msgid "Print the text of the definition"
 msgstr "De tekst van de definitie afdrukken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:403
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save the definitions found"
 msgstr "De gevonden definities opslaan"
 
-#: ../gnome-dictionary/src/gdict-applet.c:406
+#: ../gnome-dictionary/src/gdict-applet.c:385
 msgid "Save definition"
 msgstr "Definitie opslaan"
 
-#: ../gnome-dictionary/src/gdict-applet.c:407
+#: ../gnome-dictionary/src/gdict-applet.c:386
 msgid "Save the text of the definition to a file"
 msgstr "De tekst van de definitie opslaan in een bestand"
 
-#: ../gnome-dictionary/src/gdict-applet.c:553
-msgid "Toggle dictionary window"
-msgstr "Woordenboekvenster aan/uit"
-
-#: ../gnome-dictionary/src/gdict-applet.c:554
-msgid "Show or hide the definition window"
-msgstr "Het definitievenster tonen of verbergen"
-
 # klikken/klik hier/klik/
-#: ../gnome-dictionary/src/gdict-applet.c:557
+#: ../gnome-dictionary/src/gdict-applet.c:533
 msgid "Click to view the dictionary window"
 msgstr "Klik hier om het woordenboekvenster te tonen"
 
-#: ../gnome-dictionary/src/gdict-applet.c:612
-msgid "Dictionary entry"
-msgstr "Woordenboek invoer"
+#: ../gnome-dictionary/src/gdict-applet.c:535
+msgid "Toggle dictionary window"
+msgstr "Woordenboekvenster aan/uit"
+
+#: ../gnome-dictionary/src/gdict-applet.c:536
+msgid "Show or hide the definition window"
+msgstr "Het definitievenster tonen of verbergen"
 
 # dat/wat/welke
-#: ../gnome-dictionary/src/gdict-applet.c:616
+#: ../gnome-dictionary/src/gdict-applet.c:588
 msgid "Type the word you want to look up"
 msgstr "Toets het woord in dat u wilt opzoeken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:750
-#: ../gnome-dictionary/src/gdict-window.c:897
+#: ../gnome-dictionary/src/gdict-applet.c:590
+msgid "Dictionary entry"
+msgstr "Woordenboek invoer"
+
+#: ../gnome-dictionary/src/gdict-applet.c:724
+#: ../gnome-dictionary/src/gdict-window.c:997
 msgid "Dictionary Preferences"
 msgstr "Woordenboek-voorkeuren"
 
-#: ../gnome-dictionary/src/gdict-applet.c:778
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:511
-#: ../gnome-dictionary/src/gdict-source-dialog.c:500
-#: ../gnome-dictionary/src/gdict-window.c:1033
+#: ../gnome-dictionary/src/gdict-applet.c:752
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
+#: ../gnome-dictionary/src/gdict-source-dialog.c:498
+#: ../gnome-dictionary/src/gdict-window.c:1144
 msgid "There was an error while displaying help"
 msgstr "Er is een fout opgetreden bij het weergeven van de hulp"
 
-#: ../gnome-dictionary/src/gdict-applet.c:930
-#: ../gnome-dictionary/src/gdict-window.c:438
+#: ../gnome-dictionary/src/gdict-applet.c:904
+#: ../gnome-dictionary/src/gdict-window.c:513
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Geen woordenboekbron beschikbaar met de naam '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:934
-#: ../gnome-dictionary/src/gdict-window.c:442
+#: ../gnome-dictionary/src/gdict-applet.c:908
+#: ../gnome-dictionary/src/gdict-window.c:517
 msgid "Unable to find dictionary source"
 msgstr "Kon geen woordenboekbron vinden"
 
-#: ../gnome-dictionary/src/gdict-applet.c:950
-#: ../gnome-dictionary/src/gdict-window.c:458
+#: ../gnome-dictionary/src/gdict-applet.c:924
+#: ../gnome-dictionary/src/gdict-window.c:533
 #, c-format
 msgid "No context available for source '%s'"
-msgstr "Geen context beschikbaar voor bron '%s'"
+msgstr "Geen context beschikbaar voor bron ‘%s’"
 
-#: ../gnome-dictionary/src/gdict-applet.c:954
-#: ../gnome-dictionary/src/gdict-window.c:462
+#: ../gnome-dictionary/src/gdict-applet.c:928
+#: ../gnome-dictionary/src/gdict-window.c:537
 msgid "Unable to create a context"
 msgstr "Kon geen context aanmaken"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1222
-#: ../gnome-dictionary/src/gdict-window.c:1919
+#: ../gnome-dictionary/src/gdict-applet.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:2082
 msgid "Unable to connect to GConf"
 msgstr "Kon geen verbinding maken met GConf"
 
 # hint/mededelingen/indicatie/
-#: ../gnome-dictionary/src/gdict-applet.c:1235
-#: ../gnome-dictionary/src/gdict-window.c:1932
+#: ../gnome-dictionary/src/gdict-applet.c:1206
+#: ../gnome-dictionary/src/gdict-window.c:2095
 msgid "Unable to get notification for preferences"
 msgstr "Kon geen mededelingen verkrijgen voor de voorkeuren"
 
 # hint/mededelingen/indicatie/
-#: ../gnome-dictionary/src/gdict-applet.c:1249
-#: ../gnome-dictionary/src/gdict-window.c:1945
+#: ../gnome-dictionary/src/gdict-applet.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:2108
 msgid "Unable to get notification for the document font"
 msgstr "Kon geen mededelingen verkrijgen voor het document-lettertype"
 
 #: ../gnome-dictionary/src/gdict-common.c:79
 #, c-format
 msgid "Unable to rename file '%s' to '%s': %s"
-msgstr "Kan het bestand '%s' niet hernoemen naar '%s': %s"
+msgstr "Kan het bestand ‘%s’ niet hernoemen naar ‘%s’: %s"
 
 #: ../gnome-dictionary/src/gdict-common.c:103
 #: ../gnome-dictionary/src/gdict-common.c:126
 #, c-format
 msgid "Unable to create the data directory '%s': %s"
-msgstr "Kan de data-map '%s' niet aanmaken: %s"
+msgstr "Kan de data-map ‘%s’ niet aanmaken: %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:248
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
 msgid "Edit Dictionary Source"
 msgstr "Woordenboekbron bewerken"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:312
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
 msgid "Add Dictionary Source"
 msgstr "Woordenboekbron toevoegen"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "‘%s’ verwijderen?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:360
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Dit zal de woordenboekbron definitief verwijderen uit de lijst."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:390
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
 #, c-format
 msgid "Unable to remove source '%s'"
-msgstr "Kan bron '%s' niet verwijderen"
+msgstr "Kan bron ‘%s’ niet verwijderen"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:677
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
 msgid "Add a new dictionary source"
 msgstr "Een nieuwe woordenboekbron toevoegen"
 
 # gebiedende wijs
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:685
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
 msgid "Remove the currently selected dictionary source"
 msgstr "Verwijder de geselecteerde woordenboekbron"
 
 # stel in/geef
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:700
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
 msgid "Set the font used for printing the definitions"
 msgstr "Geef het lettertype voor het afdrukken van de definities"
 
-#: ../gnome-dictionary/src/gdict-print.c:187
+#: ../gnome-dictionary/src/gdict-print.c:249
+#: ../gnome-dictionary/src/gdict-print.c:313
 #, c-format
-msgid "%s (page %d)"
-msgstr "%s (pagina %d)"
+msgid "Unable to display the preview: %s"
+msgstr "Kon voorbeeld niet weergeven: %s"
 
-#: ../gnome-dictionary/src/gdict-print.c:246
-msgid "Print Preview"
-msgstr "Afdrukvoorbeeld"
-
-#: ../gnome-dictionary/src/gdict-source-dialog.c:360
-#: ../gnome-dictionary/src/gdict-source-dialog.c:453
+#: ../gnome-dictionary/src/gdict-source-dialog.c:358
+#: ../gnome-dictionary/src/gdict-source-dialog.c:451
 msgid "Unable to create a source file"
 msgstr "Kon geen bronbestand aanmaken"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:378
-#: ../gnome-dictionary/src/gdict-source-dialog.c:471
+#: ../gnome-dictionary/src/gdict-source-dialog.c:376
+#: ../gnome-dictionary/src/gdict-source-dialog.c:469
 msgid "Unable to save source file"
 msgstr "Kon bronbestand niet opslaan"
 
-#: ../gnome-dictionary/src/gdict-window.c:288
+#: ../gnome-dictionary/src/gdict-window.c:312
 #, c-format
 msgid "Searching for '%s'..."
-msgstr "Zoeken naar '%s'..."
+msgstr "Zoeken naar ‘%s’…"
 
-#: ../gnome-dictionary/src/gdict-window.c:318
-#: ../gnome-dictionary/src/gdict-window.c:350
+#: ../gnome-dictionary/src/gdict-window.c:344
+#: ../gnome-dictionary/src/gdict-window.c:403
 msgid "No definitions found"
 msgstr "Geen definities gevonden"
 
-#: ../gnome-dictionary/src/gdict-window.c:320
+#: ../gnome-dictionary/src/gdict-window.c:346
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Eén definitie gevonden"
 msgstr[1] "%d definities gevonden"
 
-#: ../gnome-dictionary/src/gdict-window.c:527
+#: ../gnome-dictionary/src/gdict-window.c:602
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Woordenboek"
 
-#: ../gnome-dictionary/src/gdict-window.c:1067 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1178 ../logview/logview.c:85
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../gnome-dictionary/src/gdict-window.c:1070
+#: ../gnome-dictionary/src/gdict-window.c:1181
 msgid "_Go"
 msgstr "_Ga naar"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1074
+#: ../gnome-dictionary/src/gdict-window.c:1185
 msgid "_New"
 msgstr "_Nieuw"
 
-#: ../gnome-dictionary/src/gdict-window.c:1075
+#: ../gnome-dictionary/src/gdict-window.c:1186
 msgid "New look up"
 msgstr "Nieuw zoekopdracht"
 
-#: ../gnome-dictionary/src/gdict-window.c:1076
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_Save a Copy..."
-msgstr "Een kopie op_slaan..."
+msgstr "Een kopie op_slaan…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1078
+#: ../gnome-dictionary/src/gdict-window.c:1189
+msgid "P_review..."
+msgstr "_Voorbeeld…"
+
+#: ../gnome-dictionary/src/gdict-window.c:1190
+msgid "Preview this document"
+msgstr "Dit document weergeven"
+
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "_Print..."
-msgstr "_Afdrukken..."
+msgstr "_Afdrukken…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1079
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Print this document"
 msgstr "Dit document afdrukken"
 
-#: ../gnome-dictionary/src/gdict-window.c:1086 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1199 ../logview/logview.c:99
 msgid "Select _All"
 msgstr "_Alles selecteren"
 
-#: ../gnome-dictionary/src/gdict-window.c:1089
+#: ../gnome-dictionary/src/gdict-window.c:1202
 msgid "Find a word or phrase in the document"
 msgstr "Zoek een woord of frase in het document"
 
-#: ../gnome-dictionary/src/gdict-window.c:1091
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find Ne_xt"
 msgstr "V_olgende zoeken"
 
-#: ../gnome-dictionary/src/gdict-window.c:1093
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Pre_vious"
 msgstr "Vo_rige zoeken"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1099
+#: ../gnome-dictionary/src/gdict-window.c:1212
 msgid "_Previous Definition"
 msgstr "Vo_rige definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:1100
+#: ../gnome-dictionary/src/gdict-window.c:1213
 msgid "Go to the previous definition"
 msgstr "Ga naar de vorige definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:1101
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Next Definition"
 msgstr "V_olgende definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:1102
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the next definition"
 msgstr "Ga naar de volgende definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:1103
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_First Definition"
 msgstr "_Eerste definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:1104
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the first definition"
 msgstr "Ga naar de eerse definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:1105
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_Last Definition"
 msgstr "_Laatste definitie"
 
-#: ../gnome-dictionary/src/gdict-window.c:1106
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the last definition"
 msgstr "Ga naar de laatste definitie"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1109
+#: ../gnome-dictionary/src/gdict-window.c:1222
 msgid "Similar _Words"
 msgstr "Vergelijkbare _woorden"
 
-#: ../gnome-dictionary/src/gdict-window.c:1111
+#: ../gnome-dictionary/src/gdict-window.c:1224
+msgid "Dictionary Sources"
+msgstr "Woordenboekbronnen"
+
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Available _Databases"
 msgstr "Beschikbare _databases"
 
-#: ../gnome-dictionary/src/gdict-window.c:1113
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available St_rategies"
 msgstr "Beschikbare _strategieën"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1130
+#: ../gnome-dictionary/src/gdict-window.c:1245
 msgid "_Sidebar"
 msgstr "_Zijpaneel"
 
-#: ../gnome-dictionary/src/gdict-window.c:1132
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "S_tatusbar"
 msgstr "_Statusbalk"
 
-#: ../gnome-dictionary/src/gdict-window.c:1247
+#: ../gnome-dictionary/src/gdict-window.c:1368
+#, c-format
+msgid "Dictionary source `%s' selected"
+msgstr "Woordenboekbron ‘%s’ geselecteerd"
+
+#: ../gnome-dictionary/src/gdict-window.c:1389
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "Strategie ‘%s’ geselecteerd"
 
-#: ../gnome-dictionary/src/gdict-window.c:1265
+#: ../gnome-dictionary/src/gdict-window.c:1409
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Database ‘%s’ geselecteerd"
 
-#: ../gnome-dictionary/src/gdict-window.c:1285
+#: ../gnome-dictionary/src/gdict-window.c:1429
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Woord ‘%s’ geselecteerd"
 
 # dat/wat/welke
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1307
+#: ../gnome-dictionary/src/gdict-window.c:1451
 msgid "Double-click on the word to look up"
 msgstr "Dubbelklik op het woord dat u wilt opzoeken"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1313
+#: ../gnome-dictionary/src/gdict-window.c:1457
 msgid "Double-click on the matching strategy to use"
 msgstr "Dubbelklik op de te gebruiken strategie"
 
+#. source-chooser
+#: ../gnome-dictionary/src/gdict-window.c:1462
+msgid "Double-click on the source to use"
+msgstr "Dubbelklik op de te gebruiken bron"
+
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1323
+#: ../gnome-dictionary/src/gdict-window.c:1471
 msgid "Double-click on the database to use"
 msgstr "Dubbelklik op de te gebruiken database"
 
 # zoekopdracht/opzoeken
-#: ../gnome-dictionary/src/gdict-window.c:1610
+#: ../gnome-dictionary/src/gdict-window.c:1759
 msgid "Look _up:"
 msgstr "_Opzoeken:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1683
+#: ../gnome-dictionary/src/gdict-window.c:1833
 msgid "Similar words"
 msgstr "Vergelijkbare woorden"
 
-#: ../gnome-dictionary/src/gdict-window.c:1696
+#: ../gnome-dictionary/src/gdict-window.c:1846
 msgid "Available dictionaries"
 msgstr "Beschikbare databases"
 
-#: ../gnome-dictionary/src/gdict-window.c:1709
+#: ../gnome-dictionary/src/gdict-window.c:1859
 msgid "Available strategies"
 msgstr "Beschikbare strategieën"
+
+#: ../gnome-dictionary/src/gdict-window.c:1870
+msgid "Dictionary sources"
+msgstr "Woordenboekbronnen"
 
 #: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
 #: ../gsearchtool/gsearchtool-support.c:1629
@@ -2245,7 +2256,7 @@ msgstr "Na een wachttijd van"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:870
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "seconds"
 msgstr "seconden"
 
@@ -2274,7 +2285,7 @@ msgstr "Schermafdruk-%s.png"
 #. * with the screenshot if the entire screen is taken
 #: ../gnome-screenshot/gnome-screenshot.c:494
 #: ../gnome-screenshot/screenshot-dialog.c:329
-#: ../gnome-screenshot/screenshot-save.c:197
+#: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Schermafdruk.png"
 
@@ -2299,43 +2310,43 @@ msgid "Unable to take a screenshot of the current window"
 msgstr "Kon geen schermafdruk maken van het huidige venster."
 
 # "Een plaatje schieten"
-#: ../gnome-screenshot/gnome-screenshot.c:868
+#: ../gnome-screenshot/gnome-screenshot.c:872
 msgid "Grab a window instead of the entire screen"
 msgstr "Een vensterafdruk maken in plaats van het hele scherm"
 
 # vensterdecoratie
-#: ../gnome-screenshot/gnome-screenshot.c:869
+#: ../gnome-screenshot/gnome-screenshot.c:873
 msgid "Include the window border with the screenshot"
 msgstr "De vensterrand in de schermafdruk opnemen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:870
+#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Schermafdruk maken na aangegeven vertraging [in seconden]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effect voor de vensterrand (schaduw, lijn of geen)"
 
 # Vensterrand-effect?
-#: ../gnome-screenshot/gnome-screenshot.c:871
+#: ../gnome-screenshot/gnome-screenshot.c:875
 msgid "effect"
 msgstr "effect"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:876
 msgid "Interactively set options"
 msgstr "Interactief opties instellen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:882
+#: ../gnome-screenshot/gnome-screenshot.c:886
 msgid "Options for Screenshot"
 msgstr "Opties voor schermafdruk"
 
 #
-#: ../gnome-screenshot/gnome-screenshot.c:883
+#: ../gnome-screenshot/gnome-screenshot.c:887
 msgid "Show Screenshot options"
 msgstr "Schermafdrukopties tonen"
 
 # "Een plaatje schieten"
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:891
 msgid "Take a picture of the screen"
 msgstr "Schermafdruk maken"
 
@@ -2416,7 +2427,7 @@ msgstr ""
 "afgebroken.  Het is niet mogelijk om de schermafdruk op de schijf op te "
 "slaan."
 
-#: ../gnome-screenshot/screenshot-save.c:224
+#: ../gnome-screenshot/screenshot-save.c:223
 msgid "Unknown error saving screenshot to disk"
 msgstr "Onbekende fout opgetreden bij het opslaan van schermafdruk naar schijf"
 
@@ -2453,7 +2464,7 @@ msgstr "Documenten en mappen vinden op naam of inhoud"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:2
 msgid "Search for Files..."
-msgstr "Bestanden zoeken..."
+msgstr "Bestanden zoeken…"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:1
 msgid "Default Window Height"
@@ -2854,7 +2865,7 @@ msgstr "Verplaatsen van ‘%s’ mislukt: %s."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
-msgstr "Zoekresultaten opslaan als..."
+msgstr "Zoekresultaten opslaan als…"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1385
 msgid "Could not save document."
@@ -3089,6 +3100,39 @@ msgstr "Volg symbolische verwijzingen"
 msgid "Include other filesystems"
 msgstr "Andere bestandssystemen meenemen"
 
+#: ../gsearchtool/gsearchtool.c:158 ../gsearchtool/gsearchtool.c:163
+#: ../gsearchtool/gsearchtool.c:172
+msgid "STRING"
+msgstr "TEKENREEKS"
+
+#: ../gsearchtool/gsearchtool.c:159
+msgid "PATH"
+msgstr "PAD"
+
+#: ../gsearchtool/gsearchtool.c:160
+msgid "VALUE"
+msgstr "WAARDE"
+
+#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
+msgid "DAYS"
+msgstr "DAGEN"
+
+#: ../gsearchtool/gsearchtool.c:166 ../gsearchtool/gsearchtool.c:167
+msgid "KILOBYTES"
+msgstr "KILOBYTES"
+
+#: ../gsearchtool/gsearchtool.c:169
+msgid "USER"
+msgstr "GEBRUIKER"
+
+#: ../gsearchtool/gsearchtool.c:170
+msgid "GROUP"
+msgstr "GROEP"
+
+#: ../gsearchtool/gsearchtool.c:173
+msgid "PATTERN"
+msgstr "PATROON"
+
 #: ../gsearchtool/gsearchtool.c:181
 msgid "_Open"
 msgstr "_Openen"
@@ -3099,7 +3143,7 @@ msgstr "Map _openen"
 
 #: ../gsearchtool/gsearchtool.c:184
 msgid "_Save Results As..."
-msgstr "Resultaten opslaan _als..."
+msgstr "Resultaten opslaan _als…"
 
 #: ../gsearchtool/gsearchtool.c:390
 msgid "A locate database has probably not been created."
@@ -3112,10 +3156,10 @@ msgstr "Tekenset-conversie mislukt voor ‘%s’"
 
 #: ../gsearchtool/gsearchtool.c:516
 msgid "Searching..."
-msgstr "Bezig met zoeken..."
+msgstr "Bezig met zoeken…"
 
 #: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
-#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3148
+#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3149
 msgid "Search for Files"
 msgstr "Naar bestanden zoeken"
 
@@ -3190,17 +3234,13 @@ msgstr "Ongeldige optie meegegeven aan 'sortby'-opdrachtregelargument"
 msgid ""
 "\n"
 "... Too many errors to display ..."
-msgstr ""
-"\n"
-"... Teveel fouten om weer te geven ..."
+msgstr "\n…Teveel fouten om weer te geven…"
 
 #: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
-msgstr ""
-"De zoekresultaten zijn mogelijk onjuist.  Er waren fouten bij het uitvoeren "
-"van de zoekopdracht."
+msgstr "De zoekresultaten zijn mogelijk onjuist. Er waren fouten bij het uitvoeren van de zoekopdracht."
 
 #: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
@@ -3210,9 +3250,7 @@ msgstr "Meer _details tonen"
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
-msgstr ""
-"De zoekresultaten zijn mogelijk verouderd of onjuist.  Wilt u de "
-"snelzoekfunctie uitschakelen?"
+msgstr "De zoekresultaten zijn mogelijk verouderd of onjuist. Wilt u de snelzoekfunctie uitschakelen?"
 
 #: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
@@ -3354,13 +3392,17 @@ msgstr "Klik om een zoekactie te starten."
 msgid "Click to stop a search."
 msgstr "Klik om een zoekactie te stoppen."
 
+#: ../gsearchtool/gsearchtool.c:3134
+msgid "- the GNOME Search Tool"
+msgstr "- het zoekprogramma van Gnome"
+
 #: ../logview/about.c:51 ../logview/logview.c:37 ../logview/main.c:54
 msgid "System Log Viewer"
 msgstr "Systeemlogboeken"
 
 #: ../logview/about.c:54
 msgid "A system log viewer for GNOME."
-msgstr "Een GNOME-viewer voor systeemlogboeken"
+msgstr "Een Gnome-viewer voor systeemlogboeken"
 
 #: ../logview/gnome-system-log.desktop.in.in.h:1
 msgid "System Log"
@@ -3424,7 +3466,7 @@ msgstr "%s kan niet worden geopend."
 
 #: ../logview/logview-findbar.c:152
 msgid "_Filter:"
-msgstr "_Filter:"
+msgstr "_Zoeken naar:"
 
 #: ../logview/logview-findbar.c:157
 msgid "_Clear"
@@ -3432,7 +3474,7 @@ msgstr "_Wissen"
 
 #: ../logview/logview.c:90
 msgid "_Open..."
-msgstr "_Openen..."
+msgstr "_Openen…"
 
 #: ../logview/logview.c:90
 msgid "Open a log from file"
@@ -3468,7 +3510,7 @@ msgstr "De gehele logtekst selecteren"
 
 #: ../logview/logview.c:101
 msgid "_Filter..."
-msgstr "_Zoeken..."
+msgstr "_Zoeken…"
 
 #: ../logview/logview.c:101
 msgid "Filter log"
@@ -3508,15 +3550,15 @@ msgstr "_Statusbalk"
 
 #: ../logview/logview.c:122
 msgid "Show Status Bar"
-msgstr "Statusblak weergeven"
+msgstr "Statusbalk weergeven"
 
 #: ../logview/logview.c:124
 msgid "Side _Pane"
-msgstr "Zij _Balk"
+msgstr "_Zijpaneel"
 
 #: ../logview/logview.c:124
 msgid "Show Side Pane"
-msgstr "Zijbalk tonen"
+msgstr "Zijpaneel tonen"
 
 #: ../logview/logview.c:126
 msgid "_Monitor"
@@ -3624,11 +3666,11 @@ msgstr "Opties voor systeemlogboekenviewer tonen"
 msgid " - Browse and monitor logs"
 msgstr " - logboeken doorbladeren en monitoren"
 
-#: ../logview/main.c:153
+#: ../logview/main.c:145
 msgid "Log Viewer"
 msgstr "Log Weergave"
 
-#: ../logview/main.c:162
+#: ../logview/main.c:154
 msgid "Unable to create user interface."
 msgstr "Het aanmaken van de gebruikersinterface is mislukt."
 
@@ -3703,6 +3745,23 @@ msgstr ""
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS Fout.\n"
+
+#~ msgid "The GdictContext object bound to this entry"
+#~ msgstr "Het GdictContext-object dat met dit item is verbonden"
+
+#~ msgid "The database to be used to generate the completion list"
+#~ msgstr ""
+#~ "De database die wordt gebruikt voor het genereren van de aanvullingslijst"
+
+#~ msgid "The matching strategy to be used to generate the completion list"
+#~ msgstr ""
+#~ "De zoekstrategie die gebruikt wordt om de aanvullingslijst te genereren"
+
+#~ msgid "%s (page %d)"
+#~ msgstr "%s (pagina %d)"
+
+#~ msgid "Print Preview"
+#~ msgstr "Afdrukvoorbeeld"
 
 #~ msgid "Analyze disk usage"
 #~ msgstr "Schijfgebruik analyseren"
@@ -3843,9 +3902,6 @@ msgstr "Gnome-VFS Fout.\n"
 
 #~ msgid "Graphical map for folder:"
 #~ msgstr "Grafische kaart van de map:"
-
-#~ msgid "Connect to a Remote Folder"
-#~ msgstr "Verbinden met een map op afstand"
 
 #~ msgid "C_onnect"
 #~ msgstr "_Verbinden"
@@ -3998,9 +4054,6 @@ msgstr "Gnome-VFS Fout.\n"
 #~ "<i>Use Menu->Actions->Search for a file, or the search toolbar button.</i>"
 #~ msgstr ""
 #~ "<i>Gebruik menu Acties ->Bestand zoeken, of de knop op de werkbalk.</i>"
-
-#~ msgid "Connect to a remote folder"
-#~ msgstr "Verbinden met een map op afstand"
 
 # naam van lettertype/lettertypenaam/lettertype
 #~ msgid "Font Name"
