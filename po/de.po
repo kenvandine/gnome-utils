@@ -6,7 +6,7 @@
 # Christian Meyer <chrisime@gnome.org>, 2001, 2002.
 # Simon Westhues <westhues@muenster.de>, 2002.
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007.
+# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007, 2008.
 # Hendrik Brandt <heb@gnome-de.org>, 2004-2005.
 # Frank Arnold <frank@scirocco-5v-turbo.de>, 2005.
 # Andre Klapper <ak-47@gmx.net>, 2008.
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-03 13:09+0100\n"
-"PO-Revision-Date: 2008-02-03 13:04+0100\n"
-"Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
+"POT-Creation-Date: 2008-03-27 18:29+0100\n"
+"PO-Revision-Date: 2008-03-27 18:33+0100\n"
+"Last-Translator: Hendrik Richter <hendrikr@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -259,6 +259,15 @@ msgstr "GNOME-VFS-Überwachung konnte nicht initialisiert werden"
 #: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "Ihr persönlicher Ordner wird nicht auf Änderungen überwacht."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Es konnte kein Einhängepunkt gefunden werden."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr ""
+"Ohne einen Einhängepunkt kann die Festplattenbelegung nicht analysiert werden."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -702,6 +711,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "Unzureichende Zugriffsrechte, um das Disketten-Gerät %s zu öffnen."
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -945,9 +955,8 @@ msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
 msgstr ""
-"Es ist weder die Anwendung »mke2fs« noch das Anwendungspaket »mkdosfs/"
-"mformat« installiert. Zur Formatierung von Disketten ist mindestens eines "
-"davon nötig."
+"Es ist weder die Anwendung »mke2fs« noch das Anwendungspaket »mkdosfs/mformat« "
+"installiert. Zur Formatierung von Disketten ist mindestens eines davon nötig."
 
 #: ../gfloppy/src/main.c:280
 #, c-format
@@ -982,6 +991,7 @@ msgid "Cannot initialize device"
 msgstr "Das Gerät konnte nicht initialisiert werden"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr ""
 "Es konnte kein Gerät gefunden werden, daher kann das Formatieren nicht "
@@ -1374,8 +1384,8 @@ msgstr ""
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr ""
-"Auflösen von Rechnername »%s« gescheitert: es konnte keine passende "
-"Ressource gefunden werden"
+"Auflösen von Rechnername »%s« gescheitert: es konnte keine passende Ressource "
+"gefunden werden"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
 #, c-format
@@ -1393,8 +1403,8 @@ msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
 msgstr ""
-"Es konnte keine Verbindung zum Wörterbuchserver »%s:%d« aufgebaut werden. "
-"Der Server antwortete mit Code %d (Server nicht erreichbar)"
+"Es konnte keine Verbindung zum Wörterbuchserver »%s:%d« aufgebaut werden. Der "
+"Server antwortete mit Code %d (Server nicht erreichbar)"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
 #, c-format
@@ -1463,11 +1473,13 @@ msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Zeitablauf bei Verbindung zum Wörterbuch-Server »%s:%d«"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Für den Wörterbuch-Server wurde kein Rechnername festgelegt"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Socket konnte nicht angelegt werden"
 
@@ -1609,8 +1621,7 @@ msgstr "Untülgite Transportart »%d«"
 #, c-format
 msgid "No '%s' group found inside the dictionary source definition"
 msgstr ""
-"Es konnte keine »%s«-Gruppe in der Wörterbuchquellendefinition gefunden "
-"werden"
+"Es konnte keine »%s«-Gruppe in der Wörterbuchquellendefinition gefunden werden"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:457
 #: ../gnome-dictionary/libgdict/gdict-source.c:481
@@ -1631,6 +1642,7 @@ msgstr ""
 "gefunden werden: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Wörterbuchquelle hat keinen Namen"
 
@@ -1718,6 +1730,7 @@ msgid "Error: %s\n"
 msgstr "Fehler: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr ""
 "Bitte verwenden Sie »gnome-dictionary --help« für alle "
@@ -1878,6 +1891,7 @@ msgstr "Wörterbucheinstellungen"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Beim Anzeigen der Hilfe ist ein Fehler aufgetreten"
 
@@ -2650,8 +2664,8 @@ msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Dieser Schlüssel legt fest, ob die Option »Symbolischen Verknüpfungen "
-"folgen« ausgewählt ist, wenn das Suchwerkzeug gestartet wird."
+"Dieser Schlüssel legt fest, ob die Option »Symbolischen Verknüpfungen folgen« "
+"ausgewählt ist, wenn das Suchwerkzeug gestartet wird."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:62
 msgid ""
@@ -2698,8 +2712,8 @@ msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Dieser Schlüssel legt fest, ob die Option »Besitzer ist unbekannt« "
-"ausgewählt ist, wenn das Suchwerkzeug gestartet wird."
+"Dieser Schlüssel legt fest, ob die Option »Besitzer ist unbekannt« ausgewählt "
+"ist, wenn das Suchwerkzeug gestartet wird."
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
@@ -2708,8 +2722,8 @@ msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
 msgstr ""
-"Dieser Schlüssel legt fest, ob der Abschnitt »zusätzliche Optionen« "
-"angezeigt wird, wenn das Suchwerkzeug gestartet wird."
+"Dieser Schlüssel legt fest, ob der Abschnitt »zusätzliche Optionen« angezeigt "
+"wird, wenn das Suchwerkzeug gestartet wird."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:71
 msgid ""
@@ -2724,8 +2738,8 @@ msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
 msgstr ""
-"Dieser Schlüssel legt fest, ob die Option »Mindestgröße« ausgewählt ist, "
-"wenn das Suchwerkzeug gestartet wird."
+"Dieser Schlüssel legt fest, ob die Option »Mindestgröße« ausgewählt ist, wenn "
+"das Suchwerkzeug gestartet wird."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:73
 msgid ""
@@ -2815,8 +2829,7 @@ msgstr "Wollen Sie »%s« dauerhaft löschen?"
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
-"Der Müll ist nicht verfügbar. »%s« konnte nicht in den Müll verschoben "
-"werden."
+"Der Müll ist nicht verfügbar. »%s« konnte nicht in den Müll verschoben werden."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:717
 #, c-format
@@ -3597,8 +3610,8 @@ msgid ""
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
 "Gibt an, welche Protokolldatei beim Start geöffnet werden soll. Die Vorgabe "
-"ist entweder »/var/adm/messages« oder »/var/log/messages«. Dies ist von "
-"Ihrer Distribution abhängig."
+"ist entweder »/var/adm/messages« oder »/var/log/messages«. Dies ist von Ihrer "
+"Distribution abhängig."
 
 #: ../logview/logview.schemas.in.h:8
 msgid ""
@@ -3606,8 +3619,8 @@ msgid ""
 "main tree view. The default is taken from the default terminal font size."
 msgstr ""
 "Legt die Größe dicktengleicher Schriften zur Anzeige der Protokollen im "
-"Systemprotokoll-Fenster fest. Die Vorgabe wird der Vorgabe »Terminal-"
-"Schrift« entnommen."
+"Systemprotokoll-Fenster fest. Die Vorgabe wird der Vorgabe »Terminal-Schrift« "
+"entnommen."
 
 #: ../logview/logview.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
