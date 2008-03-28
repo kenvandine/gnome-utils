@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.22\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-09 22:28+0000\n"
-"PO-Revision-Date: 2008-02-09 22:35+0000\n"
+"POT-Creation-Date: 2008-03-28 08:36+0000\n"
+"PO-Revision-Date: 2008-03-28 08:40+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -250,6 +250,14 @@ msgstr "Incapaz de inicializar a monitorização GNOME VFS"
 #: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "Alterações à sua pasta pessoal não serão monitorizadas."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Incapaz de detectar um qualquer ponto de montagem."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Sem pontos de montagem não é possível analisar a utilização de disco."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -2530,8 +2538,8 @@ msgid ""
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 msgstr ""
 "Esta chave define os caminhos que a ferramenta de procura irá excluir numa "
-"procura rápida. São suportados os \"wildcards\" '*' e '?'. Os valores por "
-"omissão são /mnt/*, /media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
+"procura rápida. São suportados os caracteres globais '*' e '?'. Os valores "
+"por omissão são /mnt/*, /media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
@@ -2545,7 +2553,7 @@ msgstr ""
 "segunda análise ao realizar uma procura rápida. A segunda análise utiliza o "
 "comando \"find\" para procurar ficheiros. O objectivo da segunda análise é "
 "procurar ficheiros que não tenham sido indexados. São suportados os "
-"\"wildcards\" '*' e '?'. O valor por omissão é /."
+"caracteres globais '*' e '?'. O valor por omissão é /."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
@@ -3253,7 +3261,7 @@ msgstr "_Nome contém:"
 #: ../gsearchtool/gsearchtool.c:2946 ../gsearchtool/gsearchtool.c:2947
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
-"Introduza um nome de ficheiro parcial ou completo com ou sem \"wildcards\"."
+"Introduza um nome de ficheiro parcial ou completo com ou sem caracteres globais."
 
 #: ../gsearchtool/gsearchtool.c:2947
 msgid "Name contains"
