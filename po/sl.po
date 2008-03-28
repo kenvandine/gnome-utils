@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-07 03:38+0100\n"
-"PO-Revision-Date: 2007-11-14 14:47+0100\n"
+"POT-Creation-Date: 2008-03-26 16:12+0000\n"
+"PO-Revision-Date: 2008-03-28 10:07+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -223,7 +223,7 @@ msgid "Calculating percentage bars..."
 msgstr "Računanje stolpcev odstotkov ..."
 
 #: ../baobab/src/baobab.c:149
-#: ../baobab/src/baobab.c:769
+#: ../baobab/src/baobab.c:777
 #: ../baobab/src/baobab-utils.c:197
 #: ../baobab/src/callbacks.c:330
 msgid "Ready"
@@ -262,6 +262,14 @@ msgstr "Ni mogoče zagnati GNOME VFS nadzora"
 #: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "Ali naj bodo spremembe v domačem imeniku nadzorovane."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Ni mogoče zaznati priklopne točke."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Brez določene priklopne točne, zasedenosti diska ni mogoče določiti."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -404,21 +412,21 @@ msgstr "Poljubno mesto"
 msgid "_Scan"
 msgstr "_Skeniraj"
 
-#: ../baobab/src/baobab-treeview.c:231
+#: ../baobab/src/baobab-treeview.c:233
 #: ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Mapa"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:255
 msgid "Usage"
 msgstr "Uporaba"
 
-#: ../baobab/src/baobab-treeview.c:267
+#: ../baobab/src/baobab-treeview.c:269
 #: ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Velikost"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:285
 msgid "Contents"
 msgstr "Vsebina"
 
@@ -692,6 +700,7 @@ msgstr "Nimate dovoljenja za odpiranje naprave (disketnika) %s."
 
 #: ../gfloppy/src/fdformat.c:111
 #: ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -956,6 +965,7 @@ msgid "Cannot initialize device"
 msgstr "Ni mogoče zagnati naprave"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Ni mogoče odpreti nobene naprave, formatiranje se ne more nadaljevati."
 
@@ -1346,11 +1356,13 @@ msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Povezava s strežnikom slovarja %s:%d ni uspela"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Ime gostitelja za strežnik slovarja ni podano"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Ni mogoče ustvariti vtiča"
 
@@ -1506,6 +1518,7 @@ msgid "Unable to get the '%s' key inside the dictionary source definition file: 
 msgstr "Ni mogoče najti ključa '%s' znotraj datoteke razlage slovarskega vira: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Slovarski vir nima imena"
 
@@ -1593,6 +1606,7 @@ msgid "Error: %s\n"
 msgstr "Napaka: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Za uporabo si oglejte gnome-dictionary --help\n"
 
@@ -1750,6 +1764,7 @@ msgstr "Nastavitve slovarja"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Med prikazovanjem pomoči je prišlo do napake"
 
