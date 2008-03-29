@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 05:01+0100\n"
-"PO-Revision-Date: 2008-01-26 17:36+0100\n"
+"POT-Creation-Date: 2008-03-26 16:12+0000\n"
+"PO-Revision-Date: 2008-03-29 11:05+0100\n"
 "Last-Translator: Arangel Angov <ufo@linux.net.mk>\n"
 "Language-Team: Macedonian <ossm-members@hedona.on.net.mk>\n"
 "MIME-Version: 1.0\n"
@@ -216,29 +216,29 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Дали лентата со алатки треба да биде видлива во главниот прозорец."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
+#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
 #: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Ги пресметувам лентите за проценти..."
 
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
 #: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Подготвено"
 
-#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
 msgstr "Пребарувам..."
 
-#: ../baobab/src/baobab.c:265
+#: ../baobab/src/baobab.c:266
 msgid "Total filesystem usage:"
 msgstr "Вкупна употреба на датотечниот систем:"
 
-#: ../baobab/src/baobab.c:309
+#: ../baobab/src/baobab.c:310
 msgid "contains hardlinks for:"
 msgstr "содржи цврсти врски за:"
 
-#: ../baobab/src/baobab.c:318
+#: ../baobab/src/baobab.c:319
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
@@ -246,17 +246,25 @@ msgstr[0] "% 5d предмет"
 msgstr[1] "% 5d предмети"
 msgstr[2] "% 5d предмети"
 
-#: ../baobab/src/baobab.c:383
+#: ../baobab/src/baobab.c:384
 msgid "Invalid UTF-8 characters"
 msgstr "Невалидни UTF-8 знаци"
 
-#: ../baobab/src/baobab.c:639
+#: ../baobab/src/baobab.c:640
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "Не можам да го иницијализирам GNOME VFS надгледувањето"
 
-#: ../baobab/src/baobab.c:640
+#: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "Промените на домашната папка нема да бидат надгледувани."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Не детектирав точки за монтирање."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Употребата на дискот не може да биде анализирана без монитрани точки."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -398,19 +406,19 @@ msgstr "Посебна локација"
 msgid "_Scan"
 msgstr "_Скенирај"
 
-#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Папка"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:255
 msgid "Usage"
 msgstr "Употреба"
 
-#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Големина"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:285
 msgid "Contents"
 msgstr "Содржини"
 
@@ -683,6 +691,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "Немате доволно овластувања за да го отворите уредот за дискети %s"
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -958,8 +967,9 @@ msgid "Cannot initialize device"
 msgstr "Не можам да го иницијализирам уредот"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
-msgstr "Не можам да го пристапам уредот %s, форматирањето не може да продолжи."
+msgstr "Не можам да пристапан на ниедне уред, форматирањето не може да продолжи."
 
 #: ../gfloppy/src/main.c:345 ../gfloppy/src/main.c:348
 msgid "/dev/floppy/0 or /dev/fd0"
@@ -1424,11 +1434,13 @@ msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Поврзувањето со серверот за речници „%s:%d“ не успеа"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Клиент за серверот за речници"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Не можам да креирам сокет"
 
@@ -1586,6 +1598,7 @@ msgstr ""
 "речникот: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Изворот на речникот нема име"
 
@@ -1673,6 +1686,7 @@ msgid "Error: %s\n"
 msgstr "Грешка:·%s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Видете gnome-dictionary --help за упатство за употреба\n"
 
@@ -1830,6 +1844,7 @@ msgstr "Параметри на речник"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Се појави грешка при обидот за прикажување на помош"
 
