@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 05:01+0100\n"
-"PO-Revision-Date: 2008-03-12 20:54+0200\n"
+"POT-Creation-Date: 2008-03-26 16:12+0000\n"
+"PO-Revision-Date: 2008-03-26 19:12+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -213,46 +213,54 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Kas peaakna tööriistariba peab nähtaval olema või mitte."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
+#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
 #: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Protsenditulpade arvutamine..."
 
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
 #: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Valmis"
 
-#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
 msgstr "Läbivaatus..."
 
-#: ../baobab/src/baobab.c:265
+#: ../baobab/src/baobab.c:266
 msgid "Total filesystem usage:"
 msgstr "Kogu failisüsteemi kasutus:"
 
-#: ../baobab/src/baobab.c:309
+#: ../baobab/src/baobab.c:310
 msgid "contains hardlinks for:"
 msgstr "sisaldab püsiviitasid andmemahule"
 
-#: ../baobab/src/baobab.c:318
+#: ../baobab/src/baobab.c:319
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d kirje"
 msgstr[1] "% 5d kirjet"
 
-#: ../baobab/src/baobab.c:383
+#: ../baobab/src/baobab.c:384
 msgid "Invalid UTF-8 characters"
 msgstr "Vigased UTF-8 märgid"
 
-#: ../baobab/src/baobab.c:639
+#: ../baobab/src/baobab.c:640
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "GNOME VFS jälgimist pole võimalik lähtestada"
 
-#: ../baobab/src/baobab.c:640
+#: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "Kodukataloogis toimuvaid muudatusi ei jälgita."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Ühtegi ühendamispunkti pole võimalik tuvastada."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Ilme ühendamispunktideta pole võimalik kettakasutust analüüsida."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -394,19 +402,19 @@ msgstr "Kohandatud asukoht"
 msgid "_Scan"
 msgstr "_Vaata läbi"
 
-#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Kataloog"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:255
 msgid "Usage"
 msgstr "Kasutus"
 
-#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Suurus"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:285
 msgid "Contents"
 msgstr "Sisu"
 
@@ -681,6 +689,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "Kettaseadme %s avamiseks ei ole piisavalt õiguseid."
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -953,6 +962,7 @@ msgid "Cannot initialize device"
 msgstr "Seadet pole võimalik lähtestada"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Ühtegi seadet pole võimalik avada, vormindamist pole võimalik jätkata."
 
@@ -1419,11 +1429,13 @@ msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Sõnaraamatuserveriga '%s:%d' ühendumisel ületati ajapiirang"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Sõnaraamatuserverile pole hostinime määratud"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Soklit pole võimalik luua"
 
@@ -1581,6 +1593,7 @@ msgid ""
 msgstr "Sõnastiku kirjelduste lähtefailist pole võtit '%s' võimalik leida: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Sõnaraamatuallikal pole nime"
 
@@ -1668,6 +1681,7 @@ msgid "Error: %s\n"
 msgstr "Viga: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Kasutamisjuhisteks proovi gnome-dictionary --help\n"
 
@@ -1825,6 +1839,7 @@ msgstr "Sõnaraamatu eelistused"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Abiteabe kuvamisel tekkis viga"
 
@@ -3626,19 +3641,3 @@ msgstr "Selle failisüsteemi puhul pole failide jälgimine toetatud.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS'i viga.\n"
-
-#~ msgid "The GdictContext object bound to this entry"
-#~ msgstr "GdictContext objekti pole võimalik selle kirjega siduda"
-
-#~ msgid "The database to be used to generate the completion list"
-#~ msgstr "Lõpetamisnimekirja koostamiseks kasutatav andmebaas"
-
-#~ msgid "The matching strategy to be used to generate the completion list"
-#~ msgstr ""
-#~ "Lõpetamisnimekirja koostamiseks kasutatav sobivuste arvutamise strateegia"
-
-#~ msgid "%s (page %d)"
-#~ msgstr "%s (lehekülg %d)"
-
-#~ msgid "Print Preview"
-#~ msgstr "Printimise eelvaade"
