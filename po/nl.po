@@ -3,18 +3,18 @@
 # This file is distributed under the same license as the gnome-utils package.
 #
 # Jan-Willem Harmanny <jwharmanny@hotmail.com>, 2003.
-# Tino Meinen <a.t.meinen@chello.nl>, 2004, 2005, 2006, 2007, 2008.
+# Tino Meinen <a.t.meinen@chello.nl>, 2004–2008.
 # Vincent van Adrighem <adrighem@gnome.org>, 2006.
-# Wouter Bolsterlee <wbolster@gnome.org>, 2006, 2007
+# Wouter Bolsterlee <wbolster@gnome.org>, 2006–2008
 #
 # side bar = side pane = zijpaneel
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils cvs\n"
+"Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 05:01+0100\n"
-"PO-Revision-Date: 2008-02-17 19:24+0100\n"
-"Last-Translator: Tino Meinen <a.t.meinen@chello.nl>\n"
+"POT-Creation-Date: 2008-04-01 18:10+0200\n"
+"PO-Revision-Date: 2008-04-01 18:10+0200\n"
+"Last-Translator: Wouter Bolsterlee <wbolster@gnome.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,47 +213,55 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Of de werkbalk zichtbaar dient te zijn."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
+#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
 #: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Berekenen van percentages…"
 
 # klaar
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
 #: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Voltooid"
 
-#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
 msgstr "Scannen…"
 
-#: ../baobab/src/baobab.c:265
+#: ../baobab/src/baobab.c:266
 msgid "Total filesystem usage:"
 msgstr "Totaal gebruik:"
 
-#: ../baobab/src/baobab.c:309
+#: ../baobab/src/baobab.c:310
 msgid "contains hardlinks for:"
 msgstr "bevat koppelingen voor:"
 
-#: ../baobab/src/baobab.c:318
+#: ../baobab/src/baobab.c:319
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d item"
 msgstr[1] "% 5d items"
 
-#: ../baobab/src/baobab.c:383
+#: ../baobab/src/baobab.c:384
 msgid "Invalid UTF-8 characters"
 msgstr "Ongeldige UTF-8-tekens"
 
-#: ../baobab/src/baobab.c:639
+#: ../baobab/src/baobab.c:640
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "Kon Gnome VFS voor het detecteren van veranderingen niet initialiseren"
 
-#: ../baobab/src/baobab.c:640
+#: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "Wijzigingen in de persoonlijke worden niet continue gevolgd."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Kon geen koppelpunten vinden."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Zonder koppelpunten kan het schijfgebruik niet worden bekeken."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -395,19 +403,19 @@ msgstr "Aangepaste locatie"
 msgid "_Scan"
 msgstr "_Scannen"
 
-#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Map"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:255
 msgid "Usage"
 msgstr "Gebruik"
 
-#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Grootte"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:285
 msgid "Contents"
 msgstr "Inhoud"
 
@@ -518,7 +526,9 @@ msgstr "Uw persoonlijke map opnieuw scannen?"
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
-msgstr "De inhoud van uw persoonlijke map is gewijzigd. Selecteer ‘Opnieuw scannen’ om de details van het schijfgebruik bij te werken."
+msgstr ""
+"De inhoud van uw persoonlijke map is gewijzigd. Selecteer ‘Opnieuw scannen’ "
+"om de details van het schijfgebruik bij te werken."
 
 #: ../baobab/src/baobab-utils.c:625
 msgid "_Rescan"
@@ -701,6 +711,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "Onvoldoende rechten om diskette %s te openen."
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -848,7 +859,8 @@ msgstr "Bezig met aanmaken van bestandssysteem op diskette… Klaar"
 
 #: ../gfloppy/src/gfloppy.c:522
 msgid "Checking for bad blocks... (this might take a while)"
-msgstr "Bezig met controleren op onbetrouwbare blokken… (dit kan enige tijd duren)"
+msgstr ""
+"Bezig met controleren op onbetrouwbare blokken… (dit kan enige tijd duren)"
 
 #: ../gfloppy/src/gfloppy.c:527
 msgid "Error while checking the bad blocks."
@@ -988,6 +1000,7 @@ msgid "Cannot initialize device"
 msgstr "Kan apparaat niet initialiseren."
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Kan geen enkel apparaat benaderen, formatteren afgebroken."
 
@@ -1460,12 +1473,14 @@ msgstr ""
 "s:%d’"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Geen hostnaam opgegeven voor de woordenboekserver"
 
 # ontvanger?/socket/contactdoos
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Kon geen 'socket' aanmaken"
 
@@ -1627,6 +1642,7 @@ msgstr ""
 "definitiebestand: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Woordenboekbron heeft geen naam"
 
@@ -1719,6 +1735,7 @@ msgid "Error: %s\n"
 msgstr "Fout: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Zie gnome-dictionary --help voor gebruik\n"
 
@@ -1881,6 +1898,7 @@ msgstr "Woordenboek-voorkeuren"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Er is een fout opgetreden bij het weergeven van de hulp"
 
@@ -3234,13 +3252,17 @@ msgstr "Ongeldige optie meegegeven aan 'sortby'-opdrachtregelargument"
 msgid ""
 "\n"
 "... Too many errors to display ..."
-msgstr "\n…Teveel fouten om weer te geven…"
+msgstr ""
+"\n"
+"…Teveel fouten om weer te geven…"
 
 #: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
-msgstr "De zoekresultaten zijn mogelijk onjuist. Er waren fouten bij het uitvoeren van de zoekopdracht."
+msgstr ""
+"De zoekresultaten zijn mogelijk onjuist. Er waren fouten bij het uitvoeren "
+"van de zoekopdracht."
 
 #: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
 msgid "Show more _details"
@@ -3250,7 +3272,9 @@ msgstr "Meer _details tonen"
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
-msgstr "De zoekresultaten zijn mogelijk verouderd of onjuist. Wilt u de snelzoekfunctie uitschakelen?"
+msgstr ""
+"De zoekresultaten zijn mogelijk verouderd of onjuist. Wilt u de "
+"snelzoekfunctie uitschakelen?"
 
 #: ../gsearchtool/gsearchtool.c:1883
 msgid "Disable _Quick Search"
