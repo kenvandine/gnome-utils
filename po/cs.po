@@ -1,5 +1,5 @@
 # Czech translation for gnome-utils.
-# Copyright (C) 2001, 2003, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2001, 2003, 2006, 2007, 2008 the author(s) of gnome-utils.
 # Copyright (C) 2003, 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>.
 # Copyright (C) 2006 Lukas Novotny <lukasnov@cvs.gnome.org>.
 # This file is distributed under the same license as the gnome-utils package.
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-28 01:23+0100\n"
-"PO-Revision-Date: 2008-02-28 01:21+0100\n"
+"POT-Creation-Date: 2008-04-02 02:14+0200\n"
+"PO-Revision-Date: 2008-04-02 02:11+0100\n"
 "Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -256,6 +256,14 @@ msgstr "Nelze zahájit sledování GNOME VFS"
 #: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "Změny ve vaší domovské složce nebudou sledovány."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Nelze rozpoznat žádný bod připojení."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Bez bodů připojení nelze analyzovat využití disku."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -692,6 +700,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "Nedostatečná oprávnění pro otevření zařízení %s."
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -964,6 +973,7 @@ msgid "Cannot initialize device"
 msgstr "Nemohu inicializovat zařízení"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nemohu otevřít žádné zařízení, formátování nemůže pokračovat."
 
@@ -1432,11 +1442,13 @@ msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Vypršel limit spojení pro slovníkový server na '%s:%d'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Nedefinován název počítače serveru se slovníkem"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Nemohu vytvořit socket"
 
@@ -1593,6 +1605,7 @@ msgid ""
 msgstr "Nemohu získat klíč '%s' v souboru definicí zdroje slovníku: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Zdroj slovníku nemá název"
 
@@ -1680,6 +1693,7 @@ msgid "Error: %s\n"
 msgstr "Chyba: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Pro použití viz gnome-dictionary --help\n"
 
@@ -1837,6 +1851,7 @@ msgstr "Nastavení slovníku"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Při zobrazování nápovědy došlo k chybě"
 
