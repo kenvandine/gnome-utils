@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 05:01+0100\n"
-"PO-Revision-Date: 2008-03-09 05:57+0100\n"
+"POT-Creation-Date: 2008-03-26 16:12+0000\n"
+"PO-Revision-Date: 2008-04-07 14:18+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
 msgid "Check folder sizes and available disk space"
-msgstr "Mappeméretek és elérhető lemezterület vizsgálata"
+msgstr "Mappaméretek és elérhető lemezterület vizsgálata"
 
 #: ../baobab/data/baobab.desktop.in.in.h:2 ../baobab/data/baobab.glade.h:2
 msgid "Disk Usage Analyzer"
@@ -212,46 +212,54 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "A főablakban megjelenjen-e az eszköztár."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
+#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
 #: ../baobab/src/callbacks.c:326
 msgid "Calculating percentage bars..."
 msgstr "Százaléksávok kiszámítása..."
 
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
+#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
 #: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
 msgid "Ready"
 msgstr "Kész"
 
-#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
 msgid "Scanning..."
 msgstr "Vizsgálat..."
 
-#: ../baobab/src/baobab.c:265
+#: ../baobab/src/baobab.c:266
 msgid "Total filesystem usage:"
 msgstr "Teljes fájlrendszerhasználat:"
 
-#: ../baobab/src/baobab.c:309
+#: ../baobab/src/baobab.c:310
 msgid "contains hardlinks for:"
 msgstr "hard linkeket tartalmaz ennyire:"
 
-#: ../baobab/src/baobab.c:318
+#: ../baobab/src/baobab.c:319
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d elem"
 msgstr[1] "% 5d elem"
 
-#: ../baobab/src/baobab.c:383
+#: ../baobab/src/baobab.c:384
 msgid "Invalid UTF-8 characters"
 msgstr "Érvénytelen UTF-8 karakterek"
 
-#: ../baobab/src/baobab.c:639
+#: ../baobab/src/baobab.c:640
 msgid "Could not initialize GNOME VFS monitoring"
 msgstr "A GNOME VFS megfigyelés nem inicializálható"
 
-#: ../baobab/src/baobab.c:640
+#: ../baobab/src/baobab.c:641
 msgid "Changes to your home folder will not be monitored."
 msgstr "A saját könyvtárának változásai nem lesznek megfigyelve."
+
+#: ../baobab/src/baobab.c:746
+msgid "Could not detect any mount point."
+msgstr "Nem észlelhetők csatolási pontok."
+
+#: ../baobab/src/baobab.c:749
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Csatolási pontok nélkül a lemezhasználat nem elemezhető."
 
 #: ../baobab/src/baobab-graphwin.c:157
 msgid "Cannot create pixbuf image!"
@@ -393,19 +401,19 @@ msgstr "Egyéni hely"
 msgid "_Scan"
 msgstr "_Vizsgálat"
 
-#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Mappa"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:255
 msgid "Usage"
 msgstr "Használat"
 
-#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Méret"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:285
 msgid "Contents"
 msgstr "Tartalom"
 
@@ -686,6 +694,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "Nincs elegendő jogosultsága a(z) %s floppy eszköz megnyitásához."
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -958,6 +967,7 @@ msgid "Cannot initialize device"
 msgstr "Az eszköz nem inicializálható"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nem nyitható meg egyetlen eszköz sem, a formázás nem lehetséges."
 
@@ -1125,8 +1135,8 @@ msgid ""
 "present in a dictionary source should be searched"
 msgstr ""
 "A szótárforráson használandó egyedi adatbázis vagy meta-adatbázis neve. A "
-"felkiáltójel („!”) azt jelenti, hogy a gnome-dictionary az adott "
-"kiszolgálón fellelhető összes adatbázisban keres"
+"felkiáltójel („!”) azt jelenti, hogy a gnome-dictionary az adott kiszolgálón "
+"fellelhető összes adatbázisban keres"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:12
 msgid ""
@@ -1356,8 +1366,8 @@ msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
 msgstr ""
-"Nem lehet kapcsolódni „%s:%d” szótárkiszolgálóhoz. A kiszolgáló a "
-"következő kódot adta válaszul: %d (a kiszolgáló nem fut)"
+"Nem lehet kapcsolódni „%s:%d” szótárkiszolgálóhoz. A kiszolgáló a következő "
+"kódot adta válaszul: %d (a kiszolgáló nem fut)"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
 #, c-format
@@ -1421,11 +1431,13 @@ msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "A kapcsolódás túllépte az időkorlátot a(z) %s:%d szótárkiszolgálón"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Nincs megadva a szótárkiszolgáló gépneve"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "A foglalat nem hozható létre"
 
@@ -1581,6 +1593,7 @@ msgid "Unable to get the '%s' key inside the dictionary source definition file: 
 msgstr "Nem található „%s” kulcs „%s” szótárforrás-meghatározási fájlban"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "A szótárforrásnak nincs neve"
 
@@ -1668,6 +1681,7 @@ msgid "Error: %s\n"
 msgstr "Hiba: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Lásd még a „gnome-dictionary --help” kimenetét a használati információkért\n"
 
@@ -1825,6 +1839,7 @@ msgstr "Szótár beállításai"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Hiba történt a súgó megjelenítése közben"
 
@@ -2297,8 +2312,8 @@ msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"border\"."
 msgstr ""
-"A szegély külső oldalához adandó hatás. Lehetséges értékek: „shadow"
-"” (árnyék), „none” (nincs), és „border” (szegély)."
+"A szegély külső oldalához adandó hatás. Lehetséges értékek: "
+"„shadow” (árnyék), „none” (nincs), és „border” (szegély)."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
 msgid "Include Border"
@@ -2570,8 +2585,8 @@ msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Ez a kulcs meghatározza, hogy a „Módosítva kevesebb mint” keresési "
-"feltétel ki van-e választva a keresőeszköz indításakor."
+"Ez a kulcs meghatározza, hogy a „Módosítva kevesebb mint” keresési feltétel "
+"ki van-e választva a keresőeszköz indításakor."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
@@ -2617,7 +2632,10 @@ msgstr ""
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
-msgstr "Ez a kulcs meghatározza, hogy „A fájlnév illeszkedik erre a reguláris kifejezésre” keresési feltétel ki van-e választva a keresőeszköz indításakor."
+msgstr ""
+"Ez a kulcs meghatározza, hogy "
+"„A fájlnév illeszkedik erre a reguláris kifejezésre” keresési feltétel ki "
+"van-e választva a keresőeszköz indításakor."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
@@ -2650,32 +2668,32 @@ msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
 msgstr ""
-"Ez a kulcs meghatározza, hogy a „Több beállítási lehetőség” szakasz ki van-"
-"e bontva a keresőeszköz indításakor."
+"Ez a kulcs meghatározza, hogy a „Több beállítási lehetőség” szakasz ki van-e "
+"bontva a keresőeszköz indításakor."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:71
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
 msgstr ""
-"Ez a kulcs meghatározza, hogy a „Rejtett fájlok és mappák mutatása” "
-"keresési feltétel ki van-e választva a keresőeszköz indításakor."
+"Ez a kulcs meghatározza, hogy a „Rejtett fájlok és mappák mutatása” keresési "
+"feltétel ki van-e választva a keresőeszköz indításakor."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:72
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
 msgstr ""
-"Ez a kulcs meghatározza, hogy a „Mérete legalább” keresési feltétel ki van-"
-"e választva a keresőeszköz indításakor."
+"Ez a kulcs meghatározza, hogy a „Mérete legalább” keresési feltétel ki van-e "
+"választva a keresőeszköz indításakor."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:73
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
 msgstr ""
-"Ez a kulcs meghatározza, hogy a „Mérete legfeljebb” keresési feltétel ki "
-"van-e választva a keresőeszköz indításakor."
+"Ez a kulcs meghatározza, hogy a „Mérete legfeljebb” keresési feltétel ki van-"
+"e választva a keresőeszköz indításakor."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:74
 msgid ""
