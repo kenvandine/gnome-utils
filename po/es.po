@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-26 16:12+0000\n"
-"PO-Revision-Date: 2008-03-28 20:32+0100\n"
+"POT-Creation-Date: 2008-04-07 15:40+0100\n"
+"PO-Revision-Date: 2008-04-07 19:28+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -2175,77 +2175,82 @@ msgstr "(%d:%02d restantes)"
 msgid "%ld of %ld"
 msgstr "%ld de %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:109
+#: ../gnome-screenshot/gnome-screenshot.c:111
 msgid "Error loading the help page"
 msgstr "Error al cargar la página de ayuda"
 
-#: ../gnome-screenshot/gnome-screenshot.c:192
+#: ../gnome-screenshot/gnome-screenshot.c:201
 msgid "None"
 msgstr "Ninguno"
 
-#: ../gnome-screenshot/gnome-screenshot.c:193
+#: ../gnome-screenshot/gnome-screenshot.c:202
 msgid "Drop shadow"
 msgstr "Sombra base"
 
-#: ../gnome-screenshot/gnome-screenshot.c:194
+#: ../gnome-screenshot/gnome-screenshot.c:203
 msgid "Border"
 msgstr "Borde"
 
+#. * Include pointer *
+#: ../gnome-screenshot/gnome-screenshot.c:313
+msgid "Include _pointer"
+msgstr "Incluir _puntero"
+
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:304
+#: ../gnome-screenshot/gnome-screenshot.c:322
 msgid "Include the window _border"
 msgstr "Incluir el _borde de ventana"
 
-#: ../gnome-screenshot/gnome-screenshot.c:319
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Apply _effect:"
 msgstr "Aplicar _efecto:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:379
+#: ../gnome-screenshot/gnome-screenshot.c:397
 msgid "Grab the whole _desktop"
 msgstr "Capturar todo el _escritorio"
 
-#: ../gnome-screenshot/gnome-screenshot.c:391
+#: ../gnome-screenshot/gnome-screenshot.c:409
 msgid "Grab the current _window"
 msgstr "Capturar la _ventana actual"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:408
+#: ../gnome-screenshot/gnome-screenshot.c:426
 msgid "Grab _after a delay of"
 msgstr "Capturar con un _retraso de"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:874
+#: ../gnome-screenshot/gnome-screenshot.c:446
+#: ../gnome-screenshot/gnome-screenshot.c:896
 msgid "seconds"
 msgstr "segundos"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:473
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Capturar pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:456
+#: ../gnome-screenshot/gnome-screenshot.c:474
 msgid "Effects"
 msgstr "Efectos"
 
-#: ../gnome-screenshot/gnome-screenshot.c:462
+#: ../gnome-screenshot/gnome-screenshot.c:480
 msgid "Take _Screenshot"
 msgstr "Cap_turar pantalla"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:488
+#: ../gnome-screenshot/gnome-screenshot.c:506
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Pantallazo-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/gnome-screenshot.c:512
 #: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2254,7 +2259,7 @@ msgstr "Pantallazo.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:534
+#: ../gnome-screenshot/gnome-screenshot.c:552
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Pantallazo-%s-%d.png"
@@ -2262,48 +2267,48 @@ msgstr "Pantallazo-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:542
+#: ../gnome-screenshot/gnome-screenshot.c:560
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Pantallazo-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:718
+#: ../gnome-screenshot/gnome-screenshot.c:736
 msgid "Unable to take a screenshot of the current window"
 msgstr "No se puede tomar una captura de pantalla de la ventana actual"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:894
 msgid "Grab a window instead of the entire screen"
 msgstr "Capturar una ventana en vez de la pantalla entera"
 
-#: ../gnome-screenshot/gnome-screenshot.c:873
+#: ../gnome-screenshot/gnome-screenshot.c:895
 msgid "Include the window border with the screenshot"
 msgstr "Incluir el borde de ventana con la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:874
+#: ../gnome-screenshot/gnome-screenshot.c:896
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Capturar la pantalla después del retardo especificado [en segundos]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efecto para añadir al borde (sombra, borde o ninguno)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "effect"
 msgstr "efecto"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "Interactively set options"
 msgstr "Establecer las opciones interactivamente"
 
-#: ../gnome-screenshot/gnome-screenshot.c:886
+#: ../gnome-screenshot/gnome-screenshot.c:908
 msgid "Options for Screenshot"
 msgstr "Opciones para la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:909
 msgid "Show Screenshot options"
 msgstr "Mostrar opciones de la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:891
+#: ../gnome-screenshot/gnome-screenshot.c:913
 msgid "Take a picture of the screen"
 msgstr "Capturar imagen de la pantalla"
 
@@ -2340,14 +2345,22 @@ msgid "Include Border"
 msgstr "Incluir borde"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Pointer"
+msgstr "Incluir puntero"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the pointer in the screenshot"
+msgstr "Incluir el puntero en la captura de pantalla"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Include the window manager border along with the screenshot"
 msgstr "Incluir el borde del gestor de ventanas junto con la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:7
 msgid "Screenshot directory"
 msgstr "Directorio de capturas"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:8
 msgid "The directory the last screenshot was saved in."
 msgstr "El directorio donde se guardó la última captura."
 
@@ -2384,7 +2397,7 @@ msgstr ""
 msgid "Unknown error saving screenshot to disk"
 msgstr "Error desconocido al guardar la captura de pantalla al disco"
 
-#: ../gnome-screenshot/screenshot-utils.c:633
+#: ../gnome-screenshot/screenshot-utils.c:709
 msgid "Untitled Window"
 msgstr "Ventana sin título"
 
