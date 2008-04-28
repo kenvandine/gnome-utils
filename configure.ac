@@ -73,7 +73,8 @@ dnl *****************************************
 dnl pkg-config check time
 dnl *****************************************
 
-GLIB_REQUIRED=2.14.0
+GLIB_REQUIRED=2.16.0
+GIO_REQUIRED=2.16.0
 GTK_REQUIRED=2.11.6
 LIBGNOME_DESKTOP_REQUIRED=2.9.91
 LIBGNOME_REQUIRED=2.13.2
@@ -90,6 +91,7 @@ dnl libgnome, libgnomeui needed for all utils
 dnl *****************************************
 
 PKG_CHECK_MODULES(GNOME_UTILS, glib-2.0 >= $GLIB_REQUIRED dnl
+                               gio-2.0 >= $GIO_REQUIRED dnl
                                gtk+-2.0 >= $GTK_REQUIRED dnl
                                libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
                                libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
