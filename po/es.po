@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 15:40+0100\n"
-"PO-Revision-Date: 2008-04-07 19:28+0200\n"
+"POT-Creation-Date: 2008-05-01 20:54+0000\n"
+"PO-Revision-Date: 2008-05-03 13:16+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgid "Scan Home"
 msgstr "Inspeccionar carpeta personal"
 
 #: ../baobab/data/baobab.glade.h:11
-#: ../baobab/src/baobab-remote-connect-dialog.c:651
+#: ../baobab/src/baobab-remote-connect-dialog.c:652
 msgid "Scan Remote Folder"
 msgstr "Inspeccionar carpeta remota"
 
@@ -155,7 +155,7 @@ msgstr "_Editar"
 msgid "_Expand All"
 msgstr "_Expandir todo"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:367
 msgid "_Graphical Usage Map"
 msgstr "Mapa de uso _gráfico"
 
@@ -183,16 +183,16 @@ msgid "_View"
 msgstr "_Ver"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of partitions to be excluded from scanning."
-msgstr "Una lista de particiones para excluir de la inspección."
+msgid "A list of uri for partitions to be excluded from scanning."
+msgstr "Una lista de URI para las particiones que excluir de la inspección."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "Activar monitorización del directorio personal"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions"
-msgstr "Particiones excluidas"
+msgid "Exluded partitions uris"
+msgstr "URI de las particiones excluidas"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
@@ -217,52 +217,52 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr "Indica si la barra de herramientas debe ser visible en la ventana principal."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:326
+#: ../baobab/src/baobab.c:142 ../baobab/src/baobab.c:202
+#: ../baobab/src/callbacks.c:346
 msgid "Calculating percentage bars..."
 msgstr "Calculando barras de porcentajes…"
 
-#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
+#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:209
+#: ../baobab/src/baobab.c:861 ../baobab/src/callbacks.c:350
 msgid "Ready"
 msgstr "Preparado"
 
-#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:270 ../baobab/src/baobab-utils.c:170
 msgid "Scanning..."
 msgstr "Inspeccionando…"
 
-#: ../baobab/src/baobab.c:266
+#: ../baobab/src/baobab.c:305
 msgid "Total filesystem usage:"
 msgstr "Uso total del sistema de archivos:"
 
-#: ../baobab/src/baobab.c:310
+#: ../baobab/src/baobab.c:349
 msgid "contains hardlinks for:"
 msgstr "contiene enlaces duros de:"
 
-#: ../baobab/src/baobab.c:319
+#: ../baobab/src/baobab.c:358
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d elemento"
 msgstr[1] "% 5d elementos"
 
-#: ../baobab/src/baobab.c:384
+#: ../baobab/src/baobab.c:423
 msgid "Invalid UTF-8 characters"
 msgstr "Caracteres UTF-8 inválidos"
 
-#: ../baobab/src/baobab.c:640
-msgid "Could not initialize GNOME VFS monitoring"
-msgstr "No se pudo inicializar la monitorización de GNOME VFS"
+#: ../baobab/src/baobab.c:716
+msgid "Could not initialize monitoring"
+msgstr "No se pudo inicializar la monitorización"
 
-#: ../baobab/src/baobab.c:641
+#: ../baobab/src/baobab.c:717
 msgid "Changes to your home folder will not be monitored."
 msgstr "Los cambios en su carpeta personal no serán monitorizados."
 
-#: ../baobab/src/baobab.c:746
+#: ../baobab/src/baobab.c:830
 msgid "Could not detect any mount point."
 msgstr "No se pudo detectar ningún punto de montaje."
 
-#: ../baobab/src/baobab.c:749
+#: ../baobab/src/baobab.c:833
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "El uso del disco no se puede analizar sin puntos de montaje."
 
@@ -291,114 +291,114 @@ msgstr "No se puede reservar memoria para la ventana gráfica"
 msgid "Graphical Usage Map"
 msgstr "Mapa de uso gráfico"
 
-#: ../baobab/src/baobab-prefs.c:168
+#: ../baobab/src/baobab-prefs.c:172
 msgid "Scan"
 msgstr "Inspeccionar"
 
-#: ../baobab/src/baobab-prefs.c:175
+#: ../baobab/src/baobab-prefs.c:179
 msgid "Device"
 msgstr "Dispositivo"
 
-#: ../baobab/src/baobab-prefs.c:183
+#: ../baobab/src/baobab-prefs.c:187
 msgid "Mount Point"
 msgstr "Punto de montaje"
 
-#: ../baobab/src/baobab-prefs.c:191
+#: ../baobab/src/baobab-prefs.c:195
 msgid "Filesystem Type"
 msgstr "Tipo de sistema de archivos"
 
-#: ../baobab/src/baobab-prefs.c:199
+#: ../baobab/src/baobab-prefs.c:203
 msgid "Total Size"
 msgstr "Tamaño total"
 
-#: ../baobab/src/baobab-prefs.c:208
+#: ../baobab/src/baobab-prefs.c:212
 msgid "Available"
 msgstr "Disponible"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:126
+#: ../baobab/src/baobab-remote-connect-dialog.c:132
 #, c-format
 msgid "\"%s\" is not a valid location"
 msgstr "«%s» no es un lugar válido"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:135
+#: ../baobab/src/baobab-remote-connect-dialog.c:141
 msgid "Please check the spelling and try again."
 msgstr "Por favor compruebe lo que ha escrito e inténtelo de nuevo."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:161
+#: ../baobab/src/baobab-remote-connect-dialog.c:167
 msgid "You must enter a name for the server"
 msgstr "Debe introducir un nombre para el servidor"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:164
+#: ../baobab/src/baobab-remote-connect-dialog.c:170
 msgid "Please enter a name and try again."
 msgstr "Introduzca un nombre e inténtelo de nuevo."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:302
+#: ../baobab/src/baobab-remote-connect-dialog.c:308
 #, c-format
 msgid "%s on %s"
 msgstr "%s en %s"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:402
+#: ../baobab/src/baobab-remote-connect-dialog.c:404
 msgid "_Location (URI):"
 msgstr "_Lugar (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:449
+#: ../baobab/src/baobab-remote-connect-dialog.c:451
 msgid "S_erver:"
 msgstr "_Servidor:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:479
+#: ../baobab/src/baobab-remote-connect-dialog.c:481
 msgid "Optional Information"
 msgstr "Información opcional"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:507
+#: ../baobab/src/baobab-remote-connect-dialog.c:509
 msgid "Sh_are:"
 msgstr "_Compartición:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:528
+#: ../baobab/src/baobab-remote-connect-dialog.c:530
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Puerto:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:548
+#: ../baobab/src/baobab-remote-connect-dialog.c:550
 msgid "_Folder:"
 msgstr "_Carpeta:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:568
+#: ../baobab/src/baobab-remote-connect-dialog.c:570
 msgid "_User name:"
 msgstr "_Usuario:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:589
+#: ../baobab/src/baobab-remote-connect-dialog.c:591
 msgid "_Domain name:"
 msgstr "_Dominio:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:668
+#: ../baobab/src/baobab-remote-connect-dialog.c:669
 msgid "Service _type:"
 msgstr "_Tipo de servicio:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:681
+#: ../baobab/src/baobab-remote-connect-dialog.c:682
 msgid "SSH"
 msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:683
+#: ../baobab/src/baobab-remote-connect-dialog.c:684
 msgid "Public FTP"
 msgstr "FTP público"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:685
+#: ../baobab/src/baobab-remote-connect-dialog.c:686
 msgid "FTP (with login)"
 msgstr "FTP (con entrada)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:687
+#: ../baobab/src/baobab-remote-connect-dialog.c:688
 msgid "Windows share"
 msgstr "Compartición Windows"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:689
+#: ../baobab/src/baobab-remote-connect-dialog.c:690
 msgid "WebDAV (HTTP)"
 msgstr "WebDAV (HTTP)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:691
+#: ../baobab/src/baobab-remote-connect-dialog.c:692
 msgid "Secure WebDAV (HTTPS)"
 msgstr "WebDAV seguro (HTTPS)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:693
+#: ../baobab/src/baobab-remote-connect-dialog.c:694
 msgid "Custom Location"
 msgstr "Lugar personalizado"
 
@@ -406,124 +406,92 @@ msgstr "Lugar personalizado"
 msgid "_Scan"
 msgstr "_Inspeccionar"
 
-#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:236 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Carpeta"
 
-#: ../baobab/src/baobab-treeview.c:255
+#: ../baobab/src/baobab-treeview.c:258
 msgid "Usage"
 msgstr "Uso"
 
-#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:272 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Tamaño"
 
-#: ../baobab/src/baobab-treeview.c:285
+#: ../baobab/src/baobab-treeview.c:288
 msgid "Contents"
 msgstr "Contenido"
 
-#: ../baobab/src/baobab-utils.c:102
+#: ../baobab/src/baobab-utils.c:110
 msgid "Select Folder"
 msgstr "Seleccione la carpeta"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:114
+#: ../baobab/src/baobab-utils.c:122
 msgid "_Show hidden folders"
 msgstr "_Mostrar carpetas ocultas"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:334
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "«%s» no es una carpeta válida"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:337
 msgid "Could not analyze disk usage."
 msgstr "No se pudo analizar el uso del disco."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:364
 msgid "_Open Folder"
 msgstr "_Abrir carpeta"
 
-#: ../baobab/src/baobab-utils.c:380
+#: ../baobab/src/baobab-utils.c:385
 msgid "_Remove from Trash"
 msgstr "_Quitar de la papelera"
 
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:395 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Mo_ver a la papelera"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:427
 msgid "Total filesystem capacity:"
 msgstr "Capacidad total del sistema de archivos:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:428
 msgid "used:"
 msgstr "Usado:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:429
 msgid "available:"
 msgstr "Disponible:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:474
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "No se ha podido abrir la carpeta «%s»"
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:477
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "No hay instalado ningún visor capaz de mostrar la carpeta."
 
-#: ../baobab/src/baobab-utils.c:538
-#, c-format
-msgid "The folder \"%s\" was not moved to the trash."
-msgstr "No se ha movido la carpeta «%s» a la papelera."
-
-#: ../baobab/src/baobab-utils.c:540
-msgid "Could not find a Trash folder on this system"
-msgstr "No se ha podido encontrar una carpeta de papelera en este sistema"
-
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:544
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "No se ha podido mover «%s» a la papelera"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
-msgid "The folder does not exist."
-msgstr "La carpeta no existe."
+#: ../baobab/src/baobab-utils.c:552
+msgid "Could not move file to the Trash"
+msgstr "No se pudo mover el archivo a la papelera"
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:554
 #, c-format
 msgid "Details: %s"
 msgstr "Detalles: %s"
 
-#: ../baobab/src/baobab-utils.c:577
-#, c-format
-msgid "Delete the folder \"%s\" permanently?"
-msgstr "¿Quiere borrar la carpeta «%s» permanentemente?"
-
-#: ../baobab/src/baobab-utils.c:580
-msgid "Could not move the folder to the trash."
-msgstr "No se ha podido mover la carpeta «%s» a la papelera."
-
-#: ../baobab/src/baobab-utils.c:581
-msgid "_Delete Folder"
-msgstr "_Borrar carpeta"
-
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr "Ha fallado el borrado de «%s»: %s."
-
-#: ../baobab/src/baobab-utils.c:595
-#, c-format
-msgid "Could not delete the folder \"%s\""
-msgstr "No se ha podido borrar la carpeta «%s»"
-
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:573
 msgid "Rescan your home folder?"
 msgstr "¿Quiere volver a inspeccionar su carpeta personal?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:574
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -531,11 +499,11 @@ msgstr ""
 "El contenido de su carpeta personal ha cambiado. Seleccione volver a "
 "inspeccionar para actualizar los detalles de uso de disco."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:575
 msgid "_Rescan"
 msgstr "_Volver a inspeccionar"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:610 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Hubo un error al mostrar la ayuda."
 
@@ -563,26 +531,30 @@ msgstr "Nodo raíz de la gráfica de anillos"
 msgid "Set the root node from the model"
 msgstr "Establece el nodo raíz del modelo"
 
-#: ../baobab/src/callbacks.c:99
+#: ../baobab/src/callbacks.c:97
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:100
+#: ../baobab/src/callbacks.c:98
 msgid "A graphical tool to analyze disk usage."
 msgstr "Una herramienta gráfica para analizar el uso del disco."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Jorge González <jorgegonz@svn.gnome.org>\n"
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>"
 
-#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:221 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "El documento no existe."
+
+#: ../baobab/src/callbacks.c:429
+msgid "The folder does not exist."
+msgstr "La carpeta no existe."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -2224,7 +2196,7 @@ msgstr "Capturar con un _retraso de"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:446
-#: ../gnome-screenshot/gnome-screenshot.c:896
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "seconds"
 msgstr "segundos"
 
@@ -2243,14 +2215,14 @@ msgstr "Cap_turar pantalla"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:506
+#: ../gnome-screenshot/gnome-screenshot.c:508
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Pantallazo-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:512
+#: ../gnome-screenshot/gnome-screenshot.c:514
 #: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2259,7 +2231,7 @@ msgstr "Pantallazo.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:552
+#: ../gnome-screenshot/gnome-screenshot.c:554
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Pantallazo-%s-%d.png"
@@ -2267,48 +2239,48 @@ msgstr "Pantallazo-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:560
+#: ../gnome-screenshot/gnome-screenshot.c:562
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Pantallazo-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:736
+#: ../gnome-screenshot/gnome-screenshot.c:738
 msgid "Unable to take a screenshot of the current window"
 msgstr "No se puede tomar una captura de pantalla de la ventana actual"
 
-#: ../gnome-screenshot/gnome-screenshot.c:894
+#: ../gnome-screenshot/gnome-screenshot.c:896
 msgid "Grab a window instead of the entire screen"
 msgstr "Capturar una ventana en vez de la pantalla entera"
 
-#: ../gnome-screenshot/gnome-screenshot.c:895
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "Include the window border with the screenshot"
 msgstr "Incluir el borde de ventana con la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:896
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Capturar la pantalla después del retardo especificado [en segundos]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:897
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efecto para añadir al borde (sombra, borde o ninguno)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:897
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "effect"
 msgstr "efecto"
 
-#: ../gnome-screenshot/gnome-screenshot.c:898
+#: ../gnome-screenshot/gnome-screenshot.c:900
 msgid "Interactively set options"
 msgstr "Establecer las opciones interactivamente"
 
-#: ../gnome-screenshot/gnome-screenshot.c:908
+#: ../gnome-screenshot/gnome-screenshot.c:910
 msgid "Options for Screenshot"
 msgstr "Opciones para la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:909
+#: ../gnome-screenshot/gnome-screenshot.c:911
 msgid "Show Screenshot options"
 msgstr "Mostrar opciones de la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:913
+#: ../gnome-screenshot/gnome-screenshot.c:915
 msgid "Take a picture of the screen"
 msgstr "Capturar imagen de la pantalla"
 
@@ -2818,6 +2790,11 @@ msgstr "No se ha podido borrar «%s»."
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Ha fallado el movimiento de «%s»: %s."
+
+#: ../gsearchtool/gsearchtool-callbacks.c:900
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr "Ha fallado el borrado de «%s»: %s."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
