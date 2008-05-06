@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.17.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-21 20:55+0200\n"
-"PO-Revision-Date: 2008-04-21 20:55+0200\n"
+"POT-Creation-Date: 2008-05-06 17:45+0200\n"
+"PO-Revision-Date: 2008-05-06 17:46+0200\n"
 "Last-Translator: Espen Stefansen <espens@svn.gnome.org>\n"
 "Language-Team: Norwegian/Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,6 @@ msgid "Scan Home"
 msgstr "Søk i hjemmemappe"
 
 #: ../baobab/data/baobab.glade.h:11
-#: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
 msgstr "Søk i ekstern mappe"
 
@@ -147,7 +146,7 @@ msgstr "R_ediger"
 msgid "_Expand All"
 msgstr "_Utvid alle"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:334
 msgid "_Graphical Usage Map"
 msgstr "_Grafisk kart over benyttet plass"
 
@@ -175,16 +174,16 @@ msgid "_View"
 msgstr "_Vis"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of partitions to be excluded from scanning."
-msgstr "En liste med partisjoner som skal ekskluderes fra søket."
+msgid "A list of uri for partitions to be excluded from scanning."
+msgstr "En liste med URIer til partisjoner som skal ekskluderes fra søket."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "Aktiver overvåking av hjemmekatalog"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions"
-msgstr "Ekskluderte partisjoner"
+msgid "Exluded partitions uris"
+msgstr "URI med ekskluderte partisjoner"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
@@ -206,314 +205,273 @@ msgstr "Hvorvidt statuslinjen nederst i hovedvinduet skal være synlig."
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Hvorvidt verktøylinjen skal være synlig i hovedvinduet."
 
-#. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:326
-msgid "Calculating percentage bars..."
-msgstr "Beregner prosentsøylene ..."
-
-#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:780
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
-msgid "Ready"
-msgstr "Klar"
-
-#: ../baobab/src/baobab.c:234 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:108 ../baobab/src/baobab.c:287
 msgid "Scanning..."
 msgstr "Søker ..."
 
-#: ../baobab/src/baobab.c:269
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:171 ../baobab/src/baobab.c:225
+#: ../baobab/src/callbacks.c:314
+msgid "Calculating percentage bars..."
+msgstr "Beregner prosentsøylene ..."
+
+#: ../baobab/src/baobab.c:177 ../baobab/src/baobab.c:232
+#: ../baobab/src/baobab.c:841 ../baobab/src/callbacks.c:318
+msgid "Ready"
+msgstr "Klar"
+
+#: ../baobab/src/baobab.c:322
 msgid "Total filesystem usage:"
 msgstr "Total benyttet plass på filsystemet:"
 
-#: ../baobab/src/baobab.c:313
+#: ../baobab/src/baobab.c:361
 msgid "contains hardlinks for:"
 msgstr "inneholder harde lenker for:"
 
-#: ../baobab/src/baobab.c:322
+#: ../baobab/src/baobab.c:370
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d oppføring"
 msgstr[1] "% 5d oppføringer"
 
-#: ../baobab/src/baobab.c:387
-msgid "Invalid UTF-8 characters"
-msgstr "Ugyldige UTF-8-tegn"
+#: ../baobab/src/baobab.c:693
+msgid "Could not initialize monitoring"
+msgstr "Kunne ikke initiere overvåking"
 
-#: ../baobab/src/baobab.c:643
-msgid "Could not initialize GNOME VFS monitoring"
-msgstr "Kunne ikke initiere GNOME VFS overvåking"
-
-#: ../baobab/src/baobab.c:644
+#: ../baobab/src/baobab.c:694
 msgid "Changes to your home folder will not be monitored."
 msgstr "Endringer i hjemmekatalogen vil ikke overvåkes."
 
-#: ../baobab/src/baobab.c:749
+#: ../baobab/src/baobab.c:810
 msgid "Could not detect any mount point."
 msgstr "Fant ingen monterinspunkter."
 
-#: ../baobab/src/baobab.c:752
+#: ../baobab/src/baobab.c:813
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Diskbruk kan ikke analyseres uten monteringspunkter."
 
-#: ../baobab/src/baobab-graphwin.c:157
+#: ../baobab/src/baobab-graphwin.c:154
 msgid "Cannot create pixbuf image!"
 msgstr "Kan ikke opprette pixbuf-bilde!"
 
-#: ../baobab/src/baobab-graphwin.c:163
+#: ../baobab/src/baobab-graphwin.c:160
 msgid "Save Snapshot"
 msgstr "Lagre snapshot"
 
-#: ../baobab/src/baobab-graphwin.c:186
+#: ../baobab/src/baobab-graphwin.c:183
 msgid "_Image type:"
 msgstr "B_ildetype:"
 
-#: ../baobab/src/baobab-graphwin.c:224 ../baobab/src/baobab-graphwin.c:317
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
 msgid "Unlimited"
 msgstr "Ubegrenset"
 
-#: ../baobab/src/baobab-graphwin.c:279
+#: ../baobab/src/baobab-graphwin.c:276
 msgid "Cannot allocate memory for graphical window!"
 msgstr "Kan ikke allokere minne for grafisk vindu!"
 
 #. Main treemap window
-#: ../baobab/src/baobab-graphwin.c:307
+#: ../baobab/src/baobab-graphwin.c:304
 msgid "Graphical Usage Map"
 msgstr "Grafisk kart over bruk"
 
-#: ../baobab/src/baobab-prefs.c:168
+#: ../baobab/src/baobab-prefs.c:171
 msgid "Scan"
 msgstr "Søk"
 
-#: ../baobab/src/baobab-prefs.c:175
+#: ../baobab/src/baobab-prefs.c:178
 msgid "Device"
 msgstr "Enhet"
 
-#: ../baobab/src/baobab-prefs.c:183
+#: ../baobab/src/baobab-prefs.c:186
 msgid "Mount Point"
 msgstr "Monteringspunkt"
 
-#: ../baobab/src/baobab-prefs.c:191
+#: ../baobab/src/baobab-prefs.c:194
 msgid "Filesystem Type"
 msgstr "Type filsystem"
 
-#: ../baobab/src/baobab-prefs.c:199
+#: ../baobab/src/baobab-prefs.c:202
 msgid "Total Size"
 msgstr "Total størrelse"
 
-#: ../baobab/src/baobab-prefs.c:208
+#: ../baobab/src/baobab-prefs.c:211
 msgid "Available"
 msgstr "Tilgjengelig"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:126
+#: ../baobab/src/baobab-remote-connect-dialog.c:72
 #, c-format
-msgid "\"%s\" is not a valid location"
-msgstr "«%s» er ikke en gyldig lokasjon"
+msgid "Cannot scan location \"%s\""
+msgstr "Kan ikke søke gjennom lokasjon «%s»"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:135
-msgid "Please check the spelling and try again."
-msgstr "Vennligst sjekk stavingen og prøv igjen."
+#: ../baobab/src/baobab-remote-connect-dialog.c:170
+msgid "Custom Location"
+msgstr "Egendefinert lokasjon"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:161
-msgid "You must enter a name for the server"
-msgstr "Du må oppgi et navn for tjeneren"
+#: ../baobab/src/baobab-remote-connect-dialog.c:172
+msgid "SSH"
+msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:164
+#: ../baobab/src/baobab-remote-connect-dialog.c:175
+msgid "Public FTP"
+msgstr "Offentlig FTP"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:177
+msgid "FTP (with login)"
+msgstr "FTP (med innlogging)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:180
+msgid "Windows share"
+msgstr "Delt ressurs"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:182
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:184
+msgid "Secure WebDAV (HTTPS)"
+msgstr "Sikker WebDAV (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:244
+msgid "Cannot Connect to Server. You must enter a name for the server."
+msgstr "Kan ikke koble til tjener. Du må oppgi et navn for tjeneren"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:247
 msgid "Please enter a name and try again."
 msgstr "Vennligst oppgi et nytt navn og prøv igjen."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:302
-#, c-format
-msgid "%s on %s"
-msgstr "%s på %s"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:402
+#: ../baobab/src/baobab-remote-connect-dialog.c:438
 msgid "_Location (URI):"
 msgstr "_Lokasjon (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:449
-msgid "S_erver:"
-msgstr "Tj_ener:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:460
+msgid "_Server:"
+msgstr "_Tjener:"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:479
-msgid "Optional Information"
-msgstr "Valgfri informasjon"
+msgid "Optional information:"
+msgstr "Valgfri informasjon:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:507
-msgid "Sh_are:"
-msgstr "De_lt ressurs:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:491
+msgid "_Share:"
+msgstr "Delt re_ssurs:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:528
+#: ../baobab/src/baobab-remote-connect-dialog.c:512
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Port:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:548
+#: ../baobab/src/baobab-remote-connect-dialog.c:532
 msgid "_Folder:"
 msgstr "_Mappe:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:568
-msgid "_User name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:552
+msgid "_User Name:"
 msgstr "Br_ukernavn:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:589
-msgid "_Domain name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:573
+msgid "_Domain Name:"
 msgstr "_Domenenavn:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:668
+#: ../baobab/src/baobab-remote-connect-dialog.c:640
+msgid "Connect to Server"
+msgstr "Koble til tjener"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:657
 msgid "Service _type:"
 msgstr "_Type tjeneste:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:681
-msgid "SSH"
-msgstr "SSH"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:683
-msgid "Public FTP"
-msgstr "Offentlig FTP"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:685
-msgid "FTP (with login)"
-msgstr "FTP (med innlogging)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:687
-msgid "Windows share"
-msgstr "Delt ressurs"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:689
-msgid "WebDAV (HTTP)"
-msgstr "WebDAV (HTTP)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:691
-msgid "Secure WebDAV (HTTPS)"
-msgstr "Sikker WebDAV (HTTPS)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:693
-msgid "Custom Location"
-msgstr "Egendefinert lokasjon"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:749
+#: ../baobab/src/baobab-remote-connect-dialog.c:776
 msgid "_Scan"
 msgstr "_Søk"
 
-#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:224 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Mappe"
 
-#: ../baobab/src/baobab-treeview.c:255
+#: ../baobab/src/baobab-treeview.c:246
 msgid "Usage"
 msgstr "Bruk"
 
-#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:260 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Størrelse"
 
-#: ../baobab/src/baobab-treeview.c:285
+#: ../baobab/src/baobab-treeview.c:276
 msgid "Contents"
 msgstr "Innhold"
 
-#: ../baobab/src/baobab-utils.c:102
+#: ../baobab/src/baobab-utils.c:110
 msgid "Select Folder"
 msgstr "Velg mappe"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:114
+#: ../baobab/src/baobab-utils.c:122
 msgid "_Show hidden folders"
 msgstr "Vi_s skjulte mapper"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:302
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "«%s» er ikke en gyldig mappe"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:305
 msgid "Could not analyze disk usage."
 msgstr "Kunne ikke analysere diskbruk"
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:331
 msgid "_Open Folder"
 msgstr "_Åpne mappe"
 
-#: ../baobab/src/baobab-utils.c:380
+#: ../baobab/src/baobab-utils.c:352
 msgid "_Remove from Trash"
 msgstr "Fje_rn fra papirkurven"
 
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:362 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Fl_ytt til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:394
 msgid "Total filesystem capacity:"
 msgstr "Total kapasitet for filsystemet:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:395
 msgid "used:"
 msgstr "brukt:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:396
 msgid "available:"
 msgstr "tilgjengelig:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:440
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Kunne ikke åpne mappe «%s»."
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:443
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Du har ikke installert visningsprogram som kan vise mappen."
 
-#: ../baobab/src/baobab-utils.c:538
-#, c-format
-msgid "The folder \"%s\" was not moved to the trash."
-msgstr "Mappen «%s» ble ikke flyttet til papirkurven."
-
-#: ../baobab/src/baobab-utils.c:540
-msgid "Could not find a Trash folder on this system"
-msgstr "Kunne ikke finne en papirkurv på dette systemet"
-
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:512
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Kunne ikke flytte «%s» til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
-msgid "The folder does not exist."
-msgstr "Mappen eksisterer ikke."
+#: ../baobab/src/baobab-utils.c:520
+msgid "Could not move file to the Trash"
+msgstr "Kunne ikke flytte filen til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:522
 #, c-format
 msgid "Details: %s"
 msgstr "Detaljer: %s"
 
-#: ../baobab/src/baobab-utils.c:577
-#, c-format
-msgid "Delete the folder \"%s\" permanently?"
-msgstr "Slett mappen «%s» permanent?"
-
-#: ../baobab/src/baobab-utils.c:580
-msgid "Could not move the folder to the trash."
-msgstr "Kunne ikke flytte mappen til papirkurven."
-
-#: ../baobab/src/baobab-utils.c:581
-msgid "_Delete Folder"
-msgstr "_Slett mappe"
-
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr "Sletting av «%s» feilet: %s."
-
-#: ../baobab/src/baobab-utils.c:595
-#, c-format
-msgid "Could not delete the folder \"%s\""
-msgstr "Kunne ikke slette mappe «%s»"
-
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:541
 msgid "Rescan your home folder?"
 msgstr "Oppdater din hjemmemappe?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:542
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -521,11 +479,11 @@ msgstr ""
 "Innholdet i din hjemmekatalog er endret. Velg oppdater for å oppdatere "
 "detaljene for mappene?"
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:543
 msgid "_Rescan"
 msgstr "Oppdate_r"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:774
+#: ../baobab/src/baobab-utils.c:578 ../logview/logview.c:774
 msgid "There was an error displaying help."
 msgstr "Det oppsto en feil under visning av hjelp."
 
@@ -553,26 +511,34 @@ msgstr "Rotnode for ringdiagram"
 msgid "Set the root node from the model"
 msgstr "Sett rot-node fra modellen"
 
-#: ../baobab/src/callbacks.c:99
+#: ../baobab/src/baobab-mount-operation.c:146
+msgid "Enter Password"
+msgstr "Skriv inn passord"
+
+#: ../baobab/src/callbacks.c:97
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:100
+#: ../baobab/src/callbacks.c:98
 msgid "A graphical tool to analyze disk usage."
 msgstr "Et grafisk verktøy for å analysere diskbruk."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Kjartan Maraas <kmaraas@gnome.org>\n"
 "Espen Stefansen <libbe AT stefansen DOT net>, 2007"
 
-#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Dokumentet eksisterer ikke."
+
+#: ../baobab/src/callbacks.c:390
+msgid "The folder does not exist."
+msgstr "Mappen eksisterer ikke."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -2785,6 +2751,11 @@ msgstr "Kan ikke slette «%s»."
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Flytting av «%s» feilet: %s."
+
+#: ../gsearchtool/gsearchtool-callbacks.c:900
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr "Sletting av «%s» feilet: %s."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
