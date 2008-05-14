@@ -1,17 +1,15 @@
 # Norwegian translation of gnome-utils (bokmål dialect).
 # Copyright (C) 1999-2005 Free Software Foundation, Inc.
-# Kjartan Maraas <kmaraas@gnome.org>, 1999-2006.
+# Kjartan Maraas <kmaraas@gnome.org>, 1999-2008.
 # Terance Edward Sola <terance@lyse.net>, 2005.
-# Kjartan Maraas <kmaraas@gnome.org>, 2007.
-#
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-utils 2.17.x\n"
+"Project-Id-Version: gnome-utils 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-06 17:45+0200\n"
-"PO-Revision-Date: 2008-05-06 17:46+0200\n"
-"Last-Translator: Espen Stefansen <espens@svn.gnome.org>\n"
+"POT-Creation-Date: 2008-05-14 14:32+0200\n"
+"PO-Revision-Date: 2008-05-14 14:34+0200\n"
+"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian/Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,11 +109,11 @@ msgstr "Ta et bilde"
 msgid "Zoom 100%"
 msgstr "Zoom 100%"
 
-#: ../baobab/data/baobab.glade.h:24
+#: ../baobab/data/baobab.glade.h:24 ../baobab/src/baobab.c:756
 msgid "Zoom in"
 msgstr "Zoom inn"
 
-#: ../baobab/data/baobab.glade.h:25
+#: ../baobab/data/baobab.glade.h:25 ../baobab/src/baobab.c:760
 msgid "Zoom out"
 msgstr "Zoom ut"
 
@@ -190,64 +188,77 @@ msgid "Status Bar is Visible"
 msgstr "Statuslinjen er synlig"
 
 #: ../baobab/data/baobab.schemas.in.h:5
+msgid "Subfolders tooltips visible"
+msgstr "Verktøytips for undermapper synlig"
+
+#: ../baobab/data/baobab.schemas.in.h:6
 msgid "Toolbar is Visible"
 msgstr "Verktøylinjen er synlig"
 
-#: ../baobab/data/baobab.schemas.in.h:6
+#: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether any change to the home directory should be monitored."
 msgstr "Om endringer i hjemmekatalogen skal overvåkes."
 
-#: ../baobab/data/baobab.schemas.in.h:7
+#: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "Hvorvidt statuslinjen nederst i hovedvinduet skal være synlig."
 
-#: ../baobab/data/baobab.schemas.in.h:8
+#: ../baobab/data/baobab.schemas.in.h:9
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Hvorvidt verktøylinjen skal være synlig i hovedvinduet."
 
-#: ../baobab/src/baobab.c:108 ../baobab/src/baobab.c:287
+#: ../baobab/data/baobab.schemas.in.h:10
+msgid ""
+"Whether the tooltips of the subfolders the folder we are selecting are drawn."
+msgstr "Om verktøytips for undermapper av mappen vi velger skal vises."
+
+#: ../baobab/src/baobab.c:108 ../baobab/src/baobab.c:285
 msgid "Scanning..."
 msgstr "Søker ..."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:171 ../baobab/src/baobab.c:225
+#: ../baobab/src/baobab.c:171 ../baobab/src/baobab.c:227
 #: ../baobab/src/callbacks.c:314
 msgid "Calculating percentage bars..."
 msgstr "Beregner prosentsøylene ..."
 
-#: ../baobab/src/baobab.c:177 ../baobab/src/baobab.c:232
-#: ../baobab/src/baobab.c:841 ../baobab/src/callbacks.c:318
+#: ../baobab/src/baobab.c:179 ../baobab/src/baobab.c:907
+#: ../baobab/src/callbacks.c:318
 msgid "Ready"
 msgstr "Klar"
 
-#: ../baobab/src/baobab.c:322
+#: ../baobab/src/baobab.c:320
 msgid "Total filesystem usage:"
 msgstr "Total benyttet plass på filsystemet:"
 
-#: ../baobab/src/baobab.c:361
+#: ../baobab/src/baobab.c:359
 msgid "contains hardlinks for:"
 msgstr "inneholder harde lenker for:"
 
-#: ../baobab/src/baobab.c:370
+#: ../baobab/src/baobab.c:368
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d oppføring"
 msgstr[1] "% 5d oppføringer"
 
-#: ../baobab/src/baobab.c:693
+#: ../baobab/src/baobab.c:706
 msgid "Could not initialize monitoring"
 msgstr "Kunne ikke initiere overvåking"
 
-#: ../baobab/src/baobab.c:694
+#: ../baobab/src/baobab.c:707
 msgid "Changes to your home folder will not be monitored."
 msgstr "Endringer i hjemmekatalogen vil ikke overvåkes."
 
-#: ../baobab/src/baobab.c:810
+#: ../baobab/src/baobab.c:752
+msgid "Move to parent folder"
+msgstr "Flytt til opphavsmappe"
+
+#: ../baobab/src/baobab.c:876
 msgid "Could not detect any mount point."
 msgstr "Fant ingen monterinspunkter."
 
-#: ../baobab/src/baobab.c:813
+#: ../baobab/src/baobab.c:879
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Diskbruk kan ikke analyseres uten monteringspunkter."
 
@@ -424,54 +435,50 @@ msgstr "Kunne ikke analysere diskbruk"
 msgid "_Open Folder"
 msgstr "_Åpne mappe"
 
-#: ../baobab/src/baobab-utils.c:352
-msgid "_Remove from Trash"
-msgstr "Fje_rn fra papirkurven"
-
-#: ../baobab/src/baobab-utils.c:362 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:349 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Fl_ytt til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:394
+#: ../baobab/src/baobab-utils.c:378
 msgid "Total filesystem capacity:"
 msgstr "Total kapasitet for filsystemet:"
 
-#: ../baobab/src/baobab-utils.c:395
+#: ../baobab/src/baobab-utils.c:379
 msgid "used:"
 msgstr "brukt:"
 
-#: ../baobab/src/baobab-utils.c:396
+#: ../baobab/src/baobab-utils.c:380
 msgid "available:"
 msgstr "tilgjengelig:"
 
-#: ../baobab/src/baobab-utils.c:440
+#: ../baobab/src/baobab-utils.c:424
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Kunne ikke åpne mappe «%s»."
 
-#: ../baobab/src/baobab-utils.c:443
+#: ../baobab/src/baobab-utils.c:427
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Du har ikke installert visningsprogram som kan vise mappen."
 
-#: ../baobab/src/baobab-utils.c:512
+#: ../baobab/src/baobab-utils.c:496
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Kunne ikke flytte «%s» til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:520
+#: ../baobab/src/baobab-utils.c:504
 msgid "Could not move file to the Trash"
 msgstr "Kunne ikke flytte filen til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:522
+#: ../baobab/src/baobab-utils.c:506
 #, c-format
 msgid "Details: %s"
 msgstr "Detaljer: %s"
 
-#: ../baobab/src/baobab-utils.c:541
+#: ../baobab/src/baobab-utils.c:525
 msgid "Rescan your home folder?"
 msgstr "Oppdater din hjemmemappe?"
 
-#: ../baobab/src/baobab-utils.c:542
+#: ../baobab/src/baobab-utils.c:526
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -479,35 +486,35 @@ msgstr ""
 "Innholdet i din hjemmekatalog er endret. Velg oppdater for å oppdatere "
 "detaljene for mappene?"
 
-#: ../baobab/src/baobab-utils.c:543
+#: ../baobab/src/baobab-utils.c:527
 msgid "_Rescan"
 msgstr "Oppdate_r"
 
-#: ../baobab/src/baobab-utils.c:578 ../logview/logview.c:774
+#: ../baobab/src/baobab-utils.c:562 ../logview/logview.c:774
 msgid "There was an error displaying help."
 msgstr "Det oppsto en feil under visning av hjelp."
 
-#: ../baobab/src/baobab-ringschart.c:237
+#: ../baobab/src/baobab-ringschart.c:277
 msgid "Maximum depth"
 msgstr "Maksimal dybde"
 
-#: ../baobab/src/baobab-ringschart.c:238
+#: ../baobab/src/baobab-ringschart.c:278
 msgid "The maximum depth drawn in the rings chart from the root"
 msgstr "Maksimal dybde som tegnes i ringdiagrammet fra roten"
 
-#: ../baobab/src/baobab-ringschart.c:247
+#: ../baobab/src/baobab-ringschart.c:287
 msgid "Rings chart model"
 msgstr "Ringdiagram modell"
 
-#: ../baobab/src/baobab-ringschart.c:248
+#: ../baobab/src/baobab-ringschart.c:288
 msgid "Set the model of the rings chart"
 msgstr "Sett modell for ringdiagram"
 
-#: ../baobab/src/baobab-ringschart.c:255
+#: ../baobab/src/baobab-ringschart.c:295
 msgid "Rings chart root node"
 msgstr "Rotnode for ringdiagram"
 
-#: ../baobab/src/baobab-ringschart.c:256
+#: ../baobab/src/baobab-ringschart.c:296
 msgid "Set the root node from the model"
 msgstr "Sett rot-node fra modellen"
 
