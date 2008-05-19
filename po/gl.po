@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-29 13:48+0200\n"
-"PO-Revision-Date: 2008-04-29 13:48+0200\n"
+"POT-Creation-Date: 2008-05-19 22:42+0200\n"
+"PO-Revision-Date: 2008-05-19 22:46+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,6 @@ msgid "Scan Home"
 msgstr "Analizar o cartafol persoal"
 
 #: ../baobab/data/baobab.glade.h:11
-#: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
 msgstr "Analizar cartafol remoto"
 
@@ -125,11 +124,11 @@ msgstr "Tomar unha foto instantánea"
 msgid "Zoom 100%"
 msgstr "Ampliar ao 100%"
 
-#: ../baobab/data/baobab.glade.h:24
+#: ../baobab/data/baobab.glade.h:24 ../baobab/src/baobab.c:756
 msgid "Zoom in"
 msgstr "Ampliar"
 
-#: ../baobab/data/baobab.glade.h:25
+#: ../baobab/data/baobab.glade.h:25 ../baobab/src/baobab.c:760
 msgid "Zoom out"
 msgstr "Reducir"
 
@@ -160,7 +159,7 @@ msgstr "_Editar"
 msgid "_Expand All"
 msgstr "_Expandir todo"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:334
 msgid "_Graphical Usage Map"
 msgstr "Mapa de uso _gráfico"
 
@@ -188,349 +187,319 @@ msgid "_View"
 msgstr "_Ver"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of partitions to be excluded from scanning."
-msgstr "Unha lista de particións para excluír do exame."
+msgid "A list of uri for partitions to be excluded from scanning."
+msgstr "Unha lista de uris para particións a excluír do exame."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "Activar a monitorización do directorio persoal"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions"
-msgstr "Particións excluídas"
+msgid "Exluded partitions uris"
+msgstr "Particións de uris excluídas"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
 msgstr "A barra de estado é visible"
 
 #: ../baobab/data/baobab.schemas.in.h:5
+msgid "Subfolders tooltips visible"
+msgstr "Consellos dos subcartafoles visibles"
+
+#: ../baobab/data/baobab.schemas.in.h:6
 msgid "Toolbar is Visible"
 msgstr "A barra de ferramentas é visible"
 
-#: ../baobab/data/baobab.schemas.in.h:6
+#: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether any change to the home directory should be monitored."
 msgstr ""
 "Indica se calquera modificación no directorio persoal se debe monitorizar."
 
-#: ../baobab/data/baobab.schemas.in.h:7
+#: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr ""
 "Indica se a barra de estado na parte inferior da ventá principal debería ser "
 "visible."
 
-#: ../baobab/data/baobab.schemas.in.h:8
+#: ../baobab/data/baobab.schemas.in.h:9
+msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgstr ""
+"Indica se se debuxarán os consellos dos subcartafoles do cartafol "
+"seleccionado"
+
+#: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr ""
 "Indica se a barra de ferramentas debería ser visible na ventá principal."
 
-#. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:326
-msgid "Calculating percentage bars..."
-msgstr "Calculando as barras de porcentaxe..."
-
-#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:780
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
-msgid "Ready"
-msgstr "Listo"
-
-#: ../baobab/src/baobab.c:234 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:108 ../baobab/src/baobab.c:285
 msgid "Scanning..."
 msgstr "Analizando..."
 
-#: ../baobab/src/baobab.c:269
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:171 ../baobab/src/baobab.c:227
+#: ../baobab/src/callbacks.c:314
+msgid "Calculating percentage bars..."
+msgstr "Calculando as barras de porcentaxe..."
+
+#: ../baobab/src/baobab.c:179 ../baobab/src/baobab.c:907
+#: ../baobab/src/callbacks.c:318
+msgid "Ready"
+msgstr "Listo"
+
+#: ../baobab/src/baobab.c:320
 msgid "Total filesystem usage:"
 msgstr "Uso total do sistema de ficheiros:"
 
-#: ../baobab/src/baobab.c:313
+#: ../baobab/src/baobab.c:359
 msgid "contains hardlinks for:"
 msgstr "contén ligazóns duras para:"
 
-#: ../baobab/src/baobab.c:322
+#: ../baobab/src/baobab.c:368
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d elemento"
 msgstr[1] "% 5d elementos"
 
-#: ../baobab/src/baobab.c:387
-msgid "Invalid UTF-8 characters"
-msgstr "Caracteres UTF-8 non válidos"
+#: ../baobab/src/baobab.c:706
+msgid "Could not initialize monitoring"
+msgstr "Non se puido iniciar a monitorización"
 
-#: ../baobab/src/baobab.c:643
-msgid "Could not initialize GNOME VFS monitoring"
-msgstr "Non se puido iniciar a monitorización de GNOME VFS"
-
-#: ../baobab/src/baobab.c:644
+#: ../baobab/src/baobab.c:707
 msgid "Changes to your home folder will not be monitored."
 msgstr "Non se monitorizarán os cambios no seu cartafol persoal."
 
-#: ../baobab/src/baobab.c:749
+#: ../baobab/src/baobab.c:752
+msgid "Move to parent folder"
+msgstr "Mover ao cartafol pai"
+
+#: ../baobab/src/baobab.c:876
 msgid "Could not detect any mount point."
 msgstr "Non se puido detectar ningún punto de montaxe."
 
-#: ../baobab/src/baobab.c:752
+#: ../baobab/src/baobab.c:879
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Sen puntos de montaxe, non se pode analizar o uso do disco."
 
-#: ../baobab/src/baobab-graphwin.c:157
+#: ../baobab/src/baobab-graphwin.c:154
 msgid "Cannot create pixbuf image!"
 msgstr "Non se pode crear a imaxe pixbuf!"
 
-#: ../baobab/src/baobab-graphwin.c:163
+#: ../baobab/src/baobab-graphwin.c:160
 msgid "Save Snapshot"
 msgstr "Gardar a foto instantánea"
 
-#: ../baobab/src/baobab-graphwin.c:186
+#: ../baobab/src/baobab-graphwin.c:183
 msgid "_Image type:"
 msgstr "Tipo de _imaxe:"
 
-#: ../baobab/src/baobab-graphwin.c:224 ../baobab/src/baobab-graphwin.c:317
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
 msgid "Unlimited"
 msgstr "Sen límite"
 
-#: ../baobab/src/baobab-graphwin.c:279
+#: ../baobab/src/baobab-graphwin.c:276
 msgid "Cannot allocate memory for graphical window!"
 msgstr "Non se pode asignar memoria para a ventá gráfica!"
 
 #. Main treemap window
-#: ../baobab/src/baobab-graphwin.c:307
+#: ../baobab/src/baobab-graphwin.c:304
 msgid "Graphical Usage Map"
 msgstr "Mapa gráfico de uso"
 
-#: ../baobab/src/baobab-prefs.c:168
+#: ../baobab/src/baobab-prefs.c:171
 msgid "Scan"
 msgstr "Análise"
 
-#: ../baobab/src/baobab-prefs.c:175
+#: ../baobab/src/baobab-prefs.c:178
 msgid "Device"
 msgstr "Dispositivo"
 
-#: ../baobab/src/baobab-prefs.c:183
+#: ../baobab/src/baobab-prefs.c:186
 msgid "Mount Point"
 msgstr "Punto de montaxe"
 
-#: ../baobab/src/baobab-prefs.c:191
+#: ../baobab/src/baobab-prefs.c:194
 msgid "Filesystem Type"
 msgstr "Tipo de sistema de ficheiros"
 
-#: ../baobab/src/baobab-prefs.c:199
+#: ../baobab/src/baobab-prefs.c:202
 msgid "Total Size"
 msgstr "Tamaño total"
 
-#: ../baobab/src/baobab-prefs.c:208
+#: ../baobab/src/baobab-prefs.c:211
 msgid "Available"
 msgstr "Dispoñible"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:126
+#: ../baobab/src/baobab-remote-connect-dialog.c:72
 #, c-format
-msgid "\"%s\" is not a valid location"
-msgstr "\"%s\" non é unha localización válida"
+msgid "Cannot scan location \"%s\""
+msgstr "Non se pode analizar a localización \"%s\""
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:135
-msgid "Please check the spelling and try again."
-msgstr "Verifique a ortografía e ténteo de novo."
+#: ../baobab/src/baobab-remote-connect-dialog.c:170
+msgid "Custom Location"
+msgstr "Localización personalizada"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:161
-msgid "You must enter a name for the server"
-msgstr "Debe introducir un nome para o servidor"
+#: ../baobab/src/baobab-remote-connect-dialog.c:172
+msgid "SSH"
+msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:164
+#: ../baobab/src/baobab-remote-connect-dialog.c:175
+msgid "Public FTP"
+msgstr "FTP público"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:177
+msgid "FTP (with login)"
+msgstr "FTP (con rexistro)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:180
+msgid "Windows share"
+msgstr "Ficheiros compartidos con Windows"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:182
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:184
+msgid "Secure WebDAV (HTTPS)"
+msgstr "WebDAV seguro (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:244
+msgid "Cannot Connect to Server. You must enter a name for the server."
+msgstr ""
+"Non se pode conectar co servidor. Debe introducir un nome para o servidor."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:247
 msgid "Please enter a name and try again."
 msgstr "Introduza o nome e ténteo de novo."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:302
-#, c-format
-msgid "%s on %s"
-msgstr "%s en %s"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:402
+#: ../baobab/src/baobab-remote-connect-dialog.c:438
 msgid "_Location (URI):"
 msgstr "_Localización (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:449
-msgid "S_erver:"
-msgstr "S_ervidor:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:460
+msgid "_Server:"
+msgstr "_Servidor:"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:479
-msgid "Optional Information"
-msgstr "Información opcional"
+msgid "Optional information:"
+msgstr "Información opcional:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:507
-msgid "Sh_are:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:491
+msgid "_Share:"
 msgstr "Comp_artir:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:528
+#: ../baobab/src/baobab-remote-connect-dialog.c:512
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Porto:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:548
+#: ../baobab/src/baobab-remote-connect-dialog.c:532
 msgid "_Folder:"
 msgstr "Carta_fol:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:568
-msgid "_User name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:552
+msgid "_User Name:"
 msgstr "Nome de _usuario:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:589
-msgid "_Domain name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:573
+msgid "_Domain Name:"
 msgstr "Nome de _dominio:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:668
+#: ../baobab/src/baobab-remote-connect-dialog.c:640
+msgid "Connect to Server"
+msgstr "Conectar co servidor"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:657
 msgid "Service _type:"
 msgstr "_Tipo de servizo:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:681
-msgid "SSH"
-msgstr "SSH"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:683
-msgid "Public FTP"
-msgstr "FTP público"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:685
-msgid "FTP (with login)"
-msgstr "FTP (con rexistro)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:687
-msgid "Windows share"
-msgstr "Ficheiros compartidos con Windows"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:689
-msgid "WebDAV (HTTP)"
-msgstr "WebDAV (HTTP)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:691
-msgid "Secure WebDAV (HTTPS)"
-msgstr "WebDAV seguro (HTTPS)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:693
-msgid "Custom Location"
-msgstr "Localización personalizada"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:749
+#: ../baobab/src/baobab-remote-connect-dialog.c:776
 msgid "_Scan"
 msgstr "A_nalizar"
 
-#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:224 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Cartafol"
 
-#: ../baobab/src/baobab-treeview.c:255
+#: ../baobab/src/baobab-treeview.c:246
 msgid "Usage"
 msgstr "Uso"
 
-#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:260 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Tamaño"
 
-#: ../baobab/src/baobab-treeview.c:285
+#: ../baobab/src/baobab-treeview.c:276
 msgid "Contents"
 msgstr "Contidos"
 
-#: ../baobab/src/baobab-utils.c:102
+#: ../baobab/src/baobab-utils.c:110
 msgid "Select Folder"
 msgstr "Seleccionar cartafol"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:114
+#: ../baobab/src/baobab-utils.c:122
 msgid "_Show hidden folders"
 msgstr "Mo_strar os cartafoles ocultos"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:302
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" non é un cartafol válido"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:305
 msgid "Could not analyze disk usage."
 msgstr "Non se puido analizar o uso do disco."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:331
 msgid "_Open Folder"
 msgstr "_Abrir cartafol"
 
-#: ../baobab/src/baobab-utils.c:380
-msgid "_Remove from Trash"
-msgstr "Elimina_r do lixo"
-
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:349 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Mov_er ao lixo"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:378
 msgid "Total filesystem capacity:"
 msgstr "Capacidade total do sistema de ficheiros:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:379
 msgid "used:"
 msgstr "usado:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:380
 msgid "available:"
 msgstr "dispoñible:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:424
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Non se puido abrir o cartafol \"%s\""
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:427
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Non hai instalado un visualizador capaz de mostrar o cartafol."
 
-#: ../baobab/src/baobab-utils.c:538
-#, c-format
-msgid "The folder \"%s\" was not moved to the trash."
-msgstr "O cartafol \"%s\" non se moveu ao lixo."
-
-#: ../baobab/src/baobab-utils.c:540
-msgid "Could not find a Trash folder on this system"
-msgstr "Non se puido localizar un cartafol de lixo neste sistema"
-
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:496
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Non se puido mover \"%s\" ao lixo"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
-msgid "The folder does not exist."
-msgstr "O cartafol non existe."
+#: ../baobab/src/baobab-utils.c:504
+msgid "Could not move file to the Trash"
+msgstr "Non se puido mover ficheiro ao lixo"
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:506
 #, c-format
 msgid "Details: %s"
 msgstr "Detalles: %s"
 
-#: ../baobab/src/baobab-utils.c:577
-#, c-format
-msgid "Delete the folder \"%s\" permanently?"
-msgstr "Quere eliminar o cartafol \"%s\" permanentemente?"
-
-#: ../baobab/src/baobab-utils.c:580
-msgid "Could not move the folder to the trash."
-msgstr "Non se puido mover o cartafol ao lixo."
-
-#: ../baobab/src/baobab-utils.c:581
-msgid "_Delete Folder"
-msgstr "E_liminar cartafol"
-
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr "Fallou ao eliminar \"%s\": %s."
-
-#: ../baobab/src/baobab-utils.c:595
-#, c-format
-msgid "Could not delete the folder \"%s\""
-msgstr "Non se puido eliminar o cartafol \"%s\""
-
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:525
 msgid "Rescan your home folder?"
 msgstr "Quere analizar de novo o seu cartafol persoal?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:526
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -538,58 +507,66 @@ msgstr ""
 "O contido do seu directorio persoal cambiou. Seleccione \"analizar de novo\" "
 "para actualizar os detalles de uso do disco."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:527
 msgid "_Rescan"
 msgstr "Analiza_r de novo"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:562 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Houbo un erro ao mostrar a axuda."
 
-#: ../baobab/src/baobab-ringschart.c:237
+#: ../baobab/src/baobab-ringschart.c:277
 msgid "Maximum depth"
 msgstr "Profundidade máxima"
 
-#: ../baobab/src/baobab-ringschart.c:238
+#: ../baobab/src/baobab-ringschart.c:278
 msgid "The maximum depth drawn in the rings chart from the root"
 msgstr "A profundidade máxima que se debuxa na gráfica de aneis desde a raíz"
 
-#: ../baobab/src/baobab-ringschart.c:247
+#: ../baobab/src/baobab-ringschart.c:287
 msgid "Rings chart model"
 msgstr "Modelo de gráfica de aneis"
 
-#: ../baobab/src/baobab-ringschart.c:248
+#: ../baobab/src/baobab-ringschart.c:288
 msgid "Set the model of the rings chart"
 msgstr "Definir o modelo de gráfica de aneis"
 
-#: ../baobab/src/baobab-ringschart.c:255
+#: ../baobab/src/baobab-ringschart.c:295
 msgid "Rings chart root node"
 msgstr "Nodo raíz da gráfica de aneis"
 
-#: ../baobab/src/baobab-ringschart.c:256
+#: ../baobab/src/baobab-ringschart.c:296
 msgid "Set the root node from the model"
 msgstr "Definir o nodo raíz do modelo"
 
-#: ../baobab/src/callbacks.c:99
+#: ../baobab/src/baobab-mount-operation.c:146
+msgid "Enter Password"
+msgstr "Introducir contrasinal"
+
+#: ../baobab/src/callbacks.c:97
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:100
+#: ../baobab/src/callbacks.c:98
 msgid "A graphical tool to analyze disk usage."
 msgstr "Unha ferramenta gráfica para analizar o uso do disco."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
 "Ignacio Casal Quinteiro <nacho.resa@gmail.com>\n"
 "Proxecto Trasno"
 
-#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "O documento non existe."
+
+#: ../baobab/src/callbacks.c:390
+msgid "The folder does not exist."
+msgstr "O cartafol non existe."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -2833,6 +2810,11 @@ msgstr "Non se puido eliminar \"%s\"."
 msgid "Moving \"%s\" failed: %s."
 msgstr "Fallou ao mover \"%s\": %s."
 
+#: ../gsearchtool/gsearchtool-callbacks.c:900
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr "Fallou ao eliminar \"%s\": %s."
+
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
 msgstr "Gardar os resultados da busca como..."
@@ -3707,3 +3689,36 @@ msgstr ""
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Erro do Gnome-VFS.\n"
+
+#~ msgid "Invalid UTF-8 characters"
+#~ msgstr "Caracteres UTF-8 non válidos"
+
+#~ msgid "\"%s\" is not a valid location"
+#~ msgstr "\"%s\" non é unha localización válida"
+
+#~ msgid "Please check the spelling and try again."
+#~ msgstr "Verifique a ortografía e ténteo de novo."
+
+#~ msgid "%s on %s"
+#~ msgstr "%s en %s"
+
+#~ msgid "_Remove from Trash"
+#~ msgstr "Elimina_r do lixo"
+
+#~ msgid "The folder \"%s\" was not moved to the trash."
+#~ msgstr "O cartafol \"%s\" non se moveu ao lixo."
+
+#~ msgid "Could not find a Trash folder on this system"
+#~ msgstr "Non se puido localizar un cartafol de lixo neste sistema"
+
+#~ msgid "Delete the folder \"%s\" permanently?"
+#~ msgstr "Quere eliminar o cartafol \"%s\" permanentemente?"
+
+#~ msgid "Could not move the folder to the trash."
+#~ msgstr "Non se puido mover o cartafol ao lixo."
+
+#~ msgid "_Delete Folder"
+#~ msgstr "E_liminar cartafol"
+
+#~ msgid "Could not delete the folder \"%s\""
+#~ msgstr "Non se puido eliminar o cartafol \"%s\""
