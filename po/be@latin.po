@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-01 23:51+0300\n"
+"POT-Creation-Date: 2008-05-23 01:42+0300\n"
 "PO-Revision-Date: 2007-10-01 23:55+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <be-latin.open-tran.eu>\n"
@@ -63,7 +63,6 @@ msgid "Scan Home"
 msgstr "Skanuj chatni kataloh"
 
 #: ../baobab/data/baobab.glade.h:11
-#: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
 msgstr "Skanuj addaleny kataloh"
 
@@ -112,11 +111,11 @@ msgstr "Zrabi adbitak"
 msgid "Zoom 100%"
 msgstr "Maštab 100%"
 
-#: ../baobab/data/baobab.glade.h:24
+#: ../baobab/data/baobab.glade.h:24 ../baobab/src/baobab.c:756
 msgid "Zoom in"
 msgstr "Pavialič"
 
-#: ../baobab/data/baobab.glade.h:25
+#: ../baobab/data/baobab.glade.h:25 ../baobab/src/baobab.c:760
 msgid "Zoom out"
 msgstr "Pamienš"
 
@@ -147,7 +146,7 @@ msgstr "_Redahuj"
 msgid "_Expand All"
 msgstr "_Razharni ŭsio"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:334
 msgid "_Graphical Usage Map"
 msgstr "_Hrafičnaja mapa zaniataści"
 
@@ -175,61 +174,69 @@ msgid "_View"
 msgstr "_Vyhlad"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of partitions to be excluded from scanning."
-msgstr "Śpis partycyj, kab vyklučyć sa skanavańnia."
+msgid "A list of uri for partitions to be excluded from scanning."
+msgstr "Śpis adrasoŭ partycyjaŭ, jakija nia treba skanavać."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "Uklučy nazirańnie za chatnim kataloham"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions"
-msgstr "Vyklučanyja partycyi"
+msgid "Exluded partitions uris"
+msgstr "Adrasy vyklučanych partycyjaŭ"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
 msgstr "Panel statusu bačnaja"
 
 #: ../baobab/data/baobab.schemas.in.h:5
+msgid "Subfolders tooltips visible"
+msgstr "Padkazki dla padkatalohaŭ bačnyja"
+
+#: ../baobab/data/baobab.schemas.in.h:6
 msgid "Toolbar is Visible"
 msgstr "Panel pryładździa bačnaja"
 
-#: ../baobab/data/baobab.schemas.in.h:6
+#: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether any change to the home directory should be monitored."
 msgstr "Ci nazirać za kožnaj źmienaj u chatnim katalohu."
 
-#: ../baobab/data/baobab.schemas.in.h:7
+#: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "Ci pavinna być bačnaj panel statusu ŭnizie hałoŭnaha vakna."
 
-#: ../baobab/data/baobab.schemas.in.h:8
+#: ../baobab/data/baobab.schemas.in.h:9
+msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgstr "Ci pisać padkazki dla padkatalohaŭ z zaznačanaha katalohu."
+
+#: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Ci pavinna być bačnaj panel pryładździa ŭ hałoŭnym aknie."
 
-#. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:326
-msgid "Calculating percentage bars..."
-msgstr "Padličeńnie pracentnych pałos..."
-
-#: ../baobab/src/baobab.c:148 ../baobab/src/baobab.c:766
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
-msgid "Ready"
-msgstr "Hatovy"
-
-#: ../baobab/src/baobab.c:230 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:108 ../baobab/src/baobab.c:285
 msgid "Scanning..."
 msgstr "Skanavańnie..."
 
-#: ../baobab/src/baobab.c:265
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:171 ../baobab/src/baobab.c:227
+#: ../baobab/src/callbacks.c:314
+msgid "Calculating percentage bars..."
+msgstr "Padličeńnie pracentnych pałos..."
+
+#: ../baobab/src/baobab.c:179 ../baobab/src/baobab.c:907
+#: ../baobab/src/callbacks.c:318
+msgid "Ready"
+msgstr "Hatovy"
+
+#: ../baobab/src/baobab.c:320
 msgid "Total filesystem usage:"
 msgstr "Ahulnaja zaniataść fajłavaj systemy:"
 
-#: ../baobab/src/baobab.c:309
+#: ../baobab/src/baobab.c:359
 msgid "contains hardlinks for:"
 msgstr "źmiaščaje mocnyja poviazi da:"
 
-#: ../baobab/src/baobab.c:318
+#: ../baobab/src/baobab.c:368
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
@@ -237,276 +244,243 @@ msgstr[0] "% 5d element"
 msgstr[1] "% 5d elementy"
 msgstr[2] "% 5d elementaŭ"
 
-#: ../baobab/src/baobab.c:383
-msgid "Invalid UTF-8 characters"
-msgstr "Niapravilnyja znaki UTF-8"
+#: ../baobab/src/baobab.c:706
+msgid "Could not initialize monitoring"
+msgstr "Nie ŭdałosia inicyjalizavać nazirańnie"
 
-#: ../baobab/src/baobab.c:639
-msgid "Could not initialize GNOME VFS monitoring"
-msgstr "Niemahčyma inicyjalizavać nazirańnie GNOME VFS"
-
-#: ../baobab/src/baobab.c:640
+#: ../baobab/src/baobab.c:707
 msgid "Changes to your home folder will not be monitored."
 msgstr "Źmieny ŭ tvaim chatnim katalohu nia buduć naziranyja."
 
-#: ../baobab/src/baobab-graphwin.c:157
+#: ../baobab/src/baobab.c:752
+msgid "Move to parent folder"
+msgstr "Pierajdzi da baćkoŭskaha katalohu"
+
+#: ../baobab/src/baobab.c:876
+msgid "Could not detect any mount point."
+msgstr "Nie ŭdałosia vyznačyć punkty mantavańnia."
+
+#: ../baobab/src/baobab.c:879
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Biaz punktaŭ mantavańnia niemahčyma analizavać užyćcio pamiaci."
+
+#: ../baobab/src/baobab-graphwin.c:154
 msgid "Cannot create pixbuf image!"
 msgstr "Niemahčyma stvaryć vyjavu pikselnaha buferu!"
 
-#: ../baobab/src/baobab-graphwin.c:163
+#: ../baobab/src/baobab-graphwin.c:160
 msgid "Save Snapshot"
 msgstr "Zapišy adbitak"
 
-#: ../baobab/src/baobab-graphwin.c:186
+#: ../baobab/src/baobab-graphwin.c:183
 msgid "_Image type:"
 msgstr "_Typ vyjavy:"
 
-#: ../baobab/src/baobab-graphwin.c:224 ../baobab/src/baobab-graphwin.c:317
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
 msgid "Unlimited"
 msgstr "Nieabmiežavany"
 
-#: ../baobab/src/baobab-graphwin.c:279
+#: ../baobab/src/baobab-graphwin.c:276
 msgid "Cannot allocate memory for graphical window!"
 msgstr "Niemahčyma raźmierkavać pamiać dla hrafičnaha vakna!"
 
 #. Main treemap window
-#: ../baobab/src/baobab-graphwin.c:307
+#: ../baobab/src/baobab-graphwin.c:304
 msgid "Graphical Usage Map"
 msgstr "Hrafičnaja mapa zaniataści"
 
-#: ../baobab/src/baobab-prefs.c:168
+#: ../baobab/src/baobab-prefs.c:171
 msgid "Scan"
 msgstr "Skanuj"
 
-#: ../baobab/src/baobab-prefs.c:175
+#: ../baobab/src/baobab-prefs.c:178
 msgid "Device"
 msgstr "Pryłada"
 
-#: ../baobab/src/baobab-prefs.c:183
+#: ../baobab/src/baobab-prefs.c:186
 msgid "Mount Point"
 msgstr "Punkt mantavańnia"
 
-#: ../baobab/src/baobab-prefs.c:191
+#: ../baobab/src/baobab-prefs.c:194
 msgid "Filesystem Type"
 msgstr "Typ fajłavaj systemy"
 
-#: ../baobab/src/baobab-prefs.c:199
+#: ../baobab/src/baobab-prefs.c:202
 msgid "Total Size"
 msgstr "Ahulny pamier"
 
-#: ../baobab/src/baobab-prefs.c:208
+#: ../baobab/src/baobab-prefs.c:211
 msgid "Available"
 msgstr "Dastupny"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:126
+#: ../baobab/src/baobab-remote-connect-dialog.c:72
 #, c-format
-msgid "\"%s\" is not a valid location"
-msgstr "\"%s\" nie źjaŭlajecca pravilnym pałažeńniem"
+msgid "Cannot scan location \"%s\""
+msgstr "Nie ŭdałosia praskanavać pałažeńnie \"%s\""
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:135
-msgid "Please check the spelling and try again."
-msgstr "Pravier pravapis i pasprabuj znoŭ."
+#: ../baobab/src/baobab-remote-connect-dialog.c:170
+msgid "Custom Location"
+msgstr "Asablivaje pałažeńnie"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:161
-msgid "You must enter a name for the server"
-msgstr "Treba akreślić nazvu dla servera"
+#: ../baobab/src/baobab-remote-connect-dialog.c:172
+msgid "SSH"
+msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:164
+#: ../baobab/src/baobab-remote-connect-dialog.c:175
+msgid "Public FTP"
+msgstr "Publičny FTP"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:177
+msgid "FTP (with login)"
+msgstr "FTP (z aŭtaryzacyjaj)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:180
+msgid "Windows share"
+msgstr "Resurs Windows"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:182
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:184
+msgid "Secure WebDAV (HTTPS)"
+msgstr "Biaśpiečny WebDAV (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:244
+msgid "Cannot Connect to Server. You must enter a name for the server."
+msgstr "Nie ŭdałosia spałučycca z serveram. Treba akreślić nazvu servera."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:247
 msgid "Please enter a name and try again."
-msgstr "Akreśl nazvu i pasprabuj znoŭ."
+msgstr "Akreśli nazvu i pasprabuj znoŭ."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:302
-#, c-format
-msgid "%s on %s"
-msgstr "%s na %s"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:402
+#: ../baobab/src/baobab-remote-connect-dialog.c:438
 msgid "_Location (URI):"
 msgstr "_Pałažeńnie (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:449
-msgid "S_erver:"
-msgstr "S_erver:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:460
+msgid "_Server:"
+msgstr "_Server:"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:479
-msgid "Optional Information"
-msgstr "Dadatkovaja infarmacyja"
+msgid "Optional information:"
+msgstr "Dadatkovaja infarmacyja:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:507
-msgid "Sh_are:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:491
+msgid "_Share:"
 msgstr "_Resurs:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:528
+#: ../baobab/src/baobab-remote-connect-dialog.c:512
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Port:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:548
+#: ../baobab/src/baobab-remote-connect-dialog.c:532
 msgid "_Folder:"
 msgstr "_Kataloh:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:568
-msgid "_User name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:552
+msgid "_User Name:"
 msgstr "Nazva _karystalnika:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:589
-msgid "_Domain name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:573
+msgid "_Domain Name:"
 msgstr "Nazva _damenu:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:668
+#: ../baobab/src/baobab-remote-connect-dialog.c:640
+msgid "Connect to Server"
+msgstr "Spałučy z serveram"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:657
 msgid "Service _type:"
 msgstr "_Typ pasłuhi:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:681
-msgid "SSH"
-msgstr "SSH"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:683
-msgid "Public FTP"
-msgstr "Publičny FTP"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:685
-msgid "FTP (with login)"
-msgstr "FTP (z aŭtaryzacyjaj)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:687
-msgid "Windows share"
-msgstr "Resurs Windows"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:689
-msgid "WebDAV (HTTP)"
-msgstr "WebDAV (HTTP)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:691
-msgid "Secure WebDAV (HTTPS)"
-msgstr "Biaśpiečny WebDAV (HTTPS)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:693
-msgid "Custom Location"
-msgstr "Asablivaje pałažeńnie"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:749
+#: ../baobab/src/baobab-remote-connect-dialog.c:776
 msgid "_Scan"
 msgstr "_Skanuj"
 
-#: ../baobab/src/baobab-treeview.c:231 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:224 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Kataloh"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:246
 msgid "Usage"
 msgstr "Zaniataść"
 
-#: ../baobab/src/baobab-treeview.c:267 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:260 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Pamier"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:276
 msgid "Contents"
 msgstr "Źmieściva"
 
-#: ../baobab/src/baobab-utils.c:102
+#: ../baobab/src/baobab-utils.c:110
 msgid "Select Folder"
 msgstr "Abiary kataloh"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:114
+#: ../baobab/src/baobab-utils.c:122
 msgid "_Show hidden folders"
 msgstr "_Pakazvaj schavanyja katalohi"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:302
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" nie źjaŭlajecca sapraŭdnym kataloham"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:305
 msgid "Could not analyze disk usage."
 msgstr "Niemahčyma analizavać zaniataść dysku."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:331
 msgid "_Open Folder"
 msgstr "_Adčyni kataloh"
 
-#: ../baobab/src/baobab-utils.c:380
-msgid "_Remove from Trash"
-msgstr "_Vydal sa śmietnicy"
-
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:349 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Piera_niasi ŭ śmietnicu"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:378
 msgid "Total filesystem capacity:"
 msgstr "Ahulnaja jomistaść fajłavaj systemy:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:379
 msgid "used:"
 msgstr "zaniata:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:380
 msgid "available:"
 msgstr "volna:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:424
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Niemahčyma adčynić kataloh \"%s\""
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:427
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Niama zainstalavanaha prahladalnika, zdolnaha pakazać kataloh."
 
-#: ../baobab/src/baobab-utils.c:538
-#, c-format
-msgid "The folder \"%s\" was not moved to the trash."
-msgstr "Kataloh \"%s\" nie pieraniesieny ŭ śmietnicu."
-
-#: ../baobab/src/baobab-utils.c:540
-msgid "Could not find a Trash folder on this system"
-msgstr "Niemahčyma znajści kataloh śmietnicy na hetaj systemie"
-
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:496
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Niemahčyma pieranieści \"%s\" u śmietnicu"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
-msgid "The folder does not exist."
-msgstr "Kataloh nie isnuje."
+#: ../baobab/src/baobab-utils.c:504
+msgid "Could not move file to the Trash"
+msgstr "Nie ŭdałosia pieranieści fajł u śmietnicu"
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:506
 #, c-format
 msgid "Details: %s"
 msgstr "Detali: %s"
 
-#: ../baobab/src/baobab-utils.c:577
-#, c-format
-msgid "Delete the folder \"%s\" permanently?"
-msgstr "Vydalić kataloh \"%s\" nazaŭždy?"
-
-#: ../baobab/src/baobab-utils.c:580
-msgid "Could not move the folder to the trash."
-msgstr "Niemahčyma pieranieści kataloh u śmietnicu."
-
-#: ../baobab/src/baobab-utils.c:581
-msgid "_Delete Folder"
-msgstr "_Vydal kataloh"
-
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr "Pamyłka vydaleńnia \"%s\": %s."
-
-#: ../baobab/src/baobab-utils.c:595
-#, c-format
-msgid "Could not delete the folder \"%s\""
-msgstr "Niemahčyma vydalić kataloh \"%s\""
-
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:525
 msgid "Rescan your home folder?"
 msgstr "Pieraskanavać tvoj chatni kataloh?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:526
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -514,56 +488,64 @@ msgstr ""
 "Źmieściva tvajho chatniaha katalohu źmianiłasia. Pieraskanuj, kab "
 "aktualizavać źviestki ab zaniataści dyskavaj prastory."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:527
 msgid "_Rescan"
 msgstr "_Pieraskanuj"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:562 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Adbyłasia pamyłka pakazu dapamohi."
 
-#: ../baobab/src/baobab-ringschart.c:237
+#: ../baobab/src/baobab-ringschart.c:277
 msgid "Maximum depth"
 msgstr "Maksymalnaja hłybinia"
 
-#: ../baobab/src/baobab-ringschart.c:238
+#: ../baobab/src/baobab-ringschart.c:278
 msgid "The maximum depth drawn in the rings chart from the root"
 msgstr "Maksymalnaja hłybinia, malavanaja kołami, pačaŭšy ad korania"
 
-#: ../baobab/src/baobab-ringschart.c:247
+#: ../baobab/src/baobab-ringschart.c:287
 msgid "Rings chart model"
 msgstr "Kołcavaja hrafičnaja madel"
 
-#: ../baobab/src/baobab-ringschart.c:248
+#: ../baobab/src/baobab-ringschart.c:288
 msgid "Set the model of the rings chart"
 msgstr "Akreśl madel dla kołcavaha hrafika"
 
-#: ../baobab/src/baobab-ringschart.c:255
+#: ../baobab/src/baobab-ringschart.c:295
 msgid "Rings chart root node"
 msgstr "Karaniovy element kołcavaha hrafika"
 
-#: ../baobab/src/baobab-ringschart.c:256
+#: ../baobab/src/baobab-ringschart.c:296
 msgid "Set the root node from the model"
 msgstr "Akreśl karaniovy element z madeli"
 
-#: ../baobab/src/callbacks.c:99
+#: ../baobab/src/baobab-mount-operation.c:146
+msgid "Enter Password"
+msgstr "Upišy parol"
+
+#: ../baobab/src/callbacks.c:97
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:100
+#: ../baobab/src/callbacks.c:98
 msgid "A graphical tool to analyze disk usage."
 msgstr "Hrafičnaja pryłada dla analizavańnia zaniataści dysku."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr "Ihar Hračyška <ihar.hrachyshka@gmail.com>"
 
-#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Dakument nie isnuje."
+
+#: ../baobab/src/callbacks.c:390
+msgid "The folder does not exist."
+msgstr "Kataloh nie isnuje."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -676,6 +658,7 @@ msgid "Insufficient permissions to open floppy device %s."
 msgstr "Nie staje pravoŭ dla adčynieńnia dyskietnaj pryłady %s."
 
 #: ../gfloppy/src/fdformat.c:111 ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
@@ -951,6 +934,7 @@ msgid "Cannot initialize device"
 msgstr "Niemahčyma inicyjalizavać pryładu"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr ""
 "Niemahčyma adčynić nivodnuju pryładu, niemahčyma praciahvać farmatavańnie."
@@ -1423,11 +1407,13 @@ msgstr ""
 "Skončany termin čakańnia spałučeńnia dla słoŭnikavaha servera na \"%s:%d\""
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Nazva kamputara nie akreślenaja dla słoŭnikavaha servera"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Niemahčyma stvaryć sokiet"
 
@@ -1586,6 +1572,7 @@ msgstr ""
 "Niemahčyma atrymać kluč \"%s\" unutry fajłu apisańnia słoŭnikavaj krynicy: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Słoŭnikavaja krynica nia maje nazvy"
 
@@ -1674,6 +1661,7 @@ msgid "Error: %s\n"
 msgstr "Pamyłka: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Bač praviły vykarystańnia, vykanaŭšy \"gnome-dictionary --help\"\n"
 
@@ -1831,6 +1819,7 @@ msgstr "Nałady słoŭnika"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Uźnikła pamyłka pry pakazie dapamohi"
 
@@ -2147,77 +2136,82 @@ msgstr "(zastałosia %d:%02d)"
 msgid "%ld of %ld"
 msgstr "%ld z %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:109
+#: ../gnome-screenshot/gnome-screenshot.c:111
 msgid "Error loading the help page"
 msgstr "Pamyłka zahruzki staronki dapamohi"
 
-#: ../gnome-screenshot/gnome-screenshot.c:192
+#: ../gnome-screenshot/gnome-screenshot.c:201
 msgid "None"
 msgstr "Niama"
 
-#: ../gnome-screenshot/gnome-screenshot.c:193
+#: ../gnome-screenshot/gnome-screenshot.c:202
 msgid "Drop shadow"
 msgstr "Adcianiaj"
 
-#: ../gnome-screenshot/gnome-screenshot.c:194
+#: ../gnome-screenshot/gnome-screenshot.c:203
 msgid "Border"
 msgstr "Abrys"
 
+#. * Include pointer *
+#: ../gnome-screenshot/gnome-screenshot.c:313
+msgid "Include _pointer"
+msgstr "Ułučy _kursor"
+
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:304
+#: ../gnome-screenshot/gnome-screenshot.c:322
 msgid "Include the window _border"
 msgstr "Ułučy _abrys vakna"
 
-#: ../gnome-screenshot/gnome-screenshot.c:319
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Apply _effect:"
 msgstr "Užyj _efekt:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:379
+#: ../gnome-screenshot/gnome-screenshot.c:397
 msgid "Grab the whole _desktop"
 msgstr "Zdymi ŭvieś _stoł"
 
-#: ../gnome-screenshot/gnome-screenshot.c:391
+#: ../gnome-screenshot/gnome-screenshot.c:409
 msgid "Grab the current _window"
 msgstr "Zdymi dziejnaje _vakno"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:408
+#: ../gnome-screenshot/gnome-screenshot.c:426
 msgid "Grab _after a delay of"
 msgstr "Zdymi _praz"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:874
+#: ../gnome-screenshot/gnome-screenshot.c:446
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "seconds"
 msgstr "sekundaŭ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:473
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Zrabi zdymak ekranu"
 
-#: ../gnome-screenshot/gnome-screenshot.c:456
+#: ../gnome-screenshot/gnome-screenshot.c:474
 msgid "Effects"
 msgstr "Efekty"
 
-#: ../gnome-screenshot/gnome-screenshot.c:462
+#: ../gnome-screenshot/gnome-screenshot.c:480
 msgid "Take _Screenshot"
 msgstr "Zrabi _zdymak ekranu"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:488
+#: ../gnome-screenshot/gnome-screenshot.c:508
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Zdymak_ekranu-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/gnome-screenshot.c:514
 #: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2226,7 +2220,7 @@ msgstr "Zdymak_ekranu.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:534
+#: ../gnome-screenshot/gnome-screenshot.c:554
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Zdymak_ekranu-%s-%d.png"
@@ -2234,50 +2228,50 @@ msgstr "Zdymak_ekranu-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:542
+#: ../gnome-screenshot/gnome-screenshot.c:562
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Zdymak_ekranu-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:718
+#: ../gnome-screenshot/gnome-screenshot.c:738
 msgid "Unable to take a screenshot of the current window"
 msgstr "Niemahčyma zrabić zdymak dziejnaha vakna"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:896
 msgid "Grab a window instead of the entire screen"
 msgstr "Zrabi zdymak vakna, a nie ŭsiaho ekranu całkam"
 
-#: ../gnome-screenshot/gnome-screenshot.c:873
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "Include the window border with the screenshot"
 msgstr "Ułučy abrys vakna ŭ zdymak"
 
-#: ../gnome-screenshot/gnome-screenshot.c:874
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Zdymi praz akreśleny čas [u sekundach]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr ""
 "Efekt, dadavany da abrysu (\"shadow\" (cień), \"border\" (abrys) ci \"none"
 "\" (biez efektaŭ))"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "effect"
 msgstr "efekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:900
 msgid "Interactively set options"
 msgstr "Interaktyŭna akreślaj opcyi"
 
-#: ../gnome-screenshot/gnome-screenshot.c:886
+#: ../gnome-screenshot/gnome-screenshot.c:910
 msgid "Options for Screenshot"
 msgstr "Opcyi dla zdymka ekranu"
 
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:911
 msgid "Show Screenshot options"
 msgstr "Pakažy opcyi zdymka ekranu"
 
-#: ../gnome-screenshot/gnome-screenshot.c:891
+#: ../gnome-screenshot/gnome-screenshot.c:915
 msgid "Take a picture of the screen"
 msgstr "Zrabi malunak z ekranam"
 
@@ -2314,14 +2308,22 @@ msgid "Include Border"
 msgstr "Ułučy abrys"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Pointer"
+msgstr "Ułučy kursor"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the pointer in the screenshot"
+msgstr "Ułučy kursor u zdymak"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Include the window manager border along with the screenshot"
 msgstr "Ułučy ŭ zdymak ekranu abrysy ad kiraŭnika voknaŭ"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:7
 msgid "Screenshot directory"
 msgstr "Kataloh dla zdymkaŭ"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:8
 msgid "The directory the last screenshot was saved in."
 msgstr "Kataloh, dzie byŭ zapisany apošni zdymak."
 
@@ -2358,7 +2360,7 @@ msgstr ""
 msgid "Unknown error saving screenshot to disk"
 msgstr "Nieviadomaja pamyłka zapisu zdymka ekranu na dysku"
 
-#: ../gnome-screenshot/screenshot-utils.c:633
+#: ../gnome-screenshot/screenshot-utils.c:709
 msgid "Untitled Window"
 msgstr "Nienazvanaje vakno"
 
@@ -2781,6 +2783,11 @@ msgstr "Niemahčyma vydalić \"%s\"."
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Pamyłka pieranosu \"%s\": %s."
+
+#: ../gsearchtool/gsearchtool-callbacks.c:900
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr "Pamyłka vydaleńnia \"%s\": %s."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
@@ -3654,6 +3661,39 @@ msgstr "Nazirańnie za fajłami nie padtrymvajecca dla hetaj fajłavaj systemy.\
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Pamyłka Gnome-VFS.\n"
+
+#~ msgid "Invalid UTF-8 characters"
+#~ msgstr "Niapravilnyja znaki UTF-8"
+
+#~ msgid "\"%s\" is not a valid location"
+#~ msgstr "\"%s\" nie źjaŭlajecca pravilnym pałažeńniem"
+
+#~ msgid "Please check the spelling and try again."
+#~ msgstr "Pravier pravapis i pasprabuj znoŭ."
+
+#~ msgid "%s on %s"
+#~ msgstr "%s na %s"
+
+#~ msgid "_Remove from Trash"
+#~ msgstr "_Vydal sa śmietnicy"
+
+#~ msgid "The folder \"%s\" was not moved to the trash."
+#~ msgstr "Kataloh \"%s\" nie pieraniesieny ŭ śmietnicu."
+
+#~ msgid "Could not find a Trash folder on this system"
+#~ msgstr "Niemahčyma znajści kataloh śmietnicy na hetaj systemie"
+
+#~ msgid "Delete the folder \"%s\" permanently?"
+#~ msgstr "Vydalić kataloh \"%s\" nazaŭždy?"
+
+#~ msgid "Could not move the folder to the trash."
+#~ msgstr "Niemahčyma pieranieści kataloh u śmietnicu."
+
+#~ msgid "_Delete Folder"
+#~ msgstr "_Vydal kataloh"
+
+#~ msgid "Could not delete the folder \"%s\""
+#~ msgstr "Niemahčyma vydalić kataloh \"%s\""
 
 #~ msgid "The GdictContext object bound to this entry"
 #~ msgstr "Abjekt GdictContext, pryviazany da hetaha elementu"
