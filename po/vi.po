@@ -2,20 +2,20 @@
 # Copyright © 2008 Gnome i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2008.
-# 
+#
 msgid ""
-""
-msgstr "Project-Id-Version: Gnome-utils 2.20 GNOME TRUNK\n"
+msgstr ""
+"Project-Id-Version: gnome-utils 2.20 GNOME TRUNK\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-27 05:01+0100\n"
-"PO-Revision-Date: 2008-01-05 18:43+1030\n"
+"POT-Creation-Date: 2008-05-14 19:15+0000\n"
+"PO-Revision-Date: 2008-05-31 23:12+0930\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
-"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.7b1\n"
+"X-Generator: LocFactoryEditor 1.7b3\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
 msgid "Check folder sizes and available disk space"
@@ -63,7 +63,6 @@ msgid "Scan Home"
 msgstr "Quét thư mục cá nhân"
 
 #: ../baobab/data/baobab.glade.h:11
-#: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
 msgstr "Quét thư mục ở xa"
 
@@ -113,10 +112,12 @@ msgid "Zoom 100%"
 msgstr "Thu/phóng 100%"
 
 #: ../baobab/data/baobab.glade.h:24
+#: ../baobab/src/baobab.c:756
 msgid "Zoom in"
 msgstr "Phóng to"
 
 #: ../baobab/data/baobab.glade.h:25
+#: ../baobab/src/baobab.c:760
 msgid "Zoom out"
 msgstr "Thu nhỏ"
 
@@ -126,12 +127,12 @@ msgstr "Bộ _phân tích"
 
 #: ../baobab/data/baobab.glade.h:27
 msgid "_Collapse All"
-msgstr "_Co tất cả"
+msgstr "_Co lại tất cả"
 
-#.Help menu
 #: ../baobab/data/baobab.glade.h:28
 #: ../gnome-dictionary/src/gdict-window.c:1232
 #: ../logview/logview.c:114
+#. Help menu
 msgid "_Contents"
 msgstr "Mục lụ_c"
 
@@ -147,10 +148,10 @@ msgstr "_Sửa"
 
 #: ../baobab/data/baobab.glade.h:31
 msgid "_Expand All"
-msgstr "_Bung tất cả"
+msgstr "Giãn _ra tất cả"
 
 #: ../baobab/data/baobab.glade.h:32
-#: ../baobab/src/baobab-utils.c:362
+#: ../baobab/src/baobab-utils.c:334
 msgid "_Graphical Usage Map"
 msgstr "Sơ đồ cách sử dụn_g đồ họa"
 
@@ -159,11 +160,11 @@ msgstr "Sơ đồ cách sử dụn_g đồ họa"
 #: ../gnome-dictionary/src/gdict-window.c:1182
 #: ../logview/logview.c:88
 msgid "_Help"
-msgstr "Trợ _giúp"
+msgstr "Trợ g_iúp"
 
 #: ../baobab/data/baobab.glade.h:34
 msgid "_Monitor changes to your home folder"
-msgstr "_Theo dõi thay đổi trong thư mục cá nhân của bạn"
+msgstr "Theo dõi thay đổi trong thư _mục cá nhân của bạn"
 
 #: ../baobab/data/baobab.glade.h:35
 msgid "_Toolbar"
@@ -180,408 +181,388 @@ msgid "_View"
 msgstr "_Xem"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of partitions to be excluded from scanning."
-msgstr "Danh sách các phân vùng cần loại trừ khi quét."
+msgid "A list of uri for partitions to be excluded from scanning."
+msgstr "Danh sách các địa chỉ URI của phân vùng cần loại trừ khỏi tiến trình quét."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "Bật khả năng theo dõi thư mục chính"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions"
-msgstr "Phân vùng bị loại trừ"
+msgid "Exluded partitions uris"
+msgstr "URI phân vùng bị loại trừ"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
 msgstr "Hiện thanh trạng thái"
 
 #: ../baobab/data/baobab.schemas.in.h:5
+msgid "Subfolders tooltips visible"
+msgstr "Hiện gợi ý công cụ thư mục con"
+
+#: ../baobab/data/baobab.schemas.in.h:6
 msgid "Toolbar is Visible"
 msgstr "Hiện thanh công cụ"
 
-#: ../baobab/data/baobab.schemas.in.h:6
+#: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether any change to the home directory should be monitored."
 msgstr "Bật/tắt theo dõi thay đổi trong thư mục chính."
 
-#: ../baobab/data/baobab.schemas.in.h:7
+#: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "Hiện/Ẩn thanh trạng thái bên dưới cửa sổ chính."
 
-#: ../baobab/data/baobab.schemas.in.h:8
+#: ../baobab/data/baobab.schemas.in.h:9
+msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgstr "Có nên vẽ gợi ý công cụ thư mục con của thư mục được chọn, hay không."
+
+#: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Hiện/Ẩn thanh công cụ trong cửa sổ chính."
 
-#.set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:142
-#: ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:326
-msgid "Calculating percentage bars..."
-msgstr "Đang tính các thanh phần trăm..."
-
-#: ../baobab/src/baobab.c:148
-#: ../baobab/src/baobab.c:766
-#: ../baobab/src/baobab-utils.c:197
-#: ../baobab/src/callbacks.c:330
-msgid "Ready"
-msgstr "Sẵn sàng"
-
-#: ../baobab/src/baobab.c:230
-#: ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:108
+#: ../baobab/src/baobab.c:285
 msgid "Scanning..."
 msgstr "Đang quét..."
 
-#: ../baobab/src/baobab.c:265
+#: ../baobab/src/baobab.c:171
+#: ../baobab/src/baobab.c:227
+#: ../baobab/src/callbacks.c:314
+#. set statusbar, percentage and allocated/normal size
+msgid "Calculating percentage bars..."
+msgstr "Đang tính các thanh phần trăm..."
+
+#: ../baobab/src/baobab.c:179
+#: ../baobab/src/baobab.c:907
+#: ../baobab/src/callbacks.c:318
+msgid "Ready"
+msgstr "Sẵn sàng"
+
+#: ../baobab/src/baobab.c:320
 msgid "Total filesystem usage:"
 msgstr "Cách sử dụng toàn hệ thống tập tin:"
 
-#: ../baobab/src/baobab.c:309
+#: ../baobab/src/baobab.c:359
 msgid "contains hardlinks for:"
 msgstr "chứa liên kết cứng cho :"
 
-#: ../baobab/src/baobab.c:318
+#: ../baobab/src/baobab.c:368
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d mục"
 
-#: ../baobab/src/baobab.c:383
-msgid "Invalid UTF-8 characters"
-msgstr "Ký tự UTF-8 không hợp lệ"
+#: ../baobab/src/baobab.c:706
+msgid "Could not initialize monitoring"
+msgstr "Không thể khởi động chức năng theo dõi"
 
-#: ../baobab/src/baobab.c:639
-msgid "Could not initialize GNOME VFS monitoring"
-msgstr "Không thể khởi động Theo dõi GNOME VFS"
-
-#: ../baobab/src/baobab.c:640
+#: ../baobab/src/baobab.c:707
 msgid "Changes to your home folder will not be monitored."
 msgstr "Thay đổi trong thư mục cá nhân sẽ không bị theo dõi."
 
-#: ../baobab/src/baobab-graphwin.c:157
+#: ../baobab/src/baobab.c:752
+msgid "Move to parent folder"
+msgstr "Chuyển sang thư mục cha"
+
+#: ../baobab/src/baobab.c:876
+msgid "Could not detect any mount point."
+msgstr "Không thể phát hiện điểm lắp."
+
+#: ../baobab/src/baobab.c:879
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "Không có điểm lắp thì không thể phân tích cách sử dụng đĩa."
+
+#: ../baobab/src/baobab-graphwin.c:154
 msgid "Cannot create pixbuf image!"
 msgstr "Không thể tạo ảnh đệm điểm ảnh !"
 
-#: ../baobab/src/baobab-graphwin.c:163
+#: ../baobab/src/baobab-graphwin.c:160
 msgid "Save Snapshot"
 msgstr "Lưu ảnh chụp"
 
-#: ../baobab/src/baobab-graphwin.c:186
+#: ../baobab/src/baobab-graphwin.c:183
 msgid "_Image type:"
 msgstr "_Kiểu ảnh:"
 
-#: ../baobab/src/baobab-graphwin.c:224
-#: ../baobab/src/baobab-graphwin.c:317
+#: ../baobab/src/baobab-graphwin.c:221
+#: ../baobab/src/baobab-graphwin.c:314
 msgid "Unlimited"
 msgstr "Vô hạn"
 
-#: ../baobab/src/baobab-graphwin.c:279
+#: ../baobab/src/baobab-graphwin.c:276
 msgid "Cannot allocate memory for graphical window!"
 msgstr "Không thể cấp phát bộ nhớ cho cửa sổ đồ họa !"
 
-#.Main treemap window
-#: ../baobab/src/baobab-graphwin.c:307
+#: ../baobab/src/baobab-graphwin.c:304
+#. Main treemap window
 msgid "Graphical Usage Map"
 msgstr "Sơ đồ cách sử dụn_g"
 
-#: ../baobab/src/baobab-prefs.c:168
+#: ../baobab/src/baobab-prefs.c:171
 msgid "Scan"
 msgstr "Quét"
 
-#: ../baobab/src/baobab-prefs.c:175
+#: ../baobab/src/baobab-prefs.c:178
 msgid "Device"
 msgstr "Thiết bị"
 
-#: ../baobab/src/baobab-prefs.c:183
+#: ../baobab/src/baobab-prefs.c:186
 msgid "Mount Point"
-msgstr "Điểm gắn kết"
+msgstr "Điểm lắp"
 
-#: ../baobab/src/baobab-prefs.c:191
+#: ../baobab/src/baobab-prefs.c:194
 msgid "Filesystem Type"
 msgstr "Loại hệ tập tin"
 
-#: ../baobab/src/baobab-prefs.c:199
+#: ../baobab/src/baobab-prefs.c:202
 msgid "Total Size"
 msgstr "Tổng cỡ"
 
-#: ../baobab/src/baobab-prefs.c:208
+#: ../baobab/src/baobab-prefs.c:211
 msgid "Available"
 msgstr "Trống"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:126
+#: ../baobab/src/baobab-remote-connect-dialog.c:72
 #, c-format
-msgid "\"%s\" is not a valid location"
-msgstr "\"%s\" không phải là địa chỉ hợp lệ"
+msgid "Cannot scan location \"%s\""
+msgstr "Không thể quét vị trí « %s »"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:135
-msgid "Please check the spelling and try again."
-msgstr "Hãy kiểm tra lại chính tả là đúng rồi thử lại."
+#: ../baobab/src/baobab-remote-connect-dialog.c:170
+msgid "Custom Location"
+msgstr "Địa chỉ riêng"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:161
-msgid "You must enter a name for the server"
-msgstr "Bạn phải nhập tên cho máy phục vụ"
+# Name: don't translate / Tên: đừng dịch
+#: ../baobab/src/baobab-remote-connect-dialog.c:172
+msgid "SSH"
+msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:164
+#: ../baobab/src/baobab-remote-connect-dialog.c:175
+msgid "Public FTP"
+msgstr "FTP công"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:177
+msgid "FTP (with login)"
+msgstr "FTP (đăng nhập)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:180
+msgid "Windows share"
+msgstr "Chia sẻ Windows"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:182
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:184
+msgid "Secure WebDAV (HTTPS)"
+msgstr "WebDAV bảo mật (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:244
+msgid "Cannot Connect to Server. You must enter a name for the server."
+msgstr "Không thể kết nối tới máy phục vụ: bạn phải nhập tên cho máy phục vụ."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:247
 msgid "Please enter a name and try again."
 msgstr "Hãy nhập tên rồi thử lại."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:302
-#, c-format
-msgid "%s on %s"
-msgstr "%s trên %s"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:402
+#: ../baobab/src/baobab-remote-connect-dialog.c:438
 msgid "_Location (URI):"
 msgstr "Đị_a chỉ (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:449
-msgid "S_erver:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:460
+msgid "_Server:"
 msgstr "Máy _phục vụ:"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:479
-msgid "Optional Information"
-msgstr "Thông tin tùy chọn"
+msgid "Optional information:"
+msgstr "Thông tin tùy chọn:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:507
-msgid "Sh_are:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:491
+msgid "_Share:"
 msgstr "Chia _sẻ:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:528
+#: ../baobab/src/baobab-remote-connect-dialog.c:512
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Cổng:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:548
+#: ../baobab/src/baobab-remote-connect-dialog.c:532
 msgid "_Folder:"
 msgstr "Thư _mục:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:568
-msgid "_User name:"
-msgstr "Tên _người dùng:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:552
+msgid "_User Name:"
+msgstr "Tên người _dùng:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:589
-msgid "_Domain name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:573
+msgid "_Domain Name:"
 msgstr "Tên _miền:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:668
+#: ../baobab/src/baobab-remote-connect-dialog.c:640
+msgid "Connect to Server"
+msgstr "Kết nối tới máy phục vụ"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:657
 msgid "Service _type:"
 msgstr "_Kiểu dịch vụ :"
 
-# Name: don't translate / Tên: đừng dịch
-#: ../baobab/src/baobab-remote-connect-dialog.c:681
-msgid "SSH"
-msgstr "SSH"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:683
-msgid "Public FTP"
-msgstr "FTP công"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:685
-msgid "FTP (with login)"
-msgstr "FTP (đăng nhập)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:687
-msgid "Windows share"
-msgstr "Chia sẻ Windows"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:689
-msgid "WebDAV (HTTP)"
-msgstr "WebDAV (HTTP)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:691
-msgid "Secure WebDAV (HTTPS)"
-msgstr "WebDAV bảo mật (HTTPS)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:693
-msgid "Custom Location"
-msgstr "Địa chỉ riêng"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:749
+#: ../baobab/src/baobab-remote-connect-dialog.c:776
 msgid "_Scan"
-msgstr "Q_uét"
+msgstr "_Quét"
 
-#: ../baobab/src/baobab-treeview.c:231
+#: ../baobab/src/baobab-treeview.c:224
 #: ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Thư mục"
 
-#: ../baobab/src/baobab-treeview.c:253
+#: ../baobab/src/baobab-treeview.c:246
 msgid "Usage"
-msgstr "Cách dùng"
+msgstr "Sử dụng"
 
-#: ../baobab/src/baobab-treeview.c:267
+#: ../baobab/src/baobab-treeview.c:260
 #: ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Cỡ"
 
-#: ../baobab/src/baobab-treeview.c:283
+#: ../baobab/src/baobab-treeview.c:276
 msgid "Contents"
-msgstr "Nội dung"
+msgstr "Mục lục"
 
-#: ../baobab/src/baobab-utils.c:102
+#: ../baobab/src/baobab-utils.c:110
 msgid "Select Folder"
 msgstr "Chọn thư mục"
 
-#.add extra widget
-#: ../baobab/src/baobab-utils.c:114
+#: ../baobab/src/baobab-utils.c:122
+#. add extra widget
 msgid "_Show hidden folders"
 msgstr "Hiện thư mục ẩ_n"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:302
 #, c-format
 msgid "\"%s\" is not a valid folder"
-msgstr "\"%s\" không phải là thư mục hợp lệ"
+msgstr "« %s » không phải là thư mục hợp lệ"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:305
 msgid "Could not analyze disk usage."
 msgstr "Không thể phân tích sử dụng đĩa."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:331
 msgid "_Open Folder"
 msgstr "Mở t_hư mục"
 
-#: ../baobab/src/baobab-utils.c:380
-msgid "_Remove from Trash"
-msgstr "_Gỡ bỏ khỏi Sọt rác"
-
-#: ../baobab/src/baobab-utils.c:390
+#: ../baobab/src/baobab-utils.c:349
 #: ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Chuyển vào Sọt _Rác"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:378
 msgid "Total filesystem capacity:"
 msgstr "Tổng khả năng của hệ thống tập tin:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:379
 msgid "used:"
 msgstr "dùng:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:380
 msgid "available:"
 msgstr "rảnh:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:424
 #, c-format
 msgid "Could not open folder \"%s\""
-msgstr "Không mở được thư mục \"%s\""
+msgstr "Không mở được thư mục « %s »"
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:427
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Chưa cài đặt chương trình nào có khả năng hiển thị tài liệu này."
 
-#: ../baobab/src/baobab-utils.c:538
-#, c-format
-msgid "The folder \"%s\" was not moved to the trash."
-msgstr "Không chuyển được thư mục \"%s\" vào Sọt rác."
-
-#: ../baobab/src/baobab-utils.c:540
-msgid "Could not find a Trash folder on this system"
-msgstr "Không tìm thấy thư mục Sọt rác trong hệ thống này"
-
-#: ../baobab/src/baobab-utils.c:548
-#: ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:496
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Không chuyển được « %s » vào Sọt rác"
 
-#: ../baobab/src/baobab-utils.c:549
-#: ../baobab/src/callbacks.c:409
-msgid "The folder does not exist."
-msgstr "Thư mục không tồn tại."
+#: ../baobab/src/baobab-utils.c:504
+msgid "Could not move file to the Trash"
+msgstr "Không chuyển được tập tin vào Sọt rác"
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:506
 #, c-format
 msgid "Details: %s"
 msgstr "Chi tiết: %s"
 
-#: ../baobab/src/baobab-utils.c:577
-#, c-format
-msgid "Delete the folder \"%s\" permanently?"
-msgstr "Bạn có muốn xóa bỏ vĩnh viễn thư mục \"%s\" không?"
-
-#: ../baobab/src/baobab-utils.c:580
-msgid "Could not move the folder to the trash."
-msgstr "Không chuyển thư mục vào Sọt rác."
-
-#: ../baobab/src/baobab-utils.c:581
-msgid "_Delete Folder"
-msgstr "_Xoá thư mục"
-
-#: ../baobab/src/baobab-utils.c:592
-#: ../gsearchtool/gsearchtool-callbacks.c:900
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr "Lỗi xóa bỏ « %s »: %s."
-
-#: ../baobab/src/baobab-utils.c:595
-#, c-format
-msgid "Could not delete the folder \"%s\""
-msgstr "Không thể xoá thư mục \"%s\""
-
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:525
 msgid "Rescan your home folder?"
-msgstr "Quét lại thư mục cá nhân nhé?"
+msgstr "Quét lại thư mục cá nhân không?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:526
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
-msgstr "Nội dung của thư mục chính của bạn đã thay đổi. Hãy chọn quét lại để cập "
+msgstr ""
+"Nội dung của thư mục chính của bạn đã thay đổi. Hãy chọn quét lại để cập "
 "nhật chi tiết sử dụng."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:527
 msgid "_Rescan"
 msgstr "Quét _lại"
 
-#: ../baobab/src/baobab-utils.c:661
+#: ../baobab/src/baobab-utils.c:562
 #: ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Gặp lỗi khi hiển thị trợ giúp."
 
-#: ../baobab/src/baobab-ringschart.c:237
+#: ../baobab/src/baobab-ringschart.c:277
 msgid "Maximum depth"
 msgstr "Độ sâu tối đa"
 
-#: ../baobab/src/baobab-ringschart.c:238
+#: ../baobab/src/baobab-ringschart.c:278
 msgid "The maximum depth drawn in the rings chart from the root"
 msgstr "Độ sâu tối đa khi vẽ biểu đồ nhẫn từ gốc"
 
-#: ../baobab/src/baobab-ringschart.c:247
+#: ../baobab/src/baobab-ringschart.c:287
 msgid "Rings chart model"
 msgstr "Mô hình biểu đồ nhẫn"
 
-#: ../baobab/src/baobab-ringschart.c:248
+#: ../baobab/src/baobab-ringschart.c:288
 msgid "Set the model of the rings chart"
 msgstr "Đặt mô hình biểu đồ nhẫn"
 
-#: ../baobab/src/baobab-ringschart.c:255
+#: ../baobab/src/baobab-ringschart.c:295
 msgid "Rings chart root node"
 msgstr "Nút gốc biểu đồ nhẫn"
 
-#: ../baobab/src/baobab-ringschart.c:256
+#: ../baobab/src/baobab-ringschart.c:296
 msgid "Set the root node from the model"
 msgstr "Đặt nút gốc cho mô hình"
 
+#: ../baobab/src/baobab-mount-operation.c:146
+msgid "Enter Password"
+msgstr "Nhập mật khẩu"
+
 # Name: don't translate / Tên: đừng dịch
-#: ../baobab/src/callbacks.c:99
+#: ../baobab/src/callbacks.c:97
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:100
+#: ../baobab/src/callbacks.c:98
 msgid "A graphical tool to analyze disk usage."
 msgstr "Công cụ đồ họa để phân tích cách sử dụng đĩa."
 
-#.Translator credits
-#: ../baobab/src/callbacks.c:108
+#: ../baobab/src/callbacks.c:106
 #: ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
+#. Translator credits
 msgid "translator-credits"
 msgstr "Nhóm Việt hoá GNOME (http://gnomevi.sourceforge.net)"
 
-#: ../baobab/src/callbacks.c:214
+#: ../baobab/src/callbacks.c:202
 #: ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Tài liệu này không tồn tại."
+
+#: ../baobab/src/callbacks.c:390
+msgid "The folder does not exist."
+msgstr "Thư mục không tồn tại."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1
 #: ../gfloppy/src/gfloppy2.glade.h:9
@@ -596,7 +577,8 @@ msgstr "Định dạng đĩa mềm"
 msgid ""
 "0 for the quick format, 1 for a standard one (adds a low-level format) and "
 "finally 2 for a thorough format (adds a bad blocks scan)."
-msgstr "0 — định dạng nhanh\n"
+msgstr ""
+"0 — định dạng nhanh\n"
 "1 — định dạng chuẩn (thêm phần định dạng cấp thấp)\n"
 "2 — định dạng đầy đủ (thêm phần kiểm tra khối hư)."
 
@@ -616,12 +598,14 @@ msgstr "Chế độ định dạng mặc định"
 msgid ""
 "TRUE to set mkdosfs as the preferred FAT formatting backend or FALSE to set "
 "mtools as the preferred FAT formatting backend."
-msgstr "TRUE (đúng) là dùng « mkdosfs » để định dạng FAT hoặc FALSE (không đúng) là "
+msgstr ""
+"TRUE (đúng) là dùng « mkdosfs » để định dạng FAT hoặc FALSE (không đúng) là "
 "dùng « mtools » để định dạng FAT."
 
 #: ../gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
-msgstr "ext2 cho hệ thống tập tin sở hữu của Linux hoặc FAT cho hệ thống tập tin của "
+msgstr ""
+"ext2 cho hệ thống tập tin sở hữu của Linux hoặc FAT cho hệ thống tập tin của "
 "DOS."
 
 #: ../gfloppy/src/badblocks.c:89
@@ -633,9 +617,9 @@ msgstr "Lỗi nội bộ : không thể tìm tới vị trí đúng."
 msgid "Internal Error: Weird value (%ld) in do_test\n"
 msgstr "Lỗi nội bộ : giá trị lạ (%ld) trong « do_test »\n"
 
-#.while (!i)
-#.;
 #: ../gfloppy/src/badblocks.c:256
+#. while (!i)
+#. ;
 msgid "Checking for bad blocks..."
 msgstr "Đang kiểm tra tìm khối hỏng..."
 
@@ -667,13 +651,13 @@ msgstr "Lỗi khi định dạng rãnh #%d"
 msgid "Error during completion of formatting"
 msgstr "Lỗi khi đang hoàn tất việc định dạng"
 
-#.XXXX - need to tell parent we're finished
 #: ../gfloppy/src/fdformat.c:83
+#. XXXX - need to tell parent we're finished
 msgid "Formatting the disk... Done"
 msgstr "Đang định dạng đĩa... hoàn thành"
 
-#.XXXX - tell parent we're starting verify stage
 #: ../gfloppy/src/fdformat.c:99
+#. XXXX - tell parent we're starting verify stage
 msgid "Verifying the format..."
 msgstr "Đang kiểm tra định dạng..."
 
@@ -683,7 +667,8 @@ msgid ""
 "Unable to write to the floppy.\n"
 "\n"
 "Please confirm that it is not write-protected."
-msgstr "Không thể ghi vào đĩa mềm.\n"
+msgstr ""
+"Không thể ghi vào đĩa mềm.\n"
 "\n"
 "Vui lòng kiểm tra xem đĩa có chống ghi hay không."
 
@@ -695,12 +680,14 @@ msgstr "Không đủ quyền truy cập để mở thiết bị đĩa mềm « %
 
 #: ../gfloppy/src/fdformat.c:111
 #: ../gfloppy/src/fdformat.c:196
+#, c-format
 msgid ""
 "Unable to access the floppy disk.\n"
 "\n"
 "Please confirm that it is in the drive\n"
 "with the drive door shut."
-msgstr "Không thể truy cập đĩa mềm.\n"
+msgstr ""
+"Không thể truy cập đĩa mềm.\n"
 "\n"
 "Vui lòng kiểm tra xem có đĩa trong\n"
 " ổ đĩa với cửa ổ đóng hay chưa."
@@ -711,7 +698,8 @@ msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s:%d"
-msgstr "Lỗi chung khi truy cập của đĩa mềm « %s ».\n"
+msgstr ""
+"Lỗi chung khi truy cập của đĩa mềm « %s ».\n"
 "\n"
 "Mã lỗi « %s:%d »"
 
@@ -720,7 +708,8 @@ msgstr "Lỗi chung khi truy cập của đĩa mềm « %s ».\n"
 msgid ""
 "Read Error:\n"
 "Problem reading cylinder %d, expected %d, read %d"
-msgstr "Lỗi đọc:\n"
+msgstr ""
+"Lỗi đọc:\n"
 "Gặp lỗi khi đọc trụ %d, yêu cầu %d, đọc được %d"
 
 #: ../gfloppy/src/fdformat.c:140
@@ -753,7 +742,8 @@ msgid ""
 "Generic error accessing floppy device %s.\n"
 "\n"
 "Error code %s"
-msgstr "Lỗi chung khi truy cập thiết bị đĩa mềm « %s ».\n"
+msgstr ""
+"Lỗi chung khi truy cập thiết bị đĩa mềm « %s ».\n"
 "\n"
 "Mã lỗi « %s »"
 
@@ -763,7 +753,8 @@ msgstr "Không thể xác định vị trí và kích thước hiện thời c�
 
 #: ../gfloppy/src/gfloppy.c:219
 msgid "Error while creating a unique filename for the bad blocks list file."
-msgstr "Gặp lỗi khi tạo tên tập tin duy nhất cho tập tin danh sách các khối hỏng."
+msgstr ""
+"Gặp lỗi khi tạo tên tập tin duy nhất cho tập tin danh sách các khối hỏng."
 
 #: ../gfloppy/src/gfloppy.c:239
 msgid "Error while filling the bad blocks list file."
@@ -784,7 +775,8 @@ msgid ""
 "The filesystem creation utility (%s) reported the following errors:\n"
 "\n"
 "%s (%d)"
-msgstr "Tiện ích tạo hệ thống tập tin (%s) gặp những lỗi sau:\n"
+msgstr ""
+"Tiện ích tạo hệ thống tập tin (%s) gặp những lỗi sau:\n"
 "\n"
 "%s (%d)"
 
@@ -802,16 +794,17 @@ msgstr "Gặp lỗi khi tạo và thực hiện lệnh « mbadblocks »: %s."
 msgid ""
 "The bad blocks checking utility (mbadblocks) reported the following errors:\n"
 "%s."
-msgstr "Tiện ích kiểm tra khối hỏng (mbadblocks) gặp những lỗi sau:\n"
+msgstr ""
+"Tiện ích kiểm tra khối hỏng (mbadblocks) gặp những lỗi sau:\n"
 "%s."
 
 #: ../gfloppy/src/gfloppy.c:439
 msgid "Abnormal mbadblocks child process termination."
 msgstr "Kết thúc tiến trình con « mbadblocks » bất thường."
 
-#.make the filesystem
 #: ../gfloppy/src/gfloppy.c:465
 #: ../gfloppy/src/gfloppy.c:505
+#. make the filesystem
 msgid "Making filesystem on disk..."
 msgstr "Đang tạo hệ thống tập tin trên đĩa..."
 
@@ -846,7 +839,8 @@ msgid ""
 "<small><i><b>Note</b>: The mbadblocks utility isn't installed on this "
 "system.  It must be installed in order to perform a thorough DOS (fat) "
 "formatting.</i></small>"
-msgstr "<small><i><b>Chú ý</b>: Tiện ích « mbadblocks » chưa được cài đặt vào hệ "
+msgstr ""
+"<small><i><b>Chú ý</b>: Tiện ích « mbadblocks » chưa được cài đặt vào hệ "
 "thống này. Nó phải được cài đặt để có thể tiến hành định dạng DOS (FAT) hoàn "
 "chỉnh.</i></small>"
 
@@ -907,8 +901,8 @@ msgstr "Đầ_y đủ (thêm kiểm tra khối hỏng vào chế độ chuẩn)"
 msgid "Volume _name:"
 msgstr "Tên _bộ đĩa:"
 
-#.This is the "format" verb (not the noun).
 #: ../gfloppy/src/gfloppy2.glade.h:20
+#. This is the "format" verb (not the noun).
 msgid "_Format"
 msgstr "Định _dạng"
 
@@ -928,7 +922,8 @@ msgstr "Không thể định dạng"
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
-msgstr "Cả tiện ích mke2fs và mkdosfs/mformat đều chưa được cài đặt. Bạn không thể "
+msgstr ""
+"Cả tiện ích mke2fs và mkdosfs/mformat đều chưa được cài đặt. Bạn không thể "
 "định dạng đĩa mềm nếu thiếu một trong số chúng."
 
 #: ../gfloppy/src/main.c:280
@@ -942,7 +937,8 @@ msgstr "Không mở được thiết bị « %s », nên không thể tiếp t�
 msgid ""
 "The device %s is disconnected.\n"
 "Please attach device to continue."
-msgstr "Thiết bị « %s » bị ngắt kết nối.\n"
+msgstr ""
+"Thiết bị « %s » bị ngắt kết nối.\n"
 "Hãy gắn thiết bị vào để tiếp tục."
 
 #: ../gfloppy/src/main.c:286
@@ -952,7 +948,8 @@ msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
 "be possible.\n"
 "Contact your system administrator about getting write permissions."
-msgstr "Bạn không có quyền ghi vào « %s », nên không thể định dạng.\n"
+msgstr ""
+"Bạn không có quyền ghi vào « %s », nên không thể định dạng.\n"
 "Hãy liên hệ quản trị hệ thống về phương pháp được quyền ghi."
 
 #: ../gfloppy/src/main.c:293
@@ -961,6 +958,7 @@ msgid "Cannot initialize device"
 msgstr "Không thể khởi động thiết bị"
 
 #: ../gfloppy/src/main.c:342
+#, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Không mở được bất kỳ thiết bị nào, nên không thể tiếp tục định dạng."
 
@@ -1079,7 +1077,8 @@ msgid ""
 "Specify whether to use smart lookup. This key is dependant on whether the "
 "dictionary server supports this option. The default is TRUE. This key is "
 "deprecated and no longer in use."
-msgstr "Xác định có dùng tìm kiếm thông minh hay không. Khóa này phụ thuộc vào việc "
+msgstr ""
+"Xác định có dùng tìm kiếm thông minh hay không. Khóa này phụ thuộc vào việc "
 "máy phục vụ từ điển có hỗ trợ hay không. Mặc định là TRUE (đúng). Khóa này "
 "bị phản đối nên không còn dùng lại."
 
@@ -1104,7 +1103,8 @@ msgid ""
 "The dictionary server to connect to. The default server is dict.org. See "
 "http://www.dict.org for details on other servers. This key is deprecated and "
 "no longer in use."
-msgstr "Máy phục vụ từ điển đến mà cần kết nối. Máy phục vụ mặc định là <dict.org>. "
+msgstr ""
+"Máy phục vụ từ điển đến mà cần kết nối. Máy phục vụ mặc định là <dict.org>. "
 "Xem <http://www.dict.org> để biết chi tiết về các máy phục vụ từ điển khác. "
 "Khóa này bị phản đối nên không còn dùng lại."
 
@@ -1121,7 +1121,8 @@ msgid ""
 "The name of the default individual database or meta-database to use on a "
 "dictionary source. An exclamation mark (\"!\") means that all the databases "
 "present in a dictionary source should be searched"
-msgstr "Tên cơ sở dữ liệu riêng mặc định hay siêu cơ sở dữ liệu cần dùng với nguồn "
+msgstr ""
+"Tên cơ sở dữ liệu riêng mặc định hay siêu cơ sở dữ liệu cần dùng với nguồn "
 "từ điển. Dấu « ! » có nghĩa là mọi cơ sở dữ liệu trên nguồn từ điển đó nên "
 "được tìm kiếm"
 
@@ -1129,7 +1130,8 @@ msgstr "Tên cơ sở dữ liệu riêng mặc định hay siêu cơ sở dữ l
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
-msgstr "Tên của chiến lược tìm kiếm mặc định cần dùng với nguồn từ điển, nếu có. "
+msgstr ""
+"Tên của chiến lược tìm kiếm mặc định cần dùng với nguồn từ điển, nếu có. "
 "Chiến lược là « exact » (chính xác), tức là phải khớp chỉ từ một cách chính "
 "xác."
 
@@ -1150,7 +1152,8 @@ msgstr "Trang của ô bên cần hiển thị"
 msgid ""
 "The port number to connect to. The default port is 2628. This key is "
 "deprecated and no longer in use."
-msgstr "Số cổng đến mà cần kết nối. Mặc định là 2628. Khóa này bị phản đối nên không "
+msgstr ""
+"Số cổng đến mà cần kết nối. Mặc định là 2628. Khóa này bị phản đối nên không "
 "còn dùng lại."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:17
@@ -1161,7 +1164,8 @@ msgstr "Độ rộng của ô bên"
 msgid ""
 "This key defines the width of the sidebar and it's used to remember the "
 "setting across sessions."
-msgstr "Khoá này xác định độ rộng của ô bên: nó được dùng để nhớ giá trị này giữa "
+msgstr ""
+"Khoá này xác định độ rộng của ô bên: nó được dùng để nhớ giá trị này giữa "
 "hai phiên chạy."
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
@@ -1169,7 +1173,8 @@ msgid ""
 "This key defines the window height and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a height based on the font size."
-msgstr "Khóa này định nghĩa độ cao của cửa sổ, và nó dùng để nhớ kích cỡ của cửa sổ "
+msgstr ""
+"Khóa này định nghĩa độ cao của cửa sổ, và nó dùng để nhớ kích cỡ của cửa sổ "
 "từ điển giữa hai phiên chạy. Lập nó thành -1 sẽ làm cho cửa sổ từ điển dùng "
 "độ cao dựa vào kích cỡ phông chữ."
 
@@ -1178,7 +1183,8 @@ msgid ""
 "This key defines the window width and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a width based on the font size."
-msgstr "Khóa này định nghĩa độ rộng của cửa sổ, và nó dùng để nhớ kích cỡ của cửa sổ "
+msgstr ""
+"Khóa này định nghĩa độ rộng của cửa sổ, và nó dùng để nhớ kích cỡ của cửa sổ "
 "từ điển giữa hai phiên chạy. Lập nó thành -1 sẽ làm cho cửa sổ từ điển dùng "
 "độ rộng dựa vào kích cỡ phông chữ."
 
@@ -1187,7 +1193,8 @@ msgid ""
 "This key defines whether the sidebar should be visible and it's used to "
 "remember the state of the sidebar across sessions. Setting it to TRUE will "
 "make the sidebar always be displayed."
-msgstr "Khóa này định nghĩa có nên hiển thị ô bên hay không. Nó dùng để nhớ tính "
+msgstr ""
+"Khóa này định nghĩa có nên hiển thị ô bên hay không. Nó dùng để nhớ tính "
 "trạng của ô bên giữa hai phiên chạy. Đặt nó thành ĐÚNG (true) sẽ làm cho ô "
 "bên được hiển thị luôn luôn."
 
@@ -1196,7 +1203,8 @@ msgid ""
 "This key defines whether the statusbar should be visible and it's used to "
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
-msgstr "Khóa này định nghĩa có nên hiển thị thanh trạng thái hay không. Nó dùng để "
+msgstr ""
+"Khóa này định nghĩa có nên hiển thị thanh trạng thái hay không. Nó dùng để "
 "nhớ tính trạng của thanh trạng thái giữa hai phiên chạy. Đặt nó thành ĐÚNG "
 "(true) sẽ làm cho thanh trạng thái được hiển thị luôn luôn."
 
@@ -1205,7 +1213,8 @@ msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
-msgstr "Khóa này định nghĩa có nên phóng to cửa sổ hay không. Nó dùng để nhớ tính "
+msgstr ""
+"Khóa này định nghĩa có nên phóng to cửa sổ hay không. Nó dùng để nhớ tính "
 "trạng của cửa sổ từ điển giữa hai phiên chạy. Đặt nó thành -1 sẽ làm cho cửa "
 "sổ hình như đã phóng to luôn luôn."
 
@@ -1214,7 +1223,8 @@ msgid ""
 "This key defines which page of the sidebar should be displayed and it's used "
 "to remember the setting across sessions.. It can be \"speller\" or "
 "\"databases\"."
-msgstr "Khóa này định nghĩa trang nào của ô bên nên được hiển thị; nó được dùng để "
+msgstr ""
+"Khóa này định nghĩa trang nào của ô bên nên được hiển thị; nó được dùng để "
 "nhớ giá trị này giữa hai phiên chạy. Nó có thể là « speller » (bộ chính tả) "
 "hay « databases » (các cơ sở dữ liệu)."
 
@@ -1238,8 +1248,8 @@ msgstr "Hiện/Ẩn thanh trạng thái"
 msgid "Dictionaries"
 msgstr "Từ điển"
 
-#.Transport methods
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:3
+#. Transport methods
 msgid "Dictionary Server"
 msgstr "Máy phục vụ từ điển"
 
@@ -1344,7 +1354,8 @@ msgstr "Lỗi tra tìm với tên máy « %s »: không tìm thấy máy"
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
 "with code %d (server down)"
-msgstr "Không thể kết nối đến máy phục vụ từ điển tại « %s:%d ». Máy phục vụ đã trả "
+msgstr ""
+"Không thể kết nối đến máy phục vụ từ điển tại « %s:%d ». Máy phục vụ đã trả "
 "lời mã %d (máy phục vụ không trực tuyến)"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
@@ -1352,7 +1363,8 @@ msgstr "Không thể kết nối đến máy phục vụ từ điển tại « %
 msgid ""
 "Unable to parse the dictionary server reply\n"
 ": '%s'"
-msgstr "Không thể phân tách trả lời của máy phục vụ từ điển\n"
+msgstr ""
+"Không thể phân tách trả lời của máy phục vụ từ điển\n"
 ": %s"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
@@ -1400,7 +1412,8 @@ msgstr "Lỗi kết nối đến máy phục vụ từ điển tại « %s:%d »
 msgid ""
 "Error while reading reply from server:\n"
 "%s"
-msgstr "Gặp lỗi khi đọc trả lời từ máy phục vụ :\n"
+msgstr ""
+"Gặp lỗi khi đọc trả lời từ máy phục vụ :\n"
 "%s"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
@@ -1409,11 +1422,13 @@ msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Quá hạn kết nối đến máy phục vụ từ điển tại '%s:%d'"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Chưa định nghĩa tên máy cho máy phục vụ từ điển"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#, c-format
 msgid "Unable to create socket"
 msgstr "Không thể tạo ổ cắm"
 
@@ -1570,6 +1585,7 @@ msgid ""
 msgstr "Không thể lấy khóa « %s » ở trong tập tin định nghĩa nguồn từ điển: %s"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:741
+#, c-format
 msgid "Dictionary source does not have name"
 msgstr "Lời định nghĩa từ điển chưa có tên"
 
@@ -1635,17 +1651,18 @@ msgstr "Hiện các tùy chọn về Từ điển GNOME"
 msgid "Look up words in dictionaries"
 msgstr "Tra tìm từ trong từ điển"
 
-#.Translators: the first is the word found, the second is the
-#.* database name and the last is the definition's text; please
-#.* keep the new lines.
 #: ../gnome-dictionary/src/gdict-app.c:233
 #, c-format
+#. Translators: the first is the word found, the second is the
+#. * database name and the last is the definition's text; please
+#. * keep the new lines.
 msgid ""
 "Definition for '%s'\n"
 "  From '%s':\n"
 "\n"
 "%s\n"
-msgstr "Lời định nghĩa cho « %s »\n"
+msgstr ""
+"Lời định nghĩa cho « %s »\n"
 "  Từ « %s »:\n"
 "\n"
 "%s\n"
@@ -1656,6 +1673,7 @@ msgid "Error: %s\n"
 msgstr "Lỗi: %s\n"
 
 #: ../gnome-dictionary/src/gdict-app.c:273
+#, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Hãy chạy lệnh « -- help » của gnome-dictionary để xem cách sử dụng\n"
 
@@ -1668,7 +1686,8 @@ msgstr "Không tìm thấy nguồn từ điển thích hợp"
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
 "%s"
-msgstr "Gặp lỗi khi tra tìm lời định nghĩa của « %s »:\n"
+msgstr ""
+"Gặp lỗi khi tra tìm lời định nghĩa của « %s »:\n"
 "%s"
 
 #: ../gnome-dictionary/src/gdict-app.c:354
@@ -1718,8 +1737,8 @@ msgstr "Chiến lược cần dùng"
 msgid "strat"
 msgstr "chiến"
 
-#.create the new option context
 #: ../gnome-dictionary/src/gdict-app.c:384
+#. create the new option context
 msgid " - Look up words in dictionaries"
 msgstr " — Tra tìm từ trong từ điển"
 
@@ -1812,6 +1831,7 @@ msgstr "Tùy thích Từ điển"
 #: ../gnome-dictionary/src/gdict-pref-dialog.c:509
 #: ../gnome-dictionary/src/gdict-source-dialog.c:498
 #: ../gnome-dictionary/src/gdict-window.c:1144
+#, c-format
 msgid "There was an error while displaying help"
 msgstr "Gặp lỗi khi hiển thị trợ giúp"
 
@@ -1943,8 +1963,8 @@ msgstr "_Tập tin"
 msgid "_Go"
 msgstr "_Đi"
 
-#.File menu
 #: ../gnome-dictionary/src/gdict-window.c:1185
+#. File menu
 msgid "_New"
 msgstr "_Mới"
 
@@ -1989,8 +2009,8 @@ msgstr "Tìm tiế_p"
 msgid "Find Pre_vious"
 msgstr "Tìm t_rước"
 
-#.Go menu
 #: ../gnome-dictionary/src/gdict-window.c:1212
+#. Go menu
 msgid "_Previous Definition"
 msgstr "Lời định nghĩa t_rước"
 
@@ -2022,8 +2042,8 @@ msgstr "Lời định nghĩa _cuối"
 msgid "Go to the last definition"
 msgstr "Đi đến lời định nghĩa cuối cùng"
 
-#.View menu
 #: ../gnome-dictionary/src/gdict-window.c:1222
+#. View menu
 msgid "Similar _Words"
 msgstr "Từ tươn_g tự"
 
@@ -2039,8 +2059,8 @@ msgstr "Cơ sở _dữ liệu sẵn sàng"
 msgid "Available St_rategies"
 msgstr "_Chiến lược hiện có"
 
-#.View menu
 #: ../gnome-dictionary/src/gdict-window.c:1245
+#. View menu
 msgid "_Sidebar"
 msgstr "Ô _bên"
 
@@ -2068,23 +2088,23 @@ msgstr "Cơ sở dữ liệu « %s » đã chọn"
 msgid "Word `%s' selected"
 msgstr "Từ « %s » đã chọn"
 
-#.speller
 #: ../gnome-dictionary/src/gdict-window.c:1451
+#. speller
 msgid "Double-click on the word to look up"
 msgstr "Nhấn đôi vào từ cần tra tìm"
 
-#.strat-chooser
 #: ../gnome-dictionary/src/gdict-window.c:1457
+#. strat-chooser
 msgid "Double-click on the matching strategy to use"
 msgstr "Nhấp đúp chiến lược tìm cần dùng"
 
-#.source-chooser
 #: ../gnome-dictionary/src/gdict-window.c:1462
+#. source-chooser
 msgid "Double-click on the source to use"
 msgstr "Nhấn đôi vào nguồn cần dùng"
 
-#.db-chooser
 #: ../gnome-dictionary/src/gdict-window.c:1471
+#. db-chooser
 msgid "Double-click on the database to use"
 msgstr "Nhấn đôi vào cơ sở dữ liệu cần dùng"
 
@@ -2128,135 +2148,140 @@ msgstr "(%d:%02d còn lại)"
 msgid "%ld of %ld"
 msgstr "%ld trên %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:109
+#: ../gnome-screenshot/gnome-screenshot.c:111
 msgid "Error loading the help page"
 msgstr "Gặp lỗi khi tải trợ giúp"
 
-#: ../gnome-screenshot/gnome-screenshot.c:192
+#: ../gnome-screenshot/gnome-screenshot.c:201
 msgid "None"
 msgstr "Không"
 
-#: ../gnome-screenshot/gnome-screenshot.c:193
+#: ../gnome-screenshot/gnome-screenshot.c:202
 msgid "Drop shadow"
 msgstr "Bỏ bóng"
 
-#: ../gnome-screenshot/gnome-screenshot.c:194
+#: ../gnome-screenshot/gnome-screenshot.c:203
 msgid "Border"
 msgstr "Đường viền"
 
-#.* Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:304
+#: ../gnome-screenshot/gnome-screenshot.c:313
+#. * Include pointer *
+msgid "Include _pointer"
+msgstr "Gồm có con t_rỏ"
+
+#: ../gnome-screenshot/gnome-screenshot.c:322
+#. * Include window border *
 msgid "Include the window _border"
 msgstr "Gồm _viền cửa sổ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:319
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Apply _effect:"
 msgstr "Áp dụng _hiệu ứng:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:379
+#: ../gnome-screenshot/gnome-screenshot.c:397
 msgid "Grab the whole _desktop"
 msgstr "Chụp _toàn bộ màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:391
+#: ../gnome-screenshot/gnome-screenshot.c:409
 msgid "Grab the current _window"
 msgstr "Chụp cửa sổ _hiện thời"
 
-#.translators: this is the first part of the "grab after a
-#.* delay of <spin button> seconds".
+#: ../gnome-screenshot/gnome-screenshot.c:426
+#. translators: this is the first part of the "grab after a
+#. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:408
 msgid "Grab _after a delay of"
 msgstr "Chụp _sau khi chờ"
 
-#.translators: this is the last part of the "grab after a
-#.* delay of <spin button> seconds".
+#: ../gnome-screenshot/gnome-screenshot.c:446
+#: ../gnome-screenshot/gnome-screenshot.c:898
+#. translators: this is the last part of the "grab after a
+#. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:874
 msgid "seconds"
 msgstr "giây"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:473
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Chụp ảnh màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:456
+#: ../gnome-screenshot/gnome-screenshot.c:474
 msgid "Effects"
 msgstr "Hiệu ứng"
 
-#: ../gnome-screenshot/gnome-screenshot.c:462
+#: ../gnome-screenshot/gnome-screenshot.c:480
 msgid "Take _Screenshot"
 msgstr "_Chụp ảnh màn hình"
 
-#.translators: this is the name of the file that gets made up
-#.* with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:488
+#: ../gnome-screenshot/gnome-screenshot.c:508
 #, c-format
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if a specific window is taken
 msgid "Screenshot-%s.png"
 msgstr "Hình-chụp-%s.png"
 
-#.translators: this is the name of the file that gets made up
-#.* with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/gnome-screenshot.c:514
 #: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:196
+#. translators: this is the name of the file that gets made up
+#. * with the screenshot if the entire screen is taken
 msgid "Screenshot.png"
 msgstr "Hình-chụp.png"
 
-#.translators: this is the name of the file that gets
-#.* made up with the screenshot if a specific window is
-#.* taken
-#: ../gnome-screenshot/gnome-screenshot.c:534
+#: ../gnome-screenshot/gnome-screenshot.c:554
 #, c-format
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
 msgid "Screenshot-%s-%d.png"
 msgstr "Hình-chụp-%s-%d.png"
 
-#.translators: this is the name of the file that gets
-#.* made up with the screenshot if the entire screen is
-#.* taken
-#: ../gnome-screenshot/gnome-screenshot.c:542
+#: ../gnome-screenshot/gnome-screenshot.c:562
 #, c-format
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if the entire screen is
+#. * taken
 msgid "Screenshot-%d.png"
 msgstr "Hình-chụp-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:718
+#: ../gnome-screenshot/gnome-screenshot.c:738
 msgid "Unable to take a screenshot of the current window"
 msgstr "Không thể chụp hình cửa sổ hiện thời"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:896
 msgid "Grab a window instead of the entire screen"
 msgstr "Lấy một cửa sổ riêng thay thế toàn bộ màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:873
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "Include the window border with the screenshot"
 msgstr "Gồm viền cửa sổ khi chụp hình màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:874
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Chụp hình màn hình sau thời gian đã ghi rõ [theo giây]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Hiệu ứng cần thêm vào viền (bóng, viền hoặc không)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "effect"
 msgstr "hiệu ứng"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:900
 msgid "Interactively set options"
 msgstr "Đặt tuỳ chọn tương tác"
 
-#: ../gnome-screenshot/gnome-screenshot.c:886
+#: ../gnome-screenshot/gnome-screenshot.c:910
 msgid "Options for Screenshot"
 msgstr "Tùy chọn Chụp Màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:911
 msgid "Show Screenshot options"
 msgstr "Hiện Tùy chọn chụp màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.c:891
+#: ../gnome-screenshot/gnome-screenshot.c:915
 msgid "Take a picture of the screen"
 msgstr "Chụp ảnh của màn hình"
 
@@ -2284,7 +2309,8 @@ msgstr "Tác dụng viền"
 msgid ""
 "Effect to add to the outside of a border. Possible values are \"shadow\", "
 "\"none\", and \"border\"."
-msgstr "Tác dụng cần thêm vào cạnh ở ngoại viền. Giá trị có thể là \"shadow"
+msgstr ""
+"Tác dụng cần thêm vào cạnh ở ngoại viền. Giá trị có thể là \"shadow"
 "\" (bóng), \"none\" (không), và \"border\" (viền)."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
@@ -2292,14 +2318,22 @@ msgid "Include Border"
 msgstr "Gồm viền"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Pointer"
+msgstr "Gồm có con trỏ"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the pointer in the screenshot"
+msgstr "Bao gồm con trỏ khi chụp hình màn hình"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Include the window manager border along with the screenshot"
 msgstr "Bao gồm viền của trình quản lý cửa sổ, trong chụp hình màn hình"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:7
 msgid "Screenshot directory"
 msgstr "Thư mục ảnh chụp"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:8
 msgid "The directory the last screenshot was saved in."
 msgstr "Thư mục nơi trình chụp màn hình vừa đã lưu."
 
@@ -2307,7 +2341,8 @@ msgstr "Thư mục nơi trình chụp màn hình vừa đã lưu."
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
-msgstr "Thiếu tập tin Glade cho chương trình chụp màn hình.\n"
+msgstr ""
+"Thiếu tập tin Glade cho chương trình chụp màn hình.\n"
 "Hãy kiểm tra đã cài đặt trình « gnome-panel » cho đúng"
 
 #: ../gnome-screenshot/screenshot-dialog.c:239
@@ -2319,21 +2354,23 @@ msgstr "Chọn thư mục"
 msgid ""
 "Unable to clear the temporary folder:\n"
 "%s"
-msgstr "Không thể xóa thư mục tạm:\n"
+msgstr ""
+"Không thể xóa thư mục tạm:\n"
 "%s"
 
 #: ../gnome-screenshot/screenshot-save.c:95
 msgid ""
 "The child save process unexpectedly exited.  We are unable to write the "
 "screenshot to disk."
-msgstr "Tiến trình con lưu đã thoát bất ngờ. Như thế thì không ghi được chụp hình "
+msgstr ""
+"Tiến trình con lưu đã thoát bất ngờ. Như thế thì không ghi được chụp hình "
 "màn hình vào đĩa."
 
 #: ../gnome-screenshot/screenshot-save.c:223
 msgid "Unknown error saving screenshot to disk"
 msgstr "Gặp lỗi lạ khi lưu chụp hình màn hình vào đĩa"
 
-#: ../gnome-screenshot/screenshot-utils.c:633
+#: ../gnome-screenshot/screenshot-utils.c:709
 msgid "Untitled Window"
 msgstr "Cửa sổ không tên"
 
@@ -2400,87 +2437,87 @@ msgstr "Đường dẫn bị Loại trừ Việc Ra Quét Thứ hai Tìm Nhanh"
 msgid "Search Result Columns Order"
 msgstr "Thứ tự cột kết quả tìm kiếm"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:11
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Contains the text\""
 msgstr "Dùng tùy chọn tìm kiếm « Chứa đoạn »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:14
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Date modified less than\""
 msgstr "Dùng tùy chọn tìm kiếm « Có ngày sửa đổi trước »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:17
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Date modified more than\""
 msgstr "Dùng tùy chọn tìm kiếm « Có ngày sửa đổi sau »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:20
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"File is empty\""
 msgstr "Dùng tùy chọn tìm kiếm « Tập tin rỗng »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:23
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Follow symbolic links\""
 msgstr "Dùng tùy chọn tìm kiếm « Theo liên kết biểu tượng »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:26
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Include other filesystems\""
 msgstr "Dùng tùy chọn tìm kiếm « Gồm hệ thống tập tin khác »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:29
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Name does not contain\""
 msgstr "Dùng tùy chọn tìm kiếm « Tên không chứa »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:32
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Name matches regular expression\""
 msgstr "Dùng tùy chọn tìm kiếm « Tên khớp biểu thức chính quy »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:35
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Owned by group\""
 msgstr "Dùng tùy chọn tìm kiếm « Sở hữu bởi nhóm »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:38
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Owned by user\""
 msgstr "Dùng tùy chọn tìm kiếm « Sở hữu bởi người dùng »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:41
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Owner is unrecognized\""
 msgstr "Dùng tùy chọn tìm kiếm « Người sở hữu không nhận diện được »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:44
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Show hidden files and folders\""
 msgstr "Dùng tùy chọn tìm kiếm « Hiện các tập tin và thư mục bị ẩn »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:47
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Size at least\""
 msgstr "Dùng tùy chọn tìm kiếm « Kích cỡ ít nhất »"
 
-#.Translators: The quoted text is the label of an available
-#.search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:50
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
 msgid "Select the search option \"Size at most\""
 msgstr "Dùng tùy chọn tìm kiếm « Kích cỡ lớn nhất »"
 
@@ -2492,7 +2529,8 @@ msgstr "Hiện tùy chọn thêm"
 msgid ""
 "This key defines the order of the columns in the search results. This key "
 "should not be modified by the user."
-msgstr "Khóa này định nghĩa thứ tự các cột trong kết quả tìm kiếm. Người dùng không "
+msgstr ""
+"Khóa này định nghĩa thứ tự các cột trong kết quả tìm kiếm. Người dùng không "
 "nên sửa đổi khóa này."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:53
@@ -2500,7 +2538,8 @@ msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
 "media/*, /dev/*, /tmp/*, /proc/*, and /var/*."
-msgstr "Khóa này định nghĩa các đường dẫn mà công cụ tìm kiếm sẽ loại trừ ra việc "
+msgstr ""
+"Khóa này định nghĩa các đường dẫn mà công cụ tìm kiếm sẽ loại trừ ra việc "
 "Tìm nhanh. Hỗ trợ hai ký tự đại diện « * » (dấu sao) và « ? » (dấu hỏi). Giá "
 "trị mặc định là /mnt/* (gắn), /media/* (môi giới), /dev/* (phát hiện), /tmp/"
 "* (tạm thơi), /proc/* (tiến trình), và /var/* (biến)."
@@ -2512,7 +2551,8 @@ msgid ""
 "search for files. The purpose of the second scan is to find files that have "
 "not been indexed. The wildcards '*' and '?' are supported. The default value "
 "is /."
-msgstr "Khóa này định nghĩa các đường dẫn mà công cụ tìm kiếm sẽ loại trừ ra lần thứ "
+msgstr ""
+"Khóa này định nghĩa các đường dẫn mà công cụ tìm kiếm sẽ loại trừ ra lần thứ "
 "hai của Tìm nhanh hai lần. Tìm thứ hai sử dụng lệnh « Find » (Tìm) để tim "
 "kiếm tập tin; đích của tìm thứ hai này là tìm tập tin chưa trong chỉ mục. Hỗ "
 "trợ hai ký tự đại diện « * » (dấu sao) và « ? » (dấu hỏi). Giá trị mặc định "
@@ -2523,7 +2563,8 @@ msgid ""
 "This key defines the window height, and it's used to remember the size of "
 "the search tool between sessions. Setting it to -1 will make the search tool "
 "use the default height."
-msgstr "Khóa này định nghĩa độ cao của cửa sổ, và nó dùng để nhớ kích cỡ của công cụ "
+msgstr ""
+"Khóa này định nghĩa độ cao của cửa sổ, và nó dùng để nhớ kích cỡ của công cụ "
 "tìm kiếm giữa hai phiên chạy. Lập nó thành -1 sẽ làm cho công cụ tìm kiếm "
 "dùng độ cao mặc định."
 
@@ -2532,7 +2573,8 @@ msgid ""
 "This key defines the window width, and it's used to remember the size of the "
 "search tool between sessions. Setting it to -1 will make the search tool use "
 "the default width."
-msgstr "Khóa này định nghĩa độ rộng của cửa sổ, và nó dùng để nhớ kích cỡ của công "
+msgstr ""
+"Khóa này định nghĩa độ rộng của cửa sổ, và nó dùng để nhớ kích cỡ của công "
 "cụ tìm kiếm giữa hai phiên chạy. Lập nó thành -1 sẽ làm cho công cụ tìm kiếm "
 "dùng độ rộng mặc định."
 
@@ -2540,127 +2582,145 @@ msgstr "Khóa này định nghĩa độ rộng của cửa sổ, và nó dùng �
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Chứa đoạn » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Có ngày sửa đổi trước » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Có ngày sửa đổi sau » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"File is empty\" search option is selected when "
 "the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Tập tin rỗng » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:61
 msgid ""
 "This key determines if the \"Follow symbolic links\" search option is "
 "selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Theo liên kết biểu tượng » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:62
 msgid ""
 "This key determines if the \"Include other filesystems\" search option is "
 "selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Gồm hệ thống tập tin khác » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:63
 msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Tên không chứa » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:64
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Tên khớp biểu thức chính quy » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:65
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Sở hữu bởi nhóm » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Sở hữu bởi người dùng » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Người sở hữu không nhận diện được » được chọn chưa."
 
-#.Translators: The quoted text is the label of the additional
-#.options expander that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:70
+#. Translators: The quoted text is the label of the additional
+#. options expander that is translated elsewhere.
 msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Hiển thị tùy chọn bổ sung » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:71
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Hiển thị các tập tin và thư mục bị ẩn » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:72
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Kích thước ít nhất » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:73
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
-msgstr "Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
+msgstr ""
+"Khi công cụ tìm kiếm được khởi chạy, khóa này định nghĩa nếu tùy chọn tìm "
 "kiếm « Kích thước lớn nhất » được chọn chưa."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:74
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
-msgstr "Khóa này định nghĩa nếu công cụ tìm kiếm vô hiệu hóa sử dụng lệnh « Find  "
+msgstr ""
+"Khóa này định nghĩa nếu công cụ tìm kiếm vô hiệu hóa sử dụng lệnh « Find  "
 "» (tìm) sau khi Tìm nhanh."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:75
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
-msgstr "Khóa này định nghĩa nếu công cụ tìm kiếm vô hiệu hóa sử dụng lệnh « Locate  "
+msgstr ""
+"Khóa này định nghĩa nếu công cụ tìm kiếm vô hiệu hóa sử dụng lệnh « Locate  "
 "» (định vị) sau khi tìm kiếm tên tập tin cách đơn giản."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:76
 msgid ""
 "This key determines if the search tool window starts in a maximized state."
-msgstr "Khóa này định nghĩa nếu công cụ tìm kiếm bắt đầu trong tính trạng đã tối đa "
+msgstr ""
+"Khóa này định nghĩa nếu công cụ tìm kiếm bắt đầu trong tính trạng đã tối đa "
 "hóa."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:186
@@ -2729,6 +2789,11 @@ msgstr "Không thể xóa bỏ « %s »."
 msgid "Moving \"%s\" failed: %s."
 msgstr "Lỗi di chuyển « %s »: %s."
 
+#: ../gsearchtool/gsearchtool-callbacks.c:900
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr "Lỗi xóa bỏ « %s »: %s."
+
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
 msgstr "Lưu kết quả tìm kiếm là..."
@@ -2768,15 +2833,16 @@ msgstr "Bạn không có quyền ghi vào tài liệu này."
 msgid ""
 "GConf error:\n"
 "  %s"
-msgstr "Lỗi GConf:\n"
+msgstr ""
+"Lỗi GConf:\n"
 "  %s"
 
-#.Translators:  Below are the strings displayed in the 'Date Modified'
-#.column of the list view.  The format of this string can vary depending
-#.on age of a file.  Please modify the format of the timestamp to match
-#.your locale.  For example, to display 24 hour time replace the '%-I'
-#.with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
 #: ../gsearchtool/gsearchtool-support.c:641
+#. Translators:  Below are the strings displayed in the 'Date Modified'
+#. column of the list view.  The format of this string can vary depending
+#. on age of a file.  Please modify the format of the timestamp to match
+#. your locale.  For example, to display 24 hour time replace the '%-I'
+#. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
 msgid "today at %-I:%M %p"
 msgstr "hôm nay lúc %-I:%M:%p"
 
@@ -2798,97 +2864,97 @@ msgstr "liên kết (bị ngắt)"
 msgid "link to %s"
 msgstr "liên kết tới %s"
 
-#.START OF NAUTILUS/EEL FUNCTIONS: USED FOR HANDLING OF DUPLICATE FILENAMES
-#.Localizers:
-#.* Feel free to leave out the st, nd, rd and th suffix or
-#.* make some or all of them match.
-#.
-#.localizers: tag used to detect the first copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1533
+#. START OF NAUTILUS/EEL FUNCTIONS: USED FOR HANDLING OF DUPLICATE FILENAMES
+#. Localizers:
+#. * Feel free to leave out the st, nd, rd and th suffix or
+#. * make some or all of them match.
+#.
+#. localizers: tag used to detect the first copy of a file
 msgid " (copy)"
 msgstr " (bản sao)"
 
-#.localizers: tag used to detect the second copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1535
+#. localizers: tag used to detect the second copy of a file
 msgid " (another copy)"
 msgstr " (bản sao khác)"
 
-#.localizers: tag used to detect the x11th copy of a file
-#.localizers: tag used to detect the x12th copy of a file
-#.localizers: tag used to detect the x13th copy of a file
-#.localizers: tag used to detect the xxth copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1538
 #: ../gsearchtool/gsearchtool-support.c:1540
 #: ../gsearchtool/gsearchtool-support.c:1542
 #: ../gsearchtool/gsearchtool-support.c:1552
+#. localizers: tag used to detect the x11th copy of a file
+#. localizers: tag used to detect the x12th copy of a file
+#. localizers: tag used to detect the x13th copy of a file
+#. localizers: tag used to detect the xxth copy of a file
 msgid "th copy)"
 msgstr "(bản sao"
 
-#.localizers: tag used to detect the x1st copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1545
+#. localizers: tag used to detect the x1st copy of a file
 msgid "st copy)"
 msgstr "(bản sao"
 
-#.localizers: tag used to detect the x2nd copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1547
+#. localizers: tag used to detect the x2nd copy of a file
 msgid "nd copy)"
 msgstr "(bản sao"
 
-#.localizers: tag used to detect the x3rd copy of a file
 #: ../gsearchtool/gsearchtool-support.c:1549
+#. localizers: tag used to detect the x3rd copy of a file
 msgid "rd copy)"
 msgstr "(bản sao"
 
-#.localizers: appended to first file copy
 #: ../gsearchtool/gsearchtool-support.c:1566
 #, c-format
+#. localizers: appended to first file copy
 msgid "%s (copy)%s"
 msgstr "%s (bản sao)%s"
 
-#.localizers: appended to second file copy
 #: ../gsearchtool/gsearchtool-support.c:1568
 #, c-format
+#. localizers: appended to second file copy
 msgid "%s (another copy)%s"
 msgstr "%s (bản sao khác)%s"
 
-#.localizers: appended to x11th file copy
-#.localizers: appended to x12th file copy
-#.localizers: appended to x13th file copy
-#.localizers: appended to xxth file copy
 #: ../gsearchtool/gsearchtool-support.c:1571
 #: ../gsearchtool/gsearchtool-support.c:1573
 #: ../gsearchtool/gsearchtool-support.c:1575
 #: ../gsearchtool/gsearchtool-support.c:1584
 #, c-format
+#. localizers: appended to x11th file copy
+#. localizers: appended to x12th file copy
+#. localizers: appended to x13th file copy
+#. localizers: appended to xxth file copy
 msgid "%s (%dth copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
-#.localizers: appended to x1st file copy
 #: ../gsearchtool/gsearchtool-support.c:1578
 #, c-format
+#. localizers: appended to x1st file copy
 msgid "%s (%dst copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
-#.localizers: appended to x2nd file copy
 #: ../gsearchtool/gsearchtool-support.c:1580
 #, c-format
+#. localizers: appended to x2nd file copy
 msgid "%s (%dnd copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
-#.localizers: appended to x3rd file copy
 #: ../gsearchtool/gsearchtool-support.c:1582
 #, c-format
+#. localizers: appended to x3rd file copy
 msgid "%s (%drd copy)%s"
 msgstr "%s (bản sao thứ %d)%s"
 
-#.localizers: opening parentheses to match the "th copy)" string
 #: ../gsearchtool/gsearchtool-support.c:1718
+#. localizers: opening parentheses to match the "th copy)" string
 msgid " ("
 msgstr " ("
 
-#.localizers: opening parentheses of the "th copy)" string
 #: ../gsearchtool/gsearchtool-support.c:1726
 #, c-format
+#. localizers: opening parentheses of the "th copy)" string
 msgid " (%d"
 msgstr " (%d"
 
@@ -3066,7 +3132,8 @@ msgstr "Lập chữ trong tùy chọn « Tìm trong thư mục »"
 
 #: ../gsearchtool/gsearchtool.c:1386
 msgid "Sort files by one of the following: name, folder, size, type, or date"
-msgstr "Sắp xếp tập tin theo một trong những chỉ tiêu sau: tên, thư mục, cỡ, kiểu, "
+msgstr ""
+"Sắp xếp tập tin theo một trong những chỉ tiêu sau: tên, thư mục, cỡ, kiểu, "
 "hay ngày tháng"
 
 #: ../gsearchtool/gsearchtool.c:1387
@@ -3095,14 +3162,16 @@ msgstr "Chuyển tùy chọn không hợp lệ cho lệnh « sortby » (sắp x�
 msgid ""
 "\n"
 "... Too many errors to display ..."
-msgstr "\n"
+msgstr ""
+"\n"
 "... Quá nhiều lỗi, không thể hiển thị hết ..."
 
 #: ../gsearchtool/gsearchtool.c:1816
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
-msgstr "Có lẽ kết quả tìm kiếm không hợp lệ. Gặp lỗi khi thực hiện tìm kiếm này."
+msgstr ""
+"Có lẽ kết quả tìm kiếm không hợp lệ. Gặp lỗi khi thực hiện tìm kiếm này."
 
 #: ../gsearchtool/gsearchtool.c:1828
 #: ../gsearchtool/gsearchtool.c:1872
@@ -3113,7 +3182,8 @@ msgstr "Hiện chi tiết _hơn"
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
-msgstr "Có lẽ kết quả tìm kiếm quá hạn hay không hợp lệ. Bạn có muốn vô hiệu hóa "
+msgstr ""
+"Có lẽ kết quả tìm kiếm quá hạn hay không hợp lệ. Bạn có muốn vô hiệu hóa "
 "tính năng Tìm nhanh không?"
 
 #: ../gsearchtool/gsearchtool.c:1883
@@ -3138,10 +3208,10 @@ msgstr "Gặp lỗi khi thực hiện lệnh tìm kiếm."
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Hãy nhập giá trị chữ cho tùy chọn « %s »."
 
-#.Translators:  Below is a string displaying the search options name
-#.and unit value.  For example, "\"Date modified less than\" in days".
 #: ../gsearchtool/gsearchtool.c:2088
 #, c-format
+#. Translators:  Below is a string displaying the search options name
+#. and unit value.  For example, "\"Date modified less than\" in days".
 msgid "\"%s\" in %s"
 msgstr "« %s » theo « %s »"
 
@@ -3203,7 +3273,8 @@ msgstr "Tê_n chứa:"
 #: ../gsearchtool/gsearchtool.c:2946
 #: ../gsearchtool/gsearchtool.c:2947
 msgid "Enter a filename or partial filename with or without wildcards."
-msgstr "Hãy nhập một tên tập tin hay tên tập tin cục bộ, có ký tự đại diện hay không "
+msgstr ""
+"Hãy nhập một tên tập tin hay tên tập tin cục bộ, có ký tự đại diện hay không "
 "có chúng."
 
 #: ../gsearchtool/gsearchtool.c:2947
@@ -3299,9 +3370,10 @@ msgstr "Không thể mở một hay nhiều tập tin"
 msgid ""
 "%s is not user readable. Either run the program as root or ask the sysadmin "
 "to change the permissions on the file.\n"
-msgstr "« %s » không phải là tập tin người dùng có thể đọc. Hoặc là chạy chương "
-"trình với tư cách người chủ (root), hoặc yêu cầu quản trị hệ thống thay đổi "
-"quyền truy cập tập tin đó.\n"
+msgstr ""
+"« %s » không phải là tập tin người dùng có thể đọc. Hoặc là chạy chương trình "
+"với tư cách người chủ (root), hoặc yêu cầu quản trị hệ thống thay đổi quyền "
+"truy cập tập tin đó.\n"
 
 #: ../logview/logrtns.c:64
 #, c-format
@@ -3480,7 +3552,8 @@ msgstr "Kích cỡ của phông chữ dùng để hiển thị bản ghi"
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
-msgstr "Xác định danh sách các tập tin bản ghi cần mở vào lúc khởi động. Danh sách "
+msgstr ""
+"Xác định danh sách các tập tin bản ghi cần mở vào lúc khởi động. Danh sách "
 "mặc định được tạo do việc đọc tập tin cấu hình bản ghi hệ thống </etc/syslog."
 "conf>."
 
@@ -3492,7 +3565,8 @@ msgstr "Ghi rõ độ cao của cửa sổ chính cho bộ xem bản ghi, theo �
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
-msgstr "Xác định tập tin bản ghi cần hiển thị vào lúc khởi động. Mặc định hoặc là </"
+msgstr ""
+"Xác định tập tin bản ghi cần hiển thị vào lúc khởi động. Mặc định hoặc là </"
 "var/adm/messages> hay </var/log/messages>, tùy thuộc vào hệ điều hành của "
 "bạn."
 
@@ -3500,7 +3574,8 @@ msgstr "Xác định tập tin bản ghi cần hiển thị vào lúc khởi đ�
 msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
-msgstr "Ghi rõ kích cỡ của phông chữ cỡ cố định dùng để hiển thị bản ghi trong khung "
+msgstr ""
+"Ghi rõ kích cỡ của phông chữ cỡ cố định dùng để hiển thị bản ghi trong khung "
 "xem cây chính. Mặc định dựa vào kích cỡ phông chữ thiết bị cuối mặc định."
 
 #: ../logview/logview.schemas.in.h:9
@@ -3584,9 +3659,9 @@ msgid "Invalid date"
 msgstr "Ngày không hợp lệ"
 
 # Variable: do not translate/ biến: đừng dịch
-#.Translators: Only date format, time will be bogus
 #: ../logview/misc.c:169
 #, c-format
+#. Translators: Only date format, time will be bogus
 msgid "%x"
 msgstr "%x"
 
@@ -3596,235 +3671,9 @@ msgstr "Không thể theo dõi tập tin này."
 
 #: ../logview/monitor.c:86
 msgid "File monitoring is not supported on this file system.\n"
-msgstr "Khả năng theo dõi tập tin không được hỗ trợ trong hệ thống tập tin này.\n"
+msgstr ""
+"Khả năng theo dõi tập tin không được hỗ trợ trong hệ thống tập tin này.\n"
 
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Lỗi Gnome-VFS.\n"
-
-#~ msgid "The GdictContext object bound to this entry"
-#~ msgstr "Đối tượng GdictContext được buộc với mục nhập này"
-
-#~ msgid "The database to be used to generate the completion list"
-#~ msgstr "Cơ sở dữ liệu cần dùng để tạo ra danh sách gõ xong"
-
-#~ msgid "The matching strategy to be used to generate the completion list"
-#~ msgstr "Chiến lược khớp cần dùng để tạo ra danh sách gõ xong"
-
-#~ msgid "%s (page %d)"
-#~ msgstr "%s (trang %d)"
-
-#~ msgid "Print Preview"
-#~ msgstr "Xem thử bản in"
-
-#~ msgid "Analyze disk usage"
-#~ msgstr "Công cụ phân tích sử dụng đĩa"
-
-#~ msgid "<b>File Size</b>"
-#~ msgstr "<b>Cỡ tập tin</b>"
-
-#~ msgid "<b>Modification Date</b>"
-#~ msgstr "<b>Ngày sửa đổi</b>"
-
-#~ msgid "<b>Search Options</b>"
-#~ msgstr "<b>Tùy chọn tìm kiếm</b>"
-
-#~ msgid "A_dvanced Options"
-#~ msgstr "Tùy chọn _cấp cao"
-
-#~ msgid "A_ny"
-#~ msgstr "_Bất kỳ"
-
-#~ msgid "An_y"
-#~ msgstr "_Bất kỳ"
-
-#~ msgid "Directory Tree"
-#~ msgstr "Cây thư mục"
-
-#~ msgid "Exact _match"
-#~ msgstr "Khớp chính _xác"
-
-#~ msgid "File Search"
-#~ msgstr "Tìm kiếm tập tin"
-
-#~ msgid "Filesystem"
-#~ msgstr "Hệ thống tập tin"
-
-#~ msgid "Last m_onth"
-#~ msgstr "Tháng t_rước"
-
-#~ msgid "Last wee_k"
-#~ msgstr "T_uần trước"
-
-#~ msgid "Medi_um (< 1 MB)"
-#~ msgstr "_Vừa (< 1 MB)"
-
-#~ msgid "Scan Selected F_older..."
-#~ msgstr "Quét thư _mục đã chọn..."
-
-#~ msgid "Scan a selected folder"
-#~ msgstr "Quét một thư mục đã chọn"
-
-#~ msgid "Se_arch in selected folder:"
-#~ msgstr "Tìm k_iếm trong thư mục đã chọn:"
-
-#~ msgid "Search"
-#~ msgstr "Tìm kiếm"
-
-#~ msgid "Search for File"
-#~ msgstr "Tìm kiếm tập tin"
-
-#~ msgid "Search for a file"
-#~ msgstr "Tìm kiếm một tập tin"
-
-#~ msgid "Search the _whole filesystem"
-#~ msgstr "Tìm kiếm t_oàn bộ hệ thống tập tin"
-
-#~ msgid "Show allocated disk usage instead of apparent size"
-#~ msgstr "Hiển thị chỗ đĩa đã cấp phát thay vào kích cỡ biểu kiến"
-
-#~ msgid "Sma_ll (< 100 kB)"
-#~ msgstr "_Nhỏ (< 100 kB)"
-
-#~ msgid "Sort"
-#~ msgstr "Sắp xếp"
-
-#~ msgid "Sort by name"
-#~ msgstr "Sắp xếp theo tên"
-
-#~ msgid "Sort by size"
-#~ msgstr "Sắp xếp theo kích cỡ"
-
-#~ msgid "Stop"
-#~ msgstr "Dừng"
-
-#~ msgid "_Browse..."
-#~ msgstr "_Duyệt..."
-
-#~ msgid "_Date"
-#~ msgstr "_Ngày"
-
-#~ msgid "_Enable auto-detect monitoring of home directory"
-#~ msgstr "Bật khả năng th_eo dõi thư mục chính mà phát hiện tự động"
-
-#~ msgid "_Extended search"
-#~ msgstr "Tìm kiếm đã mở _rộng"
-
-#~ msgid "_Find..."
-#~ msgstr "_Tìm..."
-
-#~ msgid "_Name"
-#~ msgstr "Tê_n"
-
-#~ msgid "_Search for file:"
-#~ msgstr "Tìm _kiếm tập tin:"
-
-#~ msgid "_Size"
-#~ msgstr "_Cỡ"
-
-#~ msgid "_Sort By"
-#~ msgstr "_Sắp xếp theo"
-
-#~ msgid "_Type"
-#~ msgstr "_Kiểu"
-
-#~ msgid "Unknown"
-#~ msgstr "Không rõ"
-
-#~ msgid "Full path:"
-#~ msgstr "Đường dẫn đầy:"
-
-#~ msgid "Last Modification:"
-#~ msgstr "Sửa đổi cuối cùng:"
-
-#~ msgid "Owner:"
-#~ msgstr "Sở hữu :"
-
-#~ msgid "Allocated bytes:"
-#~ msgstr "Byte đã cấp phát:"
-
-#~ msgid "scanning..."
-#~ msgstr "đang quét..."
-
-#~ msgid "% 5d object"
-#~ msgid_plural "% 5d objects"
-#~ msgstr[0] "đối tượng % 5d"
-
-#~ msgid ""
-#~ "Cannot initialize GNOME VFS monitoring\n"
-#~ "Some real-time auto-detect function will not be available!"
-#~ msgstr "Không thể sở khởi khả năng theo dõi GNOME VFS.\n"
-#~ "Như thế thì chức năng phát hiện tự động thời gian thực sẽ không sẵn sàng !"
-
-#~ msgid "Save the screenshot"
-#~ msgstr "Lưu ảnh chụp màn hình"
-
-#~ msgid "Graphical map for folder:"
-#~ msgstr "Sơ đồ kiểu đồ họa cho thư mục:"
-
-#~ msgid "Connect to a Remote Folder"
-#~ msgstr "Kết nối đến thư mục từ xa"
-
-#~ msgid "C_onnect"
-#~ msgstr "_Kết nối"
-
-#~ msgid "Use the Edit->Find menu item or the search toolbar button."
-#~ msgstr "Hãy dùng mục trinh đơn <b>Sửa → Tìm</b> hay nút tìm kiếm trên thanh công "
-#~ "cụ."
-
-#~ msgid "Move to Trash"
-#~ msgstr "Chuyển vào Sọt rác"
-
-#~ msgid "Folder graphical map"
-#~ msgstr "Sơ đồ kiểu đồ họa thư mục"
-
-#~ msgid "List all files in folder"
-#~ msgstr "Liệt kê mọi tập tin nằm trong thư mục"
-
-#~ msgid "Please provide a file name to search for!"
-#~ msgstr "Hãy cung cấp tên tập tin cần tìm !"
-
-#~ msgid "Found:"
-#~ msgstr "Tìm:"
-
-#~ msgid "file"
-#~ msgstr "tập tin"
-
-#~ msgid "files"
-#~ msgstr "tập tin"
-
-#~ msgid "for total:"
-#~ msgstr "trên tổng:"
-
-#~ msgid "Moving <b>%s</b> to trash failed: %s."
-#~ msgstr "Lỗi chuyển <b>%s</b> vào Sọt rác: %s"
-
-#~ msgid "Do you want to delete <b>%s</b> permanently?"
-#~ msgstr "Bạn có muốn xóa bỏ hoàn toàn <b>%s</b> không?"
-
-#~ msgid "Deleting <b>%s</b> failed: %s."
-#~ msgstr "Lỗi xoá bỏ <b>%s</b>: %s."
-
-#~ msgid "Couldn't find pixmap file: %s"
-#~ msgstr "Không tìm thấy tập tin sơ đồ điểm ảnh: %s"
-
-#~ msgid "A graphical tool to analyse disk usage."
-#~ msgstr "Công cụ đồ họa để phân tích cách sử dụng đĩa."
-
-#~ msgid "Data_base:"
-#~ msgstr "Cơ sở _dữ liệu :"
-
-#~ msgid "_Advanced settings"
-#~ msgstr "Thiết lập _cấp cao"
-
-#~ msgid "_Strategy:"
-#~ msgstr "_Chiến lược:"
-
-#~ msgid "There was an error displaying the help pages for this dialog:"
-#~ msgstr "Gặp lỗi khi hiển thị những trang trợ giúp cho hộp thoại này:"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Tùy chọn</b>"
-
-#~ msgid "<b>Preview</b>"
-#~ msgstr "<b>Xem trước</b>"
