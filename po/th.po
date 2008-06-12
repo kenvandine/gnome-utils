@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-09 13:01+0700\n"
-"PO-Revision-Date: 2008-05-17 17:24+0700\n"
+"POT-Creation-Date: 2008-06-12 14:45+0700\n"
+"PO-Revision-Date: 2008-06-12 14:57+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,6 @@ msgid "Scan Home"
 msgstr "ตรวจข้อมูลโฟลเดอร์บ้าน"
 
 #: ../baobab/data/baobab.glade.h:11
-#: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
 msgstr "ตรวจข้อมูลโฟลเดอร์ในเครือข่าย"
 
@@ -113,11 +112,11 @@ msgstr "บันทึกภาพหน้าจอ"
 msgid "Zoom 100%"
 msgstr "ขยาย 100%"
 
-#: ../baobab/data/baobab.glade.h:24
+#: ../baobab/data/baobab.glade.h:24 ../baobab/src/baobab.c:756
 msgid "Zoom in"
 msgstr "ขยายเข้า"
 
-#: ../baobab/data/baobab.glade.h:25
+#: ../baobab/data/baobab.glade.h:25 ../baobab/src/baobab.c:760
 msgid "Zoom out"
 msgstr "ขยายออก"
 
@@ -148,7 +147,7 @@ msgstr "แ_ก้ไข"
 msgid "_Expand All"
 msgstr "_ขยายทั้งหมด"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:334
 msgid "_Graphical Usage Map"
 msgstr "แผน_ภาพการใช้ดิสก์แบบกราฟิก"
 
@@ -176,336 +175,311 @@ msgid "_View"
 msgstr "_มุมมอง"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of partitions to be excluded from scanning."
-msgstr "รายการพาร์ทิชันที่จะไม่นับรวมในการตรวจข้อมูล"
+msgid "A list of uri for partitions to be excluded from scanning."
+msgstr "รายการ URI ของพาร์ทิชันที่จะไม่นับรวมในการตรวจข้อมูล"
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "เปิดใช้การเฝ้าสังเกตไดเรกทอรีบ้าน"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions"
-msgstr "พาร์ทิชันที่ไม่นับรวม"
+msgid "Exluded partitions uris"
+msgstr "URI ของพาร์ทิชันที่ไม่นับรวม"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
 msgstr "แสดงแถบสถานะ"
 
 #: ../baobab/data/baobab.schemas.in.h:5
+msgid "Subfolders tooltips visible"
+msgstr "แสดงคำแนะนำเครื่องมือของโฟลเดอร์ย่อย"
+
+#: ../baobab/data/baobab.schemas.in.h:6
 msgid "Toolbar is Visible"
 msgstr "แสดงแถบเครื่องมือ"
 
-#: ../baobab/data/baobab.schemas.in.h:6
+#: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether any change to the home directory should be monitored."
 msgstr "กำหนดว่าจะเฝ้าสังเกตการเปลี่ยนแปลงในไดเรกทอรีบ้านหรือไม่"
 
-#: ../baobab/data/baobab.schemas.in.h:7
+#: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "กำหนดว่าจะแสดงแถบสถานะที่ด้านล่างของหน้าต่างหลักหรือไม่"
 
-#: ../baobab/data/baobab.schemas.in.h:8
+#: ../baobab/data/baobab.schemas.in.h:9
+msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgstr "กำหนดว่าจะแสดงคำแนะนำเครื่องมือของโฟลเดอร์ย่อยหรือไม่"
+
+#: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "กำหนดว่าจะแสดงแถบเครื่องมือในหน้าต่างหลักหรือไม่"
 
-#. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:326
-msgid "Calculating percentage bars..."
-msgstr "กำลังคำนวณแถบร้อยละ..."
-
-#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
-msgid "Ready"
-msgstr "พร้อม"
-
-#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:108 ../baobab/src/baobab.c:285
 msgid "Scanning..."
 msgstr "กำลังตรวจข้อมูล..."
 
-#: ../baobab/src/baobab.c:266
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:171 ../baobab/src/baobab.c:227
+#: ../baobab/src/callbacks.c:314
+msgid "Calculating percentage bars..."
+msgstr "กำลังคำนวณแถบร้อยละ..."
+
+#: ../baobab/src/baobab.c:179 ../baobab/src/baobab.c:907
+#: ../baobab/src/callbacks.c:318
+msgid "Ready"
+msgstr "พร้อม"
+
+#: ../baobab/src/baobab.c:320
 msgid "Total filesystem usage:"
 msgstr "การใช้เนื้อที่ทั้งหมดในระบบแฟ้ม:"
 
-#: ../baobab/src/baobab.c:310
+#: ../baobab/src/baobab.c:359
 msgid "contains hardlinks for:"
 msgstr "มี hardlink รวม:"
 
-#: ../baobab/src/baobab.c:319
+#: ../baobab/src/baobab.c:368
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d รายการ"
 
-#: ../baobab/src/baobab.c:384
-msgid "Invalid UTF-8 characters"
-msgstr "รหัสอักขระ UTF-8 ไม่ถูกต้อง"
+#: ../baobab/src/baobab.c:706
+msgid "Could not initialize monitoring"
+msgstr "ไม่สามารถเริ่มใช้การเฝ้าสังเกตแฟ้มได้"
 
-#: ../baobab/src/baobab.c:640
-msgid "Could not initialize GNOME VFS monitoring"
-msgstr "ไม่สามารถเริ่มใช้การเฝ้าสังเกตแฟ้มของ GNOME VFS ได้"
-
-#: ../baobab/src/baobab.c:641
+#: ../baobab/src/baobab.c:707
 msgid "Changes to your home folder will not be monitored."
 msgstr "จะไม่มีการเฝ้าสังเกตการเปลี่ยนแปลงในไดเรกทอรีบ้านของคุณ"
 
-#: ../baobab/src/baobab-graphwin.c:157
+#: ../baobab/src/baobab.c:752
+msgid "Move to parent folder"
+msgstr "ย้ายไปยังโฟลเดอร์แม่"
+
+#: ../baobab/src/baobab.c:876
+msgid "Could not detect any mount point."
+msgstr "ตรวจไม่พบจุดเมานท์ใดๆ"
+
+#: ../baobab/src/baobab.c:879
+msgid "Without mount points disk usage cannot be analyzed."
+msgstr "ถ้าไม่มีจุดเมานท์ ก็ไม่สามารถวิเคราะห์การใช้เนื้อที่ดิสก์ได้"
+
+#: ../baobab/src/baobab-graphwin.c:154
 msgid "Cannot create pixbuf image!"
 msgstr "ไม่สามารถสร้างรูปภาพใน pixbuf!"
 
-#: ../baobab/src/baobab-graphwin.c:163
+#: ../baobab/src/baobab-graphwin.c:160
 msgid "Save Snapshot"
 msgstr "บันทึกภาพ"
 
-#: ../baobab/src/baobab-graphwin.c:186
+#: ../baobab/src/baobab-graphwin.c:183
 msgid "_Image type:"
 msgstr "_ชนิดของรูปภาพ:"
 
-#: ../baobab/src/baobab-graphwin.c:224 ../baobab/src/baobab-graphwin.c:317
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
 msgid "Unlimited"
 msgstr "ไม่จำกัด"
 
-#: ../baobab/src/baobab-graphwin.c:279
+#: ../baobab/src/baobab-graphwin.c:276
 msgid "Cannot allocate memory for graphical window!"
 msgstr "ไม่สามารถจัดสรรหน่วยความจำสำหรับหน้าต่างกราฟิกได้!"
 
 #. Main treemap window
-#: ../baobab/src/baobab-graphwin.c:307
+#: ../baobab/src/baobab-graphwin.c:304
 msgid "Graphical Usage Map"
 msgstr "แผนภาพการใช้ดิสก์แบบกราฟิก"
 
-#: ../baobab/src/baobab-prefs.c:168
+#: ../baobab/src/baobab-prefs.c:171
 msgid "Scan"
 msgstr "ตรวจ"
 
-#: ../baobab/src/baobab-prefs.c:175
+#: ../baobab/src/baobab-prefs.c:178
 msgid "Device"
 msgstr "อุปกรณ์"
 
-#: ../baobab/src/baobab-prefs.c:183
+#: ../baobab/src/baobab-prefs.c:186
 msgid "Mount Point"
 msgstr "ตำแหน่งเมานท์"
 
-#: ../baobab/src/baobab-prefs.c:191
+#: ../baobab/src/baobab-prefs.c:194
 msgid "Filesystem Type"
 msgstr "ชนิดระบบแฟ้ม"
 
-#: ../baobab/src/baobab-prefs.c:199
+#: ../baobab/src/baobab-prefs.c:202
 msgid "Total Size"
 msgstr "ขนาดทั้งหมด"
 
-#: ../baobab/src/baobab-prefs.c:208
+#: ../baobab/src/baobab-prefs.c:211
 msgid "Available"
 msgstr "เหลืออยู่"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:126
+#: ../baobab/src/baobab-remote-connect-dialog.c:72
 #, c-format
-msgid "\"%s\" is not a valid location"
-msgstr "\"%s\" ไม่ใช่ตำแหน่งที่ใช้การได้"
+msgid "Cannot scan location \"%s\""
+msgstr "ไม่สามารถตรวจข้อมูลที่ตำแหน่ง \"%s\""
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:135
-msgid "Please check the spelling and try again."
-msgstr "กรุณาตรวจสอบตัวสะกดแล้วลองใหม่"
+#: ../baobab/src/baobab-remote-connect-dialog.c:170
+msgid "Custom Location"
+msgstr "ตำแหน่งกำหนดเอง"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:161
-msgid "You must enter a name for the server"
-msgstr "คุณต้องป้อนชื่อของเซิร์ฟเวอร์ด้วย"
+#: ../baobab/src/baobab-remote-connect-dialog.c:172
+msgid "SSH"
+msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:164
+#: ../baobab/src/baobab-remote-connect-dialog.c:175
+msgid "Public FTP"
+msgstr "FTP สาธารณะ"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:177
+msgid "FTP (with login)"
+msgstr "FTP (แบบล็อกอิน)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:180
+msgid "Windows share"
+msgstr "โฟลเดอร์ใช้ร่วมของวินโดวส์"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:182
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:184
+msgid "Secure WebDAV (HTTPS)"
+msgstr "WebDAV นิรภัย (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:244
+msgid "Cannot Connect to Server. You must enter a name for the server."
+msgstr "ไม่สามารถเชื่อมต่อไปยังเซิร์ฟเวอร์ คุณต้องป้อนชื่อของเซิร์ฟเวอร์ด้วย"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:247
 msgid "Please enter a name and try again."
 msgstr "กรุณาป้อนชื่อแล้วลองใหม่"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:302
-#, c-format
-msgid "%s on %s"
-msgstr "%s ที่เครื่อง %s"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:402
+#: ../baobab/src/baobab-remote-connect-dialog.c:438
 msgid "_Location (URI):"
 msgstr "_ตำแหน่ง (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:449
-msgid "S_erver:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:460
+msgid "_Server:"
 msgstr "เ_ซิร์ฟเวอร์:"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:479
-msgid "Optional Information"
-msgstr "ข้อมูลประกอบ"
+msgid "Optional information:"
+msgstr "ข้อมูลประกอบ:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:507
-msgid "Sh_are:"
-msgstr "ชื่อใ_ช้ร่วม:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:491
+msgid "_Share:"
+msgstr "ชื่อใช้_ร่วม:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:528
+#: ../baobab/src/baobab-remote-connect-dialog.c:512
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_พอร์ต:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:548
+#: ../baobab/src/baobab-remote-connect-dialog.c:532
 msgid "_Folder:"
 msgstr "โ_ฟลเดอร์:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:568
-msgid "_User name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:552
+msgid "_User Name:"
 msgstr "ชื่อผู้ใ_ช้:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:589
-msgid "_Domain name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:573
+msgid "_Domain Name:"
 msgstr "ชื่อโ_ดเมน:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:668
+#: ../baobab/src/baobab-remote-connect-dialog.c:640
+msgid "Connect to Server"
+msgstr "เชื่อมต่อไปยังเซิร์ฟเวอร์"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:657
 msgid "Service _type:"
 msgstr "ชนิดของ_บริการ:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:681
-msgid "SSH"
-msgstr "SSH"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:683
-msgid "Public FTP"
-msgstr "FTP สาธารณะ"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:685
-msgid "FTP (with login)"
-msgstr "FTP (แบบล็อกอิน)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:687
-msgid "Windows share"
-msgstr "โฟลเดอร์ใช้ร่วมของวินโดวส์"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:689
-msgid "WebDAV (HTTP)"
-msgstr "WebDAV (HTTP)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:691
-msgid "Secure WebDAV (HTTPS)"
-msgstr "WebDAV นิรภัย (HTTPS)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:693
-msgid "Custom Location"
-msgstr "ตำแหน่งกำหนดเอง"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:749
+#: ../baobab/src/baobab-remote-connect-dialog.c:776
 msgid "_Scan"
 msgstr "_ตรวจ"
 
-#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:224 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "โฟลเดอร์"
 
-#: ../baobab/src/baobab-treeview.c:255
+#: ../baobab/src/baobab-treeview.c:246
 msgid "Usage"
 msgstr "การใช้เนื้อที่"
 
-#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:260 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "ขนาด"
 
-#: ../baobab/src/baobab-treeview.c:285
+#: ../baobab/src/baobab-treeview.c:276
 msgid "Contents"
 msgstr "เนื้อหา"
 
-#: ../baobab/src/baobab-utils.c:102
+#: ../baobab/src/baobab-utils.c:110
 msgid "Select Folder"
 msgstr "เลือกโฟลเดอร์"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:114
+#: ../baobab/src/baobab-utils.c:122
 msgid "_Show hidden folders"
 msgstr "แ_สดงโฟลเดอร์ซ่อนด้วย"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:302
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" ไม่ใช่โฟลเดอร์ที่ใช้การได้"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:305
 msgid "Could not analyze disk usage."
 msgstr "ไม่สามารถวิเคราะห์การใช้งานดิสก์ได้"
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:331
 msgid "_Open Folder"
 msgstr "เปิดโฟ_ลเดอร์"
 
-#: ../baobab/src/baobab-utils.c:380
-msgid "_Remove from Trash"
-msgstr "_ลบออกจากถังขยะ"
-
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:349 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "_ทิ้งลงถังขยะ"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:378
 msgid "Total filesystem capacity:"
 msgstr "ความจุรวมของระบบแฟ้ม:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:379
 msgid "used:"
 msgstr "ใช้ไป:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:380
 msgid "available:"
 msgstr "เหลืออยู่:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:424
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "ไม่สามารถเปิดโฟลเดอร์ \"%s\""
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:427
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "ไม่มีโปรแกรมที่สามารถแสดงโฟลเดอร์นี้ได้ติดตั้งอยู่"
 
-#: ../baobab/src/baobab-utils.c:538
-#, c-format
-msgid "The folder \"%s\" was not moved to the trash."
-msgstr "ไม่ได้ย้ายโฟลเดอร์ \"%s\" ไปลงถังขยะ"
-
-#: ../baobab/src/baobab-utils.c:540
-msgid "Could not find a Trash folder on this system"
-msgstr "หาโฟลเดอร์ถังขยะไม่พบในระบบนี้"
-
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:496
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "ไม่สามารถย้าย \"%s\" ไปลงถังขยะ"
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
-msgid "The folder does not exist."
-msgstr "โฟลเดอร์ไม่มีอยู่จริง"
+#: ../baobab/src/baobab-utils.c:504
+msgid "Could not move file to the Trash"
+msgstr "ไม่สามารถย้ายแฟ้มไปลงถังขยะ"
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:506
 #, c-format
 msgid "Details: %s"
 msgstr "รายละเอียด: %s"
 
-#: ../baobab/src/baobab-utils.c:577
-#, c-format
-msgid "Delete the folder \"%s\" permanently?"
-msgstr "ต้องการลบโฟลเดอร์ \"%s\" ทิ้งอย่างถาวรเลยหรือไม่?"
-
-#: ../baobab/src/baobab-utils.c:580
-msgid "Could not move the folder to the trash."
-msgstr "ไม่สามารถย้ายโฟลเดอร์ไปลงถังขยะ"
-
-#: ../baobab/src/baobab-utils.c:581
-msgid "_Delete Folder"
-msgstr "_ลบโฟลเดอร์"
-
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr "ลบ \"%s\" ไม่สำเร็จ: %s"
-
-#: ../baobab/src/baobab-utils.c:595
-#, c-format
-msgid "Could not delete the folder \"%s\""
-msgstr "ไม่สามารถเปิดโฟลเดอร์ \"%s\""
-
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:525
 msgid "Rescan your home folder?"
 msgstr "ตรวจข้อมูลโฟลเดอร์บ้านของคุณใหม่หรือไม่?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:526
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -513,48 +487,52 @@ msgstr ""
 "เนื้อหาของโฟลเดอร์บ้านของคุณมีการเปลี่ยนแปลง "
 "เลือกตรวจข้อมูลใหม่หากต้องการปรับข้อมูลรายละเอียดการใช้ดิสก์"
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:527
 msgid "_Rescan"
 msgstr "_ตรวจข้อมูลใหม่"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:562 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "เกิดข้อผิดพลาดขณะแสดงคำแนะนำ"
 
-#: ../baobab/src/baobab-ringschart.c:237
+#: ../baobab/src/baobab-ringschart.c:277
 msgid "Maximum depth"
 msgstr "ความลึกสูงสุด"
 
-#: ../baobab/src/baobab-ringschart.c:238
+#: ../baobab/src/baobab-ringschart.c:278
 msgid "The maximum depth drawn in the rings chart from the root"
 msgstr "ความลึกสูงสุดที่จะวาดในแผนภูมิวงแหวน นับจากระดับบนสุด"
 
-#: ../baobab/src/baobab-ringschart.c:247
+#: ../baobab/src/baobab-ringschart.c:287
 msgid "Rings chart model"
 msgstr "โมเดลแผนภูมิวงแหวน"
 
-#: ../baobab/src/baobab-ringschart.c:248
+#: ../baobab/src/baobab-ringschart.c:288
 msgid "Set the model of the rings chart"
 msgstr "กำหนดโมเดลสำหรับแผนภูมิวงแหวน"
 
-#: ../baobab/src/baobab-ringschart.c:255
+#: ../baobab/src/baobab-ringschart.c:295
 msgid "Rings chart root node"
 msgstr "โหนดรากของแผนภูมิวงแหวน"
 
-#: ../baobab/src/baobab-ringschart.c:256
+#: ../baobab/src/baobab-ringschart.c:296
 msgid "Set the root node from the model"
 msgstr "กำหนดโหนดรากในโมเดล"
 
-#: ../baobab/src/callbacks.c:99
+#: ../baobab/src/baobab-mount-operation.c:146
+msgid "Enter Password"
+msgstr "ป้อนรหัสผ่าน"
+
+#: ../baobab/src/callbacks.c:97
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:100
+#: ../baobab/src/callbacks.c:98
 msgid "A graphical tool to analyze disk usage."
 msgstr "เครื่องมือกราฟิกสำหรับวิเคราะห์การใช้งานดิสก์"
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -565,10 +543,14 @@ msgstr ""
 "ถ้ามีเวลาโปรดมาช่วยกันแปล :-)\n"
 "http://gnome-th.sf.net"
 
-#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "เอกสารไม่มีอยู่จริง"
+
+#: ../baobab/src/callbacks.c:390
+msgid "The folder does not exist."
+msgstr "โฟลเดอร์ไม่มีอยู่จริง"
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -2128,77 +2110,82 @@ msgstr "(เหลืออีก %d:%02d)"
 msgid "%ld of %ld"
 msgstr "%ld จาก %ld"
 
-#: ../gnome-screenshot/gnome-screenshot.c:109
+#: ../gnome-screenshot/gnome-screenshot.c:111
 msgid "Error loading the help page"
 msgstr "เกิดข้อผิดพลาดขณะเปิดหน้าแนะนำวิธีใช้"
 
-#: ../gnome-screenshot/gnome-screenshot.c:192
+#: ../gnome-screenshot/gnome-screenshot.c:201
 msgid "None"
 msgstr "ไม่มี"
 
-#: ../gnome-screenshot/gnome-screenshot.c:193
+#: ../gnome-screenshot/gnome-screenshot.c:202
 msgid "Drop shadow"
 msgstr "เงาตกกระทบ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:194
+#: ../gnome-screenshot/gnome-screenshot.c:203
 msgid "Border"
 msgstr "กรอบ"
 
+#. * Include pointer *
+#: ../gnome-screenshot/gnome-screenshot.c:313
+msgid "Include _pointer"
+msgstr "จับภาพตัว_ชี้เมาส์ด้วย"
+
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:304
+#: ../gnome-screenshot/gnome-screenshot.c:322
 msgid "Include the window _border"
 msgstr "จับภาพ_กรอบหน้าต่างด้วย"
 
-#: ../gnome-screenshot/gnome-screenshot.c:319
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Apply _effect:"
 msgstr "เพิ่มเ_อฟเฟกต์:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:379
+#: ../gnome-screenshot/gnome-screenshot.c:397
 msgid "Grab the whole _desktop"
 msgstr "จับภาพ_พื้นโต๊ะทั้งหมด"
 
-#: ../gnome-screenshot/gnome-screenshot.c:391
+#: ../gnome-screenshot/gnome-screenshot.c:409
 msgid "Grab the current _window"
 msgstr "จับภาพห_น้าต่างปัจจุบัน"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:408
+#: ../gnome-screenshot/gnome-screenshot.c:426
 msgid "Grab _after a delay of"
 msgstr "จับภาพห_ลังจากรอคอยเป็นเวลา"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:428
-#: ../gnome-screenshot/gnome-screenshot.c:874
+#: ../gnome-screenshot/gnome-screenshot.c:446
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "seconds"
 msgstr "วินาที"
 
-#: ../gnome-screenshot/gnome-screenshot.c:455
+#: ../gnome-screenshot/gnome-screenshot.c:472
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "บันทึกภาพหน้าจอ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:456
+#: ../gnome-screenshot/gnome-screenshot.c:473
 msgid "Effects"
 msgstr "เอฟเฟกต์"
 
-#: ../gnome-screenshot/gnome-screenshot.c:462
+#: ../gnome-screenshot/gnome-screenshot.c:479
 msgid "Take _Screenshot"
 msgstr "บันทึก_ภาพหน้าจอ"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:488
+#: ../gnome-screenshot/gnome-screenshot.c:507
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Screenshot-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/gnome-screenshot.c:513
 #: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2207,7 +2194,7 @@ msgstr "Screenshot.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:534
+#: ../gnome-screenshot/gnome-screenshot.c:553
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Screenshot-%s-%d.png"
@@ -2215,48 +2202,48 @@ msgstr "Screenshot-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:542
+#: ../gnome-screenshot/gnome-screenshot.c:561
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Screenshot-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:718
+#: ../gnome-screenshot/gnome-screenshot.c:737
 msgid "Unable to take a screenshot of the current window"
 msgstr "จับภาพหน้าต่างปัจจุบันไม่สำเร็จ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:895
 msgid "Grab a window instead of the entire screen"
 msgstr "จับภาพเฉพาะหน้าต่างหนึ่งแทนที่จะจับทั้งจอ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:873
+#: ../gnome-screenshot/gnome-screenshot.c:896
 msgid "Include the window border with the screenshot"
 msgstr "จับภาพกรอบหน้าต่างด้วย"
 
-#: ../gnome-screenshot/gnome-screenshot.c:874
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "หน่วงเวลา [เป็นวินาที] ก่อนจับภาพ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "เอฟเฟกต์ที่จะเพิ่มให้กับกรอบ (เงา, กรอบ หรือไม่มี)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:875
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "effect"
 msgstr "เอฟเฟกต์"
 
-#: ../gnome-screenshot/gnome-screenshot.c:876
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "Interactively set options"
 msgstr "กำหนดตัวเลือกแบบโต้ตอบ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:886
+#: ../gnome-screenshot/gnome-screenshot.c:909
 msgid "Options for Screenshot"
 msgstr "ตัวเลือกสำหรับการบันทึกภาพหน้าจอ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:887
+#: ../gnome-screenshot/gnome-screenshot.c:910
 msgid "Show Screenshot options"
 msgstr "แสดงตัวเลือกต่างๆ ของการบันทึกภาพหน้าจอ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:891
+#: ../gnome-screenshot/gnome-screenshot.c:914
 msgid "Take a picture of the screen"
 msgstr "จับภาพหน้าจอ"
 
@@ -2293,14 +2280,22 @@ msgid "Include Border"
 msgstr "รวมกรอบหน้าต่าง"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
+msgid "Include Pointer"
+msgstr "รวมตัวชี้เมาส์"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+msgid "Include the pointer in the screenshot"
+msgstr "รวมตัวชี้เมาส์ในภาพหน้าจอที่จับด้วย"
+
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
 msgid "Include the window manager border along with the screenshot"
 msgstr "รวมกรอบหน้าต่างในภาพหน้าต่างที่จับด้วย"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:5
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:7
 msgid "Screenshot directory"
 msgstr "โฟลเดอร์เก็บภาพหน้าจอ"
 
-#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:6
+#: ../gnome-screenshot/gnome-screenshot.schemas.in.h:8
 msgid "The directory the last screenshot was saved in."
 msgstr "โฟลเดอร์ที่เก็บภาพหน้าจอครั้งล่าสุด"
 
@@ -2335,7 +2330,7 @@ msgstr "โพรเซสลูกที่บันทึกแฟ้มหย
 msgid "Unknown error saving screenshot to disk"
 msgstr "เกิดข้อผิดพลาดที่ไม่รู้จักระหว่างบันทึกภาพหน้าจอ"
 
-#: ../gnome-screenshot/screenshot-utils.c:633
+#: ../gnome-screenshot/screenshot-utils.c:709
 msgid "Untitled Window"
 msgstr "หน้าต่างไม่มีชื่อ"
 
@@ -2711,6 +2706,11 @@ msgstr "ไม่สามารถลบ \"%s\""
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "ย้าย \"%s\" ไม่สำเร็จ: %s"
+
+#: ../gsearchtool/gsearchtool-callbacks.c:900
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr "ลบ \"%s\" ไม่สำเร็จ: %s"
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
@@ -3464,8 +3464,8 @@ msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
 msgstr ""
-"กำหนดแฟ้มปูมที่จะแสดงเมื่อเริ่มโปรแกรม  ค่าปริยายเป็นได้ทั้ง /var/adm/messages หรือ "
-"/var/log/messages ตามแต่ระบบปฏิบัติการที่ใช้"
+"กำหนดแฟ้มปูมที่จะแสดงเมื่อเริ่มโปรแกรม  ค่าปริยายเป็นได้ทั้ง /var/adm/messages หรือ /var/"
+"log/messages ตามแต่ระบบปฏิบัติการที่ใช้"
 
 #: ../logview/logview.schemas.in.h:8
 msgid ""
@@ -3572,6 +3572,39 @@ msgstr "ระบบแฟ้มนี้ไม่รองรับการเ
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
+
+#~ msgid "Invalid UTF-8 characters"
+#~ msgstr "รหัสอักขระ UTF-8 ไม่ถูกต้อง"
+
+#~ msgid "\"%s\" is not a valid location"
+#~ msgstr "\"%s\" ไม่ใช่ตำแหน่งที่ใช้การได้"
+
+#~ msgid "Please check the spelling and try again."
+#~ msgstr "กรุณาตรวจสอบตัวสะกดแล้วลองใหม่"
+
+#~ msgid "%s on %s"
+#~ msgstr "%s ที่เครื่อง %s"
+
+#~ msgid "_Remove from Trash"
+#~ msgstr "_ลบออกจากถังขยะ"
+
+#~ msgid "The folder \"%s\" was not moved to the trash."
+#~ msgstr "ไม่ได้ย้ายโฟลเดอร์ \"%s\" ไปลงถังขยะ"
+
+#~ msgid "Could not find a Trash folder on this system"
+#~ msgstr "หาโฟลเดอร์ถังขยะไม่พบในระบบนี้"
+
+#~ msgid "Delete the folder \"%s\" permanently?"
+#~ msgstr "ต้องการลบโฟลเดอร์ \"%s\" ทิ้งอย่างถาวรเลยหรือไม่?"
+
+#~ msgid "Could not move the folder to the trash."
+#~ msgstr "ไม่สามารถย้ายโฟลเดอร์ไปลงถังขยะ"
+
+#~ msgid "_Delete Folder"
+#~ msgstr "_ลบโฟลเดอร์"
+
+#~ msgid "Could not delete the folder \"%s\""
+#~ msgstr "ไม่สามารถเปิดโฟลเดอร์ \"%s\""
 
 #~ msgid "The GdictContext object bound to this entry"
 #~ msgstr "อ็อบเจกต์ GdictContext ที่ผูกโยงกับช่องป้อนข้อความนี้"
@@ -3738,9 +3771,6 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 
 #~ msgid "Graphical map for folder:"
 #~ msgstr "แผนภาพแบบกราฟิกสำหรับโฟลเดอร์:"
-
-#~ msgid "Connect to a Remote Folder"
-#~ msgstr "เชื่อมต่อไปยังโฟลเดอร์ในเครือข่าย"
 
 #~ msgid "C_onnect"
 #~ msgstr "เชื่อม_ต่อ"
@@ -3981,9 +4011,6 @@ msgstr "เกิดข้อผิดพลาดใน Gnome-VFS\n"
 
 #~ msgid "The GdictSourceLoader to be used to load dictionary sources"
 #~ msgstr "อ็อบเจกต์ GdictSourceLoader ที่จะใช้โหลดแหล่งพจนานุกรม"
-
-#~ msgid "Cannot connect to server"
-#~ msgstr "ติดต่อเซิร์ฟเวอร์ไม่สำเร็จ"
 
 #~ msgid "Server Error"
 #~ msgstr "เซิร์ฟเวอร์ไม่ถูกต้อง"
