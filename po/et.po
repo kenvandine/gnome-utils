@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 15:40+0100\n"
-"PO-Revision-Date: 2008-04-07 21:36+0300\n"
+"POT-Creation-Date: 2008-05-14 19:15+0000\n"
+"PO-Revision-Date: 2008-06-02 12:21+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,6 @@ msgid "Scan Home"
 msgstr "Kodukataloogi läbivaatus"
 
 #: ../baobab/data/baobab.glade.h:11
-#: ../baobab/src/baobab-remote-connect-dialog.c:651
 msgid "Scan Remote Folder"
 msgstr "Võrgukataloogi läbivaatus"
 
@@ -117,11 +116,11 @@ msgstr "Hetketõmmise võtmine"
 msgid "Zoom 100%"
 msgstr "1:1 vaade"
 
-#: ../baobab/data/baobab.glade.h:24
+#: ../baobab/data/baobab.glade.h:24 ../baobab/src/baobab.c:756
 msgid "Zoom in"
 msgstr "Suurendamine"
 
-#: ../baobab/data/baobab.glade.h:25
+#: ../baobab/data/baobab.glade.h:25 ../baobab/src/baobab.c:760
 msgid "Zoom out"
 msgstr "Vähendamine"
 
@@ -152,7 +151,7 @@ msgstr "_Redaktor"
 msgid "_Expand All"
 msgstr "_Laienda kõik"
 
-#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:362
+#: ../baobab/data/baobab.glade.h:32 ../baobab/src/baobab-utils.c:334
 msgid "_Graphical Usage Map"
 msgstr "Kettakasutuse _graafiline kaart"
 
@@ -180,346 +179,313 @@ msgid "_View"
 msgstr "_Vaade"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of partitions to be excluded from scanning."
-msgstr "Läbivaatusele mittekuuluvate jaotiste loetelu."
+msgid "A list of uri for partitions to be excluded from scanning."
+msgstr "Läbivaatusele mittekuuluvate jaotiste URI-de loetelu."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "Kodukataloogi jälgimine lubatud"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions"
-msgstr "Välistatud kataloogid"
+msgid "Exluded partitions uris"
+msgstr "Välistatud jaotiste URI-d"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
 msgstr "Olekuriba on nähtaval"
 
 #: ../baobab/data/baobab.schemas.in.h:5
+msgid "Subfolders tooltips visible"
+msgstr "Alamkataloogide vihjed nähtaval"
+
+#: ../baobab/data/baobab.schemas.in.h:6
 msgid "Toolbar is Visible"
 msgstr "Tööriistariba on nähtaval"
 
-#: ../baobab/data/baobab.schemas.in.h:6
+#: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether any change to the home directory should be monitored."
 msgstr "Kas kodukataloogis toimuvaid muudatusi tuleb jälgida või mitte."
 
-#: ../baobab/data/baobab.schemas.in.h:7
+#: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr ""
 "Kas peaakna alumises osas olev olekuriba peab nähtaval olema või mitte."
 
-#: ../baobab/data/baobab.schemas.in.h:8
+#: ../baobab/data/baobab.schemas.in.h:9
+msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgstr "Kas valitud alamkataloogide kohta näidatakse vihjeid või mitte."
+
+#: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Kas peaakna tööriistariba peab nähtaval olema või mitte."
 
-#. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:143 ../baobab/src/baobab-utils.c:190
-#: ../baobab/src/callbacks.c:326
-msgid "Calculating percentage bars..."
-msgstr "Protsenditulpade arvutamine..."
-
-#: ../baobab/src/baobab.c:149 ../baobab/src/baobab.c:777
-#: ../baobab/src/baobab-utils.c:197 ../baobab/src/callbacks.c:330
-msgid "Ready"
-msgstr "Valmis"
-
-#: ../baobab/src/baobab.c:231 ../baobab/src/baobab-utils.c:162
+#: ../baobab/src/baobab.c:108 ../baobab/src/baobab.c:285
 msgid "Scanning..."
 msgstr "Läbivaatus..."
 
-#: ../baobab/src/baobab.c:266
+#. set statusbar, percentage and allocated/normal size
+#: ../baobab/src/baobab.c:171 ../baobab/src/baobab.c:227
+#: ../baobab/src/callbacks.c:314
+msgid "Calculating percentage bars..."
+msgstr "Protsenditulpade arvutamine..."
+
+#: ../baobab/src/baobab.c:179 ../baobab/src/baobab.c:907
+#: ../baobab/src/callbacks.c:318
+msgid "Ready"
+msgstr "Valmis"
+
+#: ../baobab/src/baobab.c:320
 msgid "Total filesystem usage:"
 msgstr "Kogu failisüsteemi kasutus:"
 
-#: ../baobab/src/baobab.c:310
+#: ../baobab/src/baobab.c:359
 msgid "contains hardlinks for:"
 msgstr "sisaldab püsiviitasid andmemahule"
 
-#: ../baobab/src/baobab.c:319
+#: ../baobab/src/baobab.c:368
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d kirje"
 msgstr[1] "% 5d kirjet"
 
-#: ../baobab/src/baobab.c:384
-msgid "Invalid UTF-8 characters"
-msgstr "Vigased UTF-8 märgid"
+#: ../baobab/src/baobab.c:706
+msgid "Could not initialize monitoring"
+msgstr "Jälgimist pole võimalik lähtestada"
 
-#: ../baobab/src/baobab.c:640
-msgid "Could not initialize GNOME VFS monitoring"
-msgstr "GNOME VFS jälgimist pole võimalik lähtestada"
-
-#: ../baobab/src/baobab.c:641
+#: ../baobab/src/baobab.c:707
 msgid "Changes to your home folder will not be monitored."
 msgstr "Kodukataloogis toimuvaid muudatusi ei jälgita."
 
-#: ../baobab/src/baobab.c:746
+#: ../baobab/src/baobab.c:752
+msgid "Move to parent folder"
+msgstr "Tõsta ülemisse kataloogi"
+
+#: ../baobab/src/baobab.c:876
 msgid "Could not detect any mount point."
 msgstr "Ühtegi ühendamispunkti pole võimalik tuvastada."
 
-#: ../baobab/src/baobab.c:749
+#: ../baobab/src/baobab.c:879
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Ilme ühendamispunktideta pole võimalik kettakasutust analüüsida."
 
-#: ../baobab/src/baobab-graphwin.c:157
+#: ../baobab/src/baobab-graphwin.c:154
 msgid "Cannot create pixbuf image!"
 msgstr "Pixbuf pilti pole võimalik luua!"
 
-#: ../baobab/src/baobab-graphwin.c:163
+#: ../baobab/src/baobab-graphwin.c:160
 msgid "Save Snapshot"
 msgstr "Tõmmise salvestamine"
 
-#: ../baobab/src/baobab-graphwin.c:186
+#: ../baobab/src/baobab-graphwin.c:183
 msgid "_Image type:"
 msgstr "_Pildi liik:"
 
-#: ../baobab/src/baobab-graphwin.c:224 ../baobab/src/baobab-graphwin.c:317
+#: ../baobab/src/baobab-graphwin.c:221 ../baobab/src/baobab-graphwin.c:314
 msgid "Unlimited"
 msgstr "Piiramatu"
 
-#: ../baobab/src/baobab-graphwin.c:279
+#: ../baobab/src/baobab-graphwin.c:276
 msgid "Cannot allocate memory for graphical window!"
 msgstr "Graafilise akna jaoks pole võimalik mälu eraldada!"
 
 #. Main treemap window
-#: ../baobab/src/baobab-graphwin.c:307
+#: ../baobab/src/baobab-graphwin.c:304
 msgid "Graphical Usage Map"
 msgstr "Kettakasutuse graafiline kaart"
 
-#: ../baobab/src/baobab-prefs.c:168
+#: ../baobab/src/baobab-prefs.c:171
 msgid "Scan"
 msgstr "Vaatlusel"
 
-#: ../baobab/src/baobab-prefs.c:175
+#: ../baobab/src/baobab-prefs.c:178
 msgid "Device"
 msgstr "Seade"
 
-#: ../baobab/src/baobab-prefs.c:183
+#: ../baobab/src/baobab-prefs.c:186
 msgid "Mount Point"
 msgstr "Ühenduspunkt"
 
-#: ../baobab/src/baobab-prefs.c:191
+#: ../baobab/src/baobab-prefs.c:194
 msgid "Filesystem Type"
 msgstr "Failisüsteemi tüüp"
 
-#: ../baobab/src/baobab-prefs.c:199
+#: ../baobab/src/baobab-prefs.c:202
 msgid "Total Size"
 msgstr "Kogusuurus"
 
-#: ../baobab/src/baobab-prefs.c:208
+#: ../baobab/src/baobab-prefs.c:211
 msgid "Available"
 msgstr "Saadaval"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:126
+#: ../baobab/src/baobab-remote-connect-dialog.c:72
 #, c-format
-msgid "\"%s\" is not a valid location"
-msgstr "\"%s\" pole korrektne asukoht"
+msgid "Cannot scan location \"%s\""
+msgstr "Asukohta \"%s\" pole võimalik läbi vaadata"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:135
-msgid "Please check the spelling and try again."
-msgstr "Palun kontrolli õigekirja ja proovi uuesti."
+#: ../baobab/src/baobab-remote-connect-dialog.c:170
+msgid "Custom Location"
+msgstr "Kohandatud asukoht"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:161
-msgid "You must enter a name for the server"
-msgstr "Sa pead sisestama serveri nime"
+#: ../baobab/src/baobab-remote-connect-dialog.c:172
+msgid "SSH"
+msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:164
+#: ../baobab/src/baobab-remote-connect-dialog.c:175
+msgid "Public FTP"
+msgstr "Avalik FTP"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:177
+msgid "FTP (with login)"
+msgstr "FTP (sisselogimisega)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:180
+msgid "Windows share"
+msgstr "Windowsi jagatud kataloog"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:182
+msgid "WebDAV (HTTP)"
+msgstr "WebDAV (HTTP)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:184
+msgid "Secure WebDAV (HTTPS)"
+msgstr "Turvaline WebDAV (HTTPS)"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:244
+msgid "Cannot Connect to Server. You must enter a name for the server."
+msgstr "Serveriga pole võimalik ühenduda. Sa pead sisestama serveri nime."
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:247
 msgid "Please enter a name and try again."
 msgstr "Palun sisesta nimi ja proovi uuesti."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:302
-#, c-format
-msgid "%s on %s"
-msgstr "%s hostis %s"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:402
+#: ../baobab/src/baobab-remote-connect-dialog.c:438
 msgid "_Location (URI):"
 msgstr "_Asukoht (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:449
-msgid "S_erver:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:460
+msgid "_Server:"
 msgstr "_Server:"
 
 #: ../baobab/src/baobab-remote-connect-dialog.c:479
-msgid "Optional Information"
-msgstr "Valikulsed andmed"
+msgid "Optional information:"
+msgstr "Valikulsed andmed:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:507
-msgid "Sh_are:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:491
+msgid "_Share:"
 msgstr "_Jagatud kataloog:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:528
+#: ../baobab/src/baobab-remote-connect-dialog.c:512
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Port:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:548
+#: ../baobab/src/baobab-remote-connect-dialog.c:532
 msgid "_Folder:"
 msgstr "_Kataloog:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:568
-msgid "_User name:"
-msgstr "Kasutaja_nimi:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:552
+msgid "_User Name:"
+msgstr "Kasutaja _nimi:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:589
-msgid "_Domain name:"
+#: ../baobab/src/baobab-remote-connect-dialog.c:573
+msgid "_Domain Name:"
 msgstr "_Domeeni nimi:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:668
+#: ../baobab/src/baobab-remote-connect-dialog.c:640
+msgid "Connect to Server"
+msgstr "Ühendumine serveriga"
+
+#: ../baobab/src/baobab-remote-connect-dialog.c:657
 msgid "Service _type:"
 msgstr "_Teenuse liik:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:681
-msgid "SSH"
-msgstr "SSH"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:683
-msgid "Public FTP"
-msgstr "Avalik FTP"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:685
-msgid "FTP (with login)"
-msgstr "FTP (sisselogimisega)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:687
-msgid "Windows share"
-msgstr "Windowsi jagatud kataloog"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:689
-msgid "WebDAV (HTTP)"
-msgstr "WebDAV (HTTP)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:691
-msgid "Secure WebDAV (HTTPS)"
-msgstr "Turvaline WebDAV (HTTPS)"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:693
-msgid "Custom Location"
-msgstr "Kohandatud asukoht"
-
-#: ../baobab/src/baobab-remote-connect-dialog.c:749
+#: ../baobab/src/baobab-remote-connect-dialog.c:776
 msgid "_Scan"
 msgstr "_Vaata läbi"
 
-#: ../baobab/src/baobab-treeview.c:233 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:224 ../gsearchtool/gsearchtool.c:2497
 msgid "Folder"
 msgstr "Kataloog"
 
-#: ../baobab/src/baobab-treeview.c:255
+#: ../baobab/src/baobab-treeview.c:246
 msgid "Usage"
 msgstr "Kasutus"
 
-#: ../baobab/src/baobab-treeview.c:269 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:260 ../gsearchtool/gsearchtool.c:2509
 msgid "Size"
 msgstr "Suurus"
 
-#: ../baobab/src/baobab-treeview.c:285
+#: ../baobab/src/baobab-treeview.c:276
 msgid "Contents"
 msgstr "Sisu"
 
-#: ../baobab/src/baobab-utils.c:102
+#: ../baobab/src/baobab-utils.c:110
 msgid "Select Folder"
 msgstr "Kataloogi valimine"
 
 #. add extra widget
-#: ../baobab/src/baobab-utils.c:114
+#: ../baobab/src/baobab-utils.c:122
 msgid "_Show hidden folders"
 msgstr "Näita _peidetud katalooge"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:302
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" ei ole korrektne kataloog"
 
-#: ../baobab/src/baobab-utils.c:334
+#: ../baobab/src/baobab-utils.c:305
 msgid "Could not analyze disk usage."
 msgstr "Kettakasutust pole võimalik analüüsida."
 
-#: ../baobab/src/baobab-utils.c:359
+#: ../baobab/src/baobab-utils.c:331
 msgid "_Open Folder"
 msgstr "_Ava kataloog"
 
-#: ../baobab/src/baobab-utils.c:380
-msgid "_Remove from Trash"
-msgstr "_Eemalda prügikastist"
-
-#: ../baobab/src/baobab-utils.c:390 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:349 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Tõsta _prügikasti"
 
-#: ../baobab/src/baobab-utils.c:422
+#: ../baobab/src/baobab-utils.c:378
 msgid "Total filesystem capacity:"
 msgstr "Failisüsteemi kogumahtuvus:"
 
-#: ../baobab/src/baobab-utils.c:423
+#: ../baobab/src/baobab-utils.c:379
 msgid "used:"
 msgstr "kasutusel:"
 
-#: ../baobab/src/baobab-utils.c:424
+#: ../baobab/src/baobab-utils.c:380
 msgid "available:"
 msgstr "vaba:"
 
-#: ../baobab/src/baobab-utils.c:470
+#: ../baobab/src/baobab-utils.c:424
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Kataloogi \"%s\" pole võimalik avada"
 
-#: ../baobab/src/baobab-utils.c:473
+#: ../baobab/src/baobab-utils.c:427
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Kataloogi jaoks pole sobivat vaatlusprogrammi paigaldatud."
 
-#: ../baobab/src/baobab-utils.c:538
-#, c-format
-msgid "The folder \"%s\" was not moved to the trash."
-msgstr "Kataloogi \"%s\" ei tõstetud prügikasti."
-
-#: ../baobab/src/baobab-utils.c:540
-msgid "Could not find a Trash folder on this system"
-msgstr "Sellest süsteemist pole võimalik prügikasti leida"
-
-#: ../baobab/src/baobab-utils.c:548 ../baobab/src/baobab-utils.c:562
+#: ../baobab/src/baobab-utils.c:496
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
-msgstr "\"%s\" pole võimalik prügikasti tõsta."
+msgstr "\"%s\" pole võimalik prügikasti visata."
 
-#: ../baobab/src/baobab-utils.c:549 ../baobab/src/callbacks.c:409
-msgid "The folder does not exist."
-msgstr "Kataloogi pole olemas."
+#: ../baobab/src/baobab-utils.c:504
+msgid "Could not move file to the Trash"
+msgstr "Faili pole võimalik prügikasti visata"
 
-#: ../baobab/src/baobab-utils.c:563
+#: ../baobab/src/baobab-utils.c:506
 #, c-format
 msgid "Details: %s"
 msgstr "Üksikasjad: %s"
 
-#: ../baobab/src/baobab-utils.c:577
-#, c-format
-msgid "Delete the folder \"%s\" permanently?"
-msgstr "Kas soovid kataloogi \"%s\" jäädavalt kustutada?"
-
-#: ../baobab/src/baobab-utils.c:580
-msgid "Could not move the folder to the trash."
-msgstr "Kataloogi pole võimalik prügikasti tõsta."
-
-#: ../baobab/src/baobab-utils.c:581
-msgid "_Delete Folder"
-msgstr "_Kustuta kataloog"
-
-#: ../baobab/src/baobab-utils.c:592 ../gsearchtool/gsearchtool-callbacks.c:900
-#, c-format
-msgid "Deleting \"%s\" failed: %s."
-msgstr "Tõrge \"%s\" kustutamisel: %s."
-
-#: ../baobab/src/baobab-utils.c:595
-#, c-format
-msgid "Could not delete the folder \"%s\""
-msgstr "Kataloogi \"%s\" pole võimalik kustutada"
-
-#: ../baobab/src/baobab-utils.c:623
+#: ../baobab/src/baobab-utils.c:525
 msgid "Rescan your home folder?"
 msgstr "Kas vaadata kodukaugkataloog uuesti läbi?"
 
-#: ../baobab/src/baobab-utils.c:624
+#: ../baobab/src/baobab-utils.c:526
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -527,48 +493,52 @@ msgstr ""
 "Sinu kodukataloogi sisu on muutunud. Kettakasutuse üksikasjade uuendamiseks "
 "tuleb läbi viia uus läbivaatus."
 
-#: ../baobab/src/baobab-utils.c:625
+#: ../baobab/src/baobab-utils.c:527
 msgid "_Rescan"
 msgstr "_Vaata uuesti läbi"
 
-#: ../baobab/src/baobab-utils.c:661 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:562 ../logview/logview.c:773
 msgid "There was an error displaying help."
 msgstr "Abiteabe kuvamisel tekkis viga."
 
-#: ../baobab/src/baobab-ringschart.c:237
+#: ../baobab/src/baobab-ringschart.c:277
 msgid "Maximum depth"
 msgstr "Suurim sügavus"
 
-#: ../baobab/src/baobab-ringschart.c:238
+#: ../baobab/src/baobab-ringschart.c:278
 msgid "The maximum depth drawn in the rings chart from the root"
 msgstr "Suurim diagrammile joonistatud ringide arv alates juurikast"
 
-#: ../baobab/src/baobab-ringschart.c:247
+#: ../baobab/src/baobab-ringschart.c:287
 msgid "Rings chart model"
 msgstr "Ringdiagramm"
 
-#: ../baobab/src/baobab-ringschart.c:248
+#: ../baobab/src/baobab-ringschart.c:288
 msgid "Set the model of the rings chart"
 msgstr "Ringdiagrammi mudeli määramine"
 
-#: ../baobab/src/baobab-ringschart.c:255
+#: ../baobab/src/baobab-ringschart.c:295
 msgid "Rings chart root node"
 msgstr "Ringdiagrammi juurpunkt"
 
-#: ../baobab/src/baobab-ringschart.c:256
+#: ../baobab/src/baobab-ringschart.c:296
 msgid "Set the root node from the model"
 msgstr "Mudeli juurpunkti määramine"
 
-#: ../baobab/src/callbacks.c:99
+#: ../baobab/src/baobab-mount-operation.c:146
+msgid "Enter Password"
+msgstr "Sisesta parool"
+
+#: ../baobab/src/callbacks.c:97
 msgid "Baobab"
 msgstr "Baobab"
 
-#: ../baobab/src/callbacks.c:100
+#: ../baobab/src/callbacks.c:98
 msgid "A graphical tool to analyze disk usage."
 msgstr "Graafiline tööriist kettakasutuse analüüsimiseks."
 
 #. Translator credits
-#: ../baobab/src/callbacks.c:108 ../gnome-dictionary/src/gdict-about.c:55
+#: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
 #: ../logview/about.c:47
 msgid "translator-credits"
 msgstr ""
@@ -577,10 +547,14 @@ msgstr ""
 "Ivar Smolin <okul@linux.ee>, 2005-2008.\n"
 "Priit Laes <amd@store20.com>, 2005."
 
-#: ../baobab/src/callbacks.c:214 ../gsearchtool/gsearchtool-callbacks.c:472
+#: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
 msgid "The document does not exist."
 msgstr "Dokumenti pole olemas."
+
+#: ../baobab/src/callbacks.c:390
+msgid "The folder does not exist."
+msgstr "Kataloogi pole olemas."
 
 #: ../gfloppy/gfloppy.desktop.in.h:1 ../gfloppy/src/gfloppy2.glade.h:9
 msgid "Floppy Formatter"
@@ -2204,7 +2178,7 @@ msgstr "Tõmmise võtmine pärast _viivitust"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:446
-#: ../gnome-screenshot/gnome-screenshot.c:896
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "seconds"
 msgstr "sekundit"
 
@@ -2223,14 +2197,14 @@ msgstr "Võta _kuvatõmmis"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:506
+#: ../gnome-screenshot/gnome-screenshot.c:508
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Kuvatõmmis-%s.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:512
+#: ../gnome-screenshot/gnome-screenshot.c:514
 #: ../gnome-screenshot/screenshot-dialog.c:329
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2239,7 +2213,7 @@ msgstr "Kuvatõmmis.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:552
+#: ../gnome-screenshot/gnome-screenshot.c:554
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Kuvatõmmis-%s-%d.png"
@@ -2247,48 +2221,48 @@ msgstr "Kuvatõmmis-%s-%d.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:560
+#: ../gnome-screenshot/gnome-screenshot.c:562
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Kuvatõmmis-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:736
+#: ../gnome-screenshot/gnome-screenshot.c:738
 msgid "Unable to take a screenshot of the current window"
 msgstr "Käesolevast aknast pole võimalik kuvatõmmist võtta"
 
-#: ../gnome-screenshot/gnome-screenshot.c:894
+#: ../gnome-screenshot/gnome-screenshot.c:896
 msgid "Grab a window instead of the entire screen"
 msgstr "Tõmmise tegemine aknast, mitte tervest töölauast"
 
-#: ../gnome-screenshot/gnome-screenshot.c:895
+#: ../gnome-screenshot/gnome-screenshot.c:897
 msgid "Include the window border with the screenshot"
 msgstr "Kuvatõmmisesse lisatakse ka akna ääris"
 
-#: ../gnome-screenshot/gnome-screenshot.c:896
+#: ../gnome-screenshot/gnome-screenshot.c:898
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Kuvatõmmise võtmine pärast määratud viivitust [sekundites]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:897
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Äärisele lisatav efekt (vari, ääris või mitte midagi)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:897
+#: ../gnome-screenshot/gnome-screenshot.c:899
 msgid "effect"
 msgstr "efekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:898
+#: ../gnome-screenshot/gnome-screenshot.c:900
 msgid "Interactively set options"
 msgstr "Valikute interaktiivne seadmine"
 
-#: ../gnome-screenshot/gnome-screenshot.c:908
+#: ../gnome-screenshot/gnome-screenshot.c:910
 msgid "Options for Screenshot"
 msgstr "Kuvatõmmise valikud"
 
-#: ../gnome-screenshot/gnome-screenshot.c:909
+#: ../gnome-screenshot/gnome-screenshot.c:911
 msgid "Show Screenshot options"
 msgstr "Sõnaraamatu valikute näitamine"
 
-#: ../gnome-screenshot/gnome-screenshot.c:913
+#: ../gnome-screenshot/gnome-screenshot.c:915
 msgid "Take a picture of the screen"
 msgstr "Ekraanilt kuvatõmmise võtmine "
 
@@ -2767,7 +2741,7 @@ msgstr[1] "Soovid sa tõesti avada %d kataloogi?"
 #: ../gsearchtool/gsearchtool-callbacks.c:644
 #, c-format
 msgid "Could not move \"%s\" to trash."
-msgstr "\"%s\" pole võimalik prügikasti tõsta."
+msgstr "\"%s\" pole võimalik prügikasti visata."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:675
 #, c-format
@@ -2777,7 +2751,7 @@ msgstr "Soovid sa tõesti jäädavalt kustutada \"%s\"?"
 #: ../gsearchtool/gsearchtool-callbacks.c:678
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
-msgstr "Prügikasti pole saadaval.  \"%s\" pole võimalik prügikasti tõsta."
+msgstr "Prügikasti pole saadaval.  \"%s\" pole võimalik prügikasti visata."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:717
 #, c-format
@@ -2788,6 +2762,11 @@ msgstr "\"%s\" pole võimalik kustutada."
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Tõrge \"%s\" ümbertõstmisel: %s"
+
+#: ../gsearchtool/gsearchtool-callbacks.c:900
+#, c-format
+msgid "Deleting \"%s\" failed: %s."
+msgstr "Tõrge \"%s\" kustutamisel: %s."
 
 #: ../gsearchtool/gsearchtool-callbacks.c:1354
 msgid "Save Search Results As..."
@@ -3654,3 +3633,36 @@ msgstr "Selle failisüsteemi puhul pole failide jälgimine toetatud.\n"
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Gnome-VFS'i viga.\n"
+
+#~ msgid "Invalid UTF-8 characters"
+#~ msgstr "Vigased UTF-8 märgid"
+
+#~ msgid "\"%s\" is not a valid location"
+#~ msgstr "\"%s\" pole korrektne asukoht"
+
+#~ msgid "Please check the spelling and try again."
+#~ msgstr "Palun kontrolli õigekirja ja proovi uuesti."
+
+#~ msgid "%s on %s"
+#~ msgstr "%s hostis %s"
+
+#~ msgid "_Remove from Trash"
+#~ msgstr "_Eemalda prügikastist"
+
+#~ msgid "The folder \"%s\" was not moved to the trash."
+#~ msgstr "Kataloogi \"%s\" ei tõstetud prügikasti."
+
+#~ msgid "Could not find a Trash folder on this system"
+#~ msgstr "Sellest süsteemist pole võimalik prügikasti leida"
+
+#~ msgid "Delete the folder \"%s\" permanently?"
+#~ msgstr "Kas soovid kataloogi \"%s\" jäädavalt kustutada?"
+
+#~ msgid "Could not move the folder to the trash."
+#~ msgstr "Kataloogi pole võimalik prügikasti visata."
+
+#~ msgid "_Delete Folder"
+#~ msgstr "_Kustuta kataloog"
+
+#~ msgid "Could not delete the folder \"%s\""
+#~ msgstr "Kataloogi \"%s\" pole võimalik kustutada"
