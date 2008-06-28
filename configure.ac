@@ -219,10 +219,6 @@ PKG_CHECK_MODULES(LIBGTOP, libgtop-2.0 >= $LIBGTOP_REQUIRED)
 AC_SUBST(LIBGTOP_CFLAGS)
 AC_SUBST(LIBGTOP_LIBS)
 
-PKG_CHECK_MODULES(GNOMECANVAS, libgnomecanvas-2.0 >= $GNOMECANVAS_REQUIRED)
-AC_SUBST(GNOMECANVAS_CFLAGS)
-AC_SUBST(GNOMECANVAS_LIBS)
-
 dnl ***************************************************************
 dnl Other miscellaneous checks 
 dnl ***************************************************************
