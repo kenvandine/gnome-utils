@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-16 18:29+0200\n"
-"PO-Revision-Date: 2008-07-16 18:30+0200\n"
+"POT-Creation-Date: 2008-07-26 11:31+0200\n"
+"PO-Revision-Date: 2008-07-26 11:33+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -2143,161 +2143,154 @@ msgstr "Estratexias dispoñibles"
 msgid "Dictionary sources"
 msgstr "Fontes de dicionario"
 
-#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:191
-#: ../gsearchtool/gsearchtool-support.c:1629
-msgid " (invalid Unicode)"
-msgstr " (Unicode non válido)"
-
-#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:471
-#, c-format
-msgid "(%d:%02d:%d Remaining)"
-msgstr "(%d:%02d:%d Restantes)"
-
-#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:476
-#, c-format
-msgid "(%d:%02d Remaining)"
-msgstr "(%d:%02d Restantes)"
-
-#: ../gnome-screenshot/gnome-egg-xfer-dialog.c:587
-#, c-format
-msgid "%ld of %ld"
-msgstr "%ld de %ld"
-
-#: ../gnome-screenshot/gnome-screenshot.c:111
+#: ../gnome-screenshot/gnome-screenshot.c:126
 msgid "Error loading the help page"
 msgstr "Erro ao cargar a páxina de axuda"
 
-#: ../gnome-screenshot/gnome-screenshot.c:201
+#: ../gnome-screenshot/gnome-screenshot.c:216
 msgid "None"
 msgstr "Ningún"
 
-#: ../gnome-screenshot/gnome-screenshot.c:202
+#: ../gnome-screenshot/gnome-screenshot.c:217
 msgid "Drop shadow"
 msgstr "Eliminar sombra"
 
-#: ../gnome-screenshot/gnome-screenshot.c:203
+#: ../gnome-screenshot/gnome-screenshot.c:218
 msgid "Border"
 msgstr "Bordo"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:313
+#: ../gnome-screenshot/gnome-screenshot.c:328
 msgid "Include _pointer"
 msgstr "Incluír _punteiro"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:322
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Include the window _border"
 msgstr "Incluír o _bordo da ventá"
 
-#: ../gnome-screenshot/gnome-screenshot.c:337
+#: ../gnome-screenshot/gnome-screenshot.c:352
 msgid "Apply _effect:"
 msgstr "Aplicar _efecto:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:397
+#: ../gnome-screenshot/gnome-screenshot.c:412
 msgid "Grab the whole _desktop"
 msgstr "Capturar to_do o escritorio"
 
-#: ../gnome-screenshot/gnome-screenshot.c:409
+#: ../gnome-screenshot/gnome-screenshot.c:424
 msgid "Grab the current _window"
 msgstr "Capturar a _ventá actual"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:426
+#: ../gnome-screenshot/gnome-screenshot.c:441
 msgid "Grab _after a delay of"
 msgstr "Capturar despois dun _atraso de"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:446
-#: ../gnome-screenshot/gnome-screenshot.c:897
+#: ../gnome-screenshot/gnome-screenshot.c:461
+#: ../gnome-screenshot/gnome-screenshot.c:1052
 msgid "seconds"
 msgstr "segundos"
 
-#: ../gnome-screenshot/gnome-screenshot.c:472
+#: ../gnome-screenshot/gnome-screenshot.c:487
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Facer unha captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:473
+#: ../gnome-screenshot/gnome-screenshot.c:488
 msgid "Effects"
 msgstr "Efectos"
 
-#: ../gnome-screenshot/gnome-screenshot.c:479
+#: ../gnome-screenshot/gnome-screenshot.c:494
 msgid "Take _Screenshot"
 msgstr "Facer unha _captura de pantalla"
 
-#. translators: this is the name of the file that gets made up
-#. * with the screenshot if a specific window is taken
-#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:576
+msgid "Error while saving screenshot"
+msgstr "Erro ao gardar a captura de pantalla"
+
+#: ../gnome-screenshot/gnome-screenshot.c:580
+#, c-format
+msgid ""
+"Impossible to save the screenshot to %s.\n"
+" Error was %s\n"
+". Please choose another location and retry."
+msgstr ""
+"Non é posible gardar a captura de pantalla en %s.\n"
+" O erro foi %s.\n"
+" Escolla outra localización e ténteo de novo."
+
+#: ../gnome-screenshot/gnome-screenshot.c:739
+msgid "Unable to take a screenshot of the current window"
+msgstr "Non se pode facer a captura de pantalla da ventá actual"
+
+#: ../gnome-screenshot/gnome-screenshot.c:778
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Captura de pantalla-%s.png"
 
+#. translators: this is the name of the file that gets
+#. * made up with the screenshot if a specific window is
+#. * taken
+#: ../gnome-screenshot/gnome-screenshot.c:785
+#, c-format
+msgid "Screenshot-%s-%d.png"
+msgstr "Captura de pantalla-%s-%d.png"
+
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:513
-#: ../gnome-screenshot/screenshot-dialog.c:329
+#: ../gnome-screenshot/gnome-screenshot.c:795
+#: ../gnome-screenshot/screenshot-dialog.c:353
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Captura de pantalla.png"
 
 #. translators: this is the name of the file that gets
-#. * made up with the screenshot if a specific window is
-#. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:553
-#, c-format
-msgid "Screenshot-%s-%d.png"
-msgstr "Captura de pantalla-%s-%d.png"
-
-#. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:561
+#: ../gnome-screenshot/gnome-screenshot.c:802
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Captura de pantalla-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:737
-msgid "Unable to take a screenshot of the current window"
-msgstr "Non se pode facer a captura de pantalla da ventá actual"
-
-#: ../gnome-screenshot/gnome-screenshot.c:895
+#: ../gnome-screenshot/gnome-screenshot.c:1050
 msgid "Grab a window instead of the entire screen"
 msgstr "Capturar unha ventá en vez de toda a pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:896
+#: ../gnome-screenshot/gnome-screenshot.c:1051
 msgid "Include the window border with the screenshot"
 msgstr "Incluír o bordo da ventá na captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:897
+#: ../gnome-screenshot/gnome-screenshot.c:1052
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr ""
 "Facer a captura de pantalla despois do atraso especificado [en segundos]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:898
+#: ../gnome-screenshot/gnome-screenshot.c:1053
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efecto para engadir ao bordo (sombra, bordo ou ningún)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:898
+#: ../gnome-screenshot/gnome-screenshot.c:1053
 msgid "effect"
 msgstr "efecto"
 
-#: ../gnome-screenshot/gnome-screenshot.c:899
+#: ../gnome-screenshot/gnome-screenshot.c:1054
 msgid "Interactively set options"
 msgstr "Definir as opcións interactivamente"
 
-#: ../gnome-screenshot/gnome-screenshot.c:909
+#: ../gnome-screenshot/gnome-screenshot.c:1064
 msgid "Options for Screenshot"
 msgstr "Opcións de captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:910
+#: ../gnome-screenshot/gnome-screenshot.c:1065
 msgid "Show Screenshot options"
 msgstr "Mostrar as opcións de captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:914
+#: ../gnome-screenshot/gnome-screenshot.c:1069
 msgid "Take a picture of the screen"
 msgstr "Capturar unha imaxe da pantalla"
 
@@ -2353,7 +2346,7 @@ msgstr "Directorio de capturas de pantalla"
 msgid "The directory the last screenshot was saved in."
 msgstr "O directorio onde se gardou a última captura de pantalla."
 
-#: ../gnome-screenshot/screenshot-dialog.c:220
+#: ../gnome-screenshot/screenshot-dialog.c:238
 msgid ""
 "Glade file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
@@ -2361,7 +2354,7 @@ msgstr ""
 "Falta o ficheiro Glade para o programa de captura de pantalla.\n"
 "Verifique a instalación de gnome-utils"
 
-#: ../gnome-screenshot/screenshot-dialog.c:239
+#: ../gnome-screenshot/screenshot-dialog.c:257
 msgid "Select a folder"
 msgstr "Seleccione un cartafol"
 
@@ -2390,28 +2383,27 @@ msgstr "Erro descoñecido ao gardar a captura de pantalla no disco"
 msgid "Untitled Window"
 msgstr "Ventá sen título"
 
-#: ../gnome-screenshot/screenshot-xfer.c:104
-msgid "Preparing to copy"
-msgstr "Preparando para copiar"
-
-#: ../gnome-screenshot/screenshot-xfer.c:182
+#: ../gnome-screenshot/screenshot-xfer.c:74
 msgid "File already exists"
 msgstr "O ficheiro xa existe"
 
-#: ../gnome-screenshot/screenshot-xfer.c:185
+#: ../gnome-screenshot/screenshot-xfer.c:77
 #, c-format
-msgid "The file \"%s\" already exists.  Would you like to replace it?"
+msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "O ficheiro \"%s\" xa existe. Quere substituílo?"
 
-#: ../gnome-screenshot/screenshot-xfer.c:191
+#: ../gnome-screenshot/screenshot-xfer.c:84
 #: ../gsearchtool/gsearchtool-callbacks.c:1469
 msgid "_Replace"
 msgstr "_Substituír"
 
-#: ../gnome-screenshot/screenshot-xfer.c:231
-#, c-format
-msgid "Unknown GnomeVFSXferProgressStatus %d"
-msgstr "GnomeVFSXferProgressStatus %d descoñecido"
+#: ../gnome-screenshot/screenshot-xfer.c:122
+msgid "Saving file..."
+msgstr "Gardando ficheiro..."
+
+#: ../gnome-screenshot/screenshot-xfer.c:294
+msgid "Can't access source file"
+msgstr "Non se pode acceder ao ficheiro fonte"
 
 #: ../gsearchtool/gnome-search-tool.desktop.in.h:1
 msgid "Locate documents and folders on this computer by name or content"
@@ -2966,6 +2958,10 @@ msgstr "%s (%dª copia)%s"
 #, c-format
 msgid "%s (%drd copy)%s"
 msgstr "%s (%dª copia)%s"
+
+#: ../gsearchtool/gsearchtool-support.c:1629
+msgid " (invalid Unicode)"
+msgstr " (Unicode non válido)"
 
 #. localizers: opening parentheses to match the "th copy)" string
 #: ../gsearchtool/gsearchtool-support.c:1718
@@ -3688,6 +3684,21 @@ msgstr ""
 #: ../logview/monitor.c:88
 msgid "Gnome-VFS Error.\n"
 msgstr "Erro do Gnome-VFS.\n"
+
+#~ msgid "(%d:%02d:%d Remaining)"
+#~ msgstr "(%d:%02d:%d Restantes)"
+
+#~ msgid "(%d:%02d Remaining)"
+#~ msgstr "(%d:%02d Restantes)"
+
+#~ msgid "%ld of %ld"
+#~ msgstr "%ld de %ld"
+
+#~ msgid "Preparing to copy"
+#~ msgstr "Preparando para copiar"
+
+#~ msgid "Unknown GnomeVFSXferProgressStatus %d"
+#~ msgstr "GnomeVFSXferProgressStatus %d descoñecido"
 
 #~ msgid "Refresh graph"
 #~ msgstr "Actualizar gráfica"
