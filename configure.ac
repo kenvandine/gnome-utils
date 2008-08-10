@@ -139,13 +139,14 @@ AC_SUBST(GDICT_VERSION)
 dnl *****************************************
 dnl screenshot modules
 dnl *****************************************
-AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
-AC_CHECK_HEADERS(X11/extensions/Xfixes.h, XFIXES_LIBS="-lXfixes", , [#include <X11/Xlib.h>])
-AC_SUBST(XSHAPE_LIBS)
-AC_SUBST(XFIXES_LIBS)
+#AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
+#AC_CHECK_HEADERS(X11/extensions/Xfixes.h, XFIXES_LIBS="-lXfixes", , [#include <X11/Xlib.h>])
+#AC_SUBST(XSHAPE_LIBS)
+#AC_SUBST(XFIXES_LIBS)
 
-
-PKG_CHECK_MODULES(SCREENSHOT, gtk+-2.0 >= $GTK_REQUIRED dnl
+PKG_CHECK_MODULES(SCREENSHOT, xext dnl
+                              xfixes dnl
+                              gtk+-2.0 >= $GTK_REQUIRED dnl
                               libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dnl
                               libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(SCREENSHOT_CFLAGS)
