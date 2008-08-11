@@ -218,12 +218,18 @@ gdict_window_ensure_menu_state (GdictWindow *window)
 
   g_assert (GDICT_IS_WINDOW (window));
 
+  if (!window->ui_manager)
+    return;
+
   is_sensitive = !!(window->word != NULL);
   for (i = 0; i < n_toggle_state; i++)
     {
       GtkWidget *item;
 
       item = gtk_ui_manager_get_widget (window->ui_manager, toggle_state[i]);
+      if (!item)
+        continue;
+
       gtk_widget_set_sensitive (item, is_sensitive);
     }
 }
