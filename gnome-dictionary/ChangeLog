@@ -1,3 +1,15 @@
+2008-08-11  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	Bug 547300 – links are yellow
+
+	* libgdict/gdict-defbox.c:
+	(gdict_defbox_init_tags): Do not use a pointer to a
+	GdkColor pointer, unless you want garbage to be used
+	as a color. (Benjamin Berg, Andreas Nilsson)
+
+	(gdict_defbox_style_set): Update the colors when the
+	style changes.
+
 2007-10-23  Stéphane Loeuillet  <sloeuille@svn.gnome.org>
 
 	* data/gnome-dictionary.desktop.in.in: Trivial fix to .desktop file

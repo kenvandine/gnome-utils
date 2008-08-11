@@ -98,6 +98,9 @@ struct _GdictDefboxPrivate
   guint define_id;
   guint error_id;
   guint hide_timeout;
+
+  GtkTextTag *link_tag;
+  GtkTextTag *visited_link_tag;
 };
 
 enum
@@ -1391,14 +1394,16 @@ gdict_defbox_init_tags (GdictDefbox *defbox)
   if (!visited_link_color)
     visited_link_color = &default_visited_link_color;
 
-  gtk_text_buffer_create_tag (priv->buffer, "link",
-                              "underline", PANGO_UNDERLINE_SINGLE,
-                              "foreground-gdk", &link_color,
-                              NULL);
-  gtk_text_buffer_create_tag (priv->buffer, "visited-link",
-                              "underline", PANGO_UNDERLINE_SINGLE,
-                              "foreground-gdk", &visited_link_color,
-                              NULL);
+  priv->link_tag =
+    gtk_text_buffer_create_tag (priv->buffer, "link",
+                                "underline", PANGO_UNDERLINE_SINGLE,
+                                "foreground-gdk", link_color,
+                                NULL);
+  priv->visited_link_tag =
+    gtk_text_buffer_create_tag (priv->buffer, "visited-link",
+                                "underline", PANGO_UNDERLINE_SINGLE,
+                                "foreground-gdk", visited_link_color,
+                                NULL);
 
   if (link_color != &default_link_color)
     gdk_color_free (link_color);
@@ -1673,14 +1678,36 @@ static void
 gdict_defbox_style_set (GtkWidget *widget,
 			GtkStyle  *old_style)
 {
-  GdictDefbox *defbox;
-  
-  defbox = GDICT_DEFBOX (widget);
+  GdictDefboxPrivate *priv = GDICT_DEFBOX (widget)->priv;
+  GdkColor *link_color, *visited_link_color;
   
   if (GTK_WIDGET_CLASS (gdict_defbox_parent_class)->style_set)
     GTK_WIDGET_CLASS (gdict_defbox_parent_class)->style_set (widget, old_style);
-  
-  /* TODO handle our style here */
+
+  link_color = visited_link_color = NULL;
+  gtk_widget_style_get (widget,
+                        "link-color", &link_color,
+                        "visited-link-color", &visited_link_color,
+                        NULL);
+  if (!link_color)
+    link_color = &default_link_color;
+
+  if (!visited_link_color)
+    visited_link_color = &default_visited_link_color;
+
+  g_object_set (G_OBJECT (priv->link_tag),
+                "foreground-gdk", link_color,
+                NULL);
+
+  g_object_set (G_OBJECT (priv->visited_link_tag),
+                "foreground-gdk", visited_link_color,
+                NULL);
+
+  if (link_color != &default_link_color)
+    gdk_color_free (link_color);
+
+  if (visited_link_color != &default_visited_link_color)
+    gdk_color_free (visited_link_color);
 }
 
 /* we override the GtkWidget::show_all method since we have widgets
