@@ -1,3 +1,18 @@
+2008-08-25  Emmanuele Bassi  <ebassi@gnome.org>
+
+	Bug 549033 – Drop hard dependency on X, use Gdk instead (Cosimo
+	Cecchi)
+
+	* configure.ac: Fix the dependencies check for gnome-screenshot.
+
+	* gnome-screenshot/screenshot-utils.[ch]: Drop the usage of
+	X11 API wherever is possible and use GDK instead. We still need
+	to use XShapeGetRectangles because GDK doesn't have a similar
+	API.
+
+	* gnome-screenshot/gnome-screenshot.c:
+	(finish_prepare_screenshot): Update for the new internal API changes.
+
 2008-08-10  Emmanuele Bassi  <ebassi@gnome.org>
 
 	* configure.ac: gnome-screenshot depends on GIO, so we need

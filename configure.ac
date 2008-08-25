@@ -1,4 +1,4 @@
-AC_INIT([gnome-utils], [2.21.0],
+AC_INIT([gnome-utils], [2.23.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils])
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE
@@ -53,7 +53,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgi
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LIBGDICT_LT_VERSION=6:0:0
+LIBGDICT_LT_VERSION=6:1:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
 dnl *****************************************
@@ -139,14 +139,11 @@ AC_SUBST(GDICT_VERSION)
 dnl *****************************************
 dnl screenshot modules
 dnl *****************************************
-#AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
-#AC_CHECK_HEADERS(X11/extensions/Xfixes.h, XFIXES_LIBS="-lXfixes", , [#include <X11/Xlib.h>])
-#AC_SUBST(XSHAPE_LIBS)
-#AC_SUBST(XFIXES_LIBS)
 
-PKG_CHECK_MODULES(SCREENSHOT, xext dnl
-                              xfixes dnl
-                              gio-2.0 >= $GLIB_REQUIRED dnl
+AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
+AC_SUBST(XSHAPE_LIBS)
+
+PKG_CHECK_MODULES(SCREENSHOT, gio-2.0 >= $GLIB_REQUIRED dnl
                               gtk+-2.0 >= $GTK_REQUIRED dnl
                               libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dnl
                               libglade-2.0 >= $LIBGLADE_REQUIRED)
