@@ -145,8 +145,7 @@ AC_SUBST(XSHAPE_LIBS)
 
 PKG_CHECK_MODULES(SCREENSHOT, gio-2.0 >= $GLIB_REQUIRED dnl
                               gtk+-2.0 >= $GTK_REQUIRED dnl
-                              libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED dnl
-                              libglade-2.0 >= $LIBGLADE_REQUIRED)
+                              libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
 AC_SUBST(SCREENSHOT_CFLAGS)
 AC_SUBST(SCREENSHOT_LIBS)
 
