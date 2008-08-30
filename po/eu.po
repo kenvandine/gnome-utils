@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-25 16:49+0200\n"
-"PO-Revision-Date: 2008-08-25 16:53+0200\n"
+"POT-Creation-Date: 2008-08-30 13:08+0200\n"
+"PO-Revision-Date: 2008-08-30 13:08+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -812,7 +812,7 @@ msgid "    "
 msgstr "    "
 
 #: ../gfloppy/src/gfloppy2.glade.h:2
-#: ../gnome-screenshot/gnome-screenshot.glade.h:1
+#: ../gnome-screenshot/gnome-screenshot.ui.h:1
 msgid "*"
 msgstr "*"
 
@@ -2240,7 +2240,7 @@ msgstr "_Kapturatu "
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "seconds"
 msgstr "segundo ondoren"
 
@@ -2273,11 +2273,11 @@ msgstr ""
 " Errorea: %s\n"
 " Aukeratu beste kokaleku bat eta saiatu berriro."
 
-#: ../gnome-screenshot/gnome-screenshot.c:756
+#: ../gnome-screenshot/gnome-screenshot.c:730
 msgid "Unable to take a screenshot of the current window"
 msgstr "Ezin izan da uneko leihoaren kaptura egin."
 
-#: ../gnome-screenshot/gnome-screenshot.c:795
+#: ../gnome-screenshot/gnome-screenshot.c:771
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Pantaila-argazkia-%s.png"
@@ -2285,15 +2285,15 @@ msgstr "Pantaila-argazkia-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:802
+#: ../gnome-screenshot/gnome-screenshot.c:778
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Pantaila-argazkia-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:812
-#: ../gnome-screenshot/screenshot-dialog.c:353
+#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Pantaila-argazkia.png"
@@ -2301,36 +2301,36 @@ msgstr "Pantaila-argazkia.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:819
+#: ../gnome-screenshot/gnome-screenshot.c:795
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Pantaila-argazkia-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1098
+#: ../gnome-screenshot/gnome-screenshot.c:1111
 msgid "Grab a window instead of the entire screen"
 msgstr "Kapturatu leihoa pantaila osoaren ordez"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1099
+#: ../gnome-screenshot/gnome-screenshot.c:1112
 msgid "Include the window border with the screenshot"
 msgstr "Sartu leihoaren ertzak kapturan"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Kapturatu atzerapena igarotakoan (segundotan)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efektua ertzari gehitzeko (itzala, ertza edo bat ere ez)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "effect"
 msgstr "efektua"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1102
+#: ../gnome-screenshot/gnome-screenshot.c:1115
 msgid "Interactively set options"
 msgstr "Ezarri aukerak interaktiboki"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1111
+#: ../gnome-screenshot/gnome-screenshot.c:1124
 msgid "Take a picture of the screen"
 msgstr "Egin pantailako kaptura"
 
@@ -2338,15 +2338,15 @@ msgstr "Egin pantailako kaptura"
 msgid "Save images of your desktop or individual windows"
 msgstr "Gorde mahaigaineko edo leiho bakarren irudiak"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:2
+#: ../gnome-screenshot/gnome-screenshot.ui.h:2
 msgid "Save Screenshot"
 msgstr "Gorde pantaila-argazkia"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:3
+#: ../gnome-screenshot/gnome-screenshot.ui.h:3
 msgid "Save in _folder:"
 msgstr "Gorde _karpetan:"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:4
+#: ../gnome-screenshot/gnome-screenshot.ui.h:4
 msgid "_Name:"
 msgstr "_Izena:"
 
@@ -2402,15 +2402,15 @@ msgstr "Pantailaren kaptura egiteko zai egongo den segundo kopurua."
 msgid "Window-specific screenshot"
 msgstr "Leiho zehatz baten pantaila-argazkia"
 
-#: ../gnome-screenshot/screenshot-dialog.c:238
+#: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
-"Glade file for the screenshot program is missing.\n"
+"UI definition file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
 msgstr ""
-"Pantaila-argazkiaren programaren Glade fitxategia falta da.\n"
+"Pantaila-argazkiaren programaren interfazearen fitxategia falta da.\n"
 "Egiaztatu 'gnome-utils'en instalazioa"
 
-#: ../gnome-screenshot/screenshot-dialog.c:257
+#: ../gnome-screenshot/screenshot-dialog.c:260
 msgid "Select a folder"
 msgstr "Hautatu karpeta"
 
@@ -2436,7 +2436,8 @@ msgstr ""
 msgid "Unknown error saving screenshot to disk"
 msgstr "Errore ezezaguna kaptura diskoan gordetzean"
 
-#: ../gnome-screenshot/screenshot-utils.c:709
+#. TODO: maybe we should also look at WM_NAME and WM_CLASS?
+#: ../gnome-screenshot/screenshot-utils.c:481
 msgid "Untitled Window"
 msgstr "Izenik gabeko leihoa"
 
