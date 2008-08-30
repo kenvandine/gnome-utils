@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-15 17:32+0700\n"
-"PO-Revision-Date: 2008-08-15 17:40+0700\n"
+"POT-Creation-Date: 2008-08-30 20:06+0700\n"
+"PO-Revision-Date: 2008-08-30 20:09+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -784,7 +784,7 @@ msgid "    "
 msgstr "    "
 
 #: ../gfloppy/src/gfloppy2.glade.h:2
-#: ../gnome-screenshot/gnome-screenshot.glade.h:1
+#: ../gnome-screenshot/gnome-screenshot.ui.h:1
 msgid "*"
 msgstr "*"
 
@@ -2114,7 +2114,7 @@ msgstr "จับภาพห_ลังจากรอคอยเป็นเ�
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "seconds"
 msgstr "วินาที"
 
@@ -2146,11 +2146,11 @@ msgstr ""
 " ข้อผิดพลาดคือ %s\n"
 " กรุณาเลือกแหล่งเก็บอื่นแล้วลองใหม่"
 
-#: ../gnome-screenshot/gnome-screenshot.c:756
+#: ../gnome-screenshot/gnome-screenshot.c:730
 msgid "Unable to take a screenshot of the current window"
 msgstr "จับภาพหน้าต่างปัจจุบันไม่สำเร็จ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:795
+#: ../gnome-screenshot/gnome-screenshot.c:771
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Screenshot-%s.png"
@@ -2158,15 +2158,15 @@ msgstr "Screenshot-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:802
+#: ../gnome-screenshot/gnome-screenshot.c:778
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Screenshot-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:812
-#: ../gnome-screenshot/screenshot-dialog.c:353
+#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Screenshot.png"
@@ -2174,36 +2174,36 @@ msgstr "Screenshot.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:819
+#: ../gnome-screenshot/gnome-screenshot.c:795
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Screenshot-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1098
+#: ../gnome-screenshot/gnome-screenshot.c:1111
 msgid "Grab a window instead of the entire screen"
 msgstr "จับภาพเฉพาะหน้าต่างหนึ่งแทนที่จะจับทั้งจอ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1099
+#: ../gnome-screenshot/gnome-screenshot.c:1112
 msgid "Include the window border with the screenshot"
 msgstr "จับภาพกรอบหน้าต่างด้วย"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "หน่วงเวลา [เป็นวินาที] ก่อนจับภาพ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "เอฟเฟกต์ที่จะเพิ่มให้กับกรอบ (เงา, กรอบ หรือไม่มี)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "effect"
 msgstr "เอฟเฟกต์"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1102
+#: ../gnome-screenshot/gnome-screenshot.c:1115
 msgid "Interactively set options"
 msgstr "กำหนดตัวเลือกแบบโต้ตอบ"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1111
+#: ../gnome-screenshot/gnome-screenshot.c:1124
 msgid "Take a picture of the screen"
 msgstr "จับภาพหน้าจอ"
 
@@ -2211,15 +2211,15 @@ msgstr "จับภาพหน้าจอ"
 msgid "Save images of your desktop or individual windows"
 msgstr "บันทึกภาพของเดสก์ท็อปหรือหน้าต่างที่กำหนด"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:2
+#: ../gnome-screenshot/gnome-screenshot.ui.h:2
 msgid "Save Screenshot"
 msgstr "บันทึกภาพหน้าจอ"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:3
+#: ../gnome-screenshot/gnome-screenshot.ui.h:3
 msgid "Save in _folder:"
 msgstr "บันทึกในโฟ_ลเดอร์:"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:4
+#: ../gnome-screenshot/gnome-screenshot.ui.h:4
 msgid "_Name:"
 msgstr "_ชื่อ:"
 
@@ -2275,15 +2275,15 @@ msgstr "จำนวนวินาทีที่จะหยุดคอยก
 msgid "Window-specific screenshot"
 msgstr "จับภาพเฉพาะหน้าต่าง"
 
-#: ../gnome-screenshot/screenshot-dialog.c:238
+#: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
-"Glade file for the screenshot program is missing.\n"
+"UI definition file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
 msgstr ""
-"แฟ้ม Glade สำหรับโปรแกรมจับภาพหน้าจอหายไป\n"
-"กรุณาตรวจสอบการติดตั้งโปรแกรม gnome-utils ของคุณ"
+"แฟ้มโครงแบบส่วนติดต่อผู้ใช้สำหรับโปรแกรมจับภาพหน้าจอขาดหายไป\n"
+"กรุณาตรวจสอบการติดตั้ง gnome-utils ของคุณ"
 
-#: ../gnome-screenshot/screenshot-dialog.c:257
+#: ../gnome-screenshot/screenshot-dialog.c:260
 msgid "Select a folder"
 msgstr "เลือกโฟลเดอร์"
 
@@ -2306,7 +2306,8 @@ msgstr "โพรเซสลูกที่บันทึกแฟ้มหย
 msgid "Unknown error saving screenshot to disk"
 msgstr "เกิดข้อผิดพลาดที่ไม่รู้จักระหว่างบันทึกภาพหน้าจอ"
 
-#: ../gnome-screenshot/screenshot-utils.c:709
+#. TODO: maybe we should also look at WM_NAME and WM_CLASS?
+#: ../gnome-screenshot/screenshot-utils.c:481
 msgid "Untitled Window"
 msgstr "หน้าต่างไม่มีชื่อ"
 
