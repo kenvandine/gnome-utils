@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.23.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-27 13:59+0200\n"
-"PO-Revision-Date: 2008-08-15 15:19+0200\n"
+"POT-Creation-Date: 2008-09-02 08:06+0200\n"
+"PO-Revision-Date: 2008-09-02 08:07+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian/Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -777,7 +777,7 @@ msgid "    "
 msgstr "    "
 
 #: ../gfloppy/src/gfloppy2.glade.h:2
-#: ../gnome-screenshot/gnome-screenshot.glade.h:1
+#: ../gnome-screenshot/gnome-screenshot.ui.h:1
 msgid "*"
 msgstr "*"
 
@@ -2120,7 +2120,7 @@ msgstr "T_a skjermdump etter"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "seconds"
 msgstr "sekunder"
 
@@ -2152,11 +2152,11 @@ msgstr ""
 "Feilen var %s.\n"
 "Vennligst velg en annen lokasjon og prøv igjen."
 
-#: ../gnome-screenshot/gnome-screenshot.c:756
+#: ../gnome-screenshot/gnome-screenshot.c:730
 msgid "Unable to take a screenshot of the current window"
 msgstr "Kan ikke ta skjermdump av dette vinduet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:795
+#: ../gnome-screenshot/gnome-screenshot.c:771
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Skjermdump-%s.png"
@@ -2164,15 +2164,15 @@ msgstr "Skjermdump-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:802
+#: ../gnome-screenshot/gnome-screenshot.c:778
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Skjermdump-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:812
-#: ../gnome-screenshot/screenshot-dialog.c:353
+#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "Skjermdump.png"
@@ -2180,36 +2180,36 @@ msgstr "Skjermdump.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:819
+#: ../gnome-screenshot/gnome-screenshot.c:795
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Skjermdump-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1098
+#: ../gnome-screenshot/gnome-screenshot.c:1111
 msgid "Grab a window instead of the entire screen"
 msgstr "Dump et vindu i stedet for hele skjermen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1099
+#: ../gnome-screenshot/gnome-screenshot.c:1112
 msgid "Include the window border with the screenshot"
 msgstr "Ta med vinduskant i skjermdumpet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Ta skjermdump etter oppgitt pause [i sekunder]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effekt som skal brukes på vinduskanten (skygge, kant eller ingen)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "effect"
 msgstr "effekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1102
+#: ../gnome-screenshot/gnome-screenshot.c:1115
 msgid "Interactively set options"
 msgstr "Spør etter alternativer"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1111
+#: ../gnome-screenshot/gnome-screenshot.c:1124
 msgid "Take a picture of the screen"
 msgstr "Ta et bilde av skjermen"
 
@@ -2217,15 +2217,15 @@ msgstr "Ta et bilde av skjermen"
 msgid "Save images of your desktop or individual windows"
 msgstr "Lagre bilder av ditt skrivebord eller individuelle vinduer"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:2
+#: ../gnome-screenshot/gnome-screenshot.ui.h:2
 msgid "Save Screenshot"
 msgstr "Lagre skjermdump"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:3
+#: ../gnome-screenshot/gnome-screenshot.ui.h:3
 msgid "Save in _folder:"
 msgstr "Lagre i _mappe:"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:4
+#: ../gnome-screenshot/gnome-screenshot.ui.h:4
 msgid "_Name:"
 msgstr "_Navn:"
 
@@ -2281,15 +2281,15 @@ msgstr "Antall sekunder pause før skjermdumpet tas."
 msgid "Window-specific screenshot"
 msgstr "Vindusspesifikt skjermdump"
 
-#: ../gnome-screenshot/screenshot-dialog.c:238
+#: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
-"Glade file for the screenshot program is missing.\n"
+"UI definition file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
 msgstr ""
-"Glade-fil for skjermdumpprogrammet mangler.\n"
+"Fil med definisjon av brukergrensesnitt for skjermdumpprogrammet mangler.\n"
 "Vennligst sjekk gnome-utils-installasjonen."
 
-#: ../gnome-screenshot/screenshot-dialog.c:257
+#: ../gnome-screenshot/screenshot-dialog.c:260
 msgid "Select a folder"
 msgstr "Velg en mappe"
 
