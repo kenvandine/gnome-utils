@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-24 13:02+0200\n"
-"PO-Revision-Date: 2008-08-24 13:03+0100\n"
+"POT-Creation-Date: 2008-09-05 15:22+0200\n"
+"PO-Revision-Date: 2008-09-05 15:23+0100\n"
 "Last-Translator: Tomasz Dominikowski <dominikowski@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "MIME-Version: 1.0\n"
@@ -791,7 +791,7 @@ msgid "    "
 msgstr "    "
 
 #: ../gfloppy/src/gfloppy2.glade.h:2
-#: ../gnome-screenshot/gnome-screenshot.glade.h:1
+#: ../gnome-screenshot/gnome-screenshot.ui.h:1
 msgid "*"
 msgstr "*"
 
@@ -2054,7 +2054,7 @@ msgstr "P_rzechwyć po upływie"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "seconds"
 msgstr "sekund"
 
@@ -2086,11 +2086,11 @@ msgstr ""
 " Błąd: %s\n"
 ". Proszę wybrać inne położenie i spróbować ponownie."
 
-#: ../gnome-screenshot/gnome-screenshot.c:756
+#: ../gnome-screenshot/gnome-screenshot.c:730
 msgid "Unable to take a screenshot of the current window"
 msgstr "Nie można pobrać zrzutu ekranu bieżącego okna."
 
-#: ../gnome-screenshot/gnome-screenshot.c:795
+#: ../gnome-screenshot/gnome-screenshot.c:771
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "zrzut_ekranu-%s.png"
@@ -2098,15 +2098,15 @@ msgstr "zrzut_ekranu-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:802
+#: ../gnome-screenshot/gnome-screenshot.c:778
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "zrzut_ekranu-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:812
-#: ../gnome-screenshot/screenshot-dialog.c:353
+#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
 msgstr "zrzut_ekranu.png"
@@ -2114,36 +2114,36 @@ msgstr "zrzut_ekranu.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:819
+#: ../gnome-screenshot/gnome-screenshot.c:795
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "zrzut_ekranu-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1098
+#: ../gnome-screenshot/gnome-screenshot.c:1111
 msgid "Grab a window instead of the entire screen"
 msgstr "Pobiera okno zamiast całego ekranu"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1099
+#: ../gnome-screenshot/gnome-screenshot.c:1112
 msgid "Include the window border with the screenshot"
 msgstr "Dołącza ramkę okna do zrzutu ekranu"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1100
+#: ../gnome-screenshot/gnome-screenshot.c:1113
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Pobiera zrzut ekranu po określonym opóźnieniu (w sekundach)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efekt dodawany do krawędzi (cień, krawędź lub brak)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1101
+#: ../gnome-screenshot/gnome-screenshot.c:1114
 msgid "effect"
 msgstr "efekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1102
+#: ../gnome-screenshot/gnome-screenshot.c:1115
 msgid "Interactively set options"
 msgstr "Interaktywne ustawienie opcji"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1111
+#: ../gnome-screenshot/gnome-screenshot.c:1124
 msgid "Take a picture of the screen"
 msgstr "Robi zdjęcie ekranu"
 
@@ -2151,15 +2151,15 @@ msgstr "Robi zdjęcie ekranu"
 msgid "Save images of your desktop or individual windows"
 msgstr "Zapisuje obraz pulpitu lub poszczególnych okien"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:2
+#: ../gnome-screenshot/gnome-screenshot.ui.h:2
 msgid "Save Screenshot"
 msgstr "Zapis zrzutu ekranu"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:3
+#: ../gnome-screenshot/gnome-screenshot.ui.h:3
 msgid "Save in _folder:"
 msgstr "Zapis w kata_logu:"
 
-#: ../gnome-screenshot/gnome-screenshot.glade.h:4
+#: ../gnome-screenshot/gnome-screenshot.ui.h:4
 msgid "_Name:"
 msgstr "_Nazwa:"
 
@@ -2212,15 +2212,15 @@ msgstr "Opóźnienie pobrania zrzutu ekranu w sekundach."
 msgid "Window-specific screenshot"
 msgstr "Zrzut ekranu dla okna"
 
-#: ../gnome-screenshot/screenshot-dialog.c:238
+#: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
-"Glade file for the screenshot program is missing.\n"
+"UI definition file for the screenshot program is missing.\n"
 "Please check your installation of gnome-utils"
 msgstr ""
-"Brakuje pliku glade programu pobierającego zrzuty ekranu.\n"
-"Proszę zweryfikować instalację zestawu gnome-utils"
+"Brakuje pliku określającego wygląd programu pobierającego zrzuty ekranu.\n"
+"Proszę sprawdzić instalację programu gnome-utils"
 
-#: ../gnome-screenshot/screenshot-dialog.c:257
+#: ../gnome-screenshot/screenshot-dialog.c:260
 msgid "Select a folder"
 msgstr "Wybór katalogu"
 
@@ -2241,7 +2241,8 @@ msgstr "Potomny proces zapisu nieoczekiwanie zakończył działanie. Nie można 
 msgid "Unknown error saving screenshot to disk"
 msgstr "Nieznany błąd podczas zapisu zrzutu ekranu na dysk"
 
-#: ../gnome-screenshot/screenshot-utils.c:709
+#. TODO: maybe we should also look at WM_NAME and WM_CLASS?
+#: ../gnome-screenshot/screenshot-utils.c:481
 msgid "Untitled Window"
 msgstr "Okno bez nazwy"
 
