@@ -1,3 +1,12 @@
+2008-09-11  Emmanuele Bassi  <ebassi@gnome.org>
+
+	Bug 551784 – dict applet still uses deprecated gnome-stock-about icon
+	instead of gtk-about
+
+	* data/GNOME_DictionaryApplet.xml: Use gtk-about instead of
+	gnome-stock-about, which has been long since deprecated. (Pacho
+	Ramos)
+
 2008-08-11  Emmanuele Bassi  <ebassi@gnome.org>
 
 	* src/gdict-window.c (gdict_window_ensure_menu_state): Fix a warning
