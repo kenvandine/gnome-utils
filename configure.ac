@@ -1,4 +1,4 @@
-AC_INIT([gnome-utils], [2.24.0],
+AC_INIT([gnome-utils], [2.24.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils])
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE
@@ -53,7 +53,7 @@ AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgi
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LIBGDICT_LT_VERSION=6:2:0
+LIBGDICT_LT_VERSION=6:3:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
 dnl *****************************************

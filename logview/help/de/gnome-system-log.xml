@@ -1,10 +1,10 @@
-<?xml version="1.0"?><!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
-"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "1.107.0">
-  <!ENTITY manrevision "2.2">
-  <!ENTITY date "August 2002">
-  <!ENTITY app "System Log Viewer">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY legal SYSTEM "legal.xml">
+<!ENTITY appversion "2.12">
+<!ENTITY manrevision "2.4">
+<!ENTITY date "October 2005">
+<!ENTITY app "System Log Viewer">
 ]>
 <!-- 
       (Do not remove this comment block.)
@@ -18,8 +18,12 @@
 <article id="index" lang="de">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
-  <articleinfo>
-    <title>&app; Handbuch V&manrevision;</title>
+  <articleinfo> 
+    <title>Systemprotokollbetrachter-Handbuch</title>
+
+    <abstract role="description">
+      <para>Der Systemprotokollbetrachter ist ein grafischer, menügesteuerter Betrachter, den Sie zum Betrachten und Überwachen Ihrer Systemprotokolldateien benutzen können.</para>
+    </abstract>
 
     <copyright> 
       <year>2003</year> 
@@ -28,7 +32,7 @@
     <copyright> 
       <year>2000</year> 
       <holder>Judith Samson</holder> 
-    </copyright> 
+    </copyright><copyright><year>2008</year><holder>Mario Blättermann (mario.blaettermann@t-online.de)</holder></copyright> 
 <!-- translators: uncomment this:
 
   <copyright>
@@ -38,28 +42,52 @@
 
    -->
     <publisher> 
-      <publishername> GNOME-Dokumentationsprojekt </publishername> 
+      <publishername>GNOME-Dokumentationsprojekt</publishername> 
     </publisher> 
 
-   &legal;
+     <legalnotice id="legalnotice">
+	<para>Das vorliegende Dokument kann gemäß den Bedingungen der GNU Free Documentation License (GFDL), Version 1.1 oder jeder späteren, von der Free Software Foundation veröffentlichten Version ohne unveränderbare Abschnitte sowie ohne Texte auf dem vorderen und hinteren Buchdeckel kopiert, verteilt und/oder modifiziert werden. Eine Kopie der GFDL finden Sie unter diesem <ulink type="help" url="ghelp:fdl">Link</ulink> oder in der mit diesem Handbuch gelieferten Datei COPYING-DOCS.</para>
+         <para>Dieses Handbuch ist Teil einer Sammlung von GNOME-Handbüchern, die unter der GFDL veröffentlicht werden. Wenn Sie dieses Handbuch getrennt von der Sammlung weiterverbreiten möchten, können Sie das tun, indem Sie eine Kopie der Lizenz zum Handbuch hinzufügen, wie es in Abschnitt 6 der Lizenz beschrieben ist.</para>
 
-   <authorgroup>
+	<para>Viele der Namen, die von Unternehmen verwendet werden, um ihre Produkte und Dienstleistungen von anderen zu unterscheiden, sind eingetragene Warenzeichen. An den Stellen, an denen diese Namen in einer GNOME-Dokumentation erscheinen, werden die Namen in Großbuchstaben oder mit einem großen Anfangsbuchstaben geschrieben, wenn das GNOME-Dokumentationsprojekt auf diese Warenzeichen hingewiesen wird.</para>
+
+	<para>DAS DOKUMENT UND VERÄNDERTE FASSUNGEN DES DOKUMENTS WERDEN UNTER DEN BEDINGUNGEN DER GNU FREE DOCUMENTATION LICENSE ZUR VERFÜGUNG GESTELLT MIT DEM WEITERGEHENDEN VERSTÄNDNIS, DASS: <orderedlist>
+		<listitem>
+		  <para>DIESES DOKUMENT WIRD »WIE VORLIEGEND« GELIEFERT, OHNE GARANTIEN IRGENDEINER ART, SOWOHL AUSDRÜCKLICH GENANNTE ALS AUCH ANGEDEUTETE. DIES BEZIEHT SICH AUCH OHNE EINSCHRÄNKUNG AUF GARANTIEN, DASS DIESES DOKUMENT ODER VERÄNDERTE FASSUNGEN DIESES DOKUMENTS FREI VON HANDELSDEFEKTEN, FÜR EINEN BESTIMMTEN ZWECK GEEIGNET IST ODER DASS ES KEINE RECHTE DRITTER VERLETZT. DAS VOLLE RISIKO WAS QUALITÄT, GENAUIGKEIT UND LEISTUNG DES DOKUMENTS ODER VERÄNDERTE FASSUNGEN DES DOKUMENTS LIEGT BEI IHNEN. SOLLTE EIN DOKUMENT ODER EINE VERÄNDERTE FASSUNG DAVON FEHLER IRGENDEINER ART BEINHALTEN, TRAGEN SIE (NICHT DER URSPRUNGSAUTOR, DER AUTOR ODER EIN MITWIRKENDER) DIE KOSTEN FÜR NOTWENDIGE DIENSTLEISTUNGEN, REPARATUREN ODER FEHLERKORREKTUREN. DIESER HAFTUNGSAUSSCHLUSS IST EIN ESSENZIELLER TEIL DIESER LIZENZ. DIE VERWENDUNG EINES DOKUMENTS ODER EINER VERÄNDERTEN VERSION DES DOKUMENTS IST NICHT GESTATTET AUßER UNTER BEACHTUNG DIESES HAFTUNGSAUSSCHLUSSES UND</para>
+		</listitem>
+		<listitem>
+		  <para>UNTER KEINEN UMSTÄNDEN UND AUF BASIS KEINER RECHTSGRUNDLAGE, EGAL OB DURCH UNERLAUBTEN HANDLUNGEN (EINSCHLIEßLICH FAHRLÄSSIGKEIT), VERTRAG ODER ANDERWEITIG KANN DER AUTOR, URSPRUNGSAUTOR, EIN MITWIRKENDER ODER EIN VERTRIEBSPARTNER DIESES DOKUMENTS ODER EINER VERÄNDERTEN FASSUNG DES DOKUMENTS ODER EIN ZULIEFERER EINER DIESER PARTEIEN, HAFTBAR GEMACHT WERDEN FÜR DIREKTE, INDIREKTE, SPEZIELLE, VERSEHENTLICHE ODER FOLGESCHÄDEN JEGLICHER ART, EINSCHLIEßLICH UND OHNE EINSCHRÄNKUNGEN SCHÄDEN DURCH VERLUST VON KULANZ, ARBEITSAUSFALL, COMPUTERVERSAGEN ODER COMPUTERFEHLFUNKTIONEN ODER ALLE ANDEREN SCHÄDEN ODER VERLUSTE, DIE SICH AUS ODER IN VERBINDUNG MIT DER VERWENDUNG DES DOKUMENTS UND VERÄNDERTER FASSUNGEN DES DOKUMENTS ERGEBEN, AUCH WENN DIE OBEN GENANNTEN PARTEIEN ÜBER DIE MÖGLICHKEIT SOLCHER SCHÄDEN INFORMIERT WAREN.</para>
+		</listitem>
+	  </orderedlist></para>
+  </legalnotice>
+
+
+
+   <authorgroup> 
    <author> 
 		<firstname>Sun</firstname> 
 		<surname>GNOME-Dokumentationsteam</surname> 
 		<affiliation> 
 	  	<orgname>Sun Microsystems</orgname> 
-	  	<address> <email>gdocteam@sun.com</email> </address>
-		</affiliation>
-   </author>
+	  	<address> <email>gdocteam@sun.com</email> </address> 
+		</affiliation> 
+   </author> 
 
    <author> 
 		<firstname>Judith</firstname> 
 		<surname>Samson</surname> 
 		<affiliation> 
 	  	<orgname>GNOME-Dokumentationsprojekt</orgname> 
-	  	<address> <email>judith@samsonsource.com</email> </address>
-		</affiliation>
+	  	<address> <email>judith@samsonsource.com</email> </address> 
+		</affiliation> 
+   </author> 
+
+   <author role="maintainer">
+   	<firstname>Vincent</firstname>
+	<surname>Noel</surname>
+	<affiliation>
+	  <address><email>vincent.noel@gmail.com</email></address>
+	</affiliation>
    </author>
       
 <!-- This is appropriate place for other contributors: translators,
@@ -78,201 +106,186 @@
 
     <revhistory>
       <revision> 
-					<revnumber>&app; Handbuch V&manrevision;</revnumber> 
-					<date>&date;</date> 
-					<revdescription> 
-	  					<para role="author">Sun GNOME-Dokumentationsteam
-	    			<email>gdocteam@sun.com</email>
-	  					</para>
-	  					<para role="publisher">GNOME-Dokumentationsprojekt</para>
-					</revdescription>
+		<revnumber>Systemprotokollbetrachter-Handbuch V2.4</revnumber> 
+		<date>Oktober 2005</date> 
+		<revdescription> 
+	  		<para role="author">Vincent Noel <email>vincent.noel@gmail.com</email></para>
+	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
+		</revdescription> 
       </revision>
       <revision> 
-					<revnumber>Systemprotokollansicht-Handbuch V2.1</revnumber> 
-					<date>Juli 2002</date> 
-					<revdescription> 
-	  					<para role="author">Sun GNOME-Dokumentationsteam
-	    			<email>gdocteam@sun.com</email>
-	  					</para>
-	  					<para role="publisher">GNOME-Dokumentationsprojekt</para>
-					</revdescription>
+		<revnumber>Systemprotokollbetrachter-Handbuch V2.3</revnumber> 
+		<date>Oktober 2002</date> 
+		<revdescription> 
+	  		<para role="author">Sun GNOME-Dokumentationsteam <email>gdocteam@sun.com</email></para>
+	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
+		</revdescription> 
       </revision>
       <revision> 
-					<revnumber>Systemprotokollansicht-Handbuch V2.0</revnumber> 
-					<date>Mai 2002</date> 
-					<revdescription> 
-	  					<para role="author">Sun GNOME-Dokumentationsteam
-	    			<email>gdocteam@sun.com</email>
-	  					</para>
-	  					<para role="publisher">GNOME-Dokumentationsprojekt</para>
-					</revdescription>
+		<revnumber>Systemprotokollbetrachter-Handbuch V2.2</revnumber> 
+		<date>August 2002</date> 
+		<revdescription> 
+	  		<para role="author">Sun GNOME-Dokumentationsteam <email>gdocteam@sun.com</email></para>
+	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
+		</revdescription> 
       </revision>
       <revision> 
-					<revnumber>Protokollansicht-Handbuch</revnumber> 
-					<date>2000</date> 
-					<revdescription> 
-	  					<para role="author">Judith Samson
-	    			<email>judith@samsonsource.com</email>
-	  					</para>
-	  					<para role="publisher">GNOME-Dokumentationsprojekt</para>
-					</revdescription>
+		<revnumber>Systemprotokollbetrachter-Handbuch V2.1</revnumber> 
+		<date>Juli 2002</date> 
+		<revdescription> 
+	  		<para role="author">Sun GNOME-Dokumentationsteam <email>gdocteam@sun.com</email></para>
+	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
+		</revdescription> 
       </revision>
-    </revhistory>
+      <revision> 
+		<revnumber>Systemprotokollbetrachter-Handbuch V2.0</revnumber> 
+		<date>Mai 2002</date> 
+		<revdescription> 
+	  		<para role="author">Sun GNOME-Dokumentationsteam <email>gdocteam@sun.com</email></para>
+	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
+		</revdescription> 
+      </revision> 
+      <revision> 
+		<revnumber>Systemprotokollbetrachter-Handbuch</revnumber> 
+		<date>2000</date> 
+		<revdescription> 
+	  		<para role="author">Judith Samson <email>judith@samsonsource.com</email></para>
+	  		<para role="publisher">GNOME-Dokumentationsprojekt</para>
+			</revdescription> 
+      </revision> 
+    </revhistory> 
 
-    <releaseinfo>In diesem Handbuch wird Version &appversion; von &app; beschrieben.
-    </releaseinfo>
+    <releaseinfo>Dieses Handbuch beschreibt Version 2.12 des Systemprotokollbetrachters.</releaseinfo> 
     <legalnotice> 
-      <title>Feedback</title>
-      <para>Wenn Sie einen Programmfehler melden m&ouml;chten oder Vorschl&auml;ge zur Anwendung &app; oder
-	zu diesem Handbuch haben, folgen Sie den Anweisungen auf der
-	<ulink url="ghelp:gnome-feedback" type="help">GNOME Feedback Page</ulink>. 
-      </para>
+      <title>Rückmeldungen</title> 
+      <para>Um Fehler zu melden oder einen Vorschlag zur Anwendung <application>Systemprotokollbetrachter</application> oder zu diesem Handbuch zu machen, folgen Sie den Anweisungen auf der <ulink url="ghelp:gnome-feedback" type="help">GNOME-Seite für Rückmeldungen</ulink>.</para>
 <!-- Translators may also add here feedback address for translations -->
-    </legalnotice>
-  </articleinfo>
+    </legalnotice> 
+  </articleinfo> 
 
   <indexterm> 
-    <primary>Systemprotokollansicht</primary> 
+    <primary>Systemprotokollbetrachter</primary> 
   </indexterm> 
 
 <!-- ============= Document Body ============================= -->
 <!-- ============= Introduction ============================== -->
 
   <sect1 id="syslog-introduction"> 
-    <title>Einf&uuml;hrung</title>
-    <para>Mit der Anwendung <application>&app;</application> k&ouml;nnen Sie Systemprotokolldateien &uuml;berwachen und anzeigen. 
-    Um Systemprotokolldateien anzuzeigen, m&uuml;ssen Sie sich als Root anmelden.</para>
+    <title>Einführung</title> 
+
+      <para>Der <application>Systemprotokollbetrachter</application> ist ein grafischer, menügesteuerter Betrachter, den Sie zum Betrachten und Überwachen Ihrer Systemprotokolldateien benutzen können. Der <application>Systemprotokollbetrachter</application> stellt einige Funktionen bereit, die Ihnen beim Verwalten Ihrer Protokolle helfen, beispielsweise einen Kalender, eine Protokollüberwachung und eine Protokollstatistik.</para>
+
+      <para>Wenn Sie noch unerfahren in der Systemverwaltung sind, stellt Ihnen der <application>Systemprotokollbetrachter</application> eine einfachere und benutzerfreundlichere Anzeige Ihrer Systemprotokolle zur Verfügung, im Gegensatz zur reinen Textansicht einer Protokolldatei. Auch für fortgeschrittenere Systemverwalter ist der <application>Systemprotokollbetrachter</application> nützlich, da er sowohl über einen Kalender verfügt, mit dessen Hilfe Sie den zeitlichen Verlauf eines Problems lokalisieren können, als auch über eine Möglichkeit der permanenten Überwachung wichtiger Protokolle.</para>
+
+      <warning><para>Der <application>Systemprotokollbetrachter</application> ist nur verwendbar, wenn Sie Zugriff auf die Systemprotokolldateien haben, was im Allgemeinen die Rechte des Systemverwalters erfordert.</para></warning>
+
   </sect1>
 
-  <sect1 id="syslog-getting-started"> 
-    <title>Erste Schritte</title>
+  <sect1 id="syslog-getting-started">
+    <title>Erste Schritte</title> 
 
-    <para>Sie k&ouml;nnen die Anwendung <application>&app;</application> auf eine der folgenden Arten starten:
-    </para>
+    <para>Sie können den <application>Systemprotokollbetrachter</application> auf die folgenden Arten starten:</para> 
     <variablelist>
     	<varlistentry>
-    		<term><guimenu>Anwendungsmen&uuml;</guimenu> </term>
+    		<term>Menü <guimenu>Anwendungen</guimenu></term>
     		<listitem>
-    		<para>W&auml;hlen Sie <menuchoice><guisubmenu>Systemtools</guisubmenu><guimenuitem>Systemprotokoll</guimenuitem></menuchoice>.</para>
+    		<para>Wählen Sie <menuchoice><guisubmenu>Systemwerkzeuge</guisubmenu><guimenuitem>Systemprotokoll</guimenuitem></menuchoice>.</para>
     		</listitem>
     	</varlistentry>
     	<varlistentry>
     		<term>Befehlszeile</term>
     		<listitem>
-    		<para>Geben Sie <command>gnome-system-log</command> ein, und dr&uuml;cken Sie die <keycap>Eingabetaste</keycap>.</para>
-    		<para>		 
-    		</para>
+    		<para>Geben Sie <command>gnome-system-log</command> ein, und drücken Sie dann die <keycap>Eingabetaste</keycap>.</para>
+    		<para> 		 
+    		</para> 
     		</listitem>
     	</varlistentry>
     </variablelist>
 
-    <para>Wenn Sie die Anwendung <application>&app;</application> starten, wird das folgende Fenster angezeigt.</para>
+    <para>Wenn Sie den <application>Systemprotokollbetrachter</application> starten, wird folgendes Fenster angezeigt.</para>
 
     <!-- ==== Figure ==== -->
       <figure id="syslog-fig"> 
-	<title>&app; Fenster</title>
-	<screenshot>
-	  <mediaobject>
+	<title>Systemprotokollbetrachter-Fenster</title> 
+	<screenshot> 
+	  <mediaobject> 
 	    <imageobject>
 	    <imagedata fileref="figures/syslog_window.png" format="PNG"/> 
 	    </imageobject>
-	    <textobject>
-	      <phrase>&Ouml;ffnet das Hauptfenster von &app;. Enth&auml;lt Men&uuml;leiste, Anzeigebereich, Bildlaufleisten und Statusleiste </phrase>
-	    </textobject>
-	  </mediaobject>
-	</screenshot>
+	    <textobject> 
+	      <phrase>Zeigt das Hauptfenster des Systemprotokollbetrachters. Enthält Menüleiste, Anzeigebereich, Rollbalken und Statusleiste.</phrase> 
+	    </textobject> 
+	  </mediaobject> 
+	</screenshot> 
       </figure>
     <!-- ==== End of Figure ==== -->
-    <para>Nach dem Starten von <application>&app;</application> zeigt die Anwendung standardm&auml;&szlig;ig bereits die Datei <filename>/var/adm/messages</filename> 
-    an.</para>
+    <para>Wenn Sie den <application>Systemprotokollbetrachter</application> zum ersten Mal starten, zeigt die Anwendung standardmäßig verschiedene Protokolldateien an (z.B. <filename>/var/log/messages</filename>). Geöffnete Protokolle werden an der linken Seite des Anwendungsfensters aufgelistet. Das in dieser Liste ausgewählte Protokoll wird im Anzeigebereich des Anwendungsfensters dargestellt.</para>
+
+      <para>Standardmäßig überwacht der <application>Systemprotokollbetrachter</application> jedes der geöffneten Protokolle auf Änderungen. Jede Änderung erscheint automatisch im Hauptfenster. Weitere Informationen hierzu finden Sie in <xref linkend="syslog-monitor"/>.</para>
 
   </sect1>
 
 <!-- ================ Usage ================================ -->
 
   <sect1 id="syslog-usage"> 
-     <title>Verwendung</title>
+    <title>Benutzung</title>
 
     <sect2 id="syslog-open">
-    	<title>So zeigen Sie eine Protokolldatei an</title>
-    	<para>W&auml;hlen Sie zum Anzeigen einer Protokolldatei im Men&uuml; <menuchoice><guimenu>Protokoll</guimenu><guimenuitem>&Ouml;ffnen</guimenuitem></menuchoice>. 
-    	Geben Sie im Dialogfeld <guilabel>Neue Protokolldatei &ouml;ffnen</guilabel> den Namen der gew&uuml;nschten Protokolldatei ein, und klicken Sie auf 
-    	<guibutton>OK</guibutton>. Mit der Bildlaufleiste k&ouml;nnen Sie durch die Protkolldatei bl&auml;ttern.</para>
-    	<para>Sie k&ouml;nnen beliebig viele Protokolldateien &ouml;ffnen. <application>&app;</application> zeigt im Fenster 
-    	<guilabel>Systemprotokoll-Betrachter</guilabel> jeweils nur eine Protokolldatei an. Wenn Sie eine andere Protokolldatei anzeigen m&ouml;chten, die in der Anwendung 
-    	<application>&app;</application> bereits ge&ouml;ffnet ist, w&auml;hlen Sie <menuchoice><guimenu>Protokoll</guimenu><guimenuitem>Protokoll wechseln</guimenuitem></menuchoice>. 
-    	Wenn Sie weitere ge&ouml;ffnete Protokolldateien anzeigen m&ouml;chten, w&auml;hlen Sie erneut <menuchoice><guimenu>Protokoll</guimenu><guimenuitem>Protokoll wechseln</guimenuitem>
-    	</menuchoice>.</para>
+    	<title>So betrachten Sie ein Protokoll</title>
+    	<para>Um ein Protokoll zu betrachten, wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Öffnen</guimenuitem></menuchoice>. Im Dialog <guilabel>Protokoll öffnen</guilabel> wählen Sie das zu öffnende Protokoll aus und klicken dann auf <guibutton>Öffnen</guibutton>. Verwenden Sie die Rollbalken, um durch das Protokoll zu rollen.</para>
+
+        <para>Sie können so viele Protokolle öffnen, wie Sie wollen. Der <application>Systemprotokollbetrachter</application> zeigt eines der Protokolle im <guilabel>Systemprotokollbetrachter</guilabel>-Fenster an. Geöffnete Protokolle werden an der linken Seite des Anwendungsfensters aufgelistet. Das in dieser Liste ausgewählte Protokoll wird im Anzeigebereich des Anwendungsfensters dargestellt. Um ein anderes bereits im <application>Systemprotokollbetrachter</application> geöffnetes Protokoll anzuzeigen, wählen Sie es in der Protokollliste aus.</para>
+
+        <para>Beachten Sie, dass es Ihnen der <application>Systemprotokollbetrachter</application> auch ermöglicht, gepackte Protokolle zu öffnen, deren Dateinamen auf ».gz« enden.</para>
     </sect2>
-    
-    <sect2 id="syslog-details">
-    	<title>So zeigen Sie weitere Informationen &uuml;ber einen Protokolldateieintrag an</title>
-    	<para>Wenn Sie ausf&uuml;hrliche Informationen &uuml;ber einen Protokolldateieintrag anzeigen m&ouml;chten, markieren Sie den Eintrag im Anzeigebereich, und w&auml;hlen Sie
-    	<menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Eintragsdetails</guimenuitem></menuchoice>. <application>&app;</application>
-    	&ouml;ffnet das Fenster <guilabel>Zoom view</guilabel>. Dieses Fenster enth&auml;lt folgende Informationen:</para>
-    	<itemizedlist>
-    		<listitem><para>Datum des Protokolleintrags</para>
-    		</listitem>
-    		<listitem><para>Name des Prozesses, der den Protokolleintrag vorgenommen hat</para>
-    		</listitem>
-    		<listitem><para>Protokollmeldung</para>
-    		</listitem>
-    		<listitem><para>Beschreibung der Protokollmeldung, falls vorhanden</para>
-    		</listitem>
-    	</itemizedlist>
+
+    <sect2 id="syslog-selection">
+    <title>So kopieren Sie Protokollzeilen in die Zwischenablage</title>
+    <para>Um eine oder mehrere Zeilen eines Protokolls in die Zwischenablage zu kopieren, wählen Sie einfach die entsprechenden Zeilen im Anzeigebereich aus und wählen <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Kopieren</guimenuitem></menuchoice> im Menü. Falls Sie das gesamte Protokoll in die Zwischenablage kopieren wollen, wählen Sie es im Menü mit <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Alles auswählen</guimenuitem></menuchoice> aus. Wählen Sie anschließend <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Kopieren</guimenuitem></menuchoice>.</para>
+    </sect2>
+
+    <sect2 id="syslog-hide-sidebar">
+    <title>So verbergen Sie die Seitenleiste</title>
+    <para>Um die Seitenleiste anzuzeigen oder zu verbergen, welche die Protokollliste und den Kalender enthält, wählen Sie die Menüoption <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Seitenleiste</guimenuitem></menuchoice>.</para>
     </sect2>
     
     <sect2 id="syslog-monitor">
-    	<title>So &uuml;berwachen Sie Protokolldateien</title>
-    	<para>Sie k&ouml;nnen mit <application>&app;</application> ausgew&auml;hlte Protokolldateien &uuml;berwachen. Bei einer &uuml;berwachten Protokolldatei zeigt 
-    	<application>&app;</application> die aktuellen Eintr&auml;ge in einem separaten Fenster an. 
-    	<application>&app;</application> aktualisiert das Fenster <guilabel>Protokolle &uuml;berwachen</guilabel> automatisch, 
-    	wenn neue Eintr&auml;ge hinzugef&uuml;gt werden.</para>
-    	<para>F&uuml;hren Sie zum &Uuml;berwachen einer Protokolldatei die folgenden Schritte durch:</para>
-    	<orderedlist>
-    		<listitem><para>W&auml;hlen Sie <menuchoice><guimenu>Protokoll</guimenu><guimenuitem>Anzeige</guimenuitem></menuchoice>.</para></listitem>
-    		<listitem><para>W&auml;hlen Sie auf der linken Seite des Dialogfelds <guilabel>Überwachungsoptionen</guilabel> 
-    		die zu &uuml;berwachende Protokolldatei. </para></listitem>
-    		<listitem><para>Klicken Sie auf <guibutton>Hinzuf&uuml;gen</guibutton>. </para></listitem>
-    		<listitem><para>Wenn Sie das Hauptfenster von <application>&app;</application> w&auml;hrend der &Uuml;berwachung von Protokolldateien ausblenden m&ouml;chten, 
-    		w&auml;hlen Sie das Kontrollk&auml;stchen <guilabel>Anwendung verbergen</guilabel>. </para></listitem>
-    	</orderedlist>	
-    	<para><application>&app;</application> zeigt Protokolldateien im Fenster <guilabel>Protokoll&uuml;berwachung</guilabel> an. 
-    	<application>&app;</application> kann mehrere Protokolldateien gleichzeitig &uuml;berwachen, zeigt aber im Fenster 
-    	<guilabel>Protokoll&uuml;berwachung</guilabel> immer nur eine Datei an. <application>&app;</application> f&uuml;gt dem Fenster f&uuml;r jede &uuml;berwachte Protokolldatei
-    	eine Registerkarte hinzu.</para>
+    	<title>So überwachen Sie Systemprotokolle</title>
+    	<para>Sie können den <application>Systemprotokollbetrachter</application> zur Überwachung von Protokollen verwenden. Standardmäßig überwacht der <application>Systemprotokollbetrachter</application> jedes der geöffneten Protokolle auf Änderungen. Wenn neue Zeilen zu einem vom <application>Systemprotokollbetrachter</application> überwachten Protokoll hinzugefügt werden, erscheint der Name des Protokolls in fetter Schrift in der Protokollliste. Falls das betreffende Protokoll gegenwärtig im Anzeigebereich geöffnet ist, erscheinen die neuen Zeilen automatisch am Ende des Protokolls. Nach fünf Sekunden wird der in fetter Schrift dargestellte Name des Protokolls in der Protokolls in die normale Anzeige zurückgesetzt.</para>
+      
+    	<para>Um die Überwachung eines bestimmten Protokolls zu stoppen, deaktivieren Sie die Option <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Überwachen</guimenuitem></menuchoice>. Aktivieren Sie diese Option wieder, um die Überwachung wiederaufzunehmen.</para>
+
     </sect2>
     
     <sect2 id="syslog-calendar">
-    	<title>So zeigen Sie einen Kalender an</title>
-    	<para>Wenn Sie den Kalender der Anwendung anzeigen m&ouml;chten, w&auml;hlen Sie <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Kalender</guimenuitem></menuchoice>. Die Daten, 
-   	an denen Protokolldateien erstellt wurden, werden fett dargestellt. Um nur die Protokolldateien eines bestimmten Datums anzuzeigen, w&auml;hlen Sie das Datum im Kalender.</para>
+    	<title>So verwenden Sie den Kalender</title>
+        <para>Standardmäßig wird unterhalb der Protokollliste an der linken Seite des <application>Systemprotokollbetrachter</application>-Fensters ein Kalender angezeigt. In diesem Kalender werden die im gegenwärtig ausgewählten Protokoll vorhandenen Daten in fetter Schrift angezeigt. Um zu einem bestimmten Datum zu springen, wählen Sie es im Kalender aus.</para>
+
+    	<para>Um den Kalender zu verbergen, deaktivieren Sie die Menüoption <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Kalender</guimenuitem></menuchoice></para> 
     </sect2>
     
     <sect2 id="syslog-stats">
-    	<title>So zeigen Sie die Eigenschaften einer Protokolldatei an</title>
-    	<para>Wenn Sie die Eigenschaften einer Protokolldatei anzeigen m&ouml;chten, w&auml;hlen Sie <menuchoice><guimenu>Protokoll</guimenu><guimenuitem>Eigenschaften</guimenuitem></menuchoice>.
-    	Im Dialogfeld <guilabel>Protokollstatistiken</guilabel> werden die folgenden Dateiinformationen angezeigt:</para>
+    	<title>So zeigen Sie Protokollinformationen an</title>
+    	<para>Folgende Protokollinformationen werden generell in der Statusleiste angezeigt:</para> 
     	<itemizedlist>
-    		<listitem><para>Dateiname und vollst&auml;ndiger Verzeichnispfad</para>
+    		<listitem><para>Anzahl der Zeilen im Protokoll.</para>
     		</listitem>
-    		<listitem><para>Dateigr&ouml;&szlig;e in Bytes</para>
+    		<listitem><para>Größe des Protokolls in Byte.</para>
     		</listitem>
-    		<listitem><para>Datum der letzten &Auml;nderung einer Datei</para>
+    		<listitem><para>Zeitpunkt der letzten Änderung des Protokolls.</para>
     		</listitem>
-    		<listitem><para>Erstellungsdatum der Datei</para>
-    		</listitem>
-    		<listitem><para>Datum der letzten Protokolleintr&auml;ge</para>
-    		</listitem>
-    		<listitem><para>Anzahl der Zeilen in der Datei</para>
-    		</listitem>
-    	</itemizedlist>
+    	</itemizedlist> 
+        <para>Die Statusleiste kann mit der Menüoption <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Statusleiste</guimenuitem></menuchoice> angezeigt oder verborgen werden.</para>
     </sect2>
     
     <sect2 id="syslog-close">
-    	<title>So schlie&szlig;en Sie eine Protokolldatei</title>
-    	<para>Zum Schlie&szlig;en einer Protokolldatei w&auml;hlen Sie <menuchoice><guimenu>Protokoll</guimenu><guimenuitem>Schlie&szlig;en</guimenuitem></menuchoice>. Wenn Sie die 
-	letzte ge&ouml;ffnete Protokolldatei schlie&szlig;en, wird die Anwendung beendet.</para>
+    	<title>So schließen Sie ein Protokoll</title>
+    	<para>Um ein Protokoll zu schließen, wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Schließen</guimenuitem></menuchoice>.</para>
+    </sect2>
+    
+    <sect2 id="syslog-exit">
+    	<title>So beenden Sie den Systemprotokollbetrachter</title>
+    	<para>Um den <application>Systemprotokollbetrachter</application> zu schließen, wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Beenden</guimenuitem></menuchoice>.</para>
     </sect2>
  
   </sect1>
