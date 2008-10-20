@@ -1,4 +1,4 @@
-AC_INIT([gnome-utils], [2.24.1],
+AC_INIT([gnome-utils], [2.25.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils])
 AM_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE
