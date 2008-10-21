@@ -75,7 +75,7 @@ dnl *****************************************
 
 GLIB_REQUIRED=2.16.0
 GIO_REQUIRED=2.16.0
-GTK_REQUIRED=2.11.6
+GTK_REQUIRED=2.14.0
 LIBGNOME_DESKTOP_REQUIRED=2.9.91
 LIBGNOME_REQUIRED=2.13.2
 LIBGNOMEUI_REQUIRED=2.13.7
@@ -144,8 +144,8 @@ AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
 AC_SUBST(XSHAPE_LIBS)
 
 PKG_CHECK_MODULES(SCREENSHOT, gio-2.0 >= $GLIB_REQUIRED dnl
-                              gtk+-2.0 >= $GTK_REQUIRED dnl
-                              libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+                              gconf-2.0 dnl
+                              gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(SCREENSHOT_CFLAGS)
 AC_SUBST(SCREENSHOT_LIBS)
 
