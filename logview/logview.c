@@ -23,6 +23,7 @@
 #include <string.h>
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+
 #include "logview.h"
 #include "loglist.h"
 #include "log_repaint.h"

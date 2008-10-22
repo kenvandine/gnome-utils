@@ -20,8 +20,10 @@
 
 #include <config.h>
 #include <glib/gi18n.h>
-#include <gtk/gtkaboutdialog.h>
+#include <gtk/gtk.h>
 #include <string.h>
+
+#include "about.h"
 
 void
 logview_about (GtkWidget *widget, GtkWidget *window)

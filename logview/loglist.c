@@ -18,11 +18,12 @@
  */
 
 #include <gtk/gtk.h>
+#include <libgnomevfs/gnome-vfs.h>
+
 #include "logview.h"
 #include "misc.h"
 #include "loglist.h"
 #include "logrtns.h"
-#include <libgnomevfs/gnome-vfs.h>
 
 struct LogListPriv {
 	GtkTreeStore *model;

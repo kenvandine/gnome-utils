@@ -20,6 +20,8 @@
 #ifndef __LOG_ABOUT_H__
 #define __LOG_ABOUT_H__
 
+#include <gtk/gtk.h>
+
 void logview_about (GtkWidget *widget, GtkWidget *window);
 
 #endif /* __LOG_ABOUT_H__ */

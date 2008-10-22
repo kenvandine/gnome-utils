@@ -29,7 +29,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 
 #include <glib/gi18n.h>
-#include <glib/goption.h>
+#include <glib.h>
 
 #include <gtk/gtk.h>
 

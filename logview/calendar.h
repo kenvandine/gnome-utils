@@ -20,6 +20,8 @@
 #ifndef __LOG_CALENDAR_H__
 #define __LOG_CALENDAR_H__
 
+#include <gtk/gtk.h>
+
 #include "logrtns.h"
 
 G_BEGIN_DECLS

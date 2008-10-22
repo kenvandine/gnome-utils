@@ -27,6 +27,8 @@
 #define LOG_IS_LIST_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((obj), LOG_LIST_TYPE))
 #define LOG_LIST_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOG_LIST_TYPE, LogListClass))
 
+#include <gtk/gtk.h>
+
 typedef struct LogListPriv LogListPriv;
 typedef struct LogList
 {	

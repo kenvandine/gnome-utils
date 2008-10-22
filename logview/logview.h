@@ -22,6 +22,8 @@
 #ifndef __LOGVIEW_H__
 #define __LOGVIEW_H__
 
+#include <gtk/gtk.h>
+
 #include "logrtns.h"
 
 #define MAX_VERSIONS             5
