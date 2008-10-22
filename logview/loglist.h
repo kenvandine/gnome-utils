@@ -21,11 +21,11 @@
 #define __LOG_LIST_H__
 
 #define LOG_LIST_TYPE		  (loglist_get_type ())
-#define LOG_LIST(obj)		  (GTK_CHECK_CAST ((obj), LOG_LIST_TYPE, LogList))
-#define LOG_LIST_CLASS(klass)	  (GTK_CHECK_CLASS_CAST ((klass), LOG_LIST_TYPE, LogListClass))
-#define LOG_IS_LIST(obj)	  (GTK_CHECK_TYPE ((obj), LOG_LIST_TYPE))
-#define LOG_IS_LIST_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), LOG_LIST_TYPE))
-#define LOG_LIST_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), LOG_LIST_TYPE, LogListClass))
+#define LOG_LIST(obj)		  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOG_LIST_TYPE, LogList))
+#define LOG_LIST_CLASS(klass)	  (G_TYPE_CHECK_CLASS_CAST ((klass), LOG_LIST_TYPE, LogListClass))
+#define LOG_IS_LIST(obj)	  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LOG_LIST_TYPE))
+#define LOG_IS_LIST_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((obj), LOG_LIST_TYPE))
+#define LOG_LIST_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOG_LIST_TYPE, LogListClass))
 
 typedef struct LogListPriv LogListPriv;
 typedef struct LogList

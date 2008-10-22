@@ -27,11 +27,11 @@
 #define MAX_VERSIONS             5
 
 #define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())
-#define LOGVIEW_WINDOW(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))
-#define LOGVIEW_WINDOW_CLASS(klass)	  (GTK_CHECK_CLASS_CAST ((klass), LOGVIEW_TYPE_WINDOW, LogviewWindowClass))
-#define LOGVIEW_IS_WINDOW(obj)	  (GTK_CHECK_TYPE ((obj), LOGVIEW_TYPE_WINDOW))
-#define LOGVIEW_IS_WINDOW_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), LOGVIEW_TYPE_WINDOW))
-#define LOGVIEW_WINDOW_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindowClass))
+#define LOGVIEW_WINDOW(obj)		  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))
+#define LOGVIEW_WINDOW_CLASS(klass)	  (G_TYPE_CHECK_CLASS_CAST ((klass), LOGVIEW_TYPE_WINDOW, LogviewWindowClass))
+#define LOGVIEW_IS_WINDOW(obj)	  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LOGVIEW_TYPE_WINDOW))
+#define LOGVIEW_IS_WINDOW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((obj), LOGVIEW_TYPE_WINDOW))
+#define LOGVIEW_WINDOW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindowClass))
 
 typedef struct _LogviewWindow LogviewWindow;
 typedef struct _LogviewWindowClass LogviewWindowClass;

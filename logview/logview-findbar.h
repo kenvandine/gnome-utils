@@ -25,11 +25,11 @@
 G_BEGIN_DECLS
 
 #define LOGVIEW_FINDBAR_TYPE		  (logview_findbar_get_type ())
-#define LOGVIEW_FINDBAR(obj)		  (GTK_CHECK_CAST ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBar))
-#define LOGVIEW_FINDBAR_CLASS(klass)	  (GTK_CHECK_CLASS_CAST ((klass), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
-#define LOGVIEW_IS_FINDBAR(obj)	          (GTK_CHECK_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
-#define LOGVIEW_IS_FINDBAR_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
-#define LOGVIEW_FINDBAR_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
+#define LOGVIEW_FINDBAR(obj)		  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBar))
+#define LOGVIEW_FINDBAR_CLASS(klass)	  (G_TYPE_CHECK_CLASS_CAST ((klass), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
+#define LOGVIEW_IS_FINDBAR(obj)	          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
+#define LOGVIEW_IS_FINDBAR_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
+#define LOGVIEW_FINDBAR_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
 
 typedef struct LogviewFindBarPriv LogviewFindBarPriv;
 

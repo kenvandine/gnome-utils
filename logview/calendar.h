@@ -25,11 +25,11 @@
 G_BEGIN_DECLS
 
 #define CALENDAR_TYPE		  (calendar_get_type ())
-#define CALENDAR(obj)		  (GTK_CHECK_CAST ((obj), CALENDAR_TYPE, Calendar))
-#define CALENDAR_CLASS(klass)	  (GTK_CHECK_CLASS_CAST ((klass), CALENDAR_TYPE, CalendarClass))
-#define IS_CALENDAR(obj)	  (GTK_CHECK_TYPE ((obj), CALENDAR_TYPE))
-#define IS_CALENDAR_CLASS(klass)  (GTK_CHECK_CLASS_TYPE ((obj), CALENDAR_TYPE))
-#define CALENDAR_GET_CLASS(obj)   (GTK_CHECK_GET_CLASS ((obj), CALENDAR_TYPE, CalendarClass))
+#define CALENDAR(obj)		  (G_TYPE_CHECK_INSTANCE_CAST ((obj), CALENDAR_TYPE, Calendar))
+#define CALENDAR_CLASS(klass)	  (G_TYPE_CHECK_CLASS_CAST ((klass), CALENDAR_TYPE, CalendarClass))
+#define IS_CALENDAR(obj)	  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CALENDAR_TYPE))
+#define IS_CALENDAR_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((obj), CALENDAR_TYPE))
+#define CALENDAR_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), CALENDAR_TYPE, CalendarClass))
 
 typedef struct CalendarPriv CalendarPriv;
 typedef struct Calendar
