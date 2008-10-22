@@ -45,6 +45,22 @@ logview_about (GtkWidget *widget, GtkWidget *window)
 			   "Vincent Noel <vincent.noel@gmail.com>",
 			   "Judith Samson <judith@samsonsource.com>",
 			   NULL};
+  const gchar * license[] = {
+		N_("Log Viewer  is free software; you can redistribute it and/or modify "
+		   "it under the terms of the GNU General Public License as published by "
+		   "the Free Software Foundation; either version 2 of the License, or "
+		   "(at your option) any later version."),
+		N_("Log Viewer is distributed in the hope that it will be useful, "
+		   "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+		   "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+		   "GNU General Public License for more details."),
+		N_("You should have received a copy of the GNU General Public License "
+		   "along with the GNOME Web Browser; if not, write to the Free Software Foundation, Inc., "
+		   "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA")
+  };
+
+  gchar *license_trans = g_strjoin ("\n\n", _(license[0]), _(license[1]), _(license[2]), NULL);
+
   /* Translator credits */
   const gchar *translator_credits = _("translator-credits");
   g_return_if_fail (GTK_IS_WINDOW (window));
@@ -52,12 +68,16 @@ logview_about (GtkWidget *widget, GtkWidget *window)
   gtk_show_about_dialog (GTK_WINDOW (window),
 		"name",  _("System Log Viewer"),
 		"version", VERSION,
-		"copyright", "Copyright \xc2\xa9 1998-2004 Free Software Foundation, Inc.",
+		"copyright", "Copyright \xc2\xa9 1998-2008 Free Software Foundation, Inc.",
+		"license", license_trans,
+		"wrap-license", TRUE,
 		"comments", _("A system log viewer for GNOME."),
 		"authors", author,
 		"documenters", documenters,
 		"translator_credits", strcmp (translator_credits, "translator-credits") != 0 ? translator_credits : NULL,
 		"logo_icon_name", "logviewer",
 		NULL);
+  g_free (license_trans);
+
   return;
 }
