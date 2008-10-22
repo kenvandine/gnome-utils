@@ -191,6 +191,8 @@ main (int argc, char *argv[])
 	}
 
 	gtk_main ();
+
+	prefs_shutdown ();
    
 	return EXIT_SUCCESS;
 }

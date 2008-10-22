@@ -23,12 +23,13 @@
 #include "config.h"
 #endif
 
+#include <sys/stat.h>
 #include <string.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
 #include <libgnomevfs/gnome-vfs.h>
+
 #include "userprefs.h"
-#include <sys/stat.h>
 #include "logview.h"
 
 #define LOGVIEW_DEFAULT_HEIGHT 400
@@ -370,4 +371,11 @@ prefs_init (void)
 
 		prefs = prefs_load ();
 	}
+}
+
+void
+prefs_shutdown (void)
+{
+	if (gconf_client)
+		g_object_unref (gconf_client);
 }

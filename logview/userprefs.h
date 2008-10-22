@@ -40,6 +40,7 @@ void prefs_store_window_size (GtkWidget *window);
 void prefs_save (void);
 void prefs_free_loglist ();
 void prefs_init ();
+void prefs_shutdown ();
 
 #endif /* __LOG_PREFS_H__ */
 
