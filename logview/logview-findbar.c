@@ -32,6 +32,9 @@ struct LogviewFindBarPriv
 };
 
 G_DEFINE_TYPE (LogviewFindBar, logview_findbar, GTK_TYPE_HBOX);
+#define LOGVIEW_FINDBAR_GET_PRIVATE(o)  \
+   (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOGVIEW_FINDBAR_TYPE, LogviewFindBarPriv))
+
 
 static gboolean
 iter_is_visible (GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
@@ -143,8 +146,8 @@ static void
 logview_findbar_init (LogviewFindBar *findbar)
 {
 	GtkWidget *label, *button;
-	
-	findbar->priv = g_new0 (LogviewFindBarPriv, 1);
+
+	findbar->priv = LOGVIEW_FINDBAR_GET_PRIVATE (findbar);
 
 	gtk_container_set_border_width (GTK_CONTAINER (findbar), 3);
 
@@ -163,20 +166,9 @@ logview_findbar_init (LogviewFindBar *findbar)
 }
 
 static void
-logview_findbar_finalize (GObject *object)
-{
-	LogviewFindBar *findbar = LOGVIEW_FINDBAR (object);
-
-	g_free (findbar->priv);
-	G_OBJECT_CLASS (logview_findbar_parent_class)->finalize (object);
-}
-
-static void
 logview_findbar_class_init (LogviewFindBarClass *klass)
 {
-	GObjectClass *object_class = (GObjectClass *) klass;
-
-	object_class->finalize = logview_findbar_finalize;
+	g_type_class_add_private (klass, sizeof (LogviewFindBarPriv));
 }
 
 GtkWidget *

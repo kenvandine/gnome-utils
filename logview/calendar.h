@@ -36,8 +36,6 @@ typedef struct Calendar
 {	
 	GtkCalendar parent_instance;
 	CalendarPriv *priv;
-	GSList *days;
-	gboolean first_pass;
 } Calendar;
 
 typedef struct CalendarClass

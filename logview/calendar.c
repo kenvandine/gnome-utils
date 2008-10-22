@@ -25,6 +25,9 @@
 #include "calendar.h"
 
 G_DEFINE_TYPE (Calendar, calendar, GTK_TYPE_CALENDAR);
+#define CALENDAR_GET_PRIVATE(o)  \
+   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CALENDAR_TYPE, CalendarPriv))
+
 
 struct CalendarPriv
 {
@@ -162,7 +165,7 @@ calendar_init (Calendar *calendar)
     PangoContext *context;
     int size;
 
-    calendar->priv = g_new0 (CalendarPriv, 1);
+    calendar->priv = CALENDAR_GET_PRIVATE (calendar);
     
     context = gtk_widget_get_pango_context (GTK_WIDGET (calendar));
     fontdesc = pango_context_get_font_description (context);
@@ -172,18 +175,9 @@ calendar_init (Calendar *calendar)
 }
 
 static void
-calendar_class_finalize (GObject *object)
-{
-    Calendar *calendar = CALENDAR (object);
-    g_free (calendar->priv);
-    G_OBJECT_CLASS (calendar_parent_class)->finalize (object);
-}
-
-static void
 calendar_class_init (CalendarClass *klass)
 {
-    GObjectClass *object_class = (GObjectClass *) klass;
-    object_class->finalize = calendar_class_finalize;
+    g_type_class_add_private (klass, sizeof (CalendarPriv));
 }
 
 GtkWidget *

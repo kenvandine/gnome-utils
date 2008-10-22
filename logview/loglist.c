@@ -36,6 +36,9 @@ enum {
 };
 
 G_DEFINE_TYPE (LogList, loglist, GTK_TYPE_TREE_VIEW);
+#define LOG_LIST_GET_PRIVATE(o)  \
+   (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOG_LIST_TYPE, LogListPriv))
+
 
 static GtkTreePath *
 loglist_find_directory (LogList *list, gchar *dir)
@@ -275,7 +278,7 @@ loglist_init (LogList *list)
     GtkTreeSelection *selection;
     GtkCellRenderer *cell;
 
-    list->priv = g_new0 (LogListPriv, 1);
+    list->priv = LOG_LIST_GET_PRIVATE (list); 
 
     model = gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_INT, G_TYPE_BOOLEAN);
     gtk_tree_view_set_model (GTK_TREE_VIEW (list), GTK_TREE_MODEL (model));
@@ -301,18 +304,9 @@ loglist_init (LogList *list)
 }
 
 static void
-loglist_finalize (GObject *object)
-{
-	LogList *list = LOG_LIST (object);
-	g_free (list->priv);
-	G_OBJECT_CLASS (loglist_parent_class)->finalize (object);
-}
-
-static void
 loglist_class_init (LogListClass *klass)
 {
-	GObjectClass *object_class = (GObjectClass *) klass;
-	object_class->finalize = loglist_finalize;
+    g_type_class_add_private (klass, sizeof (LogListPriv));
 }
 
 GtkWidget *
