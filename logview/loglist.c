@@ -28,15 +28,14 @@ struct LogListPriv {
 	GtkTreeStore *model;
 };
 
-static GObjectClass *parent_class;
-GType loglist_get_type (void);
-
 enum {
 	LOG_NAME = 0,
 	LOG_POINTER,
 	LOG_WEIGHT,
 	LOG_WEIGHT_SET
 };
+
+G_DEFINE_TYPE (LogList, loglist, GTK_TYPE_TREE_VIEW);
 
 static GtkTreePath *
 loglist_find_directory (LogList *list, gchar *dir)
@@ -306,39 +305,14 @@ loglist_finalize (GObject *object)
 {
 	LogList *list = LOG_LIST (object);
 	g_free (list->priv);
-	parent_class->finalize (object);
+	G_OBJECT_CLASS (loglist_parent_class)->finalize (object);
 }
 
 static void
 loglist_class_init (LogListClass *klass)
 {
 	GObjectClass *object_class = (GObjectClass *) klass;
-	parent_class = g_type_class_peek_parent (klass);
 	object_class->finalize = loglist_finalize;
-}
-
-GType
-loglist_get_type (void)
-{
-	static GType object_type = 0;
-	
-	if (!object_type) {
-		static const GTypeInfo object_info = {
-			sizeof (LogListClass),
-			NULL,		/* base_init */
-			NULL,		/* base_finalize */
-			(GClassInitFunc) loglist_class_init,
-			NULL,/* class_finalize */
-			NULL,		/* class_data */
-			sizeof (LogList),
-			0,              /* n_preallocs */
-			(GInstanceInitFunc) loglist_init
-		};
-
-		object_type = g_type_register_static (GTK_TYPE_TREE_VIEW, "LogList", &object_info, 0);
-	}
-
-	return object_type;
 }
 
 GtkWidget *

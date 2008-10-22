@@ -31,8 +31,7 @@ struct LogviewFindBarPriv
 	gpointer logview;
 };
 
-static GObjectClass *parent_class;
-GType logview_findbar_get_type (void);
+G_DEFINE_TYPE (LogviewFindBar, logview_findbar, GTK_TYPE_HBOX);
 
 static gboolean
 iter_is_visible (GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
@@ -169,7 +168,7 @@ logview_findbar_finalize (GObject *object)
 	LogviewFindBar *findbar = LOGVIEW_FINDBAR (object);
 
 	g_free (findbar->priv);
-	parent_class->finalize (object);
+	G_OBJECT_CLASS (logview_findbar_parent_class)->finalize (object);
 }
 
 static void
@@ -178,31 +177,6 @@ logview_findbar_class_init (LogviewFindBarClass *klass)
 	GObjectClass *object_class = (GObjectClass *) klass;
 
 	object_class->finalize = logview_findbar_finalize;
-	parent_class = g_type_class_peek_parent (klass);
-}
-
-GType
-logview_findbar_get_type (void)
-{
-	static GType object_type = 0;
-	
-	if (!object_type) {
-		static const GTypeInfo object_info = {
-			sizeof (LogviewFindBarClass),
-			NULL,		/* base_init */
-			NULL,		/* base_finalize */
-			(GClassInitFunc) logview_findbar_class_init,
-			NULL,		/* class_finalize */
-			NULL,		/* class_data */
-			sizeof (LogviewFindBar),
-			0,              /* n_preallocs */
-			(GInstanceInitFunc) logview_findbar_init
-		};
-
-		object_type = g_type_register_static (GTK_TYPE_HBOX, "LogviewFindBar", &object_info, 0);
-	}
-
-	return object_type;
 }
 
 GtkWidget *

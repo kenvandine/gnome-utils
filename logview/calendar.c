@@ -24,8 +24,7 @@
 #include "logview.h"
 #include "calendar.h"
 
-static GObjectClass *parent_class;
-GType calendar_get_type (void);
+G_DEFINE_TYPE (Calendar, calendar, GTK_TYPE_CALENDAR);
 
 struct CalendarPriv
 {
@@ -157,22 +156,19 @@ calendar_connect (Calendar *calendar, LogviewWindow *logview)
 }
 
 static void 
-calendar_init (GtkCalendar *widget)
+calendar_init (Calendar *calendar)
 {
-    Calendar *calendar = CALENDAR (widget);
     PangoFontDescription *fontdesc;
     PangoContext *context;
     int size;
 
-    g_assert (IS_CALENDAR (calendar));
-
     calendar->priv = g_new0 (CalendarPriv, 1);
     
-    context = gtk_widget_get_pango_context (GTK_WIDGET(widget));
+    context = gtk_widget_get_pango_context (GTK_WIDGET (calendar));
     fontdesc = pango_context_get_font_description (context);
     size = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
     pango_font_description_set_size (fontdesc, (size-2)*PANGO_SCALE);
-    gtk_widget_modify_font (GTK_WIDGET (widget), fontdesc);
+    gtk_widget_modify_font (GTK_WIDGET (calendar), fontdesc);
 }
 
 static void
@@ -180,39 +176,14 @@ calendar_class_finalize (GObject *object)
 {
     Calendar *calendar = CALENDAR (object);
     g_free (calendar->priv);
-	parent_class->finalize (object);
+    G_OBJECT_CLASS (calendar_parent_class)->finalize (object);
 }
 
 static void
 calendar_class_init (CalendarClass *klass)
 {
-	GObjectClass *object_class = (GObjectClass *) klass;
+    GObjectClass *object_class = (GObjectClass *) klass;
     object_class->finalize = calendar_class_finalize;
-	parent_class = g_type_class_peek_parent (klass);
-}
-
-GType
-calendar_get_type (void)
-{
-	static GType object_type = 0;
-	
-	if (!object_type) {
-		static const GTypeInfo object_info = {
-			sizeof (CalendarClass),
-			NULL,		/* base_init */
-			NULL,		/* base_finalize */
-			(GClassInitFunc) calendar_class_init,
-			NULL,		/* class_finalize */
-			NULL,		/* class_data */
-			sizeof (Calendar),
-			0,              /* n_preallocs */
-			(GInstanceInitFunc) calendar_init
-		};
-
-		object_type = g_type_register_static (GTK_TYPE_CALENDAR, "Calendar", &object_info, 0);
-	}
-
-	return object_type;
 }
 
 GtkWidget *

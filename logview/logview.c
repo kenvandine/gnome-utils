@@ -48,11 +48,9 @@ enum {
   LOG_LINE_WEIGHT_SET
 };
 
-static GObjectClass *parent_class;
+G_DEFINE_TYPE (LogviewWindow, logview_window, GTK_TYPE_WINDOW);
 
 /* Function Prototypes */
-
-GType logview_window_get_type (void);
 
 static void logview_save_prefs (LogviewWindow *logview);
 static void logview_add_log (LogviewWindow *logview, Log *log);
@@ -792,11 +790,11 @@ logview_window_finalize (GObject *object)
     LogviewWindow *logview = LOGVIEW_WINDOW(object);
 
     g_object_unref (logview->ui_manager);
-    parent_class->finalize (object);
+    G_OBJECT_CLASS (logview_window_parent_class)->finalize (object);
 }
 
 static void
-logview_init (LogviewWindow *logview)
+logview_window_init (LogviewWindow *logview)
 {
    GtkWidget *vbox;
    GtkTreeStore *tree_store;
@@ -968,37 +966,12 @@ logview_window_class_init (LogviewWindowClass *klass)
 
 	object_class->finalize = logview_window_finalize;
 	object_class->get_property = logview_window_get_property;
-	parent_class = g_type_class_peek_parent (klass);
 
 	g_object_class_install_property (object_class, PROP_DAYS,
 					 g_param_spec_pointer ("days",
 					 _("Days"),
 					 _("Pointer towards a GSList of days for the current log."),
 					 (G_PARAM_READABLE)));
-}
-
-GType
-logview_window_get_type (void)
-{
-	static GType object_type = 0;
-	
-	if (!object_type) {
-		static const GTypeInfo object_info = {
-			sizeof (LogviewWindowClass),
-			NULL,		/* base_init */
-			NULL,		/* base_finalize */
-			(GClassInitFunc) logview_window_class_init,
-			NULL,		/* class_finalize */
-			NULL,		/* class_data */
-			sizeof (LogviewWindow),
-			0,              /* n_preallocs */
-			(GInstanceInitFunc) logview_init
-		};
-
-		object_type = g_type_register_static (GTK_TYPE_WINDOW, "LogviewWindow", &object_info, 0);
-	}
-
-	return object_type;
 }
 
 GtkWidget *
