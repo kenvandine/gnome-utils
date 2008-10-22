@@ -1,3 +1,57 @@
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Fixup includes a bit.
+
+        * about.c:
+        * about.h:
+        * calendar.h:
+        * log_repaint.h:
+        * loglist.c:
+        * loglist.h:
+        * logrtns.c:
+        * logview-findbar.c:
+        * logview.c:
+        * logview.h:
+        * main.c:
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Don't use deprecated GTK macros.
+
+        * calendar.h:
+        * loglist.h:
+        * logview-findbar.h:
+        * logview.h:
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Use g_type_class_add_private ().
+
+        * calendar.c:
+        (calendar_init):
+        * calendar.h:
+        * loglist.c:
+        (loglist_init):
+        * logview-findbar.c:
+        (logview_findbar_init):
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Use G_DEFINE_TYPE macros.
+
+        * calendar.c:
+        (calendar_connect):
+        (calendar_init):
+        (calendar_class_init):
+        * loglist.c:
+        (loglist_class_init):
+        (loglist_new):
+        * logview-findbar.c:
+        (logview_findbar_new):
+        * logview.c:
+        (logview_window_finalize):
+        (logview_window_class_init):
+
 2007-10-23  Stéphane Loeuillet  <sloeuille@svn.gnome.org>
 
 	* gnome-system-log.desktop.in.in: Trivial fix to .desktop file
