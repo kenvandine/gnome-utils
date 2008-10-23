@@ -765,13 +765,16 @@ logview_calendar_set_state (LogviewWindow *logview)
 static void
 logview_help (GtkAction *action, GtkWidget *parent_window)
 {
-    GError *error = NULL;                                                                                
-    gnome_help_display_desktop_on_screen (NULL, "gnome-system-log", "gnome-system-log", NULL,
-                                          gtk_widget_get_screen (GTK_WIDGET(parent_window)), &error);
-	if (error) {
-		error_dialog_show (GTK_WIDGET(parent_window), _("There was an error displaying help."), error->message);
-		g_error_free (error);
-	}
+    GError *error = NULL;
+
+    gtk_show_uri (gtk_widget_get_screen (parent_window),
+                  "ghelp:gnome-system-log", gtk_get_current_event_time (),
+                  &error);
+
+    if (error) {
+        error_dialog_show (parent_window, _("There was an error displaying help."), error->message);
+        g_error_free (error);
+    }
 }
 
 static gboolean 

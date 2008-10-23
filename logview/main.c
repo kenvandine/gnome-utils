@@ -24,8 +24,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <libgnomeui/gnome-client.h>
-#include <libgnomeui/gnome-ui-init.h>
 #include <libgnomevfs/gnome-vfs.h>
 
 #include <glib/gi18n.h>
@@ -40,7 +38,7 @@
 static gboolean show_version = FALSE;
 
 static GOptionContext *
-logview_init_options ()
+create_option_context ()
 {
 	GOptionContext *context;
 	GOptionGroup *group;
@@ -59,7 +57,8 @@ logview_init_options ()
 	context = g_option_context_new (_(" - Browse and monitor logs"));
 	g_option_context_add_group (context, group);
 	g_option_context_set_ignore_unknown_options (context, TRUE);
-	
+	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+
 	return context;
 }
 
@@ -74,54 +73,10 @@ logview_show_version_and_quit (void)
 	exit (0);
 }
 
-static gboolean
-save_session_cb (GnomeClient        *gnome_client,
-		 gint                phase,
-		 GnomeRestartStyle   save_style,
-		 gboolean            shutdown,
-		 GnomeInteractStyle  interact_style,
-		 gboolean            fast,
-		 LogviewWindow      *logview)
-{
-	gchar **argv;
-	gint numlogs;
-	GSList *logs;
-	Log *log;
-	gint i = 0;
-
-	g_assert (LOGVIEW_IS_WINDOW (logview));
-	numlogs = logview_count_logs (logview);
-
-	/* we must allocate enough space for the program name, the logs name
-	 * and a NULL pointer to end the list
-	 */
-	argv = g_new0 (gchar *, numlogs + 2);
-	argv[i++] = g_get_prgname();
-
-	for (logs = logview->logs; logs != NULL; logs = logs->next) {
-		Log *log = (Log *) logs->data;
-
-		g_assert (log != NULL);
-
-		argv[i++] = g_strdup (log->name);
-	}
-	
-        argv[i] = NULL;
-
-	gnome_client_set_clone_command (gnome_client, numlogs + 1, argv);
-	gnome_client_set_restart_command (gnome_client, numlogs + 1, argv);
-
-	g_strfreev (argv);
-
-	return TRUE;
-}
-
 int
 main (int argc, char *argv[])
 {
-	GnomeClient *gnome_client;
-	GError *error;
-	GnomeProgram *program;
+	GError *error = NULL;
 	GOptionContext *context;
 	LogviewWindow *logview;
 
@@ -133,20 +88,25 @@ main (int argc, char *argv[])
 	
 	gnome_vfs_init ();
 	prefs_init ();
-	context = logview_init_options ();
-	
-	program = gnome_program_init ("gnome-system-log", VERSION,
-				      LIBGNOMEUI_MODULE,
-				      argc, argv,
-				      GNOME_PARAM_APP_DATADIR, DATADIR,
-				      GNOME_PARAM_GOPTION_CONTEXT, context,
-				      NULL);
+	context = create_option_context ();
+
+	g_option_context_parse (context, &argc, &argv, &error);
+
+	if (error) {
+		g_critical ("Unable to parse arguments: %s", error->message);
+		g_error_free (error);
+		g_option_context_free (context);
+
+		exit (1);
+	}
+
+	g_option_context_free (context);
 	
 	g_set_application_name (_("Log Viewer"));
 
 	if (show_version)
 		logview_show_version_and_quit ();
-	
+
 	/* Open regular logs and add each log passed as a parameter */
 	logview = LOGVIEW_WINDOW (logview_window_new ());
 	if (!logview) {
@@ -183,12 +143,6 @@ main (int argc, char *argv[])
 	/* show the eventual error dialogs */
 	error_dialog_queue (FALSE);
 	error_dialog_show_queued ();
-
-	gnome_client = gnome_master_client ();
-	if (gnome_client) {
-		g_signal_connect (gnome_client, "save_yourself",
-				  G_CALLBACK (save_session_cb), logview);
-	}
 
 	gtk_main ();
 
