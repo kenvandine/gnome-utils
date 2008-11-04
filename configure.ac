@@ -86,17 +86,25 @@ LIBPANEL_APPLET_REQUIRED=2.13.4
 LIBGTOP_REQUIRED=2.12.0
 GNOMECANVAS_REQUIRED=2.10.2
 
-dnl *****************************************
-dnl libgnome, libgnomeui needed for all utils
-dnl *****************************************
+dnl ********************************************
+dnl glib, gio, gtk, gconf: needed for all utils
+dnl ********************************************
 
 PKG_CHECK_MODULES(GNOME_UTILS, glib-2.0 >= $GLIB_REQUIRED dnl
                                gio-2.0 >= $GIO_REQUIRED dnl
-                               gtk+-2.0 >= $GTK_REQUIRED dnl
-                               libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
-                               libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+                               gconf-2.0 dnl
+                               gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
+
+dnl *****************************************
+dnl separate check for libgnome/libgnomeui
+dnl *****************************************
+
+PKG_CHECK_MODULES(LIBGNOME, libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
+                            libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+AC_SUBST(LIBGNOME_CFLAGS)
+AC_SUBST(LIBGNOME_LIBS)
 
 dnl *****************************************
 dnl floppy-buddy needs libglade
@@ -142,12 +150,6 @@ dnl *****************************************
 
 AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
 AC_SUBST(XSHAPE_LIBS)
-
-PKG_CHECK_MODULES(SCREENSHOT, gio-2.0 >= $GLIB_REQUIRED dnl
-                              gconf-2.0 dnl
-                              gtk+-2.0 >= $GTK_REQUIRED)
-AC_SUBST(SCREENSHOT_CFLAGS)
-AC_SUBST(SCREENSHOT_LIBS)
 
 dnl ****************************************
 dnl HAL for floppy detection in gfloppy

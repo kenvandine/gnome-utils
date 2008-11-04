@@ -32,8 +32,6 @@
 #include <gtk/gtk.h>
 #include <glib/goption.h>
 #include <glib/gi18n.h>
-#include <libgnome/libgnome.h>
-#include <libgnomeui/gnome-help.h>
 
 #include <libgdict/gdict.h>
 
@@ -1137,18 +1135,16 @@ gdict_window_cmd_help_contents (GtkAction   *action,
   GError *err = NULL;
   
   g_return_if_fail (GDICT_IS_WINDOW (window));
-  
-  gnome_help_display_desktop_on_screen (NULL,
-  					"gnome-dictionary",
-  					"gnome-dictionary",
-					NULL,
-  					gtk_widget_get_screen (GTK_WIDGET (window)),
-  					&err);
+ 
+  gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (window)),
+                "ghelp:gnome-dictionary",
+                gtk_get_current_event_time (), &err); 
   if (err)
     {
       gdict_show_gerror_dialog (GTK_WINDOW (window),
       		                _("There was an error while displaying help"),
       			        err);
+      g_error_free (err);
     }
 }
 

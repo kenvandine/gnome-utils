@@ -36,7 +36,6 @@
 #include <glib/gi18n.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
-#include <libgnomeui/gnome-help.h>
 
 #include "gdict-source-dialog.h"
 #include "gdict-pref-dialog.h"
@@ -495,12 +494,9 @@ response_cb (GtkDialog *dialog,
   switch (response_id)
     {
     case GTK_RESPONSE_HELP:
-      gnome_help_display_desktop_on_screen (NULL,
-      					    "gnome-dictionary",
-      					    "gnome-dictionary",
-      					    "gnome-dictionary-preferences",
-      					    gtk_widget_get_screen (GTK_WIDGET (dialog)),
-      					    &err);
+      gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (dialog)),
+                    "ghelp:gnome-dictionary#gnome-dictionary-preferences",
+                    gtk_get_current_event_time (), &err);
       if (err)
 	{
           GtkWidget *error_dialog;

@@ -24,8 +24,6 @@
 #define __GDICT_APP_H__
 
 #include <gtk/gtk.h>
-#include <libgnomeui/gnome-ui-init.h>
-#include <libgnomeui/gnome-client.h>
 #include <gconf/gconf-client.h>
 #include <libgdict/gdict.h>
 
@@ -45,9 +43,6 @@ struct _GdictApp
 {
   GObject parent_instance;
 
-  GnomeProgram *program;
-  GnomeClient *client;
-  
   GConfClient *gconf_client;
 
   GSList *lookup_words;

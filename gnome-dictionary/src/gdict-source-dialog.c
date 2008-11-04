@@ -36,7 +36,6 @@
 #include <glib/gi18n.h>
 #include <glade/glade.h>
 #include <gconf/gconf-client.h>
-#include <libgnomeui/gnome-help.h>
 
 #include "gdict-source-dialog.h"
 
@@ -487,17 +486,17 @@ gdict_source_dialog_response_cb (GtkDialog *dialog,
       build_new_source (GDICT_SOURCE_DIALOG (dialog));
       break;
     case GTK_RESPONSE_HELP:
-      gnome_help_display_desktop_on_screen (NULL,
-      					    "gnome-dictionary",
-      					    "gnome-dictionary",
-      					    "gnome-dictionary-add-source",
-      					    gtk_widget_get_screen (GTK_WIDGET (dialog)),
-      					    &err);
+      gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (dialog)),
+                    "ghelp:gnome-dictionary#gnome-dictionary-add-source",
+                    gtk_get_current_event_time (), &err);
       if (err)
-        gdict_show_gerror_dialog (GTK_WINDOW (dialog),
-          		 	  _("There was an error while displaying help"),
-          		 	  err);
-      
+        {
+          gdict_show_gerror_dialog (GTK_WINDOW (dialog),
+          			    _("There was an error while displaying help"),
+          		 	    err);
+          g_error_free (err);
+        }
+
       /* we don't want the dialog to close itself */
       g_signal_stop_emission_by_name (dialog, "response");
       break;

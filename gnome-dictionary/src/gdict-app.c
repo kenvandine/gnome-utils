@@ -33,7 +33,6 @@
 #include <gtk/gtk.h>
 #include <glib/goption.h>
 #include <glib/gi18n.h>
-#include <libgnome/libgnome.h>
 
 #include "gdict-common.h"
 #include "gdict-pref-dialog.h"
@@ -76,9 +75,6 @@ gdict_app_finalize (GObject *object)
   g_free (app->database);
   g_free (app->source_name);
 
-  if (app->program)
-    g_object_unref (G_OBJECT (app->program));
-  
   G_OBJECT_CLASS (gdict_app_parent_class)->finalize (object);
 }
 
@@ -95,18 +91,6 @@ gdict_app_init (GdictApp *app)
 {
   app->windows = NULL;
   app->current_window = NULL;
-}
-
-static gboolean
-save_yourself_cb (GnomeClient        *client,
-		  gint                phase,
-		  GnomeSaveStyle      save_style,
-		  gint                shutdown,
-		  GnomeInteractStyle  interact_style,
-		  gint                fast,
-		  gpointer            user_data)
-{
-  return TRUE;
 }
 
 static void
@@ -336,7 +320,7 @@ gdict_look_up_word_and_quit (GdictApp *app)
 void
 gdict_init (int *argc, char ***argv)
 {
-  GError *gconf_error;
+  GError *gconf_error, *err = NULL;
   GOptionContext *context;
   GOptionGroup *group;
   gchar *loader_path;
@@ -391,14 +375,19 @@ gdict_init (int *argc, char ***argv)
   g_option_group_add_entries (group, gdict_app_goptions);
   g_option_context_set_main_group (context, group);
   g_option_context_add_group (context, gdict_get_option_group ());
+  g_option_context_add_group (context, gtk_get_option_group (TRUE));
+
+  g_option_context_parse (context, argc, argv, &err);
+
+  if (err) {
+    g_critical ("Failed to parse argument: %s", err->message);
+    g_error_free (err);
+    g_option_context_free (context);
+    gdict_cleanup ();
+
+    exit (1);
+  }
   
-  singleton->program = gnome_program_init ("gnome-dictionary",
-					   VERSION,
-					   LIBGNOMEUI_MODULE,
-					   *argc, *argv,
-					   GNOME_PARAM_APP_DATADIR, DATADIR,
-					   GNOME_PARAM_GOPTION_CONTEXT, context,
-					   NULL);
   g_set_application_name (_("Dictionary"));
   gtk_window_set_default_icon_name ("accessories-dictionary");
   
@@ -407,15 +396,6 @@ gdict_init (int *argc, char ***argv)
       gdict_cleanup ();
 
       exit (1);
-    }
-  
-  /* session management */
-  singleton->client = gnome_master_client ();
-  if (singleton->client)
-    {
-      g_signal_connect (singleton->client, "save-yourself",
-                        G_CALLBACK (save_yourself_cb),
-                        NULL);
     }
   
   gconf_error = NULL;
