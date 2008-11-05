@@ -6,6 +6,7 @@ INCLUDES = 	\
 	$(GNOME_UTILS_CFLAGS)					\
 	$(GNOMEVFS_CFLAGS)					\
 	$(GNOMEDESKTOP_CFLAGS)					\
+	$(LIBGNOME_CFLAGS)					\
 	-DG_DISABLE_DEPRECATED					\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"			\
@@ -30,6 +31,7 @@ gnome_search_tool_SOURCES =     \
 	gsearchtool.h
 
 gnome_search_tool_LDADD =   \
+	$(LIBGNOME_LIBS)    \
 	$(GNOME_UTILS_LIBS) \
 	$(GNOMEVFS_LIBS)    \
 	$(GNOMEDESKTOP_LIBS)
