@@ -20,7 +20,7 @@
 #ifndef __GDICT_SPELLER_H__
 #define __GDICT_SPELLER_H__
 
-#include <gtk/gtkhbox.h>
+#include <gtk/gtk.h>
 #include "gdict-context.h"
 
 G_BEGIN_DECLS

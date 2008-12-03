@@ -39,7 +39,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <glib/gi18n.h>
-#include <gdk/gdkcursor.h>
+#include <gdk/gdk.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
 #include <libgnomevfs/gnome-vfs-utils.h>

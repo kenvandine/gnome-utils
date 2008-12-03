@@ -31,7 +31,7 @@
 #include <sys/stat.h>
 
 #include <gtk/gtk.h>
-#include <glib/goption.h>
+#include <glib.h>
 #include <glib/gi18n.h>
 
 #include "gdict-common.h"

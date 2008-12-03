@@ -39,7 +39,6 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkbindings.h>
 #include <glib/gi18n-lib.h>
 
 #include "gdict-database-chooser.h"

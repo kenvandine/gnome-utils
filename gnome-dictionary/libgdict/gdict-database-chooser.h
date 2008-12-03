@@ -20,7 +20,7 @@
 #ifndef __GDICT_DATABASE_CHOOSER_H__
 #define __GDICT_DATABASE_CHOOSER_H__
 
-#include <gtk/gtkvbox.h>
+#include <gtk/gtk.h>
 #include "gdict-context.h"
 
 G_BEGIN_DECLS

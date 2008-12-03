@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 
 #include "gdict-aligned-window.h"
 

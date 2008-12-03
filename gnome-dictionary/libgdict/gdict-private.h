@@ -17,7 +17,7 @@
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  */
 
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 #include "gdict-debug.h"
 
 G_BEGIN_DECLS

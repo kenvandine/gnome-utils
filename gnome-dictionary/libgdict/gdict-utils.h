@@ -21,7 +21,7 @@
 #define __GDICT_UTILS_H__
 
 #include <glib-object.h>
-#include <gtk/gtkwidget.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

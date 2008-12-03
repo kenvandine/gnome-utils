@@ -32,7 +32,6 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <gtk/gtkbindings.h>
 #include <glib/gi18n.h>
 
 #include "gdict-sidebar.h"

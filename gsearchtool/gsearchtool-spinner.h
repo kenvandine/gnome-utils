@@ -30,8 +30,7 @@
 #ifndef _GSEARCHTOOL_SPINNER_H
 #define _GSEARCHTOOL_SPINNER_H
 
-#include <gtk/gtkeventbox.h>
-#include <gtk/gtkenums.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
