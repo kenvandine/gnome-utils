@@ -30,8 +30,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <gconf/gconf-client.h>
-#include <libgnomeui/gnome-authentication-manager.h>
-#include <libgnomeui/gnome-help.h>
 
 #include "gdict-applet.h"
 #include "gdict-about.h"
@@ -739,13 +737,11 @@ gdict_applet_cmd_help (BonoboUIComponent *component,
 		       const gchar       *cname)
 {
   GError *err = NULL;
+
+  gtk_show_uri (gtk_widget_get_screen (GTK_WIDGET (applet)),
+		"ghelp:gnome-dictionary#gnome-dictionary-applet",
+		gtk_get_current_event_time (), &err);
   
-  gnome_help_display_desktop_on_screen (NULL,
-  					"gnome-dictionary",
-  					"gnome-dictionary",
-  					"gnome-dictionary-applet",
-  					gtk_widget_get_screen (GTK_WIDGET (applet)),
-  					&err);
   if (err)
     {
       gdict_show_error_dialog (NULL,
@@ -1286,8 +1282,9 @@ gdict_applet_factory (PanelApplet *applet,
 {
   gboolean retval = FALSE;
 
-  if ((!strcmp (iid, "OAFIID:GNOME_DictionaryApplet")) ||
-      (!strcmp (iid, "OAFIID:GNOME_GDictApplet")))
+  if (((!strcmp (iid, "OAFIID:GNOME_DictionaryApplet")) ||
+       (!strcmp (iid, "OAFIID:GNOME_GDictApplet"))) &&
+      gdict_create_data_dir ())
     {
       /* Set up the menu */
       panel_applet_setup_menu_from_file (applet, UIDATADIR,
@@ -1306,39 +1303,27 @@ gdict_applet_factory (PanelApplet *applet,
 
   return retval;
 }
-#endif /* !GDICT_APPLET_STAND_ALONE */
+
+/* this defines the main () for the applet */
+PANEL_APPLET_BONOBO_FACTORY ("OAFIID:GNOME_DictionaryApplet_Factory",
+			     "gnome-dictionary-applet", VERSION,
+			     GDICT_TYPE_APPLET,
+			     gdict_applet_factory,
+			     NULL);
+
+#else /* GDICT_APPLET_STAND_ALONE */
 
 int
 main (int argc, char *argv[])
 {
-#ifdef GDICT_APPLET_STAND_ALONE
   GtkWidget *window;
   GtkWidget *applet;
-#endif
 
   /* gettext stuff */
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-#ifndef GDICT_APPLET_STAND_ALONE
-  gnome_authentication_manager_init();
-
-  gnome_program_init ("gnome-dictionary-applet", VERSION,
-		      LIBGNOMEUI_MODULE,
-		      argc, argv,
-		      GNOME_CLIENT_PARAM_SM_CONNECT, FALSE,
-		      GNOME_PROGRAM_STANDARD_PROPERTIES,
-		      NULL);
-
-  if (!gdict_create_data_dir ())
-    return EXIT_FAILURE;
-
-  return panel_applet_factory_main ("OAFIID:GNOME_DictionaryApplet_Factory",
-		                    GDICT_TYPE_APPLET,
-				    gdict_applet_factory,
-				    NULL);
-#else
   gtk_init (&argc, &argv);
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -1359,5 +1344,6 @@ main (int argc, char *argv[])
   gtk_main ();
   
   return 0;
-#endif /* !GDICT_APPLET_STAND_ALONE */
 }
+
+#endif /* !GDICT_APPLET_STAND_ALONE */
