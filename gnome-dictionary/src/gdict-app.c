@@ -322,7 +322,6 @@ gdict_init (int *argc, char ***argv)
 {
   GError *gconf_error, *err = NULL;
   GOptionContext *context;
-  GOptionGroup *group;
   gchar *loader_path;
   gchar **lookup_words = NULL;
   gchar **match_words = NULL;
@@ -367,26 +366,21 @@ gdict_init (int *argc, char ***argv)
   /* create the new option context */
   context = g_option_context_new (_(" - Look up words in dictionaries"));
   
-  /* gnome dictionary option group */
-  group = g_option_group_new ("gnome-dictionary",
-		  	      _("Dictionary and spelling tool"),
-			      _("Show Dictionary options"),
-			      NULL, NULL);
-  g_option_group_add_entries (group, gdict_app_goptions);
-  g_option_context_set_main_group (context, group);
+  g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
+  g_option_context_add_main_entries (context, gdict_app_goptions, GETTEXT_PACKAGE);
   g_option_context_add_group (context, gdict_get_option_group ());
   g_option_context_add_group (context, gtk_get_option_group (TRUE));
 
   g_option_context_parse (context, argc, argv, &err);
+  if (err)
+    {
+      g_critical ("Failed to parse argument: %s", err->message);
+      g_error_free (err);
+      g_option_context_free (context);
+      gdict_cleanup ();
 
-  if (err) {
-    g_critical ("Failed to parse argument: %s", err->message);
-    g_error_free (err);
-    g_option_context_free (context);
-    gdict_cleanup ();
-
-    exit (1);
-  }
+      exit (1);
+    }
   
   g_set_application_name (_("Dictionary"));
   gtk_window_set_default_icon_name ("accessories-dictionary");
