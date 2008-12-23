@@ -32,199 +32,197 @@ static gint
 days_compare (gconstpointer a, gconstpointer b)
 {
   const Day *day1 = a, *day2 = b;
-  return (g_date_compare (day1->date, day2->date));
+
+  return g_date_compare (day1->date, day2->date);
 }
 
 static GDate *
-string_get_date (char *line)
+string_get_date (const char *line, char **time_string)
 {
   GDate *date;
   struct tm tp;
   char *cp;
+  char tmp[50];
+  size_t chars_read;
+  
+  /* it's safe to assume that if strptime returns NULL, it's
+   * because of an error (format unmatched). being a log file, it's very
+   * unlikely that there aren't any more characters after the date.
+   */
 
-  if (line == NULL || line[0] == 0)
+  if (line == NULL || line[0] == '\0') {
     return NULL;
-
-  cp = strptime (line, "%b %d", &tp);
-  if (cp == NULL) {
-    cp = strptime (line, "%F", &tp);
-    if (cp == NULL) {
-      return NULL;
-    }
   }
 
-  date = g_date_new_dmy (tp.tm_mday, tp.tm_mon+1, 70);
+  /* this parses the "MonthName DayNo" format */
+  cp = strptime (line, "%b %d", &tp);
+  if (cp) {
+    chars_read = strftime (tmp, 50, "%b %e", &tp);
+    goto out;
+  }
+
+  /* this parses the YYYY-MM-DD format */
+  cp = strptime (line, "%F", &tp);
+  if (cp) {
+    chars_read = strftime (tmp, 50, "%F", &tp);
+    goto out;
+  }
+
+out:
+  /* the year doesn't matter to us now */
+  date = g_date_new_dmy (tp.tm_mday, tp.tm_mon + 1, 1);
+  *time_string = g_strndup (tmp, chars_read);
+
   return date;
 }
 
-static gchar *
-string_get_date_string (gchar *line)
-{
-    gchar **split, *date_string;
-    gchar *month=NULL, *day=NULL;
-    int i=0;
-
-    if (line == NULL || line[0] == 0)
-        return NULL;
-
-    split = g_strsplit (line, " ", 4);
-    if (split == NULL)
-        return NULL;
-
-    while ((day == NULL || month == NULL) && split[i]!=NULL && i<4) {
-        if (g_str_equal (split[i], "")) {
-            i++;
-            continue;
-        }
-
-        if (month == NULL) {
-            month = split[i++];
-            /* If the first field begins by a number, the date
-               is given in yyyy-mm-dd format */
-            if (!g_ascii_isalpha (month[0]))
-                break;
-            continue;
-        }
-
-        if (day == NULL)
-            day = split[i];
-        i++;
-    }
-
-    if (i==3)
-        date_string = g_strconcat (month, "  ", day, NULL);
-    else
-        date_string = g_strconcat (month, " ", day, NULL);
-    g_strfreev (split);
-    return (date_string);
-}
-
-/* log_read_dates
-   Read all dates which have a log entry to create calendar.
-   All dates are given with respect to the 1/1/1970
-   and are then corrected to the correct year once we
-   reach the end.
-*/
+/**
+ * log_read_dates:
+ *
+ * @buffer_lines: an array of text lines.
+ * @current: the current time.
+ *
+ * Reads all the dates inside the text buffer.
+ * All dates are given with respect to the 1/1/1970
+ * and are then corrected to the correct year once we
+ * reach the end.
+ *
+ * Returns: a #GSList of #Day structures. 
+ */
 
 GSList *
-log_read_dates (gchar **buffer_lines, time_t current)
+log_read_dates (const char **buffer_lines, time_t current)
 {
   int offsetyear = 0, current_year;
   GSList *days = NULL, *days_copy;
   GDate *date, *newdate;
   struct tm *tmptm;
-  gchar *date_string;
+  char *date_string;
   Day *day;
   gboolean done = FALSE;
-  int i, n, rangemin, rangemax;
+  int i, n, rangemin, rangemax, idx;
 
-  if (buffer_lines == NULL)
-    return NULL;
+  g_return_val_if_fail (buffer_lines != NULL, NULL);
 
-  n = g_strv_length (buffer_lines);
+  n = g_strv_length ((char **) buffer_lines);
 
   tmptm = localtime (&current);
   current_year = tmptm->tm_year + 1900;
 
-  for (i=0; buffer_lines[i]==NULL; i++);
+  /* find the first line with a date we're able to parse */
+  for (i = 0; buffer_lines[i]; i++) {
+    if ((date = string_get_date (buffer_lines[i], &date_string)) != NULL)
+      break;
+  }
 
-  /* Start building the list */
-  /* Scanning each line to see if the date changed is too slow, so we proceed
-   in a recursive fashion */
-
-  date = string_get_date (buffer_lines[i]);
-  if ((date==NULL)|| !g_date_valid (date))
+  if (!date) {
+    /* no valid dates in the array, return NULL */
     return NULL;
+  }
+
+  if (!g_date_valid (date)) {
+    g_date_free (date);
+    g_free (date_string);
+    return NULL;
+  }
 
   g_date_set_year (date, current_year);
-  day = g_new (Day, 1);
+
+  day = g_slice_new0 (Day);
   days = g_slist_append (days, day);
 
+  /* $i now contains the line number for the first good date */
   day->date = date;
   day->first_line = i;
   day->last_line = -1;
-  date_string = string_get_date_string (buffer_lines[i]);
 
-  rangemin = 0;
-  rangemax = n-1;
+  /* now scan the logfile to get the last line of the day */
+  rangemin = i;
+  rangemax = n - 1;
 
   while (!done) {
-    i = n-1;
+    /* find out the last line of the day we're currently building */
+
+    i = n - 1;
+
     while (day->last_line < 0) {
-      if (g_str_has_prefix (buffer_lines[i], date_string)) {
-        if (i == (n-1)) {
-          day->last_line = i;
+      if (strstr (buffer_lines[i], date_string)) {
+        /* if we find the same string on the last line of the log, we're done */
+        if (i == n - 1) {
           done = TRUE;
+          day->last_line = i;
           break;
-        } else {
-          if (!g_str_has_prefix (buffer_lines[i+1], date_string)) {
+        }
+
+        /* we're still in a section of lines with the same date;
+         * - if the next one changes, then we're on the last.
+         * - else we keep searching in the following.
+         */
+
+        if (!strstr (buffer_lines[i + 1], date_string)) {
             day->last_line = i;
             break;
-          } else {
-            rangemin = i;
-            i = floor ( ((float) i + (float) rangemax)/2.);
-          }
+        } else {
+          rangemin = i;
+          i = floor (((float) i + (float) rangemax) / 2.);
         }
       } else {
+        /* we can't find the same date here; go back to a safer range. */
         rangemax = i;
-        i = floor (((float) rangemin + (float) i)/2.);               
+        i = floor (((float) rangemin + (float) i) / 2.);               
       }
     }
 
     g_free (date_string);
 
     if (!done) {
-      /* We need to find the first line now that has a date
-       Logs can have some messages without dates ... */
+      /* this means we finished the current day but we're not at the end
+       * of the buffer: reset the parameters for the next day.
+       */
       newdate = NULL;
-      while (newdate == NULL && !done) {
-        i++;
-        date_string = string_get_date_string (buffer_lines[i]);
-        if (date_string == NULL)
-          if (i==n-1) {
-            done = TRUE;
-            break;
-          } else
-          continue;
-        newdate = string_get_date (buffer_lines[i]);
-
-        if (newdate == NULL && i==n-1)
-          done = TRUE;
+      
+      for (i = day->last_line + 1; buffer_lines[i]; i++) {
+        if ((newdate = string_get_date (buffer_lines[i], &date_string)) != NULL)
+        break;
       }
 
-      day->last_line = i-1;
+      if (date_string == NULL && i == n - 1) {
+        done = TRUE;
+      }
 
-      /* Append a day to the list */	
+      /* this will set the last line of the "old" log to either:
+       * - "n - 1" if we can't find another date
+       * - the line before the new date else.
+       */
+      day->last_line = i - 1;
+
       if (newdate) {
-        g_date_set_year (newdate, current_year + offsetyear);	
+        /* append a new day to the list */
+
+        g_date_set_year (newdate, current_year + offsetyear);
+
         if (g_date_compare (newdate, date) < 1) {
-          offsetyear++; /* newdate is next year */
+          /* this isn't possible, as we're reading the log forward.
+           * so it means that newdate is the next year.
+           */
           g_date_add_years (newdate, 1);
         }
 
         date = newdate;
-        day = g_new (Day, 1);
-        days = g_slist_append (days, day);
+        day = g_slice_new0 (Day);
+        days = g_slist_prepend (days, day);
 
         day->date = date;
         day->first_line = i;
         day->last_line = -1;
         rangemin = i;
-        rangemax = n;
+        rangemax = n - 1;
       }
     }
   }
 
-  /* Correct years now. We assume that the last date on the log
-   is the date last accessed */
-
-  for (days_copy = days; days_copy != NULL; days_copy = g_slist_next (days_copy)) {       
-    day = days_copy -> data;
-    g_date_subtract_years (day->date, offsetyear);
-  }
-
-  /* Sort the days in chronological order */
+  /* sort the days in chronological order */
   days = g_slist_sort (days, days_compare);
 
-  return (days);
+  return days;
 }

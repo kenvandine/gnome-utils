@@ -24,10 +24,11 @@
 #include <glib.h>
 
 typedef struct {
-    GDate *date;
-    long first_line, last_line; /* First and last line for this day in the log */
+  GDate *date;
+  int first_line;
+  int last_line;
 } Day;
 
-GSList * log_read_dates (gchar **buffer_lines, time_t current);
+GSList * log_read_dates (const char **buffer_lines, time_t current);
 
 #endif /* __LOGVIEW_UTILS_H__ */
