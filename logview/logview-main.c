@@ -29,7 +29,6 @@
 #include <gtk/gtk.h>
 
 #include "logview-app.h"
-#include "logview-main.h"
 
 /* log files specified on the command line */
 static char **log_files = NULL;

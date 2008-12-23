@@ -32,7 +32,6 @@
 #include "logview-about.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
-#include "logview-main.h"
 
 #define APP_NAME _("System Log Viewer")
 #define SEARCH_START_MARK "lw-search-start-mark"

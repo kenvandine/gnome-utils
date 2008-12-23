@@ -27,7 +27,6 @@
 
 #include "logview-prefs.h"
 #include "logview-marshal.h"
-#include "logview-main.h"
 
 enum {
   LOG_ADDED,
@@ -155,7 +154,7 @@ create_log_cb (LogviewLog *log,
     path = g_file_get_path (data->file);
     primary = g_strdup_printf (_("Impossible to open the file %s."), path);
 
-    logview_show_error (primary, error->message);
+    //logview_show_error (primary, error->message);
 
     g_free (path);
     g_free (primary);
