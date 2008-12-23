@@ -8,10 +8,26 @@ desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 man_MANS = gnome-system-log.1
 
+schemasdir = $(GCONF_SCHEMA_FILE_DIR)
+schemas_in_files = gnome-system-log.schemas.in
+schemas_DATA = $(schemas_in_file:.schemas.in=.schemas)
+@INTLTOOL_SCHEMAS_RULE@
+
+install-gconf-schemas: $(schemas_DATA)
+if GCONF_SCHEMAS_INSTALL
+	if test -z "$(DESTDIR)" ; then \
+		for p in $^ ; do \
+			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $$p 2>&1 > /dev/null; \
+		done \
+	fi
+endif
+
 EXTRA_DIST = 			\
 	$(xml_DATA)		\
 	$(desktop_in_files)	\
-	$(man_MANS)
+	$(man_MANS)		\
+	$(schemas_in_files)
 
 DISTCLEANFILES =		\
-	$(desktop_DATA)
+	$(desktop_DATA)		\
+	$(schemas_DATA)

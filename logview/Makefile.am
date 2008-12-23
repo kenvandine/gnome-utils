@@ -1,5 +1,3 @@
-# Process this file with automake to produce Makefile.in
-
 SUBDIRS = data help tests
 
 INCLUDES = \
@@ -50,26 +48,7 @@ logview-marshal.c: logview-marshal.list $(GLIB_GENMARSHAL)
 	echo "#include \"logview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=logview_marshal >> $@
 
-schemasdir   = $(GCONF_SCHEMA_FILE_DIR)
-schemas_in_file = logview.schemas.in
-schemas_DATA = $(schemas_in_file:.schemas.in=.schemas)
-@INTLTOOL_SCHEMAS_RULE@
-
-if GCONF_SCHEMAS_INSTALL
-install-gconf-schemas:
-	if test -z "$(DESTDIR)" ; then \
-		for p in $(schemas_DATA) ; do \
-			GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) $(GCONFTOOL) --makefile-install-rule $(top_builddir)/logview/$$p ; \
-		done \
-	fi
-else
-install-gconf-schemas:
-endif
-
-install-data-local: install-gconf-schemas
-
 CLEANFILES = 				\
-	logview.schemas			\
 	$(BUILT_SOURCES)
 
 dist-hook:
