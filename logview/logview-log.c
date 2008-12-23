@@ -181,9 +181,11 @@ setup_file_monitor (LogviewLog *log)
 }
 
 static void
-add_new_days_to_cache (LogviewLog *log, const char **new_lines)
+add_new_days_to_cache (LogviewLog *log, const char **new_lines, guint lines_offset)
 {
   GSList *new_days, *l, *last_cached;
+  int res;
+  Day *day, *last;
 
   new_days = log_read_dates (new_lines, log->priv->file_time.tv_sec);
 
@@ -199,13 +201,24 @@ add_new_days_to_cache (LogviewLog *log, const char **new_lines)
   }
 
   for (l = new_days; l; l = l->next) {
-    if (days_compare (l->data, last_cached->data) > 0) {
+    res = days_compare (l->data, last_cached->data);
+    day = l->data;
+
+    if (res > 0) {
       /* this day in the list is newer than the last one, append to
        * the cache.
        */
+      day->first_line += lines_offset;
+      day->last_line += lines_offset;
       log->priv->days = g_slist_append (log->priv->days, l->data);
+    } else if (res == 0) {
+      last = last_cached->data;
+ 
+      /* update the lines number */
+      last->last_line += day->last_line;
+      logview_utils_day_free (l->data);
     } else {
-      /* if the day is the same or a day before, free it */
+      /* if the day is a day before, free it */
       logview_utils_day_free (l->data);
     }
   }
@@ -278,9 +291,9 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   line = g_ptr_array_index (lines, log->priv->lines_no);
   job->lines = (const char **) lines->pdata + log->priv->lines_no;
 
-  /* save the new number of lines */
+  /* save the new number of days and lines */
+  add_new_days_to_cache (log, job->lines, log->priv->lines_no);
   log->priv->lines_no = (lines->len - 1);
-  add_new_days_to_cache (log, job->lines);
 
 out:
   g_io_scheduler_job_send_to_mainloop_async (io_job,
