@@ -92,6 +92,8 @@ const char ** logview_log_get_cached_lines          (LogviewLog *log);
 guint         logview_log_get_cached_lines_number   (LogviewLog *log);
 GSList *      logview_log_get_days_for_cached_lines (LogviewLog *log);
 gboolean      logview_log_has_new_lines             (LogviewLog *log);
+char *        logview_log_get_uri                   (LogviewLog *log);
+
 
 G_END_DECLS
 

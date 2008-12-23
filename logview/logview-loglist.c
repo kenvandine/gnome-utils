@@ -142,7 +142,7 @@ manager_log_added_cb (LogviewManager *manager,
 
   gtk_tree_store_append (list->priv->model, &iter, NULL);
   gtk_tree_store_set (list->priv->model, &iter,
-                      LOG_OBJECT, log,
+                      LOG_OBJECT, g_object_ref (log),
                       LOG_NAME, logview_log_get_display_name (log), -1);
 
   g_signal_connect (log, "log-changed",

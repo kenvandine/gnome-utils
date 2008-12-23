@@ -183,8 +183,7 @@ setup_file_monitor (LogviewLog *log)
 static void
 add_new_days_to_cache (LogviewLog *log, const char **new_lines)
 {
-  GSList *new_days, *l, *m, *last_cached;
-  gboolean append = FALSE;
+  GSList *new_days, *l, *last_cached;
 
   new_days = log_read_dates (new_lines, log->priv->file_time.tv_sec);
 
@@ -194,6 +193,7 @@ add_new_days_to_cache (LogviewLog *log, const char **new_lines)
   last_cached = g_slist_last (log->priv->days);
 
   if (!last_cached) {
+    /* this means the day list is empty (i.e. we're on the first read */
     log->priv->days = new_days;
     return;
   }
@@ -203,19 +203,14 @@ add_new_days_to_cache (LogviewLog *log, const char **new_lines)
       /* this day in the list is newer than the last one, append to
        * the cache.
        */
-      log->priv->days = g_slist_concat (log->priv->days, l);
-      append = TRUE;
-      break;
+      log->priv->days = g_slist_append (log->priv->days, l->data);
+    } else {
+      /* if the day is the same or a day before, free it */
+      logview_utils_day_free (l->data);
     }
   }
 
-  if (append) {
-    /* we need to free the elements before the appended one */
-    for (m = new_days; m != l; m = m->next) {
-      logview_utils_day_free (m->data);
-      g_slist_free_1 (m);
-    }
-  }
+  g_slist_free (new_days);
 }
 
 static gboolean
@@ -284,7 +279,7 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   job->lines = (const char **) lines->pdata + log->priv->lines_no;
 
   /* save the new number of lines */
-  log->priv->lines_no = (lines->len - 2);
+  log->priv->lines_no = (lines->len - 1);
   add_new_days_to_cache (log, job->lines);
 
 out:
@@ -495,4 +490,12 @@ logview_log_has_new_lines (LogviewLog *log)
   g_assert (LOGVIEW_IS_LOG (log));
 
   return log->priv->has_new_lines;
+}
+
+char *
+logview_log_get_uri (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return g_file_get_uri (log->priv->file);
 }

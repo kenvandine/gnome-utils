@@ -97,7 +97,6 @@ main (int argc, char *argv[])
   }
 
   g_option_context_free (context);
-
   g_set_application_name (_("Log Viewer"));
 
   if (show_version) {
@@ -111,13 +110,17 @@ main (int argc, char *argv[])
                        _("Unable to create user interface."),
                        NULL);
   
-    exit (0);
+    exit (1);
   }
+  
+  manager = logview_manager_get ();
+  prefs = logview_prefs_get ();
 
   gtk_window_set_default_icon_name ("logviewer");
 
-  prefs = logview_prefs_get ();
-  manager = logview_manager_get ();
+  /* show the eventual error dialogs */
+  error_dialog_queue (FALSE);
+  error_dialog_show_queued ();
 
   if (argc == 1) {
     char *active_log;
@@ -138,10 +141,6 @@ main (int argc, char *argv[])
     for (i = 1; i < argc; i++)
       logview_manager_add_log_from_name (manager, argv[i], FALSE);
   }
-
-  /* show the eventual error dialogs */
-  error_dialog_queue (FALSE);
-  error_dialog_show_queued ();
 
   gtk_widget_show (main_window);
 

@@ -42,7 +42,6 @@ G_DEFINE_TYPE (LogviewManager, logview_manager, G_TYPE_OBJECT);
 
 typedef struct {
   LogviewManager *manager;
-  char *filename;
   gboolean set_active;
 } CreateCBData;
 
@@ -121,7 +120,7 @@ logview_manager_init (LogviewManager *self)
 
   priv->active_log = NULL;
   priv->logs = g_hash_table_new_full (g_str_hash, g_str_equal, 
-                                      NULL, (GDestroyNotify) g_object_unref);
+                                      (GDestroyNotify) g_free, (GDestroyNotify) g_object_unref);
 }
 
 static void
@@ -132,8 +131,13 @@ create_log_cb (LogviewLog *log,
   CreateCBData *data = user_data;
 
   if (log) {
+    char *log_uri;
+
+    log_uri = logview_log_get_uri (log);
+
     /* creation went well, store the log and notify */
-    g_hash_table_insert (data->manager->priv->logs, data->filename, log);
+    g_hash_table_insert (data->manager->priv->logs,
+                         log_uri, log);
 
     g_signal_emit (data->manager, signals[LOG_ADDED], 0, log, NULL);
 
@@ -142,26 +146,11 @@ create_log_cb (LogviewLog *log,
     }
   } else {
     /* notify the error */
-    g_signal_emit (data->manager, signals[LOG_ADD_ERROR], 0, data->filename, NULL);
+    /* FIXME: this is not right! */
+    g_signal_emit (data->manager, signals[LOG_ADD_ERROR], 0, NULL, NULL);
   }
 
-  g_free (data->filename);
   g_slice_free (CreateCBData, data);
-}
-
-static gboolean
-look_for_log (gpointer key,
-              gpointer value,
-              gpointer user_data)
-{
-  if (user_data == value) {
-    /* we found the log, emit the closed signal and remove the log */
-    g_signal_emit (singleton, signals[LOG_CLOSED], 0, value, NULL);
-
-    return TRUE;
-  }
-
-  return FALSE;
 }
 
 /* public methods */
@@ -243,7 +232,6 @@ logview_manager_add_log_from_name (LogviewManager *manager,
       logview_manager_set_active_log (manager, log);
     }
   } else {
-    data->filename = g_strdup (filename);
     data->manager = manager;
     data->set_active = set_active;
 
@@ -260,13 +248,13 @@ logview_manager_get_log_count (LogviewManager *manager)
 }
 
 LogviewLog *
-logview_manager_get_if_loaded (LogviewManager *manager, char *filename)
+logview_manager_get_if_loaded (LogviewManager *manager, char *uri)
 {
   LogviewLog *log;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
-  log = g_hash_table_lookup (manager->priv->logs, filename);
+  log = g_hash_table_lookup (manager->priv->logs, uri);
 
   if (log != NULL) {
     return g_object_ref (log);
@@ -277,18 +265,21 @@ void
 logview_manager_close_active_log (LogviewManager *manager)
 {
   LogviewLog *active_log;
-  GHashTableIter iter;
+  char *log_uri;
+  gboolean res;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
   active_log = manager->priv->active_log;
+  log_uri = logview_log_get_uri (active_log);
+
+  g_signal_emit (manager, signals[LOG_CLOSED], 0, active_log, NULL);
 
   /* we own two refs to the active log; one is inside the hash table */
   g_object_unref (active_log);
+  res = g_hash_table_remove (manager->priv->logs, log_uri);
 
-  g_hash_table_find (manager->priv->logs,
-                     (GHRFunc) look_for_log,
-                     active_log);
+  g_free (log_uri);
 
   /* someone else will take care of setting the next active log to us */
 }

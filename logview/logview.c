@@ -183,7 +183,8 @@ populate_tag_table (GtkTextTagTable *tag_table)
   GtkTextTag *tag;
 
   tag = gtk_text_tag_new ("bold");
-  g_object_set (tag, "weight", PANGO_WEIGHT_BOLD, NULL);
+  g_object_set (tag, "weight", PANGO_WEIGHT_BOLD,
+                "weight-set", TRUE, NULL);
   gtk_text_tag_table_add (tag_table, tag);
 }
 
@@ -329,7 +330,7 @@ open_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview
 	  return;
   }
 
-  f = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+  f = gtk_file_chooser_get_uri (GTK_FILE_CHOOSER (chooser));
 
   log = logview_manager_get_if_loaded (logview->priv->manager, f);
 
@@ -379,7 +380,9 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
 {
   g_assert (LOGVIEW_IS_WINDOW (logview));
 
+  /*
   gtk_widget_hide (logview->priv->find_bar);
+   */
   logview_manager_close_active_log (logview->priv->manager);
 }
 
@@ -604,7 +607,7 @@ read_new_lines_cb (LogviewLog *log,
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
 
-  if (gtk_text_buffer_get_char_count (buffer) == 0) {
+  if (gtk_text_buffer_get_char_count (buffer) != 0) {
     boldify = TRUE;
   }
 

@@ -31,6 +31,10 @@
 void
 logview_utils_day_free (Day *day)
 {
+  if (!day) {
+    return;
+  }
+
   g_date_free (day->date);
   g_slice_free (Day, day);
 }
@@ -46,7 +50,7 @@ days_compare (gconstpointer a, gconstpointer b)
 static GDate *
 string_get_date (const char *line, char **time_string)
 {
-  GDate *date;
+  GDate *date = NULL;
   struct tm tp;
   char *cp;
   char tmp[50];
@@ -76,9 +80,11 @@ string_get_date (const char *line, char **time_string)
   }
 
 out:
-  /* the year doesn't matter to us now */
-  date = g_date_new_dmy (tp.tm_mday, tp.tm_mon + 1, 1);
-  *time_string = g_strndup (tmp, chars_read);
+  if (cp) {
+    /* the year doesn't matter to us now */
+    date = g_date_new_dmy (tp.tm_mday, tp.tm_mon + 1, 1);
+    *time_string = g_strndup (tmp, chars_read);
+  }
 
   return date;
 }
