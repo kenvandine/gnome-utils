@@ -1138,6 +1138,15 @@ logview_window_init (LogviewWindow *logview)
   logview_set_font (logview, monospace_font_name);
   g_free (monospace_font_name);
 
+  /* remember the original font size */
+  context = gtk_widget_get_pango_context (priv->text_view);
+  fontdesc = pango_context_get_font_description (context);
+  priv->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
+
+  /* restore saved zoom */
+  priv->fontsize = logview_prefs_get_stored_fontsize (priv->prefs);
+  logview_set_fontsize (logview);
+
   /* version selector */
   priv->version_bar = gtk_hbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (priv->version_bar), 3);
@@ -1150,7 +1159,6 @@ logview_window_init (LogviewWindow *logview)
   gtk_box_pack_end (GTK_BOX (priv->version_bar), w, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (main_view), priv->version_bar, FALSE, FALSE, 0);
 
-
   priv->find_bar = logview_findbar_new ();
   gtk_box_pack_end (GTK_BOX (main_view), priv->find_bar, FALSE, FALSE, 0);
 
@@ -1162,12 +1170,6 @@ logview_window_init (LogviewWindow *logview)
                     G_CALLBACK (findbar_text_changed_cb), logview);
   g_signal_connect (priv->find_bar, "close",
                     G_CALLBACK (findbar_close_cb), logview);
-
-  /* remember the original font size */
-  context = gtk_widget_get_pango_context (priv->text_view);
-  fontdesc = pango_context_get_font_description (context);
-  priv->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
-  priv->fontsize = priv->original_fontsize;
 
   /* signal handlers
    * - first is used to remember/restore the window size on quit.
