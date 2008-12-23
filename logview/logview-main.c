@@ -26,7 +26,7 @@
 
 #include <gtk/gtk.h>
 
-#include "logview.h"
+#include "logview-window.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
 
