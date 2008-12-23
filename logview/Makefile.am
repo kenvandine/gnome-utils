@@ -2,7 +2,6 @@ SUBDIRS = data help tests
 
 INCLUDES = \
 	$(GNOME_UTILS_CFLAGS)					\
-	$(LIBGNOME_CFLAGS)					\
 	-DG_LOG_DOMAIN=\"gnome-system-log\"			\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"				\
