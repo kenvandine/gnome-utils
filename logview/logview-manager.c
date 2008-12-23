@@ -22,13 +22,15 @@
 
 #include "logview-manager.h"
 
+#include <glib/gi18n.h>
+
 #include "logview-prefs.h"
 #include "logview-marshal.h"
+#include "logview-main.h"
 
 enum {
   LOG_ADDED,
   LOG_CLOSED,
-  LOG_ADD_ERROR,
   ACTIVE_CHANGED,
   LAST_SIGNAL
 };
@@ -44,6 +46,7 @@ G_DEFINE_TYPE (LogviewManager, logview_manager, G_TYPE_OBJECT);
 typedef struct {
   LogviewManager *manager;
   gboolean set_active;
+  GFile *file;
 } CreateCBData;
 
 struct _LogviewManagerPrivate {
@@ -91,15 +94,6 @@ logview_manager_class_init (LogviewManagerClass *klass)
                                       g_cclosure_marshal_VOID__OBJECT,
                                       G_TYPE_NONE, 1,
                                       LOGVIEW_TYPE_LOG);
-
-  signals[LOG_ADD_ERROR] = g_signal_new ("log-add-error",
-                                         G_OBJECT_CLASS_TYPE (object_class),
-                                         G_SIGNAL_RUN_LAST,
-                                         G_STRUCT_OFFSET (LogviewManagerClass, log_add_error),
-                                         NULL, NULL,
-                                         g_cclosure_marshal_VOID__STRING,
-                                         G_TYPE_NONE, 1,
-                                         G_TYPE_STRING);
 
   signals[ACTIVE_CHANGED] = g_signal_new ("active-changed",
                                           G_OBJECT_CLASS_TYPE (object_class),
@@ -154,11 +148,19 @@ create_log_cb (LogviewLog *log,
       logview_manager_set_active_log (data->manager, log);
     }
   } else {
+    char *path, *primary;
+
     /* notify the error */
-    /* FIXME: this is not right! */
-    g_signal_emit (data->manager, signals[LOG_ADD_ERROR], 0, NULL, NULL);
+    path = g_file_get_path (data->file);
+    primary = g_strdup_printf (_("Impossible to open the file %s."), path);
+
+    logview_show_error (primary, error->message);
+
+    g_free (path);
+    g_free (primary);
   }
 
+  g_object_unref (data->file);
   g_slice_free (CreateCBData, data);
 }
 
@@ -233,6 +235,7 @@ logview_manager_add_log_from_gfile (LogviewManager *manager,
     data = g_slice_new0 (CreateCBData);
     data->manager = manager;
     data->set_active = set_active;
+    data->file = g_object_ref (file);
 
     logview_log_create_from_gfile (file, create_log_cb, data);
   }

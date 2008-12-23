@@ -23,6 +23,7 @@ BUILT_SOURCES = 		\
 
 gnome_system_log_SOURCES = 	\
 	logview-main.c		\
+	logview-main.h		\
 	logview-about.h		\
 	logview-manager.c	\
 	logview-manager.h	\

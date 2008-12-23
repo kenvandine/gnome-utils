@@ -30,8 +30,10 @@
 #include "logview-window.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
+#include "logview-main.h"
 
 static gboolean show_version = FALSE;
+static GtkWidget *main_window = NULL;
 
 static gboolean
 main_window_delete_cb (GtkWidget *widget,
@@ -79,12 +81,31 @@ logview_show_version_and_quit (void)
   exit (0);
 }
 
+void
+logview_show_error (const char *primary,
+                    const char *secondary)
+{
+  GtkWidget *message_dialog;
+
+  message_dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
+                                           GTK_DIALOG_DESTROY_WITH_PARENT,
+                                           GTK_MESSAGE_ERROR,
+                                           GTK_BUTTONS_OK,
+                                           "%s", primary);
+  if (secondary) {
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (message_dialog),
+                                              "%s", secondary);
+  };
+
+  gtk_dialog_run (GTK_DIALOG (message_dialog));
+  gtk_widget_destroy (message_dialog);
+}
+
 int
 main (int argc, char *argv[])
 {
   GError *error = NULL;
   GOptionContext *context;
-  GtkWidget *main_window;
   LogviewPrefs *prefs;
   LogviewManager *manager;
 

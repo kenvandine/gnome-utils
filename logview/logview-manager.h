@@ -57,8 +57,6 @@ struct _LogviewManagerClass {
                       LogviewLog *log);
   void (* log_closed) (LogviewManager *manager,
                        LogviewLog *log);
-  void (* log_add_error) (LogviewManager *manager,
-                          char *filename);
   void (* active_changed) (LogviewManager *manager,
                            LogviewLog *log,
                            LogviewLog *old_log);
