@@ -262,9 +262,15 @@ logview_manager_get_log_count (LogviewManager *manager)
 LogviewLog *
 logview_manager_get_if_loaded (LogviewManager *manager, char *filename)
 {
+  LogviewLog *log;
+
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
-  return g_object_ref (g_hash_table_lookup (manager->priv->logs, filename));
+  log = g_hash_table_lookup (manager->priv->logs, filename);
+
+  if (log != NULL) {
+    return g_object_ref (log);
+  }
 }
 
 void
