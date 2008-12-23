@@ -1306,8 +1306,9 @@ gdict_applet_factory (PanelApplet *applet,
 
 /* this defines the main () for the applet */
 PANEL_APPLET_BONOBO_FACTORY ("OAFIID:GNOME_DictionaryApplet_Factory",
-			     "gnome-dictionary-applet", VERSION,
 			     GDICT_TYPE_APPLET,
+			     "gnome-dictionary-applet",
+			     VERSION,
 			     gdict_applet_factory,
 			     NULL);
 
