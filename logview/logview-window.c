@@ -1242,7 +1242,36 @@ void
 logview_window_add_errors (LogviewWindow *window,
                            GPtrArray *errors)
 {
-  g_assert (LOGVIEW_IS_WINDOW (window));
+  char *primary, *secondary;
+  GString *str;
+  char **err;
+  int i;
 
-  /* TODO: */
+  g_assert (LOGVIEW_IS_WINDOW (window));
+  g_assert (errors->len > 1);
+
+  primary = g_strdup (_("Could not open the following files:"));
+  str = g_string_new (NULL);
+
+  for (i = 0; i < errors->len; i++) {
+    err = (char **) g_ptr_array_index (errors, i);
+    g_string_append (str, err[0]);
+    g_string_append (str, ": ");
+    g_string_append (str, err[1]);
+    g_string_append (str, "\n");
+  }
+
+  secondary = g_string_free (str, FALSE);
+
+  message_area_set_labels (window, primary, secondary);
+
+  gtk_widget_show (window->priv->message_area);
+
+  g_signal_connect (window->priv->message_area, "response",
+                    G_CALLBACK (message_area_response_cb), window);
+
+  g_free (primary);
+  g_free (secondary);
 }
+
+
