@@ -32,8 +32,10 @@
 #include "logview-manager.h"
 #include "logview-main.h"
 
-static gboolean show_version = FALSE;
 static GtkWidget *main_window = NULL;
+
+/* log files specified on the command line */
+static char **log_files = NULL;
 
 static gboolean
 main_window_delete_cb (GtkWidget *widget,
@@ -45,31 +47,6 @@ main_window_delete_cb (GtkWidget *widget,
   return FALSE;
 }
 
-static GOptionContext *
-create_option_context ()
-{
-  GOptionContext *context;
-  GOptionGroup *group;
-
-  const GOptionEntry entries[] = {
-      { "version", 'V', 0, G_OPTION_ARG_NONE, &show_version, N_("Show the application's version"), NULL },
-      { NULL },
-  };
-
-  group = g_option_group_new ("gnome-system-log",
-                              _("System Log Viewer"),
-                              _("Show System Log Viewer options"),
-                              NULL, NULL);
-  g_option_group_add_entries (group, entries);
-
-  context = g_option_context_new (_(" - Browse and monitor logs"));
-  g_option_context_add_group (context, group);
-  g_option_context_set_ignore_unknown_options (context, TRUE);
-  g_option_context_add_group (context, gtk_get_option_group (TRUE));
-
-  return context;
-}
-
 static void
 logview_show_version_and_quit (void)
 {
@@ -79,6 +56,28 @@ logview_show_version_and_quit (void)
            VERSION);
 
   exit (0);
+}
+
+static GOptionContext *
+create_option_context (void)
+{
+  GOptionContext *context;
+  GOptionGroup *group;
+
+  const GOptionEntry entries[] = {
+    { "version", 'V', G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK,
+      logview_show_version_and_quit, N_("Show the application's version"), NULL },
+    { G_OPTION_REMAINING, '\0', 0, G_OPTION_ARG_FILENAME_ARRAY, &log_files,
+      NULL, N_("[LOGFILE...]") },
+    { NULL },
+  };
+
+  context = g_option_context_new (_(" - Browse and monitor logs"));
+  g_option_context_add_main_entries (context, entries, GETTEXT_PACKAGE);
+  g_option_context_set_ignore_unknown_options (context, TRUE);
+  g_option_context_add_group (context, gtk_get_option_group (TRUE));
+
+  return context;
 }
 
 void
@@ -128,10 +127,6 @@ main (int argc, char *argv[])
   g_option_context_free (context);
   g_set_application_name (_("Log Viewer"));
 
-  if (show_version) {
-    logview_show_version_and_quit ();
-  }
-
   /* open regular logs and add each log passed as a parameter */
   main_window = logview_window_new ();
   if (!main_window) {
@@ -148,7 +143,7 @@ main (int argc, char *argv[])
 
   gtk_window_set_default_icon_name ("logviewer");
 
-  if (argc == 1) {
+  if (log_files == NULL) {
     char *active_log;
     GSList *logs;
 
@@ -164,8 +159,8 @@ main (int argc, char *argv[])
   } else {
     gint i;
 
-    for (i = 1; i < argc; i++)
-      logview_manager_add_log_from_name (manager, argv[i], FALSE);
+    for (i = 0; log_files[i]; i++)
+      logview_manager_add_log_from_name (manager, log_files[i], FALSE);
   }
 
   gtk_widget_show (main_window);
