@@ -38,11 +38,6 @@
 #define APP_NAME _("System Log Viewer")
 
 enum {
-  PROP_0,
-  PROP_DAYS,
-};
-
-enum {
   LOG_LINE_TEXT = 0,
   LOG_LINE_POINTER,
   LOG_LINE_WEIGHT,
@@ -79,8 +74,6 @@ G_DEFINE_TYPE (LogviewWindow, logview_window, GTK_TYPE_WINDOW);
 static void logview_update_findbar_visibility (LogviewWindow *logview);
 static void logview_calendar_set_state (LogviewWindow *logview);
 static void logview_search (GtkAction *action, LogviewWindow *logview);
-
-static void logview_window_get_property	(GObject *object, guint param_id, GValue *value, GParamSpec *pspec);
 
 static const char *ui_description = 
 	"<ui>"
@@ -840,33 +833,11 @@ logview_window_init (LogviewWindow *logview)
 }
 
 static void
-logview_window_get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec)
-{
-  LogviewWindow *logview = LOGVIEW_WINDOW (object);
-  
-  switch (param_id) {
-  case PROP_DAYS:
-    g_value_set_pointer (value, logview->curlog->days);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
-    break;
-  }
-}
-
-static void
 logview_window_class_init (LogviewWindowClass *klass)
 {
   GObjectClass *object_class = (GObjectClass *) klass;
 
   object_class->finalize = logview_window_finalize;
-  object_class->get_property = logview_window_get_property;
-
-	g_object_class_install_property (object_class, PROP_DAYS,
-					 g_param_spec_pointer ("days",
-					 _("Days"),
-					 _("Pointer towards a GSList of days for the current log."),
-					 (G_PARAM_READABLE)));
 
   g_type_class_add_private (klass, sizeof (LogviewWindowPrivate));
 }
