@@ -936,8 +936,6 @@ message_area_create_error_box (LogviewWindow *window,
   GtkWidget *hbox_content;
   GtkWidget *image;
   GtkWidget *vbox;
-  char *primary_markup;
-  char *secondary_markup;
   GtkWidget *primary_label;
   GtkWidget *secondary_label;
   
@@ -954,7 +952,6 @@ message_area_create_error_box (LogviewWindow *window,
   gtk_widget_show (vbox);
   gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-
   primary_label = gtk_label_new (NULL);
   gtk_widget_show (primary_label);
   gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
@@ -963,6 +960,7 @@ message_area_create_error_box (LogviewWindow *window,
   gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
   GTK_WIDGET_SET_FLAGS (primary_label, GTK_CAN_FOCUS);
   gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+
   window->priv->message_primary = primary_label;
 
   secondary_label = gtk_label_new (NULL);
@@ -973,6 +971,7 @@ message_area_create_error_box (LogviewWindow *window,
   gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
   gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
   gtk_misc_set_alignment (GTK_MISC (secondary_label), 0, 0.5);
+
   window->priv->message_secondary = secondary_label;
 
   gtk_message_area_set_contents (GTK_MESSAGE_AREA (message_area),
