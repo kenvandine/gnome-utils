@@ -21,8 +21,8 @@
 
 /* logview-log.h */
 
-#ifndef _LOGVIEW_LOG
-#define _LOGVIEW_LOG
+#ifndef __LOGVIEW_LOG_H__
+#define __LOGVIEW_LOG_H__
 
 #include <glib-object.h>
 
@@ -44,9 +44,15 @@ typedef struct _LogviewLog LogviewLog;
 typedef struct _LogviewLogClass LogviewLogClass;
 typedef struct _LogviewLogPrivate LogviewLogPrivate;
 
+/* callback signatures for async I/O operations */
+
 typedef void (* LogviewCreateCallback) (LogviewLog *log,
                                         GError *error,
                                         gpointer user_data);
+typedef void (* LogviewNewLinesCallback) (LogviewLog *log,
+                                          char **lines,
+                                          GError *error,
+                                          gpointer user_data);
 
 #define LOGVIEW_ERROR_QUARK g_quark_from_static_string ("logview-error")
 
@@ -64,9 +70,17 @@ struct _LogviewLogClass {
   GObjectClass parent_class;
 };
 
-GType logview_log_get_type (void);
-LogviewLog* logview_log_new (char *filename, GError **error);
+GType logview_log_get_type      (void);
+
+/* public methods */
+
+void logview_log_create         (const char *filename,
+                                 LogviewCreateCallback callback,
+                                 gpointer user_data);
+void logview_log_read_new_lines (LogviewLog *log,
+                                 LogviewNewLinesCallback callback,
+                                 gpointer user_data);
 
 G_END_DECLS
 
-#endif /* _LOGVIEW_LOG */
+#endif /* __LOGVIEW_LOG_H__ */

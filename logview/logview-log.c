@@ -33,20 +33,30 @@ struct _LogviewLogPrivate {
   GFile *file;
 
   /* stats about the file */
-  GTimeVal *file_time;
+  GTimeVal file_time;
   goffset file_size;
 
   /* real content, array of lines */
-  char **lines;
+  GArray *lines;
+
+  /* stream poiting to the log */
+  GDataInputStream *stream;
 };
 
 typedef struct {
   LogviewLog *log;
   GError *err;
-
   LogviewCreateCallback callback;
   gpointer user_data;
 } LoadJob;
+
+typedef struct {
+  LogviewLog *log;
+  GError *err;
+  char **lines;
+  LogviewNewLinesCallback callback;
+  gpointer user_data;
+} NewLinesJob;
 
 static void
 logview_log_class_init (LogviewLogClass *klass)
@@ -63,6 +73,61 @@ logview_log_init (LogviewLog *self)
 }
 
 static gboolean
+new_lines_job_done (gpointer data)
+{
+  NewLinesJob *job = data;
+
+  if (job->err) {
+    job->callback (job->log, NULL, job->err, job->user_data);
+    /* drop the reference we acquired before */
+    g_object_unref (job->log);
+  } else {
+    job->callback (job->log, job->lines, job->err, job->user_data);
+  }
+
+  return FALSE;
+}
+
+static gboolean
+do_read_new_lines (GIOSchedulerJob *io_job,
+                   GCancellable *cancellable,
+                   gpointer user_data)
+{
+  /* this runs in a separate thread */
+  NewLinesJob *job = user_data;
+  LogviewLog *log = job->log;
+  GPtrArray *lines;
+  char *line;
+  GError *err = NULL;
+
+  g_assert (LOGVIEW_IS_LOG (log));
+  g_assert (log->priv->stream != NULL);
+
+  lines = g_ptr_array_new ();
+  while ((line = g_data_input_stream_read_line (log->priv->stream, NULL,
+                                               NULL, &err)) != NULL)
+  {
+    g_ptr_array_add (lines, (gpointer) line);
+  }
+
+  if (err) {
+    g_ptr_array_free (lines, TRUE);
+    job->err = err;
+    goto out;
+  }
+
+  /* NULL-terminate the array */
+  g_ptr_array_add (lines, NULL);
+
+  job->lines = (char **) g_ptr_array_free (lines, FALSE);
+
+out:
+  g_io_scheduler_job_send_to_mainloop_async (io_job,
+                                             new_lines_job_done,
+                                             job, NULL);
+}
+
+static gboolean
 log_load_done (gpointer user_data)
 {
   LoadJob *job = user_data;
@@ -71,9 +136,9 @@ log_load_done (gpointer user_data)
     /* the callback will have NULL as log, and the error set */
     g_object_unref (job->log);
     job->callback (NULL, job->err, job->user_data);
+  } else {
+    job->callback (job->log, NULL, job->user_data);
   }
-
-  job->callback (job->log, NULL, job->user_data);
 
   g_slice_free (LoadJob, job);
 
@@ -90,6 +155,7 @@ log_load (GIOSchedulerJob *io_job,
   LogviewLog *log = job->log;
   GFile *f = log->priv->file;
   GFileInfo *info;
+  GFileInputStream *is;
   const char *content_type;
   char *buffer;
   GFileType type;
@@ -123,13 +189,13 @@ log_load (GIOSchedulerJob *io_job,
   }
 
   log->priv->file_size = g_file_info_get_size (info);
-  g_file_info_get_modification_time (info, log->priv->file_time);
+  g_file_info_get_modification_time (info, &log->priv->file_time);
 
   g_object_unref (info);
 
-  /* try now to read the file */
-  g_file_load_contents (f, NULL, &buffer,
-                        NULL, NULL, &err);
+  /* initialize the stream */
+  is = g_file_read (f, NULL, &err);
+
   if (err) {
     if (err->code == G_IO_ERROR_PERMISSION_DENIED) {
       /* TODO: PolicyKit integration */
@@ -138,9 +204,7 @@ log_load (GIOSchedulerJob *io_job,
     goto out;
   }
 
-  /* split into an array of lines */
-  log->priv->lines = g_strsplit (buffer, "\n", -1);
-  g_free (buffer);
+  log->priv->stream = g_data_input_stream_new (G_INPUT_STREAM (is));
 
 out:
   g_io_scheduler_job_send_to_mainloop_async (io_job,
@@ -163,6 +227,29 @@ log_setup_load (LogviewLog *log, LogviewCreateCallback callback,
 
   /* push the loading job into another thread */
   g_io_scheduler_push_job (log_load,
+                           job,
+                           NULL, 0, NULL);
+}
+
+/* public methods */
+
+void
+logview_log_read_new_lines (LogviewLog *log,
+                            LogviewNewLinesCallback callback,
+                            gpointer user_data)
+{
+  NewLinesJob *job;
+
+  /* initialize the job struct with sensible values */
+  job = g_slice_new0 (NewLinesJob);
+  job->callback = callback;
+  job->user_data = user_data;
+  job->log = g_object_ref (log);
+  job->err = NULL;
+  job->lines = NULL;
+
+  /* push the fetching job into another thread */
+  g_io_scheduler_push_job (do_read_new_lines,
                            job,
                            NULL, 0, NULL);
 }
