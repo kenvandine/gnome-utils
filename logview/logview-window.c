@@ -701,6 +701,7 @@ real_select_day (LogviewWindow *logview,
 {
   GtkTextBuffer *buffer;
   GtkTextIter start_iter, end_iter, start_vis, end_vis;
+  GdkRectangle visible_rect;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
 
@@ -717,6 +718,12 @@ real_select_day (LogviewWindow *logview,
                                      &start_iter, &start_vis);
   gtk_text_buffer_apply_tag_by_name (buffer, "invisible",
                                      &end_vis, &end_iter);
+
+  /* FIXME: why is this needed to update the view when selecting a day back? */
+  gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (logview->priv->text_view),
+                                  &visible_rect);
+  gdk_window_invalidate_rect (gtk_widget_get_window (logview->priv->text_view),
+                              &visible_rect, TRUE);
 }
 
 static void
