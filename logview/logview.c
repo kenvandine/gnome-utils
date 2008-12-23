@@ -70,11 +70,6 @@ struct _LogviewWindowPrivate {
 
 G_DEFINE_TYPE (LogviewWindow, logview_window, GTK_TYPE_WINDOW);
 
-/* Function Prototypes */
-static void logview_update_findbar_visibility (LogviewWindow *logview);
-static void logview_calendar_set_state (LogviewWindow *logview);
-static void logview_search (GtkAction *action, LogviewWindow *logview);
-
 static const char *ui_description = 
 	"<ui>"
 	"	<menubar name='LogviewMenu'>"
@@ -106,25 +101,6 @@ static const char *ui_description =
 	"</ui>";
 
 /* private functions */
-
-#if 0
-
-static void
-logview_update_findbar_visibility (LogviewWindow *logview)
-{
-	Log *log = logview->curlog;
-    if (log == NULL) {
-        gtk_widget_hide (logview->find_bar);
-        return;
-    }
-
-	if (log->filter != NULL)
-		gtk_widget_show (logview->find_bar);
-	else
-		gtk_widget_hide (logview->find_bar);
-}
-
-#endif
 
 static void
 logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_data)
@@ -183,6 +159,7 @@ populate_tag_table (GtkTextTagTable *tag_table)
   tag = gtk_text_tag_new ("bold");
   g_object_set (tag, "weight", PANGO_WEIGHT_BOLD,
                 "weight-set", TRUE, NULL);
+
   gtk_text_tag_table_add (tag_table, tag);
 }
 
@@ -382,9 +359,7 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
 {
   g_assert (LOGVIEW_IS_WINDOW (logview));
 
-  /*
   gtk_widget_hide (logview->priv->find_bar);
-   */
   logview_manager_close_active_log (logview->priv->manager);
 }
 
@@ -433,7 +408,15 @@ logview_normal_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_select_all (GtkAction *action, LogviewWindow *logview)
 {
-  /* TODO: implement */
+  GtkTextIter start, end;
+  GtkTextBuffer *buffer;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
+
+  gtk_text_buffer_get_start_iter (buffer, &start);
+  gtk_text_buffer_get_end_iter (buffer, &end);
+
+  gtk_text_buffer_select_range (buffer, &start, &end);
 }
 
 static void
@@ -443,14 +426,58 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
 }
 
 static void
-logview_search (GtkAction *action, LogviewWindow *logview)
+findbar_previous_cb (LogviewFindbar *findbar,
+                     gpointer user_data)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
+  LogviewWindow *logview = user_data;
 
-  logview_findbar_open (LOGVIEW_FINDBAR (logview->priv->find_bar));
+  /* TODO: implement */
 }
 
-void
+static void
+findbar_next_cb (LogviewFindbar *findbar,
+                 gpointer user_data)
+{
+  LogviewWindow *logview = user_data;
+
+  /* TODO: implement */
+}
+
+static void
+findbar_close_cb (LogviewFindbar *findbar,
+                  gpointer user_data)
+{
+  LogviewWindow *logview = user_data;
+
+  /* TODO: implement */
+}
+
+static void
+findbar_text_changed_cb (LogviewFindbar *findbar,
+                         const char *new_text,
+                         gpointer user_data)
+{
+  LogviewWindow *logview = user_data;
+
+  /* TODO: implement */
+}
+
+static void
+logview_search (GtkAction *action, LogviewWindow *logview)
+{
+  logview_findbar_open (LOGVIEW_FINDBAR (logview->priv->find_bar));
+
+  g_signal_connect (logview->priv->find_bar, "previous",
+                    G_CALLBACK (findbar_previous_cb), logview);
+  g_signal_connect (logview->priv->find_bar, "next",
+                    G_CALLBACK (findbar_next_cb), logview);
+  g_signal_connect (logview->priv->find_bar, "text_changed",
+                    G_CALLBACK (findbar_text_changed_cb), logview);
+  g_signal_connect (logview->priv->find_bar, "close",
+                    G_CALLBACK (findbar_close_cb), logview);
+}
+
+static void
 logview_about (GtkWidget *widget, GtkWidget *window)
 {
   g_return_if_fail (GTK_IS_WINDOW (window));
@@ -806,6 +833,8 @@ logview_window_init (LogviewWindow *logview)
   priv->tag_table = gtk_text_tag_table_new ();
   populate_tag_table (priv->tag_table);
   priv->text_view = gtk_text_view_new ();
+  g_object_set (priv->text_view, "editable", FALSE, NULL);
+
   gtk_container_add (GTK_CONTAINER (w), priv->text_view);
   gtk_widget_show (priv->text_view);
 
