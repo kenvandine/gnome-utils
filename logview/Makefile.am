@@ -40,9 +40,9 @@ gnome_system_log_SOURCES = 	\
 	logview-prefs.h		\
 	$(BUILT_SOURCES)
 
-gnome_system_log_LDADD = \
+gnome_system_log_LDADD =	\
 	$(GNOME_UTILS_LIBS)	\
-	$(LIBGNOME_LIBS)
+	$(Z_LIBS)
 
 logview-marshal.h: logview-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=logview_marshal >> $@

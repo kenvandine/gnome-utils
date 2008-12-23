@@ -22,7 +22,15 @@
 #include "config.h"
 
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <gio/gio.h>
+
+#ifdef HAVE_ZLIB
+#include <zlib.h>
+#endif
+
+#include <stdlib.h>
+#include <stdio.h>
 
 #include "logview-log.h"
 #include "logview-utils.h"
@@ -322,6 +330,17 @@ log_load_done (gpointer user_data)
   return FALSE;
 }
 
+static GError *
+create_zlib_error (void)
+{
+  GError *err;
+
+  err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_ZLIB,
+                             _("Error while uncompressing the GZipped log. The file "
+                               "might be corrupt."));
+  return err;
+}
+
 static gboolean
 log_load (GIOSchedulerJob *io_job,
           GCancellable *cancellable,
@@ -332,11 +351,12 @@ log_load (GIOSchedulerJob *io_job,
   LogviewLog *log = job->log;
   GFile *f = log->priv->file;
   GFileInfo *info;
-  GFileInputStream *is;
+  GInputStream *is;
   const char *content_type;
   char *buffer;
   GFileType type;
   GError *err = NULL;
+  gboolean is_archive;
 
   info = g_file_query_info (f,
                             G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
@@ -349,19 +369,19 @@ log_load (GIOSchedulerJob *io_job,
     if (err->code == G_IO_ERROR_PERMISSION_DENIED) {
       /* TODO: PolicyKit integration */
     }
-    job->err = err;
     goto out;
   }
 
   type = g_file_info_get_file_type (info);
   content_type = g_file_info_get_content_type (info);
 
+  is_archive = g_content_type_equals (content_type, "application/x-gzip");
+
   if (type != (G_FILE_TYPE_REGULAR || G_FILE_TYPE_SYMBOLIC_LINK) ||
-      !g_content_type_is_a (content_type, "text/plain")) /* TODO: zipped logs */
+      (!g_content_type_is_a (content_type, "text/plain") && !is_archive))
   {
     err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_A_LOG,
-                               "The file is not a regular file or is not a text file");
-    job->err = err;
+                               _("The file is not a regular file or is not a text file."));
     g_object_unref (info);
 
     goto out;
@@ -372,21 +392,68 @@ log_load (GIOSchedulerJob *io_job,
   log->priv->display_name = g_strdup (g_file_info_get_display_name (info));
 
   g_object_unref (info);
+  
+  if (!is_archive) {
+    /* initialize the stream */
+    is = G_INPUT_STREAM (g_file_read (f, NULL, &err));
 
-  /* initialize the stream */
-  is = g_file_read (f, NULL, &err);
+    if (err) {
+      if (err->code == G_IO_ERROR_PERMISSION_DENIED) {
+        /* TODO: PolicyKit integration */
+      }
 
-  if (err) {
-    if (err->code == G_IO_ERROR_PERMISSION_DENIED) {
-      /* TODO: PolicyKit integration */
+      goto out;
     }
-    job->err = err;
+  } else {
+#ifdef HAVE_ZLIB
+    gzFile gz;
+    char *path;
+    char *actual_data;
+    int res;
+    guint len;
+
+    path = g_file_get_path (f);
+    gz = gzopen (path, "rb");
+
+    g_free (path);
+
+    if (!gz) {
+      err = create_zlib_error ();
+      goto out;
+    }
+
+    is = g_memory_input_stream_new ();
+
+    do {
+      actual_data = g_malloc0 (256);
+      res = gzread (gz, actual_data, 256);
+      if (res > 0) {
+        g_memory_input_stream_add_data (G_MEMORY_INPUT_STREAM (is),
+                                        actual_data, res, (GDestroyNotify) g_free);
+      }
+    } while (res > 0);
+
+    gzclose (gz);
+
+    if (res < 0) {
+      err = create_zlib_error ();
+      goto out;
+    }
+#elif
+    err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_SUPPORTED,
+                               _("This version of System Log does not support GZipped logs."));
     goto out;
+#endif
   }
 
-  log->priv->stream = g_data_input_stream_new (G_INPUT_STREAM (is));
+  log->priv->stream = g_data_input_stream_new (is);
+  g_object_unref (is);
 
 out:
+  if (err) {
+    job->err = err;
+  }
+
   g_io_scheduler_job_send_to_mainloop_async (io_job,
                                              log_load_done,
                                              job, NULL);

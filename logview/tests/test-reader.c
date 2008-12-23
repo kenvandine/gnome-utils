@@ -9,6 +9,7 @@ static GMainLoop *loop;
 static void
 new_lines_cb (LogviewLog *log,
               const char **lines,
+              GSList *new_days,
               GError *error,
               gpointer user_data)
 {
@@ -50,7 +51,7 @@ int main (int argc, char **argv)
   g_type_init ();
 
   loop = g_main_loop_new (NULL, FALSE);
-  logview_log_create ("/var/log/messages", callback, NULL);
+  logview_log_create ("/var/log/dpkg.log.2.gz", callback, NULL);
   g_main_loop_run (loop);
 
   return 0;

@@ -60,6 +60,8 @@ typedef void (* LogviewNewLinesCallback) (LogviewLog *log,
 
 typedef enum {
   LOGVIEW_ERROR_FAILED,
+  LOGVIEW_ERROR_ZLIB,
+  LOGVIEW_ERROR_NOT_SUPPORTED,
   LOGVIEW_ERROR_NOT_A_LOG
 } LogviewErrorEnum;
 

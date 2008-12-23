@@ -410,15 +410,21 @@ dnl ********************
 dnl logview checks
 dnl ********************
 
-dnl This is where the binary actually resides,
-dnl not the console helper link
-if test "x$enable_console_helper" = "xyes"; then
-	LOGVIEWDIR_TMP="$sbindir"
-else
-	LOGVIEWDIR_TMP="$bindir"
+AC_ARG_ENABLE(zlib, AC_HELP_STRING([--disable-zlib], [disable zlib support]))
+msg_zlib=no
+Z_LIBS=
+
+if test "x$enable_zlib" != "xno"; then
+  AC_CHECK_HEADER(zlib.h, 
+                  [AC_CHECK_LIB(z, gzopen, msg_zlib=yes]))
+  if test "x$msg_zlib" = "xyes"; then
+    Z_LIBS="-lz"
+    AC_DEFINE(HAVE_ZLIB,, [Define to 1 if it's build with zlib support])
+  fi
 fi
-EXPANDED_LOGVIEWDIR=`eval echo $LOGVIEWDIR_TMP`
-AC_SUBST(EXPANDED_LOGVIEWDIR)
+
+AC_SUBST(Z_LIBS)
+AM_CONDITIONAL(HAVE_ZLIB, [test "$msg_zlib" = "yes"])
 
 
 dnl ********************
@@ -511,12 +517,6 @@ echo ""
 echo "The following will be built -"
 echo "============================="
 echo ""
-dnl <= Console Helper =>
-if test "x$enable_console_helper" = "xyes"; then
-  echo "Console helper (logview)          : YES"
-else
-  echo "Console helper (logview)          : NO"
-fi
 
 dnl <= Debug messages =>
 if test "x$enable_debug" = "xyes"; then
@@ -524,9 +524,6 @@ if test "x$enable_debug" = "xyes"; then
 else
   echo "Debug messages (libgdict)         : NO"
 fi
-
-dnl <= message file =>
-echo "Logview default message file      : $messages_file"
 
 dnl <= gfloppy =>
 if test "x$build_gfloppy" = "xtrue"; then
