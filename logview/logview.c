@@ -433,8 +433,6 @@ logview_normal_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_select_all (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   /* TODO: implement */
 }
 
