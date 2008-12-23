@@ -28,8 +28,6 @@ gnome_system_log_SOURCES = 	\
 	calendar.h		\
 	log_repaint.c		\
 	log_repaint.h		\
-	logrtns.c		\
-	logrtns.h		\
 	logview.c		\
 	logview.h		\
 	logview-log.h		\

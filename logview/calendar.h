@@ -22,8 +22,6 @@
 
 #include <gtk/gtk.h>
 
-#include "logrtns.h"
-
 G_BEGIN_DECLS
 
 #define CALENDAR_TYPE		  (calendar_get_type ())

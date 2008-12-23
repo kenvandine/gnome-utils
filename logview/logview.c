@@ -27,7 +27,6 @@
 #include "logview.h"
 #include "loglist.h"
 #include "log_repaint.h"
-#include "logrtns.h"
 #include "misc.h"
 #include "logview-findbar.h"
 #include "calendar.h"

@@ -23,7 +23,6 @@
 #include "logview.h"
 #include "misc.h"
 #include "loglist.h"
-#include "logrtns.h"
 
 struct LogListPriv {
 	GtkTreeStore *model;
