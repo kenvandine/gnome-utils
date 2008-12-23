@@ -35,6 +35,8 @@
 #define APP_NAME _("System Log Viewer")
 #define SEARCH_START_MARK "lw-search-start-mark"
 #define SEARCH_END_MARK "lw-search-end-mark"
+#define VISIBLE_AREA_START_MARK "lw-visible-start"
+#define VISIBLE_AREA_END_MARK "lw-visible-end"
 
 struct _LogviewWindowPrivate {
   GtkWidget *statusbar;
@@ -127,6 +129,16 @@ populate_tag_table (GtkTextTagTable *tag_table)
   tag = gtk_text_tag_new ("bold");
   g_object_set (tag, "weight", PANGO_WEIGHT_BOLD,
                 "weight-set", TRUE, NULL);
+
+  gtk_text_tag_table_add (tag_table, tag);
+
+  tag = gtk_text_tag_new ("invisible");
+  g_object_set (tag, "invisible", TRUE, "invisible-set", TRUE, NULL);
+
+  gtk_text_tag_table_add (tag_table, tag);
+
+  tag = gtk_text_tag_new ("visible");
+  g_object_set (tag, "invisible", FALSE, "invisible-set", FALSE, NULL);
 
   gtk_text_tag_table_add (tag_table, tag);
 }
@@ -654,6 +666,62 @@ window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event,
   return FALSE;
 }
 
+static void
+real_select_day (LogviewWindow *logview,
+                 GDate *date, int first_line, int last_line)
+{
+  GtkTextBuffer *buffer;
+  GtkTextIter start_iter, end_iter, start_vis, end_vis;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
+
+  gtk_text_buffer_get_start_iter (buffer, &start_iter);
+  gtk_text_buffer_get_iter_at_line (buffer, &start_vis, first_line);
+  gtk_text_buffer_get_iter_at_line (buffer, &end_vis, last_line);
+  gtk_text_buffer_get_end_iter (buffer, &end_iter);
+
+  gtk_text_buffer_remove_tag_by_name (buffer, "invisible",
+                                      &start_iter, &end_iter);
+
+  gtk_text_buffer_apply_tag_by_name (buffer, "invisible",
+                                     &start_iter, &start_vis);
+  gtk_text_buffer_apply_tag_by_name (buffer, "invisible",
+                                     &end_vis, &end_iter);
+}
+
+static void
+loglist_day_selected_cb (LogviewLoglist *loglist,
+                         Day *day,
+                         gpointer user_data)
+{
+  LogviewWindow *logview = user_data;
+
+  real_select_day (logview, day->date, day->first_line, day->last_line);
+}
+
+static void
+logview_window_select_date (LogviewWindow *logview, GDate *date)
+{
+  LogviewLog *log;
+  GSList *days, *l;
+  Day *day;
+  gboolean found = FALSE;
+
+  log = logview_manager_get_active_log (logview->priv->manager);
+
+  for (l = days; l; l = l->next) {
+    day = l->data;
+    if (g_date_compare (date, day->date) == 0) {
+      found = TRUE;
+      break;
+    }
+  }
+
+  if (found) {
+    real_select_day (logview, day->date, day->first_line, day->last_line);
+  }   
+}
+
 static void read_new_lines_cb (LogviewLog *log,
                                const char **lines,
                                GError **error,
@@ -680,6 +748,7 @@ read_new_lines_cb (LogviewLog *log,
   int i;
   GtkTextIter iter, start;
   GtkTextMark *mark;
+  GDate *date;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
 
@@ -713,6 +782,11 @@ read_new_lines_cb (LogviewLog *log,
 
   logview_update_statusbar (window, log);
   logview_loglist_update_lines (LOGVIEW_LOGLIST (window->priv->loglist), log);
+
+  if (date = logview_loglist_get_date_selection (LOGVIEW_LOGLIST (window->priv->loglist))) {
+    logview_window_select_date (window, date);
+    logview_loglist_clear_date (LOGVIEW_LOGLIST (window->priv->loglist));
+  }
 }
 
 static void
@@ -751,6 +825,22 @@ active_log_changed_cb (LogviewManager *manager,
     }
   }
 
+  if (lines == NULL || logview_log_has_new_lines (log)) {
+    /* read the new lines */
+    logview_log_read_new_lines (log, (LogviewNewLinesCallback) read_new_lines_cb, window);
+  } else {
+    GDate *date;
+
+    /* start now monitoring the log for changes */
+    window->priv->monitor_id = g_signal_connect (log, "log-changed",
+                                                 G_CALLBACK (log_monitor_changed_cb), window);
+
+    if (date = logview_loglist_get_date_selection (LOGVIEW_LOGLIST (window->priv->loglist))) {
+      logview_window_select_date (window, date);
+      logview_loglist_clear_date (LOGVIEW_LOGLIST (window->priv->loglist));
+    }
+  }
+
   /* we set the buffer to the view anyway;
    * if there are no lines it will be empty for the duration of the thread
    * and will help us to distinguish the two cases of the following if
@@ -758,15 +848,6 @@ active_log_changed_cb (LogviewManager *manager,
    */
   gtk_text_view_set_buffer (GTK_TEXT_VIEW (window->priv->text_view), buffer);
   g_object_unref (buffer);
-
-  if (lines == NULL || logview_log_has_new_lines (log)) {
-    /* read the new lines */
-    logview_log_read_new_lines (log, (LogviewNewLinesCallback) read_new_lines_cb, window);
-  } else {
-    /* start now monitoring the log for changes */
-    window->priv->monitor_id = g_signal_connect (log, "log-changed",
-                                                 G_CALLBACK (log_monitor_changed_cb), window);
-  }
 }
 
 static void
@@ -877,6 +958,9 @@ logview_window_init (LogviewWindow *logview)
   gtk_paned_pack1 (GTK_PANED (hpaned), priv->sidebar, FALSE, FALSE);
   gtk_widget_show (w);
   gtk_widget_show (priv->loglist);
+
+  g_signal_connect (priv->loglist, "day_selected",
+                    G_CALLBACK (loglist_day_selected_cb), logview);
 
   /* second pane : log */
   main_view = gtk_vbox_new (FALSE, 0);

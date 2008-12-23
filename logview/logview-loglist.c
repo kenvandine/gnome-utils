@@ -28,6 +28,7 @@
 struct _LogviewLoglistPrivate {
   GtkTreeStore *model;
   LogviewManager *manager;
+  GDate *selection;
 };
 
 G_DEFINE_TYPE (LogviewLoglist, logview_loglist, GTK_TYPE_TREE_VIEW);
@@ -42,6 +43,27 @@ enum {
   LOG_WEIGHT_SET,
   LOG_DAY
 };
+
+enum {
+  DAY_SELECTED,
+  LAST_SIGNAL
+};
+
+static guint signals[LAST_SIGNAL] = { 0 };
+
+static void
+save_day_selection (LogviewLoglist *loglist, Day *day)
+{
+  GDate *date;
+
+  if (loglist->priv->selection) {
+    g_date_free (loglist->priv->selection);
+    loglist->priv->selection = NULL;
+  }
+
+  date = g_date_new_julian (g_date_get_julian (day->date));
+  loglist->priv->selection = date;
+}
 
 static void
 update_days_and_lines_for_log (LogviewLoglist *loglist,
@@ -133,24 +155,40 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
 {
   LogviewLoglist *list = user_data;
   GtkTreeModel *model;
-  GtkTreeIter iter;
+  GtkTreeIter iter, parent;
   LogviewLog *log;
   gboolean is_bold;
+  Day *day;
 
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
       return;
   }
 
   gtk_tree_model_get (model, &iter, LOG_OBJECT, &log,
-                      LOG_WEIGHT_SET, &is_bold, -1);
-  logview_manager_set_active_log (list->priv->manager, log);
+                      LOG_WEIGHT_SET, &is_bold,
+                      LOG_DAY, &day, -1);
+  if (log) {
+    logview_manager_set_active_log (list->priv->manager, log);
+  } else {
+    gtk_tree_model_iter_parent (model, &parent, &iter);
+    gtk_tree_model_get (model, &parent, LOG_OBJECT, &log, -1);
+
+    if (!logview_manager_log_is_active (list->priv->manager, log)) {
+      save_day_selection (list, day);
+      logview_manager_set_active_log (list->priv->manager, log);
+    } else {
+      g_signal_emit (list, signals[DAY_SELECTED], 0, day, NULL);
+    }
+  }
 
   if (is_bold) {
     gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
                         LOG_WEIGHT_SET, FALSE, -1);
   }
 
-  g_object_unref (log);
+  if (log) {
+    g_object_unref (log);
+  }
 }
 
 static void
@@ -315,6 +353,15 @@ logview_loglist_class_init (LogviewLoglistClass *klass)
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
   oclass->finalize = do_finalize;
 
+  signals[DAY_SELECTED] = g_signal_new ("day-selected",
+                                        G_OBJECT_CLASS_TYPE (oclass),
+                                        G_SIGNAL_RUN_LAST,
+                                        G_STRUCT_OFFSET (LogviewLoglistClass, day_selected),
+                                        NULL, NULL,
+                                        g_cclosure_marshal_VOID__POINTER,
+                                        G_TYPE_NONE, 1,
+                                        G_TYPE_POINTER);
+
   g_type_class_add_private (klass, sizeof (LogviewLoglistPrivate));
 }
 
@@ -340,4 +387,21 @@ logview_loglist_update_lines (LogviewLoglist *loglist, LogviewLog *log)
   days = logview_log_get_days_for_cached_lines (log);
   parent = logview_loglist_find_log (loglist, log);
   update_days_and_lines_for_log (loglist, parent, days);
+}
+
+GDate *
+logview_loglist_get_date_selection (LogviewLoglist *loglist)
+{
+  g_assert (LOGVIEW_IS_LOGLIST (loglist));
+
+  return loglist->priv->selection;
+}
+
+void
+logview_loglist_clear_date (LogviewLoglist *loglist)
+{
+  g_assert (LOGVIEW_IS_LOGLIST (loglist));
+
+  g_date_free (loglist->priv->selection);
+  loglist->priv->selection = NULL;
 }

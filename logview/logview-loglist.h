@@ -36,6 +36,7 @@
 #include <glib-object.h>
 
 #include "logview-log.h"
+#include "logview-utils.h"
 
 typedef struct _LogviewLoglist LogviewLoglist;
 typedef struct _LogviewLoglistClass LogviewLoglistClass;
@@ -48,13 +49,18 @@ struct _LogviewLoglist {
 
 struct _LogviewLoglistClass {
 	GtkTreeViewClass parent_class;
+
+  void (* day_selected) (LogviewLoglist *loglist,
+                         Day *day);
 };
 
 GType logview_loglist_get_type (void);
 
 /* public methods */
-GtkWidget * logview_loglist_new          (void);
-void        logview_loglist_update_lines (LogviewLoglist *loglist,
-                                          LogviewLog *log);
+GtkWidget * logview_loglist_new                (void);
+void        logview_loglist_update_lines       (LogviewLoglist *loglist,
+                                                LogviewLog *log);
+GDate *     logview_loglist_get_date_selection (LogviewLoglist *loglist);
+void        logview_loglist_clear_date         (LogviewLoglist *loglist);
 
 #endif /* __LOGVIEW_LOGLIST_H__ */
