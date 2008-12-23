@@ -1,4 +1,4 @@
-/* logview-utils.c
+/* logview-utils.h - misc logview utilities
  *
  * Copyright (C) 1998  Cesar Miquel  <miquel@df.uba.ar>
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>

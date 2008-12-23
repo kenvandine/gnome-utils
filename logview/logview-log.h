@@ -1,4 +1,4 @@
-/* logview-log.h
+/* logview-log.h - object representation of a logfile
  *
  * Copyright (C) 1998 Cesar Miquel <miquel@df.uba.ar>
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>

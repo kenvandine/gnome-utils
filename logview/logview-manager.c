@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2; -*- */
-/* logview-manager.c
+/* logview-manager.c - manager for the opened log objects
  *
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *

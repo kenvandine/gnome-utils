@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2; -*- */
-/* logview-log.c
+/* logview-log.c - object representation of a logfile
  *
  * Copyright (C) 1998 Cesar Miquel <miquel@df.uba.ar>
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>

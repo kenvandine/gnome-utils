@@ -1,4 +1,4 @@
-/* logview-manager.h
+/* logview-manager.h - manager for the opened log objects
  *
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *

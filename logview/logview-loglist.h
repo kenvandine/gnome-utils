@@ -1,4 +1,4 @@
-/* logview-loglist.h
+/* logview-loglist.h - displays a list of the opened logs
  *
  * Copyright (C) 2005 Vincent Noel <vnoel@cox.net>
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
