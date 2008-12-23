@@ -178,18 +178,6 @@ logview_set_window_title (LogviewWindow *logview)
     g_free (window_title);
 }
 
-void
-logview_show_main_content (LogviewWindow *logview)
-{
-  g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-  gtk_widget_show (logview->calendar);
-  gtk_widget_show (logview->loglist);
-  gtk_widget_show (logview->sidebar);
-  gtk_widget_show (logview->view);
-  gtk_widget_show (logview->hpaned);
-  gtk_widget_show (logview->statusbar);
-}
-
 /* private functions */
 
 static void
@@ -340,6 +328,31 @@ logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state)
 
   action = gtk_ui_manager_get_action (logview->priv->ui_manager, path);
   gtk_action_set_sensitive (action, state);
+}
+
+static void
+logview_window_menus_set_state (LogviewWindow *logview)
+{
+  LogviewLog *log;
+  gboolean calendar_active = FALSE;
+  GtkWidget *widget;
+
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  log = logview_manager_get_current_log (logview->priv->manager);
+
+  if (log) {
+    calendar_active = (log->days != NULL);
+  }
+
+  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
+  logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
+  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", calendar_active);
+  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
+  logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
+  logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
+
+  g_object_unref (log);
 }
 
 /* actions callbacks */
@@ -666,7 +679,7 @@ logview_window_init (LogviewWindow *logview)
   GtkActionGroup *action_group;
   GtkAccelGroup *accel_group;
   GError *error = NULL;
-  GtkWidget *hpaned, *main_view, *loglist_scrolled, *scrolled, *vbox;
+  GtkWidget *hpaned, *main_view, *scrolled, *vbox;
   PangoContext *context;
   PangoFontDescription *fontdesc;
   gchar *monospace_font_name;
@@ -709,29 +722,37 @@ logview_window_init (LogviewWindow *logview)
   w = gtk_ui_manager_get_widget (priv->ui_manager, "/LogviewMenu");
   gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
   gtk_widget_show (w);
-
+  
+  
   /* panes */
   hpaned = gtk_hpaned_new ();
   gtk_box_pack_start (GTK_BOX (vbox), hpaned, TRUE, TRUE, 0);
+  priv->hpaned = hpaned;
+  gtk_widget_show (hpaned);
 
   /* First pane : sidebar (list of logs + calendar) */
   priv->sidebar = gtk_vbox_new (FALSE, 0);
+  gtk_widget_show (priv->sidebar);
 
   priv->calendar = calendar_new ();
   calendar_connect (CALENDAR (priv->calendar), logview);
   gtk_box_pack_end (GTK_BOX (priv->sidebar), priv->calendar, FALSE, FALSE, 0);
+  gtk_widget_show (priv->calendar);
 
   /* log list */
-  loglist_scrolled = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (loglist_scrolled),
+  w = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (loglist_scrolled),
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (w),
                                        GTK_SHADOW_ETCHED_IN);
+
   priv->loglist = loglist_new ();
-  gtk_container_add (GTK_CONTAINER (loglist_scrolled), priv->loglist);
-  gtk_box_pack_start (GTK_BOX (priv->sidebar), loglist_scrolled, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (w), priv->loglist);
+  gtk_box_pack_start (GTK_BOX (priv->sidebar), w, TRUE, TRUE, 0);
   gtk_paned_pack1 (GTK_PANED (hpaned), priv->sidebar, FALSE, FALSE);
   loglist_connect (LOG_LIST (priv->loglist), logview);
+  gtk_widget_show (w);
+  gtk_widget_show (priv->loglist);
 
   /* Second pane : log */
   main_view = gtk_vbox_new (FALSE, 0);
@@ -743,6 +764,7 @@ logview_window_init (LogviewWindow *logview)
                                   GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_AUTOMATIC);
   gtk_box_pack_start (GTK_BOX (main_view), scrolled, TRUE, TRUE, 0);
+  gtk_widget_show (main_view);
 
   /* Main Tree View */
   priv->view = gtk_tree_view_new ();
@@ -787,6 +809,7 @@ logview_window_init (LogviewWindow *logview)
   priv->fontsize = priv->original_fontsize;
 
   gtk_container_add (GTK_CONTAINER (scrolled), priv->view);
+  gtk_widget_show (priv->view);
   gtk_widget_show_all (scrolled);
 
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->view));
@@ -809,12 +832,9 @@ logview_window_init (LogviewWindow *logview)
   /* Status area at bottom */
   priv->statusbar = gtk_statusbar_new ();
   gtk_box_pack_start (GTK_BOX (vbox), priv->statusbar, FALSE, FALSE, 0);
+  gtk_widget_show (priv->statusbar);
 
-  gtk_widget_show (loglist_scrolled);
-  gtk_widget_show (main_view);
   gtk_widget_show (vbox);
-
-  priv->hpaned = hpaned;
 }
 
 static void
@@ -863,29 +883,4 @@ logview_window_new ()
   }
 
   return window;
-}
-
-void
-logview_window_menus_set_state (LogviewWindow *logview)
-{
-  LogviewLog *log;
-  gboolean calendar_active = FALSE;
-  GtkWidget *widget;
-
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
-  log = logview_manager_get_current_log (logview->priv->manager);
-
-  if (log) {
-    calendar_active = (log->days != NULL);
-  }
-
-  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
-  logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
-  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", calendar_active);
-  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
-  logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
-  logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
-
-  g_object_unref (log);
 }

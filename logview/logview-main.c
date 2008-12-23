@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2005 Vincent Noel <vnoel@cox.net>
+ * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,8 +21,6 @@
 
 #include <stdlib.h>
 
-#include <libgnomevfs/gnome-vfs.h>
-
 #include <glib/gi18n.h>
 #include <glib.h>
 
@@ -29,6 +28,7 @@
 
 #include "logview.h"
 #include "logview-prefs.h"
+#include "logview-manager.h"
 #include "misc.h"
 
 static gboolean show_version = FALSE;
@@ -74,7 +74,9 @@ main (int argc, char *argv[])
 {
   GError *error = NULL;
   GOptionContext *context;
-  LogviewWindow *logview;
+  GtkWidget *main_window;
+  LogviewPrefs *prefs;
+  LogviewManager *manager;
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -82,7 +84,6 @@ main (int argc, char *argv[])
 
   error_dialog_queue (TRUE);
 
-  gnome_vfs_init ();
   context = create_option_context ();
 
   g_option_context_parse (context, &argc, &argv, &error);
@@ -99,12 +100,13 @@ main (int argc, char *argv[])
 
   g_set_application_name (_("Log Viewer"));
 
-  if (show_version)
+  if (show_version) {
     logview_show_version_and_quit ();
+  }
 
-  /* Open regular logs and add each log passed as a parameter */
-  logview = LOGVIEW_WINDOW (logview_window_new ());
-  if (!logview) {
+  /* open regular logs and add each log passed as a parameter */
+  main_window = logview_window_new ();
+  if (!main_window) {
     error_dialog_show (NULL,
                        _("Unable to create user interface."),
                        NULL);
@@ -113,28 +115,40 @@ main (int argc, char *argv[])
   }
 
   gtk_window_set_default_icon_name ("logviewer");
-  gtk_widget_show (GTK_WIDGET (logview));
+
+  prefs = logview_prefs_get ();
+  manager = logview_manager_get ();
 
   if (argc == 1) {
-    logview_add_logs_from_names (logview,
-                                 prefs_get_logs (),
-                                 prefs_get_active_log ());
+    char *active_log;
+    GSList *logs;
+
+    active_log = logview_prefs_get_active_logfile (prefs);
+    logs = logview_prefs_get_stored_logfiles (prefs);
+
+    logview_manager_add_logs_from_names (manager,
+                                         logs, active_log);
+
+    g_free (active_log);
+    g_slist_foreach (logs, (GFunc) g_free, NULL);
+    g_slist_free (logs);
   } else {
     gint i;
 
     for (i = 1; i < argc; i++)
-      logview_add_log_from_name (logview, argv[i]);
+      logview_manager_add_log_from_name (manager, argv[i], FALSE);
   }
-
-  logview_show_main_content (logview);
 
   /* show the eventual error dialogs */
   error_dialog_queue (FALSE);
   error_dialog_show_queued ();
 
+  gtk_widget_show (main_window);
+
   gtk_main ();
 
-  prefs_shutdown ();
+  g_object_unref (prefs);
+  g_object_unref (manager);
 
   return EXIT_SUCCESS;
 }
