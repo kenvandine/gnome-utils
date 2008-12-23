@@ -91,14 +91,60 @@ log_changed_cb (LogviewLog *log,
   gtk_tree_store_set (list->priv->model, iter,
                       LOG_WEIGHT, PANGO_WEIGHT_BOLD,
                       LOG_WEIGHT_SET, TRUE, -1);
+
+  gtk_tree_iter_free (iter);
+}
+
+
+static void
+tree_selection_changed_cb (GtkTreeSelection *selection,
+                           gpointer user_data)
+{
+  LogviewLoglist *list = user_data;
+  GtkTreeModel *model;
+  GtkTreeIter iter;
+  LogviewLog *log;
+  gboolean is_bold;
+
+  if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
+      return;
+  }
+
+  gtk_tree_model_get (model, &iter, LOG_OBJECT, &log,
+                      LOG_WEIGHT_SET, &is_bold, -1);
+  logview_manager_set_active_log (list->priv->manager, log);
+
+  if (is_bold) {
+    gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
+                        LOG_WEIGHT_SET, FALSE, -1);
+  }
+
+  g_object_unref (log);
 }
 
 static void
 manager_active_changed_cb (LogviewManager *manager,
                            LogviewLog *log,
+                           LogviewLog *old_log,
                            gpointer user_data)
 {
-  /* TODO: implement */
+  LogviewLoglist *list = user_data;
+  GtkTreeIter * iter;
+  GtkTreeSelection * selection;
+
+  iter = logview_loglist_find_log (list, log);
+
+  if (!iter) {
+    return;
+  }
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list));
+  g_signal_handlers_block_by_func (selection, tree_selection_changed_cb, list);
+
+  gtk_tree_selection_select_iter (selection, iter);
+
+  g_signal_handlers_unblock_by_func (selection, tree_selection_changed_cb, list);
+  gtk_tree_iter_free (iter);
 }
 
 static void
@@ -147,32 +193,6 @@ manager_log_added_cb (LogviewManager *manager,
 
   g_signal_connect (log, "log-changed",
                     G_CALLBACK (log_changed_cb), list);
-}
-
-static void
-tree_selection_changed_cb (GtkTreeSelection *selection,
-                           gpointer user_data)
-{
-  LogviewLoglist *list = user_data;
-  GtkTreeModel *model;
-  GtkTreeIter iter;
-  LogviewLog *log;
-  gboolean is_bold;
-
-  if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
-      return;
-  }
-
-  gtk_tree_model_get (model, &iter, LOG_OBJECT, &log,
-                      LOG_WEIGHT_SET, &is_bold, -1);
-  logview_manager_set_active_log (list->priv->manager, log);
-
-  if (is_bold) {
-    gtk_tree_store_set (GTK_TREE_STORE (model), &iter,
-                        LOG_WEIGHT_SET, FALSE, -1);
-  }
-
-  g_object_unref (log);
 }
 
 static void
