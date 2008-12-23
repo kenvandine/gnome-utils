@@ -19,6 +19,7 @@
 
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "logview-findbar.h"
 
@@ -97,6 +98,21 @@ entry_changed_cb (GtkEditable *editable,
   g_signal_emit (findbar, signals[TEXT_CHANGED], 0, findbar->priv->string, NULL);
 }
 
+static gboolean
+entry_key_press_event_cb (GtkWidget *entry,
+                          GdkEventKey *event,
+                          gpointer user_data)
+{
+  LogviewFindbar *findbar = user_data;
+
+  if (event->keyval == GDK_Escape) {
+    gtk_widget_hide (GTK_WIDGET (findbar));
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
 static void 
 logview_findbar_init (LogviewFindbar *findbar)
 {
@@ -168,6 +184,16 @@ logview_findbar_init (LogviewFindbar *findbar)
                     G_CALLBACK (entry_activate_cb), findbar);
   g_signal_connect (priv->entry, "changed",
                     G_CALLBACK (entry_changed_cb), findbar);
+  g_signal_connect (priv->entry, "key-press-event",
+                    G_CALLBACK (entry_key_press_event_cb), findbar);
+}
+
+static void
+do_grab_focus (GtkWidget *widget)
+{
+  LogviewFindbar *findbar = LOGVIEW_FINDBAR (widget);
+
+  gtk_widget_grab_focus (findbar->priv->entry);
 }
 
 static void
@@ -184,8 +210,11 @@ static void
 logview_findbar_class_init (LogviewFindbarClass *klass)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
+  GtkWidgetClass *wclass = GTK_WIDGET_CLASS (klass);
 
   oclass->finalize = do_finalize;
+
+  wclass->grab_focus = do_grab_focus;
 
   signals[PREVIOUS] = g_signal_new ("previous",
                                     G_OBJECT_CLASS_TYPE (oclass),
@@ -221,4 +250,13 @@ logview_findbar_new (void)
   GtkWidget *widget;
   widget = g_object_new (LOGVIEW_TYPE_FINDBAR, NULL);
   return widget;
+}
+
+void
+logview_findbar_open (LogviewFindbar *findbar)
+{
+  g_assert (LOGVIEW_IS_FINDBAR (findbar));
+
+  gtk_widget_show (GTK_WIDGET (findbar));
+  gtk_widget_grab_focus (GTK_WIDGET (findbar));
 }

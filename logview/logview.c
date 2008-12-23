@@ -449,8 +449,7 @@ logview_search (GtkAction *action, LogviewWindow *logview)
 {
   g_assert (LOGVIEW_IS_WINDOW (logview));
 
-  gtk_widget_show (logview->priv->find_bar);
-//  logview_findbar_grab_focus (LOGVIEW_FINDBAR (logview->priv->find_bar));
+  logview_findbar_open (LOGVIEW_FINDBAR (logview->priv->find_bar));
 }
 
 void
