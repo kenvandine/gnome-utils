@@ -128,6 +128,8 @@ main (int argc, char *argv[])
   g_option_context_free (context);
   g_set_application_name (_("Log Viewer"));
 
+  g_thread_init (NULL);
+
   /* open regular logs and add each log passed as a parameter */
   main_window = logview_window_new ();
   if (!main_window) {
