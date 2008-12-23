@@ -60,7 +60,8 @@ struct _LogviewManagerClass {
   void (* log_add_error) (LogviewManager *manager,
                           char *filename);
   void (* active_changed) (LogviewManager *manager,
-                           LogviewLog *log);
+                           LogviewLog *log,
+                           LogviewLog *old_log);
 };
 
 GType logview_manager_get_type (void);

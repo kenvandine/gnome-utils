@@ -105,7 +105,8 @@ logview_manager_class_init (LogviewManagerClass *klass)
                                           G_STRUCT_OFFSET (LogviewManagerClass, active_changed),
                                           NULL, NULL,
                                           g_cclosure_marshal_VOID__OBJECT,
-                                          G_TYPE_NONE, 1,
+                                          G_TYPE_NONE, 2,
+                                          LOGVIEW_TYPE_LOG,
                                           LOGVIEW_TYPE_LOG);
 
   g_type_class_add_private (klass, sizeof (LogviewManagerPrivate));
@@ -178,16 +179,21 @@ logview_manager_set_active_log (LogviewManager *manager,
                                 LogviewLog *log)
 {
   gboolean first_read = TRUE;
+  LogviewLog *old_log = NULL;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
   if (manager->priv->active_log) {
-    g_object_unref (manager->priv->active_log);
+    old_log = manager->priv->active_log;
   }
 
   manager->priv->active_log = g_object_ref (log);
 
-  g_signal_emit (manager, signals[ACTIVE_CHANGED], 0, log, NULL);
+  g_signal_emit (manager, signals[ACTIVE_CHANGED], 0, log, old_log, NULL);
+
+  if (old_log) {
+    g_object_unref (old_log);
+  }
 }
 
 LogviewLog *

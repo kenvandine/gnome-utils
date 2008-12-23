@@ -33,7 +33,7 @@ static const char *logview_about_authors[] = {
   "Jason Long  <jlong@messiah.edu>",
   "Kjartan Maraas  <kmaraas@gnome.org>",
   "Vincent Noel  <vincent.noel@gmail.com>",
-  "Cosimo Cecchi <cosimoc@gnome.org>".
+  "Cosimo Cecchi <cosimoc@gnome.org>",
   NULL
 };
 
@@ -59,7 +59,7 @@ static const char * logview_about_license[] = {
 };
 
 /* translator credits */
-static const char *logview_about_translator_credits = _("translator-credits");
+static const char *logview_about_translator_credits = N_("translator-credits");
 
 
 #endif /* __LOG_ABOUT_H__ */

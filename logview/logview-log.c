@@ -56,6 +56,7 @@ struct _LogviewLogPrivate {
 
   /* stream poiting to the log */
   GDataInputStream *stream;
+  gboolean has_new_lines;
 };
 
 typedef struct {
@@ -139,6 +140,7 @@ logview_log_init (LogviewLog *self)
   self->priv->days = NULL;
   self->priv->file = NULL;
   self->priv->mon = NULL;
+  self->priv->has_new_lines = FALSE;
 }
 
 static void
@@ -151,6 +153,7 @@ monitor_changed_cb (GFileMonitor *monitor,
   LogviewLog *log = user_data;
 
   if (event == G_FILE_MONITOR_EVENT_CHANGED) {
+    log->priv->has_new_lines = TRUE;
     g_signal_emit (log, signals[LOG_CHANGED], 0, NULL);
   }
   /* TODO: handle the case where the log is deleted? */
@@ -261,6 +264,8 @@ do_read_new_lines (GIOSchedulerJob *io_job,
 
   /* NULL-terminate the array again */
   g_ptr_array_add (lines, NULL);
+
+  log->priv->has_new_lines = FALSE;
 
   /* we'll return only the new lines in the callback */
   line = g_ptr_array_index (lines, log->priv->lines_no);
@@ -452,11 +457,13 @@ logview_log_get_cached_lines_number (LogviewLog *log)
 const char **
 logview_log_get_cached_lines (LogviewLog *log)
 {
-  const char ** lines;
+  const char ** lines = NULL;
 
   g_assert (LOGVIEW_IS_LOG (log));
 
-  lines = (const char **) log->priv->lines->pdata;
+  if (log->priv->lines) {
+    lines = (const char **) log->priv->lines->pdata;
+  }
 
   return lines;
 }
@@ -467,4 +474,12 @@ logview_log_get_days_for_cached_lines (LogviewLog *log)
   g_assert (LOGVIEW_IS_LOG (log));
 
   return log->priv->days;
+}
+
+gboolean
+logview_log_has_new_lines (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return log->priv->has_new_lines;
 }

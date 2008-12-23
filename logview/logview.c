@@ -45,7 +45,6 @@ enum {
 };
 
 struct _LogviewWindowPrivate {
-  GtkWidget *view;		
   GtkWidget *statusbar;
   GtkUIManager *ui_manager;
 
@@ -56,13 +55,16 @@ struct _LogviewWindowPrivate {
   GtkWidget *version_bar;
   GtkWidget *version_selector;
   GtkWidget *hpaned;
+  GtkWidget *text_view;
 
-  GtkTreeModel *model;
+  GtkTextTagTable *tag_table;
 
   int original_fontsize, fontsize;
 
   LogviewPrefs *prefs;
   LogviewManager *manager;
+
+  gulong monitor_id;
 };
 
 #define GET_PRIVATE(o) \
@@ -106,24 +108,6 @@ static const char *ui_description =
 	"	</menubar>"
 	"</ui>";
 
-/* public interface */
-
-static void
-logview_store_visible_range (LogviewWindow *logview)
-{
-  GtkTreePath *first, *last;
-  Log *log = logview->curlog;
-  if (log == NULL)
-    return;
-
-  if (log->visible_first)
-    gtk_tree_path_free (log->visible_first);
-
-  if (gtk_tree_view_get_visible_range (GTK_TREE_VIEW (logview->view),
-                                       &first, NULL))
-    log->visible_first = first;
-}
-
 void
 logview_select_log (LogviewWindow *logview, Log *log)
 {
@@ -136,7 +120,7 @@ logview_select_log (LogviewWindow *logview, Log *log)
     logview_update_findbar_visibility (logview);
     
     logview_update_version_bar (logview);
-    gtk_widget_grab_focus (logview->view);
+    gtk_widget_grab_focus (logview->priv->text_view);
 }
 
 /* private functions */
@@ -154,24 +138,6 @@ logview_update_findbar_visibility (LogviewWindow *logview)
 		gtk_widget_show (logview->find_bar);
 	else
 		gtk_widget_hide (logview->find_bar);
-}
-
-static Log *
-logview_find_log_from_name (LogviewWindow *logview, gchar *name)
-{
-  GSList *list;
-  Log *log;
-
-  if (logview == NULL || name == NULL)
-      return NULL;
-
-  for (list = logview->logs; list != NULL; list = g_slist_next (list)) {
-    log = list->data;
-    if (g_ascii_strncasecmp (log->name, name, 255) == 0) {
-      return log;
-    }
-  }
-  return NULL;
 }
 
 static void
@@ -219,10 +185,21 @@ logview_calendar_set_state (LogviewWindow *logview)
 /* private helpers */
 
 static void
+populate_tag_table (GtkTextTagTable *tag_table)
+{
+  GtkTextTag *tag;
+
+  tag = gtk_text_tag_new ("bold");
+  g_object_set (tag, "weight", PANGO_WEIGHT_BOLD, NULL);
+  gtk_text_tag_table_add (tag_table, tag);
+}
+
+static void
 logview_update_statusbar (LogviewWindow *logview, LogviewLog *active)
 {
   char *statusbar_text;
   char *size, *modified, *index;
+  gulong timestamp;
 
   g_assert (LOGVIEW_IS_WINDOW (logview));
 
@@ -232,7 +209,8 @@ logview_update_statusbar (LogviewWindow *logview, LogviewLog *active)
   }
 
   /* ctime returned string has "\n\0" causes statusbar display a invalid char */
-  modified = ctime (&(logview_log_get_timestamp (active)));
+  timestamp = logview_log_get_timestamp (active);
+  modified = ctime (&timestamp);
   index = strrchr (modified, '\n');
   if (index && *index != '\0')
     *index = '\0';
@@ -241,7 +219,8 @@ logview_update_statusbar (LogviewWindow *logview, LogviewLog *active)
 
   size = g_format_size_for_display (logview_log_get_file_size (active));
   statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
-                                    log->total_lines, size, modified);
+                                    logview_log_get_cached_lines_number (active),
+                                    size, modified);
 
   if (statusbar_text) {
     gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
@@ -267,7 +246,7 @@ logview_set_font (LogviewWindow *logview,
 
   font_desc = pango_font_description_from_string (fontname);
   if (font_desc) {
-    gtk_widget_modify_font (logview->priv->view, font_desc);
+    gtk_widget_modify_font (logview->priv->text_view, font_desc);
     pango_font_description_free (font_desc);
   }
 }
@@ -277,13 +256,14 @@ logview_set_fontsize (LogviewWindow *logview)
 {
   PangoFontDescription *fontdesc;
   PangoContext *context;
+  LogviewWindowPrivate *priv = logview->priv;
 	
   g_assert (LOGVIEW_IS_WINDOW (logview));
 
-  context = gtk_widget_get_pango_context (priv->view);
+  context = gtk_widget_get_pango_context (priv->text_view);
   fontdesc = pango_context_get_font_description (context);
   pango_font_description_set_size (fontdesc, (priv->fontsize) * PANGO_SCALE);
-  gtk_widget_modify_font (priv->view, fontdesc);
+  gtk_widget_modify_font (priv->text_view, fontdesc);
 
   logview_prefs_store_fontsize (logview->priv->prefs, priv->fontsize);
 }
@@ -329,7 +309,7 @@ logview_window_menus_set_state (LogviewWindow *logview)
   log = logview_manager_get_active_log (logview->priv->manager);
 
   if (log) {
-    calendar_active = (log->days != NULL);
+    calendar_active = (logview_log_get_days_for_cached_lines (log) != NULL);
   }
 
   logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
@@ -362,12 +342,12 @@ open_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview
   log = logview_manager_get_if_loaded (logview->priv->manager, f);
 
   if (log) {
-    logview_manager_set_active_log (log);
+    logview_manager_set_active_log (logview->priv->manager, log);
     g_object_unref (log);
     goto out;
   }
 
-  logview_manager_add_log_from_name (logview->priv->manager, f);
+  logview_manager_add_log_from_name (logview->priv->manager, f, TRUE);
 
 out:
   g_free (f);
@@ -456,59 +436,15 @@ logview_normal_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_select_all (GtkAction *action, LogviewWindow *logview)
 {
-  GtkTreeSelection *selection;
-
   g_assert (LOGVIEW_IS_WINDOW (logview));
 
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->priv->view));
-  gtk_tree_selection_select_all (selection);
+  /* TODO: implement */
 }
 
 static void
 logview_copy (GtkAction *action, LogviewWindow *logview)
 {
-#if 0 doesn't work for now;
-	gchar *text, **lines;
-	int nline, i, l1, l2;
-    gchar *line;
-    Log *log;
-    GtkClipboard *clipboard;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    log = logview->curlog;
-    if (log == NULL)
-        return;
-
-    l1 = log->selected_line_first;
-    l2 = log->selected_line_last;
-    if (l1 == -1 || l2 == -1)
-        return;
-
-    nline = l2 - l1 + 1;
-    lines = g_new0(gchar *, (nline + 1));
-    for (i=0; i<=nline; i++) {
-        line = log->lines[l1+i];
-        lines[i] = g_strdup (line);
-    }
-    lines[nline] = NULL;
-    text = g_strjoinv ("\n", lines);
-
-    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (logview->view),
-                                          GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_set_text (clipboard, text, -1);
-
-    g_free (text);
-    g_strfreev (lines);
-#endif
-}
-
-static void 
-logview_collapse_rows (GtkAction *action, LogviewWindow *logview)
-{
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
-  gtk_tree_view_collapse_all (GTK_TREE_VIEW (logview->priv->view));
+  /* TODO: implement */
 }
 
 static void
@@ -618,9 +554,6 @@ static GtkActionEntry entries[] = {
     {"ViewZoom100", GTK_STOCK_ZOOM_100, NULL, "<control>0", N_("Normal text size"),
       G_CALLBACK (logview_normal_text)},
 
-    {"CollapseAll", NULL, N_("Collapse _All"), NULL, N_("Collapse all the rows"),
-      G_CALLBACK (logview_collapse_rows) },
-
     { "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
       G_CALLBACK (logview_help) },
     { "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the log viewer"), 
@@ -641,22 +574,139 @@ static gboolean
 window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
                         gpointer data)
 {
-  logview_prefs_store_window_size (event->width, event->height);
+  LogviewWindow *window = data;
+
+  logview_prefs_store_window_size (window->priv->prefs,
+                                   event->width, event->height);
 
   return FALSE;
+}
+
+static void read_new_lines_cb (LogviewLog *log,
+                               const char **lines,
+                               GError **error,
+                               gpointer user_data);
+
+static void
+log_monitor_changed_cb (LogviewLog *log,
+                        gpointer user_data)
+{
+  /* reschedule a read */
+  logview_log_read_new_lines (log, (LogviewNewLinesCallback) read_new_lines_cb,
+                              user_data);
+}
+
+static void
+read_new_lines_cb (LogviewLog *log,
+                   const char **lines,
+                   GError **error,
+                   gpointer user_data)
+{
+  LogviewWindow *window = user_data;
+  GtkTextBuffer *buffer;
+  gboolean boldify = FALSE;
+  int i;
+  GtkTextIter iter, copy;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
+
+  if (gtk_text_buffer_get_char_count (buffer) == 0) {
+    boldify = TRUE;
+  }
+
+  gtk_text_buffer_get_end_iter (buffer, &iter);
+
+  if (boldify) {
+    copy = iter;
+  }
+
+  for (i = 0; lines[i]; i++) {
+    gtk_text_buffer_insert (buffer, &iter, lines[i], strlen (lines[i]));
+    gtk_text_iter_forward_to_end (&iter);
+    gtk_text_buffer_insert (buffer, &iter, "\n", 1);
+    gtk_text_iter_forward_char (&iter);
+  }
+
+  if (boldify) {
+    gtk_text_buffer_apply_tag_by_name (buffer, "bold", &copy, &iter);
+  }
+
+  if (window->priv->monitor_id == 0) {
+    window->priv->monitor_id = g_signal_connect (log, "log-changed",
+                                                 G_CALLBACK (log_monitor_changed_cb), window);
+  }
 }
 
 static void
 active_log_changed_cb (LogviewManager *manager,
                        LogviewLog *log,
+                       LogviewLog *old_log,
                        gpointer data)
 {
   LogviewWindow *window = data;
+  const char **lines;
+  GtkTextBuffer *buffer;
 
-  /* destroy the model */
-  gtk_tree_view_set_model (window->priv->view, NULL);
-  g_object_unref (window->priv->model);
-  window->priv->model = NULL;
+  if (window->priv->monitor_id) {
+    g_signal_handler_disconnect (old_log, window->priv->monitor_id);
+    window->priv->monitor_id = 0;
+  }
+
+  lines = logview_log_get_cached_lines (log);
+  buffer = gtk_text_buffer_new (window->priv->tag_table);
+
+  if (lines != NULL) {
+    int i;
+    GtkTextBuffer *buffer;
+    GtkTextIter iter;
+
+    /* update the text view to show the current lines */
+    gtk_text_buffer_get_end_iter (buffer, &iter);
+
+    for (i = 0; lines[i]; i++) {
+      gtk_text_buffer_insert (buffer, &iter, lines[i], strlen (lines[i]));
+      gtk_text_iter_forward_to_end (&iter);
+      gtk_text_buffer_insert (buffer, &iter, "\n", 1);
+      gtk_text_iter_forward_char (&iter);
+    }
+  }
+
+  /* we set the buffer to the view anyway;
+   * if there are no lines it will be empty for the duration of the thread
+   * and will help us to distinguish the two cases of the following if
+   * cause in the callback.
+   */
+  gtk_text_view_set_buffer (GTK_TEXT_VIEW (window->priv->text_view), buffer);
+  g_object_unref (buffer);
+
+  if (lines == NULL || logview_log_has_new_lines (log)) {
+    /* read the new lines */
+    logview_log_read_new_lines (log, (LogviewNewLinesCallback) read_new_lines_cb, window);
+  } else {
+    /* start now monitoring the log for changes */
+    window->priv->monitor_id = g_signal_connect (log, "log-changed",
+                                                 G_CALLBACK (log_monitor_changed_cb), window);
+  }
+}
+
+static void
+font_changed_cb (LogviewPrefs *prefs,
+                 const char *font_name,
+                 gpointer user_data)
+{
+  LogviewWindow *window = user_data;
+
+  logview_set_font (window, font_name);
+}
+
+static void
+tearoff_changed_cb (LogviewPrefs *prefs,
+                    gboolean have_tearoffs,
+                    gpointer user_data)
+{
+  LogviewWindow *window = user_data;
+
+  gtk_ui_manager_set_add_tearoffs (window->priv->ui_manager, have_tearoffs);
 }
 
 static void
@@ -671,14 +721,11 @@ logview_window_finalize (GObject *object)
 static void
 logview_window_init (LogviewWindow *logview)
 {
-  GtkTreeSelection *selection;
-  GtkTreeViewColumn *column;
-  GtkCellRenderer *renderer;
   gint i;
   GtkActionGroup *action_group;
   GtkAccelGroup *accel_group;
   GError *error = NULL;
-  GtkWidget *hpaned, *main_view, *scrolled, *vbox;
+  GtkWidget *hpaned, *main_view, *scrolled, *vbox, *w;
   PangoContext *context;
   PangoFontDescription *fontdesc;
   gchar *monospace_font_name;
@@ -688,14 +735,15 @@ logview_window_init (LogviewWindow *logview)
   priv = GET_PRIVATE (logview);
   priv->prefs = logview_prefs_get ();
   priv->manager = logview_manager_get ();
+  priv->monitor_id = 0;
 
-  logview_prefs_get_stored_window_size (prefs, &width, &height);
+  logview_prefs_get_stored_window_size (priv->prefs, &width, &height);
   gtk_window_set_default_size (GTK_WINDOW (logview), width, height);
 
   vbox = gtk_vbox_new (FALSE, 0);
   gtk_container_add (GTK_CONTAINER (logview), vbox);
 
-  /* Create menus */
+  /* create menus */
   action_group = gtk_action_group_new ("LogviewMenuActions");
   gtk_action_group_set_translation_domain (action_group, NULL);
   gtk_action_group_add_actions (action_group, entries, G_N_ELEMENTS (entries), logview);
@@ -722,14 +770,13 @@ logview_window_init (LogviewWindow *logview)
   gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
   gtk_widget_show (w);
   
-  
   /* panes */
   hpaned = gtk_hpaned_new ();
   gtk_box_pack_start (GTK_BOX (vbox), hpaned, TRUE, TRUE, 0);
   priv->hpaned = hpaned;
   gtk_widget_show (hpaned);
 
-  /* First pane : sidebar (list of logs + calendar) */
+  /* first pane : sidebar (list of logs + calendar) */
   priv->sidebar = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (priv->sidebar);
 
@@ -738,7 +785,7 @@ logview_window_init (LogviewWindow *logview)
   gtk_box_pack_end (GTK_BOX (priv->sidebar), priv->calendar, FALSE, FALSE, 0);
   gtk_widget_show (priv->calendar);
 
-  /* log list */
+  /* first pane: log list */
   w = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
@@ -753,39 +800,21 @@ logview_window_init (LogviewWindow *logview)
   gtk_widget_show (w);
   gtk_widget_show (priv->loglist);
 
-  /* Second pane : log */
+  /* second pane : log */
   main_view = gtk_vbox_new (FALSE, 0);
   gtk_paned_pack2 (GTK_PANED (hpaned), main_view, TRUE, TRUE);
 
-  /* Scrolled window for the main view */
-  scrolled = gtk_scrolled_window_new (NULL, NULL);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
-                                  GTK_POLICY_AUTOMATIC,
-                                  GTK_POLICY_AUTOMATIC);
-  gtk_box_pack_start (GTK_BOX (main_view), scrolled, TRUE, TRUE, 0);
-  gtk_widget_show (main_view);
+  /* second pane: text view */
+  priv->tag_table = gtk_text_tag_table_new ();
+  populate_tag_table (priv->tag_table);
+  priv->text_view = gtk_text_view_new ();
 
-  /* Main Tree View */
-  priv->view = gtk_tree_view_new ();
-  gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (priv->view), FALSE);
-  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->view), FALSE);
-
-  /* Use the desktop monospace font */
+  /* use the desktop monospace font */
   monospace_font_name = logview_prefs_get_monospace_font_name (priv->prefs);
   logview_set_font (logview, monospace_font_name);
   g_free (monospace_font_name);
 
-  renderer = gtk_cell_renderer_text_new ();
-  column = gtk_tree_view_column_new ();
-  gtk_tree_view_column_pack_start (column, renderer, TRUE);
-  gtk_tree_view_column_set_attributes (column, renderer, 
-                                       "text", LOG_LINE_TEXT, 
-                                       "weight", LOG_LINE_WEIGHT,
-                                       "weight-set", LOG_LINE_WEIGHT_SET,
-                                       NULL);
-  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->view), column);
-
-  /* Version selector */
+  /* version selector */
   priv->version_bar = gtk_hbox_new (FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (priv->version_bar), 3);
   priv->version_selector = gtk_combo_box_new_text ();
@@ -801,20 +830,15 @@ logview_window_init (LogviewWindow *logview)
   gtk_box_pack_end (GTK_BOX (main_view), priv->find_bar, FALSE, FALSE, 0);
   logview_findbar_connect (LOGVIEW_FINDBAR (priv->find_bar), logview);
 
-  /* Remember the original font size */
-  context = gtk_widget_get_pango_context (priv->view);
+  /* remember the original font size */
+  context = gtk_widget_get_pango_context (priv->text_view);
   fontdesc = pango_context_get_font_description (context);
   priv->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
   priv->fontsize = priv->original_fontsize;
 
-  gtk_container_add (GTK_CONTAINER (scrolled), priv->view);
-  gtk_widget_show (priv->view);
-  gtk_widget_show_all (scrolled);
-
-  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->view));
-  gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
-
-  /* Add signal handlers */
+  /* signal handlers
+   * - first is used to remember/restore the window size on quit.
+   */
   g_signal_connect (logview, "configure_event",
                     G_CALLBACK (window_size_changed_cb), logview);
   g_signal_connect (priv->prefs, "system-font-changed",
@@ -824,7 +848,7 @@ logview_window_init (LogviewWindow *logview)
   g_signal_connect (priv->manager, "active-changed",
                     G_CALLBACK (active_log_changed_cb), logview);
 
-  /* Status area at bottom */
+  /* status area at bottom */
   priv->statusbar = gtk_statusbar_new ();
   gtk_box_pack_start (GTK_BOX (vbox), priv->statusbar, FALSE, FALSE, 0);
   gtk_widget_show (priv->statusbar);
@@ -851,9 +875,9 @@ logview_window_new ()
 
   logview = g_object_new (LOGVIEW_TYPE_WINDOW, NULL);
 
-  if (priv->ui_manager == NULL) {
+  if (logview->priv->ui_manager == NULL) {
     return NULL;
   }
 
-  return window;
+  return GTK_WIDGET (logview);
 }
