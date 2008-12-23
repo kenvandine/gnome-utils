@@ -109,11 +109,9 @@ logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_d
 /* private helpers */
 
 static void
-populate_tag_table (GtkStyle *style,
-                    GtkTextTagTable *tag_table)
+populate_tag_table (GtkTextTagTable *tag_table)
 {
   GtkTextTag *tag;
-  GdkColor color;
 
   tag = gtk_text_tag_new ("bold");
   g_object_set (tag, "weight", PANGO_WEIGHT_BOLD,
@@ -125,6 +123,23 @@ populate_tag_table (GtkStyle *style,
   g_object_set (tag, "invisible", TRUE, "invisible-set", TRUE, NULL);
 
   gtk_text_tag_table_add (tag_table, tag);
+
+}
+
+
+static void
+populate_style_tag_table (GtkStyle *style,
+                          GtkTextTagTable *tag_table)
+{
+  GtkTextTag *tag;
+  GdkColor color;
+
+  tag = gtk_text_tag_table_lookup (tag_table, "gray");
+
+  if (tag) {
+    /* FIXME: do we need a way to update the buffer/view? */
+    gtk_text_tag_table_remove (tag_table, tag);
+  }
 
   tag = gtk_text_tag_new ("gray");
   color = style->text[GTK_STATE_INSENSITIVE];
@@ -754,6 +769,22 @@ log_monitor_changed_cb (LogviewLog *log,
 }
 
 static void
+paint_timestamps (GtkTextBuffer *buffer, int old_line_count,
+                  GSList *days)
+{
+  GSList *l;
+
+  for (l = days; l; l = l->next) {
+    Day *day = l->data;
+
+    _gtk_text_buffer_apply_tag_to_rectangle (buffer,
+                                             old_line_count + day->first_line - 1,
+                                             old_line_count + day->last_line,
+                                             0, day->timestamp_len, "gray");
+  }
+}
+
+static void
 read_new_lines_cb (LogviewLog *log,
                    const char **lines,
                    GSList *new_days,
@@ -766,15 +797,14 @@ read_new_lines_cb (LogviewLog *log,
   int i, old_line_count;
   GtkTextIter iter, start;
   GtkTextMark *mark;
-  GSList *l;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
+  old_line_count = gtk_text_buffer_get_line_count (buffer);
 
   if (gtk_text_buffer_get_char_count (buffer) != 0) {
     boldify = TRUE;
   }
 
-  old_line_count = gtk_text_buffer_get_line_count (buffer);
   gtk_text_buffer_get_end_iter (buffer, &iter);
 
   if (boldify) {
@@ -788,20 +818,13 @@ read_new_lines_cb (LogviewLog *log,
     gtk_text_iter_forward_char (&iter);
   }
 
-  for (l = new_days; l; l = l->next) {
-    Day *day = l->data;
-
-    _gtk_text_buffer_apply_tag_to_rectangle (buffer,
-                                             old_line_count + day->first_line - 1,
-                                             old_line_count + day->last_line,
-                                             0, day->timestamp_len, "gray");
-  }
-
   if (boldify) {
     gtk_text_buffer_get_iter_at_mark (buffer, &start, mark);
     gtk_text_buffer_apply_tag_by_name (buffer, "bold", &start, &iter);
     gtk_text_buffer_delete_mark (buffer, mark);
   }
+
+  paint_timestamps (buffer, old_line_count, new_days);
 
   if (window->priv->monitor_id == 0) {
     window->priv->monitor_id = g_signal_connect (log, "log-changed",
@@ -846,6 +869,8 @@ active_log_changed_cb (LogviewManager *manager,
       gtk_text_buffer_insert (buffer, &iter, "\n", 1);
       gtk_text_iter_forward_char (&iter);
     }
+
+    paint_timestamps (buffer, 1, logview_log_get_days_for_cached_lines (log));
   }
 
   if (lines == NULL || logview_log_has_new_lines (log)) {
@@ -894,7 +919,7 @@ style_set_cb (GtkWidget *widget,
   LogviewWindow *logview = user_data;
   GtkStyle *style = gtk_widget_get_style (widget);
 
-  populate_tag_table (style, logview->priv->tag_table);
+  populate_style_tag_table (style, logview->priv->tag_table);
 }
 
 static void
@@ -1001,6 +1026,7 @@ logview_window_init (LogviewWindow *logview)
   gtk_widget_show (w);
 
   priv->tag_table = gtk_text_tag_table_new ();
+  populate_tag_table (priv->tag_table);
   priv->text_view = gtk_text_view_new ();
   g_object_set (priv->text_view, "editable", FALSE, NULL);
 

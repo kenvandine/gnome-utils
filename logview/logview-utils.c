@@ -74,13 +74,11 @@ days_compare (gconstpointer a, gconstpointer b)
 }
 
 static GDate *
-string_get_date (const char *line, char **time_string)
+string_get_date (const char *line, char **time_string, int *timestamp_len)
 {
   GDate *date = NULL;
   struct tm tp;
-  char *cp = NULL;
-  char tmp[50];
-  size_t chars_read;
+  char *cp = NULL, *timestamp = NULL;
   
   /* it's safe to assume that if strptime returns NULL, it's
    * because of an error (format unmatched). being a log file, it's very
@@ -94,14 +92,12 @@ string_get_date (const char *line, char **time_string)
   /* this parses the "MonthName DayNo" format */
   cp = strptime (line, "%b %d", &tp);
   if (cp) {
-    chars_read = strftime (tmp, 50, "%b %e", &tp);
     goto out;
   }
 
   /* this parses the YYYY-MM-DD format */
   cp = strptime (line, "%F", &tp);
   if (cp) {
-    chars_read = strftime (tmp, 50, "%F", &tp);
     goto out;
   }
 
@@ -109,7 +105,12 @@ out:
   if (cp) {
     /* the year doesn't matter to us now */
     date = g_date_new_dmy (tp.tm_mday, tp.tm_mon + 1, 1);
-    *time_string = g_strndup (tmp, chars_read);
+    *time_string = g_strndup (line, cp - line);
+
+    timestamp = strptime (cp, "%X", &tp);
+    if (timestamp) {
+      *timestamp_len = timestamp - line;
+    }
   }
 
   return date;
@@ -132,7 +133,7 @@ out:
 GSList *
 log_read_dates (const char **buffer_lines, time_t current)
 {
-  int current_year, offsetyear, i, n, rangemin, rangemax;
+  int current_year, offsetyear, i, n, rangemin, rangemax, timestamp_len = 0;
   GSList *days = NULL;
   GDate *date, *newdate;
   struct tm *tmptm;
@@ -150,7 +151,7 @@ log_read_dates (const char **buffer_lines, time_t current)
 
   /* find the first line with a date we're able to parse */
   for (i = 0; buffer_lines[i]; i++) {
-    if ((date = string_get_date (buffer_lines[i], &date_string)) != NULL)
+    if ((date = string_get_date (buffer_lines[i], &date_string, &timestamp_len)) != NULL)
       break;
   }
 
@@ -174,7 +175,7 @@ log_read_dates (const char **buffer_lines, time_t current)
   day->date = date;
   day->first_line = i;
   day->last_line = -1;
-  day->timestamp_len = strlen (date_string);
+  day->timestamp_len = timestamp_len;
 
   /* now scan the logfile to get the last line of the day */
   rangemin = i;
@@ -223,7 +224,7 @@ log_read_dates (const char **buffer_lines, time_t current)
       newdate = NULL;
       
       for (i = day->last_line + 1; buffer_lines[i]; i++) {
-        if ((newdate = string_get_date (buffer_lines[i], &date_string)) != NULL)
+        if ((newdate = string_get_date (buffer_lines[i], &date_string, &timestamp_len)) != NULL)
         break;
       }
 
@@ -257,7 +258,7 @@ log_read_dates (const char **buffer_lines, time_t current)
         day->date = date;
         day->first_line = i;
         day->last_line = -1;
-        day->timestamp_len = strlen (date_string);
+        day->timestamp_len = timestamp_len;
         rangemin = i;
         rangemax = n - 1;
       }
