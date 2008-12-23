@@ -69,25 +69,32 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
                                GtkTreeIter *log, GSList *days)
 {
   gboolean res;
-  GtkTreeIter iter;
+  GtkTreeIter iter, dummy;
   GSList *l;
   int i;
   char date[200];
   Day *day;
 
-  /* first, remove all the stored days */
+  /* we can't remove all the items immediately, otherwise, if the row
+   * is expanded, it will be collapsed because there are no items, so
+   * we create a dummy entry, remove all the others and then remove the dummy
+   * one.
+   */
   res = gtk_tree_model_iter_children (GTK_TREE_MODEL (loglist->priv->model),
                                       &iter, log);
   if (!res) {
-    /* there are no children, go on */
+    /* this isn't quite possible */
   } else {
+    gtk_tree_store_insert_before (loglist->priv->model, &dummy, log, &iter);
+    gtk_tree_store_set (loglist->priv->model, &dummy,
+                        LOG_NAME, "", -1);
     do {
       gtk_tree_store_remove (loglist->priv->model, &iter);
     } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (loglist->priv->model),
                                        &iter));
   }
 
-  for (i = 0, l = days; l; l = l->next) {
+  for (i = 1, l = days; l; l = l->next) {
     /* now insert all the days */
     day = l->data;
 
@@ -99,6 +106,8 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
                         &iter, LOG_NAME, date, LOG_DAY, day, -1);
     i++;
   }
+
+  gtk_tree_store_remove (loglist->priv->model, &dummy);
 }
 
 static GtkTreeIter *
@@ -121,7 +130,7 @@ logview_loglist_find_log (LogviewLoglist *list, LogviewLog *log)
       retval = gtk_tree_iter_copy (&iter);
     }
     g_object_unref (current);
-  } while (gtk_tree_model_iter_next (model, &iter) && retval == NULL);
+  } while (gtk_tree_model_iter_next (model, &iter) != FALSE && retval == NULL);
 
   return retval;
 }
@@ -294,6 +303,24 @@ manager_log_added_cb (LogviewManager *manager,
 }
 
 static void
+row_expanded_cb (GtkTreeView *view,
+                 GtkTreeIter *iter,
+                 GtkTreePath *path,
+                 gpointer user_data)
+{
+  LogviewLoglist *list = user_data;
+  LogviewLog *log;
+
+  gtk_tree_model_get (GTK_TREE_MODEL (list->priv->model), iter,
+                      LOG_OBJECT, &log, -1);
+  if (!logview_manager_log_is_active (list->priv->manager, log)) {
+    logview_manager_set_active_log (list->priv->manager, log);
+  }
+
+  g_object_unref (log);
+}
+
+static void
 do_finalize (GObject *obj)
 {
   LogviewLoglist *list = LOGVIEW_LOGLIST (obj);
@@ -345,6 +372,8 @@ logview_loglist_init (LogviewLoglist *list)
                     G_CALLBACK (manager_log_closed_cb), list);
   g_signal_connect_after (list->priv->manager, "active-changed",
                           G_CALLBACK (manager_active_changed_cb), list);
+  g_signal_connect (list, "row-expanded",
+                    G_CALLBACK (row_expanded_cb), list);
 }
 
 static void
