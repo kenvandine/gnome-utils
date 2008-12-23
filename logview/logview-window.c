@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2; -*- */
 /* logview-window.c - main window of logview
  *
  * Copyright (C) 1998  Cesar Miquel  <miquel@df.uba.ar>

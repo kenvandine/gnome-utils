@@ -1,3 +1,4 @@
+/* -*- Mode: C; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2; -*- */
 /* logview-main.c
  *
  * Copyright (C) 2005 Vincent Noel <vnoel@cox.net>
