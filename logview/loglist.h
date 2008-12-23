@@ -1,6 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * Copyright (C) 2005 Vincent Noel <vnoel@cox.net>
+ * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,33 +17,44 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef __LOG_LIST_H__
-#define __LOG_LIST_H__
+#ifndef __LOGVIEW_LOGLIST_H__
+#define __LOGVIEW_LOGLIST_H__
 
-#define LOG_LIST_TYPE		  (loglist_get_type ())
-#define LOG_LIST(obj)		  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOG_LIST_TYPE, LogList))
-#define LOG_LIST_CLASS(klass)	  (G_TYPE_CHECK_CLASS_CAST ((klass), LOG_LIST_TYPE, LogListClass))
-#define LOG_IS_LIST(obj)	  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LOG_LIST_TYPE))
-#define LOG_IS_LIST_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((obj), LOG_LIST_TYPE))
-#define LOG_LIST_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOG_LIST_TYPE, LogListClass))
+#define LOGVIEW_TYPE_LOGLIST logview_loglist_get_type()
+#define LOGVIEW_LOGLIST(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOGVIEW_TYPE_LOGLIST, LogviewLoglist))
+#define LOGVIEW_LOGLIST_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST ((klass), LOGVIEW_TYPE_LOGLIST, LogviewLogListClass))
+#define LOGVIEW_IS_LOGLIST(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LOGVIEW_TYPE_LOGLIST))
+#define LOGVIEW_IS_LOGLIST_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE ((klass), LOGVIEW_TYPE_LOGLIST))
+#define LOGVIEW_LOGLIST_GET_CLASS(obj) \
+  (G_TYPE_INSTANCE_GET_CLASS ((obj), LOGVIEW_TYPE_LOGLIST, LogviewLoglistClass))
 
 #include <gtk/gtk.h>
-#include "logview.h"
 
-typedef struct LogListPriv LogListPriv;
-typedef struct LogList
+typedef struct _LogviewLoglist LogviewLoglist;
+typedef struct _LogviewLoglistClass LogviewLoglistClass;
+typedef struct _LogviewLoglistPrivate LogviewLogListPrivate;
+
+struct _LogviewLoglist
 {	
-    GtkTreeView parent_instance;
-    LogListPriv *priv;
-}LogList;
+  GtkTreeView parent_instance;
+  LogviewLoglistPrivate *priv;
+};
 
-typedef struct LogListClass
+struct _LogviewLoglistClass
 {
 	GtkTreeViewClass parent_class;
-}LogListClass;
+};
 
-GType loglist_get_type (void);
-GtkWidget *loglist_new (void);
+GType logview_loglist_get_type (void);
+
+/* public methods */
+GtkWidget * logview_loglist_new (void);
+
+
 void loglist_connect (LogList *list, LogviewWindow *window);
 void loglist_add_log (LogList *list, Log *log);
 void loglist_remove_log (LogList *list, Log *log);
@@ -51,4 +62,4 @@ void loglist_select_log (LogList *list, Log *log);
 void loglist_bold_log (LogList *list, Log *log);
 void loglist_unbold_log (LogList *list, Log *log);
 
-#endif /* __LOG_LIST_H__ */
+#endif /* __LOGVIEW_LOGLIST_H__ */
