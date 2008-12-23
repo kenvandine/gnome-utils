@@ -29,7 +29,6 @@
 #include "logview.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
-#include "misc.h"
 
 static gboolean show_version = FALSE;
 
@@ -82,8 +81,6 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  error_dialog_queue (TRUE);
-
   context = create_option_context ();
 
   g_option_context_parse (context, &argc, &argv, &error);
@@ -106,9 +103,7 @@ main (int argc, char *argv[])
   /* open regular logs and add each log passed as a parameter */
   main_window = logview_window_new ();
   if (!main_window) {
-    error_dialog_show (NULL,
-                       _("Unable to create user interface."),
-                       NULL);
+    g_critical ("Unable to create the user interface.");
   
     exit (1);
   }
@@ -117,10 +112,6 @@ main (int argc, char *argv[])
   prefs = logview_prefs_get ();
 
   gtk_window_set_default_icon_name ("logviewer");
-
-  /* show the eventual error dialogs */
-  error_dialog_queue (FALSE);
-  error_dialog_show_queued ();
 
   if (argc == 1) {
     char *active_log;

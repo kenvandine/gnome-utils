@@ -26,7 +26,6 @@
 
 #include "logview.h"
 #include "logview-loglist.h"
-#include "misc.h"
 
 #include "logview-findbar.h"
 #include "logview-about.h"
@@ -358,7 +357,7 @@ logview_help (GtkAction *action, GtkWidget *parent_window)
                 &error);
 
   if (error) {
-    error_dialog_show (parent_window, _("There was an error displaying help."), error->message);
+    g_warning (_("There was an error displaying help: %s"), error->message);
     g_error_free (error);
   }
 }
