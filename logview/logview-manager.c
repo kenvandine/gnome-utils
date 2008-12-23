@@ -310,6 +310,8 @@ logview_manager_close_active_log (LogviewManager *manager)
 
   logview_prefs_remove_stored_log (logview_prefs_get (), file);
 
+  g_object_unref (file);
+
   /* we own two refs to the active log; one is inside the hash table */
   g_object_unref (active_log);
   res = g_hash_table_remove (manager->priv->logs, log_uri);
