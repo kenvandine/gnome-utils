@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtk/gtk.h>
+#include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
 
 #include "logview-window.h"
@@ -40,8 +41,8 @@
 #define SEARCH_END_MARK "lw-search-end-mark"
 
 struct _LogviewWindowPrivate {
-  GtkWidget *statusbar;
   GtkUIManager *ui_manager;
+  GtkActionGroup *action_group;
 
   GtkWidget *find_bar;
   GtkWidget *loglist;
@@ -50,6 +51,7 @@ struct _LogviewWindowPrivate {
   GtkWidget *version_selector;
   GtkWidget *hpaned;
   GtkWidget *text_view;
+  GtkWidget *statusbar;
 
   GtkWidget *message_area;
   GtkWidget *message_primary;
@@ -927,6 +929,42 @@ style_set_cb (GtkWidget *widget,
   populate_style_tag_table (style, logview->priv->tag_table);
 }
 
+static const struct {
+  guint keyval;
+  GdkModifierType modifier;
+  const gchar *action;
+} extra_keybindings [] = {
+  { GDK_KP_Add,      GDK_CONTROL_MASK, "ViewZoomIn" },
+  { GDK_KP_Subtract, GDK_CONTROL_MASK, "ViewZoomOut" },
+  { GDK_KP_0,        GDK_CONTROL_MASK, "ViewZoom100" }
+};
+
+static gboolean
+key_press_event_cb (GtkWidget *widget,
+                    GdkEventKey *event,
+                    gpointer user_data)
+{
+  LogviewWindow *window = user_data;
+  guint modifier = event->state & gtk_accelerator_get_default_mod_mask ();
+  GtkAction *action;
+  int i;
+
+  /* handle accelerators that we want bound, but aren't associated with
+   * an action */
+  for (i = 0; i < G_N_ELEMENTS (extra_keybindings); i++) {
+    if (event->keyval == extra_keybindings[i].keyval &&
+        modifier == extra_keybindings[i].modifier) {
+
+      action = gtk_action_group_get_action (window->priv->action_group,
+                                            extra_keybindings[i].action);
+      gtk_action_activate (action);
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
 /* adapted from GEdit */
 
 static void
@@ -1051,6 +1089,7 @@ logview_window_init (LogviewWindow *logview)
   gtk_action_group_set_translation_domain (action_group, NULL);
   gtk_action_group_add_actions (action_group, entries, G_N_ELEMENTS (entries), logview);
   gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), logview);
+  priv->action_group = action_group;
 
   priv->ui_manager = gtk_ui_manager_new ();
 
@@ -1184,6 +1223,8 @@ logview_window_init (LogviewWindow *logview)
                     G_CALLBACK (active_log_changed_cb), logview);
   g_signal_connect (logview, "style-set",
                     G_CALLBACK (style_set_cb), logview);
+  g_signal_connect (logview, "key-press-event",
+                    G_CALLBACK (key_press_event_cb), logview);
 
   /* status area at bottom */
   priv->statusbar = gtk_statusbar_new ();
