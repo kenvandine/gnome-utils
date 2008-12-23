@@ -291,6 +291,7 @@ out:
   g_io_scheduler_job_send_to_mainloop_async (io_job,
                                              new_lines_job_done,
                                              job, NULL);
+  return FALSE;
 }
 
 static gboolean

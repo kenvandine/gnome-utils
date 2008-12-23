@@ -602,8 +602,6 @@ read_new_lines_cb (LogviewLog *log,
   GtkTextIter iter, start;
   GtkTextMark *mark;
 
-  g_debug ("read new lines cb %p", lines);
-
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
 
   if (gtk_text_buffer_get_char_count (buffer) == 0) {
@@ -626,6 +624,7 @@ read_new_lines_cb (LogviewLog *log,
   if (boldify) {
     gtk_text_buffer_get_iter_at_mark (buffer, &start, mark);
     gtk_text_buffer_apply_tag_by_name (buffer, "bold", &start, &iter);
+    gtk_text_buffer_delete_mark (buffer, mark);
   }
 
   if (window->priv->monitor_id == 0) {
@@ -650,7 +649,6 @@ active_log_changed_cb (LogviewManager *manager,
   }
 
   lines = logview_log_get_cached_lines (log);
-  g_debug ("active log changed cb, lines %p", lines);
   buffer = gtk_text_buffer_new (window->priv->tag_table);
 
   if (lines != NULL) {
@@ -675,8 +673,6 @@ active_log_changed_cb (LogviewManager *manager,
    */
   gtk_text_view_set_buffer (GTK_TEXT_VIEW (window->priv->text_view), buffer);
   g_object_unref (buffer);
-
-  g_debug ("before if: lines %p, has new lines %d", lines, logview_log_has_new_lines (log));
 
   if (lines == NULL || logview_log_has_new_lines (log)) {
     /* read the new lines */
@@ -798,10 +794,16 @@ logview_window_init (LogviewWindow *logview)
   gtk_paned_pack2 (GTK_PANED (hpaned), main_view, TRUE, TRUE);
 
   /* second pane: text view */
+  w = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
+                                  GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_box_pack_start (GTK_BOX (main_view), w, TRUE, TRUE, 0);
+  gtk_widget_show (w);
+
   priv->tag_table = gtk_text_tag_table_new ();
   populate_tag_table (priv->tag_table);
   priv->text_view = gtk_text_view_new ();
-  gtk_box_pack_start (GTK_BOX (main_view), priv->text_view, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (w), priv->text_view);
   gtk_widget_show (priv->text_view);
 
   /* use the desktop monospace font */
