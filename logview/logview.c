@@ -95,7 +95,6 @@ static const char *ui_description =
 	"			<menuitem action='ShowCalendar'/>"
 	"			<separator/>"
 	"			<menuitem action='Search'/>"
-	"			<menuitem action='CollapseAll'/>"
 	"			<separator/>"
 	"			<menuitem action='ViewZoomIn'/>"
 	"			<menuitem action='ViewZoomOut'/>"
@@ -308,7 +307,6 @@ logview_window_menus_set_state (LogviewWindow *logview)
 
   logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
   logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
-  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", calendar_active);
   logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
   logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
   logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
@@ -652,7 +650,6 @@ active_log_changed_cb (LogviewManager *manager,
 
   if (lines != NULL) {
     int i;
-    GtkTextBuffer *buffer;
     GtkTextIter iter;
 
     /* update the text view to show the current lines */
@@ -797,7 +794,7 @@ logview_window_init (LogviewWindow *logview)
   priv->tag_table = gtk_text_tag_table_new ();
   populate_tag_table (priv->tag_table);
   priv->text_view = gtk_text_view_new ();
-  gtk_box_pack_end (GTK_BOX (main_view), priv->text_view, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (main_view), priv->text_view, TRUE, TRUE, 0);
   gtk_widget_show (priv->text_view);
 
   /* use the desktop monospace font */

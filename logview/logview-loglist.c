@@ -164,7 +164,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
   }
 
   gtk_tree_model_get (model, &iter, LOG_OBJECT, &log,
-                      LOG_WEIGHT_SET, &is_bold);
+                      LOG_WEIGHT_SET, &is_bold, -1);
   logview_manager_set_active_log (list->priv->manager, log);
 
   if (is_bold) {
@@ -214,7 +214,7 @@ logview_loglist_init (LogviewLoglist *list)
                                        "weight", LOG_WEIGHT,
                                        NULL);
 
-  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list->priv->model), 0, GTK_SORT_ASCENDING);
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list->priv->model), LOG_NAME, GTK_SORT_ASCENDING);
   gtk_tree_view_append_column (GTK_TREE_VIEW (list), column);
   gtk_tree_view_set_search_column (GTK_TREE_VIEW (list), -1);
 
