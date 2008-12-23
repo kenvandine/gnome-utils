@@ -80,6 +80,15 @@ logview_manager_class_init (LogviewManagerClass *klass)
                                      G_TYPE_NONE, 1,
                                      LOGVIEW_TYPE_LOG);
 
+  signals[LOG_CLOSED] = g_signal_new ("log-closed",
+                                      G_OBJECT_CLASS_TYPE (object_class),
+                                      G_SIGNAL_RUN_LAST,
+                                      G_STRUCT_OFFSET (LogviewManagerClass, log_closed),
+                                      NULL, NULL,
+                                      g_cclosure_marshal_VOID__OBJECT,
+                                      G_TYPE_NONE, 1,
+                                      LOGVIEW_TYPE_LOG);
+
   signals[LOG_ADD_ERROR] = g_signal_new ("log-add-error",
                                          G_OBJECT_CLASS_TYPE (object_class),
                                          G_SIGNAL_RUN_LAST,
@@ -107,7 +116,8 @@ logview_manager_init (LogviewManager *self)
   self->priv = GET_PRIVATE (self);
 
   priv->active_log = NULL;
-  priv->logs = g_hash_table_new (g_str_hash, g_str_equal);
+  priv->logs = g_hash_table_new_full (g_str_hash, g_str_equal, 
+                                      NULL, (GDestroyNotify) g_object_unref);
 }
 
 static void
@@ -133,6 +143,21 @@ create_log_cb (LogviewLog *log,
 
   g_free (data->filename);
   g_slice_free (CreateCBData, data);
+}
+
+static gboolean
+look_for_log (gpointer key,
+              gpointer value,
+              gpointer user_data)
+{
+  if (user_data == value) {
+    /* we found the log, emit the closed signal and remove the log */
+    g_signal_emit (singleton, signals[LOG_CLOSED], 0, value, NULL);
+
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 /* public methods */
@@ -216,17 +241,9 @@ logview_manager_add_log_from_name (LogviewManager *manager,
 int
 logview_manager_get_log_count (LogviewManager *manager)
 {
-  GList *keys;
-  int retval;
-
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
-  keys = g_hash_table_get_keys (manager->priv->logs);
-  retval = g_list_length (keys);
-
-  g_list_free (keys);
-
-  return retval;
+  return g_hash_table_size (manager->priv->logs);
 }
 
 LogviewLog *
@@ -235,4 +252,24 @@ logview_manager_get_if_loaded (LogviewManager *manager, char *filename)
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
   return g_object_ref (g_hash_table_lookup (manager->priv->logs, filename));
+}
+
+void
+logview_manager_close_active_log (LogviewManager *manager)
+{
+  LogviewLog *active_log;
+  GHashTableIter iter;
+
+  g_assert (LOGVIEW_IS_MANAGER (manager));
+
+  active_log = manager->priv->active_log;
+
+  /* we own two refs to the active log; one is inside the hash table */
+  g_object_unref (active_log);
+
+  g_hash_table_find (manager->priv->logs,
+                     (GHRFunc) look_for_log,
+                     active_log);
+
+  /* someone else will take care of setting the next active log to us */
 }

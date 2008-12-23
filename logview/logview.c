@@ -28,7 +28,6 @@
 #include "loglist.h"
 #include "log_repaint.h"
 #include "logrtns.h"
-#include "monitor.h"
 #include "about.h"
 #include "misc.h"
 #include "logview-findbar.h"
@@ -75,81 +74,11 @@ struct _LogviewWindowPrivate {
 G_DEFINE_TYPE (LogviewWindow, logview_window, GTK_TYPE_WINDOW);
 
 /* Function Prototypes */
-
-static void logview_save_prefs (LogviewWindow *logview);
-static void logview_add_log (LogviewWindow *logview, Log *log);
-static void logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state);
-static void logview_menu_item_toggle_set_active (LogviewWindow *logview, char *path, gboolean state);
 static void logview_update_findbar_visibility (LogviewWindow *logview);
-
-static void logview_open_log (GtkAction *action, LogviewWindow *logview);
-static void logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview);
-static void logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview);
-static void logview_toggle_calendar (GtkAction *action, LogviewWindow *logview);
-static void logview_collapse_rows (GtkAction *action, LogviewWindow *logview);
-static void logview_toggle_monitor (GtkAction *action, LogviewWindow *logview);
-static void logview_close_log (GtkAction *action, LogviewWindow *logview);
-static void logview_bigger_text (GtkAction *action, LogviewWindow *logview);
-static void logview_smaller_text (GtkAction *action, LogviewWindow *logview);
-static void logview_normal_text (GtkAction *action, LogviewWindow *logview);
 static void logview_calendar_set_state (LogviewWindow *logview);
 static void logview_search (GtkAction *action, LogviewWindow *logview);
-static void logview_help (GtkAction *action, GtkWidget *parent_window);
-static void logview_copy (GtkAction *action, LogviewWindow *logview);
-static void logview_select_all (GtkAction *action, LogviewWindow *logview);
-static Log *logview_find_log_from_name (LogviewWindow *logview, gchar *name);
 
 static void logview_window_get_property	(GObject *object, guint param_id, GValue *value, GParamSpec *pspec);
-
-/* Menus */
-
-static GtkActionEntry entries[] = {
-	{ "FileMenu", NULL, N_("_File"), NULL, NULL, NULL },
-	{ "EditMenu", NULL, N_("_Edit"), NULL, NULL, NULL },
-	{ "ViewMenu", NULL, N_("_View"), NULL, NULL, NULL },
-	{ "HelpMenu", NULL, N_("_Help"), NULL, NULL, NULL },
-
-	{ "OpenLog", GTK_STOCK_OPEN, N_("_Open..."), "<control>O", N_("Open a log from file"), 
-	  G_CALLBACK (logview_open_log) },
-	{ "CloseLog", GTK_STOCK_CLOSE, N_("_Close"), "<control>W", N_("Close this log"), 
-	  G_CALLBACK (logview_close_log) },
-	{ "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 
-	  G_CALLBACK (gtk_main_quit) },
-
-	{ "Copy", GTK_STOCK_COPY, N_("_Copy"), "<control>C", N_("Copy the selection"),
-	  G_CALLBACK (logview_copy) },
-	{ "SelectAll", NULL, N_("Select _All"), "<Control>A", N_("Select the entire log"),
-	  G_CALLBACK (logview_select_all) },
-	{ "Search", GTK_STOCK_FIND, N_("_Filter..."), "<control>F", N_("Filter log"),
-	  G_CALLBACK (logview_search) },
-
-	{"ViewZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<control>plus", N_("Bigger text size"),
-	 G_CALLBACK (logview_bigger_text)},
-	{"ViewZoomOut", GTK_STOCK_ZOOM_OUT, NULL, "<control>minus", N_("Smaller text size"),
-	 G_CALLBACK (logview_smaller_text)},
-	{"ViewZoom100", GTK_STOCK_ZOOM_100, NULL, "<control>0", N_("Normal text size"),
-	 G_CALLBACK (logview_normal_text)},
-
-	{"CollapseAll", NULL, N_("Collapse _All"), NULL, N_("Collapse all the rows"),
-	 G_CALLBACK (logview_collapse_rows) },
-
-	{ "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
-	  G_CALLBACK (logview_help) },
-	{ "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the log viewer"), 
-	  G_CALLBACK (logview_about) },
-
-};
-
-static GtkToggleActionEntry toggle_entries[] = {
-    { "ShowStatusBar", NULL, N_("_Statusbar"), NULL, N_("Show Status Bar"),
-      G_CALLBACK (logview_toggle_statusbar), TRUE },
-	{ "ShowSidebar", NULL, N_("Side _Pane"), "F9", N_("Show Side Pane"), 
-		G_CALLBACK (logview_toggle_sidebar), TRUE },
-	{ "MonitorLogs", NULL, N_("_Monitor"), "<control>M", N_("Monitor Current Log"),
-	  G_CALLBACK (logview_toggle_monitor), TRUE },
-	{"ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
-	 G_CALLBACK (logview_toggle_calendar), TRUE },
-};
 
 static const char *ui_description = 
 	"<ui>"
@@ -164,8 +93,6 @@ static const char *ui_description =
 	"	    	<menuitem action='SelectAll'/>"
 	"		</menu>"
 	"		<menu action='ViewMenu'>"
-	"			<menuitem action='MonitorLogs'/>"
-	"			<separator/>"
 	"			<menuitem action='ShowStatusBar'/>"
 	"			<menuitem action='ShowSidebar'/>"
 	"			<menuitem action='ShowCalendar'/>"
@@ -221,31 +148,6 @@ logview_select_log (LogviewWindow *logview, Log *log)
 }
 
 void
-logview_menus_set_state (LogviewWindow *logview)
-{
-    Log *log;
-    gboolean calendar_active = FALSE, monitor_active = FALSE;
-    GtkWidget *widget;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-    log = logview->curlog;
-
-    if (log) {
-        monitor_active = (log->display_name == NULL);
-        calendar_active = (log->days != NULL);
-        logview_menu_item_toggle_set_active (logview, "/LogviewMenu/ViewMenu/MonitorLogs", logview->curlog->monitored);
-    }
-    
-    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/MonitorLogs", monitor_active);
-    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
-    logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
-    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", calendar_active);
-    logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
-    logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
-    logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
-}
-
-void
 logview_set_window_title (LogviewWindow *logview)
 {
     gchar *window_title;
@@ -264,10 +166,7 @@ logview_set_window_title (LogviewWindow *logview)
 	logname = log->display_name;
       else
 	logname = log->name;
-      
-      if (log->monitored) 
-	window_title = g_strdup_printf (_("%s (monitored) - %s"), logname, APP_NAME);
-      else
+
 	window_title = g_strdup_printf ("%s - %s", logname, APP_NAME);
 
     }
@@ -381,245 +280,6 @@ logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_d
 }
 
 static void
-logview_close_log (GtkAction *action, LogviewWindow *logview)
-{
-    Log *log;
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    if (logview->curlog == NULL)
-        return;
-
-    if (logview->curlog->monitored) {
-        GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/ViewMenu/MonitorLogs");
-        gtk_action_activate (action);
-    }
-    
-    gtk_widget_hide (logview->find_bar);
-
-    log = logview->curlog;
-    logview->curlog = NULL;
-
-    logview->logs = g_slist_remove (logview->logs, log);
-    log_close (log);
-    loglist_remove_log (LOG_LIST (logview->loglist), log);
-}
-
-static void
-logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    if (GTK_WIDGET_VISIBLE (logview->statusbar))
-        gtk_widget_hide (logview->statusbar);
-    else
-        gtk_widget_show (logview->statusbar);
-}
-
-static void
-logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	if (GTK_WIDGET_VISIBLE (logview->sidebar))
-		gtk_widget_hide (logview->sidebar);
-	else
-		gtk_widget_show (logview->sidebar);
-}
-
-static void 
-logview_toggle_calendar (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	if (GTK_WIDGET_VISIBLE (logview->calendar))
-		gtk_widget_hide (logview->calendar);
-	else {
-		gtk_widget_show (logview->calendar);
-		if (!GTK_WIDGET_VISIBLE (logview->sidebar)) {
-			GtkAction *action = gtk_ui_manager_get_action (logview->ui_manager, "/LogviewMenu/ViewMenu/ShowSidebar");
-			gtk_action_activate (action);
-		}
-	}
-}
-
-static void 
-logview_collapse_rows (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    gtk_tree_view_collapse_all (GTK_TREE_VIEW (logview->view));
-}
-
-static void
-logview_toggle_monitor (GtkAction *action, LogviewWindow *logview)
-{
-    Log *log;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    log = logview->curlog;
-    if ((log == NULL) || (log->display_name))
-        return;
-
-    if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action)) &&
-        (log->monitored))
-        return;
-
-    if (gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (action))==FALSE &&
-        (!log->monitored))
-        return;
-
-    if (log->monitored)
-        monitor_stop (log);
-    else
-        monitor_start (log);
-    
-    logview_set_window_title (logview);
-    logview_menus_set_state (logview);
-}
-
-#define DEFAULT_LOGVIEW_FONT "Monospace 10"
-
-void
-logview_set_font (LogviewWindow *logview,
-                  const gchar   *fontname)
-{
-	PangoFontDescription *font_desc;
-
-	g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-
-	if (fontname == NULL)
-		fontname = DEFAULT_LOGVIEW_FONT;
-
-	font_desc = pango_font_description_from_string (fontname);
-	if (font_desc) {
-		gtk_widget_modify_font (logview->view, font_desc);
-		pango_font_description_free (font_desc);
-	}
-}
-
-static void
-logview_set_fontsize (LogviewWindow *logview)
-{
-	PangoFontDescription *fontdesc;
-	PangoContext *context;
-	
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	context = gtk_widget_get_pango_context (logview->view);
-	fontdesc = pango_context_get_font_description (context);
-	pango_font_description_set_size (fontdesc, (logview->fontsize)*PANGO_SCALE);
-	gtk_widget_modify_font (logview->view, fontdesc);
-	logview_save_prefs (logview);
-}	
-
-static void
-logview_bigger_text (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	logview->fontsize = MIN (logview->fontsize + 1, 24);
-	logview_set_fontsize (logview);
-}	
-
-static void
-logview_smaller_text (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	logview->fontsize = MAX (logview->fontsize-1, 6);
-	logview_set_fontsize (logview);
-}	
-
-static void
-logview_normal_text (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	logview->fontsize = logview->original_fontsize;
-	logview_set_fontsize (logview);
-}
-	
-static void
-logview_search (GtkAction *action, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-    
-    gtk_widget_show_all (logview->find_bar);
-    logview_findbar_grab_focus (LOGVIEW_FINDBAR (logview->find_bar));
-}
-
-static void
-logview_copy (GtkAction *action, LogviewWindow *logview)
-{
-	gchar *text, **lines;
-	int nline, i, l1, l2;
-    gchar *line;
-    Log *log;
-    GtkClipboard *clipboard;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    log = logview->curlog;
-    if (log == NULL)
-        return;
-
-    l1 = log->selected_line_first;
-    l2 = log->selected_line_last;
-    if (l1 == -1 || l2 == -1)
-        return;
-
-    nline = l2 - l1 + 1;
-    lines = g_new0(gchar *, (nline + 1));
-    for (i=0; i<=nline; i++) {
-        line = log->lines[l1+i];
-        lines[i] = g_strdup (line);
-    }
-    lines[nline] = NULL;
-    text = g_strjoinv ("\n", lines);
-
-    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (logview->view),
-                                          GDK_SELECTION_CLIPBOARD);
-    gtk_clipboard_set_text (clipboard, text, -1);
-
-    g_free (text);
-    g_strfreev (lines);
-}
-
-static void
-logview_select_all (GtkAction *action, LogviewWindow *logview)
-{
-	GtkTreeSelection *selection;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-	selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->view));
-	gtk_tree_selection_select_all (selection);
-}
-
-static void
-logview_menu_item_toggle_set_active (LogviewWindow *logview, char *path, gboolean state)
-{
-    GtkToggleAction *action;
-    
-    g_assert (path);
-    
-    action = GTK_TOGGLE_ACTION (gtk_ui_manager_get_action (logview->ui_manager, path));
-    gtk_toggle_action_set_active (action, state);
-}
-
-static void
-logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state)
-{
-	GtkAction *action;
-
-	g_assert (path);
-
-	action = gtk_ui_manager_get_action (logview->ui_manager, path);
-	gtk_action_set_sensitive (action, state);
-}
-
-static void
 logview_calendar_set_state (LogviewWindow *logview)
 {
     g_assert (LOGVIEW_IS_WINDOW (logview));
@@ -630,6 +290,55 @@ logview_calendar_set_state (LogviewWindow *logview)
         gtk_widget_set_sensitive (logview->calendar, (logview->curlog->days != NULL));
     } else
         gtk_widget_set_sensitive (logview->calendar, FALSE);
+}
+
+/* private helpers */
+
+#define DEFAULT_LOGVIEW_FONT "Monospace 10"
+
+static void
+logview_set_font (LogviewWindow *logview,
+                  const char    *fontname)
+{
+  PangoFontDescription *font_desc;
+
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  if (fontname == NULL)
+    fontname = DEFAULT_LOGVIEW_FONT;
+
+  font_desc = pango_font_description_from_string (fontname);
+  if (font_desc) {
+    gtk_widget_modify_font (logview->priv->view, font_desc);
+    pango_font_description_free (font_desc);
+  }
+}
+
+static void
+logview_set_fontsize (LogviewWindow *logview)
+{
+  PangoFontDescription *fontdesc;
+  PangoContext *context;
+	
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  context = gtk_widget_get_pango_context (priv->view);
+  fontdesc = pango_context_get_font_description (context);
+  pango_font_description_set_size (fontdesc, (priv->fontsize) * PANGO_SCALE);
+  gtk_widget_modify_font (priv->view, fontdesc);
+
+  logview_prefs_store_fontsize (logview->priv->prefs, priv->fontsize);
+}
+
+static void
+logview_menu_item_set_state (LogviewWindow *logview, char *path, gboolean state)
+{
+  GtkAction *action;
+
+  g_assert (path);
+
+  action = gtk_ui_manager_get_action (logview->priv->ui_manager, path);
+  gtk_action_set_sensitive (action, state);
 }
 
 /* actions callbacks */
@@ -693,6 +402,15 @@ logview_open_log (GtkAction *action, LogviewWindow *logview)
 }
 
 static void
+logview_close_log (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  gtk_widget_hide (logview->priv->find_bar);
+  logview_manager_close_active_log (logview->priv->manager);
+}
+
+static void
 logview_help (GtkAction *action, GtkWidget *parent_window)
 {
   GError *error = NULL;
@@ -706,6 +424,217 @@ logview_help (GtkAction *action, GtkWidget *parent_window)
     g_error_free (error);
   }
 }
+
+static void
+logview_bigger_text (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  logview->priv->fontsize = MIN (logview->priv->fontsize + 1, 24);
+  logview_set_fontsize (logview);
+}	
+
+static void
+logview_smaller_text (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  logview->priv->fontsize = MAX (logview->priv->fontsize-1, 6);
+  logview_set_fontsize (logview);
+}	
+
+static void
+logview_normal_text (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  logview->priv->fontsize = logview->priv->original_fontsize;
+  logview_set_fontsize (logview);
+}
+
+static void
+logview_select_all (GtkAction *action, LogviewWindow *logview)
+{
+  GtkTreeSelection *selection;
+
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->priv->view));
+  gtk_tree_selection_select_all (selection);
+}
+
+static void
+logview_copy (GtkAction *action, LogviewWindow *logview)
+{
+#if 0 doesn't work for now;
+	gchar *text, **lines;
+	int nline, i, l1, l2;
+    gchar *line;
+    Log *log;
+    GtkClipboard *clipboard;
+
+    g_assert (LOGVIEW_IS_WINDOW (logview));
+
+    log = logview->curlog;
+    if (log == NULL)
+        return;
+
+    l1 = log->selected_line_first;
+    l2 = log->selected_line_last;
+    if (l1 == -1 || l2 == -1)
+        return;
+
+    nline = l2 - l1 + 1;
+    lines = g_new0(gchar *, (nline + 1));
+    for (i=0; i<=nline; i++) {
+        line = log->lines[l1+i];
+        lines[i] = g_strdup (line);
+    }
+    lines[nline] = NULL;
+    text = g_strjoinv ("\n", lines);
+
+    clipboard = gtk_widget_get_clipboard (GTK_WIDGET (logview->view),
+                                          GDK_SELECTION_CLIPBOARD);
+    gtk_clipboard_set_text (clipboard, text, -1);
+
+    g_free (text);
+    g_strfreev (lines);
+#endif
+}
+
+static void 
+logview_collapse_rows (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  gtk_tree_view_collapse_all (GTK_TREE_VIEW (logview->priv->view));
+}
+
+static void
+logview_search (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+    
+  gtk_widget_show_all (logview->priv->find_bar);
+  logview_findbar_grab_focus (LOGVIEW_FINDBAR (logview->priv->find_bar));
+}
+
+void
+logview_about (GtkWidget *widget, GtkWidget *window)
+{
+  g_return_if_fail (GTK_IS_WINDOW (window));
+
+  char *license_trans = g_strjoin ("\n\n", _(logview_about_license[0]),
+                                   _(logview_about_license[1]),
+                                   _(logview_about_license[2]), NULL);
+
+  gtk_show_about_dialog (GTK_WINDOW (window),
+                         "name",  _("System Log Viewer"),
+                         "version", VERSION,
+                         "copyright", "Copyright \xc2\xa9 1998-2008 Free Software Foundation, Inc.",
+                         "license", license_trans,
+                         "wrap-license", TRUE,
+                         "comments", _("A system log viewer for GNOME."),
+                         "authors", logview_about_authors,
+                         "documenters", logview_about_documenters,
+                         "translator_credits", strcmp (logview_about_translator_credits,
+                                                       "translator-credits") != 0 ?
+                                               logview_about_translator_credits : NULL,
+                         "logo_icon_name", "logviewer",
+                         NULL);
+  g_free (license_trans);
+
+  return;
+}
+
+static void
+logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  if (GTK_WIDGET_VISIBLE (logview->priv->statusbar))
+    gtk_widget_hide (logview->priv->statusbar);
+  else
+    gtk_widget_show (logview->priv->statusbar);
+}
+
+static void
+logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  if (GTK_WIDGET_VISIBLE (logview->priv->sidebar))
+    gtk_widget_hide (logview->priv->sidebar);
+  else
+    gtk_widget_show (logview->priv->sidebar);
+}
+
+static void 
+logview_toggle_calendar (GtkAction *action, LogviewWindow *logview)
+{
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  if (GTK_WIDGET_VISIBLE (logview->priv->calendar))
+    gtk_widget_hide (logview->priv->calendar);
+  else {
+    gtk_widget_show (logview->priv->calendar);
+    if (!GTK_WIDGET_VISIBLE (logview->priv->sidebar)) {
+      GtkAction *action = gtk_ui_manager_get_action (logview->priv->ui_manager,
+                                                     "/LogviewMenu/ViewMenu/ShowSidebar");
+      gtk_action_activate (action);
+    }
+  }
+}
+
+/* GObject functions */
+
+/* Menus */
+
+static GtkActionEntry entries[] = {
+    { "FileMenu", NULL, N_("_File"), NULL, NULL, NULL },
+    { "EditMenu", NULL, N_("_Edit"), NULL, NULL, NULL },
+    { "ViewMenu", NULL, N_("_View"), NULL, NULL, NULL },
+    { "HelpMenu", NULL, N_("_Help"), NULL, NULL, NULL },
+
+    { "OpenLog", GTK_STOCK_OPEN, N_("_Open..."), "<control>O", N_("Open a log from file"), 
+      G_CALLBACK (logview_open_log) },
+    { "CloseLog", GTK_STOCK_CLOSE, N_("_Close"), "<control>W", N_("Close this log"), 
+      G_CALLBACK (logview_close_log) },
+    { "Quit", GTK_STOCK_QUIT, N_("_Quit"), "<control>Q", N_("Quit the log viewer"), 
+      G_CALLBACK (gtk_main_quit) },
+
+    { "Copy", GTK_STOCK_COPY, N_("_Copy"), "<control>C", N_("Copy the selection"),
+      G_CALLBACK (logview_copy) },
+    { "SelectAll", NULL, N_("Select _All"), "<Control>A", N_("Select the entire log"),
+      G_CALLBACK (logview_select_all) },
+    { "Search", GTK_STOCK_FIND, N_("_Filter..."), "<control>F", N_("Filter log"),
+      G_CALLBACK (logview_search) },
+
+    {"ViewZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<control>plus", N_("Bigger text size"),
+      G_CALLBACK (logview_bigger_text)},
+    {"ViewZoomOut", GTK_STOCK_ZOOM_OUT, NULL, "<control>minus", N_("Smaller text size"),
+      G_CALLBACK (logview_smaller_text)},
+    {"ViewZoom100", GTK_STOCK_ZOOM_100, NULL, "<control>0", N_("Normal text size"),
+      G_CALLBACK (logview_normal_text)},
+
+    {"CollapseAll", NULL, N_("Collapse _All"), NULL, N_("Collapse all the rows"),
+      G_CALLBACK (logview_collapse_rows) },
+
+    { "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
+      G_CALLBACK (logview_help) },
+    { "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the log viewer"), 
+      G_CALLBACK (logview_about) },
+
+};
+
+static GtkToggleActionEntry toggle_entries[] = {
+    { "ShowStatusBar", NULL, N_("_Statusbar"), NULL, N_("Show Status Bar"),
+      G_CALLBACK (logview_toggle_statusbar), TRUE },
+    { "ShowSidebar", NULL, N_("Side _Pane"), "F9", N_("Show Side Pane"), 
+      G_CALLBACK (logview_toggle_sidebar), TRUE },  
+    {"ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
+      G_CALLBACK (logview_toggle_calendar), TRUE },
+};
 
 static gboolean 
 window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
@@ -937,4 +866,29 @@ logview_window_new ()
   }
 
   return window;
+}
+
+void
+logview_window_menus_set_state (LogviewWindow *logview)
+{
+  LogviewLog *log;
+  gboolean calendar_active = FALSE;
+  GtkWidget *widget;
+
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  log = logview_manager_get_current_log (logview->priv->manager);
+
+  if (log) {
+    calendar_active = (log->days != NULL);
+  }
+
+  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
+  logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
+  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/CollapseAll", calendar_active);
+  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
+  logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
+  logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/SelectAll", (log != NULL));
+
+  g_object_unref (log);
 }
