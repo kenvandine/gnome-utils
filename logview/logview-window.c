@@ -680,6 +680,7 @@ real_select_day (LogviewWindow *logview,
   gtk_text_buffer_get_iter_at_line (buffer, &end_vis, last_line);
   gtk_text_buffer_get_end_iter (buffer, &end_iter);
 
+  /* clear all previous invisible tags */
   gtk_text_buffer_remove_tag_by_name (buffer, "invisible",
                                       &start_iter, &end_iter);
 
@@ -748,7 +749,6 @@ read_new_lines_cb (LogviewLog *log,
   int i;
   GtkTextIter iter, start;
   GtkTextMark *mark;
-  GDate *date;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
 
@@ -782,11 +782,6 @@ read_new_lines_cb (LogviewLog *log,
 
   logview_update_statusbar (window, log);
   logview_loglist_update_lines (LOGVIEW_LOGLIST (window->priv->loglist), log);
-
-  if (date = logview_loglist_get_date_selection (LOGVIEW_LOGLIST (window->priv->loglist))) {
-    logview_window_select_date (window, date);
-    logview_loglist_clear_date (LOGVIEW_LOGLIST (window->priv->loglist));
-  }
 }
 
 static void
@@ -829,16 +824,9 @@ active_log_changed_cb (LogviewManager *manager,
     /* read the new lines */
     logview_log_read_new_lines (log, (LogviewNewLinesCallback) read_new_lines_cb, window);
   } else {
-    GDate *date;
-
     /* start now monitoring the log for changes */
     window->priv->monitor_id = g_signal_connect (log, "log-changed",
                                                  G_CALLBACK (log_monitor_changed_cb), window);
-
-    if (date = logview_loglist_get_date_selection (LOGVIEW_LOGLIST (window->priv->loglist))) {
-      logview_window_select_date (window, date);
-      logview_loglist_clear_date (LOGVIEW_LOGLIST (window->priv->loglist));
-    }
   }
 
   /* we set the buffer to the view anyway;

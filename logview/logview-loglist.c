@@ -28,7 +28,7 @@
 struct _LogviewLoglistPrivate {
   GtkTreeStore *model;
   LogviewManager *manager;
-  GDate *selection;
+  GtkTreePath *selection;
 };
 
 G_DEFINE_TYPE (LogviewLoglist, logview_loglist, GTK_TYPE_TREE_VIEW);
@@ -52,17 +52,14 @@ enum {
 static guint signals[LAST_SIGNAL] = { 0 };
 
 static void
-save_day_selection (LogviewLoglist *loglist, Day *day)
+save_day_selection (LogviewLoglist *loglist, GtkTreeIter *iter)
 {
-  GDate *date;
-
   if (loglist->priv->selection) {
-    g_date_free (loglist->priv->selection);
-    loglist->priv->selection = NULL;
+    gtk_tree_path_free (loglist->priv->selection);
   }
 
-  date = g_date_new_julian (g_date_get_julian (day->date));
-  loglist->priv->selection = date;
+  loglist->priv->selection = gtk_tree_model_get_path
+    (GTK_TREE_MODEL (loglist->priv->model), iter);
 }
 
 static void
@@ -174,7 +171,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
     gtk_tree_model_get (model, &parent, LOG_OBJECT, &log, -1);
 
     if (!logview_manager_log_is_active (list->priv->manager, log)) {
-      save_day_selection (list, day);
+      save_day_selection (list, &iter);      
       logview_manager_set_active_log (list->priv->manager, log);
     } else {
       g_signal_emit (list, signals[DAY_SELECTED], 0, day, NULL);
@@ -198,10 +195,27 @@ manager_active_changed_cb (LogviewManager *manager,
                            gpointer user_data)
 {
   LogviewLoglist *list = user_data;
-  GtkTreeIter * iter;
+  GtkTreeIter * iter, sel_iter;
   GtkTreeSelection * selection;
 
-  iter = logview_loglist_find_log (list, log);
+  if (list->priv->selection && 
+      gtk_tree_model_get_iter (GTK_TREE_MODEL (list->priv->model),
+                               &sel_iter, list->priv->selection))
+  {
+    Day *day;
+
+    iter = gtk_tree_iter_copy (&sel_iter);
+
+    gtk_tree_model_get (GTK_TREE_MODEL (list->priv->model), iter,
+                        LOG_DAY, &day, -1);
+
+    g_signal_emit (list, signals[DAY_SELECTED], 0, day, NULL);
+
+    gtk_tree_path_free (list->priv->selection);
+    list->priv->selection = NULL;
+  } else {
+    iter = logview_loglist_find_log (list, log);
+  }
 
   if (!iter) {
     return;
@@ -343,8 +357,8 @@ logview_loglist_init (LogviewLoglist *list)
                     G_CALLBACK (manager_log_added_cb), list);
   g_signal_connect (list->priv->manager, "log-closed",
                     G_CALLBACK (manager_log_closed_cb), list);
-  g_signal_connect (list->priv->manager, "active-changed",
-                    G_CALLBACK (manager_active_changed_cb), list);
+  g_signal_connect_after (list->priv->manager, "active-changed",
+                          G_CALLBACK (manager_active_changed_cb), list);
 }
 
 static void
@@ -387,21 +401,4 @@ logview_loglist_update_lines (LogviewLoglist *loglist, LogviewLog *log)
   days = logview_log_get_days_for_cached_lines (log);
   parent = logview_loglist_find_log (loglist, log);
   update_days_and_lines_for_log (loglist, parent, days);
-}
-
-GDate *
-logview_loglist_get_date_selection (LogviewLoglist *loglist)
-{
-  g_assert (LOGVIEW_IS_LOGLIST (loglist));
-
-  return loglist->priv->selection;
-}
-
-void
-logview_loglist_clear_date (LogviewLoglist *loglist)
-{
-  g_assert (LOGVIEW_IS_LOGLIST (loglist));
-
-  g_date_free (loglist->priv->selection);
-  loglist->priv->selection = NULL;
 }
