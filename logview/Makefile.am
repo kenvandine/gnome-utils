@@ -50,15 +50,10 @@ logview-marshal.c: logview-marshal.list $(GLIB_GENMARSHAL)
 	echo "#include \"logview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=logview_marshal >> $@
 
-man_MANS = gnome-system-log.1
-
 schemasdir   = $(GCONF_SCHEMA_FILE_DIR)
 schemas_in_file = logview.schemas.in
 schemas_DATA = $(schemas_in_file:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
-
-EXTRA_DIST = \
-	$(man_MANS)
 
 if GCONF_SCHEMAS_INSTALL
 install-gconf-schemas:
