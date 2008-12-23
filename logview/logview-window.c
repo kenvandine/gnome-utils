@@ -35,8 +35,6 @@
 #define APP_NAME _("System Log Viewer")
 #define SEARCH_START_MARK "lw-search-start-mark"
 #define SEARCH_END_MARK "lw-search-end-mark"
-#define VISIBLE_AREA_START_MARK "lw-visible-start"
-#define VISIBLE_AREA_END_MARK "lw-visible-end"
 
 struct _LogviewWindowPrivate {
   GtkWidget *statusbar;
@@ -470,9 +468,9 @@ logview_search_text (LogviewWindow *logview, gboolean forward)
 wrap:
 
   if (forward) {
-    res = gtk_text_iter_forward_search (&search, text, 0, &start_m, &end_m, NULL);
+    res = gtk_text_iter_forward_search (&search, text, GTK_TEXT_SEARCH_VISIBLE_ONLY, &start_m, &end_m, NULL);
   } else {
-    res = gtk_text_iter_backward_search (&search, text, 0, &start_m, &end_m, NULL);
+    res = gtk_text_iter_backward_search (&search, text, GTK_TEXT_SEARCH_VISIBLE_ONLY, &start_m, &end_m, NULL);
   }
 
   if (res) {

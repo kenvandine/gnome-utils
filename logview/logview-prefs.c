@@ -405,18 +405,32 @@ logview_prefs_get_stored_logfiles (LogviewPrefs *prefs)
 }
 
 void
-logview_prefs_store_log (LogviewPrefs *prefs, const char *filename)
+logview_prefs_store_log (LogviewPrefs *prefs, GFile *file)
 {
-  GSList *stored_logs;
+  GSList *stored_logs, *l;
+  GFile *stored;
+  gboolean found = FALSE;
 
   g_assert (LOGVIEW_IS_PREFS (prefs));
-  g_assert (filename != NULL && filename[0] != '\0');
+  g_assert (G_IS_FILE (file));
 
   stored_logs = logview_prefs_get_stored_logfiles (prefs);
 
-  if (g_slist_find_custom (stored_logs, filename, (GCompareFunc) g_ascii_strcasecmp) == NULL)
-  {
-    stored_logs = g_slist_prepend (stored_logs, g_strdup (filename));
+  for (l = stored_logs; l; l = l->next) {
+    stored = g_file_parse_name (l->data);
+    if (g_file_equal (file, stored)) {
+      found = TRUE;
+    }
+
+    g_object_unref (stored);
+
+    if (found) {
+      break;
+    }
+  }
+
+  if (!found) {
+    stored_logs = g_slist_prepend (stored_logs, g_file_get_parse_name (file));
     gconf_client_set_list (prefs->priv->client,
                            GCONF_LOGFILES,
                            GCONF_VALUE_STRING,
@@ -427,6 +441,49 @@ logview_prefs_store_log (LogviewPrefs *prefs, const char *filename)
   /* the string list is copied */
   g_slist_foreach (stored_logs, (GFunc) g_free, NULL);
   g_slist_free (stored_logs);
+}
+
+void
+logview_prefs_remove_stored_log (LogviewPrefs *prefs, GFile *target)
+{
+  GSList *stored_logs, *l, *removed = NULL;
+  GFile *stored;
+
+  g_assert (LOGVIEW_IS_PREFS (prefs));
+  g_assert (G_IS_FILE (target));
+
+  stored_logs = logview_prefs_get_stored_logfiles (prefs);
+
+  for (l = stored_logs; l; l = l->next) {
+    stored = g_file_parse_name (l->data);
+    if (g_file_equal (stored, target)) {
+      removed = l;
+      stored_logs = g_slist_remove_link (stored_logs, l);
+    }
+
+    g_object_unref (stored);
+
+    if (removed) {
+      break;
+    }
+  }
+
+  if (removed) {
+    gconf_client_set_list (prefs->priv->client,
+                           GCONF_LOGFILES,
+                           GCONF_VALUE_STRING,
+                           stored_logs,
+                           NULL);
+  }
+
+  /* the string list is copied */
+  g_slist_foreach (stored_logs, (GFunc) g_free, NULL);
+  g_slist_free (stored_logs);
+
+  if (removed) {
+    g_free (removed->data);
+    g_slist_free (removed);
+  }
 }
 
 void

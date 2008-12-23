@@ -526,3 +526,11 @@ logview_log_get_uri (LogviewLog *log)
 
   return g_file_get_uri (log->priv->file);
 }
+
+GFile *
+logview_log_get_gfile (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return g_object_ref (log->priv->file);
+}

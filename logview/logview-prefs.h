@@ -63,7 +63,9 @@ void           logview_prefs_get_stored_window_size  (LogviewPrefs *prefs,
 char *         logview_prefs_get_monospace_font_name (LogviewPrefs *prefs);
 gboolean       logview_prefs_get_have_tearoff        (LogviewPrefs *prefs);
 void           logview_prefs_store_log               (LogviewPrefs *prefs,
-                                                      const char *filename);
+                                                      GFile *file);
+void           logview_prefs_remove_stored_log       (LogviewPrefs *prefs,
+                                                      GFile *target);
 GSList *       logview_prefs_get_stored_logfiles     (LogviewPrefs *prefs);
 void           logview_prefs_store_fontsize          (LogviewPrefs *prefs,
                                                       int fontsize);

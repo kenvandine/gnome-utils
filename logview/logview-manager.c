@@ -22,6 +22,7 @@
 
 #include "logview-manager.h"
 
+#include "logview-prefs.h"
 #include "logview-marshal.h"
 
 enum {
@@ -132,12 +133,20 @@ create_log_cb (LogviewLog *log,
 
   if (log) {
     char *log_uri;
+    LogviewPrefs *prefs;
+    GFile *file;
 
     log_uri = logview_log_get_uri (log);
 
     /* creation went well, store the log and notify */
     g_hash_table_insert (data->manager->priv->logs,
                          log_uri, log);
+
+    prefs = logview_prefs_get ();
+    file = logview_log_get_gfile (log);
+    logview_prefs_store_log (prefs, file);
+
+    g_object_unref (file);
 
     g_signal_emit (data->manager, signals[LOG_ADDED], 0, log, NULL);
 
@@ -288,14 +297,18 @@ logview_manager_close_active_log (LogviewManager *manager)
 {
   LogviewLog *active_log;
   char *log_uri;
+  GFile *file;
   gboolean res;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
   active_log = manager->priv->active_log;
   log_uri = logview_log_get_uri (active_log);
+  file = logview_log_get_gfile (active_log);
 
   g_signal_emit (manager, signals[LOG_CLOSED], 0, active_log, NULL);
+
+  logview_prefs_remove_stored_log (logview_prefs_get (), file);
 
   /* we own two refs to the active log; one is inside the hash table */
   g_object_unref (active_log);
