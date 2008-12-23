@@ -190,7 +190,7 @@ create_log_cb (LogviewLog *log,
     } else {
       char **error_arr = g_new0 (char *, 3);
 
-      error_arr[0] = g_strdup (primary);
+      error_arr[0] = g_strdup (path);
       error_arr[1] = g_strdup (error->message);
       error_arr[2] = NULL;
 
