@@ -635,6 +635,8 @@ read_new_lines_cb (LogviewLog *log,
     window->priv->monitor_id = g_signal_connect (log, "log-changed",
                                                  G_CALLBACK (log_monitor_changed_cb), window);
   }
+
+  logview_update_statusbar (window, log);
 }
 
 static void
