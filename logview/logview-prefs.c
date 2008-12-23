@@ -361,7 +361,7 @@ logview_prefs_get_stored_window_size (LogviewPrefs *prefs,
                                  NULL);
 
   *height = gconf_client_get_int (prefs->priv->client,
-                                  GCONF_WIDTH_KEY,
+                                  GCONF_HEIGHT_KEY,
                                   NULL);
 
   if ((*width == 0) ^ (*height == 0)) {

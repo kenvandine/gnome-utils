@@ -33,6 +33,16 @@
 
 static gboolean show_version = FALSE;
 
+static gboolean
+main_window_delete_cb (GtkWidget *widget,
+                       GdkEvent *event,
+                       gpointer user_data)
+{
+  gtk_main_quit ();
+
+  return FALSE;
+}
+
 static GOptionContext *
 create_option_context ()
 {
@@ -62,7 +72,7 @@ static void
 logview_show_version_and_quit (void)
 {
   g_print ("%s - Version %s\n"
-           "Copyright (C) 2004-2008 Vincent Noel, Cosimo Cecchi and others\n",
+           "Copyright (C) 2004-2008 Vincent Noel, Cosimo Cecchi and others.\n",
            g_get_application_name (),
            VERSION);
 
@@ -108,6 +118,9 @@ main (int argc, char *argv[])
   
     exit (1);
   }
+
+  g_signal_connect (main_window, "delete-event",
+                    G_CALLBACK (main_window_delete_cb), NULL);
   
   manager = logview_manager_get ();
   prefs = logview_prefs_get ();
