@@ -1,30 +1,30 @@
+/* logview-window.h - main window of logview
+ *
+ * Copyright (C) 1998  Cesar Miquel  <miquel@df.uba.ar>
+ * Copyright (C) 2008  Cosimo Cecchi <cosimoc@gnome.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
 
-/*  ----------------------------------------------------------------------
-
-    Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-    ---------------------------------------------------------------------- */
-
-#ifndef __LOGVIEW_H__
-#define __LOGVIEW_H__
+#ifndef __LOGVIEW_WINDOW_H__
+#define __LOGVIEW_WINDOW_H__
 
 #include <gtk/gtk.h>
 
 #include "logrtns.h"
+#include "loglist.h"
 
 #define MAX_VERSIONS             5
 
@@ -37,33 +37,21 @@
 
 typedef struct _LogviewWindow LogviewWindow;
 typedef struct _LogviewWindowClass LogviewWindowClass;
+typedef struct _LogviewWindowPrivate LogviewWindowPrivate;
 
 struct _LogviewWindow {
-	GtkWindow parent_instance;
-
-	GtkWidget *view;		
-	GtkWidget *statusbar;
-	GtkUIManager *ui_manager;
-
-	GtkWidget *calendar;
-	GtkWidget *find_bar;
-	GtkWidget *loglist;
-	GtkWidget *sidebar; 
-	GtkWidget *version_bar;
-	GtkWidget *version_selector;
-        GtkWidget *hpaned;
-    
-        GSList *logs;
-	Log *curlog;
-
-	int original_fontsize, fontsize;
+  GtkWindow parent_instance;
+  LogviewWindowPrivate *priv;
 };
 
 struct _LogviewWindowClass {
 	GtkWindowClass parent_class;
 };
 
-#include "loglist.h"
+GType logview_window_get_type (void);
+
+/* public methods */
+GtkWidget *logview_window_new (void);
 
 Log *logview_get_active_log (LogviewWindow *logview);
 LogList *logview_get_loglist (LogviewWindow *logview);
@@ -75,7 +63,5 @@ void logview_menus_set_state (LogviewWindow *logview);
 void logview_set_window_title (LogviewWindow *window);
 void logview_set_font (LogviewWindow *window, const gchar *fontname);
 void logview_show_main_content (LogviewWindow *window);
-GType logview_window_get_type (void);
-GtkWidget *logview_window_new (void);
 
-#endif /* __LOGVIEW_H__ */
+#endif /* __LOGVIEW_WINDOW_H__ */

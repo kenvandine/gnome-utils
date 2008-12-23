@@ -113,10 +113,6 @@ main (int argc, char *argv[])
   }
 
   gtk_window_set_default_icon_name ("logviewer");
-
-  prefs_connect (logview);
-  logview_menus_set_state (logview);
-
   gtk_widget_show (GTK_WIDGET (logview));
 
   if (argc == 1) {

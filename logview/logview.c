@@ -1,22 +1,22 @@
-/*  ----------------------------------------------------------------------
-
-    Copyright (C) 1998  Cesar Miquel  (miquel@df.uba.ar)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
-    ---------------------------------------------------------------------- */
+/* logview-window.c - main window of logview
+ *
+ * Copyright (C) 1998  Cesar Miquel  <miquel@df.uba.ar>
+ * Copyright (C) 2008  Cosimo Cecchi <cosimoc@gnome.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
 
 #include <config.h>
 #include <stdlib.h>
@@ -33,6 +33,7 @@
 #include "misc.h"
 #include "logview-findbar.h"
 #include "logview-prefs.h"
+#include "logview-manager.h"
 #include "calendar.h"
 
 #define APP_NAME _("System Log Viewer")
@@ -48,6 +49,28 @@ enum {
   LOG_LINE_WEIGHT,
   LOG_LINE_WEIGHT_SET
 };
+
+struct _LogviewWindowPrivate {
+  GtkWidget *view;		
+  GtkWidget *statusbar;
+  GtkUIManager *ui_manager;
+
+  GtkWidget *calendar;
+  GtkWidget *find_bar;
+  GtkWidget *loglist;
+  GtkWidget *sidebar; 
+  GtkWidget *version_bar;
+  GtkWidget *version_selector;
+  GtkWidget *hpaned;
+
+  int original_fontsize, fontsize;
+
+  LogviewPrefs *prefs;
+  LogviewManager *manager;
+};
+
+#define GET_PRIVATE(o) \
+  (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOGVIEW_TYPE_WINDOW, LogviewWindowPrivate))
 
 G_DEFINE_TYPE (LogviewWindow, logview_window, GTK_TYPE_WINDOW);
 
@@ -163,27 +186,6 @@ static const char *ui_description =
 
 /* public interface */
 
-Log *
-logview_get_active_log (LogviewWindow *logview)
-{
-    g_return_val_if_fail (LOGVIEW_IS_WINDOW (logview), NULL);
-    return logview->curlog;
-}
-
-LogList *
-logview_get_loglist (LogviewWindow *logview)
-{
-    g_return_val_if_fail (LOGVIEW_IS_WINDOW (logview), NULL);
-    return LOG_LIST (logview->loglist);
-}
-
-int
-logview_count_logs (LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-    return g_slist_length (logview->logs);
-}
-
 static void
 logview_store_visible_range (LogviewWindow *logview)
 {
@@ -218,44 +220,7 @@ logview_select_log (LogviewWindow *logview, Log *log)
     gtk_widget_grab_focus (logview->view);
 } 
 
-void
-logview_add_log_from_name (LogviewWindow *logview, gchar *file)
-{
-	Log *log;
 
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    g_return_if_fail (file);
-
-    log = log_open (file, TRUE);
-    if (log != NULL)
-      logview_add_log (logview, log);
-}
-
-void
-logview_add_logs_from_names (LogviewWindow *logview, GSList *lognames, gchar *selected)
-{
-    GSList *list;
-    Log *log, *curlog = NULL;
-	
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-
-    if (lognames == NULL)
-        return;
-
-    for (list = lognames; list != NULL; list = g_slist_next (list)) {
-      log = log_open (list->data, FALSE);
-      if (log != NULL) {
-	logview_add_log (logview, log);
-	if (selected!=NULL && g_strncasecmp (log->name, selected, -1)==0)
-	  curlog = log;
-      }
-    }
-        
-    if (curlog)
-        loglist_select_log (LOG_LIST (logview->loglist), curlog);
-
-    gtk_tree_view_expand_all (GTK_TREE_VIEW (logview->loglist));
-}
 
 void
 logview_menus_set_state (LogviewWindow *logview)
@@ -369,38 +334,6 @@ logview_save_prefs (LogviewWindow *logview)
 	prefs_save ();
     }
 }
-
-static void
-logview_destroy (GObject *object, LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    if (logview->curlog) {
-        if (logview->curlog->monitored)
-            monitor_stop (logview->curlog);
-    }
-
-    logview_save_prefs (logview);
-    prefs_free_loglist ();
-
-    if (gtk_main_level() > 0)
-      gtk_main_quit ();
-    else
-      exit (0);
-}
-
-static void
-logview_add_log (LogviewWindow *logview, Log *log)
-{
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    g_return_if_fail (log);
-
-    logview->logs = g_slist_append (logview->logs, log);
-    loglist_add_log (LOG_LIST(logview->loglist), log);
-    log->window = logview;
-    monitor_start (log);
-}
-
 
 static Log *
 logview_find_log_from_name (LogviewWindow *logview, gchar *name)
@@ -765,187 +698,200 @@ logview_calendar_set_state (LogviewWindow *logview)
 static void
 logview_help (GtkAction *action, GtkWidget *parent_window)
 {
-    GError *error = NULL;
+  GError *error = NULL;
 
-    gtk_show_uri (gtk_widget_get_screen (parent_window),
-                  "ghelp:gnome-system-log", gtk_get_current_event_time (),
-                  &error);
+  gtk_show_uri (gtk_widget_get_screen (parent_window),
+                "ghelp:gnome-system-log", gtk_get_current_event_time (),
+                &error);
 
-    if (error) {
-        error_dialog_show (parent_window, _("There was an error displaying help."), error->message);
-        g_error_free (error);
-    }
+  if (error) {
+    error_dialog_show (parent_window, _("There was an error displaying help."), error->message);
+    g_error_free (error);
+  }
 }
 
 static gboolean 
 window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event, 
-				 gpointer data)
+                        gpointer data)
 {
-    LogviewWindow *logview = LOGVIEW_WINDOW (data);
-    
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-    prefs_store_window_size (GTK_WIDGET(logview));
-    return FALSE;
+  logview_prefs_store_window_size (event->width, event->height);
+
+  return FALSE;
 }
 
 static void
 logview_window_finalize (GObject *object)
 {
-    LogviewWindow *logview = LOGVIEW_WINDOW(object);
+  LogviewWindow *logview = LOGVIEW_WINDOW (object);
 
-    g_object_unref (logview->ui_manager);
-    G_OBJECT_CLASS (logview_window_parent_class)->finalize (object);
+  g_object_unref (logview->priv->ui_manager);
+  G_OBJECT_CLASS (logview_window_parent_class)->finalize (object);
 }
 
 static void
 logview_window_init (LogviewWindow *logview)
 {
-   GtkWidget *vbox;
-   GtkTreeStore *tree_store;
-   GtkTreeSelection *selection;
-   GtkTreeViewColumn *column;
-   GtkCellRenderer *renderer;
-   gint i;
-   GtkActionGroup *action_group;
-   GtkAccelGroup *accel_group;
-   GError *error = NULL;
-   GtkWidget *menubar;
-   GtkWidget *hpaned;
-   GtkWidget *label;
-   GtkWidget *main_view;
-   GtkWidget *loglist_scrolled, *scrolled;
-   PangoContext *context;
-   PangoFontDescription *fontdesc;
-   gchar *monospace_font_name;
+  GtkTreeStore *tree_store;
+  GtkTreeSelection *selection;
+  GtkTreeViewColumn *column;
+  GtkCellRenderer *renderer;
+  gint i;
+  GtkActionGroup *action_group;
+  GtkAccelGroup *accel_group;
+  GError *error = NULL;
+  GtkWidget *hpaned, *main_view, *loglist_scrolled, *scrolled, *vbox;
+  PangoContext *context;
+  PangoFontDescription *fontdesc;
+  gchar *monospace_font_name;
+  LogviewWindowPrivate *priv = logview->priv;
+  int width, height;
 
-   gtk_window_set_default_size (GTK_WINDOW (logview), prefs_get_width (), prefs_get_height ());
+  priv = GET_PRIVATE (logview);
+  priv->prefs = logview_prefs_get ();
+  priv->manager = logview_manager_get ();
 
-   vbox = gtk_vbox_new (FALSE, 0);
-   gtk_container_add (GTK_CONTAINER (logview), vbox);
+  logview_prefs_get_stored_window_size (prefs, &width, &height);
+  gtk_window_set_default_size (GTK_WINDOW (logview), width, height);
 
-   /* Create menus */
-   action_group = gtk_action_group_new ("LogviewMenuActions");
-   gtk_action_group_set_translation_domain (action_group, NULL);
-   gtk_action_group_add_actions (action_group, entries, G_N_ELEMENTS (entries), logview);
-   gtk_action_group_add_toggle_actions(action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), logview);
+  vbox = gtk_vbox_new (FALSE, 0);
+  gtk_container_add (GTK_CONTAINER (logview), vbox);
 
-   logview->ui_manager = gtk_ui_manager_new ();
+  /* Create menus */
+  action_group = gtk_action_group_new ("LogviewMenuActions");
+  gtk_action_group_set_translation_domain (action_group, NULL);
+  gtk_action_group_add_actions (action_group, entries, G_N_ELEMENTS (entries), logview);
+  gtk_action_group_add_toggle_actions(action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), logview);
 
-   gtk_ui_manager_insert_action_group (logview->ui_manager, action_group, 0);
-   
-   accel_group = gtk_ui_manager_get_accel_group (logview->ui_manager);
-   gtk_window_add_accel_group (GTK_WINDOW (logview), accel_group);
-   
-   if (!gtk_ui_manager_add_ui_from_string (logview->ui_manager, ui_description, -1, &error)) {
-     logview->ui_manager = NULL;
-     return;
-   }
-   
-   menubar = gtk_ui_manager_get_widget (logview->ui_manager, "/LogviewMenu");
-   gtk_box_pack_start (GTK_BOX (vbox), menubar, FALSE, FALSE, 0);
+  priv->ui_manager = gtk_ui_manager_new ();
 
-   /* panes */
-   hpaned = gtk_hpaned_new ();
-   gtk_box_pack_start (GTK_BOX (vbox), hpaned, TRUE, TRUE, 0);
+  gtk_ui_manager_insert_action_group (priv->ui_manager, action_group, 0);
 
-   /* First pane : sidebar (list of logs + calendar) */
-   logview->sidebar = gtk_vbox_new (FALSE, 0);
-   
-   logview->calendar = calendar_new ();
-   calendar_connect (CALENDAR (logview->calendar), logview);
-   gtk_box_pack_end (GTK_BOX (logview->sidebar), GTK_WIDGET(logview->calendar), FALSE, FALSE, 0);
-   
-   /* log list */
-   loglist_scrolled = gtk_scrolled_window_new (NULL, NULL);
-   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (loglist_scrolled),
-                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (loglist_scrolled),
-                                        GTK_SHADOW_ETCHED_IN);
-   logview->loglist = loglist_new ();
-   gtk_container_add (GTK_CONTAINER (loglist_scrolled), logview->loglist);
-   gtk_box_pack_start (GTK_BOX (logview->sidebar), loglist_scrolled, TRUE, TRUE, 0);
-   gtk_paned_pack1 (GTK_PANED (hpaned), logview->sidebar, FALSE, FALSE);
-   loglist_connect (LOG_LIST(logview->loglist), logview);
+  accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
+  gtk_window_add_accel_group (GTK_WINDOW (logview), accel_group);
 
-   /* Second pane : log */
-   main_view = gtk_vbox_new (FALSE, 0);
-   gtk_paned_pack2 (GTK_PANED (hpaned), GTK_WIDGET (main_view), TRUE, TRUE);
+  if (!gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_description, -1, &error)) {
+    priv->ui_manager = NULL;
+    g_critical ("Can't load the UI description: %s", error->message);
+    g_error_free (error);
+    return;
+  }
 
-   /* Scrolled window for the main view */
-   scrolled = gtk_scrolled_window_new (NULL, NULL);
-   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
-               GTK_POLICY_AUTOMATIC,
-               GTK_POLICY_AUTOMATIC);
-   gtk_box_pack_start (GTK_BOX(main_view), scrolled, TRUE, TRUE, 0);
+  gtk_ui_manager_set_add_tearoffs (priv->ui_manager,
+                                   logview_prefs_get_have_tearoff (priv->prefs));
 
-   /* Main Tree View */
-   logview->view = gtk_tree_view_new ();
-   gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (logview->view), FALSE);
-   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (logview->view), FALSE);
+  w = gtk_ui_manager_get_widget (priv->ui_manager, "/LogviewMenu");
+  gtk_box_pack_start (GTK_BOX (vbox), w, FALSE, FALSE, 0);
+  gtk_widget_show (w);
 
-   /* Use the desktop monospace font */
-   monospace_font_name = prefs_get_monospace ();
-   logview_set_font (logview, monospace_font_name);
-   g_free (monospace_font_name);
+  /* panes */
+  hpaned = gtk_hpaned_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), hpaned, TRUE, TRUE, 0);
 
-   renderer = gtk_cell_renderer_text_new ();
-   column = gtk_tree_view_column_new ();
-   gtk_tree_view_column_pack_start (column, renderer, TRUE);
-   gtk_tree_view_column_set_attributes (column, renderer, 
-                                        "text", LOG_LINE_TEXT, 
-                                        "weight", LOG_LINE_WEIGHT,
-                                        "weight-set", LOG_LINE_WEIGHT_SET,
-                                        NULL);
-   //gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_FIXED);
-   gtk_tree_view_append_column (GTK_TREE_VIEW (logview->view), column);
+  /* First pane : sidebar (list of logs + calendar) */
+  priv->sidebar = gtk_vbox_new (FALSE, 0);
 
-   /* Version selector */
-   logview->version_bar = gtk_hbox_new (FALSE, 0);
-   gtk_container_set_border_width (GTK_CONTAINER (logview->version_bar), 3);
-   logview->version_selector = gtk_combo_box_new_text ();
-   g_signal_connect (G_OBJECT (logview->version_selector), "changed",
-                     G_CALLBACK (logview_version_selector_changed), logview);
-   label = gtk_label_new (_("Version: "));
-   
-   gtk_box_pack_end (GTK_BOX(logview->version_bar), logview->version_selector, FALSE, FALSE, 0);
-   gtk_box_pack_end (GTK_BOX(logview->version_bar), label, FALSE, FALSE, 0);
-   gtk_box_pack_end (GTK_BOX(main_view), logview->version_bar, FALSE, FALSE, 0);
-   
-   logview->find_bar = logview_findbar_new ();
-   gtk_box_pack_end (GTK_BOX (main_view), logview->find_bar, FALSE, FALSE, 0);
-   logview_findbar_connect (LOGVIEW_FINDBAR (logview->find_bar), logview);
+  priv->calendar = calendar_new ();
+  calendar_connect (CALENDAR (priv->calendar), logview);
+  gtk_box_pack_end (GTK_BOX (priv->sidebar), priv->calendar, FALSE, FALSE, 0);
 
-   /* Remember the original font size */
-   context = gtk_widget_get_pango_context (logview->view);
-   fontdesc = pango_context_get_font_description (context);
-   logview->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
-   logview->fontsize = logview->original_fontsize;
+  /* log list */
+  loglist_scrolled = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (loglist_scrolled),
+                                  GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (loglist_scrolled),
+                                       GTK_SHADOW_ETCHED_IN);
+  priv->loglist = loglist_new ();
+  gtk_container_add (GTK_CONTAINER (loglist_scrolled), priv->loglist);
+  gtk_box_pack_start (GTK_BOX (priv->sidebar), loglist_scrolled, TRUE, TRUE, 0);
+  gtk_paned_pack1 (GTK_PANED (hpaned), priv->sidebar, FALSE, FALSE);
+  loglist_connect (LOG_LIST (priv->loglist), logview);
 
-   gtk_container_add (GTK_CONTAINER (scrolled), GTK_WIDGET (logview->view));
-   gtk_widget_show_all (scrolled);
-   
-   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (logview->view));
-   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
+  /* Second pane : log */
+  main_view = gtk_vbox_new (FALSE, 0);
+  gtk_paned_pack2 (GTK_PANED (hpaned), main_view, TRUE, TRUE);
 
-   /* Add signal handlers */
-   g_signal_connect (G_OBJECT (selection), "changed",
-                     G_CALLBACK (selection_changed_cb), logview);
-   g_signal_connect (G_OBJECT (logview->view), "row-expanded",
-                     G_CALLBACK (row_toggled_cb), logview);
-   g_signal_connect (G_OBJECT (logview->view), "row-collapsed",
-                     G_CALLBACK (row_toggled_cb), logview);
-   g_signal_connect (G_OBJECT (logview), "configure_event",
-                     G_CALLBACK (window_size_changed_cb), logview);
+  /* Scrolled window for the main view */
+  scrolled = gtk_scrolled_window_new (NULL, NULL);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled),
+                                  GTK_POLICY_AUTOMATIC,
+                                  GTK_POLICY_AUTOMATIC);
+  gtk_box_pack_start (GTK_BOX (main_view), scrolled, TRUE, TRUE, 0);
 
-   /* Status area at bottom */
-   logview->statusbar = gtk_statusbar_new ();
-   gtk_box_pack_start (GTK_BOX (vbox), logview->statusbar, FALSE, FALSE, 0);
+  /* Main Tree View */
+  priv->view = gtk_tree_view_new ();
+  gtk_tree_view_set_fixed_height_mode (GTK_TREE_VIEW (priv->view), FALSE);
+  gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->view), FALSE);
 
-   gtk_widget_show (menubar);
-   gtk_widget_show (loglist_scrolled);
-   gtk_widget_show (main_view);
-   gtk_widget_show (vbox);
-   logview->hpaned = hpaned;
+  /* Use the desktop monospace font */
+  monospace_font_name = prefs_get_monospace ();
+  logview_set_font (logview, monospace_font_name);
+  g_free (monospace_font_name);
+
+  renderer = gtk_cell_renderer_text_new ();
+  column = gtk_tree_view_column_new ();
+  gtk_tree_view_column_pack_start (column, renderer, TRUE);
+  gtk_tree_view_column_set_attributes (column, renderer, 
+                                       "text", LOG_LINE_TEXT, 
+                                       "weight", LOG_LINE_WEIGHT,
+                                       "weight-set", LOG_LINE_WEIGHT_SET,
+                                       NULL);
+  gtk_tree_view_append_column (GTK_TREE_VIEW (priv->view), column);
+
+  /* Version selector */
+  priv->version_bar = gtk_hbox_new (FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (priv->version_bar), 3);
+  priv->version_selector = gtk_combo_box_new_text ();
+  g_signal_connect (priv->version_selector, "changed",
+                    G_CALLBACK (logview_version_selector_changed), logview);
+  w = gtk_label_new (_("Version: "));
+
+  gtk_box_pack_end (GTK_BOX (priv->version_bar), priv->version_selector, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (priv->version_bar), w, FALSE, FALSE, 0);
+  gtk_box_pack_end (GTK_BOX (main_view), priv->version_bar, FALSE, FALSE, 0);
+
+  priv->find_bar = logview_findbar_new ();
+  gtk_box_pack_end (GTK_BOX (main_view), priv->find_bar, FALSE, FALSE, 0);
+  logview_findbar_connect (LOGVIEW_FINDBAR (priv->find_bar), logview);
+
+  /* Remember the original font size */
+  context = gtk_widget_get_pango_context (priv->view);
+  fontdesc = pango_context_get_font_description (context);
+  priv->original_fontsize = pango_font_description_get_size (fontdesc) / PANGO_SCALE;
+  priv->fontsize = priv->original_fontsize;
+
+  gtk_container_add (GTK_CONTAINER (scrolled), priv->view);
+  gtk_widget_show_all (scrolled);
+
+  selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (priv->view));
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
+
+  /* Add signal handlers */
+  g_signal_connect (selection, "changed",
+                    G_CALLBACK (selection_changed_cb), logview);
+  g_signal_connect (priv->view, "row-expanded",
+                    G_CALLBACK (row_toggled_cb), logview);
+  g_signal_connect (priv->view, "row-collapsed",
+                    G_CALLBACK (row_toggled_cb), logview);
+  g_signal_connect (logview, "configure_event",
+                    G_CALLBACK (window_size_changed_cb), logview);
+  g_signal_connect (priv->prefs, "system-font-changed",
+                    G_CALLBACK (font_changed_cb), logview);
+  g_signal_connect (priv->prefs, "have-tearoff-changed",
+                    G_CALLBACK (tearoff_changed_cb), logview);
+  g_signal_connect (priv->manager, "log-added",
+                    G_CALLBACK (log_added_cb), logview);
+  g_signal_connect (priv->manager, "active-changed",
+                    G_CALLBACK (active_log_changed_cb), logview);
+
+  /* Status area at bottom */
+  priv->statusbar = gtk_statusbar_new ();
+  gtk_box_pack_start (GTK_BOX (vbox), priv->statusbar, FALSE, FALSE, 0);
+
+  gtk_widget_show (loglist_scrolled);
+  gtk_widget_show (main_view);
+  gtk_widget_show (vbox);
+
+  priv->hpaned = hpaned;
 }
 
 static void
@@ -966,36 +912,32 @@ logview_window_get_property (GObject *object, guint param_id, GValue *value, GPa
 static void
 logview_window_class_init (LogviewWindowClass *klass)
 {
-	GObjectClass *object_class = (GObjectClass *) klass;
+  GObjectClass *object_class = (GObjectClass *) klass;
 
-	object_class->finalize = logview_window_finalize;
-	object_class->get_property = logview_window_get_property;
+  object_class->finalize = logview_window_finalize;
+  object_class->get_property = logview_window_get_property;
 
 	g_object_class_install_property (object_class, PROP_DAYS,
 					 g_param_spec_pointer ("days",
 					 _("Days"),
 					 _("Pointer towards a GSList of days for the current log."),
 					 (G_PARAM_READABLE)));
+
+  g_type_class_add_private (klass, sizeof (LogviewWindowPrivate));
 }
+
+/* public methods */
 
 GtkWidget *
 logview_window_new ()
 {
-   LogviewWindow *logview;
-   GtkWidget *window;
+  LogviewWindow *logview;
 
-   window = g_object_new (LOGVIEW_TYPE_WINDOW, NULL);
-   logview = LOGVIEW_WINDOW (window);
-   if (logview->ui_manager == NULL)
-     return NULL;
+  logview = g_object_new (LOGVIEW_TYPE_WINDOW, NULL);
 
-   logview->logs = NULL;
+  if (priv->ui_manager == NULL) {
+    return NULL;
+  }
 
-   gtk_ui_manager_set_add_tearoffs (logview->ui_manager, 
-                                    prefs_get_have_tearoff ());
-
-   g_signal_connect (GTK_OBJECT (window), "destroy",
-                     G_CALLBACK (logview_destroy), logview);
-
-   return window;
+  return window;
 }
