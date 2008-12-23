@@ -28,9 +28,7 @@
 #include "logview-loglist.h"
 #include "misc.h"
 
-/*
 #include "logview-findbar.h"
-*/
 #include "logview-about.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
@@ -450,10 +448,9 @@ static void
 logview_search (GtkAction *action, LogviewWindow *logview)
 {
   g_assert (LOGVIEW_IS_WINDOW (logview));
-/*
-  gtk_widget_show_all (logview->priv->find_bar);
-  logview_findbar_grab_focus (LOGVIEW_FINDBAR (logview->priv->find_bar));
-*/
+
+  gtk_widget_show (logview->priv->find_bar);
+//  logview_findbar_grab_focus (LOGVIEW_FINDBAR (logview->priv->find_bar));
 }
 
 void
@@ -830,11 +827,10 @@ logview_window_init (LogviewWindow *logview)
   gtk_box_pack_end (GTK_BOX (priv->version_bar), w, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (main_view), priv->version_bar, FALSE, FALSE, 0);
 
-/*
+
   priv->find_bar = logview_findbar_new ();
   gtk_box_pack_end (GTK_BOX (main_view), priv->find_bar, FALSE, FALSE, 0);
-  logview_findbar_connect (LOGVIEW_FINDBAR (priv->find_bar), logview);
-*/
+
   /* remember the original font size */
   context = gtk_widget_get_pango_context (priv->text_view);
   fontdesc = pango_context_get_font_description (context);

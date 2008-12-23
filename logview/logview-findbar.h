@@ -1,6 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 8; tab-width: 8 -*- */
 /*
  * Copyright (C) 2004 Vincent Noel <vnoel@cox.net>
+ * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,40 +17,52 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef __LOG_FINDBAR_H__
-#define __LOG_FINDBAR_H__
+#ifndef __LOGVIEW_FINDBAR_H__
+#define __LOGVIEW_FINDBAR_H__
 
 #include <gtk/gtk.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 
-#define LOGVIEW_FINDBAR_TYPE		  (logview_findbar_get_type ())
-#define LOGVIEW_FINDBAR(obj)		  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBar))
-#define LOGVIEW_FINDBAR_CLASS(klass)	  (G_TYPE_CHECK_CLASS_CAST ((klass), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
-#define LOGVIEW_IS_FINDBAR(obj)	          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
-#define LOGVIEW_IS_FINDBAR_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((obj), LOGVIEW_FINDBAR_TYPE))
-#define LOGVIEW_FINDBAR_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOGVIEW_FINDBAR_TYPE, LogviewFindBarClass))
+#define LOGVIEW_TYPE_FINDBAR \
+  (logview_findbar_get_type ())
+#define LOGVIEW_FINDBAR(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOGVIEW_TYPE_FINDBAR, LogviewFindbar))
+#define LOGVIEW_FINDBAR_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST ((klass), LOGVIEW_TYPE_FINDBAR, LogviewFindbarClass))
+#define LOGVIEW_IS_FINDBAR(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), LOGVIEW_TYPE_FINDBAR))
+#define LOGVIEW_IS_FINDBAR_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE ((obj), LOGVIEW_TYPE_FINDBAR))
+#define LOGVIEW_FINDBAR_GET_CLASS(obj) \
+  (G_TYPE_INSTANCE_GET_CLASS ((obj), LOGVIEW_TYPE_FINDBAR, LogviewFindbarClass))
 
-typedef struct LogviewFindBarPriv LogviewFindBarPriv;
+typedef struct _LogviewFindbar LogviewFindbar;
+typedef struct _LogviewFindbarClass LogviewFindbarClass;
+typedef struct _LogviewFindbarPrivate LogviewFindbarPrivate;
 
-typedef struct LogviewFindBar
-{	
-	GtkHBox parent_instance;
-	LogviewFindBarPriv *priv;
-}LogviewFindBar;
+struct _LogviewFindbar {
+  GtkToolbar parent_instance;
+  LogviewFindbarPrivate *priv;
+};
 
-typedef struct LogviewFindBarClass
-{
-	GtkHBoxClass parent_class;
-}LogviewFindBarClass;
+struct _LogviewFindbarClass {
+  GtkToolbarClass parent_class;
+
+  /* signals */
+  void (* previous)     (LogviewFindbar *findbar);
+  void (* next)         (LogviewFindbar *findbar);
+  void (* text_changed) (LogviewFindbar *findbar,
+                         const char * new_text);
+};
 
 GType logview_findbar_get_type (void);
-GtkWidget *logview_findbar_new (void);
-void logview_findbar_connect (LogviewFindBar *findbar, LogviewWindow *logview);
-void logview_findbar_update_visibility (LogviewFindBar *findbar, LogviewWindow *logview);
-void logview_findbar_grab_focus (LogviewFindBar *findbar);
+
+/* public methods */
+GtkWidget *  logview_findbar_new (void);
+const char * logview_findbar_get_text (LogviewFindbar *findbar);
 
 G_END_DECLS
 
-#endif /* __LOG_FINDBAR_H__ */
-
+#endif /* __LOGVIEW_FINDBAR_H__ */
