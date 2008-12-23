@@ -314,9 +314,9 @@ log_load_done (gpointer user_data)
     g_error_free (job->err);
   } else {
     job->callback (job->log, NULL, job->user_data);
+    setup_file_monitor (job->log);
   }
 
-  setup_file_monitor (job->log);
   g_slice_free (LoadJob, job);
 
   return FALSE;
@@ -362,6 +362,8 @@ log_load (GIOSchedulerJob *io_job,
     err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_A_LOG,
                                "The file is not a regular file or is not a text file");
     job->err = err;
+    g_object_unref (info);
+
     goto out;
   }
 
