@@ -18,7 +18,7 @@ INCLUDES = \
 bin_PROGRAMS = gnome-system-log
 
 gnome_system_log_SOURCES = 	\
-	main.c			\
+	logview-main.c		\
 	about.c			\
 	about.h			\
 	calendar.c		\
