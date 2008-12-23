@@ -69,6 +69,7 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
   gboolean res;
   GtkTreeIter iter;
   GSList *l;
+  int i;
 
   /* first, remove all the stored days */
   res = gtk_tree_model_iter_children (GTK_TREE_MODEL (loglist->priv->model),
@@ -82,12 +83,13 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
                                        &iter));
   }
 
-  for (l = days; l; l = l->next) {
+  for (i = 0, l = days; l; l = l->next) {
     /* now insert all the days */
     gtk_tree_store_insert (GTK_TREE_STORE (loglist->priv->model),
-                           &iter, log, 1);
+                           &iter, log, i);
     gtk_tree_store_set (GTK_TREE_STORE (loglist->priv->model),
                         &iter, LOG_DAY, l->data, -1);
+    i++;
   }
 }
 
@@ -300,7 +302,7 @@ days_cell_data_func (GtkTreeViewColumn *column,
     return;
   }
 
-  g_date_strftime (string_date, 200, "%F", day->date);
+  g_date_strftime (string_date, 200, "%A, %e %b", day->date);
   g_object_set (cell, "text", string_date, NULL);
 }
 
