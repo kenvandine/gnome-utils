@@ -1,4 +1,5 @@
-/*
+/* logview-loglist.c
+ *
  * Copyright (C) 2005 Vincent Noel <vnoel@cox.net>
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *
@@ -403,4 +404,6 @@ logview_loglist_update_lines (LogviewLoglist *loglist, LogviewLog *log)
   days = logview_log_get_days_for_cached_lines (log);
   parent = logview_loglist_find_log (loglist, log);
   update_days_and_lines_for_log (loglist, parent, days);
+
+  gtk_tree_iter_free (parent);
 }

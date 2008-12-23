@@ -52,7 +52,7 @@ string_get_date (const char *line, char **time_string)
 {
   GDate *date = NULL;
   struct tm tp;
-  char *cp;
+  char *cp = NULL;
   char tmp[50];
   size_t chars_read;
   
