@@ -69,8 +69,12 @@ do_finalize (GObject *obj)
 {
   LogviewLog *log = LOGVIEW_LOG (obj);
 
-  g_object_unref (log->priv->stream);
-  g_object_unref (log->priv->file);
+  if (log->priv->stream)
+    g_object_unref (log->priv->stream);
+  if (log->priv->file)
+    g_object_unref (log->priv->file);
+  if (log->priv->mon)
+    g_object_unref (log->priv->mon);
 
   G_OBJECT_CLASS (logview_log_parent_class)->finalize (obj);
 }
@@ -143,11 +147,15 @@ new_lines_job_done (gpointer data)
 
   if (job->err) {
     job->callback (job->log, NULL, job->err, job->user_data);
-    /* drop the reference we acquired before */
-    g_object_unref (job->log);
+    g_error_free (job->err);
   } else {
     job->callback (job->log, job->lines, job->err, job->user_data);
   }
+
+  /* drop the reference we acquired before */
+  g_object_unref (job->log);  
+
+  g_slice_free (NewLinesJob, job);
 
   return FALSE;
 }
@@ -200,6 +208,7 @@ log_load_done (gpointer user_data)
     /* the callback will have NULL as log, and the error set */
     g_object_unref (job->log);
     job->callback (NULL, job->err, job->user_data);
+    g_error_free (job->err);
   } else {
     job->callback (job->log, NULL, job->user_data);
   }
