@@ -66,12 +66,14 @@ GType logview_manager_get_type (void);
 
 /* public methods */
 LogviewManager* logview_manager_get                 (void);
-void            logview_manager_add_log_from_name   (LogviewManager *manager,
-                                                     const char *filename,
+void            logview_manager_add_logs_from_name_list (LogviewManager *manager,
+                                                         GSList *names,
+                                                         const char *active);
+void            logview_manager_add_log_from_gfile  (LogviewManager *manager,
+                                                     GFile *file,
                                                      gboolean set_active);
 void            logview_manager_add_logs_from_names (LogviewManager *manager,
-                                                     GSList *names,
-                                                     const char *active);
+                                                     char ** names);
 void            logview_manager_set_active_log      (LogviewManager *manager,
                                                      LogviewLog *log);
 LogviewLog *    logview_manager_get_active_log      (LogviewManager *manager);

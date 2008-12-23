@@ -35,24 +35,32 @@ enum {
   LAST_SIGNAL
 };
 
+typedef struct {
+  LogviewManager *manager;
+  gboolean set_active;
+  gboolean is_multiple;
+  GFile *file;
+} CreateCBData;
+
+typedef struct {
+  int total;
+  int current;
+  GPtrArray *errors;
+} MultipleCreation;
+
+struct _LogviewManagerPrivate {
+  GHashTable *logs;
+  LogviewLog *active_log;
+};
+
 static LogviewManager *singleton = NULL;
+static MultipleCreation *op = NULL;
 static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE (LogviewManager, logview_manager, G_TYPE_OBJECT);
 
 #define GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOGVIEW_TYPE_MANAGER, LogviewManagerPrivate))
-
-typedef struct {
-  LogviewManager *manager;
-  gboolean set_active;
-  GFile *file;
-} CreateCBData;
-
-struct _LogviewManagerPrivate {
-  GHashTable *logs;
-  LogviewLog *active_log;
-};
 
 static void
 logview_manager_finalize (GObject *object)
@@ -118,6 +126,28 @@ logview_manager_init (LogviewManager *self)
                                       (GDestroyNotify) g_free, (GDestroyNotify) g_object_unref);
 }
 
+static MultipleCreation *
+multiple_creation_op_new (int total)
+{
+  MultipleCreation *retval;
+
+  retval = g_slice_new0 (MultipleCreation);
+  retval->total = total;
+  retval->current = 0;
+  retval->errors = g_ptr_array_new ();
+
+  return retval;
+}
+
+static void
+multiple_creation_op_free (MultipleCreation *mc)
+{
+  g_ptr_array_foreach (mc->errors, (GFunc) g_strfreev, NULL);
+  g_ptr_array_free (mc->errors, TRUE);
+
+  g_slice_free (MultipleCreation, mc);
+}
+
 static void
 create_log_cb (LogviewLog *log,
                GError *error,
@@ -154,14 +184,85 @@ create_log_cb (LogviewLog *log,
     path = g_file_get_path (data->file);
     primary = g_strdup_printf (_("Impossible to open the file %s."), path);
 
-    //logview_show_error (primary, error->message);
+    if (!data->is_multiple) {
+      logview_app_add_error (logview_app_get (),
+                             primary, error->message);
+    } else {
+      char **error_arr = g_new0 (char *, 3);
+
+      error_arr[0] = g_strdup (primary);
+      error_arr[1] = g_strdup (error->message);
+      error_arr[2] = NULL;
+
+      g_ptr_array_add (op->errors, error_arr);
+    }
 
     g_free (path);
     g_free (primary);
+    g_error_free (error);
+  }
+  
+  if (data->is_multiple) {
+    op->current++;
+
+    if (op->total == op->current) {
+      logview_app_add_errors (logview_app_get (), op->errors);
+      multiple_creation_op_free (op);
+      op = NULL;
+    }
   }
 
   g_object_unref (data->file);
   g_slice_free (CreateCBData, data);
+}
+
+static void
+add_log_from_gfile_internal (LogviewManager *manager,
+                             GFile *file,
+                             gboolean set_active,
+                             gboolean is_multiple)
+{
+  char *file_uri;
+  LogviewLog *log;
+  CreateCBData *data;
+
+  file_uri = g_file_get_uri (file);
+
+  if (set_active == FALSE) {
+    /* if it's the first log being added, set it as active anyway */
+    set_active = (manager->priv->logs == NULL);
+  }
+
+  if ((log = g_hash_table_lookup (manager->priv->logs, file_uri)) != NULL) {
+    /* log already exists, don't load it */
+    if (set_active) {
+      logview_manager_set_active_log (manager, log);
+    }
+  } else {
+    data = g_slice_new0 (CreateCBData);
+    data->manager = manager;
+    data->set_active = set_active;
+    data->is_multiple = is_multiple;
+    data->file = g_object_ref (file);
+
+    logview_log_create_from_gfile (file, create_log_cb, data);
+  }
+
+  g_free (file_uri);
+}
+
+static void
+logview_manager_add_log_from_name (LogviewManager *manager,
+                                   const char *filename, gboolean set_active,
+                                   gboolean is_multiple)
+{
+  GFile *file;
+
+  file = g_file_new_for_path (filename);
+
+  add_log_from_gfile_internal (manager, file, set_active, is_multiple);
+
+  g_object_unref (file);
 }
 
 /* public methods */
@@ -213,64 +314,44 @@ logview_manager_add_log_from_gfile (LogviewManager *manager,
                                     GFile *file,
                                     gboolean set_active)
 {
-  char *file_uri;
-  LogviewLog *log;
-  CreateCBData *data;
-
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
-  file_uri = g_file_get_uri (file);
-
-  if (set_active == FALSE) {
-    /* if it's the first log being added, set it as active anyway */
-    set_active = (manager->priv->logs == NULL);
-  }
-
-  if ((log = g_hash_table_lookup (manager->priv->logs, file_uri)) != NULL) {
-    /* log already exists, don't load it */
-    if (set_active) {
-      logview_manager_set_active_log (manager, log);
-    }
-  } else {
-    data = g_slice_new0 (CreateCBData);
-    data->manager = manager;
-    data->set_active = set_active;
-    data->file = g_object_ref (file);
-
-    logview_log_create_from_gfile (file, create_log_cb, data);
-  }
-
-  g_free (file_uri);
+  add_log_from_gfile_internal (manager, file, set_active, FALSE);
 }
 
 void
-logview_manager_add_logs_from_names (LogviewManager *manager,
-                                     GSList *names,
-                                     const char *active)
+logview_manager_add_logs_from_name_list (LogviewManager *manager,
+                                         GSList *names,
+                                         const char *active)
 {
   GSList *l;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
+  g_assert (op == NULL);
+
+  op = multiple_creation_op_new (g_slist_length (names));
 
   for (l = names; l; l = l->next) {
     logview_manager_add_log_from_name (manager, l->data,
-                                        (g_ascii_strcasecmp (active, l->data) == 0));
+                                       (g_ascii_strcasecmp (active, l->data) == 0),
+                                       TRUE);
   }
 }
 
 void
-logview_manager_add_log_from_name (LogviewManager *manager,
-                                   const char *filename, gboolean set_active)
+logview_manager_add_logs_from_names (LogviewManager *manager,
+                                     char ** names)
 {
-  GFile *file;
+  int i;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
+  g_assert (op == NULL);
 
-  file = g_file_new_for_path (filename);
+  op = multiple_creation_op_new (G_N_ELEMENTS (names));
 
-  logview_manager_add_log_from_gfile (manager, file, set_active);
-
-  g_object_unref (file);
+  for (i = 0; names[i]; i++) {
+    logview_manager_add_log_from_name (manager, names[i], FALSE, TRUE);
+  }
 }
 
 int

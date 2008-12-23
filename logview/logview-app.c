@@ -133,9 +133,13 @@ logview_app_get (void)
 }
 
 void
-logview_app_initialize (LogviewApp *app, const char **log_files)
+logview_app_initialize (LogviewApp *app, char **log_files)
 {
-  LogviewAppPrivate *priv = app->priv;
+  LogviewAppPrivate *priv;
+
+  g_assert (LOGVIEW_IS_APP (app));
+
+  priv = app->priv;
 
   /* open regular logs and add each log passed as a parameter */
 
@@ -146,42 +150,51 @@ logview_app_initialize (LogviewApp *app, const char **log_files)
     active_log = logview_prefs_get_active_logfile (priv->prefs);
     logs = logview_prefs_get_stored_logfiles (priv->prefs);
 
-    logview_manager_add_logs_from_names (priv->manager,
-                                         logs, active_log);
+    logview_manager_add_logs_from_name_list (priv->manager,
+                                             logs, active_log);
 
     g_free (active_log);
     g_slist_foreach (logs, (GFunc) g_free, NULL);
     g_slist_free (logs);
   } else {
-    gint i;
-
-    for (i = 0; log_files[i]; i++)
-      logview_manager_add_log_from_name (priv->manager, log_files[i], FALSE);
+    logview_manager_add_logs_from_names (priv->manager, log_files);
   }
 
   gtk_widget_show (GTK_WIDGET (priv->window));
 }
 
-#if 0
 void
-logview_show_error (const char *primary,
-                    const char *secondary)
+logview_app_add_error (LogviewApp *app,
+                       const char *primary,
+                       const char *secondary)
 {
-  GtkWidget *message_dialog;
+  LogviewWindow *window;
 
-  message_dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
-                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-                                           GTK_MESSAGE_ERROR,
-                                           GTK_BUTTONS_OK,
-                                           "%s", primary);
-  if (secondary) {
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (message_dialog),
-                                              "%s", secondary);
-  };
+  g_assert (LOGVIEW_IS_APP (app));
 
-  gtk_dialog_run (GTK_DIALOG (message_dialog));
-  gtk_widget_destroy (message_dialog);
+  window = app->priv->window;
+
+  logview_window_add_error (window, primary, secondary);
 }
 
-#endif
+void
+logview_app_add_errors (LogviewApp *app,
+                        GPtrArray *errors)
+{
+  LogviewWindow *window;
 
+  g_assert (LOGVIEW_IS_APP (app));
+
+  window = app->priv->window;
+
+  if (errors->len == 0) {
+    return;
+  } else if (errors->len == 1) {
+    char **err;
+
+    err = g_ptr_array_index (errors, 0);
+    logview_window_add_error (window, err[0], err[1]);
+  } else {
+    logview_window_add_errors (window, errors);
+  }
+}
