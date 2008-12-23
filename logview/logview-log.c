@@ -350,3 +350,19 @@ logview_log_get_display_name (LogviewLog *log)
 
   return log->priv->display_name;
 }
+
+gulong
+logview_log_get_timestamp (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return log->priv->file_time.tv_sec;
+}
+
+goffset
+logview_log_get_file_size (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return log->priv->file_size;
+}

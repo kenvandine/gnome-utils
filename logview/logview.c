@@ -63,6 +63,8 @@ struct _LogviewWindowPrivate {
   GtkWidget *version_selector;
   GtkWidget *hpaned;
 
+  GtkTreeModel *model;
+
   int original_fontsize, fontsize;
 
   LogviewPrefs *prefs;
@@ -137,10 +139,8 @@ logview_select_log (LogviewWindow *logview, Log *log)
   
     logview_store_visible_range (logview);
 
-    logview->curlog = log;
-    logview_menus_set_state (logview);
     logview_calendar_set_state (logview);
-    logview_repaint (logview);
+
     logview_update_findbar_visibility (logview);
     
     logview_update_version_bar (logview);
@@ -226,6 +226,40 @@ logview_calendar_set_state (LogviewWindow *logview)
 
 /* private helpers */
 
+static void
+logview_update_statusbar (LogviewWindow *logview, LogviewLog *active)
+{
+  char *statusbar_text;
+  char *size, *modified, *index;
+
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  if (active == NULL) {
+    gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
+    return;
+  }
+
+  /* ctime returned string has "\n\0" causes statusbar display a invalid char */
+  modified = ctime (&(logview_log_get_timestamp (active)));
+  index = strrchr (modified, '\n');
+  if (index && *index != '\0')
+    *index = '\0';
+
+  modified = g_strdup_printf (_("last update: %s"), modified);
+
+  size = g_format_size_for_display (logview_log_get_file_size (active));
+  statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
+                                    log->total_lines, size, modified);
+
+  if (statusbar_text) {
+    gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
+    gtk_statusbar_push (GTK_STATUSBAR (logview->priv->statusbar), 0, statusbar_text);
+    g_free (size);
+    g_free (modified);
+    g_free (statusbar_text);
+  }
+}
+
 #define DEFAULT_LOGVIEW_FONT "Monospace 10"
 
 static void
@@ -300,7 +334,7 @@ logview_window_menus_set_state (LogviewWindow *logview)
 
   g_assert (LOGVIEW_IS_WINDOW (logview));
 
-  log = logview_manager_get_current_log (logview->priv->manager);
+  log = logview_manager_get_active_log (logview->priv->manager);
 
   if (log) {
     calendar_active = (log->days != NULL);
@@ -627,9 +661,10 @@ active_log_changed_cb (LogviewManager *manager,
 {
   LogviewWindow *window = data;
 
-  
-  /* update the tile for the new log */
-  logview_set_window_title (window, logview_log_get_display_name (log));
+  /* destroy the model */
+  gtk_tree_view_set_model (window->priv->view, NULL);
+  g_object_unref (window->priv->model);
+  window->priv->model = NULL;
 }
 
 static void
@@ -644,7 +679,6 @@ logview_window_finalize (GObject *object)
 static void
 logview_window_init (LogviewWindow *logview)
 {
-  GtkTreeStore *tree_store;
   GtkTreeSelection *selection;
   GtkTreeViewColumn *column;
   GtkCellRenderer *renderer;

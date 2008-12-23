@@ -33,37 +33,9 @@
 #include "calendar.h"
 
 enum {
-   MESSAGE = 0,
-   DAY_POINTER,
-   LOG_LINE_WEIGHT,
-   LOG_LINE_WEIGHT_SET
+   COL_MESSAGE,
+   COL_DAY
 };
-
-static gboolean busy_cursor = FALSE;
-
-static gboolean
-logview_show_busy_cursor (LogviewWindow *logview)
-{
-  GdkCursor *cursor;
-  if (GTK_WIDGET_VISIBLE (logview->view) && logview->curlog->model == NULL) {
-    cursor = gdk_cursor_new (GDK_WATCH);
-    gdk_window_set_cursor (GTK_WIDGET (logview)->window, cursor);
-    gdk_cursor_unref (cursor);
-    gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
-    busy_cursor = TRUE;
-  }
-  return (FALSE);
-}  
-
-static gboolean
-logview_show_normal_cursor (LogviewWindow *logview)
-{
-  if (busy_cursor) {
-    gdk_window_set_cursor (GTK_WIDGET (logview)->window, NULL);    
-    gdk_display_flush (gtk_widget_get_display (GTK_WIDGET (logview)));
-    busy_cursor = FALSE;
-  }
-}
 
 void
 row_toggled_cb (GtkTreeView *treeview, GtkTreeIter *iter,
@@ -163,42 +135,6 @@ selection_changed_cb (GtkTreeSelection *selection, gpointer data)
       calendar_select_date (CALENDAR (logview->calendar), day->date);
       gtk_tree_path_free (selected_path);
     }
-}
-
-static void
-logview_update_statusbar (LogviewWindow *logview)
-{
-   char *statusbar_text;
-   char *size, *modified, *index;
-   Log *log;
-
-   g_assert (LOGVIEW_IS_WINDOW (logview));
-
-   log = logview->curlog;
-
-   if (log == NULL) {
-       gtk_statusbar_pop (GTK_STATUSBAR (logview->statusbar), 0);
-       return;
-   }
-   
-   /* ctime returned string has "\n\0" causes statusbar display a invalid char */
-   modified = ctime (&(log->stats->file_time));
-   index = strrchr (modified, '\n');
-   if (index && *index != '\0')
-     *index = '\0';
-
-   modified = g_strdup_printf (_("last update: %s"), modified);
-   size = gnome_vfs_format_file_size_for_display (log->stats->file_size);
-   statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
-                                     log->total_lines, size, modified);
-                                     
-   if (statusbar_text) {
-       gtk_statusbar_pop (GTK_STATUSBAR(logview->statusbar), 0);
-       gtk_statusbar_push (GTK_STATUSBAR(logview->statusbar), 0, statusbar_text);
-       g_free (size);
-       g_free (modified);
-       g_free (statusbar_text);
-   }
 }
 
 void
@@ -447,21 +383,7 @@ log_fill_model_with_date (Log *log, GtkTreeModel *model)
 
     log->displayed_lines = log->total_lines;
 }
-
-static void
-log_create_model (Log *log)
-{
-  GtkTreeModel *model;
-
-  g_assert (log != NULL);
-  model = GTK_TREE_MODEL(gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_POINTER,
-                                                  G_TYPE_INT, G_TYPE_BOOLEAN));
-  if (log->days != NULL)
-    log_fill_model_with_date (log, model);
-  else
-    log_fill_model_no_date (log, model);
-  log->model = model;
-}  
+  
 
 static void
 logview_set_log_model (LogviewWindow *window, Log *log)
@@ -488,35 +410,39 @@ logview_set_log_model (LogviewWindow *window, Log *log)
     }
 }
 
-void
-logview_repaint (LogviewWindow *logview)
+
+static GtkTreeModel *
+create_and_fill_model (LogviewLog *log)
 {
-    Log *log;
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-    
-    log = logview->curlog;
+  GtkTreeModel *retval;
 
-    logview_update_statusbar (logview);
-    logview_set_window_title (logview);
-      
-    if (log == NULL) {
-      gtk_tree_view_set_model (GTK_TREE_VIEW (logview->view), NULL);
-      return;
-    }
+  g_assert (LOGVIEW_IS_LOG (log));
 
-    if (log->model == NULL) {
-      g_timeout_add (200, (GSourceFunc) logview_show_busy_cursor, logview);
-      log_create_model (log);
-      logview_show_normal_cursor (logview);
-    }      
-            
-    if (log->needs_refresh) {
-      log_add_new_log_lines (log);
-      log->needs_refresh = FALSE;
-    }
+  retval = GTK_TREE_MODEL (gtk_tree_store_new (4, G_TYPE_STRING, G_TYPE_POINTER));
+  if (log->days != NULL)
+    log_fill_model_with_date (log, model);
+  else
+    log_fill_model_no_date (log, model);
 
-    if (gtk_tree_view_get_model (GTK_TREE_VIEW (logview->view)) != log->model)
-      logview_set_log_model (logview, log);
+  return retval;
+}
 
-    logview_scroll_and_focus_path (logview, log);
+void
+logview_repaint (LogviewWindow *logview, LogviewLog *log)
+{
+  g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
+
+  if (logview->priv->model == NULL) {
+    log_create_model (log);
+  }      
+          
+  if (log->needs_refresh) {
+    log_add_new_log_lines (log);
+    log->needs_refresh = FALSE;
+  }
+
+  if (gtk_tree_view_get_model (GTK_TREE_VIEW (logview->view)) != log->model)
+    logview_set_log_model (logview, log);
+
+  logview_scroll_and_focus_path (logview, log);
 }

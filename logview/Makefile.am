@@ -22,6 +22,8 @@ gnome_system_log_SOURCES = 	\
 	logview-about.h		\
 	logview-manager.c	\
 	logview-manager.h	\
+	logview-utils.c		\
+	logview-utils.h		\
 	calendar.c		\
 	calendar.h		\
 	log_repaint.c		\

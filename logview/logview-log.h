@@ -84,6 +84,8 @@ void logview_log_read_new_lines (LogviewLog *log,
                                  LogviewNewLinesCallback callback,
                                  gpointer user_data);
 const char * logview_log_get_display_name (LogviewLog *log);
+gulong logview_log_get_timestamp (LogviewLog *log);
+goffset logview_log_get_file_size (LogviewLog *log);
 
 G_END_DECLS
 

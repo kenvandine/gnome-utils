@@ -132,28 +132,6 @@ locale_to_utf8 (const char *in)
   return out;
 }
 
-GDate *
-string_get_date (char *line)
-{
-    GDate *date;
-    struct tm tp;
-    char *cp;
-    
-    if (line == NULL || line[0] == 0)
-        return NULL;
-
-    cp = strptime (line, "%b %d", &tp);
-    if (cp == NULL) {
-        cp = strptime (line, "%F", &tp);
-        if (cp == NULL) {
-            return NULL;
-        }
-    }
-
-    date = g_date_new_dmy (tp.tm_mday, tp.tm_mon+1, 70);
-    return date;
-}
-
 char *
 date_get_string (GDate *date)
 {
