@@ -93,14 +93,13 @@ out:
 GSList *
 log_read_dates (const char **buffer_lines, time_t current)
 {
-  int offsetyear = 0, current_year;
-  GSList *days = NULL, *days_copy;
+  int current_year, offsetyear, i, n, rangemin, rangemax;
+  GSList *days = NULL;
   GDate *date, *newdate;
   struct tm *tmptm;
   char *date_string;
   Day *day;
   gboolean done = FALSE;
-  int i, n, rangemin, rangemax, idx;
 
   g_return_val_if_fail (buffer_lines != NULL, NULL);
 
@@ -108,6 +107,7 @@ log_read_dates (const char **buffer_lines, time_t current)
 
   tmptm = localtime (&current);
   current_year = tmptm->tm_year + 1900;
+  offsetyear = 0;
 
   /* find the first line with a date we're able to parse */
   for (i = 0; buffer_lines[i]; i++) {
@@ -174,6 +174,7 @@ log_read_dates (const char **buffer_lines, time_t current)
     }
 
     g_free (date_string);
+    date_string = NULL;
 
     if (!done) {
       /* this means we finished the current day but we're not at the end
@@ -206,6 +207,7 @@ log_read_dates (const char **buffer_lines, time_t current)
            * so it means that newdate is the next year.
            */
           g_date_add_years (newdate, 1);
+          offsetyear++;
         }
 
         date = newdate;
@@ -219,6 +221,10 @@ log_read_dates (const char **buffer_lines, time_t current)
         rangemax = n - 1;
       }
     }
+  }
+
+  if (date_string) {
+    g_free (date_string);
   }
 
   /* sort the days in chronological order */
