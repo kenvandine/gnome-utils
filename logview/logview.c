@@ -448,7 +448,7 @@ findbar_close_cb (LogviewFindbar *findbar,
 {
   LogviewWindow *logview = user_data;
 
-  /* TODO: implement */
+  gtk_widget_hide (logview->priv->find_bar);
 }
 
 static void
