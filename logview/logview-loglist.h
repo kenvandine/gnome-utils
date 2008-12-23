@@ -51,6 +51,8 @@ struct _LogviewLoglistClass {
 GType logview_loglist_get_type (void);
 
 /* public methods */
-GtkWidget * logview_loglist_new (void);
+GtkWidget * logview_loglist_new          (void);
+void        logview_loglist_update_lines (LogviewLoglist *loglist,
+                                          LogviewLog *log);
 
 #endif /* __LOGVIEW_LOGLIST_H__ */

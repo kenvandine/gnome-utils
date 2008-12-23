@@ -21,6 +21,7 @@
 
 #include "logview-manager.h"
 #include "logview-log.h"
+#include "logview-utils.h"
 
 #include "logview-loglist.h"
 
@@ -35,11 +36,41 @@ G_DEFINE_TYPE (LogviewLoglist, logview_loglist, GTK_TYPE_TREE_VIEW);
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOGVIEW_TYPE_LOGLIST, LogviewLoglistPrivate))
 
 enum {
-	LOG_OBJECT = 0,
-	LOG_NAME,
-	LOG_WEIGHT,
-	LOG_WEIGHT_SET
+  LOG_OBJECT = 0,
+  LOG_NAME,
+  LOG_WEIGHT,
+  LOG_WEIGHT_SET,
+  LOG_DAY
 };
+
+static void
+update_days_and_lines_for_log (LogviewLoglist *loglist,
+                               GtkTreeIter *log, GSList *days)
+{
+  gboolean res;
+  GtkTreeIter iter;
+  GSList *l;
+
+  /* first, remove all the stored days */
+  res = gtk_tree_model_iter_children (GTK_TREE_MODEL (loglist->priv->model),
+                                      &iter, log);
+  if (!res) {
+    /* there are no children, go on */
+  } else {
+    do {
+      gtk_tree_store_remove (loglist->priv->model, &iter);
+    } while (gtk_tree_model_iter_next (GTK_TREE_MODEL (loglist->priv->model),
+                                       &iter));
+  }
+
+  for (l = days; l; l = l->next) {
+    /* now insert all the days */
+    gtk_tree_store_insert (GTK_TREE_STORE (loglist->priv->model),
+                           &iter, log, 1);
+    gtk_tree_store_set (GTK_TREE_STORE (loglist->priv->model),
+                        &iter, LOG_DAY, l->data, -1);
+  }
+}
 
 static GtkTreeIter *
 logview_loglist_find_log (LogviewLoglist *list, LogviewLog *log)
@@ -196,6 +227,32 @@ manager_log_added_cb (LogviewManager *manager,
 }
 
 static void
+days_cell_data_func (GtkTreeViewColumn *column,
+                     GtkCellRenderer *cell,
+                     GtkTreeModel *model,
+                     GtkTreeIter *iter,
+                     gpointer user_data)
+{
+  LogviewLoglist *list = user_data;
+  Day *day;
+  char string_date[200];
+  char *name;
+
+  gtk_tree_model_get (model, iter,
+                      LOG_NAME, &name, LOG_DAY, &day, -1);
+
+  if (!day) {
+    g_object_set (cell, "text", name, NULL);
+    g_free (name);
+
+    return;
+  }
+
+  g_date_strftime (string_date, 200, "%F", day->date);
+  g_object_set (cell, "text", string_date, NULL);
+}
+
+static void
 do_finalize (GObject *obj)
 {
   LogviewLoglist *list = LOGVIEW_LOGLIST (obj);
@@ -215,7 +272,8 @@ logview_loglist_init (LogviewLoglist *list)
 
   list->priv = GET_PRIVATE (list); 
 
-  model = gtk_tree_store_new (4, LOGVIEW_TYPE_LOG, G_TYPE_STRING, G_TYPE_INT, G_TYPE_BOOLEAN);
+  model = gtk_tree_store_new (5, LOGVIEW_TYPE_LOG, G_TYPE_STRING, G_TYPE_INT,
+                              G_TYPE_BOOLEAN, G_TYPE_POINTER);
   gtk_tree_view_set_model (GTK_TREE_VIEW (list), GTK_TREE_MODEL (model));
   list->priv->model = model;
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list), FALSE);
@@ -229,10 +287,13 @@ logview_loglist_init (LogviewLoglist *list)
   column = gtk_tree_view_column_new ();
   gtk_tree_view_column_pack_start (column, cell, TRUE);
   gtk_tree_view_column_set_attributes (column, cell,
-                                       "text", LOG_NAME,
                                        "weight-set", LOG_WEIGHT_SET,
                                        "weight", LOG_WEIGHT,
                                        NULL);
+  /* we set the text manually to handle the day case */
+  gtk_tree_view_column_set_cell_data_func (column, cell,
+                                           days_cell_data_func,
+                                           list, NULL);
 
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list->priv->model), LOG_NAME, GTK_SORT_ASCENDING);
   gtk_tree_view_append_column (GTK_TREE_VIEW (list), column);
@@ -265,4 +326,18 @@ logview_loglist_new (void)
   GtkWidget *widget;
   widget = g_object_new (LOGVIEW_TYPE_LOGLIST, NULL);
   return widget;
+}
+
+void
+logview_loglist_update_lines (LogviewLoglist *loglist, LogviewLog *log)
+{
+  GSList *days;
+  GtkTreeIter *parent;
+
+  g_assert (LOGVIEW_IS_LOGLIST (loglist));
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  days = logview_log_get_days_for_cached_lines (log);
+  parent = logview_loglist_find_log (loglist, log);
+  update_days_and_lines_for_log (loglist, parent, days);
 }
