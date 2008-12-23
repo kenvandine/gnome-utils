@@ -25,6 +25,7 @@
 #include <gio/gio.h>
 
 #include "logview-log.h"
+#include "logview-utils.h"
 
 G_DEFINE_TYPE (LogviewLog, logview_log, G_TYPE_OBJECT);
 
@@ -195,7 +196,6 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   NewLinesJob *job = user_data;
   LogviewLog *log = job->log;
   char *line;
-  guint old_size;
   GError *err = NULL;
   GPtrArray *lines = log->priv->lines;
 
@@ -203,7 +203,7 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   g_assert (log->priv->stream != NULL);
 
   /* remove the NULL-terminator */
-  g_ptr_array_remove_index (lines, lines->len);
+  g_ptr_array_remove_index (lines, lines->len - 1);
 
   while ((line = g_data_input_stream_read_line (log->priv->stream, NULL,
                                                 NULL, &err)) != NULL)
@@ -220,11 +220,11 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   g_ptr_array_add (lines, NULL);
 
   /* we'll return only the new lines in the callback */
-  line = g_ptr_array_index (lines, log->priv->lines_no + 1);
-  job->lines = (const char **) &line;
+  line = g_ptr_array_index (lines, log->priv->lines_no);
+  job->lines = (const char **) lines->pdata + log->priv->lines_no;
 
   /* save the new number of lines */
-  log->priv->lines_no = (lines->len - 1);
+  log->priv->lines_no = (lines->len - 2);
 
 out:
   g_io_scheduler_job_send_to_mainloop_async (io_job,
@@ -415,4 +415,12 @@ logview_log_get_cached_lines (LogviewLog *log)
   lines = (const char **) log->priv->lines->pdata;
 
   return lines;
+}
+
+GSList *
+logview_log_get_days_for_cached_lines (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return log->priv->days;
 }
