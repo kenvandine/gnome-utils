@@ -652,21 +652,20 @@ static GtkActionEntry entries[] = {
       G_CALLBACK (logview_copy) },
     { "SelectAll", NULL, N_("Select _All"), "<Control>A", N_("Select the entire log"),
       G_CALLBACK (logview_select_all) },
-    { "Search", GTK_STOCK_FIND, N_("_Filter..."), "<control>F", N_("Filter log"),
+    { "Search", GTK_STOCK_FIND, N_("_Find..."), "<control>F", N_("Find a word or phrase in the log"),
       G_CALLBACK (logview_search) },
 
-    {"ViewZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<control>plus", N_("Bigger text size"),
+    { "ViewZoomIn", GTK_STOCK_ZOOM_IN, NULL, "<control>plus", N_("Bigger text size"),
       G_CALLBACK (logview_bigger_text)},
-    {"ViewZoomOut", GTK_STOCK_ZOOM_OUT, NULL, "<control>minus", N_("Smaller text size"),
+    { "ViewZoomOut", GTK_STOCK_ZOOM_OUT, NULL, "<control>minus", N_("Smaller text size"),
       G_CALLBACK (logview_smaller_text)},
-    {"ViewZoom100", GTK_STOCK_ZOOM_100, NULL, "<control>0", N_("Normal text size"),
+    { "ViewZoom100", GTK_STOCK_ZOOM_100, NULL, "<control>0", N_("Normal text size"),
       G_CALLBACK (logview_normal_text)},
 
     { "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
       G_CALLBACK (logview_help) },
     { "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the log viewer"), 
       G_CALLBACK (logview_about) },
-
 };
 
 static GtkToggleActionEntry toggle_entries[] = {
