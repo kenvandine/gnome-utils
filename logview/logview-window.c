@@ -65,7 +65,12 @@ struct _LogviewWindowPrivate {
 
 G_DEFINE_TYPE (LogviewWindow, logview_window, GTK_TYPE_WINDOW);
 
-static void  findbar_close_cb (LogviewFindbar *findbar,
+static void findbar_close_cb  (LogviewFindbar *findbar,
+                               gpointer user_data);
+static void read_new_lines_cb (LogviewLog *log,
+                               const char **lines,
+                               GSList *new_days,
+                               GError **error,
                                gpointer user_data);
 
 /* private functions */
@@ -750,12 +755,6 @@ logview_window_select_date (LogviewWindow *logview, GDate *date)
     real_select_day (logview, day->date, day->first_line, day->last_line);
   }   
 }
-
-static void read_new_lines_cb (LogviewLog *log,
-                               const char **lines,
-                               GSList *new_days,
-                               GError **error,
-                               gpointer user_data);
 
 static void
 log_monitor_changed_cb (LogviewLog *log,
