@@ -29,6 +29,8 @@ gnome_system_log_SOURCES = 	\
 	logrtns.h		\
 	logview.c		\
 	logview.h		\
+	logview-log.h \
+	logview-log.c \
 	misc.c			\
 	misc.h			\
 	monitor.c       	\
