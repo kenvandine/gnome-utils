@@ -46,6 +46,11 @@ struct _LogviewWindowClass {
 GType logview_window_get_type (void);
 
 /* public methods */
-GtkWidget *logview_window_new (void);
+GtkWidget * logview_window_new        (void);
+void        logview_window_add_error  (LogviewWindow *window,
+                                       const char *primary,
+                                       const char *secondary);
+void        logview_window_add_errors (LogviewWindow *window,
+                                       GPtrArray *errors);
 
 #endif /* __LOGVIEW_WINDOW_H__ */

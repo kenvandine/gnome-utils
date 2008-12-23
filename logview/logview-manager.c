@@ -182,11 +182,10 @@ create_log_cb (LogviewLog *log,
 
     /* notify the error */
     path = g_file_get_path (data->file);
-    primary = g_strdup_printf (_("Impossible to open the file %s."), path);
 
     if (!data->is_multiple) {
       logview_app_add_error (logview_app_get (),
-                             primary, error->message);
+                             path, error->message);
     } else {
       char **error_arr = g_new0 (char *, 3);
 

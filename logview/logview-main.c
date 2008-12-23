@@ -35,7 +35,7 @@ static char **log_files = NULL;
 
 static void
 app_quit_cb (LogviewApp *app,
-                       gpointer user_data)
+             gpointer user_data)
 {
   gtk_main_quit ();
 }

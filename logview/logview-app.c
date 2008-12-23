@@ -26,6 +26,8 @@
 #include "logview-window.h"
 #include "logview-prefs.h"
 
+#include <glib/gi18n.h>
+
 struct _LogviewAppPrivate {
   LogviewPrefs *prefs;
   LogviewManager *manager;
@@ -165,16 +167,20 @@ logview_app_initialize (LogviewApp *app, char **log_files)
 
 void
 logview_app_add_error (LogviewApp *app,
-                       const char *primary,
+                       const char *file_path,
                        const char *secondary)
 {
   LogviewWindow *window;
+  char *primary;
 
   g_assert (LOGVIEW_IS_APP (app));
 
   window = app->priv->window;
+  primary = g_strdup_printf (_("Impossible to open the file %s"), file_path);
 
   logview_window_add_error (window, primary, secondary);
+
+  g_free (primary);
 }
 
 void

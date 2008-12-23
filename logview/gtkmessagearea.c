@@ -300,8 +300,6 @@ gtk_message_area_style_set (GtkWidget *widget,
                         "use-tooltip-style", &use_tooltip_style,
                         NULL);
 
-  g_print ("use tooltip style: %d\n", use_tooltip_style);
-
   gtk_box_set_spacing (GTK_BOX (GTK_MESSAGE_AREA (widget)->priv->action_area),
                        button_spacing);
   gtk_container_set_border_width (GTK_CONTAINER (GTK_MESSAGE_AREA (widget)->priv->action_area),

@@ -63,7 +63,7 @@ LogviewApp * logview_app_get (void);
 void         logview_app_initialize (LogviewApp *app,
                                      char **log_files);
 void         logview_app_add_error  (LogviewApp *app,
-                                     const char *primary,
+                                     const char *file_path,
                                      const char *secondary);
 void         logview_app_add_errors (LogviewApp *app,
                                      GPtrArray *errors);

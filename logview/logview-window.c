@@ -50,7 +50,10 @@ struct _LogviewWindowPrivate {
   GtkWidget *version_selector;
   GtkWidget *hpaned;
   GtkWidget *text_view;
+
   GtkWidget *message_area;
+  GtkWidget *message_primary;
+  GtkWidget *message_secondary;
 
   GtkTextTagTable *tag_table;
 
@@ -924,13 +927,11 @@ style_set_cb (GtkWidget *widget,
   populate_style_tag_table (style, logview->priv->tag_table);
 }
 
-/* copy-paste from GEdit */
+/* adapted from GEdit */
 
 static void
-set_message_area_text_and_icon (GtkWidget *message_area,
-                                const char *icon_stock_id,
-                                const char *primary_text,
-                                const char *secondary_text)
+message_area_create_error_box (LogviewWindow *window,
+                               GtkWidget *message_area)
 {
   GtkWidget *hbox_content;
   GtkWidget *image;
@@ -939,11 +940,12 @@ set_message_area_text_and_icon (GtkWidget *message_area,
   char *secondary_markup;
   GtkWidget *primary_label;
   GtkWidget *secondary_label;
-
+  
   hbox_content = gtk_hbox_new (FALSE, 8);
   gtk_widget_show (hbox_content);
 
-  image = gtk_image_new_from_stock (icon_stock_id, GTK_ICON_SIZE_DIALOG);
+  image = gtk_image_new_from_stock (GTK_STOCK_DIALOG_ERROR,
+                                    GTK_ICON_SIZE_DIALOG);
   gtk_widget_show (image);
   gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
   gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0);
@@ -952,9 +954,8 @@ set_message_area_text_and_icon (GtkWidget *message_area,
   gtk_widget_show (vbox);
   gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
-  primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
-  primary_label = gtk_label_new (primary_markup);
-  g_free (primary_markup);
+
+  primary_label = gtk_label_new (NULL);
   gtk_widget_show (primary_label);
   gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
   gtk_label_set_use_markup (GTK_LABEL (primary_label), TRUE);
@@ -962,25 +963,54 @@ set_message_area_text_and_icon (GtkWidget *message_area,
   gtk_misc_set_alignment (GTK_MISC (primary_label), 0, 0.5);
   GTK_WIDGET_SET_FLAGS (primary_label, GTK_CAN_FOCUS);
   gtk_label_set_selectable (GTK_LABEL (primary_label), TRUE);
+  window->priv->message_primary = primary_label;
 
-  if (secondary_text != NULL) {
-      secondary_markup = g_strdup_printf ("<small>%s</small>",
-                                          secondary_text);
-      secondary_label = gtk_label_new (secondary_markup);
-      g_free (secondary_markup);
-      gtk_widget_show (secondary_label);
-      gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
-      GTK_WIDGET_SET_FLAGS (secondary_label, GTK_CAN_FOCUS);
-      gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
-      gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
-      gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
-      gtk_misc_set_alignment (GTK_MISC (secondary_label), 0, 0.5);
-  }
+  secondary_label = gtk_label_new (NULL);
+  gtk_widget_show (secondary_label);
+  gtk_box_pack_start (GTK_BOX (vbox), secondary_label, TRUE, TRUE, 0);
+  GTK_WIDGET_SET_FLAGS (secondary_label, GTK_CAN_FOCUS);
+  gtk_label_set_use_markup (GTK_LABEL (secondary_label), TRUE);
+  gtk_label_set_line_wrap (GTK_LABEL (secondary_label), TRUE);
+  gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (secondary_label), 0, 0.5);
+  window->priv->message_secondary = secondary_label;
 
   gtk_message_area_set_contents (GTK_MESSAGE_AREA (message_area),
                                  hbox_content);
 }
 
+static void
+message_area_set_labels (LogviewWindow *window,
+                         const char *primary,
+                         const char *secondary)
+{
+  char *primary_markup, *secondary_markup;
+
+  primary_markup = g_markup_printf_escaped ("<b>%s</b>", primary);
+  secondary_markup = g_markup_printf_escaped ("<small>%s</small>",
+                                              secondary);
+
+  gtk_label_set_markup (GTK_LABEL (window->priv->message_primary),
+                        primary_markup);
+  gtk_label_set_markup (GTK_LABEL (window->priv->message_secondary),
+                        secondary_markup);
+
+  g_free (primary_markup);
+  g_free (secondary_markup);
+}
+
+static void
+message_area_response_cb (GtkMessageArea *message_area,
+                          int response_id, gpointer user_data)
+{
+  LogviewWindow *window = user_data;
+
+  gtk_widget_hide (GTK_WIDGET (message_area));
+
+  g_signal_handlers_disconnect_by_func (message_area,
+                                        message_area_response_cb,
+                                        user_data);
+}
 
 static void
 logview_window_finalize (GObject *object)
@@ -1082,6 +1112,10 @@ logview_window_init (LogviewWindow *logview)
 
   /* second pane: error message area */
   priv->message_area = gtk_message_area_new ();
+  message_area_create_error_box (logview, priv->message_area);
+  gtk_message_area_add_stock_button_with_text (GTK_MESSAGE_AREA (priv->message_area),
+                                               _("Close"), GTK_STOCK_CLOSE,
+                                               GTK_RESPONSE_CLOSE);
   gtk_box_pack_start (GTK_BOX (main_view), priv->message_area, FALSE, FALSE, 0);
 
   /* second pane: text view */
@@ -1190,9 +1224,18 @@ logview_window_add_error (LogviewWindow *window,
                           const char *primary,
                           const char *secondary)
 {
-  g_assert (LOGVIEW_IS_WINDOW (window));
+  LogviewWindowPrivate *priv;
 
-  /* TODO: */
+  g_assert (LOGVIEW_IS_WINDOW (window));
+  priv = window->priv;
+
+  message_area_set_labels (window,
+                           primary, secondary); 
+
+  gtk_widget_show (priv->message_area);
+
+  g_signal_connect (priv->message_area, "response",
+                    G_CALLBACK (message_area_response_cb), window);
 }
 
 void
