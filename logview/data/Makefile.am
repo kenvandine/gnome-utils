@@ -2,8 +2,10 @@ xmldir = $(pkgdatadir)
 xml_DATA = logview-toolbar.xml
 
 desktopdir = $(datadir)/applications
-desktop_in_files = gnome-system-log.desktop.in.in
-desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+desktop_in_files = gnome-system-log.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+$(desktop_in_files): $(desktop_in_files:.desktop.in=.desktop.in.in)
+	@sed -e "s|\@VERSION\@|@VERSION@|" $< > $@
 @INTLTOOL_DESKTOP_RULE@
 
 man_MANS = gnome-system-log.1
