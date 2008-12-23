@@ -144,7 +144,6 @@ logview_select_log (LogviewWindow *logview, Log *log)
     logview_update_findbar_visibility (logview);
     
     logview_update_version_bar (logview);
-    logview_save_prefs (logview); 
     gtk_widget_grab_focus (logview->view);
 }
 
@@ -193,32 +192,6 @@ logview_update_findbar_visibility (LogviewWindow *logview)
 		gtk_widget_show (logview->find_bar);
 	else
 		gtk_widget_hide (logview->find_bar);
-}
-
-static void
-logview_save_prefs (LogviewWindow *logview)
-{
-    GSList *list;
-    Log *log;
-
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-
-    if (GTK_WIDGET_VISIBLE (GTK_WIDGET (logview->loglist))) {
-        prefs_free_loglist();
-        for (list = logview->logs; list != NULL; list = g_slist_next (list)) {
-            log = list->data;
-            prefs_store_log (log->name);
-        }
-        
-        if (logview->curlog) {
-	  if (logview->curlog->parent_log)
-            prefs_store_active_log (logview->curlog->parent_log->name);
-	  else
-	    prefs_store_active_log (logview->curlog->name);
-	}
-        prefs_store_fontsize (logview->fontsize);
-	prefs_save ();
-    }
 }
 
 static Log *
@@ -772,7 +745,7 @@ logview_window_init (LogviewWindow *logview)
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (priv->view), FALSE);
 
   /* Use the desktop monospace font */
-  monospace_font_name = prefs_get_monospace ();
+  monospace_font_name = logview_prefs_get_monospace_font_name (priv->prefs);
   logview_set_font (logview, monospace_font_name);
   g_free (monospace_font_name);
 
