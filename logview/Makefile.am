@@ -2,8 +2,6 @@
 
 SUBDIRS = data help tests
 
-Utilitiesdir = $(datadir)/applications
-
 INCLUDES = \
 	$(GNOME_UTILS_CFLAGS)					\
 	$(LIBGNOME_CFLAGS)					\
@@ -54,22 +52,12 @@ logview-marshal.c: logview-marshal.list $(GLIB_GENMARSHAL)
 
 man_MANS = gnome-system-log.1
 
-Utilities_in_files = gnome-system-log.desktop.in
-Utilities_DATA = $(Utilities_in_files:.desktop.in=.desktop)
-
-$(Utilities_in_files): $(Utilities_in_files:.desktop.in=.desktop.in.in)
-	@sed -e "s|\@VERSION\@|@VERSION@|" $< > $@
-
-@INTLTOOL_DESKTOP_RULE@
-
 schemasdir   = $(GCONF_SCHEMA_FILE_DIR)
 schemas_in_file = logview.schemas.in
 schemas_DATA = $(schemas_in_file:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
 EXTRA_DIST = \
-	gnome-system-log.desktop.in.in	\
-	$(schemas_in_file) 		\
 	$(man_MANS)
 
 if GCONF_SCHEMAS_INSTALL
@@ -86,8 +74,6 @@ endif
 install-data-local: install-gconf-schemas
 
 CLEANFILES = 				\
-	gnome-system-log.desktop	\
-	gnome-system-log.desktop.in	\
 	logview.schemas			\
 	$(BUILT_SOURCES)
 
