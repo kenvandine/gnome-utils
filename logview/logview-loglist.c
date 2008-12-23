@@ -364,6 +364,12 @@ do_finalize (GObject *obj)
   LogviewLoglist *list = LOGVIEW_LOGLIST (obj);
 
   g_object_unref (list->priv->model);
+  list->priv->model = NULL;
+
+  if (list->priv->selection) {
+    gtk_tree_path_free (list->priv->selection);
+    list->priv->selection = NULL;
+  }
 
   G_OBJECT_CLASS (logview_loglist_parent_class)->finalize (obj);
 }
