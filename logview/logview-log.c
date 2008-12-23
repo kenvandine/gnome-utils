@@ -29,15 +29,19 @@ G_DEFINE_TYPE (LogviewLog, logview_log, G_TYPE_OBJECT);
 #define GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOGVIEW_TYPE_LOG, LogviewLogPrivate))
 
+enum {
+  LOG_CHANGED,
+  LAST_SIGNAL
+};
+
+static guint signals [LAST_SIGNAL] = { 0 };
+
 struct _LogviewLogPrivate {
   GFile *file;
 
   /* stats about the file */
   GTimeVal file_time;
   goffset file_size;
-
-  /* real content, array of lines */
-  GArray *lines;
 
   /* stream poiting to the log */
   GDataInputStream *stream;
@@ -59,9 +63,30 @@ typedef struct {
 } NewLinesJob;
 
 static void
+do_finalize (GObject *obj)
+{
+  LogviewLog *log = LOGVIEW_LOG (obj);
+
+  g_object_unref (log->priv->stream);
+  g_object_unref (log->priv->file);
+
+  G_OBJECT_CLASS (logview_log_parent_class)->finalize (obj);
+}
+
+static void
 logview_log_class_init (LogviewLogClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+  object_class->finalize = do_finalize;
+
+  signals[LOG_CHANGED] = g_signal_new ("log-changed",
+                                       G_OBJECT_CLASS_TYPE (object_class),
+                                       G_SIGNAL_RUN_LAST,
+                                       G_STRUCT_OFFSET (LogviewLogClass, log_changed),
+                                       NULL, NULL,
+                                       g_cclosure_marshal_VOID__VOID,
+                                       G_TYPE_NONE, 0);
 
   g_type_class_add_private (klass, sizeof (LogviewLogPrivate));
 }

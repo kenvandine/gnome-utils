@@ -68,6 +68,9 @@ struct _LogviewLog {
 
 struct _LogviewLogClass {
   GObjectClass parent_class;
+
+  /* signals */
+  void (* log_changed) (LogviewLog *log);
 };
 
 GType logview_log_get_type      (void);
