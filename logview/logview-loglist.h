@@ -33,19 +33,18 @@
   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOGVIEW_TYPE_LOGLIST, LogviewLoglistClass))
 
 #include <gtk/gtk.h>
+#include <glib-object.h>
 
 typedef struct _LogviewLoglist LogviewLoglist;
 typedef struct _LogviewLoglistClass LogviewLoglistClass;
-typedef struct _LogviewLoglistPrivate LogviewLogListPrivate;
+typedef struct _LogviewLoglistPrivate LogviewLoglistPrivate;
 
-struct _LogviewLoglist
-{	
+struct _LogviewLoglist {	
   GtkTreeView parent_instance;
   LogviewLoglistPrivate *priv;
 };
 
-struct _LogviewLoglistClass
-{
+struct _LogviewLoglistClass {
 	GtkTreeViewClass parent_class;
 };
 
@@ -53,13 +52,5 @@ GType logview_loglist_get_type (void);
 
 /* public methods */
 GtkWidget * logview_loglist_new (void);
-
-
-void loglist_connect (LogList *list, LogviewWindow *window);
-void loglist_add_log (LogList *list, Log *log);
-void loglist_remove_log (LogList *list, Log *log);
-void loglist_select_log (LogList *list, Log *log);
-void loglist_bold_log (LogList *list, Log *log);
-void loglist_unbold_log (LogList *list, Log *log);
 
 #endif /* __LOGVIEW_LOGLIST_H__ */

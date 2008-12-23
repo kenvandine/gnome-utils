@@ -32,7 +32,7 @@ struct _LogviewLoglistPrivate {
 G_DEFINE_TYPE (LogviewLoglist, logview_loglist, GTK_TYPE_TREE_VIEW);
 
 #define GET_PRIVATE(o)  \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOG_LIST_TYPE, LogListPriv))
+  (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOGVIEW_TYPE_LOGLIST, LogviewLoglistPrivate))
 
 enum {
 	LOG_OBJECT = 0,
@@ -81,7 +81,7 @@ log_changed_cb (LogviewLog *log,
     return;
   }
 
-  iter = logview_list_find_log (list, log);
+  iter = logview_loglist_find_log (list, log);
 
   if (!iter) {
     return;
@@ -110,7 +110,7 @@ manager_log_closed_cb (LogviewManager *manager,
   GtkTreeIter *iter;
   gboolean res;
 
-  iter = logview_list_find_log (list, log);
+  iter = logview_loglist_find_log (list, log);
 
   if (!iter) {
     return;
@@ -237,10 +237,12 @@ logview_loglist_class_init (LogviewLoglistClass *klass)
   g_type_class_add_private (klass, sizeof (LogviewLoglistPrivate));
 }
 
+/* public methods */
+
 GtkWidget *
-loglist_new (void)
+logview_loglist_new (void)
 {
   GtkWidget *widget;
-  widget = g_object_new (LOG_LIST_TYPE, NULL);
+  widget = g_object_new (LOGVIEW_TYPE_LOGLIST, NULL);
   return widget;
 }
