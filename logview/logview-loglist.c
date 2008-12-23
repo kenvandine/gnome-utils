@@ -31,6 +31,7 @@ struct _LogviewLoglistPrivate {
   GtkTreeStore *model;
   LogviewManager *manager;
   GtkTreePath *selection;
+  gboolean has_day_selection;
 };
 
 G_DEFINE_TYPE (LogviewLoglist, logview_loglist, GTK_TYPE_TREE_VIEW);
@@ -48,6 +49,7 @@ enum {
 
 enum {
   DAY_SELECTED,
+  DAY_CLEARED,
   LAST_SIGNAL
 };
 
@@ -172,7 +174,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
   GtkTreeModel *model;
   GtkTreeIter iter, parent;
   LogviewLog *log;
-  gboolean is_bold;
+  gboolean is_bold, is_active;
   Day *day;
 
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
@@ -183,10 +185,16 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
                       LOG_WEIGHT_SET, &is_bold,
                       LOG_DAY, &day, -1);
   if (log) {
-    if (!logview_manager_log_is_active (list->priv->manager, log)) {
+    is_active = logview_manager_log_is_active (list->priv->manager, log);
+
+    if (is_active && list->priv->has_day_selection) {
+      list->priv->has_day_selection = FALSE;
+      g_signal_emit (list, signals[DAY_CLEARED], 0, NULL);
+    } else if (!is_active) {
       logview_manager_set_active_log (list->priv->manager, log);
     }
   } else {
+    list->priv->has_day_selection = TRUE;
     gtk_tree_model_iter_parent (model, &parent, &iter);
     gtk_tree_model_get (model, &parent, LOG_OBJECT, &log, -1);
 
@@ -384,7 +392,9 @@ logview_loglist_init (LogviewLoglist *list)
   GtkTreeSelection *selection;
   GtkCellRenderer *cell;
 
-  list->priv = GET_PRIVATE (list); 
+  list->priv = GET_PRIVATE (list);
+  list->priv->has_day_selection = FALSE;
+  list->priv->selection = NULL;
 
   model = gtk_tree_store_new (5, LOGVIEW_TYPE_LOG, G_TYPE_STRING, G_TYPE_INT,
                               G_TYPE_BOOLEAN, G_TYPE_POINTER);
@@ -440,6 +450,14 @@ logview_loglist_class_init (LogviewLoglistClass *klass)
                                         g_cclosure_marshal_VOID__POINTER,
                                         G_TYPE_NONE, 1,
                                         G_TYPE_POINTER);
+
+  signals[DAY_CLEARED] = g_signal_new ("day-cleared",
+                                       G_OBJECT_CLASS_TYPE (oclass),
+                                       G_SIGNAL_RUN_LAST,
+                                       G_STRUCT_OFFSET (LogviewLoglistClass, day_cleared),
+                                       NULL, NULL,
+                                       g_cclosure_marshal_VOID__VOID,
+                                       G_TYPE_NONE, 0);
 
   g_type_class_add_private (klass, sizeof (LogviewLoglistPrivate));
 }

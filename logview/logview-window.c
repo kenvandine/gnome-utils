@@ -730,6 +730,23 @@ loglist_day_selected_cb (LogviewLoglist *loglist,
 }
 
 static void
+loglist_day_cleared_cb (LogviewLoglist *loglist,
+                        gpointer user_data)
+{
+  LogviewWindow *logview = user_data;
+  GtkTextBuffer *buffer;
+  GtkTextIter start, end;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
+  gtk_text_buffer_get_start_iter (buffer, &start);
+  gtk_text_buffer_get_end_iter (buffer, &end);
+
+  /* clear all previous invisible tags */
+  gtk_text_buffer_remove_tag_by_name (buffer, "invisible",
+                                      &start, &end);
+}
+
+static void
 logview_window_select_date (LogviewWindow *logview, GDate *date)
 {
   LogviewLog *log;
@@ -1012,6 +1029,8 @@ logview_window_init (LogviewWindow *logview)
 
   g_signal_connect (priv->loglist, "day_selected",
                     G_CALLBACK (loglist_day_selected_cb), logview);
+  g_signal_connect (priv->loglist, "day_cleared",
+                    G_CALLBACK (loglist_day_cleared_cb), logview);
 
   /* second pane : log */
   main_view = gtk_vbox_new (FALSE, 0);

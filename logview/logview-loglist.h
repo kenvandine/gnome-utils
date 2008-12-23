@@ -53,6 +53,7 @@ struct _LogviewLoglistClass {
 
   void (* day_selected) (LogviewLoglist *loglist,
                          Day *day);
+  void (* day_cleared) (LogviewLoglist *loglist);
 };
 
 GType logview_loglist_get_type (void);
