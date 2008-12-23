@@ -1,4 +1,5 @@
-/*
+/* logview-about.h - authors and contributors information
+ *
  * Copyright (C) 2004 Vincent Noel <vnoel@cox.net>
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *

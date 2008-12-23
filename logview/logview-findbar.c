@@ -1,4 +1,5 @@
-/*
+/* logview-findbar.c - find toolbar for logview
+ *
  * Copyright (C) 2005 Vincent Noel <vnoel@cox.net>
  * Copyright (C) 2008 Cosimo Cecchi <cosimoc@gnome.org>
  *
