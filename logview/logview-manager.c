@@ -62,7 +62,7 @@ logview_manager_finalize (GObject *object)
   }
 
   g_hash_table_destroy (manager->priv->logs);
-  
+
   G_OBJECT_CLASS (logview_manager_parent_class)->finalize (object);
 }
 
