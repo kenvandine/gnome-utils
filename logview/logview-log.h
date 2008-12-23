@@ -25,6 +25,7 @@
 #define __LOGVIEW_LOG_H__
 
 #include <glib-object.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
@@ -79,6 +80,9 @@ GType logview_log_get_type      (void);
 
 /* these two do I/O, so they are wrapped async */
 void          logview_log_create                   (const char *filename,
+                                                    LogviewCreateCallback callback,
+                                                    gpointer user_data);
+void          logview_log_create_from_gfile        (GFile *file,
                                                     LogviewCreateCallback callback,
                                                     gpointer user_data);
 void          logview_log_read_new_lines           (LogviewLog *log,

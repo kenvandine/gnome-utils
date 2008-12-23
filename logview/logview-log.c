@@ -430,6 +430,17 @@ logview_log_create (const char *filename, LogviewCreateCallback callback,
   log_setup_load (log, callback, user_data);
 }
 
+void
+logview_log_create_from_gfile (GFile *file, LogviewCreateCallback callback,
+                               gpointer user_data)
+{
+  LogviewLog *log = g_object_new (LOGVIEW_TYPE_LOG, NULL);
+
+  log->priv->file = g_object_ref (file);
+
+  log_setup_load (log, callback, user_data);
+}
+
 const char *
 logview_log_get_display_name (LogviewLog *log)
 {

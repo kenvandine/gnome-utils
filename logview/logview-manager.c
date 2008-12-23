@@ -198,6 +198,40 @@ logview_manager_get_active_log (LogviewManager *manager)
 }
 
 void
+logview_manager_add_log_from_gfile (LogviewManager *manager,
+                                    GFile *file,
+                                    gboolean set_active)
+{
+  char *file_uri;
+  LogviewLog *log;
+  CreateCBData *data;
+
+  g_assert (LOGVIEW_IS_MANAGER (manager));
+
+  file_uri = g_file_get_uri (file);
+
+  if (set_active == FALSE) {
+    /* if it's the first log being added, set it as active anyway */
+    set_active = (manager->priv->logs == NULL);
+  }
+
+  if ((log = g_hash_table_lookup (manager->priv->logs, file_uri)) != NULL) {
+    /* log already exists, don't load it */
+    if (set_active) {
+      logview_manager_set_active_log (manager, log);
+    }
+  } else {
+    data = g_slice_new0 (CreateCBData);
+    data->manager = manager;
+    data->set_active = set_active;
+
+    logview_log_create_from_gfile (file, create_log_cb, data);
+  }
+
+  g_free (file_uri);
+}
+
+void
 logview_manager_add_logs_from_names (LogviewManager *manager,
                                      GSList *names,
                                      const char *active)
@@ -208,7 +242,7 @@ logview_manager_add_logs_from_names (LogviewManager *manager,
 
   for (l = names; l; l = l->next) {
     logview_manager_add_log_from_name (manager, l->data,
-                                       (g_ascii_strcasecmp (active, l->data) == 0));
+                                        (g_ascii_strcasecmp (active, l->data) == 0));
   }
 }
 
@@ -216,27 +250,15 @@ void
 logview_manager_add_log_from_name (LogviewManager *manager,
                                    const char *filename, gboolean set_active)
 {
-  CreateCBData *data = g_slice_new0 (CreateCBData);
-  LogviewLog *log;
+  GFile *file;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
-  if (set_active == FALSE) {
-    /* if it's the first log being added, set it as active anyway */
-    set_active = (manager->priv->logs == NULL);
-  }
+  file = g_file_new_for_path (filename);
 
-  if ((log = g_hash_table_lookup (manager->priv->logs, filename)) != NULL) {
-    /* log already exists, don't load it */
-    if (set_active) {
-      logview_manager_set_active_log (manager, log);
-    }
-  } else {
-    data->manager = manager;
-    data->set_active = set_active;
+  logview_manager_add_log_from_gfile (manager, file, set_active);
 
-    logview_log_create (filename, create_log_cb, data);
-  }
+  g_object_unref (file);
 }
 
 int
