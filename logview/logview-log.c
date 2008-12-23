@@ -341,6 +341,105 @@ create_zlib_error (void)
   return err;
 }
 
+#define GZIP_HEADER_SIZE 10
+#define GZIP_MAGIC_1 0x1f
+#define GZIP_MAGIC_2 0x8b
+#define GZIP_FLAG_ASCII        0x01 /* bit 0 set: file probably ascii text */
+#define GZIP_FLAG_HEAD_CRC     0x02 /* bit 1 set: header CRC present */
+#define GZIP_FLAG_EXTRA_FIELD  0x04 /* bit 2 set: extra field present */
+#define GZIP_FLAG_ORIG_NAME    0x08 /* bit 3 set: original file name present */
+#define GZIP_FLAG_COMMENT      0x10 /* bit 4 set: file comment present */
+#define GZIP_FLAG_RESERVED     0xE0 /* bits 5..7: reserved */
+
+static gboolean
+skip_string (GInputStream *is)
+{
+	guchar c;
+	gssize bytes_read;
+
+	do {
+		bytes_read = g_input_stream_read (is, &c, 1, NULL, NULL);
+
+		if (bytes_read != 1) {
+			return FALSE;
+    }
+	} while (c != 0);
+
+	return TRUE;
+} 
+
+static gboolean
+read_gzip_header (GInputStream *is,
+                  time_t *modification_time)
+{
+  gboolean res;
+	guchar buffer[GZIP_HEADER_SIZE];
+	gssize bytes, to_skip;
+	guint mode;
+	guint flags;
+
+	bytes = g_input_stream_read (is, buffer, GZIP_HEADER_SIZE,
+                               NULL, NULL);
+  if (bytes == -1) {
+    return FALSE;
+  }
+
+	if (bytes != GZIP_HEADER_SIZE)
+		return FALSE;
+
+	if (buffer[0] != GZIP_MAGIC_1 || buffer[1] != GZIP_MAGIC_2)
+		return FALSE;
+
+	mode = buffer[2];
+	if (mode != 8) /* Mode: deflate */
+		return FALSE;
+
+	flags = buffer[3];
+
+	if (flags & GZIP_FLAG_RESERVED)
+		return FALSE;
+
+	if (flags & GZIP_FLAG_EXTRA_FIELD) {
+		guchar tmp[2];
+
+    bytes = g_input_stream_read (is, tmp, 2, NULL, NULL);
+  
+    if (bytes != 2) {
+			return FALSE;
+    }
+
+    to_skip = tmp[0] | (tmp[0] << 8);
+    bytes = g_input_stream_skip (is, to_skip, NULL, NULL);
+    if (bytes != to_skip) {
+      return;
+    }
+	}
+
+	if (flags & GZIP_FLAG_ORIG_NAME) {
+    if (!skip_string (is)) {
+      return FALSE;
+    }
+  }
+
+	if (flags & GZIP_FLAG_COMMENT) {
+    if (!skip_string (is)) {
+      return FALSE;
+    }
+  }
+
+	if (flags & GZIP_FLAG_HEAD_CRC) {
+    bytes = g_input_stream_skip (is, 2, NULL, NULL);
+		if (bytes != 2) {
+      return FALSE;
+    }
+  }
+
+  *modification_time = (buffer[4] | (buffer[5] << 8)
+                        | (buffer[6] << 16) | (buffer[7] << 24));
+
+	return TRUE;
+}
+
 static gboolean
 log_load (GIOSchedulerJob *io_job,
           GCancellable *cancellable,
@@ -392,25 +491,34 @@ log_load (GIOSchedulerJob *io_job,
   log->priv->display_name = g_strdup (g_file_info_get_display_name (info));
 
   g_object_unref (info);
-  
-  if (!is_archive) {
-    /* initialize the stream */
-    is = G_INPUT_STREAM (g_file_read (f, NULL, &err));
 
-    if (err) {
-      if (err->code == G_IO_ERROR_PERMISSION_DENIED) {
-        /* TODO: PolicyKit integration */
-      }
+  /* initialize the stream */
+  is = G_INPUT_STREAM (g_file_read (f, NULL, &err));
 
-      goto out;
+  if (err) {
+    if (err->code == G_IO_ERROR_PERMISSION_DENIED) {
+      /* TODO: PolicyKit integration */
     }
-  } else {
+
+    goto out;
+  }
+
+  if (is_archive) {
 #ifdef HAVE_ZLIB
     gzFile gz;
     char *path;
     char *actual_data;
     int res;
     guint len;
+    time_t mtime;
+
+    res = read_gzip_header (is, &mtime);
+    g_object_unref (is);
+
+    if (!res) {
+      err = create_zlib_error ();
+      goto out;
+    }
 
     path = g_file_get_path (f);
     gz = gzopen (path, "rb");
@@ -439,7 +547,7 @@ log_load (GIOSchedulerJob *io_job,
       err = create_zlib_error ();
       goto out;
     }
-#elif
+#else
     err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_SUPPORTED,
                                _("This version of System Log does not support GZipped logs."));
     goto out;
