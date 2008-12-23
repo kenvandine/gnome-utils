@@ -32,7 +32,7 @@
 #include "about.h"
 #include "misc.h"
 #include "logview-findbar.h"
-#include "userprefs.h"
+#include "logview-prefs.h"
 #include "calendar.h"
 
 #define APP_NAME _("System Log Viewer")

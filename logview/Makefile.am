@@ -35,8 +35,8 @@ gnome_system_log_SOURCES = 	\
 	misc.h			\
 	monitor.c       	\
 	monitor.h		\
-	userprefs.c             \
-	userprefs.h		\
+	logview-prefs.c         \
+	logview-prefs.h         \
 	logview-findbar.c	\
 	logview-findbar.h   \
 	loglist.c       \

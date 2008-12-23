@@ -28,6 +28,7 @@
 #include <gtk/gtk.h>
 
 #include "logview.h"
+#include "logview-prefs.h"
 #include "misc.h"
 
 static gboolean show_version = FALSE;
