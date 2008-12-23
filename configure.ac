@@ -513,9 +513,9 @@ fi
 
 dnl <= logview =>
 if test "x$msg_zlib" = "xyes"; then
-  echo "Logview build with ZLib support   : YES"
+  echo "Logview built with ZLib support   : YES"
 else
-  echo "Logview build with ZLib support   : NO"
+  echo "Logview built with ZLib support   : NO"
 fi
 
 dnl <= libgdict =>
