@@ -430,6 +430,12 @@ logview_search_text (LogviewWindow *logview, gboolean forward)
 
   wrapped = FALSE;
 
+  text = logview_findbar_get_text (LOGVIEW_FINDBAR (logview->priv->find_bar));
+
+  if (!text) {
+    return;
+  }
+
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
   search_start = gtk_text_buffer_get_mark (buffer, SEARCH_START_MARK);
   search_end = gtk_text_buffer_get_mark (buffer, SEARCH_END_MARK);
@@ -448,8 +454,6 @@ logview_search_text (LogviewWindow *logview, gboolean forward)
       gtk_text_buffer_get_iter_at_mark (buffer, &search, search_start);
     }
   }
-
-  text = logview_findbar_get_text (LOGVIEW_FINDBAR (logview->priv->find_bar));
 
 wrap:
 
@@ -557,15 +561,6 @@ static void
 logview_search (GtkAction *action, LogviewWindow *logview)
 {
   logview_findbar_open (LOGVIEW_FINDBAR (logview->priv->find_bar));
-
-  g_signal_connect (logview->priv->find_bar, "previous",
-                    G_CALLBACK (findbar_previous_cb), logview);
-  g_signal_connect (logview->priv->find_bar, "next",
-                    G_CALLBACK (findbar_next_cb), logview);
-  g_signal_connect (logview->priv->find_bar, "text_changed",
-                    G_CALLBACK (findbar_text_changed_cb), logview);
-  g_signal_connect (logview->priv->find_bar, "close",
-                    G_CALLBACK (findbar_close_cb), logview);
 }
 
 static void
@@ -945,6 +940,15 @@ logview_window_init (LogviewWindow *logview)
 
   priv->find_bar = logview_findbar_new ();
   gtk_box_pack_end (GTK_BOX (main_view), priv->find_bar, FALSE, FALSE, 0);
+
+  g_signal_connect (priv->find_bar, "previous",
+                    G_CALLBACK (findbar_previous_cb), logview);
+  g_signal_connect (priv->find_bar, "next",
+                    G_CALLBACK (findbar_next_cb), logview);
+  g_signal_connect (priv->find_bar, "text_changed",
+                    G_CALLBACK (findbar_text_changed_cb), logview);
+  g_signal_connect (priv->find_bar, "close",
+                    G_CALLBACK (findbar_close_cb), logview);
 
   /* remember the original font size */
   context = gtk_widget_get_pango_context (priv->text_view);
