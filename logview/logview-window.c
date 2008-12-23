@@ -334,9 +334,9 @@ logview_open_log (GtkAction *action, LogviewWindow *logview)
                                            NULL);
     gtk_dialog_set_default_response (GTK_DIALOG (chooser), GTK_RESPONSE_OK);
     gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
-    g_signal_connect (G_OBJECT (chooser), "response",
+    g_signal_connect (chooser, "response",
                       G_CALLBACK (open_file_selected_cb), logview);
-    g_signal_connect (G_OBJECT (chooser), "destroy",
+    g_signal_connect (chooser, "destroy",
                       G_CALLBACK (gtk_widget_destroyed), &chooser);
     active = logview_prefs_get_active_logfile (logview->priv->prefs);
     if (active != NULL) {
@@ -399,10 +399,10 @@ logview_select_all (GtkAction *action, LogviewWindow *logview)
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
 
-  gtk_text_buffer_get_start_iter (buffer, &start);
-  gtk_text_buffer_get_end_iter (buffer, &end);
-
+  gtk_text_buffer_get_bounds (buffer, &start, &end);
   gtk_text_buffer_select_range (buffer, &start, &end);
+
+  gtk_widget_grab_focus (GTK_WIDGET (logview->priv->text_view));
 }
 
 static void
@@ -415,6 +415,8 @@ logview_copy (GtkAction *action, LogviewWindow *logview)
   clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 
   gtk_text_buffer_copy_clipboard (buffer, clipboard);
+
+  gtk_widget_grab_focus (GTK_WIDGET (logview->priv->text_view));
 }
 
 static void
@@ -845,6 +847,8 @@ active_log_changed_cb (LogviewManager *manager,
   findbar_close_cb (LOGVIEW_FINDBAR (window->priv->find_bar),
                     window);
 
+  logview_set_window_title (window, logview_log_get_display_name (log));
+
   if (window->priv->monitor_id) {
     g_signal_handler_disconnect (old_log, window->priv->monitor_id);
     window->priv->monitor_id = 0;
@@ -1021,6 +1025,7 @@ logview_window_init (LogviewWindow *logview)
   w = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
                                   GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+  gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (w), GTK_SHADOW_IN);
   gtk_box_pack_start (GTK_BOX (main_view), w, TRUE, TRUE, 0);
   gtk_widget_show (w);
 
