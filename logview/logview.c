@@ -25,12 +25,12 @@
 #include <glib/gi18n.h>
 
 #include "logview.h"
-#include "loglist.h"
-#include "log_repaint.h"
+#include "logview-loglist.h"
 #include "misc.h"
-#include "logview-findbar.h"
-#include "calendar.h"
 
+/*
+#include "logview-findbar.h"
+*/
 #include "logview-about.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
@@ -108,22 +108,9 @@ static const char *ui_description =
 	"	</menubar>"
 	"</ui>";
 
-void
-logview_select_log (LogviewWindow *logview, Log *log)
-{
-    g_return_if_fail (LOGVIEW_IS_WINDOW (logview));
-  
-    logview_store_visible_range (logview);
-
-    logview_calendar_set_state (logview);
-
-    logview_update_findbar_visibility (logview);
-    
-    logview_update_version_bar (logview);
-    gtk_widget_grab_focus (logview->priv->text_view);
-}
-
 /* private functions */
+
+#if 0
 
 static void
 logview_update_findbar_visibility (LogviewWindow *logview)
@@ -140,9 +127,14 @@ logview_update_findbar_visibility (LogviewWindow *logview)
 		gtk_widget_hide (logview->find_bar);
 }
 
+#endif
+
 static void
 logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_data)
 {
+
+}
+#if 0
 	LogviewWindow *logview = user_data;
 	Log *log = logview->curlog;
 	int selected;
@@ -181,6 +173,8 @@ logview_calendar_set_state (LogviewWindow *logview)
     } else
         gtk_widget_set_sensitive (logview->calendar, FALSE);
 }
+
+#endif
 
 /* private helpers */
 
@@ -451,9 +445,10 @@ static void
 logview_search (GtkAction *action, LogviewWindow *logview)
 {
   g_assert (LOGVIEW_IS_WINDOW (logview));
-    
+/*
   gtk_widget_show_all (logview->priv->find_bar);
   logview_findbar_grab_focus (LOGVIEW_FINDBAR (logview->priv->find_bar));
+*/
 }
 
 void
@@ -729,10 +724,10 @@ logview_window_init (LogviewWindow *logview)
   PangoContext *context;
   PangoFontDescription *fontdesc;
   gchar *monospace_font_name;
-  LogviewWindowPrivate *priv = logview->priv;
+  LogviewWindowPrivate *priv;
   int width, height;
 
-  priv = GET_PRIVATE (logview);
+  priv = logview->priv = GET_PRIVATE (logview);
   priv->prefs = logview_prefs_get ();
   priv->manager = logview_manager_get ();
   priv->monitor_id = 0;
@@ -780,11 +775,6 @@ logview_window_init (LogviewWindow *logview)
   priv->sidebar = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (priv->sidebar);
 
-  priv->calendar = calendar_new ();
-  calendar_connect (CALENDAR (priv->calendar), logview);
-  gtk_box_pack_end (GTK_BOX (priv->sidebar), priv->calendar, FALSE, FALSE, 0);
-  gtk_widget_show (priv->calendar);
-
   /* first pane: log list */
   w = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (w),
@@ -792,11 +782,10 @@ logview_window_init (LogviewWindow *logview)
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (w),
                                        GTK_SHADOW_ETCHED_IN);
 
-  priv->loglist = loglist_new ();
+  priv->loglist = logview_loglist_new ();
   gtk_container_add (GTK_CONTAINER (w), priv->loglist);
   gtk_box_pack_start (GTK_BOX (priv->sidebar), w, TRUE, TRUE, 0);
   gtk_paned_pack1 (GTK_PANED (hpaned), priv->sidebar, FALSE, FALSE);
-  loglist_connect (LOG_LIST (priv->loglist), logview);
   gtk_widget_show (w);
   gtk_widget_show (priv->loglist);
 
@@ -808,6 +797,8 @@ logview_window_init (LogviewWindow *logview)
   priv->tag_table = gtk_text_tag_table_new ();
   populate_tag_table (priv->tag_table);
   priv->text_view = gtk_text_view_new ();
+  gtk_box_pack_end (GTK_BOX (main_view), priv->text_view, FALSE, FALSE, 0);
+  gtk_widget_show (priv->text_view);
 
   /* use the desktop monospace font */
   monospace_font_name = logview_prefs_get_monospace_font_name (priv->prefs);
@@ -826,10 +817,11 @@ logview_window_init (LogviewWindow *logview)
   gtk_box_pack_end (GTK_BOX (priv->version_bar), w, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (main_view), priv->version_bar, FALSE, FALSE, 0);
 
+/*
   priv->find_bar = logview_findbar_new ();
   gtk_box_pack_end (GTK_BOX (main_view), priv->find_bar, FALSE, FALSE, 0);
   logview_findbar_connect (LOGVIEW_FINDBAR (priv->find_bar), logview);
-
+*/
   /* remember the original font size */
   context = gtk_widget_get_pango_context (priv->text_view);
   fontdesc = pango_context_get_font_description (context);
@@ -854,6 +846,7 @@ logview_window_init (LogviewWindow *logview)
   gtk_widget_show (priv->statusbar);
 
   gtk_widget_show (vbox);
+  gtk_widget_show (main_view);
 }
 
 static void
