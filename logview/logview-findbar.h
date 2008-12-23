@@ -54,8 +54,7 @@ struct _LogviewFindbarClass {
   void (* previous)     (LogviewFindbar *findbar);
   void (* next)         (LogviewFindbar *findbar);
   void (* close)        (LogviewFindbar *findbar);
-  void (* text_changed) (LogviewFindbar *findbar,
-                         const char * new_text);
+  void (* text_changed) (LogviewFindbar *findbar);
 };
 
 GType logview_findbar_get_type (void);

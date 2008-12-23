@@ -542,7 +542,6 @@ text_changed_timeout_cb (gpointer user_data)
 
 static void
 findbar_text_changed_cb (LogviewFindbar *findbar,
-                         const char *new_text,
                          gpointer user_data)
 {
   LogviewWindow *logview = user_data;
