@@ -1,0 +1,2619 @@
+2008-11-04  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* Makefile.am: keep it building with the new configure checks
+	(part of #557262).
+
+2008-10-23  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        * logview.c:
+        (logview_help):
+        * main.c:
+        (create_option_context):
+        (main):
+	Remove libgnome usage; drop SM client code, as it doesn't
+	work (#547273).
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Add license information in the about dialog (#501084).
+
+        * about.c:
+        (logview_about):
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Fixup includes a bit.
+
+        * about.c:
+        * about.h:
+        * calendar.h:
+        * log_repaint.h:
+        * loglist.c:
+        * loglist.h:
+        * logrtns.c:
+        * logview-findbar.c:
+        * logview.c:
+        * logview.h:
+        * main.c:
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Don't use deprecated GTK macros.
+
+        * calendar.h:
+        * loglist.h:
+        * logview-findbar.h:
+        * logview.h:
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Use g_type_class_add_private ().
+
+        * calendar.c:
+        (calendar_init):
+        * calendar.h:
+        * loglist.c:
+        (loglist_init):
+        * logview-findbar.c:
+        (logview_findbar_init):
+
+2008-10-22  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        Use G_DEFINE_TYPE macros.
+
+        * calendar.c:
+        (calendar_connect):
+        (calendar_init):
+        (calendar_class_init):
+        * loglist.c:
+        (loglist_class_init):
+        (loglist_new):
+        * logview-findbar.c:
+        (logview_findbar_new):
+        * logview.c:
+        (logview_window_finalize):
+        (logview_window_class_init):
+
+2007-10-23  Stéphane Loeuillet  <sloeuille@svn.gnome.org>
+
+	* gnome-system-log.desktop.in.in: Trivial fix to .desktop file
+	to conform to latest fd.o .desktop specs.
+	Spoted by desktop-file-validate. Fixes #481721
+
+2007-08-26  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* main.c: Do not overwrite the first argument in the argv
+	string vector passed to the restart command. (#442846, Lin Ma)
+
+2007-08-23  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* logrtns.c: Fix a string leak. (#413498, Sebastien Bacher)
+
+2007-08-20  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* main.c: Initialise the counter before incrementing it, to
+	avoid garbage and a segmentation fault. (#442846 and duplicates)
+
+2007-08-17  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* main.c: Remove the useless "die" signal handler; return the
+	correct type in the "save-yourself" signal handler.
+
+2007-04-14  Jan Arne Petersen  <jap@gnome.org>
+
+	* logrtns.c: (log_read_dates): Add check for i < n-1. (#364106)
+
+2007-01-22  Emmanuele Bassi  <ebassi@gnome.org>
+
+	* log_repaint.c: Fix message. (#399544, Stephane Raimbault)
+
+2006-11-30  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* log_repaint.c: Check the return value of strrchr(). (should
+	fix #380410 and duplicates)
+
+2006-08-25  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* misc.c: Fix compilation on 64bit machines. (#352837,
+	Laurent Goujon)
+
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	A gnome-system-log.desktop.in.in
+	D gnome-system-log.desktop.in
+
+	* Makefile.am:
+	* gnome-system-log.desktop.in.in: Add Bugzilla version
+	line and generate a template for l10n.
+
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* logview.h:
+	* calendar.h:
+	* loglist.h:
+	* logrtns.c:
+	* logview-findbar.c:
+	* misc.c: Avoid crashing due to pointer truncation problems
+	on 64-bit platforms (Joe Marcus Clarke, #339057).
+
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* log_repaint.c: Fix include of string.h.
+
+2006-06-11  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* userprefs.c: Add support for Solaris default log
+	files (Lin Ma, #338426).
+
+	* log_repaint.c: Remove NUL character returned by ctime
+	from status bar (Lin Ma, #338426).
+
+	* logview.c: Use File instead of Log (Lin Ma, #338426).
+
+	* logrtns.c: Bold the whole log lines and get the corrent
+	size in x86_64 and Sparc system (Lin Ma, #338426).
+
+	* loglist.c: Sort files by ascending order (Lin Ma, #338426).
+
+2006-05-28  Sebastien Bacher  <seb128@debian.org>
+
+	* log_repaint.c: (tree_path_find_row): fix the selection offset 
+	when copying from a log with several days listed (Closes: #338176)
+
+2006-02-06  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	Codebase clean up patch (based on a patch by Paolo Borelli).
+
+	* logview.h:
+	* logview.c (logview_set_font), (logview_copy), (logview_init),
+	(logview_window_new): add logview_set_font() for setting the font of
+	the logview window; clean up the code.
+
+	* misc.c (widget_set_font): remove this function, as logview_set_font()
+	as been added.
+
+	* userprefs.c: massive code clean ups.
+
+2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* logview.c: revert the previous commit: the free is needed (thanks
+	to Paolo Borelli).
+
+2006-02-05  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* logview.c: remove an unnecessary free().
+
+2006-02-03  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* misc.c (widget_set_font): check for NULL font name.
+
+	* logview.c: pass "Monospace 10" as default monospace font name and
+	size, in case GConf returns an empty string (closes bug #329704).
+
+2006-01-30  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* about.c: fix Gman's email address.
+
+2006-01-25  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* gnome-system-log.desktop.in: fix the Category key, by adding ';'
+	at the end (closes bug #328584).
+
+2006-01-23  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* main.c: remove an unnecessary cast.
+
+2006-01-22  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* main.c: fix indentation; allocate an array of NULL-terminated string
+	to be passed to the clone commands; fix command-line options parsing;
+	add a "-V|--version" option (shows the version of gnome-system-log).
+
+2006-01-21  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* help/C/gnome-system-log.xml: fix the manual's title and abstract
+	for a better classification under Scrollkeeper (closes bug #327793).
+
+2006-01-19  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* userprefs.h
+	* userprefs.c (prefs_init)
+	* main.c: Remove call to the deprecated gconf_init,
+	and change the prefs_init signature.
+
+2006-01-19  Emmanuele Bassi  <ebassi@cvs.gnome.org>
+
+	* userprefs.c (prefs_load): Initialize GError before using it (fix
+	bug #327614).  Plus, clean up the code.
+
+2005-12-06  Vincent Noel  <noel@localhost.localdomain>
+
+	* logview.schemas.in: Fix some key descriptions. Fix bug #323141.
+
+2005-12-02  Vincent Noel  <vincent.noel@gmail.com>
+
+	* gnome-system-log.desktop.in: Add the Monitor category to
+	.desktop file. Patch by Matthias Clasen. Fixes bug #322132.
+
+2005-11-28  Guilherme de S. Pastore  <gpastore@gnome.org>
+
+	* about.c (logview_about): fixed a typo in the author credits.
+
+2005-11-23  Vincent Noel  <vincent.noel@gmail.com>
+
+	* logrtns.c: (log_add_lines), (log_read_new_lines): Apparently you
+	  can't compare a GnomeVFSFileSize with a GnomeVFSFileOffset.
+
+2005-11-23  Vincent Noel  <vincent.noel@gmail.com>
+
+	* logrtns.c: (log_stats_reload), (log_read_new_lines): Update the
+	line count and last modification date when a log is updated.
+
+2005-11-18  Vincent Noel  <vincent.noel@gmail.com>
+
+	* calendar.c: (calendar_mark_dates), (log_find_day):
+	* calendar.h:
+	* log_repaint.c: (log_add_new_log_lines),
+	(log_fill_model_with_date), (logview_set_log_model):
+	* logrtns.c: (log_read_dates), (log_close):
+	* logrtns.h:
+	* logview.c: (logview_count_logs), (logview_save_prefs),
+	(logview_add_log), (logview_find_log_from_name),
+	(logview_close_log), (logview_file_selected_cb):
+	* logview.h:
+	* main.c: (save_session):
+	* misc.c: (error_dialog_show), (error_dialog_show_queued): Convert
+	a few double-linked lists in linked lists.
+
+2005-11-18  Vincent Noel  <vincent.noel@gmail.com>
+
+	* logview.c: (logview_set_window_title), (window_size_changed_cb),
+	(logview_window_finalize), (logview_init), (logview_window_new):
+	* main.c: (main):
+	* userprefs.c: (prefs_load): Rename a few variables for consistency.
+
+	* main.c (main): Better handle errors.
+	
+2005-11-18  Vincent Noel <vincent.noel@gmail.com>
+
+	* logview.schemas.in: Updated the schemas to include new keys,
+	  add default values.
+
+2005-11-17  Vincent Noel <vincent.noel@gmail.com>
+
+	* logrtns.c: (log_read_dates):
+	* logview.c: (logview_add_logs_from_names):
+	* userprefs.c: (prefs_load), (prefs_save): Handle the deletion of
+	saved logs better.
+
+2005-11-17  Vincent Noel  <vincent.noel@gmail.com>
+
+	* logrtns.c (log_read_dates): Off-by-one error.
+
+	* calendar.c: (calendar_day_selected):
+	* log_repaint.c: (selection_changed_cb), (logview_unbold_rows),
+	(log_add_new_log_lines), (logview_scroll_and_focus_path),
+	(log_fill_model_no_date), (log_fill_model_with_date):
+	* logrtns.c: (log_close):
+	* logrtns.h:
+	* logview.c: (logview_store_visible_range): The previous
+	workaround did not always work, so include a better fix.
+
+2005-11-17  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (calendar_day_selected):
+	* log_repaint.c: (selection_changed_cb), (logview_unbold_rows),
+	(log_add_new_log_lines), (logview_scroll_and_focus_path),
+	(log_fill_model_no_date), (log_fill_model_with_date),
+	(logview_repaint):
+	* logrtns.c: (log_close):
+	* logrtns.h:
+	* logview.c: (logview_store_visible_range): Some refactoring. Work
+	around a weird bug, where scrolling to bold lines when switching to
+	another log would result in the last row of the model being shown
+	in the middle of the treeview, this making the visible range invalid.
+
+2005-11-17  Vincent Noel  <vincent.noel@gmail.com>
+
+	* log_repaint.c (logview_scroll_and_focus_path): 
+	Use gtk_tree_selection_select_path instead of
+	gtk_tree_view_set_cursor to set the selection. Avoid obvious flicker
+	when switching to another log.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>	    
+
+	* log_repaint.c: (selection_changed_cb),
+	(logview_scroll_and_focus_path), (logview_repaint): Fix a crash
+	that could be triggered by switching logs and selecting lines like
+	crazy.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
+
+	* log_repaint.c: (selection_changed_cb), (logview_unbold_rows),
+	(log_add_new_log_lines), (logview_scroll_and_focus_path):
+	* logrtns.c: (log_close):
+	* logrtns.h:
+	* logview.c: (logview_store_visible_range), (logview_select_log),
+	(logview_add_logs_from_names): Store the visible treeview range
+	for each opened log, so we can scroll back the exact same position
+	when switching logs.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
+
+	* logrtns.c (log_read_dates): Don't barf on multi-lines log
+	messages than don't include dates. Bug reported by John Rice
+
+	* log_repaint.c: (logview_unbold_rows),
+	(logview_add_new_log_lines), (logview_scroll_and_focus_path),
+	(log_fill_model_date, logview_scroll_and_focus_path): Finally handle correctly
+        the adding of new lines to a log, be it selected or not. Don't select
+	the new lines, just scroll to them.
+
+	* logrtns.c: (log_open):
+	* logrtns.h: cleanups and fixes for potential sync problems.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
+
+	* log_repaint.c (logview_show_busy_cursor): New. Only show the busy
+	  cursor after a short delay.
+	  (logview_create_model): Try not to make the cursor flicker.
+
+	* logview.c (logview_destroy): Don't call gtk_main_quit if we're not
+	  in the gtk main loop yet.
+
+	* log_repaint.c: (logview_unbold_rows),
+	(logview_scroll_and_focus_path), (log_repaint): When switching to
+	a log with new lines, scroll down to the new lines and show them in
+	bold.
+	(log_repaint): Handle things better (fixes screwups when switching logs).
+	(log_repaint): Fix another thinko.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
+
+	* log_repaint.c: (logview_unbold_rows),
+	(logview_add_new_log_lines), (logview_scroll_and_focus_path),
+	(log_fill_model_no_date), (log_fill_model_date),
+	(logview_create_model), (log_repaint):
+	* logview.c: (logview_init): For kicks, bold the new lines for 5
+	seconds when a log is updated.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
+
+	* log_repaint.c: (logview_update_version_bar),
+	(logview_add_new_log_lines), (log_repaint):
+	* logrtns.c: (log_open), (log_add_lines), (log_read_new_lines):
+	* logrtns.h:
+	* logview.c: (logview_select_log): Monitoring was broken, fix it.
+
+2005-11-16  Vincent Noel  <vincent.noel@gmail.com>
+
+	* logview.c (logview_init): Cleanup the main treeview creation.
+
+2005-11-16  Vincent Noel <vincent.noel@gmail.com>
+
+	* loglist.c: (loglist_unbold_log), (loglist_bold_log),
+	(loglist_selection_changed), (loglist_init): Bold log names the
+	"correct" way, by connecting a GtkTreeViewColumn attributes to the
+	"weight" attribute of the GtkCellRenderer.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* logview.c (logview_add_logs_from_names): Expand all rows in the
+	side pane log tree at startup.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* logview.c (logview_init): Now that we have only one column,
+	there's no need for the treeview hints (and it's cleaner without).
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* loglist.c: (loglist_find_directory), (loglist_add_directory),
+	(loglist_add_log):
+	* logrtns.c: (log_extract_dirname):
+	* logrtns.h:
+	* userprefs.c: (prefs_store_active_log), (prefs_save): Some
+	refactoring to make it easier to read.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* logview.c: (logview_save_prefs), (logview_destroy):
+	* userprefs.c: (prefs_store_active_log), (prefs_save): Make sure
+	that the active log is correctly saved when an archive is displayed.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* log_repaint.c: (logview_create_model):
+	* loglist.c: (loglist_find_directory), (loglist_find_log),
+	(loglist_unbold_log), (loglist_bold_log), (loglist_select_log),
+	(loglist_remove_log), (loglist_add_log), (loglist_init):
+	* logrtns.c: (log_extract_filename):
+	* logrtns.h:
+	* logview.c: (logview_add_log_from_name),
+	(logview_add_logs_from_names), (logview_file_selected_cb):
+	* main.c: (main): Add a tree view in the side bar to group logs by
+	directory.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* log_repaint.c (logview_update_version_bar): Make sure to show the version bar.
+	* logview.c (logview_search): Make sure to show the filter bar.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* misc.c (month): 
+	* logview.c:
+	* loglist.c: Remove the restoration_complete variable. Use
+	GTK_WIDGET_VISIBLE instead.
+	
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* logview.h:
+	* main.c: (main): Be smarter when showing the widget.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* main.c (main): Show a "busy" cursor while loading logs. 
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* calendar.c: (calendar_class_finalize):
+	* loglist.c: (loglist_finalize):
+	* logview-findbar.c: (iter_is_visible), (logview_findbar_finalize):
+	* logview.c: (logview_window_finalize): Finalize the GObjects.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* userprefs.c (prefs_create_defaults): Actually parse all the
+	default logs.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* calendar.c: (calendar_init_data):
+	* calendar.h:
+	* logview.c: (logview_calendar_set_state),
+	(logview_window_get_property), (logview_window_class_init): Use
+	GObject properties.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* misc.c (locale_to_utf8): Better logic.
+	* userprefs.c (prefs_store_window_size): Remove a few FIXMEs.
+
+2005-11-15  Vincent Noel <vincent.noel@gmail.com>
+
+	* userprefs.c: (prefs_monospace_font_changed),
+	(prefs_menus_have_tearoff_changed), (prefs_connect): Listen to the
+	menus_have_tearoff gconf key.
+
+2005-11-15  Vincent Noel  <vincent.noel@gmail.com>
+
+	* about.c (logview_about): Add documenters in the about
+	dialog. Update email address.
+
+2005-11-14  Vincent Noel  <vnoel@cox.net>
+
+	* userprefs.c (prefs_create_defaults): Add a few more default logs.
+
+2005-11-14  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_menus_set_state): Don't allow row collapsing
+	for logs without days.
+
+2005-11-14  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c (string_get_date_string): Allow parsing logs with
+	dates in the yyyy-mm-dd format (e.g. dpkg.log).
+
+2005-11-14  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_init): Put the filter bar above the version bar.
+
+2005-11-14  Vincent Noel <vnoel@cox.net>
+
+	* logrtns.c (log_open): Catch errors better.
+
+	* logview.c: Add mnemonics in menus.
+
+	* logview-findbar.c (logview_findbar_clear): Hide the filter bar
+	when clearing the filter.
+
+	* calendar.c: (calendar_mark_dates), (calendar_init_data),
+	(calendar_day_selected), (calendar_select_date), (calendar_init),
+	(calendar_class_finalize), (calendar_class_init):
+	* calendar.h: Privatize the calendar stuff.
+
+2005-11-14  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (logview_update_version_bar):
+	* logview.c: (logview_select_log), (logview_add_logs_from_names):
+	* userprefs.c: (prefs_load), (prefs_save): Correctly save the
+	state even with no opened log.
+
+2005-11-08  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_menus_set_state), (logview_add_log),
+	(logview_toggle_monitor), (logview_select_all),
+	(logview_menu_item_toggle_set_active): Fix toggle menu item
+	inconsistency.
+
+2005-11-08  Vincent Noel  <vnoel@cox.net>
+
+	* loglist.c: (loglist_init):
+	* logrtns.c: (log_open): Cleanup after myself.
+
+2005-11-08  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (logview_create_model):
+	* loglist.c: (loglist_add_log):
+	* logrtns.c: (log_read_dates), (log_open):
+	* logview-findbar.c: (iter_is_visible), (logview_findbar_clear),
+	(logview_findbar_entry_timeout),
+	(logview_findbar_entry_changed_cb), (logview_findbar_grab_focus),
+	(logview_findbar_connect), (logview_findbar_init),
+	(logview_findbar_finalize), (logview_findbar_class_init):
+	* logview-findbar.h:
+	* logview.c: (logview_count_logs), (logview_add_logs_from_names),
+	(logview_add_log), (logview_init): If the locale is utf8, don't
+	convert to utf8. Create private structure for the filter bar. Cleanups.
+
+2005-11-08  Vincent Noel  <vnoel@cox.net>
+
+	* help/C/gnome-system-log.xml: Update the documentation.
+	
+	* logrtns.c: (log_read_dates), (log_open):
+	* logview.c: (logview_close_log):
+	* monitor.c: (monitor_callback): Optimize the log parsing. This is
+	only noticeable with huge, huge logs, but it's a nice boost in
+	this case.
+
+2005-11-08  Vincent Noel <vnoel@cox.net>
+
+	* Makefile.am:
+	* log_repaint.c: (logview_update_statusbar):
+	* logview.c: (logview_menus_set_state): 
+	* info.c, info.h: remove, the same info is now 
+	available in the status bar.
+
+2005-11-08  Vincent Noel <vnoel@cox.net>
+
+	* logrtns.c: (log_read_new_lines):
+	* logview.c: (logview_toggle_statusbar), (logview_toggle_sidebar),
+	(logview_toggle_calendar), (logview_init), (logview_window_new):
+	* logview.h: Simplify - we don't need calendar_visible or
+	sidepane_visible, GTK_WIDGET_VISIBLE is enough. Add an option to
+	show/hide the status bar. Align the menu item descriptions with evince.
+	Move the "filter" item to the "View" menu.
+
+2005-11-08  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (model_fill_date_iter),
+	(logview_add_new_log_lines), (logview_create_model_no_date),
+	(logview_create_model), (log_repaint):
+	* logrtns.c: (log_open), (log_add_lines), (log_read_new_lines),
+	(log_close):
+	* logrtns.h:
+	* logview-findbar.c: (iter_is_visible),
+	(logview_findbar_entry_timeout),
+	(logview_findbar_entry_changed_cb):
+	* logview.c: (logview_select_log),
+	(logview_update_findbar_visibility), (logview_close_log),
+	(logview_copy), (logview_init): Remove the column headers and just
+	display the line as it appears in the log. The functionality stays
+	the same, for a big code simplification and speedup.
+
+2005-11-07  Vincent Noel <vnoel@cox.net>
+
+	* logview-findbar.c: (iter_is_visible), (logview_findbar_clear),
+	(logview_findbar_entry_changed_cb), (logview_findbar_grab_focus),
+	(logview_findbar_connect), (logview_findbar_init),
+	(logview_findbar_class_init), (logview_findbar_get_type),
+	(logview_findbar_new):
+	* logview-findbar.h:
+	* logview.c: (logview_update_findbar_visibility), (logview_search),
+	(logview_init): Make the findbar its own widget.
+
+2005-11-07  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (logview_show_model):
+	* logrtns.c: (log_open):
+	* logrtns.h:
+	* logview-findbar.c: (iter_is_visible), (logview_findbar_clear),
+	(logview_findbar_entry_changed_cb), (logview_findbar_new):
+	Change how the filter works : don't clear filter on focus-out, add
+	a "Clear" button.
+
+2005-11-04  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (model_fill_date_iter):
+	* logview-findbar.c: (iter_is_visible),
+	(logview_findbar_entry_changed_cb), (logview_findbar_hide),
+	(logview_findbar_new):
+	* logview.c: (logview_init):
+	* logview.h: Remove the whole Find bar mess (which never worked
+	well anyway) with a nice and fast filter.
+
+2005-11-04  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_add_logs_from_names), (logview_save_prefs),
+	(logview_destroy), (logview_version_selector_changed),
+	(logview_close_log), (logview_open_log), (window_size_changed_cb),
+	(logview_init), (logview_window_new):
+	* main.c: (main):
+	* misc.c: (date_get_string), (widget_set_font):
+	* userprefs.c: (prefs_create_defaults), (prefs_load),
+	(prefs_monospace_font_changed), (prefs_get_monospace),
+	(prefs_get_have_tearoff), (prefs_get_logs), (prefs_get_active_log),
+	(prefs_get_width), (prefs_get_height), (prefs_free_loglist),
+	(prefs_store_log), (prefs_store_active_log),
+	(prefs_store_fontsize), (prefs_save), (prefs_store_window_size),
+	(prefs_connect), (prefs_init):
+	* userprefs.h: privatize all the preference stuff.
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
+	* info.c: (loginfo_show):
+	* log_repaint.c: (model_fill_iter):
+	* loglist.c: (loglist_find_log_from_name),
+	(loglist_select_log_from_name):
+	* logrtns.c: (logline_fill_from_string), (log_open):
+	* logview.c: (logview_copy):
+	* misc.c: (locale_to_utf8): Call locale_to_utf8 once when loading
+	instead of calling it repeatedly for every line (saves us 3
+	g_alloc/g_free * n log line)
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
+	* info.c: (loginfo_repaint), (loginfo_quit), (loginfo_close),
+	(loginfo_new), (loginfo_show):
+	* info.h:
+	* log_repaint.c: (row_toggled_cb):
+	* logview.c: (logview_window_new):
+	* logview.h:
+	* main.c: (main): Cleanups.
+
+	* info.c (loginfo_repaint): Don't crash when requesting properties
+	for a dateless log.
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
+	Remove a few now-useless functions. Cleanup.
+
+	* loglist.c: (loglist_find_log_from_name),
+	(loglist_select_log_from_name), (loglist_selection_changed):
+	* logrtns.c: (file_is_zipped):
+	* logview.c: (logview_get_active_log), (logview_get_loglist),
+	(logview_count_logs), (logview_select_log),
+	(logview_menus_set_state), (logview_set_window_title),
+	(logview_save_prefs), (logview_destroy), (logview_add_log),
+	(logview_close_log), (window_size_changed_cb), (logview_init),
+	(logview_window_new):
+	* logview.h:
+	* misc.c: (date_get_string):
+	* misc.h:
+
+	* logrtns.c (file_is_zipped): Small memory leak.
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
+	* Makefile.am:
+	* logview.c: (logview_destroy):
+	* logview.h:
+	* main.c: (logview_init_options), (save_session), (die), (main):
+	New. Factor the logview out in its own widget and module, seperate
+	from the main module.
+
+2005-11-03  Vincent Noel <vnoel@cox.net>
+
+	* Makefile.am:
+	* loglist.c: (loglist_get_log_iter), (loglist_find_log_from_name),
+	(loglist_unbold_log), (loglist_bold_log),
+	(loglist_select_log_from_name), (loglist_remove_log),
+	(loglist_add_log), (loglist_selection_changed), (loglist_connect),
+	(loglist_init), (loglist_class_init), (loglist_get_type),
+	(loglist_new):
+	* loglist.h: New. Factor the loglist out in its own widget and module.
+	
+	* logrtns.c: (log_unbold):
+	* logrtns.h:
+	* logview.c: (logview_destroy), (logview_select_log_from_name),
+	(logview_add_log), (logview_add_logs_from_names), (main),
+	(logview_find_log_from_name), (logview_init), (logview_close_log),
+	(logview_file_selected_cb), (logview_set_window_title),
+	(logview_get_active_log), (logview_get_loglist):
+	* logview.h:
+	* misc.c: (string_get_date), (string_remove_bold_markup):
+	* misc.h:
+	* monitor.c: (monitor_callback): Reflect the changes.
+
+2005-11-02  Vincent Noel <vnoel@cox.net>
+
+        Use g_assert instead of g_return_if_fail in static
+	functions. Delete useless functions. Use system functions for dates.
+	
+	* calendar.c: (calendar_mark_dates), (calendar_month_changed),
+	(calendar_connect), (calendar_init), (calendar_new):
+	* info.c: (loginfo_repaint), (loginfo_quit), (loginfo_new):
+	* info.h:
+	* log_repaint.c: (tree_path_find_row), (logview_update_statusbar),
+	(tree_view_columns_set_visible), (model_fill_date_iter),
+	(model_fill_iter), (logview_add_new_log_lines),
+	(logview_show_model), (log_scroll_and_focus_path),
+	(logview_create_model_no_date), (logview_create_model):
+	* logrtns.c: (file_exist), (file_is_zipped), (file_is_log),
+	(string_get_date_string), (log_read_dates), (log_stats_new),
+	(log_open), (log_add_lines):
+	* logview-findbar.c: (logview_tree_model_find_match):
+	* logview.c: (logview_destroy), (save_session), (main),
+	(logview_find_log_from_name), (logname_remove_markup),
+	(loglist_selection_changed), (loglist_find_logname),
+	(loglist_select_log_from_name), (loglist_add_log),
+	(loglist_remove_selected_log), (loglist_create),
+	(logview_version_selector_changed), (logview_close_log),
+	(logview_file_selected_cb), (logview_open_log),
+	(logview_toggle_sidebar), (logview_toggle_calendar),
+	(logview_collapse_rows), (logview_toggle_monitor),
+	(logview_set_fontsize), (logview_bigger_text),
+	(logview_smaller_text), (logview_normal_text), (logview_search),
+	(logview_copy), (logview_select_all),
+	(logview_menu_item_set_state), (logview_calendar_set_state),
+	(logview_menus_set_state), (logview_count_logs), (logview_help),
+	(logview_set_window_title), (logview_window_finalize),
+	(logview_window_class_init), (window_size_changed_cb):
+	* misc.h:
+	* monitor.c: (monitor_callback), (monitor_start): Use g_assert
+	instead of g_return_if_fail in static functions.
+	
+	* misc.c: (error_dialog_run), (error_dialog_show),
+	(error_dialog_queue), (error_dialog_show_queued), (locale_to_utf8),
+	(string_get_date), (date_get_string): Use strptime instead of a
+	homegrown solution. It's more standard and faster.
+
+2005-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: Use GArrays, it simplifies a lot the memory handling
+	when monitoring.
+
+2005-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (logview_create_model_no_date):
+	* logrtns.c: (log_open): Please don't crash.
+
+2005-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (calendar_mark_dates), (calendar_init_data),
+	(calendar_month_changed), (calendar_day_selected),
+	(calendar_select_date), (calendar_connect), (calendar_init),
+	(calendar_class_init), (calendar_get_type), (calendar_new):
+	* calendar.h:
+	* log_repaint.c: (selection_changed_cb):
+	* logrtns.h:
+	* logview.c: (logview_init), (logview_calendar_set_state): Make
+	the calendar a subclass of a GtkCalendar.
+	* logrtns.h (struct): There's actually no need to store the date
+	for every log line.
+
+2005-10-21  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (logview_create_model):
+	* logrtns.c: (logline_get_date_string), (logline_new_from_string),
+	(string_get_date_string), (log_read_dates), (log_close):
+	* misc.c: (string_get_date): Play well with extra spaces.
+
+2005-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (model_fill_iter): Calls to strftime are very
+	time-consuming, so cache the time values over several lines. Cut
+	rendering time in half.
+	* logrtns.c (log_stats_new): Combine log checking and stats
+	grabbing, so we don't get the GnomeVFSFileInfo twice.
+
+2005-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* info.c (loginfo_repaint): Use the new day info.
+	* logrtns.h (struct LogStats): Remove enddate and stardate.
+	(struct _log): Remove has_dates.
+	* logrtns.c (log_close): Free the new Day stuff.
+	* logrtns.c (log_read_dates): Be faster when parsing the log lines
+	for dates.
+
+2005-10-20  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (read_marked_dates), (init_calendar_data),
+	(calendar_month_changed), (log_find_day), (calendar_day_selected),
+	(calendar_day_selected_double_click): * calendar.h: * info.c:
+	(loginfo_repaint): * log_repaint.c: (row_toggled_cb),
+	(selection_changed_cb),
+	(logview_update_statusbar), (model_fill_date_iter),
+	(logview_add_new_log_lines), (logview_show_model),
+	(logview_create_model_no_date), (logview_create_model): *
+	logrtns.c: (days_compare), (log_read_dates), (log_read_stats),
+	(log_open), (log_close): * logrtns.h: * logview.h: * misc.c:
+	(days_are_equal), (string_get_date): * misc.h: Big change in dates
+	handling. Changed the DateMark structure in Day structure. Include
+	the line numbers, expansion state and tree path in the
+	structure. Don't parse the log lines twice to find the dates. Use
+	GDates all over the place.
+
+2005-10-20  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (read_marked_dates), (init_calendar_data),
+	(calendar_month_changed) : Remove those functions, they were not
+	used anymore.
+	* calendar.h:
+	* info.c: (loginfo_repaint):
+	* log_repaint.c: (logview_update_statusbar):
+	* logrtns.c: (log_read_stats), (log_open):
+	* logrtns.h: Simplify a lot the calendar code.
+
+2005-10-20  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: (file_is_log), (logline_new_from_string), (log_open):
+	Stop using strtok, use g_strsplit_set instead. Safer + net code win.
+
+2005-10-17  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_create_model_no_date): Off-by-one error.
+	* logview.c (logview_copy): Don't crash when copying lines from a
+	log without dates.
+	* logview.c (logview_menus_set_state): Improve readability.
+	* logview.c (logview_init): Rename some stuff to make it consistent.
+	* logview.c (logview_destroy, save_session): We only have one
+	window now, so simplify.
+	* logrtns.c (logline_get_date): Moved this function to logrtns.c
+	* logrtns.h (struct _log): Move the log struct declaration in
+	logrtns.h instead of logview.h.
+	* calendar.c (calendar_day_selected): Fix a couple of warnings.
+	* calendar.c (calendar_close): Remove.
+
+2005-10-17  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c (ParseLine): Handle zero-length lines better
+	(e.g. don't crash).
+
+2005-10-14  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (logline_get_date): Make static.
+
+2005-10-14  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (selection_changed_cb), (logline_get_date),
+	(model_fill_date_iter):
+	* log_repaint.h:
+	* logview.c: (CreateMainWin): Use g_date_strftime instead of strftime.
+
+2005-10-14  Vincent Noel <vnoel@cox.net>
+
+	* Makefile.am:
+	* config.c:
+	* configdata.h:
+	* logview.c: (main): Remove some leftovers.
+
+2005-10-14  Vincent Noel <vnoel@cox.net>
+
+	* TODO: Remove the gnome-vfs monitoring (it's done)
+
+2005-10-14  Vincent Noel <vnoel@cox.net>
+
+	* info.c: (loginfo_repaint), (loginfo_quit), (loginfo_close),
+	(loginfo_new):
+	* info.h:
+	* logview.c: Shuffling and cleaning up.
+
+2005-10-14  Vincent Noel  <vnoel@cox.net>
+
+	* info.c (RepaintLogInfo): Use
+	gnome_vfs_format_file_size_for_display to show the file size.
+	* log_repaint.c (logview_update_statusbar): We have the info,
+	might as well show it in the status bar.
+
+2005-10-13  Vincent Noel  <vnoel@cox.net>
+
+	* help/C/gnome-system-log.xml: Small tweaking.
+
+2005-10-13  Vincent Noel <vnoel@cox.net>
+
+	* help/C/gnome-system-log.xml: Some more updates.
+
+2005-10-13  Vincent Noel <vnoel@cox.net>
+
+	* help/C/gnome-system-log.xml: Update the help from
+	gnome-system-log 2.4 to 2.12.
+
+2005-10-13  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (LoadLogMenu): String change.
+
+2005-10-13  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (tree_path_find_row),
+	(handle_selection_changed_cb):
+	* logview.c: (save_session), (main):
+	* logview.h: Cleanups.
+
+2005-10-13  noel  <vnoel@cox.net>
+
+	* log_repaint.c (iterate_thru_children): Removed. Whee !
+
+2005-10-13  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (save_session), (main), (logview_count_logs): *
+	misc.c: (ShowErrMessage): Correctly parse the command line option
+	when started from session manager. Correctly save the opened log
+	when saving the session. Fix part of bug #156507.
+
+2005-10-13  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_select_log), (loglist_selection_changed):
+	Make sure the calendar selection works at startup too.
+
+2005-10-13  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (handle_selection_changed_cb): When selecting a
+	log line, select the associated day in the calendar. Fix bug #310110.
+
+2005-10-13  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (CreateMainWin): Don't put whitespace before
+	colon. Fix bug #318602.
+
+2005-10-13  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (handle_selection_changed_cb): When selecting
+	lines, don't go through all the log to find matches, it's way too
+	slow. Be smarter. Fix bug #318609.
+
+2005-10-13  Vincent Noel <vnoel@cox.net>
+
+	* logrtns.c: (CloseLog):
+	* logview.c: (loglist_selection_changed), (CreateMainWin),
+	(logview_calendar_set_state): Don't hide the calendar when the log
+	has no dates - it makes the widgets move around. Insensitize it instead.
+
+2005-10-13  Vincent Noel <vnoel@cox.net>
+
+	* log_repaint.c: (handle_selection_changed_cb):
+	* logrtns.c: (ParseLine), (CloseLog):
+	* logview.h: Don't use a fixed-size buffer for log strings. Cut
+	memory use by >30% in most cases.
+
+2005-10-13  Frederic Crozat  <fcrozat@mandriva.com>
+
+	* logrtns.c: (isLogFile): Only accept regular file as
+	logfile, prevent freeze when /dev/tty* is in syslog.conf.
+	Bug #318689.
+
+2005-10-13  Frederic Crozat  <fcrozat@mandriva.com>
+
+	* logrtns.c: (isLogFile): Don't try to close file which
+	failed to open.
+
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (tree_view_columns_set_visible),
+	(model_fill_date_iter), (model_fill_iter),
+	(logview_add_new_log_lines), (logview_show_model),
+	(log_scroll_and_focus_path), (logview_create_model_no_date),
+	(logview_create_model), (log_repaint):
+	* logview.c: (logview_add_logs_from_names), (main),
+	(CreateMainWin):
+	* logview.h: Massive refactoring of the drawing function. Massive
+	speedup when showing big logs (>20K lines).
+
+2005-10-12  Vincent Noel <vnoel@cox.net>
+
+	* logview.c: (main), (CreateMainWin):
+	Make the interface at least a bit responsive during initial
+	loading of logs.
+
+2005-10-12  Vincent Noel <vnoel@cox.net>
+
+	* Makefile.am:
+	* logview.c: (main), (LoadLogMenu):
+	* logview.h: While I'm cleaning up, remove the actions.[ch] and
+	desc_db.[ch] files which have not been used in more than a year
+	(and I haven't heard any complains, so...)
+
+2005-10-12  Vincent Noel <vnoel@cox.net>
+
+	* Makefile.am:
+	* log_repaint.c:
+	* logview.c: (CreateMainWin):
+	* logview.h: Remove some useless items from the LogviewWindow
+	structure. Remove the zoom.[ch] files from the build (they have
+	not been used in a while).
+
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (row_toggled_cb), (log_repaint):
+	* log_repaint.h:
+	* logview.c: (loglist_selection_changed), (CreateMainWin):
+	Fixes and speedups.
+
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_save_prefs), (logview_add_log),
+	(logview_add_log_from_name), (logview_add_logs_from_names),
+	(logview_remove_log), (logview_create_window),
+	(loglist_unbold_log), (loglist_remove_selected_log),
+	(logview_version_selector_changed): Add a bunch of asserts. Don't
+	crash please.
+
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* monitor.c (monitor_stop, monitor_start): Small cleanups.
+
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (loglist_unbold_log): Only unbold when the log is displayed.
+
+2005-10-12  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logname_remove_markup), (loglist_unbold_log),
+	(loglist_selection_changed), (loglist_find_logname),
+	(loglist_bold_log):
+	* monitor.c: (monitor_callback): When new lines are added to a
+	log, bold its name in the list. When the log is displayed, unbold
+	its name after 5 seconds.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (handle_selection_changed_cb): Miserable
+	workarounds for bug #318609.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Avoid massive slowdown
+	when the log doesn't have dates.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_add_logs_from_names): Show a progress bar
+	when loading logs at startup.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_add_logs_from_names): Try to open the main
+	window as soon as possible.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* info.c (RepaintLogInfo): Make sure the number of lines displayed
+	in the properties window is the same in the status bar.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Make sure things still
+	work when a line is collapsed.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Try to avoid flicker as
+	much as possible when switching logs.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (CreateMainWin): Use fixed height mode for the
+	treeview. HUGE speed win in all situations.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): No need to select the
+	line if monitoring.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Don't refill the whole
+	model every time we redraw a log, just keep it around.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Don't redraw everything
+	when monitoring a log, just add the new lines.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_menus_set_state): Fix the menu sensitivity
+	logic following the recent change in monitor behavior.
+
+2005-10-11  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_monospace_font_changed): New.
+	(CreateMainWin): Listen to changes to the monospace font gconf key
+	and update the window accordingly.
+
+2005-10-06  Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* logview.c (main):  Add application name (used in window title).
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c (calendar_day_selected): Track the currently selected
+	line when switching logs.
+
+	* log_repaint.c (logview_draw_log_lines): It took me 3 hours to
+	find the damned g_free that was crashing everything.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Some weird hanging issue
+	- glib complains about corrupted double-linked list. Mmmh.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: Monitor logs by default.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Plug a huge memory leak
+	(utf8 strings not freed after insertion in a GtkTreeStore).
+	(logview_draw_log_lines): Plug a leak. Valgrind is da bomb.
+
+	* logrtns.c (OpenLogFile): Plug leaks.
+	(ReadLogStats): Plug a leak by using
+	gnome_vfs_file_info_unref. Totally not obvious...
+	(WasModified): Removed.
+	(GetDate): make static.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Correctly scroll to the
+	end of the log when new lines are added.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_create_monitor_widget, monitor_stop): Some leftover cruft.
+	* monitor.c (monitor_callback): Make it static.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* monitor.c (mon_update_display): Remove.
+	(monitor_callback): Only repaint the window if the updated log is
+	currently displayed.
+
+2005-10-06  Vincent Noel  <vnoel@cox.net>
+
+	* logview.h: 
+	* logview.c (CreateMainWin): Remove the monitor widget. This feels
+	so good.
+
+	* monitor.c (mon_format_line): Remove
+	* monitor.c (mon_check_log) : remove.
+
+	* log_repaint.c (logview_draw_log_lines): When monitoring, just
+	append the new lines to the end of the displayed log and scroll
+	down there.
+
+	* monitor.c (mon_update_display): Remove a whole bunch of stuff
+	for using the monitor widget.
+	* log_repaint.c (log_repaint): Remove reference to monitor widget.
+
+	* logview.h: 
+	* monitor.c (monitor_stop, monitor_callback, monitor_start): 
+	Use gnome_vfs_monitor to monitor file instead of polling. 
+
+	* logview.c (CreateMainWin): Use the desktop monospace font by
+	default.
+
+	* log_repaint.c (logview_draw_log_lines): Prevent cast
+	warning. Part of bug #318095. Patch by Stanislav Brabec.
+	* about.c: Fix missing include. Part of bug #318095. Patch
+	by Stanislav Brabec.
+
+2006-10-04  Rodrigo Moya <rodrigo@novell.com>
+
+	* logrtns.c (file_exist): added missing argument to g_snprintf.
+
+2005-09-26  noel  <vnoel@cox.net>
+
+	* logview.c (FileSelectResponse): Fixed a C99-ism. Patch from Jens
+	Granseuer, fixes bug #317208.
+
+2005-09-21  noel  <vnoel@cox.net>
+
+	* logview.c (logview_save_prefs): Fix a crash when switching to
+	default font size without any log opened. Fix bug #316829.
+
+2005-09-20  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: Fix a crash when exiting without any log opened.
+	Fix bug #316738. Patch from Luke Macken.
+
+==================== 2.12.0 ====================
+
+2005-08-01  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (logview_draw_log_lines): Don't crash on amd64
+	arch. Patch from Joe Marcus Clarke.
+
+2005-07-19  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_menus_set_state): Fix the Calendar menu item
+	sensitivity.
+
+	* log_repaint.c (logview_draw_log_lines): Fix the display of
+	one-line logs.
+
+	* monitor.c (mon_update_display): Escape the log lines before
+	adding them to the tree.
+
+2005-06-20  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (init_calendar_data):
+	* logview.c:
+	* userprefs.c: (prefs_create_defaults): Fix functions return
+	values. Patch from Stanislav Brabec (bug #308382). Add a few more
+	default logs.
+
+2005-06-16  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c:
+	* desc_db.c:
+	* logview.c:
+	* userprefs.c: Fix implicit includes.
+
+2005-06-14  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: (ReadNewLines):
+	* logview.c: (die):
+	* zoom.c: (repaint_zoom): Make sure the correct return value is specified.
+
+2005-06-14  Vincent Noel  <vnoel@cox.net>
+
+	* userprefs.c: (prefs_create_defaults): Thinko.
+	(prefs_create_defaults): Use gnome-vfs instead of lstat.
+
+2005-06-14  Vincent Noel  <vnoel@cox.net>
+
+	* userprefs.c: (prefs_create_defaults):
+	Don't crash on first run (please)
+	Should fix bug #307642.
+
+2005-06-09  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c:
+	* logview-findbar.c: Apply some warning fixes from Kjartan Maraas
+	in bug #170841.
+
+2005-05-27  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (logview_update_version_bar):
+	* log_repaint.h:
+	* logrtns.c: (OpenLogFile), (CloseLog):
+	* logrtns.h:
+	* logview.c: (logview_select_log), (logview_add_log_from_name),
+	(logview_add_logs_from_names), (logview_version_selector_changed),
+	(CreateMainWin), (FileSelectResponse):
+	* logview.h:
+	* userprefs.c: (prefs_load):
+	When a log has archives (messages.1, messages.2, etc), show a
+	drop-down menu to select the archive to display.
+
+2005-05-26  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_menus_set_state): Prevent crash.
+
+	* logrtns.c (ParseLine): Simplify.
+
+	* logview.c (CreateMainWin): Remove the signal for row activation.
+	* log_repaint.c: (handle_row_collapse_cb),
+	(handle_row_expansion_cb), (DrawLogLines): Free the expanded paths
+	when switching logs.
+	(handle_row_activation_cb): Remove the activation callback, we're
+	not doing anything with it anyway.
+	(logview_draw_log_lines): Renamed a few functions for consistency,
+	a little refactoring. Show the number of log lines in the status bar.
+
+2005-05-26  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (DrawLogLines): Fill the model before setting it
+	in the treeview.
+	(handle_row_expansion_cb, handle_row_collapse_cb, DrawLogLines):
+	Remember which rows are expanded when switching logs.
+
+	* logview.c (logview_calendar_set_state, logview_menus_set_state):
+	Hide the calendar when there is no date info in the log.
+	* logview.h: Remove calendar_dialog.
+	* logrtns.c (ReadLogStats): Speed loading up when there's no date
+	in the log.
+	(isLogFile): Simplify log detection to allow freeform logs.
+
+2005-05-25  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (tree_view_column_set_visible), (DrawLogLines):
+	* logrtns.c: (OpenLogFile), (ParseLine):
+	* logrtns.h:
+	* logview.c: (CreateMainWin):
+	* logview.h:
+	* monitor.c: (mon_update_display):
+	Allow the opening of logs with no Date-Time-Machine-Message
+	structure (basically, any text file). If there is no date in the
+	first line of the log, don't bother checking all the other
+	lines. When drawing a log without dates, prepend lines instead of
+	appending in the treeview (A lot faster).  Allow a filename of any
+	size.
+
+2005-05-24  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (log_repaint):
+	* logview.c: (logview_save_prefs), (logview_select_log),
+	(loglist_selection_changed), (loglist_find_logname):
+	* userprefs.c: (prefs_save): Prevent a crash.
+
+2005-05-24  Vincent Noel  <vnoel@cox.net>
+
+	* logview-findbar.c: (logview_findbar_clicked_cb),
+	(logview_findbar_hide), (logview_findbar_new):
+	* logview-findbar.h:
+	* logview.c: (CreateMainWin):
+	* logview.h: Make the find toolbar same as the one in evince. No
+	more "close" button, just hide it on focus-out.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_select_log), (loglist_create),
+	(toggle_monitor):
+	* logview.h:
+	* monitor.c: (monitor_start), (mon_update_display),
+	(mon_check_logs): Changed some things in the monitoring. Does not
+	work just yet. Applied patch from Sylvain Pasche in bug #170244 to
+	prevent a crash.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_save_prefs), (logview_select_log),
+	(CreateMainWin), (logview_collapse_rows), (logview_set_fontsize),
+	(logview_bigger_text), (logview_smaller_text),
+	(logview_normal_text):
+	* logview.h:
+	* userprefs.c: (prefs_load), (prefs_save):
+	* userprefs.h: A little better.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_select_log), (CreateMainWin),
+	(logview_collapse_rows), (logview_set_fontsize),
+	(logview_bigger_text), (logview_smaller_text),
+	(logview_normal_text):
+	* logview.h: Add the ability to change the fontsize for
+	log viewing.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (calendar_day_selected),
+	(calendar_day_selected_double_click):
+	* logview.c: (loglist_create), (CreateMainWin), (toggle_monitor):
+	Better way to show/hide the monitor area.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (init_calendar_data), (calendar_month_changed),
+	(calendar_day_selected):
+	* logview.c: (loglist_selection_changed): Make the calendar
+	behave when no log is selected.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
+	* Makefile.am:
+	* log_repaint.c: (handle_row_activation_cb), (log_repaint):
+	* logview.c: (logview_create_window), (CloseLogMenu),
+	(toggle_calendar), (logview_menus_set_state):
+	Remove the "details" window - it shows the same info as
+	the main window.
+
+2005-05-19  Vincent Noel  <vnoel@cox.net>
+
+	* calendar.c: (CalendarMenu), (read_marked_dates),
+	(init_calendar_data):
+	* logview.c: (logview_select_log), (logview_create_window),
+	(CreateMainWin), (CloseLogMenu), (FileSelectResponse),
+	(toggle_sidebar), (toggle_calendar):
+	* logview.h: Move the calendar to the new sidebar. Add a toggle
+	to show/hide the sidebar.
+
+2005-05-17  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: (logview_add_logs_from_names),
+	(loglist_selection_changed), (loglist_remove_selected_log),
+	(logview_menus_set_state): Remove debug spew.
+
+2005-05-17  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: (file_exist):
+	* logview.c: (logview_save_prefs), (destroy), (logview_select_log),
+	(logview_add_log), (logview_add_log_from_name),
+	(logview_add_logs_from_names), (logview_remove_log), (main),
+	(logview_create_window), (logview_find_log_from_name),
+	(loglist_selection_changed), (loglist_find_logname),
+	(loglist_select_log_from_name), (loglist_add_log),
+	(loglist_remove_selected_log), (loglist_create), (CreateMainWin),
+	(CloseLogMenu), (FileSelectResponse), (toggle_monitor),
+	(logview_menus_set_state), (logview_set_window_title):
+	* logview.h:
+	* misc.c: (ShowQueuedErrMessages):
+	* userprefs.c: (parse_syslog), (prefs_create_defaults),
+	(prefs_free_loglist), (prefs_load), (prefs_save):
+	* userprefs.h:
+
+	Big UI change : add a sidebar that shows all the opened logs.
+	This is a work in progress - monitoring does not work yet, and it
+	might crash. As usual.
+
+2005-03-02  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c (OpenLogFile): Free an allocated buffer. Fix bug
+	#167969, patch by Joe Marcus Clarke.
+
+2005-02-11  Vincent Noel  <vnoel@cox.net>
+
+	* actions.c (apply_actions): Replace gnome_util_home_file by
+	g_get_home_dir. Patch by Kristof Vansant, fixes #167109.
+
+2005-01-24  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: included config.h if HAVE_CONFIG_H. Fix bug #164904
+	(reported by Luca Ferretti)
+
+2005-01-06  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: Include locale.h
+
+2005-01-04  Vincent Noel  <vnoel@cox.net>
+
+	* info.c: (RepaintLogInfo): Mark string for translation. Fix bug #162584.
+
+2005-01-04  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c: (UpdateStatusArea):
+	* logview-findbar.c: (logview_findbar_populate): Correct two
+	typos, fix bug #162586.
+
+005-01-04  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: Correct a typo, fix bug #162587.
+
+2004-12-30  Vincent Noel  <vnoel@cox.net>
+
+	* info.c (RepaintLogInfo): Use ngettext, fixes bug #162584.
+
+2004-12-09  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (main): Instead of requesting the option --file to
+	open a log, simply consider that all arguments passed to
+	gnome-system-log are log files, and try to open them. Remove the
+	--file option. Moved the option code to goption. No option for now.
+	(main): Don't open the standard log if a logfile was passed as a
+	parameter but could not be opened.
+
+	* logrtns.c: Better error message.
+	(file_exist): New. Extract the file existence logic from the "file
+	is a log" function - the file could be zipped.
+
+2004-11-29  Vincent Noel  <vnoel@cox.net>
+
+	* Makefile.am (gnome_system_log_SOURCES): Fixes for make distcheck.
+
+2004-11-24  Vincent Noel  <vnoel@cox.net>
+
+	* userprefs.c: parse_syslog is back from the dead. My mistake,
+	this function was actually useful.
+	(prefs_create_defaults): Use parse_syslog to look for logs.
+
+2004-11-23  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_menu_item_set_state): Use
+	gtk_action_set_sensitive instead of
+	gtk_widget_set_sensitive. Remove now-useless prevention against
+	keyboard activation.
+
+	* log_repaint.c (handle_row_activation_cb): Use gtk_action_activate.
+	* calendar.c (close_calendar): Same thing.
+	* zoom.c (close_zoom_view): Same thing.
+	* logview.c (CloseLogMenu): Same thing.
+
+2004-11-18  Vincent Noel  <vnoel@cox.net>
+
+	* monitor.c (mon_update_display): Use bold markup to show changes
+	in a monitored log instead of selecting the changed lines.
+
+	* zoom.c: Simplify a lot. Use labels and markup in zoom dialog.
+
+	* info.c (LogInfo): Simplify a lot. Use markup in properties dialog.
+	(LogInfo): Make the label text selectable.
+
+	* logview.c (logview_create_monitor_widget): Move it here. Remove
+	useless calls.
+	(LoadLogMenu): Don't set the size of the filechooser. Don't change
+	the directory to the preset every time we show the filechooser.
+	(logview_help): Remove unused variable.
+
+	* monitor.c (monitor_stop): Little refactoring.
+
+2004-11-16  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (save_session): Use g_get_prgname for restoring session.
+
+2004-11-09  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_copy): Handle multiple lines selection.
+	(logview_select_all): New. Add a "Select All" menu item.
+	(logview_menus_set_state): Insensitize "Select All" when monitoring.
+	Add a separator before the "Find" menu item.
+
+	* log_repaint.c (handle_selection_changed_cb): Allow the selection
+	of multiple log lines.
+
+	* logview.c (logview_copy): Add a "copy" menuitem to copy the
+	content of the active log line to the clipboard.
+
+2004-11-05  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c: Remove a warning.
+
+	* zoom.c: Move stuff around, make functions static.
+
+	* log_repaint.c: remove log_redrawdetail.
+
+	* config.c: Remove includes.
+
+	* configdata.h: New. Move ConfigData struct here.
+
+	* desc_db.c: Add copyright.	
+
+	* actions.h: New. Move the Action structure here.
+
+	* actions.c: Add copyright.
+
+	* userprefs.h: Move UserPrefsStruct here.
+
+	* logrtns.h: Remove obsolete prototypes.
+
+	* log_repaint.c: Remove global variables.
+
+	* desc_db.c:
+	* userprefs.c: 
+	* zoom.c: 
+	* about.c:
+	* calendar.c: 
+	* misc.h:
+	* logview.h:
+	* actions.c:
+	* misc.c: Don't always include gnome.h. Use relevant includes.
+
+	* logview.c (logview_help): Adapt.
+
+2004-11-04  Vincent Noel  <vnoel@cox.net>
+
+	* logrtns.c (ReadLogStats): Fix the number of lines in info window.
+
+	* logview.c: Add a separator before "Collapse all" in the view menu.
+
+	* misc.c (IsLeapYear): moved to misc.c
+
+	* logview.c: (parse_syslog): Kill. Not used anymore.
+	(destroy): If the opened log is zipped, don't save it in gconf.
+	Remove the GNOMELOCALEDIR define from logview.c, it's already in Makefile.am
+	(ExitProg): Kill, just call gtk_main_quit.
+
+2004-11-04  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (destroy): Only save the size and opened log when
+	destroying the last window.
+
+	* userprefs.c (prefs_create_defaults): open one of standard logs
+	when there is no previous selection in gconf.
+	(prefs_load): Read previous log and window size in gconf.
+	(prefs_save): Store the opened log and window size in gconf.
+
+	* logview.c (CreateMainWin): Use the width/height stored in gconf
+	for creating the window.
+
+	* userprefs.c: Renamed the file from userprefsdialog.c
+
+	* logrtns.c: Remove the ifdef'ed functions, which have not been
+	compiled or used in 2 years.
+
+	* calendar.c: Remove a bunch of useless defines.
+
+	* logrtns.c (isLogFile): Use the GnomeVFSResult to check the file
+	permissions instead of calling an extra gnome_vfs_get_file_info.
+	(GetLogSize): remove. Not used anywhere anymore.
+	(ParseLine): Fix a bug.
+	(ReadLogStats): Fix the parsing of dates in the log.
+	(OpenLogFile): When opening a zipped log, don't use an external
+	program to unzip it in a tmp directory. Use the gnome-vfs gzip
+	method.
+	(OpenLogFile): Correctly free the filename when we open a zipped log.
+
+2004-11-03  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (CloseLogMenu): Close the calendar when closing the log.
+	(CloseLogMenu): Same for details window.
+	(LoadLogMenu): Don't destroy the filechooser when we're done with
+	it, keep it around for later.
+
+	* calendar.c (CalendarMenu): Make sure to re-create calendar data
+	if there is none.
+
+	* logview.h: Remove unused var.
+
+	* logrtns.c (ReadLogStats): Remove unused variables.
+
+	* monitor.c (monitor_stop): Close the handle.
+
+	* logrtns.c (ReadLastPage): Only keep a handle opened on the log
+	if we are monitoring. Otherwise, close all handles.
+	(UpdateLogStats): Unused. Move into the FIXME-functions cemetery.
+
+	* misc.c (MakeErrorDialog): Use new gtk+ HIG message dialogue API.
+	* logrtns.c (OpenLogFile): Ditto.
+
+	* logview.c (toggle_monitor): Prevent enabling monitoring with the
+	key shortcut for zipped files.
+	(logview_search): Disable search for monitored files.
+	(logview_menus_set_state): Add some checks for NULL pointers.
+
+	* logrtns.c (file_is_zipped): New.
+	(OpenLogFile): Check if the file is zipped, and unzip it in a temp
+	directory if it is.
+	(ReadLogStats): Remove debug spew.
+
+	* logview.c (SetDefaultUserPrefs): When trying to open the logfile
+	saved in gconf, fail silently if the file is not a log. 
+	(logview_set_window_title): When opening a zipped log, use the
+	name of the original zipfile and not the unzipped file.
+	(logview_menus_set_state): Don't allow monitoring for zipped logs.
+
+	* info.c: Mark the info strings for translation.
+
+2004-11-02  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_set_window_title): Use a display name if the
+	log was opened through a temporary file.
+
+	* logrtns.c (OpenLogFile): Add detection and opening of zipped archive.
+
+	* logview.c (logview_create_window): Use g_signal_connect instead
+	of gtk_signal_connect.
+	(logview_create_window_open_file): Show the window when the log is loaded.
+
+	* info.c (LogInfo): Huge simplification. No more gtktreeview, just
+	display the properties in a textview.
+	(LogInfo): Use g_signal_connect instead of gtk_signal_connect.
+
+	* logview.c (logview_create_window_open_file): Don't update the
+	status bar or the window title here, this is already done in log_repaint.
+
+	* info.c (RepaintLogInfo): Don't use gtk_tree_model_get_iter_root.
+
+	* logview.c (logview_menus_set_state): Desensitize menu items when
+	monitoring.
+
+	* monitor.c (mon_check_logs): Be sure to stop the monitoring when
+	the file is closed.
+
+	* logrtns.c (ReadNewLines, ReadLastPage): Free a temp buffer.
+
+	* logview.h: Remove useless defines and stuff.
+
+	* monitor.c (mon_update_display): When new lines are added to the
+	logfile, select them in the monitor.
+
+	* logrtns.c (reverse) : kill. We have g_strreverse anyway.
+	(WasModified, CloseLog, ReadLogStats, ReadNewLines)
+	(ReadLastPage, isLogFile, OpenLogFile): Use gnome-vfs.
+	
+	Aggregate the FIXME functions at the end of the file.
+
+2004-10-31  James Bowes  <bowes@cs.dal.ca>
+
+	* Makefile.am: Minor fixes to pass make distcheck.
+
+2004-10-29  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_create_window_open_file): New function to
+	create a window and open a file at the same time.
+	(logview_count_logs): Fix a stupid bug that went unnoticed but
+	made the function useless.
+	(restore_session): Kill. Useless now that command line parameters
+	are correctly handled.
+	(save_session): Fix to save command line parameters.
+	Use POPT_TABLEEND.
+
+	* log_repaint.c: kill InitPages.
+
+	* logview.c (main): Really try to open each log passed as a
+	parameter. Only open the default logs if no log was opened.
+
+	* logrtns.c (OpenLogFile): Mark the first_time flag here.
+
+	* logview.c (CreateMainWin): Use a fixed size for cells in the
+	gtktreeview.
+
+2004-10-28  Vincent Noel  <vnoel@cox.net>
+
+	* logview-findbar.c (logview_findbar_populate): Add a spacer tool
+	item so the close button is at the right end of the find bar.
+	(logview_findbar_populate): Add labels to the previous/next buttons.
+	(logview_tree_model_search_iter_foreach): Fix issues with mixed case.
+	(logview_tree_model_search_iter_foreach): Free allocated strings
+	and gtk_tree_path.
+
+	* logview.c (logview_search): Hook up the new find bar.
+
+	* logview-findbar.h: 
+	* logview-findbar.c: new. Add a Firefox-esque find
+	bar. Shamelessly stolen and adapted from Yelp.
+
+	* gedit-output-window.c: 
+	* gedit-output-window.h:
+	* logview-search.h: 
+	* logview-search.c: 
+	* logview-search-dialog.h: 
+	* logview-search-dialog.c: Remove the short-lived gedit-like
+	search function.
+
+	* logrtns.h: Remove a bunch of useless #include's.
+
+	* info.c : Remove useless #include's.
+
+	* misc.c (MakeErrorDialog): Port from gnome_message_box_new to
+	gtk_message_dialog_new.
+
+	* logview.c (logview_help): Use a convenience error function.
+
+	* logrtns.c: Remove prototype.
+
+	* logview.h: 
+	* log_repaint.c: 
+	* monitor.c: Remove useless #define's and #include's.	
+
+	* about.c (AboutShowWindow): use the very convenient
+	gtk_about_show_dialog.
+	(AboutShowWindow): Add a bunch of authors.
+
+	* monitor.c (mon_check_logs):
+	* info.c: Remove unnecessary casts.
+
+	* logview.c (logview_help): Handle errors when displaying help,
+	display it on the right screen.
+
+	* about.c (AboutShowWindow): Port to gtk_about_dialog.
+
+	* logview.c (main): Use gtk_window_set_default_icon_name.
+
+2004-10-27  Vincent Noel  <vnoel@cox.net>
+
+	* zoom.c (repaint_zoom): Fixes issues brought up by multiple windows.
+
+	* log_repaint.c: Remove the save_rows_to_expand function which is
+	now useless.
+
+	* logview.c (CloseLogMenu): Fixes issues with menu items state.
+
+	* calendar.c: Remove unused global variables.
+
+	* logview.c: Use the GTK_STOCK_PROPERTIES icon.
+
+	* monitor.c: Major rewrite. Now any opened log can be monitored by
+	toggling the "monitor" check menu item.
+
+	* logview.c: Allow the opening of new windows. Remove the "Switch
+	Log" option : now each window display its own log. Removed the
+	"Close All Logs" option. Disabled the "Monitor" option for now
+	while I figure how to implement it.
+	(LoadLogMenu, FileSelectResponse): No need for MAX_NUM_LOGS
+	anymore, we can open as many logs as we want.
+	(FileSelectResponse): Always open a log in a new window, except if
+	the window is empty or if the log is already opened in another window.
+
+2004-10-26  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c: Major rewrite :
+	 - remove most global variables
+	 - the log viewer window now creates its own gtkwidget and class
+	 - plenty of unused variables and functions removed
+	 - extracted prototypes into header files, removed duplicate info
+
+	* Makefile.am: remove the menus.c file which was not used anywhere.
+	* logview.h: remove the AddMenu prototype.
+	Remove obsolete comments and useless define.
+
+2004-10-25  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_set_window_title): Extract the window naming
+	code in its own function.
+
+	* logview-search.c (logview_tree_model_search_iter_foreach):
+	Correct display problem at startup.
+
+	* logview.c (CreateMainWin): Use gtk_ui_manager.
+
+	* logview-search-dialog.h: 
+	* logview-search-dialog.c: 
+	* logview-search.h: 
+	* logview-search.c: 
+	* gedit-output-window.h: 
+	* gedit-output-window.c: New files for gedit-like search.
+
+	* logview.c: Add an "Edit" menu, with a "Find" entry.
+	(logview_search, logview_close_output_window)
+	(logview_output_window_changed): New functions for gedit-like search.
+
+2004-10-21  Vincent Noel  <vnoel@cox.net>
+
+	* logview.c (logview_menus_set_state): extract the sensitivity
+	logic for menus. Other code clean-ups.
+ 
+2004-10-20  Vincent Noel  <vnoel@cox.net>
+
+	* log_repaint.c (UpdateStatusArea): Use status bar.
+	(CreateMainWin): Use a regular statusbar instead of a box+label.
+
+	* logview.c (CreateMainWin): Remove extra border in the main window.
+
+2004-10-18  Fernando Herrera  <fherrera@onirica.com>
+
+	* logview.c: (SaveUserPrefs): Use /apps/gnome-system-log/logfile 
+	key when saving prefererences (that is what is read on startup)
+
+2004-08-11  Glynn Foster  <glynn.foster@sun.com>
+
+	* about.c: (AboutShowWindow): Should be 'translator-credits'.
+
+2004-08-03  Glynn Foster  <glynn.foster@sun.com>
+
+	* doc/C/logview.sgml, pixmaps/.cvsignore: Remove, old.
+
+2004-07-19  Shakti Sen  <shprasad@novell.com>
+
+	* monitor.c (mon_read_last_page):
+	Fixes the crash if log messages is having less
+	than 5 lines.  Fixes bug #145180
+
+2004-07-19  Shakti Sen  <shprasad@novell.com>
+
+	*monitor.c (monitor_window_destroyed_cb):
+	Remove the timer to fix the crash.
+	Fixes bug #145120
+
+2004-07-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* actions.c: Use g_spawn instead of exec. Patch
+	from James Strandboge and Shakti. Fixes #135869.
+
+2004-05-08  Glynn Foster  <glynn.foster@sun.com>
+
+	* log_repaint.c, zoom.c: Patch from Harsh Jaitly  
+	for #127091 - log viewer detail view picks wrong 
+	entry
+
+2004-05-08  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: Patch from Samuel Stringham to parse
+	/etc/syslog.conf on first start up to see if it
+	can find some logs to open. Fixes #80865.
+
+2004-04-20  Glynn Foster  <glynn.foster@sun.com>
+
+	* Makefile.am: Fix distcheck.
+
+2004-03-08  Dennis Cranston  <dennis_cranston at yahoo com>
+
+	* Makefile.am: Revert builddir != srcdir fix because it 
+	breaks 'make distcheck'.
+	
+2004-02-23  Julio M Merino Vidal <jmmv@menta.net>
+                                                                                
+        * Makefile.am: honour gconf configure option
+                                                                                
+2004-01-18  Jason Leach  <leach@wam.umd.edu>
+
+	* Makefile.am (schema_source_data): builddir != srcdir fix.
+
+2004-01-15  Maxim Dzumanenko <mvd@mylinux.com.ua>
+
+	* actions.c: (mon_edit_actions), (edit_action_entry):
+	* info.c: (RepaintLogInfo): Add some strings for translation.
+
+2003-12-13  Michael Terry  <mterry@fastmail.fm>
+
+       * Makefile.am, about.c, gnome-system-log.desktop.in, logview.c: Use
+       gnome-icon-theme instead of built-in icons.  Fixes #129283.
+
+2003-12-30  Christian Neumair  <chris@gnome-de.org>
+
+	* info.c: (RepaintLogInfo): Use ngettext for plurals (#106700).
+	* zoom.c: Add missing gettext calls.
+
+2003-12-06  Jan Arne Petersen  <jpetersen@uni-bonn.de>
+
+	* logview/logview.c: (FileSelectResponse), (LoadLogMenu): Replace
+	GtkFileSelection with GtkFileChooser.
+
+2003-06-07  Jason Long  <jlong@messiah.edu>
+
+	* logview/logrtns.c (OpenLogFile): create a hash table
+	when log is opened to store paths to date headers
+	* logview/log_repaint.c (DrawLogLines): when a new day
+	is discovered, add an entry to the hash table
+	* logview/calendar.c (calendar_day_selected): use hash
+	table to lookup path to the relevant log entry. Fixes #99676
+
+2003-10-18  Glynn Foster  <glynn.foster@sun.com>
+
+	* gnome-system-log-descript.db: Fix for #124345 from 
+	mkb@mukappabeta.de for erroneous string.
+
+2003-09-02  Glynn Foster  <glynn.foster@sun.com>
+
+	* Makefile.am, calendar.c, info.c, logview.c: Remove some ifdef'd
+	  code.
+	* pixmaps/*: Remove.
+
+Fri Jul 18 12:35:50 2003  George Lebl <jirka@5z.com>
+
+	* logview.c: If gconf is not writable don't write down the logfile
+	  we found.  If the logfile we got is NULL, don't set it to gconf and
+	  don't set the file selection to it to avoid warnings.
+
+	* log_repaint.c: fix user_prefs check to be sane (it's never hit though)
+
+2003-07-18  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
+
+	* gnome-system-log.desktop.in: Use icon from the icon theme.
+
+2003-06-08  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* zoom.c:  Prevent a crash when displaying entry details.
+
+2003-06-06  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* about.c: "GNOME System Log Viewer" -> "System Log Viewer".
+
+2003-05-31  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* actions.c, calendar.c, info.c, logview.c, monitor.c,
+	zoom.c:  HIG related improvements.
+
+2003-05-30  Dennis Cranston <dennis_cranston at yahoo com>
+
+	* actions.c, info.c, log_repaint.c, logrtns.c, logview.c,
+	monitor.c:  Various compiler warning fixes.
+
+2003-05-19  Christian Neumair  <chris@gnome-de.org>
+
+	* about.c: Don't mark copyright string for translation, added
+	hex-escaped copyright character, changed comment to something
+	more meaningful.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* log_repaint.c: Fixed #103481 for large logs crashing.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* Defining timezonevar before including time.h is necessary 
+	for using timezone variable on Cygwin. Patch from Masahiro Sakai.
+	Fixes #111267.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.schemas.in: Fix #102234.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: Use gnome-system-log in the gconf key, rather than
+	logview, since that is what the schema is for. Fixes #103484.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* about.c: Fix #101772.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: Add check, just in case this fixes #111949.
+
+2003-05-19  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: Avoid double free. Patch from marcus@freebsd.org.
+
+2003-02-23  Takeshi AIHANA <aihana@gnome.gr.jp>
+
+	* help/ja/*: added Japanese translations by
+				KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>.
+	* help/ja/Makefile.am:  added ja into SUBDIRS.
+
+2003-02-16  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* logview.c: Fix a leak.
+	
+2003-02-11  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c, monitor.c: Mark some strings for translation.
+	Thanks to Maxim for pointing this out. Fixes #104541.
+
+2003-01-23  Breda McColgan <Breda.McColgan@sun.com>
+
+        * help/C/gnome-system-log.xml: updated for GNOME 2.2
+        * help/C/gnome-system-log-C.omf: updated manual date
+          and version number
+        * help/C/figures/syslog_window.png: updated screenshot
+          of the latest application
+
+2002-01-07 Dennis Cranston <dennis_cranston@yahoo.com>
+	* pixmaps/Makefile.am:  removed logview.xpm reference from 
+	pixmaps_DATA & EXTRA_DIST.
+
+	* pixmaps/logview.xpm:  remove file
+	
+2002-12-28 Alex Duggan <aldug@gnome.org>
+	
+	* about.c: use the standard gnome-log icon in the about
+	dialog not the ancient GNOME one, Fixes #102773
+	
+2002-12-28 John Fleck <jfleck@inkstain.net>
+
+	* info.c, zoom.c
+	removing extraneous translation marks from a bunch of
+	%s, fixing #101764
+
+2002-12-21 Alex Duggan <aldug@gnome.org>
+
+	* about.c: fix spacing in about dialog 
+
+2002-12-21 John Fleck <jfleck@inkstain.net>
+
+	* remove help/C/logview.xml logview-C.omf
+	no longer used
+
+2002-12-02  Glynn Foster  <glynn.foster@sun.com>
+
+	* gnome-system-log.desktop.in: Update for StartupNotify
+
+2002-11-29  Fernando Herrera <fherrera@onirica.com>
+
+       * gnome-system-log.desktop.in: add X-GNOME-BUGZILLA stuff
+
+2002-11-20  Glynn Foster  <glynn.foster@sun.com>
+
+	* log_repaint.c: (InitPages), logrtns.c: Crufty code - 
+	make it less crufty. Fixes #99047.
+	* logview.schemas.in: Dunno why I called it 'logview'. Oh well.
+
+2002-11-07  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: (SetDefaultUserPrefs): Add /var/log/sys.log to 
+	list of possible logs to open. Apply duct tape to bug that
+	I don't have time to look at.
+
+2002-10-17  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* about.c: Fix a leak. Merge from stable.
+	
+2002-10-15  Irene Ryan <irene.ryan@sun.com>
+
+	* help/C/gnome-system-log.xml: updated to fix bug #91164
+	* help/C/gnome-system-log-C.omf: updated manual date
+	  and version number
+	* help/C/l10n.txt: new text containing instruction for
+	  the L10N team about how to take the screenshots for
+	  the manual
+	* help/C/figures/syslog_window.png: updated screenshot
+	  of the latest application
+	      
+2002-09-26  Deepa Natarajan  <deepa.natarajan@wipro.com>
+
+	* monitor.c: Set remove list in the Monitor Options window to
+	remember the logs it is monitoring. Fixes bug# 89485.
+
+2002-09-25  Deepa Natarajan <deepa.natarajan@wipro.com>
+
+	* logview.c: Add an option to collapse all the trees.
+	Fixes bug# 89482.
+
+2002-09-06  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: Remove conflict for menu accelerators. Also get
+	rid of silly stock icons in File menu that don't make sense. Fixes
+	#92540.
+
+2002-08-29 John Fleck <jfleck@inkstain.net>
+
+	* about.c: fixing #92056 to remove 'Linux' only references.
+
+2002-08-29  Glynn Foster  <glynn.foster@sun.com>
+
+	* gnome-system-log-security.in: Default session to true, so that
+	user can run it when console helper is enabled. Another fix from
+	Frederic.
+
+2002-08-29  Glynn Foster  <glynn.foster@sun.com>
+
+	* actions.c: (apply_actions): Fix another case of 'logview'. [sigh]
+
+2002-08-29  Glynn Foster  <glynn.foster@sun.com>
+
+	* gnome-system-log-security.in: Point to gnome-system-log instead
+	of logview. Thanks to Frederic for pointing this out.
+
+2002-08-09  Glynn Foster  <glynn.foster@sun.com>
+
+        * gnome-system-log.1: Update man page.
+
+2002-08-02  Deepa Natarajan  <deepa.natarajan@wipro.com>
+
+	* logview.c: Remove some StubCall (), modify the ordering 
+	of menu items as 'Save As' entry has been removed. 
+	Fixes bug #89685.
+
+2002-07-31  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: Remove StubCall ()
+	* logview.h: ditto
+	* menus.c: (AddMenu): Remove 'Save As' entry in the menus
+	as it's not used. Fixes #89483.
+
+2002-07-31  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: s/About.../About. Fixes #89481.
+
+2002-07-26  Deepa Natarajan  <deepa.natarajan@wipro.com>
+
+	* log_repaint.c, logrtns.c, logview.h: When logview first 
+	comes up set focus on the last row and scroll to that row. 
+	Always maintain the last focused line. Fixes bug #87398.
+
+2002-07-25  Deepa Natarajan  <deepa.natarajan@wipro.com>
+
+	* logview.[ch], log_repaint.c: Maintain the correct status
+	of expanded rows when switching between logs.
+	Partly Fixes #87398.
+
+2002-07-24  Deepa Natarajan  <deepa.natarajan@wipro.com>
+
+	* actions.c: Pass the command to execute twice for execlp (),
+	so that the action happens. Fixes bug# 88207.
+
+2002-07-17  Deepa Natarajan  <deepa.natarajan@wipro.com>
+
+	* logview.c: Add menu item Close All - to close all the log
+	files in one shot.
+
+2002-07-08  Laavanya K R <laavanya.gopalan@wipro.com>
+
+	* actions.c: Modified exec_action_in_db() to execute "action"
+	by a combination of fork() and execlp() calls instead of
+	executing through system().  There is a potential of Time of
+	Check and Time of Use (TOCTOU) issues with system() since
+	shell is spawned first and command's executed after a small
+	time gap. Fixes #87110.
+
+2002-07-08  Deepa Natarajan  <deepa.natarajan@wipro.com> 
+ 
+	* logview.[ch], log_repaint.c: Append filename to the window 
+	title. Disable Close and Properties option when all files are
+	closed. s/Log/File as logs are just files. 
+
+2002-07-05  Glynn Foster  <glynn.foster@sun.com>
+
+	* gnome-system-log.desktop.in: s/DocPath/X-GNOME-DocPath.
+	Now conforms to spec.
+
+2002-07-05  Glynn Foster  <glynn.foster@sun.com>
+
+	* Makefile.am: Add install of schema
+	* logview.schemas.in: Add schemas.
+	* logview.c, logview.h, userprefsdialog.c: Get rid of old
+	unused cruft that you could set to change the size of your 
+	windows.
+
+2002-07-02  Deepa Natarajan  <deepa.natarajan@wipro.com> 
+ 
+	* logrtns.[ch], monitor.c: Rewrote ReadPageDown() and 
+	mon_read_new_lines() to update the logs that are monitored.
+     
+2002-07-02  Deepa Natarajan  <deepa.natarajan@wipro.com> 
+
+	* logview.c: enable restore session.
+
+2002-06-28  Deepa Natarajan  <deepa.natarajan@wipro.com> 
+
+	logview.h: Remove Fonts, Colors & Style info from ConfigData
+	structure. Remove log_page structure. Change Log structure
+	to remove Page stuff and add LogLine. Add an array to 
+	maintain the tree view paths that are expanded in a file. 
+	Used when switching between logs.
+
+	logview.c: Display logs in the form of a tree view placed 
+	inside a scrolled window. Set up 2 call backs: row-activated 
+	for showing zoom window and selection changed to update the 
+	current log line. Removed all canvas and scroll window stuff.
+
+	log_repaint.c: Rewrote to use GtkTreeView. Clean up #defines.
+	Add save_row_to_expand(): to save paths that are currently 
+	expanded. Remove HandleLogKeyboard as it does not follow HIG. 
+	Remove all Pango stuff. Restore session is disabled for now.
+
+	logrtns.c: Clean up #defines. Modify OpenLogLine to read from 
+	file and fill details in the new Log struture. Update CloseLog 
+	to free memory.
+
+	config.[ch]: Modified config data - removed all fonts and 
+	pango stuff.
+
+	zoom.c: Clear the zoom window when file is closed. Change the 
+	prototype for create_zoom_window to pass void. Get the current 
+	log based on the new log structure. Convert description to utf8 
+	before passing it to GtkListStore.
+
+	monitor.c: When the monitoring logs first comes up, display 
+	only the last 5 lines. Remove all page stuff. Right now 
+	updation of logs is disabled. Clean up #defines. 
+
+	menus.c, userprefdialog.c: Do not set styles, to respect themes.
+
+	calendar.c: The functionality of the calander is currently
+	disabled.
+
+	misc.c: Remove the function to load fonts.
+
+2002-06-14  Narayana Pattipati <narayana.pattipati@wipro.com>
+
+        * monitor.c: Update the monitor window with the new lines added 
+        properly. And also make sure that the last log is also shown when
+        monitor window opened first. Bug#85248
+
+2002-06-19  Deepa Natarajan  <deepa.natarajan@wipro.com>
+ 
+	* actions.c: Change the windows to dialog boxes. Set
+	atk relation between entry box and label, set mnemonics,
+	set default button, change title of dialog to "Actions",
+	position buttons to the right of the tree view. 
+	s/gtk_widget_set_usize/gtk_widget_set_size_request.
+
+	* monitor.c: s/GtkWindow/GtkDialog, add mnemonics,
+	set tooltips - thanks Parag, expand some of the
+	labels, change the ordering of the buttons, put all
+	the button in the same row, change the title of the 
+	dialog to "Monitor Options" and set the default button.
+	s/gtk_widget_set_usize/gtk_widget_set_size_request.
+
+	* zoom/info.c: Remove all pango stuff. Display info
+	in a GtkTreeView.
+
+	* log_repaint.c: Call repaint_zoom() and  RepaintLogInfo()
+	without parameters - change prototype.
+
+	* logview.h: change the prototype for repaint_zoom().
+
+2002-06-12  Narayana Pattipati <narayana.pattipati@wipro.com>
+
+        * monitor.c: In mon_read_new_lines function, as new lines are read,
+        update the current position and start reading next set of lines from 
+        the new position.
+
+        * logrtns.c: In ReadPageDown function fixed a crash when the lines
+        read are more than ten. Bug#84084.
+
+2002-06-12  Christophe Merlet  <christophe@merlet.net>
+
+	* Makefile.am: Add $DESTDIR variable.
+
+2002-06-04  George Lebl <jirka@5z.com>
+
+	* logview.c: use _UI_SUBTREE instead of _UI_SUBTREE_STOCK since 
+	that makes translations actually work. _UI_SUBTREE_STOCK means
+	that the string comes from libgnomeui which in this case it 
+	doesn't.
+
+2002-05-31  Hidetoshi Tajima <hidetoshi.tajima@sun.com>
+
+	* Makefile.am: Update for #83627.
+
+2002-05-31  Hidetoshi Tajima <hidetoshi.tajima@sun.com>
+
+	* Makefile.am: Fix GNOMELOCALEDIR to point to correct
+	place. Fixes #83627.
+
+2002-05-31  Glynn Foster <glynn.foster@sun.com>
+
+	* monitor.c: Remove ugly pangoification in the 
+	monitor dialog.
+
+2002-05-31  Glynn Foster <glynn.foster@sun.com>
+	
+	* Makefile.am: Enable help again. Fixes #83518.
+
+2002-05-25  Glynn Foster <glynn.foster@sun.com>
+
+	* logview.c, actions.c: Some focus issues. Hum, we really
+	need to get mnemonics going here.
+
+2002-05-25  Narayana Pattipati <narayana.pattipati@wipro.com>
+
+	* logview.c: Treeview fix to prevent parent and child being
+	created for first action entry. Fixes #81942.
+
+2002-05-23  Aruna P R <aruna.pou@wipro.com>
+
+	* logview.c: Disable multiple openings of the same file. Fixes 
+	#75121.
+
+2002-05-23  Narayana Pattipati <narayana.pattipati@wipro.com>
+
+	* actions.c: Make sure we save the description in the actions
+	dialog. Fixes #82334.
+
+2002-15-20 Glynn Foster <glynn.foster@sun.com>
+
+	* Makefile.am: Diable docs until they are fixed - dtd validation
+	problems with scrollkeeper.dtd.
+
+Fri May 17 10:09:46 2002  George Lebl <jirka@5z.com>
+
+	* config.c: add note to translators about fonts, especially about
+	  Helvetica vs asian fonts
+
+	* info.c, zoom.c: fix crashes on window closing, also add more
+	  elaborate logic for figuring out the size of the label area,
+	  still quite stupid, but now it gets it wrong by getting more space
+	  rather then less which is nicer.  Also better get single char
+	  width info in an uglier, more elaborate and hackish way but
+	  in a way that we get more correct.  Some more geometry fixage
+	  to get asian fonts right.
+
+Thu May 16 18:39:42 2002  George Lebl <jirka@5z.com>
+
+	* info.c, log_repaint.c, logview.h, misc.c, zoom.c:
+	  handle cases where we can't convert the line to utf8.  We can
+	  really guess the language anyway though so maybe we could do more.
+
+	* logrtns.c: make sure not to leave other time locales around and
+	  fix a leak thus created.
+
+Thu May 16 18:19:59 2002  George Lebl <jirka@5z.com>
+
+	* info.c, log_repaint.c, logrtns.c, logview.h, misc.c, zoom.c:
+	  Some i18n fixage, especially with getting utf8 vs locale
+	  encoding straight.  It is quite ugly, though now we again read
+	  localized logs and don't spew out tons of warnings.  I can't make
+	  sure that the problem for Chinese is gone since I think I don't
+	  have the right fonts for this.  So I'll mark #81252 as fixed.
+
+Thu May 16 15:20:35 2002  George Lebl <jirka@5z.com>
+
+	* logview.c: make the window and make sure it's shown before opening
+	  files since then we look like we are loading faster, especially if
+	  your logfile is very long.
+
+Thu May 16 15:09:19 2002  George Lebl <jirka@5z.com>
+
+	* log_repaint.c, zoom.c: partially fix #81252 by converting output
+	  of strftime to utf8.  Also convert the string to utf8, this still
+	  needs a bit of work, so I'm not closing the bug yet
+
+	* logview.c: fix crash when closing window
+
+2002-05-14  Glynn Foster  <glynn.foster@sun.com>
+
+	* gnome-system-log-actions.db: Comment out example
+	strings. I wish I am more time to look through this 
+	properly.
+
+2002-05-11 Samuel Stringham  <sams@e-sa.com> 
+
+	* logrtns.c: On log rotation, or log creation, 
+	or just empty logs logview fails.  Tough to tell if 
+	a log is actually a system log when it is empty, but 
+	should still try to read/monitor it. Fixes #81348.
+
+2002-05-11  Samuel Stringham  <sams@e-sa.com>
+	
+	* actions.c: Fix crash in actions dialog. Fixes #81397.
+
+2002-05-11  Samuel Stringham  <sams@e-sa.com>
+
+	* logview.c: remove bogus spacing. Fixes #81399.
+
+2002-05-10  Glynn Foster  <glynn.foster@sun.com>
+
+	* calendar.c, logview.c, zoom.c: Fix crashes on dialog 
+	boxes when 'Esc' is used.
+
+2002-05-10  Glynn Foster  <glynn.foster@sun.com>
+
+	* logrtns.c: Add sanity check. Fixes #81265.
+
+2002-05-08  Glynn Foster  <glynn.foster@sun.com>
+
+	* about.c, logview.c: Fix up some inconsistancies as pointed
+	out by the doc team.
+
+2002-05-08  Glynn Foster  <glynn.foster@sun.com>
+
+	* calendar.c, log_repaint.c, logview.c, zoom.c: More
+	HIG Compliance stuff. Fixes #76685 in part. Man, this 
+	code is *so* ugly. Hack after hack after hack. [sigh].
+
+2002-05-07  Samuel Stringham <sams@e-sa.com>
+
+	* zoom.c: (repaint_zoom): Fix repaint on zoom-in box. Fixes	
+	#80904.
+
+2002-05-07  Samuel Stringham <sams@e-sa.com>
+
+	* actions.c, log_repaint.c: Some UI love.
+
+2002-05-07  Satyajit Kanungo  <satyajit.kanungo@wipro.com>
+
+	* gnome-system-log.desktop.in: Added DocPath in the 
+	desktop.in file. Fixes #80921.
+
+2002-05-03  Glynn Foster  <glynn.foster@sun.com>
+
+	* logview.c: s/Date/Last Modified. It seems a slightly better
+	solution, although when you scroll up it seems to randomly
+	change the date in the status bar. Fixes #72782 somewhat
+	but we should get rid of the updates and just use one non
+	changing date, whatever that might be.
+	* logrtns.c: Include <errno.h> in the view to giving more 
+	useful error messages.
+ 
+2002-05-03  Xing Wang <quixon@gnuchina.org>
+
+	* calendar.c: (CalendarMenu), (close_calendar): Don't NULL
+	CalendarDialog when we are only hiding the widget. Fixes
+	#80403.
+
+2002-05-01  Glynn Foster  <glynn.foster@sun.com>
+
+	* calendar.c: (CalendarMenu): Oops, forgot to 
+	make non-resizable.
+
+2002-05-01  Glynn Foster  <glynn.foster@sun.com>
+
+	* calendar.c: (CalendarMenu): Adapted patch from
+	Xing Wang <quixon@gnuchina.org> to fix #77194.
+
+2002-05-01  Glynn Foster  <glynn.foster@sun.com>
+
+	* gnome-system-log-regexp.db: Add fix from 
+	 voss@debian.org (Jochen Voss) for #73406.
+
+2002-04-28 Dennis Cranston <dennis_cranston@yahoo.com>
+
+	* about.c:  fix code to correctly find logview.xpm logo
+	in the about dialog.  Change name to match application menu.
+	Fixes #80109.
+	
+2002-04-24 Aruna P R <aruna.pou@wipro.com>
+
+	* config.c, info.c, log_repaint.c, logview.c,
+	  logview.h, monitor.c, zoom.c:
+
+	Start using Pango wherever we can.
+
+2002-04-18 - John Fleck <jfleck@inkstain.net>
+
+	* help/Makefile.am, help/C/Makefile.am
+	gnome-system-log.xml, gnome-system-log-C/omf, legal.xml
+	figures/gnome-system-log.png
+	incorporating placeholder docs, completing patch from
+	Satyajit
+
+2002-04-16  Kevin Vandersloot <kfv101@psu.edu>
+
+        * Makefile.am, logview.c : get help working - almost
+
+2002-03-21 Aruna P R <aruna.pou@wipro.com>
+
+	* logview.c: add session managment to systemlogmoitor
+
+2002-03-30 Aruna P R <aruna.pou@wipro.com>
+	
+	* actions.c, monitor.c, logview.h:
+
+        Replaced GtkClist and GtkCtree calls with GtkTreeView calls in the files        
+
+2002-03-20  Yogeesh MB <yogeeshappa.mathighatta@wipro.com>
+
+	* logview.c :Removed user preference dialog, Patch #57968
+
+2002-03-26 Aruna P R <aruna.pou@wipro.com>
+
+        * monitor.c: Monitor options gives the messages when tried to add more
+        than the MON_MAX_NUM_LOGS(4) log files.
+        Fixes the problem with Add and Remove button
+
+        * logview.c: made menu items and view items sensitive.
+        Added the condition to give the message when tried to open more than
+        MAX_NUM_LOGS(10) log files.
+
+        Fix for bugs #75124 & 75074
+
+2002-03-20  Kevin Vandersloot <kfv101@psu.edu>
+
+	* actions.c: Use gtk_text_buffer_set_text. May fix 
+	a crash. Also don't cast the textview to a gtkeditable
+
+2002-03-15  Ganesan Sethuraman <ganesan.sethuraman@wipro.com>
+
+       * log_repaint.c: Fixed the display of the status bar when the
+       last log file is closed.Fix for bug #74610
+
+2002-03-18  Kevin Vandersloot <kfv101@psu.edu> 
+
+	* logview.c: fix checks for logfiles. Thanks to Aruna Pourohit
+	for pointing this out. Realy fixes bug 75125. Also update
+	binary name in gnome_init
+
+2002-03-17  Kevin Vandersloot <kfv101@psu.edu>
+
+	* logview.c: fix typo. Fixes bug 75125
+
+2002-03-04  Kevin Vandersloot <kfv101@psu.edu>
+	
+	* log_repaint.c: show details on double click and 
+	select row on single click. Also handle mouse scroll
+	events. 
+
+	* logview.c: don't select row on motion events.
+
+2002-02-28  Santhana Krishnan  <santhana.krishnan@wipro.com>
+
+	* logview.c: fixed bug on scroll bars when log view is empty. 
+
+2002-02-21  Bastien Nocera  <hadess@hadess.net>
+
+	* logrtns.c: (isLogFile): don't crash on empty files
+
+2002-02-21  Bastien Nocera  <hadess@hadess.net>
+
+	* actions.c: (edit_action_entry): use non-deprecated calls
+	(and the proper ones in fact)
+	* logview.h, logrtns.c: (ReadPageUp), (ReadPageDown): fix bug on
+	platforms where a char is unsigned (Closes:68013)
+	(patch from Jochen Voss <voss@debian.org>)
+	* logview.c: (CloseApp): fix double-closing exit core dump
+
+2002-01-31  Zbigniew Chyla  <cyba@gnome.pl>
+
+	* about.c (AboutShowWindow): Don't try to translate empty string.
+
+2001-02-02  Zbigniew Chyla  <cyba@gnome.pl>
+
+	* .cvsignore: s/logview/gnome-system-log/
+
+2002-01-27  Seth Nickell  <snickell@stanford.edu>
+
+	* Makefile.am:
+	* gnome-system-log-actions.db:
+	* gnome-system-log-descript.db:
+	* gnome-system-log-pam:
+	* gnome-system-log-regexp.db:
+	* gnome-system-log-security.in:
+	* gnome-system-log.1:
+	* gnome-system-log.desktop.in:
+	* logview-actions.db:
+	* logview-descript.db:
+	* logview-pam:
+	* logview-regexp.db:
+	* logview-security.in:
+	* logview.1:
+	* logview.c: (open_databases):
+	* logview.desktop.in:
+	* pixmaps/Makefile.am:
+
+
+	Rename application binary to match menu name.
+
+	Whew. This one was a PITA.
+	
+2002-01-27  Seth Nickell  <snickell@stanford.edu>
+
+	* logview.desktop.in:
+
+	Change menu names to conform with the HIG, and
+	install into the GNOME2 .desktop file location.
+
