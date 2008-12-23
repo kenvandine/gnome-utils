@@ -147,36 +147,6 @@ logview_select_log (LogviewWindow *logview, Log *log)
     gtk_widget_grab_focus (logview->view);
 }
 
-void
-logview_set_window_title (LogviewWindow *logview)
-{
-    gchar *window_title;
-    gchar *logname;
-    Log *log;
-
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    log = logview->curlog;
-    if (log == NULL)
-      return;
-
-    if (log->name != NULL) {
-
-      if (log->display_name != NULL)
-	logname = log->display_name;
-      else
-	logname = log->name;
-
-	window_title = g_strdup_printf ("%s - %s", logname, APP_NAME);
-
-    }
-    else
-      window_title = g_strdup_printf (APP_NAME);
-
-    gtk_window_set_title (GTK_WINDOW (logview), window_title);
-    g_free (window_title);
-}
-
 /* private functions */
 
 static void
@@ -290,6 +260,24 @@ logview_set_fontsize (LogviewWindow *logview)
   gtk_widget_modify_font (priv->view, fontdesc);
 
   logview_prefs_store_fontsize (logview->priv->prefs, priv->fontsize);
+}
+
+static void
+logview_set_window_title (LogviewWindow *logview, const char * log_name)
+{
+  char *window_title;
+
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  if (log_name) {
+    window_title = g_strdup_printf ("%s - %s", log_name, APP_NAME);
+  } else {
+    window_title = g_strdup_printf (APP_NAME);
+  }
+
+  gtk_window_set_title (GTK_WINDOW (logview), window_title);
+
+  g_free (window_title);
 }
 
 static void
@@ -633,6 +621,18 @@ window_size_changed_cb (GtkWidget *widget, GdkEventConfigure *event,
 }
 
 static void
+active_log_changed_cb (LogviewManager *manager,
+                       LogviewLog *log,
+                       gpointer data)
+{
+  LogviewWindow *window = data;
+
+  
+  /* update the tile for the new log */
+  logview_set_window_title (window, logview_log_get_display_name (log));
+}
+
+static void
 logview_window_finalize (GObject *object)
 {
   LogviewWindow *logview = LOGVIEW_WINDOW (object);
@@ -801,6 +801,8 @@ logview_window_init (LogviewWindow *logview)
                     G_CALLBACK (font_changed_cb), logview);
   g_signal_connect (priv->prefs, "have-tearoff-changed",
                     G_CALLBACK (tearoff_changed_cb), logview);
+  g_signal_connect (priv->manager, "active-changed",
+                    G_CALLBACK (active_log_changed_cb), logview);
 
   /* Status area at bottom */
   priv->statusbar = gtk_statusbar_new ();

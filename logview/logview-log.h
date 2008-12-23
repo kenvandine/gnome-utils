@@ -83,6 +83,7 @@ void logview_log_create         (const char *filename,
 void logview_log_read_new_lines (LogviewLog *log,
                                  LogviewNewLinesCallback callback,
                                  gpointer user_data);
+const char * logview_log_get_display_name (LogviewLog *log);
 
 G_END_DECLS
 

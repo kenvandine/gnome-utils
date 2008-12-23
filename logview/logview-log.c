@@ -46,6 +46,7 @@ struct _LogviewLogPrivate {
   /* stats about the file */
   GTimeVal file_time;
   goffset file_size;
+  char *display_name;
 
   /* stream poiting to the log */
   GDataInputStream *stream;
@@ -266,6 +267,7 @@ log_load (GIOSchedulerJob *io_job,
 
   log->priv->file_size = g_file_info_get_size (info);
   g_file_info_get_modification_time (info, &log->priv->file_time);
+  log->priv->display_name = g_strdup (g_file_info_get_display_name (info));
 
   g_object_unref (info);
 
@@ -339,4 +341,12 @@ logview_log_create (const char *filename, LogviewCreateCallback callback,
   log->priv->file = g_file_new_for_path (filename);
 
   log_setup_load (log, callback, user_data);
+}
+
+const char *
+logview_log_get_display_name (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return log->priv->display_name;
 }

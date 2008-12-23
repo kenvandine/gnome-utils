@@ -52,6 +52,5 @@ GType logview_window_get_type (void);
 /* public methods */
 GtkWidget *logview_window_new (void);
 void logview_select_log (LogviewWindow *logview, Log *log);
-void logview_set_window_title (LogviewWindow *window);
 
 #endif /* __LOGVIEW_WINDOW_H__ */
