@@ -223,23 +223,6 @@ dnl ***************************************************************
 dnl Other miscellaneous checks 
 dnl ***************************************************************
 
-dnl Allow users to run logview using the console helper PAM stuff.
-AC_ARG_ENABLE(console-helper,
-              AC_HELP_STRING([--enable-console-helper=@<:@no/yes@:>@],
-                             [Enable PAM console helper @<:@default=no@:>@]),,
-              enable_console_helper=no)
-
-if test "x$enable_console_helper" = "xyes"; then
-  AM_CONDITIONAL(CONSOLE_HELPER, true)
-else
-  AM_CONDITIONAL(CONSOLE_HELPER, false)
-fi
-
-AC_PATH_PROG(CONSOLE_HELPER,consolehelper,no)
-if test "x$CONSOLE_HELPER" = "xno" -a "x$enable_console_helper" = "xyes" ; then
-	AC_MSG_ERROR(Console helper requested but consolehelper binary not found)
-fi
-
 dnl Enable debug messages
 m4_define([debug_default],
           m4_if(m4_eval(gdict_minor_version % 2), [1], [yes], [no]))

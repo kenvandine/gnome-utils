@@ -3,7 +3,6 @@
 SUBDIRS = help tests
 
 Utilitiesdir = $(datadir)/applications
-additionaldir  = $(datadir)/gnome-system-log
 
 INCLUDES = \
 	$(GNOME_UTILS_CFLAGS)					\
@@ -66,16 +65,9 @@ schemas_in_file = logview.schemas.in
 schemas_DATA = $(schemas_in_file:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-additional_DATA  = gnome-system-log-descript.db \
-                   gnome-system-log-regexp.db \
-		   gnome-system-log-actions.db
-
 EXTRA_DIST = \
 	gnome-system-log.desktop.in.in	\
-	$(additional_DATA)		\
 	$(schemas_in_file) 		\
-	gnome-system-log-pam		\
-	gnome-system-log-security.in	\
 	$(man_MANS)
 
 if GCONF_SCHEMAS_INSTALL
@@ -89,15 +81,7 @@ else
 install-gconf-schemas:
 endif
 
-install-data-local: gnome-system-log-security install-gconf-schemas
-
-if CONSOLE_HELPER
-	$(INSTALL_DATA) -D gnome-system-log-pam $(DESTDIR)$(PAM_PREFIX)/pam.d/gnome-system-log
-	$(INSTALL_DATA) -D gnome-system-log-security $(DESTDIR)$(PAM_PREFIX)/security/console.apps/gnome-system-log
-	$(INSTALL_DATA) -m 755 -d $(DESTDIR)$(sbindir)
-	mv -f $(DESTDIR)$(bindir)/gnome-system-log $(DESTDIR)$(sbindir)
-	$(LN_S) @CONSOLE_HELPER@ $(DESTDIR)$(bindir)/gnome-system-log
-endif
+install-data-local: install-gconf-schemas
 
 CLEANFILES = 				\
 	gnome-system-log.desktop	\
