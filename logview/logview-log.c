@@ -37,7 +37,9 @@ enum {
 static guint signals [LAST_SIGNAL] = { 0 };
 
 struct _LogviewLogPrivate {
+  /* file and monitor */
   GFile *file;
+  GFileMonitor *mon;
 
   /* stats about the file */
   GTimeVal file_time;
@@ -95,6 +97,43 @@ static void
 logview_log_init (LogviewLog *self)
 {
   self->priv = GET_PRIVATE (self);
+}
+
+static void
+monitor_changed_cb (GFileMonitor *monitor,
+                    GFile *file,
+                    GFile *unused,
+                    GFileMonitorEvent event,
+                    gpointer user_data)
+{
+  LogviewLog *log = user_data;
+
+  if (event == G_FILE_MONITOR_EVENT_CHANGED) {
+    g_signal_emit (log, signals[LOG_CHANGED], 0, NULL);
+  }
+  /* TODO: handle the case where the log is deleted? */
+}
+
+static void
+setup_file_monitor (LogviewLog *log)
+{
+  GError *err = NULL;
+
+  log->priv->mon = g_file_monitor (log->priv->file,
+                                   0, NULL, &err);
+  if (err) {
+    /* it'd be strange to get this error at this point but whatever */
+    g_warning ("Impossible to monitor the log file: the changes won't be notified");
+    g_error_free (err);
+    return;
+  }
+  
+  /* set the rate to 1sec, as I guess it's not unusual to have more than
+   * one line written consequently or in a short time, being a log file.
+   */
+  g_file_monitor_set_rate_limit (log->priv->mon, 1000);
+  g_signal_connect (log->priv->mon, "changed",
+                    G_CALLBACK (monitor_changed_cb), log);
 }
 
 static gboolean
@@ -165,6 +204,7 @@ log_load_done (gpointer user_data)
     job->callback (job->log, NULL, job->user_data);
   }
 
+  setup_file_monitor (job->log);
   g_slice_free (LoadJob, job);
 
   return FALSE;
