@@ -183,7 +183,9 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
                       LOG_WEIGHT_SET, &is_bold,
                       LOG_DAY, &day, -1);
   if (log) {
-    logview_manager_set_active_log (list->priv->manager, log);
+    if (!logview_manager_log_is_active (list->priv->manager, log)) {
+      logview_manager_set_active_log (list->priv->manager, log);
+    }
   } else {
     gtk_tree_model_iter_parent (model, &parent, &iter);
     gtk_tree_model_get (model, &parent, LOG_OBJECT, &log, -1);
