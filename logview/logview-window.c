@@ -712,7 +712,7 @@ read_new_lines_cb (LogviewLog *log,
   }
 
   logview_update_statusbar (window, log);
-  logview_loglist_update_lines (window->priv->loglist, log);
+  logview_loglist_update_lines (LOGVIEW_LOGLIST (window->priv->loglist), log);
 }
 
 static void

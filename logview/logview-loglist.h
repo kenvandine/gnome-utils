@@ -35,6 +35,8 @@
 #include <gtk/gtk.h>
 #include <glib-object.h>
 
+#include "logview-log.h"
+
 typedef struct _LogviewLoglist LogviewLoglist;
 typedef struct _LogviewLoglistClass LogviewLoglistClass;
 typedef struct _LogviewLoglistPrivate LogviewLoglistPrivate;
