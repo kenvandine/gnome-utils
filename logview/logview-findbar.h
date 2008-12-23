@@ -53,6 +53,7 @@ struct _LogviewFindbarClass {
   /* signals */
   void (* previous)     (LogviewFindbar *findbar);
   void (* next)         (LogviewFindbar *findbar);
+  void (* close)        (LogviewFindbar *findbar);
   void (* text_changed) (LogviewFindbar *findbar,
                          const char * new_text);
 };

@@ -36,6 +36,7 @@ struct _LogviewFindbarPrivate {
 enum {
   PREVIOUS,
   NEXT,
+  CLOSE,
   TEXT_CHANGED,
   LAST_SIGNAL
 };
@@ -106,7 +107,7 @@ entry_key_press_event_cb (GtkWidget *entry,
   LogviewFindbar *findbar = user_data;
 
   if (event->keyval == GDK_Escape) {
-    gtk_widget_hide (GTK_WIDGET (findbar));
+    g_signal_emit (findbar, signals[CLOSE], 0);
     return TRUE;
   }
 
@@ -218,7 +219,7 @@ logview_findbar_class_init (LogviewFindbarClass *klass)
 
   signals[PREVIOUS] = g_signal_new ("previous",
                                     G_OBJECT_CLASS_TYPE (oclass),
-                                    G_SIGNAL_RUN_FIRST,
+                                    G_SIGNAL_RUN_LAST,
                                     G_STRUCT_OFFSET (LogviewFindbarClass, previous),
                                     NULL, NULL,
                                     g_cclosure_marshal_VOID__VOID,
@@ -226,15 +227,23 @@ logview_findbar_class_init (LogviewFindbarClass *klass)
 
   signals[NEXT] = g_signal_new ("next",
                                 G_OBJECT_CLASS_TYPE (oclass),
-                                G_SIGNAL_RUN_FIRST,
+                                G_SIGNAL_RUN_LAST,
                                 G_STRUCT_OFFSET (LogviewFindbarClass, next),
                                 NULL, NULL,
                                 g_cclosure_marshal_VOID__VOID,
                                 G_TYPE_NONE, 0);
 
+  signals[CLOSE] = g_signal_new ("close",
+                                 G_OBJECT_CLASS_TYPE (oclass),
+                                 G_SIGNAL_RUN_LAST,
+                                 G_STRUCT_OFFSET (LogviewFindbarClass, close),
+                                 NULL, NULL,
+                                 g_cclosure_marshal_VOID__VOID,
+                                 G_TYPE_NONE, 0);
+
   signals[TEXT_CHANGED] = g_signal_new ("text-changed",
                                         G_OBJECT_CLASS_TYPE (oclass),
-                                        G_SIGNAL_RUN_FIRST,
+                                        G_SIGNAL_RUN_LAST,
                                         G_STRUCT_OFFSET (LogviewFindbarClass, text_changed),
                                         NULL, NULL,
                                         g_cclosure_marshal_VOID__STRING,
@@ -243,6 +252,8 @@ logview_findbar_class_init (LogviewFindbarClass *klass)
 
   g_type_class_add_private (klass, sizeof (LogviewFindbarPrivate));
 }
+
+/* public methods */
 
 GtkWidget *
 logview_findbar_new (void)
@@ -259,4 +270,12 @@ logview_findbar_open (LogviewFindbar *findbar)
 
   gtk_widget_show (GTK_WIDGET (findbar));
   gtk_widget_grab_focus (GTK_WIDGET (findbar));
+}
+
+const char *
+logview_findbar_get_text (LogviewFindbar *findbar)
+{
+  g_assert (LOGVIEW_IS_FINDBAR (findbar));
+
+  return findbar->priv->string;
 }
