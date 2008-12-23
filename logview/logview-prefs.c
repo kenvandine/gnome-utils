@@ -56,7 +56,7 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-static char *logfiles[] = {
+static char *default_logfiles[] = {
   "/var/log/sys.log",
 #ifndef ON_SUN_OS
   "/var/log/messages",
@@ -103,7 +103,7 @@ do_finalize (GObject *obj)
 {
   LogviewPrefs *prefs = LOGVIEW_PREFS (obj);
 
-  g_object_unref (prefs->client);
+  g_object_unref (prefs->priv->client);
 
   G_OBJECT_CLASS (logview_prefs_parent_class)->finalize (obj);
 }
@@ -116,7 +116,7 @@ logview_prefs_class_init (LogviewPrefsClass *klass)
   oclass->finalize = do_finalize;
 
   signals[SYSTEM_FONT_CHANGED] = g_signal_new ("system-font-changed",
-                                               G_OBJECT_CLASS_TYPE (object_class),
+                                               G_OBJECT_CLASS_TYPE (oclass),
                                                G_SIGNAL_RUN_LAST,
                                                G_STRUCT_OFFSET (LogviewPrefsClass, system_font_changed),
                                                NULL, NULL,
@@ -124,7 +124,7 @@ logview_prefs_class_init (LogviewPrefsClass *klass)
                                                G_TYPE_NONE, 1,
                                                G_TYPE_STRING);
   signals[HAVE_TEAROFF_CHANGED] = g_signal_new ("have-tearoff-changed",
-                                                G_OBJECT_CLASS_TYPE (object_class),
+                                                G_OBJECT_CLASS_TYPE (oclass),
                                                 G_SIGNAL_RUN_LAST,
                                                 G_STRUCT_OFFSET (LogviewPrefsClass, have_tearoff_changed),
                                                 NULL, NULL,
@@ -259,6 +259,7 @@ static void
 logview_prefs_fill_defaults (LogviewPrefs *prefs)
 {
   GSList *logs;
+  int i;
 
   g_assert (LOGVIEW_IS_PREFS (prefs));
 
@@ -287,8 +288,9 @@ static void
 logview_prefs_init (LogviewPrefs *self)
 {
   gboolean stored_logs;
+  LogviewPrefsPrivate *priv;
 
-  self->priv = GET_PRIVATE (self);
+  priv = self->priv = GET_PRIVATE (self);
 
   priv->client = gconf_client_get_default ();
   priv->size_store_timeout = 0;
@@ -298,7 +300,7 @@ logview_prefs_init (LogviewPrefs *self)
     /* if there's no stored logs, either it's the first start or GConf has
      * been corrupted. re-fill the registry with sensible defaults anyway.
      */
-    logview_prefs_fill_defaults (prefs);
+    logview_prefs_fill_defaults (self);
   }
 
   gconf_client_notify_add (priv->client,
@@ -360,7 +362,7 @@ logview_prefs_get_stored_window_size (LogviewPrefs *prefs,
 
   *height = gconf_client_get_int (prefs->priv->client,
                                   GCONF_WIDTH_KEY,
-                                  &error);
+                                  NULL);
 
   if ((*width == 0) ^ (*height == 0)) {
     /* if one of the two failed, return default for both */
@@ -469,7 +471,7 @@ logview_prefs_get_active_logfile (LogviewPrefs *prefs)
 
   g_assert (LOGVIEW_IS_PREFS (prefs));
 
-  filename = gconf_client_get_string (gconf_client, GCONF_LOGFILE, NULL);
+  filename = gconf_client_get_string (prefs->priv->client, GCONF_LOGFILE, NULL);
 
   return filename;
 }
