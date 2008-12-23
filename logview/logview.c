@@ -432,7 +432,7 @@ logview_search_text (LogviewWindow *logview, gboolean forward)
 
   text = logview_findbar_get_text (LOGVIEW_FINDBAR (logview->priv->find_bar));
 
-  if (!text) {
+  if (!text || g_strcmp0 (text, "") == 0) {
     return;
   }
 
