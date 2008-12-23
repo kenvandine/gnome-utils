@@ -80,7 +80,7 @@ out:
  * log_read_dates:
  *
  * @buffer_lines: an array of text lines.
- * @current: the current time.
+ * @current: the mtime of the file being parsed.
  *
  * Reads all the dates inside the text buffer.
  * All dates are given with respect to the 1/1/1970
