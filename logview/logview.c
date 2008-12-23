@@ -96,6 +96,9 @@ static const char *ui_description =
 	"	</menubar>"
 	"</ui>";
 
+static void  findbar_close_cb (LogviewFindbar *findbar,
+                               gpointer user_data);
+
 /* private functions */
 
 static void
@@ -166,8 +169,6 @@ logview_update_statusbar (LogviewWindow *logview, LogviewLog *active)
   char *size, *modified, *index;
   gulong timestamp;
 
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   if (active == NULL) {
     gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
     return;
@@ -204,8 +205,6 @@ logview_set_font (LogviewWindow *logview,
 {
   PangoFontDescription *font_desc;
 
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   if (fontname == NULL)
     fontname = DEFAULT_LOGVIEW_FONT;
 
@@ -222,8 +221,6 @@ logview_set_fontsize (LogviewWindow *logview)
   PangoFontDescription *fontdesc;
   PangoContext *context;
   LogviewWindowPrivate *priv = logview->priv;
-	
-  g_assert (LOGVIEW_IS_WINDOW (logview));
 
   context = gtk_widget_get_pango_context (priv->text_view);
   fontdesc = pango_context_get_font_description (context);
@@ -237,8 +234,6 @@ static void
 logview_set_window_title (LogviewWindow *logview, const char * log_name)
 {
   char *window_title;
-
-  g_assert (LOGVIEW_IS_WINDOW (logview));
 
   if (log_name) {
     window_title = g_strdup_printf ("%s - %s", log_name, APP_NAME);
@@ -269,8 +264,6 @@ logview_window_menus_set_state (LogviewWindow *logview)
   gboolean calendar_active = FALSE;
   GtkWidget *widget;
 
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   log = logview_manager_get_active_log (logview->priv->manager);
 
   if (log) {
@@ -294,8 +287,6 @@ open_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview
   GFile *f;
   char *file_uri;
   LogviewLog *log;
-
-  g_assert (LOGVIEW_IS_WINDOW (logview));
 
   gtk_widget_hide (GTK_WIDGET (chooser));
   if (response != GTK_RESPONSE_OK) {
@@ -353,9 +344,7 @@ logview_open_log (GtkAction *action, LogviewWindow *logview)
 static void
 logview_close_log (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
-  gtk_widget_hide (logview->priv->find_bar);
+  findbar_close_cb (LOGVIEW_FINDBAR (logview->priv->find_bar), logview);
   logview_manager_close_active_log (logview->priv->manager);
 }
 
@@ -377,8 +366,6 @@ logview_help (GtkAction *action, GtkWidget *parent_window)
 static void
 logview_bigger_text (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   logview->priv->fontsize = MIN (logview->priv->fontsize + 1, 24);
   logview_set_fontsize (logview);
 }	
@@ -386,8 +373,6 @@ logview_bigger_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_smaller_text (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   logview->priv->fontsize = MAX (logview->priv->fontsize-1, 6);
   logview_set_fontsize (logview);
 }	
@@ -395,8 +380,6 @@ logview_smaller_text (GtkAction *action, LogviewWindow *logview)
 static void
 logview_normal_text (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   logview->priv->fontsize = logview->priv->original_fontsize;
   logview_set_fontsize (logview);
 }
@@ -433,8 +416,8 @@ findbar_close_cb (LogviewFindbar *findbar,
 {
   LogviewWindow *logview = user_data;
 
-  gtk_widget_hide (logview->priv->find_bar);
-  logview_findbar_set_message (LOGVIEW_FINDBAR (logview->priv->find_bar), NULL);
+  gtk_widget_hide (GTK_WIDGET (findbar));
+  logview_findbar_set_message (findbar, NULL);
 }
 
 static void
@@ -618,8 +601,6 @@ logview_about (GtkWidget *widget, GtkWidget *window)
 static void
 logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   if (GTK_WIDGET_VISIBLE (logview->priv->statusbar))
     gtk_widget_hide (logview->priv->statusbar);
   else
@@ -629,8 +610,6 @@ logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview)
 static void
 logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   if (GTK_WIDGET_VISIBLE (logview->priv->sidebar))
     gtk_widget_hide (logview->priv->sidebar);
   else
@@ -640,8 +619,6 @@ logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
 static void 
 logview_toggle_calendar (GtkAction *action, LogviewWindow *logview)
 {
-  g_assert (LOGVIEW_IS_WINDOW (logview));
-
   if (GTK_WIDGET_VISIBLE (logview->priv->calendar))
     gtk_widget_hide (logview->priv->calendar);
   else {
