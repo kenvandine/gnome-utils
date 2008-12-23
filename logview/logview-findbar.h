@@ -64,6 +64,8 @@ GType logview_findbar_get_type (void);
 GtkWidget *  logview_findbar_new (void);
 void         logview_findbar_open (LogviewFindbar *findbar);
 const char * logview_findbar_get_text (LogviewFindbar *findbar);
+void         logview_findbar_set_message (LogviewFindbar *findbar,
+                                          const char *message);
 
 G_END_DECLS
 

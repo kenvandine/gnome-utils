@@ -434,6 +434,7 @@ findbar_close_cb (LogviewFindbar *findbar,
   LogviewWindow *logview = user_data;
 
   gtk_widget_hide (logview->priv->find_bar);
+  logview_findbar_set_message (LOGVIEW_FINDBAR (logview->priv->find_bar), NULL);
 }
 
 static void
@@ -480,6 +481,10 @@ wrap:
     gtk_text_buffer_select_range (buffer, &start_m, &end_m);
     gtk_text_buffer_move_mark (buffer, search_start, &start_m);
     gtk_text_buffer_move_mark (buffer, search_end, &end_m);
+
+    if (wrapped) {
+      logview_findbar_set_message (LOGVIEW_FINDBAR (logview->priv->find_bar), _("Wrapped"));
+    }
   } else {
     if (wrapped) {
       
@@ -492,6 +497,8 @@ wrap:
         gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
         gtk_text_buffer_move_mark_by_name (buffer, "selection_bound", &iter);
       }
+
+      logview_findbar_set_message (LOGVIEW_FINDBAR (logview->priv->find_bar), _("Not found"));
     } else {
       if (forward) {
         gtk_text_buffer_get_start_iter (buffer, &search);
@@ -543,6 +550,8 @@ text_changed_timeout_cb (gpointer user_data)
     gtk_text_buffer_move_mark (buffer, search_start, &start);
     gtk_text_buffer_move_mark (buffer, search_end, &start);
   }
+
+  logview_findbar_set_message (LOGVIEW_FINDBAR (logview->priv->find_bar), NULL);
 
   logview_search_text (logview, TRUE);
 
@@ -688,7 +697,7 @@ static GtkToggleActionEntry toggle_entries[] = {
       G_CALLBACK (logview_toggle_statusbar), TRUE },
     { "ShowSidebar", NULL, N_("Side _Pane"), "F9", N_("Show Side Pane"), 
       G_CALLBACK (logview_toggle_sidebar), TRUE },  
-    {"ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
+    { "ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
       G_CALLBACK (logview_toggle_calendar), TRUE },
 };
 

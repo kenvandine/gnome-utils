@@ -25,12 +25,16 @@
 
 struct _LogviewFindbarPrivate {
   GtkWidget *entry;
+  GtkWidget *message;
 
   GtkToolItem *clear_button;
   GtkToolItem *back_button;
   GtkToolItem *forward_button;
+  GtkToolItem *status_item;
   
   char *string;
+
+  guint status_bold_id;
 };
 
 enum {
@@ -114,6 +118,21 @@ entry_key_press_event_cb (GtkWidget *entry,
   return FALSE;
 }
 
+static gboolean
+unbold_timeout_cb (gpointer user_data)
+{
+  LogviewFindbar *findbar = user_data;
+  PangoFontDescription *desc;
+
+  desc = pango_font_description_new ();
+  gtk_widget_modify_font (findbar->priv->message, desc);
+  pango_font_description_free (desc);
+
+  findbar->priv->status_bold_id = 0;
+
+  return FALSE;
+}
+
 static void 
 logview_findbar_init (LogviewFindbar *findbar)
 {
@@ -127,6 +146,8 @@ logview_findbar_init (LogviewFindbar *findbar)
   gtoolbar = GTK_TOOLBAR (findbar);
 
   gtk_toolbar_set_style (gtoolbar, GTK_TOOLBAR_BOTH_HORIZ);
+
+  priv->status_bold_id = 0;
 
   /* Find: |_______| */
   w = gtk_alignment_new (0.0, 0.5, 1.0, 1.0);
@@ -171,6 +192,16 @@ logview_findbar_init (LogviewFindbar *findbar)
                                  _("Clear the search string"));
   gtk_toolbar_insert (gtoolbar, priv->clear_button, -1);
   gtk_widget_show_all (GTK_WIDGET (priv->clear_button));
+
+  /* message */
+  priv->status_item = gtk_tool_item_new ();
+  gtk_tool_item_set_expand (priv->status_item, TRUE);
+  priv->message = gtk_label_new ("");
+  gtk_label_set_use_markup (GTK_LABEL (priv->message), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (priv->message), 0.0, 0.5);
+  gtk_container_add (GTK_CONTAINER (priv->status_item), priv->message);
+  gtk_widget_show (priv->message);
+  gtk_toolbar_insert (gtoolbar, priv->status_item, -1);
 
   priv->string = NULL;
 
@@ -278,4 +309,26 @@ logview_findbar_get_text (LogviewFindbar *findbar)
   g_assert (LOGVIEW_IS_FINDBAR (findbar));
 
   return findbar->priv->string;
+}
+
+void
+logview_findbar_set_message (LogviewFindbar *findbar,
+                             const char *text)
+{
+  PangoFontDescription *desc;
+
+  g_assert (LOGVIEW_IS_FINDBAR (findbar));
+
+  if (text) {
+    desc = pango_font_description_new ();
+    pango_font_description_set_weight (desc, PANGO_WEIGHT_BOLD);
+    gtk_widget_modify_font (findbar->priv->message, desc);
+    pango_font_description_free (desc);
+    
+    findbar->priv->status_bold_id = g_timeout_add (600, unbold_timeout_cb, findbar);
+  }
+
+  gtk_label_set_text (GTK_LABEL (findbar->priv->message), 
+                      text != NULL ? text : "");
+  g_object_set (findbar->priv->status_item, "visible", text != NULL, NULL);
 }
