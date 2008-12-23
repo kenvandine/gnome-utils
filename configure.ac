@@ -463,7 +463,6 @@ baobab/src/Makefile
 baobab/help/Makefile
 logview/Makefile
 logview/tests/Makefile
-logview/gnome-system-log-security
 logview/help/Makefile
 gsearchtool/Makefile
 gsearchtool/data/Makefile
