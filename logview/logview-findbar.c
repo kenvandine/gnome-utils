@@ -31,6 +31,7 @@ struct _LogviewFindbarPrivate {
   GtkToolItem *back_button;
   GtkToolItem *forward_button;
   GtkToolItem *status_item;
+  GtkToolItem *separator;
   
   char *string;
 
@@ -74,7 +75,10 @@ static void
 clear_button_clicked_cb (GtkToolButton *button,
                          gpointer user_data)
 {
-  /* TODO: implement */
+  LogviewFindbar *findbar = user_data;
+
+  logview_findbar_set_message (findbar, NULL);
+  gtk_entry_set_text (GTK_ENTRY (findbar->priv->entry), "");
 }
 
 static void
@@ -95,12 +99,16 @@ entry_changed_cb (GtkEditable *editable,
 
   text = gtk_entry_get_text (GTK_ENTRY (editable));
 
+  if (g_strcmp0 (text, "") == 0) {
+    return;
+  }
+
   if (g_strcmp0 (findbar->priv->string, text) != 0) {
     g_free (findbar->priv->string);
     findbar->priv->string = g_strdup (text);
-  }
 
-  g_signal_emit (findbar, signals[TEXT_CHANGED], 0, findbar->priv->string, NULL);
+    g_signal_emit (findbar, signals[TEXT_CHANGED], 0, findbar->priv->string, NULL);
+  }
 }
 
 static gboolean
@@ -192,6 +200,10 @@ logview_findbar_init (LogviewFindbar *findbar)
                                  _("Clear the search string"));
   gtk_toolbar_insert (gtoolbar, priv->clear_button, -1);
   gtk_widget_show_all (GTK_WIDGET (priv->clear_button));
+
+  /* separator */
+  priv->separator = gtk_separator_tool_item_new ();
+  gtk_toolbar_insert (gtoolbar, priv->separator, -1);
 
   /* message */
   priv->status_item = gtk_tool_item_new ();
@@ -330,5 +342,6 @@ logview_findbar_set_message (LogviewFindbar *findbar,
 
   gtk_label_set_text (GTK_LABEL (findbar->priv->message), 
                       text != NULL ? text : "");
+  g_object_set (findbar->priv->separator, "visible", text != NULL, NULL);
   g_object_set (findbar->priv->status_item, "visible", text != NULL, NULL);
 }
