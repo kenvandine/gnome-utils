@@ -687,10 +687,9 @@ real_select_day (LogviewWindow *logview,
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
 
-  gtk_text_buffer_get_start_iter (buffer, &start_iter);
+  gtk_text_buffer_get_bounds (buffer, &start_iter, &end_iter);
   gtk_text_buffer_get_iter_at_line (buffer, &start_vis, first_line);
   gtk_text_buffer_get_iter_at_line (buffer, &end_vis, last_line + 1);
-  gtk_text_buffer_get_end_iter (buffer, &end_iter);
 
   /* clear all previous invisible tags */
   gtk_text_buffer_remove_tag_by_name (buffer, "invisible",
@@ -727,8 +726,7 @@ loglist_day_cleared_cb (LogviewLoglist *loglist,
   GtkTextIter start, end;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
-  gtk_text_buffer_get_start_iter (buffer, &start);
-  gtk_text_buffer_get_end_iter (buffer, &end);
+  gtk_text_buffer_get_bounds (buffer, &start, &end);
 
   /* clear all previous invisible tags */
   gtk_text_buffer_remove_tag_by_name (buffer, "invisible",
