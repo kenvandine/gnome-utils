@@ -18,8 +18,8 @@
  * USA.
  */
 
-#ifndef __LOG_ABOUT_H__
-#define __LOG_ABOUT_H__
+#ifndef __LOGVIEW_ABOUT_H__
+#define __LOGVIEW_ABOUT_H__
 
 static const char *logview_about_authors[] = {
   "Cesar Miquel <miquel@df.uba.ar>",
@@ -62,5 +62,5 @@ static const char * logview_about_license[] = {
 static const char *logview_about_translator_credits = N_("translator-credits");
 
 
-#endif /* __LOG_ABOUT_H__ */
+#endif /* __LOGVIEW_ABOUT_H__ */
 
