@@ -22,6 +22,8 @@
 
 #include "logview-manager.h"
 
+#include "logview-marshal.h"
+
 enum {
   LOG_ADDED,
   LOG_CLOSED,
@@ -104,7 +106,7 @@ logview_manager_class_init (LogviewManagerClass *klass)
                                           G_SIGNAL_RUN_LAST,
                                           G_STRUCT_OFFSET (LogviewManagerClass, active_changed),
                                           NULL, NULL,
-                                          g_cclosure_marshal_VOID__OBJECT,
+                                          logview_marshal_VOID__OBJECT_OBJECT,
                                           G_TYPE_NONE, 2,
                                           LOGVIEW_TYPE_LOG,
                                           LOGVIEW_TYPE_LOG);
@@ -127,7 +129,7 @@ create_log_cb (LogviewLog *log,
                GError *error,
                gpointer user_data)
 {
-  CreateCBData *data;
+  CreateCBData *data = user_data;
 
   if (log) {
     /* creation went well, store the log and notify */
@@ -136,7 +138,7 @@ create_log_cb (LogviewLog *log,
     g_signal_emit (data->manager, signals[LOG_ADDED], 0, log, NULL);
 
     if (data->set_active) {
-      logview_manager_set_active (data->manager, log);
+      logview_manager_set_active_log (data->manager, log);
     }
   } else {
     /* notify the error */
