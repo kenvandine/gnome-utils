@@ -84,7 +84,6 @@ typedef struct {
   GInputStream *parent_str;
   guchar * buffer;
   GFile *file;
-  guint32 crc;
 
   gboolean last_str_result;
   int last_z_result;
@@ -453,7 +452,6 @@ gz_handle_new (GFile *file,
   ret->parent_str = g_object_ref (parent_stream);
   ret->file = g_object_ref (file);
   ret->buffer = NULL;
-  ret->crc = crc32 (0, Z_NULL, 0);
 
   return ret;
 }
@@ -539,12 +537,10 @@ gz_handle_read (GZHandle *gz,
                 gsize * bytes_read)
 {
   z_stream *zstream;
-  guchar *crc_start;
   gboolean res;
   int z_result;
 
   *bytes_read = 0;
-  crc_start = buffer;
   zstream = &gz->zstream;
 
   if (gz->last_z_result != Z_OK) {
@@ -581,7 +577,6 @@ gz_handle_read (GZHandle *gz,
     }
   }
 
-  gz->crc = crc32 (gz->crc, crc_start, (guint) (zstream->next_out - crc_start));
   *bytes_read = num_bytes - zstream->avail_out;
 
   return TRUE;
@@ -673,6 +668,7 @@ log_load (GIOSchedulerJob *io_job,
     GInputStream *real_is;
     time_t mtime;
 
+    /* this also skips the header from |is| */
     res = read_gzip_header (is, &mtime);
 
     if (!res) {
