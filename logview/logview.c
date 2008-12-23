@@ -760,6 +760,9 @@ active_log_changed_cb (LogviewManager *manager,
   const char **lines;
   GtkTextBuffer *buffer;
 
+  findbar_close_cb (LOGVIEW_FINDBAR (window->priv->find_bar),
+                    window);
+
   if (window->priv->monitor_id) {
     g_signal_handler_disconnect (old_log, window->priv->monitor_id);
     window->priv->monitor_id = 0;
