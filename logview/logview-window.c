@@ -65,36 +65,6 @@ struct _LogviewWindowPrivate {
 
 G_DEFINE_TYPE (LogviewWindow, logview_window, GTK_TYPE_WINDOW);
 
-static const char *ui_description = 
-	"<ui>"
-	"	<menubar name='LogviewMenu'>"
-	"		<menu action='FileMenu'>"
-	"			<menuitem action='OpenLog'/>"
-	"			<menuitem action='CloseLog'/>"
-	"			<menuitem action='Quit'/>"
-	"		</menu>"
-	"		<menu action='EditMenu'>"
-	"			<menuitem action='Copy'/>"
-	"	    	<menuitem action='SelectAll'/>"
-	"		</menu>"
-	"		<menu action='ViewMenu'>"
-	"			<menuitem action='ShowStatusBar'/>"
-	"			<menuitem action='ShowSidebar'/>"
-	"			<menuitem action='ShowCalendar'/>"
-	"			<separator/>"
-	"			<menuitem action='Search'/>"
-	"			<separator/>"
-	"			<menuitem action='ViewZoomIn'/>"
-	"			<menuitem action='ViewZoomOut'/>"
-	"			<menuitem action='ViewZoom100'/>"
-	"		</menu>"
-	"		<menu action='HelpMenu'>"
-	"			<menuitem action='HelpContents'/>"
-	"			<menuitem action='AboutAction'/>"
-	"		</menu>"
-	"	</menubar>"
-	"</ui>";
-
 static void  findbar_close_cb (LogviewFindbar *findbar,
                                gpointer user_data);
 
@@ -840,6 +810,7 @@ logview_window_init (LogviewWindow *logview)
   gchar *monospace_font_name;
   LogviewWindowPrivate *priv;
   int width, height;
+  gboolean res;
 
   priv = logview->priv = GET_PRIVATE (logview);
   priv->prefs = logview_prefs_get ();
@@ -856,16 +827,19 @@ logview_window_init (LogviewWindow *logview)
   action_group = gtk_action_group_new ("LogviewMenuActions");
   gtk_action_group_set_translation_domain (action_group, NULL);
   gtk_action_group_add_actions (action_group, entries, G_N_ELEMENTS (entries), logview);
-  gtk_action_group_add_toggle_actions(action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), logview);
+  gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), logview);
 
   priv->ui_manager = gtk_ui_manager_new ();
 
   gtk_ui_manager_insert_action_group (priv->ui_manager, action_group, 0);
-
   accel_group = gtk_ui_manager_get_accel_group (priv->ui_manager);
   gtk_window_add_accel_group (GTK_WINDOW (logview), accel_group);
 
-  if (!gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_description, -1, &error)) {
+  res = gtk_ui_manager_add_ui_from_file (priv->ui_manager,
+                                         LOGVIEW_DATADIR "/logview-toolbar.xml",
+                                         &error);
+
+  if (res == FALSE) {
     priv->ui_manager = NULL;
     g_critical ("Can't load the UI description: %s", error->message);
     g_error_free (error);

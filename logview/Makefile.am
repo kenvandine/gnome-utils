@@ -1,6 +1,6 @@
 # Process this file with automake to produce Makefile.in
 
-SUBDIRS = help tests
+SUBDIRS = data help tests
 
 Utilitiesdir = $(datadir)/applications
 
@@ -11,6 +11,7 @@ INCLUDES = \
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DLOGVIEWINSTALLPREFIX=\""$(prefix)/\""			\
+	-DLOGVIEW_DATADIR=\""$(pkgdatadir)"\"			\
 	$(SUN_OS)						\
 	$(NULL)
 

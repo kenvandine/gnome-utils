@@ -462,6 +462,7 @@ baobab/pixmaps/scalable/Makefile
 baobab/src/Makefile
 baobab/help/Makefile
 logview/Makefile
+logview/data/Makefile
 logview/tests/Makefile
 logview/help/Makefile
 gsearchtool/Makefile
