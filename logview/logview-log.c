@@ -29,9 +29,6 @@
 #include <zlib.h>
 #endif
 
-#include <stdlib.h>
-#include <stdio.h>
-
 #include "logview-log.h"
 #include "logview-utils.h"
 
@@ -82,6 +79,17 @@ typedef struct {
   LogviewNewLinesCallback callback;
   gpointer user_data;
 } NewLinesJob;
+
+typedef struct {
+  GInputStream *parent_str;
+  guchar * buffer;
+  GFile *file;
+  guint32 crc;
+
+  gboolean last_str_result;
+  int last_z_result;
+  z_stream zstream;
+} GZHandle;
 
 static void
 do_finalize (GObject *obj)
@@ -330,16 +338,9 @@ log_load_done (gpointer user_data)
   return FALSE;
 }
 
-static GError *
-create_zlib_error (void)
-{
-  GError *err;
+/* GZip functions adapted for GIO from gnome-vfs/gzip-method.c */
 
-  err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_ZLIB,
-                             _("Error while uncompressing the GZipped log. The file "
-                               "might be corrupt."));
-  return err;
-}
+#define Z_BUFSIZE 16384
 
 #define GZIP_HEADER_SIZE 10
 #define GZIP_MAGIC_1 0x1f
@@ -440,6 +441,161 @@ read_gzip_header (GInputStream *is,
 	return TRUE;
 }
 
+static GZHandle *
+gz_handle_new (GFile *file,
+               GInputStream *parent_stream)
+{
+  GZHandle *ret;
+
+  ret = g_new (GZHandle, 1);
+  ret->parent_str = g_object_ref (parent_stream);
+  ret->file = g_object_ref (file);
+  ret->buffer = NULL;
+  ret->crc = crc32 (0, Z_NULL, 0);
+
+  return ret;
+}
+
+static gboolean
+gz_handle_init (GZHandle *gz)
+{
+  gz->zstream.zalloc = NULL;
+  gz->zstream.zfree = NULL;
+  gz->zstream.opaque = NULL;
+
+  g_free (gz->buffer);
+  gz->buffer = g_malloc (Z_BUFSIZE);
+  gz->zstream.next_in = gz->buffer;
+  gz->zstream.avail_in = 0;
+
+  if (inflateInit2 (&gz->zstream, -MAX_WBITS) != Z_OK) {
+    return FALSE;
+  }
+
+  gz->last_z_result = Z_OK;
+  gz->last_str_result = TRUE;
+
+  return TRUE;
+}
+
+static void
+gz_handle_free (GZHandle *gz)
+{
+  g_object_unref (gz->parent_str);
+  g_object_unref (gz->file);
+  g_free (gz->buffer);
+  g_free (gz);
+}
+
+static gboolean
+fill_buffer (GZHandle *gz,
+             gsize num_bytes)
+{
+  gboolean res;
+  gsize count;
+
+  z_stream * zstream = &gz->zstream;
+
+  if (zstream->avail_in > 0)
+    return TRUE;
+
+  count = g_input_stream_read (gz->parent_str,
+                               gz->buffer,
+                               Z_BUFSIZE,
+                               NULL, NULL);
+  if (count == -1) {
+    if (zstream->avail_out == num_bytes) {
+      return FALSE;
+    }
+    gz->last_str_result = FALSE;
+  } else {
+    zstream->next_in = gz->buffer;
+    zstream->avail_in = count;
+  }
+
+  return TRUE;
+}
+
+static gboolean
+result_from_z_result (int z_result)
+{
+  switch (z_result) {
+    case Z_OK:
+      case Z_STREAM_END:
+        return TRUE;
+    case Z_DATA_ERROR:
+      return FALSE;
+    default:
+      return FALSE;
+  }
+}
+
+static gboolean
+gz_handle_read (GZHandle *gz,
+                guchar *buffer,
+                gsize num_bytes,
+                gsize * bytes_read)
+{
+  z_stream *zstream;
+  guchar *crc_start;
+  gboolean res;
+  int z_result;
+
+  *bytes_read = 0;
+  crc_start = buffer;
+  zstream = &gz->zstream;
+
+  if (gz->last_z_result != Z_OK) {
+    if (gz->last_z_result == Z_STREAM_END) {
+      *bytes_read = 0;
+      return TRUE;
+    } else {
+      return result_from_z_result (gz->last_z_result);
+    }
+  } else if (gz->last_str_result == FALSE) {
+    return FALSE;
+  }
+
+  zstream->next_out = buffer;
+  zstream->avail_out = num_bytes;
+
+  while (zstream->avail_out != 0) {
+    res = fill_buffer (gz, num_bytes);
+
+    if (!res) {
+      return res;
+    }
+
+    z_result = inflate (&gz->zstream, Z_NO_FLUSH);
+    if (z_result == Z_STREAM_END) {
+      gz->last_z_result = z_result;
+      break;
+    } else if (z_result != Z_OK) {
+      gz->last_z_result = z_result;
+    }
+    
+    if (gz->last_z_result != Z_OK && zstream->avail_out == num_bytes) {
+      return result_from_z_result (gz->last_z_result);
+    }
+  }
+
+  gz->crc = crc32 (gz->crc, crc_start, (guint) (zstream->next_out - crc_start));
+  *bytes_read = num_bytes - zstream->avail_out;
+
+  return TRUE;
+}
+
+static GError *
+create_zlib_error (void)
+{
+  GError *err;
+
+  err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_ZLIB,
+                             _("Error while uncompressing the GZipped log. The file "
+                               "might be corrupt."));
+  return err;
+}
+
 static gboolean
 log_load (GIOSchedulerJob *io_job,
           GCancellable *cancellable,
@@ -481,6 +637,7 @@ log_load (GIOSchedulerJob *io_job,
   {
     err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_A_LOG,
                                _("The file is not a regular file or is not a text file."));
+    job->err = err;
     g_object_unref (info);
 
     goto out;
@@ -505,49 +662,58 @@ log_load (GIOSchedulerJob *io_job,
 
   if (is_archive) {
 #ifdef HAVE_ZLIB
-    gzFile gz;
-    char *path;
-    char *actual_data;
-    int res;
-    guint len;
+    GZHandle *gz;
+    gboolean res;
+    guchar * buffer;
+    gsize bytes_read;
+    GInputStream *real_is;
     time_t mtime;
 
     res = read_gzip_header (is, &mtime);
-    g_object_unref (is);
 
     if (!res) {
+      g_object_unref (is);
+
       err = create_zlib_error ();
       goto out;
     }
 
-    path = g_file_get_path (f);
-    gz = gzopen (path, "rb");
+    gz = gz_handle_new (f, is);
+    res = gz_handle_init (gz);
 
-    g_free (path);
+    if (!res) {
+      g_object_unref (is);
+      gz_handle_free (gz);
 
-    if (!gz) {
       err = create_zlib_error ();
       goto out;
     }
 
-    is = g_memory_input_stream_new ();
+    real_is = g_memory_input_stream_new ();
 
     do {
-      actual_data = g_malloc0 (256);
-      res = gzread (gz, actual_data, 256);
-      if (res > 0) {
-        g_memory_input_stream_add_data (G_MEMORY_INPUT_STREAM (is),
-                                        actual_data, res, (GDestroyNotify) g_free);
-      }
-    } while (res > 0);
+      buffer = g_malloc (1024);
+      res = gz_handle_read (gz, buffer, 1024, &bytes_read);
+      g_memory_input_stream_add_data (G_MEMORY_INPUT_STREAM (real_is),
+                                      buffer, bytes_read, g_free);
+    } while (res == TRUE && bytes_read > 0);
 
-    gzclose (gz);
+    if (!res) {
+      gz_handle_free (gz);
+      g_object_unref (real_is);
+      g_object_unref (is);
 
-    if (res < 0) {
       err = create_zlib_error ();
       goto out;
     }
+ 
+    g_object_unref (is);
+    is = real_is;
+
+    gz_handle_free (gz);
 #else
+    g_object_unref (is);
+
     err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_SUPPORTED,
                                _("This version of System Log does not support GZipped logs."));
     goto out;
