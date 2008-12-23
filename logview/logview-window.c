@@ -468,6 +468,8 @@ wrap:
     gtk_text_buffer_move_mark (buffer, search_start, &start_m);
     gtk_text_buffer_move_mark (buffer, search_end, &end_m);
 
+    gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (logview->priv->text_view), search_end);
+
     if (wrapped) {
       logview_findbar_set_message (LOGVIEW_FINDBAR (logview->priv->find_bar), _("Wrapped"));
     }
