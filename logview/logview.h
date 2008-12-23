@@ -23,8 +23,6 @@
 
 #include <gtk/gtk.h>
 
-#define MAX_VERSIONS             5
-
 #define LOGVIEW_TYPE_WINDOW		  (logview_window_get_type ())
 #define LOGVIEW_WINDOW(obj)		  (G_TYPE_CHECK_INSTANCE_CAST ((obj), LOGVIEW_TYPE_WINDOW, LogviewWindow))
 #define LOGVIEW_WINDOW_CLASS(klass)	  (G_TYPE_CHECK_CLASS_CAST ((klass), LOGVIEW_TYPE_WINDOW, LogviewWindowClass))
