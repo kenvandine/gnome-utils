@@ -24,10 +24,8 @@ gnome_system_log_SOURCES = 	\
 	logview-manager.h	\
 	logview-utils.c		\
 	logview-utils.h		\
-	calendar.c		\
-	calendar.h		\
-	log_repaint.c		\
-	log_repaint.h		\
+	logview-loglist.c	\
+	logview-loglist.h	\
 	logview.c		\
 	logview.h		\
 	logview-log.h		\
@@ -37,9 +35,7 @@ gnome_system_log_SOURCES = 	\
 	logview-prefs.c		\
 	logview-prefs.h		\
 	logview-findbar.c	\
-	logview-findbar.h	\
-	loglist.c		\
-	loglist.h
+	logview-findbar.h
 
 gnome_system_log_LDADD = \
 	$(GNOME_UTILS_LIBS)	\
