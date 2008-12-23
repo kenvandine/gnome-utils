@@ -52,6 +52,7 @@ typedef void (* LogviewCreateCallback) (LogviewLog *log,
                                         gpointer user_data);
 typedef void (* LogviewNewLinesCallback) (LogviewLog *log,
                                           const char **lines,
+                                          GSList *new_days,
                                           GError *error,
                                           gpointer user_data);
 

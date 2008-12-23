@@ -104,27 +104,15 @@ logview_version_selector_changed (GtkComboBox *version_selector, gpointer user_d
 	}
 }
 
-static void
-logview_calendar_set_state (LogviewWindow *logview)
-{
-    g_assert (LOGVIEW_IS_WINDOW (logview));
-
-    if (logview->curlog) {
-        if (logview->curlog->days != NULL)
-            calendar_init_data (CALENDAR (logview->calendar), logview);
-        gtk_widget_set_sensitive (logview->calendar, (logview->curlog->days != NULL));
-    } else
-        gtk_widget_set_sensitive (logview->calendar, FALSE);
-}
-
 #endif
 
 /* private helpers */
 
 static void
-populate_tag_table (GtkTextTagTable *tag_table)
+populate_tag_table (LogviewWindow *logview, GtkTextTagTable *tag_table)
 {
   GtkTextTag *tag;
+  GtkStyle *style;
 
   tag = gtk_text_tag_new ("bold");
   g_object_set (tag, "weight", PANGO_WEIGHT_BOLD,
@@ -137,8 +125,9 @@ populate_tag_table (GtkTextTagTable *tag_table)
 
   gtk_text_tag_table_add (tag_table, tag);
 
-  tag = gtk_text_tag_new ("visible");
-  g_object_set (tag, "invisible", FALSE, "invisible-set", FALSE, NULL);
+  tag = gtk_text_tag_new ("gray");
+  style = gtk_widget_get_style (GTK_WIDGET (logview));
+  g_object_set (tag, "foreground-gdk", style->text_aa, "foreground-set", TRUE, NULL);
 
   gtk_text_tag_table_add (tag_table, tag);
 }
@@ -725,6 +714,7 @@ logview_window_select_date (LogviewWindow *logview, GDate *date)
 
 static void read_new_lines_cb (LogviewLog *log,
                                const char **lines,
+                               GSList *new_days,
                                GError **error,
                                gpointer user_data);
 
@@ -740,6 +730,7 @@ log_monitor_changed_cb (LogviewLog *log,
 static void
 read_new_lines_cb (LogviewLog *log,
                    const char **lines,
+                   GSList *new_days,
                    GError **error,
                    gpointer user_data)
 {
@@ -962,7 +953,7 @@ logview_window_init (LogviewWindow *logview)
   gtk_widget_show (w);
 
   priv->tag_table = gtk_text_tag_table_new ();
-  populate_tag_table (priv->tag_table);
+  populate_tag_table (logview, priv->tag_table);
   priv->text_view = gtk_text_view_new ();
   g_object_set (priv->text_view, "editable", FALSE, NULL);
 

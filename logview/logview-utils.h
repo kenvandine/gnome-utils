@@ -27,11 +27,14 @@ typedef struct {
   GDate *date;
   int first_line;
   int last_line;
+  int timestamp_len;
 } Day;
 
 GSList * log_read_dates (const char **buffer_lines, time_t current);
 gint     days_compare (gconstpointer a, gconstpointer b);
 void     logview_utils_day_free (Day *day);
+Day *    logview_utils_day_copy (Day *day);
+GSList * logview_utils_day_list_copy (GSList *days);
 
 
 #endif /* __LOGVIEW_UTILS_H__ */

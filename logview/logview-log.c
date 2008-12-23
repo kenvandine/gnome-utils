@@ -70,6 +70,7 @@ typedef struct {
   LogviewLog *log;
   GError *err;
   const char **lines;
+  GSList *new_days;
   LogviewNewLinesCallback callback;
   gpointer user_data;
 } NewLinesJob;
@@ -180,7 +181,7 @@ setup_file_monitor (LogviewLog *log)
                     G_CALLBACK (monitor_changed_cb), log);
 }
 
-static void
+static GSList *
 add_new_days_to_cache (LogviewLog *log, const char **new_lines, guint lines_offset)
 {
   GSList *new_days, *l, *last_cached;
@@ -196,8 +197,8 @@ add_new_days_to_cache (LogviewLog *log, const char **new_lines, guint lines_offs
 
   if (!last_cached) {
     /* this means the day list is empty (i.e. we're on the first read */
-    log->priv->days = new_days;
-    return;
+    log->priv->days = logview_utils_day_list_copy (new_days);
+    return new_days;
   }
 
   for (l = new_days; l; l = l->next) {
@@ -210,20 +211,16 @@ add_new_days_to_cache (LogviewLog *log, const char **new_lines, guint lines_offs
        */
       day->first_line += lines_offset;
       day->last_line += lines_offset;
-      log->priv->days = g_slist_append (log->priv->days, l->data);
+      log->priv->days = g_slist_append (log->priv->days, logview_utils_day_copy (day));
     } else if (res == 0) {
       last = last_cached->data;
  
       /* update the lines number */
       last->last_line += day->last_line;
-      logview_utils_day_free (l->data);
-    } else {
-      /* if the day is a day before, free it */
-      logview_utils_day_free (l->data);
     }
   }
 
-  g_slist_free (new_days);
+  return new_days;
 }
 
 static gboolean
@@ -232,14 +229,17 @@ new_lines_job_done (gpointer data)
   NewLinesJob *job = data;
 
   if (job->err) {
-    job->callback (job->log, NULL, job->err, job->user_data);
+    job->callback (job->log, NULL, NULL, job->err, job->user_data);
     g_error_free (job->err);
   } else {
-    job->callback (job->log, job->lines, job->err, job->user_data);
+    job->callback (job->log, job->lines, job->new_days, job->err, job->user_data);
   }
 
+  g_slist_foreach (job->new_days, (GFunc) logview_utils_day_free, NULL);
+  g_slist_free (job->new_days);
+
   /* drop the reference we acquired before */
-  g_object_unref (job->log);  
+  g_object_unref (job->log);
 
   g_slice_free (NewLinesJob, job);
 
@@ -292,7 +292,7 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   job->lines = (const char **) lines->pdata + log->priv->lines_no;
 
   /* save the new number of days and lines */
-  add_new_days_to_cache (log, job->lines, log->priv->lines_no);
+  job->new_days = add_new_days_to_cache (log, job->lines, log->priv->lines_no);
   log->priv->lines_no = (lines->len - 1);
 
 out:
@@ -425,6 +425,7 @@ logview_log_read_new_lines (LogviewLog *log,
   job->log = g_object_ref (log);
   job->err = NULL;
   job->lines = NULL;
+  job->new_days = NULL;
 
   /* push the fetching job into another thread */
   g_io_scheduler_push_job (do_read_new_lines,

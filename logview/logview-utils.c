@@ -39,6 +39,32 @@ logview_utils_day_free (Day *day)
   g_slice_free (Day, day);
 }
 
+Day *
+logview_utils_day_copy (Day *day)
+{
+  Day *retval;
+
+  retval = g_slice_new0 (Day);
+  retval->date = g_date_new_julian (g_date_get_julian (day->date));
+  retval->first_line = day->first_line;
+  retval->last_line = day->last_line;
+  retval->timestamp_len = day->timestamp_len;
+
+  return retval;
+}
+
+GSList *
+logview_utils_day_list_copy (GSList *days)
+{
+  GSList *l, *retval = NULL;
+
+  for (l = days; l; l = l->next) {
+    retval = g_slist_prepend (retval, logview_utils_day_copy (l->data));
+  }
+
+  return g_slist_reverse (retval);
+}
+
 gint 
 days_compare (gconstpointer a, gconstpointer b)
 {
@@ -148,6 +174,7 @@ log_read_dates (const char **buffer_lines, time_t current)
   day->date = date;
   day->first_line = i;
   day->last_line = -1;
+  day->timestamp_len = strlen (date_string);
 
   /* now scan the logfile to get the last line of the day */
   rangemin = i;
@@ -230,6 +257,7 @@ log_read_dates (const char **buffer_lines, time_t current)
         day->date = date;
         day->first_line = i;
         day->last_line = -1;
+        day->timestamp_len = strlen (date_string);
         rangemin = i;
         rangemax = n - 1;
       }

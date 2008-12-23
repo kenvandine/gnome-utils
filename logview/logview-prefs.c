@@ -190,7 +190,7 @@ size_store_timeout_cb (gpointer data)
   /* reset the source id */
   prefs->priv->size_store_timeout = 0;
 
-  g_slice_free (WindowSize, data);
+  g_free (size);
 
   return FALSE;
 }
@@ -335,7 +335,7 @@ logview_prefs_store_window_size (LogviewPrefs *prefs,
 
   g_assert (LOGVIEW_IS_PREFS (prefs));
 
-  size = g_slice_new0 (WindowSize);
+  size = g_new0 (WindowSize, 1);
   size->width = width;
   size->height = height;
 
