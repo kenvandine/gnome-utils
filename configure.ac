@@ -270,25 +270,6 @@ if test "x$have_ipv6" = "xyes"; then
   fi
 fi
 
-dnl PAM prefix
-withval=""
-AC_ARG_WITH(pam-prefix,
-            AC_HELP_STRING([--with-pam-prefix=@<:@prefix@:>@],
-                           [specify where pam files go]),
-            [
-            if test x$withval != x; then
-              AC_MSG_RESULT("PAM files will be installed in prefix ${withval}.")
-            fi
-            ])
-
-if test x$withval != x; then
-	PAM_PREFIX_UNEXPANDED="$withval"
-	PAM_PREFIX=`eval echo $PAM_PREFIX_UNEXPANDED`
-else
-	PAM_PREFIX="\$(sysconfdir)"
-fi
-AC_SUBST(PAM_PREFIX)
-    
 dnl ************************************************
 dnl X development libraries check
 dnl ************************************************
@@ -415,16 +396,15 @@ msg_zlib=no
 Z_LIBS=
 
 if test "x$enable_zlib" != "xno"; then
-  AC_CHECK_HEADER(zlib.h, 
-                  [AC_CHECK_LIB(z, gzopen, msg_zlib=yes]))
+  AC_CHECK_HEADER(zlib.h,
+                  [AC_CHECK_LIB(z, inflate, [msg_zlib=yes])])
   if test "x$msg_zlib" = "xyes"; then
+    AC_DEFINE(HAVE_ZLIB, 1, [Define to 1 if we're building with ZLib support])
     Z_LIBS="-lz"
-    AC_DEFINE(HAVE_ZLIB,, [Define to 1 if it's build with zlib support])
   fi
 fi
 
 AC_SUBST(Z_LIBS)
-AM_CONDITIONAL(HAVE_ZLIB, [test "$msg_zlib" = "yes"])
 
 
 dnl ********************
@@ -509,7 +489,6 @@ echo "prefix : $prefix"
 echo "sysconf dir : "`eval echo $sysconfdir`
 echo "bin dir     : "`eval echo $bindir`
 echo "sbin dir    : "`eval echo $sbindir`
-echo "PAM prefix  : $PAM_PREFIX"
 echo "data dir    : "`eval echo $datadir`
 echo ""
 
@@ -530,6 +509,13 @@ if test "x$build_gfloppy" = "xtrue"; then
   echo "Build gfloppy                     : YES"
 else
   echo "Build gfloppy                     : NO"
+fi
+
+dnl <= logview =>
+if test "x$msg_zlib" = "xyes"; then
+  echo "Logview build with ZLib support   : YES"
+else
+  echo "Logview build with ZLib support   : NO"
 fi
 
 dnl <= libgdict =>
