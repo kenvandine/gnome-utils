@@ -338,6 +338,8 @@ log_load_done (gpointer user_data)
   return FALSE;
 }
 
+#ifdef HAVE_ZLIB
+
 /* GZip functions adapted for GIO from gnome-vfs/gzip-method.c */
 
 #define Z_BUFSIZE 16384
@@ -596,6 +598,8 @@ create_zlib_error (void)
   return err;
 }
 
+#endif /* HAVE_ZLIB */
+
 static gboolean
 log_load (GIOSchedulerJob *io_job,
           GCancellable *cancellable,
@@ -711,13 +715,13 @@ log_load (GIOSchedulerJob *io_job,
     is = real_is;
 
     gz_handle_free (gz);
-#else
+#else /* HAVE_ZLIB */
     g_object_unref (is);
 
     err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_SUPPORTED,
                                _("This version of System Log does not support GZipped logs."));
     goto out;
-#endif
+#endif /* HAVE_ZLIB */
   }
 
   log->priv->stream = g_data_input_stream_new (is);
