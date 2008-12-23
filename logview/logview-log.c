@@ -134,8 +134,7 @@ logview_log_init (LogviewLog *self)
 {
   self->priv = GET_PRIVATE (self);
 
-  self->priv->lines = g_ptr_array_new ();
-  g_ptr_array_add (self->priv->lines, NULL);
+  self->priv->lines = NULL;
   self->priv->lines_no = 0;
   self->priv->days = NULL;
   self->priv->file = NULL;
@@ -193,6 +192,12 @@ add_new_days_to_cache (LogviewLog *log, const char **new_lines)
    * one with the new we got.
    */
   last_cached = g_slist_last (log->priv->days);
+
+  if (!last_cached) {
+    log->priv->days = new_days;
+    return;
+  }
+
   for (l = new_days; l; l = l->next) {
     if (days_compare (l->data, last_cached->data) > 0) {
       /* this day in the list is newer than the last one, append to
@@ -243,10 +248,17 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   LogviewLog *log = job->log;
   char *line;
   GError *err = NULL;
-  GPtrArray *lines = log->priv->lines;
+  GPtrArray *lines;
 
   g_assert (LOGVIEW_IS_LOG (log));
   g_assert (log->priv->stream != NULL);
+
+  if (!log->priv->lines) {
+    log->priv->lines = g_ptr_array_new ();
+    g_ptr_array_add (log->priv->lines, NULL);
+  }
+
+  lines = log->priv->lines;
 
   /* remove the NULL-terminator */
   g_ptr_array_remove_index (lines, lines->len - 1);

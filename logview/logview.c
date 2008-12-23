@@ -599,7 +599,10 @@ read_new_lines_cb (LogviewLog *log,
   GtkTextBuffer *buffer;
   gboolean boldify = FALSE;
   int i;
-  GtkTextIter iter, copy;
+  GtkTextIter iter, start;
+  GtkTextMark *mark;
+
+  g_debug ("read new lines cb %p", lines);
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
 
@@ -610,7 +613,7 @@ read_new_lines_cb (LogviewLog *log,
   gtk_text_buffer_get_end_iter (buffer, &iter);
 
   if (boldify) {
-    copy = iter;
+    mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, FALSE);
   }
 
   for (i = 0; lines[i]; i++) {
@@ -621,7 +624,8 @@ read_new_lines_cb (LogviewLog *log,
   }
 
   if (boldify) {
-    gtk_text_buffer_apply_tag_by_name (buffer, "bold", &copy, &iter);
+    gtk_text_buffer_get_iter_at_mark (buffer, &start, mark);
+    gtk_text_buffer_apply_tag_by_name (buffer, "bold", &start, &iter);
   }
 
   if (window->priv->monitor_id == 0) {
@@ -646,6 +650,7 @@ active_log_changed_cb (LogviewManager *manager,
   }
 
   lines = logview_log_get_cached_lines (log);
+  g_debug ("active log changed cb, lines %p", lines);
   buffer = gtk_text_buffer_new (window->priv->tag_table);
 
   if (lines != NULL) {
@@ -670,6 +675,8 @@ active_log_changed_cb (LogviewManager *manager,
    */
   gtk_text_view_set_buffer (GTK_TEXT_VIEW (window->priv->text_view), buffer);
   g_object_unref (buffer);
+
+  g_debug ("before if: lines %p, has new lines %d", lines, logview_log_has_new_lines (log));
 
   if (lines == NULL || logview_log_has_new_lines (log)) {
     /* read the new lines */
