@@ -28,24 +28,17 @@
 
 #include <gtk/gtk.h>
 
-#include "logview-window.h"
-#include "logview-prefs.h"
-#include "logview-manager.h"
+#include "logview-app.h"
 #include "logview-main.h"
-
-static GtkWidget *main_window = NULL;
 
 /* log files specified on the command line */
 static char **log_files = NULL;
 
-static gboolean
-main_window_delete_cb (GtkWidget *widget,
-                       GdkEvent *event,
+static void
+app_quit_cb (LogviewApp *app,
                        gpointer user_data)
 {
   gtk_main_quit ();
-
-  return FALSE;
 }
 
 static void
@@ -81,33 +74,12 @@ create_option_context (void)
   return context;
 }
 
-void
-logview_show_error (const char *primary,
-                    const char *secondary)
-{
-  GtkWidget *message_dialog;
-
-  message_dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
-                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-                                           GTK_MESSAGE_ERROR,
-                                           GTK_BUTTONS_OK,
-                                           "%s", primary);
-  if (secondary) {
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (message_dialog),
-                                              "%s", secondary);
-  };
-
-  gtk_dialog_run (GTK_DIALOG (message_dialog));
-  gtk_widget_destroy (message_dialog);
-}
-
 int
 main (int argc, char *argv[])
 {
   GError *error = NULL;
   GOptionContext *context;
-  LogviewPrefs *prefs;
-  LogviewManager *manager;
+  LogviewApp *app;
 
   bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -130,48 +102,22 @@ main (int argc, char *argv[])
 
   g_thread_init (NULL);
 
-  /* open regular logs and add each log passed as a parameter */
-  main_window = logview_window_new ();
-  if (!main_window) {
+  app = logview_app_get ();
+
+  if (!app) {
     g_critical ("Unable to create the user interface.");
   
     exit (1);
-  }
-
-  g_signal_connect (main_window, "delete-event",
-                    G_CALLBACK (main_window_delete_cb), NULL);
-  
-  manager = logview_manager_get ();
-  prefs = logview_prefs_get ();
-
-  gtk_window_set_default_icon_name ("logviewer");
-
-  if (log_files == NULL) {
-    char *active_log;
-    GSList *logs;
-
-    active_log = logview_prefs_get_active_logfile (prefs);
-    logs = logview_prefs_get_stored_logfiles (prefs);
-
-    logview_manager_add_logs_from_names (manager,
-                                         logs, active_log);
-
-    g_free (active_log);
-    g_slist_foreach (logs, (GFunc) g_free, NULL);
-    g_slist_free (logs);
   } else {
-    gint i;
-
-    for (i = 0; log_files[i]; i++)
-      logview_manager_add_log_from_name (manager, log_files[i], FALSE);
+    g_signal_connect (app, "app-quit",
+                      G_CALLBACK (app_quit_cb), NULL);
   }
 
-  gtk_widget_show (main_window);
+  logview_app_initialize (app, log_files);
 
   gtk_main ();
 
-  g_object_unref (prefs);
-  g_object_unref (manager);
+  g_object_unref (app);
 
   return EXIT_SUCCESS;
 }

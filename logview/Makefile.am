@@ -17,8 +17,9 @@ BUILT_SOURCES = 		\
 	logview-marshal.h
 
 gnome_system_log_SOURCES = 	\
+	logview-app.c		\
+	logview-app.h		\
 	logview-main.c		\
-	logview-main.h		\
 	logview-about.h		\
 	logview-manager.c	\
 	logview-manager.h	\
