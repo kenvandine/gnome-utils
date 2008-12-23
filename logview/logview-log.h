@@ -93,7 +93,7 @@ void          logview_log_read_new_lines           (LogviewLog *log,
                                                     gpointer user_data);
 
 const char *  logview_log_get_display_name          (LogviewLog *log);
-gulong        logview_log_get_timestamp             (LogviewLog *log);
+time_t        logview_log_get_timestamp             (LogviewLog *log);
 goffset       logview_log_get_file_size             (LogviewLog *log);
 const char ** logview_log_get_cached_lines          (LogviewLog *log);
 guint         logview_log_get_cached_lines_number   (LogviewLog *log);

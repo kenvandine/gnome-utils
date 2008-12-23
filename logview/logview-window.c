@@ -181,7 +181,7 @@ logview_update_statusbar (LogviewWindow *logview, LogviewLog *active)
 {
   char *statusbar_text;
   char *size, *modified, *index;
-  gulong timestamp;
+  time_t timestamp;
 
   if (active == NULL) {
     gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
@@ -687,7 +687,7 @@ real_select_day (LogviewWindow *logview,
 
   gtk_text_buffer_get_start_iter (buffer, &start_iter);
   gtk_text_buffer_get_iter_at_line (buffer, &start_vis, first_line);
-  gtk_text_buffer_get_iter_at_line (buffer, &end_vis, last_line);
+  gtk_text_buffer_get_iter_at_line (buffer, &end_vis, last_line + 1);
   gtk_text_buffer_get_end_iter (buffer, &end_iter);
 
   /* clear all previous invisible tags */

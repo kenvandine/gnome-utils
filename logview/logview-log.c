@@ -50,7 +50,7 @@ struct _LogviewLogPrivate {
   GFileMonitor *mon;
 
   /* stats about the file */
-  GTimeVal file_time;
+  time_t file_time;
   goffset file_size;
   char *display_name;
 
@@ -203,7 +203,7 @@ add_new_days_to_cache (LogviewLog *log, const char **new_lines, guint lines_offs
   int res;
   Day *day, *last;
 
-  new_days = log_read_dates (new_lines, log->priv->file_time.tv_sec);
+  new_days = log_read_dates (new_lines, log->priv->file_time);
 
   /* the days are stored in chronological order, so we compare the last cached
    * one with the new we got.
@@ -611,6 +611,7 @@ log_load (GIOSchedulerJob *io_job,
   char *buffer;
   GFileType type;
   GError *err = NULL;
+  GTimeVal timeval;
   gboolean is_archive;
 
   info = g_file_query_info (f,
@@ -644,7 +645,8 @@ log_load (GIOSchedulerJob *io_job,
   }
 
   log->priv->file_size = g_file_info_get_size (info);
-  g_file_info_get_modification_time (info, &log->priv->file_time);
+  g_file_info_get_modification_time (info, &timeval);
+  log->priv->file_time = timeval.tv_sec;
   log->priv->display_name = g_strdup (g_file_info_get_display_name (info));
 
   g_object_unref (info);
@@ -667,7 +669,7 @@ log_load (GIOSchedulerJob *io_job,
     guchar * buffer;
     gsize bytes_read;
     GInputStream *real_is;
-    time_t mtime;
+    time_t mtime; /* seconds */
 
     /* this also skips the header from |is| */
     res = read_gzip_header (is, &mtime);
@@ -678,6 +680,8 @@ log_load (GIOSchedulerJob *io_job,
       err = create_zlib_error ();
       goto out;
     }
+
+    log->priv->file_time = mtime;
 
     gz = gz_handle_new (f, is);
     res = gz_handle_init (gz);
@@ -807,12 +811,12 @@ logview_log_get_display_name (LogviewLog *log)
   return log->priv->display_name;
 }
 
-gulong
+time_t
 logview_log_get_timestamp (LogviewLog *log)
 {
   g_assert (LOGVIEW_IS_LOG (log));
 
-  return log->priv->file_time.tv_sec;
+  return log->priv->file_time;
 }
 
 goffset
@@ -876,3 +880,6 @@ logview_log_get_gfile (LogviewLog *log)
 
   return g_object_ref (log->priv->file);
 }
+
+
+
