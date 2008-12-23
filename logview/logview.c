@@ -218,9 +218,7 @@ logview_select_log (LogviewWindow *logview, Log *log)
     logview_update_version_bar (logview);
     logview_save_prefs (logview); 
     gtk_widget_grab_focus (logview->view);
-} 
-
-
+}
 
 void
 logview_menus_set_state (LogviewWindow *logview)
@@ -404,67 +402,6 @@ logview_close_log (GtkAction *action, LogviewWindow *logview)
     logview->logs = g_slist_remove (logview->logs, log);
     log_close (log);
     loglist_remove_log (LOG_LIST (logview->loglist), log);
-}
-
-static void
-logview_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview)
-{
-   char *f;
-
-   g_assert (LOGVIEW_IS_WINDOW (logview));
-
-   gtk_widget_hide (GTK_WIDGET (chooser));
-   if (response != GTK_RESPONSE_OK)
-	   return;
-   
-   f = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
-
-   if (f != NULL) {
-       /* Check if the log is not already opened */
-       GSList *list;
-       Log *log, *tl;
-	   for (list = logview->logs; list != NULL; list = g_slist_next (list)) {
-		   log = list->data;
-		   if (g_ascii_strncasecmp (log->name, f, 255) == 0) {
-		     loglist_select_log (LOG_LIST (logview->loglist), log);
-		     return;
-		   }
-	   }
-
-	   if ((tl = log_open (f, TRUE)) != NULL)
-	     logview_add_log (logview, tl);
-   }
-   
-   g_free (f);
-
-}
-
-static void
-logview_open_log (GtkAction *action, LogviewWindow *logview)
-{
-   static GtkWidget *chooser = NULL;
-
-   g_assert (LOGVIEW_IS_WINDOW (logview));
-   
-   if (chooser == NULL) {
-	   chooser = gtk_file_chooser_dialog_new (_("Open Log"),
-						  GTK_WINDOW (logview),
-						  GTK_FILE_CHOOSER_ACTION_OPEN,
-						  GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-						  GTK_STOCK_OPEN, GTK_RESPONSE_OK,
-						  NULL);
-	   gtk_dialog_set_default_response (GTK_DIALOG (chooser), GTK_RESPONSE_OK);
-	   gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
-	   g_signal_connect (G_OBJECT (chooser), "response",
-			     G_CALLBACK (logview_file_selected_cb), logview);
-	   g_signal_connect (G_OBJECT (chooser), "destroy",
-			     G_CALLBACK (gtk_widget_destroyed), &chooser);
-	   if (prefs_get_active_log () != NULL)
-		   gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (chooser), 
-						  prefs_get_active_log ());
-   }
-
-   gtk_window_present (GTK_WINDOW (chooser));
 }
 
 static void
@@ -693,6 +630,66 @@ logview_calendar_set_state (LogviewWindow *logview)
         gtk_widget_set_sensitive (logview->calendar, (logview->curlog->days != NULL));
     } else
         gtk_widget_set_sensitive (logview->calendar, FALSE);
+}
+
+/* actions callbacks */
+
+static void
+open_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview)
+{
+  char *f;
+  LogviewLog *log;
+
+  g_assert (LOGVIEW_IS_WINDOW (logview));
+
+  gtk_widget_hide (GTK_WIDGET (chooser));
+  if (response != GTK_RESPONSE_OK) {
+	  return;
+  }
+
+  f = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+
+  log = logview_manager_get_if_loaded (logview->priv->manager, f);
+
+  if (log) {
+    logview_manager_set_active_log (log);
+    g_object_unref (log);
+    goto out;
+  }
+
+  logview_manager_add_log_from_name (logview->priv->manager, f);
+
+out:
+  g_free (f);
+}
+
+static void
+logview_open_log (GtkAction *action, LogviewWindow *logview)
+{
+  static GtkWidget *chooser = NULL;
+  char *active;
+
+  if (chooser == NULL) {
+    chooser = gtk_file_chooser_dialog_new (_("Open Log"),
+                                           GTK_WINDOW (logview),
+                                           GTK_FILE_CHOOSER_ACTION_OPEN,
+                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                           GTK_STOCK_OPEN, GTK_RESPONSE_OK,
+                                           NULL);
+    gtk_dialog_set_default_response (GTK_DIALOG (chooser), GTK_RESPONSE_OK);
+    gtk_window_set_modal (GTK_WINDOW (chooser), TRUE);
+    g_signal_connect (G_OBJECT (chooser), "response",
+                      G_CALLBACK (open_file_selected_cb), logview);
+    g_signal_connect (G_OBJECT (chooser), "destroy",
+                      G_CALLBACK (gtk_widget_destroyed), &chooser);
+    active = logview_prefs_get_active_logfile (logview->priv->prefs);
+    if (active != NULL) {
+      gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (chooser), active);
+      g_free (active);
+    }
+  }
+
+  gtk_window_present (GTK_WINDOW (chooser));
 }
 
 static void

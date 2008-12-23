@@ -44,13 +44,23 @@ typedef struct {
 } CreateCBData;
 
 struct _LogviewManagerPrivate {
-  GList *logs;
+  GHashTable *logs;
   LogviewLog *active_log;
 };
 
 static void
 logview_manager_finalize (GObject *object)
 {
+  LogviewManager *manager;
+
+  manager = LOGVIEW_MANAGER (object);
+
+  if (manager->priv->active_log) {
+   g_object_unref (manager->priv->active_log);
+  }
+
+  g_hash_table_destroy (manager->priv->logs);
+  
   G_OBJECT_CLASS (logview_manager_parent_class)->finalize (object);
 }
 
@@ -97,7 +107,7 @@ logview_manager_init (LogviewManager *self)
   self->priv = GET_PRIVATE (self);
 
   priv->active_log = NULL;
-  priv->logs = NULL;
+  priv->logs = g_hash_table_new (g_str_hash, g_str_equal);
 }
 
 static void
@@ -109,7 +119,7 @@ create_log_cb (LogviewLog *log,
 
   if (log) {
     /* creation went well, store the log and notify */
-    g_slist_append (data->manager->priv->logs, log);
+    g_hash_table_insert (data->manager->priv->logs, data->filename, log);
 
     g_signal_emit (data->manager, signals[LOG_ADDED], 0, log, NULL);
 
@@ -180,6 +190,7 @@ logview_manager_add_log_from_name (LogviewManager *manager,
                                    const char *filename, gboolean set_active)
 {
   CreateCBData *data = g_slice_new0 (CreateCBData);
+  LogviewLog *log;
 
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
@@ -188,17 +199,40 @@ logview_manager_add_log_from_name (LogviewManager *manager,
     set_active = (manager->priv->logs == NULL);
   }
 
-  data->filename = g_strdup (filename);
-  data->manager = manager;
-  data->set_active = set_active;
+  if (log = g_hash_table_lookup (manager->priv->logs, filename) != NULL) {
+    /* log already exists, don't load it */
+    if (set_active) {
+      logview_manager_set_active_log (manager, log);
+    }
+  } else {
+    data->filename = g_strdup (filename);
+    data->manager = manager;
+    data->set_active = set_active;
 
-  logview_log_create (filename, create_log_cb, data);
+    logview_log_create (filename, create_log_cb, data);
+  }
 }
 
 int
 logview_manager_get_log_count (LogviewManager *manager)
 {
+  GList *keys;
+  int retval;
+
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
-  return g_slist_length (manager->priv->logs);
+  keys = g_hash_table_get_keys (manager->priv->logs);
+  retval = g_list_length (keys);
+
+  g_list_free (keys);
+
+  return retval;
+}
+
+LogviewLog *
+logview_manager_get_if_loaded (LogviewManager *manager, char *filename)
+{
+  g_assert (LOGVIEW_IS_MANAGER (manager));
+
+  return g_object_ref (g_hash_table_lookup (manager->priv->logs, filename));
 }

@@ -71,6 +71,8 @@ void            logview_manager_set_active_log      (LogviewManager *manager,
                                                      LogviewLog *log);
 LogviewLog *    logview_manager_get_active_log      (LogviewManager *manager);
 int             logview_manager_get_log_count       (LogviewManager *manager);
+LogviewLog *    logview_manager_get_if_loaded       (LogviewManager *manager,
+                                                     char *filename);
 
 G_END_DECLS
 
