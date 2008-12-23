@@ -24,7 +24,6 @@
 #include <gtk/gtk.h>
 
 #include "logrtns.h"
-#include "loglist.h"
 
 #define MAX_VERSIONS             5
 
@@ -54,7 +53,6 @@ GType logview_window_get_type (void);
 GtkWidget *logview_window_new (void);
 
 Log *logview_get_active_log (LogviewWindow *logview);
-LogList *logview_get_loglist (LogviewWindow *logview);
 int logview_count_logs (LogviewWindow *logview);
 void logview_select_log (LogviewWindow *logview, Log *log);
 void logview_add_log_from_name (LogviewWindow *logview, gchar *file);

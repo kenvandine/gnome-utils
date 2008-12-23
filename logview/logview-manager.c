@@ -24,6 +24,7 @@
 
 enum {
   LOG_ADDED,
+  LOG_CLOSED,
   LOG_ADD_ERROR,
   ACTIVE_CHANGED,
   LAST_SIGNAL
@@ -113,7 +114,7 @@ logview_manager_class_init (LogviewManagerClass *klass)
 static void
 logview_manager_init (LogviewManager *self)
 {
-  self->priv = GET_PRIVATE (self);
+  LogviewManagerPrivate *priv = self->priv = GET_PRIVATE (self);
 
   priv->active_log = NULL;
   priv->logs = g_hash_table_new_full (g_str_hash, g_str_equal, 
@@ -186,7 +187,7 @@ logview_manager_set_active_log (LogviewManager *manager,
   g_signal_emit (manager, signals[ACTIVE_CHANGED], 0, log, NULL);
 }
 
-void
+LogviewLog *
 logview_manager_get_active_log (LogviewManager *manager)
 {
   g_assert (LOGVIEW_IS_MANAGER (manager));
@@ -206,7 +207,8 @@ logview_manager_add_logs_from_names (LogviewManager *manager,
   g_assert (LOGVIEW_IS_MANAGER (manager));
 
   for (l = names; l; l = l->next) {
-    logview_manager_add_log_from_name (l->data, (g_ascii_strcasecmp (active, l->data) == 0));
+    logview_manager_add_log_from_name (manager, l->data,
+                                       (g_ascii_strcasecmp (active, l->data) == 0));
   }
 }
 
@@ -224,7 +226,7 @@ logview_manager_add_log_from_name (LogviewManager *manager,
     set_active = (manager->priv->logs == NULL);
   }
 
-  if (log = g_hash_table_lookup (manager->priv->logs, filename) != NULL) {
+  if ((log = g_hash_table_lookup (manager->priv->logs, filename)) != NULL) {
     /* log already exists, don't load it */
     if (set_active) {
       logview_manager_set_active_log (manager, log);

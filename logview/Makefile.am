@@ -19,8 +19,9 @@ bin_PROGRAMS = gnome-system-log
 
 gnome_system_log_SOURCES = 	\
 	logview-main.c		\
-	about.c			\
-	about.h			\
+	logview-about.h		\
+	logview-manager.c	\
+	logview-manager.h	\
 	calendar.c		\
 	calendar.h		\
 	log_repaint.c		\
@@ -29,17 +30,15 @@ gnome_system_log_SOURCES = 	\
 	logrtns.h		\
 	logview.c		\
 	logview.h		\
-	logview-log.h \
-	logview-log.c \
+	logview-log.h		\
+	logview-log.c		\
 	misc.c			\
 	misc.h			\
-	monitor.c       	\
-	monitor.h		\
-	logview-prefs.c         \
-	logview-prefs.h         \
+	logview-prefs.c		\
+	logview-prefs.h		\
 	logview-findbar.c	\
-	logview-findbar.h   \
-	loglist.c       \
+	logview-findbar.h	\
+	loglist.c		\
 	loglist.h
 
 gnome_system_log_LDADD = \

@@ -28,12 +28,13 @@
 #include "loglist.h"
 #include "log_repaint.h"
 #include "logrtns.h"
-#include "about.h"
 #include "misc.h"
 #include "logview-findbar.h"
+#include "calendar.h"
+
+#include "logview-about.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
-#include "calendar.h"
 
 #define APP_NAME _("System Log Viewer")
 
@@ -804,10 +805,6 @@ logview_window_init (LogviewWindow *logview)
                     G_CALLBACK (font_changed_cb), logview);
   g_signal_connect (priv->prefs, "have-tearoff-changed",
                     G_CALLBACK (tearoff_changed_cb), logview);
-  g_signal_connect (priv->manager, "log-added",
-                    G_CALLBACK (log_added_cb), logview);
-  g_signal_connect (priv->manager, "active-changed",
-                    G_CALLBACK (active_log_changed_cb), logview);
 
   /* Status area at bottom */
   priv->statusbar = gtk_statusbar_new ();

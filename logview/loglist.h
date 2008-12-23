@@ -28,6 +28,7 @@
 #define LOG_LIST_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), LOG_LIST_TYPE, LogListClass))
 
 #include <gtk/gtk.h>
+#include "logview.h"
 
 typedef struct LogListPriv LogListPriv;
 typedef struct LogList

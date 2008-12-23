@@ -25,6 +25,8 @@
 
 #include <glib-object.h>
 
+#include "logview-log.h"
+
 G_BEGIN_DECLS
 
 #define LOGVIEW_TYPE_MANAGER logview_manager_get_type()
@@ -66,9 +68,11 @@ GType logview_manager_get_type (void);
 /* public methods */
 LogviewManager* logview_manager_get                 (void);
 void            logview_manager_add_log_from_name   (LogviewManager *manager,
-                                                     const char *filename);
+                                                     const char *filename,
+                                                     gboolean set_active);
 void            logview_manager_add_logs_from_names (LogviewManager *manager,
-                                                     GSList *names);
+                                                     GSList *names,
+                                                     const char *active);
 void            logview_manager_set_active_log      (LogviewManager *manager,
                                                      LogviewLog *log);
 LogviewLog *    logview_manager_get_active_log      (LogviewManager *manager);
