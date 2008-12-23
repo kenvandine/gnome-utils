@@ -41,7 +41,6 @@ struct _LogviewWindowPrivate {
   GtkWidget *statusbar;
   GtkUIManager *ui_manager;
 
-  GtkWidget *calendar;
   GtkWidget *find_bar;
   GtkWidget *loglist;
   GtkWidget *sidebar; 
@@ -271,16 +270,9 @@ static void
 logview_window_menus_set_state (LogviewWindow *logview)
 {
   LogviewLog *log;
-  gboolean calendar_active = FALSE;
-  GtkWidget *widget;
 
   log = logview_manager_get_active_log (logview->priv->manager);
 
-  if (log) {
-    calendar_active = (logview_log_get_days_for_cached_lines (log) != NULL);
-  }
-
-  logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/ShowCalendar", calendar_active);
   logview_menu_item_set_state (logview, "/LogviewMenu/FileMenu/CloseLog", (log != NULL));
   logview_menu_item_set_state (logview, "/LogviewMenu/ViewMenu/Search", (log != NULL));
   logview_menu_item_set_state (logview, "/LogviewMenu/EditMenu/Copy", (log != NULL));
@@ -622,21 +614,6 @@ logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
     gtk_widget_show (logview->priv->sidebar);
 }
 
-static void 
-logview_toggle_calendar (GtkAction *action, LogviewWindow *logview)
-{
-  if (GTK_WIDGET_VISIBLE (logview->priv->calendar))
-    gtk_widget_hide (logview->priv->calendar);
-  else {
-    gtk_widget_show (logview->priv->calendar);
-    if (!GTK_WIDGET_VISIBLE (logview->priv->sidebar)) {
-      GtkAction *action = gtk_ui_manager_get_action (logview->priv->ui_manager,
-                                                     "/LogviewMenu/ViewMenu/ShowSidebar");
-      gtk_action_activate (action);
-    }
-  }
-}
-
 /* GObject functions */
 
 /* Menus */
@@ -678,9 +655,7 @@ static GtkToggleActionEntry toggle_entries[] = {
     { "ShowStatusBar", NULL, N_("_Statusbar"), NULL, N_("Show Status Bar"),
       G_CALLBACK (logview_toggle_statusbar), TRUE },
     { "ShowSidebar", NULL, N_("Side _Pane"), "F9", N_("Show Side Pane"), 
-      G_CALLBACK (logview_toggle_sidebar), TRUE },  
-    { "ShowCalendar", NULL,  N_("Ca_lendar"), "<control>L", N_("Show Calendar Log"), 
-      G_CALLBACK (logview_toggle_calendar), TRUE },
+      G_CALLBACK (logview_toggle_sidebar), TRUE }, 
 };
 
 static gboolean 
@@ -1016,7 +991,7 @@ logview_window_init (LogviewWindow *logview)
   priv->hpaned = hpaned;
   gtk_widget_show (hpaned);
 
-  /* first pane : sidebar (list of logs + calendar) */
+  /* first pane : sidebar (list of logs) */
   priv->sidebar = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (priv->sidebar);
 
