@@ -496,8 +496,9 @@ fill_buffer (GZHandle *gz,
 
   z_stream * zstream = &gz->zstream;
 
-  if (zstream->avail_in > 0)
+  if (zstream->avail_in > 0) {
     return TRUE;
+  }
 
   count = g_input_stream_read (gz->parent_str,
                                gz->buffer,
@@ -521,7 +522,7 @@ result_from_z_result (int z_result)
 {
   switch (z_result) {
     case Z_OK:
-      case Z_STREAM_END:
+    case Z_STREAM_END:
         return TRUE;
     case Z_DATA_ERROR:
       return FALSE;
@@ -564,7 +565,7 @@ gz_handle_read (GZHandle *gz,
       return res;
     }
 
-    z_result = inflate (&gz->zstream, Z_NO_FLUSH);
+    z_result = inflate (zstream, Z_NO_FLUSH);
     if (z_result == Z_STREAM_END) {
       gz->last_z_result = z_result;
       break;
