@@ -35,13 +35,6 @@
 
 #define APP_NAME _("System Log Viewer")
 
-enum {
-  LOG_LINE_TEXT = 0,
-  LOG_LINE_POINTER,
-  LOG_LINE_WEIGHT,
-  LOG_LINE_WEIGHT_SET
-};
-
 struct _LogviewWindowPrivate {
   GtkWidget *statusbar;
   GtkUIManager *ui_manager;
