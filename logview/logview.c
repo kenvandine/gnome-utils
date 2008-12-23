@@ -320,7 +320,8 @@ logview_window_menus_set_state (LogviewWindow *logview)
 static void
 open_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview)
 {
-  char *f;
+  GFile *f;
+  char *file_uri;
   LogviewLog *log;
 
   g_assert (LOGVIEW_IS_WINDOW (logview));
@@ -330,9 +331,12 @@ open_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview
 	  return;
   }
 
-  f = gtk_file_chooser_get_uri (GTK_FILE_CHOOSER (chooser));
+  f = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (chooser));
+  file_uri = g_file_get_uri (f);
 
-  log = logview_manager_get_if_loaded (logview->priv->manager, f);
+  log = logview_manager_get_if_loaded (logview->priv->manager, file_uri);
+
+  g_free (file_uri);
 
   if (log) {
     logview_manager_set_active_log (logview->priv->manager, log);
@@ -340,10 +344,10 @@ open_file_selected_cb (GtkWidget *chooser, gint response, LogviewWindow *logview
     goto out;
   }
 
-  logview_manager_add_log_from_name (logview->priv->manager, f, TRUE);
+  logview_manager_add_log_from_gfile (logview->priv->manager, f, TRUE);
 
 out:
-  g_free (f);
+  g_object_unref (f);
 }
 
 static void
@@ -614,7 +618,7 @@ read_new_lines_cb (LogviewLog *log,
   gtk_text_buffer_get_end_iter (buffer, &iter);
 
   if (boldify) {
-    mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, FALSE);
+    mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
   }
 
   for (i = 0; lines[i]; i++) {
