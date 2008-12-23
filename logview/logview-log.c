@@ -48,6 +48,11 @@ struct _LogviewLogPrivate {
   goffset file_size;
   char *display_name;
 
+  /* lines and relative days */
+  GSList *days;
+  GPtrArray *lines;
+  guint lines_no;
+
   /* stream poiting to the log */
   GDataInputStream *stream;
 };
@@ -62,7 +67,7 @@ typedef struct {
 typedef struct {
   LogviewLog *log;
   GError *err;
-  char **lines;
+  const char **lines;
   LogviewNewLinesCallback callback;
   gpointer user_data;
 } NewLinesJob;
@@ -71,13 +76,24 @@ static void
 do_finalize (GObject *obj)
 {
   LogviewLog *log = LOGVIEW_LOG (obj);
+  char ** lines;
 
-  if (log->priv->stream)
+  if (log->priv->stream) {
     g_object_unref (log->priv->stream);
-  if (log->priv->file)
+  }
+
+  if (log->priv->file) {
     g_object_unref (log->priv->file);
-  if (log->priv->mon)
+  }
+
+  if (log->priv->mon) {
     g_object_unref (log->priv->mon);
+  }
+
+  if (log->priv->lines) {
+    lines = (char **) g_ptr_array_free (log->priv->lines, FALSE);
+    g_strfreev (lines);
+  }
 
   G_OBJECT_CLASS (logview_log_parent_class)->finalize (obj);
 }
@@ -104,6 +120,13 @@ static void
 logview_log_init (LogviewLog *self)
 {
   self->priv = GET_PRIVATE (self);
+
+  self->priv->lines = g_ptr_array_new ();
+  g_ptr_array_add (self->priv->lines, NULL);
+  self->priv->lines_no = 0;
+  self->priv->days = NULL;
+  self->priv->file = NULL;
+  self->priv->mon = NULL;
 }
 
 static void
@@ -171,30 +194,37 @@ do_read_new_lines (GIOSchedulerJob *io_job,
   /* this runs in a separate thread */
   NewLinesJob *job = user_data;
   LogviewLog *log = job->log;
-  GPtrArray *lines;
   char *line;
+  guint old_size;
   GError *err = NULL;
+  GPtrArray *lines = log->priv->lines;
 
   g_assert (LOGVIEW_IS_LOG (log));
   g_assert (log->priv->stream != NULL);
 
-  lines = g_ptr_array_new ();
+  /* remove the NULL-terminator */
+  g_ptr_array_remove_index (lines, lines->len);
+
   while ((line = g_data_input_stream_read_line (log->priv->stream, NULL,
-                                               NULL, &err)) != NULL)
+                                                NULL, &err)) != NULL)
   {
     g_ptr_array_add (lines, (gpointer) line);
   }
 
   if (err) {
-    g_ptr_array_free (lines, TRUE);
     job->err = err;
     goto out;
   }
 
-  /* NULL-terminate the array */
+  /* NULL-terminate the array again */
   g_ptr_array_add (lines, NULL);
 
-  job->lines = (char **) g_ptr_array_free (lines, FALSE);
+  /* we'll return only the new lines in the callback */
+  line = g_ptr_array_index (lines, log->priv->lines_no + 1);
+  job->lines = (const char **) &line;
+
+  /* save the new number of lines */
+  log->priv->lines_no = (lines->len - 1);
 
 out:
   g_io_scheduler_job_send_to_mainloop_async (io_job,
@@ -365,4 +395,24 @@ logview_log_get_file_size (LogviewLog *log)
   g_assert (LOGVIEW_IS_LOG (log));
 
   return log->priv->file_size;
+}
+
+guint
+logview_log_get_cached_lines_number (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  return log->priv->lines_no;
+}
+
+const char **
+logview_log_get_cached_lines (LogviewLog *log)
+{
+  const char ** lines;
+
+  g_assert (LOGVIEW_IS_LOG (log));
+
+  lines = (const char **) log->priv->lines->pdata;
+
+  return lines;
 }

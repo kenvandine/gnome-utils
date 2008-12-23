@@ -57,8 +57,6 @@ struct _LogviewManagerClass {
                       LogviewLog *log);
   void (* log_closed) (LogviewManager *manager,
                        LogviewLog *log);
-  void (* log_changed) (LogviewManager *manager,
-                        LogviewLog *log);
   void (* log_add_error) (LogviewManager *manager,
                           char *filename);
   void (* active_changed) (LogviewManager *manager,
@@ -82,7 +80,6 @@ int             logview_manager_get_log_count       (LogviewManager *manager);
 LogviewLog *    logview_manager_get_if_loaded       (LogviewManager *manager,
                                                      char *filename);
 void            logview_manager_close_active_log    (LogviewManager *manager);
-const char **   logview_manager_get_lines_for_active_log (LogviewManager *manager);
 
 G_END_DECLS
 

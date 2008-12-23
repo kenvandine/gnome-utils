@@ -823,12 +823,6 @@ logview_window_init (LogviewWindow *logview)
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_MULTIPLE);
 
   /* Add signal handlers */
-  g_signal_connect (selection, "changed",
-                    G_CALLBACK (selection_changed_cb), logview);
-  g_signal_connect (priv->view, "row-expanded",
-                    G_CALLBACK (row_toggled_cb), logview);
-  g_signal_connect (priv->view, "row-collapsed",
-                    G_CALLBACK (row_toggled_cb), logview);
   g_signal_connect (logview, "configure_event",
                     G_CALLBACK (window_size_changed_cb), logview);
   g_signal_connect (priv->prefs, "system-font-changed",

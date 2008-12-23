@@ -50,7 +50,7 @@ typedef void (* LogviewCreateCallback) (LogviewLog *log,
                                         GError *error,
                                         gpointer user_data);
 typedef void (* LogviewNewLinesCallback) (LogviewLog *log,
-                                          char **lines,
+                                          const char **lines,
                                           GError *error,
                                           gpointer user_data);
 
@@ -77,15 +77,20 @@ GType logview_log_get_type      (void);
 
 /* public methods */
 
-void logview_log_create         (const char *filename,
-                                 LogviewCreateCallback callback,
-                                 gpointer user_data);
-void logview_log_read_new_lines (LogviewLog *log,
-                                 LogviewNewLinesCallback callback,
-                                 gpointer user_data);
-const char * logview_log_get_display_name (LogviewLog *log);
-gulong logview_log_get_timestamp (LogviewLog *log);
-goffset logview_log_get_file_size (LogviewLog *log);
+/* these two do I/O, so they are wrapped async */
+void          logview_log_create                   (const char *filename,
+                                                    LogviewCreateCallback callback,
+                                                    gpointer user_data);
+void          logview_log_read_new_lines           (LogviewLog *log,
+                                                    LogviewNewLinesCallback callback,
+                                                    gpointer user_data);
+
+const char *  logview_log_get_display_name          (LogviewLog *log);
+gulong        logview_log_get_timestamp             (LogviewLog *log);
+goffset       logview_log_get_file_size             (LogviewLog *log);
+const char ** logview_log_get_cached_lines          (LogviewLog *log);
+guint         logview_log_get_cached_lines_number   (LogviewLog *log);
+GSList *      logview_log_get_days_for_cached_lines (LogviewLog *log);
 
 G_END_DECLS
 

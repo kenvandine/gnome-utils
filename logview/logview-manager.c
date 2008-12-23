@@ -25,7 +25,6 @@
 enum {
   LOG_ADDED,
   LOG_CLOSED,
-  LOG_CHANGED,
   LOG_ADD_ERROR,
   ACTIVE_CHANGED,
   LAST_SIGNAL
@@ -47,16 +46,8 @@ typedef struct {
 
 struct _LogviewManagerPrivate {
   GHashTable *logs;
-  GHashTable *lines_cache;
   LogviewLog *active_log;
 };
-
-static void
-lines_destroy_notify (GPtrArray *array)
-{
-  char **lines = (char **) g_ptr_array_free (array, FALSE);
-  g_strfreev (lines);
-}
 
 static void
 logview_manager_finalize (GObject *object)
@@ -70,7 +61,6 @@ logview_manager_finalize (GObject *object)
   }
 
   g_hash_table_destroy (manager->priv->logs);
-  g_hash_table_destroy (manager->priv->lines_cache);
   
   G_OBJECT_CLASS (logview_manager_parent_class)->finalize (object);
 }
@@ -99,15 +89,6 @@ logview_manager_class_init (LogviewManagerClass *klass)
                                       g_cclosure_marshal_VOID__OBJECT,
                                       G_TYPE_NONE, 1,
                                       LOGVIEW_TYPE_LOG);
-
-  signals[LOG_CHANGED] = g_signal_new ("log-changed",
-                                       G_OBJECT_CLASS_TYPE (object_class),
-                                       G_SIGNAL_RUN_LAST,
-                                       G_STRUCT_OFFSET (LogviewManagerClass, log_changed),
-                                       NULL, NULL,
-                                       g_cclosure_marshal_VOID__VOID,
-                                       G_TYPE_NONE, 1,
-                                       LOGVIEW_TYPE_LOG);
 
   signals[LOG_ADD_ERROR] = g_signal_new ("log-add-error",
                                          G_OBJECT_CLASS_TYPE (object_class),
@@ -138,17 +119,6 @@ logview_manager_init (LogviewManager *self)
   priv->active_log = NULL;
   priv->logs = g_hash_table_new_full (g_str_hash, g_str_equal, 
                                       NULL, (GDestroyNotify) g_object_unref);
-  priv->lines_cache = g_hash_table_new_full (g_direct_hash, g_direct_equal,
-                                             NULL, (GDestroyNotify) lines_destroy_notify);
-}
-
-static void
-log_changed_cb (LogviewLog *log,
-                gpointer user_data)
-{
-  LogviewManager *manager = user_data;
-
-  g_signal_emit (manager, signals[LOG_CHANGED], 0, log, NULL);
 }
 
 static void
@@ -161,9 +131,6 @@ create_log_cb (LogviewLog *log,
   if (log) {
     /* creation went well, store the log and notify */
     g_hash_table_insert (data->manager->priv->logs, data->filename, log);
-
-    g_signal_connect (log, "log-changed",
-                      G_CALLBACK (log_changed_cb), data->manager);
 
     g_signal_emit (data->manager, signals[LOG_ADDED], 0, log, NULL);
 
@@ -194,44 +161,6 @@ look_for_log (gpointer key,
   return FALSE;
 }
 
-static void
-log_new_lines_cb (LogviewLog *log,
-                  char **lines,
-                  GError *error,
-                  gpointer user_data)
-{
-  LogviewManager *manager = user_data;
-  LogviewManagerPrivate *priv = manager->priv;
-  GPtrArray *arr;
-  int i;
-
-  if (error) {
-    /* TODO: handle this */
-    return;
-  }
-
-  arr = g_hash_table_lookup (priv->lines_cache, log);
-  if (!arr) {
-    arr = g_ptr_array_new ();
-    g_hash_table_insert (priv->lines_cache, log, arr);
-  }
-  for (i = 0; i; i++) {
-    g_ptr_array_add (arr, lines[i]);
-  }
-
-  g_signal_emit (singleton, signals[LOG_CHANGED], 0, log, NULL);
-}
-
-static void
-active_log_changed_cb (LogviewLog *log,
-                       gpointer user_data)
-{
-  LogviewManager *manager = user_data;
-  gboolean first_read = FALSE;
-
-  logview_log_read_new_lines (log, log_new_lines_cb, &first_read);
-}
-
 /* public methods */
 
 LogviewManager*
@@ -259,10 +188,6 @@ logview_manager_set_active_log (LogviewManager *manager,
   manager->priv->active_log = g_object_ref (log);
 
   g_signal_emit (manager, signals[ACTIVE_CHANGED], 0, log, NULL);
-
-  logview_log_read_new_lines (log, log_new_lines_cb, manager);
-
-  /* we will emit the "active-changed" signal when we have the new lines */  
 }
 
 LogviewLog *
@@ -346,33 +271,12 @@ logview_manager_close_active_log (LogviewManager *manager)
 
   /* we own two refs to the active log; one is inside the hash table */
   g_object_unref (active_log);
-  g_hash_table_remove (manager->priv->lines_cache, active_log);
-  g_signal_handlers_disconnect_by_func (active_log, active_log_changed_cb, manager);
 
   g_hash_table_find (manager->priv->logs,
                      (GHRFunc) look_for_log,
                      active_log);
 
   /* someone else will take care of setting the next active log to us */
-}
-
-const char **
-logview_manager_get_lines_for_active_log (LogviewManager *manager)
-{
-  const char **retval;
-  GPtrArray *arr;
-
-  g_assert (LOGVIEW_IS_MANAGER (manager));
-
-  arr = g_hash_table_lookup (manager->priv->lines_cache, manager->priv->active_log);
-  if (!arr) {
-    /* why? */
-    return NULL;
-  }
-
-  retval = (const char **) arr->pdata;
-
-  return retval;
 }
 
 gboolean
