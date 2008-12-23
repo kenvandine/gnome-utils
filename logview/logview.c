@@ -422,7 +422,13 @@ logview_select_all (GtkAction *action, LogviewWindow *logview)
 static void
 logview_copy (GtkAction *action, LogviewWindow *logview)
 {
-  /* TODO: implement */
+  GtkTextBuffer *buffer;
+  GtkClipboard *clipboard;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
+  clipboard = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
+
+  gtk_text_buffer_copy_clipboard (buffer, clipboard);
 }
 
 static void
