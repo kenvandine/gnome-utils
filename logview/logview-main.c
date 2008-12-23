@@ -29,7 +29,6 @@
 
 #include "logview.h"
 #include "misc.h"
-#include "userprefs.h"
 
 static gboolean show_version = FALSE;
 
@@ -83,7 +82,6 @@ main (int argc, char *argv[])
   error_dialog_queue (TRUE);
 
   gnome_vfs_init ();
-  prefs_init ();
   context = create_option_context ();
 
   g_option_context_parse (context, &argc, &argv, &error);
@@ -119,9 +117,6 @@ main (int argc, char *argv[])
   logview_menus_set_state (logview);
 
   gtk_widget_show (GTK_WIDGET (logview));
-
-  while (gtk_events_pending ())
-    gtk_main_iteration ();
 
   if (argc == 1) {
     logview_add_logs_from_names (logview,
