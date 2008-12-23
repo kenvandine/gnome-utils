@@ -34,7 +34,8 @@
 #include "logview-manager.h"
 
 #define APP_NAME _("System Log Viewer")
-#define SEARCH_MARK "lw-search-mark"
+#define SEARCH_START_MARK "lw-search-start-mark"
+#define SEARCH_END_MARK "lw-search-end-mark"
 
 struct _LogviewWindowPrivate {
   GtkWidget *statusbar;
@@ -439,43 +440,67 @@ static void
 logview_search_text (LogviewWindow *logview, gboolean forward)
 {
   GtkTextBuffer *buffer;
-  GtkTextMark *search_mark;
-  GtkTextIter start, start_m, end_m;
+  GtkTextMark *search_start, *search_end;
+  GtkTextIter search, start_m, end_m;
   const char *text;
-  gboolean res;
+  gboolean res, wrapped;
+
+  wrapped = FALSE;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
-  search_mark = gtk_text_buffer_get_mark (buffer, SEARCH_MARK);
+  search_start = gtk_text_buffer_get_mark (buffer, SEARCH_START_MARK);
+  search_end = gtk_text_buffer_get_mark (buffer, SEARCH_END_MARK);
 
-  if (!search_mark) {
+  if (!search_start) {
     /* this is our first search on the buffer, create a new search mark */
-    gtk_text_buffer_get_start_iter (buffer, &start);
-    search_mark = gtk_text_buffer_create_mark (buffer, SEARCH_MARK,
-                                               &start, TRUE);
+    gtk_text_buffer_get_start_iter (buffer, &search);
+    search_start = gtk_text_buffer_create_mark (buffer, SEARCH_START_MARK,
+                                                &search, TRUE);
+    search_end = gtk_text_buffer_create_mark (buffer, SEARCH_END_MARK,
+                                              &search, TRUE);
   } else {
-    gtk_text_buffer_get_iter_at_mark (buffer, &start, search_mark);
+    if (forward) {
+      gtk_text_buffer_get_iter_at_mark (buffer, &search, search_end);
+    } else {
+      gtk_text_buffer_get_iter_at_mark (buffer, &search, search_start);
+    }
   }
 
   text = logview_findbar_get_text (LOGVIEW_FINDBAR (logview->priv->find_bar));
 
+wrap:
+
   if (forward) {
-    res = gtk_text_iter_forward_search (&start, text, 0, &start_m, &end_m, NULL);
+    res = gtk_text_iter_forward_search (&search, text, 0, &start_m, &end_m, NULL);
   } else {
-    res = gtk_text_iter_backward_search (&start, text, 0, &start_m, &end_m, NULL);
+    res = gtk_text_iter_backward_search (&search, text, 0, &start_m, &end_m, NULL);
   }
 
   if (res) {
     gtk_text_buffer_select_range (buffer, &start_m, &end_m);
-    gtk_text_buffer_move_mark (buffer, search_mark, &end_m);
+    gtk_text_buffer_move_mark (buffer, search_start, &start_m);
+    gtk_text_buffer_move_mark (buffer, search_end, &end_m);
   } else {
-    GtkTextMark *mark;
-    GtkTextIter iter;
+    if (wrapped) {
+      
+      GtkTextMark *mark;
+      GtkTextIter iter;
 
-    if (gtk_text_buffer_get_has_selection (buffer)) {
-      /* unselect */
-      mark = gtk_text_buffer_get_mark (buffer, "insert");
-      gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
-      gtk_text_buffer_move_mark_by_name (buffer, "selection_bound", &iter);
+      if (gtk_text_buffer_get_has_selection (buffer)) {
+        /* unselect */
+        mark = gtk_text_buffer_get_mark (buffer, "insert");
+        gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
+        gtk_text_buffer_move_mark_by_name (buffer, "selection_bound", &iter);
+      }
+    } else {
+      if (forward) {
+        gtk_text_buffer_get_start_iter (buffer, &search);
+      } else {
+        gtk_text_buffer_get_end_iter (buffer, &search);
+      }
+
+      wrapped = TRUE;
+      goto wrap;
     }
   }
 }
@@ -502,19 +527,21 @@ static gboolean
 text_changed_timeout_cb (gpointer user_data)
 {
   LogviewWindow *logview = user_data;
-  GtkTextMark *search_mark;
+  GtkTextMark *search_start, *search_end;
   GtkTextIter start;
   GtkTextBuffer *buffer;
 
   logview->priv->search_timeout_id = 0;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
-  search_mark = gtk_text_buffer_get_mark (buffer, SEARCH_MARK);
+  search_start = gtk_text_buffer_get_mark (buffer, SEARCH_START_MARK);
+  search_end = gtk_text_buffer_get_mark (buffer, SEARCH_END_MARK);
   
-  if (search_mark) {
+  if (search_start) {
     /* reset the search mark to the start */
     gtk_text_buffer_get_start_iter (buffer, &start);
-    gtk_text_buffer_move_mark (buffer, search_mark, &start);
+    gtk_text_buffer_move_mark (buffer, search_start, &start);
+    gtk_text_buffer_move_mark (buffer, search_end, &start);
   }
 
   logview_search_text (logview, TRUE);
