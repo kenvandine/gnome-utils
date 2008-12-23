@@ -199,7 +199,6 @@ create_log_cb (LogviewLog *log,
 
     g_free (path);
     g_free (primary);
-    g_error_free (error);
   }
   
   if (data->is_multiple) {
