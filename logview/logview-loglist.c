@@ -19,6 +19,7 @@
  */
 
 #include <gtk/gtk.h>
+#include <glib/gi18n.h>
 
 #include "logview-manager.h"
 #include "logview-log.h"
@@ -71,6 +72,8 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
   GtkTreeIter iter;
   GSList *l;
   int i;
+  char date[200];
+  Day *day;
 
   /* first, remove all the stored days */
   res = gtk_tree_model_iter_children (GTK_TREE_MODEL (loglist->priv->model),
@@ -86,10 +89,14 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
 
   for (i = 0, l = days; l; l = l->next) {
     /* now insert all the days */
+    day = l->data;
+
+    g_date_strftime (date, 200, "%A, %e %b", day->date);
+
     gtk_tree_store_insert (GTK_TREE_STORE (loglist->priv->model),
                            &iter, log, i);
     gtk_tree_store_set (GTK_TREE_STORE (loglist->priv->model),
-                        &iter, LOG_DAY, l->data, -1);
+                        &iter, LOG_NAME, date, LOG_DAY, day, -1);
     i++;
   }
 }
@@ -270,41 +277,20 @@ manager_log_added_cb (LogviewManager *manager,
                       gpointer user_data)
 {
   LogviewLoglist *list = user_data;
-  GtkTreeIter iter;
+  GtkTreeIter iter, child;
 
   gtk_tree_store_append (list->priv->model, &iter, NULL);
   gtk_tree_store_set (list->priv->model, &iter,
                       LOG_OBJECT, g_object_ref (log),
                       LOG_NAME, logview_log_get_display_name (log), -1);
 
+  gtk_tree_store_insert (list->priv->model,
+                         &child, &iter, 0);
+  gtk_tree_store_set (list->priv->model, &child,
+                      LOG_NAME, _("Loading..."), -1);
+
   g_signal_connect (log, "log-changed",
                     G_CALLBACK (log_changed_cb), list);
-}
-
-static void
-days_cell_data_func (GtkTreeViewColumn *column,
-                     GtkCellRenderer *cell,
-                     GtkTreeModel *model,
-                     GtkTreeIter *iter,
-                     gpointer user_data)
-{
-  LogviewLoglist *list = user_data;
-  Day *day;
-  char string_date[200];
-  char *name;
-
-  gtk_tree_model_get (model, iter,
-                      LOG_NAME, &name, LOG_DAY, &day, -1);
-
-  if (!day) {
-    g_object_set (cell, "text", name, NULL);
-    g_free (name);
-
-    return;
-  }
-
-  g_date_strftime (string_date, 200, "%A, %e %b", day->date);
-  g_object_set (cell, "text", string_date, NULL);
 }
 
 static void
@@ -342,13 +328,10 @@ logview_loglist_init (LogviewLoglist *list)
   column = gtk_tree_view_column_new ();
   gtk_tree_view_column_pack_start (column, cell, TRUE);
   gtk_tree_view_column_set_attributes (column, cell,
+                                       "text", LOG_NAME,
                                        "weight-set", LOG_WEIGHT_SET,
                                        "weight", LOG_WEIGHT,
                                        NULL);
-  /* we set the text manually to handle the day case */
-  gtk_tree_view_column_set_cell_data_func (column, cell,
-                                           days_cell_data_func,
-                                           list, NULL);
 
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (list->priv->model), LOG_NAME, GTK_SORT_ASCENDING);
   gtk_tree_view_append_column (GTK_TREE_VIEW (list), column);
