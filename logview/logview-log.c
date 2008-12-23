@@ -81,19 +81,30 @@ do_finalize (GObject *obj)
 
   if (log->priv->stream) {
     g_object_unref (log->priv->stream);
+    log->priv->stream = NULL;
   }
 
   if (log->priv->file) {
     g_object_unref (log->priv->file);
+    log->priv->file = NULL;
   }
 
   if (log->priv->mon) {
     g_object_unref (log->priv->mon);
+    log->priv->mon = NULL;
+  }
+
+  if (log->priv->days) {
+    g_slist_foreach (log->priv->days,
+                     (GFunc) logview_utils_day_free, NULL);
+    g_slist_free (log->priv->days);
+    log->priv->days = NULL;
   }
 
   if (log->priv->lines) {
     lines = (char **) g_ptr_array_free (log->priv->lines, FALSE);
     g_strfreev (lines);
+    log->priv->lines = NULL;
   }
 
   G_OBJECT_CLASS (logview_log_parent_class)->finalize (obj);
@@ -167,6 +178,38 @@ setup_file_monitor (LogviewLog *log)
                     G_CALLBACK (monitor_changed_cb), log);
 }
 
+static void
+add_new_days_to_cache (LogviewLog *log, const char **new_lines)
+{
+  GSList *new_days, *l, *m, *last_cached;
+  gboolean append = FALSE;
+
+  new_days = log_read_dates (new_lines, log->priv->file_time.tv_sec);
+
+  /* the days are stored in chronological order, so we compare the last cached
+   * one with the new we got.
+   */
+  last_cached = g_slist_last (log->priv->days);
+  for (l = new_days; l; l = l->next) {
+    if (days_compare (l->data, last_cached->data) > 0) {
+      /* this day in the list is newer than the last one, append to
+       * the cache.
+       */
+      log->priv->days = g_slist_concat (log->priv->days, l);
+      append = TRUE;
+      break;
+    }
+  }
+
+  if (append) {
+    /* we need to free the elements before the appended one */
+    for (m = new_days; m != l; m = m->next) {
+      logview_utils_day_free (m->data);
+      g_slist_free_1 (m);
+    }
+  }
+}
+
 static gboolean
 new_lines_job_done (gpointer data)
 {
@@ -225,6 +268,7 @@ do_read_new_lines (GIOSchedulerJob *io_job,
 
   /* save the new number of lines */
   log->priv->lines_no = (lines->len - 2);
+  add_new_days_to_cache (log, job->lines);
 
 out:
   g_io_scheduler_job_send_to_mainloop_async (io_job,

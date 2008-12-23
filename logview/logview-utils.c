@@ -28,7 +28,14 @@
 
 #include "logview-utils.h"
 
-static gint 
+void
+logview_utils_day_free (Day *day)
+{
+  g_date_free (day->date);
+  g_slice_free (Day, day);
+}
+
+gint 
 days_compare (gconstpointer a, gconstpointer b)
 {
   const Day *day1 = a, *day2 = b;
