@@ -613,9 +613,10 @@ log_load (GIOSchedulerJob *io_job,
   GFileType type;
   GError *err = NULL;
   GTimeVal timeval;
-  gboolean is_archive;
+  gboolean is_archive, can_read;
 
   info = g_file_query_info (f,
+                            G_FILE_ATTRIBUTE_ACCESS_CAN_READ ","
                             G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE ","
                             G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME ","
                             G_FILE_ATTRIBUTE_STANDARD_TYPE ","
@@ -629,6 +630,17 @@ log_load (GIOSchedulerJob *io_job,
     goto out;
   }
 
+  can_read = g_file_info_get_attribute_boolean (info,
+                                                G_FILE_ATTRIBUTE_ACCESS_CAN_READ);
+  if (!can_read) {
+    /* TODO: PolicyKit integration */
+    err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_PERMISSION_DENIED,
+                               _("You don't have enough permissions to read the file."));
+    g_object_unref (info);
+
+    goto out;
+  }
+
   type = g_file_info_get_file_type (info);
   content_type = g_file_info_get_content_type (info);
 
@@ -639,7 +651,6 @@ log_load (GIOSchedulerJob *io_job,
   {
     err = g_error_new_literal (LOGVIEW_ERROR_QUARK, LOGVIEW_ERROR_NOT_A_LOG,
                                _("The file is not a regular file or is not a text file."));
-    job->err = err;
     g_object_unref (info);
 
     goto out;
