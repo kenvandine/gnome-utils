@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "utils&amp;component=general\n"
-"POT-Creation-Date: 2008-12-19 22:48+0000\n"
-"PO-Revision-Date: 2008-12-21 17:20+0100\n"
+"POT-Creation-Date: 2008-12-25 22:49+0000\n"
+"PO-Revision-Date: 2008-12-26 12:40+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -117,12 +117,12 @@ msgstr "_Contraer todo"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:22
-#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview.c:113
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:663
 msgid "_Contents"
 msgstr "_Índice"
 
 #: ../baobab/data/baobab.glade.h:23
-#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:638
 msgid "_Edit"
 msgstr "_Editar"
 
@@ -132,7 +132,7 @@ msgstr "_Expandir todo"
 
 #: ../baobab/data/baobab.glade.h:25
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:640
 msgid "_Help"
 msgstr "Ay_uda"
 
@@ -145,7 +145,7 @@ msgid "_Toolbar"
 msgstr "Barra de _herramientas"
 
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:639
 msgid "_View"
 msgstr "_Ver"
 
@@ -507,7 +507,7 @@ msgstr ""
 msgid "_Rescan"
 msgstr "_Volver a inspeccionar"
 
-#: ../baobab/src/baobab-utils.c:569 ../logview/logview.c:775
+#: ../baobab/src/baobab-utils.c:569
 msgid "There was an error displaying help."
 msgstr "Hubo un error al mostrar la ayuda."
 
@@ -519,9 +519,9 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "Una herramienta gráfica para analizar el uso del disco."
 
-#. Translator credits
+#. translator credits
 #: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
-#: ../logview/about.c:65
+#: ../logview/logview-about.h:63
 msgid "translator-credits"
 msgstr ""
 "Jorge González <jorgegonz@svn.gnome.org>\n"
@@ -883,11 +883,11 @@ msgstr "_Rápido (sólo se crea el sistema de archivos)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Estándar (añade un formateo a bajo nivel al modo rápido)"
 
-#: ../gfloppy/src/main.c:259
+#: ../gfloppy/src/main.c:257
 msgid "Cannot Format"
 msgstr "No se puede formatear"
 
-#: ../gfloppy/src/main.c:260
+#: ../gfloppy/src/main.c:258
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -895,12 +895,12 @@ msgstr ""
 "No se encuentran instaladas la utilidades «mke2fs» ni «mkdosfs/mformat». No se "
 "puede dar formato a un disquete sin una de ellas."
 
-#: ../gfloppy/src/main.c:280
+#: ../gfloppy/src/main.c:278
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Imposible abrir el dispositivo %s, no se puede continuar el formateo."
 
-#: ../gfloppy/src/main.c:283 ../gfloppy/src/main.c:345
+#: ../gfloppy/src/main.c:281 ../gfloppy/src/main.c:343
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -909,7 +909,7 @@ msgstr ""
 "El dispositivo %s está desconectado.\n"
 "Por favor conecte el dispositivo para continuar."
 
-#: ../gfloppy/src/main.c:286 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:284 ../gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -921,40 +921,40 @@ msgstr ""
 "Póngase en contacto con su administrador del sistema para obtener permiso de "
 "escritura."
 
-#: ../gfloppy/src/main.c:293 ../gfloppy/src/main.c:356
+#: ../gfloppy/src/main.c:291 ../gfloppy/src/main.c:354
 msgid "Cannot initialize device"
 msgstr "No se puede inicializar el dispositivo"
 
-#: ../gfloppy/src/main.c:342
+#: ../gfloppy/src/main.c:340
 #, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Imposible abrir ningún dispositivo, no se puede continuar el formateo."
 
-#: ../gfloppy/src/main.c:345 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:343 ../gfloppy/src/main.c:346
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 o /dev/fd0"
 
-#: ../gfloppy/src/main.c:509
+#: ../gfloppy/src/main.c:507
 msgid "Could not display help for the floppy formatter."
 msgstr "No se puede mostrar la ayuda para el formateador de disquetes."
 
-#: ../gfloppy/src/main.c:528
+#: ../gfloppy/src/main.c:526
 msgid "Incorrect volume name"
 msgstr "Nombre del volumen incorrecto"
 
-#: ../gfloppy/src/main.c:529
+#: ../gfloppy/src/main.c:527
 msgid "The volume name can't contain any blank space."
 msgstr "El nombre del volumen no puede contener ningún espacio en blanco."
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "The device to format"
 msgstr "El dispositivo a formatear"
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "DEVICE"
 msgstr "Dispositivo"
 
-#: ../gfloppy/src/main.c:583
+#: ../gfloppy/src/main.c:581
 msgid "- Floppy Formatter"
 msgstr "- Formateador de disquetes"
 
@@ -1002,7 +1002,7 @@ msgid "Cl_ear"
 msgstr "_Limpiar"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview.c:115
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:665
 msgid "_About"
 msgstr "Acerca _de"
 
@@ -1445,6 +1445,7 @@ msgstr "Ocurrió un error al coincidir"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
+#: ../logview/logview-window.c:507
 msgid "Not found"
 msgstr "No encontrado"
 
@@ -1944,7 +1945,7 @@ msgstr[1] "Se han encontrado %d definiciones"
 msgid "%s - Dictionary"
 msgstr "Diccionario - %s"
 
-#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview.c:84
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:637
 msgid "_File"
 msgstr "_Archivo"
 
@@ -1981,7 +1982,7 @@ msgstr "Im_primir…"
 msgid "Print this document"
 msgstr "Imprime este documento"
 
-#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview.c:98
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:651
 msgid "Select _All"
 msgstr "Seleccionar _todo"
 
@@ -3333,19 +3334,83 @@ msgstr "Pulse para detener una búsqueda."
 msgid "- the GNOME Search Tool"
 msgstr " - la herramienta de búsqueda de GNOME"
 
-#: ../logview/about.c:49
+#: ../logview/data/gnome-system-log.desktop.in.in.h:1
+msgid "Log File Viewer"
+msgstr "Visor de archivos de sucesos"
+
+#: ../logview/data/gnome-system-log.desktop.in.in.h:2
+msgid "View or monitor system log files"
+msgstr "Vea o monitorice los archivos de sucesos del sistema"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:1
+msgid "Height of the main window in pixels"
+msgstr "Altura de la ventana principal en píxeles"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:2
+msgid "Log file to open up on startup"
+msgstr "Archivo de sucesos que abrir al iniciar"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:3
+msgid "Log files to open up on startup"
+msgstr "Archivos de sucesos que abrir al iniciar"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:4
+msgid "Size of the font used to display the log"
+msgstr "Tamaño de la tipografía usada para mostrar el registro"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:5
 msgid ""
-"Log Viewer  is free software; you can redistribute it and/or modify it under "
+"Specifies a list of log files to open up at startup. A default list is "
+"created by reading /etc/syslog.conf."
+msgstr ""
+"Especifica una lista de registros de sucesos que abrir al inicio. Se crea "
+"una lista predeterminada leyendo /etc/syslog.conf."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:6
+msgid "Specifies the height of the log viewer main window in pixels."
+msgstr ""
+"Especifica la altura en píxeles de la ventana principal del visor de sucesos."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:7
+msgid ""
+"Specifies the log file displayed at startup. The default is either /var/adm/"
+"messages or /var/log/messages, depending on your operating system."
+msgstr ""
+"Especifica el archivo de sucesos mostrado al inicio. Los predeterminados son "
+"«/var/adm/messages» o «/var/log/messages», dependiendo de su sistema operativo."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:8
+msgid ""
+"Specifies the size of the fixed-width font used to display the log in the "
+"main tree view. The default is taken from the default terminal font size."
+msgstr ""
+"Especifica el tamaño de la tipografía de anchura fija usada para mostrar el "
+"registro de sucesos en la vista del árbol principal. Lo predeterminado es "
+"tomar el tamaño de la tipografía predeterminado del terminal."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:9
+msgid "Specifies the width of the log viewer main window in pixels."
+msgstr ""
+"Especifica la anchura de la ventana principal del visor de sucesos en "
+"píxeles."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:10
+msgid "Width of the main window in pixels"
+msgstr "Anchura de la ventana principal en píxeles"
+
+#: ../logview/logview-about.h:49
+msgid ""
+"Log Viewer is free software; you can redistribute it and/or modify it under "
 "the terms of the GNU General Public License as published by the Free "
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version."
 msgstr ""
-"El visor de sucesos es software libre; puede distribuirlo y modificarlo bajo "
+"El Visor de sucesos es software libre; puede distribuirlo y modificarlo bajo "
 "los términos GNU Licencia Publica General como fue publicado por la Free "
 "Software Foundation; en la versión 2 de la licencia, o (a su elección) "
 "cualquier versión posterior."
 
-#: ../logview/about.c:53
+#: ../logview/logview-about.h:53
 msgid ""
 "Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -3357,366 +3422,339 @@ msgstr ""
 "IDONEIDAD PARA UN PROPÓSITO EN FIN. Véase la Licencia Pública General de GNU "
 "para más detalles."
 
-#: ../logview/about.c:57
+#: ../logview/logview-about.h:57
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
-"the GNOME Web Browser; if not, write to the Free Software Foundation, Inc., "
-"51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
+"the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
 msgstr ""
 "Debería haber recibido una copia de la Licencia Pública General GNU junto "
-"con el Navegador Web de GNOME; de lo contrario, escriba a la Free Software "
-"Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 EE. "
-"UU."
+"con el Visor de sucesos de GNOME; de lo contrario, escriba a la Free "
+"Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-"
+"1301 EE. UU."
 
-#: ../logview/about.c:69 ../logview/logview.c:38 ../logview/main.c:52
+#: ../logview/logview-app.c:179
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "No se pudo abrir el archivo %s"
+
+#: ../logview/logview-findbar.c:169
+msgid "_Find:"
+msgstr "_Buscar:"
+
+#: ../logview/logview-findbar.c:184
+msgid "Find Previous"
+msgstr "Buscar anterior"
+
+#: ../logview/logview-findbar.c:187
+msgid "Find previous occurrence of the search string"
+msgstr "Buscar la coincidencia anterior de la cadena buscada"
+
+#: ../logview/logview-findbar.c:192
+msgid "Find Next"
+msgstr "Buscar siguiente"
+
+#: ../logview/logview-findbar.c:195
+msgid "Find next occurrence of the search string"
+msgstr "Encontrar Buscar la siguiente aparición de la cadena buscada"
+
+#: ../logview/logview-findbar.c:202
+msgid "Clear the search string"
+msgstr "Limpiar la cadena de búsqueda"
+
+#: ../logview/logview-log.c:593
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr ""
+"Error al descomprimir el archivo comprimido con GZip. Seguramente el archivo "
+"esté corrupto."
+
+#: ../logview/logview-log.c:638
+msgid "You don't have enough permissions to read the file."
+msgstr "No tiene suficientes permisos para leer el archivo."
+
+#: ../logview/logview-log.c:653
+msgid "The file is not a regular file or is not a text file."
+msgstr "El archivo no es un archivo regular o no es un archivo de texto."
+
+#: ../logview/logview-log.c:735
+msgid "This version of System Log does not support GZipped logs."
+msgstr ""
+"Esta versión del Registro de sucesos no soporta archivos comprimidos con "
+"GZip."
+
+#: ../logview/logview-loglist.c:309
+msgid "Loading..."
+msgstr "Cargando…"
+
+#: ../logview/logview-main.c:62
+msgid "Show the application's version"
+msgstr "Mostrar la versión de la aplicación"
+
+#: ../logview/logview-main.c:64
+msgid "[LOGFILE...]"
+msgstr "[ARCHIVO DE SUCESOS...]"
+
+#: ../logview/logview-main.c:68
+msgid " - Browse and monitor logs"
+msgstr " - Vea y monitorice los sucesos"
+
+#: ../logview/logview-main.c:100
+msgid "Log Viewer"
+msgstr "Visor de sucesos"
+
+#: ../logview/logview-window.c:39 ../logview/logview-window.c:596
 msgid "System Log Viewer"
 msgstr "Visor de sucesos del sistema"
 
-#: ../logview/about.c:74
-msgid "A system log viewer for GNOME."
-msgstr "Un visor de sucesos del sistema para GNOME."
-
-#: ../logview/gnome-system-log.desktop.in.in.h:1
-msgid "System Log"
-msgstr "Sucesos del sistema"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:2
-msgid "View or monitor system log files"
-msgstr "Vea o monitorice los archivos de sucesos del sistema"
-
-#: ../logview/log_repaint.c:190
+#: ../logview/logview-window.c:206
 #, c-format
 msgid "last update: %s"
 msgstr "última actualización: %s"
 
-#: ../logview/log_repaint.c:192
+#: ../logview/logview-window.c:209
 #, c-format
 msgid "%d lines (%s) - %s"
 msgstr "%d líneas (%s) - %s"
 
-#: ../logview/log_repaint.c:230
-msgid "Current"
-msgstr "Actual"
-
-#: ../logview/logrtns.c:38
-msgid "One file or more could not be opened"
-msgstr "Uno o más archivos no pudieron abrirse"
-
-#: ../logview/logrtns.c:60
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file.\n"
-msgstr ""
-"%s no es legible por el usuario. Debe ejecutar el programa como "
-"administrador o pida al administrador del sistema que cambie los permisos "
-"del archivo.\n"
-
-#: ../logview/logrtns.c:65
-#, c-format
-msgid "%s is too big."
-msgstr "%s es demasiado grande."
-
-#: ../logview/logrtns.c:68
-#, c-format
-msgid "%s could not be opened."
-msgstr "No se pudo abrir %s."
-
-#: ../logview/logrtns.c:383
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s no es un archivo de sucesos."
-
-#: ../logview/logrtns.c:389
-msgid "Not enough memory."
-msgstr "No hay suficiente memoria."
-
-#: ../logview/logrtns.c:403
-#, c-format
-msgid "%s cannot be opened."
-msgstr "No se puede abrir %s."
-
-#: ../logview/logview-findbar.c:155
-msgid "_Filter:"
-msgstr "_Filtro:"
-
-#: ../logview/logview-findbar.c:160
-msgid "_Clear"
-msgstr "_Limpiar"
-
-#: ../logview/logview.c:89
-msgid "_Open..."
-msgstr "_Abrir…"
-
-#: ../logview/logview.c:89
-msgid "Open a log from file"
-msgstr "Abre un registro de sucesos desde el archivo"
-
-#: ../logview/logview.c:91
-msgid "_Close"
-msgstr "_Cerrar"
-
-#: ../logview/logview.c:91
-msgid "Close this log"
-msgstr "Cierra este registro de sucesos"
-
-#: ../logview/logview.c:93
-msgid "_Quit"
-msgstr "_Salir"
-
-#: ../logview/logview.c:93
-msgid "Quit the log viewer"
-msgstr "Sale del visor de sucesos"
-
-#: ../logview/logview.c:96
-msgid "_Copy"
-msgstr "_Copiar"
-
-#: ../logview/logview.c:96
-msgid "Copy the selection"
-msgstr "Copia la selección"
-
-#: ../logview/logview.c:98
-msgid "Select the entire log"
-msgstr "Selecciona el archivo de sucesos completo"
-
-#: ../logview/logview.c:100
-msgid "_Filter..."
-msgstr "_Filtro…"
-
-#: ../logview/logview.c:100
-msgid "Filter log"
-msgstr "Filtro del archivo de sucesos"
-
-#: ../logview/logview.c:103
-msgid "Bigger text size"
-msgstr "Tamaño de texto mayor"
-
-#: ../logview/logview.c:105
-msgid "Smaller text size"
-msgstr "Tamaño de texto menor"
-
-#: ../logview/logview.c:107
-msgid "Normal text size"
-msgstr "Tamaño de texto normal"
-
-#: ../logview/logview.c:110
-msgid "Collapse _All"
-msgstr "_Contraer todo"
-
-#: ../logview/logview.c:110
-msgid "Collapse all the rows"
-msgstr "Contrae todas las filas"
-
-#: ../logview/logview.c:113
-msgid "Open the help contents for the log viewer"
-msgstr "Abre el contenido de la ayuda para el visor de sucesos"
-
-#: ../logview/logview.c:115
-msgid "Show the about dialog for the log viewer"
-msgstr "Muestra el diálogo «Acerca de» para el visor de sucesos"
-
-#: ../logview/logview.c:121
-msgid "_Statusbar"
-msgstr "Barra de _estado"
-
-#: ../logview/logview.c:121
-msgid "Show Status Bar"
-msgstr "Muestra la barra de estado"
-
-#: ../logview/logview.c:123
-msgid "Side _Pane"
-msgstr "Panel _lateral"
-
-#: ../logview/logview.c:123
-msgid "Show Side Pane"
-msgstr "Muestra el panel lateral"
-
-#: ../logview/logview.c:125
-msgid "_Monitor"
-msgstr "_Monitorizar"
-
-#: ../logview/logview.c:125
-msgid "Monitor Current Log"
-msgstr "Monitoriza el registro actual"
-
-#: ../logview/logview.c:127
-msgid "Ca_lendar"
-msgstr "Ca_lendario"
-
-#: ../logview/logview.c:127
-msgid "Show Calendar Log"
-msgstr "Muestra el calendario del registro"
-
-#: ../logview/logview.c:306
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (monitorizado) - %s"
-
-#: ../logview/logview.c:517
+#: ../logview/logview-window.c:337
 msgid "Open Log"
 msgstr "Abre el registro"
 
-#: ../logview/logview.c:908
+#: ../logview/logview-window.c:376
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Hubo un error al mostrar la ayuda: %s"
+
+#: ../logview/logview-window.c:492
+msgid "Wrapped"
+msgstr "Ajustado"
+
+#: ../logview/logview-window.c:601
+msgid "A system log viewer for GNOME."
+msgstr "Un visor de sucesos del sistema para GNOME."
+
+#: ../logview/logview-window.c:642
+msgid "_Open..."
+msgstr "_Abrir…"
+
+#: ../logview/logview-window.c:642
+msgid "Open a log from file"
+msgstr "Abre un registro de sucesos desde el archivo"
+
+#: ../logview/logview-window.c:644
+msgid "_Close"
+msgstr "_Cerrar"
+
+#: ../logview/logview-window.c:644
+msgid "Close this log"
+msgstr "Cierra este registro de sucesos"
+
+#: ../logview/logview-window.c:646
+msgid "_Quit"
+msgstr "_Salir"
+
+#: ../logview/logview-window.c:646
+msgid "Quit the log viewer"
+msgstr "Sale del visor de sucesos"
+
+#: ../logview/logview-window.c:649
+msgid "_Copy"
+msgstr "_Copiar"
+
+#: ../logview/logview-window.c:649
+msgid "Copy the selection"
+msgstr "Copia la selección"
+
+#: ../logview/logview-window.c:651
+msgid "Select the entire log"
+msgstr "Selecciona el archivo de sucesos completo"
+
+#: ../logview/logview-window.c:653
+msgid "_Find..."
+msgstr "_Buscar…"
+
+#: ../logview/logview-window.c:653
+msgid "Find a word or phrase in the log"
+msgstr "Buscar una palabra o frase en el registro"
+
+#: ../logview/logview-window.c:656
+msgid "Bigger text size"
+msgstr "Tamaño de texto mayor"
+
+#: ../logview/logview-window.c:658
+msgid "Smaller text size"
+msgstr "Tamaño de texto menor"
+
+#: ../logview/logview-window.c:660
+msgid "Normal text size"
+msgstr "Tamaño de texto normal"
+
+#: ../logview/logview-window.c:663
+msgid "Open the help contents for the log viewer"
+msgstr "Abre el contenido de la ayuda para el visor de sucesos"
+
+#: ../logview/logview-window.c:665
+msgid "Show the about dialog for the log viewer"
+msgstr "Muestra el diálogo «Acerca de» para el visor de sucesos"
+
+#: ../logview/logview-window.c:670
+msgid "_Statusbar"
+msgstr "Barra de _estado"
+
+#: ../logview/logview-window.c:670
+msgid "Show Status Bar"
+msgstr "Muestra la barra de estado"
+
+#: ../logview/logview-window.c:672
+msgid "Side _Pane"
+msgstr "Panel _lateral"
+
+#: ../logview/logview-window.c:672
+msgid "Show Side Pane"
+msgstr "Muestra el panel lateral"
+
+#: ../logview/logview-window.c:1155
+msgid "Close"
+msgstr "Cerrar"
+
+#: ../logview/logview-window.c:1195
 msgid "Version: "
 msgstr "Versión: "
 
-#: ../logview/logview.c:976
-msgid "Days"
-msgstr "días"
+#: ../logview/logview-window.c:1295
+msgid "Could not open the following files:"
+msgstr "No se pudieron abrir los siguientes archivos:"
 
-#: ../logview/logview.c:977
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "Puntero hacia una GSList de días para el registro actual."
+#~ msgid "System Log"
+#~ msgstr "Sucesos del sistema"
 
-#: ../logview/logview.schemas.in.h:1
-msgid "Height of the main window in pixels"
-msgstr "Altura de la ventana principal en píxeles"
+#~ msgid "Current"
+#~ msgstr "Actual"
 
-#: ../logview/logview.schemas.in.h:2
-msgid "Log file to open up on startup"
-msgstr "Archivo de sucesos que abrir al iniciar"
+#~ msgid "One file or more could not be opened"
+#~ msgstr "Uno o más archivos no pudieron abrirse"
 
-#: ../logview/logview.schemas.in.h:3
-msgid "Log files to open up on startup"
-msgstr "Archivos de sucesos que abrir al iniciar"
+#~ msgid ""
+#~ "%s is not user readable. Either run the program as root or ask the "
+#~ "sysadmin to change the permissions on the file.\n"
+#~ msgstr ""
+#~ "%s no es legible por el usuario. Debe ejecutar el programa como "
+#~ "administrador o pida al administrador del sistema que cambie los permisos "
+#~ "del archivo.\n"
 
-#: ../logview/logview.schemas.in.h:4
-msgid "Size of the font used to display the log"
-msgstr "Tamaño de la tipografía usada para mostrar el registro"
+#~ msgid "%s is too big."
+#~ msgstr "%s es demasiado grande."
 
-#: ../logview/logview.schemas.in.h:5
-msgid ""
-"Specifies a list of log files to open up at startup. A default list is "
-"created by reading /etc/syslog.conf."
-msgstr ""
-"Especifica una lista de registros de sucesos que abrir al inicio. Se crea "
-"una lista predeterminada leyendo /etc/syslog.conf."
+#~ msgid "%s could not be opened."
+#~ msgstr "No se pudo abrir %s."
 
-#: ../logview/logview.schemas.in.h:6
-msgid "Specifies the height of the log viewer main window in pixels."
-msgstr ""
-"Especifica la altura en píxeles de la ventana principal del visor de sucesos."
+#~ msgid "%s is not a log file."
+#~ msgstr "%s no es un archivo de sucesos."
 
-#: ../logview/logview.schemas.in.h:7
-msgid ""
-"Specifies the log file displayed at startup. The default is either /var/adm/"
-"messages or /var/log/messages, depending on your operating system."
-msgstr ""
-"Especifica el archivo de sucesos mostrado al inicio. Los predeterminados son "
-"«/var/adm/messages» o «/var/log/messages», dependiendo de su sistema operativo."
+#~ msgid "Not enough memory."
+#~ msgstr "No hay suficiente memoria."
 
-#: ../logview/logview.schemas.in.h:8
-msgid ""
-"Specifies the size of the fixed-width font used to display the log in the "
-"main tree view. The default is taken from the default terminal font size."
-msgstr ""
-"Especifica el tamaño de la tipografía de anchura fija usada para mostrar el "
-"registro de sucesos en la vista del árbol principal. Lo predeterminado es "
-"tomar el tamaño de la tipografía predeterminado del terminal."
+#~ msgid "%s cannot be opened."
+#~ msgstr "No se puede abrir %s."
 
-#: ../logview/logview.schemas.in.h:9
-msgid "Specifies the width of the log viewer main window in pixels."
-msgstr ""
-"Especifica la anchura de la ventana principal del visor de sucesos en "
-"píxeles."
+#~ msgid "_Filter:"
+#~ msgstr "_Filtro:"
 
-#: ../logview/logview.schemas.in.h:10
-msgid "Width of the main window in pixels"
-msgstr "Anchura de la ventana principal en píxeles"
+#~ msgid "_Clear"
+#~ msgstr "_Limpiar"
 
-#: ../logview/main.c:47
-msgid "Show the application's version"
-msgstr "Mostrar la versión de la aplicación"
+#~ msgid "_Filter..."
+#~ msgstr "_Filtro…"
 
-#: ../logview/main.c:53
-msgid "Show System Log Viewer options"
-msgstr "Muestra las opciones del visor de sucesos del sistema"
+#~ msgid "Filter log"
+#~ msgstr "Filtro del archivo de sucesos"
 
-#: ../logview/main.c:57
-msgid " - Browse and monitor logs"
-msgstr " - Vea y monitorice los sucesos"
+#~ msgid "Collapse _All"
+#~ msgstr "_Contraer todo"
 
-#: ../logview/main.c:105
-msgid "Log Viewer"
-msgstr "Visor de sucesos"
+#~ msgid "Collapse all the rows"
+#~ msgstr "Contrae todas las filas"
 
-#: ../logview/main.c:114
-msgid "Unable to create user interface."
-msgstr "Imposible crear la interfaz de usuario."
+#~ msgid "_Monitor"
+#~ msgstr "_Monitorizar"
 
-#: ../logview/misc.c:42
-msgid "January"
-msgstr "enero"
+#~ msgid "Monitor Current Log"
+#~ msgstr "Monitoriza el registro actual"
 
-#: ../logview/misc.c:42
-msgid "February"
-msgstr "febrero"
+#~ msgid "Ca_lendar"
+#~ msgstr "Ca_lendario"
 
-#: ../logview/misc.c:42
-msgid "March"
-msgstr "marzo"
+#~ msgid "Show Calendar Log"
+#~ msgstr "Muestra el calendario del registro"
 
-#: ../logview/misc.c:42
-msgid "April"
-msgstr "abril"
+#~ msgid "%s (monitored) - %s"
+#~ msgstr "%s (monitorizado) - %s"
 
-#: ../logview/misc.c:42
-msgid "May"
-msgstr "mayo"
+#~ msgid "Days"
+#~ msgstr "días"
 
-#: ../logview/misc.c:43
-msgid "June"
-msgstr "junio"
+#~ msgid "Pointer towards a GSList of days for the current log."
+#~ msgstr "Puntero hacia una GSList de días para el registro actual."
 
-#: ../logview/misc.c:43
-msgid "July"
-msgstr "julio"
+#~ msgid "Show System Log Viewer options"
+#~ msgstr "Muestra las opciones del visor de sucesos del sistema"
 
-#: ../logview/misc.c:43
-msgid "August"
-msgstr "agosto"
+#~ msgid "Unable to create user interface."
+#~ msgstr "Imposible crear la interfaz de usuario."
 
-#: ../logview/misc.c:43
-msgid "September"
-msgstr "septiembre"
+#~ msgid "January"
+#~ msgstr "enero"
 
-#: ../logview/misc.c:43
-msgid "October"
-msgstr "octubre"
+#~ msgid "February"
+#~ msgstr "febrero"
 
-#: ../logview/misc.c:44
-msgid "November"
-msgstr "noviembre"
+#~ msgid "March"
+#~ msgstr "marzo"
 
-#: ../logview/misc.c:44
-msgid "December"
-msgstr "diciembre"
+#~ msgid "April"
+#~ msgstr "abril"
 
-#: ../logview/misc.c:164
-msgid "Invalid date"
-msgstr "Fecha inválida"
+#~ msgid "May"
+#~ msgstr "mayo"
+
+#~ msgid "June"
+#~ msgstr "junio"
+
+#~ msgid "July"
+#~ msgstr "julio"
+
+#~ msgid "August"
+#~ msgstr "agosto"
+
+#~ msgid "September"
+#~ msgstr "septiembre"
+
+#~ msgid "October"
+#~ msgstr "octubre"
+
+#~ msgid "November"
+#~ msgstr "noviembre"
+
+#~ msgid "December"
+#~ msgstr "diciembre"
+
+#~ msgid "Invalid date"
+#~ msgstr "Fecha inválida"
 
 # Asignar un comentario más útil
-#. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:169
-#, c-format
-msgid "%x"
-msgstr "%x"
+#~ msgid "%x"
+#~ msgstr "%x"
 
-#: ../logview/monitor.c:83
-msgid "This file cannot be monitored."
-msgstr "Este archivo no se puede monitorizar."
+#~ msgid "This file cannot be monitored."
+#~ msgstr "Este archivo no se puede monitorizar."
 
-#: ../logview/monitor.c:86
-msgid "File monitoring is not supported on this file system.\n"
-msgstr ""
-"La monitorización de archivos no está soportada en este sistema de "
-"archivos.\n"
+#~ msgid "File monitoring is not supported on this file system.\n"
+#~ msgstr ""
+#~ "La monitorización de archivos no está soportada en este sistema de "
+#~ "archivos.\n"
 
-#: ../logview/monitor.c:88
-msgid "Gnome-VFS Error.\n"
-msgstr "Error de GNOME-VFS.\n"
+#~ msgid "Gnome-VFS Error.\n"
+#~ msgstr "Error de GNOME-VFS.\n"
 
 #~ msgid "Dictionary and spelling tool"
 #~ msgstr "Herramienta de diccionario y ortografía"
