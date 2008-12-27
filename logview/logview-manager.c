@@ -178,7 +178,7 @@ create_log_cb (LogviewLog *log,
       logview_manager_set_active_log (data->manager, log);
     }
   } else {
-    char *path, *primary;
+    char *path;
 
     /* notify the error */
     path = g_file_get_path (data->file);
@@ -197,7 +197,6 @@ create_log_cb (LogviewLog *log,
     }
 
     g_free (path);
-    g_free (primary);
   }
   
   if (data->is_multiple) {

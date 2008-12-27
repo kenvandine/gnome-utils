@@ -1,3 +1,9 @@
+2008-12-28  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* logview-manager.c (create_log_cb): remove the use of an unallocated
+	pointer, which would lead to segfaults.
+	Patch by Frederic Peters (#565827).
+
 2008-12-24  Cosimo Cecchi  <cosimoc@gnome.org>
 
 	* logview-log.c (log_load):
