@@ -53,7 +53,7 @@ logview-marshal.c: logview-marshal.list $(GLIB_GENMARSHAL)
 EXTRA_DIST = logview-marshal.list
 
 CLEANFILES = 				\
-	i$(BUILT_SOURCES)
+	$(BUILT_SOURCES)
 
 dist-hook:
 	cd $(distdir) ; rm -f $(CLEANFILES)
