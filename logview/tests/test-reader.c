@@ -1,5 +1,5 @@
-#include "logview-log.h"
-#include "logview-utils.h"
+#include "../logview-log.h"
+#include "../logview-utils.h"
 
 #include <glib.h>
 #include <gio/gio.h>

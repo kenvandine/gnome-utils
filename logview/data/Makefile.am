@@ -25,11 +25,12 @@ if GCONF_SCHEMAS_INSTALL
 endif
 
 EXTRA_DIST = 			\
+	gnome-system-log.desktop.in.in	\
 	$(xml_DATA)		\
-	$(desktop_in_files)	\
 	$(man_MANS)		\
 	$(schemas_in_files)
 
 DISTCLEANFILES =		\
 	$(desktop_DATA)		\
+	$(desktop_in_files)	\
 	$(schemas_DATA)

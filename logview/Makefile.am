@@ -17,8 +17,8 @@ BUILT_SOURCES = 		\
 	logview-marshal.h
 
 gnome_system_log_SOURCES = 	\
-  gtkmessagearea.h \
-  gtkmessagearea.c \
+	gtkmessagearea.h	\
+	gtkmessagearea.c	\
 	logview-app.c		\
 	logview-app.h		\
 	logview-main.c		\
@@ -50,8 +50,10 @@ logview-marshal.c: logview-marshal.list $(GLIB_GENMARSHAL)
 	echo "#include \"logview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=logview_marshal >> $@
 
+EXTRA_DIST = logview-marshal.list
+
 CLEANFILES = 				\
-	$(BUILT_SOURCES)
+	i$(BUILT_SOURCES)
 
 dist-hook:
 	cd $(distdir) ; rm -f $(CLEANFILES)
