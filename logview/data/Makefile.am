@@ -12,10 +12,10 @@ man_MANS = gnome-system-log.1
 
 schemasdir = $(GCONF_SCHEMA_FILE_DIR)
 schemas_in_files = gnome-system-log.schemas.in
-schemas_DATA = $(schemas_in_file:.schemas.in=.schemas)
+schemas_DATA = $(schemas_in_files:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
-install-gconf-schemas: $(schemas_DATA)
+install-data-local: $(schemas_DATA)
 if GCONF_SCHEMAS_INSTALL
 	if test -z "$(DESTDIR)" ; then \
 		for p in $^ ; do \
