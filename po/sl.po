@@ -3,14 +3,14 @@
 #
 # Andraz Tori <andraz.tori1@guest.arnes.si>, 2000.
 # Matic Žgur <mr.zgur@gmail.com>, 2006.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2008.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils&amp;component=general\n"
-"POT-Creation-Date: 2008-12-23 10:49+0000\n"
-"PO-Revision-Date: 2008-12-23 13:53+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils&component=general\n"
+"POT-Creation-Date: 2009-01-15 09:31+0000\n"
+"PO-Revision-Date: 2009-01-17 10:03+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -113,13 +113,13 @@ msgstr "_Skrči vse"
 #. Help menu
 #: ../baobab/data/baobab.glade.h:22
 #: ../gnome-dictionary/src/gdict-window.c:1234
-#: ../logview/logview.c:113
+#: ../logview/logview-window.c:663
 msgid "_Contents"
 msgstr "_Vsebina"
 
 #: ../baobab/data/baobab.glade.h:23
 #: ../gnome-dictionary/src/gdict-window.c:1181
-#: ../logview/logview.c:85
+#: ../logview/logview-window.c:638
 msgid "_Edit"
 msgstr "_Uredi"
 
@@ -130,7 +130,7 @@ msgstr "_Razširi vse"
 #: ../baobab/data/baobab.glade.h:25
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
 #: ../gnome-dictionary/src/gdict-window.c:1184
-#: ../logview/logview.c:87
+#: ../logview/logview-window.c:640
 msgid "_Help"
 msgstr "_Pomoč"
 
@@ -144,7 +144,7 @@ msgstr "_Orodna vrstica"
 
 #: ../baobab/data/baobab.glade.h:28
 #: ../gnome-dictionary/src/gdict-window.c:1182
-#: ../logview/logview.c:86
+#: ../logview/logview-window.c:639
 msgid "_View"
 msgstr "Po_gled"
 
@@ -201,7 +201,7 @@ msgid "Calculating percentage bars..."
 msgstr "Računanje stolpcev odstotkov ..."
 
 #: ../baobab/src/baobab.c:193
-#: ../baobab/src/baobab.c:993
+#: ../baobab/src/baobab.c:998
 #: ../baobab/src/callbacks.c:306
 msgid "Ready"
 msgstr "Pripravljen"
@@ -255,11 +255,15 @@ msgstr "Določitev krožnega grafikona"
 msgid "View as Treemap Chart"
 msgstr "Seznamski drevesni pregled grafikona"
 
-#: ../baobab/src/baobab.c:963
+#: ../baobab/src/baobab.c:917
+msgid "Cannot check an excluded folder!"
+msgstr "Ni mogoče pregledati izločene mape"
+
+#: ../baobab/src/baobab.c:968
 msgid "Could not detect any mount point."
 msgstr "Ni mogoče zaznati priklopne točke."
 
-#: ../baobab/src/baobab.c:966
+#: ../baobab/src/baobab.c:971
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Brez določene priklopne točne, zasedenosti diska ni mogoče določiti."
 
@@ -503,7 +507,6 @@ msgid "_Rescan"
 msgstr "Znova _skeniraj"
 
 #: ../baobab/src/baobab-utils.c:569
-#: ../logview/logview.c:775
 msgid "There was an error displaying help."
 msgstr "Pri prikazu pomoči je prišlo do napake."
 
@@ -515,10 +518,10 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "Grafično orodje za analiziranje porabe diska."
 
-#. Translator credits
+#. translator credits
 #: ../baobab/src/callbacks.c:106
 #: ../gnome-dictionary/src/gdict-about.c:55
-#: ../logview/about.c:65
+#: ../logview/logview-about.h:63
 msgid "translator-credits"
 msgstr ""
 "Matic Žgur <mr.zgur@gmail.com>\n"
@@ -977,7 +980,7 @@ msgstr "P_očisti"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
 #: ../gnome-dictionary/src/gdict-window.c:1236
-#: ../logview/logview.c:115
+#: ../logview/logview-window.c:665
 msgid "_About"
 msgstr "_O programu"
 
@@ -1341,6 +1344,7 @@ msgstr "Napaka pri iskanju"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
+#: ../logview/logview-window.c:507
 msgid "Not found"
 msgstr "Ni zadetkov"
 
@@ -1836,7 +1840,7 @@ msgid "%s - Dictionary"
 msgstr "%s - Slovar"
 
 #: ../gnome-dictionary/src/gdict-window.c:1180
-#: ../logview/logview.c:84
+#: ../logview/logview-window.c:637
 msgid "_File"
 msgstr "_Datoteka"
 
@@ -1874,7 +1878,7 @@ msgid "Print this document"
 msgstr "Natisni dokument"
 
 #: ../gnome-dictionary/src/gdict-window.c:1201
-#: ../logview/logview.c:98
+#: ../logview/logview-window.c:651
 msgid "Select _All"
 msgstr "Izberi _vse"
 
@@ -2058,7 +2062,7 @@ msgstr "Zajemi _po zamiku"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:472
-#: ../gnome-screenshot/gnome-screenshot.c:1143
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "seconds"
 msgstr "sekund"
 
@@ -2076,11 +2080,11 @@ msgstr "Učinki"
 msgid "Take _Screenshot"
 msgstr "Zajemi zaslonsko sliko"
 
-#: ../gnome-screenshot/gnome-screenshot.c:592
+#: ../gnome-screenshot/gnome-screenshot.c:631
 msgid "Error while saving screenshot"
 msgstr "Napaka med shranjevanjem zajete slike"
 
-#: ../gnome-screenshot/gnome-screenshot.c:596
+#: ../gnome-screenshot/gnome-screenshot.c:635
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
@@ -2091,11 +2095,11 @@ msgstr ""
 "Napaka je %s\n"
 "Prosim, izberite novo mesto in poskusite znova."
 
-#: ../gnome-screenshot/gnome-screenshot.c:743
+#: ../gnome-screenshot/gnome-screenshot.c:782
 msgid "Unable to take a screenshot of the current window"
 msgstr "Ni mogoče zajeti zaslonske slike trenutnega namizja."
 
-#: ../gnome-screenshot/gnome-screenshot.c:785
+#: ../gnome-screenshot/gnome-screenshot.c:824
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "slika-%s.png"
@@ -2103,14 +2107,14 @@ msgstr "slika-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:792
+#: ../gnome-screenshot/gnome-screenshot.c:831
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "slika-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:802
+#: ../gnome-screenshot/gnome-screenshot.c:841
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2119,40 +2123,40 @@ msgstr "slika.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:809
+#: ../gnome-screenshot/gnome-screenshot.c:848
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "slika-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1140
+#: ../gnome-screenshot/gnome-screenshot.c:1179
 msgid "Grab a window instead of the entire screen"
 msgstr "Zajemi okno namesto celotnega zaslona"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1141
+#: ../gnome-screenshot/gnome-screenshot.c:1180
 msgid "Include the window border with the screenshot"
 msgstr "V zaslonsko sliko vključi tudi robove okna"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1142
+#: ../gnome-screenshot/gnome-screenshot.c:1181
 msgid "Remove the window border from the screenshot"
 msgstr "Iz zaslonske slike odstrani robove okna"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1143
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Zajemi zaslonsko sliko po navedenem zamiku [v sekundah]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1144
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Učinki za dodajanje robovom (senca, rob in brez)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1144
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "effect"
 msgstr "učinek"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1145
+#: ../gnome-screenshot/gnome-screenshot.c:1184
 msgid "Interactively set options"
 msgstr "interaktivna možnost nastavitve"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1154
+#: ../gnome-screenshot/gnome-screenshot.c:1193
 msgid "Take a picture of the screen"
 msgstr "Naredi sliko zaslona"
 
@@ -3116,346 +3120,342 @@ msgstr "Kliknite za zaustavitev iskanja."
 msgid "- the GNOME Search Tool"
 msgstr "- GNOME orodje za iskanje"
 
-#: ../logview/about.c:49
-msgid "Log Viewer  is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
-msgstr "To je prosta programska oprema. Program lahko uporabljate v skladu z pogoji Splošne Javne Licence (GNU General Public License) različice 2 ali katerekoli kasnejše."
+#: ../logview/data/gnome-system-log.desktop.in.in.h:1
+msgid "Log File Viewer"
+msgstr "Pregledovalnik datotek beleženja"
 
-#: ../logview/about.c:53
-msgid "Log Viewer is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
-msgstr "Program je na voljo v upanju, da bo komu koristen, vendar brez vsakršne garancije. Oglejte si Splošno javno licenco (GNU General Public License) za več podrobnosti."
-
-#: ../logview/about.c:57
-msgid "You should have received a copy of the GNU General Public License along with the GNOME Web Browser; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr "Skupaj s programom bi morali prejeti kopijo splošne javne licence GNU General Public License. V primeru, da je niste, pišite na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA"
-
-#: ../logview/about.c:69
-#: ../logview/logview.c:38
-#: ../logview/main.c:52
-msgid "System Log Viewer"
-msgstr "Pregledovalnik sistemskega dnevnika"
-
-#: ../logview/about.c:74
-msgid "A system log viewer for GNOME."
-msgstr "Pregledovalnik sistemskega dnevnika za GNOME."
-
-#: ../logview/gnome-system-log.desktop.in.in.h:1
-msgid "System Log"
-msgstr "Sistemski dnevnik"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:2
+#: ../logview/data/gnome-system-log.desktop.in.in.h:2
 msgid "View or monitor system log files"
 msgstr "Ogled ali nadzor sistemskih dnevniških datotek"
 
-#: ../logview/log_repaint.c:190
+#: ../logview/data/gnome-system-log.schemas.in.h:1
+msgid "Height of the main window in pixels"
+msgstr "Višina glavnega okna v točkah"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:2
+msgid "Log file to open up on startup"
+msgstr "Dnevniška datoteka, ki naj se odpre ob zagonu"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:3
+msgid "Log files to open up on startup"
+msgstr "Dnevniške datoteke, ki naj se odprejo ob zagonu"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:4
+msgid "Size of the font used to display the log"
+msgstr "Velikost pisave uporabljene za prikaz dnevnika"
+
+#: ../logview/data/gnome-system-log.schemas.in.h:5
+msgid "Specifies a list of log files to open up at startup. A default list is created by reading /etc/syslog.conf."
+msgstr "Določa dnevniške datoteke, ki se odprejo ob zagonu. Privzeti seznam je ustvarjen z branjem iz /etc/syslog.conf."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:6
+msgid "Specifies the height of the log viewer main window in pixels."
+msgstr "Določa višino glavnega okna pregledovalnika dnevnikov v točkah."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:7
+msgid "Specifies the log file displayed at startup. The default is either /var/adm/messages or /var/log/messages, depending on your operating system."
+msgstr "Določa dnevniško datoteko, ki se odpre ob zagonu. Privzeto je ali /var/adm/messages ali /var/log/messages, odvisno od vašega operacijskega sistema."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:8
+msgid "Specifies the size of the fixed-width font used to display the log in the main tree view. The default is taken from the default terminal font size."
+msgstr "Določa velikost pisave z nespremenljivo širino, ki je uporabljena za prikaz dnevnika v glavnem drevesnem pogledu. Privzeto je vzeta iz privzete velikosti pisave terminala."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:9
+msgid "Specifies the width of the log viewer main window in pixels."
+msgstr "Določa širino glavnega okna pregledovalnika dnevnikov v točkah."
+
+#: ../logview/data/gnome-system-log.schemas.in.h:10
+msgid "Width of the main window in pixels"
+msgstr "Širina glavnega okna v točkah"
+
+#: ../logview/logview-about.h:49
+msgid "Log Viewer is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
+msgstr "Pregledovalnik beleženja je prosta programska oprema. Program lahko uporabljate v skladu z pogoji Splošne Javne Licence 2 (GNU General Public License) ali kasnejše različice."
+
+#: ../logview/logview-about.h:53
+msgid "Log Viewer is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "Program je na voljo v upanju, da bo komu koristen, vendar brez vsakršne garancije. Oglejte si Splošno javno licenco (GNU General Public License) za več podrobnosti."
+
+#: ../logview/logview-about.h:57
+msgid "You should have received a copy of the GNU General Public License along with the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+msgstr "Skupaj s programom bi morali prejeti kopijo licence GNU General Public License. Če je niste, pišite na Free Software Foundation, Inc.,51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+
+#: ../logview/logview-app.c:179
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "Ni mogoče odpreti datoteke: '%s"
+
+#: ../logview/logview-findbar.c:169
+msgid "_Find:"
+msgstr "_Poišči:"
+
+#: ../logview/logview-findbar.c:184
+msgid "Find Previous"
+msgstr "Poišči predhodne"
+
+#: ../logview/logview-findbar.c:187
+msgid "Find previous occurrence of the search string"
+msgstr "Poišči predhodni zadetek iskanega niza"
+
+#: ../logview/logview-findbar.c:192
+msgid "Find Next"
+msgstr "Poišči naslednje"
+
+#: ../logview/logview-findbar.c:195
+msgid "Find next occurrence of the search string"
+msgstr "Poišči naslednji zadetek iskanega niza"
+
+#: ../logview/logview-findbar.c:202
+msgid "Clear the search string"
+msgstr "Počisti iskalni niz"
+
+#: ../logview/logview-log.c:593
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr "Napaka med razširjanjem GZip beležnice. Datoteka je morda poškodovana."
+
+#: ../logview/logview-log.c:638
+msgid "You don't have enough permissions to read the file."
+msgstr "Ni ustreznih dovoljenj za branje datoteke."
+
+#: ../logview/logview-log.c:653
+msgid "The file is not a regular file or is not a text file."
+msgstr "Datoteka ni običajna datoteka ali pa ni besedilna."
+
+#: ../logview/logview-log.c:735
+msgid "This version of System Log does not support GZipped logs."
+msgstr "Različica programa ne podpira GZip skrčenih beleženic."
+
+#: ../logview/logview-loglist.c:309
+msgid "Loading..."
+msgstr "Nalaganje ..."
+
+#: ../logview/logview-main.c:62
+msgid "Show the application's version"
+msgstr "Pokaži različico programa"
+
+#: ../logview/logview-main.c:64
+msgid "[LOGFILE...]"
+msgstr "[BELEŽNICA ...]"
+
+#: ../logview/logview-main.c:68
+msgid " - Browse and monitor logs"
+msgstr " - Brskanje in nadzorovanje dnevnikov"
+
+#: ../logview/logview-main.c:100
+msgid "Log Viewer"
+msgstr "Pregledovalnik dnevnikov"
+
+#: ../logview/logview-window.c:39
+#: ../logview/logview-window.c:596
+msgid "System Log Viewer"
+msgstr "Pregledovalnik sistemskega dnevnika"
+
+#: ../logview/logview-window.c:206
 #, c-format
 msgid "last update: %s"
 msgstr "zadnja posodobitev: %s"
 
-#: ../logview/log_repaint.c:192
+#: ../logview/logview-window.c:209
 #, c-format
 msgid "%d lines (%s) - %s"
 msgstr "%d vrstic (%s) - %s"
 
-#: ../logview/log_repaint.c:230
-msgid "Current"
-msgstr "Trenutno"
-
-#: ../logview/logrtns.c:38
-msgid "One file or more could not be opened"
-msgstr "Ena ali več datotek ne more biti odprtih"
-
-#: ../logview/logrtns.c:60
-#, c-format
-msgid "%s is not user readable. Either run the program as root or ask the sysadmin to change the permissions on the file.\n"
-msgstr "Datoteka %s ni berljiva za uporabnika. Ali zaženite program kot root, ali pa vprašajte administratorja, da spremeni dovoljenja za dostop do datoteke.\n"
-
-#: ../logview/logrtns.c:65
-#, c-format
-msgid "%s is too big."
-msgstr "%s je prevelik."
-
-#: ../logview/logrtns.c:68
-#, c-format
-msgid "%s could not be opened."
-msgstr "datoteke %s ni mogoče odpreti."
-
-#: ../logview/logrtns.c:383
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s ni dnevniška datoteka."
-
-#: ../logview/logrtns.c:389
-msgid "Not enough memory."
-msgstr "Ni dovolj pomnilnika."
-
-#: ../logview/logrtns.c:403
-#, c-format
-msgid "%s cannot be opened."
-msgstr "datoteke %s ni mogoče odpreti."
-
-#: ../logview/logview-findbar.c:155
-msgid "_Filter:"
-msgstr "_Filtriraj:"
-
-#: ../logview/logview-findbar.c:160
-msgid "_Clear"
-msgstr "_Počisti"
-
-#: ../logview/logview.c:89
-msgid "_Open..."
-msgstr "_Odpri ..."
-
-#: ../logview/logview.c:89
-msgid "Open a log from file"
-msgstr "Odpri dnevnik iz datoteke"
-
-#: ../logview/logview.c:91
-msgid "_Close"
-msgstr "_Zapri"
-
-#: ../logview/logview.c:91
-msgid "Close this log"
-msgstr "Zapri ta dnevnik"
-
-#: ../logview/logview.c:93
-msgid "_Quit"
-msgstr "_Končaj"
-
-#: ../logview/logview.c:93
-msgid "Quit the log viewer"
-msgstr "Končaj Pregledovalnik dnevnika"
-
-#: ../logview/logview.c:96
-msgid "_Copy"
-msgstr "_Kopiraj"
-
-#: ../logview/logview.c:96
-msgid "Copy the selection"
-msgstr "Kopiraj izbrano"
-
-#: ../logview/logview.c:98
-msgid "Select the entire log"
-msgstr "Izberi celoten dnevnik"
-
-#: ../logview/logview.c:100
-msgid "_Filter..."
-msgstr "_Filtriraj ..."
-
-#: ../logview/logview.c:100
-msgid "Filter log"
-msgstr "Filtriraj dnevnik"
-
-#: ../logview/logview.c:103
-msgid "Bigger text size"
-msgstr "Večja velikost besedila"
-
-#: ../logview/logview.c:105
-msgid "Smaller text size"
-msgstr "Manjša velikost besedila"
-
-#: ../logview/logview.c:107
-msgid "Normal text size"
-msgstr "Normalna velikost besedila"
-
-#: ../logview/logview.c:110
-msgid "Collapse _All"
-msgstr "Skrči _vse"
-
-#: ../logview/logview.c:110
-msgid "Collapse all the rows"
-msgstr "Skrči vse vrstice"
-
-#: ../logview/logview.c:113
-msgid "Open the help contents for the log viewer"
-msgstr "Odpre vsebino pomoči za pregledovalnik dnevnikov"
-
-#: ../logview/logview.c:115
-msgid "Show the about dialog for the log viewer"
-msgstr "Pokaži pogovorno okno o programu za pregledovalnik dnevnikov"
-
-#: ../logview/logview.c:121
-msgid "_Statusbar"
-msgstr "_Vrstica stanja"
-
-#: ../logview/logview.c:121
-msgid "Show Status Bar"
-msgstr "Pokaži vrstico stanja"
-
-#: ../logview/logview.c:123
-msgid "Side _Pane"
-msgstr "_Stranska plošča"
-
-#: ../logview/logview.c:123
-msgid "Show Side Pane"
-msgstr "Pokaži stransko ploščo"
-
-#: ../logview/logview.c:125
-msgid "_Monitor"
-msgstr "Nadzoruj"
-
-#: ../logview/logview.c:125
-msgid "Monitor Current Log"
-msgstr "Nadzoruj trenutni dnevnik"
-
-#: ../logview/logview.c:127
-msgid "Ca_lendar"
-msgstr "_Koledar"
-
-#: ../logview/logview.c:127
-msgid "Show Calendar Log"
-msgstr "Pokaži koledarski dnevnik"
-
-#: ../logview/logview.c:306
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (nadzorovano) - %s"
-
-#: ../logview/logview.c:517
+#: ../logview/logview-window.c:337
 msgid "Open Log"
 msgstr "Odpri dnevnik"
 
-#: ../logview/logview.c:908
+#: ../logview/logview-window.c:376
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Pri prikazovanju pomoči je prišlo do napake: %s"
+
+#: ../logview/logview-window.c:492
+msgid "Wrapped"
+msgstr "Prelomljeno"
+
+#: ../logview/logview-window.c:601
+msgid "A system log viewer for GNOME."
+msgstr "Pregledovalnik sistemskega dnevnika za GNOME."
+
+#: ../logview/logview-window.c:642
+msgid "_Open..."
+msgstr "_Odpri ..."
+
+#: ../logview/logview-window.c:642
+msgid "Open a log from file"
+msgstr "Odpri dnevnik iz datoteke"
+
+#: ../logview/logview-window.c:644
+msgid "_Close"
+msgstr "_Zapri"
+
+#: ../logview/logview-window.c:644
+msgid "Close this log"
+msgstr "Zapri ta dnevnik"
+
+#: ../logview/logview-window.c:646
+msgid "_Quit"
+msgstr "_Končaj"
+
+#: ../logview/logview-window.c:646
+msgid "Quit the log viewer"
+msgstr "Končaj Pregledovalnik dnevnika"
+
+#: ../logview/logview-window.c:649
+msgid "_Copy"
+msgstr "_Kopiraj"
+
+#: ../logview/logview-window.c:649
+msgid "Copy the selection"
+msgstr "Kopiraj izbrano"
+
+#: ../logview/logview-window.c:651
+msgid "Select the entire log"
+msgstr "Izberi celoten dnevnik"
+
+#: ../logview/logview-window.c:653
+msgid "_Find..."
+msgstr "_Poišči ..."
+
+#: ../logview/logview-window.c:653
+msgid "Find a word or phrase in the log"
+msgstr "V beležnici poišči besedo ali frazo"
+
+#: ../logview/logview-window.c:656
+msgid "Bigger text size"
+msgstr "Večja velikost besedila"
+
+#: ../logview/logview-window.c:658
+msgid "Smaller text size"
+msgstr "Manjša velikost besedila"
+
+#: ../logview/logview-window.c:660
+msgid "Normal text size"
+msgstr "Normalna velikost besedila"
+
+#: ../logview/logview-window.c:663
+msgid "Open the help contents for the log viewer"
+msgstr "Odpre vsebino pomoči za pregledovalnik dnevnikov"
+
+#: ../logview/logview-window.c:665
+msgid "Show the about dialog for the log viewer"
+msgstr "Pokaži pogovorno okno o programu za pregledovalnik dnevnikov"
+
+#: ../logview/logview-window.c:670
+msgid "_Statusbar"
+msgstr "_Vrstica stanja"
+
+#: ../logview/logview-window.c:670
+msgid "Show Status Bar"
+msgstr "Pokaži vrstico stanja"
+
+#: ../logview/logview-window.c:672
+msgid "Side _Pane"
+msgstr "_Stranska plošča"
+
+#: ../logview/logview-window.c:672
+msgid "Show Side Pane"
+msgstr "Pokaži stransko ploščo"
+
+#: ../logview/logview-window.c:1155
+msgid "Close"
+msgstr "Zapri"
+
+#: ../logview/logview-window.c:1195
 msgid "Version: "
 msgstr "Različica:"
 
-#: ../logview/logview.c:976
-msgid "Days"
-msgstr "Dnevi"
+#: ../logview/logview-window.c:1295
+msgid "Could not open the following files:"
+msgstr "Ni mogoče izbrisati naslednjih datotek:"
 
-#: ../logview/logview.c:977
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "Kazalec proti seznamu dni GSList za trenutni dnevnik."
-
-#: ../logview/logview.schemas.in.h:1
-msgid "Height of the main window in pixels"
-msgstr "Višina glavnega okna v točkah"
-
-#: ../logview/logview.schemas.in.h:2
-msgid "Log file to open up on startup"
-msgstr "Dnevniška datoteka, ki naj se odpre ob zagonu"
-
-#: ../logview/logview.schemas.in.h:3
-msgid "Log files to open up on startup"
-msgstr "Dnevniške datoteke, ki naj se odprejo ob zagonu"
-
-#: ../logview/logview.schemas.in.h:4
-msgid "Size of the font used to display the log"
-msgstr "Velikost pisave uporabljene za prikaz dnevnika"
-
-#: ../logview/logview.schemas.in.h:5
-msgid "Specifies a list of log files to open up at startup. A default list is created by reading /etc/syslog.conf."
-msgstr "Določa dnevniške datoteke, ki se odprejo ob zagonu. Privzeti seznam je ustvarjen z branjem iz /etc/syslog.conf."
-
-#: ../logview/logview.schemas.in.h:6
-msgid "Specifies the height of the log viewer main window in pixels."
-msgstr "Določa višino glavnega okna pregledovalnika dnevnikov v točkah."
-
-#: ../logview/logview.schemas.in.h:7
-msgid "Specifies the log file displayed at startup. The default is either /var/adm/messages or /var/log/messages, depending on your operating system."
-msgstr "Določa dnevniško datoteko, ki se odpre ob zagonu. Privzeto je ali /var/adm/messages ali /var/log/messages, odvisno od vašega operacijskega sistema."
-
-#: ../logview/logview.schemas.in.h:8
-msgid "Specifies the size of the fixed-width font used to display the log in the main tree view. The default is taken from the default terminal font size."
-msgstr "Določa velikost pisave z nespremenljivo širino, ki je uporabljena za prikaz dnevnika v glavnem drevesnem pogledu. Privzeto je vzeta iz privzete velikosti pisave terminala."
-
-#: ../logview/logview.schemas.in.h:9
-msgid "Specifies the width of the log viewer main window in pixels."
-msgstr "Določa širino glavnega okna pregledovalnika dnevnikov v točkah."
-
-#: ../logview/logview.schemas.in.h:10
-msgid "Width of the main window in pixels"
-msgstr "Širina glavnega okna v točkah"
-
-#: ../logview/main.c:47
-msgid "Show the application's version"
-msgstr "Pokaži različico programa"
-
-#: ../logview/main.c:53
-msgid "Show System Log Viewer options"
-msgstr "Pokaži možnosti Pregledovalnika sistemskega dnevnika"
-
-#: ../logview/main.c:57
-msgid " - Browse and monitor logs"
-msgstr " - Brskanje in nadzorovanje dnevnikov"
-
-#: ../logview/main.c:105
-msgid "Log Viewer"
-msgstr "Pregledovalnik dnevnikov"
-
-#: ../logview/main.c:114
-msgid "Unable to create user interface."
-msgstr "Ni mogoče ustvariti uporabniškega vmesnika."
-
-#: ../logview/misc.c:42
-msgid "January"
-msgstr "Januar"
-
-#: ../logview/misc.c:42
-msgid "February"
-msgstr "Februar"
-
-#: ../logview/misc.c:42
-msgid "March"
-msgstr "Marec"
-
-#: ../logview/misc.c:42
-msgid "April"
-msgstr "April"
-
-#: ../logview/misc.c:42
-msgid "May"
-msgstr "Maj"
-
-#: ../logview/misc.c:43
-msgid "June"
-msgstr "Junij"
-
-#: ../logview/misc.c:43
-msgid "July"
-msgstr "Julij"
-
-#: ../logview/misc.c:43
-msgid "August"
-msgstr "Avgust"
-
-#: ../logview/misc.c:43
-msgid "September"
-msgstr "September"
-
-#: ../logview/misc.c:43
-msgid "October"
-msgstr "Oktober"
-
-#: ../logview/misc.c:44
-msgid "November"
-msgstr "November"
-
-#: ../logview/misc.c:44
-msgid "December"
-msgstr "December"
-
-#: ../logview/misc.c:164
-msgid "Invalid date"
-msgstr "Neveljaven datum"
-
-#. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:169
-#, c-format
-msgid "%x"
-msgstr "%x"
-
-#: ../logview/monitor.c:83
-msgid "This file cannot be monitored."
-msgstr "Ta datoteka ne more biti nadzorovana."
-
-#: ../logview/monitor.c:86
-msgid "File monitoring is not supported on this file system.\n"
-msgstr "Nadzorovanje datotek ni podprto na tem datotečnem sistemu.\n"
-
-#: ../logview/monitor.c:88
-msgid "Gnome-VFS Error.\n"
-msgstr "Napaka pri Gnome-VFS.\n"
-
+#~ msgid "System Log"
+#~ msgstr "Sistemski dnevnik"
+#~ msgid "Current"
+#~ msgstr "Trenutno"
+#~ msgid "One file or more could not be opened"
+#~ msgstr "Ena ali več datotek ne more biti odprtih"
+#~ msgid ""
+#~ "%s is not user readable. Either run the program as root or ask the "
+#~ "sysadmin to change the permissions on the file.\n"
+#~ msgstr ""
+#~ "Datoteka %s ni berljiva za uporabnika. Ali zaženite program kot root, ali "
+#~ "pa vprašajte administratorja, da spremeni dovoljenja za dostop do "
+#~ "datoteke.\n"
+#~ msgid "%s is too big."
+#~ msgstr "%s je prevelik."
+#~ msgid "%s could not be opened."
+#~ msgstr "datoteke %s ni mogoče odpreti."
+#~ msgid "%s is not a log file."
+#~ msgstr "%s ni dnevniška datoteka."
+#~ msgid "Not enough memory."
+#~ msgstr "Ni dovolj pomnilnika."
+#~ msgid "%s cannot be opened."
+#~ msgstr "datoteke %s ni mogoče odpreti."
+#~ msgid "_Filter:"
+#~ msgstr "_Filtriraj:"
+#~ msgid "_Clear"
+#~ msgstr "_Počisti"
+#~ msgid "_Filter..."
+#~ msgstr "_Filtriraj ..."
+#~ msgid "Filter log"
+#~ msgstr "Filtriraj dnevnik"
+#~ msgid "Collapse _All"
+#~ msgstr "Skrči _vse"
+#~ msgid "Collapse all the rows"
+#~ msgstr "Skrči vse vrstice"
+#~ msgid "_Monitor"
+#~ msgstr "Nadzoruj"
+#~ msgid "Monitor Current Log"
+#~ msgstr "Nadzoruj trenutni dnevnik"
+#~ msgid "Ca_lendar"
+#~ msgstr "_Koledar"
+#~ msgid "Show Calendar Log"
+#~ msgstr "Pokaži koledarski dnevnik"
+#~ msgid "%s (monitored) - %s"
+#~ msgstr "%s (nadzorovano) - %s"
+#~ msgid "Days"
+#~ msgstr "Dnevi"
+#~ msgid "Pointer towards a GSList of days for the current log."
+#~ msgstr "Kazalec proti seznamu dni GSList za trenutni dnevnik."
+#~ msgid "Show System Log Viewer options"
+#~ msgstr "Pokaži možnosti Pregledovalnika sistemskega dnevnika"
+#~ msgid "Unable to create user interface."
+#~ msgstr "Ni mogoče ustvariti uporabniškega vmesnika."
+#~ msgid "January"
+#~ msgstr "Januar"
+#~ msgid "February"
+#~ msgstr "Februar"
+#~ msgid "March"
+#~ msgstr "Marec"
+#~ msgid "April"
+#~ msgstr "April"
+#~ msgid "May"
+#~ msgstr "Maj"
+#~ msgid "June"
+#~ msgstr "Junij"
+#~ msgid "July"
+#~ msgstr "Julij"
+#~ msgid "August"
+#~ msgstr "Avgust"
+#~ msgid "September"
+#~ msgstr "September"
+#~ msgid "October"
+#~ msgstr "Oktober"
+#~ msgid "November"
+#~ msgstr "November"
+#~ msgid "December"
+#~ msgstr "December"
+#~ msgid "Invalid date"
+#~ msgstr "Neveljaven datum"
+#~ msgid "%x"
+#~ msgstr "%x"
+#~ msgid "This file cannot be monitored."
+#~ msgstr "Ta datoteka ne more biti nadzorovana."
+#~ msgid "File monitoring is not supported on this file system.\n"
+#~ msgstr "Nadzorovanje datotek ni podprto na tem datotečnem sistemu.\n"
+#~ msgid "Gnome-VFS Error.\n"
+#~ msgstr "Napaka pri Gnome-VFS.\n"
 #~ msgid "Enter Password"
 #~ msgstr "Vnos gesla"
 #~ msgid "Dictionary and spelling tool"
