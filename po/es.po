@@ -3,20 +3,20 @@
 # QA - Germán Poo Caamaño <gpoo@ubiobio.cl>, 2002.
 # Pablo Gonzalo del Campo <pablodc@bigfoot.com>,2002-2003.
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2005, 2006.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008.
 # gnome-utils translation into spanish
 # Copyright © 1998-2003, 2006, 2007, 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-utils package.
 # Miguel de Icaza <miguel@metropolis.nuclecu.unam.mx> 1998.
 # Pablo Saratxaga <srtxg@chanae.alphanet.ch> 1999.
 # Manuel de Vega Barreiro <barreiro@arrakis.es> 2000-2001.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 200, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"utils&amp;component=general\n"
-"POT-Creation-Date: 2008-12-25 22:49+0000\n"
-"PO-Revision-Date: 2008-12-26 12:40+0100\n"
+"utils&component=general\n"
+"POT-Creation-Date: 2009-01-15 09:31+0000\n"
+"PO-Revision-Date: 2009-01-17 12:14+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -205,7 +205,7 @@ msgstr "Inspeccionando…"
 msgid "Calculating percentage bars..."
 msgstr "Calculando barras de porcentajes…"
 
-#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:993
+#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:998
 #: ../baobab/src/callbacks.c:306
 msgid "Ready"
 msgstr "Preparado"
@@ -257,11 +257,15 @@ msgstr "Ver como gráfico de anillo"
 msgid "View as Treemap Chart"
 msgstr "Ver como gráfico de árbol"
 
-#: ../baobab/src/baobab.c:963
+#: ../baobab/src/baobab.c:917
+msgid "Cannot check an excluded folder!"
+msgstr "No se puede comprobar la carpeta excluida."
+
+#: ../baobab/src/baobab.c:968
 msgid "Could not detect any mount point."
 msgstr "No se pudo detectar ningún punto de montaje."
 
-#: ../baobab/src/baobab.c:966
+#: ../baobab/src/baobab.c:971
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "El uso del disco no se puede analizar sin puntos de montaje."
 
@@ -2166,7 +2170,7 @@ msgstr "Capturar con un _retraso de"
 #. * delay of <spin button> seconds".
 #.
 #: ../gnome-screenshot/gnome-screenshot.c:472
-#: ../gnome-screenshot/gnome-screenshot.c:1143
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "seconds"
 msgstr "segundos"
 
@@ -2184,11 +2188,11 @@ msgstr "Efectos"
 msgid "Take _Screenshot"
 msgstr "Cap_turar pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:592
+#: ../gnome-screenshot/gnome-screenshot.c:631
 msgid "Error while saving screenshot"
 msgstr "Error al guardar la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:596
+#: ../gnome-screenshot/gnome-screenshot.c:635
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
@@ -2199,11 +2203,11 @@ msgstr ""
 " El error fue %s.\n"
 " Elija otra ubicación e inténtelo de nuevo."
 
-#: ../gnome-screenshot/gnome-screenshot.c:743
+#: ../gnome-screenshot/gnome-screenshot.c:782
 msgid "Unable to take a screenshot of the current window"
 msgstr "No se puede tomar una captura de pantalla de la ventana actual"
 
-#: ../gnome-screenshot/gnome-screenshot.c:785
+#: ../gnome-screenshot/gnome-screenshot.c:824
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Pantallazo-%s.png"
@@ -2211,14 +2215,14 @@ msgstr "Pantallazo-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:792
+#: ../gnome-screenshot/gnome-screenshot.c:831
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Pantallazo-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:802
+#: ../gnome-screenshot/gnome-screenshot.c:841
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2227,40 +2231,40 @@ msgstr "Pantallazo.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:809
+#: ../gnome-screenshot/gnome-screenshot.c:848
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Pantallazo-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1140
+#: ../gnome-screenshot/gnome-screenshot.c:1179
 msgid "Grab a window instead of the entire screen"
 msgstr "Capturar una ventana en vez de la pantalla entera"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1141
+#: ../gnome-screenshot/gnome-screenshot.c:1180
 msgid "Include the window border with the screenshot"
 msgstr "Incluir el borde de la ventana en la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1142
+#: ../gnome-screenshot/gnome-screenshot.c:1181
 msgid "Remove the window border from the screenshot"
 msgstr "Quitar el borde de la ventana de la captura de pantalla"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1143
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Capturar la pantalla después del retardo especificado [en segundos]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1144
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efecto para añadir al borde (sombra, borde o ninguno)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1144
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "effect"
 msgstr "efecto"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1145
+#: ../gnome-screenshot/gnome-screenshot.c:1184
 msgid "Interactively set options"
 msgstr "Establecer las opciones interactivamente"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1154
+#: ../gnome-screenshot/gnome-screenshot.c:1193
 msgid "Take a picture of the screen"
 msgstr "Capturar imagen de la pantalla"
 
