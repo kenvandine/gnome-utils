@@ -84,6 +84,8 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  g_thread_init (NULL);
+
   context = create_option_context ();
 
   g_option_context_parse (context, &argc, &argv, &error);
@@ -98,8 +100,6 @@ main (int argc, char *argv[])
 
   g_option_context_free (context);
   g_set_application_name (_("Log Viewer"));
-
-  g_thread_init (NULL);
 
   app = logview_app_get ();
 
