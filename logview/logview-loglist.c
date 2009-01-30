@@ -78,16 +78,14 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
   char date[200];
   Day *day;
 
-  /* we can't remove all the items immediately, otherwise, if the row
-   * is expanded, it will be collapsed because there are no items, so
-   * we create a dummy entry, remove all the others and then remove the dummy
-   * one.
+  /* if we have some days, we can't remove all the items immediately, otherwise,
+   * if the row is expanded, it will be collapsed because there are no items,
+   * so we create a dummy entry, remove all the others and then remove the
+   * dummy one.
    */
   res = gtk_tree_model_iter_children (GTK_TREE_MODEL (loglist->priv->model),
                                       &iter, log);
-  if (!res) {
-    /* this isn't quite possible */
-  } else {
+  if (res) {
     gtk_tree_store_insert_before (loglist->priv->model, &dummy, log, &iter);
     gtk_tree_store_set (loglist->priv->model, &dummy,
                         LOG_NAME, "", -1);
@@ -109,7 +107,9 @@ update_days_and_lines_for_log (LogviewLoglist *loglist,
     i++;
   }
 
-  gtk_tree_store_remove (loglist->priv->model, &dummy);
+  if (res) {
+    gtk_tree_store_remove (loglist->priv->model, &dummy);
+  }
 }
 
 static GtkTreeIter *
@@ -302,11 +302,12 @@ manager_log_added_cb (LogviewManager *manager,
   gtk_tree_store_set (list->priv->model, &iter,
                       LOG_OBJECT, g_object_ref (log),
                       LOG_NAME, logview_log_get_display_name (log), -1);
-
-  gtk_tree_store_insert (list->priv->model,
-                         &child, &iter, 0);
-  gtk_tree_store_set (list->priv->model, &child,
-                      LOG_NAME, _("Loading..."), -1);
+  if (logview_log_get_has_days (log)) {
+    gtk_tree_store_insert (list->priv->model,
+                           &child, &iter, 0);
+    gtk_tree_store_set (list->priv->model, &child,
+                        LOG_NAME, _("Loading..."), -1);
+  }
 
   g_signal_connect (log, "log-changed",
                     G_CALLBACK (log_changed_cb), list);
@@ -488,3 +489,4 @@ logview_loglist_update_lines (LogviewLoglist *loglist, LogviewLog *log)
 
   gtk_tree_iter_free (parent);
 }
+

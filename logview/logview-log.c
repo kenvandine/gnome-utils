@@ -54,6 +54,7 @@ struct _LogviewLogPrivate {
   time_t file_time;
   goffset file_size;
   char *display_name;
+  gboolean has_days;
 
   /* lines and relative days */
   GSList *days;
@@ -157,6 +158,7 @@ logview_log_init (LogviewLog *self)
   self->priv->file = NULL;
   self->priv->mon = NULL;
   self->priv->has_new_lines = FALSE;
+  self->priv->has_days = FALSE;
 }
 
 static void
@@ -608,8 +610,10 @@ log_load (GIOSchedulerJob *io_job,
   GFile *f = log->priv->file;
   GFileInfo *info;
   GInputStream *is;
+  const char *peeked_buffer;
+  const char * parse_data[2];
+  GSList *days;
   const char *content_type;
-  char *buffer;
   GFileType type;
   GError *err = NULL;
   GTimeVal timeval;
@@ -738,6 +742,29 @@ log_load (GIOSchedulerJob *io_job,
   }
 
   log->priv->stream = g_data_input_stream_new (is);
+
+  /* sniff into the stream for a timestamped line */
+  g_buffered_input_stream_fill (G_BUFFERED_INPUT_STREAM (log->priv->stream),
+                                (gssize) g_buffered_input_stream_get_buffer_size (G_BUFFERED_INPUT_STREAM (log->priv->stream)),
+                                NULL, &err);
+  if (err == NULL) {
+    peeked_buffer = g_buffered_input_stream_peek_buffer
+        (G_BUFFERED_INPUT_STREAM (log->priv->stream), NULL);
+    parse_data[0] = peeked_buffer;
+    parse_data[1] = NULL;
+
+    if ((days = log_read_dates (parse_data, time (NULL))) != NULL) {
+      log->priv->has_days = TRUE;
+      g_slist_foreach (days, (GFunc) logview_utils_day_free, NULL);
+      g_slist_free (days);
+    } else {
+      log->priv->has_days = FALSE;
+    }
+  } else {
+    log->priv->has_days = FALSE;
+    g_clear_error (&err);
+  }
+
   g_object_unref (is);
 
 out:
@@ -893,5 +920,11 @@ logview_log_get_gfile (LogviewLog *log)
   return g_object_ref (log->priv->file);
 }
 
+gboolean
+logview_log_get_has_days (LogviewLog *log)
+{
+  g_assert (LOGVIEW_IS_LOG (log));
 
+  return log->priv->has_days;
+}
 

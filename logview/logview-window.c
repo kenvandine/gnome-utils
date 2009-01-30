@@ -802,6 +802,8 @@ read_new_lines_cb (LogviewLog *log,
   int i, old_line_count;
   GtkTextIter iter, start;
   GtkTextMark *mark;
+  char *converted;
+  gsize len;
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
   old_line_count = gtk_text_buffer_get_line_count (buffer);
@@ -817,7 +819,15 @@ read_new_lines_cb (LogviewLog *log,
   }
 
   for (i = 0; lines[i]; i++) {
-    gtk_text_buffer_insert (buffer, &iter, lines[i], strlen (lines[i]));
+    len = strlen (lines[i]);
+
+    if (!g_utf8_validate (lines[i], len, NULL)) {
+      converted = g_locale_to_utf8 (lines[i], (gssize) len, NULL, &len, NULL);
+      gtk_text_buffer_insert (buffer, &iter, lines[i], len);
+    } else {
+      gtk_text_buffer_insert (buffer, &iter, lines[i], strlen (lines[i]));
+    }
+
     gtk_text_iter_forward_to_end (&iter);
     gtk_text_buffer_insert (buffer, &iter, "\n", 1);
     gtk_text_iter_forward_char (&iter);

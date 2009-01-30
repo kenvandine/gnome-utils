@@ -1,3 +1,18 @@
+2009-01-30  Cosimo Cecchi  <cosimoc@gnome.org>
+
+        * logview-log.c:
+        (logview_log_init):
+        (log_load):
+        (logview_log_get_has_days):
+        * logview-log.h:
+        * logview-loglist.c:
+        (update_days_and_lines_for_log):
+        (manager_log_added_cb):
+        * logview-window.c:
+	Check if there are some lines before actually adding an entry
+	to the loglist. This implies adding some API to LogviewLog.
+	Closes bug #567170.
+
 2009-01-29  Cosimo Cecchi  <cosimoc@gnome.org>
 
         * tests/Makefile.am: don't install the test reader program.
