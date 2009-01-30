@@ -1,5 +1,11 @@
 2009-01-30  Cosimo Cecchi  <cosimoc@gnome.org>
 
+	* logview-loglist.c: (tree_selection_changed_cb),
+	(manager_active_changed_cb): make sure we check for day != NULL
+	before emitting "day-selected". Hopefully fixes bug #569807.
+
+2009-01-30  Cosimo Cecchi  <cosimoc@gnome.org>
+
         * logview-log.c:
         (logview_log_init):
         (log_load):

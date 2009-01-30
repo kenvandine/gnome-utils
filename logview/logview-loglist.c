@@ -194,7 +194,7 @@ tree_selection_changed_cb (GtkTreeSelection *selection,
     } else if (!is_active) {
       logview_manager_set_active_log (list->priv->manager, log);
     }
-  } else {
+  } else if (day) {
     list->priv->has_day_selection = TRUE;
     gtk_tree_model_iter_parent (model, &parent, &iter);
     gtk_tree_model_get (model, &parent, LOG_OBJECT, &log, -1);
@@ -238,7 +238,9 @@ manager_active_changed_cb (LogviewManager *manager,
     gtk_tree_model_get (GTK_TREE_MODEL (list->priv->model), iter,
                         LOG_DAY, &day, -1);
 
-    g_signal_emit (list, signals[DAY_SELECTED], 0, day, NULL);
+    if (day) {
+      g_signal_emit (list, signals[DAY_SELECTED], 0, day, NULL);
+    }
 
     gtk_tree_path_free (list->priv->selection);
     list->priv->selection = NULL;
