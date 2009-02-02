@@ -22,7 +22,7 @@
     <title>Systemprotokollbetrachter-Handbuch</title>
 
     <abstract role="description">
-      <para>Der Systemprotokollbetrachter ist ein grafischer, menügesteuerter Betrachter, den Sie zum Betrachten und Überwachen Ihrer Systemprotokolldateien benutzen können.</para>
+      <para>Der Systemprotokollbetrachter ist eine grafische Benutzerschnittstelle zum Betrachten und Überwachen Ihrer Systemprotokolldateien.</para>
     </abstract>
 
     <copyright> 
@@ -32,7 +32,7 @@
     <copyright> 
       <year>2000</year> 
       <holder>Judith Samson</holder> 
-    </copyright><copyright><year>2008</year><holder>Mario Blättermann (mario.blaettermann@t-online.de)</holder></copyright> 
+    </copyright><copyright><year>2008, 2009</year><holder>Mario Blättermann (mariobl@gnome.org)</holder></copyright> 
 <!-- translators: uncomment this:
 
   <copyright>
@@ -231,7 +231,7 @@
     <title>Benutzung</title>
 
     <sect2 id="syslog-open">
-    	<title>So betrachten Sie ein Protokoll</title>
+    	<title>Betrachten eines Protokolls</title>
     	<para>Um ein Protokoll zu betrachten, wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Öffnen</guimenuitem></menuchoice>. Im Dialog <guilabel>Protokoll öffnen</guilabel> wählen Sie das zu öffnende Protokoll aus und klicken dann auf <guibutton>Öffnen</guibutton>. Verwenden Sie die Rollbalken, um durch das Protokoll zu rollen.</para>
 
         <para>Sie können so viele Protokolle öffnen, wie Sie wollen. Der <application>Systemprotokollbetrachter</application> zeigt eines der Protokolle im <guilabel>Systemprotokollbetrachter</guilabel>-Fenster an. Geöffnete Protokolle werden an der linken Seite des Anwendungsfensters aufgelistet. Das in dieser Liste ausgewählte Protokoll wird im Anzeigebereich des Anwendungsfensters dargestellt. Um ein anderes bereits im <application>Systemprotokollbetrachter</application> geöffnetes Protokoll anzuzeigen, wählen Sie es in der Protokollliste aus.</para>
@@ -240,17 +240,17 @@
     </sect2>
 
     <sect2 id="syslog-selection">
-    <title>So kopieren Sie Protokollzeilen in die Zwischenablage</title>
+    <title>Kopieren von Protokollzeilen in die Zwischenablage</title>
     <para>Um eine oder mehrere Zeilen eines Protokolls in die Zwischenablage zu kopieren, wählen Sie einfach die entsprechenden Zeilen im Anzeigebereich aus und wählen <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Kopieren</guimenuitem></menuchoice> im Menü. Falls Sie das gesamte Protokoll in die Zwischenablage kopieren wollen, wählen Sie es im Menü mit <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Alles auswählen</guimenuitem></menuchoice> aus. Wählen Sie anschließend <menuchoice><guimenu>Bearbeiten</guimenu><guimenuitem>Kopieren</guimenuitem></menuchoice>.</para>
     </sect2>
 
     <sect2 id="syslog-hide-sidebar">
-    <title>So verbergen Sie die Seitenleiste</title>
+    <title>Verbergen der Seitenleiste</title>
     <para>Um die Seitenleiste anzuzeigen oder zu verbergen, welche die Protokollliste und den Kalender enthält, wählen Sie die Menüoption <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Seitenleiste</guimenuitem></menuchoice>.</para>
     </sect2>
     
     <sect2 id="syslog-monitor">
-    	<title>So überwachen Sie Systemprotokolle</title>
+    	<title>Überwachen von Systemprotokollen</title>
     	<para>Sie können den <application>Systemprotokollbetrachter</application> zur Überwachung von Protokollen verwenden. Standardmäßig überwacht der <application>Systemprotokollbetrachter</application> jedes der geöffneten Protokolle auf Änderungen. Wenn neue Zeilen zu einem vom <application>Systemprotokollbetrachter</application> überwachten Protokoll hinzugefügt werden, erscheint der Name des Protokolls in fetter Schrift in der Protokollliste. Falls das betreffende Protokoll gegenwärtig im Anzeigebereich geöffnet ist, erscheinen die neuen Zeilen automatisch am Ende des Protokolls. Nach fünf Sekunden wird der in fetter Schrift dargestellte Name des Protokolls in der Protokolls in die normale Anzeige zurückgesetzt.</para>
       
     	<para>Um die Überwachung eines bestimmten Protokolls zu stoppen, deaktivieren Sie die Option <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Überwachen</guimenuitem></menuchoice>. Aktivieren Sie diese Option wieder, um die Überwachung wiederaufzunehmen.</para>
@@ -258,14 +258,14 @@
     </sect2>
     
     <sect2 id="syslog-calendar">
-    	<title>So verwenden Sie den Kalender</title>
+    	<title>Benutzung des Kalenders</title>
         <para>Standardmäßig wird unterhalb der Protokollliste an der linken Seite des <application>Systemprotokollbetrachter</application>-Fensters ein Kalender angezeigt. In diesem Kalender werden die im gegenwärtig ausgewählten Protokoll vorhandenen Daten in fetter Schrift angezeigt. Um zu einem bestimmten Datum zu springen, wählen Sie es im Kalender aus.</para>
 
     	<para>Um den Kalender zu verbergen, deaktivieren Sie die Menüoption <menuchoice><guimenu>Ansicht</guimenu><guimenuitem>Kalender</guimenuitem></menuchoice></para> 
     </sect2>
     
     <sect2 id="syslog-stats">
-    	<title>So zeigen Sie Protokollinformationen an</title>
+    	<title>Anzeigen von Protokollinformationen</title>
     	<para>Folgende Protokollinformationen werden generell in der Statusleiste angezeigt:</para> 
     	<itemizedlist>
     		<listitem><para>Anzahl der Zeilen im Protokoll.</para>
@@ -279,12 +279,12 @@
     </sect2>
     
     <sect2 id="syslog-close">
-    	<title>So schließen Sie ein Protokoll</title>
+    	<title>Schließen eines Protokolls</title>
     	<para>Um ein Protokoll zu schließen, wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Schließen</guimenuitem></menuchoice>.</para>
     </sect2>
     
     <sect2 id="syslog-exit">
-    	<title>So beenden Sie den Systemprotokollbetrachter</title>
+    	<title>Beenden des Systemprotokollbetrachters</title>
     	<para>Um den <application>Systemprotokollbetrachter</application> zu schließen, wählen Sie <menuchoice><guimenu>Datei</guimenu><guimenuitem>Beenden</guimenuitem></menuchoice>.</para>
     </sect2>
  
