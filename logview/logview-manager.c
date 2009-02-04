@@ -371,6 +371,8 @@ logview_manager_get_if_loaded (LogviewManager *manager, char *uri)
   if (log != NULL) {
     return g_object_ref (log);
   }
+
+  return NULL;
 }
 
 void

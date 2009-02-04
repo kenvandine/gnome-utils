@@ -416,7 +416,7 @@ read_gzip_header (GInputStream *is,
     to_skip = tmp[0] | (tmp[0] << 8);
     bytes = g_input_stream_skip (is, to_skip, NULL, NULL);
     if (bytes != to_skip) {
-      return;
+      return FALSE;
     }
 	}
 

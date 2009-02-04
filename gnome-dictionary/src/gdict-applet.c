@@ -421,6 +421,8 @@ gdict_applet_icon_toggled_cb (GtkWidget   *widget,
       
       priv->is_window_showing = FALSE;
     }
+
+  return FALSE;
 }
 
 static void
