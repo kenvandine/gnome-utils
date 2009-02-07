@@ -1,5 +1,5 @@
 # Hungarian translation of gnome-utils.
-# Copyright (C) 1999 - 2006, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 1999 - 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-utils package.
 #
 # Szabolcs Ban <shooby@gnome.hu>, 1999, 2000.
@@ -7,14 +7,14 @@
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
 # Gabor Sari <saga@gnome.hu>, 2003, 2004.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2006, 2007, 2008.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2006, 2007, 2008, 2009.
 # Mate ORY <orymate at gmail d0t com>, 2006.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-08 13:26+0000\n"
-"PO-Revision-Date: 2008-09-21 13:50+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils&component=general\n"
+"POT-Creation-Date: 2009-01-15 09:31+0000\n"
+"PO-Revision-Date: 2009-02-07 14:55+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng@gnome.hu>\n"
 "Language-Team: Hungarian <gnome@fsf.hu>\n"
 "MIME-Version: 1.0\n"
@@ -113,12 +113,12 @@ msgstr "Összes össze_csukása"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:22
-#: ../gnome-dictionary/src/gdict-window.c:1238 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:663
 msgid "_Contents"
 msgstr "_Tartalom"
 
 #: ../baobab/data/baobab.glade.h:23
-#: ../gnome-dictionary/src/gdict-window.c:1185 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:638
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
@@ -128,7 +128,7 @@ msgstr "Összes _kibontása"
 
 #: ../baobab/data/baobab.glade.h:25
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1188 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:640
 msgid "_Help"
 msgstr "_Súgó"
 
@@ -141,7 +141,7 @@ msgid "_Toolbar"
 msgstr "_Eszköztár"
 
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1186 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:639
 msgid "_View"
 msgstr "_Nézet"
 
@@ -185,73 +185,77 @@ msgstr "A kiválasztott mappa almappa-buboréksúgói megjelenjenek-e?"
 msgid "Whether the toolbar should be visible in main window."
 msgstr "A főablakban megjelenjen-e az eszköztár?"
 
-#: ../baobab/src/baobab.c:123 ../baobab/src/baobab.c:301
+#: ../baobab/src/baobab.c:121 ../baobab/src/baobab.c:299
 msgid "Scanning..."
 msgstr "Vizsgálat…"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:185 ../baobab/src/baobab.c:243
+#: ../baobab/src/baobab.c:183 ../baobab/src/baobab.c:241
 #: ../baobab/src/callbacks.c:302
 msgid "Calculating percentage bars..."
 msgstr "Százaléksávok kiszámítása…"
 
-#: ../baobab/src/baobab.c:195 ../baobab/src/baobab.c:972
+#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:998
 #: ../baobab/src/callbacks.c:306
 msgid "Ready"
 msgstr "Kész"
 
-#: ../baobab/src/baobab.c:336
+#: ../baobab/src/baobab.c:338
 msgid "Total filesystem usage:"
 msgstr "Teljes fájlrendszerhasználat:"
 
-#: ../baobab/src/baobab.c:375
+#: ../baobab/src/baobab.c:377
 msgid "contains hardlinks for:"
 msgstr "hard linkeket tartalmaz ennyire:"
 
-#: ../baobab/src/baobab.c:384
+#: ../baobab/src/baobab.c:386
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d elem"
 msgstr[1] "% 5d elem"
 
-#: ../baobab/src/baobab.c:722
+#: ../baobab/src/baobab.c:737
 msgid "Could not initialize monitoring"
 msgstr "A megfigyelés nem készíthető elő"
 
-#: ../baobab/src/baobab.c:723
+#: ../baobab/src/baobab.c:738
 msgid "Changes to your home folder will not be monitored."
 msgstr "A saját könyvtárának változásai nem lesznek megfigyelve."
 
-#: ../baobab/src/baobab.c:768
+#: ../baobab/src/baobab.c:783
 msgid "Move to parent folder"
 msgstr "Ugrás a szülőmappába"
 
-#: ../baobab/src/baobab.c:772
+#: ../baobab/src/baobab.c:787
 msgid "Zoom in"
 msgstr "Nagyítás"
 
-#: ../baobab/src/baobab.c:776
+#: ../baobab/src/baobab.c:791
 msgid "Zoom out"
 msgstr "Kicsinyítés"
 
-#: ../baobab/src/baobab.c:780
+#: ../baobab/src/baobab.c:795
 msgid "Save snapshot"
 msgstr "Pillanatkép mentése"
 
-#: ../baobab/src/baobab.c:828
+#: ../baobab/src/baobab.c:843
 msgid "View as Rings Chart"
 msgstr "Megjelenítés gyűrűdiagramként"
 
-#: ../baobab/src/baobab.c:830
+#: ../baobab/src/baobab.c:845
 msgid "View as Treemap Chart"
 msgstr "Megjelenítés fadiagramként"
 
-#: ../baobab/src/baobab.c:942
+#: ../baobab/src/baobab.c:917
+msgid "Cannot check an excluded folder!"
+msgstr "A kihagyott mappa nem vizsgálható"
+
+#: ../baobab/src/baobab.c:968
 msgid "Could not detect any mount point."
 msgstr "Nem észlelhetők csatolási pontok."
 
-#: ../baobab/src/baobab.c:945
+#: ../baobab/src/baobab.c:971
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Csatolási pontok nélkül a lemezhasználat nem elemezhető."
 
@@ -316,91 +320,91 @@ msgstr "Teljes méret"
 msgid "Available"
 msgstr "Elérhető"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:72
+#: ../baobab/src/baobab-remote-connect-dialog.c:77
 #, c-format
 msgid "Cannot scan location \"%s\""
 msgstr "A hely nem vizsgálható: „%s”"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:170
+#: ../baobab/src/baobab-remote-connect-dialog.c:176
 msgid "Custom Location"
 msgstr "Egyéni hely"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:172
+#: ../baobab/src/baobab-remote-connect-dialog.c:178
 msgid "SSH"
 msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:175
+#: ../baobab/src/baobab-remote-connect-dialog.c:181
 msgid "Public FTP"
 msgstr "Nyilvános FTP"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:177
+#: ../baobab/src/baobab-remote-connect-dialog.c:183
 msgid "FTP (with login)"
 msgstr "FTP (bejelentkezéssel)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:180
+#: ../baobab/src/baobab-remote-connect-dialog.c:186
 msgid "Windows share"
 msgstr "Windows-megosztás"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:182
+#: ../baobab/src/baobab-remote-connect-dialog.c:188
 msgid "WebDAV (HTTP)"
 msgstr "WebDAV (HTTP)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:184
+#: ../baobab/src/baobab-remote-connect-dialog.c:190
 msgid "Secure WebDAV (HTTPS)"
 msgstr "Biztonságos WebDAV (HTTPS)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:244
+#: ../baobab/src/baobab-remote-connect-dialog.c:250
 msgid "Cannot Connect to Server. You must enter a name for the server."
 msgstr ""
 "Nem lehet a kiszolgálóhoz kapcsolódni. Meg kell adnia egy nevet a "
 "kiszolgálónak."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:247
+#: ../baobab/src/baobab-remote-connect-dialog.c:253
 msgid "Please enter a name and try again."
 msgstr "Írjon be egy nevet és próbálja meg újra."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:438
+#: ../baobab/src/baobab-remote-connect-dialog.c:444
 msgid "_Location (URI):"
 msgstr "He_ly (URI):"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:460
+#: ../baobab/src/baobab-remote-connect-dialog.c:466
 msgid "_Server:"
 msgstr "_Kiszolgáló:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:479
+#: ../baobab/src/baobab-remote-connect-dialog.c:485
 msgid "Optional information:"
 msgstr "Opcionális információk:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:491
+#: ../baobab/src/baobab-remote-connect-dialog.c:497
 msgid "_Share:"
 msgstr "Meg_osztás:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:512
+#: ../baobab/src/baobab-remote-connect-dialog.c:518
 #: ../gnome-dictionary/data/gnome-dictionary-preferences.glade.h:10
 msgid "_Port:"
 msgstr "_Port:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:532
+#: ../baobab/src/baobab-remote-connect-dialog.c:538
 msgid "_Folder:"
 msgstr "_Mappa:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:552
+#: ../baobab/src/baobab-remote-connect-dialog.c:558
 msgid "_User Name:"
 msgstr "_Felhasználónév:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:573
+#: ../baobab/src/baobab-remote-connect-dialog.c:579
 msgid "_Domain Name:"
 msgstr "_Tartománynév:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:640
+#: ../baobab/src/baobab-remote-connect-dialog.c:646
 msgid "Connect to Server"
 msgstr "Kapcsolódás kiszolgálóhoz"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:657
+#: ../baobab/src/baobab-remote-connect-dialog.c:663
 msgid "Service _type:"
 msgstr "Szolgáltatás _típusa:"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:776
+#: ../baobab/src/baobab-remote-connect-dialog.c:782
 msgid "_Scan"
 msgstr "_Vizsgálat"
 
@@ -429,65 +433,65 @@ msgstr "Mappa kiválasztása"
 msgid "_Show hidden folders"
 msgstr "_Rejtett mappák megjelenítése"
 
-#: ../baobab/src/baobab-utils.c:302
+#: ../baobab/src/baobab-utils.c:304
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "„%s” nem érvényes mappa"
 
-#: ../baobab/src/baobab-utils.c:305
+#: ../baobab/src/baobab-utils.c:307
 msgid "Could not analyze disk usage."
 msgstr "A lemezhasználat nem elemezhető."
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:348
 msgid "_Open Folder"
 msgstr "Mappa _megnyitása"
 
-#: ../baobab/src/baobab-utils.c:340 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:354 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "Át_helyezés a Kukába"
 
-#: ../baobab/src/baobab-utils.c:369
+#: ../baobab/src/baobab-utils.c:380
 msgid "Total filesystem capacity:"
 msgstr "Fájlrendszer kapacitása összesen:"
 
-#: ../baobab/src/baobab-utils.c:370
+#: ../baobab/src/baobab-utils.c:381
 msgid "used:"
 msgstr "használt:"
 
-#: ../baobab/src/baobab-utils.c:371
+#: ../baobab/src/baobab-utils.c:382
 msgid "available:"
 msgstr "rendelkezésre álló:"
 
-#: ../baobab/src/baobab-utils.c:415
+#: ../baobab/src/baobab-utils.c:426
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Nem nyitható meg a(z) „%s” mappa"
 
-#: ../baobab/src/baobab-utils.c:418
+#: ../baobab/src/baobab-utils.c:429
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr ""
 "Nincs telepítve olyan megjelenítőprogram, amely képes lenne megjeleníteni a "
 "mappát."
 
-#: ../baobab/src/baobab-utils.c:487
+#: ../baobab/src/baobab-utils.c:498
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "„%s” nem helyezhető át a Kukába"
 
-#: ../baobab/src/baobab-utils.c:495
+#: ../baobab/src/baobab-utils.c:506
 msgid "Could not move file to the Trash"
 msgstr "A fájl nem helyezhető át a Kukába"
 
-#: ../baobab/src/baobab-utils.c:497
+#: ../baobab/src/baobab-utils.c:508
 #, c-format
 msgid "Details: %s"
 msgstr "Részletek: %s"
 
-#: ../baobab/src/baobab-utils.c:516
+#: ../baobab/src/baobab-utils.c:527
 msgid "Rescan your home folder?"
 msgstr "Megismétli a saját könyvtárának vizsgálatát?"
 
-#: ../baobab/src/baobab-utils.c:517
+#: ../baobab/src/baobab-utils.c:528
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -495,17 +499,13 @@ msgstr ""
 "A saját könyvtárának tartalma megváltozott. A lemezhasználat részleteinek "
 "frissítése érdekében válassza az újraolvasás lehetőséget."
 
-#: ../baobab/src/baobab-utils.c:518
+#: ../baobab/src/baobab-utils.c:529
 msgid "_Rescan"
 msgstr "Új_raolvasás"
 
-#: ../baobab/src/baobab-utils.c:553 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:569
 msgid "There was an error displaying help."
 msgstr "Hiba történt a súgó megjelenítése közben."
-
-#: ../baobab/src/baobab-mount-operation.c:146
-msgid "Enter Password"
-msgstr "Adja meg a jelszót"
 
 #: ../baobab/src/callbacks.c:97
 msgid "Baobab"
@@ -515,9 +515,9 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "Grafikus lemezhasználat-elemző eszköz."
 
-#. Translator credits
+#. translator credits
 #: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
-#: ../logview/about.c:47
+#: ../logview/logview-about.h:63
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby@gnome.hu>\n"
@@ -571,8 +571,8 @@ msgid ""
 "mtools as the preferred FAT formatting backend."
 msgstr ""
 "A TRUE (igaz) beállítás az mkdosfs-t jelöli ki az alapértelmezett FAT-"
-"formázó háttérprogramként. A FALSE (hamis) az mtools-t jelöli ki alapértelmezett "
-"FAT-formázó programként."
+"formázó háttérprogramként. A FALSE (hamis) az mtools-t jelöli ki "
+"alapértelmezett FAT-formázó programként."
 
 #: ../gfloppy/gfloppy.schemas.in.h:6
 msgid "ext2 for the linux native filesystem or fat for the DOS filesystem."
@@ -877,11 +877,11 @@ msgstr "_Gyors (csak létrehozza a fájlrendszert)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Szokásos (alacsony szintű formázás)"
 
-#: ../gfloppy/src/main.c:259
+#: ../gfloppy/src/main.c:257
 msgid "Cannot Format"
 msgstr "Nem lehet formázni"
 
-#: ../gfloppy/src/main.c:260
+#: ../gfloppy/src/main.c:258
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -889,12 +889,12 @@ msgstr ""
 "Sem az mke2fs, sem az mkdosfs/mformat alkalmazások nincsenek telepítve. Ezek "
 "nélkül nem lehet lemezt formázni."
 
-#: ../gfloppy/src/main.c:280
+#: ../gfloppy/src/main.c:278
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nem nyitható meg a(z) %s eszköz, a formázás nem lehetséges."
 
-#: ../gfloppy/src/main.c:283 ../gfloppy/src/main.c:345
+#: ../gfloppy/src/main.c:281 ../gfloppy/src/main.c:343
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -903,7 +903,7 @@ msgstr ""
 "A(z) %s eszköz nincs csatlakoztatva.\n"
 "Csatlakoztassa az eszközt a folytatáshoz."
 
-#: ../gfloppy/src/main.c:286 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:284 ../gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -913,40 +913,40 @@ msgstr ""
 "Nincs megfelelő jogosultsága a(z) %s írásához, a formázás nem lehetséges.\n"
 "Kérjen a rendszergazdától írási jogot."
 
-#: ../gfloppy/src/main.c:293 ../gfloppy/src/main.c:356
+#: ../gfloppy/src/main.c:291 ../gfloppy/src/main.c:354
 msgid "Cannot initialize device"
 msgstr "Az eszköz nem készíthető elő"
 
-#: ../gfloppy/src/main.c:342
+#: ../gfloppy/src/main.c:340
 #, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nem nyitható meg egyetlen eszköz sem, a formázás nem lehetséges."
 
-#: ../gfloppy/src/main.c:345 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:343 ../gfloppy/src/main.c:346
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 vagy /dev/fd0"
 
-#: ../gfloppy/src/main.c:509
+#: ../gfloppy/src/main.c:507
 msgid "Could not display help for the floppy formatter."
 msgstr "Nem jeleníthető meg a floppy-formázó súgója."
 
-#: ../gfloppy/src/main.c:528
+#: ../gfloppy/src/main.c:526
 msgid "Incorrect volume name"
 msgstr "Helytelen kötetnév"
 
-#: ../gfloppy/src/main.c:529
+#: ../gfloppy/src/main.c:527
 msgid "The volume name can't contain any blank space."
 msgstr "A kötetnév nem tartalmazhat szóközöket."
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "The device to format"
 msgstr "A formázandó eszköz"
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "DEVICE"
 msgstr "ESZKÖZ"
 
-#: ../gfloppy/src/main.c:583
+#: ../gfloppy/src/main.c:581
 msgid "- Floppy Formatter"
 msgstr "- Floppy-formázó"
 
@@ -994,7 +994,7 @@ msgid "Cl_ear"
 msgstr "Tör_lés"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1240 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:665
 msgid "_About"
 msgstr "_Névjegy"
 
@@ -1003,7 +1003,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Kijelölt szöveg kikeresése"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1214
+#: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "_Preferences"
 msgstr "_Beállítások"
 
@@ -1021,9 +1021,9 @@ msgstr "Szavak meghatározásainak és helyesírásának keresése online szót�
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:402
-#: ../gnome-dictionary/src/gdict-window.c:610
-#: ../gnome-dictionary/src/gdict-window.c:1957
+#: ../gnome-dictionary/src/gdict-app.c:385
+#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:1953
 msgid "Dictionary"
 msgstr "Szótár"
 
@@ -1410,53 +1410,54 @@ msgstr "Csak helyi"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "A kontextus csak helyi szótárakat használjon-e?"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:382
 msgid "Reload the list of available databases"
 msgstr "A rendelkezésre álló adatbázisok listájának újratöltése"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:394
 msgid "Clear the list of available databases"
 msgstr "A rendelkezésre álló adatbázisok listájának törlése"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
-#: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:841
+#: ../gnome-dictionary/libgdict/gdict-speller.c:779
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:789
 msgid "Error while matching"
 msgstr "Hiba történt az illesztéskor"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1135
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1229
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1263
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
+#: ../logview/logview-window.c:507
 msgid "Not found"
 msgstr "Nincs találat"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1323
 msgid "F_ind:"
 msgstr "_Keresés:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1337
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1336
 msgid "_Previous"
 msgstr "_Előző"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1345
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1344
 msgid "_Next"
 msgstr "_Következő"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2520
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2519
 msgid "Error while looking up definition"
 msgstr "Hiba a meghatározás keresése közben"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2561
+#: ../gnome-dictionary/libgdict/gdict-speller.c:737
 msgid "Another search is in progress"
 msgstr "Egy másik keresés van folyamatban"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2563
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
 msgid "Please wait until the current search ends."
 msgstr "Kérem, várjon a jelenlegi keresés befejezéséig."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2602
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2601
 msgid "Error while retrieving the definition"
 msgstr "Hiba a meghatározás letöltése közben"
 
@@ -1486,7 +1487,7 @@ msgid "The description of this dictionary source"
 msgstr "A szótárforrás leírása"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
-#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+#: ../gnome-dictionary/libgdict/gdict-speller.c:384
 msgid "Database"
 msgstr "Adatbázis"
 
@@ -1495,7 +1496,7 @@ msgid "The default database of this dictonary source"
 msgstr "A szótár forrásának alapértelmezett adatbázisa"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:288
-#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+#: ../gnome-dictionary/libgdict/gdict-speller.c:391
 msgid "Strategy"
 msgstr "Stratégia"
 
@@ -1512,7 +1513,7 @@ msgid "The transport mechanism used by this dictionary source"
 msgstr "A szótárforrás elérésére használandó mechanizmus."
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:317
-#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+#: ../gnome-dictionary/libgdict/gdict-speller.c:377
 msgid "Context"
 msgstr "Kontextus"
 
@@ -1553,7 +1554,7 @@ msgstr "A szótárforrásnak nincs neve"
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "A(z) „%s” szótárforrás átvitele érvénytelen: „%s”"
 
-#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:299
 msgid "Reload the list of available sources"
 msgstr "A rendelkezésre álló források listájának újratöltése"
 
@@ -1573,29 +1574,42 @@ msgstr "Források"
 msgid "Dictionary sources found"
 msgstr "Megtalált szótárforrások"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:355
+#: ../gnome-dictionary/libgdict/gdict-speller.c:354
 msgid "Clear the list of similar words"
 msgstr "A hasonló szavak listájának törlése"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:379
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
 msgid "The GdictContext object used to get the word definition"
 msgstr "A szavak meghatározásának lekérésére szolgáló GdictContext objektum"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:386
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
 msgid "The database used to query the GdictContext"
 msgstr "A GdictContext lekérdezéséhez használatos adatbázis"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:393
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
 msgid "The strategy used to query the GdictContext"
 msgstr "A GdictContext lekérdezéséhez használatos stratégia"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:365
 msgid "Reload the list of available strategies"
 msgstr "A rendelkezésre álló stratégiák listájának újratöltése"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:377
 msgid "Clear the list of available strategies"
 msgstr "A rendelkezésre álló stratégiák listájának törlése"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+msgid "GDict debugging flags to set"
+msgstr "Beállítandó GDict hibakereső jelzők"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "FLAGS"
+msgstr "JELZŐK"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "GDict debugging flags to unset"
+msgstr "Törlendő GDict hibakereső jelzők"
 
 #: ../gnome-dictionary/libgdict/gdict-utils.c:157
 msgid "GDict Options"
@@ -1606,14 +1620,14 @@ msgid "Show GDict Options"
 msgstr "Szótárbeállítások megjelenítése"
 
 #: ../gnome-dictionary/src/gdict-about.c:57
-#: ../gnome-dictionary/src/gdict-applet.c:591
+#: ../gnome-dictionary/src/gdict-applet.c:589
 msgid "Look up words in dictionaries"
 msgstr "Szó keresése szótárakban"
 
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:233
+#: ../gnome-dictionary/src/gdict-app.c:217
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1626,21 +1640,21 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:231
 #, c-format
 msgid "Error: %s\n"
 msgstr "Hiba: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:257
 #, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Lásd még a „gnome-dictionary --help” kimenetét a használati információkért\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:286
+#: ../gnome-dictionary/src/gdict-app.c:270
 msgid "Unable to find a suitable dictionary source"
 msgstr "Nem található megfelelő szótárforrás"
 
-#: ../gnome-dictionary/src/gdict-app.c:320
+#: ../gnome-dictionary/src/gdict-app.c:304
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1649,185 +1663,177 @@ msgstr ""
 "Hiba „%s” meghatározásának keresése közben:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Words to look up"
 msgstr "Keresendő szavak"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:356
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:339
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "word"
 msgstr "szó"
 
-#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:339
 msgid "Words to match"
 msgstr "Keresendő szavak"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "Dictionary source to use"
 msgstr "Használandó szótárforrás"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "source"
 msgstr "forrás"
 
-#: ../gnome-dictionary/src/gdict-app.c:360
+#: ../gnome-dictionary/src/gdict-app.c:343
 msgid "Show available dictionary sources"
 msgstr "Elérhető szótárforrások listázása"
 
-#: ../gnome-dictionary/src/gdict-app.c:362
+#: ../gnome-dictionary/src/gdict-app.c:345
 msgid "Print result to the console"
 msgstr "Eredmény kiírása konzolra"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "Database to use"
 msgstr "Használandó adatbázis"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "Strategy to use"
 msgstr "Használandó stratégia"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "strat"
 msgstr "stratégia"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:384
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid " - Look up words in dictionaries"
 msgstr " – Szavak keresése a szótárakban"
 
-#: ../gnome-dictionary/src/gdict-app.c:388
-msgid "Dictionary and spelling tool"
-msgstr "Szótárazó és helyesírás-ellenőrző eszköz"
-
-#: ../gnome-dictionary/src/gdict-app.c:389
-msgid "Show Dictionary options"
-msgstr "Szótárbeállítások megjelenítése"
-
-#: ../gnome-dictionary/src/gdict-applet.c:207
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-applet.c:205
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "Save a Copy"
 msgstr "Másolat mentése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:849
+#: ../gnome-dictionary/src/gdict-applet.c:215
+#: ../gnome-dictionary/src/gdict-window.c:847
 msgid "Untitled document"
 msgstr "Névtelen dokumentum"
 
-#: ../gnome-dictionary/src/gdict-applet.c:238
-#: ../gnome-dictionary/src/gdict-window.c:870
+#: ../gnome-dictionary/src/gdict-applet.c:236
+#: ../gnome-dictionary/src/gdict-window.c:868
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Hiba történt „%s” írásakor"
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:361
 msgid "Clear the definitions found"
 msgstr "Talált meghatározások törlése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:365
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear definition"
 msgstr "Meghatározás törlése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:364
 msgid "Clear the text of the definition"
 msgstr "Meghatározás szövegének törlése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:373
+#: ../gnome-dictionary/src/gdict-applet.c:371
 msgid "Print the definitions found"
 msgstr "A talált meghatározások nyomtatása"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print definition"
 msgstr "Meghatározás nyomtatása"
 
-#: ../gnome-dictionary/src/gdict-applet.c:376
+#: ../gnome-dictionary/src/gdict-applet.c:374
 msgid "Print the text of the definition"
 msgstr "Meghatározás szövegének nyomtatása"
 
-#: ../gnome-dictionary/src/gdict-applet.c:383
+#: ../gnome-dictionary/src/gdict-applet.c:381
 msgid "Save the definitions found"
 msgstr "A talált meghatározások mentése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:385
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save definition"
 msgstr "Meghatározás mentése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:386
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Save the text of the definition to a file"
 msgstr "Meghatározás szövegének fájlba mentése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:533
+#: ../gnome-dictionary/src/gdict-applet.c:531
 msgid "Click to view the dictionary window"
 msgstr "Kattintson a szótárablak megtekintéséhez"
 
-#: ../gnome-dictionary/src/gdict-applet.c:535
+#: ../gnome-dictionary/src/gdict-applet.c:533
 msgid "Toggle dictionary window"
 msgstr "Szótárablak átváltása"
 
-#: ../gnome-dictionary/src/gdict-applet.c:536
+#: ../gnome-dictionary/src/gdict-applet.c:534
 msgid "Show or hide the definition window"
 msgstr "Meghatározásablak megjelenítése vagy elrejtése"
 
-#: ../gnome-dictionary/src/gdict-applet.c:588
+#: ../gnome-dictionary/src/gdict-applet.c:586
 msgid "Type the word you want to look up"
 msgstr "Gépelje be a keresett szót"
 
-#: ../gnome-dictionary/src/gdict-applet.c:590
+#: ../gnome-dictionary/src/gdict-applet.c:588
 msgid "Dictionary entry"
 msgstr "Szótárbejegyzés"
 
-#: ../gnome-dictionary/src/gdict-applet.c:724
-#: ../gnome-dictionary/src/gdict-window.c:1003
+#: ../gnome-dictionary/src/gdict-applet.c:722
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Dictionary Preferences"
 msgstr "Szótár beállításai"
 
-#: ../gnome-dictionary/src/gdict-applet.c:752
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
-#: ../gnome-dictionary/src/gdict-source-dialog.c:498
-#: ../gnome-dictionary/src/gdict-window.c:1150
+#: ../gnome-dictionary/src/gdict-applet.c:748
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:505
+#: ../gnome-dictionary/src/gdict-source-dialog.c:495
+#: ../gnome-dictionary/src/gdict-window.c:1145
 #, c-format
 msgid "There was an error while displaying help"
 msgstr "Hiba történt a súgó megjelenítése közben"
 
-#: ../gnome-dictionary/src/gdict-applet.c:904
-#: ../gnome-dictionary/src/gdict-window.c:519
+#: ../gnome-dictionary/src/gdict-applet.c:900
+#: ../gnome-dictionary/src/gdict-window.c:517
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Nem található a(z) „%s” nevű szótárforrás"
 
-#: ../gnome-dictionary/src/gdict-applet.c:908
-#: ../gnome-dictionary/src/gdict-window.c:523
+#: ../gnome-dictionary/src/gdict-applet.c:904
+#: ../gnome-dictionary/src/gdict-window.c:521
 msgid "Unable to find dictionary source"
 msgstr "Nem található szótárforrás"
 
-#: ../gnome-dictionary/src/gdict-applet.c:924
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:920
+#: ../gnome-dictionary/src/gdict-window.c:537
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Nincs elérhető kontextus a(z) „%s” forráshoz"
 
-#: ../gnome-dictionary/src/gdict-applet.c:928
-#: ../gnome-dictionary/src/gdict-window.c:543
+#: ../gnome-dictionary/src/gdict-applet.c:924
+#: ../gnome-dictionary/src/gdict-window.c:541
 msgid "Unable to create a context"
 msgstr "Nem hozható létre a kontextus"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1193
-#: ../gnome-dictionary/src/gdict-window.c:2088
+#: ../gnome-dictionary/src/gdict-applet.c:1189
+#: ../gnome-dictionary/src/gdict-window.c:2084
 msgid "Unable to connect to GConf"
 msgstr "Nem lehet kapcsolódni a GConf-hoz"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1206
-#: ../gnome-dictionary/src/gdict-window.c:2101
+#: ../gnome-dictionary/src/gdict-applet.c:1202
+#: ../gnome-dictionary/src/gdict-window.c:2097
 msgid "Unable to get notification for preferences"
 msgstr "Nem kérhető le figyelmeztetés a beállításokhoz"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1220
-#: ../gnome-dictionary/src/gdict-window.c:2114
+#: ../gnome-dictionary/src/gdict-applet.c:1216
+#: ../gnome-dictionary/src/gdict-window.c:2110
 msgid "Unable to get notification for the document font"
 msgstr "Nem kérhető le figyelmeztetés a dokumentum betűkészletéhez"
 
@@ -1842,37 +1848,37 @@ msgstr "Nem nevezhető át a(z) „%s” fájl erre: „%s”: %s"
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Nem hozható létre a(z) „%s” adatkönyvtár: %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:245
 msgid "Edit Dictionary Source"
 msgstr "Szótárforrás szerkesztése"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:309
 msgid "Add Dictionary Source"
 msgstr "Szótárforrás hozzáadása"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:355
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "„%s” eltávolítása?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:357
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Ez véglegesen eltávolítja a szótárforrást a listából"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:387
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "A(z) „%s” forrás nem távolítható el"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:663
 msgid "Add a new dictionary source"
 msgstr "Új szótárforrás hozzáadása"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:669
 msgid "Remove the currently selected dictionary source"
 msgstr "A jelenleg kiválasztott szótárforrás eltávolítása"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:682
 msgid "Set the font used for printing the definitions"
 msgstr "A meghatározások nyomtatásához használt betűkészlet kiválasztása"
 
@@ -1882,296 +1888,301 @@ msgstr "A meghatározások nyomtatásához használt betűkészlet kiválasztás
 msgid "Unable to display the preview: %s"
 msgstr "Az előnézet nem jeleníthető meg: %s"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:358
-#: ../gnome-dictionary/src/gdict-source-dialog.c:451
+#: ../gnome-dictionary/src/gdict-source-dialog.c:357
+#: ../gnome-dictionary/src/gdict-source-dialog.c:450
 msgid "Unable to create a source file"
 msgstr "Nem hozható létre forrásfájl."
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:376
-#: ../gnome-dictionary/src/gdict-source-dialog.c:469
+#: ../gnome-dictionary/src/gdict-source-dialog.c:375
+#: ../gnome-dictionary/src/gdict-source-dialog.c:468
 msgid "Unable to save source file"
 msgstr "Nem menthető a forrásfájl"
 
-#: ../gnome-dictionary/src/gdict-window.c:318
+#: ../gnome-dictionary/src/gdict-window.c:316
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "„%s” keresése…"
 
-#: ../gnome-dictionary/src/gdict-window.c:350
-#: ../gnome-dictionary/src/gdict-window.c:409
+#: ../gnome-dictionary/src/gdict-window.c:348
+#: ../gnome-dictionary/src/gdict-window.c:407
 msgid "No definitions found"
 msgstr "Nem találhatók meghatározások"
 
-#: ../gnome-dictionary/src/gdict-window.c:352
+#: ../gnome-dictionary/src/gdict-window.c:350
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Egy meghatározás található"
 msgstr[1] "%d meghatározás található"
 
-#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:606
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s – Szótár"
 
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:637
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../gnome-dictionary/src/gdict-window.c:1187
+#: ../gnome-dictionary/src/gdict-window.c:1183
 msgid "_Go"
 msgstr "_Ugrás"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_New"
 msgstr "Ú_j"
 
-#: ../gnome-dictionary/src/gdict-window.c:1192
+#: ../gnome-dictionary/src/gdict-window.c:1188
 msgid "New look up"
 msgstr "Új keresés"
 
-#: ../gnome-dictionary/src/gdict-window.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:1189
 msgid "_Save a Copy..."
 msgstr "Más_olat mentése…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1195
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "P_review..."
 msgstr "_Előnézet…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1196
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Preview this document"
 msgstr "A dokumentum előnézete"
 
-#: ../gnome-dictionary/src/gdict-window.c:1197
+#: ../gnome-dictionary/src/gdict-window.c:1193
 msgid "_Print..."
 msgstr "_Nyomtatás…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1198
+#: ../gnome-dictionary/src/gdict-window.c:1194
 msgid "Print this document"
 msgstr "A jelenlegi dokumentum nyomtatása"
 
-#: ../gnome-dictionary/src/gdict-window.c:1205 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:651
 msgid "Select _All"
 msgstr "_Mindent kijelöl"
 
-#: ../gnome-dictionary/src/gdict-window.c:1208
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find a word or phrase in the document"
 msgstr "Szó vagy kifejezés keresése a dokumentumban"
 
-#: ../gnome-dictionary/src/gdict-window.c:1210
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Ne_xt"
 msgstr "_Következő találat"
 
-#: ../gnome-dictionary/src/gdict-window.c:1212
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "Find Pre_vious"
 msgstr "Elő_ző találat"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Previous Definition"
 msgstr "_Előző meghatározás"
 
-#: ../gnome-dictionary/src/gdict-window.c:1219
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the previous definition"
 msgstr "Ugrás az előző meghatározásra"
 
-#: ../gnome-dictionary/src/gdict-window.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_Next Definition"
 msgstr "_Következő meghatározás"
 
-#: ../gnome-dictionary/src/gdict-window.c:1221
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the next definition"
 msgstr "Ugrás a következő meghatározásra"
 
-#: ../gnome-dictionary/src/gdict-window.c:1222
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_First Definition"
 msgstr "El_ső meghatározás"
 
-#: ../gnome-dictionary/src/gdict-window.c:1223
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the first definition"
 msgstr "Ugrás az első meghatározásra"
 
-#: ../gnome-dictionary/src/gdict-window.c:1224
+#: ../gnome-dictionary/src/gdict-window.c:1220
 msgid "_Last Definition"
 msgstr "_Utolsó meghatározás"
 
-#: ../gnome-dictionary/src/gdict-window.c:1225
+#: ../gnome-dictionary/src/gdict-window.c:1221
 msgid "Go to the last definition"
 msgstr "Ugrás az utolsó meghatározásra"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1228
+#: ../gnome-dictionary/src/gdict-window.c:1224
 msgid "Similar _Words"
 msgstr "_Hasonló szavak"
 
-#: ../gnome-dictionary/src/gdict-window.c:1230
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Dictionary Sources"
 msgstr "Szótárforrások"
 
-#: ../gnome-dictionary/src/gdict-window.c:1232
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available _Databases"
 msgstr "_Elérhető adatbázisok"
 
-#: ../gnome-dictionary/src/gdict-window.c:1234
+#: ../gnome-dictionary/src/gdict-window.c:1230
 msgid "Available St_rategies"
 msgstr "Elérhető st_ratégiák"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1251
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "_Sidebar"
 msgstr "_Oldalsáv"
 
-#: ../gnome-dictionary/src/gdict-window.c:1253
+#: ../gnome-dictionary/src/gdict-window.c:1249
 msgid "S_tatusbar"
 msgstr "Á_llapotsor"
 
-#: ../gnome-dictionary/src/gdict-window.c:1374
+#: ../gnome-dictionary/src/gdict-window.c:1370
 #, c-format
 msgid "Dictionary source `%s' selected"
 msgstr "A szótárforrás („%s”) kiválasztva"
 
-#: ../gnome-dictionary/src/gdict-window.c:1395
+#: ../gnome-dictionary/src/gdict-window.c:1391
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "A(z) „%s” stratégia kiválasztva"
 
-#: ../gnome-dictionary/src/gdict-window.c:1415
+#: ../gnome-dictionary/src/gdict-window.c:1411
 #, c-format
 msgid "Database `%s' selected"
 msgstr "A(z) „%s” adatbázis kiválasztva"
 
-#: ../gnome-dictionary/src/gdict-window.c:1435
+#: ../gnome-dictionary/src/gdict-window.c:1431
 #, c-format
 msgid "Word `%s' selected"
 msgstr "A(z) „%s” szó kiválasztva"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1457
+#: ../gnome-dictionary/src/gdict-window.c:1453
 msgid "Double-click on the word to look up"
 msgstr "Kattintson duplán a szó kikereséséhez"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1463
+#: ../gnome-dictionary/src/gdict-window.c:1459
 msgid "Double-click on the matching strategy to use"
 msgstr "Kattintson duplán a használandó keresési stratégiára"
 
 #. source-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1468
+#: ../gnome-dictionary/src/gdict-window.c:1464
 msgid "Double-click on the source to use"
 msgstr "Kattintson duplán a használandó szótáron"
 
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1477
+#: ../gnome-dictionary/src/gdict-window.c:1473
 msgid "Double-click on the database to use"
 msgstr "Kattintson duplán a használandó adatbázison"
 
-#: ../gnome-dictionary/src/gdict-window.c:1765
+#: ../gnome-dictionary/src/gdict-window.c:1761
 msgid "Look _up:"
 msgstr "_Keresés:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1839
+#: ../gnome-dictionary/src/gdict-window.c:1835
 msgid "Similar words"
 msgstr "Hasonló szavak"
 
-#: ../gnome-dictionary/src/gdict-window.c:1852
+#: ../gnome-dictionary/src/gdict-window.c:1848
 msgid "Available dictionaries"
 msgstr "Elérhető szótárak"
 
-#: ../gnome-dictionary/src/gdict-window.c:1865
+#: ../gnome-dictionary/src/gdict-window.c:1861
 msgid "Available strategies"
 msgstr "Elérhető stratégiák"
 
-#: ../gnome-dictionary/src/gdict-window.c:1876
+#: ../gnome-dictionary/src/gdict-window.c:1872
 msgid "Dictionary sources"
 msgstr "Szótárforrások"
 
-#: ../gnome-screenshot/gnome-screenshot.c:131
+#: ../gnome-screenshot/gnome-screenshot.c:128
 msgid "Error loading the help page"
 msgstr "Hiba a súgóoldal betöltése közben"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:232
 msgid "None"
 msgstr "Nincs"
 
-#: ../gnome-screenshot/gnome-screenshot.c:235
+#: ../gnome-screenshot/gnome-screenshot.c:233
 msgid "Drop shadow"
 msgstr "Vetett árnyék"
 
-#: ../gnome-screenshot/gnome-screenshot.c:236
+#: ../gnome-screenshot/gnome-screenshot.c:234
 msgid "Border"
 msgstr "Szegély"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:339
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Include _pointer"
 msgstr "M_utató bevétele"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:348
+#: ../gnome-screenshot/gnome-screenshot.c:346
 msgid "Include the window _border"
 msgstr "Az ablak _keretének bevétele a képernyőképbe"
 
-#: ../gnome-screenshot/gnome-screenshot.c:363
+#: ../gnome-screenshot/gnome-screenshot.c:361
 msgid "Apply _effect:"
 msgstr "_Hatás alkalmazása:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:425
+#: ../gnome-screenshot/gnome-screenshot.c:423
 msgid "Grab the whole _desktop"
 msgstr "A _teljes asztalról"
 
-#: ../gnome-screenshot/gnome-screenshot.c:437
+#: ../gnome-screenshot/gnome-screenshot.c:435
 msgid "Grab the current _window"
 msgstr "Az _aktuális ablakról"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:454
+#: ../gnome-screenshot/gnome-screenshot.c:452
 msgid "Grab _after a delay of"
 msgstr "Késl_eltetés: "
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:472
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "seconds"
 msgstr "másodperc"
 
-#: ../gnome-screenshot/gnome-screenshot.c:500
+#: ../gnome-screenshot/gnome-screenshot.c:488
+#: ../gnome-screenshot/gnome-screenshot.c:498
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Képernyőkép készítése"
 
-#: ../gnome-screenshot/gnome-screenshot.c:501
+#: ../gnome-screenshot/gnome-screenshot.c:499
 msgid "Effects"
 msgstr "Hatások"
 
-#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:505
 msgid "Take _Screenshot"
 msgstr "_Felvétel"
 
-#: ../gnome-screenshot/gnome-screenshot.c:593
+#: ../gnome-screenshot/gnome-screenshot.c:631
 msgid "Error while saving screenshot"
 msgstr "Hiba történt a képernyőkép mentésekor"
 
-#: ../gnome-screenshot/gnome-screenshot.c:597
+#: ../gnome-screenshot/gnome-screenshot.c:635
 #, c-format
+#| msgid ""
+#| "Impossible to save the screenshot to %s.\n"
+#| " Error was %s\n"
+#| ". Please choose another location and retry."
 msgid ""
 "Impossible to save the screenshot to %s.\n"
-" Error was %s\n"
-". Please choose another location and retry."
+" Error was %s.\n"
+" Please choose another location and retry."
 msgstr ""
 "A képernyőkép nem menthető a(z) %s helyre.\n"
 " A hiba: %s\n"
 " Válasszon másik helyet és próbálja újra."
 
-#: ../gnome-screenshot/gnome-screenshot.c:740
+#: ../gnome-screenshot/gnome-screenshot.c:782
 msgid "Unable to take a screenshot of the current window"
 msgstr "Nem készíthető képernyőkép az aktuális ablakról"
 
-#: ../gnome-screenshot/gnome-screenshot.c:781
+#: ../gnome-screenshot/gnome-screenshot.c:824
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Képernyőkép-%s.png"
@@ -2179,14 +2190,14 @@ msgstr "Képernyőkép-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/gnome-screenshot.c:831
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Képernyőkép-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:798
+#: ../gnome-screenshot/gnome-screenshot.c:841
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2195,36 +2206,41 @@ msgstr "Képernyőkép.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:805
+#: ../gnome-screenshot/gnome-screenshot.c:848
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Képernyőkép-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1121
+#: ../gnome-screenshot/gnome-screenshot.c:1179
 msgid "Grab a window instead of the entire screen"
 msgstr "Csak egy ablakról készítsen képernyőképet az egész képernyő helyett"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1122
+#: ../gnome-screenshot/gnome-screenshot.c:1180
 msgid "Include the window border with the screenshot"
 msgstr "Az ablak keretének bevétele a képernyőképbe"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:1181
+#| msgid "Include the window border with the screenshot"
+msgid "Remove the window border from the screenshot"
+msgstr "Az ablak keretének bevétele a képernyőképbe"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Képernyőkép készítése (másodpercekben) megadott idő letelte után"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Az ablak keretéhez adandó hatás (árnyék, szegély vagy nincs)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "effect"
 msgstr "hatás"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1125
+#: ../gnome-screenshot/gnome-screenshot.c:1184
 msgid "Interactively set options"
 msgstr "Interaktív mód"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1134
+#: ../gnome-screenshot/gnome-screenshot.c:1193
 msgid "Take a picture of the screen"
 msgstr "Kép készítése a képernyőről"
 
@@ -2261,8 +2277,11 @@ msgstr ""
 "„shadow” (árnyék), „none” (nincs), és „border” (szegély)."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid "Grab just the current window, rather than the whole desktop."
-msgstr "Csak az aktuális ablak lementése a teljes asztal helyett."
+#| msgid "Grab just the current window, rather than the whole desktop."
+msgid ""
+"Grab just the current window, rather than the whole desktop. This key has "
+"been deprecated and it is no longer in use."
+msgstr "Csak az aktuális ablak lementése a teljes asztal helyett. Ez a kulcs elavult és már nincs használatban."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -2297,8 +2316,9 @@ msgid "The number of seconds to wait before taking the screenshot."
 msgstr "A képernyőkép készítése előtt várakozás ennyi másodpercig."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:12
-msgid "Window-specific screenshot"
-msgstr "Ablakra jellemző képernyőkép"
+#| msgid "Window-specific screenshot"
+msgid "Window-specific screenshot (deprecated)"
+msgstr "Ablakra jellemző képernyőkép (elavult)"
 
 #: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
@@ -2334,7 +2354,7 @@ msgid "Unknown error saving screenshot to disk"
 msgstr "Ismeretlen hiba a képernyőkép lemezre mentése közben"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:481
+#: ../gnome-screenshot/screenshot-utils.c:486
 msgid "Untitled Window"
 msgstr "Névtelen ablak"
 
@@ -3293,223 +3313,32 @@ msgstr "Kattintson ide a keresés leállításához."
 msgid "- the GNOME Search Tool"
 msgstr "– a GNOME keresőeszköze"
 
-#: ../logview/about.c:51 ../logview/logview.c:37 ../logview/main.c:54
-msgid "System Log Viewer"
-msgstr "Rendszernaplónéző"
+#: ../logview/data/gnome-system-log.desktop.in.in.h:1
+#| msgid "Log Viewer"
+msgid "Log File Viewer"
+msgstr "Naplómegjelenítő"
 
-#: ../logview/about.c:54
-msgid "A system log viewer for GNOME."
-msgstr "Rendszernaplónéző a GNOME környezethez."
-
-#: ../logview/gnome-system-log.desktop.in.in.h:1
-msgid "System Log"
-msgstr "Rendszernapló"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:2
+#: ../logview/data/gnome-system-log.desktop.in.in.h:2
 msgid "View or monitor system log files"
 msgstr "Rendszernapló-fájlok megtekintése vagy megfigyelése"
 
-#: ../logview/log_repaint.c:190
-#, c-format
-msgid "last update: %s"
-msgstr "utolsó frissítés: %s"
-
-#: ../logview/log_repaint.c:192
-#, c-format
-msgid "%d lines (%s) - %s"
-msgstr "%d sor (%s) - %s"
-
-#: ../logview/log_repaint.c:230
-msgid "Current"
-msgstr "Jelenlegi"
-
-#: ../logview/logrtns.c:37
-msgid "One file or more could not be opened"
-msgstr "Néhány fájl nem nyitható meg"
-
-#: ../logview/logrtns.c:59
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file.\n"
-msgstr ""
-"%s nem olvasható a felhasználók által. Futtassa a programot rootként, vagy "
-"kérjen a rendszergazdától jogosultságokat a fájlhoz.\n"
-
-#: ../logview/logrtns.c:64
-#, c-format
-msgid "%s is too big."
-msgstr "A(z) %s túl nagy."
-
-#: ../logview/logrtns.c:67
-#, c-format
-msgid "%s could not be opened."
-msgstr "%s nem nyitható meg."
-
-#: ../logview/logrtns.c:382
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s nem naplófájl."
-
-#: ../logview/logrtns.c:388
-msgid "Not enough memory."
-msgstr "Nincs elég memória."
-
-#: ../logview/logrtns.c:402
-#, c-format
-msgid "%s cannot be opened."
-msgstr "%s nem nyitható meg."
-
-#: ../logview/logview-findbar.c:152
-msgid "_Filter:"
-msgstr "_Szűrő:"
-
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "_Törlés"
-
-#: ../logview/logview.c:90
-msgid "_Open..."
-msgstr "_Megnyitás…"
-
-#: ../logview/logview.c:90
-msgid "Open a log from file"
-msgstr "Napló megnyitása fájlból"
-
-#: ../logview/logview.c:92
-msgid "_Close"
-msgstr "_Bezárás"
-
-#: ../logview/logview.c:92
-msgid "Close this log"
-msgstr "Napló bezárása"
-
-#: ../logview/logview.c:94
-msgid "_Quit"
-msgstr "_Kilépés"
-
-#: ../logview/logview.c:94
-msgid "Quit the log viewer"
-msgstr "Kilépés a naplónézőből"
-
-#: ../logview/logview.c:97
-msgid "_Copy"
-msgstr "_Másolás"
-
-#: ../logview/logview.c:97
-msgid "Copy the selection"
-msgstr "A kijelölés másolása"
-
-#: ../logview/logview.c:99
-msgid "Select the entire log"
-msgstr "Teljes napló kijelölése"
-
-#: ../logview/logview.c:101
-msgid "_Filter..."
-msgstr "_Szűrők…"
-
-#: ../logview/logview.c:101
-msgid "Filter log"
-msgstr "Napló szűrése"
-
-#: ../logview/logview.c:104
-msgid "Bigger text size"
-msgstr "Nagyobb szövegméret"
-
-#: ../logview/logview.c:106
-msgid "Smaller text size"
-msgstr "Kisebb szövegméret"
-
-#: ../logview/logview.c:108
-msgid "Normal text size"
-msgstr "Normál szövegméret"
-
-#: ../logview/logview.c:111
-msgid "Collapse _All"
-msgstr "Össze_csukás"
-
-#: ../logview/logview.c:111
-msgid "Collapse all the rows"
-msgstr "Minden sor összecsukása"
-
-#: ../logview/logview.c:114
-msgid "Open the help contents for the log viewer"
-msgstr "A naplónéző súgójának megnyitása"
-
-#: ../logview/logview.c:116
-msgid "Show the about dialog for the log viewer"
-msgstr "A naplónéző névjegyének megjelenítése"
-
-#: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "Állapot_sor"
-
-#: ../logview/logview.c:122
-msgid "Show Status Bar"
-msgstr "Állapotsor mutatása"
-
-#: ../logview/logview.c:124
-msgid "Side _Pane"
-msgstr "Oldal_sáv"
-
-#: ../logview/logview.c:124
-msgid "Show Side Pane"
-msgstr "Az oldalsáv mutatása"
-
-#: ../logview/logview.c:126
-msgid "_Monitor"
-msgstr "_Megfigyelés"
-
-#: ../logview/logview.c:126
-msgid "Monitor Current Log"
-msgstr "Jelenlegi napló figyelése"
-
-#: ../logview/logview.c:128
-msgid "Ca_lendar"
-msgstr "_Naptár"
-
-#: ../logview/logview.c:128
-msgid "Show Calendar Log"
-msgstr "Naptár naplójának megjelenítése"
-
-#: ../logview/logview.c:307
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (figyelve) - %s"
-
-#: ../logview/logview.c:518
-msgid "Open Log"
-msgstr "Napló megnyitása"
-
-#: ../logview/logview.c:906
-msgid "Version: "
-msgstr "Verzió: "
-
-#: ../logview/logview.c:975
-msgid "Days"
-msgstr "Nap"
-
-#: ../logview/logview.c:976
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "Egy mutató a jelenlegi napló napjainak GSList struktúrájára."
-
-#: ../logview/logview.schemas.in.h:1
+#: ../logview/data/gnome-system-log.schemas.in.h:1
 msgid "Height of the main window in pixels"
 msgstr "A főablak magassága képpontokban"
 
-#: ../logview/logview.schemas.in.h:2
+#: ../logview/data/gnome-system-log.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "Az indításkor megnyitandó naplófájl"
 
-#: ../logview/logview.schemas.in.h:3
+#: ../logview/data/gnome-system-log.schemas.in.h:3
 msgid "Log files to open up on startup"
 msgstr "Az indításkor megnyitandó naplófájlok"
 
-#: ../logview/logview.schemas.in.h:4
+#: ../logview/data/gnome-system-log.schemas.in.h:4
 msgid "Size of the font used to display the log"
 msgstr "A napló megjelenítésére használandó betűkészlet mérete"
 
-#: ../logview/logview.schemas.in.h:5
+#: ../logview/data/gnome-system-log.schemas.in.h:5
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
@@ -3517,11 +3346,11 @@ msgstr ""
 "Megadja az indításkor megnyitandó naplófájlok listáját. Az alapértelmezett "
 "lista az /etc/syslog.conf beolvasásával jön létre."
 
-#: ../logview/logview.schemas.in.h:6
+#: ../logview/data/gnome-system-log.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
 msgstr "Megadja a naplómegjelenítő főablakának magasságát képpontokban."
 
-#: ../logview/logview.schemas.in.h:7
+#: ../logview/data/gnome-system-log.schemas.in.h:7
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
@@ -3530,7 +3359,7 @@ msgstr ""
 "vagy a /var/adm/messages vagy a /var/log/messages, az operációs rendszertől "
 "függően."
 
-#: ../logview/logview.schemas.in.h:8
+#: ../logview/data/gnome-system-log.schemas.in.h:8
 msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
@@ -3539,101 +3368,233 @@ msgstr ""
 "szélességű betűkészlet méretét. Az alapértelmezés az alapértelmezett "
 "rögzített szélességű betűkészlet beállításból származik."
 
-#: ../logview/logview.schemas.in.h:9
+#: ../logview/data/gnome-system-log.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
 msgstr "Megadja a naplómegjelenítő főablakának szélességét képpontokban."
 
-#: ../logview/logview.schemas.in.h:10
+#: ../logview/data/gnome-system-log.schemas.in.h:10
 msgid "Width of the main window in pixels"
 msgstr "A főablak szélessége képpontokban"
 
-#: ../logview/main.c:49
+#: ../logview/logview-about.h:49
+msgid ""
+"Log Viewer is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr "A Naplómegjelenítő szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software Foundation által kiadott GNU General Public License második (vagy bármely későbbi) változatában foglaltak alapján."
+
+#: ../logview/logview-about.h:53
+msgid ""
+"Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr "A Naplómegjelenítő programot abban a reményben terjesztjük, hogy hasznos lesz, de nem vállalunk SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy a program alkalmas-e a KÖZREADÁSRA vagy EGY BIZONYOS FELADAT ELVÉGZÉSÉRE. További részletekért tanulmányozza a GNU GPL licencet."
+
+#: ../logview/logview-about.h:57
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+msgstr "A Naplómegjelenítő programhoz a GNU General Public License egy példánya is jár, ha nem kapta meg, írjon a Free Software Foundation Inc.-nek. Levélcímük: 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+
+#: ../logview/logview-app.c:179
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "A fájl (%s) nem nyitható meg"
+
+#: ../logview/logview-findbar.c:169
+#| msgid "F_ind:"
+msgid "_Find:"
+msgstr "_Keresés:"
+
+#: ../logview/logview-findbar.c:184
+#| msgid "Find Pre_vious"
+msgid "Find Previous"
+msgstr "Előző találat"
+
+#: ../logview/logview-findbar.c:187
+msgid "Find previous occurrence of the search string"
+msgstr "A szó vagy kifejezés előző előfordulása"
+
+#: ../logview/logview-findbar.c:192
+#| msgid "Find Ne_xt"
+msgid "Find Next"
+msgstr "Következő találat"
+
+#: ../logview/logview-findbar.c:195
+msgid "Find next occurrence of the search string"
+msgstr "A szó vagy kifejezés következő előfordulása"
+
+#: ../logview/logview-findbar.c:202
+#| msgid "Select the \"%s\" search option"
+msgid "Clear the search string"
+msgstr "A keresőkifejezés törlése"
+
+#: ../logview/logview-log.c:593
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr "Hiba a Gzip-pel tömörített napló kibontásakor. A fájl sérült lehet."
+
+#: ../logview/logview-log.c:638
+#| msgid "You may not have write permissions to the document."
+msgid "You don't have enough permissions to read the file."
+msgstr "Nincs megfelelő jogosultsága a fájl olvasásához."
+
+#: ../logview/logview-log.c:653
+msgid "The file is not a regular file or is not a text file."
+msgstr "A fájl nem szabályos fájl vagy szövegfájl."
+
+#: ../logview/logview-log.c:735
+msgid "This version of System Log does not support GZipped logs."
+msgstr "A Naplómegjelenítő ezen változata nem támogatja a Gzip-pel tömörített naplókat."
+
+#: ../logview/logview-loglist.c:309
+#| msgid "Scanning..."
+msgid "Loading..."
+msgstr "Betöltés…"
+
+#: ../logview/logview-main.c:62
 msgid "Show the application's version"
 msgstr "Az alkalmazás verziószámának megjelenítése"
 
-#: ../logview/main.c:55
-msgid "Show System Log Viewer options"
-msgstr "A Rendszernaplónéző opcióinak megjelenítése"
+#: ../logview/logview-main.c:64
+msgid "[LOGFILE...]"
+msgstr "[NAPLÓFÁJL…]"
 
-#: ../logview/main.c:59
+#: ../logview/logview-main.c:68
 msgid " - Browse and monitor logs"
 msgstr " – Naplók böngészése és megfigyelése"
 
-#: ../logview/main.c:145
+#: ../logview/logview-main.c:100
 msgid "Log Viewer"
 msgstr "Naplómegjelenítő"
 
-#: ../logview/main.c:154
-msgid "Unable to create user interface."
-msgstr "Nem hozható létre a felhasználói felület."
+#: ../logview/logview-window.c:39 ../logview/logview-window.c:596
+msgid "System Log Viewer"
+msgstr "Rendszernaplónéző"
 
-#: ../logview/misc.c:42
-msgid "January"
-msgstr "január"
-
-#: ../logview/misc.c:42
-msgid "February"
-msgstr "február"
-
-#: ../logview/misc.c:42
-msgid "March"
-msgstr "március"
-
-#: ../logview/misc.c:42
-msgid "April"
-msgstr "április"
-
-#: ../logview/misc.c:42
-msgid "May"
-msgstr "május"
-
-#: ../logview/misc.c:43
-msgid "June"
-msgstr "június"
-
-#: ../logview/misc.c:43
-msgid "July"
-msgstr "július"
-
-#: ../logview/misc.c:43
-msgid "August"
-msgstr "augusztus"
-
-#: ../logview/misc.c:43
-msgid "September"
-msgstr "szeptember"
-
-#: ../logview/misc.c:43
-msgid "October"
-msgstr "október"
-
-#: ../logview/misc.c:44
-msgid "November"
-msgstr "november"
-
-#: ../logview/misc.c:44
-msgid "December"
-msgstr "december"
-
-#: ../logview/misc.c:164
-msgid "Invalid date"
-msgstr "Érvénytelen dátum"
-
-#. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:169
+#: ../logview/logview-window.c:206
 #, c-format
-msgid "%x"
-msgstr "%x"
+msgid "last update: %s"
+msgstr "utolsó frissítés: %s"
 
-#: ../logview/monitor.c:83
-msgid "This file cannot be monitored."
-msgstr "A fájl nem figyelhető meg."
+#: ../logview/logview-window.c:209
+#, c-format
+msgid "%d lines (%s) - %s"
+msgstr "%d sor (%s) - %s"
 
-#: ../logview/monitor.c:86
-msgid "File monitoring is not supported on this file system.\n"
-msgstr "A fájlok megfigyelése nem támogatott ezen a fájlrendszeren.\n"
+#: ../logview/logview-window.c:337
+msgid "Open Log"
+msgstr "Napló megnyitása"
 
-#: ../logview/monitor.c:88
-msgid "Gnome-VFS Error.\n"
-msgstr "Gnome-VFS hiba.\n"
+#: ../logview/logview-window.c:376
+#, c-format
+#| msgid "There was an error displaying help."
+msgid "There was an error displaying help: %s"
+msgstr "Hiba történt a súgó megjelenítése közben: %s"
+
+#: ../logview/logview-window.c:492
+msgid "Wrapped"
+msgstr "Körbeért"
+
+#: ../logview/logview-window.c:601
+msgid "A system log viewer for GNOME."
+msgstr "Rendszernaplónéző a GNOME környezethez."
+
+#: ../logview/logview-window.c:642
+msgid "_Open..."
+msgstr "_Megnyitás…"
+
+#: ../logview/logview-window.c:642
+msgid "Open a log from file"
+msgstr "Napló megnyitása fájlból"
+
+#: ../logview/logview-window.c:644
+msgid "_Close"
+msgstr "_Bezárás"
+
+#: ../logview/logview-window.c:644
+msgid "Close this log"
+msgstr "Napló bezárása"
+
+#: ../logview/logview-window.c:646
+msgid "_Quit"
+msgstr "_Kilépés"
+
+#: ../logview/logview-window.c:646
+msgid "Quit the log viewer"
+msgstr "Kilépés a naplónézőből"
+
+#: ../logview/logview-window.c:649
+msgid "_Copy"
+msgstr "_Másolás"
+
+#: ../logview/logview-window.c:649
+msgid "Copy the selection"
+msgstr "A kijelölés másolása"
+
+#: ../logview/logview-window.c:651
+msgid "Select the entire log"
+msgstr "Teljes napló kijelölése"
+
+#: ../logview/logview-window.c:653
+#| msgid "_Print..."
+msgid "_Find..."
+msgstr "_Keresés…"
+
+#: ../logview/logview-window.c:653
+#| msgid "Find a word or phrase in the document"
+msgid "Find a word or phrase in the log"
+msgstr "Szó vagy kifejezés keresése a naplóban"
+
+#: ../logview/logview-window.c:656
+msgid "Bigger text size"
+msgstr "Nagyobb szövegméret"
+
+#: ../logview/logview-window.c:658
+msgid "Smaller text size"
+msgstr "Kisebb szövegméret"
+
+#: ../logview/logview-window.c:660
+msgid "Normal text size"
+msgstr "Normál szövegméret"
+
+#: ../logview/logview-window.c:663
+msgid "Open the help contents for the log viewer"
+msgstr "A naplónéző súgójának megnyitása"
+
+#: ../logview/logview-window.c:665
+msgid "Show the about dialog for the log viewer"
+msgstr "A naplónéző névjegyének megjelenítése"
+
+#: ../logview/logview-window.c:670
+msgid "_Statusbar"
+msgstr "Állapot_sor"
+
+#: ../logview/logview-window.c:670
+msgid "Show Status Bar"
+msgstr "Állapotsor mutatása"
+
+#: ../logview/logview-window.c:672
+msgid "Side _Pane"
+msgstr "Oldal_sáv"
+
+#: ../logview/logview-window.c:672
+msgid "Show Side Pane"
+msgstr "Az oldalsáv mutatása"
+
+#: ../logview/logview-window.c:1155
+#| msgid "_Close"
+msgid "Close"
+msgstr "Bezárás"
+
+#: ../logview/logview-window.c:1195
+msgid "Version: "
+msgstr "Verzió: "
+
+#: ../logview/logview-window.c:1295
+#| msgid "Could not open folder \"%s\""
+msgid "Could not open the following files:"
+msgstr "Nem nyithatók meg a következő fájlok:"
 
