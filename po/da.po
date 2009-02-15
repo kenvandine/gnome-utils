@@ -1,5 +1,5 @@
 # Danish Translation of gnome-utils.
-# Copyright (C) 1999-2008 Free Software Foundation, Inc.
+# Copyright (C) 1999-2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-utils package.
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
 # Kim Schulz <kim@schulz.dk>, 1999.
@@ -8,7 +8,7 @@
 # Ole Laursen <olau@hardworking.dk>, 2001, 02, 03, 04.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2008.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 08, 09.
 #
 #
 # Husk at tilføje dig i credit-listen (besked id "translator-credits")
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-22 03:18+0200\n"
-"PO-Revision-Date: 2008-09-22 02:50+0200\n"
+"POT-Creation-Date: 2009-02-15 14:21+0100\n"
+"PO-Revision-Date: 2009-02-15 14:01+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -121,12 +121,12 @@ msgstr "_Sammenfold alle"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:22
-#: ../gnome-dictionary/src/gdict-window.c:1238 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:663
 msgid "_Contents"
 msgstr "_Indhold"
 
 #: ../baobab/data/baobab.glade.h:23
-#: ../gnome-dictionary/src/gdict-window.c:1185 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:638
 msgid "_Edit"
 msgstr "_Redigér"
 
@@ -136,7 +136,7 @@ msgstr "_Udfold alle"
 
 #: ../baobab/data/baobab.glade.h:25
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1188 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:640
 msgid "_Help"
 msgstr "_Hjælp"
 
@@ -149,7 +149,7 @@ msgid "_Toolbar"
 msgstr "_Værktøjslinje"
 
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1186 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:639
 msgid "_View"
 msgstr "_Vis"
 
@@ -193,75 +193,79 @@ msgstr "Om værktøjstip for undermapper af den valgte mappe tegnes."
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Om værktøjslinjen skal være synlig i hovedvinduet."
 
-#: ../baobab/src/baobab.c:123 ../baobab/src/baobab.c:301
+#: ../baobab/src/baobab.c:121 ../baobab/src/baobab.c:299
 msgid "Scanning..."
 msgstr "Skanner..."
 
 # Gad vide om de mener progress bars
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:185 ../baobab/src/baobab.c:243
+#: ../baobab/src/baobab.c:183 ../baobab/src/baobab.c:241
 #: ../baobab/src/callbacks.c:302
 msgid "Calculating percentage bars..."
 msgstr "Beregner procentbjælker..."
 
-#: ../baobab/src/baobab.c:195 ../baobab/src/baobab.c:972
+#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:998
 #: ../baobab/src/callbacks.c:306
 msgid "Ready"
 msgstr "Klar"
 
-#: ../baobab/src/baobab.c:336
+#: ../baobab/src/baobab.c:338
 msgid "Total filesystem usage:"
 msgstr "Totalt pladsforbrug:"
 
 # Der kommer til at stå "contains hard links for: 117 kB", f.eks.
-#: ../baobab/src/baobab.c:375
+#: ../baobab/src/baobab.c:377
 msgid "contains hardlinks for:"
 msgstr "indeholder hårde lænker for:"
 
-#: ../baobab/src/baobab.c:384
+#: ../baobab/src/baobab.c:386
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d objekt"
 msgstr[1] "% 5d objekter"
 
-#: ../baobab/src/baobab.c:722
+#: ../baobab/src/baobab.c:737
 msgid "Could not initialize monitoring"
 msgstr "Kunne ikke initialisere overvågning"
 
-#: ../baobab/src/baobab.c:723
+#: ../baobab/src/baobab.c:738
 msgid "Changes to your home folder will not be monitored."
 msgstr "Ændringer i din hjemmemappe vil ikke blive overvåget."
 
-#: ../baobab/src/baobab.c:768
+#: ../baobab/src/baobab.c:783
 msgid "Move to parent folder"
 msgstr "Gå til mappen et niveau over"
 
-#: ../baobab/src/baobab.c:772
+#: ../baobab/src/baobab.c:787
 msgid "Zoom in"
 msgstr "Førstør"
 
-#: ../baobab/src/baobab.c:776
+#: ../baobab/src/baobab.c:791
 msgid "Zoom out"
 msgstr "Formindsk"
 
-#: ../baobab/src/baobab.c:780
+#: ../baobab/src/baobab.c:795
 msgid "Save snapshot"
 msgstr "Gem skærmbillede"
 
-#: ../baobab/src/baobab.c:828
+#: ../baobab/src/baobab.c:843
 msgid "View as Rings Chart"
 msgstr "Vis som ringdiagram"
 
-#: ../baobab/src/baobab.c:830
+#: ../baobab/src/baobab.c:845
 msgid "View as Treemap Chart"
 msgstr "Vis som træafbildning"
 
-#: ../baobab/src/baobab.c:942
+#: ../baobab/src/baobab.c:917
+msgid "Cannot check an excluded folder!"
+msgstr "Kan ikke kontrollere en ekskluderet mappe!"
+
+#: ../baobab/src/baobab.c:968
 msgid "Could not detect any mount point."
 msgstr "Kunne ikke detektere noget monteringspunkt."
 
-#: ../baobab/src/baobab.c:945
+#: ../baobab/src/baobab.c:971
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Uden monteringspunkter kan diskforbruget ikke analyseres."
 
@@ -326,7 +330,7 @@ msgstr "Samlet størrelse"
 msgid "Available"
 msgstr "Tilgængeligt"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:78
+#: ../baobab/src/baobab-remote-connect-dialog.c:77
 #, c-format
 msgid "Cannot scan location \"%s\""
 msgstr "Kan ikke skanne placeringen \"%s\""
@@ -437,63 +441,63 @@ msgstr "Markér mappe"
 msgid "_Show hidden folders"
 msgstr "_Vis skjulte mapper"
 
-#: ../baobab/src/baobab-utils.c:302
+#: ../baobab/src/baobab-utils.c:304
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" er ikke en gyldig mappe"
 
-#: ../baobab/src/baobab-utils.c:305
+#: ../baobab/src/baobab-utils.c:307
 msgid "Could not analyze disk usage."
 msgstr "Kunne ikke analysere diskforbrug."
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:348
 msgid "_Open Folder"
 msgstr "_Åbn mappe"
 
-#: ../baobab/src/baobab-utils.c:340 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:354 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "F_lyt til papirkurv"
 
-#: ../baobab/src/baobab-utils.c:369
+#: ../baobab/src/baobab-utils.c:380
 msgid "Total filesystem capacity:"
 msgstr "Total filsystemskapacitet:"
 
-#: ../baobab/src/baobab-utils.c:370
+#: ../baobab/src/baobab-utils.c:381
 msgid "used:"
 msgstr "brugt:"
 
-#: ../baobab/src/baobab-utils.c:371
+#: ../baobab/src/baobab-utils.c:382
 msgid "available:"
 msgstr "tilgængelig:"
 
-#: ../baobab/src/baobab-utils.c:415
+#: ../baobab/src/baobab-utils.c:426
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Kunne ikke åbne mappen \"%s\""
 
-#: ../baobab/src/baobab-utils.c:418
+#: ../baobab/src/baobab-utils.c:429
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Der er ikke nogen installeret fremviser der kan vise mappen."
 
-#: ../baobab/src/baobab-utils.c:487
+#: ../baobab/src/baobab-utils.c:498
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Kunne ikke flytte \"%s\" til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:495
+#: ../baobab/src/baobab-utils.c:506
 msgid "Could not move file to the Trash"
 msgstr "Kunne ikke flytte filen til papirkurven"
 
-#: ../baobab/src/baobab-utils.c:497
+#: ../baobab/src/baobab-utils.c:508
 #, c-format
 msgid "Details: %s"
 msgstr "Detaljer: %s"
 
-#: ../baobab/src/baobab-utils.c:516
+#: ../baobab/src/baobab-utils.c:527
 msgid "Rescan your home folder?"
 msgstr "Skan hjemmemappen igen?"
 
-#: ../baobab/src/baobab-utils.c:517
+#: ../baobab/src/baobab-utils.c:528
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -501,17 +505,13 @@ msgstr ""
 "Indholdet af din hjemmemappe er ændret. Vælg \"Skan igen\" for at opdatere "
 "detaljerne vedrørende diskforbrug."
 
-#: ../baobab/src/baobab-utils.c:518
+#: ../baobab/src/baobab-utils.c:529
 msgid "_Rescan"
 msgstr "_Skan igen"
 
-#: ../baobab/src/baobab-utils.c:553 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:569
 msgid "There was an error displaying help."
 msgstr "Der opstod en fejl ved visning af hjælp."
-
-#: ../baobab/src/baobab-mount-operation.c:146
-msgid "Enter Password"
-msgstr "Indtast kodeord"
 
 #: ../baobab/src/callbacks.c:97
 msgid "Baobab"
@@ -521,9 +521,9 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "Et grafisk værktøj til at analysere diskforbrug."
 
-#. Translator credits
+#. translator credits
 #: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
-#: ../logview/about.c:47
+#: ../logview/logview-about.h:63
 msgid "translator-credits"
 msgstr ""
 "Birger Langkjer\n"
@@ -889,11 +889,11 @@ msgstr "_Hurtig (overskriver blot filsystemet)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standard (foretager en egentlig formatering)"
 
-#: ../gfloppy/src/main.c:259
+#: ../gfloppy/src/main.c:257
 msgid "Cannot Format"
 msgstr "Kan ikke formatere"
 
-#: ../gfloppy/src/main.c:260
+#: ../gfloppy/src/main.c:258
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -901,12 +901,12 @@ msgstr ""
 "Hverken programmet mke2fs eller mkdosfs/mformat er installeret. Du kan ikke "
 "formatere en diskette uden et af dem."
 
-#: ../gfloppy/src/main.c:280
+#: ../gfloppy/src/main.c:278
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Kan ikke åbne enheden %s, formatering kan ikke fortsætte."
 
-#: ../gfloppy/src/main.c:283 ../gfloppy/src/main.c:345
+#: ../gfloppy/src/main.c:281 ../gfloppy/src/main.c:343
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -915,7 +915,7 @@ msgstr ""
 "Enheden %s er ikke forbundet.\n"
 "Tilkobl venligst enheden for at forsætte."
 
-#: ../gfloppy/src/main.c:286 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:284 ../gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -926,40 +926,40 @@ msgstr ""
 "udføres.\n"
 "Kontakt systemadministratoren for at få skriverettigheder."
 
-#: ../gfloppy/src/main.c:293 ../gfloppy/src/main.c:356
+#: ../gfloppy/src/main.c:291 ../gfloppy/src/main.c:354
 msgid "Cannot initialize device"
 msgstr "Kan ikke klargøre enheden"
 
-#: ../gfloppy/src/main.c:342
+#: ../gfloppy/src/main.c:340
 #, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Kan ikke nogen enhed, formatering kan ikke fortsætte."
 
-#: ../gfloppy/src/main.c:345 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:343 ../gfloppy/src/main.c:346
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 eller /dev/fd0"
 
-#: ../gfloppy/src/main.c:509
+#: ../gfloppy/src/main.c:507
 msgid "Could not display help for the floppy formatter."
 msgstr "Kunne ikke vise hjælpen til disketteformateringen."
 
-#: ../gfloppy/src/main.c:528
+#: ../gfloppy/src/main.c:526
 msgid "Incorrect volume name"
 msgstr "Ugyldigt delarkivnavn"
 
-#: ../gfloppy/src/main.c:529
+#: ../gfloppy/src/main.c:527
 msgid "The volume name can't contain any blank space."
 msgstr "Diskettenavnet må ikke indeholde mellemrum."
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "The device to format"
 msgstr "Den enhed der skal formatteres"
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "DEVICE"
 msgstr "ENHED"
 
-#: ../gfloppy/src/main.c:583
+#: ../gfloppy/src/main.c:581
 msgid "- Floppy Formatter"
 msgstr "- Disketteformatering"
 
@@ -1009,7 +1009,7 @@ msgid "Cl_ear"
 msgstr "_Ryd"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1240 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:665
 msgid "_About"
 msgstr "_Om"
 
@@ -1018,7 +1018,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Slå markeret tekst op"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1214
+#: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "_Preferences"
 msgstr "_Indstillinger"
 
@@ -1036,9 +1036,9 @@ msgstr "Slå orddefinitioner og stavning op i en ordbog på internettet"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:402
-#: ../gnome-dictionary/src/gdict-window.c:610
-#: ../gnome-dictionary/src/gdict-window.c:1957
+#: ../gnome-dictionary/src/gdict-app.c:385
+#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:1953
 msgid "Dictionary"
 msgstr "Ordbog"
 
@@ -1428,54 +1428,55 @@ msgstr "Kun lokal"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Om konteksten kun bruger lokale ordbøger"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:382
 msgid "Reload the list of available databases"
 msgstr "Genindlæs listen af tilgængelige databaser"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:394
 msgid "Clear the list of available databases"
 msgstr "Ryd listen af tilgængelige databaser"
 
 # Søgning er måske ikke det mest præcise
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
-#: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:841
+#: ../gnome-dictionary/libgdict/gdict-speller.c:779
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:789
 msgid "Error while matching"
 msgstr "Fejl under søgning"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1135
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1229
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1263
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
+#: ../logview/logview-window.c:507
 msgid "Not found"
 msgstr "Ikke fundet"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1323
 msgid "F_ind:"
 msgstr "F_ind:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1337
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1336
 msgid "_Previous"
 msgstr "_Forrige"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1345
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1344
 msgid "_Next"
 msgstr "_Næste"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2520
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2519
 msgid "Error while looking up definition"
 msgstr "Fejl ved opslag af definition"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2561
+#: ../gnome-dictionary/libgdict/gdict-speller.c:737
 msgid "Another search is in progress"
 msgstr "En anden søgning er i gang"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2563
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
 msgid "Please wait until the current search ends."
 msgstr "Vent venligst til den aktuelle søgning er afsluttet."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2602
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2601
 msgid "Error while retrieving the definition"
 msgstr "Fejl under overførsel af definition"
 
@@ -1505,7 +1506,7 @@ msgid "The description of this dictionary source"
 msgstr "Beskrivelsen af denne ordbogskilde"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
-#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+#: ../gnome-dictionary/libgdict/gdict-speller.c:384
 msgid "Database"
 msgstr "Database"
 
@@ -1514,7 +1515,7 @@ msgid "The default database of this dictonary source"
 msgstr "Denne ordbogskildes standarddatabase"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:288
-#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+#: ../gnome-dictionary/libgdict/gdict-speller.c:391
 msgid "Strategy"
 msgstr "Strategi"
 
@@ -1531,7 +1532,7 @@ msgid "The transport mechanism used by this dictionary source"
 msgstr "Denne ordbogskildes transportmekanisme"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:317
-#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+#: ../gnome-dictionary/libgdict/gdict-speller.c:377
 msgid "Context"
 msgstr "Kontekst"
 
@@ -1573,7 +1574,7 @@ msgstr "Ordbogskilden har ikke noget navn"
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Ordbogskilden \"%s\" har ugyldig transport \"%s\""
 
-#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:299
 msgid "Reload the list of available sources"
 msgstr "Genindlæs listen af tilgængelige kilder"
 
@@ -1594,29 +1595,43 @@ msgstr "Kilder"
 msgid "Dictionary sources found"
 msgstr "Ordbogskilder fundet"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:355
+#: ../gnome-dictionary/libgdict/gdict-speller.c:354
 msgid "Clear the list of similar words"
 msgstr "Ryd listen af lignende ord"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:379
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
 msgid "The GdictContext object used to get the word definition"
 msgstr "GdictContext-objektet der bruges til at hente orddefinitionen"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:386
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
 msgid "The database used to query the GdictContext"
 msgstr "Den database der skal benyttes til forespørgsler GdictContext'en"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:393
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
 msgid "The strategy used to query the GdictContext"
 msgstr "Strategien der bruges til forespørgsler til GdictContext'en"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:365
 msgid "Reload the list of available strategies"
 msgstr "Genindlæs listen af tilgængelige strategier"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:377
 msgid "Clear the list of available strategies"
 msgstr "Ryd listen af tilgængelige strategier"
+
+# jf. slå fra nedenfor
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+msgid "GDict debugging flags to set"
+msgstr "GDict-fejlsøgeflag at slå til"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "FLAGS"
+msgstr "FLAG"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "GDict debugging flags to unset"
+msgstr "GDict-fejlsøgerflag at slå fra"
 
 #: ../gnome-dictionary/libgdict/gdict-utils.c:157
 msgid "GDict Options"
@@ -1634,7 +1649,7 @@ msgstr "Slå ord op i ordbøger"
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:233
+#: ../gnome-dictionary/src/gdict-app.c:217
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1647,21 +1662,21 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:231
 #, c-format
 msgid "Error: %s\n"
 msgstr "Fejl: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:257
 #, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Se gnome-dictionary --help for brugsinstruktioner\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:286
+#: ../gnome-dictionary/src/gdict-app.c:270
 msgid "Unable to find a suitable dictionary source"
 msgstr "Kan ikke finde en passende ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-app.c:320
+#: ../gnome-dictionary/src/gdict-app.c:304
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1670,115 +1685,107 @@ msgstr ""
 "Fejl under opslag af definitionen på \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Words to look up"
 msgstr "Ord der skal slås op"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:356
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:339
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "word"
 msgstr "ord"
 
-#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:339
 msgid "Words to match"
 msgstr "Søgeord"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "Dictionary source to use"
 msgstr "Benyttet ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "source"
 msgstr "kilde"
 
-#: ../gnome-dictionary/src/gdict-app.c:360
+#: ../gnome-dictionary/src/gdict-app.c:343
 msgid "Show available dictionary sources"
 msgstr "Vis tilgængelige ordbogskilder"
 
-#: ../gnome-dictionary/src/gdict-app.c:362
+#: ../gnome-dictionary/src/gdict-app.c:345
 msgid "Print result to the console"
 msgstr "Udskriv resultat til konsollen"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "Database to use"
 msgstr "Benyttet database"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "Strategy to use"
 msgstr "Benyttet søgningsstrategi"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "strat"
 msgstr "strat"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:384
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid " - Look up words in dictionaries"
 msgstr " - Slå ord op i ordbøger"
 
-#: ../gnome-dictionary/src/gdict-app.c:388
-msgid "Dictionary and spelling tool"
-msgstr "Ordbog og staveværktøj"
-
-#: ../gnome-dictionary/src/gdict-app.c:389
-msgid "Show Dictionary options"
-msgstr "Vis ordbogsindstillinger"
-
-#: ../gnome-dictionary/src/gdict-applet.c:207
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-applet.c:205
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "Save a Copy"
 msgstr "Gem en kopi"
 
-#: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:849
+#: ../gnome-dictionary/src/gdict-applet.c:215
+#: ../gnome-dictionary/src/gdict-window.c:847
 msgid "Untitled document"
 msgstr "Dokument uden titel"
 
-#: ../gnome-dictionary/src/gdict-applet.c:238
-#: ../gnome-dictionary/src/gdict-window.c:870
+#: ../gnome-dictionary/src/gdict-applet.c:236
+#: ../gnome-dictionary/src/gdict-window.c:868
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Fejl under skrivning til \"%s\""
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:361
 msgid "Clear the definitions found"
 msgstr "Ryd de fundne definitioner"
 
-#: ../gnome-dictionary/src/gdict-applet.c:365
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear definition"
 msgstr "Ryd definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:364
 msgid "Clear the text of the definition"
 msgstr "Ryd definitionens tekst"
 
-#: ../gnome-dictionary/src/gdict-applet.c:373
+#: ../gnome-dictionary/src/gdict-applet.c:371
 msgid "Print the definitions found"
 msgstr "Udskriv de fundne definitioner"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print definition"
 msgstr "Udskriv definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:376
+#: ../gnome-dictionary/src/gdict-applet.c:374
 msgid "Print the text of the definition"
 msgstr "Udskriv definitionens tekst"
 
-#: ../gnome-dictionary/src/gdict-applet.c:383
+#: ../gnome-dictionary/src/gdict-applet.c:381
 msgid "Save the definitions found"
 msgstr "Gem de fundne definitioner"
 
-#: ../gnome-dictionary/src/gdict-applet.c:385
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save definition"
 msgstr "Gem definition"
 
-#: ../gnome-dictionary/src/gdict-applet.c:386
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Save the text of the definition to a file"
 msgstr "Gem definitionens tekst til en fil"
 
@@ -1803,54 +1810,54 @@ msgid "Dictionary entry"
 msgstr "Ordbogspost"
 
 #: ../gnome-dictionary/src/gdict-applet.c:724
-#: ../gnome-dictionary/src/gdict-window.c:1003
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Dictionary Preferences"
 msgstr "Indstillinger for ordbog"
 
-#: ../gnome-dictionary/src/gdict-applet.c:752
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
-#: ../gnome-dictionary/src/gdict-source-dialog.c:498
-#: ../gnome-dictionary/src/gdict-window.c:1150
+#: ../gnome-dictionary/src/gdict-applet.c:750
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:505
+#: ../gnome-dictionary/src/gdict-source-dialog.c:495
+#: ../gnome-dictionary/src/gdict-window.c:1145
 #, c-format
 msgid "There was an error while displaying help"
 msgstr "Der opstod en fejl ved visning af hjælp"
 
-#: ../gnome-dictionary/src/gdict-applet.c:904
-#: ../gnome-dictionary/src/gdict-window.c:519
+#: ../gnome-dictionary/src/gdict-applet.c:902
+#: ../gnome-dictionary/src/gdict-window.c:517
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Ingen ordbogskilde tilgængelig med navnet \"%s\""
 
-#: ../gnome-dictionary/src/gdict-applet.c:908
-#: ../gnome-dictionary/src/gdict-window.c:523
+#: ../gnome-dictionary/src/gdict-applet.c:906
+#: ../gnome-dictionary/src/gdict-window.c:521
 msgid "Unable to find dictionary source"
 msgstr "Kan ikke finde ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-applet.c:924
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:922
+#: ../gnome-dictionary/src/gdict-window.c:537
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Ingen kontekst tilgængelig for kilden \"%s\""
 
-#: ../gnome-dictionary/src/gdict-applet.c:928
-#: ../gnome-dictionary/src/gdict-window.c:543
+#: ../gnome-dictionary/src/gdict-applet.c:926
+#: ../gnome-dictionary/src/gdict-window.c:541
 msgid "Unable to create a context"
 msgstr "Kan ikke oprette kontekst"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1193
-#: ../gnome-dictionary/src/gdict-window.c:2088
+#: ../gnome-dictionary/src/gdict-applet.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:2084
 msgid "Unable to connect to GConf"
 msgstr "Kan ikke forbinde til GConf"
 
 # Gad vide hvad dette betyder
-#: ../gnome-dictionary/src/gdict-applet.c:1206
-#: ../gnome-dictionary/src/gdict-window.c:2101
+#: ../gnome-dictionary/src/gdict-applet.c:1204
+#: ../gnome-dictionary/src/gdict-window.c:2097
 msgid "Unable to get notification for preferences"
 msgstr "Kan ikke hente meddelelser for indstillinger"
 
 # Gad vide hvad dette betyder
-#: ../gnome-dictionary/src/gdict-applet.c:1220
-#: ../gnome-dictionary/src/gdict-window.c:2114
+#: ../gnome-dictionary/src/gdict-applet.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:2110
 msgid "Unable to get notification for the document font"
 msgstr "Kan ikke hente meddelelser for dokumentskrifttypen"
 
@@ -1865,37 +1872,37 @@ msgstr "Kan ikke omdøbe filen \"%s\" til \"%s\": %s"
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Kan ikke oprette datamappen \"%s\": %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:245
 msgid "Edit Dictionary Source"
 msgstr "Redigér ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:309
 msgid "Add Dictionary Source"
 msgstr "Tilføj ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:355
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "Fjern \"%s\"?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:357
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Dette vil permanent fjerne ordbogskilden fra listen."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:387
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Kunne ikke fjerne kilden \"%s\""
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:663
 msgid "Add a new dictionary source"
 msgstr "Tilføj en ny ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:669
 msgid "Remove the currently selected dictionary source"
 msgstr "Fjern den valgte ordbogskilde"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:682
 msgid "Set the font used for printing the definitions"
 msgstr "Sæt skrifttypen der bruges til udskrift af definitioner"
 
@@ -1905,299 +1912,300 @@ msgstr "Sæt skrifttypen der bruges til udskrift af definitioner"
 msgid "Unable to display the preview: %s"
 msgstr "Kunne ikke lave forhåndvisning: %s"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:358
-#: ../gnome-dictionary/src/gdict-source-dialog.c:451
+#: ../gnome-dictionary/src/gdict-source-dialog.c:357
+#: ../gnome-dictionary/src/gdict-source-dialog.c:450
 msgid "Unable to create a source file"
 msgstr "Kan ikke oprette en kildefil"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:376
-#: ../gnome-dictionary/src/gdict-source-dialog.c:469
+#: ../gnome-dictionary/src/gdict-source-dialog.c:375
+#: ../gnome-dictionary/src/gdict-source-dialog.c:468
 msgid "Unable to save source file"
 msgstr "Kan ikke gemme kildefil"
 
-#: ../gnome-dictionary/src/gdict-window.c:318
+#: ../gnome-dictionary/src/gdict-window.c:316
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Søger efter \"%s\"..."
 
-#: ../gnome-dictionary/src/gdict-window.c:350
-#: ../gnome-dictionary/src/gdict-window.c:409
+#: ../gnome-dictionary/src/gdict-window.c:348
+#: ../gnome-dictionary/src/gdict-window.c:407
 msgid "No definitions found"
 msgstr "Ingen definitioner fundet"
 
-#: ../gnome-dictionary/src/gdict-window.c:352
+#: ../gnome-dictionary/src/gdict-window.c:350
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Én definition fundet"
 msgstr[1] "%d definitioner fundet"
 
-#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:606
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Ordbog"
 
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:637
 msgid "_File"
 msgstr "_Fil"
 
 # Tilhører tilsyneladende menuen med "forrige", "næste" etc.
-#: ../gnome-dictionary/src/gdict-window.c:1187
+#: ../gnome-dictionary/src/gdict-window.c:1183
 msgid "_Go"
 msgstr "_Gå til"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_New"
 msgstr "_Ny"
 
-#: ../gnome-dictionary/src/gdict-window.c:1192
+#: ../gnome-dictionary/src/gdict-window.c:1188
 msgid "New look up"
 msgstr "Nyt opslag"
 
-#: ../gnome-dictionary/src/gdict-window.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:1189
 msgid "_Save a Copy..."
 msgstr "_Gem en kopi..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1195
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "P_review..."
 msgstr "Fo_rhåndsvis..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1196
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Preview this document"
 msgstr "Forhåndsvis dette dokument"
 
-#: ../gnome-dictionary/src/gdict-window.c:1197
+#: ../gnome-dictionary/src/gdict-window.c:1193
 msgid "_Print..."
 msgstr "_Udskriv..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1198
+#: ../gnome-dictionary/src/gdict-window.c:1194
 msgid "Print this document"
 msgstr "Udskriv dette dokument"
 
-#: ../gnome-dictionary/src/gdict-window.c:1205 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:651
 msgid "Select _All"
 msgstr "Markér _alt"
 
 # bemærk: denne og følgende skal synkroniseres med senere tekster
-#: ../gnome-dictionary/src/gdict-window.c:1208
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find a word or phrase in the document"
 msgstr "Find et ord eller en frase i dokumentet"
 
-#: ../gnome-dictionary/src/gdict-window.c:1210
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Ne_xt"
 msgstr "Find n_æste"
 
-#: ../gnome-dictionary/src/gdict-window.c:1212
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "Find Pre_vious"
 msgstr "Find f_orrige"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Previous Definition"
 msgstr "_Forrige definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1219
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the previous definition"
 msgstr "Gå til forrige definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_Next Definition"
 msgstr "_Næste definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1221
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the next definition"
 msgstr "Gå til næste definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1222
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_First Definition"
 msgstr "_Første definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1223
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the first definition"
 msgstr "Gå til den første definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1224
+#: ../gnome-dictionary/src/gdict-window.c:1220
 msgid "_Last Definition"
 msgstr "_Sidste definition"
 
-#: ../gnome-dictionary/src/gdict-window.c:1225
+#: ../gnome-dictionary/src/gdict-window.c:1221
 msgid "Go to the last definition"
 msgstr "Gå til den sidste definition"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1228
+#: ../gnome-dictionary/src/gdict-window.c:1224
 msgid "Similar _Words"
 msgstr "Lignende _ord"
 
-#: ../gnome-dictionary/src/gdict-window.c:1230
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Dictionary Sources"
 msgstr "Ordbogskilder"
 
-#: ../gnome-dictionary/src/gdict-window.c:1232
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available _Databases"
 msgstr "Tilgængelige _databaser"
 
-#: ../gnome-dictionary/src/gdict-window.c:1234
+#: ../gnome-dictionary/src/gdict-window.c:1230
 msgid "Available St_rategies"
 msgstr "Tilgængelige st_rategier"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1251
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "_Sidebar"
 msgstr "_Sidepanel"
 
-#: ../gnome-dictionary/src/gdict-window.c:1253
+#: ../gnome-dictionary/src/gdict-window.c:1249
 msgid "S_tatusbar"
 msgstr "S_tatusbjælke"
 
-#: ../gnome-dictionary/src/gdict-window.c:1374
+#: ../gnome-dictionary/src/gdict-window.c:1370
 #, c-format
 msgid "Dictionary source `%s' selected"
 msgstr "Ordbogskilde \"%s\" valgt"
 
-#: ../gnome-dictionary/src/gdict-window.c:1395
+#: ../gnome-dictionary/src/gdict-window.c:1391
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "Strategi \"%s\" valgt"
 
-#: ../gnome-dictionary/src/gdict-window.c:1415
+#: ../gnome-dictionary/src/gdict-window.c:1411
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Database \"%s\" valgt"
 
-#: ../gnome-dictionary/src/gdict-window.c:1435
+#: ../gnome-dictionary/src/gdict-window.c:1431
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Ord \"%s\" valgt"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1457
+#: ../gnome-dictionary/src/gdict-window.c:1453
 msgid "Double-click on the word to look up"
 msgstr "Dobbeltklik på ordet for at slå det op"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1463
+#: ../gnome-dictionary/src/gdict-window.c:1459
 msgid "Double-click on the matching strategy to use"
 msgstr "Dobbeltklik på søgningsstrategien der skal benyttes"
 
 #. source-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1468
+#: ../gnome-dictionary/src/gdict-window.c:1464
 msgid "Double-click on the source to use"
 msgstr "Dobbeltklik på den kilde som skal benyttes"
 
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1477
+#: ../gnome-dictionary/src/gdict-window.c:1473
 msgid "Double-click on the database to use"
 msgstr "Dobbeltklik på databasen der skal benyttes"
 
-#: ../gnome-dictionary/src/gdict-window.c:1765
+#: ../gnome-dictionary/src/gdict-window.c:1761
 msgid "Look _up:"
 msgstr "Slå _op:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1839
+#: ../gnome-dictionary/src/gdict-window.c:1835
 msgid "Similar words"
 msgstr "Lignende ord"
 
-#: ../gnome-dictionary/src/gdict-window.c:1852
+#: ../gnome-dictionary/src/gdict-window.c:1848
 msgid "Available dictionaries"
 msgstr "Tilgængelige ordbøger"
 
-#: ../gnome-dictionary/src/gdict-window.c:1865
+#: ../gnome-dictionary/src/gdict-window.c:1861
 msgid "Available strategies"
 msgstr "Tilgængelige strategier"
 
-#: ../gnome-dictionary/src/gdict-window.c:1876
+#: ../gnome-dictionary/src/gdict-window.c:1872
 msgid "Dictionary sources"
 msgstr "Ordbogskilder"
 
-#: ../gnome-screenshot/gnome-screenshot.c:131
+#: ../gnome-screenshot/gnome-screenshot.c:128
 msgid "Error loading the help page"
 msgstr "Fejl ved indlæsning af hjælpesiden"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:232
 msgid "None"
 msgstr "Ingen"
 
 # Slagskygge er vist noget med om f.eks. drop-down menuer kaster skygge på tingene bagved, og det er svært at finde informationer om dem. Dette er dog den officielle oversættelse, så der er ikke så meget at rafle om.
-#: ../gnome-screenshot/gnome-screenshot.c:235
+#: ../gnome-screenshot/gnome-screenshot.c:233
 msgid "Drop shadow"
 msgstr "Slagskygge"
 
-#: ../gnome-screenshot/gnome-screenshot.c:236
+#: ../gnome-screenshot/gnome-screenshot.c:234
 msgid "Border"
 msgstr "Ramme"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:339
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Include _pointer"
 msgstr "Inkludér _markør"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:348
+#: ../gnome-screenshot/gnome-screenshot.c:346
 msgid "Include the window _border"
 msgstr "Inkludér vindues_rammen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:363
+#: ../gnome-screenshot/gnome-screenshot.c:361
 msgid "Apply _effect:"
 msgstr "Anvend _effekt:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:425
+#: ../gnome-screenshot/gnome-screenshot.c:423
 msgid "Grab the whole _desktop"
 msgstr "Tag billede af hele _skrivebordet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:437
+#: ../gnome-screenshot/gnome-screenshot.c:435
 msgid "Grab the current _window"
 msgstr "Tag billede af det aktuelle _vindue"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:454
+#: ../gnome-screenshot/gnome-screenshot.c:452
 msgid "Grab _after a delay of"
 msgstr "Tag billede _efter en ventetid på"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:472
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "seconds"
 msgstr "sekunder"
 
-#: ../gnome-screenshot/gnome-screenshot.c:500
+#: ../gnome-screenshot/gnome-screenshot.c:488
+#: ../gnome-screenshot/gnome-screenshot.c:498
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Gem skærmbillede"
 
-#: ../gnome-screenshot/gnome-screenshot.c:501
+#: ../gnome-screenshot/gnome-screenshot.c:499
 msgid "Effects"
 msgstr "Effekter"
 
-#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:505
 msgid "Take _Screenshot"
 msgstr "Gem _skærmbillede"
 
-#: ../gnome-screenshot/gnome-screenshot.c:593
+#: ../gnome-screenshot/gnome-screenshot.c:631
 msgid "Error while saving screenshot"
 msgstr "Fejl under gemning af skærmbillede"
 
-#: ../gnome-screenshot/gnome-screenshot.c:597
+#: ../gnome-screenshot/gnome-screenshot.c:635
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
-" Error was %s\n"
-". Please choose another location and retry."
+" Error was %s.\n"
+" Please choose another location and retry."
 msgstr ""
 "Umuligt at gemme skærmbillede til %s.\n"
 " Fejlen var %s.\n"
-"Vælg venligst en anden placering og prøv igen."
+" Vælg venligst en anden placering og prøv igen."
 
-#: ../gnome-screenshot/gnome-screenshot.c:740
+#: ../gnome-screenshot/gnome-screenshot.c:782
 msgid "Unable to take a screenshot of the current window"
 msgstr "Kunne ikke tage et skærmbillede af det aktuelle vindue"
 
-#: ../gnome-screenshot/gnome-screenshot.c:781
+#: ../gnome-screenshot/gnome-screenshot.c:824
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Skærmbillede-%s.png"
@@ -2205,14 +2213,14 @@ msgstr "Skærmbillede-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/gnome-screenshot.c:831
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Skærmbillede-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:798
+#: ../gnome-screenshot/gnome-screenshot.c:841
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2221,36 +2229,40 @@ msgstr "Skærmbillede.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:805
+#: ../gnome-screenshot/gnome-screenshot.c:848
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Skærmbillede-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1121
+#: ../gnome-screenshot/gnome-screenshot.c:1179
 msgid "Grab a window instead of the entire screen"
 msgstr "Tag et billede af et vindue i stedet for af hele skærmen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1122
+#: ../gnome-screenshot/gnome-screenshot.c:1180
 msgid "Include the window border with the screenshot"
 msgstr "Inkludér vinduesrammen i skærmbilledet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:1181
+msgid "Remove the window border from the screenshot"
+msgstr "Fjern vinduesrammen fra skærmbilledet"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Tag skærmbillede efter en anført forsinkelse [i sekunder]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effekt for vinduesrammen (\"shadow\", \"border\" eller \"none\")"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "effect"
 msgstr "effekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1125
+#: ../gnome-screenshot/gnome-screenshot.c:1184
 msgid "Interactively set options"
 msgstr "Vælg indstillinger interaktivt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1134
+#: ../gnome-screenshot/gnome-screenshot.c:1193
 msgid "Take a picture of the screen"
 msgstr "Tag et skærmbillede"
 
@@ -2286,9 +2298,14 @@ msgstr ""
 "Effekt for ydersiden af en ramme. Mulige værdier er \"shadow\", \"none\" og "
 "\"border\"."
 
+# bemærk at det er noget gconf-halløj (schemas.in.h), så det er nøgle (det ville også være underligt at depreciere en genvejstast)
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid "Grab just the current window, rather than the whole desktop."
-msgstr "Tag kun det aktuelle vindue frem for hele skrivebordet."
+msgid ""
+"Grab just the current window, rather than the whole desktop. This key has "
+"been deprecated and it is no longer in use."
+msgstr ""
+"Tag kun det aktuelle vindue frem for hele skrivebordet. Denne nøgle er "
+"deprecieret og bruges ikke længere."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -2323,8 +2340,8 @@ msgid "The number of seconds to wait before taking the screenshot."
 msgstr "Antallet af sekunder, der ventes før skærmbilledet tages."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:12
-msgid "Window-specific screenshot"
-msgstr "Vinduesspecifikt skærmbillede"
+msgid "Window-specific screenshot (deprecated)"
+msgstr "Vinduesspecifikt skærmbillede (deprecieret)"
 
 #: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
@@ -2360,7 +2377,7 @@ msgid "Unknown error saving screenshot to disk"
 msgstr "Ukendt fejl ved gemning af skærmbilledet til disken"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:481
+#: ../gnome-screenshot/screenshot-utils.c:486
 msgid "Untitled Window"
 msgstr "Vindue uden titel"
 
@@ -2822,7 +2839,7 @@ msgstr "Det valgte dokumentnavn er en mappe."
 msgid "You may not have write permissions to the document."
 msgstr "Du har muligvis ikke skriverettigheder til dokumentet."
 
-#: ../gsearchtool/gsearchtool-support.c:72
+#: ../gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -2836,24 +2853,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:641
+#: ../gsearchtool/gsearchtool-support.c:640
 msgid "today at %-I:%M %p"
 msgstr "i dag kl. %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:643
+#: ../gsearchtool/gsearchtool-support.c:642
 msgid "yesterday at %-I:%M %p"
 msgstr "i går kl. %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:645
-#: ../gsearchtool/gsearchtool-support.c:647
+#: ../gsearchtool/gsearchtool-support.c:644
+#: ../gsearchtool/gsearchtool-support.c:646
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %-d %B %Y kl. %-H:%M:%S"
 
-#: ../gsearchtool/gsearchtool-support.c:826
+#: ../gsearchtool/gsearchtool-support.c:825
 msgid "link (broken)"
 msgstr "henvisning (ødelagt)"
 
-#: ../gsearchtool/gsearchtool-support.c:830
+#: ../gsearchtool/gsearchtool-support.c:829
 #, c-format
 msgid "link to %s"
 msgstr "henvisning til %s"
@@ -2865,12 +2882,12 @@ msgstr "henvisning til %s"
 #. * make some or all of them match.
 #.
 #. localizers: tag used to detect the first copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1533
+#: ../gsearchtool/gsearchtool-support.c:1525
 msgid " (copy)"
 msgstr " (kopi)"
 
 #. localizers: tag used to detect the second copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1535
+#: ../gsearchtool/gsearchtool-support.c:1527
 msgid " (another copy)"
 msgstr " (endnu en kopi)"
 
@@ -2878,36 +2895,36 @@ msgstr " (endnu en kopi)"
 #. localizers: tag used to detect the x12th copy of a file
 #. localizers: tag used to detect the x13th copy of a file
 #. localizers: tag used to detect the xxth copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1538
-#: ../gsearchtool/gsearchtool-support.c:1540
-#: ../gsearchtool/gsearchtool-support.c:1542
-#: ../gsearchtool/gsearchtool-support.c:1552
+#: ../gsearchtool/gsearchtool-support.c:1530
+#: ../gsearchtool/gsearchtool-support.c:1532
+#: ../gsearchtool/gsearchtool-support.c:1534
+#: ../gsearchtool/gsearchtool-support.c:1544
 msgid "th copy)"
 msgstr ". kopi)"
 
 #. localizers: tag used to detect the x1st copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1545
+#: ../gsearchtool/gsearchtool-support.c:1537
 msgid "st copy)"
 msgstr ". kopi)"
 
 #. localizers: tag used to detect the x2nd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1547
+#: ../gsearchtool/gsearchtool-support.c:1539
 msgid "nd copy)"
 msgstr ". kopi)"
 
 #. localizers: tag used to detect the x3rd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1549
+#: ../gsearchtool/gsearchtool-support.c:1541
 msgid "rd copy)"
 msgstr ". kopi)"
 
 #. localizers: appended to first file copy
-#: ../gsearchtool/gsearchtool-support.c:1566
+#: ../gsearchtool/gsearchtool-support.c:1558
 #, c-format
 msgid "%s (copy)%s"
 msgstr "%s (kopi)%s"
 
 #. localizers: appended to second file copy
-#: ../gsearchtool/gsearchtool-support.c:1568
+#: ../gsearchtool/gsearchtool-support.c:1560
 #, c-format
 msgid "%s (another copy)%s"
 msgstr "%s (endnu en kopi)%s"
@@ -2916,43 +2933,43 @@ msgstr "%s (endnu en kopi)%s"
 #. localizers: appended to x12th file copy
 #. localizers: appended to x13th file copy
 #. localizers: appended to xxth file copy
-#: ../gsearchtool/gsearchtool-support.c:1571
-#: ../gsearchtool/gsearchtool-support.c:1573
-#: ../gsearchtool/gsearchtool-support.c:1575
-#: ../gsearchtool/gsearchtool-support.c:1584
+#: ../gsearchtool/gsearchtool-support.c:1563
+#: ../gsearchtool/gsearchtool-support.c:1565
+#: ../gsearchtool/gsearchtool-support.c:1567
+#: ../gsearchtool/gsearchtool-support.c:1576
 #, c-format
 msgid "%s (%dth copy)%s"
 msgstr "%s (%d. kopi)%s"
 
 #. localizers: appended to x1st file copy
-#: ../gsearchtool/gsearchtool-support.c:1578
+#: ../gsearchtool/gsearchtool-support.c:1570
 #, c-format
 msgid "%s (%dst copy)%s"
 msgstr "%s (%d. kopi)%s"
 
 #. localizers: appended to x2nd file copy
-#: ../gsearchtool/gsearchtool-support.c:1580
+#: ../gsearchtool/gsearchtool-support.c:1572
 #, c-format
 msgid "%s (%dnd copy)%s"
 msgstr "%s (%d. kopi)%s"
 
 #. localizers: appended to x3rd file copy
-#: ../gsearchtool/gsearchtool-support.c:1582
+#: ../gsearchtool/gsearchtool-support.c:1574
 #, c-format
 msgid "%s (%drd copy)%s"
 msgstr "%s (%d. kopi)%s"
 
-#: ../gsearchtool/gsearchtool-support.c:1629
+#: ../gsearchtool/gsearchtool-support.c:1621
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
 
 #. localizers: opening parentheses to match the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1718
+#: ../gsearchtool/gsearchtool-support.c:1710
 msgid " ("
 msgstr " ("
 
 #. localizers: opening parentheses of the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1726
+#: ../gsearchtool/gsearchtool-support.c:1718
 #, c-format
 msgid " (%d"
 msgstr " (%d"
@@ -3320,225 +3337,31 @@ msgstr "Klik for stoppe søgningen."
 msgid "- the GNOME Search Tool"
 msgstr "- GNOME-søgeværktøjet"
 
-#: ../logview/about.c:51 ../logview/logview.c:37 ../logview/main.c:54
-msgid "System Log Viewer"
-msgstr "Systemlog-fremviser"
+#: ../logview/data/gnome-system-log.desktop.in.in.h:1
+msgid "Log File Viewer"
+msgstr "Logfilsfremviser"
 
-#: ../logview/about.c:54
-msgid "A system log viewer for GNOME."
-msgstr "En systemlog-fremviser til GNOME."
-
-#: ../logview/gnome-system-log.desktop.in.in.h:1
-msgid "System Log"
-msgstr "Systemlog"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:2
+#: ../logview/data/gnome-system-log.desktop.in.in.h:2
 msgid "View or monitor system log files"
 msgstr "Gennemse eller overvåg systemets logfiler"
 
-#: ../logview/log_repaint.c:190
-#, c-format
-msgid "last update: %s"
-msgstr "sidste opdatering: %s"
-
-#: ../logview/log_repaint.c:192
-#, c-format
-msgid "%d lines (%s) - %s"
-msgstr "%d linjer (%s) - %s"
-
-#: ../logview/log_repaint.c:230
-msgid "Current"
-msgstr "Nuværende"
-
-#: ../logview/logrtns.c:37
-msgid "One file or more could not be opened"
-msgstr "En eller flere filer kunne ikke åbnes"
-
-#: ../logview/logrtns.c:59
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file.\n"
-msgstr ""
-"%s kan ikke læses af brugere. Kør enten programmet som administrator eller "
-"bed systemadministratoren om at ændre rettighederne på filen.\n"
-
-#: ../logview/logrtns.c:64
-#, c-format
-msgid "%s is too big."
-msgstr "%s er for stor."
-
-#: ../logview/logrtns.c:67
-#, c-format
-msgid "%s could not be opened."
-msgstr "Kunne ikke åbne %s."
-
-#: ../logview/logrtns.c:382
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s er ikke en logfil."
-
-#: ../logview/logrtns.c:388
-msgid "Not enough memory."
-msgstr "Ikke tilstrækkelig hukommelse."
-
-#: ../logview/logrtns.c:402
-#, c-format
-msgid "%s cannot be opened."
-msgstr "%s kan ikke åbnes."
-
-#: ../logview/logview-findbar.c:152
-msgid "_Filter:"
-msgstr "_Filter:"
-
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "_Ryd"
-
-#: ../logview/logview.c:90
-msgid "_Open..."
-msgstr "_Åbn..."
-
-#: ../logview/logview.c:90
-msgid "Open a log from file"
-msgstr "Åbn en log fra fil"
-
-#: ../logview/logview.c:92
-msgid "_Close"
-msgstr "_Luk"
-
-#: ../logview/logview.c:92
-msgid "Close this log"
-msgstr "Luk denne log"
-
-#: ../logview/logview.c:94
-msgid "_Quit"
-msgstr "_Afslut"
-
-#: ../logview/logview.c:94
-msgid "Quit the log viewer"
-msgstr "Afslut logfremviseren"
-
-#: ../logview/logview.c:97
-msgid "_Copy"
-msgstr "_Kopiér"
-
-#: ../logview/logview.c:97
-msgid "Copy the selection"
-msgstr "Kopiér markeringen"
-
-#: ../logview/logview.c:99
-msgid "Select the entire log"
-msgstr "Markér hele loggen"
-
-# Eller filtrér... det gør nok ingen forskel her
-#: ../logview/logview.c:101
-msgid "_Filter..."
-msgstr "_Filter..."
-
-#: ../logview/logview.c:101
-msgid "Filter log"
-msgstr "Filtrér log"
-
-#: ../logview/logview.c:104
-msgid "Bigger text size"
-msgstr "Større tekststørrelse"
-
-#: ../logview/logview.c:106
-msgid "Smaller text size"
-msgstr "Mindre tekststørrelse"
-
-#: ../logview/logview.c:108
-msgid "Normal text size"
-msgstr "Normal tekststørrelse"
-
-#: ../logview/logview.c:111
-msgid "Collapse _All"
-msgstr "Sammenfold _alle"
-
-#: ../logview/logview.c:111
-msgid "Collapse all the rows"
-msgstr "Fold alle rækkerne sammen"
-
-#: ../logview/logview.c:114
-msgid "Open the help contents for the log viewer"
-msgstr "Åbn hjælp for log-fremviseren"
-
-#: ../logview/logview.c:116
-msgid "Show the about dialog for the log viewer"
-msgstr "Vis om-vinduet for log-fremvisereren"
-
-#: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "_Statusbjælke"
-
-#: ../logview/logview.c:122
-msgid "Show Status Bar"
-msgstr "Vis statusbjælke"
-
-#: ../logview/logview.c:124
-msgid "Side _Pane"
-msgstr "Side_panel"
-
-#: ../logview/logview.c:124
-msgid "Show Side Pane"
-msgstr "Vis sidepanel"
-
-#: ../logview/logview.c:126
-msgid "_Monitor"
-msgstr "_Overvåg"
-
-#: ../logview/logview.c:126
-msgid "Monitor Current Log"
-msgstr "Overvåg nuværende log"
-
-#: ../logview/logview.c:128
-msgid "Ca_lendar"
-msgstr "Ka_lender"
-
-#: ../logview/logview.c:128
-msgid "Show Calendar Log"
-msgstr "Vis kalenderlog"
-
-#: ../logview/logview.c:307
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (overvåget) - %s"
-
-#: ../logview/logview.c:518
-msgid "Open Log"
-msgstr "Åbn log"
-
-#: ../logview/logview.c:906
-msgid "Version: "
-msgstr "Version: "
-
-#: ../logview/logview.c:975
-msgid "Days"
-msgstr "Dage"
-
-# Peger (subst) jf. dansk-gruppens ordliste. Nu er det måske ikke helt programmering, så hvis nogen har noget bedre så sig endelig til
-#: ../logview/logview.c:976
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "Peger til en GSList af dage for den aktuelle log."
-
-#: ../logview/logview.schemas.in.h:1
+#: ../logview/data/gnome-system-log.schemas.in.h:1
 msgid "Height of the main window in pixels"
 msgstr "Højden af hovedvinduet i pixler"
 
-#: ../logview/logview.schemas.in.h:2
+#: ../logview/data/gnome-system-log.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "Logfil der skal åbnes ved start"
 
-#: ../logview/logview.schemas.in.h:3
+#: ../logview/data/gnome-system-log.schemas.in.h:3
 msgid "Log files to open up on startup"
 msgstr "Logfiler der skal åbnes ved start"
 
-#: ../logview/logview.schemas.in.h:4
+#: ../logview/data/gnome-system-log.schemas.in.h:4
 msgid "Size of the font used to display the log"
 msgstr "Skriftstørrelse hvormed loggen vises"
 
-#: ../logview/logview.schemas.in.h:5
+#: ../logview/data/gnome-system-log.schemas.in.h:5
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
@@ -3546,11 +3369,11 @@ msgstr ""
 "Angiver en liste af logfiler der skal åbnes når programmet startes. En "
 "standardliste oprettes ved at læse /etc/syslog.conf."
 
-#: ../logview/logview.schemas.in.h:6
+#: ../logview/data/gnome-system-log.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
 msgstr "Angiver en højde af logfremviserens hovedvindue i pixler."
 
-#: ../logview/logview.schemas.in.h:7
+#: ../logview/data/gnome-system-log.schemas.in.h:7
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
@@ -3558,7 +3381,7 @@ msgstr ""
 "Angiver logfilen der skal vises når programmet startes. Forvalg er enten /"
 "var/adm/messages eller /var/log/messages, afhængigt af din styresystem."
 
-#: ../logview/logview.schemas.in.h:8
+#: ../logview/data/gnome-system-log.schemas.in.h:8
 msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
@@ -3567,103 +3390,373 @@ msgstr ""
 "loggen i hovedtrævisningen. Terminalskrifttypens standardstørrelse benyttes "
 "som forvalg."
 
-#: ../logview/logview.schemas.in.h:9
+#: ../logview/data/gnome-system-log.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
 msgstr "Angiver bredden af log-fremviserens hovedvindue i pixler."
 
-#: ../logview/logview.schemas.in.h:10
+#: ../logview/data/gnome-system-log.schemas.in.h:10
 msgid "Width of the main window in pixels"
 msgstr "Bredde af hovedvinduet i pixler"
 
-#: ../logview/main.c:49
+#: ../logview/logview-about.h:49
+msgid ""
+"Log Viewer is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Log Viewer er fri software. Du kan redistribuere og/eller modificere det "
+"under de betingelserne som er angivet i GNU General Public License, som "
+"udgivet af Free Software Foundation. Enten version 2 af licensen eller "
+"(efter eget valg) enhver senere version."
+
+#: ../logview/logview-about.h:53
+msgid ""
+"Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Log Viewer distribueres i håb om at det vil vise sig nyttigt, men UDEN NOGEN "
+"FORM FOR GARANTI, uden selv de underforståede garantier omkring SALGBARHED "
+"eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan læses i GNU "
+"General Public License."
+
+#: ../logview/logview-about.h:57
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+msgstr ""
+"Du bør have modtaget en kopi af GNU General Public License sammen med Log "
+"Viewer; hvis ikke, så skriv til Free Software Foundation, Inc., 51 Franklin "
+"Street, Fifth Floor, Boston, MA  02110-1301, USA"
+
+#: ../logview/logview-app.c:179
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "Umuligt at åbne filen %s"
+
+#: ../logview/logview-findbar.c:169
+msgid "_Find:"
+msgstr "_Find:"
+
+#: ../logview/logview-findbar.c:184
+msgid "Find Previous"
+msgstr "Find forrige"
+
+#: ../logview/logview-findbar.c:187
+msgid "Find previous occurrence of the search string"
+msgstr "Find forrige forekomst af søgestrengen"
+
+#: ../logview/logview-findbar.c:192
+msgid "Find Next"
+msgstr "Find næste"
+
+#: ../logview/logview-findbar.c:195
+msgid "Find next occurrence of the search string"
+msgstr "Find næste forekomst af søgestrengen"
+
+#: ../logview/logview-findbar.c:202
+msgid "Clear the search string"
+msgstr "Ryd søgestrengen"
+
+#: ../logview/logview-log.c:595
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr "Fejl ved udpakning af GZippet log. Filen er måske beskadiget."
+
+#: ../logview/logview-log.c:642
+msgid "You don't have enough permissions to read the file."
+msgstr "Du har ikke rettigheder til at læse filen."
+
+#: ../logview/logview-log.c:657
+msgid "The file is not a regular file or is not a text file."
+msgstr "Filen er ikke en regulær fil eller er ikke en tekstfil."
+
+#: ../logview/logview-log.c:739
+msgid "This version of System Log does not support GZipped logs."
+msgstr "Denne version af Systemlog understøtter ikke GZippede logge."
+
+#: ../logview/logview-loglist.c:311
+msgid "Loading..."
+msgstr "Indlæser..."
+
+#: ../logview/logview-main.c:62
 msgid "Show the application's version"
 msgstr "Vis programmets version"
 
-#: ../logview/main.c:55
-msgid "Show System Log Viewer options"
-msgstr "Vis indstillinger for systemlog-fremviseren"
+#: ../logview/logview-main.c:64
+msgid "[LOGFILE...]"
+msgstr "[LOGFIL...]"
 
-#: ../logview/main.c:59
+#: ../logview/logview-main.c:68
 msgid " - Browse and monitor logs"
 msgstr " - Gennemse og overvåg logge"
 
-#: ../logview/main.c:145
+#: ../logview/logview-main.c:102
 msgid "Log Viewer"
 msgstr "Logfremviser"
 
-#: ../logview/main.c:154
-msgid "Unable to create user interface."
-msgstr "Kunne ikke oprette brugergrænseflade."
+#: ../logview/logview-window.c:39 ../logview/logview-window.c:596
+msgid "System Log Viewer"
+msgstr "Systemlog-fremviser"
 
-#: ../logview/misc.c:42
-msgid "January"
-msgstr "januar"
-
-#: ../logview/misc.c:42
-msgid "February"
-msgstr "februar"
-
-#: ../logview/misc.c:42
-msgid "March"
-msgstr "marts"
-
-#: ../logview/misc.c:42
-msgid "April"
-msgstr "april"
-
-#: ../logview/misc.c:42
-msgid "May"
-msgstr "maj"
-
-#: ../logview/misc.c:43
-msgid "June"
-msgstr "juni"
-
-#: ../logview/misc.c:43
-msgid "July"
-msgstr "juli"
-
-#: ../logview/misc.c:43
-msgid "August"
-msgstr "august"
-
-#: ../logview/misc.c:43
-msgid "September"
-msgstr "september"
-
-#: ../logview/misc.c:43
-msgid "October"
-msgstr "oktober"
-
-#: ../logview/misc.c:44
-msgid "November"
-msgstr "november"
-
-#: ../logview/misc.c:44
-msgid "December"
-msgstr "december"
-
-#: ../logview/misc.c:164
-msgid "Invalid date"
-msgstr "Ugyldig dato"
-
-#. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:169
+#: ../logview/logview-window.c:206
 #, c-format
-msgid "%x"
-msgstr "%x"
+msgid "last update: %s"
+msgstr "sidste opdatering: %s"
 
-#: ../logview/monitor.c:83
-msgid "This file cannot be monitored."
-msgstr "Denne fil kan ikke overvåges."
+#: ../logview/logview-window.c:209
+#, c-format
+msgid "%d lines (%s) - %s"
+msgstr "%d linjer (%s) - %s"
 
-#: ../logview/monitor.c:86
-msgid "File monitoring is not supported on this file system.\n"
-msgstr "Filovervågning understøttes ikke på dette filsystem.\n"
+#: ../logview/logview-window.c:337
+msgid "Open Log"
+msgstr "Åbn log"
 
-#: ../logview/monitor.c:88
-msgid "Gnome-VFS Error.\n"
-msgstr "Gnome-VFS fejl.\n"
+#: ../logview/logview-window.c:376
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Der opstod en fejl ved visning af hjælp: %s"
+
+#: ../logview/logview-window.c:492
+msgid "Wrapped"
+msgstr "Ombrudt"
+
+#: ../logview/logview-window.c:601
+msgid "A system log viewer for GNOME."
+msgstr "En systemlog-fremviser til GNOME."
+
+#: ../logview/logview-window.c:642
+msgid "_Open..."
+msgstr "_Åbn..."
+
+#: ../logview/logview-window.c:642
+msgid "Open a log from file"
+msgstr "Åbn en log fra fil"
+
+#: ../logview/logview-window.c:644
+msgid "_Close"
+msgstr "_Luk"
+
+#: ../logview/logview-window.c:644
+msgid "Close this log"
+msgstr "Luk denne log"
+
+#: ../logview/logview-window.c:646
+msgid "_Quit"
+msgstr "_Afslut"
+
+#: ../logview/logview-window.c:646
+msgid "Quit the log viewer"
+msgstr "Afslut logfremviseren"
+
+#: ../logview/logview-window.c:649
+msgid "_Copy"
+msgstr "_Kopiér"
+
+#: ../logview/logview-window.c:649
+msgid "Copy the selection"
+msgstr "Kopiér markeringen"
+
+#: ../logview/logview-window.c:651
+msgid "Select the entire log"
+msgstr "Markér hele loggen"
+
+#: ../logview/logview-window.c:653
+msgid "_Find..."
+msgstr "_Søg..."
+
+#: ../logview/logview-window.c:653
+msgid "Find a word or phrase in the log"
+msgstr "Find et ord eller en frase i loggen"
+
+#: ../logview/logview-window.c:656
+msgid "Bigger text size"
+msgstr "Større tekststørrelse"
+
+#: ../logview/logview-window.c:658
+msgid "Smaller text size"
+msgstr "Mindre tekststørrelse"
+
+#: ../logview/logview-window.c:660
+msgid "Normal text size"
+msgstr "Normal tekststørrelse"
+
+#: ../logview/logview-window.c:663
+msgid "Open the help contents for the log viewer"
+msgstr "Åbn hjælp for log-fremviseren"
+
+#: ../logview/logview-window.c:665
+msgid "Show the about dialog for the log viewer"
+msgstr "Vis om-vinduet for log-fremvisereren"
+
+#: ../logview/logview-window.c:670
+msgid "_Statusbar"
+msgstr "_Statusbjælke"
+
+#: ../logview/logview-window.c:670
+msgid "Show Status Bar"
+msgstr "Vis statusbjælke"
+
+#: ../logview/logview-window.c:672
+msgid "Side _Pane"
+msgstr "Side_panel"
+
+#: ../logview/logview-window.c:672
+msgid "Show Side Pane"
+msgstr "Vis sidepanel"
+
+#: ../logview/logview-window.c:1165
+msgid "Close"
+msgstr "Luk"
+
+#: ../logview/logview-window.c:1205
+msgid "Version: "
+msgstr "Version: "
+
+#: ../logview/logview-window.c:1305
+msgid "Could not open the following files:"
+msgstr "Kunne ikke åbne følgende filer:"
+
+#~ msgid "Enter Password"
+#~ msgstr "Indtast kodeord"
+
+#~ msgid "Dictionary and spelling tool"
+#~ msgstr "Ordbog og staveværktøj"
+
+#~ msgid "Show Dictionary options"
+#~ msgstr "Vis ordbogsindstillinger"
+
+#~ msgid "System Log"
+#~ msgstr "Systemlog"
+
+#~ msgid "Current"
+#~ msgstr "Nuværende"
+
+#~ msgid "One file or more could not be opened"
+#~ msgstr "En eller flere filer kunne ikke åbnes"
+
+#~ msgid ""
+#~ "%s is not user readable. Either run the program as root or ask the "
+#~ "sysadmin to change the permissions on the file.\n"
+#~ msgstr ""
+#~ "%s kan ikke læses af brugere. Kør enten programmet som administrator "
+#~ "eller bed systemadministratoren om at ændre rettighederne på filen.\n"
+
+#~ msgid "%s is too big."
+#~ msgstr "%s er for stor."
+
+#~ msgid "%s could not be opened."
+#~ msgstr "Kunne ikke åbne %s."
+
+#~ msgid "%s is not a log file."
+#~ msgstr "%s er ikke en logfil."
+
+#~ msgid "Not enough memory."
+#~ msgstr "Ikke tilstrækkelig hukommelse."
+
+#~ msgid "%s cannot be opened."
+#~ msgstr "%s kan ikke åbnes."
+
+#~ msgid "_Filter:"
+#~ msgstr "_Filter:"
+
+#~ msgid "_Clear"
+#~ msgstr "_Ryd"
+
+# Eller filtrér... det gør nok ingen forskel her
+#~ msgid "_Filter..."
+#~ msgstr "_Filter..."
+
+#~ msgid "Filter log"
+#~ msgstr "Filtrér log"
+
+#~ msgid "Collapse _All"
+#~ msgstr "Sammenfold _alle"
+
+#~ msgid "Collapse all the rows"
+#~ msgstr "Fold alle rækkerne sammen"
+
+#~ msgid "_Monitor"
+#~ msgstr "_Overvåg"
+
+#~ msgid "Monitor Current Log"
+#~ msgstr "Overvåg nuværende log"
+
+#~ msgid "Ca_lendar"
+#~ msgstr "Ka_lender"
+
+#~ msgid "Show Calendar Log"
+#~ msgstr "Vis kalenderlog"
+
+#~ msgid "%s (monitored) - %s"
+#~ msgstr "%s (overvåget) - %s"
+
+#~ msgid "Days"
+#~ msgstr "Dage"
+
+# Peger (subst) jf. dansk-gruppens ordliste. Nu er det måske ikke helt programmering, så hvis nogen har noget bedre så sig endelig til
+#~ msgid "Pointer towards a GSList of days for the current log."
+#~ msgstr "Peger til en GSList af dage for den aktuelle log."
+
+#~ msgid "Show System Log Viewer options"
+#~ msgstr "Vis indstillinger for systemlog-fremviseren"
+
+#~ msgid "Unable to create user interface."
+#~ msgstr "Kunne ikke oprette brugergrænseflade."
+
+#~ msgid "January"
+#~ msgstr "januar"
+
+#~ msgid "February"
+#~ msgstr "februar"
+
+#~ msgid "March"
+#~ msgstr "marts"
+
+#~ msgid "April"
+#~ msgstr "april"
+
+#~ msgid "May"
+#~ msgstr "maj"
+
+#~ msgid "June"
+#~ msgstr "juni"
+
+#~ msgid "July"
+#~ msgstr "juli"
+
+#~ msgid "August"
+#~ msgstr "august"
+
+#~ msgid "September"
+#~ msgstr "september"
+
+#~ msgid "October"
+#~ msgstr "oktober"
+
+#~ msgid "November"
+#~ msgstr "november"
+
+#~ msgid "December"
+#~ msgstr "december"
+
+#~ msgid "Invalid date"
+#~ msgstr "Ugyldig dato"
+
+#~ msgid "%x"
+#~ msgstr "%x"
+
+#~ msgid "This file cannot be monitored."
+#~ msgstr "Denne fil kan ikke overvåges."
+
+#~ msgid "File monitoring is not supported on this file system.\n"
+#~ msgstr "Filovervågning understøttes ikke på dette filsystem.\n"
+
+#~ msgid "Gnome-VFS Error.\n"
+#~ msgstr "Gnome-VFS fejl.\n"
 
 #~ msgid "Refresh graph"
 #~ msgstr "Opdatér graf"
@@ -3802,9 +3895,6 @@ msgstr "Gnome-VFS fejl.\n"
 
 #~ msgid "_Look Up Word"
 #~ msgstr "_Slå ord op"
-
-#~ msgid "Find next occurrence of the word"
-#~ msgstr "Find næste forekomst af ordet"
 
 #~ msgid "P_references"
 #~ msgstr "_Indstillinger"
@@ -4071,9 +4161,6 @@ msgstr "Gnome-VFS fejl.\n"
 #~ msgid "Show Log Properties"
 #~ msgstr "Vis logegenskaber"
 
-#~ msgid "Close"
-#~ msgstr "Luk"
-
 #~ msgid "Copy"
 #~ msgstr "Kopiér"
 
@@ -4109,9 +4196,6 @@ msgstr "Gnome-VFS fejl.\n"
 
 #~ msgid "Gnome Dictionary"
 #~ msgstr "Ordbog"
-
-#~ msgid "Find Next"
-#~ msgstr "Find næste"
 
 #~ msgid "_Entry Detail"
 #~ msgstr "_Detaljer"
@@ -4197,13 +4281,6 @@ msgstr "Gnome-VFS fejl.\n"
 
 #~ msgid "Open the specified log."
 #~ msgstr "Åbn den anførte log."
-
-#~ msgid ""
-#~ "There was an error displaying help: \n"
-#~ "%s"
-#~ msgstr ""
-#~ "Der opstod en fejl ved visning af hjælp: \n"
-#~ "%s"
 
 #~ msgid "Size:"
 #~ msgstr "Størrelse:"
