@@ -34,7 +34,6 @@
 #include <glib.h>
 #include <regex.h>
 #include <gdk/gdkx.h>
-#include <libart_lgpl/art_rgb.h>
 #include <libgnomevfs/gnome-vfs-mime.h>
 #include <libgnomevfs/gnome-vfs-mime-handlers.h>
 #include <libgnomevfs/gnome-vfs-ops.h>
