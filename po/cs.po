@@ -18,14 +18,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-12 00:40+0200\n"
-"PO-Revision-Date: 2008-09-11 18:33+0100\n"
-"Last-Translator: Adrian Guniš <andygun@seznam.cz>\n"
+"POT-Creation-Date: 2009-02-21 23:22+0100\n"
+"PO-Revision-Date: 2009-02-21 23:21+0100\n"
+"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-Language: Czech\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
 msgid "Check folder sizes and available disk space"
@@ -117,12 +119,12 @@ msgstr "S_balit vše"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:22
-#: ../gnome-dictionary/src/gdict-window.c:1238 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:663
 msgid "_Contents"
 msgstr "_Obsah"
 
 #: ../baobab/data/baobab.glade.h:23
-#: ../gnome-dictionary/src/gdict-window.c:1185 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:638
 msgid "_Edit"
 msgstr "_Upravit"
 
@@ -132,7 +134,7 @@ msgstr "Rozbalit vš_e"
 
 #: ../baobab/data/baobab.glade.h:25
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1188 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:640
 msgid "_Help"
 msgstr "_Nápověda"
 
@@ -145,7 +147,7 @@ msgid "_Toolbar"
 msgstr "Lišta nás_trojů"
 
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1186 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:639
 msgid "_View"
 msgstr "_Zobrazit"
 
@@ -189,30 +191,30 @@ msgstr "Jestli jsou popisy tlačítek podsložek z vybrané složky vykresleny."
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Jestli má být lišta nástrojů v hlavním okně viditelná."
 
-#: ../baobab/src/baobab.c:123 ../baobab/src/baobab.c:301
+#: ../baobab/src/baobab.c:121 ../baobab/src/baobab.c:299
 msgid "Scanning..."
 msgstr "Prohledává se..."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:185 ../baobab/src/baobab.c:243
+#: ../baobab/src/baobab.c:183 ../baobab/src/baobab.c:241
 #: ../baobab/src/callbacks.c:302
 msgid "Calculating percentage bars..."
 msgstr "Vypočítávají se procenta..."
 
-#: ../baobab/src/baobab.c:195 ../baobab/src/baobab.c:972
+#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:998
 #: ../baobab/src/callbacks.c:306
 msgid "Ready"
 msgstr "Hotovo"
 
-#: ../baobab/src/baobab.c:336
+#: ../baobab/src/baobab.c:338
 msgid "Total filesystem usage:"
 msgstr "Celkové využití souborového systému:"
 
-#: ../baobab/src/baobab.c:375
+#: ../baobab/src/baobab.c:377
 msgid "contains hardlinks for:"
 msgstr "obsahuje pevné odkazy na:"
 
-#: ../baobab/src/baobab.c:384
+#: ../baobab/src/baobab.c:386
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
@@ -220,43 +222,47 @@ msgstr[0] "% 5d položka"
 msgstr[1] "% 5d položky"
 msgstr[2] "% 5d položek"
 
-#: ../baobab/src/baobab.c:722
+#: ../baobab/src/baobab.c:737
 msgid "Could not initialize monitoring"
 msgstr "Nelze zahájit sledování"
 
-#: ../baobab/src/baobab.c:723
+#: ../baobab/src/baobab.c:738
 msgid "Changes to your home folder will not be monitored."
 msgstr "Změny ve vaší domovské složce nebudou sledovány."
 
-#: ../baobab/src/baobab.c:768
+#: ../baobab/src/baobab.c:783
 msgid "Move to parent folder"
 msgstr "Přejít do nadřazené složky"
 
-#: ../baobab/src/baobab.c:772
+#: ../baobab/src/baobab.c:787
 msgid "Zoom in"
 msgstr "Zvětšit"
 
-#: ../baobab/src/baobab.c:776
+#: ../baobab/src/baobab.c:791
 msgid "Zoom out"
 msgstr "Zmenšit"
 
-#: ../baobab/src/baobab.c:780
+#: ../baobab/src/baobab.c:795
 msgid "Save snapshot"
 msgstr "Uložit snímek obrazovky"
 
-#: ../baobab/src/baobab.c:828
+#: ../baobab/src/baobab.c:843
 msgid "View as Rings Chart"
 msgstr "Zobrazit jako kruhový diagram"
 
-#: ../baobab/src/baobab.c:830
+#: ../baobab/src/baobab.c:845
 msgid "View as Treemap Chart"
 msgstr "Zobrazit jako diagram ve stylu stromové mapy"
 
-#: ../baobab/src/baobab.c:942
+#: ../baobab/src/baobab.c:917
+msgid "Cannot check an excluded folder!"
+msgstr "Nelze zkontrolovat vyřazenou složku!"
+
+#: ../baobab/src/baobab.c:968
 msgid "Could not detect any mount point."
 msgstr "Nelze rozpoznat žádný bod připojení."
 
-#: ../baobab/src/baobab.c:945
+#: ../baobab/src/baobab.c:971
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Bez bodů připojení nelze analyzovat využití disku."
 
@@ -321,7 +327,7 @@ msgstr "Celková velikost"
 msgid "Available"
 msgstr "Dostupné"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:78
+#: ../baobab/src/baobab-remote-connect-dialog.c:77
 #, c-format
 msgid "Cannot scan location \"%s\""
 msgstr "Nelze prohledat umístění \"%s\""
@@ -432,63 +438,63 @@ msgstr "Zvolte složku"
 msgid "_Show hidden folders"
 msgstr "Zobrazit _skryté složky"
 
-#: ../baobab/src/baobab-utils.c:302
+#: ../baobab/src/baobab-utils.c:304
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" není platná složka"
 
-#: ../baobab/src/baobab-utils.c:305
+#: ../baobab/src/baobab-utils.c:307
 msgid "Could not analyze disk usage."
 msgstr "Nelze analyzovat využití disku."
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:348
 msgid "_Open Folder"
 msgstr "_Otevřít složku"
 
-#: ../baobab/src/baobab-utils.c:340 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:354 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "_Přesunout do koše"
 
-#: ../baobab/src/baobab-utils.c:369
+#: ../baobab/src/baobab-utils.c:380
 msgid "Total filesystem capacity:"
 msgstr "Celková kapacita souborového systému:"
 
-#: ../baobab/src/baobab-utils.c:370
+#: ../baobab/src/baobab-utils.c:381
 msgid "used:"
 msgstr "obsazeno:"
 
-#: ../baobab/src/baobab-utils.c:371
+#: ../baobab/src/baobab-utils.c:382
 msgid "available:"
 msgstr "dostupné:"
 
-#: ../baobab/src/baobab-utils.c:415
+#: ../baobab/src/baobab-utils.c:426
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Nelze otevřít složku \"%s\""
 
-#: ../baobab/src/baobab-utils.c:418
+#: ../baobab/src/baobab-utils.c:429
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Není nainstalován žádný prohlížeč schopný zobrazit tuto složku."
 
-#: ../baobab/src/baobab-utils.c:487
+#: ../baobab/src/baobab-utils.c:498
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Nelze přesunout \"%s\" do koše"
 
-#: ../baobab/src/baobab-utils.c:495
+#: ../baobab/src/baobab-utils.c:506
 msgid "Could not move file to the Trash"
 msgstr "Soubor nelze přesunout do koše"
 
-#: ../baobab/src/baobab-utils.c:497
+#: ../baobab/src/baobab-utils.c:508
 #, c-format
 msgid "Details: %s"
 msgstr "Podrobnosti: %s"
 
-#: ../baobab/src/baobab-utils.c:516
+#: ../baobab/src/baobab-utils.c:527
 msgid "Rescan your home folder?"
 msgstr "Znovu prohledat vaši domovskou složku?"
 
-#: ../baobab/src/baobab-utils.c:517
+#: ../baobab/src/baobab-utils.c:528
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -496,17 +502,13 @@ msgstr ""
 "Obsah vaší domovské složky se změnil. Zvolte nové prohledávání pro "
 "aktualizaci podrobností o využití disku."
 
-#: ../baobab/src/baobab-utils.c:518
+#: ../baobab/src/baobab-utils.c:529
 msgid "_Rescan"
 msgstr "Znovu p_rohledat"
 
-#: ../baobab/src/baobab-utils.c:553 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:569
 msgid "There was an error displaying help."
 msgstr "Při zobrazování nápovědy došlo k chybě."
-
-#: ../baobab/src/baobab-mount-operation.c:146
-msgid "Enter Password"
-msgstr "Zadat heslo"
 
 #: ../baobab/src/callbacks.c:97
 msgid "Baobab"
@@ -516,9 +518,9 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "Grafický nástroj pro analýzu využití disku."
 
-#. Translator credits
+#. translator credits
 #: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
-#: ../logview/about.c:47
+#: ../logview/logview-about.h:63
 msgid "translator-credits"
 msgstr ""
 "David Šauer <davids@penguin.cz>\n"
@@ -530,7 +532,7 @@ msgstr ""
 "Lukáš Novotný <lukasnov@cvs.gnome.org>\n"
 "Kamil Páral <ripper42@gmail.com>\n"
 "Petr Kovář <pknbe@volny.cz>\n"
-"Adrian Guniš <andygun@seznam.cz>"
+"Adrian Guniš <andygun696@gmail.com>"
 
 #: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:472
 #: ../gsearchtool/gsearchtool-callbacks.c:824
@@ -882,11 +884,11 @@ msgstr "_Rychlé (vytvoří pouze souborový systém)"
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "_Standardní (k rychlému režimu se přidá formátování na nízké úrovni)"
 
-#: ../gfloppy/src/main.c:259
+#: ../gfloppy/src/main.c:257
 msgid "Cannot Format"
 msgstr "Nelze formátovat"
 
-#: ../gfloppy/src/main.c:260
+#: ../gfloppy/src/main.c:258
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -894,12 +896,12 @@ msgstr ""
 "Nejsou nainstalovány ani aplikace mke2fs, ani mkdosfs/mformat. Bez jedné z "
 "těchto aplikací nelze formátovat disketu."
 
-#: ../gfloppy/src/main.c:280
+#: ../gfloppy/src/main.c:278
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "Nelze otevřít zařízení %s, formátování nemůže pokračovat."
 
-#: ../gfloppy/src/main.c:283 ../gfloppy/src/main.c:345
+#: ../gfloppy/src/main.c:281 ../gfloppy/src/main.c:343
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -908,7 +910,7 @@ msgstr ""
 "Zařízení %s je odpojeno.\n"
 "Připojte prosím zařízení a pokračujte."
 
-#: ../gfloppy/src/main.c:286 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:284 ../gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -918,40 +920,40 @@ msgstr ""
 "Nemáte potřebná práva pro zápis na %s, formátování nebude možné.\n"
 "Kontaktujte správce systému a požádejte jej o práva na zápis."
 
-#: ../gfloppy/src/main.c:293 ../gfloppy/src/main.c:356
+#: ../gfloppy/src/main.c:291 ../gfloppy/src/main.c:354
 msgid "Cannot initialize device"
 msgstr "Nelze inicializovat zařízení"
 
-#: ../gfloppy/src/main.c:342
+#: ../gfloppy/src/main.c:340
 #, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "Nelze otevřít žádné zařízení, formátování nemůže pokračovat."
 
-#: ../gfloppy/src/main.c:345 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:343 ../gfloppy/src/main.c:346
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 nebo /dev/fd0"
 
-#: ../gfloppy/src/main.c:509
+#: ../gfloppy/src/main.c:507
 msgid "Could not display help for the floppy formatter."
 msgstr "Nelze zobrazit nápovědu pro formátovač disket."
 
-#: ../gfloppy/src/main.c:528
+#: ../gfloppy/src/main.c:526
 msgid "Incorrect volume name"
 msgstr "Nesprávný název svazku"
 
-#: ../gfloppy/src/main.c:529
+#: ../gfloppy/src/main.c:527
 msgid "The volume name can't contain any blank space."
 msgstr "Název svazku nesmí obsahovat prázdné znaky."
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "The device to format"
 msgstr "Zařízení k formátování"
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "DEVICE"
 msgstr "ZAŘÍZENÍ"
 
-#: ../gfloppy/src/main.c:583
+#: ../gfloppy/src/main.c:581
 msgid "- Floppy Formatter"
 msgstr "- Formátovač disket"
 
@@ -1002,7 +1004,7 @@ msgid "Cl_ear"
 msgstr "_Vymazat"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1240 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:665
 msgid "_About"
 msgstr "O _aplikaci"
 
@@ -1011,7 +1013,7 @@ msgid "_Look Up Selected Text"
 msgstr "_Hledat vybraný text"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1214
+#: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "_Preferences"
 msgstr "_Nastavení"
 
@@ -1029,9 +1031,9 @@ msgstr "Kontrolovat slova a pravopis v on-line slovníku"
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:402
-#: ../gnome-dictionary/src/gdict-window.c:610
-#: ../gnome-dictionary/src/gdict-window.c:1957
+#: ../gnome-dictionary/src/gdict-app.c:385
+#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:1953
 msgid "Dictionary"
 msgstr "Slovník"
 
@@ -1421,53 +1423,54 @@ msgstr "Jen místní"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Jestli kontext používá jen místní slovníky nebo ne"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:382
 msgid "Reload the list of available databases"
 msgstr "Znovu načíst seznam dostupných databází"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:394
 msgid "Clear the list of available databases"
 msgstr "Smazat seznam dostupných databází"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
-#: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:841
+#: ../gnome-dictionary/libgdict/gdict-speller.c:779
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:789
 msgid "Error while matching"
 msgstr "Chyba při porovnávání"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1135
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1229
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1263
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
+#: ../logview/logview-window.c:507
 msgid "Not found"
 msgstr "Nenalezeno"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1323
 msgid "F_ind:"
 msgstr "_Hledat:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1337
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1336
 msgid "_Previous"
 msgstr "_Předchozí"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1345
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1344
 msgid "_Next"
 msgstr "_Následující"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2520
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2519
 msgid "Error while looking up definition"
 msgstr "Chyba při vyhledávání definice"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2561
+#: ../gnome-dictionary/libgdict/gdict-speller.c:737
 msgid "Another search is in progress"
 msgstr "Probíhá jiné hledání"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2563
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
 msgid "Please wait until the current search ends."
 msgstr "Počkejte prosím, dokud neskončí aktuální hledání."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2602
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2601
 msgid "Error while retrieving the definition"
 msgstr "Chyba při získávání definice"
 
@@ -1497,7 +1500,7 @@ msgid "The description of this dictionary source"
 msgstr "Popis tohoto zdroje slovníku"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
-#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+#: ../gnome-dictionary/libgdict/gdict-speller.c:384
 msgid "Database"
 msgstr "Databáze"
 
@@ -1506,7 +1509,7 @@ msgid "The default database of this dictonary source"
 msgstr "Implicitní databáze tohoto zdroje slovníku"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:288
-#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+#: ../gnome-dictionary/libgdict/gdict-speller.c:391
 msgid "Strategy"
 msgstr "Metoda"
 
@@ -1523,7 +1526,7 @@ msgid "The transport mechanism used by this dictionary source"
 msgstr "Mechanismus transportu používaný tímto zdrojem slovníku"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:317
-#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+#: ../gnome-dictionary/libgdict/gdict-speller.c:377
 msgid "Context"
 msgstr "Kontext"
 
@@ -1565,7 +1568,7 @@ msgstr "Zdroj slovníku nemá název"
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Zdroj slovníku '%s' má neplatný transport '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:299
 msgid "Reload the list of available sources"
 msgstr "Znovu načíst seznam dostupných zdrojů"
 
@@ -1585,29 +1588,42 @@ msgstr "Zdroje"
 msgid "Dictionary sources found"
 msgstr "Nalezené zdroje slovníků"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:355
+#: ../gnome-dictionary/libgdict/gdict-speller.c:354
 msgid "Clear the list of similar words"
 msgstr "Smazat seznam podobných slov"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:379
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
 msgid "The GdictContext object used to get the word definition"
 msgstr "Objekt GdictContext používaný pro získání definice slova"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:386
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
 msgid "The database used to query the GdictContext"
 msgstr "Databáze používaná pro hledání v GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:393
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
 msgid "The strategy used to query the GdictContext"
 msgstr "Metoda používaná pro hledání v GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:365
 msgid "Reload the list of available strategies"
 msgstr "Znovu načíst seznam dostupných metod"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:377
 msgid "Clear the list of available strategies"
 msgstr "Smazat seznam dostupných metod"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+msgid "GDict debugging flags to set"
+msgstr "Ladicí příznaky GDict, které se mají nastavit"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "FLAGS"
+msgstr "PŘÍZNAKY"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "GDict debugging flags to unset"
+msgstr "Ladicí příznaky GDict, které se nemají nastavit"
 
 #: ../gnome-dictionary/libgdict/gdict-utils.c:157
 msgid "GDict Options"
@@ -1625,7 +1641,7 @@ msgstr "Hledat slova ve slovnících"
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:233
+#: ../gnome-dictionary/src/gdict-app.c:217
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1638,21 +1654,21 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:231
 #, c-format
 msgid "Error: %s\n"
 msgstr "Chyba: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:257
 #, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "Použití viz příkaz gnome-dictionary --help\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:286
+#: ../gnome-dictionary/src/gdict-app.c:270
 msgid "Unable to find a suitable dictionary source"
 msgstr "Nelze najít vhodný zdroj slovníku"
 
-#: ../gnome-dictionary/src/gdict-app.c:320
+#: ../gnome-dictionary/src/gdict-app.c:304
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1661,115 +1677,107 @@ msgstr ""
 "Chyba při vyhledávání definice \"%s\":\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Words to look up"
 msgstr "Slova, která hledat"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:356
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:339
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "word"
 msgstr "slovo"
 
-#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:339
 msgid "Words to match"
 msgstr "Slova pro porovnání"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "Dictionary source to use"
 msgstr "Zdroj slovníku, který používat"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "source"
 msgstr "zdroj"
 
-#: ../gnome-dictionary/src/gdict-app.c:360
+#: ../gnome-dictionary/src/gdict-app.c:343
 msgid "Show available dictionary sources"
 msgstr "Zobrazit dostupné zdroje slovníků"
 
-#: ../gnome-dictionary/src/gdict-app.c:362
+#: ../gnome-dictionary/src/gdict-app.c:345
 msgid "Print result to the console"
 msgstr "Vypsat výsledek na konzolu"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "Database to use"
 msgstr "Databáze, kterou používat"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "Strategy to use"
 msgstr "Metoda, kterou používat"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "strat"
 msgstr "metoda"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:384
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid " - Look up words in dictionaries"
 msgstr " - Hledat slova ve slovnících"
 
-#: ../gnome-dictionary/src/gdict-app.c:388
-msgid "Dictionary and spelling tool"
-msgstr "Nástroj pro slovník a pravopis"
-
-#: ../gnome-dictionary/src/gdict-app.c:389
-msgid "Show Dictionary options"
-msgstr "Zobrazit možnosti slovníku"
-
-#: ../gnome-dictionary/src/gdict-applet.c:207
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-applet.c:205
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "Save a Copy"
 msgstr "Uložit kopii"
 
-#: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:849
+#: ../gnome-dictionary/src/gdict-applet.c:215
+#: ../gnome-dictionary/src/gdict-window.c:847
 msgid "Untitled document"
 msgstr "Nepojmenovaný dokument"
 
-#: ../gnome-dictionary/src/gdict-applet.c:238
-#: ../gnome-dictionary/src/gdict-window.c:870
+#: ../gnome-dictionary/src/gdict-applet.c:236
+#: ../gnome-dictionary/src/gdict-window.c:868
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Chyba při zápisu do '%s'"
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:361
 msgid "Clear the definitions found"
 msgstr "Vymazat nalezené definice"
 
-#: ../gnome-dictionary/src/gdict-applet.c:365
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear definition"
 msgstr "Vymazat definici"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:364
 msgid "Clear the text of the definition"
 msgstr "Vymazat text definice"
 
-#: ../gnome-dictionary/src/gdict-applet.c:373
+#: ../gnome-dictionary/src/gdict-applet.c:371
 msgid "Print the definitions found"
 msgstr "Vytisknout nalezené definice"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print definition"
 msgstr "Vytisknout definici"
 
-#: ../gnome-dictionary/src/gdict-applet.c:376
+#: ../gnome-dictionary/src/gdict-applet.c:374
 msgid "Print the text of the definition"
 msgstr "Vytisknout text definice"
 
-#: ../gnome-dictionary/src/gdict-applet.c:383
+#: ../gnome-dictionary/src/gdict-applet.c:381
 msgid "Save the definitions found"
 msgstr "Uložit nalezené definice"
 
-#: ../gnome-dictionary/src/gdict-applet.c:385
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save definition"
 msgstr "Uložit definici"
 
-#: ../gnome-dictionary/src/gdict-applet.c:386
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Save the text of the definition to a file"
 msgstr "Uložit text definice do souboru"
 
@@ -1794,52 +1802,52 @@ msgid "Dictionary entry"
 msgstr "Položka slovníku"
 
 #: ../gnome-dictionary/src/gdict-applet.c:724
-#: ../gnome-dictionary/src/gdict-window.c:1003
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Dictionary Preferences"
 msgstr "Nastavení slovníku"
 
-#: ../gnome-dictionary/src/gdict-applet.c:752
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
-#: ../gnome-dictionary/src/gdict-source-dialog.c:498
-#: ../gnome-dictionary/src/gdict-window.c:1150
+#: ../gnome-dictionary/src/gdict-applet.c:750
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:505
+#: ../gnome-dictionary/src/gdict-source-dialog.c:495
+#: ../gnome-dictionary/src/gdict-window.c:1145
 #, c-format
 msgid "There was an error while displaying help"
 msgstr "Při zobrazování nápovědy došlo k chybě"
 
-#: ../gnome-dictionary/src/gdict-applet.c:904
-#: ../gnome-dictionary/src/gdict-window.c:519
+#: ../gnome-dictionary/src/gdict-applet.c:902
+#: ../gnome-dictionary/src/gdict-window.c:517
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Zdroj slovníku s názvem '%s' není k dispozici"
 
-#: ../gnome-dictionary/src/gdict-applet.c:908
-#: ../gnome-dictionary/src/gdict-window.c:523
+#: ../gnome-dictionary/src/gdict-applet.c:906
+#: ../gnome-dictionary/src/gdict-window.c:521
 msgid "Unable to find dictionary source"
 msgstr "Nelze najít zdroj slovníku"
 
-#: ../gnome-dictionary/src/gdict-applet.c:924
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:922
+#: ../gnome-dictionary/src/gdict-window.c:537
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Pro zdroj '%s' není k dispozici kontext"
 
-#: ../gnome-dictionary/src/gdict-applet.c:928
-#: ../gnome-dictionary/src/gdict-window.c:543
+#: ../gnome-dictionary/src/gdict-applet.c:926
+#: ../gnome-dictionary/src/gdict-window.c:541
 msgid "Unable to create a context"
 msgstr "Nelze vytvořit kontext"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1193
-#: ../gnome-dictionary/src/gdict-window.c:2088
+#: ../gnome-dictionary/src/gdict-applet.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:2084
 msgid "Unable to connect to GConf"
 msgstr "Nelze se připojit k GConf"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1206
-#: ../gnome-dictionary/src/gdict-window.c:2101
+#: ../gnome-dictionary/src/gdict-applet.c:1204
+#: ../gnome-dictionary/src/gdict-window.c:2097
 msgid "Unable to get notification for preferences"
 msgstr "Nelze získat upozornění na nastavení"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1220
-#: ../gnome-dictionary/src/gdict-window.c:2114
+#: ../gnome-dictionary/src/gdict-applet.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:2110
 msgid "Unable to get notification for the document font"
 msgstr "Nelze získat upozornění na písmo dokumentu"
 
@@ -1854,37 +1862,37 @@ msgstr "Nelze přejmenovat soubor '%s' na '%s': %s"
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Nelze vymazat adresář dat '%s': %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:245
 msgid "Edit Dictionary Source"
 msgstr "Upravit zdroj slovníku"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:309
 msgid "Add Dictionary Source"
 msgstr "Přidat zdroj slovníku"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:355
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "Odstranit \"%s\"?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:357
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Toto natrvalo odstraní zdroj slovníku ze seznamu."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:387
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Nelze odstranit zdroj '%s'"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:663
 msgid "Add a new dictionary source"
 msgstr "Přidat nový zdroj slovníku"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:669
 msgid "Remove the currently selected dictionary source"
 msgstr "Odstranit momentálně vybraný zdroj slovníku"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:682
 msgid "Set the font used for printing the definitions"
 msgstr "Nastavit písmo používané pro tisk definic"
 
@@ -1894,27 +1902,27 @@ msgstr "Nastavit písmo používané pro tisk definic"
 msgid "Unable to display the preview: %s"
 msgstr "Nelze zobrazit náhled: %s"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:358
-#: ../gnome-dictionary/src/gdict-source-dialog.c:451
+#: ../gnome-dictionary/src/gdict-source-dialog.c:357
+#: ../gnome-dictionary/src/gdict-source-dialog.c:450
 msgid "Unable to create a source file"
 msgstr "Nelze vytvořit zdrojový soubor"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:376
-#: ../gnome-dictionary/src/gdict-source-dialog.c:469
+#: ../gnome-dictionary/src/gdict-source-dialog.c:375
+#: ../gnome-dictionary/src/gdict-source-dialog.c:468
 msgid "Unable to save source file"
 msgstr "Nelze uložit zdrojový soubor"
 
-#: ../gnome-dictionary/src/gdict-window.c:318
+#: ../gnome-dictionary/src/gdict-window.c:316
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Hledám '%s'..."
 
-#: ../gnome-dictionary/src/gdict-window.c:350
-#: ../gnome-dictionary/src/gdict-window.c:409
+#: ../gnome-dictionary/src/gdict-window.c:348
+#: ../gnome-dictionary/src/gdict-window.c:407
 msgid "No definitions found"
 msgstr "Nenalezeny žádné definice"
 
-#: ../gnome-dictionary/src/gdict-window.c:352
+#: ../gnome-dictionary/src/gdict-window.c:350
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
@@ -1922,269 +1930,270 @@ msgstr[0] "Nalezena definice"
 msgstr[1] "Nalezeny %d definice"
 msgstr[2] "Nalezeno %d definic"
 
-#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:606
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - Slovník"
 
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:637
 msgid "_File"
 msgstr "_Soubor"
 
-#: ../gnome-dictionary/src/gdict-window.c:1187
+#: ../gnome-dictionary/src/gdict-window.c:1183
 msgid "_Go"
 msgstr "Pře_jít"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_New"
 msgstr "_Nový"
 
-#: ../gnome-dictionary/src/gdict-window.c:1192
+#: ../gnome-dictionary/src/gdict-window.c:1188
 msgid "New look up"
 msgstr "Nové hledání"
 
-#: ../gnome-dictionary/src/gdict-window.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:1189
 msgid "_Save a Copy..."
 msgstr "_Uložit kopii..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1195
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "P_review..."
 msgstr "Ná_hled..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1196
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Preview this document"
 msgstr "Zobrazit náhled tohoto dokumentu"
 
-#: ../gnome-dictionary/src/gdict-window.c:1197
+#: ../gnome-dictionary/src/gdict-window.c:1193
 msgid "_Print..."
 msgstr "Vy_tisknout..."
 
-#: ../gnome-dictionary/src/gdict-window.c:1198
+#: ../gnome-dictionary/src/gdict-window.c:1194
 msgid "Print this document"
 msgstr "Vytisknout tento dokument"
 
-#: ../gnome-dictionary/src/gdict-window.c:1205 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:651
 msgid "Select _All"
 msgstr "Vybrat vš_e"
 
-#: ../gnome-dictionary/src/gdict-window.c:1208
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find a word or phrase in the document"
-msgstr "Hledat v dokumentu slovo nebo frázi"
+msgstr "Najít v dokumentu slovo nebo frázi"
 
-#: ../gnome-dictionary/src/gdict-window.c:1210
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Ne_xt"
-msgstr "Hledat _následující"
+msgstr "Najít _následující"
 
-#: ../gnome-dictionary/src/gdict-window.c:1212
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "Find Pre_vious"
-msgstr "Hledat _předchozí"
+msgstr "Najít _předchozí"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Previous Definition"
 msgstr "_Předchozí definice"
 
-#: ../gnome-dictionary/src/gdict-window.c:1219
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the previous definition"
 msgstr "Přejít na předchozí definici"
 
-#: ../gnome-dictionary/src/gdict-window.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_Next Definition"
 msgstr "_Následující definice"
 
-#: ../gnome-dictionary/src/gdict-window.c:1221
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the next definition"
 msgstr "Přejít na následující definici"
 
-#: ../gnome-dictionary/src/gdict-window.c:1222
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_First Definition"
 msgstr "_První definice"
 
-#: ../gnome-dictionary/src/gdict-window.c:1223
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the first definition"
 msgstr "Přejít na první definici"
 
-#: ../gnome-dictionary/src/gdict-window.c:1224
+#: ../gnome-dictionary/src/gdict-window.c:1220
 msgid "_Last Definition"
 msgstr "Po_slední definice"
 
-#: ../gnome-dictionary/src/gdict-window.c:1225
+#: ../gnome-dictionary/src/gdict-window.c:1221
 msgid "Go to the last definition"
 msgstr "Přejít na poslední definici"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1228
+#: ../gnome-dictionary/src/gdict-window.c:1224
 msgid "Similar _Words"
 msgstr "Podobná _slova"
 
-#: ../gnome-dictionary/src/gdict-window.c:1230
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Dictionary Sources"
 msgstr "Zdroje slovníků"
 
-#: ../gnome-dictionary/src/gdict-window.c:1232
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available _Databases"
 msgstr "Dostupné _databáze"
 
-#: ../gnome-dictionary/src/gdict-window.c:1234
+#: ../gnome-dictionary/src/gdict-window.c:1230
 msgid "Available St_rategies"
 msgstr "Dostupné _metody"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1251
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "_Sidebar"
 msgstr "Po_stranní panel"
 
-#: ../gnome-dictionary/src/gdict-window.c:1253
+#: ../gnome-dictionary/src/gdict-window.c:1249
 msgid "S_tatusbar"
 msgstr "S_tavový řádek"
 
-#: ../gnome-dictionary/src/gdict-window.c:1374
+#: ../gnome-dictionary/src/gdict-window.c:1370
 #, c-format
 msgid "Dictionary source `%s' selected"
 msgstr "Vybrán zdroj slovníku `%s'"
 
-#: ../gnome-dictionary/src/gdict-window.c:1395
+#: ../gnome-dictionary/src/gdict-window.c:1391
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "Vybrána metoda `%s'"
 
-#: ../gnome-dictionary/src/gdict-window.c:1415
+#: ../gnome-dictionary/src/gdict-window.c:1411
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Vybrána databáze `%s'"
 
-#: ../gnome-dictionary/src/gdict-window.c:1435
+#: ../gnome-dictionary/src/gdict-window.c:1431
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Vybráno slovo `%s'"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1457
+#: ../gnome-dictionary/src/gdict-window.c:1453
 msgid "Double-click on the word to look up"
 msgstr "Klikněte dvakrát na slovo pro jeho vyhledání"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1463
+#: ../gnome-dictionary/src/gdict-window.c:1459
 msgid "Double-click on the matching strategy to use"
 msgstr "Klikněte dvakrát na odpovídající metodu pro její použití"
 
 #. source-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1468
+#: ../gnome-dictionary/src/gdict-window.c:1464
 msgid "Double-click on the source to use"
 msgstr "Klikněte dvakrát na zdroj pro jeho použití"
 
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1477
+#: ../gnome-dictionary/src/gdict-window.c:1473
 msgid "Double-click on the database to use"
 msgstr "Klikněte dvakrát na databázi, kterou chcete používat"
 
-#: ../gnome-dictionary/src/gdict-window.c:1765
+#: ../gnome-dictionary/src/gdict-window.c:1761
 msgid "Look _up:"
 msgstr "_Hledat:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1839
+#: ../gnome-dictionary/src/gdict-window.c:1835
 msgid "Similar words"
 msgstr "Podobná slova"
 
-#: ../gnome-dictionary/src/gdict-window.c:1852
+#: ../gnome-dictionary/src/gdict-window.c:1848
 msgid "Available dictionaries"
 msgstr "Dostupné slovníky"
 
-#: ../gnome-dictionary/src/gdict-window.c:1865
+#: ../gnome-dictionary/src/gdict-window.c:1861
 msgid "Available strategies"
 msgstr "Dostupné metody"
 
-#: ../gnome-dictionary/src/gdict-window.c:1876
+#: ../gnome-dictionary/src/gdict-window.c:1872
 msgid "Dictionary sources"
 msgstr "Zdroje slovníků"
 
-#: ../gnome-screenshot/gnome-screenshot.c:131
+#: ../gnome-screenshot/gnome-screenshot.c:128
 msgid "Error loading the help page"
 msgstr "Chyba při načítání nápovědy"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:232
 msgid "None"
 msgstr "Žádný"
 
-#: ../gnome-screenshot/gnome-screenshot.c:235
+#: ../gnome-screenshot/gnome-screenshot.c:233
 msgid "Drop shadow"
 msgstr "Vrhat stín"
 
-#: ../gnome-screenshot/gnome-screenshot.c:236
+#: ../gnome-screenshot/gnome-screenshot.c:234
 msgid "Border"
 msgstr "Rámeček"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:339
+#: ../gnome-screenshot/gnome-screenshot.c:337
 msgid "Include _pointer"
 msgstr "Zahrnout _kurzor myši"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:348
+#: ../gnome-screenshot/gnome-screenshot.c:346
 msgid "Include the window _border"
-msgstr "Zahrnout _okno rámečku"
+msgstr "Zahrnout _rámeček okna"
 
-#: ../gnome-screenshot/gnome-screenshot.c:363
+#: ../gnome-screenshot/gnome-screenshot.c:361
 msgid "Apply _effect:"
 msgstr "Aplikovat _efekt:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:425
+#: ../gnome-screenshot/gnome-screenshot.c:423
 msgid "Grab the whole _desktop"
 msgstr "Získat celou pracovní _plochu"
 
-#: ../gnome-screenshot/gnome-screenshot.c:437
+#: ../gnome-screenshot/gnome-screenshot.c:435
 msgid "Grab the current _window"
 msgstr "Získat _aktuální okno"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:454
+#: ../gnome-screenshot/gnome-screenshot.c:452
 msgid "Grab _after a delay of"
 msgstr "Získat po _prodlevě"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:472
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "seconds"
 msgstr "sekund"
 
-#: ../gnome-screenshot/gnome-screenshot.c:500
+#: ../gnome-screenshot/gnome-screenshot.c:488
+#: ../gnome-screenshot/gnome-screenshot.c:498
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Sejmout snímek obrazovky"
 
-#: ../gnome-screenshot/gnome-screenshot.c:501
+#: ../gnome-screenshot/gnome-screenshot.c:499
 msgid "Effects"
 msgstr "Efekty"
 
-#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:505
 msgid "Take _Screenshot"
 msgstr "_Sejmout snímek obrazovky"
 
-#: ../gnome-screenshot/gnome-screenshot.c:593
+#: ../gnome-screenshot/gnome-screenshot.c:631
 msgid "Error while saving screenshot"
 msgstr "Chyba při ukládání snímku obrazovky"
 
-#: ../gnome-screenshot/gnome-screenshot.c:597
+#: ../gnome-screenshot/gnome-screenshot.c:635
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
-" Error was %s\n"
-". Please choose another location and retry."
+" Error was %s.\n"
+" Please choose another location and retry."
 msgstr ""
 "Nelze uložit snímek obrazovky do %s.\n"
-" Chyba byla %s\n"
-". Vyberte prosím jinou oblast a zkuste to znovu."
+" Chyba byla %s.\n"
+" Vyberte prosím jiné umístění a zkuste to znovu."
 
-#: ../gnome-screenshot/gnome-screenshot.c:740
+#: ../gnome-screenshot/gnome-screenshot.c:782
 msgid "Unable to take a screenshot of the current window"
 msgstr "Nelze sejmout snímek aktuálního okna"
 
-#: ../gnome-screenshot/gnome-screenshot.c:781
+#: ../gnome-screenshot/gnome-screenshot.c:824
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Snímek obrazovky-%s.png"
@@ -2192,14 +2201,14 @@ msgstr "Snímek obrazovky-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/gnome-screenshot.c:831
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Snímek obrazovky-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:798
+#: ../gnome-screenshot/gnome-screenshot.c:841
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2208,36 +2217,40 @@ msgstr "Snímek obrazovky.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:805
+#: ../gnome-screenshot/gnome-screenshot.c:848
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Snímek obrazovky-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1121
+#: ../gnome-screenshot/gnome-screenshot.c:1179
 msgid "Grab a window instead of the entire screen"
 msgstr "Zachytit okno místo celé obrazovky"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1122
+#: ../gnome-screenshot/gnome-screenshot.c:1180
 msgid "Include the window border with the screenshot"
 msgstr "Vložit do snímku obrazovky i rámeček okna"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:1181
+msgid "Remove the window border from the screenshot"
+msgstr "Odstranit ze snímku obrazovky rámeček okna"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1182
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Sejmout snímek obrazovky po zadaném zpoždění [v sekundách]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efekt přidaný k rámečku (stín, rámeček nebo žádný)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1183
 msgid "effect"
 msgstr "efekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1125
+#: ../gnome-screenshot/gnome-screenshot.c:1184
 msgid "Interactively set options"
 msgstr "Nastavit volby interaktivně"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1134
+#: ../gnome-screenshot/gnome-screenshot.c:1193
 msgid "Take a picture of the screen"
 msgstr "Sejmout snímek obrazovky"
 
@@ -2274,8 +2287,12 @@ msgstr ""
 "\" a \"border\"."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid "Grab just the current window, rather than the whole desktop."
-msgstr "Získat pouze aktuální okno, nikoliv celou pracovní plochu."
+msgid ""
+"Grab just the current window, rather than the whole desktop. This key has "
+"been deprecated and it is no longer in use."
+msgstr ""
+"Získat pouze aktuální okno, nikoliv celou pracovní plochu. Tento klíč je "
+"zastaralý a už se nepoužívá."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -2310,8 +2327,8 @@ msgid "The number of seconds to wait before taking the screenshot."
 msgstr "Doba čekání v sekundách před sejmutím snímku obrazovky."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:12
-msgid "Window-specific screenshot"
-msgstr "Snímek obrazovky podle specifického nastavení okna"
+msgid "Window-specific screenshot (deprecated)"
+msgstr "Snímek obrazovky podle specifického nastavení okna (zastaralé)"
 
 #: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
@@ -2347,7 +2364,7 @@ msgid "Unknown error saving screenshot to disk"
 msgstr "Neznámá chyba při ukládání snímku obrazovky na disk"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:481
+#: ../gnome-screenshot/screenshot-utils.c:486
 msgid "Untitled Window"
 msgstr "Nepojmenované okno"
 
@@ -2807,7 +2824,7 @@ msgstr "Název dokumentu, který jste vybrali, je složka."
 msgid "You may not have write permissions to the document."
 msgstr "Možná nemáte oprávnění zápisu do dokumentu."
 
-#: ../gsearchtool/gsearchtool-support.c:72
+#: ../gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -2821,24 +2838,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:641
+#: ../gsearchtool/gsearchtool-support.c:640
 msgid "today at %-I:%M %p"
 msgstr "dnes v %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:643
+#: ../gsearchtool/gsearchtool-support.c:642
 msgid "yesterday at %-I:%M %p"
 msgstr "včera v %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:645
-#: ../gsearchtool/gsearchtool-support.c:647
+#: ../gsearchtool/gsearchtool-support.c:644
+#: ../gsearchtool/gsearchtool-support.c:646
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A %-d. %B %Y v %-H:%M:%S"
 
-#: ../gsearchtool/gsearchtool-support.c:826
+#: ../gsearchtool/gsearchtool-support.c:825
 msgid "link (broken)"
 msgstr "odkaz (chybný)"
 
-#: ../gsearchtool/gsearchtool-support.c:830
+#: ../gsearchtool/gsearchtool-support.c:829
 #, c-format
 msgid "link to %s"
 msgstr "odkaz na %s"
@@ -2849,12 +2866,12 @@ msgstr "odkaz na %s"
 #. * make some or all of them match.
 #.
 #. localizers: tag used to detect the first copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1533
+#: ../gsearchtool/gsearchtool-support.c:1525
 msgid " (copy)"
 msgstr " (kopie)"
 
 #. localizers: tag used to detect the second copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1535
+#: ../gsearchtool/gsearchtool-support.c:1527
 msgid " (another copy)"
 msgstr " (další kopie)"
 
@@ -2862,36 +2879,36 @@ msgstr " (další kopie)"
 #. localizers: tag used to detect the x12th copy of a file
 #. localizers: tag used to detect the x13th copy of a file
 #. localizers: tag used to detect the xxth copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1538
-#: ../gsearchtool/gsearchtool-support.c:1540
-#: ../gsearchtool/gsearchtool-support.c:1542
-#: ../gsearchtool/gsearchtool-support.c:1552
+#: ../gsearchtool/gsearchtool-support.c:1530
+#: ../gsearchtool/gsearchtool-support.c:1532
+#: ../gsearchtool/gsearchtool-support.c:1534
+#: ../gsearchtool/gsearchtool-support.c:1544
 msgid "th copy)"
 msgstr ". kopie)"
 
 #. localizers: tag used to detect the x1st copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1545
+#: ../gsearchtool/gsearchtool-support.c:1537
 msgid "st copy)"
 msgstr ". kopie)"
 
 #. localizers: tag used to detect the x2nd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1547
+#: ../gsearchtool/gsearchtool-support.c:1539
 msgid "nd copy)"
 msgstr ". kopie)"
 
 #. localizers: tag used to detect the x3rd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1549
+#: ../gsearchtool/gsearchtool-support.c:1541
 msgid "rd copy)"
 msgstr ". kopie)"
 
 #. localizers: appended to first file copy
-#: ../gsearchtool/gsearchtool-support.c:1566
+#: ../gsearchtool/gsearchtool-support.c:1558
 #, c-format
 msgid "%s (copy)%s"
 msgstr "%s (kopie)%s"
 
 #. localizers: appended to second file copy
-#: ../gsearchtool/gsearchtool-support.c:1568
+#: ../gsearchtool/gsearchtool-support.c:1560
 #, c-format
 msgid "%s (another copy)%s"
 msgstr "%s (další kopie)%s"
@@ -2900,43 +2917,43 @@ msgstr "%s (další kopie)%s"
 #. localizers: appended to x12th file copy
 #. localizers: appended to x13th file copy
 #. localizers: appended to xxth file copy
-#: ../gsearchtool/gsearchtool-support.c:1571
-#: ../gsearchtool/gsearchtool-support.c:1573
-#: ../gsearchtool/gsearchtool-support.c:1575
-#: ../gsearchtool/gsearchtool-support.c:1584
+#: ../gsearchtool/gsearchtool-support.c:1563
+#: ../gsearchtool/gsearchtool-support.c:1565
+#: ../gsearchtool/gsearchtool-support.c:1567
+#: ../gsearchtool/gsearchtool-support.c:1576
 #, c-format
 msgid "%s (%dth copy)%s"
 msgstr "%s (%d. kopie)%s"
 
 #. localizers: appended to x1st file copy
-#: ../gsearchtool/gsearchtool-support.c:1578
+#: ../gsearchtool/gsearchtool-support.c:1570
 #, c-format
 msgid "%s (%dst copy)%s"
 msgstr "%s (%d. kopie)%s"
 
 #. localizers: appended to x2nd file copy
-#: ../gsearchtool/gsearchtool-support.c:1580
+#: ../gsearchtool/gsearchtool-support.c:1572
 #, c-format
 msgid "%s (%dnd copy)%s"
 msgstr "%s (%d. kopie)%s"
 
 #. localizers: appended to x3rd file copy
-#: ../gsearchtool/gsearchtool-support.c:1582
+#: ../gsearchtool/gsearchtool-support.c:1574
 #, c-format
 msgid "%s (%drd copy)%s"
 msgstr "%s (%d. kopie)%s"
 
-#: ../gsearchtool/gsearchtool-support.c:1629
+#: ../gsearchtool/gsearchtool-support.c:1621
 msgid " (invalid Unicode)"
 msgstr " (neplatné Unicode)"
 
 #. localizers: opening parentheses to match the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1718
+#: ../gsearchtool/gsearchtool-support.c:1710
 msgid " ("
 msgstr " ("
 
 #. localizers: opening parentheses of the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1726
+#: ../gsearchtool/gsearchtool-support.c:1718
 #, c-format
 msgid " (%d"
 msgstr " (%d"
@@ -3304,223 +3321,31 @@ msgstr "Kliknutím zastavte hledání."
 msgid "- the GNOME Search Tool"
 msgstr "- prohledávací nástroj pro GNOME"
 
-#: ../logview/about.c:51 ../logview/logview.c:37 ../logview/main.c:54
-msgid "System Log Viewer"
-msgstr "Prohlížeč systémových protokolů"
+#: ../logview/data/gnome-system-log.desktop.in.in.h:1
+msgid "Log File Viewer"
+msgstr "Prohlížeč souborů protokolů"
 
-#: ../logview/about.c:54
-msgid "A system log viewer for GNOME."
-msgstr "Prohlížeč systémových protokolů pro GNOME."
-
-#: ../logview/gnome-system-log.desktop.in.in.h:1
-msgid "System Log"
-msgstr "Systémový protokol"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:2
+#: ../logview/data/gnome-system-log.desktop.in.in.h:2
 msgid "View or monitor system log files"
 msgstr "Prohlížet nebo sledovat soubory systémových protokolů"
 
-#: ../logview/log_repaint.c:190
-#, c-format
-msgid "last update: %s"
-msgstr "poslední aktualizace: %s"
-
-#: ../logview/log_repaint.c:192
-#, c-format
-msgid "%d lines (%s) - %s"
-msgstr "%d řádků (%s) - %s"
-
-#: ../logview/log_repaint.c:230
-msgid "Current"
-msgstr "Aktuální"
-
-#: ../logview/logrtns.c:37
-msgid "One file or more could not be opened"
-msgstr "Jeden nebo více souborů nelze otevřít"
-
-#: ../logview/logrtns.c:59
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file.\n"
-msgstr ""
-"%s není pro uživatele čitelný. Buď tento program spusťte jako root, nebo "
-"požádejte správce systému, aby změnil přístupová práva k tomuto souboru.\n"
-
-#: ../logview/logrtns.c:64
-#, c-format
-msgid "%s is too big."
-msgstr "%s je příliš velký."
-
-#: ../logview/logrtns.c:67
-#, c-format
-msgid "%s could not be opened."
-msgstr "Nelze otevřít %s."
-
-#: ../logview/logrtns.c:382
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s není soubor protokolu."
-
-#: ../logview/logrtns.c:388
-msgid "Not enough memory."
-msgstr "Nedostatek paměti."
-
-#: ../logview/logrtns.c:402
-#, c-format
-msgid "%s cannot be opened."
-msgstr "Nelze otevřít %s."
-
-#: ../logview/logview-findbar.c:152
-msgid "_Filter:"
-msgstr "_Filtr:"
-
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "_Vymazat"
-
-#: ../logview/logview.c:90
-msgid "_Open..."
-msgstr "_Otevřít..."
-
-#: ../logview/logview.c:90
-msgid "Open a log from file"
-msgstr "Otevřít protokol ze souboru"
-
-#: ../logview/logview.c:92
-msgid "_Close"
-msgstr "_Zavřít"
-
-#: ../logview/logview.c:92
-msgid "Close this log"
-msgstr "Zavřít tento protokol"
-
-#: ../logview/logview.c:94
-msgid "_Quit"
-msgstr "U_končit"
-
-#: ../logview/logview.c:94
-msgid "Quit the log viewer"
-msgstr "Ukončit prohlížeč protokolů"
-
-#: ../logview/logview.c:97
-msgid "_Copy"
-msgstr "_Kopírovat"
-
-#: ../logview/logview.c:97
-msgid "Copy the selection"
-msgstr "Kopírovat výběr"
-
-#: ../logview/logview.c:99
-msgid "Select the entire log"
-msgstr "Vybrat celý protokol"
-
-#: ../logview/logview.c:101
-msgid "_Filter..."
-msgstr "_Filtr..."
-
-#: ../logview/logview.c:101
-msgid "Filter log"
-msgstr "Filtrovat protokol"
-
-#: ../logview/logview.c:104
-msgid "Bigger text size"
-msgstr "Větší velikost textu"
-
-#: ../logview/logview.c:106
-msgid "Smaller text size"
-msgstr "Menší velikost textu"
-
-#: ../logview/logview.c:108
-msgid "Normal text size"
-msgstr "Normální velikost textu"
-
-#: ../logview/logview.c:111
-msgid "Collapse _All"
-msgstr "S_balit vše"
-
-#: ../logview/logview.c:111
-msgid "Collapse all the rows"
-msgstr "Sbalí všechny řádky"
-
-#: ../logview/logview.c:114
-msgid "Open the help contents for the log viewer"
-msgstr "Otevřít obsah nápovědy prohlížeče protokolů"
-
-#: ../logview/logview.c:116
-msgid "Show the about dialog for the log viewer"
-msgstr "Zobrazit informace o aplikaci prohlížeče protokolů"
-
-#: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "_Stavový řádek"
-
-#: ../logview/logview.c:122
-msgid "Show Status Bar"
-msgstr "Zobrazovat stavový řádek"
-
-#: ../logview/logview.c:124
-msgid "Side _Pane"
-msgstr "_Postranní panel"
-
-#: ../logview/logview.c:124
-msgid "Show Side Pane"
-msgstr "Zobrazovat postranní panel"
-
-#: ../logview/logview.c:126
-msgid "_Monitor"
-msgstr "_Sledovat"
-
-#: ../logview/logview.c:126
-msgid "Monitor Current Log"
-msgstr "Sledovat aktuální protokol"
-
-#: ../logview/logview.c:128
-msgid "Ca_lendar"
-msgstr "_Kalendář"
-
-#: ../logview/logview.c:128
-msgid "Show Calendar Log"
-msgstr "Zobrazit protokoly z kalendáře"
-
-#: ../logview/logview.c:307
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (sledován) - %s"
-
-#: ../logview/logview.c:518
-msgid "Open Log"
-msgstr "Otevřít protokol"
-
-#: ../logview/logview.c:906
-msgid "Version: "
-msgstr "Verze: "
-
-#: ../logview/logview.c:975
-msgid "Days"
-msgstr "Dní"
-
-#: ../logview/logview.c:976
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "Kurzor myši na GSList dní v aktuálním protokolu."
-
-#: ../logview/logview.schemas.in.h:1
+#: ../logview/data/gnome-system-log.schemas.in.h:1
 msgid "Height of the main window in pixels"
 msgstr "Výška hlavního okna v pixelech"
 
-#: ../logview/logview.schemas.in.h:2
+#: ../logview/data/gnome-system-log.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "Soubor protokolu, který otevřít při startu"
 
-#: ../logview/logview.schemas.in.h:3
+#: ../logview/data/gnome-system-log.schemas.in.h:3
 msgid "Log files to open up on startup"
 msgstr "Soubory s protokoly, které otevřít při startu"
 
-#: ../logview/logview.schemas.in.h:4
+#: ../logview/data/gnome-system-log.schemas.in.h:4
 msgid "Size of the font used to display the log"
 msgstr "Velikost písma používaného pro zobrazování protokolu"
 
-#: ../logview/logview.schemas.in.h:5
+#: ../logview/data/gnome-system-log.schemas.in.h:5
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
@@ -3528,11 +3353,11 @@ msgstr ""
 "Určuje seznam souborů s protokoly, které otevřít při startu. Implicitní "
 "seznam je vytvořen čtením /etc/syslog.conf."
 
-#: ../logview/logview.schemas.in.h:6
+#: ../logview/data/gnome-system-log.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
 msgstr "Určuje výšku hlavního okna prohlížeče protokolů v pixelech."
 
-#: ../logview/logview.schemas.in.h:7
+#: ../logview/data/gnome-system-log.schemas.in.h:7
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
@@ -3540,7 +3365,7 @@ msgstr ""
 "Určuje soubor protokolu zobrazovaný při startu. Implicitní je buď /var/adm/"
 "messages nebo /var/log/messages, podle vašeho operačního systému."
 
-#: ../logview/logview.schemas.in.h:8
+#: ../logview/data/gnome-system-log.schemas.in.h:8
 msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
@@ -3549,100 +3374,371 @@ msgstr ""
 "protokolů v hlavním stromovém pohledu. Implicitní hodnota je převzata z "
 "implicitní velikosti písma terminálu."
 
-#: ../logview/logview.schemas.in.h:9
+#: ../logview/data/gnome-system-log.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
 msgstr "Určuje šířku hlavního okna prohlížeče protokolů v pixelech."
 
-#: ../logview/logview.schemas.in.h:10
+#: ../logview/data/gnome-system-log.schemas.in.h:10
 msgid "Width of the main window in pixels"
 msgstr "Šířka hlavního okna v pixelech"
 
-#: ../logview/main.c:49
+#: ../logview/logview-about.h:49
+msgid ""
+"Log Viewer is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Prohlížeč protokolů je svobodný software; můžete jej šířit a/nebo upravovat "
+"podle ustanovení GNU General Public License vydané Free Software Foundation; "
+"buď verze 2 této licence nebo (dle vlastního uvážení) kterékoliv pozdější "
+"verze."
+
+#: ../logview/logview-about.h:53
+msgid ""
+"Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Prohlížeč protokolů je šířen v naději, že bude užitečný, avšak BEZ JAKÉKOLIV "
+"ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO "
+"URČITÝ ÚČEL. Další podrobnosti hledejte v GNU General Public License."
+
+#: ../logview/logview-about.h:57
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+msgstr ""
+"Kopii GNU General Public License byste měli obdržet spolu s Prohlížečem "
+"protokolů; pokud se tak nestalo, napište si o ni Free Software Foundation, "
+"Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+
+#: ../logview/logview-app.c:179
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "Nelze otevřít soubor %s"
+
+#: ../logview/logview-findbar.c:169
+msgid "_Find:"
+msgstr "_Hledat:"
+
+#: ../logview/logview-findbar.c:184
+msgid "Find Previous"
+msgstr "Najít předchozí"
+
+#: ../logview/logview-findbar.c:187
+msgid "Find previous occurrence of the search string"
+msgstr "Najít předchozí výskyt hledaného řetězce"
+
+#: ../logview/logview-findbar.c:192
+msgid "Find Next"
+msgstr "Najít následující"
+
+#: ../logview/logview-findbar.c:195
+msgid "Find next occurrence of the search string"
+msgstr "Najít následující výskyt hledaného řetězce"
+
+#: ../logview/logview-findbar.c:202
+msgid "Clear the search string"
+msgstr "Vymazat hledaný řetězec"
+
+#: ../logview/logview-log.c:595
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr ""
+"Chyba při rozbalování protokolu zabaleného do GZip. Soubor je možná "
+"poškozený."
+
+#: ../logview/logview-log.c:642
+msgid "You don't have enough permissions to read the file."
+msgstr "Nemáte dostatečná oprávnění ke čtení souboru."
+
+#: ../logview/logview-log.c:657
+msgid "The file is not a regular file or is not a text file."
+msgstr "Soubor není obyčejným nebo textovým souborem."
+
+#: ../logview/logview-log.c:739
+msgid "This version of System Log does not support GZipped logs."
+msgstr ""
+"Tato verze systémového protokolu nepodporuje protokoly zabalené ve formátu "
+"GZip."
+
+#: ../logview/logview-loglist.c:311
+msgid "Loading..."
+msgstr "Načítá se..."
+
+#: ../logview/logview-main.c:62
 msgid "Show the application's version"
 msgstr "Zobrazit verzi aplikace"
 
-#: ../logview/main.c:55
-msgid "Show System Log Viewer options"
-msgstr "Zobrazit možnosti Prohlížeče systémových protokolů"
+#: ../logview/logview-main.c:64
+msgid "[LOGFILE...]"
+msgstr "[SOUBOR PROTOKOLU...]"
 
-#: ../logview/main.c:59
+#: ../logview/logview-main.c:68
 msgid " - Browse and monitor logs"
 msgstr " - Procházet a sledovat protokoly"
 
-#: ../logview/main.c:145
+#: ../logview/logview-main.c:102
 msgid "Log Viewer"
 msgstr "Prohlížeč protokolů"
 
-#: ../logview/main.c:154
-msgid "Unable to create user interface."
-msgstr "Nelze vytvořit uživatelské rozhraní."
+#: ../logview/logview-window.c:39 ../logview/logview-window.c:596
+msgid "System Log Viewer"
+msgstr "Prohlížeč systémových protokolů"
 
-#: ../logview/misc.c:42
-msgid "January"
-msgstr "Leden"
-
-#: ../logview/misc.c:42
-msgid "February"
-msgstr "Únor"
-
-#: ../logview/misc.c:42
-msgid "March"
-msgstr "Březen"
-
-#: ../logview/misc.c:42
-msgid "April"
-msgstr "Duben"
-
-#: ../logview/misc.c:42
-msgid "May"
-msgstr "Květen"
-
-#: ../logview/misc.c:43
-msgid "June"
-msgstr "Červen"
-
-#: ../logview/misc.c:43
-msgid "July"
-msgstr "Červenec"
-
-#: ../logview/misc.c:43
-msgid "August"
-msgstr "Srpen"
-
-#: ../logview/misc.c:43
-msgid "September"
-msgstr "Září"
-
-#: ../logview/misc.c:43
-msgid "October"
-msgstr "Říjen"
-
-#: ../logview/misc.c:44
-msgid "November"
-msgstr "Listopad"
-
-#: ../logview/misc.c:44
-msgid "December"
-msgstr "Prosinec"
-
-#: ../logview/misc.c:164
-msgid "Invalid date"
-msgstr "Neplatné datum"
-
-#. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:169
+#: ../logview/logview-window.c:206
 #, c-format
-msgid "%x"
-msgstr "%x"
+msgid "last update: %s"
+msgstr "poslední aktualizace: %s"
 
-#: ../logview/monitor.c:83
-msgid "This file cannot be monitored."
-msgstr "Tento soubor nelze sledovat."
+#: ../logview/logview-window.c:209
+#, c-format
+msgid "%d lines (%s) - %s"
+msgstr "%d řádků (%s) - %s"
 
-#: ../logview/monitor.c:86
-msgid "File monitoring is not supported on this file system.\n"
-msgstr "Sledování souborů není v tomto souborovém systému podporováno.\n"
+#: ../logview/logview-window.c:337
+msgid "Open Log"
+msgstr "Otevřít protokol"
 
-#: ../logview/monitor.c:88
-msgid "Gnome-VFS Error.\n"
-msgstr "Chyba Gnome-VFS.\n"
+#: ../logview/logview-window.c:376
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Při zobrazování nápovědy došlo k chybě: %s"
+
+#: ../logview/logview-window.c:492
+msgid "Wrapped"
+msgstr "Zabalený"
+
+#: ../logview/logview-window.c:601
+msgid "A system log viewer for GNOME."
+msgstr "Prohlížeč systémových protokolů pro GNOME."
+
+#: ../logview/logview-window.c:642
+msgid "_Open..."
+msgstr "_Otevřít..."
+
+#: ../logview/logview-window.c:642
+msgid "Open a log from file"
+msgstr "Otevřít protokol ze souboru"
+
+#: ../logview/logview-window.c:644
+msgid "_Close"
+msgstr "_Zavřít"
+
+#: ../logview/logview-window.c:644
+msgid "Close this log"
+msgstr "Zavřít tento protokol"
+
+#: ../logview/logview-window.c:646
+msgid "_Quit"
+msgstr "U_končit"
+
+#: ../logview/logview-window.c:646
+msgid "Quit the log viewer"
+msgstr "Ukončit prohlížeč protokolů"
+
+#: ../logview/logview-window.c:649
+msgid "_Copy"
+msgstr "_Kopírovat"
+
+#: ../logview/logview-window.c:649
+msgid "Copy the selection"
+msgstr "Kopírovat výběr"
+
+#: ../logview/logview-window.c:651
+msgid "Select the entire log"
+msgstr "Vybrat celý protokol"
+
+#: ../logview/logview-window.c:653
+msgid "_Find..."
+msgstr "_Hledat..."
+
+#: ../logview/logview-window.c:653
+msgid "Find a word or phrase in the log"
+msgstr "Najít v protokolu slovo nebo frázi"
+
+#: ../logview/logview-window.c:656
+msgid "Bigger text size"
+msgstr "Větší velikost textu"
+
+#: ../logview/logview-window.c:658
+msgid "Smaller text size"
+msgstr "Menší velikost textu"
+
+#: ../logview/logview-window.c:660
+msgid "Normal text size"
+msgstr "Normální velikost textu"
+
+#: ../logview/logview-window.c:663
+msgid "Open the help contents for the log viewer"
+msgstr "Otevřít obsah nápovědy prohlížeče protokolů"
+
+#: ../logview/logview-window.c:665
+msgid "Show the about dialog for the log viewer"
+msgstr "Zobrazit informace o aplikaci prohlížeče protokolů"
+
+#: ../logview/logview-window.c:670
+msgid "_Statusbar"
+msgstr "_Stavový řádek"
+
+#: ../logview/logview-window.c:670
+msgid "Show Status Bar"
+msgstr "Zobrazovat stavový řádek"
+
+#: ../logview/logview-window.c:672
+msgid "Side _Pane"
+msgstr "_Postranní panel"
+
+#: ../logview/logview-window.c:672
+msgid "Show Side Pane"
+msgstr "Zobrazovat postranní panel"
+
+#: ../logview/logview-window.c:1165
+msgid "Close"
+msgstr "Zavřít"
+
+#: ../logview/logview-window.c:1205
+msgid "Version: "
+msgstr "Verze: "
+
+#: ../logview/logview-window.c:1305
+msgid "Could not open the following files:"
+msgstr "Nelze otevřít následující soubory:"
+
+#~ msgid "Enter Password"
+#~ msgstr "Zadat heslo"
+
+#~ msgid "Dictionary and spelling tool"
+#~ msgstr "Nástroj pro slovník a pravopis"
+
+#~ msgid "Show Dictionary options"
+#~ msgstr "Zobrazit možnosti slovníku"
+
+#~ msgid "System Log"
+#~ msgstr "Systémový protokol"
+
+#~ msgid "Current"
+#~ msgstr "Aktuální"
+
+#~ msgid "One file or more could not be opened"
+#~ msgstr "Jeden nebo více souborů nelze otevřít"
+
+#~ msgid ""
+#~ "%s is not user readable. Either run the program as root or ask the "
+#~ "sysadmin to change the permissions on the file.\n"
+#~ msgstr ""
+#~ "%s není pro uživatele čitelný. Buď tento program spusťte jako root, nebo "
+#~ "požádejte správce systému, aby změnil přístupová práva k tomuto souboru.\n"
+
+#~ msgid "%s is too big."
+#~ msgstr "%s je příliš velký."
+
+#~ msgid "%s could not be opened."
+#~ msgstr "Nelze otevřít %s."
+
+#~ msgid "%s is not a log file."
+#~ msgstr "%s není soubor protokolu."
+
+#~ msgid "Not enough memory."
+#~ msgstr "Nedostatek paměti."
+
+#~ msgid "%s cannot be opened."
+#~ msgstr "Nelze otevřít %s."
+
+#~ msgid "_Filter:"
+#~ msgstr "_Filtr:"
+
+#~ msgid "_Clear"
+#~ msgstr "_Vymazat"
+
+#~ msgid "_Filter..."
+#~ msgstr "_Filtr..."
+
+#~ msgid "Filter log"
+#~ msgstr "Filtrovat protokol"
+
+#~ msgid "Collapse _All"
+#~ msgstr "S_balit vše"
+
+#~ msgid "Collapse all the rows"
+#~ msgstr "Sbalí všechny řádky"
+
+#~ msgid "_Monitor"
+#~ msgstr "_Sledovat"
+
+#~ msgid "Monitor Current Log"
+#~ msgstr "Sledovat aktuální protokol"
+
+#~ msgid "Ca_lendar"
+#~ msgstr "_Kalendář"
+
+#~ msgid "Show Calendar Log"
+#~ msgstr "Zobrazit protokoly z kalendáře"
+
+#~ msgid "%s (monitored) - %s"
+#~ msgstr "%s (sledován) - %s"
+
+#~ msgid "Days"
+#~ msgstr "Dní"
+
+#~ msgid "Pointer towards a GSList of days for the current log."
+#~ msgstr "Kurzor myši na GSList dní v aktuálním protokolu."
+
+#~ msgid "Show System Log Viewer options"
+#~ msgstr "Zobrazit možnosti Prohlížeče systémových protokolů"
+
+#~ msgid "Unable to create user interface."
+#~ msgstr "Nelze vytvořit uživatelské rozhraní."
+
+#~ msgid "January"
+#~ msgstr "Leden"
+
+#~ msgid "February"
+#~ msgstr "Únor"
+
+#~ msgid "March"
+#~ msgstr "Březen"
+
+#~ msgid "April"
+#~ msgstr "Duben"
+
+#~ msgid "May"
+#~ msgstr "Květen"
+
+#~ msgid "June"
+#~ msgstr "Červen"
+
+#~ msgid "July"
+#~ msgstr "Červenec"
+
+#~ msgid "August"
+#~ msgstr "Srpen"
+
+#~ msgid "September"
+#~ msgstr "Září"
+
+#~ msgid "October"
+#~ msgstr "Říjen"
+
+#~ msgid "November"
+#~ msgstr "Listopad"
+
+#~ msgid "December"
+#~ msgstr "Prosinec"
+
+#~ msgid "Invalid date"
+#~ msgstr "Neplatné datum"
+
+#~ msgid "%x"
+#~ msgstr "%x"
+
+#~ msgid "This file cannot be monitored."
+#~ msgstr "Tento soubor nelze sledovat."
+
+#~ msgid "File monitoring is not supported on this file system.\n"
+#~ msgstr "Sledování souborů není v tomto souborovém systému podporováno.\n"
+
+#~ msgid "Gnome-VFS Error.\n"
+#~ msgstr "Chyba Gnome-VFS.\n"
