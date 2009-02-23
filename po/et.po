@@ -2,20 +2,21 @@
 # Estonian translation of Gnome-utils.
 #
 # Copyright (C) 1999, 2002, 2005, 2006 Free Software Foundation, Inc.
-# Copyright (C) 2007, 2008 The GNOME Project.
+# Copyright (C) 2007-2009 The GNOME Project.
 # This file is distributed under the same license as the gnome-utils package.
 #
 # Lauris Kaplinski <lauris@ariman.ee>, 1999.
 # Tõivo Leedjärv <toivo@linux.ee>, 2002.
-# Ivar Smolin <okul@linux.ee>, 2005-2008.
+# Ivar Smolin <okul@linux.ee>, 2005-2009.
 # Priit Laes <amd@store20.com>, 2005.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-20 20:11+0000\n"
-"PO-Revision-Date: 2008-10-22 06:36+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"utils&component=general\n"
+"POT-Creation-Date: 2009-01-15 09:31+0000\n"
+"PO-Revision-Date: 2009-02-21 11:05+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -187,6 +188,9 @@ msgstr "Ringdiagrammi vaade"
 
 msgid "View as Treemap Chart"
 msgstr "Puudiagrammi vaade"
+
+msgid "Cannot check an excluded folder!"
+msgstr "Välistatud kausta pole võimalik kontrollida!"
 
 msgid "Could not detect any mount point."
 msgstr "Ühtegi ühendamispunkti pole võimalik tuvastada."
@@ -379,21 +383,18 @@ msgstr "_Vaata uuesti läbi"
 msgid "There was an error displaying help."
 msgstr "Abiteabe kuvamisel tekkis viga."
 
-msgid "Enter Password"
-msgstr "Sisesta parool"
-
 msgid "Baobab"
 msgstr "Baobab"
 
 msgid "A graphical tool to analyze disk usage."
 msgstr "Graafiline tööriist kettakasutuse analüüsimiseks."
 
-#. Translator credits
+#. translator credits
 msgid "translator-credits"
 msgstr ""
 "Lauris Kaplinski <lauris@ariman.ee>, 1999.\n"
 "Tõivo Leedjärv <toivo@linux.ee>, 2002.\n"
-"Ivar Smolin <okul@linux.ee>, 2005-2008.\n"
+"Ivar Smolin <okul@linux.ee>, 2005-2009.\n"
 "Priit Laes <amd@store20.com>, 2005."
 
 msgid "The document does not exist."
@@ -1238,6 +1239,15 @@ msgstr "Saadaolevate strateegiate loetelu uuestilaadimine"
 msgid "Clear the list of available strategies"
 msgstr "Saadaolevate strateegiate loetelu puhastamine"
 
+msgid "GDict debugging flags to set"
+msgstr "GDict'i jaoks määratavad silumislipud"
+
+msgid "FLAGS"
+msgstr "LIPUD"
+
+msgid "GDict debugging flags to unset"
+msgstr "GDict'i jaoks nullitavad silumislipud"
+
 msgid "GDict Options"
 msgstr "GDict'i valikud"
 
@@ -1317,12 +1327,6 @@ msgstr "strateegia"
 #. create the new option context
 msgid " - Look up words in dictionaries"
 msgstr " - Sõnade otsimine sõnaraamatust"
-
-msgid "Dictionary and spelling tool"
-msgstr "Sõnaraamatu ja õigekirja tööriist"
-
-msgid "Show Dictionary options"
-msgstr "Sõnaraamatu valikute näitamine"
 
 msgid "Save a Copy"
 msgstr "Koopia salvestamine"
@@ -1655,12 +1659,12 @@ msgstr "Viga kuvatõmmise salvestamisel"
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
-" Error was %s\n"
-". Please choose another location and retry."
+" Error was %s.\n"
+" Please choose another location and retry."
 msgstr ""
 "Kuvatõmmist pole sihtkohta %s võimalik salvestada.\n"
-" Viga: %s\n"
-". Palun vali mõni teine asukoht ja proovi uuesti."
+" Viga: %s.\n"
+" Palun vali mõni teine asukoht ja proovi uuesti."
 
 msgid "Unable to take a screenshot of the current window"
 msgstr "Käesolevast aknast pole võimalik kuvatõmmist võtta"
@@ -2114,7 +2118,7 @@ msgid "The nautilus file manager is not running."
 msgstr "Nautilus failihaldurit pole käivitatud."
 
 msgid "There is no installed viewer capable of displaying the document."
-msgstr "Selle dokumendi jaoks pole vaatajat paigaldatud."
+msgstr "Selle dokumendi jaoks pole näitajat paigaldatud."
 
 #, c-format
 msgid "Are you sure you want to open %d folder?"
@@ -2553,158 +2557,11 @@ msgstr "Klõpsa otsingu peatamiseks"
 msgid "- the GNOME Search Tool"
 msgstr " - GNOME otsimisvahend"
 
-msgid "System Log Viewer"
-msgstr "Süsteemilogi vaataja"
-
-msgid "A system log viewer for GNOME."
-msgstr "Süsteemilogi vaataja GNOME keskkonnale."
-
-msgid "System Log"
-msgstr "Süsteemi logiraamat"
+msgid "Log File Viewer"
+msgstr "Logifailide näitaja"
 
 msgid "View or monitor system log files"
 msgstr "Süsteemsete logifailide sirvimine või jälgimine"
-
-#, c-format
-msgid "last update: %s"
-msgstr "viimane uuendus: %s"
-
-#, c-format
-msgid "%d lines (%s) - %s"
-msgstr "%d rida (%s) - %s"
-
-msgid "Current"
-msgstr "Käesolev"
-
-msgid "One file or more could not be opened"
-msgstr "Faili või faile pole võimalik avada"
-
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file.\n"
-msgstr ""
-"%s ei ole kasutajale loetav. Kas jooksuta programmi root kasutajana või palu "
-"süsteemihalduril faili juurdepääsuõiguseid muuta.\n"
-
-#, c-format
-msgid "%s is too big."
-msgstr "%s on liiga suur."
-
-#, c-format
-msgid "%s could not be opened."
-msgstr "%s pole võimalik avada."
-
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s ei ole logifail."
-
-msgid "Not enough memory."
-msgstr "Pole piisavalt mälu."
-
-#, c-format
-msgid "%s cannot be opened."
-msgstr "%s-i pole võimalik avada."
-
-msgid "_Filter:"
-msgstr "_Filter:"
-
-msgid "_Clear"
-msgstr "_Puhasta"
-
-msgid "_Open..."
-msgstr "_Ava..."
-
-msgid "Open a log from file"
-msgstr "Ava uue logifaili"
-
-msgid "_Close"
-msgstr "_Sulge"
-
-msgid "Close this log"
-msgstr "Sulgeb käesoleva logi"
-
-msgid "_Quit"
-msgstr "_Lõpeta"
-
-msgid "Quit the log viewer"
-msgstr "Lõpetab logivaataja töö"
-
-msgid "_Copy"
-msgstr "_Kopeeri"
-
-msgid "Copy the selection"
-msgstr "Kopeerib valiku"
-
-msgid "Select the entire log"
-msgstr "Kogu logi valimine"
-
-msgid "_Filter..."
-msgstr "_Filtreeri..."
-
-msgid "Filter log"
-msgstr "Logi filtreerimine"
-
-msgid "Bigger text size"
-msgstr "Suurem teksti suurus"
-
-msgid "Smaller text size"
-msgstr "Väiksem teksti suurus"
-
-msgid "Normal text size"
-msgstr "Tavaline teksti suurus"
-
-msgid "Collapse _All"
-msgstr "_Ahenda kõik"
-
-msgid "Collapse all the rows"
-msgstr "Kõigi logiridade ahendamine"
-
-msgid "Open the help contents for the log viewer"
-msgstr "Logivaataja abiteabe sisukorra avamine"
-
-msgid "Show the about dialog for the log viewer"
-msgstr "Logivaataja lähema teabe kuvamise dialoogi avamine"
-
-msgid "_Statusbar"
-msgstr "_Olekuriba"
-
-msgid "Show Status Bar"
-msgstr "Näita olekuriba"
-
-msgid "Side _Pane"
-msgstr "Külg_paan"
-
-msgid "Show Side Pane"
-msgstr "Külgpaani näitamine"
-
-msgid "_Monitor"
-msgstr "_Jälgi"
-
-msgid "Monitor Current Log"
-msgstr "Käesoleva logi jälgimine"
-
-msgid "Ca_lendar"
-msgstr "Ka_lender"
-
-msgid "Show Calendar Log"
-msgstr "Logikalendri näitamine"
-
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (jälgimisel) - %s"
-
-msgid "Open Log"
-msgstr "Logi avamine"
-
-msgid "Version: "
-msgstr "Versioon: "
-
-msgid "Days"
-msgstr "Päeva"
-
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "Viit aktiivse logi päevade GSList loetelule."
 
 msgid "Height of the main window in pixels"
 msgstr "Peaakna kõrgus pikslites"
@@ -2726,7 +2583,7 @@ msgstr ""
 "koostatakse faili /etc/syslog.conf põhjal."
 
 msgid "Specifies the height of the log viewer main window in pixels."
-msgstr "Logivaataja peaakna kõrguse määramine pikslites."
+msgstr "Loginäitaja peaakna kõrguse määramine pikslites."
 
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
@@ -2744,75 +2601,278 @@ msgstr ""
 "määramine. Vaikimisi võetakse selle väärtus terminali vaikimisi kirjatüübilt."
 
 msgid "Specifies the width of the log viewer main window in pixels."
-msgstr "Logivaataja peaakna laiuse määramine pikslites."
+msgstr "Loginäitaja peaakna laiuse määramine pikslites."
 
 msgid "Width of the main window in pixels"
 msgstr "Peaakna laius pikslites"
 
+msgid ""
+"Log Viewer is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Loginäitaja on vaba tarkvara. Te võite seda edasi levitada ja/või muuta "
+"vastavalt GNU Üldise Avaliku Litsentsi tingimustele, nagu need on Vaba "
+"Tarkvara Fondi poolt avaldatud; kas Litsentsi versioon number 2 või "
+"(vastavalt Teie valikule) ükskõik milline hilisem versioon."
+
+msgid ""
+"Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Loginäitajat levitatakse lootuses, et see on kasulik, kuid ILMA IGASUGUSE "
+"GARANTIITA; isegi KESKMISE/TAVALISE KVALITEEDIGARANTIITA või SOBIVUSELE "
+"TEATUD KINDLAKS EESMÄRGIKS. Üksikasjade suhtes vaata GNU Üldist Avalikku "
+"Litsentsi."
+
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+msgstr ""
+"Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos "
+"Loginäitajaga; kui ei, siis võtke ühendust Free Software Foundation'iga, 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "Faili `%s' pole võimalik avada"
+
+msgid "_Find:"
+msgstr "_Otsing:"
+
+msgid "Find Previous"
+msgstr "Otsi eelmist"
+
+msgid "Find previous occurrence of the search string"
+msgstr "Stringi eelmise esinemiskoha leidmine"
+
+msgid "Find Next"
+msgstr "Otsi järgmist"
+
+msgid "Find next occurrence of the search string"
+msgstr "Stringi järgmise esinemiskoha leidmine"
+
+msgid "Clear the search string"
+msgstr "Otsingustringi puhastamine"
+
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr "Viga gzipiga pakitud logi lahtipakkimisel. Võib-olla on fail rikutud."
+
+msgid "You don't have enough permissions to read the file."
+msgstr "Sul puudub õigus seda faili lugeda."
+
+msgid "The file is not a regular file or is not a text file."
+msgstr "See fail pole kas tekstifail või pole see üldse tavaline fail."
+
+msgid "This version of System Log does not support GZipped logs."
+msgstr ""
+"See süsteemi logiraamatu näitaja versioon ei toeta gzipiga pakitud logisid."
+
+msgid "Loading..."
+msgstr "Laadimine..."
+
 msgid "Show the application's version"
 msgstr "Rakenduse versiooni näitamine"
 
-msgid "Show System Log Viewer options"
-msgstr "Süsteemilogi vaataja valikute näitamine"
+msgid "[LOGFILE...]"
+msgstr "[LOGIFAIL...]"
 
 msgid " - Browse and monitor logs"
 msgstr " - logide sirvimine ja jälgimine"
 
 msgid "Log Viewer"
-msgstr "Logivaataja"
+msgstr "Loginäitaja"
 
-msgid "Unable to create user interface."
-msgstr "Kasutajaliidest pole võimalik luua."
+msgid "System Log Viewer"
+msgstr "Süsteemilogi näitaja"
 
-msgid "January"
-msgstr "jaanuar"
-
-msgid "February"
-msgstr "veebruar"
-
-msgid "March"
-msgstr "märts"
-
-msgid "April"
-msgstr "aprill"
-
-msgid "May"
-msgstr "mai"
-
-msgid "June"
-msgstr "juuni"
-
-msgid "July"
-msgstr "juuli"
-
-msgid "August"
-msgstr "august"
-
-msgid "September"
-msgstr "september"
-
-msgid "October"
-msgstr "oktoober"
-
-msgid "November"
-msgstr "november"
-
-msgid "December"
-msgstr "detsember"
-
-msgid "Invalid date"
-msgstr "Vigane kuupäev"
-
-#. Translators: Only date format, time will be bogus
 #, c-format
-msgid "%x"
-msgstr "%x"
+msgid "last update: %s"
+msgstr "viimane uuendus: %s"
 
-msgid "This file cannot be monitored."
-msgstr "Seda faili pole võimalik jälgida."
+#, c-format
+msgid "%d lines (%s) - %s"
+msgstr "%d rida (%s) - %s"
 
-msgid "File monitoring is not supported on this file system.\n"
-msgstr "Selle failisüsteemi puhul pole failide jälgimine toetatud.\n"
+msgid "Open Log"
+msgstr "Logi avamine"
 
-msgid "Gnome-VFS Error.\n"
-msgstr "Gnome-VFS'i viga.\n"
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Abiteabe kuvamisel tekkis viga: %s"
+
+msgid "Wrapped"
+msgstr "Murtud"
+
+msgid "A system log viewer for GNOME."
+msgstr "Süsteemilogi näitaja GNOME keskkonnale."
+
+msgid "_Open..."
+msgstr "_Ava..."
+
+msgid "Open a log from file"
+msgstr "Uue logifaili avamine"
+
+msgid "_Close"
+msgstr "_Sulge"
+
+msgid "Close this log"
+msgstr "Käesoleva logi sulgemine"
+
+msgid "_Quit"
+msgstr "_Lõpeta"
+
+msgid "Quit the log viewer"
+msgstr "Loginäitaja töö lõpetamine"
+
+msgid "_Copy"
+msgstr "_Kopeeri"
+
+msgid "Copy the selection"
+msgstr "Valiku kopeerimine"
+
+msgid "Select the entire log"
+msgstr "Kogu logi valimine"
+
+msgid "_Find..."
+msgstr "_Otsi..."
+
+msgid "Find a word or phrase in the log"
+msgstr "Logist sõna või fraasi otsimine"
+
+msgid "Bigger text size"
+msgstr "Suurem teksti suurus"
+
+msgid "Smaller text size"
+msgstr "Väiksem teksti suurus"
+
+msgid "Normal text size"
+msgstr "Tavaline teksti suurus"
+
+msgid "Open the help contents for the log viewer"
+msgstr "Loginäitaja abiteabe sisukorra avamine"
+
+msgid "Show the about dialog for the log viewer"
+msgstr "Loginäitaja lähema teabe kuvamise dialoogi avamine"
+
+msgid "_Statusbar"
+msgstr "_Olekuriba"
+
+msgid "Show Status Bar"
+msgstr "Näita olekuriba"
+
+msgid "Side _Pane"
+msgstr "Külg_paan"
+
+msgid "Show Side Pane"
+msgstr "Külgpaani näitamine"
+
+msgid "Close"
+msgstr "Sulge"
+
+msgid "Version: "
+msgstr "Versioon: "
+
+msgid "Could not open the following files:"
+msgstr "Järgnevaid faile pole võimalik avada:"
+
+#~ msgid "Enter Password"
+#~ msgstr "Sisesta parool"
+
+#~ msgid "Dictionary and spelling tool"
+#~ msgstr "Sõnaraamatu ja õigekirja tööriist"
+
+#~ msgid "Show Dictionary options"
+#~ msgstr "Sõnaraamatu valikute näitamine"
+
+#~ msgid "System Log"
+#~ msgstr "Süsteemi logiraamat"
+
+#~ msgid "Current"
+#~ msgstr "Käesolev"
+
+#~ msgid "One file or more could not be opened"
+#~ msgstr "Faili või faile pole võimalik avada"
+
+#~ msgid ""
+#~ "%s is not user readable. Either run the program as root or ask the "
+#~ "sysadmin to change the permissions on the file.\n"
+#~ msgstr ""
+#~ "%s ei ole kasutajale loetav. Kas jooksuta programmi root kasutajana või "
+#~ "palu süsteemihalduril faili juurdepääsuõiguseid muuta.\n"
+
+#~ msgid "%s is too big."
+#~ msgstr "%s on liiga suur."
+
+#~ msgid "%s could not be opened."
+#~ msgstr "%s pole võimalik avada."
+
+#~ msgid "%s is not a log file."
+#~ msgstr "%s ei ole logifail."
+
+#~ msgid "Not enough memory."
+#~ msgstr "Pole piisavalt mälu."
+
+#~ msgid "%s cannot be opened."
+#~ msgstr "%s-i pole võimalik avada."
+
+#~ msgid "_Filter:"
+#~ msgstr "_Filter:"
+
+#~ msgid "_Clear"
+#~ msgstr "_Puhasta"
+
+#~ msgid "_Filter..."
+#~ msgstr "_Filtreeri..."
+
+#~ msgid "Filter log"
+#~ msgstr "Logi filtreerimine"
+
+#~ msgid "Collapse _All"
+#~ msgstr "_Ahenda kõik"
+
+#~ msgid "Collapse all the rows"
+#~ msgstr "Kõigi logiridade ahendamine"
+
+#~ msgid "_Monitor"
+#~ msgstr "_Jälgi"
+
+#~ msgid "Monitor Current Log"
+#~ msgstr "Käesoleva logi jälgimine"
+
+#~ msgid "Ca_lendar"
+#~ msgstr "Ka_lender"
+
+#~ msgid "Show Calendar Log"
+#~ msgstr "Logikalendri näitamine"
+
+#~ msgid "%s (monitored) - %s"
+#~ msgstr "%s (jälgimisel) - %s"
+
+#~ msgid "Days"
+#~ msgstr "Päeva"
+
+#~ msgid "Pointer towards a GSList of days for the current log."
+#~ msgstr "Viit aktiivse logi päevade GSList loetelule."
+
+#~ msgid "Show System Log Viewer options"
+#~ msgstr "Süsteemilogi näitaja valikute näitamine"
+
+#~ msgid "Unable to create user interface."
+#~ msgstr "Kasutajaliidest pole võimalik luua."
+
+#~ msgid "Invalid date"
+#~ msgstr "Vigane kuupäev"
+
+#~ msgid "This file cannot be monitored."
+#~ msgstr "Seda faili pole võimalik jälgida."
+
+#~ msgid "File monitoring is not supported on this file system.\n"
+#~ msgstr "Selle failisüsteemi puhul pole failide jälgimine toetatud.\n"
+
+#~ msgid "Gnome-VFS Error.\n"
+#~ msgstr "Gnome-VFS'i viga.\n"
