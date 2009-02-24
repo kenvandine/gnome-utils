@@ -2,6 +2,7 @@ SUBDIRS = data help tests
 
 INCLUDES = \
 	$(GNOME_UTILS_CFLAGS)					\
+	$(GTHREAD_CFLAGS)					\
 	-DG_LOG_DOMAIN=\"gnome-system-log\"			\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"				\
@@ -41,6 +42,7 @@ gnome_system_log_SOURCES = 	\
 
 gnome_system_log_LDADD =	\
 	$(GNOME_UTILS_LIBS)	\
+	$(GTHREAD_LIBS)		\
 	$(Z_LIBS)
 
 logview-marshal.h: logview-marshal.list $(GLIB_GENMARSHAL)

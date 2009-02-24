@@ -105,6 +105,14 @@ AC_SUBST(LIBGNOME_CFLAGS)
 AC_SUBST(LIBGNOME_LIBS)
 
 dnl *****************************************
+dnl separate check for gthread
+dnl *****************************************
+
+PKG_CHECK_MODULES(GTHREAD, gthread-2.0 >= $GLIB_REQUIRED)
+AC_SUBST(GTHREAD_CFLAGS)
+AC_SUBST(GTHREAD_LIBS)
+
+dnl *****************************************
 dnl floppy-buddy needs libglade
 dnl *****************************************
 PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
