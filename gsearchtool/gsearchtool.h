@@ -36,12 +36,17 @@ extern "C" {
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
 
-#define GSEARCH_TYPE_WINDOW            (gsearch_window_get_type ())
-#define GSEARCH_WINDOW(obj)            (GTK_CHECK_CAST((obj), GSEARCH_TYPE_WINDOW, GSearchWindow))
-#define GSEARCH_WINDOW_CLASS(klass)    (GTK_CHECK_CLASS_CAST((klass), GSEARCH_TYPE_WINDOW, GSearchWindowClass))
-#define GSEARCH_IS_WINDOW(obj)         (GTK_CHECK_TYPE((obj), GSEARCH_TYPE_WINDOW))
-#define GSEARCH_IS_WINDOW_CLASS(klass) (GTK_CHECK_CLASS_TYPE((obj), GSEARCH_TYPE_WINDOW))
-#define GSEARCH_WINDOW_GET_CLASS(obj)  (GTK_CHECK_GET_CLASS((obj), GSEARCH_TYPE_WINDOW, GSearchWindowClass))
+#define GSEARCH_TYPE_WINDOW gsearch_window_get_type()
+#define GSEARCH_WINDOW(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSEARCH_TYPE_WINDOW, GSearchWindow))
+#define GSEARCH_WINDOW_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST ((klass), GSEARCH_TYPE_WINDOW, GSearchWindowClass))
+#define GSEARCH_IS_WINDOW(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSEARCH_TYPE_WINDOW))
+#define GSEARCH_IS_WINDOW_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE ((klass), GSEARCH_TYPE_WINDOW))
+#define GSEARCH_WINDOW_GET_CLASS(obj) \
+  (G_TYPE_INSTANCE_GET_CLASS ((obj), GSEARCH_TYPE_WINDOW, GSearchWindowClass))
 
 #define GNOME_SEARCH_TOOL_ICON "system-search"
 #define MINIMUM_WINDOW_WIDTH   420
