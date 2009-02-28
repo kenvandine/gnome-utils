@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-19 09:40+0300\n"
-"PO-Revision-Date: 2009-02-19 09:50+0300\n"
+"POT-Creation-Date: 2009-02-28 18:57+0300\n"
+"PO-Revision-Date: 2009-02-28 19.00+0300\n"
 "Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
 "Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2095,78 +2095,82 @@ msgstr "Saatavilla olevat täsmäystavat"
 msgid "Dictionary sources"
 msgstr "Sanakirjalähteet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:128
+#: ../gnome-screenshot/gnome-screenshot.c:130
 msgid "Error loading the help page"
 msgstr "Virhe ladattaessa ohjetta"
 
-#: ../gnome-screenshot/gnome-screenshot.c:232
+#: ../gnome-screenshot/gnome-screenshot.c:239
 msgid "None"
 msgstr "Ei mitään"
 
-#: ../gnome-screenshot/gnome-screenshot.c:233
+#: ../gnome-screenshot/gnome-screenshot.c:240
 msgid "Drop shadow"
 msgstr "Varjo"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:241
 msgid "Border"
 msgstr "Reuna"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:337
+#: ../gnome-screenshot/gnome-screenshot.c:344
 msgid "Include _pointer"
 msgstr "Kaappaa myös _osoitin"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:346
+#: ../gnome-screenshot/gnome-screenshot.c:353
 msgid "Include the window _border"
 msgstr "KAappaa myös ikkunan _kehys"
 
-#: ../gnome-screenshot/gnome-screenshot.c:361
+#: ../gnome-screenshot/gnome-screenshot.c:368
 msgid "Apply _effect:"
 msgstr "Toteuta _tehoste:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:423
+#: ../gnome-screenshot/gnome-screenshot.c:430
 msgid "Grab the whole _desktop"
 msgstr "Kaappaa koko _työpöytä"
 
-#: ../gnome-screenshot/gnome-screenshot.c:435
+#: ../gnome-screenshot/gnome-screenshot.c:442
 msgid "Grab the current _window"
 msgstr "Kaappaa nykyinen _ikkuna"
+
+#: ../gnome-screenshot/gnome-screenshot.c:454
+msgid "Grab a selected _area"
+msgstr "Kaapaa valittu _alue"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:452
+#: ../gnome-screenshot/gnome-screenshot.c:471
 msgid "Grab _after a delay of"
 msgstr "Kaappaa _viiveellä"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:472
-#: ../gnome-screenshot/gnome-screenshot.c:1182
+#: ../gnome-screenshot/gnome-screenshot.c:491
+#: ../gnome-screenshot/gnome-screenshot.c:1243
 msgid "seconds"
 msgstr "sekuntia"
 
-#: ../gnome-screenshot/gnome-screenshot.c:488
-#: ../gnome-screenshot/gnome-screenshot.c:498
+#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:517
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Ota kuvakaappaus"
 
-#: ../gnome-screenshot/gnome-screenshot.c:499
+#: ../gnome-screenshot/gnome-screenshot.c:518
 msgid "Effects"
 msgstr "Tehosteet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:505
+#: ../gnome-screenshot/gnome-screenshot.c:524
 msgid "Take _Screenshot"
 msgstr "Ota _kuvakaappaus"
 
-#: ../gnome-screenshot/gnome-screenshot.c:631
+#: ../gnome-screenshot/gnome-screenshot.c:650
 msgid "Error while saving screenshot"
 msgstr "Virhe tallennettaessa kuvakaappausta"
 
-#: ../gnome-screenshot/gnome-screenshot.c:635
+#: ../gnome-screenshot/gnome-screenshot.c:654
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
@@ -2177,11 +2181,11 @@ msgstr ""
 "Virhe oli %s\n"
 "Valitse joku muu sijainti ja yritä uudestaan."
 
-#: ../gnome-screenshot/gnome-screenshot.c:782
+#: ../gnome-screenshot/gnome-screenshot.c:801
 msgid "Unable to take a screenshot of the current window"
 msgstr "Nykyisestä ikkunasta ei voitu ottaa kuvakaappausta"
 
-#: ../gnome-screenshot/gnome-screenshot.c:824
+#: ../gnome-screenshot/gnome-screenshot.c:849
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Kuvakaappaus-%s.png"
@@ -2189,14 +2193,14 @@ msgstr "Kuvakaappaus-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:831
+#: ../gnome-screenshot/gnome-screenshot.c:856
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Kuvakaappaus-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:841
+#: ../gnome-screenshot/gnome-screenshot.c:866
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2205,42 +2209,55 @@ msgstr "Kuvakaappaus.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:848
+#: ../gnome-screenshot/gnome-screenshot.c:873
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Kuvakaappaus-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1179
+#: ../gnome-screenshot/gnome-screenshot.c:1239
 msgid "Grab a window instead of the entire screen"
-msgstr "Ota kuva ikkunasta koko ruudun sijaan"
+msgstr "Kaappaa kuva ikkunasta koko ruudun sijaan"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1180
+#: ../gnome-screenshot/gnome-screenshot.c:1240
+msgid "Grab an area of the screen instead of the entire screen"
+msgstr "Kaappa alue näytöltä koko ruudun sijaan"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1241
 msgid "Include the window border with the screenshot"
 msgstr "Kaappaa myös ikkunan kehykset mukaan kuvaan"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1181
+#: ../gnome-screenshot/gnome-screenshot.c:1242
 msgid "Remove the window border from the screenshot"
 msgstr "Poista ikkunan kehykset kuvakaappauksesta"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1182
+#: ../gnome-screenshot/gnome-screenshot.c:1243
 msgid "Take screenshot after specified delay [in seconds]"
-msgstr "Ota kuva annetun viiveen (sekuntia) jälkeen"
+msgstr "Kaappaa kuva annetun viiveen (sekuntia) jälkeen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1183
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Reunoihin lisättävä tehoste (varjo, reuna tai ei mitään)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1183
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "effect"
 msgstr "tehoste"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1184
+#: ../gnome-screenshot/gnome-screenshot.c:1245
 msgid "Interactively set options"
 msgstr "Aseta valinnat interaktiivisesti"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1193
+#: ../gnome-screenshot/gnome-screenshot.c:1256
 msgid "Take a picture of the screen"
 msgstr "Ota kuva näytöstä"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1274
+#, c-format
+msgid ""
+"Conflicting options: --window and --area should not be used at the same "
+"time.\n"
+msgstr ""
+"Ristiriitaiset valitsimet: et voi käyttää valistimia --window ja --area "
+"samaan aikaan.\n"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
@@ -2352,7 +2369,7 @@ msgid "Unknown error saving screenshot to disk"
 msgstr "Tuntematon virhe kuvan kirjoittamisessa levylle"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:486
+#: ../gnome-screenshot/screenshot-utils.c:828
 msgid "Untitled Window"
 msgstr "Nimetön ikkuna"
 
@@ -3371,11 +3388,10 @@ msgid ""
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version."
 msgstr ""
-"Lokikatselin on vapaa ohjelma; sitä on sallittu levittää edelleen ja "
-"muuttaa GNU yleisen lisenssin (GPL-lisenssin) ehtojen mukaan sellaisina "
-"kuin Free Software Foundation on ne julkaissut; joko lisenssin version 2, "
-"tai (valinnan mukaan) minkä tahansa myöhemmän version mukaisesti."
-
+"Lokikatselin on vapaa ohjelma; sitä on sallittu levittää edelleen ja muuttaa "
+"GNU yleisen lisenssin (GPL-lisenssin) ehtojen mukaan sellaisina kuin Free "
+"Software Foundation on ne julkaissut; joko lisenssin version 2, tai "
+"(valinnan mukaan) minkä tahansa myöhemmän version mukaisesti."
 
 #: ../logview/logview-about.h:53
 msgid ""
@@ -3395,9 +3411,9 @@ msgid ""
 "the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
 "Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
 msgstr ""
-"Lokikatselimen mukana pitäisi tulla kopio GPL-lisenssistä; jos näin ei "
-"ole, kirjoita osoitteeseen Free Software Foundation Inc., 51 Franklin "
-"St, Fifth Floor, Boston, MA 02110-1301, USA."
+"Lokikatselimen mukana pitäisi tulla kopio GPL-lisenssistä; jos näin ei ole, "
+"kirjoita osoitteeseen Free Software Foundation Inc., 51 Franklin St, Fifth "
+"Floor, Boston, MA 02110-1301, USA."
 
 #: ../logview/logview-app.c:179
 #, c-format
