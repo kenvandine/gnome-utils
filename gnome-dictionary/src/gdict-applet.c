@@ -590,7 +590,7 @@ gdict_applet_draw (GdictApplet *applet)
 		  	    _("Dictionary entry"),
 			    _("Look up words in dictionaries"));
   
-  gtk_entry_set_editable (GTK_ENTRY (priv->entry), TRUE);
+  gtk_editable_set_editable (GTK_EDITABLE (priv->entry), TRUE);
   gtk_entry_set_width_chars (GTK_ENTRY (priv->entry), 12);
   g_signal_connect (priv->entry, "activate",
   		    G_CALLBACK (gdict_applet_entry_activate_cb),
