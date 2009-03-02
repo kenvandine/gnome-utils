@@ -57,32 +57,6 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-static char *default_logfiles[] = {
-  "/var/log/sys.log",
-#ifndef ON_SUN_OS
-  "/var/log/messages",
-  "/var/log/secure",
-  "/var/log/maillog",
-  "/var/log/cron",
-  "/var/log/Xorg.0.log",
-  "/var/log/XFree86.0.log",
-  "/var/log/auth.log",
-  "/var/log/cups/error_log",
-#else
-  "/var/adm/messages",
-  "/var/adm/sulog",
-  "/var/log/authlog",
-  "/var/log/brlog",
-  "/var/log/postrun.log",
-  "/var/log/scrollkeeper.log",
-  "/var/log/snmpd.log",
-  "/var/log/sysidconfig.log",
-  "/var/log/swupas/swupas.log",
-  "/var/log/swupas/swupas.error.log",
-#endif
-  NULL
-};
-
 #define GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), LOGVIEW_TYPE_PREFS, LogviewPrefsPrivate))
 
@@ -196,95 +170,6 @@ size_store_timeout_cb (gpointer data)
   return FALSE;
 }
 
-static gboolean
-check_stored_logfiles (LogviewPrefs *prefs)
-{
-  GConfValue *val;
-  gboolean retval = FALSE;
-
-  val = gconf_client_get (prefs->priv->client,
-                          GCONF_LOGFILES,
-                          NULL);
-  if (val) {
-    gconf_value_free (val);
-    retval = TRUE;
-  }
-
-  return retval;
-}
-
-/* adapted from sysklogd sources */
-static GSList*
-parse_syslog ()
-{
-  char *logfile = NULL;
-  char cbuf[BUFSIZ];
-  char *cline, *p;
-  FILE *cf;
-  GSList *logfiles = NULL;
-
-  if ((cf = fopen ("/etc/syslog.conf", "r")) == NULL) {
-    return NULL;
-  }
-
-  cline = cbuf;
-  while (fgets (cline, sizeof (cbuf) - (cline - cbuf), cf) != NULL) {
-    gchar **list;
-    gint i;
-
-    for (p = cline; g_ascii_isspace (*p); ++p);
-    if (*p == '\0' || *p == '#' || *p == '\n')
-      continue;
-
-    list = g_strsplit_set (p, ", -\t()\n", 0);
-
-    for (i = 0; list[i]; ++i) {
-      if (*list[i] == '/' &&
-          g_slist_find_custom (logfiles, list[i],
-                               (GCompareFunc) g_ascii_strcasecmp) == NULL)
-      {
-        logfiles = g_slist_insert (logfiles,
-                                   g_strdup (list[i]), 0);
-      }
-    }
-
-    g_strfreev (list);
-  }
-
-  fclose (cf);
-
-  return logfiles;
-}
-
-static void
-logview_prefs_fill_defaults (LogviewPrefs *prefs)
-{
-  GSList *logs;
-  int i;
-
-  g_assert (LOGVIEW_IS_PREFS (prefs));
-
-  /* insert in the registry both the default items and the files
-   * specified in syslog.conf.
-   */
-
-  logs = parse_syslog ();
-
-  for (i = 0; default_logfiles[i]; i++) {
-    if (g_slist_find_custom (logs, default_logfiles[i], (GCompareFunc) g_ascii_strcasecmp) == NULL)
-      logs = g_slist_insert (logs, g_strdup (default_logfiles[i]), 0);
-  }
-
-  gconf_client_set_list (prefs->priv->client,
-                         GCONF_LOGFILES,
-                         GCONF_VALUE_STRING,
-                         logs, NULL);
-
-  /* the string list is copied */
-  g_slist_foreach (logs, (GFunc) g_free, NULL);
-  g_slist_free (logs);
-}
-
 static void
 logview_prefs_init (LogviewPrefs *self)
 {
@@ -295,14 +180,6 @@ logview_prefs_init (LogviewPrefs *self)
 
   priv->client = gconf_client_get_default ();
   priv->size_store_timeout = 0;
-
-  stored_logs = check_stored_logfiles (self);
-  if (!stored_logs) {
-    /* if there's no stored logs, either it's the first start or GConf has
-     * been corrupted. re-fill the registry with sensible defaults anyway.
-     */
-    logview_prefs_fill_defaults (self);
-  }
 
   gconf_client_notify_add (priv->client,
                            GCONF_MONOSPACE_FONT_NAME,

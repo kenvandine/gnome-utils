@@ -1,3 +1,15 @@
+2009-03-02  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* logview-app.c: (parse_syslog), (enumerate_job_finish),
+	(enumerate_next_files_async_cb), (enumerate_children_async_cb),
+	(logview_app_first_time_initialize), (logview_app_initialize):
+	* logview-prefs.c: (logview_prefs_init): when starting the
+	application for the first time, gather all the readable files from
+	/var/log instead of hardcoding logfile names.
+	We'll eventually, and hopefully, support a smarter parsing of
+	/etc/logrotate.* and log rotated/compressed log grouping, but right
+	now this is the best effort we can do (#567169).
+
 2009-02-24  Cosimo Cecchi  <cosimoc@gnome.org>
 
 	* Makefile.am: add gthread CFLAGS and LIBS (#572985).
