@@ -7,8 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.26\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-25 01:20+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"utils&component=general\n"
+"POT-Creation-Date: 2009-02-27 13:40+0000\n"
 "PO-Revision-Date: 2009-02-25 01:25+0000\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
@@ -2098,78 +2099,83 @@ msgstr "Estratégias disponíveis"
 msgid "Dictionary sources"
 msgstr "Origens de dicionário"
 
-#: ../gnome-screenshot/gnome-screenshot.c:128
+#: ../gnome-screenshot/gnome-screenshot.c:130
 msgid "Error loading the help page"
 msgstr "Erro ao ler a página de ajuda"
 
-#: ../gnome-screenshot/gnome-screenshot.c:232
+#: ../gnome-screenshot/gnome-screenshot.c:239
 msgid "None"
 msgstr "Nenhum"
 
-#: ../gnome-screenshot/gnome-screenshot.c:233
+#: ../gnome-screenshot/gnome-screenshot.c:240
 msgid "Drop shadow"
 msgstr "Retirar o sombreado"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:241
 msgid "Border"
 msgstr "Margem"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:337
+#: ../gnome-screenshot/gnome-screenshot.c:344
 msgid "Include _pointer"
 msgstr "Incluir _ponteiro"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:346
+#: ../gnome-screenshot/gnome-screenshot.c:353
 msgid "Include the window _border"
 msgstr "Incluir a _margem da janela"
 
-#: ../gnome-screenshot/gnome-screenshot.c:361
+#: ../gnome-screenshot/gnome-screenshot.c:368
 msgid "Apply _effect:"
 msgstr "Aplicar _efeito:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:423
+#: ../gnome-screenshot/gnome-screenshot.c:430
 msgid "Grab the whole _desktop"
 msgstr "Capturar toda a área de trabal_ho"
 
-#: ../gnome-screenshot/gnome-screenshot.c:435
+#: ../gnome-screenshot/gnome-screenshot.c:442
 msgid "Grab the current _window"
 msgstr "Capturar a _janela actual"
+
+#: ../gnome-screenshot/gnome-screenshot.c:454
+#| msgid "Scan a selected folder"
+msgid "Grab a selected _area"
+msgstr "C_apturar a área seleccionada"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:452
+#: ../gnome-screenshot/gnome-screenshot.c:471
 msgid "Grab _after a delay of"
 msgstr "Capturar _após uma espera de"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:472
-#: ../gnome-screenshot/gnome-screenshot.c:1182
+#: ../gnome-screenshot/gnome-screenshot.c:491
+#: ../gnome-screenshot/gnome-screenshot.c:1243
 msgid "seconds"
 msgstr "segundos"
 
-#: ../gnome-screenshot/gnome-screenshot.c:488
-#: ../gnome-screenshot/gnome-screenshot.c:498
+#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:517
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Capturar uma Imagem do Ecrã"
 
-#: ../gnome-screenshot/gnome-screenshot.c:499
+#: ../gnome-screenshot/gnome-screenshot.c:518
 msgid "Effects"
 msgstr "Efeitos"
 
-#: ../gnome-screenshot/gnome-screenshot.c:505
+#: ../gnome-screenshot/gnome-screenshot.c:524
 msgid "Take _Screenshot"
 msgstr "Capturar uma Imagem do _Ecrã"
 
-#: ../gnome-screenshot/gnome-screenshot.c:631
+#: ../gnome-screenshot/gnome-screenshot.c:650
 msgid "Error while saving screenshot"
 msgstr "Erro ao gravar a captura de ecrã"
 
-#: ../gnome-screenshot/gnome-screenshot.c:635
+#: ../gnome-screenshot/gnome-screenshot.c:654
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
@@ -2180,11 +2186,11 @@ msgstr ""
 " Erro foi %s.\n"
 " Seleccione outra localização e tente novamente."
 
-#: ../gnome-screenshot/gnome-screenshot.c:782
+#: ../gnome-screenshot/gnome-screenshot.c:801
 msgid "Unable to take a screenshot of the current window"
 msgstr "Incapaz de obter uma captura de ecrã da janela actual"
 
-#: ../gnome-screenshot/gnome-screenshot.c:824
+#: ../gnome-screenshot/gnome-screenshot.c:849
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "CapturaEcra-%s.png"
@@ -2192,14 +2198,14 @@ msgstr "CapturaEcra-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:831
+#: ../gnome-screenshot/gnome-screenshot.c:856
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "CapturaEcra-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:841
+#: ../gnome-screenshot/gnome-screenshot.c:866
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2208,42 +2214,55 @@ msgstr "CapturaEcra.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:848
+#: ../gnome-screenshot/gnome-screenshot.c:873
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "CapturaEcra-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1179
+#: ../gnome-screenshot/gnome-screenshot.c:1239
 msgid "Grab a window instead of the entire screen"
 msgstr "Capturar uma janela em vez do ecrã completo"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1180
+#: ../gnome-screenshot/gnome-screenshot.c:1240
+#| msgid "Grab a window instead of the entire screen"
+msgid "Grab an area of the screen instead of the entire screen"
+msgstr "Capturar uma área do ecrã em vez do ecrã completo"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1241
 msgid "Include the window border with the screenshot"
 msgstr "Incluir a margem da janela na captura"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1181
+#: ../gnome-screenshot/gnome-screenshot.c:1242
 msgid "Remove the window border from the screenshot"
 msgstr "Remover a margem da janela na captura"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1182
+#: ../gnome-screenshot/gnome-screenshot.c:1243
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Obter a captura de ecrã após um atraso específico [em segundos]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1183
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Efeito a adicionar à margem (sombreado, margem ou nenhum)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1183
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "effect"
 msgstr "efeito"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1184
+#: ../gnome-screenshot/gnome-screenshot.c:1245
 msgid "Interactively set options"
 msgstr "Definir as opções interactivamente"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1195
+#: ../gnome-screenshot/gnome-screenshot.c:1256
 msgid "Take a picture of the screen"
 msgstr "Capturar uma imagem do ecrã"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1274
+#, c-format
+msgid ""
+"Conflicting options: --window and --area should not be used at the same "
+"time.\n"
+msgstr ""
+"Opções em conflito: --window e --area não devem ser utilizadas simultaneamente.\n"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
@@ -2356,7 +2375,7 @@ msgid "Unknown error saving screenshot to disk"
 msgstr "Erro desconhecido ao gravar a captura de ecrã para o disco"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:611
+#: ../gnome-screenshot/screenshot-utils.c:828
 msgid "Untitled Window"
 msgstr "Janela sem Título"
 
@@ -3409,8 +3428,8 @@ msgid ""
 msgstr ""
 "Deverá ter recebido uma cópia da Licença Pública Genérica GNU juntamente com "
 "o Visualizador de Ficheiros de Registo; caso contrário, escreva para a Free "
-"Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA "
-"02110-1301, USA (em inglês)"
+"Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-"
+"1301, USA (em inglês)"
 
 #: ../logview/logview-app.c:179
 #, c-format
@@ -3443,7 +3462,8 @@ msgstr "Limpar a expressão de procura"
 
 #: ../logview/logview-log.c:595
 msgid "Error while uncompressing the GZipped log. The file might be corrupt."
-msgstr "Erro ao descomprimir o registo GZip'ado. O ficheiro poderá estar corrompido."
+msgstr ""
+"Erro ao descomprimir o registo GZip'ado. O ficheiro poderá estar corrompido."
 
 #: ../logview/logview-log.c:642
 msgid "You don't have enough permissions to read the file."
@@ -3455,8 +3475,9 @@ msgstr "O ficheiro não é um ficheiro normal ou não é um ficheiro de texto."
 
 #: ../logview/logview-log.c:739
 msgid "This version of System Log does not support GZipped logs."
-msgstr "Esta versão do Visualizador de Ficheiros de Registo não suporta "
-"ficheiros GZip'ados."
+msgstr ""
+"Esta versão do Visualizador de Ficheiros de Registo não suporta ficheiros "
+"GZip'ados."
 
 #: ../logview/logview-loglist.c:311
 msgid "Loading..."
@@ -3879,9 +3900,6 @@ msgstr "Incapaz de abrir os seguintes ficheiros:"
 
 #~ msgid "Scan Selected F_older..."
 #~ msgstr "Analisar a Pasta Selecci_onada..."
-
-#~ msgid "Scan a selected folder"
-#~ msgstr "Analisar uma pasta seleccionada"
 
 #~ msgid "Se_arch in selected folder:"
 #~ msgstr "procurar na p_asta seleccionada:"
