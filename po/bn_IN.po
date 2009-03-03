@@ -4,13 +4,13 @@
 # This file is distributed under the same license as the gnome-utils package.
 #
 # Runa Bhattacharjee <runa@bengalinux.org>, 2005.
-# Runa Bhattacharjee <runab@redhat.com>, 2008.
+# Runa Bhattacharjee <runab@redhat.com>, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 23:27+0000\n"
-"PO-Revision-Date: 2008-09-17 20:11+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils&component=general\n"
+"POT-Creation-Date: 2009-02-27 13:40+0000\n"
+"PO-Revision-Date: 2009-03-03 15:45+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali INDIA <fedora-trans-bn_IN@redhat.com>\n"
 "MIME-Version: 1.0\n"
@@ -111,12 +111,12 @@ msgstr "সমস্ত গুটিয়ে ফেলা হবে (_C)"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:22
-#: ../gnome-dictionary/src/gdict-window.c:1238 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:663
 msgid "_Contents"
 msgstr "বিষয়বস্তু(_C)"
 
 #: ../baobab/data/baobab.glade.h:23
-#: ../gnome-dictionary/src/gdict-window.c:1185 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:638
 msgid "_Edit"
 msgstr "সম্পাদনা (_E)"
 
@@ -126,7 +126,7 @@ msgstr "সমস্ত প্রসারণ করা হবে (_E)"
 
 #: ../baobab/data/baobab.glade.h:25
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1188 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:640
 msgid "_Help"
 msgstr "সহায়তা (_H)"
 
@@ -139,7 +139,7 @@ msgid "_Toolbar"
 msgstr "টুল-বার(_T)"
 
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1186 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:639
 msgid "_View"
 msgstr "প্রদর্শন(_V)"
 
@@ -183,83 +183,87 @@ msgstr "নির্বাচিত ফোল্ডারের সাব-ফো
 msgid "Whether the toolbar should be visible in main window."
 msgstr "প্রধান উইন্ডোর নিম্নাংশে টুল-বার দৃশ্যমান হবে কি না।"
 
-#: ../baobab/src/baobab.c:123 ../baobab/src/baobab.c:301
+#: ../baobab/src/baobab.c:121 ../baobab/src/baobab.c:299
 msgid "Scanning..."
 msgstr "স্ক্যান করা হচ্ছে..."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:185 ../baobab/src/baobab.c:243
+#: ../baobab/src/baobab.c:183 ../baobab/src/baobab.c:241
 #: ../baobab/src/callbacks.c:302
 msgid "Calculating percentage bars..."
 msgstr "শতাংশের বারের মান গণনা করা হচ্ছে..."
 
-#: ../baobab/src/baobab.c:195 ../baobab/src/baobab.c:972
+#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:998
 #: ../baobab/src/callbacks.c:306
 msgid "Ready"
 msgstr "প্রস্তুত"
 
-#: ../baobab/src/baobab.c:336
+#: ../baobab/src/baobab.c:338
 msgid "Total filesystem usage:"
 msgstr "ফাইল-সিস্টেমের সর্বমোট ব্যবহার:"
 
-#: ../baobab/src/baobab.c:375
+#: ../baobab/src/baobab.c:377
 msgid "contains hardlinks for:"
-msgstr ""
+msgstr "চিহ্নিত সামগ্রীর হার্ড-লিংক ধারণকারী:"
 
-#: ../baobab/src/baobab.c:384
+#: ../baobab/src/baobab.c:386
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d সামগ্রী"
 msgstr[1] "% 5d সামগ্রী"
 
-#: ../baobab/src/baobab.c:722
+#: ../baobab/src/baobab.c:737
 msgid "Could not initialize monitoring"
 msgstr "নিরীক্ষণ ব্যবস্থা আরম্ভ করতে ব্যর্থ"
 
-#: ../baobab/src/baobab.c:723
+#: ../baobab/src/baobab.c:738
 msgid "Changes to your home folder will not be monitored."
 msgstr "ব্যক্তিগত ফোল্ডারের মধ্যে কোনো পরিবর্তন নিরীক্ষণ করা হবে না।"
 
-#: ../baobab/src/baobab.c:768
+#: ../baobab/src/baobab.c:783
 msgid "Move to parent folder"
 msgstr "ঊর্ধ্বগন ফোল্ডারে স্থানান্তর করুন"
 
-#: ../baobab/src/baobab.c:772
+#: ../baobab/src/baobab.c:787
 msgid "Zoom in"
 msgstr "বড় করে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:776
+#: ../baobab/src/baobab.c:791
 msgid "Zoom out"
 msgstr "ছোট করে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:780
+#: ../baobab/src/baobab.c:795
 msgid "Save snapshot"
 msgstr "স্ন্যাপ-শট সংরক্ষণ করুন"
 
-#: ../baobab/src/baobab.c:828
+#: ../baobab/src/baobab.c:843
 msgid "View as Rings Chart"
 msgstr "বৃত্তাকার রেখাচিত্র রূপে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:830
+#: ../baobab/src/baobab.c:845
 msgid "View as Treemap Chart"
 msgstr "ট্রি-ম্যাপ রেখাচিত্র রূপে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:942
+#: ../baobab/src/baobab.c:917
+msgid "Cannot check an excluded folder!"
+msgstr "অন্তর্ভুক্ত না করা ফোল্ডার পরীক্ষা করা সম্ভব নয়!"
+
+#: ../baobab/src/baobab.c:968
 msgid "Could not detect any mount point."
 msgstr "কোনো মাউন্ট পয়েন্ট সনাক্ত করা যায়নি।"
 
-#: ../baobab/src/baobab.c:945
+#: ../baobab/src/baobab.c:971
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "মাউন্ট পয়েন্ট বিনা ডিস্কের ব্যবহার বিশ্লেষণ করা যাবে না।"
 
 #: ../baobab/src/baobab-chart.c:202
 msgid "Maximum depth"
-msgstr ""
+msgstr "সর্বাধিক ধাপ"
 
 #: ../baobab/src/baobab-chart.c:203
 msgid "The maximum depth drawn in the chart from the root"
-msgstr ""
+msgstr "রেখাচিত্রের প্রারম্ভ (root) থেকে আঁকা সর্বাধিক ধাপের সংখ্যা"
 
 #: ../baobab/src/baobab-chart.c:212
 msgid "Chart model"
@@ -314,7 +318,7 @@ msgstr "সর্বমোট মাপ"
 msgid "Available"
 msgstr "উপলব্ধ"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:78
+#: ../baobab/src/baobab-remote-connect-dialog.c:77
 #, c-format
 msgid "Cannot scan location \"%s\""
 msgstr "অবস্থান \"%s\" স্ক্যান করতে ব্যর্থ"
@@ -425,80 +429,78 @@ msgstr "ফোল্ডার নির্বাচন করুন"
 msgid "_Show hidden folders"
 msgstr "আড়াল করা ফোল্ডার প্রদর্শন করা হবে (_S)"
 
-#: ../baobab/src/baobab-utils.c:302
+#: ../baobab/src/baobab-utils.c:304
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "\"%s\" বৈধ ফোল্ডার নয়"
 
-#: ../baobab/src/baobab-utils.c:305
+#: ../baobab/src/baobab-utils.c:307
 msgid "Could not analyze disk usage."
 msgstr "ডিস্কের ব্যবহার বিশ্লেষণ করতে ব্যর্থ।"
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:348
 msgid "_Open Folder"
 msgstr "ফোল্ডার খুলুন (_O)"
 
-#: ../baobab/src/baobab-utils.c:340 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:354 ../gsearchtool/gsearchtool.c:183
 msgid "Mo_ve to Trash"
 msgstr "আবর্জানার বাক্সে স্থানান্তরণ করুন(_v)"
 
-#: ../baobab/src/baobab-utils.c:369
+#: ../baobab/src/baobab-utils.c:380
 msgid "Total filesystem capacity:"
 msgstr "ফাইল-সিস্টেমের সর্বমোট ধারণক্ষমতা:"
 
-#: ../baobab/src/baobab-utils.c:370
+#: ../baobab/src/baobab-utils.c:381
 msgid "used:"
 msgstr "ব্যবহৃত:"
 
-#: ../baobab/src/baobab-utils.c:371
+#: ../baobab/src/baobab-utils.c:382
 msgid "available:"
 msgstr "উপলব্ধ:"
 
-#: ../baobab/src/baobab-utils.c:415
+#: ../baobab/src/baobab-utils.c:426
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "\"%s\" ফোল্ডার খোলা যায়নি"
 
-#: ../baobab/src/baobab-utils.c:418
+#: ../baobab/src/baobab-utils.c:429
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "ফোল্ডার প্রদর্শনের উদ্দেশ্যে কোনো যথাযত সামগ্রী ইনস্টল করা হয়নি।"
 
-#: ../baobab/src/baobab-utils.c:487
+#: ../baobab/src/baobab-utils.c:498
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "আবর্জনার বাক্সে \"%s\" সরাতে ব্যর্থ"
 
-#: ../baobab/src/baobab-utils.c:495
+#: ../baobab/src/baobab-utils.c:506
 msgid "Could not move file to the Trash"
 msgstr "অবর্জনার বাক্সে ফাইল সরানো যায়নি।"
 
-#: ../baobab/src/baobab-utils.c:497
+#: ../baobab/src/baobab-utils.c:508
 #, c-format
 msgid "Details: %s"
 msgstr "বিবরণ: %s"
 
-#: ../baobab/src/baobab-utils.c:516
+#: ../baobab/src/baobab-utils.c:527
 msgid "Rescan your home folder?"
 msgstr "ব্যক্তিগত ফোল্ডার পুনরায় স্ক্যান করা হবে কি?"
 
-#: ../baobab/src/baobab-utils.c:517
+#: ../baobab/src/baobab-utils.c:528
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
-msgstr "আপনার ব্যক্তিগত ডিরেক্টরির সামগ্রীর মধ্যে কিছু পরিবর্তন ঘটেছে। ডিস্ক ব্যবহারের বিবরণ আপডেট করার জন্য অনুগ্রহ করে পুনরায় স্ক্যানের বিকল্প নির্বাচন করুন।"
+msgstr ""
+"আপনার ব্যক্তিগত ডিরেক্টরির সামগ্রীর মধ্যে কিছু পরিবর্তন ঘটেছে। ডিস্ক ব্যবহারের বিবরণ "
+"আপডেট করার জন্য অনুগ্রহ করে পুনরায় স্ক্যানের বিকল্প নির্বাচন করুন।"
 
-#: ../baobab/src/baobab-utils.c:518
+#: ../baobab/src/baobab-utils.c:529
 msgid "_Rescan"
 msgstr "পুনরায় স্ক্যান (_R)"
 
 # msgstr "'%s' ফাইলটিতে কিছু লেখা নেই"
-#: ../baobab/src/baobab-utils.c:553 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:569
 msgid "There was an error displaying help."
 msgstr "সহায়িকা প্রদর্শনে সমস্যা।"
-
-#: ../baobab/src/baobab-mount-operation.c:146
-msgid "Enter Password"
-msgstr "পাসওয়ার্ড লিখুন"
 
 #: ../baobab/src/callbacks.c:97
 msgid "Baobab"
@@ -508,9 +510,9 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "ডিস্কের ব্যবহার প্রদর্শনকারী গ্রাফিকাল সরঞ্জাম।"
 
-#. Translator credits
+#. translator credits
 #: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
-#: ../logview/about.c:47
+#: ../logview/logview-about.h:63
 msgid "translator-credits"
 msgstr "রুণা ভট্টাচার্য্য (runa@bengalinux.org)"
 
@@ -869,11 +871,11 @@ msgstr "দ্রুত (শুধুমাত্র ফাইল-সিস্�
 msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr "প্রচলিত (দ্রুত মোডের সাথে নিম্ন মানের ফরম্যাট কর্ম)(_S)"
 
-#: ../gfloppy/src/main.c:259
+#: ../gfloppy/src/main.c:257
 msgid "Cannot Format"
 msgstr "ফরম্যাট করা সম্ভব নয়"
 
-#: ../gfloppy/src/main.c:260
+#: ../gfloppy/src/main.c:258
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -881,12 +883,12 @@ msgstr ""
 "mke2fs এবং mkdosfs/mformat অ্যাপ্লিকেশনগুলি ইনস্টল করা নেই। ফ্লপি ফরম্যাট করার জন্য "
 "এই দুটি প্রোগ্রামের মধ্যে অন্তত একটি উপস্থিত থাকা আবশ্যক।"
 
-#: ../gfloppy/src/main.c:280
+#: ../gfloppy/src/main.c:278
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr "%s যন্ত্র পড়া যাচ্ছেনা, ফরম্যাট প্রক্রিয়া চলানো সম্ভব নয়।"
 
-#: ../gfloppy/src/main.c:283 ../gfloppy/src/main.c:345
+#: ../gfloppy/src/main.c:281 ../gfloppy/src/main.c:343
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -895,7 +897,7 @@ msgstr ""
 "%s ডিভাইসটি বর্তমানে বিচ্ছিন্ন রয়েছে।\n"
 "অনুগ্রহ করে এটি সংযুক্ত করে পুনরায় চেষ্টা করুন।"
 
-#: ../gfloppy/src/main.c:286 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:284 ../gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -905,40 +907,40 @@ msgstr ""
 "%s-এ লেখার পর্যাপ্ত অনুমতি না থাকার ফলে আপনার পক্ষে ফরম্যাট করা সম্ভব নয়।\n"
 "আপনার সিস্টেম অ্যাডমিনিস্ট্রেটরের সাথে যোগযোগ করে যথাযত অনুমতি প্রাপ্ত করুন।"
 
-#: ../gfloppy/src/main.c:293 ../gfloppy/src/main.c:356
+#: ../gfloppy/src/main.c:291 ../gfloppy/src/main.c:354
 msgid "Cannot initialize device"
 msgstr "ডিভাইস আরম্ভ করা সম্ভব নয়"
 
-#: ../gfloppy/src/main.c:342
+#: ../gfloppy/src/main.c:340
 #, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr "একটিও ডিভাইস খুলতে না পারার ফলে ফরম্যাট কর্ম সঞ্চালন করা সম্ভব নয়।"
 
-#: ../gfloppy/src/main.c:345 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:343 ../gfloppy/src/main.c:346
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 অথবা /dev/fd0"
 
-#: ../gfloppy/src/main.c:509
+#: ../gfloppy/src/main.c:507
 msgid "Could not display help for the floppy formatter."
 msgstr "ফ্লপি ফরম্যাটর সংক্রান্ত সহায়িকা প্রদর্শন করা যায়নি।"
 
-#: ../gfloppy/src/main.c:528
+#: ../gfloppy/src/main.c:526
 msgid "Incorrect volume name"
 msgstr "ভলিউমের নাম সঠিক নয়"
 
-#: ../gfloppy/src/main.c:529
+#: ../gfloppy/src/main.c:527
 msgid "The volume name can't contain any blank space."
 msgstr "ভলিউমের নামের মধ্যে শূণ্যস্থান লেখা যাবে না।"
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "The device to format"
 msgstr "ফরম্যাট করার উদ্দেশ্যে চিহ্নিত ডিভাইস"
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "DEVICE"
 msgstr "DEVICE"
 
-#: ../gfloppy/src/main.c:583
+#: ../gfloppy/src/main.c:581
 msgid "- Floppy Formatter"
 msgstr "- ফ্লপি ফরম্যাটর"
 
@@ -986,7 +988,7 @@ msgid "Cl_ear"
 msgstr "পরিশ্রুত করুন (_e)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1240 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:665
 msgid "_About"
 msgstr "পরিচিতি (_A)"
 
@@ -995,7 +997,7 @@ msgid "_Look Up Selected Text"
 msgstr "নির্বাচিত টেক্সট অনুসন্ধান করা হবে (_L)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1214
+#: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "_Preferences"
 msgstr "পছন্দ (_P)"
 
@@ -1013,9 +1015,9 @@ msgstr "অনলাইন অভিধানে শব্দের সংজ্
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:402
-#: ../gnome-dictionary/src/gdict-window.c:610
-#: ../gnome-dictionary/src/gdict-window.c:1957
+#: ../gnome-dictionary/src/gdict-app.c:385
+#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:1953
 msgid "Dictionary"
 msgstr "অভিধান"
 
@@ -1085,7 +1087,9 @@ msgstr ""
 msgid ""
 "The name of the default search strategy to use on a dictionary source, if "
 "available. The default strategy is 'exact', that is match exact words."
-msgstr "অভিধানের উৎস উপলব্ধ থাকলে, ব্যবহারযোগ্য ডিফল্ট অনুসন্ধান নীতির নাম। ডিফল্টরূপে ব্যবহৃড নীতি হল, 'exact', অর্থাৎ শব্দগুলি সম্পূর্ণরূপে মেলানো হবে।"
+msgstr ""
+"অভিধানের উৎস উপলব্ধ থাকলে, ব্যবহারযোগ্য ডিফল্ট অনুসন্ধান নীতির নাম। ডিফল্টরূপে ব্যবহৃড "
+"নীতি হল, 'exact', অর্থাৎ শব্দগুলি সম্পূর্ণরূপে মেলানো হবে।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:13
 msgid "The name of the dictionary source used"
@@ -1115,42 +1119,59 @@ msgstr "সাইড-বারের প্রস্থের মাপ"
 msgid ""
 "This key defines the width of the sidebar and it's used to remember the "
 "setting across sessions."
-msgstr "এই কি-র মান দ্বারা সাইড-বারের প্রস্থ নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান প্রয়োগ করা হয়।"
+msgstr ""
+"এই কি-র মান দ্বারা সাইড-বারের প্রস্থ নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান "
+"প্রয়োগ করা হয়।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:19
 msgid ""
 "This key defines the window height and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a height based on the font size."
-msgstr "এই কি-র মান দ্বারা উইন্ডোর উচ্চতা নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, ফন্টের মাপের ভিত্তিতে অভিধানের উইন্ডোর উচ্চতা নির্ধারণ করা হবে।"
+msgstr ""
+"এই কি-র মান দ্বারা উইন্ডোর উচ্চতা নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান "
+"প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, ফন্টের মাপের ভিত্তিতে অভিধানের উইন্ডোর উচ্চতা "
+"নির্ধারণ করা হবে।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:20
 msgid ""
 "This key defines the window width and it's used to remember the size of the "
 "dictionary window across sessions. Setting it to -1 will make the dictionary "
 "window use a width based on the font size."
-msgstr "এই কি-র মান দ্বারা উইন্ডোর প্রস্থ নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, ফন্টের মাপের ভিত্তিতে অভিধানের উইন্ডোর প্রস্থ নির্ধারণ করা হবে।"
+msgstr ""
+"এই কি-র মান দ্বারা উইন্ডোর প্রস্থ নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান "
+"প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, ফন্টের মাপের ভিত্তিতে অভিধানের উইন্ডোর প্রস্থ "
+"নির্ধারণ করা হবে।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:21
 msgid ""
 "This key defines whether the sidebar should be visible and it's used to "
 "remember the state of the sidebar across sessions. Setting it to TRUE will "
 "make the sidebar always be displayed."
-msgstr "এই কি-র মান দ্বারা নির্ধারণ করা হয় সাইড-বার দৃশ্যমান হবে কি না ও সেশান সমাপ্তির পরেও সাইড-বারের অবস্থা স্মরণে রাখা হবে। মান TRUE ধার্য করা হলে, সাইড-বার সর্বদা প্রদর্শিত হবে।"
+msgstr ""
+"এই কি-র মান দ্বারা নির্ধারণ করা হয় সাইড-বার দৃশ্যমান হবে কি না ও সেশান সমাপ্তির "
+"পরেও সাইড-বারের অবস্থা স্মরণে রাখা হবে। মান TRUE ধার্য করা হলে, সাইড-বার সর্বদা "
+"প্রদর্শিত হবে।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:22
 msgid ""
 "This key defines whether the statusbar should be visible and it's used to "
 "remember the state of the statusbar across sessions. Setting it to TRUE will "
 "make the statusbar always be displayed."
-msgstr "এই কি-র মান দ্বারা নির্ধারণ করা হয় স্ট্যাটাস-বার দৃশ্যমান হবে কি না ও সেশান সমাপ্তির পরেও স্ট্যাটাস-বারের অবস্থা স্মরণে রাখা হবে। মান TRUE ধার্য করা হলে, স্ট্যাটাস-বার সর্বদা প্রদর্শিত হবে।"
+msgstr ""
+"এই কি-র মান দ্বারা নির্ধারণ করা হয় স্ট্যাটাস-বার দৃশ্যমান হবে কি না ও সেশান "
+"সমাপ্তির পরেও স্ট্যাটাস-বারের অবস্থা স্মরণে রাখা হবে। মান TRUE ধার্য করা হলে, "
+"স্ট্যাটাস-বার সর্বদা প্রদর্শিত হবে।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:23
 msgid ""
 "This key defines whether the window should be maximized and it's used to "
 "remember the state of the dictionary window across sessions. Setting it to "
 "TRUE will make the window always appear as maximized."
-msgstr "এই কি-র মান দ্বারা নির্ধারণ করা হয় উইন্ডোর সর্বোচ্চ মান ধার্য করা হবে কি না ও সেশান সমাপ্তির পরেও উইন্ডোর অবস্থা স্মরণে রাখা হবে। মান TRUE ধার্য করা হলে, উইন্ডো সর্বদা সর্বোচ্চ মাপে প্রদর্শিত হবে।"
+msgstr ""
+"এই কি-র মান দ্বারা নির্ধারণ করা হয় উইন্ডোর সর্বোচ্চ মান ধার্য করা হবে কি না ও "
+"সেশান সমাপ্তির পরেও উইন্ডোর অবস্থা স্মরণে রাখা হবে। মান TRUE ধার্য করা হলে, উইন্ডো "
+"সর্বদা সর্বোচ্চ মাপে প্রদর্শিত হবে।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:24
 msgid ""
@@ -1158,7 +1179,8 @@ msgid ""
 "to remember the setting across sessions.. It can be \"speller\" or "
 "\"databases\"."
 msgstr ""
-"এই কি-র মান দ্বারা নির্ধারণ করা হয় সাইড-বারের কোনো পৃষ্ঠা প্রদর্শিত হবে ও সেশান সমাপ্তির পরেও এই বৈশিষ্ট্যের মান স্মরণে রাখা হবে। এই ক্ষেত্রে \"speller\" অথবা "
+"এই কি-র মান দ্বারা নির্ধারণ করা হয় সাইড-বারের কোনো পৃষ্ঠা প্রদর্শিত হবে ও সেশান "
+"সমাপ্তির পরেও এই বৈশিষ্ট্যের মান স্মরণে রাখা হবে। এই ক্ষেত্রে \"speller\" অথবা "
 "\"databases\" ধার্য করা যাবে।"
 
 #: ../gnome-dictionary/data/gnome-dictionary.schemas.in.h:25
@@ -1352,7 +1374,9 @@ msgstr ""
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
-msgstr "%s:%d-এ উপস্থিত অভিধান সার্ভারের সাথে সংযোগ স্থাপনের প্রচেষ্টাকালে সময় সীমা অতিক্রান্ত হয়েছে"
+msgstr ""
+"%s:%d-এ উপস্থিত অভিধান সার্ভারের সাথে সংযোগ স্থাপনের প্রচেষ্টাকালে সময় সীমা "
+"অতিক্রান্ত হয়েছে"
 
 #: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
 #, c-format
@@ -1383,55 +1407,56 @@ msgstr "শুধুমাত্র স্থানীয়"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "কনটেক্সটের দ্বারা শুধুমাত্র স্থানীয় অভিধান ব্যবহৃত হবে কিনা"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:382
 msgid "Reload the list of available databases"
 msgstr "উপলব্ধ ডাটাবেসের তালিকা পুনরায় লোড করা হবে"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:394
 msgid "Clear the list of available databases"
 msgstr "উপলব্ধ ডাটাবেসের তালিকার বিষয়বস্তু মুছে ফেলুন"
 
 # msgstr "সমস্যাযুক্ত ব্লক খোঁজা হচ্ছে...(এতে কিছুটা সময় লাগতে পারে)"
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
-#: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:841
+#: ../gnome-dictionary/libgdict/gdict-speller.c:779
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:789
 msgid "Error while matching"
 msgstr "মেলানোর সময় সমস্যা"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1135
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1229
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1263
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
+#: ../logview/logview-window.c:507
 msgid "Not found"
 msgstr "পাওয়া যায়নি"
 
 # msgstr "পংক্তিটি খঁুজে পাওয়া যায়নি"
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1323
 msgid "F_ind:"
 msgstr "অনুসন্ধান: (_i)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1337
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1336
 msgid "_Previous"
 msgstr "পূর্ববর্তী(_P)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1345
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1344
 msgid "_Next"
 msgstr "পরবর্তী(_N)"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2520
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2519
 msgid "Error while looking up definition"
 msgstr "সংজ্ঞা অনুসন্ধানে সমস্যা"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2561
+#: ../gnome-dictionary/libgdict/gdict-speller.c:737
 msgid "Another search is in progress"
 msgstr "বর্তমানে একটি পৃথক অনুসন্ধান চলছে"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2563
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
 msgid "Please wait until the current search ends."
 msgstr "বর্তমান অনুসন্ধান সমাপ্ত হওয়া অবধি অনুগ্রহ করে অপেক্ষা করুন।"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2602
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2601
 msgid "Error while retrieving the definition"
 msgstr "সংজ্ঞা উদ্ধার করতে সমস্যা"
 
@@ -1462,7 +1487,7 @@ msgstr "অভিধানের উৎসের বিবরণ"
 
 # msgstr "সকল ডাটাবেস খোঁজা হোক"
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
-#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+#: ../gnome-dictionary/libgdict/gdict-speller.c:384
 msgid "Database"
 msgstr "ডাটাবেস"
 
@@ -1471,7 +1496,7 @@ msgid "The default database of this dictonary source"
 msgstr "অভিধানের উৎসের দ্বারা ব্যবহৃত ডিফল্ট ডাটাবেস"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:288
-#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+#: ../gnome-dictionary/libgdict/gdict-speller.c:391
 msgid "Strategy"
 msgstr "নীতি"
 
@@ -1488,7 +1513,7 @@ msgid "The transport mechanism used by this dictionary source"
 msgstr "অভিধানের উৎসের দ্বারা ব্যবহৃত পরিবহণ ব্যবস্থা"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:317
-#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+#: ../gnome-dictionary/libgdict/gdict-speller.c:377
 msgid "Context"
 msgstr "কনটেক্সট"
 
@@ -1529,7 +1554,7 @@ msgstr "অভিধানের উৎসের নাম ধার্য ক�
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "'%s' অভিধান উৎসের ক্ষেত্রে  অবৈধ পরিবহণ '%s' চিহ্নিত হয়েছে"
 
-#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:299
 msgid "Reload the list of available sources"
 msgstr "উপলব্ধ উৎসের তালিকা পুনরায় লোড করা হবে"
 
@@ -1549,29 +1574,42 @@ msgstr "উৎস"
 msgid "Dictionary sources found"
 msgstr "সনাক্ত হওয়া অভিধানের উৎস"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:355
+#: ../gnome-dictionary/libgdict/gdict-speller.c:354
 msgid "Clear the list of similar words"
 msgstr "সমতুল্য শব্দের তালিকার বিষয়বস্তু মুছে ফেলুন"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:379
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
 msgid "The GdictContext object used to get the word definition"
 msgstr "শব্দের সংজ্ঞা প্রাপ্ত করতে ব্যবহৃত GdictContext অবজেক্ট"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:386
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
 msgid "The database used to query the GdictContext"
 msgstr "GdictContext অনুসন্ধানের জন্য ব্যবহৃত ডাটাবেস"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:393
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
 msgid "The strategy used to query the GdictContext"
 msgstr "GdictContext অনুসন্ধান করতে ব্যবহৃত নীতি"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:365
 msgid "Reload the list of available strategies"
 msgstr "উপলব্ধ নীতির তালিকা পুনরায় লোড করা হবে"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:377
 msgid "Clear the list of available strategies"
 msgstr "উপলব্ধ নীতির তালিকার বিষয়বস্তু মুছে ফেলুন"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+msgid "GDict debugging flags to set"
+msgstr "নির্ধারণের জন্য চিহ্নিত GDict ডিবাগিং ফ্ল্যাগ"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "FLAGS"
+msgstr "FLAGS"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "GDict debugging flags to unset"
+msgstr "বাতিল করার জন্য চিহ্নিত GDict ডিবাগিং ফ্ল্যাগ"
 
 #: ../gnome-dictionary/libgdict/gdict-utils.c:157
 msgid "GDict Options"
@@ -1589,7 +1627,7 @@ msgstr "অভিধানে শব্দ অনুসন্ধান করু
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:233
+#: ../gnome-dictionary/src/gdict-app.c:217
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1602,21 +1640,21 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:231
 #, c-format
 msgid "Error: %s\n"
 msgstr "সমস্যা: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:257
 #, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "ব্যবহারপ্রণালী জানতে gnome-dictionary --help প্রয়োগ করুন\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:286
+#: ../gnome-dictionary/src/gdict-app.c:270
 msgid "Unable to find a suitable dictionary source"
 msgstr "উপযুক্ত অভিধানের উৎস অনুসন্ধান করতে ব্যর্থ"
 
-#: ../gnome-dictionary/src/gdict-app.c:320
+#: ../gnome-dictionary/src/gdict-app.c:304
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1625,115 +1663,107 @@ msgstr ""
 "\"%s\"-র ব্যাখ্যা অনুসন্ধান করতে সমস্যা:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Words to look up"
 msgstr "অনুসন্ধানের জন্য উল্লিখিত শব্দ"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:356
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:339
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "word"
 msgstr "শব্দ"
 
-#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:339
 msgid "Words to match"
 msgstr "মেলানোর উদ্দেশ্যে শব্দ"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "Dictionary source to use"
 msgstr "ব্যবহারের জন্য চিহ্নিত অভিধানের উৎস"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "source"
 msgstr "উৎস"
 
-#: ../gnome-dictionary/src/gdict-app.c:360
+#: ../gnome-dictionary/src/gdict-app.c:343
 msgid "Show available dictionary sources"
 msgstr "উপলব্ধ অভিধান উৎস প্রদর্শন করা হবে"
 
-#: ../gnome-dictionary/src/gdict-app.c:362
+#: ../gnome-dictionary/src/gdict-app.c:345
 msgid "Print result to the console"
 msgstr "ফলাফল কনসোলে প্রিন্ট করা হবে"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "Database to use"
 msgstr "ব্যবহারের উদ্দেশ্যে চিহ্নিত ডাটাবেস"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "db"
 msgstr "db"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "Strategy to use"
 msgstr "ব্যবহারের জন্য চিহ্নিত নীতি"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "strat"
 msgstr "strat"
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:384
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid " - Look up words in dictionaries"
 msgstr " - অভিধানে শব্দ সন্ধান করুন"
 
-#: ../gnome-dictionary/src/gdict-app.c:388
-msgid "Dictionary and spelling tool"
-msgstr "অভিধান ও বানানের জন্য সরঞ্জাম"
-
-#: ../gnome-dictionary/src/gdict-app.c:389
-msgid "Show Dictionary options"
-msgstr "অভিধান সংক্রান্ত বিকল্প প্রদর্শন করা হবে"
-
-#: ../gnome-dictionary/src/gdict-applet.c:207
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-applet.c:205
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "Save a Copy"
 msgstr "একটি প্রতিলিপি সংরক্ষণ করুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:849
+#: ../gnome-dictionary/src/gdict-applet.c:215
+#: ../gnome-dictionary/src/gdict-window.c:847
 msgid "Untitled document"
 msgstr "নামবিহীন ডকুমেন্ট"
 
-#: ../gnome-dictionary/src/gdict-applet.c:238
-#: ../gnome-dictionary/src/gdict-window.c:870
+#: ../gnome-dictionary/src/gdict-applet.c:236
+#: ../gnome-dictionary/src/gdict-window.c:868
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "'%s'-এ লিখতে সমস্যা"
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:361
 msgid "Clear the definitions found"
 msgstr "প্রাপ্ত সংজ্ঞাগুলি মুছে ফেলুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:365
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear definition"
 msgstr "সংজ্ঞা মুছে ফেলুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:364
 msgid "Clear the text of the definition"
 msgstr "সংজ্ঞার লেখা মুছে ফেলুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:373
+#: ../gnome-dictionary/src/gdict-applet.c:371
 msgid "Print the definitions found"
 msgstr "প্রাপ্ত সংজ্ঞা প্রিন্ট করুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print definition"
 msgstr "সংজ্ঞা প্রিন্ট করুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:376
+#: ../gnome-dictionary/src/gdict-applet.c:374
 msgid "Print the text of the definition"
 msgstr "সংজ্ঞার তথ্য প্রিন্ট করুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:383
+#: ../gnome-dictionary/src/gdict-applet.c:381
 msgid "Save the definitions found"
 msgstr "প্রাপ্ত সংজ্ঞা সংরক্ষণ করুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:385
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save definition"
 msgstr "সংজ্ঞা সংরক্ষণ করুন"
 
-#: ../gnome-dictionary/src/gdict-applet.c:386
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Save the text of the definition to a file"
 msgstr "সংজ্ঞার ফাইলের টেক্সট একটি ফাইলের সংরক্ষণ করুন"
 
@@ -1758,53 +1788,53 @@ msgid "Dictionary entry"
 msgstr "অভিধানের শব্দের এন্ট্রি"
 
 #: ../gnome-dictionary/src/gdict-applet.c:724
-#: ../gnome-dictionary/src/gdict-window.c:1003
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Dictionary Preferences"
 msgstr "অভিধান সম্বন্ধীয় পছন্দ"
 
 # msgstr "'%s' ফাইলটিতে কিছু লেখা নেই"
-#: ../gnome-dictionary/src/gdict-applet.c:752
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
-#: ../gnome-dictionary/src/gdict-source-dialog.c:498
-#: ../gnome-dictionary/src/gdict-window.c:1150
+#: ../gnome-dictionary/src/gdict-applet.c:750
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:505
+#: ../gnome-dictionary/src/gdict-source-dialog.c:495
+#: ../gnome-dictionary/src/gdict-window.c:1145
 #, c-format
 msgid "There was an error while displaying help"
 msgstr "সহায়িকা প্রদর্শনে সমস্যা"
 
-#: ../gnome-dictionary/src/gdict-applet.c:904
-#: ../gnome-dictionary/src/gdict-window.c:519
+#: ../gnome-dictionary/src/gdict-applet.c:902
+#: ../gnome-dictionary/src/gdict-window.c:517
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "'%s' নামক কোনো অভিধান উৎস উপলব্ধ নয়"
 
-#: ../gnome-dictionary/src/gdict-applet.c:908
-#: ../gnome-dictionary/src/gdict-window.c:523
+#: ../gnome-dictionary/src/gdict-applet.c:906
+#: ../gnome-dictionary/src/gdict-window.c:521
 msgid "Unable to find dictionary source"
 msgstr "অভিধানের উৎস অনুসন্ধান করতে ব্যর্থ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:924
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:922
+#: ../gnome-dictionary/src/gdict-window.c:537
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "'%s' উৎসের জন্য কোনো কনটেক্সট উপলব্ধ নয়"
 
-#: ../gnome-dictionary/src/gdict-applet.c:928
-#: ../gnome-dictionary/src/gdict-window.c:543
+#: ../gnome-dictionary/src/gdict-applet.c:926
+#: ../gnome-dictionary/src/gdict-window.c:541
 msgid "Unable to create a context"
 msgstr "কনটেক্সট নির্মাণ করতে ব্যর্থ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1193
-#: ../gnome-dictionary/src/gdict-window.c:2088
+#: ../gnome-dictionary/src/gdict-applet.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:2084
 msgid "Unable to connect to GConf"
 msgstr "GConf'র সাথে সংযোগ করতে ব্যর্থ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1206
-#: ../gnome-dictionary/src/gdict-window.c:2101
+#: ../gnome-dictionary/src/gdict-applet.c:1204
+#: ../gnome-dictionary/src/gdict-window.c:2097
 msgid "Unable to get notification for preferences"
 msgstr "পছন্দ সংক্রান্ত সূচনাপ্রাপ্ত করতে ব্যর্থ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1220
-#: ../gnome-dictionary/src/gdict-window.c:2114
+#: ../gnome-dictionary/src/gdict-applet.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:2110
 msgid "Unable to get notification for the document font"
 msgstr "ডকুমেন্টের ফন্ট সম্পর্কে সূচনা প্রাপ্ত করতে ব্যর্থ"
 
@@ -1819,37 +1849,37 @@ msgstr "'%s' ফাইলের নাম '%s'-এ পরিবর্তন ক�
 msgid "Unable to create the data directory '%s': %s"
 msgstr "ডাটা ডিরেক্টরি '%s' নির্মাণ করতে ব্যর্থ: %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:245
 msgid "Edit Dictionary Source"
 msgstr "অভিধানের উৎস সম্পাদনা করুন"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:309
 msgid "Add Dictionary Source"
 msgstr "অভিধানের উৎস যোগ করুন"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:355
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "\"%s\" মুছে ফেলা হবে কি?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:357
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "এর ফলে অভিধান উৎসের নাম স্থায়ীরূপে তালিকা থেকে মুছে ফেলা হবে"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:387
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "'%s' উৎস মুছে ফেলা যায়নি"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:663
 msgid "Add a new dictionary source"
 msgstr "নতুন অভিধান উৎস যোগ করুন"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:669
 msgid "Remove the currently selected dictionary source"
 msgstr "বর্তমানে নির্বাচিত অভিধান উৎস মুছে ফেলা হবে"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:682
 msgid "Set the font used for printing the definitions"
 msgstr "সংজ্ঞা প্রিন্ট করার জন্য ব্যবহৃত ফন্ট নির্ধারণ করুন"
 
@@ -1859,298 +1889,307 @@ msgstr "সংজ্ঞা প্রিন্ট করার জন্য ব�
 msgid "Unable to display the preview: %s"
 msgstr "পূর্বরূপ প্রদর্শন করতে ব্যর্থ: %s"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:358
-#: ../gnome-dictionary/src/gdict-source-dialog.c:451
+#: ../gnome-dictionary/src/gdict-source-dialog.c:357
+#: ../gnome-dictionary/src/gdict-source-dialog.c:450
 msgid "Unable to create a source file"
 msgstr "উৎস ফাইল নির্মাণ করতে ব্যর্থ"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:376
-#: ../gnome-dictionary/src/gdict-source-dialog.c:469
+#: ../gnome-dictionary/src/gdict-source-dialog.c:375
+#: ../gnome-dictionary/src/gdict-source-dialog.c:468
 msgid "Unable to save source file"
 msgstr "উৎস ফাইল সংরক্ষণ করতে ব্যর্থ"
 
-#: ../gnome-dictionary/src/gdict-window.c:318
+#: ../gnome-dictionary/src/gdict-window.c:316
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "'%s' অনুসন্ধান করা হচ্ছে..."
 
-#: ../gnome-dictionary/src/gdict-window.c:350
-#: ../gnome-dictionary/src/gdict-window.c:409
+#: ../gnome-dictionary/src/gdict-window.c:348
+#: ../gnome-dictionary/src/gdict-window.c:407
 msgid "No definitions found"
 msgstr "সংজ্ঞা পাওয়া যায়নি"
 
-#: ../gnome-dictionary/src/gdict-window.c:352
+#: ../gnome-dictionary/src/gdict-window.c:350
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "সংজ্ঞা প্রাপ্ত হয়েছে"
 msgstr[1] "%d-টি সংজ্ঞা প্রাপ্ত হয়েছে"
 
-#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:606
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s - অভিধান"
 
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:637
 msgid "_File"
 msgstr "ফাইল (_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1187
+#: ../gnome-dictionary/src/gdict-window.c:1183
 msgid "_Go"
 msgstr "গন্তব্য (_G)"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_New"
 msgstr "নতুন (_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1192
+#: ../gnome-dictionary/src/gdict-window.c:1188
 msgid "New look up"
 msgstr "নতুন অনুসন্ধান"
 
-#: ../gnome-dictionary/src/gdict-window.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:1189
 msgid "_Save a Copy..."
 msgstr "একটি প্রতিলিপি সংরক্ষণ করুন...(_S)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1195
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "P_review..."
 msgstr "পূর্বরূপ প্রদর্শন...(_r)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1196
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Preview this document"
 msgstr "ডকুমেন্টের পূর্বরূপ দর্শন করুন"
 
-#: ../gnome-dictionary/src/gdict-window.c:1197
+#: ../gnome-dictionary/src/gdict-window.c:1193
 msgid "_Print..."
 msgstr "প্রিন্ট করুন...(_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1198
+#: ../gnome-dictionary/src/gdict-window.c:1194
 msgid "Print this document"
 msgstr "ডকুমেন্ট প্রিন্ট করুন"
 
-#: ../gnome-dictionary/src/gdict-window.c:1205 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:651
 msgid "Select _All"
 msgstr "সমগ্র নির্বাচন করুন (_A)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1208
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find a word or phrase in the document"
 msgstr "ডকুমেন্টের মধ্যে একটি শব্দ অথবা পংক্তি সন্ধান করুন"
 
 # msgstr "পংক্তিটি খঁুজে পাওয়া যায়নি"
-#: ../gnome-dictionary/src/gdict-window.c:1210
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Ne_xt"
 msgstr "পরবর্তী উপস্থিতি অনুসন্ধান (_x)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1212
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "Find Pre_vious"
 msgstr "পূর্ববর্তী উপস্থিতি অনুসন্ধান করুন (_v)"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Previous Definition"
 msgstr "পূর্ববর্তী সংজ্ঞা (_P)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1219
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the previous definition"
 msgstr "পূর্ববর্তী সংজ্ঞায় চলুন"
 
-#: ../gnome-dictionary/src/gdict-window.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_Next Definition"
 msgstr "পরবর্তী সংজ্ঞা (_N)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1221
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the next definition"
 msgstr "পরবর্তী সংজ্ঞায় চলুন"
 
-#: ../gnome-dictionary/src/gdict-window.c:1222
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_First Definition"
 msgstr "প্রথম সংজ্ঞা (_F)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1223
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the first definition"
 msgstr "প্রথম সংজ্ঞায় চলুন"
 
-#: ../gnome-dictionary/src/gdict-window.c:1224
+#: ../gnome-dictionary/src/gdict-window.c:1220
 msgid "_Last Definition"
 msgstr "সর্বশেষ সংজ্ঞা (_L)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1225
+#: ../gnome-dictionary/src/gdict-window.c:1221
 msgid "Go to the last definition"
 msgstr "সর্বশেষ সংজ্ঞায় চলুন"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1228
+#: ../gnome-dictionary/src/gdict-window.c:1224
 msgid "Similar _Words"
 msgstr "সমতুল্য শব্দ (_W)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1230
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Dictionary Sources"
 msgstr "অভিধানের উৎস"
 
-#: ../gnome-dictionary/src/gdict-window.c:1232
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available _Databases"
 msgstr "উপলব্ধ ডাটাবেস (_D)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1234
+#: ../gnome-dictionary/src/gdict-window.c:1230
 msgid "Available St_rategies"
 msgstr "উপলব্ধ নীতি (_r)"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1251
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "_Sidebar"
 msgstr "সাইড-বার (_S)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1253
+#: ../gnome-dictionary/src/gdict-window.c:1249
 msgid "S_tatusbar"
 msgstr "স্ট্যাটাস-বার(_t)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1374
+#: ../gnome-dictionary/src/gdict-window.c:1370
 #, c-format
 msgid "Dictionary source `%s' selected"
 msgstr "`%s'  অভিধানের উৎস নির্বাচন করা হয়েছে"
 
-#: ../gnome-dictionary/src/gdict-window.c:1395
+#: ../gnome-dictionary/src/gdict-window.c:1391
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "`%s' নীতি নির্বাচন করা হয়েছে"
 
-#: ../gnome-dictionary/src/gdict-window.c:1415
+#: ../gnome-dictionary/src/gdict-window.c:1411
 #, c-format
 msgid "Database `%s' selected"
 msgstr "ডাটাবেস `%s' নির্বাচন করা হয়েছে"
 
-#: ../gnome-dictionary/src/gdict-window.c:1435
+#: ../gnome-dictionary/src/gdict-window.c:1431
 #, c-format
 msgid "Word `%s' selected"
 msgstr "শব্দ `%s' নির্বাচন করা হয়েছে"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1457
+#: ../gnome-dictionary/src/gdict-window.c:1453
 msgid "Double-click on the word to look up"
 msgstr "অনুসন্ধানের উদ্দেশ্যে চিহ্নিত শব্দে দুইবার ক্লিক করুন"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1463
+#: ../gnome-dictionary/src/gdict-window.c:1459
 msgid "Double-click on the matching strategy to use"
 msgstr "ব্যবহারের উদ্দেশ্যে চিহ্নিত নীতির উপর দুইবার ক্লিক করুন"
 
 #. source-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1468
+#: ../gnome-dictionary/src/gdict-window.c:1464
 msgid "Double-click on the source to use"
 msgstr "ব্যবহারের উদ্দেশ্যে চিহ্নিত উৎসের উপর দুইবার ক্লিক করুন"
 
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1477
+#: ../gnome-dictionary/src/gdict-window.c:1473
 msgid "Double-click on the database to use"
 msgstr "ব্যবহারের উদ্দেশ্যে চিহ্নিত ডাটাবেসের উপর দুইবার ক্লিক করুন"
 
-#: ../gnome-dictionary/src/gdict-window.c:1765
+#: ../gnome-dictionary/src/gdict-window.c:1761
 msgid "Look _up:"
 msgstr "সন্ধান:(_u)"
 
-#: ../gnome-dictionary/src/gdict-window.c:1839
+#: ../gnome-dictionary/src/gdict-window.c:1835
 msgid "Similar words"
 msgstr "সমতুল্য শব্দ"
 
-#: ../gnome-dictionary/src/gdict-window.c:1852
+#: ../gnome-dictionary/src/gdict-window.c:1848
 msgid "Available dictionaries"
 msgstr "উপলব্ধ অভিধান"
 
-#: ../gnome-dictionary/src/gdict-window.c:1865
+#: ../gnome-dictionary/src/gdict-window.c:1861
 msgid "Available strategies"
 msgstr "উপলব্ধ নীতি"
 
-#: ../gnome-dictionary/src/gdict-window.c:1876
+#: ../gnome-dictionary/src/gdict-window.c:1872
 msgid "Dictionary sources"
 msgstr "অভিধানের উৎস"
 
-#: ../gnome-screenshot/gnome-screenshot.c:131
+#: ../gnome-screenshot/gnome-screenshot.c:130
 msgid "Error loading the help page"
 msgstr "সহায়িকা লোড করতে সমস্যা"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:239
 msgid "None"
 msgstr "শূণ্য"
 
-#: ../gnome-screenshot/gnome-screenshot.c:235
+#: ../gnome-screenshot/gnome-screenshot.c:240
 msgid "Drop shadow"
 msgstr "ছায়া প্রয়োগ করা হবে"
 
-#: ../gnome-screenshot/gnome-screenshot.c:236
+#: ../gnome-screenshot/gnome-screenshot.c:241
 msgid "Border"
 msgstr "প্রান্তরেখা"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:339
+#: ../gnome-screenshot/gnome-screenshot.c:344
 msgid "Include _pointer"
 msgstr "পয়েন্টার অন্তর্ভুক্ত করা হবে (_p)"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:348
+#: ../gnome-screenshot/gnome-screenshot.c:353
 msgid "Include the window _border"
 msgstr "উইন্ডোর প্রান্তরেখা অন্তর্ভুক্ত করা হবে (_b)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:363
+#: ../gnome-screenshot/gnome-screenshot.c:368
 msgid "Apply _effect:"
 msgstr "ইফেক্ট প্রয়োগ করা হবে: (_e)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:425
+#: ../gnome-screenshot/gnome-screenshot.c:430
 msgid "Grab the whole _desktop"
 msgstr "সম্পূর্ণ ডেস্কটপের ছবি গ্রহণ করা হবে (_d)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:437
+#: ../gnome-screenshot/gnome-screenshot.c:442
 msgid "Grab the current _window"
 msgstr "বর্তমান উইন্ডোর ছবি গ্রহণ করা হবে (_w)"
+
+#: ../gnome-screenshot/gnome-screenshot.c:454
+msgid "Grab a selected _area"
+msgstr "নির্বাচিত অংশ গ্রহণ করা হবে (_a)"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:454
+#: ../gnome-screenshot/gnome-screenshot.c:471
 msgid "Grab _after a delay of"
 msgstr "ছবি গ্রহণ করার পূর্বে (_a)"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:491
+#: ../gnome-screenshot/gnome-screenshot.c:1243
 msgid "seconds"
 msgstr "সেকেন্ড অপেক্ষা করা হবে "
 
-#: ../gnome-screenshot/gnome-screenshot.c:500
+#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:517
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "পর্দার ছবি নিন"
 
-#: ../gnome-screenshot/gnome-screenshot.c:501
+#: ../gnome-screenshot/gnome-screenshot.c:518
 msgid "Effects"
 msgstr "ইফেক্ট"
 
-#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:524
 msgid "Take _Screenshot"
 msgstr "পর্দার ছবি নিন (_S)"
 
 # msgstr "সমস্যাযুক্ত ব্লক খোঁজা হচ্ছে...(এতে কিছুটা সময় লাগতে পারে)"
-#: ../gnome-screenshot/gnome-screenshot.c:593
+#: ../gnome-screenshot/gnome-screenshot.c:650
 msgid "Error while saving screenshot"
 msgstr "পর্দার ছবি সংরক্ষণ করতে সমস্যা"
 
-#: ../gnome-screenshot/gnome-screenshot.c:597
+#: ../gnome-screenshot/gnome-screenshot.c:654
 #, c-format
+#| msgid ""
+#| "Impossible to save the screenshot to %s.\n"
+#| " Error was %s\n"
+#| ". Please choose another location and retry."
 msgid ""
 "Impossible to save the screenshot to %s.\n"
-" Error was %s\n"
-". Please choose another location and retry."
+" Error was %s.\n"
+" Please choose another location and retry."
 msgstr ""
 "%s-এ পর্দার ছবি সংরক্ষণ করা সম্ভব নয়।\n"
 " উৎপন্ন ত্রুটি %s\n"
-"। অনুগ্রহ করে ভিন্ন অবস্থান ও এনট্রি নির্বাচন করুন।"
+" অনুগ্রহ করে ভিন্ন অবস্থান নির্বাচন করে পুনরায় প্রচেষ্টা করুন।"
 
-#: ../gnome-screenshot/gnome-screenshot.c:740
+#: ../gnome-screenshot/gnome-screenshot.c:801
 msgid "Unable to take a screenshot of the current window"
 msgstr "বর্তমান উইন্ডোর ছবি তুলতে ব্যর্থ।"
 
-#: ../gnome-screenshot/gnome-screenshot.c:781
+#: ../gnome-screenshot/gnome-screenshot.c:849
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Screenshot-%s.png"
@@ -2158,14 +2197,14 @@ msgstr "Screenshot-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/gnome-screenshot.c:856
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Screenshot-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:798
+#: ../gnome-screenshot/gnome-screenshot.c:866
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2174,38 +2213,55 @@ msgstr "Screenshot.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:805
+#: ../gnome-screenshot/gnome-screenshot.c:873
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Screenshot-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1121
+#: ../gnome-screenshot/gnome-screenshot.c:1239
 msgid "Grab a window instead of the entire screen"
 msgstr "সম্পর্ণ পর্দার পরিবর্তে শুধুমাত্র একটি উইন্ডোর ছবি নেওয়া হবে"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1122
+#: ../gnome-screenshot/gnome-screenshot.c:1240
+#| msgid "Grab a window instead of the entire screen"
+msgid "Grab an area of the screen instead of the entire screen"
+msgstr "সম্পর্ণ পর্দার পরিবর্তে, পর্দার একটি অংশের ছবি নেওয়া হবে"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1241
 msgid "Include the window border with the screenshot"
 msgstr "পর্দার ছবিতে উইন্ডোর প্রান্তরেখা অন্তর্ভুক্ত করা হবে"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:1242
+#| msgid "Include the window border with the screenshot"
+msgid "Remove the window border from the screenshot"
+msgstr "পর্দার ছবিতে উইন্ডোর প্রান্তরেখা অন্তর্ভুক্ত করা হবে না"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1243
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "সনির্দিষ্ট সময় [সেকেন্ডে ব্যক্ত] অতিক্রান্ত হওয়ার পরে ছবি নেওয়া হবে"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "প্রান্তরেখার জন্য প্রয়োগের উদ্দেশ্যে ইফেক্ট (ছায়া, প্রান্তরেখা অথবা শূণ্য)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "effect"
 msgstr "ইফেক্ট"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1125
+#: ../gnome-screenshot/gnome-screenshot.c:1245
 msgid "Interactively set options"
 msgstr "ইন্টারেক্টিভ ভাবে বিকল্পের মান ধার্য করা হবে"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1134
+#: ../gnome-screenshot/gnome-screenshot.c:1256
 msgid "Take a picture of the screen"
 msgstr "সম্পূর্ণ পর্দার একটি ছবি নিন"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1274
+#, c-format
+msgid ""
+"Conflicting options: --window and --area should not be used at the same "
+"time.\n"
+msgstr "দ্বন্দ্বপূর্ণ বিকল্প: --window ও --area বিকল্প দুটি একসাথে ব্যবহার করা যাবে না।\n"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
@@ -2240,8 +2296,11 @@ msgstr ""
 "\"none(শূণ্য)\" এবং \"black-line(কালো-রেখা)\"।"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid "Grab just the current window, rather than the whole desktop."
-msgstr "সম্পূর্ণ ডেস্কটপের পরিবর্তে, শুধুমাত্র বর্তমান উইন্ডোর ছবি গ্রহণ করা হবে।"
+#| msgid "Grab just the current window, rather than the whole desktop."
+msgid ""
+"Grab just the current window, rather than the whole desktop. This key has "
+"been deprecated and it is no longer in use."
+msgstr "সম্পূর্ণ ডেস্কটপের পরিবর্তে, শুধুমাত্র বর্তমান উইন্ডোর ছবি গ্রহণ করা হবে। এই কি অবচিত হয়েছে এবং বর্তমানে ব্যবহার করা হয় না।"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -2276,8 +2335,9 @@ msgid "The number of seconds to wait before taking the screenshot."
 msgstr "পর্দার ছবি তোলার পূর্বে অপেক্ষার কাল, সেকেন্ড অনুযায়ী ধার্য।"
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:12
-msgid "Window-specific screenshot"
-msgstr "উইন্ডোর ক্ষেত্রে নির্দিষ্ট পর্দার ছবি"
+#| msgid "Window-specific screenshot"
+msgid "Window-specific screenshot (deprecated)"
+msgstr "উইন্ডোর ক্ষেত্রে নির্দিষ্ট পর্দার ছবি (অবচিত)"
 
 #: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
@@ -2313,7 +2373,7 @@ msgid "Unknown error saving screenshot to disk"
 msgstr "ডিস্কে পর্দার ছবি সংরক্ষণ করতে অজানা সমস্যা উৎ‌পন্ন হয়েছে"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:481
+#: ../gnome-screenshot/screenshot-utils.c:828
 msgid "Untitled Window"
 msgstr "নামবিহীন উইন্ডো"
 
@@ -2473,7 +2533,9 @@ msgstr "অতিরিক্ত বিকল্প প্রদর্শন ক
 msgid ""
 "This key defines the order of the columns in the search results. This key "
 "should not be modified by the user."
-msgstr "অনুসন্ধানের ফলাফলে প্রদর্শনের কলামের ক্ষেত্রে ব্যবহৃত অনুক্রম এই কি দ্বারা ধার্য করা হয়। ব্যবহারকারী দ্বারা এই কি পরিবর্তন করা হবে না।"
+msgstr ""
+"অনুসন্ধানের ফলাফলে প্রদর্শনের কলামের ক্ষেত্রে ব্যবহৃত অনুক্রম এই কি দ্বারা ধার্য করা হয়। "
+"ব্যবহারকারী দ্বারা এই কি পরিবর্তন করা হবে না।"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:53
 msgid ""
@@ -2503,14 +2565,20 @@ msgid ""
 "This key defines the window height, and it's used to remember the size of "
 "the search tool between sessions. Setting it to -1 will make the search tool "
 "use the default height."
-msgstr "এই কি-র মান দ্বারা উইন্ডোর উচ্চতা নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, অনুসন্ধান সামগ্রীর জন্য ডিফল্ট উচ্চতার মাপ ব্যবহার করা হয়েছে।"
+msgstr ""
+"এই কি-র মান দ্বারা উইন্ডোর উচ্চতা নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান "
+"প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, অনুসন্ধান সামগ্রীর জন্য ডিফল্ট উচ্চতার মাপ "
+"ব্যবহার করা হয়েছে।"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key defines the window width, and it's used to remember the size of the "
 "search tool between sessions. Setting it to -1 will make the search tool use "
 "the default width."
-msgstr "এই কি-র মান দ্বারা উইন্ডোর প্রস্থ নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, অনুসন্ধান সামগ্রীর জন্য ডিফল্ট প্রস্থের মাপ ব্যবহার করা হয়েছে।"
+msgstr ""
+"এই কি-র মান দ্বারা উইন্ডোর প্রস্থ নির্ধারণ করা হয় ও সেশান সমাপ্তির পরেও এই মান "
+"প্রয়োগ করা হয়। -1 মান ধার্য করা হলে, অনুসন্ধান সামগ্রীর জন্য ডিফল্ট প্রস্থের মাপ "
+"ব্যবহার করা হয়েছে।"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
@@ -2768,7 +2836,7 @@ msgstr "আপনার নির্বাচিত ডকুমেন্ট ম
 msgid "You may not have write permissions to the document."
 msgstr "সম্ভবত ডকুমেন্টে লেখার অনুমতি আপনার নেই।"
 
-#: ../gsearchtool/gsearchtool-support.c:72
+#: ../gsearchtool/gsearchtool-support.c:71
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -2782,24 +2850,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:641
+#: ../gsearchtool/gsearchtool-support.c:640
 msgid "today at %-I:%M %p"
 msgstr "%-I:%M %p আজ"
 
-#: ../gsearchtool/gsearchtool-support.c:643
+#: ../gsearchtool/gsearchtool-support.c:642
 msgid "yesterday at %-I:%M %p"
 msgstr "%-I:%M %p গতকাল"
 
-#: ../gsearchtool/gsearchtool-support.c:645
-#: ../gsearchtool/gsearchtool-support.c:647
+#: ../gsearchtool/gsearchtool-support.c:644
+#: ../gsearchtool/gsearchtool-support.c:646
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %B %-d %Y at %-I:%M:%S %p"
 
-#: ../gsearchtool/gsearchtool-support.c:826
+#: ../gsearchtool/gsearchtool-support.c:825
 msgid "link (broken)"
 msgstr "লিঙ্ক (ক্ষতিগ্রস্ত)"
 
-#: ../gsearchtool/gsearchtool-support.c:830
+#: ../gsearchtool/gsearchtool-support.c:829
 #, c-format
 msgid "link to %s"
 msgstr "%s-র লিঙ্ক"
@@ -2810,12 +2878,12 @@ msgstr "%s-র লিঙ্ক"
 #. * make some or all of them match.
 #.
 #. localizers: tag used to detect the first copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1533
+#: ../gsearchtool/gsearchtool-support.c:1525
 msgid " (copy)"
 msgstr " (copy)"
 
 #. localizers: tag used to detect the second copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1535
+#: ../gsearchtool/gsearchtool-support.c:1527
 msgid " (another copy)"
 msgstr " (another copy)"
 
@@ -2823,36 +2891,36 @@ msgstr " (another copy)"
 #. localizers: tag used to detect the x12th copy of a file
 #. localizers: tag used to detect the x13th copy of a file
 #. localizers: tag used to detect the xxth copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1538
-#: ../gsearchtool/gsearchtool-support.c:1540
-#: ../gsearchtool/gsearchtool-support.c:1542
-#: ../gsearchtool/gsearchtool-support.c:1552
+#: ../gsearchtool/gsearchtool-support.c:1530
+#: ../gsearchtool/gsearchtool-support.c:1532
+#: ../gsearchtool/gsearchtool-support.c:1534
+#: ../gsearchtool/gsearchtool-support.c:1544
 msgid "th copy)"
 msgstr "th copy)"
 
 #. localizers: tag used to detect the x1st copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1545
+#: ../gsearchtool/gsearchtool-support.c:1537
 msgid "st copy)"
 msgstr "st copy)"
 
 #. localizers: tag used to detect the x2nd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1547
+#: ../gsearchtool/gsearchtool-support.c:1539
 msgid "nd copy)"
 msgstr "nd copy)"
 
 #. localizers: tag used to detect the x3rd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1549
+#: ../gsearchtool/gsearchtool-support.c:1541
 msgid "rd copy)"
 msgstr "rd copy)"
 
 #. localizers: appended to first file copy
-#: ../gsearchtool/gsearchtool-support.c:1566
+#: ../gsearchtool/gsearchtool-support.c:1558
 #, c-format
 msgid "%s (copy)%s"
 msgstr "%s (copy)%s"
 
 #. localizers: appended to second file copy
-#: ../gsearchtool/gsearchtool-support.c:1568
+#: ../gsearchtool/gsearchtool-support.c:1560
 #, c-format
 msgid "%s (another copy)%s"
 msgstr "%s (another copy)%s"
@@ -2861,43 +2929,43 @@ msgstr "%s (another copy)%s"
 #. localizers: appended to x12th file copy
 #. localizers: appended to x13th file copy
 #. localizers: appended to xxth file copy
-#: ../gsearchtool/gsearchtool-support.c:1571
-#: ../gsearchtool/gsearchtool-support.c:1573
-#: ../gsearchtool/gsearchtool-support.c:1575
-#: ../gsearchtool/gsearchtool-support.c:1584
+#: ../gsearchtool/gsearchtool-support.c:1563
+#: ../gsearchtool/gsearchtool-support.c:1565
+#: ../gsearchtool/gsearchtool-support.c:1567
+#: ../gsearchtool/gsearchtool-support.c:1576
 #, c-format
 msgid "%s (%dth copy)%s"
 msgstr "%s (%dth copy)%s"
 
 #. localizers: appended to x1st file copy
-#: ../gsearchtool/gsearchtool-support.c:1578
+#: ../gsearchtool/gsearchtool-support.c:1570
 #, c-format
 msgid "%s (%dst copy)%s"
 msgstr "%s (%dst copy)%s"
 
 #. localizers: appended to x2nd file copy
-#: ../gsearchtool/gsearchtool-support.c:1580
+#: ../gsearchtool/gsearchtool-support.c:1572
 #, c-format
 msgid "%s (%dnd copy)%s"
 msgstr "%s (%dnd copy)%s"
 
 #. localizers: appended to x3rd file copy
-#: ../gsearchtool/gsearchtool-support.c:1582
+#: ../gsearchtool/gsearchtool-support.c:1574
 #, c-format
 msgid "%s (%drd copy)%s"
 msgstr "%s (%drd copy)%s"
 
-#: ../gsearchtool/gsearchtool-support.c:1629
+#: ../gsearchtool/gsearchtool-support.c:1621
 msgid " (invalid Unicode)"
 msgstr " (অবৈধ Unicode)"
 
 #. localizers: opening parentheses to match the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1718
+#: ../gsearchtool/gsearchtool-support.c:1710
 msgid " ("
 msgstr " ("
 
 #. localizers: opening parentheses of the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1726
+#: ../gsearchtool/gsearchtool-support.c:1718
 #, c-format
 msgid " (%d"
 msgstr " (%d"
@@ -3261,225 +3329,32 @@ msgstr "অনুসন্ধান থামাতে ক্লিক করু
 msgid "- the GNOME Search Tool"
 msgstr "- GNOME অনুসন্ধান ব্যবস্থা"
 
-#: ../logview/about.c:51 ../logview/logview.c:37 ../logview/main.c:54
-msgid "System Log Viewer"
-msgstr "System Log Viewer"
+#: ../logview/data/gnome-system-log.desktop.in.in.h:1
+#| msgid "Log Viewer"
+msgid "Log File Viewer"
+msgstr "লগ ফাইল প্রদর্শন ব্যবস্থা"
 
-#: ../logview/about.c:54
-msgid "A system log viewer for GNOME."
-msgstr "GNOME-এ ব্যবহারযোগ্য সিস্টেম লগ প্রদর্শক।"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:1
-msgid "System Log"
-msgstr "সিস্টেম লগ"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:2
+#: ../logview/data/gnome-system-log.desktop.in.in.h:2
 msgid "View or monitor system log files"
 msgstr "সিস্টেম লগ ফাইল পড়ুন অথবা পর্যবেক্ষণ করুন"
 
-#: ../logview/log_repaint.c:190
-#, c-format
-msgid "last update: %s"
-msgstr "সর্বশেষ পরিবর্তন : %s"
-
-#: ../logview/log_repaint.c:192
-#, c-format
-msgid "%d lines (%s) - %s"
-msgstr "%d পংক্তি (%s) - %s"
-
-#: ../logview/log_repaint.c:230
-msgid "Current"
-msgstr "সাম্প্রতিক"
-
-#: ../logview/logrtns.c:37
-msgid "One file or more could not be opened"
-msgstr "এক অথবা অধিক ফাইল খোলা যায়নি"
-
-#: ../logview/logrtns.c:59
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file.\n"
-msgstr ""
-"%s সাধারণ ব্যবহারকারীদের পড়ার জন্যে অনুমোদিত নয়। Root পরিচয়ে লগ-ইন করে "
-"প্রোগ্রামটি চালান অথবা সিস্টেম অ্যাডমিনিসট্রেটরকে ফাইলের অনুমতি পরিবর্তন করতে অনুরোধ "
-"করুন।\n"
-
-#: ../logview/logrtns.c:64
-#, c-format
-msgid "%s is too big."
-msgstr "%s অত্যাধিক বড়।"
-
-#: ../logview/logrtns.c:67
-#, c-format
-msgid "%s could not be opened."
-msgstr "%s খোলা যায়নি।"
-
-#: ../logview/logrtns.c:382
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s লগ ফাইল নয়।"
-
-#: ../logview/logrtns.c:388
-msgid "Not enough memory."
-msgstr "পর্যাপ্ত মেমরি উপস্থিত নেই।"
-
-#: ../logview/logrtns.c:402
-#, c-format
-msgid "%s cannot be opened."
-msgstr "%s খোলা যায়নি।"
-
-#: ../logview/logview-findbar.c:152
-msgid "_Filter:"
-msgstr "ফিল্টার করা হবে:(_F)"
-
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "পরিশ্রুত করুন (_C)"
-
-#: ../logview/logview.c:90
-msgid "_Open..."
-msgstr "খুলুন...(_O)"
-
-#: ../logview/logview.c:90
-msgid "Open a log from file"
-msgstr "ফাইল থেকে একটি লগ খুলুন"
-
-#: ../logview/logview.c:92
-msgid "_Close"
-msgstr "বন্ধ করুন (_C)"
-
-#: ../logview/logview.c:92
-msgid "Close this log"
-msgstr "বর্তমান লগ বন্ধ করুন"
-
-#: ../logview/logview.c:94
-msgid "_Quit"
-msgstr "প্রস্থান (_Q)"
-
-#: ../logview/logview.c:94
-msgid "Quit the log viewer"
-msgstr "লগ প্রদর্শক থেকে প্রস্থান"
-
-#: ../logview/logview.c:97
-msgid "_Copy"
-msgstr "কপি করুন(_C)"
-
-#: ../logview/logview.c:97
-msgid "Copy the selection"
-msgstr "নির্বাচিত অংশ কপি করুন"
-
-#: ../logview/logview.c:99
-msgid "Select the entire log"
-msgstr "সম্পূর্ণ লগ নির্বাচন করুন"
-
-# msgstr "খোঁজ"
-#: ../logview/logview.c:101
-msgid "_Filter..."
-msgstr "ফিল্টার করুন...(_F)"
-
-#: ../logview/logview.c:101
-msgid "Filter log"
-msgstr "ফিল্টার কর্ম সংক্রান্ত লগ"
-
-#: ../logview/logview.c:104
-msgid "Bigger text size"
-msgstr "হরফের মাপ বৃদ্ধি করুন"
-
-#: ../logview/logview.c:106
-msgid "Smaller text size"
-msgstr "হরফের মাপ হ্রাস করুন"
-
-#: ../logview/logview.c:108
-msgid "Normal text size"
-msgstr "হরফের স্বাভাবিক মাপ"
-
-#: ../logview/logview.c:111
-msgid "Collapse _All"
-msgstr "সমস্ত গুটিয়ে নিন (_A)"
-
-#: ../logview/logview.c:111
-msgid "Collapse all the rows"
-msgstr "সমগ্র সারি গুটিয়ে ফেলা হবে"
-
-#: ../logview/logview.c:114
-msgid "Open the help contents for the log viewer"
-msgstr "লগ প্রদর্শক সংক্রান্ত সহায়িকা প্রদর্শন"
-
-#: ../logview/logview.c:116
-msgid "Show the about dialog for the log viewer"
-msgstr "লগ প্রদর্শকের পরিচিতি প্রদর্শন"
-
-#: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "স্ট্যাটাস-বার(_S)"
-
-#: ../logview/logview.c:122
-msgid "Show Status Bar"
-msgstr "স্ট্যাটাস-বার প্রদর্শন করা হবে"
-
-#: ../logview/logview.c:124
-msgid "Side _Pane"
-msgstr "পার্শ্ববর্তী পেইন (_P)"
-
-#: ../logview/logview.c:124
-msgid "Show Side Pane"
-msgstr "পার্শ্ববর্তী পেইন প্রদর্শন করা হবে"
-
-#: ../logview/logview.c:126
-msgid "_Monitor"
-msgstr "পর্যবেক্ষণ ব্যবস্থা(_M)"
-
-#: ../logview/logview.c:126
-msgid "Monitor Current Log"
-msgstr "বর্তমান লগ পর্যবেক্ষণ করুন"
-
-#: ../logview/logview.c:128
-msgid "Ca_lendar"
-msgstr "বর্ষপঞ্জি(_l)"
-
-#: ../logview/logview.c:128
-msgid "Show Calendar Log"
-msgstr "বর্ষপঞ্জির লগ প্রদর্শন করা হবে"
-
-#: ../logview/logview.c:307
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (পর্যবেক্ষিত) - %s"
-
-#: ../logview/logview.c:518
-msgid "Open Log"
-msgstr "লগ খুলুন"
-
-#: ../logview/logview.c:906
-msgid "Version: "
-msgstr "সংস্করণ : "
-
-#: ../logview/logview.c:975
-msgid "Days"
-msgstr "দিন"
-
-#: ../logview/logview.c:976
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "বর্তমান লগের জন্য দিনের GSList-র প্রতি নির্দেশ করে।"
-
-#: ../logview/logview.schemas.in.h:1
+#: ../logview/data/gnome-system-log.schemas.in.h:1
 msgid "Height of the main window in pixels"
 msgstr "প্রধান উইন্ডোর উচ্চতা, পিক্সেল অনুযায়ী নির্ধারিত"
 
-#: ../logview/logview.schemas.in.h:2
+#: ../logview/data/gnome-system-log.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "প্রারম্ভে খোলার উদ্দেশ্যে চিহ্নিত লগ ফাইল"
 
-#: ../logview/logview.schemas.in.h:3
+#: ../logview/data/gnome-system-log.schemas.in.h:3
 msgid "Log files to open up on startup"
 msgstr "প্রারম্ভে খোলার উদ্দেশ্যে চিহ্নিত লগ ফাইল"
 
-#: ../logview/logview.schemas.in.h:4
+#: ../logview/data/gnome-system-log.schemas.in.h:4
 msgid "Size of the font used to display the log"
 msgstr "লগ প্রদর্শনের জন্য ব্যবহৃত ফন্টের মাপ"
 
-#: ../logview/logview.schemas.in.h:5
+#: ../logview/data/gnome-system-log.schemas.in.h:5
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
@@ -3487,11 +3362,11 @@ msgstr ""
 "প্রারম্ভে খোলার উদ্দেশ্যে লগ ফাইলের তালিকা উল্লেখ করে। /etc/syslog.conf ফাইল থেকে "
 "একটি ডিফল্ট তালিকা নির্মিত হয়।"
 
-#: ../logview/logview.schemas.in.h:6
+#: ../logview/data/gnome-system-log.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
 msgstr "লগ প্রদর্শনের প্রধান উইন্ডোর উচ্চতা, পিক্সেল অনুযায়ী নির্ধারিত হয়।"
 
-#: ../logview/logview.schemas.in.h:7
+#: ../logview/data/gnome-system-log.schemas.in.h:7
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
@@ -3499,107 +3374,244 @@ msgstr ""
 "প্রারম্ভে খোলার উদ্দেশ্যে লগ ফাইল নির্ধারণ করে। ব্যবহৃত অপারেটিং সিস্টেমের উপর ভিত্তি "
 "করে ডিফল্টরূপে /var/adm/messages অথবা /var/log/messages প্রয়োগ করা হবে।"
 
-#: ../logview/logview.schemas.in.h:8
+#: ../logview/data/gnome-system-log.schemas.in.h:8
 msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
-msgstr "মূল ট্রি-ভিউয়ের মধ্যে লগ প্রদর্শনের জন্য ব্যবহৃত স্থায়ী-প্রস্থের ফন্টের মাপ নির্ধারণ করে। টার্মিনালে ব্যবহৃত ডিফল্ট ফন্টের থেকে ডিফল্ট মান নির্ধারণ করা হয়।"
+msgstr ""
+"মূল ট্রি-ভিউয়ের মধ্যে লগ প্রদর্শনের জন্য ব্যবহৃত স্থায়ী-প্রস্থের ফন্টের মাপ নির্ধারণ করে। "
+"টার্মিনালে ব্যবহৃত ডিফল্ট ফন্টের থেকে ডিফল্ট মান নির্ধারণ করা হয়।"
 
-#: ../logview/logview.schemas.in.h:9
+#: ../logview/data/gnome-system-log.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
 msgstr "লগ প্রদর্শনের প্রধান উইন্ডোর প্রস্থ, পিক্সেল অনুযায়ী নির্ধারিত হয়।"
 
-#: ../logview/logview.schemas.in.h:10
+#: ../logview/data/gnome-system-log.schemas.in.h:10
 msgid "Width of the main window in pixels"
 msgstr "প্রধান উইন্ডোর প্রস্থ, পিক্সেল অনুযায়ী নির্ধারিত"
 
-#: ../logview/main.c:49
+#: ../logview/logview-about.h:49
+msgid ""
+"Log Viewer is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr "Log Viewer একটি মুক্ত সফ্টওয়্যার; Free Software Foundation দ্বারা প্রকাশিত GNU General Public License-র শর্তানুযায়ী এটি বিতরণ ও পরিবর্তন করা যাবে; লাইসেন্সের সংস্করণ ২ অথবা (আপনার সুবিধানুযায়ী) ঊর্ধ্বতন কোনো সংস্করণের অধীন।"
+
+#: ../logview/logview-about.h:53
+msgid ""
+"Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr "Log Viewer বিতরণ করার মূল উদ্দেশ্য যে ব্যবহারকারীরা এর দ্বারা উপকৃত হবেন, কিন্তু এটির জন্য কোনো সুস্পষ্ট ওয়ারেন্টি উপস্থিত নেই; বাণিজ্যিক ও কোনো সুনির্দিষ্ট কর্ম সাধনের জন্য অন্তর্নিহীত ওয়ারেন্টিও অনুপস্থিত। অধিক জানতে GNU General Public License পড়ুন।"
+
+#: ../logview/logview-about.h:57
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+msgstr "Log Viewer-র সাথে GNU General Public License-র একটি প্রতিলিপি উপলব্ধ হওয়া উচিত; না থাকলে নিম্নলিখিত ঠিকানায় লিখে তা সংগ্রহ করুন Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA"
+
+#: ../logview/logview-app.c:179
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "%s ফাইল প্রদর্শন করা সম্ভব নয়"
+
+# msgstr "পংক্তিটি খঁুজে পাওয়া যায়নি"
+#: ../logview/logview-findbar.c:169
+#| msgid "F_ind:"
+msgid "_Find:"
+msgstr "অনুসন্ধান: (_F)"
+
+#: ../logview/logview-findbar.c:184
+#| msgid "Find Pre_vious"
+msgid "Find Previous"
+msgstr "পূর্ববর্তী উপস্থিতি অনুসন্ধান"
+
+#: ../logview/logview-findbar.c:187
+msgid "Find previous occurrence of the search string"
+msgstr "অনুসন্ধান করা পংক্তির পূর্ববর্তী উপস্থিতি সনাক্ত করুন"
+
+# msgstr "পংক্তিটি খঁুজে পাওয়া যায়নি"
+#: ../logview/logview-findbar.c:192
+#| msgid "Find Ne_xt"
+msgid "Find Next"
+msgstr "পরবর্তী উপস্থিতি অনুসন্ধান"
+
+#: ../logview/logview-findbar.c:195
+msgid "Find next occurrence of the search string"
+msgstr "অনুসন্ধান করা পংক্তির পরবর্তী উপস্থিতি সনাক্ত করুন"
+
+#: ../logview/logview-findbar.c:202
+#| msgid "Select the \"%s\" search option"
+msgid "Clear the search string"
+msgstr "অনুসন্ধানের পংক্তির লেখার ক্ষেত্র থেকে তথ্য মুছে ফেলুন"
+
+#: ../logview/logview-log.c:595
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr "GZip করা লগ ফাইল আন-কম্প্রেস করতে ত্রুটি দেখা দিয়েছে। সম্ভবত ফাইলটি ত্রুটিপূর্ণ।"
+
+#: ../logview/logview-log.c:642
+#| msgid "You may not have write permissions to the document."
+msgid "You don't have enough permissions to read the file."
+msgstr "ফাইলটি পড়ার জন্য প্রয়োজনীয় অধিকার, আপনার নেই।"
+
+#: ../logview/logview-log.c:657
+msgid "The file is not a regular file or is not a text file."
+msgstr "ফাইলটি সাধারণ ফাইল অথবা টেক্সট ফাইল নয়।"
+
+#: ../logview/logview-log.c:739
+msgid "This version of System Log does not support GZipped logs."
+msgstr "System Log-র বর্তমান সংস্করণ দ্বারা GZip করা লগ ফাইল সমর্থিত হয় না।"
+
+#: ../logview/logview-loglist.c:311
+#| msgid "Scanning..."
+msgid "Loading..."
+msgstr "লোড করা হচ্ছে..."
+
+#: ../logview/logview-main.c:62
 msgid "Show the application's version"
 msgstr "অ্যাপ্লিকেশনের সংস্করণ সংখ্যা প্রদর্শন করা হবে"
 
-#: ../logview/main.c:55
-msgid "Show System Log Viewer options"
-msgstr "System Log Viewer সংক্রান্ত বিকল্প প্রদর্শন করা হবে"
+#: ../logview/logview-main.c:64
+msgid "[LOGFILE...]"
+msgstr "[LOGFILE...]"
 
-#: ../logview/main.c:59
+#: ../logview/logview-main.c:68
 msgid " - Browse and monitor logs"
 msgstr " - লগ ব্রাউজ ও পর্যবেক্ষণ করুন"
 
-#: ../logview/main.c:145
+#: ../logview/logview-main.c:102
 msgid "Log Viewer"
 msgstr "Log Viewer"
 
-#: ../logview/main.c:154
-msgid "Unable to create user interface."
-msgstr "ইউজার ইন্টারফেস নির্মাণ করতে ব্যর্থ।"
+#: ../logview/logview-window.c:39 ../logview/logview-window.c:596
+msgid "System Log Viewer"
+msgstr "System Log Viewer"
 
-#: ../logview/misc.c:42
-msgid "January"
-msgstr "জানুয়ারি"
-
-#: ../logview/misc.c:42
-msgid "February"
-msgstr "ফেব্রুয়ারি"
-
-#: ../logview/misc.c:42
-msgid "March"
-msgstr "মার্চ"
-
-#: ../logview/misc.c:42
-msgid "April"
-msgstr "এপ্রিল"
-
-#: ../logview/misc.c:42
-msgid "May"
-msgstr "মে"
-
-#: ../logview/misc.c:43
-msgid "June"
-msgstr "জুন"
-
-#: ../logview/misc.c:43
-msgid "July"
-msgstr "জুলাই"
-
-#: ../logview/misc.c:43
-msgid "August"
-msgstr "আগস্ট"
-
-#: ../logview/misc.c:43
-msgid "September"
-msgstr "সেপ্টেম্বর"
-
-#: ../logview/misc.c:43
-msgid "October"
-msgstr "অক্টোবর"
-
-#: ../logview/misc.c:44
-msgid "November"
-msgstr "নভেম্বর"
-
-#: ../logview/misc.c:44
-msgid "December"
-msgstr "ডিসেম্বর"
-
-#: ../logview/misc.c:164
-msgid "Invalid date"
-msgstr "তারিখ বৈধ নয়"
-
-#. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:169
+#: ../logview/logview-window.c:206
 #, c-format
-msgid "%x"
-msgstr "%x"
+msgid "last update: %s"
+msgstr "সর্বশেষ পরিবর্তন : %s"
 
-#: ../logview/monitor.c:83
-msgid "This file cannot be monitored."
-msgstr "চিহ্নিত ফাইল নিরীক্ষণ করা সম্ভব নয়।"
+#: ../logview/logview-window.c:209
+#, c-format
+msgid "%d lines (%s) - %s"
+msgstr "%d পংক্তি (%s) - %s"
 
-#: ../logview/monitor.c:86
-msgid "File monitoring is not supported on this file system.\n"
-msgstr "এই ফাইল-সিস্টেমে ফাইল নিরীক্ষণ ব্যবস্থা উপস্থিত নেই।\n"
+#: ../logview/logview-window.c:337
+msgid "Open Log"
+msgstr "লগ খুলুন"
 
-#: ../logview/monitor.c:88
-msgid "Gnome-VFS Error.\n"
-msgstr "Gnome-VFS সংক্রান্ত ত্রুটি।\n"
+# msgstr "'%s' ফাইলটিতে কিছু লেখা নেই"
+#: ../logview/logview-window.c:376
+#, c-format
+#| msgid "There was an error displaying help."
+msgid "There was an error displaying help: %s"
+msgstr "সাহায্য প্রদর্শন করতে সমস্যা: %s"
+
+#: ../logview/logview-window.c:492
+msgid "Wrapped"
+msgstr "বিভাজিত"
+
+#: ../logview/logview-window.c:601
+msgid "A system log viewer for GNOME."
+msgstr "GNOME-এ ব্যবহারযোগ্য সিস্টেম লগ প্রদর্শক।"
+
+#: ../logview/logview-window.c:642
+msgid "_Open..."
+msgstr "খুলুন...(_O)"
+
+#: ../logview/logview-window.c:642
+msgid "Open a log from file"
+msgstr "ফাইল থেকে একটি লগ খুলুন"
+
+#: ../logview/logview-window.c:644
+msgid "_Close"
+msgstr "বন্ধ করুন (_C)"
+
+#: ../logview/logview-window.c:644
+msgid "Close this log"
+msgstr "বর্তমান লগ বন্ধ করুন"
+
+#: ../logview/logview-window.c:646
+msgid "_Quit"
+msgstr "প্রস্থান (_Q)"
+
+#: ../logview/logview-window.c:646
+msgid "Quit the log viewer"
+msgstr "লগ প্রদর্শক থেকে প্রস্থান"
+
+#: ../logview/logview-window.c:649
+msgid "_Copy"
+msgstr "কপি করুন(_C)"
+
+#: ../logview/logview-window.c:649
+msgid "Copy the selection"
+msgstr "নির্বাচিত অংশ কপি করুন"
+
+#: ../logview/logview-window.c:651
+msgid "Select the entire log"
+msgstr "সম্পূর্ণ লগ নির্বাচন করুন"
+
+#: ../logview/logview-window.c:653
+#| msgid "_Print..."
+msgid "_Find..."
+msgstr "অনুসন্ধান...(_F)"
+
+#: ../logview/logview-window.c:653
+#| msgid "Find a word or phrase in the document"
+msgid "Find a word or phrase in the log"
+msgstr "লগের মধ্যে একটি শব্দ অথবা পংক্তি সন্ধান করুন"
+
+#: ../logview/logview-window.c:656
+msgid "Bigger text size"
+msgstr "হরফের মাপ বৃদ্ধি করুন"
+
+#: ../logview/logview-window.c:658
+msgid "Smaller text size"
+msgstr "হরফের মাপ হ্রাস করুন"
+
+#: ../logview/logview-window.c:660
+msgid "Normal text size"
+msgstr "হরফের স্বাভাবিক মাপ"
+
+#: ../logview/logview-window.c:663
+msgid "Open the help contents for the log viewer"
+msgstr "লগ প্রদর্শক সংক্রান্ত সহায়িকা প্রদর্শন"
+
+#: ../logview/logview-window.c:665
+msgid "Show the about dialog for the log viewer"
+msgstr "লগ প্রদর্শকের পরিচিতি প্রদর্শন"
+
+#: ../logview/logview-window.c:670
+msgid "_Statusbar"
+msgstr "স্ট্যাটাস-বার(_S)"
+
+#: ../logview/logview-window.c:670
+msgid "Show Status Bar"
+msgstr "স্ট্যাটাস-বার প্রদর্শন করা হবে"
+
+#: ../logview/logview-window.c:672
+msgid "Side _Pane"
+msgstr "পার্শ্ববর্তী পেইন (_P)"
+
+#: ../logview/logview-window.c:672
+msgid "Show Side Pane"
+msgstr "পার্শ্ববর্তী পেইন প্রদর্শন করা হবে"
+
+#: ../logview/logview-window.c:1165
+#| msgid "_Close"
+msgid "Close"
+msgstr "বন্ধ করুন"
+
+#: ../logview/logview-window.c:1205
+msgid "Version: "
+msgstr "সংস্করণ : "
+
+#: ../logview/logview-window.c:1305
+#| msgid "Could not open folder \"%s\""
+msgid "Could not open the following files:"
+msgstr "নিম্নলিখিত ফাইল খুলতে ব্যর্থ:"
 
