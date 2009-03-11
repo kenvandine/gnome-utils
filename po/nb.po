@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils 2.25.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-10 07:56+0100\n"
-"PO-Revision-Date: 2009-02-10 07:57+0100\n"
+"POT-Creation-Date: 2009-03-11 22:38+0100\n"
+"PO-Revision-Date: 2009-03-11 22:40+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian/Bokmaal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -289,27 +289,27 @@ msgstr "Lagre snapshot"
 msgid "_Image type:"
 msgstr "B_ildetype:"
 
-#: ../baobab/src/baobab-prefs.c:171
+#: ../baobab/src/baobab-prefs.c:172
 msgid "Scan"
 msgstr "Søk"
 
-#: ../baobab/src/baobab-prefs.c:178
+#: ../baobab/src/baobab-prefs.c:179
 msgid "Device"
 msgstr "Enhet"
 
-#: ../baobab/src/baobab-prefs.c:186
+#: ../baobab/src/baobab-prefs.c:187
 msgid "Mount Point"
 msgstr "Monteringspunkt"
 
-#: ../baobab/src/baobab-prefs.c:194
+#: ../baobab/src/baobab-prefs.c:195
 msgid "Filesystem Type"
 msgstr "Type filsystem"
 
-#: ../baobab/src/baobab-prefs.c:202
+#: ../baobab/src/baobab-prefs.c:203
 msgid "Total Size"
 msgstr "Total størrelse"
 
-#: ../baobab/src/baobab-prefs.c:211
+#: ../baobab/src/baobab-prefs.c:212
 msgid "Available"
 msgstr "Tilgjengelig"
 
@@ -2077,78 +2077,82 @@ msgstr "Tilgjengelige strategier"
 msgid "Dictionary sources"
 msgstr "Ordbokkilder"
 
-#: ../gnome-screenshot/gnome-screenshot.c:128
+#: ../gnome-screenshot/gnome-screenshot.c:131
 msgid "Error loading the help page"
 msgstr "Feil under lasting av hjelpsiden"
 
-#: ../gnome-screenshot/gnome-screenshot.c:232
+#: ../gnome-screenshot/gnome-screenshot.c:242
 msgid "None"
 msgstr "Ingen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:233
+#: ../gnome-screenshot/gnome-screenshot.c:243
 msgid "Drop shadow"
 msgstr "Skygge"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:244
 msgid "Border"
 msgstr "Kant"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:337
+#: ../gnome-screenshot/gnome-screenshot.c:347
 msgid "Include _pointer"
 msgstr "Ta med _peker"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:346
+#: ../gnome-screenshot/gnome-screenshot.c:356
 msgid "Include the window _border"
 msgstr "Ta med vin_dukant"
 
-#: ../gnome-screenshot/gnome-screenshot.c:361
+#: ../gnome-screenshot/gnome-screenshot.c:371
 msgid "Apply _effect:"
 msgstr "Bruk _effekt:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:423
+#: ../gnome-screenshot/gnome-screenshot.c:433
 msgid "Grab the whole _desktop"
 msgstr "Ta skjermdump av hele skrivebor_det"
 
-#: ../gnome-screenshot/gnome-screenshot.c:435
+#: ../gnome-screenshot/gnome-screenshot.c:445
 msgid "Grab the current _window"
 msgstr "Ta skjermdump av aktivt _vindu"
+
+#: ../gnome-screenshot/gnome-screenshot.c:457
+msgid "Grab a selected _area"
+msgstr "Dump valgt _område"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:452
+#: ../gnome-screenshot/gnome-screenshot.c:474
 msgid "Grab _after a delay of"
 msgstr "T_a skjermdump etter"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:472
-#: ../gnome-screenshot/gnome-screenshot.c:1182
+#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/gnome-screenshot.c:1246
 msgid "seconds"
 msgstr "sekunder"
 
-#: ../gnome-screenshot/gnome-screenshot.c:488
-#: ../gnome-screenshot/gnome-screenshot.c:498
+#: ../gnome-screenshot/gnome-screenshot.c:510
+#: ../gnome-screenshot/gnome-screenshot.c:520
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Ta skjermdump"
 
-#: ../gnome-screenshot/gnome-screenshot.c:499
+#: ../gnome-screenshot/gnome-screenshot.c:521
 msgid "Effects"
 msgstr "Effekter"
 
-#: ../gnome-screenshot/gnome-screenshot.c:505
+#: ../gnome-screenshot/gnome-screenshot.c:527
 msgid "Take _Screenshot"
 msgstr "Ta _skjermdump"
 
-#: ../gnome-screenshot/gnome-screenshot.c:631
+#: ../gnome-screenshot/gnome-screenshot.c:653
 msgid "Error while saving screenshot"
 msgstr "Feil ved lagring av skjermdump"
 
-#: ../gnome-screenshot/gnome-screenshot.c:635
+#: ../gnome-screenshot/gnome-screenshot.c:657
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
@@ -2159,11 +2163,11 @@ msgstr ""
 " Feilen var %s.\n"
 " Vennligst velg en annen lokasjon og prøv igjen."
 
-#: ../gnome-screenshot/gnome-screenshot.c:782
+#: ../gnome-screenshot/gnome-screenshot.c:804
 msgid "Unable to take a screenshot of the current window"
 msgstr "Kan ikke ta skjermdump av dette vinduet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:824
+#: ../gnome-screenshot/gnome-screenshot.c:852
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Skjermdump-%s.png"
@@ -2171,14 +2175,14 @@ msgstr "Skjermdump-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:831
+#: ../gnome-screenshot/gnome-screenshot.c:859
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Skjermdump-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:841
+#: ../gnome-screenshot/gnome-screenshot.c:869
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2187,42 +2191,53 @@ msgstr "Skjermdump.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:848
+#: ../gnome-screenshot/gnome-screenshot.c:876
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Skjermdump-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1179
+#: ../gnome-screenshot/gnome-screenshot.c:1242
 msgid "Grab a window instead of the entire screen"
 msgstr "Dump et vindu i stedet for hele skjermen"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1180
+#: ../gnome-screenshot/gnome-screenshot.c:1243
+msgid "Grab an area of the screen instead of the entire screen"
+msgstr "Dump en del av skjermen i stedet for hele området"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "Include the window border with the screenshot"
 msgstr "Ta med vinduskant i skjermdumpet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1181
+#: ../gnome-screenshot/gnome-screenshot.c:1245
 msgid "Remove the window border from the screenshot"
 msgstr "Fjern vinduskanten i skjermdumpet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1182
+#: ../gnome-screenshot/gnome-screenshot.c:1246
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Ta skjermdump etter oppgitt pause [i sekunder]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1183
+#: ../gnome-screenshot/gnome-screenshot.c:1247
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effekt som skal brukes på vinduskanten (skygge, kant eller ingen)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1183
+#: ../gnome-screenshot/gnome-screenshot.c:1247
 msgid "effect"
 msgstr "effekt"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1184
+#: ../gnome-screenshot/gnome-screenshot.c:1248
 msgid "Interactively set options"
 msgstr "Spør etter alternativer"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1193
+#: ../gnome-screenshot/gnome-screenshot.c:1259
 msgid "Take a picture of the screen"
 msgstr "Ta et bilde av skjermen"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1277
+#, c-format
+msgid ""
+"Conflicting options: --window and --area should not be used at the same "
+"time.\n"
+msgstr "Konflikt mellom flagg: --window og --area kan ikke brukes samtidig.\n"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
@@ -2334,7 +2349,7 @@ msgid "Unknown error saving screenshot to disk"
 msgstr "Ukjent feil under lagring av skjermdump til disk"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:486
+#: ../gnome-screenshot/screenshot-utils.c:828
 msgid "Untitled Window"
 msgstr "Vindu uten tittel"
 
@@ -2793,7 +2808,7 @@ msgstr "Dokumentnavnet du valgte er en mappe."
 msgid "You may not have write permissions to the document."
 msgstr "Du har ikke skriverettigheter til dokumentet."
 
-#: ../gsearchtool/gsearchtool-support.c:71
+#: ../gsearchtool/gsearchtool-support.c:70
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -2807,24 +2822,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:640
+#: ../gsearchtool/gsearchtool-support.c:639
 msgid "today at %-I:%M %p"
 msgstr "i dag kl. %H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:642
+#: ../gsearchtool/gsearchtool-support.c:641
 msgid "yesterday at %-I:%M %p"
 msgstr "i går kl. %H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:644
-#: ../gsearchtool/gsearchtool-support.c:646
+#: ../gsearchtool/gsearchtool-support.c:643
+#: ../gsearchtool/gsearchtool-support.c:645
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %-d.%m.%y, %H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:825
+#: ../gsearchtool/gsearchtool-support.c:824
 msgid "link (broken)"
 msgstr "lenke (ødelagt)"
 
-#: ../gsearchtool/gsearchtool-support.c:829
+#: ../gsearchtool/gsearchtool-support.c:828
 #, c-format
 msgid "link to %s"
 msgstr "lenke til %s"
@@ -2835,12 +2850,12 @@ msgstr "lenke til %s"
 #. * make some or all of them match.
 #.
 #. localizers: tag used to detect the first copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1532
+#: ../gsearchtool/gsearchtool-support.c:1524
 msgid " (copy)"
 msgstr " (kopi)"
 
 #. localizers: tag used to detect the second copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1534
+#: ../gsearchtool/gsearchtool-support.c:1526
 msgid " (another copy)"
 msgstr " (annen kopi)"
 
@@ -2848,36 +2863,36 @@ msgstr " (annen kopi)"
 #. localizers: tag used to detect the x12th copy of a file
 #. localizers: tag used to detect the x13th copy of a file
 #. localizers: tag used to detect the xxth copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1537
-#: ../gsearchtool/gsearchtool-support.c:1539
-#: ../gsearchtool/gsearchtool-support.c:1541
-#: ../gsearchtool/gsearchtool-support.c:1551
+#: ../gsearchtool/gsearchtool-support.c:1529
+#: ../gsearchtool/gsearchtool-support.c:1531
+#: ../gsearchtool/gsearchtool-support.c:1533
+#: ../gsearchtool/gsearchtool-support.c:1543
 msgid "th copy)"
 msgstr ". kopi)"
 
 #. localizers: tag used to detect the x1st copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1544
+#: ../gsearchtool/gsearchtool-support.c:1536
 msgid "st copy)"
 msgstr ". kopi)"
 
 #. localizers: tag used to detect the x2nd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1546
+#: ../gsearchtool/gsearchtool-support.c:1538
 msgid "nd copy)"
 msgstr ". kopi)"
 
 #. localizers: tag used to detect the x3rd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1548
+#: ../gsearchtool/gsearchtool-support.c:1540
 msgid "rd copy)"
 msgstr ". kopi)"
 
 #. localizers: appended to first file copy
-#: ../gsearchtool/gsearchtool-support.c:1565
+#: ../gsearchtool/gsearchtool-support.c:1557
 #, c-format
 msgid "%s (copy)%s"
 msgstr "%s (kopi)%s"
 
 #. localizers: appended to second file copy
-#: ../gsearchtool/gsearchtool-support.c:1567
+#: ../gsearchtool/gsearchtool-support.c:1559
 #, c-format
 msgid "%s (another copy)%s"
 msgstr "%s (en annen kopi)%s"
@@ -2886,43 +2901,43 @@ msgstr "%s (en annen kopi)%s"
 #. localizers: appended to x12th file copy
 #. localizers: appended to x13th file copy
 #. localizers: appended to xxth file copy
-#: ../gsearchtool/gsearchtool-support.c:1570
-#: ../gsearchtool/gsearchtool-support.c:1572
-#: ../gsearchtool/gsearchtool-support.c:1574
-#: ../gsearchtool/gsearchtool-support.c:1583
+#: ../gsearchtool/gsearchtool-support.c:1562
+#: ../gsearchtool/gsearchtool-support.c:1564
+#: ../gsearchtool/gsearchtool-support.c:1566
+#: ../gsearchtool/gsearchtool-support.c:1575
 #, c-format
 msgid "%s (%dth copy)%s"
 msgstr "%s (%d. kopi)%s"
 
 #. localizers: appended to x1st file copy
-#: ../gsearchtool/gsearchtool-support.c:1577
+#: ../gsearchtool/gsearchtool-support.c:1569
 #, c-format
 msgid "%s (%dst copy)%s"
 msgstr "%s (%d. kopi)%s"
 
 #. localizers: appended to x2nd file copy
-#: ../gsearchtool/gsearchtool-support.c:1579
+#: ../gsearchtool/gsearchtool-support.c:1571
 #, c-format
 msgid "%s (%dnd copy)%s"
 msgstr "%s (%d. kopi)%s"
 
 #. localizers: appended to x3rd file copy
-#: ../gsearchtool/gsearchtool-support.c:1581
+#: ../gsearchtool/gsearchtool-support.c:1573
 #, c-format
 msgid "%s (%drd copy)%s"
 msgstr "%s (%d. kopi)%s"
 
-#: ../gsearchtool/gsearchtool-support.c:1628
+#: ../gsearchtool/gsearchtool-support.c:1620
 msgid " (invalid Unicode)"
 msgstr " (ugyldig Unicode)"
 
 #. localizers: opening parentheses to match the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1717
+#: ../gsearchtool/gsearchtool-support.c:1709
 msgid " ("
 msgstr " ("
 
 #. localizers: opening parentheses of the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1725
+#: ../gsearchtool/gsearchtool-support.c:1717
 #, c-format
 msgid " (%d"
 msgstr " (%d"
@@ -3372,7 +3387,7 @@ msgid ""
 "Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
 msgstr ""
 
-#: ../logview/logview-app.c:179
+#: ../logview/logview-app.c:375
 #, c-format
 msgid "Impossible to open the file %s"
 msgstr "Kam ikke åpne filen %s"
