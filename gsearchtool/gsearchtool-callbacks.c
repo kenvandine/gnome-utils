@@ -172,8 +172,8 @@ click_help_cb (GtkWidget * widget,
 	GtkWidget * window = data;
 	GError * error = NULL;
 
-	gnome_help_display_desktop_on_screen (NULL, "gnome-search-tool", "gnome-search-tool",
-	                                      NULL, gtk_widget_get_screen (widget), &error);
+	gtk_show_uri (gtk_widget_get_screen (widget), "ghelp:gnome-search-tool",  
+	              gtk_get_current_event_time (), &error);
 	if (error) {
 		GtkWidget * dialog;
 
