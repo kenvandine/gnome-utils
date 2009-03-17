@@ -1,3 +1,44 @@
+2009-03-16  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* Makefile.am:
+	* gnome-search-tool.schemas.in:
+	* gsearchtool-callbacks.c (look_in_folder_changed_cb),
+	(open_file_event_cb), (open_file_cb), (open_folder_cb),
+	(file_changed_cb), (move_to_trash_cb), (file_key_press_event_cb),
+	(open_with_list_sort), (build_popup_menu_for_file),
+	(file_button_release_event_cb), (file_event_after_cb),
+	(file_motion_notify_cb), (drag_file_cb):
+	* gsearchtool-callbacks.h:
+	* gsearchtool-spinner.c (gsearch_spinner_cache_data_load),
+	(bump_spinner_frame_cb):
+	* gsearchtool-support.c (gsearchtool_gconf_set_string),
+	(escape_double_quotes), (backslash_backslash_characters),
+	(backslash_special_characters), (get_file_type_description),
+	(gsearchtool_get_thumbnail_image), (get_themed_icon_pixbuf),
+	(get_file_pixbuf), (open_file_with_application), (launch_file):
+	* gsearchtool-support.h:
+	* gsearchtool.c (setup_find_name_options), (start_animation),
+	(stop_animation), (build_search_command),
+	(add_file_to_search_results), (update_search_counts),
+	(intermediate_file_count_update), (tree_model_iter_free_monitor),
+	(set_constraint_gconf_boolean), (handle_goption_args),
+	(create_search_results_section), (set_clone_command),
+	(handle_gconf_settings), (gsearch_app_create), (main):
+	* gsearchtool.h:
+	Bug 543713: Port application from gnome-vfs to gio 
+	Bug 524574: Use the new gio trash system
+	Bug 573670: Remove use of gnome-thumbnail from libgnomeui
+	Bug 567159: Display resize cursor on column headers
+	Bug 544136: Popup menu enhancement - adds "Open With"
+	Bug 473474: Save and restore "Look in Folder" selection 
+	Bug 557253: Change the "Include other filesystems." option 
+	            to "Exclude other filesystems."
+	Bug 531134: Open folders with the default handler, allows 
+	            folders to open in thunar for XFCE
+	Bug 545304: Search fails on none UTF-8 locales
+	Bug 522396: Search fails if apostrophe in folder name
+	Bug 531193: Opening files of certain types fails
+		    
 2009-02-25  Cosimo Cecchi  <cosimoc@gnome.org>
 
 	* gsearchtool.h: get rid of deprecated GTK_CHECK_* macros.

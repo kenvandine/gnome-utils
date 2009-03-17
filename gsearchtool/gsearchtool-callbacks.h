@@ -76,16 +76,23 @@ void
 name_contains_activate_cb (GtkWidget * widget,
                            gpointer data);
 void
-open_file_cb (GtkAction * action,
+look_in_folder_changed_cb (GtkWidget * widget,
+                           gpointer data);
+void
+open_file_cb (GtkMenuItem * action,
               gpointer data);
+void
+open_file_event_cb (GtkWidget * widget,
+                    GdkEventButton * event,
+                    gpointer data);
 void
 open_folder_cb (GtkAction * action,
                 gpointer data);
 void
-file_changed_cb (GnomeVFSMonitorHandle * handle,
+file_changed_cb (GFileMonitor * handle,
                  const gchar * monitor_uri,
                  const gchar * info_uri,
-                 GnomeVFSMonitorEventType event_type,
+                 GFileMonitorEvent event_type,
                  gpointer data);
 void
 move_to_trash_cb (GtkAction * action,
@@ -101,13 +108,6 @@ drag_file_cb (GtkWidget * widget,
               guint info,
               guint time,
               gpointer data);
-void
-drag_data_animation_cb (GtkWidget * widget,
-                        GdkDragContext * context,
-                        GtkSelectionData * selection_data,
-                        guint info,
-                        guint time,
-                        gpointer data);
 void
 show_file_selector_cb (GtkAction * action,
                        gpointer data);

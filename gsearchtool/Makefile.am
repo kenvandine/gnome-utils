@@ -4,7 +4,6 @@ SUBDIRS = data help
 
 INCLUDES = 	\
 	$(GNOME_UTILS_CFLAGS)					\
-	$(GNOMEVFS_CFLAGS)					\
 	$(GNOMEDESKTOP_CFLAGS)					\
 	$(LIBGNOME_CFLAGS)					\
 	-DG_DISABLE_DEPRECATED					\
@@ -33,7 +32,6 @@ gnome_search_tool_SOURCES =     \
 gnome_search_tool_LDADD =   \
 	$(LIBGNOME_LIBS)    \
 	$(GNOME_UTILS_LIBS) \
-	$(GNOMEVFS_LIBS)    \
 	$(GNOMEDESKTOP_LIBS)
 
 man_MANS = gnome-search-tool.1

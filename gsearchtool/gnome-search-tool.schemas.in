@@ -239,17 +239,17 @@ To change the gconftool target use the - -config-source=blah option to gconftool
       </locale>
     </schema>
     <schema>
-      <applyto>/apps/gnome-search-tool/select/include_other_filesystems</applyto>
-      <key>/schemas/apps/gnome-search-tool/select/include_other_filesystems</key>
+      <applyto>/apps/gnome-search-tool/select/exclude_other_filesystems</applyto>
+      <key>/schemas/apps/gnome-search-tool/select/exclude_other_filesystems</key>
       <owner>gnome-search-tool</owner>
       <type>bool</type>
       <default>FALSE</default>
       <locale name="C">
         <short><!-- Translators: The quoted text is the label of an available 
         search option that is translated elsewhere. -->Select the search option 
-        "Include other filesystems"</short>
+        "Exclude other filesystems"</short>
         <long>
-          This key determines if the "Include other filesystems" search option 
+          This key determines if the "Exclude other filesystems" search option 
 	  is selected when the search tool is started.
         </long>
       </locale>
@@ -372,6 +372,20 @@ To change the gconftool target use the - -config-source=blah option to gconftool
 	<long>
 	  This key determines if the search tool window starts in a maximized
 	  state.
+	</long>
+      </locale>
+    </schema>
+    <schema>
+      <applyto>/apps/gnome-search-tool/look_in_folder</applyto>
+      <key>/schemas/apps/gnome-search-tool/look_in_folder</key>
+      <owner>gnome-search-tool</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Look in Folder</short>
+	<long>
+	  This key defines the default value of the "Look in Folder"
+	  widget.
 	</long>
       </locale>
     </schema>

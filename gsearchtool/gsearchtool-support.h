@@ -52,6 +52,10 @@ gsearchtool_gconf_set_int (const gchar * key,
 char *
 gsearchtool_gconf_get_string (const gchar * key);
 
+void
+gsearchtool_gconf_set_string (const gchar * key,
+                              const gchar * value);
+
 GSList *
 gsearchtool_gconf_get_list (const gchar * key,
                             GConfValueType list_type);
@@ -86,6 +90,12 @@ gchar *
 escape_single_quotes (const gchar * string);
 
 gchar *
+escape_double_quotes (const gchar * string);
+
+gchar *
+backslash_backslash_characters (const gchar * string);
+
+gchar *
 backslash_special_characters (const gchar * string);
 
 gchar *
@@ -99,17 +109,17 @@ gsearchtool_strdup_strftime (const gchar * format,
                              struct tm * time_pieces);
 gchar *
 get_file_type_description (const gchar * file,
-                           GnomeVFSFileInfo * file_info);
+                           GFileInfo * file_info);
 GdkPixbuf *
 get_file_pixbuf (GSearchWindow * gsearch,
-                 const gchar * file,
-                 GnomeVFSFileInfo * file_info);
+                 GFileInfo * file_info);
 gboolean
 open_file_with_nautilus (GtkWidget * window,
                          const gchar * file);
 gboolean
 open_file_with_application (GtkWidget * window,
-                            const gchar * file);
+                            const gchar * file,
+                            GAppInfo * app);
 gboolean
 launch_file (const gchar * file);
 

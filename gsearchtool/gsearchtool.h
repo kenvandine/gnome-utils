@@ -115,6 +115,7 @@ struct _GSearchWindow {
 	GtkWidget             * files_found_label;
 	GtkWidget             * search_results_vbox;
 	GtkWidget             * search_results_popup_menu;
+	GtkWidget             * search_results_popup_submenu;
 	GtkWidget             * search_results_save_results_as_item;
 	GtkTreeView           * search_results_tree_view;
 	GtkListStore          * search_results_list_store;
@@ -125,7 +126,6 @@ struct _GSearchWindow {
 	GHashTable            * search_results_filename_hash_table;
 	GHashTable            * search_results_pixbuf_hash_table;
 	gchar                 * search_results_date_format_string;
-	GnomeThumbnailFactory * thumbnail_factory;
 	gint		        show_thumbnails_file_size_limit;
 	gboolean		show_thumbnails;
 	gboolean                is_search_results_single_click_to_activate;
@@ -169,7 +169,7 @@ struct _GSearchWindowClass {
 struct _GSearchMonitor {
 	GSearchWindow         * gsearch;
 	GtkTreeRowReference   * reference;
-	GnomeVFSMonitorHandle * handle;
+	GFileMonitor          * handle;
 };
 
 GType
@@ -205,9 +205,6 @@ set_clone_command (GSearchWindow * gsearch,
                    gchar *** argvp,
                    gpointer client_data,
                    gboolean escape_values);
-gchar *
-get_desktop_item_name (GSearchWindow * gsearch);
-
 void
 update_search_counts (GSearchWindow * gsearch);
 
