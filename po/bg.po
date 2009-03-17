@@ -1,19 +1,19 @@
 # Bulgarian translation of gnome-utils po-file.
-# Copyright (C) 2002, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2002, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 # Borislav Aleksandrov <B.Aleksandrov@cnsys.bg>, 2002.
 # Vladimir Petkov <vpetkov@i-space.org>, 2004, 2005.
 # Peter Slavov <pslavov@i-space.org>, 2004.
 # Yavor Doganov <yavor@doganov.org>, 2005.
 # Rostislav Raykov <zbrox@i-space.org>, 2006.
-# Alexander Shopov <ash@contact.bg>, 2006, 2007, 2008.
+# Alexander Shopov <ash@contact.bg>, 2006, 2007, 2008, 2009.
 #
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-12 23:06+0300\n"
-"PO-Revision-Date: 2008-09-12 15:43+0300\n"
+"POT-Creation-Date: 2009-03-17 13:42+0200\n"
+"PO-Revision-Date: 2009-03-17 13:41+0200\n"
 "Last-Translator: Alexander Shopov <ash@contact.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "MIME-Version: 1.0\n"
@@ -112,12 +112,12 @@ msgstr "_Свиване на всичко"
 
 #. Help menu
 #: ../baobab/data/baobab.glade.h:22
-#: ../gnome-dictionary/src/gdict-window.c:1238 ../logview/logview.c:114
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:663
 msgid "_Contents"
 msgstr "_Ръководство"
 
 #: ../baobab/data/baobab.glade.h:23
-#: ../gnome-dictionary/src/gdict-window.c:1185 ../logview/logview.c:86
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:638
 msgid "_Edit"
 msgstr "_Редактиране"
 
@@ -127,7 +127,7 @@ msgstr "_Разширяване на всичко"
 
 #: ../baobab/data/baobab.glade.h:25
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1188 ../logview/logview.c:88
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:640
 msgid "_Help"
 msgstr "Помо_щ"
 
@@ -140,7 +140,7 @@ msgid "_Toolbar"
 msgstr "Лента с _инструменти"
 
 #: ../baobab/data/baobab.glade.h:28
-#: ../gnome-dictionary/src/gdict-window.c:1186 ../logview/logview.c:87
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:639
 msgid "_View"
 msgstr "_Изглед"
 
@@ -187,73 +187,77 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr ""
 "Дали лентата за инструментите в основния прозорец на програмата да е видима"
 
-#: ../baobab/src/baobab.c:123 ../baobab/src/baobab.c:301
+#: ../baobab/src/baobab.c:121 ../baobab/src/baobab.c:299
 msgid "Scanning..."
 msgstr "Търсене…"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:185 ../baobab/src/baobab.c:243
+#: ../baobab/src/baobab.c:183 ../baobab/src/baobab.c:241
 #: ../baobab/src/callbacks.c:302
 msgid "Calculating percentage bars..."
 msgstr "Изчисляване на процентните стълбове…"
 
-#: ../baobab/src/baobab.c:195 ../baobab/src/baobab.c:972
+#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:998
 #: ../baobab/src/callbacks.c:306
 msgid "Ready"
 msgstr "Готово"
 
-#: ../baobab/src/baobab.c:336
+#: ../baobab/src/baobab.c:338
 msgid "Total filesystem usage:"
 msgstr "Общо използване на файловата система:"
 
-#: ../baobab/src/baobab.c:375
+#: ../baobab/src/baobab.c:377
 msgid "contains hardlinks for:"
 msgstr "съдържа твърди връзки към:"
 
-#: ../baobab/src/baobab.c:384
+#: ../baobab/src/baobab.c:386
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d обект"
 msgstr[1] "% 5d обекта"
 
-#: ../baobab/src/baobab.c:722
+#: ../baobab/src/baobab.c:737
 msgid "Could not initialize monitoring"
 msgstr "Неуспех при инициализирането на наблюдението"
 
-#: ../baobab/src/baobab.c:723
+#: ../baobab/src/baobab.c:738
 msgid "Changes to your home folder will not be monitored."
 msgstr "Промените в домашната ви папка няма да се наблюдават."
 
-#: ../baobab/src/baobab.c:768
+#: ../baobab/src/baobab.c:783
 msgid "Move to parent folder"
 msgstr "Преместване в родителската папка"
 
-#: ../baobab/src/baobab.c:772
+#: ../baobab/src/baobab.c:787
 msgid "Zoom in"
 msgstr "Увеличаване"
 
-#: ../baobab/src/baobab.c:776
+#: ../baobab/src/baobab.c:791
 msgid "Zoom out"
 msgstr "Намаляване"
 
-#: ../baobab/src/baobab.c:780
+#: ../baobab/src/baobab.c:795
 msgid "Save snapshot"
 msgstr "Запазване на снимка на екрана"
 
-#: ../baobab/src/baobab.c:828
+#: ../baobab/src/baobab.c:843
 msgid "View as Rings Chart"
 msgstr "Пръстеновидна графика"
 
-#: ../baobab/src/baobab.c:830
+#: ../baobab/src/baobab.c:845
 msgid "View as Treemap Chart"
 msgstr "Дървовидна графика"
 
-#: ../baobab/src/baobab.c:942
+#: ../baobab/src/baobab.c:917
+msgid "Cannot check an excluded folder!"
+msgstr "Пропусната папка няма да бъде проверена!"
+
+#: ../baobab/src/baobab.c:968
 msgid "Could not detect any mount point."
 msgstr "Не може да се открие точка на монтиране."
 
-#: ../baobab/src/baobab.c:945
+#: ../baobab/src/baobab.c:971
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr ""
 "Използваното пространство на диска не може да бъде анализирано без точка на "
@@ -296,31 +300,31 @@ msgstr "Запазване на снимка на екрана"
 msgid "_Image type:"
 msgstr "_Вид на изображението:"
 
-#: ../baobab/src/baobab-prefs.c:171
+#: ../baobab/src/baobab-prefs.c:172
 msgid "Scan"
 msgstr "Търсене"
 
-#: ../baobab/src/baobab-prefs.c:178
+#: ../baobab/src/baobab-prefs.c:179
 msgid "Device"
 msgstr "Устройство"
 
-#: ../baobab/src/baobab-prefs.c:186
+#: ../baobab/src/baobab-prefs.c:187
 msgid "Mount Point"
 msgstr "Точка на монтиране"
 
-#: ../baobab/src/baobab-prefs.c:194
+#: ../baobab/src/baobab-prefs.c:195
 msgid "Filesystem Type"
 msgstr "Вид на файлова система:"
 
-#: ../baobab/src/baobab-prefs.c:202
+#: ../baobab/src/baobab-prefs.c:203
 msgid "Total Size"
 msgstr "Общ размер"
 
-#: ../baobab/src/baobab-prefs.c:211
+#: ../baobab/src/baobab-prefs.c:212
 msgid "Available"
 msgstr "Налични"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:78
+#: ../baobab/src/baobab-remote-connect-dialog.c:77
 #, c-format
 msgid "Cannot scan location \"%s\""
 msgstr "Местоположението „%s“ не може да бъде претърсено"
@@ -408,7 +412,7 @@ msgstr "Вид _услуга:"
 msgid "_Scan"
 msgstr "_Търсене"
 
-#: ../baobab/src/baobab-treeview.c:209 ../gsearchtool/gsearchtool.c:2497
+#: ../baobab/src/baobab-treeview.c:209 ../gsearchtool/gsearchtool.c:2384
 msgid "Folder"
 msgstr "Папка"
 
@@ -416,7 +420,7 @@ msgstr "Папка"
 msgid "Usage"
 msgstr "Употреба"
 
-#: ../baobab/src/baobab-treeview.c:245 ../gsearchtool/gsearchtool.c:2509
+#: ../baobab/src/baobab-treeview.c:245 ../gsearchtool/gsearchtool.c:2396
 msgid "Size"
 msgstr "Размер"
 
@@ -433,63 +437,64 @@ msgstr "Избор на папка"
 msgid "_Show hidden folders"
 msgstr "_Показване на скритите папки"
 
-#: ../baobab/src/baobab-utils.c:302
+#: ../baobab/src/baobab-utils.c:304
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "„%s“ не е валидна папка"
 
-#: ../baobab/src/baobab-utils.c:305
+#: ../baobab/src/baobab-utils.c:307
 msgid "Could not analyze disk usage."
 msgstr "Неуспех при анализирането на използването на диска."
 
-#: ../baobab/src/baobab-utils.c:331
+#: ../baobab/src/baobab-utils.c:348
 msgid "_Open Folder"
 msgstr "_Отваряне на папка"
 
-#: ../baobab/src/baobab-utils.c:340 ../gsearchtool/gsearchtool.c:183
+#: ../baobab/src/baobab-utils.c:354
+#: ../gsearchtool/gsearchtool-callbacks.c:1139
 msgid "Mo_ve to Trash"
 msgstr "П_реместване в кошчето"
 
-#: ../baobab/src/baobab-utils.c:369
+#: ../baobab/src/baobab-utils.c:380
 msgid "Total filesystem capacity:"
 msgstr "Общ обем на файловата система:"
 
-#: ../baobab/src/baobab-utils.c:370
+#: ../baobab/src/baobab-utils.c:381
 msgid "used:"
 msgstr "използвани:"
 
-#: ../baobab/src/baobab-utils.c:371
+#: ../baobab/src/baobab-utils.c:382
 msgid "available:"
 msgstr "налични:"
 
-#: ../baobab/src/baobab-utils.c:415
+#: ../baobab/src/baobab-utils.c:426
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Папката „%s“ не може да бъде отворена."
 
-#: ../baobab/src/baobab-utils.c:418
+#: ../baobab/src/baobab-utils.c:429
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Не е инсталирана програма, която може да изобрази този документ."
 
-#: ../baobab/src/baobab-utils.c:487
+#: ../baobab/src/baobab-utils.c:498
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Файлът „%s“ не може да бъде преместен в кошчето."
 
-#: ../baobab/src/baobab-utils.c:495
+#: ../baobab/src/baobab-utils.c:506
 msgid "Could not move file to the Trash"
 msgstr "Файлът не може да бъде преместен в кошчето."
 
-#: ../baobab/src/baobab-utils.c:497
+#: ../baobab/src/baobab-utils.c:508
 #, c-format
 msgid "Details: %s"
 msgstr "Подробности: %s"
 
-#: ../baobab/src/baobab-utils.c:516
+#: ../baobab/src/baobab-utils.c:527
 msgid "Rescan your home folder?"
 msgstr "Търсене наново в домашната папка?"
 
-#: ../baobab/src/baobab-utils.c:517
+#: ../baobab/src/baobab-utils.c:528
 msgid ""
 "The content of your home folder has changed. Select rescan to update the "
 "disk usage details."
@@ -497,17 +502,13 @@ msgstr ""
 "Съдържанието на домашната ви папка се е променило. Изберете да се търси "
 "отново, за да се обновят данните за използването на диска."
 
-#: ../baobab/src/baobab-utils.c:518
+#: ../baobab/src/baobab-utils.c:529
 msgid "_Rescan"
 msgstr "_Ново търсене"
 
-#: ../baobab/src/baobab-utils.c:553 ../logview/logview.c:773
+#: ../baobab/src/baobab-utils.c:569
 msgid "There was an error displaying help."
 msgstr "Грешка при показването на помощта."
-
-#: ../baobab/src/baobab-mount-operation.c:146
-msgid "Enter Password"
-msgstr "Парола"
 
 #: ../baobab/src/callbacks.c:97
 msgid "Baobab"
@@ -517,9 +518,9 @@ msgstr "Baobab"
 msgid "A graphical tool to analyze disk usage."
 msgstr "Графичен инструмент за анализиране на ползването на диска"
 
-#. Translator credits
+#. translator credits
 #: ../baobab/src/callbacks.c:106 ../gnome-dictionary/src/gdict-about.c:55
-#: ../logview/about.c:47
+#: ../logview/logview-about.h:63
 msgid "translator-credits"
 msgstr ""
 "Владимир „Kaladan“ Петков <vpetkov@i-space.org>\n"
@@ -532,8 +533,8 @@ msgstr ""
 "Научете повече за нас на http://gnome.cult.bg\n"
 "Докладвайте за грешки на http://gnome.cult.bg/bugs"
 
-#: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:472
-#: ../gsearchtool/gsearchtool-callbacks.c:824
+#: ../baobab/src/callbacks.c:202 ../gsearchtool/gsearchtool-callbacks.c:498
+#: ../gsearchtool/gsearchtool-callbacks.c:839
 msgid "The document does not exist."
 msgstr "Документът не съществува."
 
@@ -888,11 +889,11 @@ msgid "_Standard (adds a low-level format to the quick mode)"
 msgstr ""
 "_Стандартно (добавяне на форматиране от ниско ниво към бързото форматиране)"
 
-#: ../gfloppy/src/main.c:259
+#: ../gfloppy/src/main.c:257
 msgid "Cannot Format"
 msgstr "Форматирането не може да бъде изпълнено"
 
-#: ../gfloppy/src/main.c:260
+#: ../gfloppy/src/main.c:258
 msgid ""
 "Neither the mke2fs nor the mkdosfs/mformat applications are installed. You "
 "can't format a floppy without one of them."
@@ -900,13 +901,13 @@ msgstr ""
 "Нито програмата mke2fs, нито mkdosfs/mformat са инсталирани. Не можете да "
 "форматирате флопи диск, без да имате поне една от тях."
 
-#: ../gfloppy/src/main.c:280
+#: ../gfloppy/src/main.c:278
 #, c-format
 msgid "Unable to open the device %s, formatting cannot continue."
 msgstr ""
 "Неуспех при отварянето на устройството %s, форматирането не може да продължи."
 
-#: ../gfloppy/src/main.c:283 ../gfloppy/src/main.c:345
+#: ../gfloppy/src/main.c:281 ../gfloppy/src/main.c:343
 #, c-format
 msgid ""
 "The device %s is disconnected.\n"
@@ -915,7 +916,7 @@ msgstr ""
 "Устройството „%s“ е разкачено.\n"
 "За да продължите, го закачете."
 
-#: ../gfloppy/src/main.c:286 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:284 ../gfloppy/src/main.c:346
 #, c-format
 msgid ""
 "You do not have the proper permissions to write to %s, formatting will not "
@@ -925,41 +926,41 @@ msgstr ""
 "Нямате подходящи права за запис в „%s“, форматирането не е възможно.\n"
 "Обърнете се към системния администратор, за да ви бъдат предоставени."
 
-#: ../gfloppy/src/main.c:293 ../gfloppy/src/main.c:356
+#: ../gfloppy/src/main.c:291 ../gfloppy/src/main.c:354
 msgid "Cannot initialize device"
 msgstr "Устройството не може да бъде инициализирано"
 
-#: ../gfloppy/src/main.c:342
+#: ../gfloppy/src/main.c:340
 #, c-format
 msgid "Unable to open any device, formatting cannot continue."
 msgstr ""
 "Не може да се отвори нито едно устройство, форматирането не може да продължи."
 
-#: ../gfloppy/src/main.c:345 ../gfloppy/src/main.c:348
+#: ../gfloppy/src/main.c:343 ../gfloppy/src/main.c:346
 msgid "/dev/floppy/0 or /dev/fd0"
 msgstr "/dev/floppy/0 или /dev/fd0"
 
-#: ../gfloppy/src/main.c:509
+#: ../gfloppy/src/main.c:507
 msgid "Could not display help for the floppy formatter."
 msgstr "Помощната информация не може да бъде показана."
 
-#: ../gfloppy/src/main.c:528
+#: ../gfloppy/src/main.c:526
 msgid "Incorrect volume name"
 msgstr "Неправилно име на носителя"
 
-#: ../gfloppy/src/main.c:529
+#: ../gfloppy/src/main.c:527
 msgid "The volume name can't contain any blank space."
 msgstr "Името на диска не може да съдържа интервал."
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "The device to format"
 msgstr "Устройството за форматиране"
 
-#: ../gfloppy/src/main.c:573
+#: ../gfloppy/src/main.c:571
 msgid "DEVICE"
 msgstr "УСТРОЙСТВО"
 
-#: ../gfloppy/src/main.c:583
+#: ../gfloppy/src/main.c:581
 msgid "- Floppy Formatter"
 msgstr "— форматиране на дискети"
 
@@ -1007,7 +1008,7 @@ msgid "Cl_ear"
 msgstr "_Изчистване"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1240 ../logview/logview.c:116
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:665
 msgid "_About"
 msgstr "_Относно"
 
@@ -1016,7 +1017,7 @@ msgid "_Look Up Selected Text"
 msgstr "Търс_ене на избрания текст"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:5
-#: ../gnome-dictionary/src/gdict-window.c:1214
+#: ../gnome-dictionary/src/gdict-window.c:1210
 msgid "_Preferences"
 msgstr "_Настройки"
 
@@ -1034,9 +1035,9 @@ msgstr "Търсене на определения и правописа на д
 
 #: ../gnome-dictionary/data/gnome-dictionary.desktop.in.in.h:2
 #: ../gnome-dictionary/src/gdict-about.c:78
-#: ../gnome-dictionary/src/gdict-app.c:402
-#: ../gnome-dictionary/src/gdict-window.c:610
-#: ../gnome-dictionary/src/gdict-window.c:1957
+#: ../gnome-dictionary/src/gdict-app.c:385
+#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:1953
 msgid "Dictionary"
 msgstr "Речник"
 
@@ -1427,53 +1428,54 @@ msgstr "Само локални"
 msgid "Whether the context uses only local dictionaries or not"
 msgstr "Дали контекстът ще ползва само локални речници или не"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:383
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:382
 msgid "Reload the list of available databases"
 msgstr "Презареждане на списъка с наличните бази от данни"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:395
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:394
 msgid "Clear the list of available databases"
 msgstr "Изчистване на списъка с наличните бази от данни"
 
-#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:842
-#: ../gnome-dictionary/libgdict/gdict-speller.c:780
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:791
+#: ../gnome-dictionary/libgdict/gdict-database-chooser.c:841
+#: ../gnome-dictionary/libgdict/gdict-speller.c:779
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:789
 msgid "Error while matching"
 msgstr "Грешка при напасване"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1135
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1229
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1263
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
+#: ../logview/logview-window.c:507
 msgid "Not found"
 msgstr "Не са намерени съвпадения"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1324
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1323
 msgid "F_ind:"
 msgstr "_Търсене:"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1337
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1336
 msgid "_Previous"
 msgstr "_Предишно"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:1345
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:1344
 msgid "_Next"
 msgstr "_Следващо"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2520
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2519
 msgid "Error while looking up definition"
 msgstr "Грешка при търсене на определение"
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
-#: ../gnome-dictionary/libgdict/gdict-speller.c:738
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2561
+#: ../gnome-dictionary/libgdict/gdict-speller.c:737
 msgid "Another search is in progress"
 msgstr "В момента тече друго търсене."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2563
-#: ../gnome-dictionary/libgdict/gdict-speller.c:739
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2562
+#: ../gnome-dictionary/libgdict/gdict-speller.c:738
 msgid "Please wait until the current search ends."
 msgstr "Изчакайте докато завърши текущото търсене."
 
-#: ../gnome-dictionary/libgdict/gdict-defbox.c:2602
+#: ../gnome-dictionary/libgdict/gdict-defbox.c:2601
 msgid "Error while retrieving the definition"
 msgstr "Грешка при извличане на информацията"
 
@@ -1486,7 +1488,7 @@ msgid "The filename used by this dictionary source"
 msgstr "Името на файл, което да се използва от източника на речници"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:246
-#: ../gsearchtool/gsearchtool.c:2473
+#: ../gsearchtool/gsearchtool.c:2360
 msgid "Name"
 msgstr "Име"
 
@@ -1503,7 +1505,7 @@ msgid "The description of this dictionary source"
 msgstr "Описанието на този източник на речници"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:274
-#: ../gnome-dictionary/libgdict/gdict-speller.c:385
+#: ../gnome-dictionary/libgdict/gdict-speller.c:384
 msgid "Database"
 msgstr "База от данни"
 
@@ -1512,7 +1514,7 @@ msgid "The default database of this dictonary source"
 msgstr "Стандартната база от данни на този източник на речници"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:288
-#: ../gnome-dictionary/libgdict/gdict-speller.c:392
+#: ../gnome-dictionary/libgdict/gdict-speller.c:391
 msgid "Strategy"
 msgstr "Стратегия"
 
@@ -1529,7 +1531,7 @@ msgid "The transport mechanism used by this dictionary source"
 msgstr "Транспортният механизъм, който този източник на речници използва"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:317
-#: ../gnome-dictionary/libgdict/gdict-speller.c:378
+#: ../gnome-dictionary/libgdict/gdict-speller.c:377
 msgid "Context"
 msgstr "Контекст"
 
@@ -1574,7 +1576,7 @@ msgstr "Източникът на речници няма име."
 msgid "Dictionary source '%s' has invalid transport '%s'"
 msgstr "Източникът на речници „%s“ използва невалиден транспорт „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:300
+#: ../gnome-dictionary/libgdict/gdict-source-chooser.c:299
 msgid "Reload the list of available sources"
 msgstr "Презареждане на списъка с наличните източници"
 
@@ -1594,31 +1596,44 @@ msgstr "Източници"
 msgid "Dictionary sources found"
 msgstr "Открити източници на речници"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:355
+#: ../gnome-dictionary/libgdict/gdict-speller.c:354
 msgid "Clear the list of similar words"
 msgstr "Изчистване на списъка с подобни думи"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:379
+#: ../gnome-dictionary/libgdict/gdict-speller.c:378
 msgid "The GdictContext object used to get the word definition"
 msgstr ""
 "Обектът GdictContext, който се използва за получаване на определението на "
 "дума"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:386
+#: ../gnome-dictionary/libgdict/gdict-speller.c:385
 msgid "The database used to query the GdictContext"
 msgstr "Базата от данни, която да се използва при запитвания до GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-speller.c:393
+#: ../gnome-dictionary/libgdict/gdict-speller.c:392
 msgid "The strategy used to query the GdictContext"
 msgstr "Стратегията за запитване до GdictContext"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:367
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:365
 msgid "Reload the list of available strategies"
 msgstr "Презареждане на списъка с наличните стратегии"
 
-#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:379
+#: ../gnome-dictionary/libgdict/gdict-strategy-chooser.c:377
 msgid "Clear the list of available strategies"
 msgstr "Изчистване на списъка с наличните стратегии"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+msgid "GDict debugging flags to set"
+msgstr "Флагове за изчистване на грешки на GDict, които да бъдат зададени"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:97
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "FLAGS"
+msgstr "ФЛАГОВЕ"
+
+#: ../gnome-dictionary/libgdict/gdict-utils.c:99
+msgid "GDict debugging flags to unset"
+msgstr "Флагове за изчистване на грешки на GDict, които да не бъдат зададени"
 
 #: ../gnome-dictionary/libgdict/gdict-utils.c:157
 msgid "GDict Options"
@@ -1636,7 +1651,7 @@ msgstr "Търсене за думи в речници"
 #. Translators: the first is the word found, the second is the
 #. * database name and the last is the definition's text; please
 #. * keep the new lines.
-#: ../gnome-dictionary/src/gdict-app.c:233
+#: ../gnome-dictionary/src/gdict-app.c:217
 #, c-format
 msgid ""
 "Definition for '%s'\n"
@@ -1649,21 +1664,21 @@ msgstr ""
 "\n"
 "%s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:247
+#: ../gnome-dictionary/src/gdict-app.c:231
 #, c-format
 msgid "Error: %s\n"
 msgstr "Грешка: %s\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:273
+#: ../gnome-dictionary/src/gdict-app.c:257
 #, c-format
 msgid "See gnome-dictionary --help for usage\n"
 msgstr "За помощ по употребата, вижте gnome-dictionary --help\n"
 
-#: ../gnome-dictionary/src/gdict-app.c:286
+#: ../gnome-dictionary/src/gdict-app.c:270
 msgid "Unable to find a suitable dictionary source"
 msgstr "Неуспех при откриване на подходящ източник на речници"
 
-#: ../gnome-dictionary/src/gdict-app.c:320
+#: ../gnome-dictionary/src/gdict-app.c:304
 #, c-format
 msgid ""
 "Error while looking up the definition of \"%s\":\n"
@@ -1672,115 +1687,107 @@ msgstr ""
 "Грешка при търсенето на определението на „%s“:\n"
 "%s"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "Words to look up"
 msgstr "Думи за търсене"
 
-#: ../gnome-dictionary/src/gdict-app.c:354
-#: ../gnome-dictionary/src/gdict-app.c:356
-#: ../gnome-dictionary/src/gdict-app.c:368
+#: ../gnome-dictionary/src/gdict-app.c:337
+#: ../gnome-dictionary/src/gdict-app.c:339
+#: ../gnome-dictionary/src/gdict-app.c:351
 msgid "word"
 msgstr "дума"
 
-#: ../gnome-dictionary/src/gdict-app.c:356
+#: ../gnome-dictionary/src/gdict-app.c:339
 msgid "Words to match"
 msgstr "Думи за напасване"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "Dictionary source to use"
 msgstr "Източник на речници, който да се използва"
 
-#: ../gnome-dictionary/src/gdict-app.c:358
+#: ../gnome-dictionary/src/gdict-app.c:341
 msgid "source"
 msgstr "източник"
 
-#: ../gnome-dictionary/src/gdict-app.c:360
+#: ../gnome-dictionary/src/gdict-app.c:343
 msgid "Show available dictionary sources"
 msgstr "Показване на наличните източници на речници"
 
-#: ../gnome-dictionary/src/gdict-app.c:362
+#: ../gnome-dictionary/src/gdict-app.c:345
 msgid "Print result to the console"
 msgstr "Изписване на резултата в конзолата"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "Database to use"
 msgstr "Базата от данни, която да се използва"
 
-#: ../gnome-dictionary/src/gdict-app.c:364
+#: ../gnome-dictionary/src/gdict-app.c:347
 msgid "db"
 msgstr "бд"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "Strategy to use"
 msgstr "Стратегия за ползване"
 
-#: ../gnome-dictionary/src/gdict-app.c:366
+#: ../gnome-dictionary/src/gdict-app.c:349
 msgid "strat"
 msgstr "страт."
 
 #. create the new option context
-#: ../gnome-dictionary/src/gdict-app.c:384
+#: ../gnome-dictionary/src/gdict-app.c:367
 msgid " - Look up words in dictionaries"
 msgstr " — търсене на думи в речници"
 
-#: ../gnome-dictionary/src/gdict-app.c:388
-msgid "Dictionary and spelling tool"
-msgstr "Речник и проверка на правописа"
-
-#: ../gnome-dictionary/src/gdict-app.c:389
-msgid "Show Dictionary options"
-msgstr "Показване на опциите на речника"
-
-#: ../gnome-dictionary/src/gdict-applet.c:207
-#: ../gnome-dictionary/src/gdict-window.c:839
+#: ../gnome-dictionary/src/gdict-applet.c:205
+#: ../gnome-dictionary/src/gdict-window.c:837
 msgid "Save a Copy"
 msgstr "Запазване на копие"
 
-#: ../gnome-dictionary/src/gdict-applet.c:217
-#: ../gnome-dictionary/src/gdict-window.c:849
+#: ../gnome-dictionary/src/gdict-applet.c:215
+#: ../gnome-dictionary/src/gdict-window.c:847
 msgid "Untitled document"
 msgstr "Неозаглавен документ"
 
-#: ../gnome-dictionary/src/gdict-applet.c:238
-#: ../gnome-dictionary/src/gdict-window.c:870
+#: ../gnome-dictionary/src/gdict-applet.c:236
+#: ../gnome-dictionary/src/gdict-window.c:868
 #, c-format
 msgid "Error while writing to '%s'"
 msgstr "Грешка при запис към „%s“."
 
-#: ../gnome-dictionary/src/gdict-applet.c:363
+#: ../gnome-dictionary/src/gdict-applet.c:361
 msgid "Clear the definitions found"
 msgstr "Изчистване на откритите определения"
 
-#: ../gnome-dictionary/src/gdict-applet.c:365
+#: ../gnome-dictionary/src/gdict-applet.c:363
 msgid "Clear definition"
 msgstr "Изчистване на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:366
+#: ../gnome-dictionary/src/gdict-applet.c:364
 msgid "Clear the text of the definition"
 msgstr "Изчистване на текста на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:373
+#: ../gnome-dictionary/src/gdict-applet.c:371
 msgid "Print the definitions found"
 msgstr "Печат на откритите определения"
 
-#: ../gnome-dictionary/src/gdict-applet.c:375
+#: ../gnome-dictionary/src/gdict-applet.c:373
 msgid "Print definition"
 msgstr "Печат на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:376
+#: ../gnome-dictionary/src/gdict-applet.c:374
 msgid "Print the text of the definition"
 msgstr "Печат на текста на определението"
 
-#: ../gnome-dictionary/src/gdict-applet.c:383
+#: ../gnome-dictionary/src/gdict-applet.c:381
 msgid "Save the definitions found"
 msgstr "Запазване на откритите определения"
 
-#: ../gnome-dictionary/src/gdict-applet.c:385
+#: ../gnome-dictionary/src/gdict-applet.c:383
 msgid "Save definition"
 msgstr "Запазване на определение"
 
-#: ../gnome-dictionary/src/gdict-applet.c:386
+#: ../gnome-dictionary/src/gdict-applet.c:384
 msgid "Save the text of the definition to a file"
 msgstr "Запазване на текста от определението във файл"
 
@@ -1805,52 +1812,52 @@ msgid "Dictionary entry"
 msgstr "Дума в речника"
 
 #: ../gnome-dictionary/src/gdict-applet.c:724
-#: ../gnome-dictionary/src/gdict-window.c:1003
+#: ../gnome-dictionary/src/gdict-window.c:1001
 msgid "Dictionary Preferences"
 msgstr "Настройки на речника"
 
-#: ../gnome-dictionary/src/gdict-applet.c:752
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:509
-#: ../gnome-dictionary/src/gdict-source-dialog.c:498
-#: ../gnome-dictionary/src/gdict-window.c:1150
+#: ../gnome-dictionary/src/gdict-applet.c:750
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:505
+#: ../gnome-dictionary/src/gdict-source-dialog.c:495
+#: ../gnome-dictionary/src/gdict-window.c:1145
 #, c-format
 msgid "There was an error while displaying help"
 msgstr "Получи се грешка при показването на помощта."
 
-#: ../gnome-dictionary/src/gdict-applet.c:904
-#: ../gnome-dictionary/src/gdict-window.c:519
+#: ../gnome-dictionary/src/gdict-applet.c:902
+#: ../gnome-dictionary/src/gdict-window.c:517
 #, c-format
 msgid "No dictionary source available with name '%s'"
 msgstr "Липсва източник на речници с име „%s“"
 
-#: ../gnome-dictionary/src/gdict-applet.c:908
-#: ../gnome-dictionary/src/gdict-window.c:523
+#: ../gnome-dictionary/src/gdict-applet.c:906
+#: ../gnome-dictionary/src/gdict-window.c:521
 msgid "Unable to find dictionary source"
 msgstr "Неуспех при откриване на източник на речници"
 
-#: ../gnome-dictionary/src/gdict-applet.c:924
-#: ../gnome-dictionary/src/gdict-window.c:539
+#: ../gnome-dictionary/src/gdict-applet.c:922
+#: ../gnome-dictionary/src/gdict-window.c:537
 #, c-format
 msgid "No context available for source '%s'"
 msgstr "Липсва контекст за източника „%s“"
 
-#: ../gnome-dictionary/src/gdict-applet.c:928
-#: ../gnome-dictionary/src/gdict-window.c:543
+#: ../gnome-dictionary/src/gdict-applet.c:926
+#: ../gnome-dictionary/src/gdict-window.c:541
 msgid "Unable to create a context"
 msgstr "Неуспех при създаването на контекст"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1193
-#: ../gnome-dictionary/src/gdict-window.c:2088
+#: ../gnome-dictionary/src/gdict-applet.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:2084
 msgid "Unable to connect to GConf"
 msgstr "Неуспех при свързването с GConf."
 
-#: ../gnome-dictionary/src/gdict-applet.c:1206
-#: ../gnome-dictionary/src/gdict-window.c:2101
+#: ../gnome-dictionary/src/gdict-applet.c:1204
+#: ../gnome-dictionary/src/gdict-window.c:2097
 msgid "Unable to get notification for preferences"
 msgstr "Неуспех при получаването на уведомяване за настройките"
 
-#: ../gnome-dictionary/src/gdict-applet.c:1220
-#: ../gnome-dictionary/src/gdict-window.c:2114
+#: ../gnome-dictionary/src/gdict-applet.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:2110
 msgid "Unable to get notification for the document font"
 msgstr "Неуспех при получаване на уведомяване за шрифта на документа"
 
@@ -1865,37 +1872,37 @@ msgstr "Неуспех при преименуване на файла „%s“ 
 msgid "Unable to create the data directory '%s': %s"
 msgstr "Неуспех при създаване на папката с данни „%s“: %s"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:246
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:245
 msgid "Edit Dictionary Source"
 msgstr "Редактиране на източника на речници"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:310
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:309
 msgid "Add Dictionary Source"
 msgstr "Добавяне на източник на речници"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:356
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:355
 #, c-format
 msgid "Remove \"%s\"?"
 msgstr "Премахване на „%s“?"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:358
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:357
 msgid "This will permanently remove the dictionary source from the list."
 msgstr "Това ще премахне източника на речници за постоянно от списъка."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:388
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:387
 #, c-format
 msgid "Unable to remove source '%s'"
 msgstr "Неуспех при премахване на източника „%s“."
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:667
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:663
 msgid "Add a new dictionary source"
 msgstr "Добавяне на нов източник на речници"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:673
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:669
 msgid "Remove the currently selected dictionary source"
 msgstr "Премахване на текущо избрания източник на речници"
 
-#: ../gnome-dictionary/src/gdict-pref-dialog.c:686
+#: ../gnome-dictionary/src/gdict-pref-dialog.c:682
 msgid "Set the font used for printing the definitions"
 msgstr "Настройване на шрифта за печат на определенията"
 
@@ -1905,207 +1912,207 @@ msgstr "Настройване на шрифта за печат на опред
 msgid "Unable to display the preview: %s"
 msgstr "Прегледът не може да се покаже: %s"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:358
-#: ../gnome-dictionary/src/gdict-source-dialog.c:451
+#: ../gnome-dictionary/src/gdict-source-dialog.c:357
+#: ../gnome-dictionary/src/gdict-source-dialog.c:450
 msgid "Unable to create a source file"
 msgstr "Неуспех при създаване на файл за източника"
 
-#: ../gnome-dictionary/src/gdict-source-dialog.c:376
-#: ../gnome-dictionary/src/gdict-source-dialog.c:469
+#: ../gnome-dictionary/src/gdict-source-dialog.c:375
+#: ../gnome-dictionary/src/gdict-source-dialog.c:468
 msgid "Unable to save source file"
 msgstr "Неуспех при запазване на файла за източника"
 
-#: ../gnome-dictionary/src/gdict-window.c:318
+#: ../gnome-dictionary/src/gdict-window.c:316
 #, c-format
 msgid "Searching for '%s'..."
 msgstr "Търсене за %s…"
 
-#: ../gnome-dictionary/src/gdict-window.c:350
-#: ../gnome-dictionary/src/gdict-window.c:409
+#: ../gnome-dictionary/src/gdict-window.c:348
+#: ../gnome-dictionary/src/gdict-window.c:407
 msgid "No definitions found"
 msgstr "Не са намерени определения"
 
-#: ../gnome-dictionary/src/gdict-window.c:352
+#: ../gnome-dictionary/src/gdict-window.c:350
 #, c-format
 msgid "A definition found"
 msgid_plural "%d definitions found"
 msgstr[0] "Открито е определение"
 msgstr[1] "Открити са %d определения"
 
-#: ../gnome-dictionary/src/gdict-window.c:608
+#: ../gnome-dictionary/src/gdict-window.c:606
 #, c-format
 msgid "%s - Dictionary"
 msgstr "%s — речник"
 
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview.c:85
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:637
 msgid "_File"
 msgstr "_Файл"
 
-#: ../gnome-dictionary/src/gdict-window.c:1187
+#: ../gnome-dictionary/src/gdict-window.c:1183
 msgid "_Go"
 msgstr "_Отиване"
 
 #. File menu
-#: ../gnome-dictionary/src/gdict-window.c:1191
+#: ../gnome-dictionary/src/gdict-window.c:1187
 msgid "_New"
 msgstr "_Нов"
 
-#: ../gnome-dictionary/src/gdict-window.c:1192
+#: ../gnome-dictionary/src/gdict-window.c:1188
 msgid "New look up"
 msgstr "Ново търсене"
 
-#: ../gnome-dictionary/src/gdict-window.c:1193
+#: ../gnome-dictionary/src/gdict-window.c:1189
 msgid "_Save a Copy..."
 msgstr "Запазване на _копие…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1195
+#: ../gnome-dictionary/src/gdict-window.c:1191
 msgid "P_review..."
 msgstr "П_реглед…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1196
+#: ../gnome-dictionary/src/gdict-window.c:1192
 msgid "Preview this document"
 msgstr "Преглед на този документ"
 
-#: ../gnome-dictionary/src/gdict-window.c:1197
+#: ../gnome-dictionary/src/gdict-window.c:1193
 msgid "_Print..."
 msgstr "_Печат…"
 
-#: ../gnome-dictionary/src/gdict-window.c:1198
+#: ../gnome-dictionary/src/gdict-window.c:1194
 msgid "Print this document"
 msgstr "Разпечатване на този документ"
 
-#: ../gnome-dictionary/src/gdict-window.c:1205 ../logview/logview.c:99
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:651
 msgid "Select _All"
 msgstr "_Избор на всичко"
 
-#: ../gnome-dictionary/src/gdict-window.c:1208
+#: ../gnome-dictionary/src/gdict-window.c:1204
 msgid "Find a word or phrase in the document"
 msgstr "Откриване на дума или фраза в документа"
 
-#: ../gnome-dictionary/src/gdict-window.c:1210
+#: ../gnome-dictionary/src/gdict-window.c:1206
 msgid "Find Ne_xt"
 msgstr "_Следващо"
 
-#: ../gnome-dictionary/src/gdict-window.c:1212
+#: ../gnome-dictionary/src/gdict-window.c:1208
 msgid "Find Pre_vious"
 msgstr "_Предишно"
 
 #. Go menu
-#: ../gnome-dictionary/src/gdict-window.c:1218
+#: ../gnome-dictionary/src/gdict-window.c:1214
 msgid "_Previous Definition"
 msgstr "_Предишно определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:1219
+#: ../gnome-dictionary/src/gdict-window.c:1215
 msgid "Go to the previous definition"
 msgstr "Предишно определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:1220
+#: ../gnome-dictionary/src/gdict-window.c:1216
 msgid "_Next Definition"
 msgstr "_Следващо определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:1221
+#: ../gnome-dictionary/src/gdict-window.c:1217
 msgid "Go to the next definition"
 msgstr "Следващо определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:1222
+#: ../gnome-dictionary/src/gdict-window.c:1218
 msgid "_First Definition"
 msgstr "П_ърво определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:1223
+#: ../gnome-dictionary/src/gdict-window.c:1219
 msgid "Go to the first definition"
 msgstr "Първо определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:1224
+#: ../gnome-dictionary/src/gdict-window.c:1220
 msgid "_Last Definition"
 msgstr "П_оследно определение"
 
-#: ../gnome-dictionary/src/gdict-window.c:1225
+#: ../gnome-dictionary/src/gdict-window.c:1221
 msgid "Go to the last definition"
 msgstr "Последно определение"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1228
+#: ../gnome-dictionary/src/gdict-window.c:1224
 msgid "Similar _Words"
 msgstr "_Подобни думи"
 
-#: ../gnome-dictionary/src/gdict-window.c:1230
+#: ../gnome-dictionary/src/gdict-window.c:1226
 msgid "Dictionary Sources"
 msgstr "Източници на речници"
 
-#: ../gnome-dictionary/src/gdict-window.c:1232
+#: ../gnome-dictionary/src/gdict-window.c:1228
 msgid "Available _Databases"
 msgstr "Налични _речници"
 
-#: ../gnome-dictionary/src/gdict-window.c:1234
+#: ../gnome-dictionary/src/gdict-window.c:1230
 msgid "Available St_rategies"
 msgstr "Налични _стратегии"
 
 #. View menu
-#: ../gnome-dictionary/src/gdict-window.c:1251
+#: ../gnome-dictionary/src/gdict-window.c:1247
 msgid "_Sidebar"
 msgstr "_Странична лента"
 
-#: ../gnome-dictionary/src/gdict-window.c:1253
+#: ../gnome-dictionary/src/gdict-window.c:1249
 msgid "S_tatusbar"
 msgstr "_Лента за състоянието"
 
-#: ../gnome-dictionary/src/gdict-window.c:1374
+#: ../gnome-dictionary/src/gdict-window.c:1370
 #, c-format
 msgid "Dictionary source `%s' selected"
 msgstr "Избран е източникът на речници „%s“"
 
-#: ../gnome-dictionary/src/gdict-window.c:1395
+#: ../gnome-dictionary/src/gdict-window.c:1391
 #, c-format
 msgid "Strategy `%s' selected"
 msgstr "Избрана е стратегията „%s“"
 
-#: ../gnome-dictionary/src/gdict-window.c:1415
+#: ../gnome-dictionary/src/gdict-window.c:1411
 #, c-format
 msgid "Database `%s' selected"
 msgstr "Избрана е базата от данни „%s“"
 
-#: ../gnome-dictionary/src/gdict-window.c:1435
+#: ../gnome-dictionary/src/gdict-window.c:1431
 #, c-format
 msgid "Word `%s' selected"
 msgstr "Избрана е думата „%s“"
 
 #. speller
-#: ../gnome-dictionary/src/gdict-window.c:1457
+#: ../gnome-dictionary/src/gdict-window.c:1453
 msgid "Double-click on the word to look up"
 msgstr "Натиснете двукратно върху думата, която търсите"
 
 #. strat-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1463
+#: ../gnome-dictionary/src/gdict-window.c:1459
 msgid "Double-click on the matching strategy to use"
 msgstr "Натиснете двукратно върху стратегията, която да се използва"
 
 #. source-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1468
+#: ../gnome-dictionary/src/gdict-window.c:1464
 msgid "Double-click on the source to use"
 msgstr "Натиснете двукратно върху източника, който да се използва"
 
 #. db-chooser
-#: ../gnome-dictionary/src/gdict-window.c:1477
+#: ../gnome-dictionary/src/gdict-window.c:1473
 msgid "Double-click on the database to use"
 msgstr "Натиснете двукратно върху базата от данни, която да се използва"
 
-#: ../gnome-dictionary/src/gdict-window.c:1765
+#: ../gnome-dictionary/src/gdict-window.c:1761
 msgid "Look _up:"
 msgstr "_Търсене:"
 
-#: ../gnome-dictionary/src/gdict-window.c:1839
+#: ../gnome-dictionary/src/gdict-window.c:1835
 msgid "Similar words"
 msgstr "Подобни думи"
 
-#: ../gnome-dictionary/src/gdict-window.c:1852
+#: ../gnome-dictionary/src/gdict-window.c:1848
 msgid "Available dictionaries"
 msgstr "Налични речници"
 
-#: ../gnome-dictionary/src/gdict-window.c:1865
+#: ../gnome-dictionary/src/gdict-window.c:1861
 msgid "Available strategies"
 msgstr "Налични стратегии"
 
-#: ../gnome-dictionary/src/gdict-window.c:1876
+#: ../gnome-dictionary/src/gdict-window.c:1872
 msgid "Dictionary sources"
 msgstr "Източници на речници"
 
@@ -2113,88 +2120,93 @@ msgstr "Източници на речници"
 msgid "Error loading the help page"
 msgstr "Грешка при зареждането на помощта"
 
-#: ../gnome-screenshot/gnome-screenshot.c:234
+#: ../gnome-screenshot/gnome-screenshot.c:242
 msgid "None"
 msgstr "Никакъв"
 
-#: ../gnome-screenshot/gnome-screenshot.c:235
+#: ../gnome-screenshot/gnome-screenshot.c:243
 msgid "Drop shadow"
 msgstr "Със сянка"
 
-#: ../gnome-screenshot/gnome-screenshot.c:236
+#: ../gnome-screenshot/gnome-screenshot.c:244
 msgid "Border"
 msgstr "С рамка"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:339
+#: ../gnome-screenshot/gnome-screenshot.c:347
 msgid "Include _pointer"
-msgstr "Включване на показалеца"
+msgstr "Включване на _показалеца"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:348
+#: ../gnome-screenshot/gnome-screenshot.c:356
 msgid "Include the window _border"
 msgstr "Включване на _рамката на прозореца в снимката"
 
-#: ../gnome-screenshot/gnome-screenshot.c:363
+#: ../gnome-screenshot/gnome-screenshot.c:371
 msgid "Apply _effect:"
 msgstr "Прилагане на _ефект:"
 
-#: ../gnome-screenshot/gnome-screenshot.c:425
+#: ../gnome-screenshot/gnome-screenshot.c:433
 msgid "Grab the whole _desktop"
 msgstr "Снимка на _целия работен плот"
 
-#: ../gnome-screenshot/gnome-screenshot.c:437
+#: ../gnome-screenshot/gnome-screenshot.c:445
 msgid "Grab the current _window"
 msgstr "Снимка на _текущия прозорец"
+
+#: ../gnome-screenshot/gnome-screenshot.c:457
+msgid "Grab a selected _area"
+msgstr "Снимка на _избраната област"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:454
+#: ../gnome-screenshot/gnome-screenshot.c:474
 msgid "Grab _after a delay of"
 msgstr "Снимка _след"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:474
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:494
+#: ../gnome-screenshot/gnome-screenshot.c:1246
 msgid "seconds"
 msgstr "секунди"
 
-#: ../gnome-screenshot/gnome-screenshot.c:500
+#: ../gnome-screenshot/gnome-screenshot.c:510
+#: ../gnome-screenshot/gnome-screenshot.c:520
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Снимка на екрана"
 
-#: ../gnome-screenshot/gnome-screenshot.c:501
+#: ../gnome-screenshot/gnome-screenshot.c:521
 msgid "Effects"
 msgstr "Ефекти"
 
-#: ../gnome-screenshot/gnome-screenshot.c:507
+#: ../gnome-screenshot/gnome-screenshot.c:527
 msgid "Take _Screenshot"
 msgstr "_Снимка на екрана"
 
-#: ../gnome-screenshot/gnome-screenshot.c:593
+#: ../gnome-screenshot/gnome-screenshot.c:653
 msgid "Error while saving screenshot"
 msgstr "Грешка при запазването на снимката"
 
-#: ../gnome-screenshot/gnome-screenshot.c:597
+#: ../gnome-screenshot/gnome-screenshot.c:657
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
-" Error was %s\n"
-". Please choose another location and retry."
+" Error was %s.\n"
+" Please choose another location and retry."
 msgstr ""
 "Снимката не може да бъде запазена в %s.\n"
-"Грешка: %s\n"
-"Въведете друго местоположение и пробвайте пак."
+" Грешка: %s\n"
+" Въведете друго местоположение и пробвайте пак."
 
-#: ../gnome-screenshot/gnome-screenshot.c:740
+#: ../gnome-screenshot/gnome-screenshot.c:804
 msgid "Unable to take a screenshot of the current window"
 msgstr "Неуспех при създаването на снимка на текущия прозорец"
 
-#: ../gnome-screenshot/gnome-screenshot.c:781
+#: ../gnome-screenshot/gnome-screenshot.c:852
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Снимка-%s.png"
@@ -2202,14 +2214,14 @@ msgstr "Снимка-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:788
+#: ../gnome-screenshot/gnome-screenshot.c:859
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Снимка-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:798
+#: ../gnome-screenshot/gnome-screenshot.c:869
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -2218,38 +2230,55 @@ msgstr "Снимка.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:805
+#: ../gnome-screenshot/gnome-screenshot.c:876
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Снимка-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1121
+#: ../gnome-screenshot/gnome-screenshot.c:1242
 msgid "Grab a window instead of the entire screen"
-msgstr "Снимка на прозорец, а не на целия екран."
+msgstr "Снимка на прозорец, а не на целия екран"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1122
+#: ../gnome-screenshot/gnome-screenshot.c:1243
+msgid "Grab an area of the screen instead of the entire screen"
+msgstr "Снимка на област, а не на целия екран"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1244
 msgid "Include the window border with the screenshot"
 msgstr "Включване на рамката на прозореца в снимката"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1123
+#: ../gnome-screenshot/gnome-screenshot.c:1245
+msgid "Remove the window border from the screenshot"
+msgstr "Изключване на рамката на прозореца от снимката"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1246
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Правене на снимка след определено време (в секунди)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1247
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Какъв ефект да се добави към снимката (сянка, рамка или никакъв)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1124
+#: ../gnome-screenshot/gnome-screenshot.c:1247
 msgid "effect"
 msgstr "ефект"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1125
+#: ../gnome-screenshot/gnome-screenshot.c:1248
 msgid "Interactively set options"
 msgstr "Интерактивно задаване на настройки"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1134
+#: ../gnome-screenshot/gnome-screenshot.c:1259
 msgid "Take a picture of the screen"
 msgstr "Снимане на екрана"
+
+#: ../gnome-screenshot/gnome-screenshot.c:1277
+#, c-format
+msgid ""
+"Conflicting options: --window and --area should not be used at the same "
+"time.\n"
+msgstr ""
+"Несъвместими опции: „--window“ и „--area“ не могат да бъдат използвани "
+"едновременно.\n"
 
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:1
 msgid "Save images of your desktop or individual windows"
@@ -2284,8 +2313,12 @@ msgstr ""
 "„shadow“ (сянка), „none“ (нищо), и „border“ (рамка)."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:3
-msgid "Grab just the current window, rather than the whole desktop."
-msgstr "Заснемане само на текущия прозорец, а не на целия работен плот."
+msgid ""
+"Grab just the current window, rather than the whole desktop. This key has "
+"been deprecated and it is no longer in use."
+msgstr ""
+"Заснемане само на текущия прозорец, а не на целия работен плот. Този ключ е "
+"изоставен и вече не се ползва."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:4
 msgid "Include Border"
@@ -2320,8 +2353,8 @@ msgid "The number of seconds to wait before taking the screenshot."
 msgstr "Изчакване в секунди преди заснемането."
 
 #: ../gnome-screenshot/gnome-screenshot.schemas.in.h:12
-msgid "Window-specific screenshot"
-msgstr "Снимка на прозорец"
+msgid "Window-specific screenshot (deprecated)"
+msgstr "Снимка на прозорец (този ключ е изоставен и не се ползва)"
 
 #: ../gnome-screenshot/screenshot-dialog.c:239
 msgid ""
@@ -2358,7 +2391,7 @@ msgstr ""
 "Записването на снимката на екрана е неуспешно, поради неизвестна грешка"
 
 #. TODO: maybe we should also look at WM_NAME and WM_CLASS?
-#: ../gnome-screenshot/screenshot-utils.c:481
+#: ../gnome-screenshot/screenshot-utils.c:828
 msgid "Untitled Window"
 msgstr "Прозорец без име"
 
@@ -2372,7 +2405,7 @@ msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "Файлът „%s“ вече съществува. Искате ли да го презапишете?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:84
-#: ../gsearchtool/gsearchtool-callbacks.c:1469
+#: ../gsearchtool/gsearchtool-callbacks.c:1678
 msgid "_Replace"
 msgstr "_Замяна"
 
@@ -2413,107 +2446,117 @@ msgid "Disable Quick Search Second Scan"
 msgstr "Спиране на повторното _бързо търсене"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:6
+#, fuzzy
+msgid "Look in Folder"
+msgstr "Търсене в папка"
+
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:7
 msgid "Quick Search Excluded Paths"
 msgstr "Пътища, пропускани при бързото търсене"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:7
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:8
 msgid "Quick Search Second Scan Excluded Paths"
 msgstr "Пътища, пропускани на втория пас при бързото търсене"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:8
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:9
 msgid "Search Result Columns Order"
 msgstr "Подреждане на колоната с резултатите от търсенето:"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:11
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:12
 msgid "Select the search option \"Contains the text\""
 msgstr "Избор на условието за търсене „Съдържа текста“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:14
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:15
 msgid "Select the search option \"Date modified less than\""
 msgstr "Избор на условието за търсене „Датата на промяна е преди“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:17
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:18
 msgid "Select the search option \"Date modified more than\""
 msgstr "Избор на условието за търсене „Датата на промяна е след“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:20
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:21
+#, fuzzy
+msgid "Select the search option \"Exclude other filesystems\""
+msgstr "Избор на условието за търсене „Включване на други файлови системи.“"
+
+#. Translators: The quoted text is the label of an available
+#. search option that is translated elsewhere.
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:24
 msgid "Select the search option \"File is empty\""
 msgstr "Избор на условието за търсене „Файлът е празен“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:23
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:27
 msgid "Select the search option \"Follow symbolic links\""
 msgstr "Избор на условието за търсене „Символните връзки се следват“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:26
-msgid "Select the search option \"Include other filesystems\""
-msgstr "Избор на условието за търсене „Включване на други файлови системи.“"
-
-#. Translators: The quoted text is the label of an available
-#. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:29
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:30
 msgid "Select the search option \"Name does not contain\""
 msgstr "Избор на условието за търсене „Името не съдържа“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:32
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:33
 msgid "Select the search option \"Name matches regular expression\""
 msgstr "Избор на условието за търсене „Името напасва с регулярния израз“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:35
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:36
 msgid "Select the search option \"Owned by group\""
 msgstr "Избор на условието за търсене „Собственост е на групата“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:38
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:39
 msgid "Select the search option \"Owned by user\""
 msgstr "Избор на условието за търсене „Собственост е на потребителя“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:41
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:42
 msgid "Select the search option \"Owner is unrecognized\""
 msgstr "Избор на условието за търсене „Собственикът не е разпознат“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:44
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:45
 msgid "Select the search option \"Show hidden files and folders\""
 msgstr ""
 "Избор на условието за търсене „Скритите файлове и папки да се показват“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:47
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:48
 msgid "Select the search option \"Size at least\""
 msgstr "Избор на условието за търсене „Размерът е поне“"
 
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:50
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:51
 msgid "Select the search option \"Size at most\""
 msgstr "Избор на условието за търсене „Размерът е най-много“"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:51
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:52
 msgid "Show Additional Options"
 msgstr "Допълнителни условия"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:52
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:53
+msgid "This key defines the default value of the \"Look in Folder\" widget."
+msgstr ""
+
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:54
 msgid ""
 "This key defines the order of the columns in the search results. This key "
 "should not be modified by the user."
@@ -2521,7 +2564,7 @@ msgstr ""
 "Този ключ определя реда на колоните в резултатите от търсенето. Този ключ не "
 "бива да бъде променян от потребителите."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:53
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:55
 msgid ""
 "This key defines the paths the search tool will exclude from a quick search. "
 "The wildcards '*' and '?' are supported. The default values are /mnt/*, /"
@@ -2531,7 +2574,7 @@ msgstr ""
 "бързото търсене. Валидните шаблонни символи са „*“ и „?“. Стандартните "
 "стойности са /mnt/*, /media/*, /dev/*, /tmp/*, /proc/*, и /var/*."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:54
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:56
 msgid ""
 "This key defines the paths the search tool will exclude from a second scan "
 "when performing a quick search. The second scan uses the find command to "
@@ -2544,7 +2587,7 @@ msgstr ""
 "Целта е да се открият неиндексирани файлове. Валидните шаблонни символи са "
 "„*“ и „?“. Стандартната стойност е /."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:55
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:57
 msgid ""
 "This key defines the window height, and it's used to remember the size of "
 "the search tool between sessions. Setting it to -1 will make the search tool "
@@ -2554,7 +2597,7 @@ msgstr ""
 "използва за предаването ѝ между сесиите. За да използвате стандартната "
 "височина — задайте стойност „-1“."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:56
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:58
 msgid ""
 "This key defines the window width, and it's used to remember the size of the "
 "search tool between sessions. Setting it to -1 will make the search tool use "
@@ -2564,7 +2607,7 @@ msgstr ""
 "използва за предаването ѝ между сесиите. За да използвате стандартната "
 "широчина — задайте стойност „-1“."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:57
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:59
 msgid ""
 "This key determines if the \"Contains the text\" search option is selected "
 "when the search tool is started."
@@ -2572,7 +2615,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Съдържа текста“ е избрано при "
 "стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:58
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:60
 msgid ""
 "This key determines if the \"Date modified less than\" search option is "
 "selected when the search tool is started."
@@ -2580,7 +2623,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Датата на промяна е преди“ е "
 "избрано при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:59
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:61
 msgid ""
 "This key determines if the \"Date modified more than\" search option is "
 "selected when the search tool is started."
@@ -2588,25 +2631,10 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Датата на промяна е след“ е "
 "избрано при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:60
-msgid ""
-"This key determines if the \"File is empty\" search option is selected when "
-"the search tool is started."
-msgstr ""
-"Този ключ определя дали условието за търсене „Файлът е празен“ е избрано при "
-"стартирането на инструмента за търсене."
-
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:61
-msgid ""
-"This key determines if the \"Follow symbolic links\" search option is "
-"selected when the search tool is started."
-msgstr ""
-"Този ключ определя дали условието за търсене „Символните връзки се следват“ "
-"е избрано при стартирането на инструмента за търсене."
-
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:62
+#, fuzzy
 msgid ""
-"This key determines if the \"Include other filesystems\" search option is "
+"This key determines if the \"Exclude other filesystems\" search option is "
 "selected when the search tool is started."
 msgstr ""
 "Този ключ определя дали условието за търсене „Включване на други файлови "
@@ -2614,13 +2642,29 @@ msgstr ""
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:63
 msgid ""
+"This key determines if the \"File is empty\" search option is selected when "
+"the search tool is started."
+msgstr ""
+"Този ключ определя дали условието за търсене „Файлът е празен“ е избрано при "
+"стартирането на инструмента за търсене."
+
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:64
+msgid ""
+"This key determines if the \"Follow symbolic links\" search option is "
+"selected when the search tool is started."
+msgstr ""
+"Този ключ определя дали условието за търсене „Символните връзки се следват“ "
+"е избрано при стартирането на инструмента за търсене."
+
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:65
+msgid ""
 "This key determines if the \"Name does not contain\" search option is "
 "selected when the search tool is started."
 msgstr ""
 "Този ключ определя дали условието за търсене „Името не съдържа“ е избрано "
 "при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:64
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:66
 msgid ""
 "This key determines if the \"Name matches regular expression\" search option "
 "is selected when the search tool is started."
@@ -2628,7 +2672,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Името напасва с регулярния "
 "израз“ е избрано при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:65
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:67
 msgid ""
 "This key determines if the \"Owned by group\" search option is selected when "
 "the search tool is started."
@@ -2636,7 +2680,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Собственост е на групата“ е "
 "избрано при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:66
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:68
 msgid ""
 "This key determines if the \"Owned by user\" search option is selected when "
 "the search tool is started."
@@ -2644,7 +2688,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Собственост е на потребителя“ "
 "е избрано при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:67
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:69
 msgid ""
 "This key determines if the \"Owner is unrecognized\" search option is "
 "selected when the search tool is started."
@@ -2654,7 +2698,7 @@ msgstr ""
 
 #. Translators: The quoted text is the label of the additional
 #. options expander that is translated elsewhere.
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:70
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:72
 msgid ""
 "This key determines if the \"Select more options\" section is expanded when "
 "the search tool is started."
@@ -2662,7 +2706,7 @@ msgstr ""
 "Този ключ определя дали разделът за търсене „Допълнителни условия“ е "
 "разширен при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:71
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:73
 msgid ""
 "This key determines if the \"Show hidden files and folders\" search option "
 "is selected when the search tool is started."
@@ -2670,7 +2714,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Показват се скритите файлове и "
 "резервните копия“ е избрано при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:72
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:74
 msgid ""
 "This key determines if the \"Size at least\" search option is selected when "
 "the search tool is started."
@@ -2678,7 +2722,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Размерът е поне“ е избрано при "
 "стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:73
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:75
 msgid ""
 "This key determines if the \"Size at most\" search option is selected when "
 "the search tool is started."
@@ -2686,7 +2730,7 @@ msgstr ""
 "Този ключ определя дали условието за търсене „Най-голям размер“ е избрано "
 "при стартирането на инструмента за търсене."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:74
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:76
 msgid ""
 "This key determines if the search tool disables the use of the find command "
 "after performing a quick search."
@@ -2694,128 +2738,148 @@ msgstr ""
 "Този ключ определя дали инструментът за търсене да ползва командата „find“ "
 "след първия пас на бързото търсене"
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:75
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:77
 msgid ""
 "This key determines if the search tool disables the use of the locate "
 "command when performing simple file name searches."
 msgstr ""
 "Този ключ определя дали да се ползва командата „locate“ при търсене по име."
 
-#: ../gsearchtool/gnome-search-tool.schemas.in.h:76
+#: ../gsearchtool/gnome-search-tool.schemas.in.h:78
 msgid ""
 "This key determines if the search tool window starts in a maximized state."
 msgstr ""
 "Този ключ определя дали прозорецът за търсене да се стартира максимизиран."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:186
+#: ../gsearchtool/gsearchtool-callbacks.c:184
 msgid "Could not open help document."
 msgstr "Документът за помощта не може да бъде отворен."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:321
+#: ../gsearchtool/gsearchtool-callbacks.c:335
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Сигурни ли сте, че искате да отворите %d документ?"
 msgstr[1] "Сигурни ли сте, че искате да отворите %d документа?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:326
-#: ../gsearchtool/gsearchtool-callbacks.c:517
+#: ../gsearchtool/gsearchtool-callbacks.c:340
+#: ../gsearchtool/gsearchtool-callbacks.c:543
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Това ще отвори %d отделен прозорец."
 msgstr[1] "Това ще отвори %d отделни прозореца."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:366
+#: ../gsearchtool/gsearchtool-callbacks.c:380
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Документът „%s“ не може да бъде отворен."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:395
+#: ../gsearchtool/gsearchtool-callbacks.c:409
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Папката „%s“ не може да бъде отворена."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:403
+#: ../gsearchtool/gsearchtool-callbacks.c:417
 msgid "The nautilus file manager is not running."
 msgstr "Файловият мениджър Nautilus на е стартиран."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:487
+#: ../gsearchtool/gsearchtool-callbacks.c:513
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Няма инсталирана програма, която може да изобрази този документ."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:512
+#: ../gsearchtool/gsearchtool-callbacks.c:538
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Сигурни ли сте, че искате да отворите %d папка?"
 msgstr[1] "Сигурни ли сте, че искате да отворите %d папки?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:644
+#: ../gsearchtool/gsearchtool-callbacks.c:688
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Документът „%s“ не може да бъде преместен в кошчето."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:675
+#: ../gsearchtool/gsearchtool-callbacks.c:719
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Искате ли да изтриете за постоянно „%s“?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:678
+#: ../gsearchtool/gsearchtool-callbacks.c:722
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Кошчето е недостъпно. „%s“ не може да бъде преместен в кошчето."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:717
+#: ../gsearchtool/gsearchtool-callbacks.c:761
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Изтриването на „%s“ е неуспешно."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:864
-#, c-format
-msgid "Moving \"%s\" failed: %s."
-msgstr "Преместването на „%s“ е неуспешно: %s"
-
-#: ../gsearchtool/gsearchtool-callbacks.c:900
+#: ../gsearchtool/gsearchtool-callbacks.c:876
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Изтриването на „%s“ е неуспешно: %s"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1354
+#: ../gsearchtool/gsearchtool-callbacks.c:888
+#, c-format
+msgid "Moving \"%s\" failed: %s."
+msgstr "Преместването на „%s“ е неуспешно: %s"
+
+#. Popup menu item: Open
+#: ../gsearchtool/gsearchtool-callbacks.c:1017
+msgid "_Open"
+msgstr "О_тваряне"
+
+#. Popup menu item: Open With
+#: ../gsearchtool/gsearchtool-callbacks.c:1091
+msgid "Open Wit_h"
+msgstr ""
+
+#. Popup menu item: Open Folder
+#: ../gsearchtool/gsearchtool-callbacks.c:1121
+#, fuzzy
+msgid "Open _Folder"
+msgstr "_Отваряне на папка"
+
+#: ../gsearchtool/gsearchtool-callbacks.c:1161
+msgid "_Save Results As..."
+msgstr "Запазване на _резултата като…"
+
+#: ../gsearchtool/gsearchtool-callbacks.c:1563
 msgid "Save Search Results As..."
 msgstr "Запазване на резултата като…"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1385
+#: ../gsearchtool/gsearchtool-callbacks.c:1594
 msgid "Could not save document."
 msgstr "Документът не може да бъде запазен."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1386
+#: ../gsearchtool/gsearchtool-callbacks.c:1595
 msgid "You did not select a document name."
 msgstr "Не сте избрали име на документа."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1416
+#: ../gsearchtool/gsearchtool-callbacks.c:1625
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Документът „%s“ не може да бъде запазен в „%s“."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1450
+#: ../gsearchtool/gsearchtool-callbacks.c:1659
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Документът „%s“ вече съществува. Искате ли да го презапишете?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1454
+#: ../gsearchtool/gsearchtool-callbacks.c:1663
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Ако презапишете съществуващ файл, ще загубите старото му съдържание."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1519
+#: ../gsearchtool/gsearchtool-callbacks.c:1728
 msgid "The document name you selected is a folder."
 msgstr "Името на документа, което сте избрали, е на папка."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1568
+#: ../gsearchtool/gsearchtool-callbacks.c:1777
 msgid "You may not have write permissions to the document."
 msgstr "Може да нямате права за писане в този документ."
 
-#: ../gsearchtool/gsearchtool-support.c:72
+#: ../gsearchtool/gsearchtool-support.c:64
 #, c-format
 msgid ""
 "GConf error:\n"
@@ -2829,24 +2893,24 @@ msgstr ""
 #. on age of a file.  Please modify the format of the timestamp to match
 #. your locale.  For example, to display 24 hour time replace the '%-I'
 #. with '%-H' and remove the '%p'.  (See bugzilla report #120434.)
-#: ../gsearchtool/gsearchtool-support.c:641
+#: ../gsearchtool/gsearchtool-support.c:699
 msgid "today at %-I:%M %p"
 msgstr "днес в %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:643
+#: ../gsearchtool/gsearchtool-support.c:701
 msgid "yesterday at %-I:%M %p"
 msgstr "вчера в %-H:%M"
 
-#: ../gsearchtool/gsearchtool-support.c:645
-#: ../gsearchtool/gsearchtool-support.c:647
+#: ../gsearchtool/gsearchtool-support.c:703
+#: ../gsearchtool/gsearchtool-support.c:705
 msgid "%A, %B %-d %Y at %-I:%M:%S %p"
 msgstr "%A, %-d %B %Y в %-H:%M:%S"
 
-#: ../gsearchtool/gsearchtool-support.c:826
+#: ../gsearchtool/gsearchtool-support.c:892
 msgid "link (broken)"
 msgstr "връзка (прекъсната)"
 
-#: ../gsearchtool/gsearchtool-support.c:830
+#: ../gsearchtool/gsearchtool-support.c:896
 #, c-format
 msgid "link to %s"
 msgstr "връзка до %s"
@@ -2857,12 +2921,12 @@ msgstr "връзка до %s"
 #. * make some or all of them match.
 #.
 #. localizers: tag used to detect the first copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1533
+#: ../gsearchtool/gsearchtool-support.c:1479
 msgid " (copy)"
 msgstr " (копие)"
 
 #. localizers: tag used to detect the second copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1535
+#: ../gsearchtool/gsearchtool-support.c:1481
 msgid " (another copy)"
 msgstr " (второ копие)"
 
@@ -2870,36 +2934,36 @@ msgstr " (второ копие)"
 #. localizers: tag used to detect the x12th copy of a file
 #. localizers: tag used to detect the x13th copy of a file
 #. localizers: tag used to detect the xxth copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1538
-#: ../gsearchtool/gsearchtool-support.c:1540
-#: ../gsearchtool/gsearchtool-support.c:1542
-#: ../gsearchtool/gsearchtool-support.c:1552
+#: ../gsearchtool/gsearchtool-support.c:1484
+#: ../gsearchtool/gsearchtool-support.c:1486
+#: ../gsearchtool/gsearchtool-support.c:1488
+#: ../gsearchtool/gsearchtool-support.c:1498
 msgid "th copy)"
 msgstr "о копие)"
 
 #. localizers: tag used to detect the x1st copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1545
+#: ../gsearchtool/gsearchtool-support.c:1491
 msgid "st copy)"
 msgstr "о копие)"
 
 #. localizers: tag used to detect the x2nd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1547
+#: ../gsearchtool/gsearchtool-support.c:1493
 msgid "nd copy)"
 msgstr "о копие)"
 
 #. localizers: tag used to detect the x3rd copy of a file
-#: ../gsearchtool/gsearchtool-support.c:1549
+#: ../gsearchtool/gsearchtool-support.c:1495
 msgid "rd copy)"
 msgstr "о копие)"
 
 #. localizers: appended to first file copy
-#: ../gsearchtool/gsearchtool-support.c:1566
+#: ../gsearchtool/gsearchtool-support.c:1512
 #, c-format
 msgid "%s (copy)%s"
 msgstr "%s (копие)%s"
 
 #. localizers: appended to second file copy
-#: ../gsearchtool/gsearchtool-support.c:1568
+#: ../gsearchtool/gsearchtool-support.c:1514
 #, c-format
 msgid "%s (another copy)%s"
 msgstr "%s (второ копие)%s"
@@ -2908,239 +2972,228 @@ msgstr "%s (второ копие)%s"
 #. localizers: appended to x12th file copy
 #. localizers: appended to x13th file copy
 #. localizers: appended to xxth file copy
-#: ../gsearchtool/gsearchtool-support.c:1571
-#: ../gsearchtool/gsearchtool-support.c:1573
-#: ../gsearchtool/gsearchtool-support.c:1575
-#: ../gsearchtool/gsearchtool-support.c:1584
+#: ../gsearchtool/gsearchtool-support.c:1517
+#: ../gsearchtool/gsearchtool-support.c:1519
+#: ../gsearchtool/gsearchtool-support.c:1521
+#: ../gsearchtool/gsearchtool-support.c:1530
 #, c-format
 msgid "%s (%dth copy)%s"
 msgstr "%s (%dо копие)%s"
 
 #. localizers: appended to x1st file copy
-#: ../gsearchtool/gsearchtool-support.c:1578
+#: ../gsearchtool/gsearchtool-support.c:1524
 #, c-format
 msgid "%s (%dst copy)%s"
 msgstr "%s (%dо копие)%s"
 
 #. localizers: appended to x2nd file copy
-#: ../gsearchtool/gsearchtool-support.c:1580
+#: ../gsearchtool/gsearchtool-support.c:1526
 #, c-format
 msgid "%s (%dnd copy)%s"
 msgstr "%s (%dо копие)%s"
 
 #. localizers: appended to x3rd file copy
-#: ../gsearchtool/gsearchtool-support.c:1582
+#: ../gsearchtool/gsearchtool-support.c:1528
 #, c-format
 msgid "%s (%drd copy)%s"
 msgstr "%s (%dо копие)%s"
 
-#: ../gsearchtool/gsearchtool-support.c:1629
+#: ../gsearchtool/gsearchtool-support.c:1575
 msgid " (invalid Unicode)"
 msgstr " (грешен Уникод)"
 
 #. localizers: opening parentheses to match the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1718
+#: ../gsearchtool/gsearchtool-support.c:1664
 msgid " ("
 msgstr " ("
 
 #. localizers: opening parentheses of the "th copy)" string
-#: ../gsearchtool/gsearchtool-support.c:1726
+#: ../gsearchtool/gsearchtool-support.c:1672
 #, c-format
 msgid " (%d"
 msgstr " (%d"
 
-#: ../gsearchtool/gsearchtool.c:82
+#: ../gsearchtool/gsearchtool.c:80
 msgid "Contains the _text"
 msgstr "_Съдържа текста"
 
-#: ../gsearchtool/gsearchtool.c:84
+#: ../gsearchtool/gsearchtool.c:82
 msgid "_Date modified less than"
 msgstr "_Датата на промяна е преди"
 
-#: ../gsearchtool/gsearchtool.c:84 ../gsearchtool/gsearchtool.c:85
+#: ../gsearchtool/gsearchtool.c:82 ../gsearchtool/gsearchtool.c:83
 msgid "days"
 msgstr "дни"
 
-#: ../gsearchtool/gsearchtool.c:85
+#: ../gsearchtool/gsearchtool.c:83
 msgid "Date modified more than"
 msgstr "Датата на промяна е сл_ед"
 
-#: ../gsearchtool/gsearchtool.c:87
+#: ../gsearchtool/gsearchtool.c:85
 msgid "S_ize at least"
 msgstr "_Размерът е поне"
 
-#: ../gsearchtool/gsearchtool.c:87 ../gsearchtool/gsearchtool.c:88
+#: ../gsearchtool/gsearchtool.c:85 ../gsearchtool/gsearchtool.c:86
 msgid "kilobytes"
 msgstr "килобайта"
 
-#: ../gsearchtool/gsearchtool.c:88
+#: ../gsearchtool/gsearchtool.c:86
 msgid "Si_ze at most"
 msgstr "Р_азмерът е най-много"
 
-#: ../gsearchtool/gsearchtool.c:89
+#: ../gsearchtool/gsearchtool.c:87
 msgid "File is empty"
 msgstr "Файлът е празен"
 
-#: ../gsearchtool/gsearchtool.c:91
+#: ../gsearchtool/gsearchtool.c:89
 msgid "Owned by _user"
 msgstr "Собственост е на п_отребителя"
 
-#: ../gsearchtool/gsearchtool.c:92
+#: ../gsearchtool/gsearchtool.c:90
 msgid "Owned by _group"
 msgstr "Собственост е на _групата"
 
-#: ../gsearchtool/gsearchtool.c:93
+#: ../gsearchtool/gsearchtool.c:91
 msgid "Owner is unrecognized"
 msgstr "Собственикът не е разпознат"
 
-#: ../gsearchtool/gsearchtool.c:95
+#: ../gsearchtool/gsearchtool.c:93
 msgid "Na_me does not contain"
 msgstr "И_мето не съдържа"
 
-#: ../gsearchtool/gsearchtool.c:96
+#: ../gsearchtool/gsearchtool.c:94
 msgid "Name matches regular e_xpression"
 msgstr "Името напасва с регул_ярния израз"
 
-#: ../gsearchtool/gsearchtool.c:98
+#: ../gsearchtool/gsearchtool.c:96
 msgid "Show hidden and backup files"
 msgstr "Скритите файлове и папки да се показват"
 
-#: ../gsearchtool/gsearchtool.c:99
+#: ../gsearchtool/gsearchtool.c:97
 msgid "Follow symbolic links"
 msgstr "Символните връзки се следват"
 
-#: ../gsearchtool/gsearchtool.c:100
-msgid "Include other filesystems"
+#: ../gsearchtool/gsearchtool.c:98
+#, fuzzy
+msgid "Exclude other filesystems"
 msgstr "Включване на други файлови системи"
 
-#: ../gsearchtool/gsearchtool.c:158 ../gsearchtool/gsearchtool.c:163
-#: ../gsearchtool/gsearchtool.c:172
+#: ../gsearchtool/gsearchtool.c:156 ../gsearchtool/gsearchtool.c:161
+#: ../gsearchtool/gsearchtool.c:170
 msgid "STRING"
 msgstr "НИЗ"
 
-#: ../gsearchtool/gsearchtool.c:159
+#: ../gsearchtool/gsearchtool.c:157
 msgid "PATH"
 msgstr "ПЪТ"
 
-#: ../gsearchtool/gsearchtool.c:160
+#: ../gsearchtool/gsearchtool.c:158
 msgid "VALUE"
 msgstr "СТОЙНОСТ"
 
-#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
+#: ../gsearchtool/gsearchtool.c:162 ../gsearchtool/gsearchtool.c:163
 msgid "DAYS"
 msgstr "ДНИ"
 
-#: ../gsearchtool/gsearchtool.c:166 ../gsearchtool/gsearchtool.c:167
+#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
 msgid "KILOBYTES"
 msgstr "КИЛОБАЙТА"
 
-#: ../gsearchtool/gsearchtool.c:169
+#: ../gsearchtool/gsearchtool.c:167
 msgid "USER"
 msgstr "ПОТРЕБИТЕЛ"
 
-#: ../gsearchtool/gsearchtool.c:170
+#: ../gsearchtool/gsearchtool.c:168
 msgid "GROUP"
 msgstr "ГРУПА"
 
-#: ../gsearchtool/gsearchtool.c:173
+#: ../gsearchtool/gsearchtool.c:171
 msgid "PATTERN"
 msgstr "ШАБЛОН"
 
-#: ../gsearchtool/gsearchtool.c:181
-msgid "_Open"
-msgstr "О_тваряне"
-
-#: ../gsearchtool/gsearchtool.c:182
-msgid "O_pen Folder"
-msgstr "Отва_ряне на папка"
-
-#: ../gsearchtool/gsearchtool.c:184
-msgid "_Save Results As..."
-msgstr "Запазване на _резултата като…"
-
-#: ../gsearchtool/gsearchtool.c:390
+#: ../gsearchtool/gsearchtool.c:369
 msgid "A locate database has probably not been created."
 msgstr "Вероятно не е създадена база от данни за местоположения."
 
-#: ../gsearchtool/gsearchtool.c:492
+#: ../gsearchtool/gsearchtool.c:471
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Неуспешно преобразуване на набора символи за „%s“"
 
-#: ../gsearchtool/gsearchtool.c:516
+#: ../gsearchtool/gsearchtool.c:495
 msgid "Searching..."
 msgstr "Търсене…"
 
-#: ../gsearchtool/gsearchtool.c:516 ../gsearchtool/gsearchtool.c:1021
-#: ../gsearchtool/gsearchtool.c:1299 ../gsearchtool/gsearchtool.c:3149
+#: ../gsearchtool/gsearchtool.c:495 ../gsearchtool/gsearchtool.c:999
+#: ../gsearchtool/gsearchtool.c:2962
 msgid "Search for Files"
 msgstr "Търсене за файлове"
 
-#: ../gsearchtool/gsearchtool.c:967 ../gsearchtool/gsearchtool.c:996
+#: ../gsearchtool/gsearchtool.c:945 ../gsearchtool/gsearchtool.c:974
 msgid "No files found"
 msgstr "Не са намерени файлове"
 
-#: ../gsearchtool/gsearchtool.c:989
+#: ../gsearchtool/gsearchtool.c:967
 msgid "(stopped)"
 msgstr "(спрян)"
 
-#: ../gsearchtool/gsearchtool.c:995
+#: ../gsearchtool/gsearchtool.c:973
 msgid "No Files Found"
 msgstr "Не са намерени файлове"
 
-#: ../gsearchtool/gsearchtool.c:1000
-#, c-format
-msgid "%d File Found"
-msgid_plural "%d Files Found"
+#: ../gsearchtool/gsearchtool.c:978
+#, fuzzy, c-format
+msgid "%'d File Found"
+msgid_plural "%'d Files Found"
 msgstr[0] "Намерен е %d файл"
 msgstr[1] "Намерени са %d файла"
 
-#: ../gsearchtool/gsearchtool.c:1004 ../gsearchtool/gsearchtool.c:1042
-#, c-format
-msgid "%d file found"
-msgid_plural "%d files found"
+#: ../gsearchtool/gsearchtool.c:982 ../gsearchtool/gsearchtool.c:1020
+#, fuzzy, c-format
+msgid "%'d file found"
+msgid_plural "%'d files found"
 msgstr[0] "Намерен е %d файл"
 msgstr[1] "Намерени са %d файла"
 
-#: ../gsearchtool/gsearchtool.c:1133
+#: ../gsearchtool/gsearchtool.c:1111
 msgid "Entry changed called for a non entry option!"
 msgstr "Промененото условие изисква условие, което не присъства!"
 
-#: ../gsearchtool/gsearchtool.c:1384
+#: ../gsearchtool/gsearchtool.c:1271
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Задаване на текст за „Името съдържа“"
 
-#: ../gsearchtool/gsearchtool.c:1385
+#: ../gsearchtool/gsearchtool.c:1272
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Задаване на текст за „Гледане в папка“"
 
-#: ../gsearchtool/gsearchtool.c:1386
+#: ../gsearchtool/gsearchtool.c:1273
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "Подреждане на файловете по: име, папка, размер, вид, или дата"
 
-#: ../gsearchtool/gsearchtool.c:1387
+#: ../gsearchtool/gsearchtool.c:1274
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Задаване на намаляващ ред на сортирането, по подразбиране е възходящ"
 
-#: ../gsearchtool/gsearchtool.c:1388
+#: ../gsearchtool/gsearchtool.c:1275
 msgid "Automatically start a search"
 msgstr "Автоматично стартиране на търсенето"
 
-#: ../gsearchtool/gsearchtool.c:1394
+#: ../gsearchtool/gsearchtool.c:1281
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Избиране на „%s“ като условие за търсене"
 
-#: ../gsearchtool/gsearchtool.c:1397
+#: ../gsearchtool/gsearchtool.c:1284
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Избиране и задаване условието за търсене „%s“"
 
-#: ../gsearchtool/gsearchtool.c:1504
+#: ../gsearchtool/gsearchtool.c:1391
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Грешно условие, зададено в командата за подреждане"
 
-#: ../gsearchtool/gsearchtool.c:1802
+#: ../gsearchtool/gsearchtool.c:1685
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -3148,7 +3201,7 @@ msgstr ""
 "\n"
 "… Твърде много грешки за показване …"
 
-#: ../gsearchtool/gsearchtool.c:1816
+#: ../gsearchtool/gsearchtool.c:1699
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -3156,11 +3209,11 @@ msgstr ""
 "Резултатите от търсенето може да са неверни. Имаше грешки при изпълнението "
 "на това търсене."
 
-#: ../gsearchtool/gsearchtool.c:1828 ../gsearchtool/gsearchtool.c:1872
+#: ../gsearchtool/gsearchtool.c:1711 ../gsearchtool/gsearchtool.c:1755
 msgid "Show more _details"
 msgstr "Показване на повече _подробности"
 
-#: ../gsearchtool/gsearchtool.c:1858
+#: ../gsearchtool/gsearchtool.c:1741
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -3168,367 +3221,173 @@ msgstr ""
 "Резултатите от търсенето може да са остарели или неверни. Искате ли да "
 "спрете възможността за бързо търсене?"
 
-#: ../gsearchtool/gsearchtool.c:1883
+#: ../gsearchtool/gsearchtool.c:1766
 msgid "Disable _Quick Search"
 msgstr "Спиране на _бързото търсене"
 
-#: ../gsearchtool/gsearchtool.c:1910
+#: ../gsearchtool/gsearchtool.c:1793
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr ""
 "Неуспех при задаването на идентификатор на група на дъщерен процес %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1935
+#: ../gsearchtool/gsearchtool.c:1818
 msgid "Error parsing the search command."
 msgstr "Грешка при изпълнението на командата за търсене"
 
-#: ../gsearchtool/gsearchtool.c:1968
+#: ../gsearchtool/gsearchtool.c:1851
 msgid "Error running the search command."
 msgstr "Грешка при изпълнение на командата за търсене."
 
-#: ../gsearchtool/gsearchtool.c:2083
+#: ../gsearchtool/gsearchtool.c:1966
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Задаване на текстова стойност на условието за търсене „%s“."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:2088
+#: ../gsearchtool/gsearchtool.c:1971
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "„%s“ в %s"
 
-#: ../gsearchtool/gsearchtool.c:2090
+#: ../gsearchtool/gsearchtool.c:1973
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Задаване на стойност в %s за условието за търсене „%s“."
 
-#: ../gsearchtool/gsearchtool.c:2148
+#: ../gsearchtool/gsearchtool.c:2031
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Премахване на „%s“"
 
-#: ../gsearchtool/gsearchtool.c:2149
+#: ../gsearchtool/gsearchtool.c:2032
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Натиснете, за да премахнете условието за търсене „%s“."
 
-#: ../gsearchtool/gsearchtool.c:2242
+#: ../gsearchtool/gsearchtool.c:2125
 msgid "A_vailable options:"
 msgstr "Възмо_жни условия:"
 
-#: ../gsearchtool/gsearchtool.c:2271
+#: ../gsearchtool/gsearchtool.c:2154
 msgid "Available options"
 msgstr "Налични условия"
 
-#: ../gsearchtool/gsearchtool.c:2272
+#: ../gsearchtool/gsearchtool.c:2155
 msgid "Select a search option from the drop-down list."
 msgstr "Избор на условие за търсене от падащото меню."
 
-#: ../gsearchtool/gsearchtool.c:2284
+#: ../gsearchtool/gsearchtool.c:2167
 msgid "Add search option"
 msgstr "Добавяне на условие за търсене"
 
-#: ../gsearchtool/gsearchtool.c:2285
+#: ../gsearchtool/gsearchtool.c:2168
 msgid "Click to add the selected available search option."
 msgstr "Натискане за избиране на избраното налично условие за търсене."
 
-#: ../gsearchtool/gsearchtool.c:2374
+#: ../gsearchtool/gsearchtool.c:2257
 msgid "S_earch results:"
 msgstr "_Резултати от търсенето:"
 
-#: ../gsearchtool/gsearchtool.c:2413
+#: ../gsearchtool/gsearchtool.c:2300
 msgid "List View"
 msgstr "Списъчен изглед"
 
-#: ../gsearchtool/gsearchtool.c:2520
+#: ../gsearchtool/gsearchtool.c:2407
 msgid "Type"
 msgstr "Вид"
 
-#: ../gsearchtool/gsearchtool.c:2531
+#: ../gsearchtool/gsearchtool.c:2418
 msgid "Date Modified"
 msgstr "Дата на промяна"
 
-#: ../gsearchtool/gsearchtool.c:2932
+#: ../gsearchtool/gsearchtool.c:2733
 msgid "_Name contains:"
 msgstr "_Името съдържа:"
 
-#: ../gsearchtool/gsearchtool.c:2946 ../gsearchtool/gsearchtool.c:2947
+#: ../gsearchtool/gsearchtool.c:2747 ../gsearchtool/gsearchtool.c:2748
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Въведете цяло или непълно име с или без шаблонни знаци."
 
-#: ../gsearchtool/gsearchtool.c:2947
+#: ../gsearchtool/gsearchtool.c:2748
 msgid "Name contains"
 msgstr "Името съдържа"
 
-#: ../gsearchtool/gsearchtool.c:2953
+#: ../gsearchtool/gsearchtool.c:2754
 msgid "_Look in folder:"
 msgstr "Т_ърсене в папка:"
 
-#: ../gsearchtool/gsearchtool.c:2959
+#: ../gsearchtool/gsearchtool.c:2760
 msgid "Browse"
 msgstr "Разглеждане"
 
-#: ../gsearchtool/gsearchtool.c:2964
+#: ../gsearchtool/gsearchtool.c:2769
 msgid "Look in folder"
 msgstr "Търсене в папка"
 
-#: ../gsearchtool/gsearchtool.c:2964
+#: ../gsearchtool/gsearchtool.c:2769
 msgid "Select the folder or device from which you want to begin the search."
 msgstr ""
 "Избор на папката или устройството, от което желаете да започне търсенето."
 
-#: ../gsearchtool/gsearchtool.c:2975
+#: ../gsearchtool/gsearchtool.c:2787
 msgid "Select more _options"
 msgstr "Допълнителни _условия"
 
-#: ../gsearchtool/gsearchtool.c:2984
+#: ../gsearchtool/gsearchtool.c:2796
 msgid "Select more options"
 msgstr "Допълнителни условия"
 
-#: ../gsearchtool/gsearchtool.c:2984
+#: ../gsearchtool/gsearchtool.c:2796
 msgid "Click to expand or collapse the list of available options."
 msgstr "Разширяване или свиване на списъка с наличните условия."
 
-#: ../gsearchtool/gsearchtool.c:3008
+#: ../gsearchtool/gsearchtool.c:2820
 msgid "Click to display the help manual."
 msgstr "Натиснете, за да видите ръководството"
 
-#: ../gsearchtool/gsearchtool.c:3016
+#: ../gsearchtool/gsearchtool.c:2828
 msgid "Click to close \"Search for Files\"."
 msgstr "Натиснете, за да затворите „Търсене на файлове“."
 
-#: ../gsearchtool/gsearchtool.c:3042
+#: ../gsearchtool/gsearchtool.c:2854
 msgid "Click to perform a search."
 msgstr "Натиснете, за да проведете търсенето."
 
-#: ../gsearchtool/gsearchtool.c:3043
+#: ../gsearchtool/gsearchtool.c:2855
 msgid "Click to stop a search."
 msgstr "Натиснете, за да спрете търсенето."
 
-#: ../gsearchtool/gsearchtool.c:3134
+#: ../gsearchtool/gsearchtool.c:2947
 msgid "- the GNOME Search Tool"
 msgstr "— инструментът на GNOME за търсене"
 
-#: ../logview/about.c:51 ../logview/logview.c:37 ../logview/main.c:54
-msgid "System Log Viewer"
+#: ../logview/data/gnome-system-log.desktop.in.in.h:1
+msgid "Log File Viewer"
 msgstr "Преглед на системните дневници"
 
-#: ../logview/about.c:54
-msgid "A system log viewer for GNOME."
-msgstr "Програма на GNOME за преглед на системните дневници."
-
-#: ../logview/gnome-system-log.desktop.in.in.h:1
-msgid "System Log"
-msgstr "Системен дневник"
-
-#: ../logview/gnome-system-log.desktop.in.in.h:2
+#: ../logview/data/gnome-system-log.desktop.in.in.h:2
 msgid "View or monitor system log files"
 msgstr "Преглед или наблюдение системните дневници"
 
-#: ../logview/log_repaint.c:190
-#, c-format
-msgid "last update: %s"
-msgstr "последно актуализиране: %s"
-
-#: ../logview/log_repaint.c:192
-#, c-format
-msgid "%d lines (%s) - %s"
-msgstr "%d реда (%s) — %s"
-
-#: ../logview/log_repaint.c:230
-msgid "Current"
-msgstr "Текущ"
-
-#: ../logview/logrtns.c:37
-msgid "One file or more could not be opened"
-msgstr "Един или няколко файла не могат да бъдат отворени"
-
-#: ../logview/logrtns.c:59
-#, c-format
-msgid ""
-"%s is not user readable. Either run the program as root or ask the sysadmin "
-"to change the permissions on the file.\n"
-msgstr ""
-"%s не е четим за потребителя. Стартирайте програмата като администратор или "
-"помолете системния администратор да смени правата на файла.\n"
-
-#: ../logview/logrtns.c:64
-#, c-format
-msgid "%s is too big."
-msgstr "%s е твърде голям."
-
-#: ../logview/logrtns.c:67
-#, c-format
-msgid "%s could not be opened."
-msgstr "%s не може да бъде отворен."
-
-#: ../logview/logrtns.c:382
-#, c-format
-msgid "%s is not a log file."
-msgstr "%s не е дневник."
-
-#: ../logview/logrtns.c:388
-msgid "Not enough memory."
-msgstr "Няма достатъчно памет."
-
-#: ../logview/logrtns.c:402
-#, c-format
-msgid "%s cannot be opened."
-msgstr "%s не може да бъде отворен."
-
-#: ../logview/logview-findbar.c:152
-msgid "_Filter:"
-msgstr "_Филтър:"
-
-#: ../logview/logview-findbar.c:157
-msgid "_Clear"
-msgstr "_Изчистване"
-
-#: ../logview/logview.c:90
-msgid "_Open..."
-msgstr "_Отваряне…"
-
-#: ../logview/logview.c:90
-msgid "Open a log from file"
-msgstr "Отваряне на дневник"
-
-#: ../logview/logview.c:92
-msgid "_Close"
-msgstr "_Затваряне"
-
-#: ../logview/logview.c:92
-msgid "Close this log"
-msgstr "Затваряне на този диалогов прозорец"
-
-#: ../logview/logview.c:94
-msgid "_Quit"
-msgstr "_Спиране на програмата"
-
-#: ../logview/logview.c:94
-msgid "Quit the log viewer"
-msgstr "Спиране на програмата за преглед на дневници"
-
-#: ../logview/logview.c:97
-msgid "_Copy"
-msgstr "_Копиране"
-
-#: ../logview/logview.c:97
-msgid "Copy the selection"
-msgstr "Копиране на избраното"
-
-#: ../logview/logview.c:99
-msgid "Select the entire log"
-msgstr "Избор на целия дневник"
-
-#: ../logview/logview.c:101
-msgid "_Filter..."
-msgstr "_Филтър…"
-
-#: ../logview/logview.c:101
-msgid "Filter log"
-msgstr "Филтър"
-
-#: ../logview/logview.c:104
-msgid "Bigger text size"
-msgstr "По-голям размер на текста"
-
-#: ../logview/logview.c:106
-msgid "Smaller text size"
-msgstr "По-малък размер на текста"
-
-#: ../logview/logview.c:108
-msgid "Normal text size"
-msgstr "Нормален размер на текста"
-
-#: ../logview/logview.c:111
-msgid "Collapse _All"
-msgstr "_Повече информация за всичко"
-
-#: ../logview/logview.c:111
-msgid "Collapse all the rows"
-msgstr "Свиване на всички редове"
-
-#: ../logview/logview.c:114
-msgid "Open the help contents for the log viewer"
-msgstr "Отваряне на съдържанието на помощта за разглеждането на дневници"
-
-#: ../logview/logview.c:116
-msgid "Show the about dialog for the log viewer"
-msgstr ""
-"Показване на диалоговия прозорец относно програмата за преглед на системните "
-"дневници"
-
-#: ../logview/logview.c:122
-msgid "_Statusbar"
-msgstr "Лента за _състоянието"
-
-#: ../logview/logview.c:122
-msgid "Show Status Bar"
-msgstr "Показване на лентата за състоянието"
-
-#: ../logview/logview.c:124
-msgid "Side _Pane"
-msgstr "Странична _лента"
-
-#: ../logview/logview.c:124
-msgid "Show Side Pane"
-msgstr "Показване на страничната лента"
-
-#: ../logview/logview.c:126
-msgid "_Monitor"
-msgstr "_Наблюдение"
-
-#: ../logview/logview.c:126
-msgid "Monitor Current Log"
-msgstr "Наблюдение на текущия дневник"
-
-#: ../logview/logview.c:128
-msgid "Ca_lendar"
-msgstr "_Календар"
-
-#: ../logview/logview.c:128
-msgid "Show Calendar Log"
-msgstr "Показване на дневника на календара"
-
-#: ../logview/logview.c:307
-#, c-format
-msgid "%s (monitored) - %s"
-msgstr "%s (наблюдава се) — %s"
-
-#: ../logview/logview.c:518
-msgid "Open Log"
-msgstr "Отваряне на дневник"
-
-#: ../logview/logview.c:906
-msgid "Version: "
-msgstr "Версия: "
-
-#: ../logview/logview.c:975
-msgid "Days"
-msgstr "Дни"
-
-#: ../logview/logview.c:976
-msgid "Pointer towards a GSList of days for the current log."
-msgstr "Указател към GSList от дни за текущия дневник."
-
-#: ../logview/logview.schemas.in.h:1
+#: ../logview/data/gnome-system-log.schemas.in.h:1
 msgid "Height of the main window in pixels"
 msgstr "Височината на основния прозорец в пиксели"
 
-#: ../logview/logview.schemas.in.h:2
+#: ../logview/data/gnome-system-log.schemas.in.h:2
 msgid "Log file to open up on startup"
 msgstr "Дневник, който да се отвори в началото"
 
-#: ../logview/logview.schemas.in.h:3
+#: ../logview/data/gnome-system-log.schemas.in.h:3
 msgid "Log files to open up on startup"
 msgstr "Дневници, които да се отворят при стартиране"
 
-#: ../logview/logview.schemas.in.h:4
+#: ../logview/data/gnome-system-log.schemas.in.h:4
 msgid "Size of the font used to display the log"
 msgstr "Размерът на шрифта за показване на дневници"
 
-#: ../logview/logview.schemas.in.h:5
+#: ../logview/data/gnome-system-log.schemas.in.h:5
 msgid ""
 "Specifies a list of log files to open up at startup. A default list is "
 "created by reading /etc/syslog.conf."
@@ -3537,11 +3396,11 @@ msgstr ""
 "създаването на този ключ в него стандартно се пренася списъкът от /etc/"
 "syslog.conf."
 
-#: ../logview/logview.schemas.in.h:6
+#: ../logview/data/gnome-system-log.schemas.in.h:6
 msgid "Specifies the height of the log viewer main window in pixels."
 msgstr "Определя височината на прозореца за преглед на дневници в пиксели."
 
-#: ../logview/logview.schemas.in.h:7
+#: ../logview/data/gnome-system-log.schemas.in.h:7
 msgid ""
 "Specifies the log file displayed at startup. The default is either /var/adm/"
 "messages or /var/log/messages, depending on your operating system."
@@ -3549,7 +3408,7 @@ msgstr ""
 "Определя дневника, който да се отвори в началото. Стандартните файлове са /"
 "var/adm/ или /var/log/messages, в зависимост от операционната система."
 
-#: ../logview/logview.schemas.in.h:8
+#: ../logview/data/gnome-system-log.schemas.in.h:8
 msgid ""
 "Specifies the size of the fixed-width font used to display the log in the "
 "main tree view. The default is taken from the default terminal font size."
@@ -3557,102 +3416,237 @@ msgstr ""
 "Размерът на равноширокия шрифт за показване на дневниците в основния "
 "дървовиден изглед. Стандартно се взема този на терминала gnome-terminal."
 
-#: ../logview/logview.schemas.in.h:9
+#: ../logview/data/gnome-system-log.schemas.in.h:9
 msgid "Specifies the width of the log viewer main window in pixels."
 msgstr ""
 "Определя широчината (в пиксели) на основния прозорец на програмата за "
 "преглед на дневници."
 
-#: ../logview/logview.schemas.in.h:10
+#: ../logview/data/gnome-system-log.schemas.in.h:10
 msgid "Width of the main window in pixels"
 msgstr "Широчината на основния прозорец в пиксели"
 
-#: ../logview/main.c:49
+#: ../logview/logview-about.h:49
+msgid ""
+"Log Viewer is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version."
+msgstr ""
+"Тази програма (Log Viewer) е свободен софтуер. Можете да я разпространявате "
+"и/или променяте под условията на Общия публичен лиценз на GNU (GNU GPL), "
+"както е публикуван от Фондацията за свободен софтуер — версия 2 на лиценза "
+"или (по ваше решение) по-късна версия."
+
+#: ../logview/logview-about.h:53
+msgid ""
+"Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details."
+msgstr ""
+"Тази програма се разпространява с надеждата, че ще бъде полезна, но БЕЗ "
+"НИКАКВИ ГАРАНЦИИ, дори и косвените за ПРОДАЖБА или СЪОТВЕТСТВИЕ С КАКВАТО И "
+"ДА Е УПОТРЕБА. За подробности погледнете Общия публичен лиценз на GNU."
+
+#: ../logview/logview-about.h:57
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"the Log Viewer; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
+msgstr ""
+"Трябва да сте получили копие от Общия публичен лиценз на GNU (GNU GPL) "
+"заедно с тази програма. Ако не сте, пишете до Free Software Foundation, "
+"Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA."
+
+#: ../logview/logview-app.c:375
+#, c-format
+msgid "Impossible to open the file %s"
+msgstr "Файлът „%s“ не може да бъде отворен"
+
+#: ../logview/logview-findbar.c:169
+msgid "_Find:"
+msgstr "_Търсене:"
+
+#: ../logview/logview-findbar.c:184
+msgid "Find Previous"
+msgstr "Търсене назад"
+
+#: ../logview/logview-findbar.c:187
+msgid "Find previous occurrence of the search string"
+msgstr "Търсене на предишна поява на низа"
+
+#: ../logview/logview-findbar.c:192
+msgid "Find Next"
+msgstr "Търсене напред"
+
+#: ../logview/logview-findbar.c:195
+msgid "Find next occurrence of the search string"
+msgstr "Търсене на следваща поява на низа"
+
+#: ../logview/logview-findbar.c:202
+msgid "Clear the search string"
+msgstr "Изчистване на низа за търсене"
+
+#: ../logview/logview-log.c:595
+msgid "Error while uncompressing the GZipped log. The file might be corrupt."
+msgstr ""
+"Грешка при декомпресиране на журнала с gzip. Файлът може би е повреден."
+
+#: ../logview/logview-log.c:642
+msgid "You don't have enough permissions to read the file."
+msgstr "Нямате права да прочетете този файл."
+
+#: ../logview/logview-log.c:657
+msgid "The file is not a regular file or is not a text file."
+msgstr "Файлът нито е обикновен файл, нито е текстов файл."
+
+#: ../logview/logview-log.c:739
+msgid "This version of System Log does not support GZipped logs."
+msgstr ""
+"Тази версия на прегледа на системните дневници не поддържа компресия с gzip."
+
+#: ../logview/logview-loglist.c:311
+msgid "Loading..."
+msgstr "Зареждане…"
+
+#: ../logview/logview-main.c:62
 msgid "Show the application's version"
 msgstr "Показване на версията на програмата"
 
-#: ../logview/main.c:55
-msgid "Show System Log Viewer options"
-msgstr "Настройки на прегледа на системни дневници"
+#: ../logview/logview-main.c:64
+msgid "[LOGFILE...]"
+msgstr "[ДНЕВНИК…]"
 
-#: ../logview/main.c:59
+#: ../logview/logview-main.c:68
 msgid " - Browse and monitor logs"
 msgstr " — преглед и следене на дневниците"
 
-#: ../logview/main.c:145
+#: ../logview/logview-main.c:102
 msgid "Log Viewer"
 msgstr "Преглед на системните дневници"
 
-#: ../logview/main.c:154
-msgid "Unable to create user interface."
-msgstr "Създаването на потребителския интерфейс е неуспешно."
+#: ../logview/logview-window.c:39 ../logview/logview-window.c:596
+msgid "System Log Viewer"
+msgstr "Преглед на системните дневници"
 
-#: ../logview/misc.c:42
-msgid "January"
-msgstr "Януари"
-
-#: ../logview/misc.c:42
-msgid "February"
-msgstr "Февруари"
-
-#: ../logview/misc.c:42
-msgid "March"
-msgstr "Март"
-
-#: ../logview/misc.c:42
-msgid "April"
-msgstr "Април"
-
-#: ../logview/misc.c:42
-msgid "May"
-msgstr "Май"
-
-#: ../logview/misc.c:43
-msgid "June"
-msgstr "Юни"
-
-#: ../logview/misc.c:43
-msgid "July"
-msgstr "Юли"
-
-#: ../logview/misc.c:43
-msgid "August"
-msgstr "Август"
-
-#: ../logview/misc.c:43
-msgid "September"
-msgstr "Септември"
-
-#: ../logview/misc.c:43
-msgid "October"
-msgstr "Октомври"
-
-#: ../logview/misc.c:44
-msgid "November"
-msgstr "Ноември"
-
-#: ../logview/misc.c:44
-msgid "December"
-msgstr "Декември"
-
-#: ../logview/misc.c:164
-msgid "Invalid date"
-msgstr "Грешна дата"
-
-#. Translators: Only date format, time will be bogus
-#: ../logview/misc.c:169
+#: ../logview/logview-window.c:206
 #, c-format
-msgid "%x"
-msgstr "%x"
+msgid "last update: %s"
+msgstr "последно актуализиране: %s"
 
-#: ../logview/monitor.c:83
-msgid "This file cannot be monitored."
-msgstr "Този файл не може да бъде следен."
+#: ../logview/logview-window.c:209
+#, c-format
+msgid "%d lines (%s) - %s"
+msgstr "%d реда (%s) — %s"
 
-#: ../logview/monitor.c:86
-msgid "File monitoring is not supported on this file system.\n"
-msgstr "Наблюдението на файлове не се поддържа от тази файлова система.\n"
+#: ../logview/logview-window.c:337
+msgid "Open Log"
+msgstr "Отваряне на дневник"
 
-#: ../logview/monitor.c:88
-msgid "Gnome-VFS Error.\n"
-msgstr "Грешка в Gnome-VFS.\n"
+#: ../logview/logview-window.c:376
+#, c-format
+msgid "There was an error displaying help: %s"
+msgstr "Грешка при показването на помощта: %s"
+
+#: ../logview/logview-window.c:492
+msgid "Wrapped"
+msgstr "Пренесени редове"
+
+#: ../logview/logview-window.c:601
+msgid "A system log viewer for GNOME."
+msgstr "Програма на GNOME за преглед на системните дневници."
+
+#: ../logview/logview-window.c:642
+msgid "_Open..."
+msgstr "_Отваряне…"
+
+#: ../logview/logview-window.c:642
+msgid "Open a log from file"
+msgstr "Отваряне на дневник"
+
+#: ../logview/logview-window.c:644
+msgid "_Close"
+msgstr "_Затваряне"
+
+#: ../logview/logview-window.c:644
+msgid "Close this log"
+msgstr "Затваряне на този диалогов прозорец"
+
+#: ../logview/logview-window.c:646
+msgid "_Quit"
+msgstr "_Спиране на програмата"
+
+#: ../logview/logview-window.c:646
+msgid "Quit the log viewer"
+msgstr "Спиране на програмата за преглед на дневници"
+
+#: ../logview/logview-window.c:649
+msgid "_Copy"
+msgstr "_Копиране"
+
+#: ../logview/logview-window.c:649
+msgid "Copy the selection"
+msgstr "Копиране на избраното"
+
+#: ../logview/logview-window.c:651
+msgid "Select the entire log"
+msgstr "Избор на целия дневник"
+
+#: ../logview/logview-window.c:653
+msgid "_Find..."
+msgstr "_Търсене…"
+
+#: ../logview/logview-window.c:653
+msgid "Find a word or phrase in the log"
+msgstr "Търсене на дума или фраза в дневника"
+
+#: ../logview/logview-window.c:656
+msgid "Bigger text size"
+msgstr "По-голям размер на текста"
+
+#: ../logview/logview-window.c:658
+msgid "Smaller text size"
+msgstr "По-малък размер на текста"
+
+#: ../logview/logview-window.c:660
+msgid "Normal text size"
+msgstr "Нормален размер на текста"
+
+#: ../logview/logview-window.c:663
+msgid "Open the help contents for the log viewer"
+msgstr "Отваряне на съдържанието на помощта за разглеждането на дневници"
+
+#: ../logview/logview-window.c:665
+msgid "Show the about dialog for the log viewer"
+msgstr ""
+"Показване на диалоговия прозорец относно програмата за преглед на системните "
+"дневници"
+
+#: ../logview/logview-window.c:670
+msgid "_Statusbar"
+msgstr "Лента за _състоянието"
+
+#: ../logview/logview-window.c:670
+msgid "Show Status Bar"
+msgstr "Показване на лентата за състоянието"
+
+#: ../logview/logview-window.c:672
+msgid "Side _Pane"
+msgstr "Странична _лента"
+
+#: ../logview/logview-window.c:672
+msgid "Show Side Pane"
+msgstr "Показване на страничната лента"
+
+#: ../logview/logview-window.c:1165
+msgid "Close"
+msgstr "Затваряне"
+
+#: ../logview/logview-window.c:1205
+msgid "Version: "
+msgstr "Версия: "
+
+#: ../logview/logview-window.c:1305
+msgid "Could not open the following files:"
+msgstr "Следните файлове не могат да бъдат отворени:"
