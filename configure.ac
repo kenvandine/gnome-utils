@@ -80,7 +80,6 @@ LIBGNOME_DESKTOP_REQUIRED=2.9.91
 LIBGNOME_REQUIRED=2.13.2
 LIBGNOMEUI_REQUIRED=2.13.7
 LIBGLADE_REQUIRED=2.3.0
-GNOMEVFS_REQUIRED=2.8.4
 LIBPANEL_APPLET_REQUIRED=2.13.4
 LIBGTOP_REQUIRED=2.12.0
 
@@ -179,15 +178,6 @@ fi
 
 AC_SUBST(HAL_CFLAGS)
 AC_SUBST(HAL_LIBS)
-
-dnl *********************************************
-dnl gnome-vfs/mime-data is need for gsearchtool
-dnl *********************************************
-
-PKG_CHECK_MODULES(GNOMEVFS, gnome-vfs-2.0 >= $GNOMEVFS_REQUIRED dnl
-                            gnome-vfs-module-2.0 >= $GNOMEVFS_REQUIRED)
-AC_SUBST(GNOMEVFS_CFLAGS)
-AC_SUBST(GNOMEVFS_LIBS)
 
 dnl *********************************************
 dnl gnome-desktop is need for gsearchtool

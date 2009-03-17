@@ -194,7 +194,7 @@ gsearch_spinner_cache_data_load (GSearchSpinnerCacheData *data)
 
 	/* Load the animation */
 	icon_info = gtk_icon_theme_lookup_icon (data->icon_theme,
-						"gnome-searchtool-animation", -1, 0);
+						"process-working", -1, 0);
 	if (icon_info == NULL)
 	{
 		g_warning ("Throbber animation not found\n");
@@ -245,37 +245,23 @@ gsearch_spinner_cache_data_load (GSearchSpinnerCacheData *data)
 	images->images = g_list_reverse (images->images);
 
 	gtk_icon_info_free (icon_info);
-	g_object_unref (icon_pixbuf);
 
-	/* Load the rest icon */
-	icon_info = gtk_icon_theme_lookup_icon (data->icon_theme,
-						"gnome-searchtool-animation-rest", -1, 0);
-	if (icon_info == NULL)
-	{
-		g_warning ("Throbber rest icon not found\n");
-		return;
-	}
+	pixbuf = extract_frame (icon_pixbuf, 0, 0, size);
 
-	size = gtk_icon_info_get_base_size (icon_info);
-	icon = gtk_icon_info_get_filename (icon_info);
-	g_return_if_fail (icon != NULL);
-
-	icon_pixbuf = gdk_pixbuf_new_from_file (icon, NULL);
-	gtk_icon_info_free (icon_info);
-
-	if (icon_pixbuf == NULL)
+	if (pixbuf == NULL)
 	{
 		g_warning ("Could not load spinner rest icon\n");
 		gsearch_spinner_images_free (images);
 		return;
 	}
 
-	images->quiescent_pixbuf = icon_pixbuf;
+	images->quiescent_pixbuf = pixbuf;
 
-	w = gdk_pixbuf_get_width (icon_pixbuf);
-	h = gdk_pixbuf_get_height (icon_pixbuf);
+	w = gdk_pixbuf_get_width (pixbuf);
+	h = gdk_pixbuf_get_height (pixbuf);
 	images->width = MAX (images->width, w);
 	images->height = MAX (images->height, h);
+	g_object_unref (icon_pixbuf);
 }
 
 static GSearchSpinnerCacheData *
@@ -474,7 +460,7 @@ gsearch_spinner_cache_ref (void)
 
 /* Spinner implementation */
 
-#define SPINNER_TIMEOUT 175 /* ms */
+#define SPINNER_TIMEOUT 50 /* ms */
 
 #define GSEARCH_SPINNER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GSEARCH_TYPE_SPINNER, GSearchSpinnerDetails))
 
@@ -685,7 +671,7 @@ bump_spinner_frame_cb (GSearchSpinner *spinner)
 	}
 	else
 	{
-		frame = g_list_first (frame);
+		frame = g_list_first (frame)->next;
 	}
 
 	details->current_image = frame;
