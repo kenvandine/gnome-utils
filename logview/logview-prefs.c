@@ -42,6 +42,7 @@
 #define GCONF_LOGFILE 		GCONF_DIR "/logfile"
 #define GCONF_LOGFILES 		GCONF_DIR "/logfiles"
 #define GCONF_FONTSIZE_KEY 	GCONF_DIR "/fontsize"
+#define GCONF_FILTERS     GCONF_DIR "/filters"
 
 /* desktop-wide settings */
 #define GCONF_MONOSPACE_FONT_NAME "/desktop/gnome/interface/monospace_font_name"
@@ -55,6 +56,15 @@ enum {
   LAST_SIGNAL
 };
 
+enum {
+  FILTER_NAME,
+  FILTER_INVISIBLE,
+  FILTER_FOREGROUND,
+  FILTER_BACKGROUND,
+  FILTER_REGEX,
+  MAX_TOKENS
+};
+
 static guint signals[LAST_SIGNAL] = { 0 };
 
 #define GET_PRIVATE(o) \
@@ -64,6 +74,8 @@ struct _LogviewPrefsPrivate {
   GConfClient *client;
 
   guint size_store_timeout;
+
+  GHashTable *filters;
 };
 
 typedef struct {
@@ -77,6 +89,8 @@ static void
 do_finalize (GObject *obj)
 {
   LogviewPrefs *prefs = LOGVIEW_PREFS (obj);
+
+  g_hash_table_destroy (prefs->priv->filters);
 
   g_object_unref (prefs->priv->client);
 
@@ -170,6 +184,153 @@ size_store_timeout_cb (gpointer data)
   return FALSE;
 }
 
+#define DELIMITER ":"
+
+static void
+load_filters (LogviewPrefs *prefs)
+{
+  GSList *node; 
+  GSList *filters;
+  gchar **tokens;
+  LogviewFilter *filter;
+  GtkTextTag *tag;
+  GdkColor color;
+
+  filters = gconf_client_get_list (prefs->priv->client,
+                                   GCONF_FILTERS,
+                                   GCONF_VALUE_STRING,
+                                   NULL);
+
+  prefs->priv->filters = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                                (GDestroyNotify) g_free,
+                                                (GDestroyNotify) g_object_unref);
+
+  for (node = filters; node != NULL; node = g_slist_next (node)) {
+    tokens = g_strsplit (node->data, DELIMITER, MAX_TOKENS);
+    filter = logview_filter_new (tokens[FILTER_NAME], tokens[FILTER_REGEX]);
+    tag = gtk_text_tag_new (tokens[FILTER_NAME]);
+
+    g_object_set (tag, "invisible",
+                  g_str_equal (tokens[FILTER_INVISIBLE], "1"), NULL);
+
+    if (strlen (tokens[FILTER_FOREGROUND])) {
+      gdk_color_parse (tokens[FILTER_FOREGROUND], &color);
+      g_object_set (tag, "foreground-gdk", &color, 
+                    "foreground-set", TRUE, NULL);
+    }
+
+    if (strlen (tokens[FILTER_BACKGROUND])) {
+      gdk_color_parse (tokens[FILTER_BACKGROUND], &color);
+      g_object_set (tag, "paragraph-background-gdk", &color, 
+                    "paragraph-background-set", TRUE, NULL);
+    }
+
+    g_object_set (filter, "texttag", tag, NULL);
+    g_hash_table_insert (prefs->priv->filters, 
+                         g_strdup(tokens[FILTER_NAME]), 
+                         filter);
+
+    g_object_ref (filter);
+    g_object_unref (tag);
+    g_strfreev (tokens);
+  }
+
+  g_slist_foreach (filters, (GFunc) g_free, NULL);
+  g_slist_free (filters);
+}
+
+static void
+save_filter_foreach_func (gpointer key, gpointer value, gpointer user_data)
+{
+  GSList **filters;
+  const gchar *name;
+  LogviewFilter *filter;
+  GdkColor *foreground;
+  gboolean foreground_set;
+  GdkColor *background;
+  gboolean background_set;
+  gchar *regex, *color;
+  gboolean invisible;
+  GtkTextTag *tag;
+  GString *prefs_string;
+
+  filters = user_data;
+  filter = LOGVIEW_FILTER (value);
+  name = key;
+  color = NULL;
+
+  prefs_string = g_string_new (name);
+  g_string_append (prefs_string, DELIMITER);
+
+  g_object_get (filter,
+                "regex", &regex,
+                "texttag", &tag,
+                NULL);
+  g_object_get (tag,
+                "foreground-gdk", &foreground,
+                "paragraph-background-gdk", &background,
+                "foreground-set", &foreground_set,
+                "paragraph-background-set", &background_set,
+                "invisible", &invisible, NULL);
+
+  if (invisible) {
+    g_string_append (prefs_string, "1" DELIMITER);
+  } else {
+    g_string_append (prefs_string, "0" DELIMITER);
+  }
+
+  if (foreground_set) {
+    color = gdk_color_to_string (foreground);
+    g_string_append (prefs_string, color);
+    g_free (color);
+    gdk_color_free (foreground);
+  }
+
+  g_string_append(prefs_string, DELIMITER);
+
+  if (background_set) {
+    color = gdk_color_to_string (background);
+    g_string_append (prefs_string, color);
+    g_free (color);
+    gdk_color_free (background);
+  }
+
+  g_string_append (prefs_string, DELIMITER);
+  g_string_append (prefs_string, regex);
+
+  g_free (regex);
+  g_object_unref (tag);
+  
+  *filters = g_slist_prepend (*filters, g_string_free (prefs_string, FALSE));
+} 
+
+static void
+save_filters (LogviewPrefs *prefs)
+{
+  GSList *filters;
+
+  filters = NULL;
+
+  g_hash_table_foreach (prefs->priv->filters,
+                        save_filter_foreach_func,
+                        &filters);
+  gconf_client_set_list (prefs->priv->client,
+                         GCONF_FILTERS,
+                         GCONF_VALUE_STRING,
+                         filters, NULL);
+
+  g_slist_foreach (filters, (GFunc) g_free, NULL);
+  g_slist_free (filters);
+}
+
+static void
+get_filters_foreach (gpointer key, gpointer value, gpointer user_data)
+{
+  GList **list;
+  list = user_data;
+  *list = g_list_append (*list, value);
+}
+
 static void
 logview_prefs_init (LogviewPrefs *self)
 {
@@ -189,6 +350,8 @@ logview_prefs_init (LogviewPrefs *self)
                            GCONF_MENUS_HAVE_TEAROFF,
                            (GConfClientNotifyFunc) have_tearoff_changed_cb,
                            self, NULL, NULL);
+
+  load_filters (self);
 }
 
 /* public methods */
@@ -410,3 +573,54 @@ logview_prefs_get_active_logfile (LogviewPrefs *prefs)
 
   return filename;
 }
+
+GList *
+logview_prefs_get_filters (LogviewPrefs *prefs)
+{
+  GList *filters = NULL;
+
+  g_assert (LOGVIEW_IS_PREFS (prefs));
+
+  g_hash_table_foreach (prefs->priv->filters,
+                        get_filters_foreach,
+                        &filters);
+
+  return filters;
+}
+
+void
+logview_prefs_remove_filter (LogviewPrefs *prefs,
+                             const gchar *name)
+{
+  g_assert (LOGVIEW_IS_PREFS (prefs));
+
+  g_hash_table_remove (prefs->priv->filters,
+                       name);
+
+  save_filters (prefs);
+}
+
+void
+logview_prefs_add_filter (LogviewPrefs *prefs,
+                          LogviewFilter *filter)
+{
+  gchar* name;
+
+  g_assert (LOGVIEW_IS_PREFS (prefs));
+  g_assert (LOGVIEW_IS_FILTER (filter));
+
+  g_object_get (filter, "name", &name, NULL);
+  g_hash_table_insert (prefs->priv->filters, name, g_object_ref (filter));
+
+  save_filters (prefs);
+}
+
+LogviewFilter *
+logview_prefs_get_filter (LogviewPrefs *prefs,
+                          const gchar *name)
+{
+  g_assert (LOGVIEW_IS_PREFS (prefs));
+
+  return g_hash_table_lookup (prefs->priv->filters, name);
+}
+

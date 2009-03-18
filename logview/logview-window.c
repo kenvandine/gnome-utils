@@ -33,6 +33,7 @@
 #include "logview-about.h"
 #include "logview-prefs.h"
 #include "logview-manager.h"
+#include "logview-filter-manager.h"
 
 #include "gtkmessagearea.h"
 
@@ -43,6 +44,7 @@
 struct _LogviewWindowPrivate {
   GtkUIManager *ui_manager;
   GtkActionGroup *action_group;
+  GtkActionGroup *filter_action_group;
 
   GtkWidget *find_bar;
   GtkWidget *loglist;
@@ -66,6 +68,10 @@ struct _LogviewWindowPrivate {
 
   gulong monitor_id;
   guint search_timeout_id;
+
+  guint filter_merge_id;
+  GList *active_filters;
+  gboolean matches_only;
 };
 
 #define GET_PRIVATE(o) \
@@ -123,7 +129,7 @@ static void
 populate_tag_table (GtkTextTagTable *tag_table)
 {
   GtkTextTag *tag;
-
+  
   tag = gtk_text_tag_new ("bold");
   g_object_set (tag, "weight", PANGO_WEIGHT_BOLD,
                 "weight-set", TRUE, NULL);
@@ -132,9 +138,11 @@ populate_tag_table (GtkTextTagTable *tag_table)
 
   tag = gtk_text_tag_new ("invisible");
   g_object_set (tag, "invisible", TRUE, "invisible-set", TRUE, NULL);
-
   gtk_text_tag_table_add (tag_table, tag);
 
+  tag = gtk_text_tag_new ("invisible-filter");
+  g_object_set (tag, "invisible", TRUE, "invisible-set", TRUE, NULL);
+  gtk_text_tag_table_add (tag_table, tag); 
 }
 
 
@@ -584,6 +592,188 @@ logview_search (GtkAction *action, LogviewWindow *logview)
 }
 
 static void
+filter_buffer (LogviewWindow *logview, gint start_line)
+{
+  GtkTextBuffer *buffer;
+  GtkTextIter start, *end;
+  gchar* text;
+  GList* cur_filter;
+  gboolean matched, invisible_set;
+  int lines, i;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
+  lines = gtk_text_buffer_get_line_count (buffer);
+
+  for (i = start_line; i < lines; i++) {
+    matched = FALSE;
+
+    gtk_text_buffer_get_iter_at_line (buffer, &start, i);
+    end = gtk_text_iter_copy (&start);
+    gtk_text_iter_forward_line (end);
+
+    text = gtk_text_buffer_get_text (buffer, &start, end, TRUE);
+
+    for (cur_filter = logview->priv->active_filters; cur_filter != NULL;
+         cur_filter = g_list_next (cur_filter))
+    {
+      if (logview_filter_filter (LOGVIEW_FILTER (cur_filter->data), text)) {
+        gtk_text_buffer_apply_tag (buffer, 
+                                   logview_filter_get_tag (LOGVIEW_FILTER (cur_filter->data)),
+                                   &start, end);
+        matched = TRUE;
+      }
+    }
+
+    if (!matched && logview->priv->matches_only) {
+      gtk_text_buffer_apply_tag_by_name (buffer, 
+                                         "invisible-filter",
+                                         &start, end);
+    } else {
+      gtk_text_buffer_remove_tag_by_name (buffer,
+                                          "invisible-filter",
+                                          &start, end);
+    }
+
+    gtk_text_iter_free (end);
+  }
+}
+
+static void
+filter_remove (LogviewWindow *logview, LogviewFilter *filter)
+{
+  GtkTextIter start, end;  
+  GtkTextBuffer *buffer;
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (logview->priv->text_view));
+  gtk_text_buffer_get_bounds (buffer, &start, &end);
+
+  gtk_text_buffer_remove_tag (buffer, logview_filter_get_tag (filter),
+                              &start, &end);
+}
+
+static void
+on_filter_toggled (GtkToggleAction *action, LogviewWindow *logview)
+{
+  LogviewWindowPrivate *priv = GET_PRIVATE (logview);
+  const gchar* name;
+  LogviewFilter *filter;
+
+  name = gtk_action_get_name (GTK_ACTION (action));
+  
+  if (gtk_toggle_action_get_active (action)) {
+    priv->active_filters = g_list_append (priv->active_filters,
+                                          logview_prefs_get_filter (priv->prefs,
+                                                                    name));
+    filter_buffer(logview, 0);
+  } else {
+    filter = logview_prefs_get_filter (priv->prefs, name);
+    priv->active_filters = g_list_remove (priv->active_filters,
+                                          filter);
+
+    filter_remove (logview, filter);
+  }
+}
+
+#define FILTER_PLACEHOLDER "/LogviewMenu/FilterMenu/PlaceholderFilters"
+static void
+update_filter_menu (LogviewWindow *window)
+{
+  LogviewWindowPrivate *priv;
+  GtkUIManager* ui;
+  GList *actions, *l;
+  gint n, i;
+  guint id;
+  GList *filters;
+  GtkTextBuffer *buffer;
+  GtkTextTagTable *table;
+  GtkTextTag *tag;
+  GtkToggleAction *action;
+  gchar* name;
+
+  priv = GET_PRIVATE (window);
+  ui = priv->ui_manager;
+
+  g_return_if_fail (priv->filter_action_group != NULL);
+
+  buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (priv->text_view));
+  table = priv->tag_table;
+
+  if (priv->filter_merge_id != 0) {
+    gtk_ui_manager_remove_ui (ui,
+                              priv->filter_merge_id);
+  }
+
+  actions = gtk_action_group_list_actions (priv->filter_action_group);
+
+  for (l = actions; l != NULL; l = g_list_next (l)) {
+    tag = gtk_text_tag_table_lookup (table, gtk_action_get_name (GTK_ACTION (l->data)));
+    gtk_text_tag_table_remove (table, tag);
+
+    g_signal_handlers_disconnect_by_func (GTK_ACTION (l->data),
+                                          G_CALLBACK (on_filter_toggled),
+                                          window);
+    gtk_action_group_remove_action (priv->filter_action_group,
+                                    GTK_ACTION (l->data));
+  }
+
+  g_list_free (actions);
+  
+  filters = logview_prefs_get_filters (logview_prefs_get ());
+
+  id = (g_list_length (filters) > 0) ? gtk_ui_manager_new_merge_id (ui) : 0;
+
+  for (l = filters; l != NULL; l = g_list_next (l)) {
+    g_object_get (l->data, "name", &name, NULL);
+
+    action = gtk_toggle_action_new (name, name, NULL, NULL);
+    gtk_action_group_add_action (priv->filter_action_group,
+                                 GTK_ACTION (action));
+
+    g_signal_connect (action,
+                      "toggled",
+                      G_CALLBACK (on_filter_toggled),
+                      window);
+
+    gtk_ui_manager_add_ui (ui, id, FILTER_PLACEHOLDER,
+                           name, name, GTK_UI_MANAGER_MENUITEM, FALSE);
+    gtk_text_tag_table_add (table, 
+                            logview_filter_get_tag (LOGVIEW_FILTER (l->data)));
+
+    g_object_unref (action);
+    g_free(name);
+  }
+
+  priv->filter_merge_id = id;
+}
+
+static void
+on_logview_filter_manager_response (GtkDialog *dialog, 
+                                    gint response,
+                                    LogviewWindow *logview)
+{
+  update_filter_menu (logview);
+
+  g_list_free (logview->priv->active_filters);
+  logview->priv->active_filters = NULL;
+}
+
+static void
+logview_manage_filters (GtkAction *action, LogviewWindow *logview)
+{
+  GtkWidget *manager;
+
+  manager = logview_filter_manager_new ();
+
+  g_signal_connect (manager, "response", 
+                    G_CALLBACK (on_logview_filter_manager_response),
+                    logview);
+  
+  gtk_window_set_transient_for (GTK_WINDOW (manager),
+                                GTK_WINDOW (logview));
+  gtk_widget_show (GTK_WIDGET (manager));
+}
+
+static void
 logview_about (GtkWidget *widget, GtkWidget *window)
 {
   g_return_if_fail (GTK_IS_WINDOW (window));
@@ -629,6 +819,13 @@ logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
     gtk_widget_show (logview->priv->sidebar);
 }
 
+static void
+logview_toggle_match_filters (GtkToggleAction *action, LogviewWindow *logview)
+{
+  logview->priv->matches_only = gtk_toggle_action_get_active (action);
+  filter_buffer (logview, 0);
+}
+
 /* GObject functions */
 
 /* Menus */
@@ -637,6 +834,7 @@ static GtkActionEntry entries[] = {
     { "FileMenu", NULL, N_("_File"), NULL, NULL, NULL },
     { "EditMenu", NULL, N_("_Edit"), NULL, NULL, NULL },
     { "ViewMenu", NULL, N_("_View"), NULL, NULL, NULL },
+    { "FilterMenu", NULL, N_("_Filters"), NULL, NULL, NULL },  
     { "HelpMenu", NULL, N_("_Help"), NULL, NULL, NULL },
 
     { "OpenLog", GTK_STOCK_OPEN, N_("_Open..."), "<control>O", N_("Open a log from file"), 
@@ -660,6 +858,9 @@ static GtkActionEntry entries[] = {
     { "ViewZoom100", GTK_STOCK_ZOOM_100, NULL, "<control>0", N_("Normal text size"),
       G_CALLBACK (logview_normal_text)},
 
+    { "FilterManage", NULL, N_("Manage Filters"), NULL, N_("Manage filters"),
+      G_CALLBACK (logview_manage_filters)},
+  
     { "HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Open the help contents for the log viewer"), 
       G_CALLBACK (logview_help) },
     { "AboutAction", GTK_STOCK_ABOUT, N_("_About"), NULL, N_("Show the about dialog for the log viewer"), 
@@ -671,6 +872,8 @@ static GtkToggleActionEntry toggle_entries[] = {
       G_CALLBACK (logview_toggle_statusbar), TRUE },
     { "ShowSidebar", NULL, N_("Side _Pane"), "F9", N_("Show Side Pane"), 
       G_CALLBACK (logview_toggle_sidebar), TRUE }, 
+    { "FilterMatchOnly", NULL, N_("Show matches only"), NULL, N_("Only show lines that match one of the given filters"),
+      G_CALLBACK (logview_toggle_match_filters), FALSE}
 };
 
 static gboolean 
@@ -799,7 +1002,7 @@ read_new_lines_cb (LogviewLog *log,
   LogviewWindow *window = user_data;
   GtkTextBuffer *buffer;
   gboolean boldify = FALSE;
-  int i, old_line_count;
+  int i, old_line_count, filter_start_line;
   GtkTextIter iter, start;
   GtkTextMark *mark;
   char *converted;
@@ -807,6 +1010,7 @@ read_new_lines_cb (LogviewLog *log,
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
   old_line_count = gtk_text_buffer_get_line_count (buffer);
+  filter_start_line = old_line_count > 0 ? (old_line_count - 1) : 0;
 
   if (gtk_text_buffer_get_char_count (buffer) != 0) {
     boldify = TRUE;
@@ -838,6 +1042,7 @@ read_new_lines_cb (LogviewLog *log,
     gtk_text_buffer_apply_tag_by_name (buffer, "bold", &start, &iter);
     gtk_text_buffer_delete_mark (buffer, mark);
   }
+  filter_buffer (window, filter_start_line);
 
   paint_timestamps (buffer, old_line_count, new_days);
 
@@ -1241,6 +1446,13 @@ logview_window_init (LogviewWindow *logview)
   gtk_box_pack_start (GTK_BOX (vbox), priv->statusbar, FALSE, FALSE, 0);
   gtk_widget_show (priv->statusbar);
 
+  /* Filter menu */
+  priv->filter_action_group = gtk_action_group_new ("ActionGroupFilter");
+  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->filter_action_group,
+                                      1);
+  priv->active_filters = NULL;
+  update_filter_menu (logview);
+  
   gtk_widget_show (vbox);
   gtk_widget_show (main_view);
 }

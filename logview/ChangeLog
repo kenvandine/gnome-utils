@@ -1,3 +1,17 @@
+2009-03-18  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* Makefile.am:
+	* data/Makefile.am:
+	* data/logview-toolbar.xml:
+	* logview-prefs.c: (do_finalize), (load_filters),
+	(save_filter_foreach_func), (save_filters), (get_filters_foreach),
+	(logview_prefs_init), (logview_prefs_get_filters),
+	(logview_prefs_remove_filter), (logview_prefs_add_filter),
+	(logview_prefs_get_filter):
+	* logview-prefs.h:
+	* logview-window.c: (if): implement regex based filtering of log
+	files. Patch by Johannes Schmid (#574362).
+
 2009-03-02  Cosimo Cecchi  <cosimoc@gnome.org>
 
 	* logview-app.c: (parse_syslog), (enumerate_job_finish),

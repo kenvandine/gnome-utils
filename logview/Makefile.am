@@ -38,6 +38,10 @@ gnome_system_log_SOURCES = 	\
 	logview-findbar.c	\
 	logview-prefs.c		\
 	logview-prefs.h		\
+	logview-filter.h       \
+	logview-filter.c       \
+	logview-filter-manager.h       \
+	logview-filter-manager.c  \
 	$(BUILT_SOURCES)
 
 gnome_system_log_LDADD =	\

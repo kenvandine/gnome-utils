@@ -1,5 +1,5 @@
 xmldir = $(pkgdatadir)
-xml_DATA = logview-toolbar.xml
+xml_DATA = logview-toolbar.xml logview-filter.ui
 
 desktopdir = $(datadir)/applications
 desktop_in_files = gnome-system-log.desktop.in
