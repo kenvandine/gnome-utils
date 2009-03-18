@@ -624,6 +624,8 @@ filter_buffer (LogviewWindow *logview, gint start_line)
       }
     }
 
+    g_free (text);
+
     if (!matched && logview->priv->matches_only) {
       gtk_text_buffer_apply_tag_by_name (buffer, 
                                          "invisible-filter",
@@ -742,6 +744,8 @@ update_filter_menu (LogviewWindow *window)
     g_object_unref (action);
     g_free(name);
   }
+
+  g_list_free (filters);
 
   priv->filter_merge_id = id;
 }

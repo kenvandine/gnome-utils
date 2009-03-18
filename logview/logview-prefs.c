@@ -283,15 +283,21 @@ save_filter_foreach_func (gpointer key, gpointer value, gpointer user_data)
     color = gdk_color_to_string (foreground);
     g_string_append (prefs_string, color);
     g_free (color);
+  }
+
+  if (foreground) {
     gdk_color_free (foreground);
   }
 
-  g_string_append(prefs_string, DELIMITER);
+  g_string_append (prefs_string, DELIMITER);
 
   if (background_set) {
     color = gdk_color_to_string (background);
     g_string_append (prefs_string, color);
     g_free (color);
+  }
+
+  if (background) {
     gdk_color_free (background);
   }
 
