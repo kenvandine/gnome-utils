@@ -468,7 +468,7 @@ open_file_cb (GtkMenuItem * action,
 
 		gboolean no_files_found = FALSE;
 		gchar * utf8_name;
-		gchar * utf8_path;
+		gchar * locale_file;
 		GtkTreeIter iter;
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
@@ -476,20 +476,16 @@ open_file_cb (GtkMenuItem * action,
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
     		                    COLUMN_NAME, &utf8_name,
-		                    COLUMN_PATH, &utf8_path,
+				    COLUMN_LOCALE_FILE, &locale_file,
 		                    COLUMN_NO_FILES_FOUND, &no_files_found,
 		                    -1);
 
 		if (!no_files_found) {
-			gchar * file;
-			gchar * locale_file;
 			GAppInfo * app = NULL;
 
 			if (GTK_IS_OBJECT (action)) {
 				app = g_object_get_data (G_OBJECT (action), "app");
 			}
-			file = g_build_filename (utf8_path, utf8_name, NULL);
-			locale_file = g_locale_from_utf8 (file, -1, NULL, NULL, NULL);
 
 			if (!g_file_test (locale_file, G_FILE_TEST_EXISTS)) {
 				gtk_tree_selection_unselect_iter (GTK_TREE_SELECTION (gsearch->search_results_selection),
@@ -504,7 +500,7 @@ open_file_cb (GtkMenuItem * action,
 
 					if (g_file_test (locale_file, G_FILE_TEST_IS_DIR)) {
 
-						if (open_file_with_nautilus (gsearch->window, locale_file) == FALSE) {
+						if (open_file_with_filemanager (gsearch->window, locale_file) == FALSE) {
 							display_dialog_could_not_open_folder (gsearch->window, utf8_name);
 						}
 					}
@@ -515,11 +511,9 @@ open_file_cb (GtkMenuItem * action,
 					}
 				}
 			}
-			g_free (file);
-			g_free (locale_file);
 		}
 		g_free (utf8_name);
-		g_free (utf8_path);
+		g_free (locale_file);
 	}
 	g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 	g_list_free (list);
@@ -605,43 +599,46 @@ open_folder_cb (GtkAction * action,
 
 	for (index = 0; index < g_list_length (list); index++) {
 
-		gchar * folder_locale;
-		gchar * folder_utf8;
+		gchar * locale_folder;
+		gchar * utf8_folder;
+		gchar * locale_file;
 		GtkTreeIter iter;
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 					 g_list_nth (list, index)->data);
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
-				    COLUMN_PATH, &folder_utf8,
+				    COLUMN_RELATIVE_PATH, &utf8_folder,
+				    COLUMN_LOCALE_FILE, &locale_file,
 				    -1);
 
-		folder_locale = g_filename_from_utf8 (folder_utf8, -1, NULL, NULL, NULL);
+		locale_folder = g_path_get_dirname (locale_file);
 
 		if (index == 0) {
-			g_file = g_file_new_for_path (folder_locale);
+			g_file = g_file_new_for_path (locale_folder);
 			g_file_info = g_file_query_info (g_file, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
 			g_app_info = g_app_info_get_default_for_type (g_file_info_get_content_type (g_file_info), FALSE);
 		}
 
-		if (open_file_with_application (gsearch->window, folder_locale, g_app_info) == FALSE) {
+		if (open_file_with_application (gsearch->window, locale_folder, g_app_info) == FALSE) {
 
-			if (open_file_with_nautilus (gsearch->window, folder_locale) == FALSE) {
+			if (open_file_with_filemanager (gsearch->window, locale_folder) == FALSE) {
 
-				display_dialog_could_not_open_folder (gsearch->window, folder_utf8);
+				display_dialog_could_not_open_folder (gsearch->window, utf8_folder);
 
 				g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 				g_list_free (list);
-				g_free (folder_locale);
-				g_free (folder_utf8);
+				g_free (locale_folder);
+				g_free (utf8_folder);
 				g_object_unref (g_file);
 				g_object_unref (g_file_info);
 				g_object_unref (g_app_info);
 				return;
 			}
 		}
-		g_free (folder_locale);
-		g_free (folder_utf8);
+		g_free (locale_folder);
+		g_free (locale_file);
+		g_free (utf8_folder);
 	}
 	g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 	g_list_free (list);
@@ -802,7 +799,6 @@ move_to_trash_cb (GtkAction * action,
 		GFile * g_file;
 		GError * error;
 		gchar * utf8_basename;
-		gchar * utf8_basepath;
 		gchar * utf8_filename;
 		gchar * locale_filename;
 		gboolean result;
@@ -815,22 +811,20 @@ move_to_trash_cb (GtkAction * action,
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
     				    COLUMN_NAME, &utf8_basename,
-			    	    COLUMN_PATH, &utf8_basepath,
+				    COLUMN_LOCALE_FILE, &locale_filename,
 			   	    COLUMN_NO_FILES_FOUND, &no_files_found,
 			   	    -1);
+		utf8_filename = g_filename_display_name (locale_filename);
 
 		if (no_files_found) {
 			g_free (utf8_basename);
-			g_free (utf8_basepath);
+			g_free (locale_filename);
 			return;
 		}
 		
 		if (index + 1 == total) {
 			last_selected_path = gtk_tree_model_get_path (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter);
 		}
-
-		utf8_filename = g_build_filename (utf8_basepath, utf8_basename, NULL);
-		locale_filename = g_locale_from_utf8 (utf8_filename, -1, NULL, NULL, NULL);
 
 		if ((!g_file_test (locale_filename, G_FILE_TEST_EXISTS)) &&
 		    (!g_file_test (locale_filename, G_FILE_TEST_IS_SYMLINK))) {
@@ -899,7 +893,6 @@ move_to_trash_cb (GtkAction * action,
 		g_free (locale_filename);
 		g_free (utf8_filename);
 		g_free (utf8_basename);
-		g_free (utf8_basepath);
 	}
 
 	/* Bugzilla #397945: Select next row in the search results list */
@@ -1220,7 +1213,7 @@ file_button_release_event_cb (GtkWidget * widget,
 		GtkTreeIter iter;
 		GList * list;
 		gchar * utf8_name_first;
-		gchar * utf8_path_first;
+		gchar * locale_file_first;
 
 		list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
 		                                             &model);
@@ -1230,7 +1223,7 @@ file_button_release_event_cb (GtkWidget * widget,
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 		                    COLUMN_NAME, &utf8_name_first,
-		                    COLUMN_PATH, &utf8_path_first,
+				    COLUMN_LOCALE_FILE, &locale_file_first,
 			    	    COLUMN_NO_FILES_FOUND, &no_files_found,
 			   	    -1);
 
@@ -1240,13 +1233,9 @@ file_button_release_event_cb (GtkWidget * widget,
 			GAppInfo * first_app_info = NULL;
 			GTimer * timer;
 			GList * tmp;
-			gchar * utf8_name_tmp;
-			gchar * utf8_path_tmp;
-			gchar * utf8_file;
-			gint index;
-			gchar * utf8_filename;
-			gchar * locale_filename;
+			gchar * locale_file_tmp;
 			gchar * file = NULL;
+			gint index;
 
 			timer = g_timer_new ();
 			g_timer_start (timer);
@@ -1258,19 +1247,15 @@ file_button_release_event_cb (GtkWidget * widget,
 			
 					GFile * g_file;
 					GAppInfo * app_info;
-					gchar * locale_file;
 
 					gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 					                         tmp->data);
 
 					gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
-					                    COLUMN_NAME, &utf8_name_tmp,
-					                    COLUMN_PATH, &utf8_path_tmp,
+							    COLUMN_LOCALE_FILE, &locale_file_tmp,
 					                    -1);
 
-					utf8_file = g_build_filename (utf8_path_tmp, utf8_name_tmp, NULL);
-					locale_file = g_filename_from_utf8 (utf8_file, -1, NULL, NULL, NULL);
-					g_file = g_file_new_for_path (locale_file);
+					g_file = g_file_new_for_path (locale_file_tmp);
 					app_info = g_file_query_default_handler (g_file, NULL, NULL);
 
 					if (G_IS_APP_INFO (app_info) == FALSE) {
@@ -1292,9 +1277,7 @@ file_button_release_event_cb (GtkWidget * widget,
 						}
 					}
 					g_object_unref (g_file);
-					g_free (utf8_name_tmp);
-					g_free (utf8_path_tmp);
-					g_free (utf8_file);
+					g_free (locale_file_tmp);
 
 					if (show_app_list == FALSE) {
 						break;
@@ -1305,20 +1288,17 @@ file_button_release_event_cb (GtkWidget * widget,
 					g_object_unref (first_app_info);
 				}
 			}
-			utf8_filename = g_build_filename (utf8_path_first, utf8_name_first, NULL);
-			locale_filename = g_filename_from_utf8 (utf8_filename, -1, NULL, NULL, NULL);
 			
-			file = g_strdup (((show_app_list == TRUE) ? locale_filename : NULL));
+			file = g_strdup (((show_app_list == TRUE) ? locale_file_first : NULL));
 
 			build_popup_menu_for_file (gsearch, file);
 			gtk_menu_popup (GTK_MENU (gsearch->search_results_popup_menu), NULL, NULL, NULL, NULL,
 			                event->button, event->time);
-
-			g_free (utf8_filename);
-			g_free (locale_filename);
 			g_free (file);
 
 		}
+		g_free (locale_file_first);
+		g_free (utf8_name_first);
 		g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
 		g_list_free (list);
 	}
@@ -1507,8 +1487,6 @@ drag_file_cb  (GtkWidget * widget,
 
 		gboolean no_files_found = FALSE;
 		gchar * utf8_name;
-		gchar * utf8_path;
-		gchar * utf8_file;
 		gchar * locale_file;
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
@@ -1516,12 +1494,9 @@ drag_file_cb  (GtkWidget * widget,
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 		                    COLUMN_NAME, &utf8_name,
-		                    COLUMN_PATH, &utf8_path,
+		                    COLUMN_LOCALE_FILE, &locale_file,
 		                    COLUMN_NO_FILES_FOUND, &no_files_found,
 		                    -1);
-
-		utf8_file = g_build_filename (utf8_path, utf8_name, NULL);
-		locale_file = g_filename_from_utf8 (utf8_file, -1, NULL, NULL, NULL);
 
 		if (!no_files_found) {
 			gchar * tmp_uri = g_filename_to_uri (locale_file, NULL, NULL);
@@ -1543,8 +1518,6 @@ drag_file_cb  (GtkWidget * widget,
 			gtk_selection_data_set_text (selection_data, utf8_name, -1);
 		}
 		g_free (utf8_name);
-		g_free (utf8_path);
-		g_free (utf8_file);
 		g_free (locale_file);
 	}
 	g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
@@ -1752,21 +1725,10 @@ save_results_cb (GtkWidget * chooser,
 		{
 			if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (store), &iter, NULL, index) == TRUE) {
 
-				gchar * utf8_path;
-				gchar * utf8_name;
-				gchar * utf8_file;
 				gchar * locale_file;
 
-				gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, COLUMN_PATH, &utf8_path, -1);
-				gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, COLUMN_NAME, &utf8_name, -1);
-
-				utf8_file = g_build_filename (utf8_path, utf8_name, NULL);
-				locale_file = g_filename_from_utf8 (utf8_file, -1, NULL, NULL, NULL);
+				gtk_tree_model_get (GTK_TREE_MODEL (store), &iter, COLUMN_LOCALE_FILE, &locale_file, -1);
 				fprintf (fp, "%s\n", locale_file);
-
-				g_free (utf8_path);
-				g_free (utf8_name);
-				g_free (utf8_file);
 				g_free (locale_file);
 			}
 		}

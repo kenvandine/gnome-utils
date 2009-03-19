@@ -1191,24 +1191,37 @@ get_file_pixbuf (GSearchWindow * gsearch,
 }
 
 gboolean
-open_file_with_nautilus (GtkWidget * window,
-                         const gchar * file)
+open_file_with_filemanager (GtkWidget * window,
+                            const gchar * file)
 {
 	GnomeDesktopItem * ditem;
  	GdkScreen * screen;
-	GError *error = NULL;
+	GError * error = NULL;
+	GList * list = NULL;
+	GAppInfo * g_app_info;
+	GFile * g_file;
 	gchar * command;
 	gchar * contents;
-	gchar * escaped;
+	gchar * uri;
+	gboolean result = TRUE;
 
-	escaped = g_shell_quote (file);
+	uri = g_filename_to_uri (file, NULL, NULL);
+	list = g_list_prepend (list, uri);
 
-	command = g_strconcat ("nautilus ",
-	                       "--sm-disable ",
-	                       "--no-desktop ",
-	                       "--no-default-window ",
-	                       escaped,
-	                       NULL);
+	g_file = g_file_new_for_path (file);
+	g_app_info = g_file_query_default_handler (g_file, NULL, NULL);
+
+	if (strcmp (g_app_info_get_executable (g_app_info), "nautilus") == 0) {
+		command = g_strconcat ("nautilus ",
+		                       "--sm-disable ",
+		                       "--no-desktop ",
+		                       "--no-default-window ",
+		                       NULL);
+	}
+	else {
+		command = g_strconcat (g_app_info_get_executable (g_app_info),
+		                       " ", NULL);
+	}
 
 	contents = g_strdup_printf ("[Desktop Entry]\n"
 				    "Name=Nautilus\n"
@@ -1222,35 +1235,36 @@ open_file_with_nautilus (GtkWidget * window,
 	ditem = gnome_desktop_item_new_from_string (NULL,
 	                                            contents,
 	                                            strlen (contents),
-	                                            GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS ,
+	                                            GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS,
 	                                            NULL);
+	if (ditem != NULL) {
+		screen = gtk_widget_get_screen (window);
 
-	if (ditem == NULL) {
-		g_free (contents);
-		g_free (command);
-		g_free (escaped);
-		return FALSE;
+		gnome_desktop_item_set_launch_time (ditem,
+		                                    gtk_get_current_event_time ());
+
+		gnome_desktop_item_launch_on_screen (ditem, list,
+		                                     GNOME_DESKTOP_ITEM_LAUNCH_APPEND_URIS | GNOME_DESKTOP_ITEM_LAUNCH_ONLY_ONE,
+						     screen, -1, &error);
+		gnome_desktop_item_unref (ditem);
+
+		if (error) {
+			g_error_free (error);
+			result = FALSE;
+		}
+	}
+	else {
+		result = FALSE;
 	}
 
-	screen = gtk_widget_get_screen (window);
-
-	gnome_desktop_item_set_launch_time (ditem,
-	                                    gtk_get_current_event_time ());
-
-	gnome_desktop_item_launch_on_screen (ditem, NULL,
-	                                     GNOME_DESKTOP_ITEM_LAUNCH_ONLY_ONE,
-					     screen, -1, &error);
-
-	gnome_desktop_item_unref (ditem);
+	g_object_unref (g_file);
+	g_object_unref (g_app_info);
+	g_list_free (list);
 	g_free (contents);
 	g_free (command);
-	g_free (escaped);
+	g_free (uri);
 
-	if (error) {
-		g_error_free (error);
-		return FALSE;
-	}
-	return TRUE;
+	return result;
 }
 
 gboolean
@@ -1259,9 +1273,16 @@ open_file_with_application (GtkWidget * window,
                             GAppInfo * app)
 {
 	GdkAppLaunchContext * context;
+	GdkScreen * screen;
 	gboolean result;
 
+	if (g_file_test (file, G_FILE_TEST_IS_DIR) == TRUE) {
+		return FALSE;
+	}
+
 	context = gdk_app_launch_context_new ();
+	screen = gtk_widget_get_screen (window);
+	gdk_app_launch_context_set_screen (context, screen);
 
 	if (app == NULL) {
 		gchar * uri;

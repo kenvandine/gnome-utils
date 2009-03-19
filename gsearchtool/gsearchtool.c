@@ -816,7 +816,6 @@ add_file_to_search_results (const gchar * file,
 	gchar * readable_size;
 	gchar * readable_date;
 	gchar * utf8_base_name;
-	gchar * utf8_dir_name;
 	gchar * utf8_relative_dir_name;
 	gchar * base_name;
 	gchar * dir_name;
@@ -871,16 +870,15 @@ add_file_to_search_results (const gchar * file,
 		relative_dir_name = g_strdup (dir_name);
 	}
 
-	utf8_base_name = g_locale_to_utf8 (base_name, -1, NULL, NULL, NULL);
-	utf8_dir_name = g_locale_to_utf8 (dir_name, -1, NULL, NULL, NULL);
-	utf8_relative_dir_name = g_locale_to_utf8 (relative_dir_name, -1, NULL, NULL, NULL);
+	utf8_base_name = g_filename_display_basename (file);
+	utf8_relative_dir_name = g_filename_display_name (relative_dir_name);
 
 	gtk_list_store_append (GTK_LIST_STORE (store), iter);
 	gtk_list_store_set (GTK_LIST_STORE (store), iter,
 			    COLUMN_ICON, pixbuf,
 			    COLUMN_NAME, utf8_base_name,
 			    COLUMN_RELATIVE_PATH, utf8_relative_dir_name,
-			    COLUMN_PATH, utf8_dir_name,
+			    COLUMN_LOCALE_FILE, file,
 			    COLUMN_READABLE_SIZE, readable_size,
 			    COLUMN_SIZE, (-1) * (gdouble) g_file_info_get_size(file_info),
 			    COLUMN_TYPE, (description != NULL) ? description : g_strdup (g_file_info_get_content_type (file_info)),
@@ -920,7 +918,6 @@ add_file_to_search_results (const gchar * file,
 	g_free (dir_name);
 	g_free (relative_dir_name);
 	g_free (utf8_base_name);
-	g_free (utf8_dir_name);
 	g_free (utf8_relative_dir_name);
 	g_free (look_in_folder);
 	g_free (description);
@@ -944,7 +941,7 @@ add_no_files_found_message (GSearchWindow * gsearch)
 		    	    COLUMN_ICON, NULL,
 			    COLUMN_NAME, _("No files found"),
 			    COLUMN_RELATIVE_PATH, "",
-		    	    COLUMN_PATH, "",
+			    COLUMN_LOCALE_FILE, "",
 			    COLUMN_READABLE_SIZE, "",
 			    COLUMN_SIZE, (gdouble) 0,
 			    COLUMN_TYPE, "",
@@ -1376,7 +1373,7 @@ handle_goption_args (GSearchWindow * gsearch)
 			sort_by = COLUMN_NAME;
 		}
 		else if (strcmp (GSearchGOptionArguments.sortby, "folder") == 0) {
-			sort_by = COLUMN_PATH;
+			sort_by = COLUMN_RELATIVE_PATH;
 		}
 		else if (strcmp (GSearchGOptionArguments.sortby, "size") == 0) {
 			sort_by = COLUMN_SIZE;
@@ -1485,7 +1482,7 @@ handle_search_command_stdout_io (GIOChannel * ioc,
 				continue;
 			}
 
-			utf8 = g_locale_to_utf8 (string->str, -1, NULL, NULL, NULL);
+			utf8 = g_filename_display_name (string->str);
 			if (utf8 == NULL) {
 				continue;
 			}
@@ -2386,7 +2383,7 @@ create_search_results_section (GSearchWindow * gsearch)
 							   NULL);
 	gtk_tree_view_column_set_sizing (column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 	gtk_tree_view_column_set_resizable (column, TRUE);
-	gtk_tree_view_column_set_sort_column_id (column, COLUMN_PATH);
+	gtk_tree_view_column_set_sort_column_id (column, COLUMN_RELATIVE_PATH);
 	gtk_tree_view_column_set_reorderable (column, TRUE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
 

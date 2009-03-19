@@ -1,3 +1,19 @@
+2009-03-18  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* gsearchtool-callbacks.c (open_file_cb), (open_folder_cb),
+	(move_to_trash_cb), (file_button_release_event_cb), 
+	(drag_file_cb), (save_results_cb):
+	* gsearchtool-support.c (open_file_with_filemanager),
+	(open_file_with_application):
+	* gsearchtool-support.h:
+	* gsearchtool.c (add_file_to_search_results),
+	(add_no_files_found_message), (handle_goption_args),
+	(handle_search_command_stdout_io), 
+	(create_search_results_section):
+	* gsearchtool.h:
+	Bug 557256: Find results missing files with incorrect 
+	filename encoding
+
 2009-03-16  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* gsearchtool-callbacks.c (click_help_cb): Replace deprecated
