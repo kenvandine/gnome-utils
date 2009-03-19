@@ -1192,7 +1192,7 @@ set_constraint_gconf_boolean (gint constraint_id,
 	   		       	       	               flag);
 			break;
 		case SEARCH_CONSTRAINT_SEARCH_OTHER_FILESYSTEMS:
-			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/exlude_other_filesystems",
+			gsearchtool_gconf_set_boolean ("/apps/gnome-search-tool/select/exclude_other_filesystems",
 	   		       	       	               flag);
 			break;
 
