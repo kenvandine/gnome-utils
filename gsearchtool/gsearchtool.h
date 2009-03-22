@@ -118,6 +118,10 @@ struct _GSearchWindow {
 	GtkWidget             * search_results_popup_submenu;
 	GtkWidget             * search_results_save_results_as_item;
 	GtkTreeView           * search_results_tree_view;
+	GtkTreeViewColumn     * search_results_folder_column;
+	GtkTreeViewColumn     * search_results_size_column;
+	GtkTreeViewColumn     * search_results_type_column;
+	GtkTreeViewColumn     * search_results_date_column;
 	GtkListStore          * search_results_list_store;
 	GtkCellRenderer       * search_results_name_cell_renderer;
 	GtkTreeSelection      * search_results_selection;

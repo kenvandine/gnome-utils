@@ -931,6 +931,10 @@ add_no_files_found_message (GSearchWindow * gsearch)
 	/* When the list is empty append a 'No Files Found.' message. */
 	gtk_widget_set_sensitive (GTK_WIDGET (gsearch->search_results_tree_view), FALSE);
 	gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (gsearch->search_results_tree_view), FALSE);
+	gtk_tree_view_column_set_visible (gsearch->search_results_folder_column, FALSE);
+	gtk_tree_view_column_set_visible (gsearch->search_results_size_column, FALSE);
+	gtk_tree_view_column_set_visible (gsearch->search_results_type_column, FALSE);
+	gtk_tree_view_column_set_visible (gsearch->search_results_date_column, FALSE);
 	gtk_tree_view_columns_autosize (GTK_TREE_VIEW (gsearch->search_results_tree_view));
 	g_object_set (gsearch->search_results_name_cell_renderer,
 	              "underline", PANGO_UNDERLINE_NONE,
@@ -1879,6 +1883,11 @@ spawn_search_command (GSearchWindow * gsearch,
 		gtk_tree_model_foreach (GTK_TREE_MODEL (gsearch->search_results_list_store),
 					(GtkTreeModelForeachFunc) tree_model_iter_free_monitor, gsearch);
 		gtk_list_store_clear (GTK_LIST_STORE (gsearch->search_results_list_store));
+		
+		gtk_tree_view_column_set_visible (gsearch->search_results_folder_column, TRUE);
+		gtk_tree_view_column_set_visible (gsearch->search_results_size_column, TRUE);
+		gtk_tree_view_column_set_visible (gsearch->search_results_type_column, TRUE);
+		gtk_tree_view_column_set_visible (gsearch->search_results_date_column, TRUE);
 	}
 
 	ioc_stdout = g_io_channel_unix_new (child_stdout);
@@ -2386,6 +2395,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_RELATIVE_PATH);
 	gtk_tree_view_column_set_reorderable (column, TRUE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
+	gsearch->search_results_folder_column = column;
 
 	/* create the size column */
 	renderer = gtk_cell_renderer_text_new ();
@@ -2398,6 +2408,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_SIZE);
 	gtk_tree_view_column_set_reorderable (column, TRUE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
+	gsearch->search_results_size_column = column;
 
 	/* create the type column */
 	renderer = gtk_cell_renderer_text_new ();
@@ -2409,6 +2420,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_TYPE);
 	gtk_tree_view_column_set_reorderable (column, TRUE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
+	gsearch->search_results_type_column = column;
 
 	/* create the date modified column */
 	renderer = gtk_cell_renderer_text_new ();
@@ -2420,6 +2432,7 @@ create_search_results_section (GSearchWindow * gsearch)
 	gtk_tree_view_column_set_sort_column_id (column, COLUMN_DATE);
 	gtk_tree_view_column_set_reorderable (column, TRUE);
 	gtk_tree_view_append_column (GTK_TREE_VIEW (gsearch->search_results_tree_view), column);
+	gsearch->search_results_date_column = column;
 
 	gsearchtool_set_columns_order (gsearch->search_results_tree_view);
 
