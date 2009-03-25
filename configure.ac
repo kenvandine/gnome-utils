@@ -73,7 +73,7 @@ dnl *****************************************
 dnl pkg-config check time
 dnl *****************************************
 
-GLIB_REQUIRED=2.16.0
+GLIB_REQUIRED=2.20.0
 GIO_REQUIRED=2.16.0
 GTK_REQUIRED=2.14.0
 LIBGNOME_DESKTOP_REQUIRED=2.9.91
