@@ -1162,14 +1162,12 @@ get_file_pixbuf (GSearchWindow * gsearch,
 {
 	GdkPixbuf * pixbuf;
 	GIcon * icon = NULL;
-	const gchar * content_type = NULL;
 	const gchar * thumbnail_path = NULL;
 
 	if (file_info == NULL) {
 		return NULL;
 	}
 
-	content_type = g_file_info_get_content_type (file_info);
 	icon = g_file_info_get_icon (file_info);
 
 	if (gsearch->show_thumbnails == TRUE) {
@@ -1180,12 +1178,16 @@ get_file_pixbuf (GSearchWindow * gsearch,
 		pixbuf = gsearchtool_get_thumbnail_image (thumbnail_path);
 	}
 	else {
-		pixbuf = (GdkPixbuf *) g_hash_table_lookup (gsearch->search_results_filename_hash_table, content_type);
+		gchar * icon_string;
+
+		icon_string = g_icon_to_string (icon);		
+		pixbuf = (GdkPixbuf *) g_hash_table_lookup (gsearch->search_results_filename_hash_table, icon_string);
 
 		if (pixbuf == NULL) {
 			pixbuf = get_themed_icon_pixbuf (G_THEMED_ICON (icon), ICON_SIZE, gtk_icon_theme_get_default ());
-			g_hash_table_insert (gsearch->search_results_filename_hash_table, g_strdup (content_type), pixbuf);	
+			g_hash_table_insert (gsearch->search_results_filename_hash_table, g_strdup (icon_string), pixbuf);
 		}
+		g_free (icon_string);
 	}
 	return pixbuf;
 }
