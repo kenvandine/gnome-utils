@@ -37,12 +37,9 @@ AC_TYPE_SIZE_T
 AC_STRUCT_ST_RDEV
 AC_HEADER_TIME
 AC_STRUCT_TM
-AC_TYPE_UID_T
-AC_FUNC_ALLOCA
-AC_FUNC_MMAP
 AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
-AC_CHECK_FUNCS(getcwd gettimeofday getwd putenv strdup strtoul uname logf getpgid)
+AC_CHECK_FUNCS(getpgid)
 
 
 # Before making a release, the LT_VERSION string should be modified.
@@ -180,7 +177,7 @@ AC_SUBST(HAL_CFLAGS)
 AC_SUBST(HAL_LIBS)
 
 dnl *********************************************
-dnl gnome-desktop is need for gsearchtool
+dnl gnome-desktop is needed for gsearchtool
 dnl *********************************************
 
 PKG_CHECK_MODULES(GNOMEDESKTOP, gnome-desktop-2.0 >= $LIBGNOME_DESKTOP_REQUIRED)
@@ -266,35 +263,10 @@ if test "x$have_ipv6" = "xyes"; then
   fi
 fi
 
-dnl ************************************************
-dnl X development libraries check
-dnl ************************************************
 
-if $PKG_CONFIG --exists pangoxft ; then
-  PANGO_PACKAGES="pangox pangoxft"
-else
-  PANGO_PACKAGES="pangox"
-fi
-
-x_libs="`$PKG_CONFIG --libs $PANGO_PACKAGES`"
-case x_libs in
-  *-lX11*) pango_omitted_x_deps=no ;;
-  *)       pango_omitted_x_deps=yes ;;
-esac
-
-if test $pango_omitted_x_deps = yes ; then
-  AC_PATH_XTRA
-
-  if test x$no_x = xyes ; then
-    AC_MSG_ERROR([X development libraries not found])
-  else
-    X_LIBS="$X_PRE_LIBS $X_LIBS -lX11 $X_EXTRA_LIBS"
-  fi
-fi
-
-AC_SUBST(X_LIBS)
-
+dnl *************************************************
 dnl strftime extension checks
+dnl *************************************************
 
 AC_TRY_RUN([#include <time.h>
                 int main ()
@@ -477,7 +449,6 @@ echo ""
 dnl <= CFLAGS and LDFLAGS =>
 echo "CFLAGS  : $CFLAGS"
 echo "LDFLAGS : $LDFLAGS"
-echo "X_LIBS  : $X_LIBS"
 echo ""
 
 dnl <= Prefixes =>
