@@ -274,9 +274,22 @@ setup_case_insensitive_arguments (GSearchWindow * gsearch)
  	g_spawn_command_line_sync (grep_cmd, NULL, &cmd_stderr, NULL, NULL);
 
 	if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
- 		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option =
-		    g_strdup_printf ("'!' -type p -exec %s -i -c '%%s' {} \\;", GREP_COMMAND);
- 	}
+		g_free (cmd_stderr);
+		g_free (grep_cmd);
+		
+		/* check grep command for -I argument compatibility, bug 568840 */
+		grep_cmd = g_strdup_printf ("%s -i -I 'string' /dev/null", GREP_COMMAND);
+	 	g_spawn_command_line_sync (grep_cmd, NULL, &cmd_stderr, NULL, NULL);
+		
+		if ((cmd_stderr != NULL) && (strlen (cmd_stderr) == 0)) {
+	 		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option =
+			    g_strdup_printf ("'!' -type p -exec %s -i -I -c '%%s' {} \\;", GREP_COMMAND);
+ 		}
+		else {
+	 		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option =
+			    g_strdup_printf ("'!' -type p -exec %s -i -c '%%s' {} \\;", GREP_COMMAND);		
+		}		
+	}
 	else {
  		GSearchOptionTemplates[SEARCH_CONSTRAINT_CONTAINS_THE_TEXT].option =
 		    g_strdup_printf ("'!' -type p -exec %s -c '%%s' {} \\;", GREP_COMMAND);
