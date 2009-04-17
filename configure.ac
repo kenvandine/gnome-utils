@@ -74,7 +74,6 @@ GTK_REQUIRED=2.16.0
 LIBGNOME_DESKTOP_REQUIRED=2.9.91
 LIBGNOME_REQUIRED=2.13.2
 LIBGNOMEUI_REQUIRED=2.13.7
-LIBGLADE_REQUIRED=2.3.0
 LIBPANEL_APPLET_REQUIRED=2.13.4
 LIBGTOP_REQUIRED=2.12.0
 
@@ -96,10 +95,6 @@ AC_SUBST(LIBGNOME_LIBS)
 PKG_CHECK_MODULES(GTHREAD, gthread-2.0 >= $GLIB_REQUIRED)
 AC_SUBST(GTHREAD_CFLAGS)
 AC_SUBST(GTHREAD_LIBS)
-
-PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
-AC_SUBST(LIBGLADE_CFLAGS)
-AC_SUBST(LIBGLADE_LIBS)
 
 # libgdict requires just gtk+
 PKG_CHECK_MODULES(LIBGDICT, glib-2.0 >= $GLIB_REQUIRED dnl
@@ -279,9 +274,7 @@ AC_SUBST(GREP_COMMAND)
 
 dnl logview checks
 AC_ARG_ENABLE([zlib],
-              [AC_HELP_STRING([--disable-zlib], [disable zlib support])],
-              [],
-              [enable_zlib=no])
+              [AC_HELP_STRING([--disable-zlib], [disable zlib support])])
 msg_zlib=no
 Z_LIBS=
 
