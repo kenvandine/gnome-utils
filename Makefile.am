@@ -41,6 +41,18 @@ DISTCLEANFILES =                \
 	gtk-doc.make		\
 	gnome-doc-utils.make
 
-DISTCHECK_CONFIGURE_FLAGS = \
-	--disable-scrollkeeper \
-	--enable-gtk-doc
+DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc
+
+dist-hook:
+	@if test -d "$(srcdir)/.git"; \
+	then \
+		echo Creating ChangeLog && \
+		( cd "$(top_srcdir)" && \
+		  echo '# Generate by configure. Do not edit.'; echo; \
+		  $(top_srcdir)/missing --run git log --stat $$from.. ) > ChangeLog.tmp \
+		&& mv -f ChangeLog.tmp $(top_distdir)/ChangeLog \
+		|| ( rm -f ChangeLog.tmp ; \
+		     echo Failed to generate ChangeLog >&2 ); \
+	else \
+		echo A git clone is required to generate a ChangeLog >&2; \
+	fi
