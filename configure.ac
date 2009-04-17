@@ -1,31 +1,36 @@
-AC_INIT([gnome-utils], [2.27.1],
+m4_define([gnome_utils_major], [2])
+m4_define([gnome_utils_minor], [27])
+m4_define([gnome_utils_micro], [1])
+
+m4_define([gnome_utils_version], [gnome_utils_major.gnome_utils_minor.gnome_utils_micro])
+
+AC_INIT([gnome-utils],
+        [gnome_utils_version],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils])
-AM_CONFIG_HEADER(config.h)
-AM_INIT_AUTOMAKE
 
 AC_CONFIG_MACRO_DIR([m4])
+
+AM_CONFIG_HEADER([config.h])
+AM_INIT_AUTOMAKE
+
 GNOME_COMMON_INIT
 
-dnl AM_MAINTAINER_MODE
-GNOME_MAINTAINER_MODE_DEFINES
-
-IT_PROG_INTLTOOL([0.35.0])
+IT_PROG_INTLTOOL([0.40.0])
 
 AC_ISC_POSIX
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_CPP
 AC_STDC_HEADERS
-AC_PROG_YACC
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_LIBTOOL_WIN32_DLL
 AM_PROG_LIBTOOL
-AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
-AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
+AC_PATH_PROG(GLIB_GENMARSHAL, [glib-genmarshal])
+AC_PATH_PROG(GLIB_MKENUMS, [glib-mkenums])
 
-GNOME_COMPILE_WARNINGS(yes)
+GNOME_COMPILE_WARNINGS([yes])
 
 AC_PATH_XTRA
 
@@ -39,7 +44,7 @@ AC_HEADER_TIME
 AC_STRUCT_TM
 AC_TYPE_SIGNAL
 AC_FUNC_STRFTIME
-AC_CHECK_FUNCS(getpgid)
+AC_CHECK_FUNCS([getpgid])
 
 
 # Before making a release, the LT_VERSION string should be modified.
@@ -53,22 +58,15 @@ AC_CHECK_FUNCS(getpgid)
 LIBGDICT_LT_VERSION=6:5:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
-dnl *****************************************
-dnl host architecture check time
-dnl *****************************************
+dnl host architecture check
+AS_CASE([$host],
 
-case $host in
-*-*-solaris*)
-	SUN_OS="-DON_SUN_OS"
-	;;
-*)
-	SUN_OS=
-esac
+        [*-*-solaris*], [SUN_OS="-DON_SUN_OS"],
+        [*],            [SUN_OS=""]
+)
 AC_SUBST(SUN_OS)
 
-dnl *****************************************
-dnl pkg-config check time
-dnl *****************************************
+dnl pkg-config check
 
 GLIB_REQUIRED=2.20.0
 GIO_REQUIRED=2.16.0
@@ -80,44 +78,30 @@ LIBGLADE_REQUIRED=2.3.0
 LIBPANEL_APPLET_REQUIRED=2.13.4
 LIBGTOP_REQUIRED=2.12.0
 
-dnl ********************************************
-dnl glib, gio, gtk, gconf: needed for all utils
-dnl ********************************************
-
+# common checks
 PKG_CHECK_MODULES(GNOME_UTILS, glib-2.0 >= $GLIB_REQUIRED dnl
-                               gio-2.0 >= $GIO_REQUIRED dnl
-                               gconf-2.0 dnl
+                               gio-2.0 >= $GIO_REQUIRED   dnl
+                               gconf-2.0                  dnl
                                gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
 
-dnl *****************************************
-dnl separate check for libgnome/libgnomeui
-dnl *****************************************
-
+# separate check for libgnome/libgnomeui, so that we can easily
+# remove the variables
 PKG_CHECK_MODULES(LIBGNOME, libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
                             libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
 AC_SUBST(LIBGNOME_CFLAGS)
 AC_SUBST(LIBGNOME_LIBS)
 
-dnl *****************************************
-dnl separate check for gthread
-dnl *****************************************
-
 PKG_CHECK_MODULES(GTHREAD, gthread-2.0 >= $GLIB_REQUIRED)
 AC_SUBST(GTHREAD_CFLAGS)
 AC_SUBST(GTHREAD_LIBS)
 
-dnl *****************************************
-dnl floppy-buddy needs libglade
-dnl *****************************************
 PKG_CHECK_MODULES(LIBGLADE, libglade-2.0 >= $LIBGLADE_REQUIRED)
 AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
 
-dnl *****************************************
-dnl libgdict requires just gtk+
-dnl *****************************************
+# libgdict requires just gtk+
 PKG_CHECK_MODULES(LIBGDICT, glib-2.0 >= $GLIB_REQUIRED dnl
                             gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(LIBGDICT_CFLAGS)
@@ -133,58 +117,44 @@ AC_SUBST(LIBGDICT_LIBS)
 m4_define([gdict_major_version], [0])
 m4_define([gdict_minor_version], [11])
 m4_define([gdict_micro_version], [0])
-m4_define([gdict_version],
-	  [gdict_major_version().gdict_minor_version().gdict_micro_version()])
+m4_define([gdict_version], [gdict_major_version.gdict_minor_version.gdict_micro_version])
 
-GDICT_MAJOR_VERSION=gdict_major_version()
-GDICT_MINOR_VERSION=gdict_minor_version()
-GDICT_MICRO_VERSION=gdict_micro_version()
-GDICT_VERSION=gdict_version()
+GDICT_MAJOR_VERSION=gdict_major_version
+GDICT_MINOR_VERSION=gdict_minor_version
+GDICT_MICRO_VERSION=gdict_micro_version
+GDICT_VERSION=gdict_version
 
 AC_SUBST(GDICT_MAJOR_VERSION)
 AC_SUBST(GDICT_MINOR_VERSION)
 AC_SUBST(GDICT_MICRO_VERSION)
 AC_SUBST(GDICT_VERSION)
 
-dnl *****************************************
-dnl screenshot modules
-dnl *****************************************
-
-AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
+# xext for gnome-screenshot; in theory checking for xext should be
+# enough but there are a lot of broken distros out there
+PKG_CHECK_MODULES(XSHAPE, xext,
+                  [],
+                  [AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")])
 AC_SUBST(XSHAPE_LIBS)
 
-dnl *********************************************
-dnl gnome-desktop is needed for gsearchtool
-dnl *********************************************
-
+# gnome-desktop is needed for gsearchtool
 PKG_CHECK_MODULES(GNOMEDESKTOP, gnome-desktop-2.0 >= $LIBGNOME_DESKTOP_REQUIRED)
 AC_SUBST(GNOMEDESKTOP_CFLAGS)
 AC_SUBST(GNOMEDESKTOP_LIBS)
 
-dnl *********************************************
-dnl for anything which calls gconftool-2 correctly
-dnl *********************************************
-
-AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
-
-if test "x$GCONFTOOL" = "xno"; then
-  AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
-fi
+# for anything which calls gconftool-2 correctly
+AC_PATH_PROG(GCONFTOOL, [gconftool-2], [no])
+AS_IF([test "x$GCONFTOOL" = "xno"],
+      [AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])]
+)
 
 AM_GCONF_SOURCE_2
 
-dnl *******************************
-dnl Gdict applet checks
-dnl *******************************
-
+# Gdict applet checks
 PKG_CHECK_MODULES(APPLET, libpanelapplet-2.0 >= $LIBPANEL_APPLET_REQUIRED)
 AC_SUBST(APPLET_LIBS)
 AC_SUBST(APPLET_CFLAGS)
 
-dnl *******************************
-dnl Baobab checks
-dnl *******************************
-
+# Baobab checks
 PKG_CHECK_MODULES(LIBGTOP, libgtop-2.0 >= $LIBGTOP_REQUIRED)
 AC_SUBST(LIBGTOP_CFLAGS)
 AC_SUBST(LIBGTOP_LIBS)
@@ -194,137 +164,170 @@ dnl Other miscellaneous checks
 dnl ***************************************************************
 
 dnl Enable debug messages
-m4_define([debug_default],
-          m4_if(m4_eval(gdict_minor_version % 2), [1], [yes], [no]))
-AC_ARG_ENABLE(debug,
-              AC_HELP_STRING([--enable-debug=@<:@no/yes@:>@],
-                             [Enable debug messages @<:@default=debug_default@:>@]),,
-              enable_debug=debug_default)
+m4_define([debug_default], [m4_if(m4_eval(gdict_minor_version % 2), [1], [yes], [minimum])])
+AC_ARG_ENABLE([debug],
+              [AC_HELP_STRING([--enable-debug=@<:@no/minimum/yes@:>@],
+                              [Enable debug messages @<:@default=debug_default@:>@])],
+              [],
+              [enable_debug=debug_default])
 
-if test "x$enable_debug" = "xyes"; then
-  GDICT_DEBUG_CFLAGS="-DGDICT_ENABLE_DEBUG"
-fi
+AS_CASE([$enable_debug],
+
+        [yes],
+        [
+          test "$cflags_set" = set || CFLAGS="$CFLAGS -g"
+          GDICT_DEBUG_CFLAGS="-DGDICT_ENABLE_DEBUG"
+        ],
+
+        [minimum],
+        [GDICT_DEBUG_CFLAGS="-DG_DISABLE_CAST_CHECKS"],
+
+        [no],
+        [GDICT_DEBUG_CFLAGS="-DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -DG_DISABLE_CAST_CHECKS"],
+
+        [AC_MSG_ERROR([Unknown argument to --enable-debug])]
+)
 
 AC_SUBST(GDICT_DEBUG_CFLAGS)
 
 dnl IPv6 support
 AC_MSG_CHECKING([whether to enable IPv6])
-AC_ARG_ENABLE(ipv6,
-              AC_HELP_STRING([--enable-ipv6=@<:@yes/no@:>@],
-                             [Enables compilation of IPv6 code]),,
-              enable_ipv6=yes)
+AC_ARG_ENABLE([ipv6],
+              [AC_HELP_STRING([--enable-ipv6=@<:@yes/no@:>@],
+                              [Enables compilation of IPv6 code])],
+              [],
+              [enable_ipv6=yes])
 
-if test "x$enable_ipv6" = "xyes"; then
-  AC_TRY_COMPILE([
-   #include <sys/socket.h>
-   #include <sys/types.h>], [
-   struct sockaddr_storage ss;
-   socket(AF_INET6, SOCK_STREAM, 0)
-   ],
-   have_ipv6=yes,
-   have_ipv6=no
-  )
-fi
-
-if test "x$have_ipv6" = "xyes"; then
-  have_getaddrinfo=no
-  AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes)
-  if test "x$have_getaddrinfo" != "xyes"; then
-    for lib in bsd socket inet; do
-      AC_CHECK_LIB($lib,getaddrinfo,["LIBS=$LIBS -l$lib";have_getaddrinfo=yes;break])
-    done
-  fi
-
-  if test "x$have_getaddrinfo" = "xyes"; then
-    AC_DEFINE([ENABLE_IPV6], [1], [Define whether IPv6 support is enabled])
-  fi
-fi
-
-
-dnl *************************************************
-dnl strftime extension checks
-dnl *************************************************
-
-AC_TRY_RUN([#include <time.h>
-                int main ()
-                {
-                  char buf[100];
-                  struct tm tm = {0};
-                  tm.tm_year = 99;
-                  if (strftime(buf, 100, "%EY", &tm) == 4 &&
-		      strcmp (buf, "1999")==0)
-                    return 0;
-                  return 1;
-                }
-            ],
-	    AC_DEFINE([HAVE_STRFTIME_EXTENSION], [1],
-                      [Define if strftime supports %E and %O modifiers.])
+AS_IF([test "x$enable_ipv6" = "xyes"],
+      [
+        AC_TRY_COMPILE(
+          [
+            #include <sys/socket.h>
+            #include <sys/types.h>
+          ],
+          [
+            struct sockaddr_storage ss;
+            socket(AF_INET6, SOCK_STREAM, 0)
+          ],
+          [have_ipv6=yes],
+          [have_ipv6=no]
+        )
+      ]
 )
 
-dnl *************************************************
-dnl Individual gnome-utils checks 
-dnl *************************************************
+AS_IF([test "x$have_ipv6" = "xyes"],
+      [
+        have_getaddrinfo=no
+        AC_CHECK_FUNC(getaddrinfo, have_getaddrinfo=yes)
 
-dnl *******************************
+        AS_IF([test "x$have_getaddrinfo" != "xyes"],
+              [
+                for lib in bsd socket inet; do
+                  AC_CHECK_LIB($lib,
+                               [getaddrinfo],
+                               ["LIBS=$LIBS -l$lib"; have_getaddrinfo=yes; break])
+                done
+              ]
+        )
+
+        AS_IF([test "x$have_getaddrinfo" = "xyes"],
+              [AC_DEFINE([ENABLE_IPV6], [1], [Define whether IPv6 support is enabled])]
+        )
+      ]
+)
+
+
+dnl strftime extension checks
+AC_TRY_RUN([
+  #include <time.h>
+  int main (void) {
+    char buf[100];
+    struct tm tm = {0};
+    tm.tm_year = 99;
+    if (strftime(buf, 100, "%EY", &tm) == 4 && strcmp (buf, "1999")==0)
+      return 0;
+    return 1;
+  }
+  ],
+  [
+    AC_DEFINE([HAVE_STRFTIME_EXTENSION], [1],
+              [Define if strftime supports %E and %O modifiers.])
+  ]
+)
+
 dnl gnome-search-tool checks
-dnl ******************************* 
-
 withval=""
-AC_ARG_WITH(grep,
+AC_ARG_WITH([grep],
             AC_HELP_STRING([--with-grep=@<:@grep command@:>@]
                            [Specify where to find the grep binary]),
             [
-            if test x$withval != x; then
-              AC_MSG_RESULT(${withval} is used for gnome-search-tool.)
-            else
-              AC_MSG_RESULT(grep is used for gnome-search-tool.)
-            fi
+              AS_IF([test x$withval != x],
+                    [AC_MSG_RESULT(${withval} is used for gnome-search-tool.)],
+
+                    [AC_MSG_RESULT(grep is used for gnome-search-tool.)]
+              )
             ])
 
-if test x$withval != x; then
-	GREP_COMMAND="$withval"
-else
-	GREP_COMMAND="grep"
-fi
+AS_IF([test x$withval != x],
+      [GREP_COMMAND="$withval"],
+
+      [GREP_COMMAND="grep"]
+)
 
 AC_SUBST(GREP_COMMAND)
 
 
-dnl ********************
 dnl logview checks
-dnl ********************
-
-AC_ARG_ENABLE(zlib, AC_HELP_STRING([--disable-zlib], [disable zlib support]))
+AC_ARG_ENABLE([zlib],
+              [AC_HELP_STRING([--disable-zlib], [disable zlib support])],
+              [],
+              [enable_zlib=no])
 msg_zlib=no
 Z_LIBS=
 
-if test "x$enable_zlib" != "xno"; then
-  AC_CHECK_HEADER(zlib.h,
-                  [AC_CHECK_LIB(z, inflate, [msg_zlib=yes])])
-  if test "x$msg_zlib" = "xyes"; then
-    AC_DEFINE(HAVE_ZLIB, 1, [Define to 1 if we're building with ZLib support])
-    Z_LIBS="-lz"
-  fi
-fi
+AS_IF([test "x$enable_zlib" != "xno"],
+      [
+        AC_CHECK_HEADER([zlib.h], [AC_CHECK_LIB([z], [inflate], [msg_zlib=yes])])
+
+        AS_IF([test "x$msg_zlib" = "xyes"],
+              [
+                AC_DEFINE(HAVE_ZLIB, [1],
+                          [Define to 1 if we're building with ZLib support])
+                Z_LIBS="-lz"
+              ]
+        )
+      ]
+)
 
 AC_SUBST(Z_LIBS)
 
-
-dnl ********************
 dnl scrollkeeper checks 
-dnl ********************
-AC_PATH_PROG(SCROLLKEEPER_CONFIG, scrollkeeper-config,no)
-if test x$SCROLLKEEPER_CONFIG = xno; then
-  AC_MSG_ERROR(Couldn't find scrollkeeper-config. Please install the scrollkeeper package)
-fi
+AC_PATH_PROG(SCROLLKEEPER_CONFIG, [scrollkeeper-config], [no])
+AS_IF([test x$SCROLLKEEPER_CONFIG = xno]
+      [
+        AC_MSG_ERROR([Couldn't find scrollkeeper-config. Please install the scrollkeeper package])
+      ]
+)
 
+dnl = Enable strict compiler flags =========================================
 
-dnl *******************************
+# use strict compiler flags only on development releases
+m4_define([maintainer_flags_default], [m4_if(m4_eval(gnome_utils_minor % 2), [1], [yes], [no])])
+AC_ARG_ENABLE([maintainer-flags],
+              [AC_HELP_STRING([--enable-maintainer-flags=@<:@no/yes@:>@],
+                              [Use strict compiler flags @<:@default=maintainer_flags_default@:>@])],
+              [],
+              [enable_maintainer_flags=maintainer_flags_default])
+
+AS_IF([test "x$enable_maintainer_flags" = "xyes" && test "x$GCC" = "xyes"],
+      [
+        MAINTAINER_CFLAGS="-Werror -Wall -Wshadow -Wcast-align -Wno-uninitialized -Wformat-security -Winit-self"
+      ]
+)
+
 dnl Internationalization
-dnl ******************************* 
 GETTEXT_PACKAGE=gnome-utils-2.0
-AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], "$GETTEXT_PACKAGE", [Define the gettext
-package to use])
+AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], "$GETTEXT_PACKAGE", [Define the gettext package to use])
 AC_SUBST(GETTEXT_PACKAGE)
 AM_GLIB_GNU_GETTEXT
 
@@ -334,83 +337,66 @@ gnomeutilslocaledir='${prefix}/${DATADIRNAME}/locale'
 AC_SUBST(gnomeutilslocaledir)
 
 dnl gtk-doc stuff
-GTK_DOC_CHECK([1.0])
+GTK_DOC_CHECK([1.10])
 
 dnl gnome-doc-utils stuff
 GNOME_DOC_INIT
 
-AC_OUTPUT([
-Makefile
-po/Makefile.in
-baobab/Makefile
-baobab/data/Makefile
-baobab/pixmaps/Makefile
-baobab/pixmaps/24x24/Makefile
-baobab/pixmaps/scalable/Makefile
-baobab/src/Makefile
-baobab/help/Makefile
-logview/Makefile
-logview/data/Makefile
-logview/tests/Makefile
-logview/help/Makefile
-gsearchtool/Makefile
-gsearchtool/data/Makefile
-gsearchtool/help/Makefile
-gnome-dictionary/Makefile
-gnome-dictionary/libgdict/Makefile
-gnome-dictionary/libgdict/gdict-version.h
-gnome-dictionary/libgdict/gdict-1.0.pc
-gnome-dictionary/data/Makefile
-gnome-dictionary/docs/Makefile
-gnome-dictionary/docs/reference/Makefile
-gnome-dictionary/docs/reference/gdict/Makefile
-gnome-dictionary/docs/reference/gdict/version.xml
-gnome-dictionary/help/Makefile
-gnome-dictionary/src/Makefile
-gnome-screenshot/Makefile
+AC_CONFIG_FILES([
+        Makefile
+
+        po/Makefile.in
+
+        baobab/Makefile
+        baobab/data/Makefile
+        baobab/pixmaps/Makefile
+        baobab/pixmaps/24x24/Makefile
+        baobab/pixmaps/scalable/Makefile
+        baobab/src/Makefile
+        baobab/help/Makefile
+
+        logview/Makefile
+        logview/data/Makefile
+        logview/tests/Makefile
+        logview/help/Makefile
+
+        gsearchtool/Makefile
+        gsearchtool/data/Makefile
+        gsearchtool/help/Makefile
+
+        gnome-dictionary/Makefile
+        gnome-dictionary/libgdict/Makefile
+        gnome-dictionary/libgdict/gdict-version.h
+        gnome-dictionary/libgdict/gdict-1.0.pc
+        gnome-dictionary/data/Makefile
+        gnome-dictionary/docs/Makefile
+        gnome-dictionary/docs/reference/Makefile
+        gnome-dictionary/docs/reference/gdict/Makefile
+        gnome-dictionary/docs/reference/gdict/version.xml
+        gnome-dictionary/help/Makefile
+        gnome-dictionary/src/Makefile
+
+        gnome-screenshot/Makefile
 ])
+
+AC_OUTPUT
 
 dnl <= Configuration summary =>
 
-echo ""
-echo "gnome-utils configuration summary:"
-echo "=================================="
-echo ""
+echo "
+gnome-utils $VERSION configuration summary:
 
-dnl <= CFLAGS and LDFLAGS =>
-echo "CFLAGS  : $CFLAGS"
-echo "LDFLAGS : $LDFLAGS"
-echo ""
+                   Compiler flags : $CFLAGS
+                     Linker flags : $LDFLAGS
+        Maintainer compiler flags : $MAINTAINER_CFLAGS
 
-dnl <= Prefixes =>
-echo "prefix : $prefix"
-echo "sysconf dir : "`eval echo $sysconfdir`
-echo "bin dir     : "`eval echo $bindir`
-echo "sbin dir    : "`eval echo $sbindir`
-echo "data dir    : "`eval echo $datadir`
-echo ""
+                           prefix : $prefix
+                      sysconf dir : $sysconfdir
+                          bin dir : $bindir
+                         sbin dir : $sbindir
+                         data dir : $datadir
 
-echo ""
-echo "The following will be built -"
-echo "============================="
-echo ""
-
-dnl <= Debug messages =>
-if test "x$enable_debug" = "xyes"; then
-  echo "Debug messages (libgdict)         : YES"
-else
-  echo "Debug messages (libgdict)         : NO"
-fi
-
-dnl <= logview =>
-if test "x$msg_zlib" = "xyes"; then
-  echo "Logview built with ZLib support   : YES"
-else
-  echo "Logview built with ZLib support   : NO"
-fi
-
-dnl <= libgdict =>
-echo "Gdict version                     : "$GDICT_VERSION
-
-echo ""
-dnl <= End of configuration summary =>
+        Debug messages (libgdict) : $enable_debug
+         API Reference (libgdict) : $enable_gtk_doc
+  Logview built with ZLib support : $msg_zlib
+"
