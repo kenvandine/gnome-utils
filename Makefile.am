@@ -46,6 +46,7 @@ DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc
 dist-hook:
 	@if test -d "$(srcdir)/.git"; \
 	then \
+		from="git-import"; \
 		echo Creating ChangeLog && \
 		( cd "$(top_srcdir)" && \
 		  echo '# Generate by configure. Do not edit.'; echo; \
