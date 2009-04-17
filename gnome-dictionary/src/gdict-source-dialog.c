@@ -34,12 +34,11 @@
 #endif
 
 #include <glib/gi18n.h>
-#include <glade/glade.h>
 #include <gconf/gconf-client.h>
 
 #include "gdict-source-dialog.h"
 
-#define GDICT_PREFERENCES_GLADE 	PKGDATADIR "/gnome-dictionary-preferences.glade"
+#define GDICT_SOURCE_UI 	PKGDATADIR "/gnome-dictionary-source.ui"
 
 /*********************
  * GdictSourceDialog *
@@ -48,8 +47,8 @@
 struct _GdictSourceDialog
 {
   GtkDialog parent_instance;
-  
-  GladeXML *xml;
+
+  GtkBuilder *builder; 
 
   GConfClient *gconf_client;
   guint notify_id;
@@ -113,10 +112,10 @@ transport_combo_changed_cb (GtkWidget *widget,
 
   if (transport == GDICT_SOURCE_TRANSPORT_DICTD)
     {
-      gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_label"));
-      gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_entry"));
-      gtk_widget_show (glade_xml_get_widget (dialog->xml, "port_label"));
-      gtk_widget_show (glade_xml_get_widget (dialog->xml, "port_entry"));
+      gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "hostname_label")));
+      gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "hostname_entry")));
+      gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "port_label")));
+      gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "port_entry")));
       
       if (dialog->action == GDICT_SOURCE_DIALOG_CREATE)
         {
@@ -127,10 +126,10 @@ transport_combo_changed_cb (GtkWidget *widget,
     }
   else
     {
-      gtk_widget_hide (glade_xml_get_widget (dialog->xml, "hostname_label"));
-      gtk_widget_hide (glade_xml_get_widget (dialog->xml, "hostname_entry"));
-      gtk_widget_hide (glade_xml_get_widget (dialog->xml, "port_label"));
-      gtk_widget_hide (glade_xml_get_widget (dialog->xml, "port_entry"));
+      gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "hostname_label")));
+      gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "hostname_entry")));
+      gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "port_label")));
+      gtk_widget_hide (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "port_entry")));
 
       if (dialog->action == GDICT_SOURCE_DIALOG_CREATE)
         {
@@ -147,8 +146,8 @@ get_text_from_entry (GdictSourceDialog *dialog,
 {
   GtkWidget *entry;
   gchar *retval;
-  
-  entry = glade_xml_get_widget (dialog->xml, entry_name);
+
+  entry = GTK_WIDGET (gtk_builder_get_object (dialog->builder, entry_name));
   if (!entry)
     return NULL;
   
@@ -164,7 +163,7 @@ set_text_to_entry (GdictSourceDialog *dialog,
 {
   GtkWidget *entry;
 
-  entry = glade_xml_get_widget (dialog->xml, entry_name);
+  entry = GTK_WIDGET (gtk_builder_get_object (dialog->builder, entry_name));
   if (!entry)
     return;
 
@@ -178,7 +177,7 @@ get_text_from_combo (GdictSourceDialog *dialog,
   GtkWidget *combo;
   gchar *retval;
   
-  combo = glade_xml_get_widget (dialog->xml, combo_name);
+  combo = GTK_WIDGET (gtk_builder_get_object (dialog->builder, combo_name));
   if (!combo)
     return NULL;
   
@@ -207,10 +206,10 @@ set_transport_settings (GdictSourceDialog *dialog)
         set_text_to_entry (dialog, "hostname_entry", hostname);
         set_text_to_entry (dialog, "port_entry", port_str);
 
-        gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_label"));
-        gtk_widget_show (glade_xml_get_widget (dialog->xml, "hostname_entry"));
-        gtk_widget_show (glade_xml_get_widget (dialog->xml, "port_label"));
-        gtk_widget_show (glade_xml_get_widget (dialog->xml, "port_entry"));
+        gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "hostname_label")));
+        gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "hostname_entry")));
+        gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "port_label")));
+        gtk_widget_show (GTK_WIDGET (gtk_builder_get_object (dialog->builder, "port_entry")));
 
         g_free (port_str);
       }
@@ -518,8 +517,8 @@ gdict_source_dialog_finalize (GObject *object)
   if (dialog->gconf_client)
     g_object_unref (dialog->gconf_client);
   
-  if (dialog->xml)
-    g_object_unref (dialog->xml);
+  if (dialog->builder)
+    g_object_unref (dialog->builder);
 
   if (dialog->source_name)
     g_free (dialog->source_name);
@@ -590,6 +589,7 @@ gdict_source_dialog_constructor (GType                  type,
   GObject *object;
   GdictSourceDialog *dialog;
   GtkWidget *vbox;
+  GError *error = NULL;
 
   object = G_OBJECT_CLASS (gdict_source_dialog_parent_class)->constructor (type,
 									   n_construct_properties,
@@ -601,20 +601,25 @@ gdict_source_dialog_constructor (GType                  type,
   
   gtk_widget_push_composite_child ();
 
-  /* get the UI from the glade file */
-  dialog->xml = glade_xml_new (GDICT_PREFERENCES_GLADE,
-  			       "source_root",
-  			       NULL);
-  g_assert (dialog->xml);
+  /* get the UI from the GtkBuilder file */
+  dialog->builder = gtk_builder_new ();
+  gtk_builder_add_from_file (dialog->builder, GDICT_SOURCE_UI, &error);
+
+  if (error) {
+    g_critical ("Unable to load the user interface definition file: %s",
+                error->message);
+    g_error_free (error);
+    g_assert_not_reached ();
+  }
   
   /* the main widget */
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox),
-                     glade_xml_get_widget (dialog->xml, "source_root"));
+                     GTK_WIDGET (gtk_builder_get_object (dialog->builder, "source_root")));
 
   /* the transport combo changes the UI by changing the visible widgets
    * bound to the transport's own options.
    */
-  dialog->transport_combo = glade_xml_get_widget (dialog->xml, "transport_combo");
+  dialog->transport_combo = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "transport_combo"));
   g_signal_connect (dialog->transport_combo, "changed",
   		    G_CALLBACK (transport_combo_changed_cb),
   		    dialog);
@@ -624,12 +629,12 @@ gdict_source_dialog_constructor (GType                  type,
   					       GTK_STOCK_HELP,
 					       GTK_RESPONSE_HELP);
   
-  vbox = glade_xml_get_widget (dialog->xml, "db-vbox");
+  vbox = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "db-vbox"));
   dialog->db_chooser = gdict_database_chooser_new ();
   gtk_box_pack_start (GTK_BOX (vbox), dialog->db_chooser, TRUE, TRUE, 0);
   gtk_widget_show (dialog->db_chooser);
 
-  vbox = glade_xml_get_widget (dialog->xml, "strat-vbox");
+  vbox = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "strat-vbox"));
   dialog->strat_chooser = gdict_strategy_chooser_new ();
   gtk_box_pack_start (GTK_BOX (vbox), dialog->strat_chooser, TRUE, TRUE, 0);
   gtk_widget_show (dialog->strat_chooser);
@@ -641,10 +646,10 @@ gdict_source_dialog_constructor (GType                  type,
     {
     case GDICT_SOURCE_DIALOG_VIEW:
       /* disable every editable widget */
-      gtk_editable_set_editable (GTK_EDITABLE (glade_xml_get_widget (dialog->xml, "name_entry")), FALSE);
-      gtk_editable_set_editable (GTK_EDITABLE (glade_xml_get_widget (dialog->xml, "description_entry")), FALSE);
-      gtk_editable_set_editable (GTK_EDITABLE (glade_xml_get_widget (dialog->xml, "hostname_entry")), FALSE);
-      gtk_editable_set_editable (GTK_EDITABLE (glade_xml_get_widget (dialog->xml, "port_entry")), FALSE);
+      gtk_editable_set_editable (GTK_EDITABLE (gtk_builder_get_object (dialog->builder, "name_entry")), FALSE);
+      gtk_editable_set_editable (GTK_EDITABLE (gtk_builder_get_object (dialog->builder, "description_entry")), FALSE);
+      gtk_editable_set_editable (GTK_EDITABLE (gtk_builder_get_object (dialog->builder, "hostname_entry")), FALSE);
+      gtk_editable_set_editable (GTK_EDITABLE (gtk_builder_get_object (dialog->builder, "port_entry")), FALSE);
       
       gtk_widget_set_sensitive (dialog->transport_combo, FALSE);
 

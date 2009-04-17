@@ -34,14 +34,13 @@
 #endif
 
 #include <glib/gi18n.h>
-#include <glade/glade.h>
 #include <gconf/gconf-client.h>
 
 #include "gdict-source-dialog.h"
 #include "gdict-pref-dialog.h"
 #include "gdict-common.h"
 
-#define GDICT_PREFERENCES_GLADE 	PKGDATADIR "/gnome-dictionary-preferences.glade"
+#define GDICT_PREFERENCES_UI 	PKGDATADIR "/gnome-dictionary-preferences.ui"
 
 #define DEFAULT_MIN_WIDTH 	220
 #define DEFAULT_MIN_HEIGHT 	330
@@ -65,8 +64,8 @@ struct _GdictPrefDialog
 {
   GtkDialog parent_instance;
 
-  GladeXML *xml;
-  
+  GtkBuilder *builder;
+
   GConfClient *gconf_client;
   guint notify_id;
   
@@ -539,8 +538,8 @@ gdict_pref_dialog_finalize (GObject *object)
   if (dialog->gconf_client)
     g_object_unref (dialog->gconf_client);
   
-  if (dialog->xml)
-    g_object_unref (dialog->xml);
+  if (dialog->builder)
+    g_object_unref (dialog->builder);
 
   if (dialog->active_source)
     g_free (dialog->active_source);
@@ -609,6 +608,7 @@ static void
 gdict_pref_dialog_init (GdictPrefDialog *dialog)
 {
   gchar *font;
+  GError *error = NULL;
 
   gtk_window_set_default_size (GTK_WINDOW (dialog),
   			       DEFAULT_MIN_WIDTH,
@@ -638,33 +638,37 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   					       NULL,
   					       NULL);
 
-  /* get the UI from the glade file */
-  dialog->xml = glade_xml_new (GDICT_PREFERENCES_GLADE,
-  			       "preferences_root",
-  			       NULL);
-  g_assert (dialog->xml);
-  
+  /* get the UI from the GtkBuilder file */
+  dialog->builder = gtk_builder_new ();
+  gtk_builder_add_from_file (dialog->builder, GDICT_PREFERENCES_UI, &error);
+
+  if (error) {
+    g_critical ("Unable to load the preferences user interface: %s", error->message);
+    g_error_free (error);
+    g_assert_not_reached ();
+  }
+
   /* the main widget */
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox),
-                     glade_xml_get_widget (dialog->xml, "preferences_root"));
+                     GTK_WIDGET (gtk_builder_get_object (dialog->builder, "preferences_root")));
 
   /* keep all the interesting widgets around */  
-  dialog->notebook = glade_xml_get_widget (dialog->xml, "preferences_notebook");
+  dialog->notebook = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "preferences_notebook"));
   
-  dialog->sources_view = glade_xml_get_widget (dialog->xml, "sources_treeview");
+  dialog->sources_view = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "sources_treeview"));
   build_sources_view (dialog);
 
   dialog->active_source = gdict_gconf_get_string_with_default (dialog->gconf_client,
 							       GDICT_GCONF_SOURCE_KEY,
 							       GDICT_DEFAULT_SOURCE_NAME);
 
-  dialog->sources_add = glade_xml_get_widget (dialog->xml, "add_button");
+  dialog->sources_add = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "add_button"));
   gtk_widget_set_tooltip_text (dialog->sources_add,
                                _("Add a new dictionary source"));
   g_signal_connect (dialog->sources_add, "clicked",
   		    G_CALLBACK (source_add_clicked_cb), dialog);
   		    
-  dialog->sources_remove = glade_xml_get_widget (dialog->xml, "remove_button");
+  dialog->sources_remove = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "remove_button"));
   gtk_widget_set_tooltip_text (dialog->sources_remove,
                                _("Remove the currently selected dictionary source"));
   g_signal_connect (dialog->sources_remove, "clicked",
@@ -676,7 +680,7 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   if (!font)
     font = g_strdup (GDICT_DEFAULT_PRINT_FONT);
   
-  dialog->font_button = glade_xml_get_widget (dialog->xml, "print_font_button");
+  dialog->font_button = GTK_WIDGET (gtk_builder_get_object (dialog->builder, "print_font_button"));
   gtk_font_button_set_font_name (GTK_FONT_BUTTON (dialog->font_button), font);
   gtk_widget_set_tooltip_text (dialog->font_button,
                                _("Set the font used for printing the definitions"));

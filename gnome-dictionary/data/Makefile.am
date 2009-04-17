@@ -21,8 +21,9 @@ dictsource_in_files = \
 dictsource_DATA = $(dictsource_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-gladedir        = $(datadir)/gnome-dictionary
-glade_DATA      = gnome-dictionary-preferences.glade
+builderdir        = $(datadir)/gnome-dictionary
+builder_DATA      = gnome-dictionary-preferences.ui \
+		    gnome-dictionary-source.ui
 
 uidir           = $(datadir)/gnome-dictionary
 ui_DATA         = gnome-dictionary-ui.xml
@@ -55,7 +56,7 @@ EXTRA_DIST = \
 	$(dictsource_in_files)			\
 	$(man_MANS) 				\
 	$(schemas_in_file) 			\
-	$(glade_DATA) 				\
+	$(builder_DATA) 				\
 	$(ui_DATA)				\
 	$(appletui_DATA)			\
 	$(NULL)
