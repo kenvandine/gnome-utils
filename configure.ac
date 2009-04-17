@@ -153,29 +153,6 @@ dnl *****************************************
 AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")
 AC_SUBST(XSHAPE_LIBS)
 
-dnl ****************************************
-dnl HAL for floppy detection in gfloppy
-dnl ****************************************
-AC_ARG_ENABLE(hal,
-              AC_HELP_STRING([--enable-hal], [use HAL if available]), [
-              case "${enableval}" in
-                yes) ENABLE_HAL=yes ;;
-                no)  ENABLE_HAL=no ;;
-                *) AC_MSG_ERROR(bad value ${enableval} for --enable-hal) ;;
-              esac],
-              [ENABLE_HAL=yes]) dnl Default value
-
-if test "x$ENABLE_HAL" = "xyes"; then
-	PKG_CHECK_MODULES(HAL, hal >= 0.5.0,
-		AC_DEFINE(USE_HAL, 1, [defined if using libhal]),
-		[ USE_HAL=""])
-else
-	USE_HAL=""
-fi
-
-AC_SUBST(HAL_CFLAGS)
-AC_SUBST(HAL_LIBS)
-
 dnl *********************************************
 dnl gnome-desktop is needed for gsearchtool
 dnl *********************************************
@@ -288,48 +265,6 @@ dnl *************************************************
 dnl Individual gnome-utils checks 
 dnl *************************************************
 
-
-dnl ******************** 
-dnl gfloppy checks
-dnl ********************
-
-build_gfloppy=true
-
-AC_CHECK_HEADER(linux/fd.h,
-		AC_DEFINE([HAVE_LINUX_FD_H], [1], [Define whether we have linux/fd.h]),
-		build_gfloppy=false
-                AC_MSG_WARN([*** gfloppy will not be built.]))
-# Check for the ext2fs library
-AC_CHECK_LIB(ext2fs, ext2fs_mkdir, x_libs="-lext2fs",
-  build_gfloppy=false
-  AC_MSG_WARN([libext2fs not found. You need e2fsprogs and e2fsprogs-devel installed to build gfloppy.]))
-# check for ext2fs header specific includes
-AC_CHECK_HEADERS([et/com_err.h])
-AC_CHECK_HEADER([ext2fs/ext2_io.h], [],
-  [build_gfloppy=false
-  AC_MSG_WARN([ext2fs/ext2_io.h not found.  You need e2fsprogs-devel installed.])],
-  [#include <string.h>
-#if HAVE_ET_COM_ERR_H
-#include <et/com_err.h>
-#endif
-])
-
-m4_define([gfloppy_default],
-          m4_if(m4_equal($build_gfloppy), ["true"], [yes], [no]))
-
-AC_ARG_ENABLE(gfloppy,
-              AC_HELP_STRING([--enable-gfloppy=@<:@no/yes@:>@],
-                             [build GFloppy @<:@default=gfloppy_default@:>@]),,
-              enable_gfloppy=gfloppy_default)
-
-if test "x$build_gfloppy" = "xfalse" -a "x$enable_gfloppy" = "xyes" ; then
-	AC_MSG_WARN([GFloppy requested, but the required libraries and headers were not found])
-        enable_gfloppy=false
-fi
-
-AM_CONDITIONAL(BUILD_GFLOPPY, [ test "x$enable_gfloppy" = "xyes" ])
-
-
 dnl *******************************
 dnl gnome-search-tool checks
 dnl ******************************* 
@@ -433,9 +368,6 @@ gnome-dictionary/docs/reference/gdict/Makefile
 gnome-dictionary/docs/reference/gdict/version.xml
 gnome-dictionary/help/Makefile
 gnome-dictionary/src/Makefile
-gfloppy/Makefile
-gfloppy/doc/Makefile
-gfloppy/src/Makefile
 gnome-screenshot/Makefile
 ])
 
@@ -469,13 +401,6 @@ if test "x$enable_debug" = "xyes"; then
   echo "Debug messages (libgdict)         : YES"
 else
   echo "Debug messages (libgdict)         : NO"
-fi
-
-dnl <= gfloppy =>
-if test "x$build_gfloppy" = "xtrue"; then
-  echo "Build gfloppy                     : YES"
-else
-  echo "Build gfloppy                     : NO"
 fi
 
 dnl <= logview =>

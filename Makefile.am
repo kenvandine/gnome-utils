@@ -18,10 +18,6 @@ distuninstallcheck:
                                                                                                                                                              
 distcleancheck_listfiles = find . -type f -print | grep -v 'omf\.out' | grep -v 'legal.xml'
 
-if BUILD_GFLOPPY
-gfloppy = gfloppy
-endif
-
 always_built_SUBDIRS =   \
 	po 		 \
 	logview 	 \
@@ -30,13 +26,9 @@ always_built_SUBDIRS =   \
 	gnome-screenshot \
 	baobab
 
-SUBDIRS = \
-	$(always_built_SUBDIRS)	\
-	$(gfloppy)
+SUBDIRS = $(always_built_SUBDIRS)
 
-DIST_SUBDIRS = \
-	$(always_built_SUBDIRS)	\
-	gfloppy
+DIST_SUBDIRS = $(always_built_SUBDIRS)
 
 EXTRA_DIST = \
 	gnome-utils.spec.in \
