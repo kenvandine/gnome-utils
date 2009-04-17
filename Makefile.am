@@ -31,8 +31,6 @@ SUBDIRS = $(always_built_SUBDIRS)
 DIST_SUBDIRS = $(always_built_SUBDIRS)
 
 EXTRA_DIST = \
-	gnome-utils.spec.in \
-	gnome-utils.spec \
 	omf.make \
 	xmldocs.make \
 	gnome-doc-utils.make

@@ -341,7 +341,6 @@ GNOME_DOC_INIT
 
 AC_OUTPUT([
 Makefile
-gnome-utils.spec
 po/Makefile.in
 baobab/Makefile
 baobab/data/Makefile
