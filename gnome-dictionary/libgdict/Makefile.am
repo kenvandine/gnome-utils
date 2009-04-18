@@ -1,5 +1,9 @@
 NULL =
 
+V         = @
+Q         = $(V:1=)
+QUIET_GEN = $(Q:@=@echo '  GEN   '$@;)
+
 INCLUDES = -DG_LOG_DOMAIN=\"Gdict\" 				\
 	-DDATADIR=\""$(datadir)"\" 				\
 	-DLIBDIR=\""$(libdir)"\" 				\
@@ -94,13 +98,13 @@ BUILT_SOURCES = $(gdict_built_files)
 gdict-marshal.h: stamp-gdict-marshal.h
 	@true
 stamp-gdict-marshal.h: gdict-marshal.list $(GLIB_GENMARSHAL) Makefile
-	$(GLIB_GENMARSHAL) $< --header --prefix=gdict_marshal > xgen-gmh \
+	$(QUIET_GEN)$(GLIB_GENMARSHAL) $< --header --prefix=gdict_marshal > xgen-gmh \
 	&& ( cmp -s xgen-gmh gdict-marshal.h || cp xgen-gmh gdict-marshal.h ) \
 	&& rm -f xgen-gmh \
 	&& echo timestamp > $(@F)
 
 gdict-marshal.c: gdict-marshal.list $(GLIB_GENMARSHAL) Makefile
-	( echo "#include \"gdict-marshal.h\""; echo; \
+	$(QUIET_GEN)( echo "#include \"gdict-marshal.h\""; echo; \
 	  $(GLIB_GENMARSHAL) $< --body --prefix=gdict_marshal ) > xgen-gmc \
 	&& cp xgen-gmc gdict-marshal.c \
 	&& rm -f xgen-gmc
@@ -108,7 +112,7 @@ gdict-marshal.c: gdict-marshal.list $(GLIB_GENMARSHAL) Makefile
 gdict-enum-types.h: stamp-gdict-enum-types.h
 	@true
 stamp-gdict-enum-types.h: $(sources_h) gdict-enum-types.h.in Makefile
-	( cd $(srcdir) && \
+	$(QUIET_GEN)( cd $(srcdir) && \
 	  $(GLIB_MKENUMS) \
 	  	--template $(srcdir)/gdict-enum-types.h.in \
 	  $(sources_h) ) > xgen-ceth \
@@ -117,7 +121,7 @@ stamp-gdict-enum-types.h: $(sources_h) gdict-enum-types.h.in Makefile
 	&& echo timestamp > $(@F)
 
 gdict-enum-types.c: gdict-enum-types.h gdict-enum-types.c.in Makefile
-	( cd $(srcdir) && \
+	$(QUIET_GEN)( cd $(srcdir) && \
 	  $(GLIB_MKENUMS) \
 	  	--template $(srcdir)/gdict-enum-types.c.in \
 	  $(sources_h) ) > xgen-cetc \
