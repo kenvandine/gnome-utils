@@ -336,8 +336,14 @@ GTK_DOC_CHECK([1.10])
 dnl gnome-doc-utils stuff
 GNOME_DOC_INIT
 
+SHAVE_INIT([m4], [enable])
+
 AC_CONFIG_FILES([
         Makefile
+
+        m4/Makefile
+        m4/shave-libtool
+        m4/shave
 
         po/Makefile.in
 

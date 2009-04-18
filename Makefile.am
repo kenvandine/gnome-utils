@@ -15,20 +15,20 @@
 # distuninstallcheck_listfiles = find . -type f -print | grep -v 'scrollkeeper' | grep -v 'omf' | grep -v 'figures'
 distuninstallcheck:
 	@:
-                                                                                                                                                             
+
 distcleancheck_listfiles = find . -type f -print | grep -v 'omf\.out' | grep -v 'legal.xml'
 
-always_built_SUBDIRS =   \
-	po 		 \
-	logview 	 \
-	gsearchtool	 \
-	gnome-dictionary \
-	gnome-screenshot \
-	baobab
+ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = $(always_built_SUBDIRS)
-
-DIST_SUBDIRS = $(always_built_SUBDIRS)
+SUBDIRS = \
+	m4			\
+	po			\
+	baobab			\
+	gnome-dictionary	\
+	gnome-screenshot	\
+	gsearchtool		\
+	logview			\
+	$(NULL)
 
 EXTRA_DIST = \
 	omf.make \
