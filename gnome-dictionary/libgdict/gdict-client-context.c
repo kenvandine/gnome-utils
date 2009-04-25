@@ -797,7 +797,7 @@ gdict_client_context_send_command (GdictClientContext  *context,
   /* force flushing of the write buffer */
   g_io_channel_flush (priv->channel, NULL);
   
-  GDICT_NOTE (DICT, "Wrote %d bytes to the channel", written_bytes);
+  GDICT_NOTE (DICT, "Wrote %"G_GSIZE_FORMAT" bytes to the channel", written_bytes);
   
   return TRUE;
 }  
