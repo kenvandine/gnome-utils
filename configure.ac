@@ -180,7 +180,7 @@ AS_CASE([$enable_debug],
         [no],
         [GDICT_DEBUG_CFLAGS="-DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -DG_DISABLE_CAST_CHECKS"],
 
-        [AC_MSG_ERROR([Unknown argument to --enable-debug])]
+        [*], [AC_MSG_ERROR([Unknown argument to --enable-debug])]
 )
 
 AC_SUBST(GDICT_DEBUG_CFLAGS)
