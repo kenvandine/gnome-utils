@@ -503,8 +503,8 @@ compare_regex (const gchar * regex,
 			regfree (&regexec_pattern);
 			return TRUE;
 		}
+		regfree (&regexec_pattern);
 	}
-	regfree (&regexec_pattern);
 	return FALSE;
 }
 
