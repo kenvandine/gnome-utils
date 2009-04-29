@@ -1023,6 +1023,7 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 	else {
 		GFile * g_file;
 		GFileInfo * file_info;
+		GIcon * file_icon;
 		GList * list;
 		gchar * str;
 		gint list_length;
@@ -1043,70 +1044,94 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 			g_list_free (tmp);
 		}
 		
-		/* Popup menu item: Open with (default) */
-		str = g_strdup_printf ("_Open with \"%s\"",  g_app_info_get_name (list->data));
-		new1 = gtk_image_menu_item_new_with_mnemonic (str);
-		gtk_widget_show (new1);
-
-		g_object_set_data_full (G_OBJECT (new1), "app", (GAppInfo *)list->data,
-		                        (GDestroyNotify) g_object_unref);
-
-		gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
-
-		g_signal_connect ((gpointer) new1, "activate", G_CALLBACK (open_file_cb),
-				  (gpointer) gsearch);
-
-		image1 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_MENU);
-		gtk_widget_show (image1);
-		gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
+		if (list_length > 0) {
 		
-		separatormenuitem1 = gtk_separator_menu_item_new ();
-		gtk_widget_show (separatormenuitem1);
-		gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), separatormenuitem1);
-		gtk_widget_set_sensitive (separatormenuitem1, FALSE);			
-
-		for (list = g_list_next (list), i = 0; list != NULL; list = g_list_next (list), i++) {
-
-			/* Popup menu item: Open with (others) */
-			str = g_strdup_printf ("Open with \"%s\"",  g_app_info_get_name (list->data));
-			new1 = gtk_menu_item_new_with_mnemonic (str);
+			/* Popup menu item: Open with (default) */
+			str = g_strdup_printf ("_Open with \"%s\"",  g_app_info_get_name (list->data));
+			new1 = gtk_image_menu_item_new_with_mnemonic (str);
 			gtk_widget_show (new1);
 
 			g_object_set_data_full (G_OBJECT (new1), "app", (GAppInfo *)list->data,
-		                                (GDestroyNotify) g_object_unref);
+			                        (GDestroyNotify) g_object_unref);
 
-			if (list_length >= 4) {
+			gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
+			g_signal_connect ((gpointer) new1, "activate", G_CALLBACK (open_file_cb),
+					  (gpointer) gsearch);
 
-				if (i == 0) {
-					gsearch->search_results_popup_submenu = gtk_menu_new ();
+			file_icon = g_object_ref (g_app_info_get_icon ((GAppInfo *)list->data));
 
-					/* Popup menu item: Open With */
-				  	new2 = gtk_menu_item_new_with_mnemonic  (_("Open Wit_h"));
-				  	gtk_widget_show (new2);
-				 	gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new2);
-
-	  			  	gtk_menu_item_set_submenu (GTK_MENU_ITEM (new2), gsearch->search_results_popup_submenu);
-	                       	}
-				gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_submenu), new1);
-
-				/* For submenu items, the "activate" signal is only emitted if the user first clicks 
-				   on the parent menu item.  Since submenus in gtk+ are automatically displayed when
-				   the user hovers over them, most will never click on the parent menu item.  
-				   The work-around is to connect to "button-press-event". */
-				g_signal_connect (G_OBJECT(new1), "button-press-event", G_CALLBACK (open_file_event_cb),
-				                  (gpointer) gsearch);
+			if (file_icon == NULL) {
+				file_icon = g_themed_icon_new (GTK_STOCK_OPEN);
 			}
-			else {
-				gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
-				g_signal_connect ((gpointer) new1, "activate", G_CALLBACK (open_file_cb),
-				                  (gpointer) gsearch);
+
+			image1 = gtk_image_new_from_gicon (file_icon, GTK_ICON_SIZE_MENU);
+			g_object_unref (file_icon);
+			gtk_widget_show (image1);
+			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
+		
+			separatormenuitem1 = gtk_separator_menu_item_new ();
+			gtk_widget_show (separatormenuitem1);
+			gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), separatormenuitem1);
+			gtk_widget_set_sensitive (separatormenuitem1, FALSE);			
+
+			for (list = g_list_next (list), i = 0; list != NULL; list = g_list_next (list), i++) {
+
+				/* Popup menu item: Open with (others) */
+				str = g_strdup_printf ("Open with \"%s\"",  g_app_info_get_name (list->data));
+				new1 = gtk_menu_item_new_with_mnemonic (str);
+				gtk_widget_show (new1);
+
+				g_object_set_data_full (G_OBJECT (new1), "app", (GAppInfo *)list->data,
+			                                (GDestroyNotify) g_object_unref);
+
+				if (list_length >= 4) {
+
+					if (i == 0) {
+						gsearch->search_results_popup_submenu = gtk_menu_new ();
+
+						/* Popup menu item: Open With */
+					  	new2 = gtk_menu_item_new_with_mnemonic  (_("Open Wit_h"));
+				  		gtk_widget_show (new2);
+					 	gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new2);
+
+		  			  	gtk_menu_item_set_submenu (GTK_MENU_ITEM (new2), gsearch->search_results_popup_submenu);
+		                       	}
+					gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_submenu), new1);
+
+					/* For submenu items, the "activate" signal is only emitted if the user first clicks 
+					   on the parent menu item.  Since submenus in gtk+ are automatically displayed when
+					   the user hovers over them, most will never click on the parent menu item.  
+					   The work-around is to connect to "button-press-event". */
+					g_signal_connect (G_OBJECT(new1), "button-press-event", G_CALLBACK (open_file_event_cb),
+					                  (gpointer) gsearch);
+				}
+				else {
+					gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
+					g_signal_connect ((gpointer) new1, "activate", G_CALLBACK (open_file_cb),
+					                  (gpointer) gsearch);
+				}
+			}
+		
+			if (list_length >= 2) {
+				separatormenuitem1 = gtk_separator_menu_item_new ();
+				gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), separatormenuitem1);
+				gtk_widget_show (separatormenuitem1);
 			}
 		}
+		else {
+			/* Popup menu item: Open */
+			new1 = gtk_image_menu_item_new_with_mnemonic  (_("_Open"));
+			gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
+			gtk_widget_show (new1);
 
-		if (list_length >= 2) {
-			separatormenuitem1 = gtk_separator_menu_item_new ();
-			gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), separatormenuitem1);
-			gtk_widget_show (separatormenuitem1);
+			image1 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_MENU);
+			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
+			gtk_widget_show (image1);
+
+			g_signal_connect (G_OBJECT (new1),
+			                  "activate",
+			                  G_CALLBACK (open_file_cb),
+		        	          (gpointer) gsearch);
 		}
 	}
 
