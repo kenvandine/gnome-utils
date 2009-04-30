@@ -1033,18 +1033,33 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 		list = g_app_info_get_all_for_type (g_file_info_get_content_type (file_info));
 
 		list_length = g_list_length (list);
-	
-		if (list_length >= 3) { /* Sort all except first application by name */
-			GList * tmp;
 
-			tmp = g_list_first (list);
-			list = g_list_remove_link (list, tmp);
-			list = g_list_sort (list, open_with_list_sort);
-			list = g_list_prepend (list, tmp->data);
-			g_list_free (tmp);
+		if (list_length <= 0) {
+
+			/* Popup menu item: Open */
+			new1 = gtk_image_menu_item_new_with_mnemonic  (_("_Open"));
+			gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
+			gtk_widget_show (new1);
+
+			image1 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_MENU);
+			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
+			gtk_widget_show (image1);
+
+			g_signal_connect (G_OBJECT (new1),
+			                  "activate",
+			                  G_CALLBACK (open_file_cb),
+		        	          (gpointer) gsearch);
 		}
-		
-		if (list_length > 0) {
+		else {
+			if (list_length >= 3) { /* Sort all except first application by name */
+				GList * tmp;
+
+				tmp = g_list_first (list);
+				list = g_list_remove_link (list, tmp);
+				list = g_list_sort (list, open_with_list_sort);
+				list = g_list_prepend (list, tmp->data);
+				g_list_free (tmp);
+			}
 		
 			/* Popup menu item: Open with (default) */
 			str = g_strdup_printf ("_Open with \"%s\"",  g_app_info_get_name (list->data));
@@ -1117,21 +1132,6 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 				gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), separatormenuitem1);
 				gtk_widget_show (separatormenuitem1);
 			}
-		}
-		else {
-			/* Popup menu item: Open */
-			new1 = gtk_image_menu_item_new_with_mnemonic  (_("_Open"));
-			gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
-			gtk_widget_show (new1);
-
-			image1 = gtk_image_new_from_stock ("gtk-open", GTK_ICON_SIZE_MENU);
-			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
-			gtk_widget_show (image1);
-
-			g_signal_connect (G_OBJECT (new1),
-			                  "activate",
-			                  G_CALLBACK (open_file_cb),
-		        	          (gpointer) gsearch);
 		}
 	}
 
