@@ -4,7 +4,7 @@ SUBDIRS = data help
 
 INCLUDES = 	\
 	$(GNOME_UTILS_CFLAGS)					\
-	$(GNOMEDESKTOP_CFLAGS)					\
+	$(GIO_UNIX_CFLAGS)					\
 	$(LIBGNOME_CFLAGS)					\
 	-DG_DISABLE_DEPRECATED					\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" 	\
@@ -32,7 +32,7 @@ gnome_search_tool_SOURCES =     \
 gnome_search_tool_LDADD =   \
 	$(LIBGNOME_LIBS)    \
 	$(GNOME_UTILS_LIBS) \
-	$(GNOMEDESKTOP_LIBS)
+	$(GIO_UNIX_LIBS)
 
 man_MANS = gnome-search-tool.1
 

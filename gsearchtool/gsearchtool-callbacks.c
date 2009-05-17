@@ -36,7 +36,6 @@
 #include <unistd.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
-#include <libgnome/gnome-desktop-item.h>
 
 #include <gnome.h>
 

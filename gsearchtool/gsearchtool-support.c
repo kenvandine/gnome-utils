@@ -35,7 +35,7 @@
 #include <regex.h>
 #include <gdk/gdkx.h>
 #include <gio/gio.h>
-#include <libgnome/gnome-desktop-item.h>
+#include <gio/gdesktopappinfo.h>
 
 #include <gnome.h>
 
@@ -1198,9 +1198,9 @@ gboolean
 open_file_with_filemanager (GtkWidget * window,
                             const gchar * file)
 {
-	GnomeDesktopItem * ditem;
- 	GdkScreen * screen;
-	GError * error = NULL;
+	GDesktopAppInfo * d_app_info;
+	GKeyFile * key_file;
+	GdkAppLaunchContext *ctx;
 	GList * list = NULL;
 	GAppInfo * g_app_info;
 	GFile * g_file;
@@ -1235,34 +1235,25 @@ open_file_with_filemanager (GtkWidget * window,
 				    "StartupNotify=true\n"
 				    "Type=Application\n",
 				    command);
+	key_file = g_key_file_new ();
+	g_key_file_load_from_data (key_file, contents, strlen(contents), G_KEY_FILE_NONE, NULL);
+	d_app_info = g_desktop_app_info_new_from_keyfile (key_file);
+	
+	if (d_app_info != NULL) {
+		ctx = gdk_app_launch_context_new ();
+		gdk_app_launch_context_set_screen (ctx, gtk_widget_get_screen (window));
 
-	ditem = gnome_desktop_item_new_from_string (NULL,
-	                                            contents,
-	                                            strlen (contents),
-	                                            GNOME_DESKTOP_ITEM_LOAD_NO_TRANSLATIONS,
-	                                            NULL);
-	if (ditem != NULL) {
-		screen = gtk_widget_get_screen (window);
-
-		gnome_desktop_item_set_launch_time (ditem,
-		                                    gtk_get_current_event_time ());
-
-		gnome_desktop_item_launch_on_screen (ditem, list,
-		                                     GNOME_DESKTOP_ITEM_LAUNCH_APPEND_URIS | GNOME_DESKTOP_ITEM_LAUNCH_ONLY_ONE,
-						     screen, -1, &error);
-		gnome_desktop_item_unref (ditem);
-
-		if (error) {
-			g_error_free (error);
-			result = FALSE;
-		}
+		result = g_app_info_launch_uris (G_APP_INFO (d_app_info), list,  G_APP_LAUNCH_CONTEXT (ctx), NULL);
 	}
 	else {
 		result = FALSE;
 	}
 
-	g_object_unref (g_file);
 	g_object_unref (g_app_info);
+	g_object_unref (d_app_info);
+	g_object_unref (g_file);
+	g_object_unref (ctx);
+	g_key_file_free (key_file);
 	g_list_free (list);
 	g_free (contents);
 	g_free (command);

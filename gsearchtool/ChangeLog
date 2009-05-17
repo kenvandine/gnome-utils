@@ -1,3 +1,10 @@
+2009-05-17  Dennis Cranston  <dennis_cranston@yahoo.com>
+
+	* configure.ac, Makefile.am: Use gio-unix.
+	* gsearchtool-callbacks.c: Remove gnome-desktop-item.h
+	* gsearchtool-support.c (open_file_with_filemanager):  
+	Replace GnomeDesktopItem with GDesktopAppInfo, Bug 582785.
+	
 2009-04-29  Dennis Cranston  <dennis_cranston@yahoo.com>
 
 	* gsearchtool-callbacks.c (build_popup_menu_for_file):  
