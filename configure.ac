@@ -71,7 +71,7 @@ dnl pkg-config check
 GLIB_REQUIRED=2.20.0
 GIO_REQUIRED=2.16.0
 GTK_REQUIRED=2.16.0
-LIBGNOME_DESKTOP_REQUIRED=2.9.91
+GIO_UNIX_REQUIRED=2.18.0
 LIBGNOME_REQUIRED=2.13.2
 LIBGNOMEUI_REQUIRED=2.13.7
 LIBPANEL_APPLET_REQUIRED=2.13.4
@@ -87,8 +87,7 @@ AC_SUBST(GNOME_UTILS_LIBS)
 
 # separate check for libgnome/libgnomeui, so that we can easily
 # remove the variables
-PKG_CHECK_MODULES(LIBGNOME, libgnome-2.0 >= $LIBGNOME_REQUIRED dnl
-                            libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
+PKG_CHECK_MODULES(LIBGNOME, libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
 AC_SUBST(LIBGNOME_CFLAGS)
 AC_SUBST(LIBGNOME_LIBS)
 
@@ -131,10 +130,10 @@ PKG_CHECK_MODULES(XSHAPE, xext,
                   [AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")])
 AC_SUBST(XSHAPE_LIBS)
 
-# gnome-desktop is needed for gsearchtool
-PKG_CHECK_MODULES(GNOMEDESKTOP, gnome-desktop-2.0 >= $LIBGNOME_DESKTOP_REQUIRED)
-AC_SUBST(GNOMEDESKTOP_CFLAGS)
-AC_SUBST(GNOMEDESKTOP_LIBS)
+# gio-unix is needed for gsearchtool
+PKG_CHECK_MODULES(GIO_UNIX, gio-unix-2.0 >= $GIO_UNIX_REQUIRED)
+AC_SUBST(GIO_UNIX_CFLAGS)
+AC_SUBST(GIO_UNIX_LIBS)
 
 # for anything which calls gconftool-2 correctly
 AC_PATH_PROG(GCONFTOOL, [gconftool-2], [no])
