@@ -485,7 +485,7 @@ display_dialog_character_set_conversion_error (GtkWidget * window,
 					 string);
 
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          (error == NULL) ? " " : error->message);
+	                                          (error == NULL) ? " " : error->message, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -865,19 +865,19 @@ add_file_to_search_results (const gchar * file,
 
 	look_in_folder = g_strdup (gsearch->command_details->look_in_folder_string);
 	if (strlen (look_in_folder) > 1) {
-		gchar * path;
+		gchar * path_str;
 
 		if (g_str_has_suffix (look_in_folder, G_DIR_SEPARATOR_S) == TRUE) {
 			look_in_folder[strlen (look_in_folder) - 1] = '\0';
 		}
-		path = g_path_get_dirname (look_in_folder);
-		if (strcmp (path, G_DIR_SEPARATOR_S) == 0) {
-			relative_dir_name = g_strconcat (&dir_name[strlen (path)], NULL);
+		path_str = g_path_get_dirname (look_in_folder);
+		if (strcmp (path_str, G_DIR_SEPARATOR_S) == 0) {
+			relative_dir_name = g_strconcat (&dir_name[strlen (path_str)], NULL);
 		}
 		else {
-			relative_dir_name = g_strconcat (&dir_name[strlen (path) + 1], NULL);
+			relative_dir_name = g_strconcat (&dir_name[strlen (path_str) + 1], NULL);
 		}
-		g_free (path);
+		g_free (path_str);
 	}
 	else {
 		relative_dir_name = g_strdup (dir_name);
@@ -1065,18 +1065,18 @@ gsearch_create_list_of_templates (void)
 {
 	GtkListStore * store;
 	GtkTreeIter iter;
-	gint index;
+	gint idx;
 
 	store = gtk_list_store_new (1, G_TYPE_STRING);
 
-	for (index = 0; GSearchOptionTemplates[index].type != SEARCH_CONSTRAINT_TYPE_NONE; index++) {
+	for (idx = 0; GSearchOptionTemplates[idx].type != SEARCH_CONSTRAINT_TYPE_NONE; idx++) {
 
-		if (GSearchOptionTemplates[index].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR) {
+		if (GSearchOptionTemplates[idx].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR) {
 		        gtk_list_store_append (store, &iter);
 		        gtk_list_store_set (store, &iter, 0, "separator", -1);
 		}
 		else {
-			gchar * text = remove_mnemonic_character (_(GSearchOptionTemplates[index].desc));
+			gchar * text = remove_mnemonic_character (_(GSearchOptionTemplates[idx].desc));
 			gtk_list_store_append (store, &iter);
 		        gtk_list_store_set (store, &iter, 0, text, -1);
 			g_free (text);
@@ -1132,13 +1132,13 @@ set_constraint_selected_state (GSearchWindow * gsearch,
                                gint constraint_id,
 			       gboolean state)
 {
-	gint index;
+	gint idx;
 
 	GSearchOptionTemplates[constraint_id].is_selected = state;
 
-	for (index = 0; GSearchOptionTemplates[index].type != SEARCH_CONSTRAINT_TYPE_NONE; index++) {
-		if (GSearchOptionTemplates[index].is_selected == FALSE) {
-			gtk_combo_box_set_active (GTK_COMBO_BOX (gsearch->available_options_combo_box), index);
+	for (idx = 0; GSearchOptionTemplates[idx].type != SEARCH_CONSTRAINT_TYPE_NONE; idx++) {
+		if (GSearchOptionTemplates[idx].is_selected == FALSE) {
+			gtk_combo_box_set_active (GTK_COMBO_BOX (gsearch->available_options_combo_box), idx);
 			gtk_widget_set_sensitive (gsearch->available_options_add_button, TRUE);
 			gtk_widget_set_sensitive (gsearch->available_options_combo_box, TRUE);
 			gtk_widget_set_sensitive (gsearch->available_options_label, TRUE);
@@ -1831,7 +1831,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		                                 GTK_BUTTONS_OK,
 		                                 _("Error parsing the search command."));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-		                                          (error == NULL) ? " " : error->message);
+		                                          (error == NULL) ? " " : error->message, NULL);
 
 		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -1864,7 +1864,7 @@ spawn_search_command (GSearchWindow * gsearch,
 		                                 GTK_BUTTONS_OK,
 		                                 _("Error running the search command."));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-		                                          (error == NULL) ? " " : error->message);
+		                                          (error == NULL) ? " " : error->message, NULL);
 
 		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -2104,13 +2104,13 @@ set_sensitive (GtkCellLayout * cell_layout,
                gpointer data)
 {
 	GtkTreePath * path;
-	gint index;
+	gint idx;
 
 	path = gtk_tree_model_get_path (tree_model, iter);
-	index = gtk_tree_path_get_indices (path)[0];
+	idx = gtk_tree_path_get_indices (path)[0];
 	gtk_tree_path_free (path);
 
-	g_object_set (cell, "sensitive", !(GSearchOptionTemplates[index].is_selected), NULL);
+	g_object_set (cell, "sensitive", !(GSearchOptionTemplates[idx].is_selected), NULL);
 }
 
 static gboolean
@@ -2119,13 +2119,13 @@ is_separator (GtkTreeModel * model,
               gpointer data)
 {
 	GtkTreePath * path;
-	gint index;
+	gint idx;
 
 	path = gtk_tree_model_get_path (model, iter);
-	index = gtk_tree_path_get_indices (path)[0];
+	idx = gtk_tree_path_get_indices (path)[0];
 	gtk_tree_path_free (path);
 
-	return (GSearchOptionTemplates[index].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR);
+	return (GSearchOptionTemplates[idx].type == SEARCH_CONSTRAINT_TYPE_SEPARATOR);
 }
 
 static void

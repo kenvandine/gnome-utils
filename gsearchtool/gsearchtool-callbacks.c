@@ -182,7 +182,7 @@ click_help_cb (GtkWidget * widget,
 		                                 GTK_BUTTONS_OK,
 		                                 _("Could not open help document."));
 		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-		                                          error->message);
+		                                          error->message, NULL);
 
 		gtk_window_set_title (GTK_WINDOW (dialog), "");
 		gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -237,10 +237,10 @@ add_constraint_cb (GtkWidget * widget,
                    gpointer data)
 {
 	GSearchWindow * gsearch = data;
-	gint index;
+	gint idx;
 
-	index = gtk_combo_box_get_active (GTK_COMBO_BOX (gsearch->available_options_combo_box));
-	add_constraint (gsearch, index, NULL, FALSE);
+	idx = gtk_combo_box_get_active (GTK_COMBO_BOX (gsearch->available_options_combo_box));
+	add_constraint (gsearch, idx, NULL, FALSE);
 }
 
 void
@@ -345,9 +345,9 @@ display_dialog_file_open_limit (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_QUESTION,
 	                                 GTK_BUTTONS_CANCEL,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          secondary);
+	                                          secondary, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -382,9 +382,9 @@ display_dialog_could_not_open_file (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_ERROR,
 	                                 GTK_BUTTONS_OK,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          message);
+	                                          message, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -411,7 +411,7 @@ display_dialog_could_not_open_folder (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_ERROR,
 	                                 GTK_BUTTONS_OK,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
 	                                          _("The nautilus file manager is not running."));
 
@@ -442,7 +442,7 @@ open_file_cb (GtkMenuItem * action,
 	GSearchWindow * gsearch = data;
 	GtkTreeModel * model;
 	GList * list;
-	guint index;
+	guint idx;
 
 	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
 		return;
@@ -463,7 +463,7 @@ open_file_cb (GtkMenuItem * action,
 		}
 	}
 
-	for (index = 0; index < g_list_length (list); index++) {
+	for (idx = 0; idx < g_list_length (list); idx++) {
 
 		gboolean no_files_found = FALSE;
 		gchar * utf8_name;
@@ -471,7 +471,7 @@ open_file_cb (GtkMenuItem * action,
 		GtkTreeIter iter;
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
-		                         g_list_nth (list, index)->data);
+		                         g_list_nth (list, idx)->data);
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
     		                    COLUMN_NAME, &utf8_name,
@@ -542,9 +542,9 @@ display_dialog_folder_open_limit (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_QUESTION,
 	                                 GTK_BUTTONS_CANCEL,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          secondary);
+	                                          secondary, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -575,7 +575,7 @@ open_folder_cb (GtkAction * action,
 	GFileInfo * g_file_info = NULL;
 	GAppInfo * g_app_info = NULL;
 	GList * list;
-	guint index;
+	guint idx;
 
 	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
 		return;
@@ -596,7 +596,7 @@ open_folder_cb (GtkAction * action,
 		}
 	}
 
-	for (index = 0; index < g_list_length (list); index++) {
+	for (idx = 0; idx < g_list_length (list); idx++) {
 
 		gchar * locale_folder;
 		gchar * utf8_folder;
@@ -604,7 +604,7 @@ open_folder_cb (GtkAction * action,
 		GtkTreeIter iter;
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
-					 g_list_nth (list, index)->data);
+					 g_list_nth (list, idx)->data);
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 				    COLUMN_RELATIVE_PATH, &utf8_folder,
@@ -613,7 +613,7 @@ open_folder_cb (GtkAction * action,
 
 		locale_folder = g_path_get_dirname (locale_file);
 
-		if (index == 0) {
+		if (idx == 0) {
 			g_file = g_file_new_for_path (locale_folder);
 			g_file_info = g_file_query_info (g_file, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, G_FILE_QUERY_INFO_NONE, NULL, NULL);
 			g_app_info = g_app_info_get_default_for_type (g_file_info_get_content_type (g_file_info), FALSE);
@@ -687,9 +687,9 @@ display_dialog_could_not_move_to_trash (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_ERROR,
 	                                 GTK_BUTTONS_OK,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          message);
+	                                          message, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -722,9 +722,9 @@ display_dialog_delete_permanently (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_QUESTION,
 	                                 GTK_BUTTONS_CANCEL,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          secondary);
+	                                          secondary, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -760,9 +760,9 @@ display_dialog_could_not_delete (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_ERROR,
 	                                 GTK_BUTTONS_OK,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          message);
+	                                          message, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -782,7 +782,7 @@ move_to_trash_cb (GtkAction * action,
 	GSearchWindow * gsearch = data;
 	GtkTreePath * last_selected_path = NULL;
 	gint total;
-	gint index;
+	gint idx;
 
 	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
 		return;
@@ -790,7 +790,7 @@ move_to_trash_cb (GtkAction * action,
 
 	total = gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection));
 
-	for (index = 0; index < total; index++) {
+	for (idx = 0; idx < total; idx++) {
 		gboolean no_files_found = FALSE;
 		GtkTreeModel * model;
 		GtkTreeIter iter;
@@ -821,7 +821,7 @@ move_to_trash_cb (GtkAction * action,
 			return;
 		}
 		
-		if (index + 1 == total) {
+		if (idx + 1 == total) {
 			last_selected_path = gtk_tree_model_get_path (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter);
 		}
 
@@ -850,13 +850,12 @@ move_to_trash_cb (GtkAction * action,
 			response = display_dialog_delete_permanently (gsearch->window, utf8_filename);
 
 			if (response == GTK_RESPONSE_OK) {
-				GFile * g_file;
-				GError * error;
-				gboolean result;
+				GFile * g_file_tmp;
+				GError * error_tmp;
 
-				g_file = g_file_new_for_path (locale_filename);
-				result = g_file_delete (g_file, NULL, &error);
-				g_object_unref (g_file);
+				g_file_tmp = g_file_new_for_path (locale_filename);
+				result = g_file_delete (g_file_tmp, NULL, &error_tmp);
+				g_object_unref (g_file_tmp);
 
 				if (result == TRUE) {
 					tree_model_iter_free_monitor (GTK_TREE_MODEL (gsearch->search_results_list_store),
@@ -867,11 +866,11 @@ move_to_trash_cb (GtkAction * action,
 					gchar * message;
 
 					message = g_strdup_printf (_("Deleting \"%s\" failed: %s."),
-					                             utf8_filename, error->message);
+					                             utf8_filename, error_tmp->message);
 
 					display_dialog_could_not_delete (gsearch->window, utf8_basename, message);
 
-					g_error_free (error);
+					g_error_free (error_tmp);
 					g_free (message);
 				}
 			}
@@ -1259,7 +1258,7 @@ file_button_release_event_cb (GtkWidget * widget,
 			GList * tmp;
 			gchar * locale_file_tmp;
 			gchar * file = NULL;
-			gint index;
+			gint idx;
 
 			timer = g_timer_new ();
 			g_timer_start (timer);
@@ -1267,7 +1266,7 @@ file_button_release_event_cb (GtkWidget * widget,
 			if (g_list_length (list) >= 2) {
 
 				/* Verify the selected files each have the same default handler. */
-				for (tmp = g_list_first (list), index = 0; tmp != NULL; tmp = g_list_next (tmp), index++) {
+				for (tmp = g_list_first (list), idx = 0; tmp != NULL; tmp = g_list_next (tmp), idx++) {
 			
 					GFile * g_file;
 					GAppInfo * app_info;
@@ -1286,7 +1285,7 @@ file_button_release_event_cb (GtkWidget * widget,
 						show_app_list = FALSE;
 					}
 					else {
-						if (index == 0) { 
+						if (idx == 0) { 
 							first_app_info = g_app_info_dup (app_info);
 							g_object_unref (app_info);
 							continue;
@@ -1490,7 +1489,7 @@ drag_file_cb  (GtkWidget * widget,
                GdkDragContext * context,
                GtkSelectionData * selection_data,
                guint info,
-               guint time,
+               guint drag_time,
                gpointer data)
 {
 	GSearchWindow * gsearch = data;
@@ -1498,7 +1497,7 @@ drag_file_cb  (GtkWidget * widget,
 	GList * list;
 	GtkTreeModel * model;
 	GtkTreeIter iter;
-	guint index;
+	guint idx;
 
 	if (gtk_tree_selection_count_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection)) == 0) {
 		return;
@@ -1507,14 +1506,14 @@ drag_file_cb  (GtkWidget * widget,
 	list = gtk_tree_selection_get_selected_rows (GTK_TREE_SELECTION (gsearch->search_results_selection),
                                                      &model);
 
-	for (index = 0; index < g_list_length (list); index++) {
+	for (idx = 0; idx < g_list_length (list); idx++) {
 
 		gboolean no_files_found = FALSE;
 		gchar * utf8_name;
 		gchar * locale_file;
 
 		gtk_tree_model_get_iter (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
-		                         g_list_nth (list, index)->data);
+		                         g_list_nth (list, idx)->data);
 
 		gtk_tree_model_get (GTK_TREE_MODEL (gsearch->search_results_list_store), &iter,
 		                    COLUMN_NAME, &utf8_name,
@@ -1595,9 +1594,9 @@ display_dialog_could_not_save_no_name (GtkWidget * window)
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_ERROR,
 	                                 GTK_BUTTONS_OK,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          secondary);
+	                                          secondary, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -1627,9 +1626,9 @@ display_dialog_could_not_save_to (GtkWidget * window,
 	                                 GTK_DIALOG_DESTROY_WITH_PARENT,
 	                                 GTK_MESSAGE_ERROR,
 	                                 GTK_BUTTONS_OK,
-	                                 primary);
+	                                 primary, NULL);
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-	                                          message);
+	                                          message, NULL);
 
 	gtk_window_set_title (GTK_WINDOW (dialog), "");
 	gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
@@ -1743,11 +1742,11 @@ save_results_cb (GtkWidget * chooser,
 
 	if ((fp = fopen (gsearch->save_results_as_default_filename, "w")) != NULL) {
 
-		gint index;
+		gint idx;
 
-		for (index = 0; index < gtk_tree_model_iter_n_children (GTK_TREE_MODEL (store), NULL); index++)
+		for (idx = 0; idx < gtk_tree_model_iter_n_children (GTK_TREE_MODEL (store), NULL); idx++)
 		{
-			if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (store), &iter, NULL, index) == TRUE) {
+			if (gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (store), &iter, NULL, idx) == TRUE) {
 
 				gchar * locale_file;
 

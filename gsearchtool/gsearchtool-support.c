@@ -361,8 +361,6 @@ is_quick_search_excluded_path (const gchar * path)
 
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
 
-		gchar * dir;
-
 		/* Skip empty or null values. */
 		if ((tmp_list->data == NULL) || (strlen (tmp_list->data) == 0)) {
 			continue;
@@ -438,8 +436,6 @@ is_second_scan_excluded_path (const gchar * path)
 	                                                GCONF_VALUE_STRING);
 
 	for (tmp_list = exclude_path_list; tmp_list; tmp_list = tmp_list->next) {
-
-		gchar * dir;
 
 		/* Skip empty or null values. */
 		if ((tmp_list->data == NULL) || (strlen (tmp_list->data) == 0)) {
