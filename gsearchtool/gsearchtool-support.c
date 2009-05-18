@@ -33,11 +33,10 @@
 #include <glib/gi18n.h>
 #include <glib.h>
 #include <regex.h>
+#include <stdlib.h>
 #include <gdk/gdkx.h>
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
-
-#include <gnome.h>
 
 #include "gsearchtool.h"
 #include "gsearchtool-callbacks.h"

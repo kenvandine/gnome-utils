@@ -33,9 +33,11 @@ extern "C" {
 #pragma }
 #endif
 
+#include "eggsmclient.h"
+
 void
-die_cb (GnomeClient * client,
-        gpointer data);
+quit_session_cb (EggSMClient * client,
+                 gpointer data);
 void
 quit_cb (GtkWidget * widget,
          GdkEvent * event,
@@ -116,12 +118,8 @@ save_results_cb (GtkWidget * chooser,
                  gint response,
                  gpointer data);
 void
-save_session_cb (GnomeClient * client,
-                 gint phase,
-                 GnomeRestartStyle save_style,
-                 gint shutdown,
-                 GnomeInteractStyle interact_style,
-                 gint fast,
+save_session_cb (EggSMClient * client,
+                 GKeyFile * state_file,
                  gpointer client_data);
 gboolean
 key_press_cb (GtkWidget * widget,

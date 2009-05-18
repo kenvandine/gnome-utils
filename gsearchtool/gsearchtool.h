@@ -33,6 +33,7 @@ extern "C" {
 #pragma }
 #endif
 
+#include <gtk/gtk.h>
 #include <gconf/gconf.h>
 #include <gconf/gconf-client.h>
 

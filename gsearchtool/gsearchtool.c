@@ -37,17 +37,18 @@
 #include <string.h>
 #include <signal.h>
 #include <unistd.h>
+#include <errno.h>
+#include <stdlib.h>
 #include <sys/wait.h>
 #include <glib/gi18n.h>
 #include <gdk/gdk.h>
 #include <gio/gio.h>
 
-#include <gnome.h>
-
 #include "gsearchtool.h"
 #include "gsearchtool-callbacks.h"
 #include "gsearchtool-support.h"
 #include "gsearchtool-spinner.h"
+#include "gsearchtool-entry.h"
 
 #define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 16
 #define GNOME_SEARCH_TOOL_STOCK "panel-searchtool"
@@ -570,7 +571,8 @@ build_search_command (GSearchWindow * gsearch,
 	start_animation (gsearch, first_pass);
 	setup_case_insensitive_arguments (gsearch);
 
-	file_is_named_utf8 = g_strdup ((gchar *) gtk_entry_get_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry)))));
+	file_is_named_utf8 = g_strdup ((gchar *) gtk_entry_get_text (GTK_ENTRY (gsearch_history_entry_get_entry
+	                                         (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry)))));
 
 	if (!file_is_named_utf8 || !*file_is_named_utf8) {
 		g_free (file_is_named_utf8);
@@ -587,7 +589,7 @@ build_search_command (GSearchWindow * gsearch,
 			g_error_free (error);
 			return NULL;
 		}
-		gnome_entry_prepend_history (GNOME_ENTRY (gsearch->name_contains_entry), TRUE, file_is_named_utf8);
+		gsearch_history_entry_prepend_text (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry), file_is_named_utf8);
 
 		if ((strstr (locale, "*") == NULL) && (strstr (locale, "?") == NULL)) {
 			gchar *tmp;
@@ -1310,7 +1312,7 @@ handle_goption_args (GSearchWindow * gsearch)
 
 	if (GSearchGOptionArguments.name != NULL) {
 		goption_args_found = TRUE;
-		gtk_entry_set_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry))),
+		gtk_entry_set_text (GTK_ENTRY (gsearch_history_entry_get_entry (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry))),
 				    g_locale_to_utf8 (GSearchGOptionArguments.name, -1, NULL, NULL, NULL));
 	}
 	if (GSearchGOptionArguments.path != NULL) {
@@ -2513,7 +2515,7 @@ set_clone_command (GSearchWindow * gsearch,
 
 	argv[i++] = (gchar *) client_data;
 
-	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry))));
+	file_is_named_utf8 = (gchar *) gtk_entry_get_text (GTK_ENTRY (gsearch_history_entry_get_entry (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry))));
 	file_is_named_locale = g_locale_from_utf8 (file_is_named_utf8 != NULL ? file_is_named_utf8 : "" ,
 	                                           -1, NULL, NULL, NULL);
 	if (escape_values)
@@ -2759,18 +2761,18 @@ gsearch_app_create (GSearchWindow * gsearch)
 
 	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), label, 0, 1, 0, 1, GTK_FILL, 0, 0, 1);
 
-	gsearch->name_contains_entry = gnome_entry_new ("gsearchtool-file-entry");
+	gsearch->name_contains_entry = gsearch_history_entry_new ("gsearchtool-file-entry", FALSE);
 	gtk_label_set_mnemonic_widget (GTK_LABEL (label), gsearch->name_contains_entry);
-	gnome_entry_set_max_saved (GNOME_ENTRY (gsearch->name_contains_entry), 10);
+	gsearch_history_entry_set_history_length (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry), 10);
 	gtk_table_attach (GTK_TABLE (gsearch->name_and_folder_table), gsearch->name_contains_entry, 1, 2, 0, 1, GTK_EXPAND | GTK_FILL | GTK_SHRINK, 0, 0, 0);
-	entry =  gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry));
+	entry =  gsearch_history_entry_get_entry (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry));
 
 	if (GTK_IS_ACCESSIBLE (gtk_widget_get_accessible (gsearch->name_contains_entry))) {
 		gsearch->is_window_accessible = TRUE;
 		add_atk_namedesc (gsearch->name_contains_entry, NULL, _("Enter a filename or partial filename with or without wildcards."));
 		add_atk_namedesc (entry, _("Name contains"), _("Enter a filename or partial filename with or without wildcards."));
 	}
-	g_signal_connect (G_OBJECT (gsearch->name_contains_entry), "activate",
+	g_signal_connect (G_OBJECT (gsearch_history_entry_get_entry (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry))), "activate",
 			  G_CALLBACK (name_contains_activate_cb),
 			  (gpointer) gsearch);
 
@@ -2884,7 +2886,7 @@ gsearch_app_create (GSearchWindow * gsearch)
 	gtk_widget_hide (gsearch->stop_button);
 
 	gtk_window_set_focus (GTK_WINDOW (gsearch->window),
-		GTK_WIDGET (gnome_entry_gtk_entry (GNOME_ENTRY (gsearch->name_contains_entry))));
+		GTK_WIDGET (gsearch_history_entry_get_entry (GSEARCH_HISTORY_ENTRY (gsearch->name_contains_entry))));
 
 	gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->find_button);
 
@@ -2959,9 +2961,8 @@ main (int argc,
 {
 	GSearchWindow * gsearch;
 	GOptionContext * context;
-	GnomeProgram * program;
-	GnomeClient * client;
-	GtkWidget * window;
+	GtkWidget * window;	
+	EggSMClient * client;
 
 	bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -2972,15 +2973,9 @@ main (int argc,
 	gsearch_setup_goption_descriptions ();
 	g_option_context_add_main_entries (context, GSearchGOptionEntries, GETTEXT_PACKAGE);
 	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+	g_option_context_add_group (context, egg_sm_client_get_option_group ());
 	g_option_context_parse (context, &argc, &argv, NULL);
 	g_option_context_free (context);
-
-	program = gnome_program_init ("gnome-search-tool",
-	                              VERSION,
-	                              LIBGNOMEUI_MODULE,
-	                              argc, argv,
-	                              GNOME_PARAM_APP_DATADIR, DATADIR,
-	                              NULL);
 
 	g_set_application_name (_("Search for Files"));
 	gtk_window_set_default_icon_name (GNOME_SEARCH_TOOL_ICON);
@@ -3003,12 +2998,12 @@ main (int argc,
 	                            G_CALLBACK (window_state_event_cb),
 	                            (gpointer) gsearch);
 
-	if ((client = gnome_master_client ()) != NULL) {
-		g_signal_connect (client, "save_yourself",
+	if ((client = egg_sm_client_get ()) != NULL) {
+		g_signal_connect (client, "save_state",
 		                  G_CALLBACK (save_session_cb),
 		                  (gpointer) gsearch);
-		g_signal_connect (client, "die",
-		                  G_CALLBACK (die_cb),
+		g_signal_connect (client, "quit",
+		                  G_CALLBACK (quit_session_cb),
 		                  (gpointer) gsearch);
 	}
 

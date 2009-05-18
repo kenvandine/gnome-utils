@@ -72,8 +72,6 @@ GLIB_REQUIRED=2.20.0
 GIO_REQUIRED=2.16.0
 GTK_REQUIRED=2.16.0
 GIO_UNIX_REQUIRED=2.18.0
-LIBGNOME_REQUIRED=2.13.2
-LIBGNOMEUI_REQUIRED=2.13.7
 LIBPANEL_APPLET_REQUIRED=2.13.4
 LIBGTOP_REQUIRED=2.12.0
 
@@ -84,12 +82,6 @@ PKG_CHECK_MODULES(GNOME_UTILS, glib-2.0 >= $GLIB_REQUIRED dnl
                                gtk+-2.0 >= $GTK_REQUIRED)
 AC_SUBST(GNOME_UTILS_CFLAGS)
 AC_SUBST(GNOME_UTILS_LIBS)
-
-# separate check for libgnome/libgnomeui, so that we can easily
-# remove the variables
-PKG_CHECK_MODULES(LIBGNOME, libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED)
-AC_SUBST(LIBGNOME_CFLAGS)
-AC_SUBST(LIBGNOME_LIBS)
 
 PKG_CHECK_MODULES(GTHREAD, gthread-2.0 >= $GLIB_REQUIRED)
 AC_SUBST(GTHREAD_CFLAGS)
@@ -346,6 +338,8 @@ AC_CONFIG_FILES([
 
         po/Makefile.in
 
+        libeggsmclient/Makefile
+
         baobab/Makefile
         baobab/data/Makefile
         baobab/pixmaps/Makefile
@@ -362,6 +356,7 @@ AC_CONFIG_FILES([
         gsearchtool/Makefile
         gsearchtool/data/Makefile
         gsearchtool/help/Makefile
+        gsearchtool/libgnomeui-deprecated/Makefile
 
         gnome-dictionary/Makefile
         gnome-dictionary/libgdict/Makefile

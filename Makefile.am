@@ -23,6 +23,7 @@ ACLOCAL_AMFLAGS = -I m4
 SUBDIRS = \
 	m4			\
 	po			\
+	libeggsmclient		\
 	baobab			\
 	gnome-dictionary	\
 	gnome-screenshot	\

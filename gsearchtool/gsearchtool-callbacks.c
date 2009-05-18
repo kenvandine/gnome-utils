@@ -37,7 +37,7 @@
 #include <glib/gi18n.h>
 #include <gio/gio.h>
 
-#include <gnome.h>
+#include <gdk/gdkkeysyms.h>
 
 #include "gsearchtool.h"
 #include "gsearchtool-callbacks.h"
@@ -94,8 +94,8 @@ quit_application (GSearchWindow * gsearch)
 }
 
 void
-die_cb (GnomeClient * client,
-	gpointer data)
+quit_session_cb (EggSMClient * client,
+                 gpointer data)
 {
 	quit_application ((GSearchWindow *) data);
 }
@@ -1765,12 +1765,8 @@ save_results_cb (GtkWidget * chooser,
 }
 
 void
-save_session_cb (GnomeClient * client,
-                 gint phase,
-                 GnomeRestartStyle save_style,
-                 gint shutdown,
-                 GnomeInteractStyle interact_style,
-                 gint fast,
+save_session_cb (EggSMClient * client,
+                 GKeyFile * state_file,
                  gpointer client_data)
 {
 	GSearchWindow * gsearch = client_data;
@@ -1778,8 +1774,7 @@ save_session_cb (GnomeClient * client,
 	int argc;
 
 	set_clone_command (gsearch, &argc, &argv, "gnome-search-tool", FALSE);
-	gnome_client_set_clone_command (client, argc, argv);
-	gnome_client_set_restart_command (client, argc, argv);
+	egg_sm_client_set_restart_command (client, argc, (const char **) argv);
 }
 
 gboolean
