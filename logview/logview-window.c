@@ -196,35 +196,33 @@ static void
 logview_update_statusbar (LogviewWindow *logview, LogviewLog *active)
 {
   char *statusbar_text;
-  char *size, *modified, *index;
+  char *size, *modified, *timestring_utf8;
   time_t timestamp;
+  char timestring[255];
 
   if (active == NULL) {
     gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
     return;
   }
 
-  /* ctime returned string has "\n\0" causes statusbar display a invalid char */
   timestamp = logview_log_get_timestamp (active);
-  modified = ctime (&timestamp);
-  index = strrchr (modified, '\n');
-  if (index && *index != '\0')
-    *index = '\0';
+  strftime (timestring, sizeof (timestring), "%a %b %e %T %Y", localtime (&timestamp));
+  timestring_utf8 = g_locale_to_utf8 (timestring, -1, NULL, NULL, NULL);
 
-  modified = g_strdup_printf (_("last update: %s"), modified);
+  modified = g_strdup_printf (_("last update: %s"), timestring_utf8);
 
   size = g_format_size_for_display (logview_log_get_file_size (active));
   statusbar_text = g_strdup_printf (_("%d lines (%s) - %s"), 
                                     logview_log_get_cached_lines_number (active),
                                     size, modified);
 
-  if (statusbar_text) {
-    gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
-    gtk_statusbar_push (GTK_STATUSBAR (logview->priv->statusbar), 0, statusbar_text);
-    g_free (size);
-    g_free (modified);
-    g_free (statusbar_text);
-  }
+  gtk_statusbar_pop (GTK_STATUSBAR (logview->priv->statusbar), 0);
+  gtk_statusbar_push (GTK_STATUSBAR (logview->priv->statusbar), 0, statusbar_text);
+  
+  g_free (size);
+  g_free (timestring_utf8);
+  g_free (modified);
+  g_free (statusbar_text);
 }
 
 #define DEFAULT_LOGVIEW_FONT "Monospace 10"
