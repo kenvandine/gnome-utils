@@ -6,14 +6,14 @@ INCLUDES = 	\
 	$(GNOME_UTILS_CFLAGS)					\
 	$(GIO_UNIX_CFLAGS)					\
 	-I$(srcdir)/libgnomeui-deprecated			\
-	-I$(top_builddir)/libeggsmclient			\
+	-I$(top_srcdir)/libeggsmclient			\
 	-DG_DISABLE_DEPRECATED					\
 	-DGNOMELOCALEDIR=\""$(prefix)/$(DATADIRNAME)/locale"\" 	\
 	-DLOCALEDIR=\"$(datadir)/locale\"			\
 	-DDATADIR=\""$(datadir)"\"				\
 	-DGREP_COMMAND=\""$(GREP_COMMAND)"\"
 
-libgnomeui_deprecated_LIB = $(srcdir)/libgnomeui-deprecated/libgnomeui-deprecated.la
+libgnomeui_deprecated_LIB = $(builddir)/libgnomeui-deprecated/libgnomeui-deprecated.la
 libeggsmclient_LIB = $(top_builddir)/libeggsmclient/libeggsmclient.la
 
 bin_PROGRAMS = gnome-search-tool
