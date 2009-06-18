@@ -35,8 +35,6 @@
 #include "logview-manager.h"
 #include "logview-filter-manager.h"
 
-#include "gtkmessagearea.h"
-
 #define APP_NAME _("System Log Viewer")
 #define SEARCH_START_MARK "lw-search-start-mark"
 #define SEARCH_END_MARK "lw-search-end-mark"
@@ -1232,8 +1230,10 @@ message_area_create_error_box (LogviewWindow *window,
 
   window->priv->message_secondary = secondary_label;
 
-  gtk_message_area_set_contents (GTK_MESSAGE_AREA (message_area),
-                                 hbox_content);
+  gtk_container_add
+      (GTK_CONTAINER (gtk_info_bar_get_content_area
+                      (GTK_INFO_BAR (message_area))),
+       hbox_content);
 }
 
 static void
@@ -1257,7 +1257,7 @@ message_area_set_labels (LogviewWindow *window,
 }
 
 static void
-message_area_response_cb (GtkMessageArea *message_area,
+message_area_response_cb (GtkInfoBar *message_area,
                           int response_id, gpointer user_data)
 {
   LogviewWindow *window = user_data;
@@ -1369,11 +1369,10 @@ logview_window_init (LogviewWindow *logview)
   gtk_paned_pack2 (GTK_PANED (hpaned), main_view, TRUE, TRUE);
 
   /* second pane: error message area */
-  priv->message_area = gtk_message_area_new ();
+  priv->message_area = gtk_info_bar_new ();
   message_area_create_error_box (logview, priv->message_area);
-  gtk_message_area_add_stock_button_with_text (GTK_MESSAGE_AREA (priv->message_area),
-                                               _("Close"), GTK_STOCK_CLOSE,
-                                               GTK_RESPONSE_CLOSE);
+  gtk_info_bar_add_button (GTK_INFO_BAR (priv->message_area),
+                           GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
   gtk_box_pack_start (GTK_BOX (main_view), priv->message_area, FALSE, FALSE, 0);
 
   /* second pane: text view */

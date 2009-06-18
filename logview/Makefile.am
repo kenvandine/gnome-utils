@@ -18,8 +18,6 @@ BUILT_SOURCES = 		\
 	logview-marshal.h
 
 gnome_system_log_SOURCES = 	\
-	gtkmessagearea.h	\
-	gtkmessagearea.c	\
 	logview-app.c		\
 	logview-app.h		\
 	logview-main.c		\
