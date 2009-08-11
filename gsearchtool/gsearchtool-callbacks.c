@@ -1060,7 +1060,7 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 			}
 		
 			/* Popup menu item: Open with (default) */
-			str = g_strdup_printf ("_Open with \"%s\"",  g_app_info_get_name (list->data));
+			str = g_strdup_printf ("_Open with %s",  g_app_info_get_name (list->data));
 			new1 = gtk_image_menu_item_new_with_mnemonic (str);
 			gtk_widget_show (new1);
 
@@ -1090,14 +1090,31 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 			for (list = g_list_next (list), i = 0; list != NULL; list = g_list_next (list), i++) {
 
 				/* Popup menu item: Open with (others) */
-				str = g_strdup_printf ("Open with \"%s\"",  g_app_info_get_name (list->data));
-				new1 = gtk_menu_item_new_with_mnemonic (str);
+				if (list_length < 4) {
+					str = g_strdup_printf ("Open with %s",  g_app_info_get_name (list->data));
+				}
+				else {
+					str = g_strdup_printf ("%s",  g_app_info_get_name (list->data));
+				}
+				
+				new1 = gtk_image_menu_item_new_with_mnemonic (str);
 				gtk_widget_show (new1);
 
 				g_object_set_data_full (G_OBJECT (new1), "app", (GAppInfo *)list->data,
 			                                (GDestroyNotify) g_object_unref);
 
 				if (list_length >= 4) {
+
+					file_icon = g_object_ref (g_app_info_get_icon ((GAppInfo *)list->data));
+
+					if (file_icon == NULL) {
+						file_icon = g_themed_icon_new (GTK_STOCK_OPEN);
+					}
+				
+					image1 = gtk_image_new_from_gicon (file_icon, GTK_ICON_SIZE_MENU);
+					g_object_unref (file_icon);
+					gtk_widget_show (image1);
+					gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
 
 					if (i == 0) {
 						gsearch->search_results_popup_submenu = gtk_menu_new ();
