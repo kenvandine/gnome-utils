@@ -1060,7 +1060,7 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 			}
 		
 			/* Popup menu item: Open with (default) */
-			str = g_strdup_printf ("_Open with %s",  g_app_info_get_name (list->data));
+			str = g_strdup_printf (_("_Open with %s"),  g_app_info_get_name (list->data));
 			new1 = gtk_image_menu_item_new_with_mnemonic (str);
 			gtk_widget_show (new1);
 
@@ -1091,7 +1091,7 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 
 				/* Popup menu item: Open with (others) */
 				if (list_length < 4) {
-					str = g_strdup_printf ("Open with %s",  g_app_info_get_name (list->data));
+					str = g_strdup_printf (_("Open with %s"),  g_app_info_get_name (list->data));
 				}
 				else {
 					str = g_strdup_printf ("%s",  g_app_info_get_name (list->data));
