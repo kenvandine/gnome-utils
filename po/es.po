@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "utils&component=general\n"
-"POT-Creation-Date: 2009-07-21 14:18+0000\n"
-"PO-Revision-Date: 2009-07-21 19:32+0200\n"
+"POT-Creation-Date: 2009-08-11 05:14+0000\n"
+"PO-Revision-Date: 2009-08-13 16:03+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -212,12 +212,10 @@ msgid "Ready"
 msgstr "Preparado"
 
 #: ../baobab/src/baobab.c:333
-#| msgid "Total filesystem capacity:"
 msgid "Total filesystem capacity"
 msgstr "Capacidad total de los sistemas de archivos"
 
 #: ../baobab/src/baobab.c:355
-#| msgid "Total filesystem usage:"
 msgid "Total filesystem usage"
 msgstr "Uso total de los sistemas de archivos"
 
@@ -284,40 +282,40 @@ msgstr "No se pudo detectar ningún punto de montaje."
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "El uso del disco no se puede analizar sin puntos de montaje."
 
-#: ../baobab/src/baobab-chart.c:200
+#: ../baobab/src/baobab-chart.c:202
 msgid "Maximum depth"
 msgstr "Profundidad máxima"
 
-#: ../baobab/src/baobab-chart.c:201
+#: ../baobab/src/baobab-chart.c:203
 msgid "The maximum depth drawn in the chart from the root"
 msgstr "La profundidad máxima dibujada en el gráfico desde la raíz"
 
-#: ../baobab/src/baobab-chart.c:210
+#: ../baobab/src/baobab-chart.c:212
 msgid "Chart model"
 msgstr "Modelo de gráfico"
 
-#: ../baobab/src/baobab-chart.c:211
+#: ../baobab/src/baobab-chart.c:213
 msgid "Set the model of the chart"
 msgstr "Establece el modelo del gráfico"
 
-#: ../baobab/src/baobab-chart.c:218
+#: ../baobab/src/baobab-chart.c:220
 msgid "Chart root node"
 msgstr "Nodo raíz del gráfico"
 
-#: ../baobab/src/baobab-chart.c:219
+#: ../baobab/src/baobab-chart.c:221
 msgid "Set the root node from the model"
 msgstr "Establece el nodo raíz del modelo"
 
-#: ../baobab/src/baobab-chart.c:1667
+#: ../baobab/src/baobab-chart.c:1672
 msgid "Cannot create pixbuf image!"
 msgstr "No se puede crear la imagen pixbuf"
 
 #. Popup the File chooser dialog
-#: ../baobab/src/baobab-chart.c:1675
+#: ../baobab/src/baobab-chart.c:1682
 msgid "Save Snapshot"
 msgstr "Guardar captura"
 
-#: ../baobab/src/baobab-chart.c:1698
+#: ../baobab/src/baobab-chart.c:1711
 msgid "_Image type:"
 msgstr "Tipo de _imagen:"
 
@@ -492,7 +490,7 @@ msgid "_Open Folder"
 msgstr "_Abrir carpeta"
 
 #: ../baobab/src/baobab-utils.c:375
-#: ../gsearchtool/gsearchtool-callbacks.c:1155
+#: ../gsearchtool/gsearchtool-callbacks.c:1172
 msgid "Mo_ve to Trash"
 msgstr "Mo_ver a la papelera"
 
@@ -2022,7 +2020,7 @@ msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "El archivo «%s» ya existe. ¿Desea reemplazarlo?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:84
-#: ../gsearchtool/gsearchtool-callbacks.c:1674
+#: ../gsearchtool/gsearchtool-callbacks.c:1691
 msgid "_Replace"
 msgstr "_Reemplazar"
 
@@ -2450,51 +2448,64 @@ msgstr "Ha fallado el movimiento de «%s»: %s."
 msgid "_Open"
 msgstr "_Abrir"
 
+#. Popup menu item: Open with (default)
+#: ../gsearchtool/gsearchtool-callbacks.c:1063
+#, c-format
+#| msgid "Open Wit_h"
+msgid "_Open with %s"
+msgstr "Abrir co_n %s"
+
+#: ../gsearchtool/gsearchtool-callbacks.c:1094
+#, c-format
+#| msgid "Open Wit_h"
+msgid "Open with %s"
+msgstr "Abrir con %s"
+
 #. Popup menu item: Open With
-#: ../gsearchtool/gsearchtool-callbacks.c:1106
+#: ../gsearchtool/gsearchtool-callbacks.c:1123
 msgid "Open Wit_h"
 msgstr "Abrir _con"
 
 #. Popup menu item: Open Folder
-#: ../gsearchtool/gsearchtool-callbacks.c:1137
+#: ../gsearchtool/gsearchtool-callbacks.c:1154
 msgid "Open _Folder"
 msgstr "Abrir _carpeta"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1177
+#: ../gsearchtool/gsearchtool-callbacks.c:1194
 msgid "_Save Results As..."
 msgstr "_Guardar resultado como…"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1559
+#: ../gsearchtool/gsearchtool-callbacks.c:1576
 msgid "Save Search Results As..."
 msgstr "Guardar el resultado de la búsqueda como…"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1590
+#: ../gsearchtool/gsearchtool-callbacks.c:1607
 msgid "Could not save document."
 msgstr "No se ha podido guardar el documento."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1591
+#: ../gsearchtool/gsearchtool-callbacks.c:1608
 msgid "You did not select a document name."
 msgstr "No ha seleccionado un nombre de documento."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1621
+#: ../gsearchtool/gsearchtool-callbacks.c:1638
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "No se ha podido guardar el documento «%s» en %s."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1655
+#: ../gsearchtool/gsearchtool-callbacks.c:1672
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "El documento «%s» ya existe. ¿Quiere reemplazarlo?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1659
+#: ../gsearchtool/gsearchtool-callbacks.c:1676
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Si reemplaza un archivo ya existente, su contenido será sobreescrito."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1724
+#: ../gsearchtool/gsearchtool-callbacks.c:1741
 msgid "The document name you selected is a folder."
 msgstr "El nombre del documento que ha seleccionado es una carpeta."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1762
+#: ../gsearchtool/gsearchtool-callbacks.c:1779
 msgid "You may not have write permissions to the document."
 msgstr "Puede que no tenga permiso de escritura en el documento."
 
