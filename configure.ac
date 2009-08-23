@@ -292,7 +292,7 @@ AC_SUBST(Z_LIBS)
 
 dnl scrollkeeper checks 
 AC_PATH_PROG(SCROLLKEEPER_CONFIG, [scrollkeeper-config], [no])
-AS_IF([test x$SCROLLKEEPER_CONFIG = xno]
+AS_IF([test x$SCROLLKEEPER_CONFIG = xno],
       [
         AC_MSG_ERROR([Couldn't find scrollkeeper-config. Please install the scrollkeeper package])
       ]
