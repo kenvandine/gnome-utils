@@ -1071,17 +1071,20 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 			g_signal_connect ((gpointer) new1, "activate", G_CALLBACK (open_file_cb),
 					  (gpointer) gsearch);
 
-			file_icon = g_object_ref (g_app_info_get_icon ((GAppInfo *)list->data));
+			if (g_app_info_get_icon ((GAppInfo *)list->data) != NULL) {
+				file_icon = g_object_ref (g_app_info_get_icon ((GAppInfo *)list->data));
+				gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (new1), file_icon != NULL);
 
-			if (file_icon == NULL) {
-				file_icon = g_themed_icon_new (GTK_STOCK_OPEN);
+				if (file_icon == NULL) {
+					file_icon = g_themed_icon_new (GTK_STOCK_OPEN);
+				}
+
+				image1 = gtk_image_new_from_gicon (file_icon, GTK_ICON_SIZE_MENU);
+				g_object_unref (file_icon);
+				gtk_widget_show (image1);
+				gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
 			}
-
-			image1 = gtk_image_new_from_gicon (file_icon, GTK_ICON_SIZE_MENU);
-			g_object_unref (file_icon);
-			gtk_widget_show (image1);
-			gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
-		
+			
 			separatormenuitem1 = gtk_separator_menu_item_new ();
 			gtk_widget_show (separatormenuitem1);
 			gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), separatormenuitem1);
@@ -1105,17 +1108,20 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 
 				if (list_length >= 4) {
 
-					file_icon = g_object_ref (g_app_info_get_icon ((GAppInfo *)list->data));
+					if (g_app_info_get_icon ((GAppInfo *)list->data) != NULL) {
+						file_icon = g_object_ref (g_app_info_get_icon ((GAppInfo *)list->data));
+						gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (new1), file_icon != NULL);
 
-					if (file_icon == NULL) {
-						file_icon = g_themed_icon_new (GTK_STOCK_OPEN);
-					}
+						if (file_icon == NULL) {
+							file_icon = g_themed_icon_new (GTK_STOCK_OPEN);
+						}
 				
-					image1 = gtk_image_new_from_gicon (file_icon, GTK_ICON_SIZE_MENU);
-					g_object_unref (file_icon);
-					gtk_widget_show (image1);
-					gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
-
+						image1 = gtk_image_new_from_gicon (file_icon, GTK_ICON_SIZE_MENU);
+						g_object_unref (file_icon);
+						gtk_widget_show (image1);
+						gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
+					}
+					
 					if (i == 0) {
 						gsearch->search_results_popup_submenu = gtk_menu_new ();
 
@@ -1136,6 +1142,20 @@ build_popup_menu_for_file (GSearchWindow * gsearch,
 					                  (gpointer) gsearch);
 				}
 				else {
+					if (g_app_info_get_icon ((GAppInfo *)list->data) != NULL) {
+
+						file_icon = g_object_ref (g_app_info_get_icon ((GAppInfo *)list->data));
+						gtk_image_menu_item_set_always_show_image (GTK_IMAGE_MENU_ITEM (new1), file_icon != NULL);
+
+						if (file_icon == NULL) {
+							file_icon = g_themed_icon_new (GTK_STOCK_OPEN);
+						}
+				
+						image1 = gtk_image_new_from_gicon (file_icon, GTK_ICON_SIZE_MENU);
+						g_object_unref (file_icon);
+						gtk_widget_show (image1);
+						gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (new1), image1);
+					}
 					gtk_container_add (GTK_CONTAINER (gsearch->search_results_popup_menu), new1);
 					g_signal_connect ((gpointer) new1, "activate", G_CALLBACK (open_file_cb),
 					                  (gpointer) gsearch);
