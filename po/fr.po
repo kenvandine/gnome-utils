@@ -21,13 +21,13 @@ msgstr ""
 "Project-Id-Version: gnome-utils HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "utils&component=general\n"
-"POT-Creation-Date: 2009-06-17 15:40+0000\n"
-"PO-Revision-Date: 2009-06-13 14:22+0200\n"
+"POT-Creation-Date: 2009-08-23 23:59+0000\n"
+"PO-Revision-Date: 2009-08-28 15:59+0200\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
-"Language-Team: French <gnomefr@traduc.org>\n"
+"Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8 bit\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
 #: ../baobab/data/baobab.desktop.in.in.h:1
@@ -127,12 +127,12 @@ msgstr "Tout _réduire"
 
 #. Help menu
 #: ../baobab/data/baobab-main-window.ui.h:20
-#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:866
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:864
 msgid "_Contents"
 msgstr "_Sommaire"
 
 #: ../baobab/data/baobab-main-window.ui.h:21
-#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:837
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:835
 msgid "_Edit"
 msgstr "É_dition"
 
@@ -142,7 +142,7 @@ msgstr "Tout _déplier"
 
 #: ../baobab/data/baobab-main-window.ui.h:23
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:840
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:838
 msgid "_Help"
 msgstr "Aid_e"
 
@@ -151,7 +151,7 @@ msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
 #: ../baobab/data/baobab-main-window.ui.h:25
-#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:838
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:836
 msgid "_View"
 msgstr "_Affichage"
 
@@ -201,86 +201,90 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr ""
 "Indique si la barre d'état doit être visible dans la fenêtre principale."
 
-#: ../baobab/src/baobab.c:121 ../baobab/src/baobab.c:299
+#: ../baobab/src/baobab.c:119 ../baobab/src/baobab.c:297
 msgid "Scanning..."
 msgstr "Analyse en cours..."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:183 ../baobab/src/baobab.c:241
+#: ../baobab/src/baobab.c:181 ../baobab/src/baobab.c:239
 #: ../baobab/src/callbacks.c:264
 msgid "Calculating percentage bars..."
 msgstr "Calcul des barres de pourcentage..."
 
-#: ../baobab/src/baobab.c:193 ../baobab/src/baobab.c:1077
+#: ../baobab/src/baobab.c:191 ../baobab/src/baobab.c:1096
 #: ../baobab/src/callbacks.c:268
 msgid "Ready"
 msgstr "Prêt"
 
-#: ../baobab/src/baobab.c:338
-msgid "Total filesystem usage:"
-msgstr "Utilisation totale du système de fichiers :"
+#: ../baobab/src/baobab.c:333
+msgid "Total filesystem capacity"
+msgstr "Capacité totale du système de fichiers"
 
-#: ../baobab/src/baobab.c:377
+#: ../baobab/src/baobab.c:355
+msgid "Total filesystem usage"
+msgstr "Utilisation totale du système de fichiers"
+
+#: ../baobab/src/baobab.c:396
 msgid "contains hardlinks for:"
 msgstr "contient des liens durs vers :"
 
-#: ../baobab/src/baobab.c:386
+#: ../baobab/src/baobab.c:405
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d objet"
 msgstr[1] "% 5d objets"
 
-#: ../baobab/src/baobab.c:737
+#: ../baobab/src/baobab.c:756
 msgid "Could not initialize monitoring"
 msgstr "Impossible d'initialiser la surveillance"
 
-#: ../baobab/src/baobab.c:738
+#: ../baobab/src/baobab.c:757
 msgid "Changes to your home folder will not be monitored."
 msgstr ""
 "Les modifications dans votre dossier personnel ne seront pas surveillées."
 
-#: ../baobab/src/baobab.c:845
+#: ../baobab/src/baobab.c:864
 msgid "Move to parent folder"
 msgstr "Remonter au dossier parent"
 
-#: ../baobab/src/baobab.c:849
+#: ../baobab/src/baobab.c:868
 msgid "Zoom in"
 msgstr "Zoom avant"
 
-#: ../baobab/src/baobab.c:853
+#: ../baobab/src/baobab.c:872
 msgid "Zoom out"
 msgstr "Zoom arrière"
 
-#: ../baobab/src/baobab.c:857
+#: ../baobab/src/baobab.c:876
 msgid "Save snapshot"
 msgstr "Enregistrer une capture"
 
-#: ../baobab/src/baobab.c:905
+#: ../baobab/src/baobab.c:924
 msgid "View as Rings Chart"
 msgstr "Affichage par diagramme en anneaux"
 
-#: ../baobab/src/baobab.c:907
+#: ../baobab/src/baobab.c:926
 msgid "View as Treemap Chart"
 msgstr "Affichage par carte arborescente"
 
-#: ../baobab/src/baobab.c:1000
+#: ../baobab/src/baobab.c:1019
 msgid "Show version"
 msgstr "Afficher la version"
 
-#: ../baobab/src/baobab.c:1001
+#: ../baobab/src/baobab.c:1020
 msgid "[DIRECTORY]"
 msgstr "[RÉPERTOIRE]"
 
-#: ../baobab/src/baobab.c:1031
+#: ../baobab/src/baobab.c:1050
 msgid "Too many arguments. Only one directory can be specified."
 msgstr "Trop de paramètres. Un seul répertoire peut être spécifié."
 
-#: ../baobab/src/baobab.c:1049
+#: ../baobab/src/baobab.c:1068
 msgid "Could not detect any mount point."
 msgstr "Impossible de détecter un point de montage."
 
-#: ../baobab/src/baobab.c:1052
+#: ../baobab/src/baobab.c:1071
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr ""
 "Il n'est pas possible d'analyser l'utilisation des disques sans point de "
@@ -310,16 +314,16 @@ msgstr "Nœud racine du graphique"
 msgid "Set the root node from the model"
 msgstr "Définit le nœud racine du modèle"
 
-#: ../baobab/src/baobab-chart.c:1685
+#: ../baobab/src/baobab-chart.c:1672
 msgid "Cannot create pixbuf image!"
 msgstr "Impossible de créer une image pixbuf."
 
 #. Popup the File chooser dialog
-#: ../baobab/src/baobab-chart.c:1693
+#: ../baobab/src/baobab-chart.c:1682
 msgid "Save Snapshot"
 msgstr "Enregistrer la capture d'écran"
 
-#: ../baobab/src/baobab-chart.c:1716
+#: ../baobab/src/baobab-chart.c:1711
 msgid "_Image type:"
 msgstr "Type d'_image :"
 
@@ -352,85 +356,85 @@ msgstr "Disponible"
 msgid "Cannot scan location \"%s\""
 msgstr "Impossible d'analyser l'emplacement « %s »"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:176
+#: ../baobab/src/baobab-remote-connect-dialog.c:175
 msgid "Custom Location"
 msgstr "Emplacement personnalisé"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:178
+#: ../baobab/src/baobab-remote-connect-dialog.c:177
 msgid "SSH"
 msgstr "SSH"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:181
+#: ../baobab/src/baobab-remote-connect-dialog.c:180
 msgid "Public FTP"
 msgstr "FTP public"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:183
+#: ../baobab/src/baobab-remote-connect-dialog.c:182
 msgid "FTP (with login)"
 msgstr "FTP (avec identification)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:186
+#: ../baobab/src/baobab-remote-connect-dialog.c:185
 msgid "Windows share"
 msgstr "Partage Windows"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:188
+#: ../baobab/src/baobab-remote-connect-dialog.c:187
 msgid "WebDAV (HTTP)"
 msgstr "WebDAV (HTTP)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:190
+#: ../baobab/src/baobab-remote-connect-dialog.c:189
 msgid "Secure WebDAV (HTTPS)"
 msgstr "WebDAV sécurisé (HTTPS)"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:250
+#: ../baobab/src/baobab-remote-connect-dialog.c:249
 msgid "Cannot Connect to Server. You must enter a name for the server."
 msgstr ""
 "Impossible de se connecter au serveur. Vous devez saisir un nom de serveur."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:253
+#: ../baobab/src/baobab-remote-connect-dialog.c:252
 msgid "Please enter a name and try again."
 msgstr "Saisissez un nom et essayez à nouveau."
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:444
+#: ../baobab/src/baobab-remote-connect-dialog.c:443
 msgid "_Location (URI):"
 msgstr "_Emplacement (URI) :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:466
+#: ../baobab/src/baobab-remote-connect-dialog.c:465
 msgid "_Server:"
 msgstr "_Serveur :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:485
+#: ../baobab/src/baobab-remote-connect-dialog.c:484
 msgid "Optional information:"
 msgstr "Informations facultatives :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:497
+#: ../baobab/src/baobab-remote-connect-dialog.c:496
 msgid "_Share:"
 msgstr "Parta_ge :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:518
+#: ../baobab/src/baobab-remote-connect-dialog.c:517
 #: ../gnome-dictionary/data/gnome-dictionary-source.ui.h:7
 msgid "_Port:"
 msgstr "_Port :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:538
+#: ../baobab/src/baobab-remote-connect-dialog.c:537
 msgid "_Folder:"
 msgstr "_Dossier :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:558
+#: ../baobab/src/baobab-remote-connect-dialog.c:557
 msgid "_User Name:"
 msgstr "Nom d'_utilisateur :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:579
+#: ../baobab/src/baobab-remote-connect-dialog.c:578
 msgid "_Domain Name:"
 msgstr "Nom de _domaine :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:646
+#: ../baobab/src/baobab-remote-connect-dialog.c:645
 msgid "Connect to Server"
 msgstr "Connexion au serveur"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:663
+#: ../baobab/src/baobab-remote-connect-dialog.c:662
 msgid "Service _type:"
 msgstr "_Type de service :"
 
-#: ../baobab/src/baobab-remote-connect-dialog.c:782
+#: ../baobab/src/baobab-remote-connect-dialog.c:781
 msgid "_Scan"
 msgstr "Analy_ser"
 
@@ -475,64 +479,64 @@ msgstr "Sélectionner un dossier"
 msgid "_Show hidden folders"
 msgstr "_Afficher les dossiers cachés"
 
-#: ../baobab/src/baobab-utils.c:294
+#: ../baobab/src/baobab-utils.c:301
 msgid "Cannot check an excluded folder!"
 msgstr "Impossible de vérifier un dossier exclu !"
 
-#: ../baobab/src/baobab-utils.c:318
+#: ../baobab/src/baobab-utils.c:325
 #, c-format
 msgid "\"%s\" is not a valid folder"
 msgstr "« %s » n'est pas un dossier valide"
 
-#: ../baobab/src/baobab-utils.c:321
+#: ../baobab/src/baobab-utils.c:328
 msgid "Could not analyze disk usage."
 msgstr "Impossible d'analyser l'utilisation du disque."
 
-#: ../baobab/src/baobab-utils.c:362
+#: ../baobab/src/baobab-utils.c:369
 msgid "_Open Folder"
 msgstr "_Ouvrir le dossier"
 
-#: ../baobab/src/baobab-utils.c:368
-#: ../gsearchtool/gsearchtool-callbacks.c:1155
+#: ../baobab/src/baobab-utils.c:375
+#: ../gsearchtool/gsearchtool-callbacks.c:1172
 msgid "Mo_ve to Trash"
 msgstr "_Mettre à la corbeille"
 
-#: ../baobab/src/baobab-utils.c:394
+#: ../baobab/src/baobab-utils.c:401
 msgid "Total filesystem capacity:"
 msgstr "Capacité totale du système de fichiers :"
 
-#: ../baobab/src/baobab-utils.c:395
+#: ../baobab/src/baobab-utils.c:402
 msgid "used:"
 msgstr "utilisé :"
 
-#: ../baobab/src/baobab-utils.c:396
+#: ../baobab/src/baobab-utils.c:403
 msgid "available:"
 msgstr "disponible :"
 
-#: ../baobab/src/baobab-utils.c:440
+#: ../baobab/src/baobab-utils.c:447
 #, c-format
 msgid "Could not open folder \"%s\""
 msgstr "Impossible d'ouvrir le dossier « %s »"
 
-#: ../baobab/src/baobab-utils.c:443
+#: ../baobab/src/baobab-utils.c:450
 msgid "There is no installed viewer capable of displaying the folder."
 msgstr "Il n'y a pas de visionneur installé capable d'afficher le dossier."
 
-#: ../baobab/src/baobab-utils.c:512
+#: ../baobab/src/baobab-utils.c:519
 #, c-format
 msgid "Could not move \"%s\" to the Trash"
 msgstr "Impossible de mettre « %s » à la corbeille"
 
-#: ../baobab/src/baobab-utils.c:520
+#: ../baobab/src/baobab-utils.c:527
 msgid "Could not move file to the Trash"
 msgstr "Impossible de mettre le fichier à la corbeille"
 
-#: ../baobab/src/baobab-utils.c:522
+#: ../baobab/src/baobab-utils.c:529
 #, c-format
 msgid "Details: %s"
 msgstr "Détails : %s"
 
-#: ../baobab/src/baobab-utils.c:569
+#: ../baobab/src/baobab-utils.c:576
 msgid "There was an error displaying help."
 msgstr "Une erreur est survenue durant l'affichage de l'aide."
 
@@ -618,7 +622,7 @@ msgid "Cl_ear"
 msgstr "_Effacer"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:868
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:866
 msgid "_About"
 msgstr "À _propos"
 
@@ -1060,7 +1064,7 @@ msgstr "Erreur lors de la recherche"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
-#: ../logview/logview-window.c:513
+#: ../logview/logview-window.c:511
 msgid "Not found"
 msgstr "Non trouvé"
 
@@ -1560,7 +1564,7 @@ msgstr[1] "%d définitions trouvées"
 msgid "%s - Dictionary"
 msgstr "%s - Dictionnaire"
 
-#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:836
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:834
 msgid "_File"
 msgstr "_Fichier"
 
@@ -1597,7 +1601,7 @@ msgstr "_Imprimer..."
 msgid "Print this document"
 msgstr "Imprimer ce document"
 
-#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:851
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:849
 msgid "Select _All"
 msgstr "_Tout sélectionner"
 
@@ -1732,82 +1736,82 @@ msgstr "Stratégies disponibles"
 msgid "Dictionary sources"
 msgstr "Sources de dictionnaires"
 
-#: ../gnome-screenshot/gnome-screenshot.c:132
+#: ../gnome-screenshot/gnome-screenshot.c:133
 msgid "Error loading the help page"
 msgstr "Erreur lors du chargement de la page d'aide"
 
-#: ../gnome-screenshot/gnome-screenshot.c:244
+#: ../gnome-screenshot/gnome-screenshot.c:245
 msgid "None"
 msgstr "Aucun"
 
-#: ../gnome-screenshot/gnome-screenshot.c:245
+#: ../gnome-screenshot/gnome-screenshot.c:246
 msgid "Drop shadow"
 msgstr "Ombre portée"
 
-#: ../gnome-screenshot/gnome-screenshot.c:246
+#: ../gnome-screenshot/gnome-screenshot.c:247
 msgid "Border"
 msgstr "Bordure"
 
 #. * Include pointer *
-#: ../gnome-screenshot/gnome-screenshot.c:350
+#: ../gnome-screenshot/gnome-screenshot.c:351
 msgid "Include _pointer"
 msgstr "Inclure le _pointeur"
 
 #. * Include window border *
-#: ../gnome-screenshot/gnome-screenshot.c:359
+#: ../gnome-screenshot/gnome-screenshot.c:360
 msgid "Include the window _border"
 msgstr "_Inclure la bordure de la fenêtre"
 
-#: ../gnome-screenshot/gnome-screenshot.c:374
+#: ../gnome-screenshot/gnome-screenshot.c:375
 msgid "Apply _effect:"
 msgstr "Appliquer l'_effet :"
 
-#: ../gnome-screenshot/gnome-screenshot.c:436
+#: ../gnome-screenshot/gnome-screenshot.c:437
 msgid "Grab the whole _desktop"
 msgstr "Capturer l'ensemble du _bureau"
 
-#: ../gnome-screenshot/gnome-screenshot.c:448
+#: ../gnome-screenshot/gnome-screenshot.c:449
 msgid "Grab the current _window"
 msgstr "Capturer la _fenêtre actuelle"
 
-#: ../gnome-screenshot/gnome-screenshot.c:460
+#: ../gnome-screenshot/gnome-screenshot.c:461
 msgid "Select _area to grab"
 msgstr "Sélectionner la _zone à capturer"
 
 #. translators: this is the first part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:477
+#: ../gnome-screenshot/gnome-screenshot.c:478
 msgid "Grab _after a delay of"
 msgstr "Capturer _après un délai de"
 
 #. translators: this is the last part of the "grab after a
 #. * delay of <spin button> seconds".
 #.
-#: ../gnome-screenshot/gnome-screenshot.c:497
-#: ../gnome-screenshot/gnome-screenshot.c:1249
+#: ../gnome-screenshot/gnome-screenshot.c:498
+#: ../gnome-screenshot/gnome-screenshot.c:1291
 msgid "seconds"
 msgstr "secondes"
 
-#: ../gnome-screenshot/gnome-screenshot.c:513
-#: ../gnome-screenshot/gnome-screenshot.c:523
+#: ../gnome-screenshot/gnome-screenshot.c:514
+#: ../gnome-screenshot/gnome-screenshot.c:524
 #: ../gnome-screenshot/gnome-screenshot.desktop.in.h:2
 msgid "Take Screenshot"
 msgstr "Capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:524
+#: ../gnome-screenshot/gnome-screenshot.c:525
 msgid "Effects"
 msgstr "Effets"
 
-#: ../gnome-screenshot/gnome-screenshot.c:530
+#: ../gnome-screenshot/gnome-screenshot.c:531
 msgid "Take _Screenshot"
 msgstr "Prendre une _capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:656
+#: ../gnome-screenshot/gnome-screenshot.c:657
 msgid "Error while saving screenshot"
 msgstr "Erreur lors de l'enregistrement de la capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:660
+#: ../gnome-screenshot/gnome-screenshot.c:661
 #, c-format
 msgid ""
 "Impossible to save the screenshot to %s.\n"
@@ -1818,11 +1822,15 @@ msgstr ""
 " L'erreur est %s.\n"
 " Veuillez choisir un autre emplacement et réessayez."
 
-#: ../gnome-screenshot/gnome-screenshot.c:807
+#: ../gnome-screenshot/gnome-screenshot.c:793
+msgid "Screenshot taken"
+msgstr "Capture d'écran effectuée"
+
+#: ../gnome-screenshot/gnome-screenshot.c:847
 msgid "Unable to take a screenshot of the current window"
 msgstr "Impossible de prendre une capture d'écran de la fenêtre actuelle"
 
-#: ../gnome-screenshot/gnome-screenshot.c:855
+#: ../gnome-screenshot/gnome-screenshot.c:897
 #, c-format
 msgid "Screenshot-%s.png"
 msgstr "Capture-%s.png"
@@ -1830,14 +1838,14 @@ msgstr "Capture-%s.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if a specific window is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:862
+#: ../gnome-screenshot/gnome-screenshot.c:904
 #, c-format
 msgid "Screenshot-%s-%d.png"
 msgstr "Capture-%s-%d.png"
 
 #. translators: this is the name of the file that gets made up
 #. * with the screenshot if the entire screen is taken
-#: ../gnome-screenshot/gnome-screenshot.c:872
+#: ../gnome-screenshot/gnome-screenshot.c:914
 #: ../gnome-screenshot/screenshot-dialog.c:356
 #: ../gnome-screenshot/screenshot-save.c:196
 msgid "Screenshot.png"
@@ -1846,48 +1854,48 @@ msgstr "Capture.png"
 #. translators: this is the name of the file that gets
 #. * made up with the screenshot if the entire screen is
 #. * taken
-#: ../gnome-screenshot/gnome-screenshot.c:879
+#: ../gnome-screenshot/gnome-screenshot.c:921
 #, c-format
 msgid "Screenshot-%d.png"
 msgstr "Capture-%d.png"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1245
+#: ../gnome-screenshot/gnome-screenshot.c:1287
 msgid "Grab a window instead of the entire screen"
 msgstr "Capturer une fenêtre plutôt que l'écran complet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1246
+#: ../gnome-screenshot/gnome-screenshot.c:1288
 msgid "Grab an area of the screen instead of the entire screen"
 msgstr "Capturer une zone de l'écran plutôt que l'écran complet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1247
+#: ../gnome-screenshot/gnome-screenshot.c:1289
 msgid "Include the window border with the screenshot"
 msgstr "Inclure la bordure de la fenêtre dans la capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1248
+#: ../gnome-screenshot/gnome-screenshot.c:1290
 msgid "Remove the window border from the screenshot"
 msgstr "Enlever la bordure de la fenêtre dans la capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1249
+#: ../gnome-screenshot/gnome-screenshot.c:1291
 msgid "Take screenshot after specified delay [in seconds]"
 msgstr "Effectue une capture d'écran après le délai indiqué [en secondes]"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1250
+#: ../gnome-screenshot/gnome-screenshot.c:1292
 msgid "Effect to add to the border (shadow, border or none)"
 msgstr "Effet à appliquer à la bordure (ombre, bordure ou aucun)"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1250
+#: ../gnome-screenshot/gnome-screenshot.c:1292
 msgid "effect"
 msgstr "effet"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1251
+#: ../gnome-screenshot/gnome-screenshot.c:1293
 msgid "Interactively set options"
 msgstr "Options définies de manière interactive"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1262
+#: ../gnome-screenshot/gnome-screenshot.c:1304
 msgid "Take a picture of the screen"
 msgstr "Effectue une capture d'écran"
 
-#: ../gnome-screenshot/gnome-screenshot.c:1280
+#: ../gnome-screenshot/gnome-screenshot.c:1322
 #, c-format
 msgid ""
 "Conflicting options: --window and --area should not be used at the same "
@@ -2027,7 +2035,7 @@ msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "Le fichier « %s » existe déjà. Voulez-vous le remplacer ?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:84
-#: ../gsearchtool/gsearchtool-callbacks.c:1674
+#: ../gsearchtool/gsearchtool-callbacks.c:1691
 msgid "_Replace"
 msgstr "Re_mplacer"
 
@@ -2466,51 +2474,62 @@ msgstr "Le déplacement de « %s » a échoué : %s."
 msgid "_Open"
 msgstr "_Ouvrir"
 
+#. Popup menu item: Open with (default)
+#: ../gsearchtool/gsearchtool-callbacks.c:1063
+#, c-format
+msgid "_Open with %s"
+msgstr "Ouvrir _avec %s"
+
+#: ../gsearchtool/gsearchtool-callbacks.c:1094
+#, c-format
+msgid "Open with %s"
+msgstr "Ouvrir avec %s"
+
 #. Popup menu item: Open With
-#: ../gsearchtool/gsearchtool-callbacks.c:1106
+#: ../gsearchtool/gsearchtool-callbacks.c:1123
 msgid "Open Wit_h"
 msgstr "Ouvrir _avec"
 
 #. Popup menu item: Open Folder
-#: ../gsearchtool/gsearchtool-callbacks.c:1137
+#: ../gsearchtool/gsearchtool-callbacks.c:1154
 msgid "Open _Folder"
 msgstr "Ouvrir le _dossier"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1177
+#: ../gsearchtool/gsearchtool-callbacks.c:1194
 msgid "_Save Results As..."
 msgstr "_Enregistrer le résultat sous..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1559
+#: ../gsearchtool/gsearchtool-callbacks.c:1576
 msgid "Save Search Results As..."
 msgstr "Enregistrer le résultat de la recherche sous..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1590
+#: ../gsearchtool/gsearchtool-callbacks.c:1607
 msgid "Could not save document."
 msgstr "Impossible d'enregistrer le document."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1591
+#: ../gsearchtool/gsearchtool-callbacks.c:1608
 msgid "You did not select a document name."
 msgstr "Vous n'avez pas sélectionné de nom de document."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1621
+#: ../gsearchtool/gsearchtool-callbacks.c:1638
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Impossible d'enregistrer le document « %s » dans « %s »."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1655
+#: ../gsearchtool/gsearchtool-callbacks.c:1672
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Le document « %s » existe déjà. Voulez-vous le remplacer ?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1659
+#: ../gsearchtool/gsearchtool-callbacks.c:1676
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Si vous remplacez un fichier existant, son contenu sera écrasé."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1724
+#: ../gsearchtool/gsearchtool-callbacks.c:1741
 msgid "The document name you selected is a folder."
 msgstr "Le nom de document que vous avez sélectionné est un dossier."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1762
+#: ../gsearchtool/gsearchtool-callbacks.c:1779
 msgid "You may not have write permissions to the document."
 msgstr "Vous n'avez pas les permissions en écriture sur le document."
 
@@ -3032,8 +3051,8 @@ msgstr "Option de lancement non reconnue : %d"
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
-"Impossible de passer les URI de documents vers une entrée .desktop de type « "
-"Type=Link »"
+"Impossible de passer les URI de documents vers une entrée .desktop de type "
+"« Type=Link »"
 
 #: ../libeggsmclient/eggdesktopfile.c:1392
 #, c-format
@@ -3236,146 +3255,145 @@ msgstr " - Parcourt et surveille les journaux"
 msgid "Log Viewer"
 msgstr "Visionneur de journaux système"
 
-#: ../logview/logview-window.c:40 ../logview/logview-window.c:788
+#: ../logview/logview-window.c:38 ../logview/logview-window.c:786
 msgid "System Log Viewer"
 msgstr "Visionneur de journaux système"
 
-#: ../logview/logview-window.c:212
+#: ../logview/logview-window.c:210
 #, c-format
 msgid "last update: %s"
 msgstr "dernière mise à jour : %s"
 
-#: ../logview/logview-window.c:215
+#: ../logview/logview-window.c:213
 #, c-format
 msgid "%d lines (%s) - %s"
 msgstr "%d lignes (%s) - %s"
 
-#: ../logview/logview-window.c:343
+#: ../logview/logview-window.c:341
 msgid "Open Log"
 msgstr "Ouvrir un journal"
 
-#: ../logview/logview-window.c:382
+#: ../logview/logview-window.c:380
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Une erreur s'est produite lors de l'affichage de l'aide : %s"
 
-#: ../logview/logview-window.c:498
+#: ../logview/logview-window.c:496
 msgid "Wrapped"
 msgstr "Bas de fichier atteint"
 
-#: ../logview/logview-window.c:793
+#: ../logview/logview-window.c:791
 msgid "A system log viewer for GNOME."
 msgstr "Un visionneur de journaux système pour GNOME."
 
-#: ../logview/logview-window.c:839
+#: ../logview/logview-window.c:837
 msgid "_Filters"
 msgstr "_Filtres"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:840
 msgid "_Open..."
 msgstr "_Ouvrir..."
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:840
 msgid "Open a log from file"
 msgstr "Ouvre un journal depuis un fichier"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:842
 msgid "_Close"
 msgstr "_Fermer"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:842
 msgid "Close this log"
 msgstr "Ferme ce journal"
 
-#: ../logview/logview-window.c:846
+#: ../logview/logview-window.c:844
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: ../logview/logview-window.c:846
+#: ../logview/logview-window.c:844
 msgid "Quit the log viewer"
 msgstr "Quitter le visionneur de journaux système"
 
-#: ../logview/logview-window.c:849
+#: ../logview/logview-window.c:847
 msgid "_Copy"
 msgstr "_Copier"
 
-#: ../logview/logview-window.c:849
+#: ../logview/logview-window.c:847
 msgid "Copy the selection"
 msgstr "Copier la sélection"
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:849
 msgid "Select the entire log"
 msgstr "Sélectionner le journal entier"
 
-#: ../logview/logview-window.c:853
+#: ../logview/logview-window.c:851
 msgid "_Find..."
 msgstr "_Rechercher..."
 
-#: ../logview/logview-window.c:853
+#: ../logview/logview-window.c:851
 msgid "Find a word or phrase in the log"
 msgstr "Recherche un mot ou une phrase dans le journal"
 
-#: ../logview/logview-window.c:856
+#: ../logview/logview-window.c:854
 msgid "Bigger text size"
 msgstr "Taille du texte plus grande"
 
-#: ../logview/logview-window.c:858
+#: ../logview/logview-window.c:856
 msgid "Smaller text size"
 msgstr "Taille du texte plus petite"
 
-#: ../logview/logview-window.c:860
+#: ../logview/logview-window.c:858
 msgid "Normal text size"
 msgstr "Taille du texte normal"
 
-#: ../logview/logview-window.c:863
+#: ../logview/logview-window.c:861
 msgid "Manage Filters"
 msgstr "Gérer les filtres"
 
-#: ../logview/logview-window.c:863
+#: ../logview/logview-window.c:861
 msgid "Manage filters"
 msgstr "Gérer les filtres"
 
-#: ../logview/logview-window.c:866
+#: ../logview/logview-window.c:864
 msgid "Open the help contents for the log viewer"
 msgstr "Ouvre le sommaire de l'aide du visionneur de journaux système"
 
-#: ../logview/logview-window.c:868
+#: ../logview/logview-window.c:866
 msgid "Show the about dialog for the log viewer"
 msgstr ""
 "Affiche la boîte de dialogue « À propos » du visionneur de journaux système"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:871
 msgid "_Statusbar"
 msgstr "Barre d'é_tat"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:871
 msgid "Show Status Bar"
 msgstr "Affiche la barre d'état"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:873
 msgid "Side _Pane"
 msgstr "Panneau _latéral"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:873
 msgid "Show Side Pane"
 msgstr "Affiche le panneau latéral"
 
-#: ../logview/logview-window.c:877
+#: ../logview/logview-window.c:875
 msgid "Show matches only"
 msgstr "Afficher uniquement les correspondances"
 
-#: ../logview/logview-window.c:877
+#: ../logview/logview-window.c:875
 msgid "Only show lines that match one of the given filters"
 msgstr "Afficher uniquement les lignes correspondant à l'un des filtres"
 
-#: ../logview/logview-window.c:1375
-msgid "Close"
-msgstr "Fermer"
-
-#: ../logview/logview-window.c:1415
+#: ../logview/logview-window.c:1414
 msgid "Version: "
 msgstr "Version : "
 
-#: ../logview/logview-window.c:1522
+#: ../logview/logview-window.c:1521
 msgid "Could not open the following files:"
 msgstr "Impossible d'ouvrir les fichiers suivants :"
+
+#~ msgid "Close"
+#~ msgstr "Fermer"
