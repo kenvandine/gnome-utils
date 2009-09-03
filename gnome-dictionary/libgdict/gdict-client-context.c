@@ -941,7 +941,13 @@ static void
 gdict_client_context_force_disconnect (GdictClientContext *context)
 {
   GdictClientContextPrivate *priv = context->priv;
-  
+
+  if (priv->timeout_id)
+    {
+      g_source_remove (priv->timeout_id);
+      priv->timeout_id = 0;
+    }
+
   if (priv->source_id)
     {
       g_source_remove (priv->source_id);
@@ -1839,6 +1845,9 @@ check_for_connection (gpointer data)
   g_debug (G_STRLOC ": checking for connection (is connecting:%s)",
            context->priv->is_connecting ? "true" : "false");
 #endif
+
+  if (context == NULL)
+    return FALSE;
 
   if (context->priv->is_connecting)
     {
