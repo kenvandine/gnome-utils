@@ -796,7 +796,7 @@ move_to_trash_cb (GtkAction * action,
 		GtkTreeIter iter;
 		GList * list;
 		GFile * g_file;
-		GError * error;
+		GError * error = NULL;
 		gchar * utf8_basename;
 		gchar * utf8_filename;
 		gchar * locale_filename;
@@ -851,7 +851,7 @@ move_to_trash_cb (GtkAction * action,
 
 			if (response == GTK_RESPONSE_OK) {
 				GFile * g_file_tmp;
-				GError * error_tmp;
+				GError * error_tmp = NULL;
 
 				g_file_tmp = g_file_new_for_path (locale_filename);
 				result = g_file_delete (g_file_tmp, NULL, &error_tmp);
