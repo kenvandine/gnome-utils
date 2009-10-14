@@ -154,6 +154,7 @@ struct _GSearchGOptionArguments {
 } GSearchGOptionArguments;
 
 static GOptionEntry GSearchGOptionEntries[] = {
+	{ "version", 0, G_OPTION_FLAG_NO_ARG, G_OPTION_ARG_CALLBACK, version_cb, N_("Show version of the application"), NULL},
 	{ "named", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.name, NULL, N_("STRING") },
 	{ "path", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.path, NULL, N_("PATH") },
 	{ "sortby", 0, 0, G_OPTION_ARG_STRING, &GSearchGOptionArguments.sortby, NULL, N_("VALUE") },
@@ -1281,7 +1282,7 @@ add_atk_relation (GtkWidget * obj1,
 static void
 gsearch_setup_goption_descriptions (void)
 {
-	gint i = 0;
+	gint i = 1;
 	gint j;
 
 	GSearchGOptionEntries[i++].description = g_strdup (_("Set the text of \"Name contains\" search option"));

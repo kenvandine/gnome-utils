@@ -31,6 +31,7 @@
 
 #include <string.h>
 #include <signal.h>
+#include <stdlib.h>
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -91,6 +92,16 @@ quit_application (GSearchWindow * gsearch)
 	}
 	store_window_state_and_geometry (gsearch);
 	gtk_main_quit ();
+}
+
+void
+version_cb (const gchar * option_name,
+            const gchar * value,
+            gpointer data,
+            GError ** error)
+{
+	g_print ("%s %s\n", g_get_application_name (), VERSION);
+	exit (0);
 }
 
 void

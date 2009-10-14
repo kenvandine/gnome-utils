@@ -36,6 +36,11 @@ extern "C" {
 #include "eggsmclient.h"
 
 void
+version_cb (const gchar * option_name,
+            const gchar * value,
+            gpointer data,
+            GError ** error);
+void
 quit_session_cb (EggSMClient * client,
                  gpointer data);
 void
