@@ -260,7 +260,6 @@ on_dialog_add_edit_reponse (GtkWidget *dialog, int response_id,
     logview_filter_manager_update_model (manager);
   }
 
-  g_free (old_name);
   gtk_widget_destroy (dialog);
 }
 
@@ -376,11 +375,10 @@ run_add_edit_dialog (LogviewFilterManager *manager, LogviewFilter *filter)
     }
 
     g_free (regex);
-    g_free (name);
     g_object_unref (tag);
   }
 
-  g_object_set_data (G_OBJECT (manager), "old_name", name);
+  g_object_set_data_full (G_OBJECT (manager), "old_name", name, g_free);
 
   g_signal_connect (G_OBJECT (dialog), "response",
                     G_CALLBACK (on_dialog_add_edit_reponse), manager);
