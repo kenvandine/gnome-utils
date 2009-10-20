@@ -242,7 +242,7 @@ logview_set_font (LogviewWindow *logview,
 }
 
 static void
-logview_set_fontsize (LogviewWindow *logview)
+logview_set_fontsize (LogviewWindow *logview, gboolean store)
 {
   PangoFontDescription *fontdesc;
   PangoContext *context;
@@ -253,7 +253,9 @@ logview_set_fontsize (LogviewWindow *logview)
   pango_font_description_set_size (fontdesc, (priv->fontsize) * PANGO_SCALE);
   gtk_widget_modify_font (priv->text_view, fontdesc);
 
-  logview_prefs_store_fontsize (logview->priv->prefs, priv->fontsize);
+  if (store) {
+    logview_prefs_store_fontsize (logview->priv->prefs, priv->fontsize);
+  }
 }
 
 static void
@@ -386,21 +388,21 @@ static void
 logview_bigger_text (GtkAction *action, LogviewWindow *logview)
 {
   logview->priv->fontsize = MIN (logview->priv->fontsize + 1, 24);
-  logview_set_fontsize (logview);
+  logview_set_fontsize (logview, TRUE);
 }	
 
 static void
 logview_smaller_text (GtkAction *action, LogviewWindow *logview)
 {
   logview->priv->fontsize = MAX (logview->priv->fontsize-1, 6);
-  logview_set_fontsize (logview);
+  logview_set_fontsize (logview, TRUE);
 }	
 
 static void
 logview_normal_text (GtkAction *action, LogviewWindow *logview)
 {
   logview->priv->fontsize = logview->priv->original_fontsize;
-  logview_set_fontsize (logview);
+  logview_set_fontsize (logview, TRUE);
 }
 
 static void
@@ -1403,7 +1405,13 @@ logview_window_init (LogviewWindow *logview)
 
   /* restore saved zoom */
   priv->fontsize = logview_prefs_get_stored_fontsize (priv->prefs);
-  logview_set_fontsize (logview);
+
+  if (priv->fontsize <= 0) {
+    /* restore the default */
+    logview_normal_text (NULL, logview);
+  } else {
+    logview_set_fontsize (logview, FALSE);
+  }
 
   /* version selector */
   priv->version_bar = gtk_hbox_new (FALSE, 0);
