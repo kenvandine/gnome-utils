@@ -82,7 +82,7 @@ static void findbar_close_cb  (LogviewFindbar *findbar,
 static void read_new_lines_cb (LogviewLog *log,
                                const char **lines,
                                GSList *new_days,
-                               GError **error,
+                               GError *error,
                                gpointer user_data);
 
 /* private functions */
@@ -998,7 +998,7 @@ static void
 read_new_lines_cb (LogviewLog *log,
                    const char **lines,
                    GSList *new_days,
-                   GError **error,
+                   GError *error,
                    gpointer user_data)
 {
   LogviewWindow *window = user_data;
@@ -1007,8 +1007,22 @@ read_new_lines_cb (LogviewLog *log,
   int i, old_line_count, filter_start_line;
   GtkTextIter iter, start;
   GtkTextMark *mark;
-  char *converted;
+  char *converted, *primary;
   gsize len;
+
+  if (error != NULL) {
+    primary = g_strdup_printf (_("Can't read from \"%s\""),
+                               logview_log_get_display_name (log));
+    logview_window_add_error (window, primary, error->message);
+    g_free (primary);
+
+    return;
+  }
+
+  if (lines == NULL) {
+    /* there's no error, but no lines have been read */
+    return;
+  }
 
   buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (window->priv->text_view));
   old_line_count = gtk_text_buffer_get_line_count (buffer);
