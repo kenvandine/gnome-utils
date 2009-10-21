@@ -1195,7 +1195,7 @@ open_file_with_filemanager (GtkWidget * window,
 {
 	GDesktopAppInfo * d_app_info;
 	GKeyFile * key_file;
-	GdkAppLaunchContext *ctx;
+	GdkAppLaunchContext * ctx = NULL;
 	GList * list = NULL;
 	GAppInfo * g_app_info;
 	GFile * g_file;
