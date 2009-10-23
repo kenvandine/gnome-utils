@@ -49,7 +49,6 @@ EXTRA_DIST = \
 	$(Utilities_in_files) \
 	$(Utilities_DATA) \
 	$(schema_in_file) \
-	$(schema_DATA) \
 	$(man_MANS)
 
 if GCONF_SCHEMAS_INSTALL
@@ -63,7 +62,7 @@ endif
 
 CLEANFILES = 				\
 	gnome-search-tool.desktop	\
-	gnome-search-tool.schemas
+	$(schema_DATA)
 
 disthook:
 	cd $(distdir) ; rm -f $(CLEANFILES)
