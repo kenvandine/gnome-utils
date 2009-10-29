@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: gnome-utils.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "utils&component=general\n"
-"POT-Creation-Date: 2009-10-27 16:41+0000\n"
-"PO-Revision-Date: 2009-10-27 21:50+0100\n"
+"POT-Creation-Date: 2009-10-28 20:50+0000\n"
+"PO-Revision-Date: 2009-10-29 18:39+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -196,90 +196,89 @@ msgid "Whether the toolbar should be visible in main window."
 msgstr ""
 "Indica si la barra de herramientas debe ser visible en la ventana principal."
 
-#: ../baobab/src/baobab.c:119 ../baobab/src/baobab.c:297
+#: ../baobab/src/baobab.c:139 ../baobab/src/baobab.c:320
 msgid "Scanning..."
 msgstr "Inspeccionando…"
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:181 ../baobab/src/baobab.c:239
+#: ../baobab/src/baobab.c:204 ../baobab/src/baobab.c:262
 #: ../baobab/src/callbacks.c:264
 msgid "Calculating percentage bars..."
 msgstr "Calculando barras de porcentajes…"
 
-#: ../baobab/src/baobab.c:191 ../baobab/src/baobab.c:1096
+#: ../baobab/src/baobab.c:214 ../baobab/src/baobab.c:1163
 #: ../baobab/src/callbacks.c:268
 msgid "Ready"
 msgstr "Preparado"
 
-#: ../baobab/src/baobab.c:333
+#: ../baobab/src/baobab.c:356
 msgid "Total filesystem capacity"
 msgstr "Capacidad total de los sistemas de archivos"
 
-#: ../baobab/src/baobab.c:355
+#: ../baobab/src/baobab.c:378
 msgid "Total filesystem usage"
 msgstr "Uso total de los sistemas de archivos"
 
-#: ../baobab/src/baobab.c:396
+#: ../baobab/src/baobab.c:419
 msgid "contains hardlinks for:"
 msgstr "contiene enlaces duros de:"
 
-#: ../baobab/src/baobab.c:405
+#: ../baobab/src/baobab.c:428
 #, c-format
 msgid "% 5d item"
 msgid_plural "% 5d items"
 msgstr[0] "% 5d elemento"
 msgstr[1] "% 5d elementos"
 
-#: ../baobab/src/baobab.c:756
+#: ../baobab/src/baobab.c:779
 msgid "Could not initialize monitoring"
 msgstr "No se pudo inicializar la monitorización"
 
-#: ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab.c:780
 msgid "Changes to your home folder will not be monitored."
 msgstr "Los cambios en su carpeta personal no serán monitorizados."
 
-#: ../baobab/src/baobab.c:864
+#: ../baobab/src/baobab.c:887
 msgid "Move to parent folder"
 msgstr "Mover a la carpeta superior"
 
-#: ../baobab/src/baobab.c:868
+#: ../baobab/src/baobab.c:891
 msgid "Zoom in"
 msgstr "Ampliar"
 
-#: ../baobab/src/baobab.c:872
+#: ../baobab/src/baobab.c:895
 msgid "Zoom out"
 msgstr "Reducir"
 
-#: ../baobab/src/baobab.c:876
-#| msgid "Save Screenshot"
+#: ../baobab/src/baobab.c:899
 msgid "Save screenshot"
 msgstr "Guardar la captura de pantalla"
 
-#: ../baobab/src/baobab.c:924
+#: ../baobab/src/baobab.c:985
 msgid "View as Rings Chart"
 msgstr "Ver como gráfico de anillo"
 
-#: ../baobab/src/baobab.c:926
+#: ../baobab/src/baobab.c:987
 msgid "View as Treemap Chart"
 msgstr "Ver como gráfico de árbol"
 
-#: ../baobab/src/baobab.c:1019
+#: ../baobab/src/baobab.c:1086
 msgid "Show version"
 msgstr "Mostrar versión"
 
-#: ../baobab/src/baobab.c:1020
+#: ../baobab/src/baobab.c:1087
 msgid "[DIRECTORY]"
 msgstr "[DIRECTORIO]"
 
-#: ../baobab/src/baobab.c:1050
+#: ../baobab/src/baobab.c:1117
 msgid "Too many arguments. Only one directory can be specified."
 msgstr "Demasiados parámetros. Sólo se puede especificar un directorio."
 
-#: ../baobab/src/baobab.c:1068
+#: ../baobab/src/baobab.c:1135
 msgid "Could not detect any mount point."
 msgstr "No se pudo detectar ningún punto de montaje."
 
-#: ../baobab/src/baobab.c:1071
+#: ../baobab/src/baobab.c:1138
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "El uso del disco no se puede analizar sin puntos de montaje."
 
@@ -1916,6 +1915,7 @@ msgid "Save in _folder:"
 msgstr "Guardar en la _carpeta:"
 
 #: ../gnome-screenshot/gnome-screenshot.ui.h:5
+#: ../logview/data/logview-filter.ui.h:6
 msgid "_Name:"
 msgstr "_Nombre:"
 
@@ -3133,6 +3133,32 @@ msgstr ""
 #: ../logview/data/gnome-system-log.schemas.in.h:10
 msgid "Width of the main window in pixels"
 msgstr "Anchura de la ventana principal en píxeles"
+
+#: ../logview/data/logview-filter.ui.h:1
+msgid "Background:"
+msgstr "Fondo:"
+
+#: ../logview/data/logview-filter.ui.h:2
+#| msgid "Effects"
+msgid "Effect:"
+msgstr "Efecto:"
+
+#: ../logview/data/logview-filter.ui.h:3
+msgid "Foreground:"
+msgstr "Primer plano:"
+
+#: ../logview/data/logview-filter.ui.h:4
+msgid "Hide"
+msgstr "Ocultar"
+
+#: ../logview/data/logview-filter.ui.h:5
+msgid "Highlight"
+msgstr "Resaltar"
+
+#: ../logview/data/logview-filter.ui.h:7
+#| msgid "Regular expression is empty!"
+msgid "_Regular Expression:"
+msgstr "Expresión _regular:"
 
 #: ../logview/logview-app.c:375
 #, c-format
