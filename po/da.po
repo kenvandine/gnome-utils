@@ -21,9 +21,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-13 03:32+0200\n"
-"PO-Revision-Date: 2009-09-12 18:06+0200\n"
-"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
+"POT-Creation-Date: 2009-11-26 00:25+0100\n"
+"PO-Revision-Date: 2009-11-19 00:00+0100\n"
+"Last-Translator: Anders Jenbo <anders@jenbo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,12 +126,12 @@ msgstr "_Sammenfold alle"
 
 #. Help menu
 #: ../baobab/data/baobab-main-window.ui.h:20
-#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:864
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:866
 msgid "_Contents"
 msgstr "_Indhold"
 
 #: ../baobab/data/baobab-main-window.ui.h:21
-#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:835
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:837
 msgid "_Edit"
 msgstr "_Redigér"
 
@@ -141,7 +141,7 @@ msgstr "_Udfold alle"
 
 #: ../baobab/data/baobab-main-window.ui.h:23
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:838
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:840
 msgid "_Help"
 msgstr "_Hjælp"
 
@@ -150,12 +150,13 @@ msgid "_Toolbar"
 msgstr "_Værktøjslinje"
 
 #: ../baobab/data/baobab-main-window.ui.h:25
-#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:836
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:838
 msgid "_View"
 msgstr "_Vis"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of uri for partitions to be excluded from scanning."
+#, fuzzy
+msgid "A list of URIs for partitions to be excluded from scanning."
 msgstr "En liste af uri'er for partitioner der ekskluderes fra skanning."
 
 #: ../baobab/data/baobab.schemas.in.h:2
@@ -163,7 +164,8 @@ msgid "Enable monitoring of home directory"
 msgstr "Aktivér overvågning af hjemmemappe"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions uris"
+#, fuzzy
+msgid "Excluded partitions URIs"
 msgstr "Ekskluderede partitions-uri'er"
 
 #: ../baobab/data/baobab.schemas.in.h:4
@@ -187,135 +189,137 @@ msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "Om statusbjælken i bunden af hovedvinduet skal være synlig."
 
 #: ../baobab/data/baobab.schemas.in.h:9
-msgid "Whether the subfolders tooltips of the selected folder are drawn."
+#, fuzzy
+msgid "Whether the subfolder tooltips of the selected folder are drawn."
 msgstr "Om værktøjstip for undermapper af den valgte mappe tegnes."
 
 #: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Om værktøjslinjen skal være synlig i hovedvinduet."
 
-#: ../baobab/src/baobab.c:119 ../baobab/src/baobab.c:297
+#: ../baobab/src/baobab.c:139 ../baobab/src/baobab.c:320
 msgid "Scanning..."
 msgstr "Skanner..."
 
 # Gad vide om de mener progress bars
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:181 ../baobab/src/baobab.c:239
+#: ../baobab/src/baobab.c:204 ../baobab/src/baobab.c:262
 #: ../baobab/src/callbacks.c:264
 msgid "Calculating percentage bars..."
 msgstr "Beregner procentbjælker..."
 
-#: ../baobab/src/baobab.c:191 ../baobab/src/baobab.c:1096
+#: ../baobab/src/baobab.c:214 ../baobab/src/baobab.c:1163
 #: ../baobab/src/callbacks.c:268
 msgid "Ready"
 msgstr "Klar"
 
-#: ../baobab/src/baobab.c:333
+#: ../baobab/src/baobab.c:356
 msgid "Total filesystem capacity"
 msgstr "Total filsystemskapacitet"
 
-#: ../baobab/src/baobab.c:355
+#: ../baobab/src/baobab.c:378
 msgid "Total filesystem usage"
 msgstr "Totalt pladsforbrug på filsystemet"
 
 # Der kommer til at stå "contains hard links for: 117 kB", f.eks.
-#: ../baobab/src/baobab.c:396
+#: ../baobab/src/baobab.c:419
 msgid "contains hardlinks for:"
 msgstr "indeholder hårde lænker for:"
 
-#: ../baobab/src/baobab.c:405
-#, c-format
-msgid "% 5d item"
-msgid_plural "% 5d items"
+#: ../baobab/src/baobab.c:428
+#, fuzzy, c-format
+msgid "%5d item"
+msgid_plural "%5d items"
 msgstr[0] "% 5d objekt"
 msgstr[1] "% 5d objekter"
 
-#: ../baobab/src/baobab.c:756
+#: ../baobab/src/baobab.c:779
 msgid "Could not initialize monitoring"
 msgstr "Kunne ikke initialisere overvågning"
 
-#: ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab.c:780
 msgid "Changes to your home folder will not be monitored."
 msgstr "Ændringer i din hjemmemappe vil ikke blive overvåget."
 
-#: ../baobab/src/baobab.c:864
+#: ../baobab/src/baobab.c:887
 msgid "Move to parent folder"
 msgstr "Gå til mappen et niveau over"
 
-#: ../baobab/src/baobab.c:868
+#: ../baobab/src/baobab.c:891
 msgid "Zoom in"
 msgstr "Førstør"
 
-#: ../baobab/src/baobab.c:872
+#: ../baobab/src/baobab.c:895
 msgid "Zoom out"
 msgstr "Formindsk"
 
-#: ../baobab/src/baobab.c:876
-msgid "Save snapshot"
+#: ../baobab/src/baobab.c:899
+#, fuzzy
+msgid "Save screenshot"
 msgstr "Gem skærmbillede"
 
-#: ../baobab/src/baobab.c:924
+#: ../baobab/src/baobab.c:985
 msgid "View as Rings Chart"
 msgstr "Vis som ringdiagram"
 
-#: ../baobab/src/baobab.c:926
+#: ../baobab/src/baobab.c:987
 msgid "View as Treemap Chart"
 msgstr "Vis som træafbildning"
 
-#: ../baobab/src/baobab.c:1019
+#: ../baobab/src/baobab.c:1086
 msgid "Show version"
 msgstr "Vis version"
 
-#: ../baobab/src/baobab.c:1020
+#: ../baobab/src/baobab.c:1087
 msgid "[DIRECTORY]"
 msgstr "[KATALOG]"
 
-#: ../baobab/src/baobab.c:1050
+#: ../baobab/src/baobab.c:1117
 msgid "Too many arguments. Only one directory can be specified."
 msgstr "For mange argumenter. Kun ét katalog kan angives."
 
-#: ../baobab/src/baobab.c:1068
+#: ../baobab/src/baobab.c:1135
 msgid "Could not detect any mount point."
 msgstr "Kunne ikke detektere noget monteringspunkt."
 
-#: ../baobab/src/baobab.c:1071
+#: ../baobab/src/baobab.c:1138
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Uden monteringspunkter kan diskforbruget ikke analyseres."
 
-#: ../baobab/src/baobab-chart.c:202
+#: ../baobab/src/baobab-chart.c:206
 msgid "Maximum depth"
 msgstr "Maksimal dybde"
 
-#: ../baobab/src/baobab-chart.c:203
+#: ../baobab/src/baobab-chart.c:207
 msgid "The maximum depth drawn in the chart from the root"
 msgstr "Maksimal dybde der tegnes i diagrammet fra roden"
 
-#: ../baobab/src/baobab-chart.c:212
+#: ../baobab/src/baobab-chart.c:216
 msgid "Chart model"
 msgstr "Diagrammodel"
 
-#: ../baobab/src/baobab-chart.c:213
+#: ../baobab/src/baobab-chart.c:217
 msgid "Set the model of the chart"
 msgstr "Angiv modellen for diagrammet"
 
-#: ../baobab/src/baobab-chart.c:220
+#: ../baobab/src/baobab-chart.c:224
 msgid "Chart root node"
 msgstr "Rodpunkt for diagrammet"
 
-#: ../baobab/src/baobab-chart.c:221
+#: ../baobab/src/baobab-chart.c:225
 msgid "Set the root node from the model"
 msgstr "Sæt rodpunktet fra modellen"
 
-#: ../baobab/src/baobab-chart.c:1672
+#: ../baobab/src/baobab-chart.c:1695
 msgid "Cannot create pixbuf image!"
 msgstr "Kan ikke oprette pixbuf-billede!"
 
 #. Popup the File chooser dialog
-#: ../baobab/src/baobab-chart.c:1682
+#: ../baobab/src/baobab-chart.c:1705
 msgid "Save Snapshot"
 msgstr "Gem skærmbillede"
 
-#: ../baobab/src/baobab-chart.c:1711
+#: ../baobab/src/baobab-chart.c:1734
 msgid "_Image type:"
 msgstr "_Billedtype:"
 
@@ -445,7 +449,7 @@ msgstr ""
 msgid "_Rescan"
 msgstr "_Skan igen"
 
-#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2405
+#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2406
 msgid "Folder"
 msgstr "Mappe"
 
@@ -453,7 +457,7 @@ msgstr "Mappe"
 msgid "Usage"
 msgstr "Forbrug"
 
-#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2418
+#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2419
 msgid "Size"
 msgstr "Størrelse"
 
@@ -488,7 +492,7 @@ msgid "_Open Folder"
 msgstr "_Åbn mappe"
 
 #: ../baobab/src/baobab-utils.c:375
-#: ../gsearchtool/gsearchtool-callbacks.c:1192
+#: ../gsearchtool/gsearchtool-callbacks.c:1203
 msgid "Mo_ve to Trash"
 msgstr "F_lyt til papirkurv"
 
@@ -590,8 +594,8 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:493
-#: ../gsearchtool/gsearchtool-callbacks.c:832
+#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:504
+#: ../gsearchtool/gsearchtool-callbacks.c:843
 msgid "The document does not exist."
 msgstr "Dokumentet findes ikke."
 
@@ -616,7 +620,7 @@ msgid "Cl_ear"
 msgstr "_Ryd"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:866
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:868
 msgid "_About"
 msgstr "_Om"
 
@@ -1049,7 +1053,7 @@ msgstr "Fejl under søgning"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
-#: ../logview/logview-window.c:511
+#: ../logview/logview-window.c:513
 msgid "Not found"
 msgstr "Ikke fundet"
 
@@ -1092,7 +1096,7 @@ msgid "The filename used by this dictionary source"
 msgstr "Filnavnet der benyttes af denne ordbogskilde"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:246
-#: ../gsearchtool/gsearchtool.c:2381
+#: ../gsearchtool/gsearchtool.c:2382
 msgid "Name"
 msgstr "Navn"
 
@@ -1547,7 +1551,7 @@ msgstr[1] "%d definitioner fundet"
 msgid "%s - Dictionary"
 msgstr "%s - Ordbog"
 
-#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:836
 msgid "_File"
 msgstr "_Fil"
 
@@ -1585,7 +1589,7 @@ msgstr "_Udskriv..."
 msgid "Print this document"
 msgstr "Udskriv dette dokument"
 
-#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:849
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:851
 msgid "Select _All"
 msgstr "Markér _alt"
 
@@ -1909,6 +1913,7 @@ msgid "Save in _folder:"
 msgstr "Gem i _mappen:"
 
 #: ../gnome-screenshot/gnome-screenshot.ui.h:5
+#: ../logview/data/logview-filter.ui.h:6
 msgid "_Name:"
 msgstr "_Navn:"
 
@@ -2017,7 +2022,7 @@ msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "Filen \"%s\" findes allerede. Ønsker du at erstatte den?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:84
-#: ../gsearchtool/gsearchtool-callbacks.c:1711
+#: ../gsearchtool/gsearchtool-callbacks.c:1722
 msgid "_Replace"
 msgstr "_Erstat"
 
@@ -2363,145 +2368,145 @@ msgid ""
 msgstr ""
 "Denne nøgle bestemmer om søgeværktøjets vindue er maximeret fra begyndelsen."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:183
+#: ../gsearchtool/gsearchtool-callbacks.c:194
 msgid "Could not open help document."
 msgstr "Kunne ikke åbne hjælpedokument."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:334
+#: ../gsearchtool/gsearchtool-callbacks.c:345
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "Er du sikker på at du ønsker at åbne %d dokument?"
 msgstr[1] "Er du sikker på at du ønsker at åbne %d dokumenter?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:339
-#: ../gsearchtool/gsearchtool-callbacks.c:536
+#: ../gsearchtool/gsearchtool-callbacks.c:350
+#: ../gsearchtool/gsearchtool-callbacks.c:547
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "Dette vil åbne %d separat vindue."
 msgstr[1] "Dette vil åbne %d separate vinduer."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:379
+#: ../gsearchtool/gsearchtool-callbacks.c:390
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Kunne ikke åbne dokumentet \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:408
+#: ../gsearchtool/gsearchtool-callbacks.c:419
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Kunne ikke åbne mappen \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:416
+#: ../gsearchtool/gsearchtool-callbacks.c:427
 msgid "The nautilus file manager is not running."
 msgstr "Filhåndteringen Nautilus kører ikke."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:508
+#: ../gsearchtool/gsearchtool-callbacks.c:519
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Der er ikke nogen installeret fremviser der kan vise dokumentet."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:531
+#: ../gsearchtool/gsearchtool-callbacks.c:542
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "Er du sikker på du ønsker at åbne %d mappe?"
 msgstr[1] "Er du sikker på du ønsker at åbne %d mapper?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:684
+#: ../gsearchtool/gsearchtool-callbacks.c:695
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Kunne ikke flytte \"%s\" til papirkurven."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:715
+#: ../gsearchtool/gsearchtool-callbacks.c:726
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Ønsker du at slette \"%s\" permanent?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:718
+#: ../gsearchtool/gsearchtool-callbacks.c:729
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr ""
 "Papirkurven er ikke tilgængelig. Kunne ikke flytte \"%s\" til papirkurven."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:757
+#: ../gsearchtool/gsearchtool-callbacks.c:768
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Kunne ikke slette \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:868
+#: ../gsearchtool/gsearchtool-callbacks.c:879
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Sletning af \"%s\" mislykkedes: %s."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:880
+#: ../gsearchtool/gsearchtool-callbacks.c:891
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Flytning af \"%s\" mislykkedes: %s."
 
 #. Popup menu item: Open
-#: ../gsearchtool/gsearchtool-callbacks.c:1008
-#: ../gsearchtool/gsearchtool-callbacks.c:1038
+#: ../gsearchtool/gsearchtool-callbacks.c:1019
+#: ../gsearchtool/gsearchtool-callbacks.c:1049
 msgid "_Open"
 msgstr "_Åbn"
 
 #. Popup menu item: Open with (default)
-#: ../gsearchtool/gsearchtool-callbacks.c:1063
+#: ../gsearchtool/gsearchtool-callbacks.c:1074
 #, c-format
 msgid "_Open with %s"
 msgstr "_Åbn med %s"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1097
+#: ../gsearchtool/gsearchtool-callbacks.c:1108
 #, c-format
 msgid "Open with %s"
 msgstr "Åbn med %s"
 
 #. Popup menu item: Open With
-#: ../gsearchtool/gsearchtool-callbacks.c:1129
+#: ../gsearchtool/gsearchtool-callbacks.c:1140
 msgid "Open Wit_h"
 msgstr "Åbn _med"
 
 #. Popup menu item: Open Folder
-#: ../gsearchtool/gsearchtool-callbacks.c:1174
+#: ../gsearchtool/gsearchtool-callbacks.c:1185
 msgid "Open _Folder"
 msgstr "Åbn _mappe"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1214
+#: ../gsearchtool/gsearchtool-callbacks.c:1225
 msgid "_Save Results As..."
 msgstr "_Gem resultater som..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1596
+#: ../gsearchtool/gsearchtool-callbacks.c:1607
 msgid "Save Search Results As..."
 msgstr "Gem søgeresultater som..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1627
+#: ../gsearchtool/gsearchtool-callbacks.c:1638
 msgid "Could not save document."
 msgstr "Kunne ikke gemme dokument."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1628
+#: ../gsearchtool/gsearchtool-callbacks.c:1639
 msgid "You did not select a document name."
 msgstr "Du valgte ikke et dokumentnavn."
 
 # Gad vide hvad dette er for en sætning. Måske er det could not save .txt-document to /media/cdrom
-#: ../gsearchtool/gsearchtool-callbacks.c:1658
+#: ../gsearchtool/gsearchtool-callbacks.c:1669
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Kunne ikke gemme \"%s\"-dokumentet på \"%s\"."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1692
+#: ../gsearchtool/gsearchtool-callbacks.c:1703
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokumentet \"%s\" findes allerede. Ønsker du at erstatte det?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1696
+#: ../gsearchtool/gsearchtool-callbacks.c:1707
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 "Hvis du erstatter en eksisterende fil, vil filens indhold blive overskrevet."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1761
+#: ../gsearchtool/gsearchtool-callbacks.c:1772
 msgid "The document name you selected is a folder."
 msgstr "Det valgte dokumentnavn er en mappe."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1799
+#: ../gsearchtool/gsearchtool-callbacks.c:1810
 msgid "You may not have write permissions to the document."
 msgstr "Du har muligvis ikke skriverettigheder til dokumentet."
 
@@ -2705,125 +2710,130 @@ msgstr "Følg symbolske henvisninger"
 msgid "Exclude other filesystems"
 msgstr "Ekskludér andre filsystemer"
 
-#: ../gsearchtool/gsearchtool.c:157 ../gsearchtool/gsearchtool.c:162
-#: ../gsearchtool/gsearchtool.c:171
+#: ../gsearchtool/gsearchtool.c:157
+#, fuzzy
+msgid "Show version of the application"
+msgstr "Vis programmets version"
+
+#: ../gsearchtool/gsearchtool.c:158 ../gsearchtool/gsearchtool.c:163
+#: ../gsearchtool/gsearchtool.c:172
 msgid "STRING"
 msgstr "STRENG"
 
-#: ../gsearchtool/gsearchtool.c:158
+#: ../gsearchtool/gsearchtool.c:159
 msgid "PATH"
 msgstr "STI"
 
-#: ../gsearchtool/gsearchtool.c:159
+#: ../gsearchtool/gsearchtool.c:160
 msgid "VALUE"
 msgstr "VÆRDI"
 
-#: ../gsearchtool/gsearchtool.c:163 ../gsearchtool/gsearchtool.c:164
+#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
 msgid "DAYS"
 msgstr "DAGE"
 
-#: ../gsearchtool/gsearchtool.c:165 ../gsearchtool/gsearchtool.c:166
+#: ../gsearchtool/gsearchtool.c:166 ../gsearchtool/gsearchtool.c:167
 msgid "KILOBYTES"
 msgstr "KILOBYTES"
 
-#: ../gsearchtool/gsearchtool.c:168
+#: ../gsearchtool/gsearchtool.c:169
 msgid "USER"
 msgstr "BRUGER"
 
-#: ../gsearchtool/gsearchtool.c:169
+#: ../gsearchtool/gsearchtool.c:170
 msgid "GROUP"
 msgstr "GRUPPE"
 
-#: ../gsearchtool/gsearchtool.c:172
+#: ../gsearchtool/gsearchtool.c:173
 msgid "PATTERN"
 msgstr "MØNSTER"
 
-#: ../gsearchtool/gsearchtool.c:383
+#: ../gsearchtool/gsearchtool.c:384
 msgid "A locate database has probably not been created."
 msgstr "En locate-database er sandsynligvis ikke oprettet."
 
-#: ../gsearchtool/gsearchtool.c:485
+#: ../gsearchtool/gsearchtool.c:486
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Konvertering af tegnsæt mislykkedes for \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:509
+#: ../gsearchtool/gsearchtool.c:510
 msgid "Searching..."
 msgstr "Søger..."
 
-#: ../gsearchtool/gsearchtool.c:509 ../gsearchtool/gsearchtool.c:1015
-#: ../gsearchtool/gsearchtool.c:2980
+#: ../gsearchtool/gsearchtool.c:510 ../gsearchtool/gsearchtool.c:1016
+#: ../gsearchtool/gsearchtool.c:2988
 msgid "Search for Files"
 msgstr "Søg efter filer"
 
-#: ../gsearchtool/gsearchtool.c:961 ../gsearchtool/gsearchtool.c:990
+#: ../gsearchtool/gsearchtool.c:962 ../gsearchtool/gsearchtool.c:991
 msgid "No files found"
 msgstr "Ingen filer fundet"
 
-#: ../gsearchtool/gsearchtool.c:983
+#: ../gsearchtool/gsearchtool.c:984
 msgid "(stopped)"
 msgstr "(stoppet)"
 
-#: ../gsearchtool/gsearchtool.c:989
+#: ../gsearchtool/gsearchtool.c:990
 msgid "No Files Found"
 msgstr "Ingen filer fundet"
 
-#: ../gsearchtool/gsearchtool.c:994
+#: ../gsearchtool/gsearchtool.c:995
 #, c-format
 msgid "%'d File Found"
 msgid_plural "%'d Files Found"
 msgstr[0] "%'d fil fundet"
 msgstr[1] "%'d filer fundet"
 
-#: ../gsearchtool/gsearchtool.c:998 ../gsearchtool/gsearchtool.c:1036
+#: ../gsearchtool/gsearchtool.c:999 ../gsearchtool/gsearchtool.c:1037
 #, c-format
 msgid "%'d file found"
 msgid_plural "%'d files found"
 msgstr[0] "%'d fil fundet"
 msgstr[1] "%'d filer fundet"
 
-#: ../gsearchtool/gsearchtool.c:1127
+#: ../gsearchtool/gsearchtool.c:1128
 msgid "Entry changed called for a non entry option!"
 msgstr "Det ændrede indtastningsfelt ønskede et ikke-indtastningsflag!"
 
-#: ../gsearchtool/gsearchtool.c:1287
+#: ../gsearchtool/gsearchtool.c:1288
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Angiv teksten for søgevalgmuligheden \"Navn indeholder\""
 
-#: ../gsearchtool/gsearchtool.c:1288
+#: ../gsearchtool/gsearchtool.c:1289
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Angiv teksten for søgevalgmuligheden \"Kig i mappe\""
 
-#: ../gsearchtool/gsearchtool.c:1289
+#: ../gsearchtool/gsearchtool.c:1290
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Sortér fil efter en af de følgende: \"name\", \"folder\", \"size\", \"type\" "
 "eller \"date\""
 
-#: ../gsearchtool/gsearchtool.c:1290
+#: ../gsearchtool/gsearchtool.c:1291
 msgid "Set sort order to descending, the default is ascending"
 msgstr ""
 "Lad sorteringsrækkefølgen være faldende, som standard benyttes stigende"
 
-#: ../gsearchtool/gsearchtool.c:1291
+#: ../gsearchtool/gsearchtool.c:1292
 msgid "Automatically start a search"
 msgstr "Start automatisk en søgning"
 
-#: ../gsearchtool/gsearchtool.c:1297
+#: ../gsearchtool/gsearchtool.c:1298
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Udvælg søgevalgmuligheden \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:1300
+#: ../gsearchtool/gsearchtool.c:1301
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Udvælg og sæt søgevalgmuligheden \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:1407
+#: ../gsearchtool/gsearchtool.c:1408
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Ugyldigt parameter givet til kommandolinjeparameteren \"sortby\"."
 
-#: ../gsearchtool/gsearchtool.c:1701
+#: ../gsearchtool/gsearchtool.c:1702
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2831,17 +2841,17 @@ msgstr ""
 "\n"
 "... For mange fejl til at vise ..."
 
-#: ../gsearchtool/gsearchtool.c:1715
+#: ../gsearchtool/gsearchtool.c:1716
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "Søgeresultaterne kan være ugyldige. Der opstod fejl ved søgningen."
 
-#: ../gsearchtool/gsearchtool.c:1727 ../gsearchtool/gsearchtool.c:1771
+#: ../gsearchtool/gsearchtool.c:1728 ../gsearchtool/gsearchtool.c:1772
 msgid "Show more _details"
 msgstr "Vis flere _detaljer"
 
-#: ../gsearchtool/gsearchtool.c:1757
+#: ../gsearchtool/gsearchtool.c:1758
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2849,147 +2859,152 @@ msgstr ""
 "Søgeresultaterne kan være forældede eller ugyldige. Vil du deaktivere "
 "hurtigsøgningsfaciliteten?"
 
-#: ../gsearchtool/gsearchtool.c:1782
+#: ../gsearchtool/gsearchtool.c:1783
 msgid "Disable _Quick Search"
 msgstr "Deaktivér _hurtigsøgning"
 
-#: ../gsearchtool/gsearchtool.c:1809
+#: ../gsearchtool/gsearchtool.c:1810
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Det mislykkedes at sætte proces-gruppe-id for underproces %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1834
+#: ../gsearchtool/gsearchtool.c:1835
 msgid "Error parsing the search command."
 msgstr "Fejl ved fortolkning af søgekommandoen."
 
-#: ../gsearchtool/gsearchtool.c:1867
+#: ../gsearchtool/gsearchtool.c:1868
 msgid "Error running the search command."
 msgstr "Fejl ved kørsel af søgekommandoen."
 
-#: ../gsearchtool/gsearchtool.c:1987
+#: ../gsearchtool/gsearchtool.c:1988
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Angiv en tekstværdi for søgevalgmuligheden \"%s\"."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1992
+#: ../gsearchtool/gsearchtool.c:1993
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\" i %s"
 
-#: ../gsearchtool/gsearchtool.c:1994
+#: ../gsearchtool/gsearchtool.c:1995
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Angiv en værdi i %s for søgevalgmuligheden \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:2052
+#: ../gsearchtool/gsearchtool.c:2053
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Fjern \"%s\""
 
-#: ../gsearchtool/gsearchtool.c:2053
+#: ../gsearchtool/gsearchtool.c:2054
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Klik for at fjerne søgevalgmuligheden \"%s\"."
 
-#: ../gsearchtool/gsearchtool.c:2146
+#: ../gsearchtool/gsearchtool.c:2147
 msgid "A_vailable options:"
 msgstr "T_ilgængelige indstillinger:"
 
-#: ../gsearchtool/gsearchtool.c:2175
+#: ../gsearchtool/gsearchtool.c:2176
 msgid "Available options"
 msgstr "Tilgængelige indstillinger"
 
-#: ../gsearchtool/gsearchtool.c:2176
+#: ../gsearchtool/gsearchtool.c:2177
 msgid "Select a search option from the drop-down list."
 msgstr "Udvælg en søgevalgmulighed fra rullegardins-listen."
 
-#: ../gsearchtool/gsearchtool.c:2188
+#: ../gsearchtool/gsearchtool.c:2189
 msgid "Add search option"
 msgstr "Tilføj søgevalgmulighed"
 
-#: ../gsearchtool/gsearchtool.c:2189
+#: ../gsearchtool/gsearchtool.c:2190
 msgid "Click to add the selected available search option."
 msgstr "Klik for at tilføje den udvalgte tilgængelige søgevalgmulighed."
 
-#: ../gsearchtool/gsearchtool.c:2278
+#: ../gsearchtool/gsearchtool.c:2279
 msgid "S_earch results:"
 msgstr "S_øgeresultater:"
 
-#: ../gsearchtool/gsearchtool.c:2321
+#: ../gsearchtool/gsearchtool.c:2322
 msgid "List View"
 msgstr "Listevisning"
 
-#: ../gsearchtool/gsearchtool.c:2430
+#: ../gsearchtool/gsearchtool.c:2431
 msgid "Type"
 msgstr "Type"
 
-#: ../gsearchtool/gsearchtool.c:2442
+#: ../gsearchtool/gsearchtool.c:2443
 msgid "Date Modified"
 msgstr "Ændringstidspunkt"
 
-#: ../gsearchtool/gsearchtool.c:2758
+#: ../gsearchtool/gsearchtool.c:2759
 msgid "_Name contains:"
 msgstr "_Navn indeholder:"
 
-#: ../gsearchtool/gsearchtool.c:2772 ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2773 ../gsearchtool/gsearchtool.c:2774
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr ""
 "Angiv et filnavn eller et ufuldstændigt filnavn med eller uden jokertegn."
 
-#: ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2774
 msgid "Name contains"
 msgstr "Navn indeholder"
 
-#: ../gsearchtool/gsearchtool.c:2779
+#: ../gsearchtool/gsearchtool.c:2780
 msgid "_Look in folder:"
 msgstr "_Kig i mappen:"
 
-#: ../gsearchtool/gsearchtool.c:2785
+#: ../gsearchtool/gsearchtool.c:2786
 msgid "Browse"
 msgstr "Gennemse"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Look in folder"
 msgstr "Kig i mappe"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Udvælg mappen eller enheden hvor du ønsker at begynde søgningen."
 
-#: ../gsearchtool/gsearchtool.c:2812
+#: ../gsearchtool/gsearchtool.c:2813
 msgid "Select more _options"
 msgstr "Vælg flere _indstillinger"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Select more options"
 msgstr "Vælg flere indstillinger"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Click to expand or collapse the list of available options."
 msgstr ""
 "Klik for at udvide eller sammenfolde listen af tilgængelige valgmuligheder."
 
-#: ../gsearchtool/gsearchtool.c:2845
+#: ../gsearchtool/gsearchtool.c:2846
 msgid "Click to display the help manual."
 msgstr "Klik for at få hjælp."
 
-#: ../gsearchtool/gsearchtool.c:2853
+#: ../gsearchtool/gsearchtool.c:2854
 msgid "Click to close \"Search for Files\"."
 msgstr "Klik for at lukke \"Søg efter filer\"."
 
-#: ../gsearchtool/gsearchtool.c:2879
+#: ../gsearchtool/gsearchtool.c:2880
 msgid "Click to perform a search."
 msgstr "Klik for at udføre en søgning."
 
-#: ../gsearchtool/gsearchtool.c:2880
+#: ../gsearchtool/gsearchtool.c:2881
 msgid "Click to stop a search."
 msgstr "Klik for stoppe søgningen."
 
-#: ../gsearchtool/gsearchtool.c:2971
+#: ../gsearchtool/gsearchtool.c:2973
 msgid "- the GNOME Search Tool"
 msgstr "- GNOME-søgeværktøjet"
+
+#: ../gsearchtool/gsearchtool.c:2982
+#, fuzzy, c-format
+msgid "Failed to parse command line arguments: %s\n"
+msgstr "Ugyldigt parameter givet til kommandolinjeparameteren \"sortby\"."
 
 #: ../libeggsmclient/eggdesktopfile.c:165
 #, c-format
@@ -3115,6 +3130,30 @@ msgstr "Angiver bredden af log-fremviserens hovedvindue i pixler."
 msgid "Width of the main window in pixels"
 msgstr "Bredde af hovedvinduet i pixler"
 
+#: ../logview/data/logview-filter.ui.h:1
+msgid "Background:"
+msgstr "Baggrund:"
+
+#: ../logview/data/logview-filter.ui.h:2
+msgid "Effect:"
+msgstr "Effekt:"
+
+#: ../logview/data/logview-filter.ui.h:3
+msgid "Foreground:"
+msgstr "Forgrund:"
+
+#: ../logview/data/logview-filter.ui.h:4
+msgid "Hide"
+msgstr "Skjul"
+
+#: ../logview/data/logview-filter.ui.h:5
+msgid "Highlight"
+msgstr "Fremhæv"
+
+#: ../logview/data/logview-filter.ui.h:7
+msgid "_Regular Expression:"
+msgstr "_Regulære udtryk:"
+
 #: ../logview/logview-app.c:375
 #, c-format
 msgid "Impossible to open the file %s"
@@ -3141,15 +3180,15 @@ msgstr "Det regulære udtryk er ugyldigt: %s"
 msgid "Please specify either foreground or background color!"
 msgstr "Angiv venligst enten forgrunds- eller baggrundsfarve!"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Edit filter"
 msgstr "Redigér filter"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Add new filter"
 msgstr "Tilføj nyt filter"
 
-#: ../logview/logview-filter-manager.c:505
+#: ../logview/logview-filter-manager.c:503
 msgid "Filters"
 msgstr "Filtre"
 
@@ -3213,7 +3252,7 @@ msgstr " - Gennemse og overvåg logge"
 msgid "Log Viewer"
 msgstr "Logfremviser"
 
-#: ../logview/logview-window.c:38 ../logview/logview-window.c:786
+#: ../logview/logview-window.c:38 ../logview/logview-window.c:788
 msgid "System Log Viewer"
 msgstr "Systemlog-fremviser"
 
@@ -3227,130 +3266,138 @@ msgstr "sidste opdatering: %s"
 msgid "%d lines (%s) - %s"
 msgstr "%d linjer (%s) - %s"
 
-#: ../logview/logview-window.c:341
+#: ../logview/logview-window.c:343
 msgid "Open Log"
 msgstr "Åbn log"
 
-#: ../logview/logview-window.c:380
+#: ../logview/logview-window.c:382
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Der opstod en fejl ved visning af hjælp: %s"
 
-#: ../logview/logview-window.c:496
+#: ../logview/logview-window.c:498
 msgid "Wrapped"
 msgstr "Ombrudt"
 
-#: ../logview/logview-window.c:791
+#: ../logview/logview-window.c:793
 msgid "A system log viewer for GNOME."
 msgstr "En systemlog-fremviser til GNOME."
 
-#: ../logview/logview-window.c:837
+#: ../logview/logview-window.c:839
 msgid "_Filters"
 msgstr "_Filtre"
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "_Open..."
 msgstr "_Åbn..."
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "Open a log from file"
 msgstr "Åbn en log fra fil"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "_Close"
 msgstr "_Luk"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "Close this log"
 msgstr "Luk denne log"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "Quit the log viewer"
 msgstr "Afslut logfremviseren"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "_Copy"
 msgstr "_Kopiér"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "Copy the selection"
 msgstr "Kopiér markeringen"
 
-#: ../logview/logview-window.c:849
+#: ../logview/logview-window.c:851
 msgid "Select the entire log"
 msgstr "Markér hele loggen"
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "_Find..."
 msgstr "_Søg..."
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "Find a word or phrase in the log"
 msgstr "Find et ord eller en frase i loggen"
 
-#: ../logview/logview-window.c:854
+#: ../logview/logview-window.c:856
 msgid "Bigger text size"
 msgstr "Større tekststørrelse"
 
-#: ../logview/logview-window.c:856
+#: ../logview/logview-window.c:858
 msgid "Smaller text size"
 msgstr "Mindre tekststørrelse"
 
-#: ../logview/logview-window.c:858
+#: ../logview/logview-window.c:860
 msgid "Normal text size"
 msgstr "Normal tekststørrelse"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage Filters"
 msgstr "Håndtér filtre"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage filters"
 msgstr "Håndtér filtre"
 
-#: ../logview/logview-window.c:864
+#: ../logview/logview-window.c:866
 msgid "Open the help contents for the log viewer"
 msgstr "Åbn hjælp for log-fremviseren"
 
-#: ../logview/logview-window.c:866
+#: ../logview/logview-window.c:868
 msgid "Show the about dialog for the log viewer"
 msgstr "Vis om-vinduet for log-fremvisereren"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "_Statusbar"
 msgstr "_Statusbjælke"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "Show Status Bar"
 msgstr "Vis statusbjælke"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Side _Pane"
 msgstr "Side_panel"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Show Side Pane"
 msgstr "Vis sidepanel"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Show matches only"
 msgstr "Vis kun matches"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Only show lines that match one of the given filters"
 msgstr "Vis kun linjer, der matcher ét af de givne filtre"
 
-#: ../logview/logview-window.c:1414
+#: ../logview/logview-window.c:1014
+#, c-format
+msgid "Can't read from \"%s\""
+msgstr ""
+
+#: ../logview/logview-window.c:1436
 msgid "Version: "
 msgstr "Version: "
 
-#: ../logview/logview-window.c:1521
+#: ../logview/logview-window.c:1543
 msgid "Could not open the following files:"
 msgstr "Kunne ikke åbne følgende filer:"
+
+#~ msgid "Save snapshot"
+#~ msgstr "Gem skærmbillede"
 
 #~ msgid "Close"
 #~ msgstr "Luk"
@@ -3603,843 +3650,3 @@ msgstr "Kunne ikke åbne følgende filer:"
 
 #~ msgid "_Format"
 #~ msgstr "_Formatér"
-
-# mere sigende
-#~ msgid "_Quick (only creates the filesystem)"
-#~ msgstr "_Hurtig (overskriver blot filsystemet)"
-
-#~ msgid "_Standard (adds a low-level format to the quick mode)"
-#~ msgstr "_Standard (foretager en egentlig formatering)"
-
-#~ msgid "Cannot Format"
-#~ msgstr "Kan ikke formatere"
-
-#~ msgid ""
-#~ "Neither the mke2fs nor the mkdosfs/mformat applications are installed. "
-#~ "You can't format a floppy without one of them."
-#~ msgstr ""
-#~ "Hverken programmet mke2fs eller mkdosfs/mformat er installeret. Du kan "
-#~ "ikke formatere en diskette uden et af dem."
-
-#~ msgid "Unable to open the device %s, formatting cannot continue."
-#~ msgstr "Kan ikke åbne enheden %s, formatering kan ikke fortsætte."
-
-#~ msgid ""
-#~ "The device %s is disconnected.\n"
-#~ "Please attach device to continue."
-#~ msgstr ""
-#~ "Enheden %s er ikke forbundet.\n"
-#~ "Tilkobl venligst enheden for at forsætte."
-
-#~ msgid ""
-#~ "You do not have the proper permissions to write to %s, formatting will "
-#~ "not be possible.\n"
-#~ "Contact your system administrator about getting write permissions."
-#~ msgstr ""
-#~ "Du har ikke rettigheder til at skrive til %s, formateringen kan ikke "
-#~ "udføres.\n"
-#~ "Kontakt systemadministratoren for at få skriverettigheder."
-
-#~ msgid "Cannot initialize device"
-#~ msgstr "Kan ikke klargøre enheden"
-
-#~ msgid "Unable to open any device, formatting cannot continue."
-#~ msgstr "Kan ikke nogen enhed, formatering kan ikke fortsætte."
-
-#~ msgid "/dev/floppy/0 or /dev/fd0"
-#~ msgstr "/dev/floppy/0 eller /dev/fd0"
-
-#~ msgid "Could not display help for the floppy formatter."
-#~ msgstr "Kunne ikke vise hjælpen til disketteformateringen."
-
-#~ msgid "Incorrect volume name"
-#~ msgstr "Ugyldigt delarkivnavn"
-
-#~ msgid "The volume name can't contain any blank space."
-#~ msgstr "Diskettenavnet må ikke indeholde mellemrum."
-
-#~ msgid "The device to format"
-#~ msgstr "Den enhed der skal formatteres"
-
-#~ msgid "DEVICE"
-#~ msgstr "ENHED"
-
-#~ msgid "- Floppy Formatter"
-#~ msgstr "- Disketteformatering"
-
-#~ msgid ""
-#~ "The floppy has been formatted, but <b>%d bad block</b> (out of %d) has "
-#~ "been found and marked."
-#~ msgid_plural ""
-#~ "The floppy has been formatted, but <b>%d bad blocks</b> (out of %d) have "
-#~ "been found and marked."
-#~ msgstr[0] ""
-#~ "Disketten er blevet formateret, men <b>%d ugyldig blok</b> (ud af %d) er "
-#~ "blevet fundet og markeret."
-#~ msgstr[1] ""
-#~ "Disketten er blevet formateret, men <b>%d ugyldig blokke</b> (ud af %d) "
-#~ "er blevet fundet og markeret."
-
-# "succesfully" er umuligt at oversætte meningsfyldt her, og er desuden
-# overflødigt
-#~ msgid "Floppy formatted successfully."
-#~ msgstr "Diskette formateret."
-
-#~ msgid "Floppy formatting cancelled."
-#~ msgstr "Disketteformatering afbrudt."
-
-#~ msgid "Format Progress"
-#~ msgstr "Formateringsstatus"
-
-#~ msgid "Dictionary Server"
-#~ msgstr "Ordbogsserver"
-
-#~ msgid "Grab a selected _area"
-#~ msgstr "Tag billede af et markeret _område"
-
-#~ msgid "O_pen Folder"
-#~ msgstr "Å_bn mappe"
-
-#~ msgid "Enter Password"
-#~ msgstr "Indtast kodeord"
-
-#~ msgid "Dictionary and spelling tool"
-#~ msgstr "Ordbog og staveværktøj"
-
-#~ msgid "System Log"
-#~ msgstr "Systemlog"
-
-#~ msgid "Current"
-#~ msgstr "Nuværende"
-
-#~ msgid "One file or more could not be opened"
-#~ msgstr "En eller flere filer kunne ikke åbnes"
-
-#~ msgid ""
-#~ "%s is not user readable. Either run the program as root or ask the "
-#~ "sysadmin to change the permissions on the file.\n"
-#~ msgstr ""
-#~ "%s kan ikke læses af brugere. Kør enten programmet som administrator "
-#~ "eller bed systemadministratoren om at ændre rettighederne på filen.\n"
-
-#~ msgid "%s is too big."
-#~ msgstr "%s er for stor."
-
-#~ msgid "%s could not be opened."
-#~ msgstr "Kunne ikke åbne %s."
-
-#~ msgid "%s is not a log file."
-#~ msgstr "%s er ikke en logfil."
-
-#~ msgid "Not enough memory."
-#~ msgstr "Ikke tilstrækkelig hukommelse."
-
-#~ msgid "%s cannot be opened."
-#~ msgstr "%s kan ikke åbnes."
-
-#~ msgid "_Clear"
-#~ msgstr "_Ryd"
-
-# Eller filtrér... det gør nok ingen forskel her
-#~ msgid "_Filter..."
-#~ msgstr "_Filter..."
-
-#~ msgid "Filter log"
-#~ msgstr "Filtrér log"
-
-#~ msgid "Collapse _All"
-#~ msgstr "Sammenfold _alle"
-
-#~ msgid "Collapse all the rows"
-#~ msgstr "Fold alle rækkerne sammen"
-
-#~ msgid "_Monitor"
-#~ msgstr "_Overvåg"
-
-#~ msgid "Monitor Current Log"
-#~ msgstr "Overvåg nuværende log"
-
-#~ msgid "Ca_lendar"
-#~ msgstr "Ka_lender"
-
-#~ msgid "Show Calendar Log"
-#~ msgstr "Vis kalenderlog"
-
-#~ msgid "%s (monitored) - %s"
-#~ msgstr "%s (overvåget) - %s"
-
-#~ msgid "Days"
-#~ msgstr "Dage"
-
-# Peger (subst) jf. dansk-gruppens ordliste. Nu er det måske ikke helt programmering, så hvis nogen har noget bedre så sig endelig til
-#~ msgid "Pointer towards a GSList of days for the current log."
-#~ msgstr "Peger til en GSList af dage for den aktuelle log."
-
-#~ msgid "Show System Log Viewer options"
-#~ msgstr "Vis indstillinger for systemlog-fremviseren"
-
-#~ msgid "Unable to create user interface."
-#~ msgstr "Kunne ikke oprette brugergrænseflade."
-
-#~ msgid "January"
-#~ msgstr "januar"
-
-#~ msgid "February"
-#~ msgstr "februar"
-
-#~ msgid "March"
-#~ msgstr "marts"
-
-#~ msgid "April"
-#~ msgstr "april"
-
-#~ msgid "May"
-#~ msgstr "maj"
-
-#~ msgid "June"
-#~ msgstr "juni"
-
-#~ msgid "July"
-#~ msgstr "juli"
-
-#~ msgid "August"
-#~ msgstr "august"
-
-#~ msgid "September"
-#~ msgstr "september"
-
-#~ msgid "October"
-#~ msgstr "oktober"
-
-#~ msgid "November"
-#~ msgstr "november"
-
-#~ msgid "December"
-#~ msgstr "december"
-
-#~ msgid "Invalid date"
-#~ msgstr "Ugyldig dato"
-
-#~ msgid "%x"
-#~ msgstr "%x"
-
-#~ msgid "This file cannot be monitored."
-#~ msgstr "Denne fil kan ikke overvåges."
-
-#~ msgid "File monitoring is not supported on this file system.\n"
-#~ msgstr "Filovervågning understøttes ikke på dette filsystem.\n"
-
-#~ msgid "Gnome-VFS Error.\n"
-#~ msgstr "Gnome-VFS fejl.\n"
-
-#~ msgid "Refresh graph"
-#~ msgstr "Opdatér graf"
-
-#~ msgid "Take a snapshot"
-#~ msgstr "Gem et skærmbillede"
-
-#~ msgid "Zoom 100%"
-#~ msgstr "Zoom 100%"
-
-#~ msgid "_Depth level:"
-#~ msgstr "_Dybdeniveau:"
-
-#~ msgid "_Graphical Usage Map"
-#~ msgstr "_Grafisk afbildning af forbrug"
-
-# (ja, det er et antal mapper)
-#~ msgid "_Total folders:"
-#~ msgstr "_Samlet antal mapper:"
-
-#~ msgid "Invalid UTF-8 characters"
-#~ msgstr "Ugyldige UTF-8 tegn"
-
-#~ msgid "Unlimited"
-#~ msgstr "Ubegrænset"
-
-#~ msgid "Cannot allocate memory for graphical window!"
-#~ msgstr "Kan ikke allokere hukommelse til grafisk vindue!"
-
-#~ msgid "Graphical Usage Map"
-#~ msgstr "Grafisk afbildning af forbrug"
-
-#~ msgid "\"%s\" is not a valid location"
-#~ msgstr "\"%s\" er ikke en gyldig placering"
-
-#~ msgid "Please check the spelling and try again."
-#~ msgstr "Kontrollér venligst stavningen og prøv igen."
-
-#~ msgid "%s on %s"
-#~ msgstr "%s på %s"
-
-#~ msgid "_Remove from Trash"
-#~ msgstr "F_jern fra papirkurv"
-
-#~ msgid "The folder \"%s\" was not moved to the trash."
-#~ msgstr "Mappen \"%s\" blev ikke flyttet til papirkurven."
-
-#~ msgid "Could not find a Trash folder on this system"
-#~ msgstr "Kunne ikke finde en papirkurv på dette system"
-
-#~ msgid "Delete the folder \"%s\" permanently?"
-#~ msgstr "Ønsker du at slette mappen \"%s\" permanent?"
-
-#~ msgid "Could not move the folder to the trash."
-#~ msgstr "Kunne ikke flytte mappen \"%s\" til papirkurven."
-
-#~ msgid "_Delete Folder"
-#~ msgstr "_Slet mappe"
-
-#~ msgid "Could not delete the folder \"%s\""
-#~ msgstr "Kunne ikke slette mappen \"%s\""
-
-#~ msgid "(%d:%02d:%d Remaining)"
-#~ msgstr "(%d:%02d:%d tilbage)"
-
-#~ msgid "(%d:%02d Remaining)"
-#~ msgstr "(%d:%02d tilbage)"
-
-#~ msgid "%ld of %ld"
-#~ msgstr "%ld af %ld"
-
-#~ msgid "Options for Screenshot"
-#~ msgstr "Indstillinger for skærmbillede"
-
-#~ msgid "Preparing to copy"
-#~ msgstr "Forbereder kopiering"
-
-#~ msgid "Unknown GnomeVFSXferProgressStatus %d"
-#~ msgstr "Ukendt GnomeVFSXferProgressStatus %d"
-
-#~ msgid "The GdictContext object bound to this entry"
-#~ msgstr "GdictContext-objektet bundet til dette element"
-
-#~ msgid "The database to be used to generate the completion list"
-#~ msgstr "Databasen der skal benyttes til at generere fuldførelseslisten"
-
-#~ msgid "The matching strategy to be used to generate the completion list"
-#~ msgstr "Træfningsstrategien der benyttes til at generere fuldførelseslisten"
-
-#~ msgid "%s (page %d)"
-#~ msgstr "%s (side %d)"
-
-#~ msgid "Print Preview"
-#~ msgstr "Forhåndsvisning af udskrift"
-
-#~ msgid "Analyze disk usage"
-#~ msgstr "Analysér diskforbrug"
-
-#~ msgid "Server Error"
-#~ msgstr "Serverfejl"
-
-#~ msgid ""
-#~ "A serious error occurred. Please check that your server and port are "
-#~ "correct. For reference the default server is dict.org and the port 2628"
-#~ msgstr ""
-#~ "Der opstod en alvorlig fejl. Kontrollér at serveren og porten er korrekt. "
-#~ "Standardserveren er dict.org og standardporten er 2628."
-
-#~ msgid "Connection error"
-#~ msgstr "Forbindelsesfejl"
-
-#~ msgid "Unable to perform requested operation."
-#~ msgstr "Kunne ikke udføre forespurgt handling."
-
-#~ msgid ""
-#~ "Either the server you are using is not available \n"
-#~ "or you are not connected to the Internet."
-#~ msgstr ""
-#~ "Enten er serveren du bruger, ikke tilgængelig,\n"
-#~ "eller du er ikke koblet til internettet."
-
-#~ msgid "Find"
-#~ msgstr "Find"
-
-#~ msgid "_Search for:"
-#~ msgstr "_Søg efter:"
-
-#~ msgid "Could not display help"
-#~ msgstr "Kunne ikke vise hjælp \"%s\""
-
-#~ msgid "_Dictionary"
-#~ msgstr "_Ordbog"
-
-#~ msgid "_Look Up Word"
-#~ msgstr "_Slå ord op"
-
-#~ msgid "P_references"
-#~ msgstr "_Indstillinger"
-
-#~ msgid "Configure the application"
-#~ msgstr "Konfigurér programmet"
-
-#~ msgid "View help for this application"
-#~ msgstr "Vis hjælp for dette program"
-
-#~ msgid "About this application"
-#~ msgstr "Om dette program"
-
-#~ msgid "Cu_t"
-#~ msgstr "Kli_p"
-
-#~ msgid "Cut the selection"
-#~ msgstr "Klip markeringen ud"
-
-#~ msgid "_Paste"
-#~ msgstr "_Indsæt"
-
-#~ msgid "Select everything"
-#~ msgstr "Markér alt"
-
-#~ msgid "_Spellings"
-#~ msgstr "_Stavemåder"
-
-#~ msgid "View alternate spellings"
-#~ msgstr "Vis alternative stavemåder"
-
-#~ msgid "On a Web Site"
-#~ msgstr "På en hjemmeside"
-
-#~ msgid "Word Entry"
-#~ msgstr "Ordindtastning"
-
-#~ msgid "Enter a Word or select one from the list below"
-#~ msgstr "Indtast et ord eller vælg et fra listen nedenfor"
-
-#~ msgid "Look Up for a Word"
-#~ msgstr "Slå et ord op"
-
-#~ msgid "Looking up word..."
-#~ msgstr "Slår ord op..."
-
-#~ msgid "String not found"
-#~ msgstr "Tekst ikke fundet"
-
-#~ msgid "Error invoking query"
-#~ msgstr "Fejl ved udførsel af forespørgsel"
-
-#~ msgid "De_fault Server"
-#~ msgstr "For_valgt server"
-
-#~ msgid "Reset server to default"
-#~ msgstr "Nulstil servernavn til standardnavn"
-
-#~ msgid "Reset port to default"
-#~ msgstr "Nulstil port til standardværdi"
-
-#~ msgid "Server"
-#~ msgstr "Server"
-
-#~ msgid "Enter the Server Name"
-#~ msgstr "Indtast servernavnet"
-
-#~ msgid "Port Entry"
-#~ msgstr "Portindtastning"
-
-#~ msgid "Enter the Port Number"
-#~ msgstr "Indtast portnummeret"
-
-#~ msgid "_Database:"
-#~ msgstr "_Database:"
-
-#~ msgid "F_ont:"
-#~ msgstr "_Skrifttype:"
-
-#~ msgid "Web Site"
-#~ msgstr "Hjemmeside"
-
-#~ msgid "Search Address"
-#~ msgstr "Søg på adresse"
-
-#~ msgid "Web Sites"
-#~ msgstr "Hjemmesider"
-
-#~ msgid "Default Strategy"
-#~ msgstr "Forvalgt strategi"
-
-#~ msgid "Spellings"
-#~ msgstr "Stavemåder"
-
-#~ msgid "Spell-checking..."
-#~ msgstr "Kontrollerer stavning..."
-
-#~ msgid ""
-#~ "The search strategy to use. This is dependant on the search strategy that "
-#~ "the dictionary server supports. The default strategy is 'lev' - Match "
-#~ "words within Levenshtein distance one"
-#~ msgstr ""
-#~ "Den søgningsstrategi der skal benyttes. Dette afhænger af hvilke "
-#~ "strategier ordbogsserveren understøtter. Den forvalgte strategi er 'lev' "
-#~ "- find ord inden for Levenshtein-afstanden 1."
-
-#~ msgid "There was an error displaying the help pages for this dialog:"
-#~ msgstr "Der opstod en fejl ved visning af hjælp for dette vindue:"
-
-#~ msgid "<b>Options</b>"
-#~ msgstr "<b>Indstillinger</b>"
-
-#~ msgid "<b>Preview</b>"
-#~ msgstr "<b>Forhåndsvisning</b>"
-
-#~ msgid "Web directory"
-#~ msgstr "Webkatalog"
-
-#~ msgid "Find files, folders, and documents on your computer"
-#~ msgstr "Find filer, mapper og dokumenter på din maskine"
-
-#~ msgid "Action Database"
-#~ msgstr "Handlingsdatabase"
-
-#~ msgid "Actions"
-#~ msgstr "Handlinger"
-
-#~ msgid "_Add"
-#~ msgstr "_Tilføj"
-
-#~ msgid "Add an action"
-#~ msgstr "Tilføj en handling"
-
-#~ msgid "Edit an action"
-#~ msgstr "Redigér en handling"
-
-#~ msgid "_Remove"
-#~ msgstr "_Fjern"
-
-#~ msgid "Remove an action"
-#~ msgstr "Fjern en handling"
-
-#~ msgid "Cannot open action data base <%s>! Open failed."
-#~ msgstr "Kan ikke åbne handlingsdatabasen <%s>! Åbning mislykkedes."
-
-#~ msgid "Error parsing actions data base"
-#~ msgstr "Fejl under fortolkning af handlingsdatabase"
-
-#~ msgid "Can't write to actions database!"
-#~ msgstr "Kan ikke skrive til handlingsdatabase!"
-
-#~ msgid "<empty>"
-#~ msgstr "<tom>"
-
-#~ msgid "log name regexp"
-#~ msgstr "reg. udtryk til log-navn"
-
-#~ msgid "process regexp"
-#~ msgstr "reg. udtryk til proces"
-
-#~ msgid "message regexp"
-#~ msgstr "reg. udtryk til besked"
-
-#~ msgid "action to execute when regexps are TRUE"
-#~ msgstr "handling at udføre når reg. udtryk findes"
-
-#~ msgid "description"
-#~ msgstr "beskrivelse"
-
-#~ msgid "Edit Action"
-#~ msgstr "Redigér handling"
-
-#~ msgid "_Tag:"
-#~ msgstr "_Mærke:"
-
-#~ msgid "Tag that identifies the log file."
-#~ msgstr "Mærke der indentificerer logfilen."
-
-#~ msgid "Regular expression that will match the log name."
-#~ msgstr "Regulært udtryk der passer til lognavnet."
-
-#~ msgid "_Process:"
-#~ msgstr "_Proces:"
-
-#~ msgid "Regular expression that will match process part of message."
-#~ msgstr "Regulært udtryk der passer til procesdelen af beskeden."
-
-#~ msgid "_Message:"
-#~ msgstr "_Besked:"
-
-#~ msgid "_Action:"
-#~ msgstr "_Handling:"
-
-#~ msgid ""
-#~ "Action that will be executed if all previous regexps. are matched. This "
-#~ "is executed by a system command: system (action)."
-#~ msgstr ""
-#~ "Handling som udføres hvis alle foregående regulære udtryk passer. Dette "
-#~ "udføres med systemkommandoen: system(handling)."
-
-#~ msgid ""
-#~ "tag: [%s]\n"
-#~ "log_name: [%s]\n"
-#~ "process: [%s]\n"
-#~ "message: [%s]\n"
-#~ "description: [%s]\n"
-#~ "action: [%s]\n"
-#~ msgstr ""
-#~ "tag: [%s]\n"
-#~ "log_navn: [%s]\n"
-#~ "proces: [%s]\n"
-#~ "besked: [%s]\n"
-#~ "beskrivelse: [%s]\n"
-#~ "handling: [%s]\n"
-
-#~ msgid "Cannot open regexp data base <%s>! Open failed."
-#~ msgstr ""
-#~ "Kan ikke åbne databasen med regulære udtryk <%s>! Åbning mislykkedes."
-
-#~ msgid "Cannot open description data base <%s>! Open failed."
-#~ msgstr "Kan ikke åbne beskrivelsesdatabasen <%s>! Åbning mislykkedes."
-
-#~ msgid "Properties"
-#~ msgstr "Egenskaber"
-
-#~ msgid "%ld byte"
-#~ msgid_plural "%ld bytes"
-#~ msgstr[0] "%ld byte"
-#~ msgstr[1] "%ld byte"
-
-#~ msgid "<b>Size</b>: %s"
-#~ msgstr "<b>Størrelse</b>: %s"
-
-#~ msgid "<b>Modified</b>: %s"
-#~ msgstr "<b>Ændret</b>: %s"
-
-#~ msgid "<b>Start Date</b>: %s"
-#~ msgstr "<b>Startdato</b>: %s"
-
-#~ msgid "<b>Number of Lines</b>: %ld"
-#~ msgstr "<b>Antal linjer</b>: %ld"
-
-#~ msgid "Last Modified: %s, %d lines"
-#~ msgstr "Sidst ændret: %s, %d linjer"
-
-#~ msgid "%B %e"
-#~ msgstr "%e. %B"
-
-#~ msgid "%X"
-#~ msgstr "%X"
-
-#~ msgid "ReadLogStats: out of memory"
-#~ msgstr "ReadLogStats: løbet tør for hukommelse"
-
-#~ msgid "_Log"
-#~ msgstr "_Log"
-
-#~ msgid "_Properties"
-#~ msgstr "_Egenskaber"
-
-#~ msgid "Show Log Properties"
-#~ msgstr "Vis logegenskaber"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiér"
-
-#~ msgid "Find pattern in logs"
-#~ msgstr "Find mønstre i loggene"
-
-#~ msgid "Date"
-#~ msgstr "Dato"
-
-#~ msgid "Process"
-#~ msgstr "Proces"
-
-#~ msgid "Entry Detail"
-#~ msgstr "Detaljer"
-
-#~ msgid "%B %e %X"
-#~ msgstr "%e. %B %X"
-
-#~ msgid "Cannot initialize bonobo."
-#~ msgstr "Kan ikke klargøre Bonobo."
-
-#~ msgid "_Word:"
-#~ msgstr "_Ord:"
-
-#~ msgid "Lookup done"
-#~ msgstr "Opslag fuldført"
-
-#~ msgid "Spell check done"
-#~ msgstr "Stavekontrol fuldført"
-
-#~ msgid "Gnome Dictionary"
-#~ msgstr "Ordbog"
-
-#~ msgid "_Entry Detail"
-#~ msgstr "_Detaljer"
-
-#~ msgid "Show Entry Detail"
-#~ msgstr "Vis detaljer"
-
-#~ msgid "'%s' entry"
-#~ msgstr "\"%s\"-indtastningsfelt"
-
-#~ msgid "Enter a value for search rule"
-#~ msgstr "Indtast en værdi for søgereglen"
-
-#~ msgid "Click to Remove the '%s' Rule"
-#~ msgstr "Klik for at fjerne reglen '%s'"
-
-#~ msgid "Search Rules Menu"
-#~ msgstr "Søgeregelmenu"
-
-#~ msgid "Enter the file name you want to search."
-#~ msgstr "Indtast filnavnet du ønsker at søge efter."
-
-#~ msgid "Name Contains Entry"
-#~ msgstr "Navn indeholder-indtastning"
-
-#~ msgid "Click to Start the search"
-#~ msgstr "Klik for at starte søgningen"
-
-#~ msgid "<span weight=\"bold\">Filesystem Settings</span>"
-#~ msgstr "<span weight=\"bold\">Indstillinger for filsystem</span>"
-
-#~ msgid "<span weight=\"bold\">Formatting Mode</span>"
-#~ msgstr "<span weight=\"bold\">Formateringsmåde</span>"
-
-#~ msgid "<span weight=\"bold\">Physical Settings</span>"
-#~ msgstr "<span weight=\"bold\">Fysiske indstillinger</span>"
-
-#~ msgid "_Show Dictionary"
-#~ msgstr "_Vis ordbog"
-
-#~ msgid "Check word spelling"
-#~ msgstr "Kontrollér ordets stavning"
-
-#~ msgid "Smart _lookup"
-#~ msgstr "Smart _opslag"
-
-#~ msgid "D_efault strategy:"
-#~ msgstr "_Forvalgt strategi:"
-
-#~ msgid "Enter a word to know the spelling"
-#~ msgstr "Indtast et ord for at få oplyst stavningen"
-
-#~ msgid "Click to do the spell check"
-#~ msgstr "Klik for at foretage stavekontrol"
-
-#~ msgid "Check Spelling"
-#~ msgstr "Kontrollér stavning"
-
-#~ msgid "Search Strategy"
-#~ msgstr "Søgningsstrategi"
-
-#~ msgid "Select Size At Most"
-#~ msgstr "Udvælg størrelse højst"
-
-#~ msgid "Image/label border"
-#~ msgstr "Billed-/etiketkant"
-
-#~ msgid "Width of border around the label and image in the alert dialog"
-#~ msgstr ""
-#~ "Bredden af kanten rundt om etiketten og billedet i meddelelsesvinduet"
-
-#~ msgid "Alert Type"
-#~ msgstr "Meddelelsestype"
-
-#~ msgid "The type of alert"
-#~ msgstr "Meddelelsestypen"
-
-#~ msgid "Alert Buttons"
-#~ msgstr "Knapper"
-
-#~ msgid "The buttons shown in the alert dialog"
-#~ msgstr "De knapper der vises i meddelelsesvinduet"
-
-#~ msgid "Open the specified log."
-#~ msgstr "Åbn den anførte log."
-
-#~ msgid "Size:"
-#~ msgstr "Størrelse:"
-
-#~ msgid "<No log loaded>"
-#~ msgstr "<Ingen log indlæst>"
-
-#~ msgid "No log files to open"
-#~ msgstr "Ingen logfiler at åbne"
-
-#~ msgid "Date:"
-#~ msgstr "Dato:"
-
-#~ msgid "Process:"
-#~ msgstr "Proces:"
-
-#~ msgid "Message:"
-#~ msgstr "Besked:"
-
-#~ msgid "Log Line Details"
-#~ msgstr "Loglinjedetaljer"
-
-#~ msgid "Accessories"
-#~ msgstr "Tilbehør"
-
-#~ msgid "Cesar Miquel (miquel@df.uba.ar)"
-#~ msgstr "Cesar Miquel (miquel@df.uba.ar)"
-
-#~ msgid "S_witch Log"
-#~ msgstr "S_kift log"
-
-#~ msgid "Switch between already opened logs"
-#~ msgstr "Skift mellem allerede åbne logfiler"
-
-#~ msgid "Close all Log files"
-#~ msgstr "Luk alle logfiler"
-
-#~ msgid "Too many open logs. Close one and try again"
-#~ msgstr "For mange åbne logfiler. Luk en og prøv igen"
-
-#~ msgid "Ac_tions..."
-#~ msgstr "_Handlinger..."
-
-#~ msgid "_Select logs to monitor:"
-#~ msgstr "_Udvælg logfiler at overvåge:"
-
-#~ msgid "Add logs to monitor"
-#~ msgstr "Tilføj logfiler at overvåge"
-
-#~ msgid "Remove logs from monitor"
-#~ msgstr "Fjern logfiler fra overvågning"
-
-#~ msgid "Too many logs to monitor. Remove one and try again"
-#~ msgstr "For mange logfiler til at overvåge. Luk en og prøv igen."
-
-#~ msgid "tmp_list is NULL\n"
-#~ msgstr "tmp_list er NULL\n"
-
-#~ msgid "Monitoring Logs..."
-#~ msgstr "Overvåger logfiler..."
-
-#~ msgid "TOUCHED!!\n"
-#~ msgstr "ÆNDRET!\n"
-
-#~ msgid "Look in Folder Entry"
-#~ msgstr "Kig i mappe-indtastning"
-
-#~ msgid "Search your disk for files"
-#~ msgstr "Søg efter filer på disken"
-
-#~ msgid ""
-#~ "While searching the following errors were reported.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Under søgningen bliv de følgende fejl rapporteret.\n"
-#~ "\n"
-
-#~ msgid "Search Rule Value Entry"
-#~ msgstr "Søgeregelværdi"
-
-#~ msgid "Etymology:"
-#~ msgstr "Etymologi:"
-
-#~ msgid "Part of speech:"
-#~ msgstr "Del af tale:"
-
-#~ msgid "Example:"
-#~ msgstr "Eksempel:"
-
-#~ msgid "Main body:"
-#~ msgstr "Hovedkrop:"
-
-#~ msgid "Cross-reference:"
-#~ msgstr "Krydsreference:"
-
-#~ msgid "Floppy formatter"
-#~ msgstr "Disketteformatering"
