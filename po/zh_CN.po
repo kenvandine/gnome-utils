@@ -13,9 +13,9 @@ msgstr ""
 "Project-Id-Version: gnome-utils\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "utils&component=general\n"
-"POT-Creation-Date: 2009-09-06 06:35+0000\n"
-"PO-Revision-Date: 2009-09-07 20:45+0800\n"
-"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
+"POT-Creation-Date: 2009-11-28 14:53+0000\n"
+"PO-Revision-Date: 2009-11-30 22:24+0800\n"
+"Last-Translator: Tao Wei <weitao1979@gmail.com>\n"
 "Language-Team: zh_CN <i18n-translation@lists.linux.net.cn>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,12 +117,12 @@ msgstr "全部折叠(_C)"
 
 #. Help menu
 #: ../baobab/data/baobab-main-window.ui.h:20
-#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:864
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:866
 msgid "_Contents"
 msgstr "目录(_C)"
 
 #: ../baobab/data/baobab-main-window.ui.h:21
-#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:835
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:837
 msgid "_Edit"
 msgstr "编辑(_E)"
 
@@ -132,7 +132,7 @@ msgstr "全部展开(_E)"
 
 #: ../baobab/data/baobab-main-window.ui.h:23
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:838
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:840
 msgid "_Help"
 msgstr "帮助(_H)"
 
@@ -141,12 +141,12 @@ msgid "_Toolbar"
 msgstr "工具栏(_T)"
 
 #: ../baobab/data/baobab-main-window.ui.h:25
-#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:836
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:838
 msgid "_View"
 msgstr "查看(_V)"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of uri for partitions to be excluded from scanning."
+msgid "A list of URIs for partitions to be excluded from scanning."
 msgstr "列出要在扫描中排除的分区 URI。"
 
 #: ../baobab/data/baobab.schemas.in.h:2
@@ -154,7 +154,7 @@ msgid "Enable monitoring of home directory"
 msgstr "启用主目录的监视"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions uris"
+msgid "Excluded partitions URIs"
 msgstr "排除的分区 URI"
 
 #: ../baobab/data/baobab.schemas.in.h:4
@@ -178,132 +178,132 @@ msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "主窗口底部的状态栏是否可见。"
 
 #: ../baobab/data/baobab.schemas.in.h:9
-msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgid "Whether the subfolder tooltips of the selected folder are drawn."
 msgstr "是否绘制选中文件夹的子文件夹工具提示。"
 
 #: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "主窗口中的工具栏是否可见。"
 
-#: ../baobab/src/baobab.c:119 ../baobab/src/baobab.c:297
+#: ../baobab/src/baobab.c:139 ../baobab/src/baobab.c:320
 msgid "Scanning..."
 msgstr "正在扫描..."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:181 ../baobab/src/baobab.c:239
+#: ../baobab/src/baobab.c:204 ../baobab/src/baobab.c:262
 #: ../baobab/src/callbacks.c:264
 msgid "Calculating percentage bars..."
 msgstr "正在计算百分比条..."
 
-#: ../baobab/src/baobab.c:191 ../baobab/src/baobab.c:1096
+#: ../baobab/src/baobab.c:214 ../baobab/src/baobab.c:1163
 #: ../baobab/src/callbacks.c:268
 msgid "Ready"
 msgstr "就绪"
 
-#: ../baobab/src/baobab.c:333
+#: ../baobab/src/baobab.c:356
 msgid "Total filesystem capacity"
 msgstr "文件系统总容量"
 
-#: ../baobab/src/baobab.c:355
+#: ../baobab/src/baobab.c:378
 msgid "Total filesystem usage"
 msgstr "文件系统总用量"
 
-#: ../baobab/src/baobab.c:396
+#: ../baobab/src/baobab.c:419
 msgid "contains hardlinks for:"
 msgstr "包含硬链接："
 
-#: ../baobab/src/baobab.c:405
+#: ../baobab/src/baobab.c:428
 #, c-format
-msgid "% 5d item"
-msgid_plural "% 5d items"
+msgid "%5d item"
+msgid_plural "%5d items"
 msgstr[0] "% 5d 项"
 
-#: ../baobab/src/baobab.c:756
+#: ../baobab/src/baobab.c:779
 msgid "Could not initialize monitoring"
 msgstr "无法初始化监视"
 
-#: ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab.c:780
 msgid "Changes to your home folder will not be monitored."
 msgstr "对主目录的更改无法监视。"
 
-#: ../baobab/src/baobab.c:864
+#: ../baobab/src/baobab.c:887
 msgid "Move to parent folder"
 msgstr "移动到父文件夹"
 
-#: ../baobab/src/baobab.c:868
+#: ../baobab/src/baobab.c:891
 msgid "Zoom in"
 msgstr "放大"
 
-#: ../baobab/src/baobab.c:872
+#: ../baobab/src/baobab.c:895
 msgid "Zoom out"
 msgstr "缩小"
 
-#: ../baobab/src/baobab.c:876
-msgid "Save snapshot"
+#: ../baobab/src/baobab.c:899
+msgid "Save screenshot"
 msgstr "保存抓图"
 
-#: ../baobab/src/baobab.c:924
+#: ../baobab/src/baobab.c:985
 msgid "View as Rings Chart"
 msgstr "查看为圆环图"
 
-#: ../baobab/src/baobab.c:926
+#: ../baobab/src/baobab.c:987
 msgid "View as Treemap Chart"
 msgstr "查看为树形图"
 
-#: ../baobab/src/baobab.c:1019
+#: ../baobab/src/baobab.c:1086
 msgid "Show version"
 msgstr "显示版本号"
 
-#: ../baobab/src/baobab.c:1020
+#: ../baobab/src/baobab.c:1087
 msgid "[DIRECTORY]"
 msgstr "[目录]"
 
-#: ../baobab/src/baobab.c:1050
+#: ../baobab/src/baobab.c:1117
 msgid "Too many arguments. Only one directory can be specified."
 msgstr "参数太多，只可以指定一个目录。"
 
-#: ../baobab/src/baobab.c:1068
+#: ../baobab/src/baobab.c:1135
 msgid "Could not detect any mount point."
 msgstr "无法检测到任何挂载点。"
 
-#: ../baobab/src/baobab.c:1071
+#: ../baobab/src/baobab.c:1138
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "没有挂载点，无法分析磁盘使用情况。"
 
-#: ../baobab/src/baobab-chart.c:202
+#: ../baobab/src/baobab-chart.c:206
 msgid "Maximum depth"
 msgstr "最大深度"
 
-#: ../baobab/src/baobab-chart.c:203
+#: ../baobab/src/baobab-chart.c:207
 msgid "The maximum depth drawn in the chart from the root"
 msgstr "从根节点开始的最大深度"
 
-#: ../baobab/src/baobab-chart.c:212
+#: ../baobab/src/baobab-chart.c:216
 msgid "Chart model"
 msgstr "图表模型"
 
-#: ../baobab/src/baobab-chart.c:213
+#: ../baobab/src/baobab-chart.c:217
 msgid "Set the model of the chart"
 msgstr "设定图表的模型"
 
-#: ../baobab/src/baobab-chart.c:220
+#: ../baobab/src/baobab-chart.c:224
 msgid "Chart root node"
 msgstr "图表根节点"
 
-#: ../baobab/src/baobab-chart.c:221
+#: ../baobab/src/baobab-chart.c:225
 msgid "Set the root node from the model"
 msgstr "设定模型的根节点"
 
-#: ../baobab/src/baobab-chart.c:1672
+#: ../baobab/src/baobab-chart.c:1695
 msgid "Cannot create pixbuf image!"
 msgstr "无法创建像素图图像！"
 
 #. Popup the File chooser dialog
-#: ../baobab/src/baobab-chart.c:1682
+#: ../baobab/src/baobab-chart.c:1705
 msgid "Save Snapshot"
 msgstr "保存抓图"
 
-#: ../baobab/src/baobab-chart.c:1711
+#: ../baobab/src/baobab-chart.c:1734
 msgid "_Image type:"
 msgstr "图像类型(_I)："
 
@@ -431,7 +431,7 @@ msgstr "您主目录的内容已经更改。选择重新扫描可以更新磁盘
 msgid "_Rescan"
 msgstr "重新扫描(_R)"
 
-#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2405
+#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2406
 msgid "Folder"
 msgstr "文件夹"
 
@@ -439,7 +439,7 @@ msgstr "文件夹"
 msgid "Usage"
 msgstr "用量"
 
-#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2418
+#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2419
 msgid "Size"
 msgstr "大小"
 
@@ -474,7 +474,7 @@ msgid "_Open Folder"
 msgstr "打开文件夹(_O)"
 
 #: ../baobab/src/baobab-utils.c:375
-#: ../gsearchtool/gsearchtool-callbacks.c:1192
+#: ../gsearchtool/gsearchtool-callbacks.c:1203
 msgid "Mo_ve to Trash"
 msgstr "移动到回收站(_V)"
 
@@ -563,8 +563,8 @@ msgstr ""
 "Wang Li <charlesw1234@163.com>\n"
 "Funda Wang <fundawang@linux.net.cn>"
 
-#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:493
-#: ../gsearchtool/gsearchtool-callbacks.c:832
+#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:504
+#: ../gsearchtool/gsearchtool-callbacks.c:843
 msgid "The document does not exist."
 msgstr "文档不存在。"
 
@@ -589,7 +589,7 @@ msgid "Cl_ear"
 msgstr "清除(_E)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:866
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:868
 msgid "_About"
 msgstr "关于(_A)"
 
@@ -1003,7 +1003,7 @@ msgstr "匹配时出错"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
-#: ../logview/logview-window.c:511
+#: ../logview/logview-window.c:513
 msgid "Not found"
 msgstr "未找到"
 
@@ -1046,7 +1046,7 @@ msgid "The filename used by this dictionary source"
 msgstr "此字典源所使用的文件名"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:246
-#: ../gsearchtool/gsearchtool.c:2381
+#: ../gsearchtool/gsearchtool.c:2382
 msgid "Name"
 msgstr "名称"
 
@@ -1496,7 +1496,7 @@ msgstr[0] "找到了 %d 个定义"
 msgid "%s - Dictionary"
 msgstr "%s - 字典"
 
-#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:836
 msgid "_File"
 msgstr "文件(_F)"
 
@@ -1533,7 +1533,7 @@ msgstr "打印(_P)..."
 msgid "Print this document"
 msgstr "打印此文档"
 
-#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:849
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:851
 msgid "Select _All"
 msgstr "全选(_A)"
 
@@ -1855,6 +1855,7 @@ msgid "Save in _folder:"
 msgstr "保存于文件夹(_F)："
 
 #: ../gnome-screenshot/gnome-screenshot.ui.h:5
+#: ../logview/data/logview-filter.ui.h:6
 msgid "_Name:"
 msgstr "名称(_N)："
 
@@ -1956,7 +1957,7 @@ msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "文件“%s”已经存在。您想要替换吗？"
 
 #: ../gnome-screenshot/screenshot-xfer.c:84
-#: ../gsearchtool/gsearchtool-callbacks.c:1711
+#: ../gsearchtool/gsearchtool-callbacks.c:1722
 msgid "_Replace"
 msgstr "替换(_R)"
 
@@ -2258,139 +2259,139 @@ msgid ""
 "This key determines if the search tool window starts in a maximized state."
 msgstr "此键决定了是否禁止搜索工具是否以最大化状态启动。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:183
+#: ../gsearchtool/gsearchtool-callbacks.c:194
 msgid "Could not open help document."
 msgstr "无法打开帮助文档。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:334
+#: ../gsearchtool/gsearchtool-callbacks.c:345
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "您确定想要打开 %d 个文档吗？"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:339
-#: ../gsearchtool/gsearchtool-callbacks.c:536
+#: ../gsearchtool/gsearchtool-callbacks.c:350
+#: ../gsearchtool/gsearchtool-callbacks.c:547
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "这样将打开 %d 个单独的文件夹。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:379
+#: ../gsearchtool/gsearchtool-callbacks.c:390
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "无法打开文档“%s”。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:408
+#: ../gsearchtool/gsearchtool-callbacks.c:419
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "无法打开文件夹“%s”。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:416
+#: ../gsearchtool/gsearchtool-callbacks.c:427
 msgid "The nautilus file manager is not running."
 msgstr "nautilus 文件管理器没有运行。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:508
+#: ../gsearchtool/gsearchtool-callbacks.c:519
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "没有安装能显示文档的查看器。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:531
+#: ../gsearchtool/gsearchtool-callbacks.c:542
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "您确定想要打开 %d 个文件夹吗？"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:684
+#: ../gsearchtool/gsearchtool-callbacks.c:695
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "无法将“%s”移动到回收站。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:715
+#: ../gsearchtool/gsearchtool-callbacks.c:726
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "您想要永久删除“%s”吗？"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:718
+#: ../gsearchtool/gsearchtool-callbacks.c:729
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "回收站不可用。无法将“%s”移动到回收站。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:757
+#: ../gsearchtool/gsearchtool-callbacks.c:768
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "无法删除“%s”。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:868
+#: ../gsearchtool/gsearchtool-callbacks.c:879
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "删除“%s”失败：%s。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:880
+#: ../gsearchtool/gsearchtool-callbacks.c:891
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "移动“%s”失败：%s。"
 
 #. Popup menu item: Open
-#: ../gsearchtool/gsearchtool-callbacks.c:1008
-#: ../gsearchtool/gsearchtool-callbacks.c:1038
+#: ../gsearchtool/gsearchtool-callbacks.c:1019
+#: ../gsearchtool/gsearchtool-callbacks.c:1049
 msgid "_Open"
 msgstr "打开(_O)"
 
 #. Popup menu item: Open with (default)
-#: ../gsearchtool/gsearchtool-callbacks.c:1063
+#: ../gsearchtool/gsearchtool-callbacks.c:1074
 #, c-format
 msgid "_Open with %s"
 msgstr "用 %s 打开（_O）"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1097
+#: ../gsearchtool/gsearchtool-callbacks.c:1108
 #, c-format
 msgid "Open with %s"
 msgstr "用 %s 打开"
 
 #. Popup menu item: Open With
-#: ../gsearchtool/gsearchtool-callbacks.c:1129
+#: ../gsearchtool/gsearchtool-callbacks.c:1140
 msgid "Open Wit_h"
 msgstr "打开方式(_H)"
 
 #. Popup menu item: Open Folder
-#: ../gsearchtool/gsearchtool-callbacks.c:1174
+#: ../gsearchtool/gsearchtool-callbacks.c:1185
 msgid "Open _Folder"
 msgstr "打开文件夹（_F）"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1214
+#: ../gsearchtool/gsearchtool-callbacks.c:1225
 msgid "_Save Results As..."
 msgstr "结果另存为(_S)..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1596
+#: ../gsearchtool/gsearchtool-callbacks.c:1607
 msgid "Save Search Results As..."
 msgstr "搜索结果另存为..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1627
+#: ../gsearchtool/gsearchtool-callbacks.c:1638
 msgid "Could not save document."
 msgstr "无法保存文档。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1628
+#: ../gsearchtool/gsearchtool-callbacks.c:1639
 msgid "You did not select a document name."
 msgstr "您没有选择文档名称。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1658
+#: ../gsearchtool/gsearchtool-callbacks.c:1669
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "无法将文档“%s”保存到 %s。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1692
+#: ../gsearchtool/gsearchtool-callbacks.c:1703
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "文档“%s”已经存在。您想要替换吗？"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1696
+#: ../gsearchtool/gsearchtool-callbacks.c:1707
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "如果您替换已有文件，该文件中的全部内容都将被覆盖。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1761
+#: ../gsearchtool/gsearchtool-callbacks.c:1772
 msgid "The document name you selected is a folder."
 msgstr "您选择的文档名是文件夹。"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1799
+#: ../gsearchtool/gsearchtool-callbacks.c:1810
 msgid "You may not have write permissions to the document."
 msgstr "您可能没有对文档的写权限。"
 
@@ -2592,120 +2593,124 @@ msgstr "跟随符号连接"
 msgid "Exclude other filesystems"
 msgstr "排除其它文件系统"
 
-#: ../gsearchtool/gsearchtool.c:157 ../gsearchtool/gsearchtool.c:162
-#: ../gsearchtool/gsearchtool.c:171
+#: ../gsearchtool/gsearchtool.c:157
+msgid "Show version of the application"
+msgstr "显示应用程序版本"
+
+#: ../gsearchtool/gsearchtool.c:158 ../gsearchtool/gsearchtool.c:163
+#: ../gsearchtool/gsearchtool.c:172
 msgid "STRING"
 msgstr "字符串"
 
-#: ../gsearchtool/gsearchtool.c:158
+#: ../gsearchtool/gsearchtool.c:159
 msgid "PATH"
 msgstr "路径"
 
-#: ../gsearchtool/gsearchtool.c:159
+#: ../gsearchtool/gsearchtool.c:160
 msgid "VALUE"
 msgstr "值"
 
-#: ../gsearchtool/gsearchtool.c:163 ../gsearchtool/gsearchtool.c:164
+#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
 msgid "DAYS"
 msgstr "天数"
 
-#: ../gsearchtool/gsearchtool.c:165 ../gsearchtool/gsearchtool.c:166
+#: ../gsearchtool/gsearchtool.c:166 ../gsearchtool/gsearchtool.c:167
 msgid "KILOBYTES"
 msgstr "千字节"
 
-#: ../gsearchtool/gsearchtool.c:168
+#: ../gsearchtool/gsearchtool.c:169
 msgid "USER"
 msgstr "用户"
 
-#: ../gsearchtool/gsearchtool.c:169
+#: ../gsearchtool/gsearchtool.c:170
 msgid "GROUP"
 msgstr "组"
 
-#: ../gsearchtool/gsearchtool.c:172
+#: ../gsearchtool/gsearchtool.c:173
 msgid "PATTERN"
 msgstr "模式"
 
-#: ../gsearchtool/gsearchtool.c:383
+#: ../gsearchtool/gsearchtool.c:384
 msgid "A locate database has probably not been created."
 msgstr "没有正确创建过 locate 数据库。"
 
-#: ../gsearchtool/gsearchtool.c:485
+#: ../gsearchtool/gsearchtool.c:486
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "“%s”的字符集转换失败"
 
-#: ../gsearchtool/gsearchtool.c:509
+#: ../gsearchtool/gsearchtool.c:510
 msgid "Searching..."
 msgstr "正在搜索..."
 
-#: ../gsearchtool/gsearchtool.c:509 ../gsearchtool/gsearchtool.c:1015
-#: ../gsearchtool/gsearchtool.c:2980
+#: ../gsearchtool/gsearchtool.c:510 ../gsearchtool/gsearchtool.c:1016
+#: ../gsearchtool/gsearchtool.c:2988
 msgid "Search for Files"
 msgstr "搜索文件"
 
-#: ../gsearchtool/gsearchtool.c:961 ../gsearchtool/gsearchtool.c:990
+#: ../gsearchtool/gsearchtool.c:962 ../gsearchtool/gsearchtool.c:991
 msgid "No files found"
 msgstr "未找到文件"
 
-#: ../gsearchtool/gsearchtool.c:983
+#: ../gsearchtool/gsearchtool.c:984
 msgid "(stopped)"
 msgstr "(已停止)"
 
-#: ../gsearchtool/gsearchtool.c:989
+#: ../gsearchtool/gsearchtool.c:990
 msgid "No Files Found"
 msgstr "未找到文件"
 
-#: ../gsearchtool/gsearchtool.c:994
+#: ../gsearchtool/gsearchtool.c:995
 #, c-format
 msgid "%'d File Found"
 msgid_plural "%'d Files Found"
 msgstr[0] "找到文件 %'d"
 
-#: ../gsearchtool/gsearchtool.c:998 ../gsearchtool/gsearchtool.c:1036
+#: ../gsearchtool/gsearchtool.c:999 ../gsearchtool/gsearchtool.c:1037
 #, c-format
 msgid "%'d file found"
 msgid_plural "%'d files found"
 msgstr[0] "找到文件 %'d"
 
-#: ../gsearchtool/gsearchtool.c:1127
+#: ../gsearchtool/gsearchtool.c:1128
 msgid "Entry changed called for a non entry option!"
 msgstr "已改变的条目调用非条目选项！"
 
-#: ../gsearchtool/gsearchtool.c:1287
+#: ../gsearchtool/gsearchtool.c:1288
 msgid "Set the text of \"Name contains\" search option"
 msgstr "设置“名称包含”搜索选项的文字"
 
-#: ../gsearchtool/gsearchtool.c:1288
+#: ../gsearchtool/gsearchtool.c:1289
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "设置“搜索文件夹”搜索选项的文字"
 
-#: ../gsearchtool/gsearchtool.c:1289
+#: ../gsearchtool/gsearchtool.c:1290
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr "按下列属性之一排序文件：名称、文件夹、大小、类型或日期"
 
-#: ../gsearchtool/gsearchtool.c:1290
+#: ../gsearchtool/gsearchtool.c:1291
 msgid "Set sort order to descending, the default is ascending"
 msgstr "设置为降序排序，默认值为升序排序"
 
-#: ../gsearchtool/gsearchtool.c:1291
+#: ../gsearchtool/gsearchtool.c:1292
 msgid "Automatically start a search"
 msgstr "自动开始搜索"
 
-#: ../gsearchtool/gsearchtool.c:1297
+#: ../gsearchtool/gsearchtool.c:1298
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "选择“%s”搜索选项"
 
-#: ../gsearchtool/gsearchtool.c:1300
+#: ../gsearchtool/gsearchtool.c:1301
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "选择并设置“%s”搜索选项"
 
-#: ../gsearchtool/gsearchtool.c:1407
+#: ../gsearchtool/gsearchtool.c:1408
 msgid "Invalid option passed to sortby command line argument."
 msgstr "传递给命令行参数 sortby 的选项无效。"
 
-#: ../gsearchtool/gsearchtool.c:1701
+#: ../gsearchtool/gsearchtool.c:1702
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2713,161 +2718,166 @@ msgstr ""
 "\n"
 "... 错误太多无法完全显示 ..."
 
-#: ../gsearchtool/gsearchtool.c:1715
+#: ../gsearchtool/gsearchtool.c:1716
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "搜索结果可能无效，因为在执行本次搜索时发生了错误。"
 
-#: ../gsearchtool/gsearchtool.c:1727 ../gsearchtool/gsearchtool.c:1771
+#: ../gsearchtool/gsearchtool.c:1728 ../gsearchtool/gsearchtool.c:1772
 msgid "Show more _details"
 msgstr "显示更多细节(_D)"
 
-#: ../gsearchtool/gsearchtool.c:1757
+#: ../gsearchtool/gsearchtool.c:1758
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
 msgstr "搜索结果可能过期或无效。您是否想要禁用快速搜索特性？"
 
-#: ../gsearchtool/gsearchtool.c:1782
+#: ../gsearchtool/gsearchtool.c:1783
 msgid "Disable _Quick Search"
 msgstr "禁用快速搜索(_Q)"
 
-#: ../gsearchtool/gsearchtool.c:1809
+#: ../gsearchtool/gsearchtool.c:1810
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "设定子 %d 的组 ID 失败：%s。\n"
 
-#: ../gsearchtool/gsearchtool.c:1834
+#: ../gsearchtool/gsearchtool.c:1835
 msgid "Error parsing the search command."
 msgstr "处理搜索命令时出错。"
 
-#: ../gsearchtool/gsearchtool.c:1867
+#: ../gsearchtool/gsearchtool.c:1868
 msgid "Error running the search command."
 msgstr "运行搜索命令时出错。"
 
-#: ../gsearchtool/gsearchtool.c:1987
+#: ../gsearchtool/gsearchtool.c:1988
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "输入“%s”搜索选项的文本值。"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1992
+#: ../gsearchtool/gsearchtool.c:1993
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "“%s”，以%s计"
 
-#: ../gsearchtool/gsearchtool.c:1994
+#: ../gsearchtool/gsearchtool.c:1995
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "输入以 %s 计的“%s”搜索选项值。"
 
-#: ../gsearchtool/gsearchtool.c:2052
+#: ../gsearchtool/gsearchtool.c:2053
 #, c-format
 msgid "Remove \"%s\""
 msgstr "删除“%s”"
 
-#: ../gsearchtool/gsearchtool.c:2053
+#: ../gsearchtool/gsearchtool.c:2054
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "单击可删除“%s”搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2146
+#: ../gsearchtool/gsearchtool.c:2147
 msgid "A_vailable options:"
 msgstr "可用选项(_V)："
 
-#: ../gsearchtool/gsearchtool.c:2175
+#: ../gsearchtool/gsearchtool.c:2176
 msgid "Available options"
 msgstr "可用选项"
 
-#: ../gsearchtool/gsearchtool.c:2176
+#: ../gsearchtool/gsearchtool.c:2177
 msgid "Select a search option from the drop-down list."
 msgstr "从下拉列表中选择搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2188
+#: ../gsearchtool/gsearchtool.c:2189
 msgid "Add search option"
 msgstr "添加搜索选项"
 
-#: ../gsearchtool/gsearchtool.c:2189
+#: ../gsearchtool/gsearchtool.c:2190
 msgid "Click to add the selected available search option."
 msgstr "单击可添加选中的可用搜索选项。"
 
-#: ../gsearchtool/gsearchtool.c:2278
+#: ../gsearchtool/gsearchtool.c:2279
 msgid "S_earch results:"
 msgstr "搜索结果(_E)："
 
-#: ../gsearchtool/gsearchtool.c:2321
+#: ../gsearchtool/gsearchtool.c:2322
 msgid "List View"
 msgstr "列表视图"
 
-#: ../gsearchtool/gsearchtool.c:2430
+#: ../gsearchtool/gsearchtool.c:2431
 msgid "Type"
 msgstr "类型"
 
-#: ../gsearchtool/gsearchtool.c:2442
+#: ../gsearchtool/gsearchtool.c:2443
 msgid "Date Modified"
 msgstr "修改时间"
 
-#: ../gsearchtool/gsearchtool.c:2758
+#: ../gsearchtool/gsearchtool.c:2759
 msgid "_Name contains:"
 msgstr "名称包含(_N)："
 
-#: ../gsearchtool/gsearchtool.c:2772 ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2773 ../gsearchtool/gsearchtool.c:2774
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "输入文件名或部分文件名，可以使用通配符。"
 
-#: ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2774
 msgid "Name contains"
 msgstr "名称包含"
 
-#: ../gsearchtool/gsearchtool.c:2779
+#: ../gsearchtool/gsearchtool.c:2780
 msgid "_Look in folder:"
 msgstr "搜索文件夹(_L)："
 
-#: ../gsearchtool/gsearchtool.c:2785
+#: ../gsearchtool/gsearchtool.c:2786
 msgid "Browse"
 msgstr "浏览"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Look in folder"
 msgstr "搜索文件夹"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "选择您想要开始搜索的文件夹或设备。"
 
-#: ../gsearchtool/gsearchtool.c:2812
+#: ../gsearchtool/gsearchtool.c:2813
 msgid "Select more _options"
 msgstr "选择更多选项(_O)"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Select more options"
 msgstr "选择更多选项"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Click to expand or collapse the list of available options."
 msgstr "单击可展开或折叠可用选项列表。"
 
-#: ../gsearchtool/gsearchtool.c:2845
+#: ../gsearchtool/gsearchtool.c:2846
 msgid "Click to display the help manual."
 msgstr "单击可显示帮助手册。"
 
-#: ../gsearchtool/gsearchtool.c:2853
+#: ../gsearchtool/gsearchtool.c:2854
 msgid "Click to close \"Search for Files\"."
 msgstr "单击可关闭“搜索文件”。"
 
-#: ../gsearchtool/gsearchtool.c:2879
+#: ../gsearchtool/gsearchtool.c:2880
 msgid "Click to perform a search."
 msgstr "单击可执行搜索。"
 
-#: ../gsearchtool/gsearchtool.c:2880
+#: ../gsearchtool/gsearchtool.c:2881
 msgid "Click to stop a search."
 msgstr "单击可停止搜索。"
 
-#: ../gsearchtool/gsearchtool.c:2971
+#: ../gsearchtool/gsearchtool.c:2973
 msgid "- the GNOME Search Tool"
 msgstr "- GNOME 搜索工具"
+
+#: ../gsearchtool/gsearchtool.c:2982
+#, c-format
+msgid "Failed to parse command line arguments: %s\n"
+msgstr "解析命令行参数失败：%s\n"
 
 #: ../libeggsmclient/eggdesktopfile.c:165
 #, c-format
@@ -2991,6 +3001,30 @@ msgstr "指定日志查看器主窗口的宽度，以像素计。"
 msgid "Width of the main window in pixels"
 msgstr "主窗口的宽度，以像素计"
 
+#: ../logview/data/logview-filter.ui.h:1
+msgid "Background:"
+msgstr "背景："
+
+#: ../logview/data/logview-filter.ui.h:2
+msgid "Effect:"
+msgstr "效果："
+
+#: ../logview/data/logview-filter.ui.h:3
+msgid "Foreground:"
+msgstr "前景："
+
+#: ../logview/data/logview-filter.ui.h:4
+msgid "Hide"
+msgstr "隐藏"
+
+#: ../logview/data/logview-filter.ui.h:5
+msgid "Highlight"
+msgstr "高亮"
+
+#: ../logview/data/logview-filter.ui.h:7
+msgid "_Regular Expression:"
+msgstr "正则表达式(_R)："
+
 #: ../logview/logview-app.c:375
 #, c-format
 msgid "Impossible to open the file %s"
@@ -3017,15 +3051,15 @@ msgstr "无效的正则表达式：%s"
 msgid "Please specify either foreground or background color!"
 msgstr "\t请指定或前景或背景颜色！"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Edit filter"
 msgstr "编辑过滤器"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Add new filter"
 msgstr "添加新的过滤器"
 
-#: ../logview/logview-filter-manager.c:505
+#: ../logview/logview-filter-manager.c:503
 msgid "Filters"
 msgstr "文件"
 
@@ -3089,7 +3123,7 @@ msgstr " - 浏览及监视日志"
 msgid "Log Viewer"
 msgstr "日志查看器"
 
-#: ../logview/logview-window.c:38 ../logview/logview-window.c:786
+#: ../logview/logview-window.c:38 ../logview/logview-window.c:788
 msgid "System Log Viewer"
 msgstr "系统日志查看器"
 
@@ -3103,131 +3137,139 @@ msgstr "上次更新：%s"
 msgid "%d lines (%s) - %s"
 msgstr "%d 行(%s) - %s"
 
-#: ../logview/logview-window.c:341
+#: ../logview/logview-window.c:343
 msgid "Open Log"
 msgstr "打开日志"
 
-#: ../logview/logview-window.c:380
+#: ../logview/logview-window.c:382
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "显示帮助时发生错误：%s"
 
-#: ../logview/logview-window.c:496
+#: ../logview/logview-window.c:498
 #, fuzzy
 msgid "Wrapped"
-msgstr "往返"
+msgstr "缠绕"
 
-#: ../logview/logview-window.c:791
+#: ../logview/logview-window.c:793
 msgid "A system log viewer for GNOME."
 msgstr "GNOME 系统日志查看器。"
 
-#: ../logview/logview-window.c:837
+#: ../logview/logview-window.c:839
 msgid "_Filters"
 msgstr "过滤器(_F)"
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "_Open..."
 msgstr "打开(_O)..."
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "Open a log from file"
 msgstr "从文件打开日志"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "_Close"
 msgstr "关闭(_C)"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "Close this log"
 msgstr "关闭此日志"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "Quit the log viewer"
 msgstr "退出日志查看器"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "_Copy"
 msgstr "复制(_C)"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "Copy the selection"
 msgstr "复制选中内容"
 
-#: ../logview/logview-window.c:849
+#: ../logview/logview-window.c:851
 msgid "Select the entire log"
 msgstr "选中整个日志"
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "_Find..."
 msgstr "查找(_F)..."
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "Find a word or phrase in the log"
 msgstr "在日记中查找单词或短语"
 
-#: ../logview/logview-window.c:854
+#: ../logview/logview-window.c:856
 msgid "Bigger text size"
 msgstr "较大的文本大小"
 
-#: ../logview/logview-window.c:856
+#: ../logview/logview-window.c:858
 msgid "Smaller text size"
 msgstr "较小的文本大小"
 
-#: ../logview/logview-window.c:858
+#: ../logview/logview-window.c:860
 msgid "Normal text size"
 msgstr "普通文本大小"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage Filters"
 msgstr "管理过滤器"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage filters"
 msgstr "管理过滤器"
 
-#: ../logview/logview-window.c:864
+#: ../logview/logview-window.c:866
 msgid "Open the help contents for the log viewer"
 msgstr "打开日志查看器的帮助目录"
 
-#: ../logview/logview-window.c:866
+#: ../logview/logview-window.c:868
 msgid "Show the about dialog for the log viewer"
 msgstr "显示日志查看器的关于对话框"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "_Statusbar"
 msgstr "状态栏(_S)"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "Show Status Bar"
 msgstr "显示状态栏"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Side _Pane"
 msgstr "侧边栏(_P)"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Show Side Pane"
 msgstr "显示侧边栏"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Show matches only"
 msgstr "仅显示匹配项"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Only show lines that match one of the given filters"
 msgstr "只能显示与给定的过滤器匹配的行"
 
-#: ../logview/logview-window.c:1414
+#: ../logview/logview-window.c:1014
+#, c-format
+msgid "Can't read from \"%s\""
+msgstr "不能从“%s”读取"
+
+#: ../logview/logview-window.c:1436
 msgid "Version: "
 msgstr "版本："
 
-#: ../logview/logview-window.c:1521
+#: ../logview/logview-window.c:1543
 msgid "Could not open the following files:"
 msgstr "无法打开下列文件："
+
+#~ msgid "Save snapshot"
+#~ msgstr "保存抓图"
 
 #~ msgid "Enter Password"
 #~ msgstr "输入密码"
