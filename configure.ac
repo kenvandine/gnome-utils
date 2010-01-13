@@ -1,6 +1,6 @@
 m4_define([gnome_utils_major], [2])
 m4_define([gnome_utils_minor], [29])
-m4_define([gnome_utils_micro], [1])
+m4_define([gnome_utils_micro], [5])
 
 m4_define([gnome_utils_version], [gnome_utils_major.gnome_utils_minor.gnome_utils_micro])
 
@@ -55,7 +55,7 @@ AC_CHECK_FUNCS([getpgid])
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 
-LIBGDICT_LT_VERSION=6:6:0
+LIBGDICT_LT_VERSION=6:7:0
 AC_SUBST(LIBGDICT_LT_VERSION)
 
 dnl host architecture check

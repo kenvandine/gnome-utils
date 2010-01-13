@@ -1,4 +1,62 @@
 ====================================================================
+GNOME Utilities 2.29.5 (13th January 2010) - "Minor Swing"
+
+    * First unstable release of the 2.29 cycle
+
+Baobab
+
+    * Typo in baobab .desktop entry (Peteris Krisjanis)
+    * callback objects are now GtkActions (bgo#589611) (Cosimo Cecchi)
+    * Allow user to drag a folder directly over the rings-chart or treemap to
+      get it scanned (bgo#594539) (h2g2bob)
+    * Limits treemap zooming to the actual depth of folders shown (bgo#554126)
+      (Eduardo Lima Mitev)
+    * Wrong format in a translatable string (bgo#508483) (Fabio Marzocca)
+    * Adds a check to avoid traversing the tree model if it's empty
+      (bgo#601147) (Alexander Korolkov)
+    * Minor string fix (bgo#573530) (Bruce Cowan)
+
+Dictionary
+
+    * Use gtk_widget_is_toplevel() instead of GTK_WIDGET_TOPLEVEL() (Vincent
+      Untz)
+
+Screenshot
+
+    * Renamed "Save snapshot" to "Save screenshot" (Fabio Marzocca)
+    * Rremoved GenericName (Fabio Marzocca)
+
+Search Tool
+
+    * Fix possible crash after deleting files (bgo#595371) (Dennis Cranston)
+    * Properly handle invalid command line args (Dennis Cranston)
+    * Resurrect the --version command line argument (Dennis Cranston)
+    * Fix a compiler warning (Dennis Cranston)
+    * Remove generated schema file from the tarball (bgo#599317) (Dennis
+      Cranston)
+
+System Log Viewer
+
+    * Always sanitize the stored fontsize from GConf (bgo#597554) (Cosimo
+      Cecchi)
+    * Make sure we don't double-free the old name (bgo#595352) (Cosimo Cecchi)
+    * Make sure to return if we have an error or no new lines (bgo#588577)
+      (Cosimo Cecchi)
+    * Fix logview-filter ui file translatability (Claude Paroz)
+    * Update help (Paul Cutler)
+
+Translations Updated by:
+
+    Joan Duran (ca), Adrian Guniš (cs), Anders Jenbo (da), Mario Blättermann
+    (de), Thomas Thurman (en@shaw), Bruce Cowan (en_GB), Jorge González (es),
+    Ivar Smolin (et), Yaron Shahrabani (he), Gabor Kelemen (hu), Andrea Zagli
+    (it), Takayuki KUSANO (ja), Žygimantas Beručka (lt), Raivis Dejus (lv),
+    Kjartan Maraas (nb), Nils-Christoph Fiedler (nds), Manoj Kumar Giri (or),
+    Krix Apolinário (pt_BR), Adi Roiban (ro), Matej Urbančič (sl), Daniel
+    Nylander (sv), Dr.T.Vasudevan (ta), Theppitak Karoonboonyanan (th), Maxim
+    Dziumanenko (uk), Tao Wei (zh_CN)
+
+====================================================================
 GNOME Utilities 2.28.0 (21st September 2009) - "The Queen's Approach"
 
     * First stable release of the 2.28 cycle
