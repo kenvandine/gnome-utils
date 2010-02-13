@@ -28,6 +28,8 @@ builder_DATA      = gnome-dictionary-preferences.ui \
 uidir           = $(datadir)/gnome-dictionary
 ui_DATA         = gnome-dictionary-ui.xml
 
+if BUILD_GDICT_APPLET
+
 # applet menu definition
 appletuidir	= $(datadir)/gnome-2.0/ui
 appletui_DATA	= GNOME_DictionaryApplet.xml
@@ -44,6 +46,8 @@ $(server_in_files): $(server_in_files:.server.in=.server.in.in)
 
 
 @INTLTOOL_SERVER_RULE@
+
+endif # BUILD_GDICT_APPLET
 
 schemadir   = $(GCONF_SCHEMA_FILE_DIR)
 schemas_in_file = gnome-dictionary.schemas.in

@@ -12,7 +12,9 @@ INCLUDES = \
 
 bin_PROGRAMS = gnome-dictionary
 
+if BUILD_GDICT_APPLET
 libexec_PROGRAMS = gnome-dictionary-applet
+endif
 
 gnome_dictionary_SOURCES = \
 	gdict-about.c		\
@@ -43,6 +45,8 @@ gnome_dictionary_LDADD = \
 	$(GNOME_UTILS_LIBS) \
 	$(NULL)
 
+if BUILD_GDICT_APPLET
+
 gnome_dictionary_applet_SOURCES = \
 	gdict-about.c 		\
 	gdict-about.h		\
@@ -72,3 +76,5 @@ gnome_dictionary_applet_LDADD = \
 	$(GNOME_UTILS_LIBS) \
 	$(APPLET_LIBS) \
 	$(NULL)
+
+endif # BUILD_GDICT_APPLET
