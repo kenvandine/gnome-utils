@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: gnome-utils-2.0\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "utils&component=general\n"
-"POT-Creation-Date: 2009-08-23 23:59+0000\n"
-"PO-Revision-Date: 2008-09-20 19:06+0100\n"
+"POT-Creation-Date: 2009-12-14 21:52+0000\n"
+"PO-Revision-Date: 2010-03-23 14:09+0100\n"
 "Last-Translator: Goran Rakić <grakic@devbase.net>\n"
 "Language-Team:  <sr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgstr "Opcije programa za analizu zauzetosti diska"
 
 #: ../baobab/data/baobab-dialog-scan-props.ui.h:2
 msgid "Select _devices to include in filesystem scan:"
-msgstr "Odaberite _uređaje koji će biti uključeni u pregled:"
+msgstr "Izaberite _uređaje koji će biti uključeni u pregled:"
 
 #: ../baobab/data/baobab-dialog-scan-props.ui.h:3
 msgid "_Monitor changes to your home folder"
@@ -121,12 +121,12 @@ msgstr "_Skupi sve"
 
 #. Help menu
 #: ../baobab/data/baobab-main-window.ui.h:20
-#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:864
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:866
 msgid "_Contents"
 msgstr "_Sadržaj"
 
 #: ../baobab/data/baobab-main-window.ui.h:21
-#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:835
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:837
 msgid "_Edit"
 msgstr "_Uređivanje"
 
@@ -136,7 +136,7 @@ msgstr "_Proširi sve"
 
 #: ../baobab/data/baobab-main-window.ui.h:23
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:838
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:840
 msgid "_Help"
 msgstr "_Pomoć"
 
@@ -145,20 +145,22 @@ msgid "_Toolbar"
 msgstr "Traka sa alatima"
 
 #: ../baobab/data/baobab-main-window.ui.h:25
-#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:836
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:838
 msgid "_View"
 msgstr "_Pregled"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of uri for partitions to be excluded from scanning."
-msgstr "Spisak lokacija particija koje će biti izdvojene iz pregleda."
+#| msgid "A list of uri for partitions to be excluded from scanning."
+msgid "A list of URIs for partitions to be excluded from scanning."
+msgstr "Spisak adresa particija koje će biti izdvojene iz pretraživanja."
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "Uključi nadgledanje korisničkog direktorijuma"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions uris"
+#| msgid "Exluded partitions uris"
+msgid "Excluded partitions URIs"
 msgstr "Lokacije izdvojenih particija"
 
 #: ../baobab/data/baobab.schemas.in.h:4
@@ -175,143 +177,145 @@ msgstr "Traka sa alatkama je vidljiva"
 
 #: ../baobab/data/baobab.schemas.in.h:7
 msgid "Whether any change to the home directory should be monitored."
-msgstr "Da li korisniki direktorijum treba da se nadgleda za izmene"
+msgstr "Da li treba nadgledati izmene korisničkog direktorijuma."
 
 #: ../baobab/data/baobab.schemas.in.h:8
 msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "Da li traka statusa treba da bude vidljiva u glavnom prozoru."
 
 #: ../baobab/data/baobab.schemas.in.h:9
-msgid "Whether the subfolders tooltips of the selected folder are drawn."
-msgstr "Da li se iscrtavaju oznake fascikli iz odabrane fascikle."
+#| msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgid "Whether the subfolder tooltips of the selected folder are drawn."
+msgstr "Da li da se iscrtavaju saveti podfascikli iz odabrane fascikle."
 
 #: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "Da li traka sa alatkama treba da bude vidljiva u glavnom prozoru."
 
-#: ../baobab/src/baobab.c:119 ../baobab/src/baobab.c:297
+#: ../baobab/src/baobab.c:139 ../baobab/src/baobab.c:320
 msgid "Scanning..."
 msgstr "Brz pregled..."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:181 ../baobab/src/baobab.c:239
+#: ../baobab/src/baobab.c:204 ../baobab/src/baobab.c:262
 #: ../baobab/src/callbacks.c:264
 msgid "Calculating percentage bars..."
 msgstr "Izračunavam trake procenata..."
 
-#: ../baobab/src/baobab.c:191 ../baobab/src/baobab.c:1096
+#: ../baobab/src/baobab.c:214 ../baobab/src/baobab.c:1163
 #: ../baobab/src/callbacks.c:268
 msgid "Ready"
 msgstr "Spremno"
 
-#: ../baobab/src/baobab.c:333
-#| msgid "Total filesystem capacity:"
+#: ../baobab/src/baobab.c:356
 msgid "Total filesystem capacity"
 msgstr "Veličina sistema datoteka"
 
-#: ../baobab/src/baobab.c:355
-#| msgid "Total filesystem usage:"
+#: ../baobab/src/baobab.c:378
 msgid "Total filesystem usage"
 msgstr "Zauzetost sistema datoteka"
 
-#: ../baobab/src/baobab.c:396
+#: ../baobab/src/baobab.c:419
 msgid "contains hardlinks for:"
 msgstr "sadrži čvrste veze za:"
 
-#: ../baobab/src/baobab.c:405
+#: ../baobab/src/baobab.c:428
 #, c-format
-msgid "% 5d item"
-msgid_plural "% 5d items"
+#| msgid "% 5d item"
+#| msgid_plural "% 5d items"
+msgid "%5d item"
+msgid_plural "%5d items"
 msgstr[0] "% 5d stavka"
-msgstr[1] "% 5d stavki"
+msgstr[1] "% 5d stavke"
 msgstr[2] "% 5d stavki"
 
-#: ../baobab/src/baobab.c:756
+#: ../baobab/src/baobab.c:779
 msgid "Could not initialize monitoring"
 msgstr "Nisam mogao da započnem nadgledanje"
 
-#: ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab.c:780
 msgid "Changes to your home folder will not be monitored."
 msgstr "Korisnički direktorijum neće biti nadgledan za izmene."
 
-#: ../baobab/src/baobab.c:864
+#: ../baobab/src/baobab.c:887
 msgid "Move to parent folder"
 msgstr "Premesti u fasciklu iznad"
 
-#: ../baobab/src/baobab.c:868
+#: ../baobab/src/baobab.c:891
 msgid "Zoom in"
 msgstr "Uvećaj"
 
-#: ../baobab/src/baobab.c:872
+#: ../baobab/src/baobab.c:895
 msgid "Zoom out"
 msgstr "Umanji"
 
-#: ../baobab/src/baobab.c:876
-msgid "Save snapshot"
-msgstr "Sačuvaj sliku ekrana"
+#: ../baobab/src/baobab.c:899
+#| msgid "Save Screenshot"
+msgid "Save screenshot"
+msgstr "Sačuvaj snimak ekrana"
 
-#: ../baobab/src/baobab.c:924
+#: ../baobab/src/baobab.c:985
 msgid "View as Rings Chart"
 msgstr "Prikaži kao prstene"
 
-#: ../baobab/src/baobab.c:926
+#: ../baobab/src/baobab.c:987
 msgid "View as Treemap Chart"
 msgstr "Prikaži kao stablo"
 
-#: ../baobab/src/baobab.c:1019
+#: ../baobab/src/baobab.c:1086
 msgid "Show version"
 msgstr "Prikaži izdanje"
 
-#: ../baobab/src/baobab.c:1020
+#: ../baobab/src/baobab.c:1087
 msgid "[DIRECTORY]"
 msgstr "[DIREKTORIJUM]"
 
-#: ../baobab/src/baobab.c:1050
+#: ../baobab/src/baobab.c:1117
 msgid "Too many arguments. Only one directory can be specified."
 msgstr "Ima previše argumenata. Možete odrediti samo jedan direktorijum."
 
-#: ../baobab/src/baobab.c:1068
+#: ../baobab/src/baobab.c:1135
 msgid "Could not detect any mount point."
 msgstr "Ne mogu da odredim mesto kačenja."
 
-#: ../baobab/src/baobab.c:1071
+#: ../baobab/src/baobab.c:1138
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "Bez mesta kačenja, zauzeće prostora na disku ne može biti analizirano."
 
-#: ../baobab/src/baobab-chart.c:202
+#: ../baobab/src/baobab-chart.c:206
 msgid "Maximum depth"
 msgstr "Maksimalna dubina"
 
-#: ../baobab/src/baobab-chart.c:203
+#: ../baobab/src/baobab-chart.c:207
 msgid "The maximum depth drawn in the chart from the root"
 msgstr "Maksimalna dubina koja se iscrtava u grafikonu počev od korena"
 
-#: ../baobab/src/baobab-chart.c:212
+#: ../baobab/src/baobab-chart.c:216
 msgid "Chart model"
 msgstr "Model grafikona"
 
-#: ../baobab/src/baobab-chart.c:213
+#: ../baobab/src/baobab-chart.c:217
 msgid "Set the model of the chart"
 msgstr "Postavi model grafikona"
 
-#: ../baobab/src/baobab-chart.c:220
+#: ../baobab/src/baobab-chart.c:224
 msgid "Chart root node"
 msgstr "Korenski čvor grafikona"
 
-#: ../baobab/src/baobab-chart.c:221
+#: ../baobab/src/baobab-chart.c:225
 msgid "Set the root node from the model"
 msgstr "Postaviti čvor root-a iz modela"
 
-#: ../baobab/src/baobab-chart.c:1672
+#: ../baobab/src/baobab-chart.c:1695
 msgid "Cannot create pixbuf image!"
 msgstr "Ne mogu da napravim pixbuf sliku!"
 
 #. Popup the File chooser dialog
-#: ../baobab/src/baobab-chart.c:1682
+#: ../baobab/src/baobab-chart.c:1705
 msgid "Save Snapshot"
 msgstr "Sačuvaj sliku ekrana"
 
-#: ../baobab/src/baobab-chart.c:1711
+#: ../baobab/src/baobab-chart.c:1734
 msgid "_Image type:"
 msgstr "Tip slike:"
 
@@ -441,7 +445,7 @@ msgstr ""
 msgid "_Rescan"
 msgstr "_Ponovo pretraži"
 
-#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2405
+#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2406
 msgid "Folder"
 msgstr "Fascikla"
 
@@ -449,7 +453,7 @@ msgstr "Fascikla"
 msgid "Usage"
 msgstr "Upotreba"
 
-#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2418
+#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2419
 msgid "Size"
 msgstr "Veličina"
 
@@ -484,7 +488,7 @@ msgid "_Open Folder"
 msgstr "_Otvori direktorijum"
 
 #: ../baobab/src/baobab-utils.c:375
-#: ../gsearchtool/gsearchtool-callbacks.c:1172
+#: ../gsearchtool/gsearchtool-callbacks.c:1203
 msgid "Mo_ve to Trash"
 msgstr "Ba_ci u smeće"
 
@@ -528,44 +532,29 @@ msgid "There was an error displaying help."
 msgstr "Došlo je do greške pri prikazivanju pomoći."
 
 #: ../baobab/src/callbacks.c:78 ../logview/logview-about.h:49
-#| msgid ""
-#| "Log Viewer is free software; you can redistribute it and/or modify it "
-#| "under the terms of the GNU General Public License as published by the "
-#| "Free Software Foundation; either version 2 of the License, or (at your "
-#| "option) any later version."
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version."
 msgstr ""
-"Ovaj program je slobodan; možete ga raspodeljivati i/ili menjati pod "
-"uslovima GNU Opšte Javne Licence (GNU GPL) kako je objavljuje Zadužbina "
-"za Slobodni Softver (FSF); bilo verzije 2 te Licence, bilo (po vašem "
-"nahođenju) bilo koje novije verzije."
+"Ovaj program je slobodan; možete ga raspodeljivati i/ili menjati pod uslovima "
+"GNU Opšte Javne Licence (GNU GPL) kako je objavljuje Zadužbina za Slobodni "
+"Softver (FSF); bilo verzije 2 te Licence, bilo (po vašem nahođenju) bilo koje "
+"novije verzije."
 
 #: ../baobab/src/callbacks.c:83 ../logview/logview-about.h:53
-#| msgid ""
-#| "Log Viewer is distributed in the hope that it will be useful, but WITHOUT "
-#| "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-#| "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-#| "more details."
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details."
 msgstr ""
-"Ovaj program se raspodeljuje u nadi da će biti od koristi, ali BEZ "
-"IKAKVIH GARANCIJA; čak i bez podrazumevane garancije KORISNOSTI ili "
-"PRILAGOĐENOSTI ODREĐENOJ NAMENI.  Vidite GNU Opštu Javnu Licencu za više "
-"detalja."
+"Ovaj program se raspodeljuje u nadi da će biti od koristi, ali BEZ IKAKVIH "
+"GARANCIJA; čak i bez podrazumevane garancije KORISNOSTI ili PRILAGOĐENOSTI "
+"ODREĐENOJ NAMENI.  Vidite GNU Opštu Javnu Licencu za više detalja."
 
 #: ../baobab/src/callbacks.c:88 ../logview/logview-about.h:57
-#| msgid ""
-#| "You should have received a copy of the GNU General Public License along "
-#| "with the Log Viewer; if not, write to the Free Software Foundation, Inc., "
-#| "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA"
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program; if not, write to the Free Software Foundation, Inc., 51 "
@@ -595,8 +584,8 @@ msgstr ""
 "\n"
 "Prevod.org — prevod na srpski jezik."
 
-#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:493
-#: ../gsearchtool/gsearchtool-callbacks.c:832
+#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:504
+#: ../gsearchtool/gsearchtool-callbacks.c:843
 msgid "The document does not exist."
 msgstr "Dokument ne postoji."
 
@@ -621,7 +610,7 @@ msgid "Cl_ear"
 msgstr "Oči_sti"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:866
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:868
 msgid "_About"
 msgstr "_O programu"
 
@@ -919,22 +908,22 @@ msgstr "Povratna vrednost koju vraća server rečnika"
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "Nije uspostavljena veza sa serverom rečnika „%s:%d“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1060
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "Nije uspela pretraga računara „%s“: nije pronađen podesan resurs"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1091
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "Nije uspela pretraga za računar „%s“: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1125
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "Pretraga za računar „%s“ nije uspela: računar nije pronađen"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1171
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1177
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -943,7 +932,7 @@ msgstr ""
 "Ne mogu da se povežem na server rečnika „%s:%d“. Odgovor servera je kod %d "
 "(server je oboren)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1196
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -952,47 +941,47 @@ msgstr ""
 "Ne mogu da raščlanim odgovor servera rečnika\n"
 ": „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1225
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "Nije pronađena nijedna definicija za „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1234
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1240
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "Neispravna baza podataka „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1249
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1255
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "Neispravna strategija „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1264
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1270
 #, c-format
 msgid "Bad command '%s'"
 msgstr "Loša naredba „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1279
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1285
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "Loši parametri za naredbu „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1294
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1300
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "Nije pronađena nijedna baza podataka na serveru rečnika „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1309
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1315
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "Nije pronađena nijedna strategija na serveru rečnika „%s“"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1742
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1748
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "Nije uspelo povezivanje na server rečnika %s:%d"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1781
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1787
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -1001,28 +990,28 @@ msgstr ""
 "Greška prilikom čitanja odgovora sa servera:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1860
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr "Isteklo je vreme za server rečnika na '%s:%d'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1894
 #, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "Nije navedeno ime računara za server rečnika"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1930
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1945
 #, c-format
 msgid "Unable to create socket"
 msgstr "Ne mogu da napravim mrežnu utičnicu"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1962
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1971
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "Ne mogu da postavim kanal kao ne blokirajući: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1977
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1986
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "Ne mogu da se povežem na server rečnika „%s:%d“"
@@ -1052,7 +1041,7 @@ msgstr "Greška se dogodila prilikom uprarivanja"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
-#: ../logview/logview-window.c:511
+#: ../logview/logview-window.c:513
 msgid "Not found"
 msgstr "Nije pronađeno"
 
@@ -1095,7 +1084,7 @@ msgid "The filename used by this dictionary source"
 msgstr "Datoteka koju koristi ovaj izvor reči"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:246
-#: ../gsearchtool/gsearchtool.c:2381
+#: ../gsearchtool/gsearchtool.c:2382
 msgid "Name"
 msgstr "Ime"
 
@@ -1548,7 +1537,7 @@ msgstr[2] "Pronađeno je %d definicija"
 msgid "%s - Dictionary"
 msgstr "%s - Rečnik"
 
-#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:836
 msgid "_File"
 msgstr "_Datoteka"
 
@@ -1585,7 +1574,7 @@ msgstr "_Štampaj..."
 msgid "Print this document"
 msgstr "Štampaj ovaj dokument"
 
-#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:849
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:851
 msgid "Select _All"
 msgstr "Izaberi _sve"
 
@@ -1759,7 +1748,6 @@ msgid "Grab the current _window"
 msgstr "Uhvati _trenutni prozor"
 
 #: ../gnome-screenshot/gnome-screenshot.c:461
-#| msgid "Select a folder"
 msgid "Select _area to grab"
 msgstr "Izaberi _oblast za hvatanje"
 
@@ -1808,7 +1796,6 @@ msgstr ""
 "Odaberite drugo mesto i pokušajte ponovo."
 
 #: ../gnome-screenshot/gnome-screenshot.c:793
-#| msgid "Screenshot delay"
 msgid "Screenshot taken"
 msgstr "Snimak je uhvaćen"
 
@@ -1911,6 +1898,7 @@ msgid "Save in _folder:"
 msgstr "Sačuvaj u _fascikli:"
 
 #: ../gnome-screenshot/gnome-screenshot.ui.h:5
+#: ../logview/data/logview-filter.ui.h:6
 msgid "_Name:"
 msgstr "_Naziv:"
 
@@ -2018,7 +2006,7 @@ msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "Datoteka „%s“ već postoji.  Želite li da je zamenite?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:84
-#: ../gsearchtool/gsearchtool-callbacks.c:1691
+#: ../gsearchtool/gsearchtool-callbacks.c:1722
 msgid "_Replace"
 msgstr "_Zameni"
 
@@ -2060,7 +2048,6 @@ msgid "Disable Quick Search Second Scan"
 msgstr "Isključi drugi pregled brze pretrage"
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:6
-#| msgid "Look in folder"
 msgid "Look in Folder"
 msgstr "Traži u fascikli"
 
@@ -2097,8 +2084,6 @@ msgstr "Izaberi pravilo pretrage „Datum promene više od“"
 #. Translators: The quoted text is the label of an available
 #. search option that is translated elsewhere.
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:21
-
-#| msgid "Select the search option \"Include other filesystems\""
 msgid "Select the search option \"Exclude other filesystems\""
 msgstr "Izaberi pravilo pretrage „Isključi ostale sisteme datoteka“"
 
@@ -2246,15 +2231,12 @@ msgstr ""
 "se pokrene alat za pretragu."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:62
-#| msgid ""
-#| "This key determines if the \"Include other filesystems\" search option is "
-#| "selected when the search tool is started."
 msgid ""
 "This key determines if the \"Exclude other filesystems\" search option is "
 "selected when the search tool is started."
 msgstr ""
-"Ovaj ključ određuj da li je pravilo „Iskljiči ostale sisteme datoteka“ izabrano "
-"kada se pokrene alat za pretragu."
+"Ovaj ključ određuj da li je pravilo „Iskljiči ostale sisteme datoteka“ "
+"izabrano kada se pokrene alat za pretragu."
 
 #: ../gsearchtool/gnome-search-tool.schemas.in.h:63
 msgid ""
@@ -2369,11 +2351,11 @@ msgstr ""
 "Ovaj ključ određuje da li će prozor alata za pretragu biti prikazan u punoj "
 "veličini."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:183
+#: ../gsearchtool/gsearchtool-callbacks.c:194
 msgid "Could not open help document."
 msgstr "Ne mogu da otvorim dokument pomoći."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:334
+#: ../gsearchtool/gsearchtool-callbacks.c:345
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
@@ -2381,8 +2363,8 @@ msgstr[0] "Da li ste sigurni da želite da otvorite %d dokument?"
 msgstr[1] "Da li ste sigurni da želite da otvorite %d dokumenta?"
 msgstr[2] "Da li ste sigurni da želite da otvorite %d dokumenata?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:339
-#: ../gsearchtool/gsearchtool-callbacks.c:536
+#: ../gsearchtool/gsearchtool-callbacks.c:350
+#: ../gsearchtool/gsearchtool-callbacks.c:547
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
@@ -2390,25 +2372,25 @@ msgstr[0] "Ovo će otvoriti %d odvojeni prozor."
 msgstr[1] "Ovo će otvoriti %d odvojena prozora."
 msgstr[2] "Ovo će otvoriti %d odvojenih prozora."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:379
+#: ../gsearchtool/gsearchtool-callbacks.c:390
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "Ne mogu da otvorim dokument „%s“."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:408
+#: ../gsearchtool/gsearchtool-callbacks.c:419
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "Ne mogu da otvorim fasciklu „%s“"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:416
+#: ../gsearchtool/gsearchtool-callbacks.c:427
 msgid "The nautilus file manager is not running."
 msgstr "Upravljač datoteka Nautilus nije pokrenut."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:508
+#: ../gsearchtool/gsearchtool-callbacks.c:519
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "Nema postavljenog prikazivača za dokument."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:531
+#: ../gsearchtool/gsearchtool-callbacks.c:542
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
@@ -2416,99 +2398,98 @@ msgstr[0] "Sigurno želite da otvorite %d fasciklu?"
 msgstr[1] "Sigurno želite da otvorite %d fascikle?"
 msgstr[2] "Sigurno želite da otvorite %d fascikli?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:684
+#: ../gsearchtool/gsearchtool-callbacks.c:695
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "Ne mogu da bacim „%s“ u smeće."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:715
+#: ../gsearchtool/gsearchtool-callbacks.c:726
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "Da li želite da trajno uklonite „%s“?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:718
+#: ../gsearchtool/gsearchtool-callbacks.c:729
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "Smeće je nedostupno. Ne mogu da bacim „%s“ u smeće."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:757
+#: ../gsearchtool/gsearchtool-callbacks.c:768
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "Ne mogu da obrišem „%s“."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:868
+#: ../gsearchtool/gsearchtool-callbacks.c:879
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "Neuspešno brisanje „%s“: %s."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:880
+#: ../gsearchtool/gsearchtool-callbacks.c:891
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "Neuspešno premeštanje „%s“: %s."
 
 #. Popup menu item: Open
-#: ../gsearchtool/gsearchtool-callbacks.c:1008
-#: ../gsearchtool/gsearchtool-callbacks.c:1038
+#: ../gsearchtool/gsearchtool-callbacks.c:1019
+#: ../gsearchtool/gsearchtool-callbacks.c:1049
 msgid "_Open"
 msgstr "_Otvori"
 
 #. Popup menu item: Open with (default)
-#: ../gsearchtool/gsearchtool-callbacks.c:1063
+#: ../gsearchtool/gsearchtool-callbacks.c:1074
 #, c-format
 msgid "_Open with %s"
 msgstr "_Otvori pomoću %s"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1094
+#: ../gsearchtool/gsearchtool-callbacks.c:1108
 #, c-format
 msgid "Open with %s"
 msgstr "Otvori pomoću %s"
 
 #. Popup menu item: Open With
-#: ../gsearchtool/gsearchtool-callbacks.c:1123
+#: ../gsearchtool/gsearchtool-callbacks.c:1140
 msgid "Open Wit_h"
 msgstr "Otvori po_moću"
 
 #. Popup menu item: Open Folder
-#: ../gsearchtool/gsearchtool-callbacks.c:1154
-#| msgid "_Open Folder"
+#: ../gsearchtool/gsearchtool-callbacks.c:1185
 msgid "Open _Folder"
 msgstr "Otvori _fasciklu"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1194
+#: ../gsearchtool/gsearchtool-callbacks.c:1225
 msgid "_Save Results As..."
 msgstr "_Sačuvaj rezultate kao..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1576
+#: ../gsearchtool/gsearchtool-callbacks.c:1607
 msgid "Save Search Results As..."
 msgstr "Sačuvaj rezultate pretrage kao..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1607
+#: ../gsearchtool/gsearchtool-callbacks.c:1638
 msgid "Could not save document."
 msgstr "Ne mogu da sačuvam dokument."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1608
+#: ../gsearchtool/gsearchtool-callbacks.c:1639
 msgid "You did not select a document name."
 msgstr "Ne mogu da izaberem ime dokumenta."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1638
+#: ../gsearchtool/gsearchtool-callbacks.c:1669
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "Ne mogu da sačuvam dokument „%s“ u „%s“."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1672
+#: ../gsearchtool/gsearchtool-callbacks.c:1703
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr "Dokument „%s“ već postoji.  Želite li da ga zamenite?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1676
+#: ../gsearchtool/gsearchtool-callbacks.c:1707
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr "Ukoliko zamenite postojeću datoteku, njen sadržaj će biti presnimljen."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1741
+#: ../gsearchtool/gsearchtool-callbacks.c:1772
 msgid "The document name you selected is a folder."
 msgstr "Ime dokumenta koji ste izabrali predstavlja fasciklu."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1779
+#: ../gsearchtool/gsearchtool-callbacks.c:1810
 msgid "You may not have write permissions to the document."
 msgstr "Možda nemate ovlašćenja za pisanje dokumenta."
 
@@ -2707,134 +2688,134 @@ msgid "Follow symbolic links"
 msgstr "Prati simboličke veze"
 
 #: ../gsearchtool/gsearchtool.c:99
-#| msgid "Include other filesystems"
 msgid "Exclude other filesystems"
 msgstr "Isključi ostale sisteme datoteka"
 
-#: ../gsearchtool/gsearchtool.c:157 ../gsearchtool/gsearchtool.c:162
-#: ../gsearchtool/gsearchtool.c:171
+#: ../gsearchtool/gsearchtool.c:157
+#| msgid "Show the application's version"
+msgid "Show version of the application"
+msgstr "Prikaži izdanje programa"
+
+#: ../gsearchtool/gsearchtool.c:158 ../gsearchtool/gsearchtool.c:163
+#: ../gsearchtool/gsearchtool.c:172
 msgid "STRING"
 msgstr "NISKA"
 
-#: ../gsearchtool/gsearchtool.c:158
+#: ../gsearchtool/gsearchtool.c:159
 msgid "PATH"
 msgstr "PUTANJA"
 
-#: ../gsearchtool/gsearchtool.c:159
+#: ../gsearchtool/gsearchtool.c:160
 msgid "VALUE"
 msgstr "VREDNOST"
 
-#: ../gsearchtool/gsearchtool.c:163 ../gsearchtool/gsearchtool.c:164
+#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
 msgid "DAYS"
 msgstr "DANA"
 
-#: ../gsearchtool/gsearchtool.c:165 ../gsearchtool/gsearchtool.c:166
+#: ../gsearchtool/gsearchtool.c:166 ../gsearchtool/gsearchtool.c:167
 msgid "KILOBYTES"
 msgstr "KILOBAJTA"
 
-#: ../gsearchtool/gsearchtool.c:168
+#: ../gsearchtool/gsearchtool.c:169
 msgid "USER"
 msgstr "KORISNIK"
 
-#: ../gsearchtool/gsearchtool.c:169
+#: ../gsearchtool/gsearchtool.c:170
 msgid "GROUP"
 msgstr "GRUPA"
 
-#: ../gsearchtool/gsearchtool.c:172
+#: ../gsearchtool/gsearchtool.c:173
 msgid "PATTERN"
 msgstr "OBRAZAC"
 
-#: ../gsearchtool/gsearchtool.c:383
+#: ../gsearchtool/gsearchtool.c:384
 msgid "A locate database has probably not been created."
 msgstr "Baza za traženje verovatno nije napravljena."
 
-#: ../gsearchtool/gsearchtool.c:485
+#: ../gsearchtool/gsearchtool.c:486
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "Neuspešno pretvaranje skupa znakova za „%s“"
 
-#: ../gsearchtool/gsearchtool.c:509
+#: ../gsearchtool/gsearchtool.c:510
 msgid "Searching..."
 msgstr "Tražim..."
 
-#: ../gsearchtool/gsearchtool.c:509 ../gsearchtool/gsearchtool.c:1015
-#: ../gsearchtool/gsearchtool.c:2980
+#: ../gsearchtool/gsearchtool.c:510 ../gsearchtool/gsearchtool.c:1016
+#: ../gsearchtool/gsearchtool.c:2988
 msgid "Search for Files"
 msgstr "Potraži datoteke"
 
-#: ../gsearchtool/gsearchtool.c:961 ../gsearchtool/gsearchtool.c:990
+#: ../gsearchtool/gsearchtool.c:962 ../gsearchtool/gsearchtool.c:991
 msgid "No files found"
 msgstr "Nijedna datoteka nije nađena"
 
-#: ../gsearchtool/gsearchtool.c:983
+#: ../gsearchtool/gsearchtool.c:984
 msgid "(stopped)"
 msgstr "(zaustavljen)"
 
-#: ../gsearchtool/gsearchtool.c:989
+#: ../gsearchtool/gsearchtool.c:990
 msgid "No Files Found"
 msgstr "Nijedna datoteka nije nađena"
 
-#: ../gsearchtool/gsearchtool.c:994
+#: ../gsearchtool/gsearchtool.c:995
 #, c-format
-#| msgid "%d File Found"
-#| msgid_plural "%d Files Found"
 msgid "%'d File Found"
 msgid_plural "%'d Files Found"
 msgstr[0] "Nađena je %'d datoteka"
 msgstr[1] "Nađene su %'d datoteke"
 msgstr[2] "Nađeno je %'d datoteka"
 
-#: ../gsearchtool/gsearchtool.c:998 ../gsearchtool/gsearchtool.c:1036
+#: ../gsearchtool/gsearchtool.c:999 ../gsearchtool/gsearchtool.c:1037
 #, c-format
-#| msgid "%d file found"
-#| msgid_plural "%d files found"
 msgid "%'d file found"
 msgid_plural "%'d files found"
 msgstr[0] "Nađena je %'d datoteka"
 msgstr[1] "Nađene su %'d datoteke"
 msgstr[2] "Nađeno je %'d datoteka"
 
-#: ../gsearchtool/gsearchtool.c:1127
+#: ../gsearchtool/gsearchtool.c:1128
 msgid "Entry changed called for a non entry option!"
 msgstr "Pozvana je promena unosa za opciju koja se ne tiče unosa!"
 
-#: ../gsearchtool/gsearchtool.c:1287
+#: ../gsearchtool/gsearchtool.c:1288
 msgid "Set the text of \"Name contains\" search option"
 msgstr "Postavi tekst za opciju „ime sadrži“"
 
-#: ../gsearchtool/gsearchtool.c:1288
+#: ../gsearchtool/gsearchtool.c:1289
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "Postavi tekst za opciju „traži u fascikli“"
 
-#: ../gsearchtool/gsearchtool.c:1289
+#: ../gsearchtool/gsearchtool.c:1290
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "Poređaj datoteke prema nekom od sledećih: po imenu, fascikli, veličini, "
 "vrsti, ili datumu"
 
-#: ../gsearchtool/gsearchtool.c:1290
+#: ../gsearchtool/gsearchtool.c:1291
 msgid "Set sort order to descending, the default is ascending"
 msgstr "Koristi opadajući poredak, uobičajeno je rastući"
 
-#: ../gsearchtool/gsearchtool.c:1291
+#: ../gsearchtool/gsearchtool.c:1292
 msgid "Automatically start a search"
 msgstr "Sam započni pretragu"
 
-#: ../gsearchtool/gsearchtool.c:1297
+#: ../gsearchtool/gsearchtool.c:1298
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "Izaberi pravilo pretrage „%s“"
 
-#: ../gsearchtool/gsearchtool.c:1300
+#: ../gsearchtool/gsearchtool.c:1301
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "Izaberi i postavi pravilo pretrage „%s“"
 
-#: ../gsearchtool/gsearchtool.c:1407
+#: ../gsearchtool/gsearchtool.c:1408
 msgid "Invalid option passed to sortby command line argument."
 msgstr "Predata je neispravna opcija argumentu naredbe „sortby“."
 
-#: ../gsearchtool/gsearchtool.c:1701
+#: ../gsearchtool/gsearchtool.c:1702
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2842,7 +2823,7 @@ msgstr ""
 "\n"
 "... Previše grešaka za prikaz ..."
 
-#: ../gsearchtool/gsearchtool.c:1715
+#: ../gsearchtool/gsearchtool.c:1716
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
@@ -2850,11 +2831,11 @@ msgstr ""
 "Rezultati pretrage mogu biti neispravni.  Došlo je do grešaka pri ovoj "
 "pretrazi."
 
-#: ../gsearchtool/gsearchtool.c:1727 ../gsearchtool/gsearchtool.c:1771
+#: ../gsearchtool/gsearchtool.c:1728 ../gsearchtool/gsearchtool.c:1772
 msgid "Show more _details"
 msgstr "Prikaži još _detalja"
 
-#: ../gsearchtool/gsearchtool.c:1757
+#: ../gsearchtool/gsearchtool.c:1758
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2862,149 +2843,154 @@ msgstr ""
 "Rezultati pretrage mogu biti zastareli ili neispravni.  Želite li da "
 "isključite mogućnost brze pretrage?"
 
-#: ../gsearchtool/gsearchtool.c:1782
+#: ../gsearchtool/gsearchtool.c:1783
 msgid "Disable _Quick Search"
 msgstr "Isključi _brzu pretragu"
 
-#: ../gsearchtool/gsearchtool.c:1809
+#: ../gsearchtool/gsearchtool.c:1810
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "Neuspešno postavljanje grupnog IB-a procesa sadržanog %d: %s.\n"
 
-#: ../gsearchtool/gsearchtool.c:1834
+#: ../gsearchtool/gsearchtool.c:1835
 msgid "Error parsing the search command."
 msgstr "Greška prilikom obrade naredbe za pretragu."
 
-#: ../gsearchtool/gsearchtool.c:1867
+#: ../gsearchtool/gsearchtool.c:1868
 msgid "Error running the search command."
 msgstr "Greška prilikom pokretanja naredbe za pretragu."
 
-#: ../gsearchtool/gsearchtool.c:1987
+#: ../gsearchtool/gsearchtool.c:1988
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "Unesite tekstualnu vrednost za pravilo pretrage „%s“."
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1992
+#: ../gsearchtool/gsearchtool.c:1993
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "„%s“ kao %s"
 
-#: ../gsearchtool/gsearchtool.c:1994
+#: ../gsearchtool/gsearchtool.c:1995
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "Unesite vrednost kao %s za pravilo pretrage „%s“."
 
-#: ../gsearchtool/gsearchtool.c:2052
+#: ../gsearchtool/gsearchtool.c:2053
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Ukloni „%s“"
 
-#: ../gsearchtool/gsearchtool.c:2053
+#: ../gsearchtool/gsearchtool.c:2054
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "Kliknite da uklonite pravilo pretrage „%s“."
 
-#: ../gsearchtool/gsearchtool.c:2146
+#: ../gsearchtool/gsearchtool.c:2147
 msgid "A_vailable options:"
 msgstr "Dostupna _pravila:"
 
-#: ../gsearchtool/gsearchtool.c:2175
+#: ../gsearchtool/gsearchtool.c:2176
 msgid "Available options"
 msgstr "Dostupna pravila"
 
-#: ../gsearchtool/gsearchtool.c:2176
+#: ../gsearchtool/gsearchtool.c:2177
 msgid "Select a search option from the drop-down list."
 msgstr "Izaberite pravilo pretrage iz padajućeg spiska."
 
-#: ../gsearchtool/gsearchtool.c:2188
+#: ../gsearchtool/gsearchtool.c:2189
 msgid "Add search option"
 msgstr "Dodaj pravilo pretrage"
 
-#: ../gsearchtool/gsearchtool.c:2189
+#: ../gsearchtool/gsearchtool.c:2190
 msgid "Click to add the selected available search option."
 msgstr "Kliknite da dodate izabrano dostupno pravilo pretrage."
 
-#: ../gsearchtool/gsearchtool.c:2278
+#: ../gsearchtool/gsearchtool.c:2279
 msgid "S_earch results:"
 msgstr "R_ezultati pretrage:"
 
-#: ../gsearchtool/gsearchtool.c:2321
+#: ../gsearchtool/gsearchtool.c:2322
 msgid "List View"
 msgstr "Pregled u spisku"
 
-#: ../gsearchtool/gsearchtool.c:2430
+#: ../gsearchtool/gsearchtool.c:2431
 msgid "Type"
 msgstr "Tip"
 
-#: ../gsearchtool/gsearchtool.c:2442
+#: ../gsearchtool/gsearchtool.c:2443
 msgid "Date Modified"
 msgstr "Datum i vreme izmene"
 
-#: ../gsearchtool/gsearchtool.c:2758
+#: ../gsearchtool/gsearchtool.c:2759
 msgid "_Name contains:"
 msgstr "_Ime sadrži:"
 
-#: ../gsearchtool/gsearchtool.c:2772 ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2773 ../gsearchtool/gsearchtool.c:2774
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "Unesite ime ili deo imena datoteke sa ili bez prečica."
 
-#: ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2774
 msgid "Name contains"
 msgstr "Ime sadrži"
 
-#: ../gsearchtool/gsearchtool.c:2779
+#: ../gsearchtool/gsearchtool.c:2780
 msgid "_Look in folder:"
 msgstr "_Tražite u fascikli:"
 
-#: ../gsearchtool/gsearchtool.c:2785
+#: ../gsearchtool/gsearchtool.c:2786
 msgid "Browse"
 msgstr "Razgledaj"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Look in folder"
 msgstr "Traži u fascikli"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "Izaberite fasciklu ili uređaj od kojeg želite početi pretragu."
 
-#: ../gsearchtool/gsearchtool.c:2812
+#: ../gsearchtool/gsearchtool.c:2813
 msgid "Select more _options"
 msgstr "Prikaži još _opcija"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Select more options"
 msgstr "Odaberite više opcija"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Click to expand or collapse the list of available options."
 msgstr "Kliknite da razgranate ili skupite spisak dostupnih pravila."
 
-#: ../gsearchtool/gsearchtool.c:2845
+#: ../gsearchtool/gsearchtool.c:2846
 msgid "Click to display the help manual."
 msgstr "Kliknite da prikažete uputstvo."
 
-#: ../gsearchtool/gsearchtool.c:2853
+#: ../gsearchtool/gsearchtool.c:2854
 msgid "Click to close \"Search for Files\"."
 msgstr "Kliknite da zatvorite „Traženje datoteka“."
 
-#: ../gsearchtool/gsearchtool.c:2879
+#: ../gsearchtool/gsearchtool.c:2880
 msgid "Click to perform a search."
 msgstr "Kliknite da počnete pretragu."
 
-#: ../gsearchtool/gsearchtool.c:2880
+#: ../gsearchtool/gsearchtool.c:2881
 msgid "Click to stop a search."
 msgstr "Kliknite da zaustavite pretragu."
 
-#: ../gsearchtool/gsearchtool.c:2971
+#: ../gsearchtool/gsearchtool.c:2973
 msgid "- the GNOME Search Tool"
 msgstr "— Gnomova alatka za pretraživanje"
 
+#: ../gsearchtool/gsearchtool.c:2982
+#, c-format
+#| msgid "Invalid option passed to sortby command line argument."
+msgid "Failed to parse command line arguments: %s\n"
+msgstr "Ne mogu da obradim argumente iz komandne linije: %s\n"
+
 #: ../libeggsmclient/eggdesktopfile.c:165
 #, c-format
-#| msgid "\"%s\" is not a valid folder"
 msgid "File is not a valid .desktop file"
 msgstr "Ovo nije ispravna .desktop datoteka"
 
@@ -3032,7 +3018,8 @@ msgstr "Nepoznata opcija pri pokretanju: %d"
 #, c-format
 msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 msgstr ""
-"Ne mogu da prosledim adresu dokumenta u „Type=Link“ unos datoteke za radnu površ"
+"Ne mogu da prosledim adresu dokumenta u „Type=Link“ unos datoteke za radnu "
+"površ"
 
 #: ../libeggsmclient/eggdesktopfile.c:1392
 #, c-format
@@ -3064,7 +3051,6 @@ msgid "Session management options:"
 msgstr "Opcije upravnika sesijama:"
 
 #: ../libeggsmclient/eggsmclient.c:253
-#| msgid "Show Dictionary options"
 msgid "Show session management options"
 msgstr "Prikaži opcije upravnika sesijama"
 
@@ -3129,13 +3115,38 @@ msgstr "Zadaje širinu glavnog prozora preglednika dnevnika izraženu u tačkama
 msgid "Width of the main window in pixels"
 msgstr "Širina glavnog prozora izražena u tačkama"
 
+#: ../logview/data/logview-filter.ui.h:1
+msgid "Background:"
+msgstr "Pozadina:"
+
+#: ../logview/data/logview-filter.ui.h:2
+#| msgid "Effects"
+msgid "Effect:"
+msgstr "Efekat:"
+
+#: ../logview/data/logview-filter.ui.h:3
+msgid "Foreground:"
+msgstr "Prednji plan:"
+
+#: ../logview/data/logview-filter.ui.h:4
+msgid "Hide"
+msgstr "Sakriveno"
+
+#: ../logview/data/logview-filter.ui.h:5
+msgid "Highlight"
+msgstr "Istaknuto"
+
+#: ../logview/data/logview-filter.ui.h:7
+#| msgid "Regular expression is empty!"
+msgid "_Regular Expression:"
+msgstr "_Regularni izraz:"
+
 #: ../logview/logview-app.c:375
 #, c-format
 msgid "Impossible to open the file %s"
 msgstr "Nije moguće otvoriti datoteku %s"
 
 #: ../logview/logview-filter-manager.c:90
-#| msgid "File is empty"
 msgid "Filter name is empty!"
 msgstr "Ime filtera je prazno!"
 
@@ -3156,16 +3167,15 @@ msgstr "Regularni izraz nije ispravan: %s"
 msgid "Please specify either foreground or background color!"
 msgstr "Izaberite boju pozadine ili boju slova!"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Edit filter"
 msgstr "Izmeni filter"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Add new filter"
 msgstr "Dodaj novi filter"
 
-#: ../logview/logview-filter-manager.c:505
-#| msgid "_Filter:"
+#: ../logview/logview-filter-manager.c:503
 msgid "Filters"
 msgstr "Filteri"
 
@@ -3229,7 +3239,7 @@ msgstr " — Razgleda i prati izveštaje"
 msgid "Log Viewer"
 msgstr "Pregled sistemskog dnevnika"
 
-#: ../logview/logview-window.c:38 ../logview/logview-window.c:786
+#: ../logview/logview-window.c:38 ../logview/logview-window.c:788
 msgid "System Log Viewer"
 msgstr "Pregled sistemskog dnevnika"
 
@@ -3243,131 +3253,138 @@ msgstr "poslednje ažuriranje: %s"
 msgid "%d lines (%s) - %s"
 msgstr "broj linija: %d (%s) - %s"
 
-#: ../logview/logview-window.c:341
+#: ../logview/logview-window.c:343
 msgid "Open Log"
 msgstr "_Otvori dnevnik"
 
-#: ../logview/logview-window.c:380
+#: ../logview/logview-window.c:382
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "Došlo je do greške pri prikazivanju pomoći: %s"
 
-#: ../logview/logview-window.c:496
+#: ../logview/logview-window.c:498
 msgid "Wrapped"
 msgstr "Omotač"
 
-#: ../logview/logview-window.c:791
+#: ../logview/logview-window.c:793
 msgid "A system log viewer for GNOME."
 msgstr "Pregled sistemskog dnevnika Gnoma."
 
-#: ../logview/logview-window.c:837
-#| msgid "_Filter:"
+#: ../logview/logview-window.c:839
 msgid "_Filters"
 msgstr "_Filteri:"
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "_Open..."
 msgstr "_Otvori..."
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "Open a log from file"
 msgstr "Otvorite dnevnik iz datoteke"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "_Close"
 msgstr "_Zatvori"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "Close this log"
 msgstr "Zatvori ovaj dnevnik"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "_Quit"
 msgstr "_Izađi"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "Quit the log viewer"
 msgstr "Zatvori pregledač dnevnika"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "_Copy"
 msgstr "_Umnoži"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "Copy the selection"
 msgstr "Umnoži izabrano"
 
-#: ../logview/logview-window.c:849
+#: ../logview/logview-window.c:851
 msgid "Select the entire log"
 msgstr "Izaberi čitav dnevnik"
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "_Find..."
 msgstr "_Nađi..."
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "Find a word or phrase in the log"
 msgstr "Pronađi reč ili frazu unutar dnevnika"
 
-#: ../logview/logview-window.c:854
+#: ../logview/logview-window.c:856
 msgid "Bigger text size"
 msgstr "Veći tekst"
 
-#: ../logview/logview-window.c:856
+#: ../logview/logview-window.c:858
 msgid "Smaller text size"
 msgstr "Manji tekst"
 
-#: ../logview/logview-window.c:858
+#: ../logview/logview-window.c:860
 msgid "Normal text size"
 msgstr "Obična veličina teksta"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage Filters"
 msgstr "Uredi filtere"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage filters"
 msgstr "Uredi filtere"
 
-#: ../logview/logview-window.c:864
+#: ../logview/logview-window.c:866
 msgid "Open the help contents for the log viewer"
 msgstr "Otvori sadržaj pomoći za pregledač dnevnika"
 
-#: ../logview/logview-window.c:866
+#: ../logview/logview-window.c:868
 msgid "Show the about dialog for the log viewer"
 msgstr "Prikaži prozor sa informacijama o pregledaču dnevnika"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "_Statusbar"
 msgstr "Linija sa _stanjem"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "Show Status Bar"
 msgstr "Prikaži liniju sa stanjem"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Side _Pane"
 msgstr "_Bočna površ"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Show Side Pane"
 msgstr "Prikaži bočnu površ"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Show matches only"
 msgstr "Pokaži samo poklapanja"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Only show lines that match one of the given filters"
 msgstr "Prikazuje samo linije koje se poklapaju sa jednim od zadatih filtera"
 
-#: ../logview/logview-window.c:1414
+#: ../logview/logview-window.c:1014
+#, c-format
+msgid "Can't read from \"%s\""
+msgstr "Ne mogu da čitam sa „%s“"
+
+#: ../logview/logview-window.c:1436
 msgid "Version: "
 msgstr "Izdanje: "
 
-#: ../logview/logview-window.c:1521
+#: ../logview/logview-window.c:1543
 msgid "Could not open the following files:"
 msgstr "Ne mogu da otvorim sledeće datoteke:"
+
+#~ msgid "Save snapshot"
+#~ msgstr "Sačuvaj sliku ekrana"
 
 #~ msgid "Floppy Formatter"
 #~ msgstr "Formatiranje disketa"
