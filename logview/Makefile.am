@@ -45,7 +45,8 @@ gnome_system_log_SOURCES = 	\
 gnome_system_log_LDADD =	\
 	$(GNOME_UTILS_LIBS)	\
 	$(GTHREAD_LIBS)		\
-	$(Z_LIBS)
+	$(Z_LIBS)		\
+	-lm
 
 logview-marshal.h: logview-marshal.list $(GLIB_GENMARSHAL)
 	$(GLIB_GENMARSHAL) $< --header --prefix=logview_marshal >> $@

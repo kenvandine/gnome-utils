@@ -41,6 +41,7 @@ gnome_dictionary_CFLAGS = \
 	$(GNOME_UTILS_CFLAGS) \
 	$(NULL)
 gnome_dictionary_LDADD = \
+	-lm			\
 	$(top_builddir)/gnome-dictionary/libgdict/libgdict-1.0.la \
 	$(GNOME_UTILS_LIBS) \
 	$(NULL)
@@ -72,6 +73,7 @@ gnome_dictionary_applet_CFLAGS = \
 	$(APPLET_CFLAGS) \
 	$(NULL)
 gnome_dictionary_applet_LDADD = \
+	-lm			\
 	$(top_builddir)/gnome-dictionary/libgdict/libgdict-1.0.la \
 	$(GNOME_UTILS_LIBS) \
 	$(APPLET_LIBS) \

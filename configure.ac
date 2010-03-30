@@ -123,9 +123,9 @@ AC_SUBST(GDICT_VERSION)
 
 # xext for gnome-screenshot; in theory checking for xext should be
 # enough but there are a lot of broken distros out there
-PKG_CHECK_MODULES(XSHAPE, xext,
+PKG_CHECK_MODULES(XSHAPE, xext x11,
                   [],
-                  [AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext")])
+                  [AC_CHECK_HEADERS(X11/extensions/shape.h, XSHAPE_LIBS="-lXext -lX11")])
 AC_SUBST(XSHAPE_LIBS)
 
 # gio-unix is needed for gsearchtool
