@@ -1,5 +1,5 @@
 m4_define([gnome_utils_major], [2])
-m4_define([gnome_utils_minor], [30])
+m4_define([gnome_utils_minor], [31])
 m4_define([gnome_utils_micro], [1])
 
 m4_define([gnome_utils_version], [gnome_utils_major.gnome_utils_minor.gnome_utils_micro])
