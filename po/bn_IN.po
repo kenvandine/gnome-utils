@@ -4,13 +4,13 @@
 # This file is distributed under the same license as the gnome-utils package.
 #
 # Runa Bhattacharjee <runa@bengalinux.org>, 2005.
-# Runa Bhattacharjee <runab@redhat.com>, 2008, 2009.
+# Runa Bhattacharjee <runab@redhat.com>, 2008, 2009, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-utils&component=general\n"
-"POT-Creation-Date: 2009-08-23 23:59+0000\n"
-"PO-Revision-Date: 2009-08-26 18:07+0530\n"
+"POT-Creation-Date: 2010-04-17 00:05+0000\n"
+"PO-Revision-Date: 2010-04-17 17:24+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
 "Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
 "MIME-Version: 1.0\n"
@@ -116,12 +116,12 @@ msgstr "সমস্ত গুটিয়ে ফেলা হবে (_C)"
 
 #. Help menu
 #: ../baobab/data/baobab-main-window.ui.h:20
-#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:864
+#: ../gnome-dictionary/src/gdict-window.c:1234 ../logview/logview-window.c:866
 msgid "_Contents"
-msgstr "বিষয়বস্তু(_C)"
+msgstr "সূচিপত্র (_C)"
 
 #: ../baobab/data/baobab-main-window.ui.h:21
-#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:835
+#: ../gnome-dictionary/src/gdict-window.c:1181 ../logview/logview-window.c:837
 msgid "_Edit"
 msgstr "সম্পাদনা (_E)"
 
@@ -131,7 +131,7 @@ msgstr "সমস্ত প্রসারণ করা হবে (_E)"
 
 #: ../baobab/data/baobab-main-window.ui.h:23
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:3
-#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:838
+#: ../gnome-dictionary/src/gdict-window.c:1184 ../logview/logview-window.c:840
 msgid "_Help"
 msgstr "সহায়তা (_H)"
 
@@ -140,21 +140,23 @@ msgid "_Toolbar"
 msgstr "টুল-বার(_T)"
 
 #: ../baobab/data/baobab-main-window.ui.h:25
-#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:836
+#: ../gnome-dictionary/src/gdict-window.c:1182 ../logview/logview-window.c:838
 msgid "_View"
 msgstr "প্রদর্শন(_V)"
 
 #: ../baobab/data/baobab.schemas.in.h:1
-msgid "A list of uri for partitions to be excluded from scanning."
-msgstr "স্ক্যানের সময় উপেক্ষা করার জন্য চিহ্নিত পার্টিশনের uri-র তালিকা।"
+#| msgid "A list of uri for partitions to be excluded from scanning."
+msgid "A list of URIs for partitions to be excluded from scanning."
+msgstr "স্ক্যানের সময় উপেক্ষা করার জন্য চিহ্নিত পার্টিশনের URI-র তালিকা।"
 
 #: ../baobab/data/baobab.schemas.in.h:2
 msgid "Enable monitoring of home directory"
 msgstr "ব্যক্তিগত ডিরেক্টরির পর্যবেক্ষণ সক্রিয় করা হবে"
 
 #: ../baobab/data/baobab.schemas.in.h:3
-msgid "Exluded partitions uris"
-msgstr "উপেক্ষিত পার্টিশানের uri"
+#| msgid "Exluded partitions uris"
+msgid "Excluded partitions URIs"
+msgstr "উপেক্ষিত পার্টিশানের URI"
 
 #: ../baobab/data/baobab.schemas.in.h:4
 msgid "Status Bar is Visible"
@@ -177,135 +179,137 @@ msgid "Whether the status bar at the bottom of main window should be visible."
 msgstr "প্রধান উইন্ডোর নিম্নাংশে স্ট্যাটাস-বার দৃশ্যমান হবে কি না।"
 
 #: ../baobab/data/baobab.schemas.in.h:9
-msgid "Whether the subfolders tooltips of the selected folder are drawn."
+#| msgid "Whether the subfolders tooltips of the selected folder are drawn."
+msgid "Whether the subfolder tooltips of the selected folder are drawn."
 msgstr "নির্বাচিত ফোল্ডারের সাব-ফোল্ডারের টুল-টিপ গঠিত হবে কি না।"
 
 #: ../baobab/data/baobab.schemas.in.h:10
 msgid "Whether the toolbar should be visible in main window."
 msgstr "প্রধান উইন্ডোর নিম্নাংশে টুল-বার দৃশ্যমান হবে কি না।"
 
-#: ../baobab/src/baobab.c:119 ../baobab/src/baobab.c:297
+#: ../baobab/src/baobab.c:139 ../baobab/src/baobab.c:326
 msgid "Scanning..."
 msgstr "স্ক্যান করা হচ্ছে..."
 
 #. set statusbar, percentage and allocated/normal size
-#: ../baobab/src/baobab.c:181 ../baobab/src/baobab.c:239
+#: ../baobab/src/baobab.c:209 ../baobab/src/baobab.c:268
 #: ../baobab/src/callbacks.c:264
 msgid "Calculating percentage bars..."
 msgstr "শতাংশের বারের মান গণনা করা হচ্ছে..."
 
-#: ../baobab/src/baobab.c:191 ../baobab/src/baobab.c:1096
+#: ../baobab/src/baobab.c:220 ../baobab/src/baobab.c:1169
 #: ../baobab/src/callbacks.c:268
 msgid "Ready"
 msgstr "প্রস্তুত"
 
-#: ../baobab/src/baobab.c:333
-#| msgid "Total filesystem capacity:"
+#: ../baobab/src/baobab.c:362
 msgid "Total filesystem capacity"
 msgstr "ফাইল-সিস্টেমের সর্বমোট ধারণক্ষমতা"
 
-#: ../baobab/src/baobab.c:355
-#| msgid "Total filesystem usage:"
+#: ../baobab/src/baobab.c:384
 msgid "Total filesystem usage"
 msgstr "ফাইল-সিস্টেমের সর্বমোট ব্যবহার"
 
-#: ../baobab/src/baobab.c:396
+#: ../baobab/src/baobab.c:425
 msgid "contains hardlinks for:"
 msgstr "চিহ্নিত সামগ্রীর হার্ড-লিংক ধারণকারী:"
 
-#: ../baobab/src/baobab.c:405
+#: ../baobab/src/baobab.c:434
 #, c-format
-msgid "% 5d item"
-msgid_plural "% 5d items"
-msgstr[0] "% 5d সামগ্রী"
-msgstr[1] "% 5d সামগ্রী"
+#| msgid "% 5d item"
+#| msgid_plural "% 5d items"
+msgid "%5d item"
+msgid_plural "%5d items"
+msgstr[0] "%5d সামগ্রী"
+msgstr[1] "%5d সামগ্রী"
 
-#: ../baobab/src/baobab.c:756
+#: ../baobab/src/baobab.c:785
 msgid "Could not initialize monitoring"
 msgstr "নিরীক্ষণ ব্যবস্থা আরম্ভ করতে ব্যর্থ"
 
-#: ../baobab/src/baobab.c:757
+#: ../baobab/src/baobab.c:786
 msgid "Changes to your home folder will not be monitored."
 msgstr "ব্যক্তিগত ফোল্ডারের মধ্যে কোনো পরিবর্তন নিরীক্ষণ করা হবে না।"
 
-#: ../baobab/src/baobab.c:864
+#: ../baobab/src/baobab.c:893
 msgid "Move to parent folder"
 msgstr "ঊর্ধ্বগন ফোল্ডারে স্থানান্তর করুন"
 
-#: ../baobab/src/baobab.c:868
+#: ../baobab/src/baobab.c:897
 msgid "Zoom in"
 msgstr "বড় করে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:872
+#: ../baobab/src/baobab.c:901
 msgid "Zoom out"
 msgstr "ছোট করে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:876
-msgid "Save snapshot"
-msgstr "স্ন্যাপ-শট সংরক্ষণ করুন"
+#: ../baobab/src/baobab.c:905
+#| msgid "Save Screenshot"
+msgid "Save screenshot"
+msgstr "পর্দার ছবি সংরক্ষণ করুন"
 
-#: ../baobab/src/baobab.c:924
+#: ../baobab/src/baobab.c:991
 msgid "View as Rings Chart"
 msgstr "বৃত্তাকার রেখাচিত্র রূপে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:926
+#: ../baobab/src/baobab.c:993
 msgid "View as Treemap Chart"
 msgstr "ট্রি-ম্যাপ রেখাচিত্র রূপে প্রদর্শন"
 
-#: ../baobab/src/baobab.c:1019
+#: ../baobab/src/baobab.c:1092
 msgid "Show version"
 msgstr "সংস্করণ সংখ্যা প্রদর্শন করা হবে"
 
-#: ../baobab/src/baobab.c:1020
+#: ../baobab/src/baobab.c:1093
 msgid "[DIRECTORY]"
 msgstr "[DIRECTORY]"
 
-#: ../baobab/src/baobab.c:1050
+#: ../baobab/src/baobab.c:1123
 msgid "Too many arguments. Only one directory can be specified."
 msgstr "অত্যাধিক সংখ্যক আর্গুমেন্ট। শুধুমাত্র একটি ডিরেক্টরি উল্লেখ করা যাবে।"
 
-#: ../baobab/src/baobab.c:1068
+#: ../baobab/src/baobab.c:1141
 msgid "Could not detect any mount point."
 msgstr "কোনো মাউন্ট পয়েন্ট সনাক্ত করা যায়নি।"
 
-#: ../baobab/src/baobab.c:1071
+#: ../baobab/src/baobab.c:1144
 msgid "Without mount points disk usage cannot be analyzed."
 msgstr "মাউন্ট পয়েন্ট বিনা ডিস্কের ব্যবহার বিশ্লেষণ করা যাবে না।"
 
-#: ../baobab/src/baobab-chart.c:202
+#: ../baobab/src/baobab-chart.c:206
 msgid "Maximum depth"
 msgstr "সর্বাধিক ধাপ"
 
-#: ../baobab/src/baobab-chart.c:203
+#: ../baobab/src/baobab-chart.c:207
 msgid "The maximum depth drawn in the chart from the root"
 msgstr "রেখাচিত্রের প্রারম্ভ (root) থেকে আঁকা সর্বাধিক ধাপের সংখ্যা"
 
-#: ../baobab/src/baobab-chart.c:212
+#: ../baobab/src/baobab-chart.c:216
 msgid "Chart model"
 msgstr "রেখাচিত্রের মডেল"
 
-#: ../baobab/src/baobab-chart.c:213
+#: ../baobab/src/baobab-chart.c:217
 msgid "Set the model of the chart"
 msgstr "রেখাচিত্রের মডেল নির্ধারণ করুন"
 
-#: ../baobab/src/baobab-chart.c:220
+#: ../baobab/src/baobab-chart.c:224
 msgid "Chart root node"
 msgstr "রেখাচিত্রের মূল (root) নোড"
 
-#: ../baobab/src/baobab-chart.c:221
+#: ../baobab/src/baobab-chart.c:225
 msgid "Set the root node from the model"
 msgstr "মডেল থেকে মূল (root) নোড নির্ধারণ করুন"
 
-#: ../baobab/src/baobab-chart.c:1672
+#: ../baobab/src/baobab-chart.c:1695
 msgid "Cannot create pixbuf image!"
 msgstr "pixbuf ছবি নির্মাণ করতে ব্যর্থ!"
 
 #. Popup the File chooser dialog
-#: ../baobab/src/baobab-chart.c:1682
+#: ../baobab/src/baobab-chart.c:1705
 msgid "Save Snapshot"
 msgstr "স্ন্যাপ-শট সংরক্ষণ করুন"
 
-#: ../baobab/src/baobab-chart.c:1711
+#: ../baobab/src/baobab-chart.c:1734
 msgid "_Image type:"
 msgstr "ছবির ধরন: (_I)"
 
@@ -435,7 +439,7 @@ msgstr ""
 msgid "_Rescan"
 msgstr "পুনরায় স্ক্যান (_R)"
 
-#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2405
+#: ../baobab/src/baobab-treeview.c:222 ../gsearchtool/gsearchtool.c:2406
 msgid "Folder"
 msgstr "ফোল্ডার"
 
@@ -443,7 +447,7 @@ msgstr "ফোল্ডার"
 msgid "Usage"
 msgstr "ব্যবহার প্রণালী"
 
-#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2418
+#: ../baobab/src/baobab-treeview.c:258 ../gsearchtool/gsearchtool.c:2419
 msgid "Size"
 msgstr "মাপ"
 
@@ -478,7 +482,7 @@ msgid "_Open Folder"
 msgstr "ফোল্ডার খুলুন (_O)"
 
 #: ../baobab/src/baobab-utils.c:375
-#: ../gsearchtool/gsearchtool-callbacks.c:1172
+#: ../gsearchtool/gsearchtool-callbacks.c:1203
 msgid "Mo_ve to Trash"
 msgstr "আবর্জানার বাক্সে স্থানান্তরণ করুন(_v)"
 
@@ -568,8 +572,8 @@ msgstr "ডিস্কের ব্যবহার প্রদর্শনক�
 msgid "translator-credits"
 msgstr "রুণা ভট্টাচার্য্য (runa@bengalinux.org)"
 
-#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:493
-#: ../gsearchtool/gsearchtool-callbacks.c:832
+#: ../baobab/src/callbacks.c:207 ../gsearchtool/gsearchtool-callbacks.c:504
+#: ../gsearchtool/gsearchtool-callbacks.c:843
 msgid "The document does not exist."
 msgstr "ডকুমেন্ট বর্তমানে উপস্থিত নেই।"
 
@@ -594,7 +598,7 @@ msgid "Cl_ear"
 msgstr "পরিশ্রুত করুন (_e)"
 
 #: ../gnome-dictionary/data/GNOME_DictionaryApplet.xml.h:2
-#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:866
+#: ../gnome-dictionary/src/gdict-window.c:1236 ../logview/logview-window.c:868
 msgid "_About"
 msgstr "পরিচিতি (_A)"
 
@@ -891,22 +895,22 @@ msgstr "অভিধানের সার্ভার থেকে প্রা
 msgid "No connection to the dictionary server at '%s:%d'"
 msgstr "'%s:%d'-এ উপস্থিত অভিধান সার্ভারের সাথে সংযোগ করা হয়নি"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1054
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1060
 #, c-format
 msgid "Lookup failed for hostname '%s': no suitable resources found"
 msgstr "হোস্ট-নেম '%s' অনুসন্ধান করতে ব্যর্থ: উপযুক্ত রিসোর্স পাওয়া যায়নি"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1085
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1091
 #, c-format
 msgid "Lookup failed for host '%s': %s"
 msgstr "হোস্ট '%s' অনুসন্ধান করতে ব্যর্থ: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1119
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1125
 #, c-format
 msgid "Lookup failed for host '%s': host not found"
 msgstr "হোস্ট '%s' অনুসন্ধান করতে ব্যর্থ: হোস্ট পাওয়া যায়নি"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1171
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1177
 #, c-format
 msgid ""
 "Unable to connect to the dictionary server at '%s:%d'. The server replied "
@@ -915,7 +919,7 @@ msgstr ""
 "'%s:%d'-এ উপস্থিত অভিধান সার্ভারের সাথে সংযোগ করতে ব্যর্থ। সার্ভার থেকে কোড %d "
 "প্রাপ্ত হয়েছে (সার্ভার বর্তমানে বন্ধ রয়েছে)"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1190
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1196
 #, c-format
 msgid ""
 "Unable to parse the dictionary server reply\n"
@@ -924,47 +928,47 @@ msgstr ""
 "অভিধান সার্ভার থেকে প্রাপ্ত উত্তর পার্স করতে ব্যর্থ\n"
 ": '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1219
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1225
 #, c-format
 msgid "No definitions found for '%s'"
 msgstr "'%s'-র ব্যাখ্যা পাওয়া যায়নি"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1234
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1240
 #, c-format
 msgid "Invalid database '%s'"
 msgstr "অবৈধ ডাটাবেস '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1249
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1255
 #, c-format
 msgid "Invalid strategy '%s'"
 msgstr "অবৈধ নীতি '%s'"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1264
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1270
 #, c-format
 msgid "Bad command '%s'"
 msgstr "'%s' কমান্ড সঠিক নয়"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1279
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1285
 #, c-format
 msgid "Bad parameters for command '%s'"
 msgstr "কমান্ড '%s'-র পরিমিতি সঠিক নয়"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1294
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1300
 #, c-format
 msgid "No databases found on dictionary server at '%s'"
 msgstr "'%s'-এ উপস্থিত অভিধান সার্ভারের মধ্যে কোনো ডাটাবেস পাওয়া যায়নি"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1309
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1315
 #, c-format
 msgid "No strategies found on dictionary server at '%s'"
 msgstr "'%s'-এ উপস্থিত অভিধান সার্ভারের মধ্যে কোনো নীতি পাওয়া যায়নি"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1742
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1748
 #, c-format
 msgid "Connection failed to the dictionary server at %s:%d"
 msgstr "%s:%d'এ উপস্থিত অভিধান সার্ভারের সাথে সংযোগ করতে ব্যর্থ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1781
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1787
 #, c-format
 msgid ""
 "Error while reading reply from server:\n"
@@ -973,30 +977,30 @@ msgstr ""
 "সার্ভার থেকে প্রাপ্ত উত্তর পড়াকালে সমস্যা:\n"
 "%s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1851
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1860
 #, c-format
 msgid "Connection timeout for the dictionary server at '%s:%d'"
 msgstr ""
 "%s:%d-এ উপস্থিত অভিধান সার্ভারের সাথে সংযোগ স্থাপনের প্রচেষ্টাকালে সময় সীমা "
 "অতিক্রান্ত হয়েছে"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1885
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1894
 #, c-format
 msgid "No hostname defined for the dictionary server"
 msgstr "অভিধান সার্ভারের জন্য হোস্ট-নেম উল্লিখিত হয়নি"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1921
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1936
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1930
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1945
 #, c-format
 msgid "Unable to create socket"
 msgstr "সকেট নির্মাণ করতে ব্যর্থ"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1962
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1971
 #, c-format
 msgid "Unable to set the channel as non-blocking: %s"
 msgstr "চ্যানেকটিকে নন-ব্লকিং রূপে ধার্য করতে ব্যর্থ: %s"
 
-#: ../gnome-dictionary/libgdict/gdict-client-context.c:1977
+#: ../gnome-dictionary/libgdict/gdict-client-context.c:1986
 #, c-format
 msgid "Unable to connect to the dictionary server at '%s:%d'"
 msgstr "'%s:%d'-এ অবস্থিত অভিধান সার্ভারের সাথে সংযোগ করতে ব্যর্থ"
@@ -1027,7 +1031,7 @@ msgstr "মেলানোর সময় সমস্যা"
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1134
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1228
 #: ../gnome-dictionary/libgdict/gdict-defbox.c:1262
-#: ../logview/logview-window.c:511
+#: ../logview/logview-window.c:513
 msgid "Not found"
 msgstr "পাওয়া যায়নি"
 
@@ -1071,7 +1075,7 @@ msgid "The filename used by this dictionary source"
 msgstr "অভিধানের উৎসে ব্যবহৃত ফাইলের নাম"
 
 #: ../gnome-dictionary/libgdict/gdict-source.c:246
-#: ../gsearchtool/gsearchtool.c:2381
+#: ../gsearchtool/gsearchtool.c:2382
 msgid "Name"
 msgstr "নাম"
 
@@ -1523,7 +1527,7 @@ msgstr[1] "%d-টি সংজ্ঞা প্রাপ্ত হয়েছে"
 msgid "%s - Dictionary"
 msgstr "%s - অভিধান"
 
-#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:834
+#: ../gnome-dictionary/src/gdict-window.c:1180 ../logview/logview-window.c:836
 msgid "_File"
 msgstr "ফাইল (_F)"
 
@@ -1560,7 +1564,7 @@ msgstr "প্রিন্ট করুন...(_P)"
 msgid "Print this document"
 msgstr "ডকুমেন্ট প্রিন্ট করুন"
 
-#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:849
+#: ../gnome-dictionary/src/gdict-window.c:1201 ../logview/logview-window.c:851
 msgid "Select _All"
 msgstr "সমগ্র নির্বাচন করুন (_A)"
 
@@ -1784,7 +1788,6 @@ msgstr ""
 " অনুগ্রহ করে ভিন্ন অবস্থান নির্বাচন করে পুনরায় প্রচেষ্টা করুন।"
 
 #: ../gnome-screenshot/gnome-screenshot.c:793
-#| msgid "Screenshot delay"
 msgid "Screenshot taken"
 msgstr "পর্দার ছবি গ্রহণ করা হয়েছে"
 
@@ -1885,6 +1888,7 @@ msgid "Save in _folder:"
 msgstr "চিহ্নিত ফোল্ডারে সংরক্ষণ করা হবে (_f)"
 
 #: ../gnome-screenshot/gnome-screenshot.ui.h:5
+#: ../logview/data/logview-filter.ui.h:6
 msgid "_Name:"
 msgstr "নাম:(_N)"
 
@@ -1992,7 +1996,7 @@ msgid "The file \"%s\" already exists. Would you like to replace it?"
 msgstr "\"%s\" ফাইল বর্তমানে উপস্থিত রয়েছে।  আপনি কি এটি নতুন করে লিখতে ইচ্ছুক?"
 
 #: ../gnome-screenshot/screenshot-xfer.c:84
-#: ../gsearchtool/gsearchtool-callbacks.c:1691
+#: ../gsearchtool/gsearchtool-callbacks.c:1722
 msgid "_Replace"
 msgstr "প্রতিস্থাপন (_R)"
 
@@ -2337,148 +2341,146 @@ msgstr ""
 "এই কি দ্বারা নির্ধারিত হয় প্রারম্ভকালে অনুসন্ধানব্যবস্থার উইন্ডোর ক্ষেত্রে সর্বোচ্চ মাপ "
 "প্রয়োগ করা হবে কি না।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:183
+#: ../gsearchtool/gsearchtool-callbacks.c:194
 msgid "Could not open help document."
 msgstr "সহায়িকা প্রদর্শন করা যায়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:334
+#: ../gsearchtool/gsearchtool-callbacks.c:345
 #, c-format
 msgid "Are you sure you want to open %d document?"
 msgid_plural "Are you sure you want to open %d documents?"
 msgstr[0] "আপনি কি নিশ্চিতরূপে %d-টি ডকুমেন্ট খুলতে ইচ্ছুক?"
 msgstr[1] "আপনি কি নিশ্চিতরূপে %d-টি ডকুমেন্ট খুলতে ইচ্ছুক?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:339
-#: ../gsearchtool/gsearchtool-callbacks.c:536
+#: ../gsearchtool/gsearchtool-callbacks.c:350
+#: ../gsearchtool/gsearchtool-callbacks.c:547
 #, c-format
 msgid "This will open %d separate window."
 msgid_plural "This will open %d separate windows."
 msgstr[0] "এর ফলে %d-টি পৃথক উইন্ডো খোলা হবে।"
 msgstr[1] "এর ফলে %d-টি পৃথক উইন্ডো খোলা হবে।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:379
+#: ../gsearchtool/gsearchtool-callbacks.c:390
 #, c-format
 msgid "Could not open document \"%s\"."
 msgstr "\"%s\" ডকুমেন্ট খোলা যায়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:408
+#: ../gsearchtool/gsearchtool-callbacks.c:419
 #, c-format
 msgid "Could not open folder \"%s\"."
 msgstr "\"%s\" ফোল্ডার খোলা যায়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:416
+#: ../gsearchtool/gsearchtool-callbacks.c:427
 msgid "The nautilus file manager is not running."
 msgstr "Nautilus ফাইল পরিচালন ব্যবস্থা বর্তমানে চলছে না।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:508
+#: ../gsearchtool/gsearchtool-callbacks.c:519
 msgid "There is no installed viewer capable of displaying the document."
 msgstr "ডকুমেন্ট প্রদর্শনের উদ্দেশ্যে কোনো যথাযত সামগ্রী ইনস্টল করা হয়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:531
+#: ../gsearchtool/gsearchtool-callbacks.c:542
 #, c-format
 msgid "Are you sure you want to open %d folder?"
 msgid_plural "Are you sure you want to open %d folders?"
 msgstr[0] "আপনি কি নিশ্চিতরূপে %d-টি ফোল্ডার খুলতে ইচ্ছুক?"
 msgstr[1] "আপনি কি নিশ্চিতরূপে %d-টি ফোল্ডার খুলতে ইচ্ছুক?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:684
+#: ../gsearchtool/gsearchtool-callbacks.c:695
 #, c-format
 msgid "Could not move \"%s\" to trash."
 msgstr "\"%s\" অবর্জনার বাক্সে সরানো যায়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:715
+#: ../gsearchtool/gsearchtool-callbacks.c:726
 #, c-format
 msgid "Do you want to delete \"%s\" permanently?"
 msgstr "আপনি কি \"%s\" স্থায়ীরূপে মুছে ফেলতে ইচ্ছুক?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:718
+#: ../gsearchtool/gsearchtool-callbacks.c:729
 #, c-format
 msgid "Trash is unavailable.  Could not move \"%s\" to the trash."
 msgstr "অবর্জনার বাক্স উপলব্ধ নয়। \"%s\" অবর্জনার বাক্সে সরানো যায়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:757
+#: ../gsearchtool/gsearchtool-callbacks.c:768
 #, c-format
 msgid "Could not delete \"%s\"."
 msgstr "\"%s\" মুছে ফেলা যায়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:868
+#: ../gsearchtool/gsearchtool-callbacks.c:879
 #, c-format
 msgid "Deleting \"%s\" failed: %s."
 msgstr "\"%s\" মুছে ফেলতে ব্যর্থ: %s।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:880
+#: ../gsearchtool/gsearchtool-callbacks.c:891
 #, c-format
 msgid "Moving \"%s\" failed: %s."
 msgstr "\"%s\" সরাতে ব্যর্থ: %s।"
 
 #. Popup menu item: Open
-#: ../gsearchtool/gsearchtool-callbacks.c:1008
-#: ../gsearchtool/gsearchtool-callbacks.c:1038
+#: ../gsearchtool/gsearchtool-callbacks.c:1019
+#: ../gsearchtool/gsearchtool-callbacks.c:1049
 msgid "_Open"
 msgstr "খুলুন(_O)"
 
 #. Popup menu item: Open with (default)
-#: ../gsearchtool/gsearchtool-callbacks.c:1063
+#: ../gsearchtool/gsearchtool-callbacks.c:1074
 #, c-format
-#| msgid "Open Wit_h"
 msgid "_Open with %s"
 msgstr "%s সহযোগে খুলুন (_O)"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1094
+#: ../gsearchtool/gsearchtool-callbacks.c:1108
 #, c-format
-#| msgid "Open Wit_h"
 msgid "Open with %s"
 msgstr "%s সহযোগে খুলুন"
 
 #. Popup menu item: Open With
-#: ../gsearchtool/gsearchtool-callbacks.c:1123
+#: ../gsearchtool/gsearchtool-callbacks.c:1140
 msgid "Open Wit_h"
 msgstr "চিহ্নিত প্রোগ্রাম সহযোগে খুলুন (_h)"
 
 #. Popup menu item: Open Folder
-#: ../gsearchtool/gsearchtool-callbacks.c:1154
+#: ../gsearchtool/gsearchtool-callbacks.c:1185
 msgid "Open _Folder"
 msgstr "ফোল্ডার খুলুন (_O)"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1194
+#: ../gsearchtool/gsearchtool-callbacks.c:1225
 msgid "_Save Results As..."
 msgstr "নতুন রূপে ফলাফল সংরক্ষণ করুন(_S)..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1576
+#: ../gsearchtool/gsearchtool-callbacks.c:1607
 msgid "Save Search Results As..."
 msgstr "অনুসন্ধানের ফলাফল নতুন রূপে সংরক্ষণ..."
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1607
+#: ../gsearchtool/gsearchtool-callbacks.c:1638
 msgid "Could not save document."
 msgstr "ডকুমেন্ট সংরক্ষণ করতে ব্যর্থ।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1608
+#: ../gsearchtool/gsearchtool-callbacks.c:1639
 msgid "You did not select a document name."
 msgstr "ডকুমেন্টের কোনো নাম নির্বাচন করা হয়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1638
+#: ../gsearchtool/gsearchtool-callbacks.c:1669
 #, c-format
 msgid "Could not save \"%s\" document to \"%s\"."
 msgstr "\"%s\" ডকুমেন্ট \"%s\"-এ সংরক্ষণ করা যায়নি।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1672
+#: ../gsearchtool/gsearchtool-callbacks.c:1703
 #, c-format
 msgid "The document \"%s\" already exists.  Would you like to replace it?"
 msgstr ""
 "\"%s\" ডকুমেন্টটি বর্তমানে উপস্থিত রয়েছে।  আপনি কি এটি মুছে নতুন ডকুমেন্ট স্থাপন করতে "
 "ইচ্ছুক?"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1676
+#: ../gsearchtool/gsearchtool-callbacks.c:1707
 msgid "If you replace an existing file, its contents will be overwritten."
 msgstr ""
 "উপস্থিত কোনো ফাইলের পরিবর্তে নতুন ফাইল স্থাপন করা হলে পুরোনো ফাইলের বিষয়বস্তু মুছে "
 "ফেলা হবে।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1741
+#: ../gsearchtool/gsearchtool-callbacks.c:1772
 msgid "The document name you selected is a folder."
 msgstr "আপনার নির্বাচিত ডকুমেন্ট মূলত একটি ফোল্ডার।"
 
-#: ../gsearchtool/gsearchtool-callbacks.c:1779
+#: ../gsearchtool/gsearchtool-callbacks.c:1810
 msgid "You may not have write permissions to the document."
 msgstr "সম্ভবত ডকুমেন্টে লেখার অনুমতি আপনার নেই।"
 
@@ -2680,124 +2682,129 @@ msgstr "সিম্বলিক লিঙ্ক অনুসরণ করা �
 msgid "Exclude other filesystems"
 msgstr "অন্যান্য ফাইল-সিস্টম অন্তর্ভুক্ত করা হবে না"
 
-#: ../gsearchtool/gsearchtool.c:157 ../gsearchtool/gsearchtool.c:162
-#: ../gsearchtool/gsearchtool.c:171
+#: ../gsearchtool/gsearchtool.c:157
+#| msgid "Show the application's version"
+msgid "Show version of the application"
+msgstr "অ্যাপ্লিকেশনের সংস্করণ সংখ্যা প্রদর্শন করা হবে"
+
+#: ../gsearchtool/gsearchtool.c:158 ../gsearchtool/gsearchtool.c:163
+#: ../gsearchtool/gsearchtool.c:172
 msgid "STRING"
 msgstr "STRING"
 
-#: ../gsearchtool/gsearchtool.c:158
+#: ../gsearchtool/gsearchtool.c:159
 msgid "PATH"
 msgstr "PATH"
 
-#: ../gsearchtool/gsearchtool.c:159
+#: ../gsearchtool/gsearchtool.c:160
 msgid "VALUE"
 msgstr "VALUE"
 
-#: ../gsearchtool/gsearchtool.c:163 ../gsearchtool/gsearchtool.c:164
+#: ../gsearchtool/gsearchtool.c:164 ../gsearchtool/gsearchtool.c:165
 msgid "DAYS"
 msgstr "DAYS"
 
-#: ../gsearchtool/gsearchtool.c:165 ../gsearchtool/gsearchtool.c:166
+#: ../gsearchtool/gsearchtool.c:166 ../gsearchtool/gsearchtool.c:167
 msgid "KILOBYTES"
 msgstr "KILOBYTES"
 
-#: ../gsearchtool/gsearchtool.c:168
+#: ../gsearchtool/gsearchtool.c:169
 msgid "USER"
 msgstr "USER"
 
-#: ../gsearchtool/gsearchtool.c:169
+#: ../gsearchtool/gsearchtool.c:170
 msgid "GROUP"
 msgstr "GROUP"
 
-#: ../gsearchtool/gsearchtool.c:172
+#: ../gsearchtool/gsearchtool.c:173
 msgid "PATTERN"
 msgstr "PATTERN"
 
-#: ../gsearchtool/gsearchtool.c:383
+#: ../gsearchtool/gsearchtool.c:384
 msgid "A locate database has probably not been created."
 msgstr "সম্ভবত অনুসন্ধান স্থানের ডাটাবেস নির্মিত হয়নি।"
 
-#: ../gsearchtool/gsearchtool.c:485
+#: ../gsearchtool/gsearchtool.c:486
 #, c-format
 msgid "Character set conversion failed for \"%s\""
 msgstr "\"%s\"-র ক্ষেত্রে অক্ষর সংকলন রূপান্তর কর্ম ব্যর্থ"
 
-#: ../gsearchtool/gsearchtool.c:509
+#: ../gsearchtool/gsearchtool.c:510
 msgid "Searching..."
 msgstr "অনুসন্ধান করা হচ্ছে..."
 
-#: ../gsearchtool/gsearchtool.c:509 ../gsearchtool/gsearchtool.c:1015
-#: ../gsearchtool/gsearchtool.c:2980
+#: ../gsearchtool/gsearchtool.c:510 ../gsearchtool/gsearchtool.c:1016
+#: ../gsearchtool/gsearchtool.c:2988
 msgid "Search for Files"
 msgstr "ফাইল অনুসন্ধান"
 
-#: ../gsearchtool/gsearchtool.c:961 ../gsearchtool/gsearchtool.c:990
+#: ../gsearchtool/gsearchtool.c:962 ../gsearchtool/gsearchtool.c:991
 msgid "No files found"
 msgstr "একটিও ফাইল পাওয়া যায়নি"
 
-#: ../gsearchtool/gsearchtool.c:983
+#: ../gsearchtool/gsearchtool.c:984
 msgid "(stopped)"
 msgstr "(স্থগিত)"
 
-#: ../gsearchtool/gsearchtool.c:989
+#: ../gsearchtool/gsearchtool.c:990
 msgid "No Files Found"
 msgstr "একটিও ফাইল পাওয়া যায়নি"
 
-#: ../gsearchtool/gsearchtool.c:994
+#: ../gsearchtool/gsearchtool.c:995
 #, c-format
 msgid "%'d File Found"
 msgid_plural "%'d Files Found"
 msgstr[0] "%'d-টি ফাইল পাওয়া গেছে"
 msgstr[1] "%'d-টি ফাইল পাওয়া গেছে"
 
-#: ../gsearchtool/gsearchtool.c:998 ../gsearchtool/gsearchtool.c:1036
+#: ../gsearchtool/gsearchtool.c:999 ../gsearchtool/gsearchtool.c:1037
 #, c-format
 msgid "%'d file found"
 msgid_plural "%'d files found"
 msgstr[0] "%'d-টি ফাইল পাওয়া গেছে"
 msgstr[1] "%'d-টি ফাইল পাওয়া গেছে"
 
-#: ../gsearchtool/gsearchtool.c:1127
+#: ../gsearchtool/gsearchtool.c:1128
 msgid "Entry changed called for a non entry option!"
 msgstr "এন্ট্রিবিহীন বিকল্পের এন্ট্রি পরিবর্তনের প্রচেষ্টা করা হয়েছে!"
 
-#: ../gsearchtool/gsearchtool.c:1287
+#: ../gsearchtool/gsearchtool.c:1288
 msgid "Set the text of \"Name contains\" search option"
 msgstr "অনুসন্ধান কর্মের \"নামের মধ্যে উপস্থিত\" বিকল্পের টেক্সট লিখুন"
 
-#: ../gsearchtool/gsearchtool.c:1288
+#: ../gsearchtool/gsearchtool.c:1289
 msgid "Set the text of \"Look in folder\" search option"
 msgstr "অনুসন্ধান কর্মের \"চিহ্নিত ফোল্ডারে অনুসন্ধান করা হবে\" বিকল্পের টেক্সট লিখুন"
 
-#: ../gsearchtool/gsearchtool.c:1289
+#: ../gsearchtool/gsearchtool.c:1290
 msgid "Sort files by one of the following: name, folder, size, type, or date"
 msgstr ""
 "ফাইলগুলি উল্লিখিত বিষয়ের যে কোনো একটি ক্রমে বিন্যাস করা হবে: নাম,ফোল্ডার,মাপ,ধরন "
 "অথবা তারিখ"
 
-#: ../gsearchtool/gsearchtool.c:1290
+#: ../gsearchtool/gsearchtool.c:1291
 msgid "Set sort order to descending, the default is ascending"
 msgstr "বড় থেকে ছোট মান অনুসারে বিন্যাস করা হবে, ডিফল্ট ক্রম ছোট থেকে বড়"
 
-#: ../gsearchtool/gsearchtool.c:1291
+#: ../gsearchtool/gsearchtool.c:1292
 msgid "Automatically start a search"
 msgstr "স্বয়ংক্রিয়ভাবে অনুসন্ধান আরম্ভ করা হবে"
 
-#: ../gsearchtool/gsearchtool.c:1297
+#: ../gsearchtool/gsearchtool.c:1298
 #, c-format
 msgid "Select the \"%s\" search option"
 msgstr "অনুসন্ধান কর্মে \"%s\" বিকল্প নির্বাচন করা হবে"
 
-#: ../gsearchtool/gsearchtool.c:1300
+#: ../gsearchtool/gsearchtool.c:1301
 #, c-format
 msgid "Select and set the \"%s\" search option"
 msgstr "অনুসন্ধান কর্মের \"%s\" বিকল্প নির্বাচন করে স্থাপন করুন"
 
-#: ../gsearchtool/gsearchtool.c:1407
+#: ../gsearchtool/gsearchtool.c:1408
 msgid "Invalid option passed to sortby command line argument."
 msgstr "sortby কমান্ড লাইন আর্গুমেন্টে অবৈধ বিকল্প প্রেরিত হয়েছে।"
 
-#: ../gsearchtool/gsearchtool.c:1701
+#: ../gsearchtool/gsearchtool.c:1702
 msgid ""
 "\n"
 "... Too many errors to display ..."
@@ -2805,17 +2812,17 @@ msgstr ""
 "\n"
 "... অত্যাধিক ত্রুটির ফলে বিবরণ প্রদর্শনে সমস্যা ..."
 
-#: ../gsearchtool/gsearchtool.c:1715
+#: ../gsearchtool/gsearchtool.c:1716
 msgid ""
 "The search results may be invalid.  There were errors while performing this "
 "search."
 msgstr "অনুসন্ধানের ফলাফল সম্ভবত বৈধ নয়।  অনুসন্ধান চলাকালীন কিছু সমস্যা উৎ‌পন্ন হয়েছিল।"
 
-#: ../gsearchtool/gsearchtool.c:1727 ../gsearchtool/gsearchtool.c:1771
+#: ../gsearchtool/gsearchtool.c:1728 ../gsearchtool/gsearchtool.c:1772
 msgid "Show more _details"
 msgstr "বিবরণ প্রদর্শন করা হবে (_d)"
 
-#: ../gsearchtool/gsearchtool.c:1757
+#: ../gsearchtool/gsearchtool.c:1758
 msgid ""
 "The search results may be out of date or invalid.  Do you want to disable "
 "the quick search feature?"
@@ -2823,145 +2830,151 @@ msgstr ""
 "অনুসন্ধানের ফলাফল অচল অথবা অবৈধ হওয়ার সম্ভাবনা রয়েছে।  আপনি কি ঝটপট অনুসন্ধান "
 "ব্যবস্থা নিষ্ক্রিয় করতে ইচ্ছুক?"
 
-#: ../gsearchtool/gsearchtool.c:1782
+#: ../gsearchtool/gsearchtool.c:1783
 msgid "Disable _Quick Search"
 msgstr "ঝটপট অনুসন্ধান ব্যবস্থা নিষ্ক্রিয় করুন (_Q)"
 
-#: ../gsearchtool/gsearchtool.c:1809
+#: ../gsearchtool/gsearchtool.c:1810
 #, c-format
 msgid "Failed to set process group id of child %d: %s.\n"
 msgstr "চাইল্ড %d-র জন্য প্রসেস গ্রুপ id স্থাপন করতে ব্যর্থ: %s।\n"
 
-#: ../gsearchtool/gsearchtool.c:1834
+#: ../gsearchtool/gsearchtool.c:1835
 msgid "Error parsing the search command."
 msgstr "অনুসন্ধানের কমান্ড পার্স করতে সমস্যা।"
 
-#: ../gsearchtool/gsearchtool.c:1867
+#: ../gsearchtool/gsearchtool.c:1868
 msgid "Error running the search command."
 msgstr "অনুসন্ধান কর্ম সংক্রান্ত কমান্ড নির্বাহ করতে সমস্যা।"
 
-#: ../gsearchtool/gsearchtool.c:1987
+#: ../gsearchtool/gsearchtool.c:1988
 #, c-format
 msgid "Enter a text value for the \"%s\" search option."
 msgstr "অনুসন্ধান সংক্রান্ত \"%s\" বিকল্পের জন্য একটি টেক্সট মান লিখুন।"
 
 #. Translators:  Below is a string displaying the search options name
 #. and unit value.  For example, "\"Date modified less than\" in days".
-#: ../gsearchtool/gsearchtool.c:1992
+#: ../gsearchtool/gsearchtool.c:1993
 #, c-format
 msgid "\"%s\" in %s"
 msgstr "\"%s\", %s-র মধ্যে"
 
-#: ../gsearchtool/gsearchtool.c:1994
+#: ../gsearchtool/gsearchtool.c:1995
 #, c-format
 msgid "Enter a value in %s for the \"%s\" search option."
 msgstr "%s-র মধ্যে, অনুসন্ধান কর্মের \"%s\" বিকল্পের জন্য মান লিখুন।"
 
-#: ../gsearchtool/gsearchtool.c:2052
+#: ../gsearchtool/gsearchtool.c:2053
 #, c-format
 msgid "Remove \"%s\""
 msgstr "\"%s\" মুছে ফেলুন"
 
-#: ../gsearchtool/gsearchtool.c:2053
+#: ../gsearchtool/gsearchtool.c:2054
 #, c-format
 msgid "Click to remove the \"%s\" search option."
 msgstr "ক্লিক করে অনুসন্ধান কর্মের \"%s\" বিকল্পটি মুছে ফেলুন।"
 
-#: ../gsearchtool/gsearchtool.c:2146
+#: ../gsearchtool/gsearchtool.c:2147
 msgid "A_vailable options:"
 msgstr "উপলব্ধ বিকল্প:(_v)"
 
-#: ../gsearchtool/gsearchtool.c:2175
+#: ../gsearchtool/gsearchtool.c:2176
 msgid "Available options"
 msgstr "উপলব্ধ বিকল্প"
 
-#: ../gsearchtool/gsearchtool.c:2176
+#: ../gsearchtool/gsearchtool.c:2177
 msgid "Select a search option from the drop-down list."
 msgstr "ড্রপ-ডাউন মেনু থেকে অনুসন্ধান সংক্রান্ত একটি বিকল্প নির্বাচন করুন।"
 
-#: ../gsearchtool/gsearchtool.c:2188
+#: ../gsearchtool/gsearchtool.c:2189
 msgid "Add search option"
 msgstr "অনুসন্ধান কর্ম সংক্রান্ত বিকল্প যোগ করুন"
 
-#: ../gsearchtool/gsearchtool.c:2189
+#: ../gsearchtool/gsearchtool.c:2190
 msgid "Click to add the selected available search option."
 msgstr "ক্লিক করে অনুসন্ধান কর্ম সংক্রান্ত উপলব্ধ বিকল্পের মধ্যে নির্বাচিত বিকল্প যোগ করুন।"
 
-#: ../gsearchtool/gsearchtool.c:2278
+#: ../gsearchtool/gsearchtool.c:2279
 msgid "S_earch results:"
 msgstr "অনুসন্ধানের ফলাফল: (_e)"
 
-#: ../gsearchtool/gsearchtool.c:2321
+#: ../gsearchtool/gsearchtool.c:2322
 msgid "List View"
 msgstr "তালিকা অনুসারে প্রদর্শন"
 
-#: ../gsearchtool/gsearchtool.c:2430
+#: ../gsearchtool/gsearchtool.c:2431
 msgid "Type"
 msgstr "ধরন"
 
-#: ../gsearchtool/gsearchtool.c:2442
+#: ../gsearchtool/gsearchtool.c:2443
 msgid "Date Modified"
 msgstr "পরিবর্তনের তারিখ"
 
-#: ../gsearchtool/gsearchtool.c:2758
+#: ../gsearchtool/gsearchtool.c:2759
 msgid "_Name contains:"
 msgstr "নাম (সম্পূর্ণ/আংশিক): (_N)"
 
-#: ../gsearchtool/gsearchtool.c:2772 ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2773 ../gsearchtool/gsearchtool.c:2774
 msgid "Enter a filename or partial filename with or without wildcards."
 msgstr "ওয়াইল্ড-কার্ড সহ/বিনা ফাইলের সম্পূর্ণ/আংশিক নাম লিখুন।"
 
-#: ../gsearchtool/gsearchtool.c:2773
+#: ../gsearchtool/gsearchtool.c:2774
 msgid "Name contains"
 msgstr "নামের মধ্যে উপস্থিত"
 
-#: ../gsearchtool/gsearchtool.c:2779
+#: ../gsearchtool/gsearchtool.c:2780
 msgid "_Look in folder:"
 msgstr "চিহ্নিত ফোল্ডারে অনুসন্ধান করা হবে:(_L)"
 
-#: ../gsearchtool/gsearchtool.c:2785
+#: ../gsearchtool/gsearchtool.c:2786
 msgid "Browse"
 msgstr "ব্রাউজ করুন"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Look in folder"
 msgstr "চিহ্নিত ফোল্ডারে অনুসন্ধান করা হবে"
 
-#: ../gsearchtool/gsearchtool.c:2794
+#: ../gsearchtool/gsearchtool.c:2795
 msgid "Select the folder or device from which you want to begin the search."
 msgstr "যে ফোল্ডার থেকে আপনি অনুসন্ধান শুরু করতে ইচ্ছুক সেটির নাম লিখুন।"
 
-#: ../gsearchtool/gsearchtool.c:2812
+#: ../gsearchtool/gsearchtool.c:2813
 msgid "Select more _options"
 msgstr "অতিরিক্ত বিকল্প নির্বাচন(_o)"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Select more options"
 msgstr "অতিরিক্ত বিকল্প নির্বাচন করুন"
 
-#: ../gsearchtool/gsearchtool.c:2821
+#: ../gsearchtool/gsearchtool.c:2822
 msgid "Click to expand or collapse the list of available options."
 msgstr "উপলব্ধ বিকল্পের তালিকা প্রসারণ অথবা সঙ্কুচন করুন।"
 
-#: ../gsearchtool/gsearchtool.c:2845
+#: ../gsearchtool/gsearchtool.c:2846
 msgid "Click to display the help manual."
 msgstr "ক্লিক করে সহায়িকা প্রদর্শন করুন।"
 
-#: ../gsearchtool/gsearchtool.c:2853
+#: ../gsearchtool/gsearchtool.c:2854
 msgid "Click to close \"Search for Files\"."
 msgstr "ক্লিক করে \"ফাইল অনুসন্ধান\" বন্ধ করুন।"
 
-#: ../gsearchtool/gsearchtool.c:2879
+#: ../gsearchtool/gsearchtool.c:2880
 msgid "Click to perform a search."
 msgstr "অনুসন্ধান করতে ক্লিক করুন।"
 
-#: ../gsearchtool/gsearchtool.c:2880
+#: ../gsearchtool/gsearchtool.c:2881
 msgid "Click to stop a search."
 msgstr "অনুসন্ধান থামাতে ক্লিক করুন।"
 
-#: ../gsearchtool/gsearchtool.c:2971
+#: ../gsearchtool/gsearchtool.c:2973
 msgid "- the GNOME Search Tool"
 msgstr "- GNOME অনুসন্ধান ব্যবস্থা"
+
+#: ../gsearchtool/gsearchtool.c:2982
+#, c-format
+#| msgid "Invalid option passed to sortby command line argument."
+msgid "Failed to parse command line arguments: %s\n"
+msgstr "কমান্ড-লাইন থেকে ব্যবহারযোগ্য আর্গুমেন্ট পার্স করতে ব্যর্থ: %s\n"
 
 #: ../libeggsmclient/eggdesktopfile.c:165
 #, c-format
@@ -3086,6 +3099,32 @@ msgstr "লগ প্রদর্শনের প্রধান উইন্ড
 msgid "Width of the main window in pixels"
 msgstr "প্রধান উইন্ডোর প্রস্থ, পিক্সেল অনুযায়ী নির্ধারিত"
 
+#: ../logview/data/logview-filter.ui.h:1
+msgid "Background:"
+msgstr "পটভূমি:"
+
+#: ../logview/data/logview-filter.ui.h:2
+#| msgid "Effects"
+msgid "Effect:"
+msgstr "ইফেক্ট:"
+
+#: ../logview/data/logview-filter.ui.h:3
+msgid "Foreground:"
+msgstr "অগ্রভূমি:"
+
+#: ../logview/data/logview-filter.ui.h:4
+msgid "Hide"
+msgstr "আড়াল করুন"
+
+#: ../logview/data/logview-filter.ui.h:5
+msgid "Highlight"
+msgstr "উজ্জ্বল"
+
+#: ../logview/data/logview-filter.ui.h:7
+#| msgid "Regular expression is empty!"
+msgid "_Regular Expression:"
+msgstr "রেগুলার এক্সপ্রেশন: (_R)"
+
 #: ../logview/logview-app.c:375
 #, c-format
 msgid "Impossible to open the file %s"
@@ -3112,15 +3151,15 @@ msgstr "রেগুলার এক্সপ্রেশন বৈধ নয়: %
 msgid "Please specify either foreground or background color!"
 msgstr "অনুগ্রহ করে পটভূমি অথবা অগ্রভূমির রংয়ের মধ্যে শুধুমাত্র একটি উল্লেখ করুন!"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Edit filter"
 msgstr "ফিল্টার সম্পাদনা"
 
-#: ../logview/logview-filter-manager.c:294
+#: ../logview/logview-filter-manager.c:293
 msgid "Add new filter"
 msgstr "নতুন ফিল্টার যোগ করুন"
 
-#: ../logview/logview-filter-manager.c:505
+#: ../logview/logview-filter-manager.c:503
 msgid "Filters"
 msgstr "ফিল্টার"
 
@@ -3186,7 +3225,7 @@ msgstr " - লগ ব্রাউজ ও পর্যবেক্ষণ কর�
 msgid "Log Viewer"
 msgstr "Log Viewer"
 
-#: ../logview/logview-window.c:38 ../logview/logview-window.c:786
+#: ../logview/logview-window.c:38 ../logview/logview-window.c:788
 msgid "System Log Viewer"
 msgstr "System Log Viewer"
 
@@ -3200,129 +3239,134 @@ msgstr "সর্বশেষ পরিবর্তন : %s"
 msgid "%d lines (%s) - %s"
 msgstr "%d পংক্তি (%s) - %s"
 
-#: ../logview/logview-window.c:341
+#: ../logview/logview-window.c:343
 msgid "Open Log"
 msgstr "লগ খুলুন"
 
 # msgstr "'%s' ফাইলটিতে কিছু লেখা নেই"
-#: ../logview/logview-window.c:380
+#: ../logview/logview-window.c:382
 #, c-format
 msgid "There was an error displaying help: %s"
 msgstr "সাহায্য প্রদর্শন করতে সমস্যা: %s"
 
-#: ../logview/logview-window.c:496
+#: ../logview/logview-window.c:498
 msgid "Wrapped"
 msgstr "বিভাজিত"
 
-#: ../logview/logview-window.c:791
+#: ../logview/logview-window.c:793
 msgid "A system log viewer for GNOME."
 msgstr "GNOME-এ ব্যবহারযোগ্য সিস্টেম লগ প্রদর্শক।"
 
-#: ../logview/logview-window.c:837
+#: ../logview/logview-window.c:839
 msgid "_Filters"
 msgstr "ফিল্টার (_F)"
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "_Open..."
 msgstr "খুলুন...(_O)"
 
-#: ../logview/logview-window.c:840
+#: ../logview/logview-window.c:842
 msgid "Open a log from file"
 msgstr "ফাইল থেকে একটি লগ খুলুন"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "_Close"
-msgstr "বন্ধ করুন (_C)"
+msgstr "প্রস্থান করুন (_C)"
 
-#: ../logview/logview-window.c:842
+#: ../logview/logview-window.c:844
 msgid "Close this log"
 msgstr "বর্তমান লগ বন্ধ করুন"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "_Quit"
 msgstr "প্রস্থান (_Q)"
 
-#: ../logview/logview-window.c:844
+#: ../logview/logview-window.c:846
 msgid "Quit the log viewer"
 msgstr "লগ প্রদর্শক থেকে প্রস্থান"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "_Copy"
 msgstr "কপি করুন(_C)"
 
-#: ../logview/logview-window.c:847
+#: ../logview/logview-window.c:849
 msgid "Copy the selection"
 msgstr "নির্বাচিত অংশ কপি করুন"
 
-#: ../logview/logview-window.c:849
+#: ../logview/logview-window.c:851
 msgid "Select the entire log"
 msgstr "সম্পূর্ণ লগ নির্বাচন করুন"
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "_Find..."
 msgstr "অনুসন্ধান...(_F)"
 
-#: ../logview/logview-window.c:851
+#: ../logview/logview-window.c:853
 msgid "Find a word or phrase in the log"
 msgstr "লগের মধ্যে একটি শব্দ অথবা পংক্তি সন্ধান করুন"
 
-#: ../logview/logview-window.c:854
+#: ../logview/logview-window.c:856
 msgid "Bigger text size"
 msgstr "হরফের মাপ বৃদ্ধি করুন"
 
-#: ../logview/logview-window.c:856
+#: ../logview/logview-window.c:858
 msgid "Smaller text size"
 msgstr "হরফের মাপ হ্রাস করুন"
 
-#: ../logview/logview-window.c:858
+#: ../logview/logview-window.c:860
 msgid "Normal text size"
 msgstr "হরফের স্বাভাবিক মাপ"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage Filters"
 msgstr "ফিল্টার পরিচালনা"
 
-#: ../logview/logview-window.c:861
+#: ../logview/logview-window.c:863
 msgid "Manage filters"
 msgstr "ফিল্টার পরিচালনা করুন"
 
-#: ../logview/logview-window.c:864
+#: ../logview/logview-window.c:866
 msgid "Open the help contents for the log viewer"
 msgstr "লগ প্রদর্শক সংক্রান্ত সহায়িকা প্রদর্শন"
 
-#: ../logview/logview-window.c:866
+#: ../logview/logview-window.c:868
 msgid "Show the about dialog for the log viewer"
 msgstr "লগ প্রদর্শকের পরিচিতি প্রদর্শন"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "_Statusbar"
 msgstr "স্ট্যাটাস-বার(_S)"
 
-#: ../logview/logview-window.c:871
+#: ../logview/logview-window.c:873
 msgid "Show Status Bar"
 msgstr "স্ট্যাটাস-বার প্রদর্শন করা হবে"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Side _Pane"
 msgstr "পার্শ্ববর্তী পেইন (_P)"
 
-#: ../logview/logview-window.c:873
+#: ../logview/logview-window.c:875
 msgid "Show Side Pane"
 msgstr "পার্শ্ববর্তী পেইন প্রদর্শন করা হবে"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Show matches only"
 msgstr "শুধুমাত্র মিল প্রদর্শন করা হবে"
 
-#: ../logview/logview-window.c:875
+#: ../logview/logview-window.c:877
 msgid "Only show lines that match one of the given filters"
 msgstr "উল্লিখিত যে কোনো একটি ফিল্টারের সাথে মিল পাওয়া পংক্তিগুলি শুধুমাত্র প্রদর্শন করা হবে"
 
-#: ../logview/logview-window.c:1414
+#: ../logview/logview-window.c:1014
+#, c-format
+msgid "Can't read from \"%s\""
+msgstr "\"%s\" থেকে পড়তে ব্যর্থ"
+
+#: ../logview/logview-window.c:1436
 msgid "Version: "
 msgstr "সংস্করণ : "
 
-#: ../logview/logview-window.c:1521
+#: ../logview/logview-window.c:1543
 msgid "Could not open the following files:"
 msgstr "নিম্নলিখিত ফাইল খুলতে ব্যর্থ:"
 
