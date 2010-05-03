@@ -633,8 +633,8 @@ lookup_start_cb (GdictContext *context,
   if (!priv->busy_cursor)
     priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
 
-  if (GTK_WIDGET (speller)->window)
-    gdk_window_set_cursor (GTK_WIDGET (speller)->window, priv->busy_cursor);
+  if (gtk_widget_get_window (GTK_WIDGET (speller)))
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (speller)), priv->busy_cursor);
 
   priv->is_searching = TRUE;
 }
@@ -646,8 +646,8 @@ lookup_end_cb (GdictContext *context,
   GdictSpeller *speller = GDICT_SPELLER (user_data);
   GdictSpellerPrivate *priv = speller->priv;
 
-  if (GTK_WIDGET (speller)->window)
-    gdk_window_set_cursor (GTK_WIDGET (speller)->window, NULL);
+  if (gtk_widget_get_window (GTK_WIDGET (speller)))
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (speller)), NULL);
 
   g_free (priv->word);
   priv->word = NULL;
@@ -691,8 +691,8 @@ error_cb (GdictContext *context,
 
   gdict_speller_clear (speller);
 
-  if (GTK_WIDGET (speller)->window)
-    gdk_window_set_cursor (GTK_WIDGET (speller)->window, NULL);
+  if (gtk_widget_get_window (GTK_WIDGET (speller)))
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (speller)), NULL);
   
   g_free (priv->word);
   priv->word = NULL;

@@ -615,7 +615,7 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   			       DEFAULT_MIN_HEIGHT);
     
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
+  gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), 2);
   gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
   
   /* add buttons */
@@ -649,7 +649,7 @@ gdict_pref_dialog_init (GdictPrefDialog *dialog)
   }
 
   /* the main widget */
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox),
+  gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
                      GTK_WIDGET (gtk_builder_get_object (dialog->builder, "preferences_root")));
 
   /* keep all the interesting widgets around */  

@@ -663,8 +663,8 @@ lookup_start_cb (GdictContext *context,
   if (!priv->busy_cursor)
     priv->busy_cursor = gdk_cursor_new (GDK_WATCH);
 
-  if (GTK_WIDGET (chooser)->window)
-    gdk_window_set_cursor (GTK_WIDGET (chooser)->window, priv->busy_cursor);
+  if (gtk_widget_get_window (GTK_WIDGET (chooser)))
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (chooser)), priv->busy_cursor);
 
   priv->is_searching = TRUE;
 }
@@ -676,8 +676,8 @@ lookup_end_cb (GdictContext *context,
   GdictStrategyChooser *chooser = GDICT_STRATEGY_CHOOSER (user_data);
   GdictStrategyChooserPrivate *priv = chooser->priv;
 
-  if (GTK_WIDGET (chooser)->window)
-    gdk_window_set_cursor (GTK_WIDGET (chooser)->window, NULL);
+  if (gtk_widget_get_window (GTK_WIDGET (chooser)))
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (chooser)), NULL);
 
   priv->is_searching = FALSE;
 }
@@ -721,8 +721,8 @@ error_cb (GdictContext *context,
 {
   GdictStrategyChooser *chooser = GDICT_STRATEGY_CHOOSER (user_data);
 
-  if (GTK_WIDGET (chooser)->window)
-    gdk_window_set_cursor (GTK_WIDGET (chooser)->window, NULL);
+  if (gtk_widget_get_window (GTK_WIDGET (chooser)))
+    gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (chooser)), NULL);
 
   chooser->priv->is_searching = FALSE;
   chooser->priv->results = 0;
@@ -1082,7 +1082,7 @@ gdict_strategy_chooser_add_button (GdictStrategyChooser *chooser,
 
   button = gtk_button_new_from_stock (button_text);
 
-  GTK_WIDGET_SET_FLAGS (button, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default (button, TRUE);
 
   gtk_widget_show (button);
 

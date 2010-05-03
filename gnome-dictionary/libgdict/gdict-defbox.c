@@ -1590,7 +1590,7 @@ defbox_motion_notify_cb (GtkWidget      *text_view,
 
   set_cursor_if_appropriate (defbox, GTK_TEXT_VIEW (text_view), bx, by);
 
-  gdk_window_get_pointer (text_view->window, NULL, NULL, NULL);
+  gdk_window_get_pointer (gtk_widget_get_window (text_view), NULL, NULL, NULL);
 
   return FALSE;
 }
@@ -1603,7 +1603,7 @@ defbox_visibility_notify_cb (GtkWidget          *text_view,
   gint wx, wy;
   gint bx, by;
 
-  gdk_window_get_pointer (text_view->window, &wx, &wy, NULL);
+  gdk_window_get_pointer (gtk_widget_get_window (text_view), &wx, &wy, NULL);
 
   gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (text_view),
                                          GTK_TEXT_WINDOW_WIDGET,

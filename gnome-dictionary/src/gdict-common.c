@@ -164,8 +164,8 @@ gdict_show_error_dialog (GtkWindow   *parent,
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
   					      "%s", detail);
   
-  if (parent && parent->group)
-    gtk_window_group_add_window (parent->group, GTK_WINDOW (dialog));
+  if (parent && gtk_window_get_group (parent))
+    gtk_window_group_add_window (gtk_window_get_group (parent), GTK_WINDOW (dialog));
   
   gtk_dialog_run (GTK_DIALOG (dialog));
   
