@@ -597,7 +597,7 @@ gdict_source_dialog_constructor (GType                  type,
   dialog = GDICT_SOURCE_DIALOG (object);
 
   gtk_container_set_border_width (GTK_CONTAINER (dialog), 5);
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), 2);
+  gtk_box_set_spacing (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))), 2);
   
   gtk_widget_push_composite_child ();
 
@@ -613,7 +613,7 @@ gdict_source_dialog_constructor (GType                  type,
   }
   
   /* the main widget */
-  gtk_container_add (GTK_CONTAINER (GTK_DIALOG (dialog)->vbox),
+  gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
                      GTK_WIDGET (gtk_builder_get_object (dialog->builder, "source_root")));
 
   /* the transport combo changes the UI by changing the visible widgets

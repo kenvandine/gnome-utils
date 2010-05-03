@@ -325,7 +325,7 @@ gdict_window_lookup_start_cb (GdictContext *context,
   window->last_definition = 0;
   window->current_definition = 0;
 
-  gdk_window_set_cursor (GTK_WIDGET (window)->window, window->busy_cursor);
+  gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), window->busy_cursor);
 
   g_free (message);
 }
@@ -381,7 +381,7 @@ gdict_window_lookup_end_cb (GdictContext *context,
                           -1);
     }
 
-  gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+  gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
   g_free (message);
 
   if (count == 0)
@@ -400,7 +400,7 @@ gdict_window_error_cb (GdictContext *context,
 {
   gint count;
   
-  gdk_window_set_cursor (GTK_WIDGET (window)->window, NULL);
+  gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (window)), NULL);
   
   if (window->status && window->statusbar_visible)
     gtk_statusbar_push (GTK_STATUSBAR (window->status), 0,
@@ -1638,7 +1638,7 @@ set_window_default_size (GdictWindow *window)
 
       /* ... but make it no larger than the monitor */
       screen = gtk_widget_get_screen (widget);
-      monitor_num = gdk_screen_get_monitor_at_window (screen, widget->window);
+      monitor_num = gdk_screen_get_monitor_at_window (screen, gtk_widget_get_window (widget));
 
       gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
       width = MIN (width, monitor.width * 3 / 4);
