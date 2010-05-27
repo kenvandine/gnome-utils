@@ -47,7 +47,6 @@
 #include "gsearchtool.h"
 #include "gsearchtool-callbacks.h"
 #include "gsearchtool-support.h"
-#include "gsearchtool-spinner.h"
 #include "gsearchtool-entry.h"
 
 #define GNOME_SEARCH_TOOL_DEFAULT_ICON_SIZE 16
@@ -512,7 +511,7 @@ start_animation (GSearchWindow * gsearch, gboolean first_pass)
 
 		gtk_label_set_text (GTK_LABEL (gsearch->files_found_label), "");
 		if (gsearchtool_gconf_get_boolean ("/desktop/gnome/interface/enable_animations")) {
-			gsearch_spinner_start (GSEARCH_SPINNER (gsearch->progress_spinner));
+			gtk_spinner_start (GTK_SPINNER (gsearch->progress_spinner));
 			gtk_widget_show (gsearch->progress_spinner);
 		}
 		g_free (title);
@@ -535,7 +534,7 @@ start_animation (GSearchWindow * gsearch, gboolean first_pass)
 static void
 stop_animation (GSearchWindow * gsearch)
 {
-	gsearch_spinner_stop (GSEARCH_SPINNER (gsearch->progress_spinner));
+	gtk_spinner_stop (GTK_SPINNER (gsearch->progress_spinner));
 
 	gtk_window_set_default (GTK_WINDOW (gsearch->window), gsearch->find_button);
 	gtk_widget_set_sensitive (gsearch->available_options_vbox, TRUE);
@@ -2280,8 +2279,9 @@ create_search_results_section (GSearchWindow * gsearch)
 	g_object_set (G_OBJECT (label), "xalign", 0.0, NULL);
 	gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, TRUE, 0);
 
-	gsearch->progress_spinner = gsearch_spinner_new ();
-	gsearch_spinner_set_size ((GSearchSpinner *)gsearch->progress_spinner, GTK_ICON_SIZE_MENU);
+	gsearch->progress_spinner = gtk_spinner_new ();
+	gtk_widget_set_size_request (gsearch->progress_spinner, 
+                                     GTK_ICON_SIZE_MENU, GTK_ICON_SIZE_MENU);
 	gtk_box_pack_start (GTK_BOX (hbox), gsearch->progress_spinner, FALSE, FALSE, 0);
 
 	gsearch->files_found_label = gtk_label_new (NULL);

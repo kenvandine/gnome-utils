@@ -24,8 +24,6 @@ schema_DATA = $(schema_in_file:.schemas.in=.schemas)
 @INTLTOOL_SCHEMAS_RULE@
 
 gnome_search_tool_SOURCES =     \
-	gsearchtool-spinner.c   \
-	gsearchtool-spinner.h   \
 	gsearchtool-support.c   \
 	gsearchtool-support.h   \
 	gsearchtool-callbacks.c \
