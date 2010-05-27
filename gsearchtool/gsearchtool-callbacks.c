@@ -287,8 +287,8 @@ constraint_activate_cb (GtkWidget * widget,
 {
 	GSearchWindow * gsearch = data;
 
-	if ((GTK_WIDGET_VISIBLE (gsearch->find_button)) &&
-	    (GTK_WIDGET_SENSITIVE (gsearch->find_button))) {
+	if ((gtk_widget_get_visible (gsearch->find_button)) &&
+	    (gtk_widget_get_sensitive (gsearch->find_button))) {
 		click_find_cb (gsearch->find_button, data);
 	}
 }
@@ -310,8 +310,8 @@ name_contains_activate_cb (GtkWidget * widget,
 {
 	GSearchWindow * gsearch = data;
 
-	if ((GTK_WIDGET_VISIBLE (gsearch->find_button)) &&
-	    (GTK_WIDGET_SENSITIVE (gsearch->find_button))) {
+	if ((gtk_widget_get_visible (gsearch->find_button)) &&
+	    (gtk_widget_get_sensitive (gsearch->find_button))) {
 		click_find_cb (gsearch->find_button, data);
 	}
 }

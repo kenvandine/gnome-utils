@@ -644,7 +644,7 @@ build_search_command (GSearchWindow * gsearch,
 		gsearch->command_details->is_command_using_quick_mode = FALSE;
 	}
 
-	if ((GTK_WIDGET_VISIBLE (gsearch->available_options_vbox) == FALSE) ||
+	if ((gtk_widget_get_visible (gsearch->available_options_vbox) == FALSE) ||
 	    (has_additional_constraints (gsearch) == FALSE)) {
 
 		file_is_named_backslashed = backslash_backslash_characters (file_is_named_locale);
@@ -2070,7 +2070,7 @@ add_constraint (GSearchWindow * gsearch,
 	GtkWidget * widget;
 
 	if (show_constraint) {
-		if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox) == FALSE) {
+		if (gtk_widget_get_visible (gsearch->available_options_vbox) == FALSE) {
 			gtk_expander_set_expanded (GTK_EXPANDER (gsearch->show_more_options_expander), TRUE);
 			gtk_widget_show (gsearch->available_options_vbox);
 		}
@@ -2078,7 +2078,7 @@ add_constraint (GSearchWindow * gsearch,
 
 	gsearch->window_geometry.min_height += WINDOW_HEIGHT_STEP;
 
-	if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox)) {
+	if (gtk_widget_get_visible (gsearch->available_options_vbox)) {
 		gtk_window_set_geometry_hints (GTK_WINDOW (gsearch->window),
 		                               GTK_WIDGET (gsearch->window),
 		                               &gsearch->window_geometry,
@@ -2541,7 +2541,7 @@ set_clone_command (GSearchWindow * gsearch,
 	g_free (tmp);
 	g_free (look_in_folder_locale);
 
-	if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox)) {
+	if (gtk_widget_get_visible (gsearch->available_options_vbox)) {
 		for (list = gsearch->available_options_selected_list; list != NULL; list = g_list_next (list)) {
 			GSearchConstraint * constraint = list->data;
 			gchar * locale = NULL;
@@ -2635,7 +2635,7 @@ handle_gconf_settings (GSearchWindow * gsearch)
 	gsearchtool_gconf_add_dir ("/apps/gnome-search-tool");
 
 	if (gsearchtool_gconf_get_boolean ("/apps/gnome-search-tool/show_additional_options")) {
-		if (GTK_WIDGET_VISIBLE (gsearch->available_options_vbox) == FALSE) {
+		if (gtk_widget_get_visible (gsearch->available_options_vbox) == FALSE) {
 			gtk_expander_set_expanded (GTK_EXPANDER (gsearch->show_more_options_expander), TRUE);
 			gtk_widget_show (gsearch->available_options_vbox);
 		}
