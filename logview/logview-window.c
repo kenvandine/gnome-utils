@@ -806,7 +806,7 @@ logview_about (GtkWidget *widget, GtkWidget *window)
 static void
 logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview)
 {
-  if (GTK_WIDGET_VISIBLE (logview->priv->statusbar))
+  if (gtk_widget_get_visible (logview->priv->statusbar))
     gtk_widget_hide (logview->priv->statusbar);
   else
     gtk_widget_show (logview->priv->statusbar);
@@ -815,7 +815,7 @@ logview_toggle_statusbar (GtkAction *action, LogviewWindow *logview)
 static void
 logview_toggle_sidebar (GtkAction *action, LogviewWindow *logview)
 {
-  if (GTK_WIDGET_VISIBLE (logview->priv->sidebar))
+  if (gtk_widget_get_visible (logview->priv->sidebar))
     gtk_widget_hide (logview->priv->sidebar);
   else
     gtk_widget_show (logview->priv->sidebar);
