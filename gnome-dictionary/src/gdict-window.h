@@ -75,8 +75,6 @@ struct _GdictWindow
   GtkEntryCompletion *completion;
   GtkListStore *completion_model;
   
-  GtkTooltips *tooltips;
-
   GdictWindowAction action;
   
   gchar *word;
