@@ -1457,7 +1457,7 @@ follow_if_is_link (GdictDefbox *defbox,
         {
           GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
           GtkTextIter start, end;
-          gchar *link;
+          gchar *link_str;
 
           start = *iter;
           end = *iter;
@@ -1465,11 +1465,11 @@ follow_if_is_link (GdictDefbox *defbox,
           gtk_text_iter_backward_to_tag_toggle (&start, tag);
           gtk_text_iter_forward_to_tag_toggle (&end, tag);
 
-          link = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+          link_str = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
 
-          g_signal_emit (defbox, gdict_defbox_signals[LINK_CLICKED], 0, link);
+          g_signal_emit (defbox, gdict_defbox_signals[LINK_CLICKED], 0, link_str);
 
-          g_free (link);
+          g_free (link_str);
           g_free (name);
           
           break;
@@ -2297,13 +2297,13 @@ gdict_defbox_insert_body (GdictDefbox *defbox,
           if (end && *end == '}')
             {
               const gchar *rest;
-              gchar *link;
+              gchar *link_str;
 
-              rest = escape_link (w, &link);
+              rest = escape_link (w, &link_str);
 
               gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
                                                         &end_iter,
-                                                        link, -1,
+                                                        link_str, -1,
                                                         "link",
                                                         NULL);
 
@@ -2312,7 +2312,7 @@ gdict_defbox_insert_body (GdictDefbox *defbox,
               gtk_text_buffer_get_end_iter (priv->buffer, &end_iter);
               gtk_text_buffer_insert (priv->buffer, &end_iter, " ", 1);
 
-              g_free (link);
+              g_free (link_str);
 
               continue;
             }
@@ -2341,20 +2341,20 @@ gdict_defbox_insert_body (GdictDefbox *defbox,
               if (end && *end == '}')
                 {
                   const gchar *rest;
-                  gchar *link;
+                  gchar *link_str;
 
-                  rest = escape_link (next, &link);
+                  rest = escape_link (next, &link_str);
 
                   gtk_text_buffer_insert_with_tags_by_name (priv->buffer,
                                                             &end_iter,
-                                                            link, -1,
+                                                            link_str, -1,
                                                             "link",
                                                             NULL);
 
                   gtk_text_buffer_insert (priv->buffer, &end_iter, rest, -1);
                   gtk_text_buffer_insert (priv->buffer, &end_iter, " ", 1);
 
-                  g_free (link);
+                  g_free (link_str);
                 }
 
               g_free (next);
