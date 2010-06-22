@@ -1625,7 +1625,7 @@ set_window_default_size (GdictWindow *window)
       /* Size based on the font size */
       GtkWidget *defbox = window->defbox;
       
-      font_size = pango_font_description_get_size (defbox->style->font_desc);
+      font_size = pango_font_description_get_size (gtk_widget_get_style (defbox)->font_desc);
       font_size = PANGO_PIXELS (font_size);
 
       width = font_size * GDICT_WINDOW_COLUMNS;
@@ -1673,9 +1673,11 @@ gdict_window_handle_notify_position_cb (GtkWidget  *widget,
 {
   GdictWindow *window = GDICT_WINDOW (user_data);
   gint window_width, pos;
+  GtkAllocation allocation;
 
   pos = gtk_paned_get_position (GTK_PANED (widget));
-  window_width = GTK_WIDGET (window)->allocation.width;
+  gtk_widget_get_allocation (GTK_WIDGET (window), &allocation);
+  window_width = allocation.width;
 
   window->sidebar_width = window_width - pos;
 }
@@ -1702,6 +1704,7 @@ gdict_window_constructor (GType                  type,
   GError *error;
   gboolean sidebar_visible;
   gboolean statusbar_visible;
+  GtkAllocation allocation;
   
   object = G_OBJECT_CLASS (gdict_window_parent_class)->constructor (type,
   						   n_construct_properties,
@@ -1957,8 +1960,8 @@ gdict_window_constructor (GType                  type,
   if (is_maximized)
     gtk_window_maximize (GTK_WINDOW (window));
 
-  gtk_paned_set_position (GTK_PANED (handle),
-		          GTK_WIDGET (window)->allocation.width - sidebar_width);
+  gtk_widget_get_allocation (GTK_WIDGET (window), &allocation);
+  gtk_paned_set_position (GTK_PANED (handle), allocation.width - sidebar_width);
   if (sidebar_page)
     {
       gdict_sidebar_view_page (GDICT_SIDEBAR (window->sidebar), sidebar_page);

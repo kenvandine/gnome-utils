@@ -141,7 +141,7 @@ set_window_default_size (GdictApplet *applet)
   defbox = priv->defbox;
 
   /* Size based on the font size */
-  font_size = pango_font_description_get_size (defbox->style->font_desc);
+  font_size = pango_font_description_get_size (gtk_widget_get_style (defbox)->font_desc);
   font_size = PANGO_PIXELS (font_size);
 
   width = font_size * WINDOW_NUM_COLUMNS;
@@ -154,7 +154,8 @@ set_window_default_size (GdictApplet *applet)
 
   /* ... but make it no larger than half the monitor size */
   screen = gtk_widget_get_screen (widget);
-  monitor_num = gdk_screen_get_monitor_at_window (screen, widget->window);
+  monitor_num = gdk_screen_get_monitor_at_window (screen,
+                                                  gtk_widget_get_window (widget));
 
   gdk_screen_get_monitor_geometry (screen, monitor_num, &monitor);
 
@@ -348,8 +349,8 @@ gdict_applet_build_window (GdictApplet *applet)
   
   gtk_box_pack_start (GTK_BOX (vbox), priv->defbox, TRUE, TRUE, 0);
   gtk_widget_show (priv->defbox);
-  GTK_WIDGET_SET_FLAGS (priv->defbox, GTK_CAN_FOCUS);
-  GTK_WIDGET_SET_FLAGS (priv->defbox, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_focus (priv->defbox, TRUE);
+  gtk_widget_set_can_default (priv->defbox, TRUE);
   
   bbox = gtk_hbutton_box_new ();
   gtk_button_box_set_layout (GTK_BUTTON_BOX (bbox), GTK_BUTTONBOX_END);
@@ -772,18 +773,20 @@ gdict_applet_change_orient (PanelApplet       *applet,
 {
   GdictAppletPrivate *priv = GDICT_APPLET (applet)->priv;
   guint new_size;
+  GtkAllocation allocation;
   
+  gtk_widget_get_allocation (GTK_WIDGET (applet), &allocation);
   switch (orient)
     {
     case PANEL_APPLET_ORIENT_LEFT:
     case PANEL_APPLET_ORIENT_RIGHT:
       priv->orient = GTK_ORIENTATION_VERTICAL;
-      new_size = GTK_WIDGET (applet)->allocation.width;
+      new_size = allocation.width;
       break;
     case PANEL_APPLET_ORIENT_UP:
     case PANEL_APPLET_ORIENT_DOWN:
       priv->orient = GTK_ORIENTATION_HORIZONTAL;
-      new_size = GTK_WIDGET (applet)->allocation.height;
+      new_size = allocation.height;
       break;
     }
   

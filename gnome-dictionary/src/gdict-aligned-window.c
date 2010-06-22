@@ -105,7 +105,6 @@ gdict_aligned_window_init (GdictAlignedWindow *aligned_window)
   priv->motion_id = 0;
   
   /* set window properties */
-  window->type = GTK_WINDOW_TOPLEVEL;
 #if 0
   gtk_window_set_modal (window, TRUE);
 #endif
@@ -161,6 +160,7 @@ gdict_aligned_window_position (GdictAlignedWindow *window)
   gint entry_x, entry_y, entry_width, entry_height;
   gint x, y;
   GdkGravity gravity = GDK_GRAVITY_NORTH_WEST;
+  GdkWindow *gdk_window;
 
   g_assert (GDICT_IS_ALIGNED_WINDOW (window));
   priv = window->priv;
@@ -169,10 +169,11 @@ gdict_aligned_window_position (GdictAlignedWindow *window)
     return;
 
   align_widget = priv->align_widget;
+  gdk_window = gtk_widget_get_window (align_widget);
 
   gdk_flush ();
   
-  gdk_window_get_geometry (GTK_WIDGET (window)->window,
+  gdk_window_get_geometry (gtk_widget_get_window (GTK_WIDGET (window)),
   			   NULL,
   			   NULL,
   			   &our_width,
@@ -188,10 +189,10 @@ gdict_aligned_window_position (GdictAlignedWindow *window)
   gtk_widget_realize (align_widget);
   
   /* get the positional and dimensional attributes of the align widget */
-  gdk_window_get_origin (align_widget->window,
+  gdk_window_get_origin (gdk_window,
   			 &entry_x,
   			 &entry_y);
-  gdk_window_get_geometry (align_widget->window,
+  gdk_window_get_geometry (gdk_window,
   			   NULL,
   			   NULL,
   			   &entry_width,
@@ -253,14 +254,14 @@ gdict_aligned_window_motion_notify_cb (GtkWidget        *widget,
   GtkAllocation alloc;
   GdkRectangle rect;
 
-  alloc = GTK_WIDGET (aligned_window)->allocation;
+  gtk_widget_get_allocation (GTK_WIDGET (aligned_window), &alloc);
   
   rect.x = 0;
   rect.y = 0;
   rect.width = alloc.width;
   rect.height = alloc.height;
 
-  gdk_window_invalidate_rect (GTK_WIDGET (aligned_window)->window,
+  gdk_window_invalidate_rect (gtk_widget_get_window (GTK_WIDGET (aligned_window)),
 		  	      &rect,
 			      FALSE);
   
