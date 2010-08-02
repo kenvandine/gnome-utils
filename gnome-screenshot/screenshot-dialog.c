@@ -26,6 +26,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
+#include <gwibber-gtk.h>
 
 enum {
   TYPE_IMAGE_PNG,
@@ -62,6 +63,22 @@ on_toplevel_key_press_event (GtkWidget *widget,
     }
 
   return FALSE;
+}
+
+static void 
+on_switch_page (GtkNotebook 	*notebook, 
+		GtkNotebookPage *notebook_page, 
+		int 		page, 
+		void 		*data) 
+{
+  ScreenshotDialog *dialog = data;
+  GtkWidget *ok_button = GTK_WIDGET (gtk_builder_get_object (dialog->ui, "ok_button"));
+  if (page == 0) {
+    gtk_widget_show (GTK_WIDGET (ok_button));
+  } else if (page == 1) {
+    gtk_widget_hide (GTK_WIDGET (ok_button));
+  }
+
 }
 
 static void
@@ -207,6 +224,8 @@ screenshot_dialog_new (GdkPixbuf *screenshot,
   GtkWidget *preview_darea;
   GtkWidget *aspect_frame;
   GtkWidget *file_chooser_box;
+  GtkWidget *gwibber_box;
+  GwibberEntry *gwibber_entry;
   gint width, height;
   char *current_folder;
   char *current_name;
@@ -215,6 +234,7 @@ screenshot_dialog_new (GdkPixbuf *screenshot,
   GFile *tmp_file;
   GFile *parent_file;
   guint res;
+  GtkWidget *notebook;
 
   tmp_file = g_file_new_for_uri (initial_uri);
   parent_file = g_file_get_parent (tmp_file);
@@ -256,6 +276,8 @@ screenshot_dialog_new (GdkPixbuf *screenshot,
   preview_darea = GTK_WIDGET (gtk_builder_get_object (dialog->ui, "preview_darea"));
   dialog->filename_entry = GTK_WIDGET (gtk_builder_get_object (dialog->ui, "filename_entry"));
   file_chooser_box = GTK_WIDGET (gtk_builder_get_object (dialog->ui, "file_chooser_box"));
+  gwibber_box = GTK_WIDGET (gtk_builder_get_object (dialog->ui, "gwibber_vbox"));
+  notebook = GTK_WIDGET (gtk_builder_get_object (dialog->ui, "notebook1"));
 
   dialog->save_widget = gtk_file_chooser_button_new (_("Select a folder"), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER);
   gtk_file_chooser_set_local_only (GTK_FILE_CHOOSER (dialog->save_widget), FALSE);
@@ -264,6 +286,9 @@ screenshot_dialog_new (GdkPixbuf *screenshot,
 
   gtk_box_pack_start (GTK_BOX (file_chooser_box), dialog->save_widget, TRUE, TRUE, 0);
   g_free (current_folder);
+
+  gwibber_entry = gwibber_entry_new ();
+  gtk_container_add ((GtkContainer*) gwibber_box, (GtkWidget*) gwibber_entry);
 
   gtk_widget_set_size_request (preview_darea, width, height);
   gtk_aspect_frame_set (GTK_ASPECT_FRAME (aspect_frame), 0.0, 0.5,
@@ -275,6 +300,7 @@ screenshot_dialog_new (GdkPixbuf *screenshot,
   g_signal_connect (preview_darea, "button_press_event", G_CALLBACK (on_preview_button_press_event), dialog);
   g_signal_connect (preview_darea, "button_release_event", G_CALLBACK (on_preview_button_release_event), dialog);
   g_signal_connect (preview_darea, "configure_event", G_CALLBACK (on_preview_configure_event), dialog);
+  g_signal_connect (notebook, "switch_page", G_CALLBACK (on_switch_page), dialog);
 
   if (take_window_shot)
     gtk_frame_set_shadow_type (GTK_FRAME (aspect_frame), GTK_SHADOW_NONE);
@@ -288,6 +314,7 @@ screenshot_dialog_new (GdkPixbuf *screenshot,
 		    G_CALLBACK (drag_data_get), dialog);
 
   gtk_widget_show_all (toplevel);
+  /*gtk_widget_hide (GTK_WIDGET (gwibber_box));*/
 
   /* select the name of the file but leave out the extension if there's any;
    * the dialog must be realized for select_region to work

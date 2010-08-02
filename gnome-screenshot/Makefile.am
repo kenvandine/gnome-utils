@@ -35,6 +35,7 @@ gnome_screenshot_LDADD =		\
 	$(GNOME_UTILS_LIBS)		\
 	$(LIBCANBERRA_GTK_LIBS)		\
 	$(GTHREAD_LIBS)			\
+	$(GWIBBERGTK_LIBS)		\
 	-lm				\
 	$(NULL)
 
@@ -45,7 +46,7 @@ gnome_screenshot_DATA = $(gnome_screenshot_in_files:.desktop.in=.desktop)
 
 man_MANS = gnome-screenshot.1
 
-uidir = $(datadir)/gnome-screenshot
+uidir = /home/ken/src/gnome-utils/gnome-screenshot
 ui_DATA =					\
 	gnome-screenshot.ui			\
 	$(NULL)

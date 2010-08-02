@@ -21,6 +21,7 @@
 #define __SCREENSHOT_DIALOG_H__
 
 #include <gtk/gtk.h>
+#include <gwibber-gtk.h>
 
 typedef struct ScreenshotDialog ScreenshotDialog;
 

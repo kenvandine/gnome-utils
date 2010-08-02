@@ -99,6 +99,11 @@ PKG_CHECK_MODULES(LIBGDICT, glib-2.0 >= $GLIB_REQUIRED dnl
 AC_SUBST(LIBGDICT_CFLAGS)
 AC_SUBST(LIBGDICT_LIBS)
 
+GWIBBERGTK_REQUIRED=0.0.2
+PKG_CHECK_MODULES(GWIBBERGTK, gwibber-gtk >= $GWIBBERGTK_REQUIRED)
+AC_SUBST(GWIBBERGTK_CFLAGS)
+AC_SUBST(GWIBBERGTK_LIBS)
+
 # For each cycle:
 # 	first release: increment major += 1, minor = micro = 0;
 # 	each release before API freeze: minor += 1;
